@@ -43,7 +43,7 @@
 ## How it is extended
 
 - **A library's own grid** is its theme's rules for the same marks, extending the default sheet as [Dressing a Library](../writing-a-book/02-dressing-a-library.md) does; a table wider than twelve columns adds its start and span rules there.
-- **Which parts are rows** is `start`, and a kind of composition that keeps its canonical elsewhere overrides it.
+- **Which parts are rows** is `start`, and a type of composition that keeps its canonical elsewhere overrides it.
 - **What a row must hold** is the specification; a table that must be square says so in a subclass's.
 
 ## Promises

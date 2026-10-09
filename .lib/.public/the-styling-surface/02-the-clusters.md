@@ -60,7 +60,7 @@ export class $LibraryCover extends $Cover {
 |---|---|---|---|
 | `pa-cover` | the chapter's own element | `$Cover.defines`, which also takes `pd-canonical` off | nothing — the template is empty |
 
-*The layer:* `header.pd-container` around the chapter. *What a library writes:* the card — ground, rule, padding — on `.pa-cover`; the title's size on `.pa-cover .pd-title`; a label by `::before`; the cover's byline is the library's own kind drawn by its book, with its own mark.
+*The layer:* `header.pd-container` around the chapter. *What a library writes:* the card — ground, rule, padding — on `.pa-cover`; the title's size on `.pa-cover .pd-title`; a label by `::before`; the cover's byline is the library's own class drawn by its book, with its own mark.
 
 ## TableOfContents — one class, a nav, and Content's span
 

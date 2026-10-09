@@ -27,7 +27,7 @@
 
 ## How they are extended
 
-A class of section that means through something else overrides `canonical` to find its own kind, as Section does; Chapter's Title and Book's Cover will. A heading of another kind is a class under Heading, or under Sentence with a `section` of its own. Both are written as any composition: `<Section><Heading>…</Heading><Paragraph>…</Paragraph></Section>`, the heading wherever it stands.
+A class of section that means through something else overrides `canonical` to find its own type, as Section does; Chapter's Title and Book's Cover will. A heading of another type is a class under Heading, or under Sentence with a `section` of its own. Both are written as any composition: `<Section><Heading>…</Heading><Paragraph>…</Paragraph></Section>`, the heading wherever it stands.
 
 ## Promises
 

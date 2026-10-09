@@ -20,7 +20,7 @@
 
 | | his words | what it decides |
 |---|---|---|
-| **RA** | *"No I mean a TypeOfIndexCard for the index card class. You do see the type pattern? Class, type, specification, optional interface if there are members"* | **The type pattern is not a choice.** Every card is spelled `$X` · `$TypeOfX` · `XSpecification` · `$X$` where it has members. It was offered as one option of three and that was the error — [ch15](../the-coding-style/05-the-spelling-of-a-kind.md) already rules it. |
+| **RA** | *"No I mean a TypeOfIndexCard for the index card class. You do see the type pattern? Class, type, specification, optional interface if there are members"* | **The type pattern is not a choice.** Every card is spelled `$X` · `$TypeOfX` · `XSpecification` · `$X$` where it has members. It was offered as one option of three and that was the error — [ch15](../the-coding-style/05-the-spelling-of-a-type.md) already rules it. |
 | **RB** | *"Annotation answers to is type of annotation"* | **The `annotation` boolean is deleted.** Annotation-hood is `reflection.is(one, $TypeOfAnnotation)` at every seat, the parser included. |
 | **RC** | *"Someone writes it"* | **A card's heading is author-written.** No bond writes one from the copy; the twelve authored files change instead. |
 | **RD** | — | **All of it, one sprint.** |

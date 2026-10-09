@@ -36,7 +36,7 @@
 ## How they are extended
 
 - **Another typesetter** is a function of the same shape handed as the prop, or a class under Math or Equation setting `$typesetter` to it.
-- **A kind of equation** is a class under Equation, a numbered lemma, a theorem, saying what its text must be in a specification of its own and adding its mark beside `pd-equation`.
+- **A type of equation** is a class under Equation, a numbered lemma, a theorem, saying what its text must be in a specification of its own and adding its mark beside `pd-equation`.
 - **A look of your own** is a library's theme's rules for the two marks, and its own rules for KaTeX's classes if it wants them, since the sheet is linked on every page.
 
 ## Promises

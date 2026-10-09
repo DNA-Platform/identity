@@ -13,7 +13,7 @@
 
 ### <a id="a-fight"></a>What a fight is — ***the implementer's experience, not a rule's***
 
-**The three tests above say what natural IS. This says what unnatural FEELS LIKE to the person writing the next kind or the next chapter**, and it is the sense the hunt reads by: *code that fights is code where the implementer had to do something the framework should have done for them.*
+**The three tests above say what natural IS. This says what unnatural FEELS LIKE to the person writing the next type or the next chapter**, and it is the sense the hunt reads by: *code that fights is code where the implementer had to do something the framework should have done for them.*
 
 | locally, in the code | conceptually, in the head |
 |---|---|
@@ -21,18 +21,18 @@
 | **dodging a base seam** — overriding `view()` to add one attribute the base `view()` could not take; overriding `specifically()` to nothing because the base judged what it should not | **two grammars for one apparatus** — a table of contents written as mentions in one demo and as menus with hand-written anchors in the other |
 | **waiving in two places** — a rule returned `false` on the specification and its supply returned unchanged on the type, because the demand is stated twice | **a record that says one thing and code that says another** — a style chapter claiming one `view()` override remains while eleven stand |
 | **reaching through** — `(this.$of ?? this).parent as $Image`, a format finding the writing it is worn by through a cast | **a control that promises and does nothing** — a panel whose choices are written and read by nobody |
-| **hand-writing what the framework writes** — `<img>` in a `write()` where `$Image` exists; `<div className="pd-body">` where every other box is a kind | **a demo inventing a kind** — a class in `.wiki` for something the library has a word for |
+| **hand-writing what the framework writes** — `<img>` in a `write()` where `$Image` exists; `<div className="pd-body">` where every other box is a class | **a demo inventing a class** — a class in `.wiki` for something the library has a word for |
 | **hiding what should not have been carried** — a theme setting `display: none` on an author the page never shows, where `print={false}` already says it | **positional selection** — `:nth-last-child(2)`, `:last-of-type`, a `:not()` roster: a concept nobody has named, selected by where it happens to stand |
 
-***One test for all of them:*** **would the implementer of the next kind, the next theme, or the next chapter have to know this?** *If a thing has to be remembered rather than met, it is a fight.*
+***One test for all of them:*** **would the implementer of the next type, the next theme, or the next chapter have to know this?** *If a thing has to be remembered rather than met, it is a fight.*
 
 ### <a id="trickle"></a>And a fight trickles — ***the base pays it once, everything beneath pays it forever***
 
-**A fight in `writing/` is paid by every kind beneath it and by every book that writes one.** *The heading a section demands is stated twice in the base — a rule and a supply — so five kinds that carry no heading answer it twice, and the sixth will too.* **A fight in a kind is paid by every book that writes it.** *A format that must restate its writing's tag, or wrap it, is a fight every demo meets the day it dresses that kind.* ***The tell that a fight has trickled is the same thing done two ways in two demos*** — **the paper and the encyclopedia are the acceptance test of the base, and where they disagree about how to write one apparatus, the base did not say.**
+**A fight in `writing/` is paid by every class beneath it and by every book that writes one.** *The heading a section demands is stated twice in the base — a rule and a supply — so five classes that carry no heading answer it twice, and the sixth will too.* **A fight in a class is paid by every book that writes it.** *A format that must restate its writing's tag, or wrap it, is a fight every demo meets the day it dresses that class.* ***The tell that a fight has trickled is the same thing done two ways in two demos*** — **the paper and the encyclopedia are the acceptance test of the base, and where they disagree about how to write one apparatus, the base did not say.**
 
 ### <a id="tolerance"></a>The tolerance is near zero, and the fix is always in `.public`
 
-**"You control the framework."** *A fight is never patched where it is met — not in the kind, not in the theme, not in the demo.* **It is filed against `.public` as the feature the framework lacks, and the feature is built so that the fight disappears everywhere it was paid.** *A workaround with a comment explaining it is a wart that has learned to talk.* **The number is [the one above](#the-measure): a fix that subtracts is the right one, and a fix that adds a member to the place the fight was met is the fight moving house.**
+**"You control the framework."** *A fight is never patched where it is met — not in the class, not in the theme, not in the demo.* **It is filed against `.public` as the feature the framework lacks, and the feature is built so that the fight disappears everywhere it was paid.** *A workaround with a comment explaining it is a wart that has learned to talk.* **The number is [the one above](#the-measure): a fix that subtracts is the right one, and a fix that adds a member to the place the fight was met is the fight moving house.**
 
 ### <a id="promises"></a>Promises are not gospel
 
@@ -74,7 +74,7 @@
 |---|---|
 | ***DERIVING what someone already knows*** | **`$Chapter.classes` searched the book's documents and compared title strings on every `className` read — 715 comparisons a draw.** *The book already walks every writing beneath it; it assigns them there, once* |
 | ***STORING what can be asked*** | **`$Book` cached four `$Block`s filtered out of its own block.** *Doug: "We do NOT cache lots of blocks… we have NO CONTROL of what is below us"* |
-| ***DECIDING BY POSITION*** | **a table's cells were "every composition that is not the heading".** *A cell is a kind; the table asks for its cells by type* |
+| ***DECIDING BY POSITION*** | **a table's cells were "every composition that is not the heading".** *A cell is a class; the table asks for its cells by type* |
 | ***DECIDING BY NAME*** | **`reflection` held a roster of class-name strings.** *`is(part, $TypeOfChapter)` asks the type system the question the type system exists to answer* |
 
 > ***THE TELL IS A ROSTER.*** **Any list of names, positions or exceptions inside a rule is a concept that has not been given a name yet** — *and the `:not(.pd-cover):not(.pd-table-of-contents):not(.pd-chapter)` chain in two themes is that same missing concept saying itself out loud twice.*
@@ -99,12 +99,12 @@
 | **a type derives its name from its class** | **62 hand-written `override name = '…'` lines deleted** |
 | **one asking, named `is`** | **24 `instanceof` sites → 0** |
 | **`addType` absorbing the bond preamble** | **57 bond constructors** |
-| **`print` as the one method a kind overrides** | **11 `view()` overrides → 1**, and anchors no sheet could reach **65 → 0** |
-| **the sheet addressing kinds** | element-naming selector groups **75 → 15** |
+| **`print` as the one method a subclass overrides** | **11 `view()` overrides → 1**, and anchors no sheet could reach **65 → 0** |
+| **the sheet addressing classes** | element-naming selector groups **75 → 15** |
 
-***A change that only ADDS is a change to be suspicious of.*** **It may still be right** — `$Cell` and `$Fold` both added a file — *but each of those deleted a rule that had been standing in for the missing kind*, **and if yours deletes nothing, say so out loud and expect to be asked why.**
+***A change that only ADDS is a change to be suspicious of.*** **It may still be right** — `$Cell` and `$Fold` both added a file — *but each of those deleted a rule that had been standing in for the missing type*, **and if yours deletes nothing, say so out loud and expect to be asked why.**
 
-***And the number has a limit, found 2026-09-30:*** **a count is evidence for a reading and never the verdict.** *The first build of Sprint 95's U3 moved every Format's class to the element it gives and counted well — `src` +28 −82, Libby's library 15 lines for 15 — and read badly: her sheet had to say* a cover that directly contains a chapter *and to count chapters and then un-count two kinds.* **The next section is what the count was standing in for.**
+***And the number has a limit, found 2026-09-30:*** **a count is evidence for a reading and never the verdict.** *The first build of Sprint 95's U3 moved every Format's class to the element it gives and counted well — `src` +28 −82, Libby's library 15 lines for 15 — and read badly: her sheet had to say* a cover that directly contains a chapter *and to count chapters and then un-count two types.* **The next section is what the count was standing in for.**
 
 ## <a id="the-grade"></a>THE GRADE IS READ IN THE LIBRARY — ***given 2026-09-30, at the first build of Sprint 95's U3***
 
@@ -124,7 +124,7 @@
 
 ## <a id="unnatural"></a>WHAT UNNATURAL LOOKS LIKE IN THIS CODEBASE — six shapes, each with a real one behind it
 
-1. ***A kind-conditional on a base.*** **Doug: "so so so so important" — the base declares the seam, the kinds OVERRIDE.** *A `if (this instanceof X)` on a base class is the base knowing its own subclasses.*
+1. ***A type-conditional on a base.*** **Doug: "so so so so important" — the base declares the seam, the subclasses OVERRIDE.** *A `if (this instanceof X)` on a base class is the base knowing its own subclasses.*
 2. ***A class that disowns its own class name.*** **`$Chapter` called `removeClass('pd-reference')` because its TYPE derives from `$TypeOfReference`.** *Ruled not a bug, and still the sound a wrong hierarchy makes.*
 3. ***A member that exists for one caller.*** *[The property test](../../../../.claude/library/..teamsmanship/08-coding-policy.md): argumentless AND returns data.* **`canonical()` yes; `specify()` no; `where(match)` no.**
 4. ***A hand-written element with no class.*** **A chapter's contents link was a bare `<a>` — the one element a sheet most wants to reach and the one it could not.** *The natural repair was not to add a class: it was to make the link a piece of writing, so the machinery that classes everything else classed it too.*
@@ -165,10 +165,10 @@
 
 | does | and never |
 |---|---|
-| **names a kind** — `.pd-image`, `.pd-title` | *a path (`.pd-book > header .pd-image`), a position (`:nth-of-type(2)`, `+`, `:last-child`), an element type, or a `:not()` roster standing in for a concept nobody named* |
+| **names a class** — `.pd-image`, `.pd-title` | *a path (`.pd-book > header .pd-image`), a position (`:nth-of-type(2)`, `+`, `:last-child`), an element type, or a `:not()` roster standing in for a concept nobody named* |
 | **sets its own element** | *a descendant's look — a parent PLACES its children (grid, flex, named areas) and never paints them* |
 | **takes its numbers from the theme** — values and the theme's units | *a pixel transcribed from a page, which follows no theme's size* |
 | **places by named areas or flow** | *by DOM order or by counting siblings* |
-| **says what the kind is** | *restates a browser default (`display: block` on a section drawn as a link) or a writing's own attribute (a width the image already declares)* |
+| **says what the class is** | *restates a browser default (`display: block` on a section drawn as a link) or a writing's own attribute (a width the image already declares)* |
 
-***The test is the same one as everywhere in this chapter:*** **would the next theme's author have to know this rule exists to write theirs?** *A path, a roster and a restated default all say yes; a kind's own rule says no.* **And the reason it holds without a precedence mechanism:** *when no two authors set one property on one element, the cascade is never asked to choose* — [Solutions 80](../solutions/80-the-rules-that-won-by-counting-classes.md) is what it chose when it was.
+***The test is the same one as everywhere in this chapter:*** **would the next theme's author have to know this rule exists to write theirs?** *A path, a roster and a restated default all say yes; a class's own rule says no.* **And the reason it holds without a precedence mechanism:** *when no two authors set one property on one element, the cascade is never asked to choose* — [Solutions 80](../solutions/80-the-rules-that-won-by-counting-classes.md) is what it chose when it was.

@@ -10,7 +10,7 @@
 
 ## What a Theme is, and when another
 
-**A Theme is a Format said of a book that provides, of which a book has one.** The base holds no property and no style: a library's theme is a subclass with reactive fields — the library's own, as many as it needs — and one styled component, composed of parts, that dresses the kinds and every mark the library did not give a face. A book always has one: `$Book` stands the framework's in its `$Define` and *asks* for it, so a library registers its own on its book class, `$(TheLibrary, Theme)(LibraryTheme)`, and every book of the library inherits it; a book that wants another registers it on its own class, nearer. Uniqueness is expression's — every theme takes the themes behind it out of expression — and a reader switches one with `$is`: a new theme stands in front and replaces the one behind, nothing merged.
+**A Theme is a Format said of a book that provides, of which a book has one.** The base holds no property and no style: a library's theme is a subclass with reactive fields — the library's own, as many as it needs — and one styled component, composed of parts, that dresses the classes and every mark the library did not give a face. A book always has one: `$Book` stands the framework's in its `$Define` and *asks* for it, so a library registers its own on its book class, `$(TheLibrary, Theme)(LibraryTheme)`, and every book of the library inherits it; a book that wants another registers it on its own class, nearer. Uniqueness is expression's — every theme takes the themes behind it out of expression — and a reader switches one with `$is`: a new theme stands in front and replaces the one behind, nothing merged.
 
 **When another theme:** a theme is said of a book and of nothing else. A subtree in other values — a dark chapter in a light book — is a Format that provides, [below](#formats), whose `theme` reaches another Theme; its subtree reads that theme's fields.
 
@@ -20,9 +20,9 @@
 
 **Three ways to read a value, and which to use.** A styled template reads through the provider's props, `${({ theme }) => theme.space}` — never through a closure over `this`, which reads the class's specimen and not the drawn instance. Code reads through the book, `this.theme.space` on a Format or `this.book.theme.space` anywhere, typed as the library's theme by its own augmentation of `DefaultTheme`, for a computation at draw, a mark to put on a writing, or a check. A control writes through the same path, `book.theme.ink = …`, and the write is reactive. A rule never contains a theme's literal.
 
-## <a id="formats"></a>What a Format is, and which kind
+## <a id="formats"></a>What a Format is, and which type
 
-**A Format is an annotation that is, or adds, the element its writing draws as — a shell of a class with `style` set to a styled component — and every Format has a theme.** It is an annotation first: it marks the writing, `writing.classes.add(this, 'pa-…')`, takes others out of expression, specifies. Its `style` is the element, a styled component declared once in a field, which may wear a class of its own through `attrs`. Three kinds, by what the element needs to be:
+**A Format is an annotation that is, or adds, the element its writing draws as — a shell of a class with `style` set to a styled component — and every Format has a theme.** It is an annotation first: it marks the writing, `writing.classes.add(this, 'pa-…')`, takes others out of expression, specifies. Its `style` is the element, a styled component declared once in a field, which may wear a class of its own through `attrs`. Three classes, by what the element needs to be:
 
 | the element needs | the Format's `style` is | in `src` |
 |---|---|---|
@@ -34,13 +34,13 @@
 
 ## <a id="the-rule"></a>The rule, in one line
 
-**The base ships mechanism; a library ships every look, in two places.** A kind of writing is dressed by the library's theme, by its mark: `.pd-paragraph { margin-block }`. A Format is dressed by the library's subclass of it, exported under the framework's name and imported by the chapters that write it: `class $LibraryCover extends $Cover { style = … }`, `export const Cover`. A Format's rule for its own element names the kind with its mark, `.pd-chapter.pa-cover`, and wins over the theme's rule for the kind by specificity in every order; its rules for the kinds beneath it name its mark and theirs, `.pa-table .pd-paragraph`, and win the same way. A kind is never subclassed for a look. **And the mark stays on the writing's own element,** which no Format in front can move — a rule reaches it by descendant through the layers, never by child or sibling.
+**The base ships mechanism; a library ships every look, in two places.** A type of writing is dressed by the library's theme, by its mark: `.pd-paragraph { margin-block }`. A Format is dressed by the library's subclass of it, exported under the framework's name and imported by the chapters that write it: `class $LibraryCover extends $Cover { style = … }`, `export const Cover`. A Format's rule for its own element names the class with its mark, `.pd-chapter.pa-cover`, and wins over the theme's rule for the class by specificity in every order; its rules for the classes beneath it name its mark and theirs, `.pa-table .pd-paragraph`, and win the same way. A class is never subclassed for a look. **And the mark stays on the writing's own element,** which no Format in front can move — a rule reaches it by descendant through the layers, never by child or sibling.
 
 ## Marks, meaning, and where it lives
 
 Since Sprint 97 there is no base sheet, so there is nothing to order a Format's rules against: no `@layer`, no `!important`, no chain of `:has()`. What an annotation *means* to the eye is its own mechanism — Parenthetical replaces the writing's element with one that is `hidden` and draws no children; Blank is a mark, since what wears it has no ink; Paginated hides a closed page in its own template; an annotation's own writing is not drawn at all, so nothing hides it. What a mark *looks like* is the library's, in its theme or its face. The marks an annotation puts on or takes off — `pd-canonical`, `pa-framed` — are read for what they mean, counted or standing down, never taken off to win.
 
-**The three tools, and the rule for choosing.** A styled component, local, when an element must have rules to be what it is or look as the library wants. The library's theme, when a kind should look a certain way in this library. And a class the annotation toggles, the cheapest and most dynamic, when what varies is a state: a page open, a tab selected — a class toggled costs nothing and the theme does the rest. *Structure is a Format's mechanism, look is the library's, state is a mark, quantity is a theme property.*
+**The three tools, and the rule for choosing.** A styled component, local, when an element must have rules to be what it is or look as the library wants. The library's theme, when a class should look a certain way in this library. And a class the annotation toggles, the cheapest and most dynamic, when what varies is a state: a page open, a tab selected — a class toggled costs nothing and the theme does the rest. *Structure is a Format's mechanism, look is the library's, state is a mark, quantity is a theme property.*
 
 ## What holds it
 

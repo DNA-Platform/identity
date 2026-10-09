@@ -73,7 +73,7 @@ That makes the shape one specification seen at two scales: a book is a **cover a
 
 The prose between written parts is divided and composed as that level divides prose. **Mixing is the point** — a figure between two paragraphs leaves the paragraphs alone, and both are read in the order they were written.
 
-**LEVEL ALONE DECIDES, and this is what makes derived kinds free.** `level` is a getter, so it is inherited: a kind the model has never heard of is handled without the walk being told anything about it. There is no class name anywhere in the walk, and no registry of kinds. A section subclass is a section; a figure is a paragraph; a kind derived from *those* is handled at the same depth, because inheritance is not a case.
+**LEVEL ALONE DECIDES, and this is what makes derived classes free.** `level` is a getter, so it is inherited: a class the model has never heard of is handled without the walk being told anything about it. There is no class name anywhere in the walk, and no registry of classes. A section subclass is a section; a figure is a paragraph; a class derived from *those* is handled at the same depth, because inheritance is not a case.
 
 **The parse writes nothing.** Not a number, not a role. That is what lets a composed part **carry a parent** — and a lineage is what a scope needs in order to reach through prose. While the parse wrote, threading a parent looped the page, because a write to a parented chemical wakes its whole ancestry and re-runs the reading that made it.
 
@@ -83,7 +83,7 @@ The prose between written parts is divided and composed as that level divides pr
 
 ## The notation is the levels' own
 
-**Markdown is not a kind of writing. It is how writing is written** — *"just a part of `$Section`, not `$MarkdownSection`… the canonical language for writing compositions"* (Doug). So the levels speak it themselves, and the word appears nowhere in the package.
+**Markdown is not a type of writing. It is how writing is written** — *"just a part of `$Section`, not `$MarkdownSection`… the canonical language for writing compositions"* (Doug). So the levels speak it themselves, and the word appears nowhere in the package.
 
 A section divides at blank lines **and** pulls a fence whole **and** cuts at a heading. A **heading is a `$Title`, standing among the paragraphs** — and a heading of *any* depth is the same grade, so `# X / ## Y / ### Z / # A` is **four sections and no tree**. *Doug: "the levels and nesting can be handled elsewhere."* Depth is a containment to bolt on later; the parse does not carry one it was never asked for. A composite at word grade — a link, a code span, a formula, an escape — is pulled **whole** before anything is split into words, so a target never becomes prose and mathematics keeps its underscores.
 
@@ -106,7 +106,7 @@ Used writing means what it says. **Mentioned writing stands for itself** — a s
 
 **A figure is a caption.** *Doug: "maybe the default figure is just a caption and to subclass it is to add something that's pure view… the whole point of the caption is that you have satisfied its role as a paragraph. So now you can do whatever you want with the subclasses."* So `$Figure` is a paragraph carrying a `$Caption` — a sentence, possibly parenthetical but **never absent** — and it is valid because it has one. `drawn()` returns nothing. A subclass overrides `drawn()` and nothing else.
 
-**That is the whole of it, and it is deliberately the top.** `$Figure` is *the thing added* at this level; the framework ships no kind beneath it. A book that wants an equation, a rule, a plate declares its own — as the demo does with `$Equation` and `$Rule`. *The earlier reading of a figure as "content that is not writing" was wrong: it swept a picture, a thematic rule and a code listing together, and a listing is source rather than a picture.*
+**That is the whole of it, and it is deliberately the top.** `$Figure` is *the thing added* at this level; the framework ships no class beneath it. A book that wants an equation, a rule, a plate declares its own — as the demo does with `$Equation` and `$Rule`. *The earlier reading of a figure as "content that is not writing" was wrong: it swept a picture, a thematic rule and a code listing together, and a listing is source rather than a picture.*
 
 **Content that is not writing is a separate idea, and it has its own class.** `$Code` is Doug's name and is framework-level *because code is going to be live in this framework*. It recurs one grade down as **a word whose content is not writing** — an inline formula, an inline code span — which stand today as `$Formula` and `$Snippet`, both phrases that mention rather than say. *The real answer is Doug's and is owed: **one `$Code` with an `inline` boolean whose LEVEL moves** between paragraph and phrase. That needs dynamic layering, which the framework does not have.*
 
@@ -114,7 +114,7 @@ Used writing means what it says. **Mentioned writing stands for itself** — a s
 
 ## Validation says why
 
-A class states **why** it is not valid, in the same place `$check` states that a parameter was wrong: one collection per bond, one raise, **both kinds together**, so a reader can see whether they are related.
+A class states **why** it is not valid, in the same place `$check` states that a parameter was wrong: one collection per bond, one raise, **both together**, so a reader can see whether they are related.
 
 `$valid(condition, reason)` works exactly as `$check` does — it **returns its condition** and records the reason when the condition is false. So `valid()` keeps answering true or false and every call site is unchanged. The rule that comes with it: **never short-circuit in front of a `$valid` call**, because a swallowed call is a reason nobody hears.
 

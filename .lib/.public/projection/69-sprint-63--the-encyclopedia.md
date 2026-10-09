@@ -354,7 +354,7 @@ $(Infobox, Theme)(InfoboxTheme);
 | **3** | is it a ***name with rules*** and no look? | a `$TypeOfX` in `.chapter.tsx`, written in as `<TypeOfX />` |
 | **4** | both a kind ***and*** a look of its own? | a class — and only then |
 
-***The rule under it is the framework's own, read off `multiple.test.tsx` and [The Spelling of a Kind](../the-coding-style/05-the-spelling-of-a-kind.md):*** **a consumer kind is a Specification and a `$TypeOfX` with a name — nothing in the framework is touched — and THE CLASS ROW IS ADDED ONLY WHEN THE KIND HOLDS A LOOK OF ITS OWN.** *The demo has it inverted: 35 classes, 0 types, 0 specifications.*
+***The rule under it is the framework's own, read off `multiple.test.tsx` and [The Spelling of a Kind](../the-coding-style/05-the-spelling-of-a-type.md):*** **a consumer kind is a Specification and a `$TypeOfX` with a name — nothing in the framework is touched — and THE CLASS ROW IS ADDED ONLY WHEN THE KIND HOLDS A LOOK OF ITS OWN.** *The demo has it inverted: 35 classes, 0 types, 0 specifications.*
 
 ### <a id="d7"></a>D7 · ***The LaTeX test, applied: two normal pages declare NOTHING***
 

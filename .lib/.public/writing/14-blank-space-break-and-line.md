@@ -36,7 +36,7 @@ Set apart by a break,<Space length={3} />and spaced by three.
 
 ## How they are extended
 
-- **A kind of blank** is a class standing `<Blank />` in its `$Define` after its base's, as Space and Break do — a redacted word, a placeholder that keeps its width.
+- **A type of blank** is a class standing `<Blank />` in its `$Define` after its base's, as Space and Break do — a redacted word, a placeholder that keeps its width.
 - **A line of your own** is a class under Line, a verse with a number in front of it, say; it is a sentence still, a part of its paragraph, and wears `pd-sentence` and `pd-line` beneath its own mark.
 - **What a space looks like** is the theme's, `.pd-space`; what it measures is its count.
 

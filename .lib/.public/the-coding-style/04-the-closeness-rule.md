@@ -33,7 +33,7 @@
 
 **So a member is never moved out of its group to sit beside a relative.** *If the urge to move it is strong, that is [diagnostic rather than decorative](../the-type-system/02-the-type-and-the-instance.md#the-test) — the member is probably on the wrong object.*
 
-***Art operates in exactly two places the order says nothing about:*** **INSIDE a group** — what stacks with what, where the blank lines fall, how many lines a thing takes — **and ABOVE the class** — which classes share a file, which files share a folder. *[The file is the word](01-the-unit-of-code.md#a-word-is-not-a-class) is a ruling of the second kind; the flattened operator block below is one of the first.*
+***Art operates in exactly two places the order says nothing about:*** **INSIDE a group** — what stacks with what, where the blank lines fall, how many lines a thing takes — **and ABOVE the class** — which classes share a file, which files share a folder. *[The file is the word](01-the-unit-of-code.md#a-word-is-not-a-class) is a ruling of the second sort; the flattened operator block below is one of the first.*
 
 ## <a id="instruments"></a>The four instruments
 
@@ -90,7 +90,7 @@ override view(): ReactNode {
 | ***a drawing that conditionally wraps*** | **the container is the class's promise about its own depth**, and a promise that holds only sometimes is not one |
 | ***a guard that returns markup*** | *a guard clears the way to ONE return; a second `return` of a different shape is a branch wearing a guard's clothes* |
 
-***It is [the override law](../../../../.claude/library/..teamsmanship/..team/) in the drawing:*** **the base declares the container and a kind OVERRIDES it** — it never asks a question and answers with two depths.
+***It is [the override law](../../../../.claude/library/..teamsmanship/..team/) in the drawing:*** **the base declares the container and a subclass OVERRIDES it** — it never asks a question and answers with two depths.
 
 ### <a id="brevity"></a>3 · Brevity through line count — ***compactness***
 
@@ -123,7 +123,7 @@ override view(): ReactNode {
 
 ### <a id="is-it-a-filter"></a>And when a loop IS filter-shaped — ***the test, which is now a warning label***
 
-***`Parser.tokens` was the worked example and it is now the cautionary one.*** **Fourteen lines of loop with two `continue`s, doing what a filter and a map would have done** — *Doug's own words almost exactly: "loops through and removes something technical."* **It was rewritten into three chained calls, and [the rewrite failed](#brevity).** *Verified 2026-09-03: the chain STANDS in the file, and that is not the chapter contradicting itself — [Sprint 31's record](../projection/31-organization.md) says nothing was reverted because Doug said "minimise rewriting," not "undo"; the failure was of the KIND of act, the code was kept by his word. The example is historical; the law is unchanged.*
+***`Parser.tokens` was the worked example and it is now the cautionary one.*** **Fourteen lines of loop with two `continue`s, doing what a filter and a map would have done** — *Doug's own words almost exactly: "loops through and removes something technical."* **It was rewritten into three chained calls, and [the rewrite failed](#brevity).** *Verified 2026-09-03: the chain STANDS in the file, and that is not the chapter contradicting itself — [Sprint 31's record](../projection/31-organization.md) says nothing was reverted because Doug said "minimise rewriting," not "undo"; the failure was of the TYPE of act, the code was kept by his word. The example is historical; the law is unchanged.*
 
 ***The analysis still stands and is worth keeping, because a suite written against an OUTCOME cannot catch a MECHANISM change.*** **A loop is genuinely filter-shaped only if all three hold:**
 
@@ -161,7 +161,7 @@ override view(): ReactNode {
 
 > ***So extraction is earned by polymorphism, not by tidiness.*** *"One to one" work — a stage with exactly one caller and no subclass that would replace it — **stays inside its method and takes a blank line.***
 
-***The example:*** *[`$Letter.build`](../../package/src/writing/Letter.tsx) decides a kind and then decides a case — one job in two stages, one caller, nothing that would override either half.* **Under the old reading it invited two private methods. Under this one it takes a blank line and nothing else.**
+***The example:*** *[`$Letter.build`](../../package/src/writing/Letter.tsx) decides a class and then decides a case — one job in two stages, one caller, nothing that would override either half.* **Under the old reading it invited two private methods. Under this one it takes a blank line and nothing else.**
 
 ## <a id="what-it-forbids"></a>What the law forbids
 

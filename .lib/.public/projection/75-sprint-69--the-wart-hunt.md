@@ -176,7 +176,7 @@ The paper: `<TableOfContents><Heading/><Row><Chapter>Introduction</Chapter><Row>
 
 ### <a id="f16"></a>F16 · ***the record against the code***
 
-Claims the code contradicts today (`run`/`read`): *"the ONE override left is `$Format`"* ([drawing conventions](../the-coding-style/03-the-coding-style.md#the-drawing-conventions)) — 12 stand · *"no comments in `src`"* ([P47](../the-type-system/05-what-we-believe.md#how-we-work)) — 650+ lines · `find`/`findOne` ([B12](#b12)) · `formatting/` ([F15](#f15)) · [The Spelling of a Kind](../the-coding-style/05-the-spelling-of-a-kind.md), flagged stale 2026-09-05 and unchanged. *Repaired in the same act as the code.*
+Claims the code contradicts today (`run`/`read`): *"the ONE override left is `$Format`"* ([drawing conventions](../the-coding-style/03-the-coding-style.md#the-drawing-conventions)) — 12 stand · *"no comments in `src`"* ([P47](../the-type-system/05-what-we-believe.md#how-we-work)) — 650+ lines · `find`/`findOne` ([B12](#b12)) · `formatting/` ([F15](#f15)) · [The Spelling of a Kind](../the-coding-style/05-the-spelling-of-a-type.md), flagged stale 2026-09-05 and unchanged. *Repaired in the same act as the code.*
 
 
 

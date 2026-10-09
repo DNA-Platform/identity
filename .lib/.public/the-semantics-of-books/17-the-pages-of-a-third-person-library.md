@@ -9,7 +9,7 @@
 
 *And the objective it continues, from [the demo](../projection/49-the-wikipedia-demo.md):* **"we are going to look at wikipedia, and we are going to try to organize that into a library so we can build it. Not every page (duh) but enough to prove we can build the rest."**
 
-**This chapter does the organizing.** *It takes Wikipedia's own page taxonomy, read from their documentation rather than from memory, and asks of each kind the two questions this book has already derived. What comes back is not a mapping table — it is a diagnosis of what Wikipedia is, and the diagnosis is that **Wikipedia is this library with the closure missing**.*
+**This chapter does the organizing.** *It takes Wikipedia's own page taxonomy, read from their documentation rather than from memory, and asks of each type the two questions this book has already derived. What comes back is not a mapping table — it is a diagnosis of what Wikipedia is, and the diagnosis is that **Wikipedia is this library with the closure missing**.*
 
 ## <a id="the-two-questions"></a>The two questions, and they are the only two
 
@@ -29,7 +29,7 @@ Everything below is decided by asking a page two things, and both are already de
 |---|---|---|---|
 | **0** | **Main** — the articles | ***contains*** | ***a book.*** *Title, lead, contents, sections, references, categories — the whole of [Level Two](04-the-book-and-subjectivity.md)* |
 | **14** | **Category** | ***references*** | ***a [subject](09-composition-and-collection.md)*** — `$Collection<$Book>`. **The fit was already called exact; the derivation now says why** |
-| **100** | **Portal** | ***references*** | ***a subject's cover*** — *the [canonical projection](06-the-canonical-echo-and-views.md) of a collection, drawn for a reader. **Not a kind; a view*** |
+| **100** | **Portal** | ***references*** | ***a subject's cover*** — *the [canonical projection](06-the-canonical-echo-and-views.md) of a collection, drawn for a reader. **Not a type; a view*** |
 | **2** | **User** | ***contains*** | ***an autobiography*** — **a first-person book living inside a third-person library**, which is [exactly the structure](14-the-first-person-and-the-third.md) our teammates' books already run |
 | **4** | **Wikipedia** — the project | ***contains*** | ***the [auto-categorical summit](07-the-subjective-subject-and-the-library.md)*** — *the library's account of itself, shelved by itself. **Dewey at 025**, and it is where the demo's `.article` page actually lives* |
 | **12** | **Help** | ***contains*** | *the same summit, written for a reader instead of for the record* |
@@ -47,28 +47,28 @@ Everything below is decided by asking a page two things, and both are already de
 
 ***[Wikipedia:What is an article?](https://en.wikipedia.org/wiki/Wikipedia:What_is_an_article%3F) is blunt that most of mainspace is not:*** **"hundreds of thousands"** *of lists, disambiguation pages and redirects live there without being articles. Each one lands somewhere different here, and two of them land on things this library already built.*
 
-| mainspace kind | their definition | its position here |
+| mainspace type | their definition | its position here |
 |---|---|---|
 | **article** | *"a page on this site that has encyclopedic information on it"* | ***a book*** |
 | **stand-alone list** | *formatted as a list rather than prose* | ***a [catalogue](16-the-reference-and-its-locator.md)*** — a book whose body is mentions rather than composition |
-| **set index** | *resolves naming conflicts among things of one kind* | ***a catalogue keyed by a name*** |
-| **disambiguation** | *"resolve naming conflicts"* between different kinds | ***one heading, many cards*** — *a drawer of the card catalogue. **A name that mentions several referents and identifies none*** |
+| **set index** | *resolves naming conflicts among things of one type* | ***a catalogue keyed by a name*** |
+| **disambiguation** | *"resolve naming conflicts"* between different types | ***one heading, many cards*** — *a drawer of the card catalogue. **A name that mentions several referents and identifies none*** |
 | **redirect** | *"re-route one page to another page"* | ***a `see` reference*** — *the index entry that reads **Automobile, see Car**. **Locator with no content, which is the reference's other half*** |
-| **stub** | *an article of lesser quality* | ***not a kind at all*** — a book, measured |
+| **stub** | *an article of lesser quality* | ***not a type at all*** — a book, measured |
 
-***Two of those are the sharpest results in the chapter.*** **A redirect is a `see` reference and a disambiguation page is a card-catalogue drawer** — *both are ordinary library apparatus that a wiki reinvented, and neither is a kind of article. A library has had both for a century, and neither of ours needs a new class:* **a redirect is a [mention with a path and no copy](16-the-reference-and-its-locator.md); a disambiguation page is a mention whose referent is not unique.**
+***Two of those are the sharpest results in the chapter.*** **A redirect is a `see` reference and a disambiguation page is a card-catalogue drawer** — *both are ordinary library apparatus that a wiki reinvented, and neither is a type of article. A library has had both for a century, and neither of ours needs a new class:* **a redirect is a [mention with a path and no copy](16-the-reference-and-its-locator.md); a disambiguation page is a mention whose referent is not unique.**
 
 ## <a id="the-finding"></a>THE FINDING — ***Wikipedia is this library with the closure missing***
 
 **Wikipedia has exactly one type of page.** *Every one of the sixteen namespaces above is the same object — a wiki page, wikitext, a history, a talk page — and what makes an article an article rather than a category is **a string prefix on its title**.* `Category:Physics` *is a page whose name begins with `Category:`.* ***That is the whole mechanism.***
 
-**So the kinds are a naming convention, not a type.** *Nothing prevents a category from being written as prose. Nothing makes a portal a projection of anything; it is hand-maintained, and drifts. Nothing makes a redirect and an index entry the same object, though they are.* ***The distinctions are real, universally understood, and enforced by editors rather than by the representation.***
+**So Wikipedia's page types are a naming convention, not a type of the library's.** *Nothing prevents a category from being written as prose. Nothing makes a portal a projection of anything; it is hand-maintained, and drifts. Nothing makes a redirect and an index entry the same object, though they are.* ***The distinctions are real, universally understood, and enforced by editors rather than by the representation.***
 
 **And that is precisely the condition Doug named at the very beginning of this book**, in the *self-referential components* passage ([conversation][conv]):
 
 > "The system I'm abstracting already has the self-referential components it's just not closed under a type of representation, but that's a property that you need for a type of representation system to even have the ability to be fundamental."
 
-***He said it about libraries and dictionaries. It is more exactly true of Wikipedia than of either.*** **Wikipedia has every self-referential component this book derives** — a project namespace that documents the project, a Manual of Style that is itself styled by the Manual of Style, categories that are categorized, a page called *Wikipedia* that is an article about the thing you are reading it in — ***and none of it is closed, because a page is not a kind of anything.*** *The loop is present and inert.*
+***He said it about libraries and dictionaries. It is more exactly true of Wikipedia than of either.*** **Wikipedia has every self-referential component this book derives** — a project namespace that documents the project, a Manual of Style that is itself styled by the Manual of Style, categories that are categorized, a page called *Wikipedia* that is an article about the thing you are reading it in — ***and none of it is closed, because a page is not a type of anything.*** *The loop is present and inert.*
 
 > ***What our library adds is not the self-reference. It is that the self-reference becomes a property of the representation rather than a coincidence of the content.***
 
@@ -96,26 +96,26 @@ Everything below is decided by asking a page two things, and both are already de
 
 ***Three things, and the third is the one I did not expect.***
 
-**A library is not a set of documents; it is a set of KINDS with a closure.** *Wikipedia has the documents, the self-reference, the cross-reference, the authorship and the catalogue — everything — and it is not a library in this book's sense, because a page is not an instance of anything. **The kinds are the library.***
+**A library is not a set of documents; it is a set of TYPES with a closure.** *Wikipedia has the documents, the self-reference, the cross-reference, the authorship and the catalogue — everything — and it is not a library in this book's sense, because a page is not an instance of anything. **The types are the library.***
 
-**Every apparatus a wiki invents turns out to be library apparatus under a new name.** *Redirect is `see`. Disambiguation is a drawer. Infobox is a catalogue card. Talk is the account of the account. Portal is a cover. **Not one of them needed a new kind here**, which is the strongest evidence so far that the seven levels and the two operations are enough.*
+**Every apparatus a wiki invents turns out to be library apparatus under a new name.** *Redirect is `see`. Disambiguation is a drawer. Infobox is a catalogue card. Talk is the account of the account. Portal is a cover. **Not one of them needed a new type here**, which is the strongest evidence so far that the seven levels and the two operations are enough.*
 
 ***And the thing a wiki has that this book had not derived: the talk page.*** **Every Wikipedia page is paired with an account of how it came to say what it says**, in a namespace of its own, at the same address. *We have this — the [sprint chapters and the projection book](14-the-first-person-and-the-third.md) are exactly it, and chapter 14 already argues they are **load-bearing rather than documentation** for a third-person library.* ***What we do not have is the pairing.*** *Wikipedia gives every page a talk page automatically, by construction, at a computed address. Ours are related by a link somebody remembered to write.*
 
-> ***The open design question this research produces: should a piece of writing in this library have, by construction, the account of its own making — the way it has a title and a subject?*** **That is a question about the kinds, and it is Doug's.**
+> ***The open design question this research produces: should a piece of writing in this library have, by construction, the account of its own making — the way it has a title and a subject?*** **That is a question about the types, and it is Doug's.**
 
 ## <a id="open"></a>What is not settled here
 
 *Stated as questions rather than answered, because these are rulings.*
 
-- ***Is a portal a kind, or is it a subject's cover?*** *I have written it as a view. If it is a kind, it is the first Wikipedia page type that needs one.*
+- ***Is a portal a type of its own, or is it a subject's cover?*** *I have written it as a view. If it is a type, it is the first Wikipedia page that needs one.*
 - ***Does a disambiguation page have a referent?*** *A mention identifies; this one deliberately does not, and [chapter 16](16-the-reference-and-its-locator.md) says identification is the half that stands alone. **A mention that identifies several things is either a catalogue or a defect**, and I do not know which.*
-- ***Which of these do we BUILD?*** *Doug's rule for the demo stands — **it may invent Wikipedia's content and may not invent kinds of writing**. On this reading a category page and a disambiguation page can both be written today with what `src` already has, and that is the claim worth testing next.*
+- ***Which of these do we BUILD?*** *Doug's rule for the demo stands — **it may invent Wikipedia's content and may not invent types of writing**. On this reading a category page and a disambiguation page can both be written today with what `src` already has, and that is the claim worth testing next.*
 - ***The talk-page pairing***, above.
 
 ---
 
-*Written 2026-09-07 out of Doug's instruction to organize Wikipedia's page types into the library. Sources read for it: [Wikipedia:Namespace](https://en.wikipedia.org/wiki/Wikipedia:Namespace) and [Wikipedia:What is an article?](https://en.wikipedia.org/wiki/Wikipedia:What_is_an_article%3F). It extends [The Wikipedia Fit](../the-motif/02-the-wikipedia-fit.md), which mapped Wikipedia's **parts of a page** onto our viewless kinds; this one maps its **kinds of page** onto the two container operations, and corrects that chapter's reading of `$Author`.*
+*Written 2026-09-07 out of Doug's instruction to organize Wikipedia's page types into the library. Sources read for it: [Wikipedia:Namespace](https://en.wikipedia.org/wiki/Wikipedia:Namespace) and [Wikipedia:What is an article?](https://en.wikipedia.org/wiki/Wikipedia:What_is_an_article%3F). It extends [The Wikipedia Fit](../the-motif/02-the-wikipedia-fit.md), which mapped Wikipedia's **parts of a page** onto our viewless types; this one maps its **types of page** onto the two container operations, and corrects that chapter's reading of `$Author`.*
 
 <!-- citations -->
 [conv]: ../../../../../dna-library/library/claude-dna/conversations/2026-07-18-the-semantics-of-books.md

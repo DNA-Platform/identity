@@ -8,7 +8,7 @@
 
 ## The claim
 
-**A library is designed by deciding how what it already is gets seen.** A design adds no kinds. Every element on a screen is one of three things: a part of a book at some rank; a relation between books that the catalogue holds; or something of the reader's. An element that is none of the three is the design asking the library to *become* something first — a book, an annotation, a form of the notation — and that is said and ruled before it is drawn.
+**A library is designed by deciding how what it already is gets seen.** A design adds no types. Every element on a screen is one of three things: a part of a book at some rank; a relation between books that the catalogue holds; or something of the reader's. An element that is none of the three is the design asking the library to *become* something first — a book, an annotation, a form of the notation — and that is said and ruled before it is drawn.
 
 *This is the web isomorphism of [Ways of Reading](../ways-of-reading/04-ways-of-reading.md) read as a discipline. Doug's seed there: "a book is the fundamental website" — the cover is the masthead, the table of contents the index, chapters pages, references hyperlinks — so every established pattern is a candidate view of the same objects, and none of them is a new data model.*
 
@@ -29,7 +29,7 @@ Everything below exists before any design, and a design is free to use all of it
 | the thing | what a drawing reads | held to |
 |---|---|---|
 | **a book** | `book.cover`, `book.synopsis`, `book.table`, its chapters by what they carry; `book.title`, `book.author`, `book.subject`, `book.about` — [Book](../library/05-book.md) | one cover, one synopsis of itself, one table of contents, one theme |
-| **a chapter** | its `title`, which is its name and its place; `next` and `previous`; the annotations that say what kind it is | one title; an address that follows its name |
+| **a chapter** | its `title`, which is its name and its place; `next` and `previous`; the annotations that say what type it is | one title; an address that follows its name |
 | **the cover** | what the book says of itself: Title, Author, Subject, About — [Author, Subject and About](../library/04-author-subject-and-about.md) | carries its author and its subject |
 | **filed under** | the subject's table: a row for each book, beside a reference to that book's synopsis | a tree with one root; answered from both ends |
 | **a topic** | a second catalogue a book also stands in, answered the same way | an overlay; a loop is no fault |

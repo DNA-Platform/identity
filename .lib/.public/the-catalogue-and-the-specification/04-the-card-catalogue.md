@@ -30,7 +30,7 @@ protected override address(): string { return this.standing() ?? super.address()
 
 **6 · THE SHELF IS ADDRESS-BOUND AND BOOK-ONLY.** *`shelved` maps a name to an address STRING, which is the topology-binding the thesis forbids; and it holds books, so every chapter and heading falls through to `#slug(name)`, a guess, unconditionally.*
 
-**7 · `$Catalogue` NAMES TWO NODE KINDS.** *In `reference/` it is a mention; in `library/` it is a book that catalogues books. The comment beside it manages the collision by export discipline — "the two never meet because only that one is re-exported by `index`."* ***One word, two kinds, kept apart by module plumbing rather than by meaning — which is exactly what a vocabulary carrying a membership test may not do.***
+**7 · `$Catalogue` NAMES TWO NODE TYPES.** *In `reference/` it is a mention; in `library/` it is a book that catalogues books. The comment beside it manages the collision by export discipline — "the two never meet because only that one is re-exported by `index`."* ***One word, two types, kept apart by module plumbing rather than by meaning — which is exactly what a vocabulary carrying a membership test may not do.***
 
 ## <a id="rulings"></a>What Doug ruled
 

@@ -12,7 +12,7 @@ Not every subject can be an author. The ones that can are marked by a structural
 
 > "the concept of a biography is the defining characteristic of a type of subject that can be an author. Because any subject whose canonical is a biography is a subject where we believe it too can have a library. But there can only be one autobiographical subject in the library. That's the author here."
 
-And he names the kind exactly, closing the pun the whole theory turns on:
+And he names the type exactly, closing the pun the whole theory turns on:
 
 > "would we not say that it is a subjective subject? … The subject that has the subjective quality is the one that can have a canonical biography, so that is the type of subject that is subject to being an author of something"
 
@@ -40,7 +40,7 @@ I don't read the self-cataloguing summit as an exotic trick, because Doug ground
 
 > "the Dewey decimal system… he published a book about that and it belongs somewhere in the library! This exist in real libraries… dictionary, definition, meaning, book, entry, etc… are all in the dictionary. And the dictionary is in the library! … The system I'm abstracting already has the self-referential components it's just not closed under a type of representation, but that's a property that you need for a type of representation system to even have the ability to be fundamental."
 
-Dewey's own classification is shelved at 025, classified by the system it defines; the dictionary defines *dictionary* and *entry* as ordinary headwords. So the self-reference was there all along, scattered across mixed media. My reading of what the abstraction changes: it does not add the loop, it makes everything one kind of thing, so the self-reference that was already present becomes a property of the representation itself — and that, I take it, is what a representation needs to account for itself.
+Dewey's own classification is shelved at 025, classified by the system it defines; the dictionary defines *dictionary* and *entry* as ordinary headwords. So the self-reference was there all along, scattered across mixed media. My reading of what the abstraction changes: it does not add the loop, it makes everything one type of thing, so the self-reference that was already present becomes a property of the representation itself — and that, I take it, is what a representation needs to account for itself.
 
 And it is achievable because the medium is language. In the *repository of natural language* passage ([conversation][conv]):
 

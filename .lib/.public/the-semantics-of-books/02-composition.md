@@ -33,7 +33,7 @@ Within any composition, one part plays a distinguished role — the one you reac
 
 ## The two residents of Level One
 
-- **Text** — the leaf composition: content that bottoms out, composed of nothing further. It terminates the recursion.
+- **Text** — the leaf of the composition tree: content that bottoms out, composed of nothing further. It terminates the recursion.
 - **Title** — the canonical piece of text: a composition's first, name-bearing part. The title is what the canonical role looks like at text scale.
 
 **Team reading (Cathy).** In `$Chemistry` this is a clean fit. `$Composition` is a `$Chemical` whose parts are its children; `view()` renders them. `$Text` is the leaf whose `view()` renders a string. The canonical being `parts[0]` means the "cover" view — render only the canonical — is free: it is what [`look('up')`](../../../chemistry/.lib/particle/09-the-composition-of-perspectives.md) already does, presenting one instance at its most general altitude. The one genuine question the compiler will settle: whether `$Text` is a second root off `$Chemical` or a leaf `$Composition` whose content is a string rather than sub-parts — a `--strict` decision, not a philosophical one.

@@ -34,7 +34,7 @@ and, pressing it home:
 
 > "look at the word monad. A singular representation right? We can map everything into it. That's exactly what I'm talking about with the form of closure. Of course I'm talking about monads"
 
-As I read the point: a monad is what you have when everything maps into one kind of thing and nothing ever escapes that kind — closure, given a precise form. Its two specifications match composition's two moves:
+As I read the point: a monad is what you have when everything maps into one type of thing and nothing ever escapes that type — closure, given a precise form. Its two specifications match composition's two moves:
 
 - **Unit** — anything at all can be turned into a composition, starting from nothing but a [title](02-composition.md): the title-only book is where construction begins.
 - **Join** — nesting collapses back into the level; a composition of compositions [flattens](06-the-canonical-echo-and-views.md) into a composition, and iterating never takes you out.

@@ -78,7 +78,7 @@ A define is the annotations' own, since many annotations define: it erases every
 
 ## Developing a class of writing
 
-**Class development means providing computed properties over contents and annotations, and deciding which annotations a class should have by default.** A class of writing extends Writing or one of its levels directly, names its bond constructor after itself and calls Writing's first, and then does three kinds of thing:
+**Class development means providing computed properties over contents and annotations, and deciding which annotations a class should have by default.** A class of writing extends Writing or one of its levels directly, names its bond constructor after itself and calls Writing's first, and then does three types of thing:
 
 1. **Computes over the two collections.** `parts`, `canonical`, `depth`, `title`: readings over `text` and `annotations`, computed on the way out and never cached, asked through the collection's `find`, `contains` and `containsOne`.
 2. **Stands its default annotations in `$Define`.** The hook is empty on Writing and called first in the bond, before the written are added and before the first pass, so a class that is always an aside writes `this.annotations.add(Parenthetical)` there and the bond's pass already sees it. What a class stands is behind what the caller writes, which is behind what `$is` gives: base, subclass, caller.

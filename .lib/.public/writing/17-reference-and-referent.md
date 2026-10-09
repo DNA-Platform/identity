@@ -22,7 +22,7 @@
 
 ## How they are extended
 
-- **A kind of link is a class under Reference** that adds its own mark in `defines`, after `super.defines`, and a note for its style — `$SelfReference` is the example, and the shape a library's own follows. The anchor is the base's; a subclass does not draw a second, and one that wants its own class on it extends the base's `anchor` with `attrs`, as Self does.
+- **A type of link is a class under Reference** that adds its own mark in `defines`, after `super.defines`, and a note for its style — `$SelfReference` is the example, and the shape a library's own follows. The anchor is the base's; a subclass does not draw a second, and one that wants its own class on it extends the base's `anchor` with `attrs`, as Self does.
 - **A Referent is stood by a Mention**, which reads the compiler's form and makes the id from the name; a writing may also stand one by hand, holding any id, and the specification still holds it to one.
 - **A format composes with the anchor in either order**, and whichever acts later is drawn outside; a reference taken out of expression loses its layer and the format keeps its own.
 - **Neither is a word.** What shows the words is [Mention and Means](18-mention-and-means.md); these hold what the words point at.

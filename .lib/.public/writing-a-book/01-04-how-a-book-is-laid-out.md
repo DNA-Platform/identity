@@ -24,7 +24,7 @@
 
 ## In one paragraph
 
-**A chapter says what it is with an annotation. A book's class collects its chapters by what they carry, says in its specification what it must hold, and draws each part in `write()` inside an element of its own. A collection of one kind is arranged by a Format. A look has one of four homes, and no property of any element has two authors.** *Each sentence is a section below.*
+**A chapter says what it is with an annotation. A book's class collects its chapters by what they carry, says in its specification what it must hold, and draws each part in `write()` inside an element of its own. A collection of one type is arranged by a Format. A look has one of four homes, and no property of any element has two authors.** *Each sentence is a section below.*
 
 ## 1 · A chapter says what it is
 
@@ -38,17 +38,17 @@
 | a stand-in for another book, in a catalogue | `Synopsis`, handed that book's own synopsis — [a catalogue's chapter](../library/01-books-in-annotations.md#a-catalogues-chapter-is-another-books-synopsis) | `chapter.is($Synopsis)`, and it is not `book.synopsis` |
 | about a file kept beside it | `Append` — [Append](../writing/19-append.md) | `chapter.is($Append)` |
 
-**A kind the framework has no word for is a class of the library's own:** under `$Annotation` when it only says what the chapter is, under `$Format` when the kind has a look, since a Format carries a styled component. It adds its CSS class in `defines` and takes it back in `erase`; its specification says what it may be said of; it is named for the trait, never for what it does — [Developing an Annotation](../writing/10-developing-an-annotation.md). **So one annotation does two jobs: code finds the chapter with `chapter.is(Kind)`, and a rule finds it by its class.** *That is what "can also be used to select things" means here.*
+**A type the framework has no word for is a class of the library's own:** under `$Annotation` when it only says what the chapter is, under `$Format` when the type has a look, since a Format carries a styled component. It adds its CSS class in `defines` and takes it back in `erase`; its specification says what it may be said of; it is named for the trait, never for what it does — [Developing an Annotation](../writing/10-developing-an-annotation.md). **So one annotation does two jobs: code finds the chapter with `chapter.is(X)`, and a rule finds it by its class.** *That is what "can also be used to select things" means here.*
 
 ## 2 · The book collects
 
-**A getter per collection, read every time it is asked, never kept:** `this.text.find($Chapter).filter(chapter => chapter.is($Kind))`. Never by position, never by a title's words, and never as what is left once other things are taken — [*a group is named, never left over*](../the-first-draft/05-the-book-is-the-layout.md#not-a-remainder).
+**A getter per collection, read every time it is asked, never kept:** `this.text.find($Chapter).filter(chapter => chapter.is($X))`. Never by position, never by a title's words, and never as what is left once other things are taken — [*a group is named, never left over*](../the-first-draft/05-the-book-is-the-layout.md#not-a-remainder).
 
 ## 3 · The book says what it must hold
 
-**A layout that has a place for some kinds of chapter says so in the book's specification, and the bind holds every book to it.** A class under `BookSpecification` adds a rule — a `$`-method under `@specify`, asserting with `$check` — that every chapter the book holds is one its layout places. [`specify`](../utilities/03-specification.md) is asked of every book in the bind's `specify` phase, and a failure names the chapter's file. **So `write()` assumes and never hedges, and a chapter with no place is a refused bind: never a chapter silently missing from the page, and never a fallback written to catch it.** Doug, 2026-09-27, of the same choice in the framework: *"Validate. Don't make a mess of the code by badly assuming. This is what the specification is there for."*
+**A layout that has a place for some types of chapter says so in the book's specification, and the bind holds every book to it.** A class under `BookSpecification` adds a rule — a `$`-method under `@specify`, asserting with `$check` — that every chapter the book holds is one its layout places. [`specify`](../utilities/03-specification.md) is asked of every book in the bind's `specify` phase, and a failure names the chapter's file. **So `write()` assumes and never hedges, and a chapter with no place is a refused bind: never a chapter silently missing from the page, and never a fallback written to catch it.** Doug, 2026-09-27, of the same choice in the framework: *"Validate. Don't make a mess of the code by badly assuming. This is what the specification is there for."*
 
-**The same for a kind:** what a kind needs of its chapter — a date a machine can read, a file beside it — is a rule of the kind's own specification, which [runs against the writing it is said of](../writing/07-the-annotation-system.md#the-specification-at-the-heart).
+**The same for a type:** what a type needs of its chapter — a date a machine can read, a file beside it — is a rule of the type's own specification, which [runs against the writing it is said of](../writing/07-the-annotation-system.md#the-specification-at-the-heart).
 
 ## 4 · `write()` places
 
@@ -67,11 +67,11 @@
 | **a box, an arrangement or a view said of a writing** — a shelf, a spread | a Format with its own styled component, so the look goes wherever the Format is given. Said of a book and reading the theme's values, it says `themeProvider = true` | [What Is Marked and What Is Replaced](06-what-is-marked-and-what-is-replaced.md); [Format and Theme](../writing/11-format-and-theme.md#evolution) |
 | **how ordinary writing looks, and the library's own paragraphs; every value** | the theme: fields, and one component of parts | [policies 4 and 5](07-the-development-policies.md) |
 
-**Every rule names a class, reaches by descendant, and takes its numbers from the theme. A face's rule for its own element names the kind with its class — `.pd-chapter.pa-cover` — so it wins on every page.** *Policies 1 and 7; their checks are greps, and a milestone is not shown until they pass.*
+**Every rule names a class, reaches by descendant, and takes its numbers from the theme. A face's rule for its own element names the class with its mark — `.pd-chapter.pa-cover` — so it wins on every page.** *Policies 1 and 7; their checks are greps, and a milestone is not shown until they pass.*
 
 ## 6 · A collection is arranged by a Format
 
-**The framework has built this three times, and they are the models:** [`Table`](../writing/12-table.md), `List` and [`Paginated`](../library/08-paginated.md) are each a Format said of one writing that picks out a collection of its parts — `rows`, `items`, `pages` — puts a class on each once the book is whole, and carries the styled component that arranges them. *A shelf of the books a catalogue holds, a list of a manual's parts, are the same thing.* **Where one of several may hold, the one in front turns off the others of its kind in its `defines`,** as Strict and Permissive do, and as Theme does.
+**The framework has built this three times, and they are the models:** [`Table`](../writing/12-table.md), `List` and [`Paginated`](../library/08-paginated.md) are each a Format said of one writing that picks out a collection of its parts — `rows`, `items`, `pages` — puts a class on each once the book is whole, and carries the styled component that arranges them. *A shelf of the books a catalogue holds, a list of a manual's parts, are the same thing.* **Where one of several may hold, the one in front turns off the others of its type in its `defines`,** as Strict and Permissive do, and as Theme does.
 
 ## 7 · A switch — built in his library, 2026-10-05
 
@@ -100,30 +100,30 @@
 
 **What a type of book is made of.**
 
-- **The base book draws the frame once, in regions named as the frame's sketch names them, and a type overrides the method of the region it fills differently — nothing else.** The library's bar, me, what the book holds, the head, the leaves; `$Library` overrides only what it opens on, `$Story` its head and its front, `$Design` which chapter opens when none is named. *The fifth build; before it every book drew its own bars, and the third build's "four things, each a file beside one chapter" — the class, the arrangement, the theme, the faces — still holds for what a type adds.*
+- **The base book draws the frame once, in regions named as the frame's sketch names them, and a type overrides the method of the region it fills differently — nothing else.** The library's bar, me, what the book holds, the head, the pages; `$Library` overrides only what it opens on, `$Story` its head and its front, `$Design` which chapter opens when none is named. *The fifth build; before it every book drew its own bars, and the third build's "four things, each a file beside one chapter" — the class, the arrangement, the theme, the faces — still holds for what a type adds.*
 - **Every property is declared in the library's theme; a book's theme sets values and adds parts.** A template anywhere is typed against one theme, and a property declared only on one book's theme is `undefined` in every other's rules. *Third build. The base declares 146 today, every one from a sketch's file.*
 - **What a second book writes again goes into the base, found by an audit that writes nothing.** The front page, the rule that every chapter has a place, the chapter a place names, the turn, *said of a book of this library* in a file of its own because a specification shared by annotations cannot stand in a file still loading in an import cycle. *Third build; the fifth moved the library bar's own look into the base the same way.*
-- **An entry and an index are every book's; a type registers its own kind.** `Index` says `Entry` of each row that leads somewhere at the bind, asking `$(Entry)`, and a registration on the type's class answers — the manual's `FileEntry` is one class and one line. *Third build.*
+- **An entry and an index are every book's; a type registers its own entry.** `Index` says `Entry` of each row that leads somewhere at the bind, asking `$(Entry)`, and a registration on the type's class answers — the manual's `FileEntry` is one class and one line. *Third build.*
 - **A title means its chapter, or the book its chapter is a synopsis of — a registered `Self`, set once at `$Bound` in an inert field.** Read as a getter while the title drew, it looped. *Third build.*
 - **The turn walks the book's chapters, not the framework's**, which include the cover and the table; its two ends are said `Before` and `After` so a theme can place them by name. *Third and fifth builds.*
 
 **What a switch is, and what it may give.**
 
-- **Anything a reader presses adds a class, and the rules that read the class were always there.** A Format given through `$is` is a container, and a container put in front of the book remounts everything inside it: the held tab, book and leaves all out of the document after the press. Measured on the first tone, then found on every paper, on the outline and on the readings, none of which anyone had counted since Sprint 100. So a tone, an arrangement, a paper, a reading and the outline are annotations of one kind, each standing down for the one said after it as `$Theme` does, with their rules in the theme or in the one layout that is always there — after which a press changes one class on the book and the only nodes replaced are the `Code` figure's own lines, which the framework redraws on every draw. *Fifth build.*
+- **Anything a reader presses adds a class, and the rules that read the class were always there.** A Format given through `$is` is a container, and a container put in front of the book remounts everything inside it: the held tab, book and pages all out of the document after the press. Measured on the first tone, then found on every paper, on the outline and on the readings, none of which anyone had counted since Sprint 100. So a tone, an arrangement, a paper, a reading and the outline are annotations of one type, each standing down for the one said after it as `$Theme` does, with their rules in the theme or in the one layout that is always there — after which a press changes one class on the book and the only nodes replaced are the `Code` figure's own lines, which the framework redraws on every draw. *Fifth build.*
 - **A switch only adds.** It takes back what it gave through `$is` and cannot take away what a class says itself; its pressed state is asked of the book at every draw. *Second build.*
 - **The layout is the framework's `Paginated` extended**, answering `pages` with the book's chapters and `open` with the book's own; it carries the six arrangements' grids keyed by class. *Fifth build.*
 
 **What a chapter says, and what is found by no position.**
 
 - **A thing said of a writing is an annotation in the chapter, never found by where it stands.** The story's opening paragraph is said `First`; a concept's number is drawn as the note of the annotation that says it is a concept — `$Annotation.note()`, the seam `$Content` draws its name through; a chapter's brief is a paragraph said `Brief`, and the manual's own rule asks every chapter for one. *Fourth and fifth builds; the number written into a heading's text broke every link to the place — [Solutions 103](../solutions/103-the-heading-that-took-a-number.md).*
-- **A kind that only names a paragraph or a section costs twelve lines and a rule, and each has its own specification whose sentence names it.** *First build.*
+- **A type that only names a paragraph or a section costs twelve lines and a rule, and each has its own specification whose sentence names it.** *First build.*
 - **A close, a subject, a way back is a reference written in the chapter, never an address composed in code.** The open concept's `×`, the library's subjects beside the catalogue's chapter — written once, imported by the base, drawn on every book; a reference's text is its compiled address. *Fourth and fifth builds.*
 - **A file kept beside a chapter documents; it is never rendered.** His refusal: *"The point of resources is to document, it is not to render."* *First build.*
 - **The framework's bookmark knows chapters and no place inside one**; the base's `open` is the chapter whose title the address names or whose sections hold a heading it names, by equality on what the compiler wrote. *Second build.*
 
 **What bites, and where it is caught.**
 
-- **A part of a theme or a Format must not take the name of a value, of a member the class has, or of a part the base already has unless it says `override` and spreads the base's in.** `side`, `frame`, `cards`, `head` — each broke the page somewhere else without a word; `npx tsc --noEmit` in the binder's copy names the first two kinds, not the third. *Third and fifth builds.*
+- **A part of a theme or a Format must not take the name of a value, of a member the class has, or of a part the base already has unless it says `override` and spreads the base's in.** `side`, `frame`, `cards`, `head` — each broke the page somewhere else without a word; `npx tsc --noEmit` in the binder's copy names the first two, not the third. *Third and fifth builds.*
 - **A press lands by itself after the draw; the router scrolls nothing** — the three-part change of Sprint 101's U9, approved and applied, after which an address loaded directly opens and turns. *Second build pitched it; fifth applied it.* **And what a press goes to stands at the top of what it opens** — [Solutions 104](../solutions/104-the-card-that-opened-out-of-sight.md).
 - **A module cycle through a book's file loads half a module.** The catalogue's table imports the manual's book file; the base imports the catalogue's subjects from a file beside that chapter that imports only the framework. *Fifth build.*
 - **A font named in `.pubconfig` reaches the live page only after a bind.** *Third build.* **The live server answers a picture's address since Sprint 100.**
@@ -135,8 +135,8 @@
 
 ## Open
 
-- ~~**A state on an element the book drew.**~~ *`pd-open` and `pd-front` on the leaf the book draws, in the prefix of the element it is on; `pa-` is for what an annotation put there. Kept so.*
+- ~~**A state on an element the book drew.**~~ *`pd-open` and `pd-front` on the page the book draws, in the prefix of the element it is on; `pa-` is for what an annotation put there. Kept so.*
 - ~~**Whether a layout is a class of book or something a book is given.**~~ *Answered 2026-10-05: a subclass, with annotations where it must compose — [§8](#8--the-two-halves-of-a-layout--on-his-answer).*
 - **How the canonical type of chapter is asked for in code.** His base book asks `[...chapter.classes].includes('pd-canonical')`, the framework's own class for it, because the framework has no getter and *"every chapter but the cover, the synopsis and the table"* is [a remainder](../the-first-draft/05-the-book-is-the-layout.md#not-a-remainder).
-- ~~**The prefix for an element a book draws that is no writing.**~~ *`pd-`, as the regions are: `pd-library`, `pd-me`, `pd-holds`, `pd-head`, `pd-leaves`. Kept so since the fifth build.*
+- ~~**The prefix for an element a book draws that is no writing.**~~ *`pd-`, as the regions are: `pd-library`, `pd-me`, `pd-holds`, `pd-head`, `pd-pages`. Kept so since the fifth build.*
 - **How a library's own classes are promised** — his library has no test, and the test library's two stand beside the binder with no account of how.

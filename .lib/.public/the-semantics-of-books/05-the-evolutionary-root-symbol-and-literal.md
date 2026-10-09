@@ -46,7 +46,7 @@ So the two edges from [Inheritance and Composition](03-inheritance-and-compositi
 
 This answers the specific thing Doug flagged — "reference might inherit from title or be in its evolutionary path." Reference and title do not stand in an inheritance line to each other. They are **siblings under the symbol**: title is `symbol → name → (canonical)`, reference is `symbol → (composed of a name and a locator)`. Their common ancestor is the symbol, which is what the evolutionary path bottoms out in.
 
-## What this means for the code — two kinds of symbol
+## What this means for the code — two types of symbol
 
 A first draft of this chapter unified the SRT symbol with [$Chemistry](../../../chemistry/.lib/..representivity/.cover.md)'s `$` — claiming that because `$` means "representation-of," every `$Chemical` already *is* the symbol. Doug corrected it, and the correction is load-bearing (this session):
 
@@ -74,7 +74,7 @@ $Chemical                          // framework: renders in React; its $Particle
     $Chapter, $Book, ...
 ```
 
-**What settled, and what is still open.** The "is `$Symbol` just `$Chemical`" question is closed twice over: they are different *kinds* of symbol (framework vs. library), and we don't build `$Symbol` at all — `$Reference` is the pointing class. What stays open is the seam under composition: whether [multiplication](03-inheritance-and-composition.md) runs all the way to the word, or a sentence is a validated leaf. The code starts from `$Reference` (built) and `$Composition` (the multiplication operator).
+**What settled, and what is still open.** The "is `$Symbol` just `$Chemical`" question is closed twice over: they are different *types* of symbol (framework vs. library), and we don't build `$Symbol` at all — `$Reference` is the pointing class. What stays open is the seam under composition: whether [multiplication](03-inheritance-and-composition.md) runs all the way to the word, or a sentence is a validated leaf. The code starts from `$Reference` (built) and `$Composition` (the multiplication operator).
 
 ## A note on other sources
 

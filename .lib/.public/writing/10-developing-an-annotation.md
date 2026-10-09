@@ -6,7 +6,7 @@
 
 ---
 
-**[How Writing Is Extended](06-how-writing-is-extended.md) says where a subclass of Writing reaches, and an annotation of its own is one row of it. This chapter is that row opened out: what to write when the thing you are adding is an annotation rather than a kind of writing.** [The Annotation System](07-the-annotation-system.md) says what the model is and why; this says what you write. Everything here is in the language of [the genetics](07-the-annotation-system.md#the-genetics-said-once-and-plainly), because that is what decides which power a thing belongs in.
+**[How Writing Is Extended](06-how-writing-is-extended.md) says where a subclass of Writing reaches, and an annotation of its own is one row of it. This chapter is that row opened out: what to write when the thing you are adding is an annotation rather than a type of writing.** [The Annotation System](07-the-annotation-system.md) says what the model is and why; this says what you write. Everything here is in the language of [the genetics](07-the-annotation-system.md#the-genetics-said-once-and-plainly), because that is what decides which power a thing belongs in.
 
 **All four powers are in the code and each has its promises.** [Format](11-format-and-theme.md), the one class that uses every one of them, is [Sprint 80](../projection/86-sprint-80--format-and-theme.md)'s. Nothing here is ahead of the code, and two members that stood here for part of 2026-09-23 — `inactivates` and `review` — were struck the same day and are gone from both.
 
@@ -147,7 +147,7 @@ export class StrictSpecification extends AnnotationSpecification {
 
 **The annotation is never specified itself.** *"So then we won't call specify on the annotations."* What is written inside an annotation — an identifier, a level, an address — is read by the annotation, not checked as writing.
 
-**Ask the collection, never keep a field.** `writing.is(Cover)` answers whether an annotation of that kind is expressed, and `containsOne` whether there is exactly one; both take a class, a component, an element or a chemical. A rule that wants to know what else is on the writing asks; a rule that keeps a flag has turned a type question into a flag, which is the first rule of the whole model.
+**Ask the collection, never keep a field.** `writing.is(Cover)` answers whether an annotation of that type is expressed, and `containsOne` whether there is exactly one; both take a class, a component, an element or a chemical. A rule that wants to know what else is on the writing asks; a rule that keeps a flag has turned a type question into a flag, which is the first rule of the whole model.
 
 **And the collection answers from construction, not from the first draw.** A writing's bond runs its first define the moment the writing is made, and a writing's text makes its chemicals the moment they are given, so `is` and `expressed` hold before anything is drawn. A book's bond calls `$Bound` only after every chapter is in, which makes `$Bound` the place to configure from what the annotations said, as Paginated marks its pages there. *What moves at each draw is only what depends on the bookmark, which is set after the book is made.* Sprint 93 first claimed the opposite and built a workaround on it; reverted alone, the workaround proved unneeded — [the explorer's first finding](../projection/98-sprint-93--the-explorer.md#found).
 
@@ -176,9 +176,9 @@ class $Housed extends $Format {
 
 ### If you must INSERT something, you are still an annotation — a layer with content, or text
 
-**Two doors, both already in the language, and neither is a fifth power.** Doug, 2026-09-27, on a kind label that had been written as CSS content: *"Whatever the kind label is, it sounds like an annotation? Whatever needs to be inserted, can you not design an annotation for it?"*
+**Two doors, both already in the language, and neither is a fifth power.** Doug, 2026-09-27, on a type label that had been written as CSS content: *"Whatever the kind label is, it sounds like an annotation? Whatever needs to be inserted, can you not design an annotation for it?"*
 
-- **A layer with content.** A Format's `style` is any element type, and [`Format.defines`](../../package/src/writing/Format.tsx) adds it as a container around the writing. A container made in `defines` may draw what it likes before the children — a label word, a rule, a figure — and since it is made per instance in `defines`, it may close over what that instance learned there. *This is the way in for a kind label:* a `Kind` format on every chapter at the book's `$Bound`, whose `defines` reads what the chapter carries — `writing.is($Cover)`, `is($Autobiography)`, `is($Synopsis)` — sets `this.style` to a component drawing `<span class="pd-label">Autobiography</span>` before its children, and calls Format's `defines`. Real text, read by a screen reader, dressed by the theme through the mark. *Designed 2026-09-27; built 2026-10-07 in Doug's manual as the Kind of The Key — a kind said in the chapter as a reference to its entry in an appendix, the format's layer drawing the entry's icon before the chapter — [Sprint 103](../projection/108-sprint-103--the-manuals-page.md#where-things-stand). The CSS labels in the test library stand until it is built there.*
+- **A layer with content.** A Format's `style` is any element type, and [`Format.defines`](../../package/src/writing/Format.tsx) adds it as a container around the writing. A container made in `defines` may draw what it likes before the children — a label word, a rule, a figure — and since it is made per instance in `defines`, it may close over what that instance learned there. *This is the way in for a type label:* a `Keyed` format on every chapter at the book's `$Bound`, whose `defines` reads what the chapter carries — `writing.is($Cover)`, `is($Autobiography)`, `is($Synopsis)` — sets `this.style` to a component drawing `<span class="pd-label">Autobiography</span>` before its children, and calls Format's `defines`. Real text, read by a screen reader, dressed by the theme through the mark. *Designed 2026-09-27; built 2026-10-07 in Doug's manual as the Keyed of The Key — an annotation said in the chapter as a reference to its entry in an appendix, the format's layer drawing the entry's icon before the chapter — [Sprint 103](../projection/108-sprint-103--the-manuals-page.md#where-things-stand). The CSS labels in the test library stand until it is built there.*
 - **Text.** [`Synopsis.defines`](../../package/src/libraries/Synopsis.tsx) appends the imported chapter's parts to its own writing's text, `writing.text.append(this, ...)`, authored by the annotation and reverted at `erase`. An annotation may put words on the page this way too — with the writing's composition to respect: a chapter holds sections and paragraphs, so what is appended must be what the level admits.
 
 *The note cannot do either: it is a sibling of the contents, hidden by every theme, and that is right — a note is the annotation's own writing, not the writing's.*
@@ -198,7 +198,7 @@ export class $Level extends $Annotation {
 }
 ```
 
-**A writing then reads that property through the collection**, asking for the first expressed one of the kind: `this.annotations.expressed($Level)?.level ?? 1`. That is the whole of turning an annotation into an object surface — content in, a property out, a reading on the writing.
+**A writing then reads that property through the collection**, asking for the first expressed one of the type: `this.annotations.expressed($Level)?.level ?? 1`. That is the whole of turning an annotation into an object surface — content in, a property out, a reading on the writing.
 
 ## What never to do
 

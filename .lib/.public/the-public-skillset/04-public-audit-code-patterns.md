@@ -42,8 +42,8 @@
 
 | the defence | what it actually says |
 |---|---|
-| ***"TypeScript demands the member"*** | **the type system cannot express what the framework says is true.** *[Shells Over Types](../the-type-system/03-shells-over-types.md) says the TYPE confers the powers; an `implements` clause cannot be satisfied by a type conferring anything, so the member is copied by hand into every kind* |
-| ***"the convention requires eight declarations"*** | **a convention mandating eight artefacts per kind is the signal, not the excuse.** *A rule that has to be remembered eight times is a feature that was never built* |
+| ***"TypeScript demands the member"*** | **the type system cannot express what the framework says is true.** *[Shells Over Types](../the-type-system/03-shells-over-types.md) says the TYPE confers the powers; an `implements` clause cannot be satisfied by a type conferring anything, so the member is copied by hand into every class* |
+| ***"the convention requires eight declarations"*** | **a convention mandating eight artefacts per type is the signal, not the excuse.** *A rule that has to be remembered eight times is a feature that was never built* |
 | ***"doing it the other way would be slower"*** | **the cost is real and it is a fact about the framework, not about the code.** *Name the cost, then ask what would make the honest shape affordable* |
 | ***"a rule that reads the parts runs the parser"*** | **the framework cannot answer a question without paying for it**, so the class works around the question instead of asking it |
 
@@ -114,7 +114,7 @@ super.$Composition($check(block, $Block).concat($check($TypeOfSection, '!')));
 
 ## Run it
 
-**There is no tool.** *This audit is a reading, and a script that could run it would only be checking the rules that are mechanical — which the clean tool and `tsc` already do.* **What it needs is the style documents open beside the code**, and the discipline to route each finding to the register that already holds its kind.
+**There is no tool.** *This audit is a reading, and a script that could run it would only be checking the rules that are mechanical — which the clean tool and `tsc` already do.* **What it needs is the style documents open beside the code**, and the discipline to route each finding to the register that already holds its category.
 
 ## The documents in force — read these, do not re-derive them
 
@@ -122,8 +122,8 @@ super.$Composition($check(block, $Block).concat($check($TypeOfSection, '!')));
 
 - **[The Unit of Code](../the-coding-style/01-the-unit-of-code.md)** and **[The Order of a Class](../the-coding-style/02-the-order-of-a-class.md)** — what a class is allowed to be, and the order its parts stand in
 - **[The Closeness Rule](../the-coding-style/04-the-closeness-rule.md)** — where a thing belongs
-- **[Shells Over Types](../the-type-system/03-shells-over-types.md)** and **[The Interface Type System](../the-type-system/04-the-interface-type-system.md)** — how a kind is declared
-- **[The Spelling of a Kind](../the-coding-style/05-the-spelling-of-a-kind.md)** and **[The Shape of TSX](../the-coding-style/06-the-shape-of-tsx.md)** — the surface a consumer reads
+- **[Shells Over Types](../the-type-system/03-shells-over-types.md)** and **[The Interface Type System](../the-type-system/04-the-interface-type-system.md)** — how a type is declared
+- **[The Spelling of a Type](../the-coding-style/05-the-spelling-of-a-type.md)** and **[The Shape of TSX](../the-coding-style/06-the-shape-of-tsx.md)** — the surface a consumer reads
 - **[The two anchors](../the-coding-style/03-the-coding-style.md#the-anchors)** — *this is the public library, and it is closed under books.* **Every word in the code is a word a library actually uses**, and [no invented language](../the-coding-style/03-the-coding-style.md#no-jargon) is a standing law with two dated offences behind it
 - **[The coding policy](../../../../.claude/library/..teamsmanship/08-coding-policy.md)** — cite or stop, and the property test
 
@@ -132,7 +132,7 @@ super.$Composition($check(block, $Block).concat($check($TypeOfSection, '!')));
 | what you found | where it belongs |
 |---|---|
 | **a defect with a clear solution** | ***FIX IT, then report it.*** *See [the standing rule](01-public-audit.md#fix-what-has-a-clear-solution)* |
-| a **wart** — wrong shape, no clean fix yet | **[The Condition Report](../the-condition-report/.cover.md)**, which indexes the code by kind of fault and is written to be edited in place |
+| a **wart** — wrong shape, no clean fix yet | **[The Condition Report](../the-condition-report/.cover.md)**, which indexes the code by type of fault and is written to be edited in place |
 | a **missing framework feature** the ceremony reading exposed | **[chemistry's chapter zero](../../../chemistry/.lib/projection/00-planning.md)**, because the fix is one level down and not in this package |
 | a defect whose **cause** you diagnosed | **[Solutions](../solutions/.cover.md)**, indexed by the symptom as it was observed |
 

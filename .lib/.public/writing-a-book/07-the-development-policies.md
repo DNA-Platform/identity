@@ -12,9 +12,9 @@ A practice is a policy when a librarian who has never seen this code would keep 
 
 The policies rest on [the three sentences](02-dressing-a-library.md#the-three-sentences): a component owns its structure and reads its appearance from a theme; a theme is a typed value object with a slot per component, only one per book; a component is replaced by subclass. What follows is how to keep them.
 
-## <a id="1--a-face-names-the-kind-with-its-mark-a-theme-names-the-kind-alone"></a>1 · A face names the kind with its mark; a theme names the kind alone
+## <a id="1--a-face-names-the-class-with-its-mark-a-theme-names-the-class-alone"></a>1 · A face names the class with its mark; a theme names the class alone
 
-**The rule.** A theme's rule for a kind of writing names that kind's mark: `.pd-chapter { margin-block: … }`. A face's rule for its *own* element names the kind *and* its mark, read as *the chapter that is a cover*: `.pd-chapter.pa-cover { margin-block: 0 }`. A face's rule for the kinds *beneath* it names its mark and the kind: `.pa-table .pd-paragraph { margin-block: 0 }`.
+**The rule.** A theme's rule for a class of writing names that class's mark: `.pd-chapter { margin-block: … }`. A face's rule for its *own* element names the class *and* its mark, read as *the chapter that is a cover*: `.pd-chapter.pa-cover { margin-block: 0 }`. A face's rule for the classes *beneath* it names its mark and the class: `.pa-table .pd-paragraph { margin-block: 0 }`.
 
 **The mechanism.** Two rules on one element at equal specificity tie, and styled-components breaks the tie by the order the components were created — which a theme subclass defined in another book's file changes, so the same two rules win on one page and lose on another. A face's rule with two marks has one class more than the theme's rule with one, so it wins by specificity on every page, in every order, and nothing is taken off any element to make it so.
 
@@ -30,7 +30,7 @@ The policies rest on [the three sentences](02-dressing-a-library.md#the-three-se
 
 **The mechanism.** A mark is a statement about the writing, and every rule in a library reads it as one; the annotation that controls it is the annotation that knows — Doug: *"Annotations can control expression for this reason."*
 
-**How it fails.** A theme that dresses `.pd-chapter` for its margin *and* its counter lets a cover be counted; a face that takes a kind's mark off to escape a margin takes the kind's meaning off with it, and every other rule for that kind.
+**How it fails.** A theme that dresses `.pd-chapter` for its margin *and* its counter lets a cover be counted; a face that takes a class's mark off to escape a margin takes the class's meaning off with it, and every other rule for that class.
 
 **The check.** Every `pd-canonical` and `pa-framed` in a theme stands beside a property that is about counting, labelling or standing down; a margin or a size on `.pd-canonical.pd-chapter` alone is the smell.
 
@@ -72,13 +72,13 @@ The policies rest on [the three sentences](02-dressing-a-library.md#the-three-se
 
 **Where it holds.** [`7-the-explorer.theme.tsx`](../../package/.binding/.test/manual/7-the-explorer.theme.tsx): `page()` overridden, `explorer()` added.
 
-## 6 · A kind that is an element is that element; a kind that holds one keeps its span
+## 6 · A class that is an element is that element; a class that holds one keeps its span
 
-**The rule.** A kind whose content is one element replaces its own `span` with that element at the bond — a Date is a `time`, a Code is a `pre` — so the kind's mark is on the element and a library dresses `.pd-code` and never `.pd-code pre`. A kind that holds an element it is not — an Image holding an `img`, an Svg holding an `svg` — keeps its span, and the element inside is a foreign element named under the mark, `.pd-image img`.
+**The rule.** A class whose content is one element replaces its own `span` with that element at the bond — a Date is a `time`, a Code is a `pre` — so the class's mark is on the element and a library dresses `.pd-code` and never `.pd-code pre`. A class that holds an element it is not — an Image holding an `img`, an Svg holding an `svg` — keeps its span, and the element inside is a foreign element named under the mark, `.pd-image img`.
 
-**The mechanism.** `containers.replace(this, 'span', 'pre')` at the bond, cited to the kind, which every define's revert leaves standing; Block replaces `'span'` by value, so a replaced element is left alone.
+**The mechanism.** `containers.replace(this, 'span', 'pre')` at the bond, cited to the class, which every define's revert leaves standing; Block replaces `'span'` by value, so a replaced element is left alone.
 
-**How it fails.** A `div.pd-code` holding a `pre` nobody marked leaves a library writing an element type under a kind for the block's own margin and ground — the fight Sprint 96's grade named.
+**How it fails.** A `div.pd-code` holding a `pre` nobody marked leaves a library writing an element type under a class for the block's own margin and ground — the fight Sprint 96's grade named.
 
 **The check.** [`figures.test.tsx`](../../package/.tests/figures.test.tsx) promises `pre.pd-code`; a grep of a library's theme for `\.pd-[a-z]+ (pre|code|time)\b` finds none.
 

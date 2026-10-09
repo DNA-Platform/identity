@@ -17,7 +17,7 @@
 
 > **"We're really far off. A Reference is not a type of name. I mean, I don't think it is. The card in a card catalogue is a reference right? It is not a name."**
 
-**The argument is an appeal to an object anyone can picture.** *A catalogue card has a name on it — and a call number, a subject heading, a collation. If a reference were a kind of name, the card would have to be a name with extra parts, which is not what a card is.* ***A card carries a name; it is not one.***
+**The argument is an appeal to an object anyone can picture.** *A catalogue card has a name on it — and a call number, a subject heading, a collation. If a reference were a type of name, the card would have to be a name with extra parts, which is not what a card is.* ***A card carries a name; it is not one.***
 
 **Doug then guessed the anatomy, and marked the guess as a guess** ([source][conv], the same message):
 
@@ -98,7 +98,7 @@
 | ***down*** | into what you contain and present | ***objective*** |
 | ***across*** | book to book as peers | ***relational*** |
 
-***So references are not one undifferentiated kind of pointing.*** **A reference has a grade, and the grade is which of the three roles it exercises.** *The card that files a book under its subject and the citation that points at a peer are not the same arrow wearing different content — they are different arrows.*
+***So references are not one undifferentiated type of pointing.*** **A reference has a grade, and the grade is which of the three roles it exercises.** *The card that files a book under its subject and the citation that points at a peer are not the same arrow wearing different content — they are different arrows.*
 
 **And a route made of several steps carries a mixture, which Doug calls its *colour*.** *Count the steps of each grade and you have a point in a triangle whose corners are pure subjectivity, pure objectivity, pure relation.* ***Concatenating routes adds their counts***, so the mixture composes.
 
@@ -192,7 +192,7 @@
 | what the source settles | what `.archive/reference/` (v1, `.archive/reference/`, deleted) has |
 |---|---|
 | **a reference is a name and a locator** | ***`$Reference` has neither*** — `copy`, `parenthetical`, `read()`, `follow()` |
-| **arrows are graded up / down / across** | ***no grade anywhere*** — every reference is the same kind of pointing |
+| **arrows are graded up / down / across** | ***no grade anywhere*** — every reference is the same type of pointing |
 | **a path stores the middle** | ***`$Path` stores `$first` and `$onward`*** — both ends held |
 | **identity is the title's self-arrow** | ***`$Location` holds an integer***, and `$IndexCard` holds a `$name` string |
 
@@ -235,7 +235,7 @@ check $$Word      paths=0 text="Chemistry" block=[$Word, $TypeOfWord, $TypeOf$Wo
 
 **Three red promises — a missing `href`, an empty list of anchors, a missing region — were that one refusal seen from three places**, *because a book whose construction aborts draws an exception panel, and a panel has neither anchors nor regions.*
 
-> ***THE GENERAL SHAPE, and it is the reusable part:*** **a stand-in inherits the rules written for the thing it stands for, and cannot satisfy them.** *The unification had already been noticed by whoever wrote `$TypeOf$X extends $TypeOfReference` — **the instinct was right and the direction was backwards.** A mention is not a kind of reference; a reference is a mention that also knows where.*
+> ***THE GENERAL SHAPE, and it is the reusable part:*** **a stand-in inherits the rules written for the thing it stands for, and cannot satisfy them.** *The unification had already been noticed by whoever wrote `$TypeOf$X extends $TypeOfReference` — **the instinct was right and the direction was backwards.** A mention is not a type of reference; a reference is a mention that also knows where.*
 
 ## <a id="the-catalogue"></a>And the catalogue is the same object, doing the other job
 
@@ -257,7 +257,7 @@ check $$Word      paths=0 text="Chemistry" block=[$Word, $TypeOfWord, $TypeOf$Wo
 
 <a id="q3"></a>**Q3 — does `index` belong to the writing or to the reference?** ***Two of Doug's own rulings disagree, and the disagreement is now in the code.*** *[The settled account](15-the-levels-of-writing.md): "a number is something a **reference** holds — that is what a `$Location` IS."* **[`$Writing.index`](../../package/src/writing/Writing.tsx) exists today and the parse assigns it.** *[The handoff flags the numbering rule as unpicked](../projection/29-the-bind.md#handoff-index); this is the same question one layer down, and references are what makes it urgent.*
 
-<a id="q4"></a>**Q4 — is `$Title` a paragraph or a reference?** ***This is the sharpest fork, because both answers are already built into different parts of the record.*** *[The Bind](../projection/29-the-bind.md#r281) makes `$Title extends $Paragraph` from paragraph residue — a level kind.* **[Chapter 05](05-the-evolutionary-root-symbol-and-literal.md) has it as *"the particle where the two lineages legitimately fuse"* — a name that is also canonical.** *And [the two loops](#two-loops) put the whole of a book's identity on it.* ***A title cannot be only a heading if identity rides on it.***
+<a id="q4"></a>**Q4 — is `$Title` a paragraph or a reference?** ***This is the sharpest fork, because both answers are already built into different parts of the record.*** *[The Bind](../projection/29-the-bind.md#r281) makes `$Title extends $Paragraph` from paragraph residue — a class at a level.* **[Chapter 05](05-the-evolutionary-root-symbol-and-literal.md) has it as *"the particle where the two lineages legitimately fuse"* — a name that is also canonical.** *And [the two loops](#two-loops) put the whole of a book's identity on it.* ***A title cannot be only a heading if identity rides on it.***
 
 ***And the fork does NOT have to be settled before either is built, which is worth knowing before anyone treats it as a blocker.*** **A class gets one `extends`, so `$Title extends $Paragraph` would ordinarily foreclose `$Title extends $Reference` — and that foreclosure is precisely [the base-class scarcity](../the-type-system/02-the-type-and-the-instance.md#the-problem) the type split was built to remove.** *Doug's own statement of it: **"TypeOfBook holds the meaning of book, so you don't have to derive from Book to have it."*** ***So a title can be a paragraph by class and a reference by carried type***, and the two lineages fuse on the instance rather than in the hierarchy. **What stays Doug's is whether the pointing lives on the type or on the class** — *not whether one has to be given up.*
 

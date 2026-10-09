@@ -20,7 +20,7 @@ My rule of thumb: read the relation aloud. *"An autobiography is a biography who
 
 ## Where `$Reference` lives — the act of pointing
 
-Doug is emphatic that a reference is not a kind of name ([conversation][conv]):
+Doug is emphatic that a reference is not a type of name ([conversation][conv]):
 
 > "A Reference is not a type of name. The card in a card catalogue is a reference right? It is not a name."
 

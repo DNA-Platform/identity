@@ -20,7 +20,7 @@ I take a level to be closed when the operations that build its things take that 
 
 > "The system I'm abstracting already has the self-referential components it's just not closed under a type of representation, but that's a property that you need for a type of representation system to even have the ability to be fundamental."
 
-**Team reading (Cathy).** This is the reason the whole project can live in `$Chemistry` rather than beside it. `$Chemistry` already makes everything one kind of thing — a `$Chemical` — that renders itself. A representation system that is *closed under one primitive that knows how to render* is exactly a library that can display itself. The principle and the framework want the same shape.
+**Team reading (Cathy).** This is the reason the whole project can live in `$Chemistry` rather than beside it. `$Chemistry` already makes everything one type of thing — a `$Chemical` — that renders itself. A representation system that is *closed under one primitive that knows how to render* is exactly a library that can display itself. The principle and the framework want the same shape.
 
 ## The two levels of the semantics of books
 

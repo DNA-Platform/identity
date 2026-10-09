@@ -35,9 +35,9 @@
 
 ## How it is extended
 
-- **A kind of list** is a class under List that says what its items must be, in a specification of its own — a list of dates, a list of references — and keeps the marks, so a library's theme reads it as any list.
+- **A type of list** is a class under List that says what its items must be, in a specification of its own — a list of dates, a list of references — and keeps the marks, so a library's theme reads it as any list.
 - **A look of your own** is a library's theme's rules for `pa-list`, `pa-ordered` and `pa-item`, extending the default sheet as [Dressing a Library](../writing-a-book/02-dressing-a-library.md) does.
-- **Which parts are items** is `items`; a kind of composition that keeps its canonical elsewhere overrides it, as Table's `start` is overridden.
+- **Which parts are items** is `items`; a type of composition that keeps its canonical elsewhere overrides it, as Table's `start` is overridden.
 
 ## Promises
 

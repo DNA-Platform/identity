@@ -5,7 +5,7 @@
 
 ---
 
-Everything up to here described **one** library — closed, self-cataloguing, its [author arrow coming home](13-the-authors-fixed-point.md). Doug's next move is to say that the library we are actually building is not that kind, and that the difference is not a shortfall but a species, in the *two libraries* passage (session, 2026-08-04):
+Everything up to here described **one** library — closed, self-cataloguing, its [author arrow coming home](13-the-authors-fixed-point.md). Doug's next move is to say that the library we are actually building is not one of those, and that the difference is not a shortfall but a species, in the *two libraries* passage (session, 2026-08-04):
 
 > "That is the theory in SRT. That is the library metaphor that defines the first person perspective. In such a library, the librarian is the only author. The whole library is written in the first person perspective, and the library being about the organization of knowledge means, at it's core, it is a comprehensive subject that explains how that writing happens and why the protagonist make all these decisions. It's all inside"
 
@@ -45,7 +45,7 @@ The mechanism that makes convergence necessary rather than aspirational (session
 
 This is [Dewey's own case](07-the-subjective-subject-and-the-library.md) — his classification shelved *by* that classification, at 025 — except **live**. The book being shelved edits the shelving system, and the edit is binding.
 
-Which names a kind of reference the [reference system](12-the-category-and-what-escapes-it.md) does not yet have. A citation says *see also*. This says **conform, or you are defective**. Divergence between the SRT project and this code is not a difference of opinion; it is a defect with a work order attached.
+Which names a type of reference the [reference system](12-the-category-and-what-escapes-it.md) does not yet have. A citation says *see also*. This says **conform, or you are defective**. Divergence between the SRT project and this code is not a difference of opinion; it is a defect with a work order attached.
 
 **The standing specification, stated so it can be held to when it is expensive:** *the theory governs and the code yields.* When SRT and this library disagree, the library is what changes — however large the lift, however many assignments it takes.
 

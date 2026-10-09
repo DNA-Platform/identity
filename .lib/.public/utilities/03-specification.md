@@ -19,7 +19,7 @@
 
 ## How it is extended
 
-**One class per class of writing, extending the parent's.** `WritingSpecification` holds *a piece of writing holds only writing*; a Letter's specification waives it by naming the rule again and returning false, since a letter may hold anything; a Composition's adds the rules of its level. A rule is a `$`-method that asserts with the framework's `$check` and says in its message what was wrong, in the shape of the thing and never a roster of kinds. A rule asks the writing's collections through `contains`, `containsOne` and `find`, and computes nothing it could ask for.
+**One class per class of writing, extending the parent's.** `WritingSpecification` holds *a piece of writing holds only writing*; a Letter's specification waives it by naming the rule again and returning false, since a letter may hold anything; a Composition's adds the rules of its level. A rule is a `$`-method that asserts with the framework's `$check` and says in its message what was wrong, in the shape of the thing and never a roster of classes. A rule asks the writing's collections through `contains`, `containsOne` and `find`, and computes nothing it could ask for.
 
 **What a rule never does.** Enumerate a roster of classes in its message; reach into another writing's specification — a writing checks itself and the cascade reaches the rest; run at any time but when the binder asks, since nothing in the library calls `specify`.
 

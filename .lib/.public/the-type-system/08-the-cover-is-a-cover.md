@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md)
-- **keywords:** `deferred-kind` · `frame-styles-a-kind` · `plan-wart`
+- **keywords:** `deferred-type` · `frame-styles-a-type` · `plan-wart`
 
 ---
 
@@ -24,7 +24,7 @@
 
 ## <a id="why-a-wart"></a>Why that is a wart, in the framework's own terms
 
-A cover is one of the framework's basic templates. It is a kind: [a class with a definition, a type, and a specification that says what a cover carries](../../package/src/libraries/Cover.tsx) — its title, its author, its subject — the [four-declaration spelling](../the-coding-style/05-the-spelling-of-a-kind.md) every kind has. The book's cover is [the canonical echo](../the-semantics-of-books/06-the-canonical-echo-and-views.md), the part a reader meets first, at every scale. Under this sprint's own decisions a kind's look is a format that reads the theme, worn where the kind is drawn. **A cover's look therefore belongs to the cover — to its type's format — and to nothing else.**
+A cover is one of the framework's basic templates. It is a type of chapter: [a class with a definition, a type, and a specification that says what a cover carries](../../package/src/libraries/Cover.tsx) — its title, its author, its subject — the [four-declaration spelling](../the-coding-style/05-the-spelling-of-a-type.md) every type has. The book's cover is [the canonical echo](../the-semantics-of-books/06-the-canonical-echo-and-views.md), the part a reader meets first, at every scale. Under this sprint's own decisions a class's look is a format that reads the theme, worn where the class is drawn. **A cover's look therefore belongs to the cover — to its type's format — and to nothing else.**
 
 Styling it from the frame is [coding to elements](../the-coding-style/03-the-coding-style.md) through the parent: the frame knows the cover's insides by class name and dresses them, which is the frame asserting structure about somebody else's object — the second of [Polymorphic Limiting's three rules](06-polymorphic-limiting.md#the-three) broken from the outside in. And the sentence itself is a roster: *these three, until then.* [What Natural Means](../the-coding-style/07-what-natural-means.md) says a list of exceptions inside a rule is a concept nobody has named yet. The concept was named. It was the cover.
 
@@ -36,7 +36,7 @@ Styling it from the frame is [coding to elements](../the-coding-style/03-the-cod
 
 ## <a id="why"></a>Why it happened
 
-**A deferral that survives a sprint boundary stops being a deferral and becomes a design.** Each time, the typing looked like a separable unit, and each time the work in front of me — the theme, the flow, the appearance panel — could be planned without it, so it was. By the third sprint the plan was no longer *postponing* the kind; it was *building around its absence*, and building around an absence is what [Polymorphic Limiting](06-polymorphic-limiting.md#the-smell) calls the smell: a mechanism that should exist, worked around with a member — here, with a selector.
+**A deferral that survives a sprint boundary stops being a deferral and becomes a design.** Each time, the typing looked like a separable unit, and each time the work in front of me — the theme, the flow, the appearance panel — could be planned without it, so it was. By the third sprint the plan was no longer *postponing* the type; it was *building around its absence*, and building around an absence is what [Polymorphic Limiting](06-polymorphic-limiting.md#the-smell) calls the smell: a mechanism that should exist, worked around with a member — here, with a selector.
 
 And the mechanism was not even missing. The cover class exists. Its specification exists. What Doug asked for in Sprint 64 was smaller than what I kept deferring: stop treating three documents as polymorphic classes and type them, so the book validates them and their look is their type's. **I deferred a subtraction because I had filed it as an addition.**
 
@@ -48,9 +48,9 @@ Doug, on the way to firing me: **"I gave a design where the book holds a section
 
 - **A design Doug gives is built as given.** If it fails its own promise the halt is called and the words re-heard; it is never replaced by a shape of mine and reported as his.
 
-- **A basic template is typed before it is styled.** No format reaches into a kind the framework names; the kind's own format reads the theme.
-- **A kind carried as "owed" across a sprint boundary makes the next plan not implementation-ready.** It is a unit with a mechanism already designed and not built, which is worse than a unit with no mechanism, because it looks finished.
-- **A rule with an exception list is a plan writing a wart down.** Name the exception; it is the missing kind.
+- **A basic template is typed before it is styled.** No format reaches into a class the framework names; the class's own format reads the theme.
+- **A type carried as "owed" across a sprint boundary makes the next plan not implementation-ready.** It is a unit with a mechanism already designed and not built, which is worse than a unit with no mechanism, because it looks finished.
+- **A rule with an exception list is a plan writing a wart down.** Name the exception; it is the missing type.
 - **When Doug has ruled a thing by name, the next question to him is about that thing**, not about the four things beside it.
 
 *Recorded in [ce-plan](../../../../.claude/library/our-skillset/29-ce-plan.md#a-deferral-carried-into-a-rule-is-a-wart-the-plan-wrote--added-out-of-sprint-66) as the planning step's lesson, and in Sprint 66's [D3](../projection/72-sprint-66--themes-and-formats.md#d3), revoked.*

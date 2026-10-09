@@ -40,7 +40,7 @@ The asymmetry matters. Closure forces the self-cataloguing top; it never forces 
 
 ## Why this is stronger than set theory
 
-I had called the parallel with set theory *adjacent*. Doug's correction makes it a difference in kind, in the *semantic affordance* passage (session, 2026-08-04):
+I had called the parallel with set theory *adjacent*. Doug's correction makes it a difference of category, in the *semantic affordance* passage (session, 2026-08-04):
 
 > "This is stronger than set theory because there's nothing about representation that affords sets. It happens to be a good medium for representation, but it is not a part of the semantics of sets that they should be used in this way. Numbers don't have to be expressed as sets."
 

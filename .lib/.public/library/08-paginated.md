@@ -46,7 +46,7 @@ export default class $SomeProjects extends $TheLibrary {
 - **Which chapters are pages** is `pages`, overridden: a class under Paginated whose pages are the chapters carrying a test-local annotation marks only those, and the rest — a header, a footer — stay in view. It is still Paginated wherever one is asked for, since the book finds it by `instanceof`.
 - **Which page is open** is `open`, overridden when the bookmark may name a chapter that is not a page.
 - **The look** is `style`, overridden: tabs, a sidebar, a fade; the marks are the same three, `pa-paginated`, `pa-page` and `pa-open`, and a subclass keys its own sheet on them.
-- **The app-like book** — the first M chapters fixed as header and sidebar, the last N as footer, the middle as tabs — is a book kind reading annotations its chapters carry and a Paginated whose `pages` are the middle; [Book](05-book.md#how-it-is-extended) carries the analysis in full.
+- **The app-like book** — the first M chapters fixed as header and sidebar, the last N as footer, the middle as tabs — is a type of book reading annotations its chapters carry and a Paginated whose `pages` are the middle; [Book](05-book.md#how-it-is-extended) carries the analysis in full.
 - **What a subclass never does:** re-mark every page at each define, which costs every chapter a draw per move; author the open mark as itself, which `revert` would take back with the page marks; or change what the book writes, which an annotation cannot.
 
 ## Promises

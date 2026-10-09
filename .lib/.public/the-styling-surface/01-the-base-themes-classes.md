@@ -12,13 +12,13 @@ Three moments put a class on an element, and knowing which tells you whether a r
 
 | moment | who | what it says |
 |---|---|---|
-| **the bond** — `$Define`, once, when the writing is made | the kind itself | what the writing *is*: `pd-paragraph`, `pd-title`; and the annotations it stands for itself, whose marks follow |
+| **the bond** — `$Define`, once, when the writing is made | the class itself | what the writing *is*: `pd-paragraph`, `pd-title`; and the annotations it stands for itself, whose marks follow |
 | **each define** — before every draw, the stack of annotations run from the front | an annotation, in `defines`, taken back in `erase` | what was *said* of the writing: `pa-reference`, `pa-cover`; and a state that moves, `pa-open` |
 | **the bind** — `$Bound`, once, when the book is whole | an annotation reaching *other* writings than its own | marks on the parts of a composition: a table's rows and cells, a list's items, a book's pages |
 
 Every mark is on the page at the first paint, served; the one that moves after is a state, and it is a class toggled, never a rule rewritten.
 
-**And where a mark sits.** A writing draws its *own element* innermost — its tag, its `id`, every class its kind and its annotations gave it — and each Format and each Reference stands a *layer* around it, outer to inner in the order they were added, every layer wearing `pd-container` and nothing of the writing's. So a rule reaches a mark **by descendant** — `.pa-cover .pd-title` — and never by child or sibling, since between any two writings stand as many layers as were said of them.
+**And where a mark sits.** A writing draws its *own element* innermost — its tag, its `id`, every class its class and its annotations gave it — and each Format and each Reference stands a *layer* around it, outer to inner in the order they were added, every layer wearing `pd-container` and nothing of the writing's. So a rule reaches a mark **by descendant** — `.pa-cover .pd-title` — and never by child or sibling, since between any two writings stand as many layers as were said of them.
 
 ## The seven levels
 
@@ -33,7 +33,7 @@ Every mark is on the page at the first paint, served; the one that moves after i
 | `pd-canonical` | the chapter's `div` | `$Chapter.$Define`; **taken off** by Cover, Synopsis and TableOfContents in their `defines` | — | *counted*: `.pd-canonical.pd-chapter { counter-increment: chapter }` and a label by `::before` |
 | `pd-book` | `div` | `$Book.$Define` | the theme's own element, outermost, carrying the custom properties | the measure, the page margins, `counter-reset` |
 
-## The kinds of sentence and letter
+## The types of sentence and letter
 
 | class | on | put there | the layers | a theme usually says |
 |---|---|---|---|---|
@@ -49,7 +49,7 @@ Every mark is on the page at the first paint, served; the one that moves after i
 |---|---|---|---|---|
 | `pd-word` with `pa-referent` and an `id` | `span` | Mention, from `[[ name ]]` | none | nothing; the id is the surface |
 | `pd-word` with `pa-reference` | `span` | Means, from `$[[ name ]]` | an anchor | the link's colour, by `.pa-reference` |
-| `pd-previous`, `pd-next` | `span`, also `pd-word`, `pa-reference` | `$Previous.$Define`, `$Next.$Define` | an anchor | a glyph by `::before` or `::after`; the catchword's place is the library's own kind |
+| `pd-previous`, `pd-next` | `span`, also `pd-word`, `pa-reference` | `$Previous.$Define`, `$Next.$Define` | an anchor | a glyph by `::before` or `::after`; the catchword's place is the library's own class |
 | `pd-math` | `span`, also `pd-word`, holding KaTeX's `span.katex` | `$Math.$Define` | none | `white-space: nowrap` if a formula must not break |
 | `pd-date` | `time[datetime]`, also `pd-word`, replacing the span at the bond | `$Date.$Define` | none | nothing, or `white-space: nowrap` |
 | `pd-equation` | `div`, also `pd-paragraph`, holding `span > .katex-display` | `$Equation.$Define` | none | a number: `counter-increment: equation` and `::after { content: '(' counter(equation) ')' }`, the reset on `pd-book` |
@@ -84,4 +84,4 @@ Every mark is on the page at the first paint, served; the one that moves after i
 - **By mark, never by element type — except the foreign elements.** The base marks every element it draws itself; `img`, `svg`, `pre`, `code`, `time` and KaTeX's output are the only things on the page without a mark of ours, and a rule names them under the mark that holds them: `.pd-image img`.
 - **A state is a mark the class toggles** — `pa-open` — and a rule reads it; a rule never computes a state by position, `:first-child`, `:nth-of-type`, or by `:has()`.
 - **A quantity is a value** — read through the provider as `${({ theme }) => theme.space}` — and a rule never carries a literal that a theme would want to change.
-- **A kind's look is one rule by its mark in the theme; a Format's look is the Format's own component** — [the clusters](02-the-clusters.md). The theme reaches a Format's mark only when it chooses to dress what it did not replace.
+- **A class's look is one rule by its mark in the theme; a Format's look is the Format's own component** — [the clusters](02-the-clusters.md). The theme reaches a Format's mark only when it chooses to dress what it did not replace.

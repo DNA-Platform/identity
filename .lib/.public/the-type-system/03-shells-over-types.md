@@ -22,13 +22,13 @@
 
 **The base classes belong to the end user.** `$Chapter`, `$Section`, `$Paragraph` stay free of house-specific behavior, so a user subclasses them without inheriting our opinions. What makes a chapter a Cover is never baked into a base class the user needed for something else.
 
-**Kinds are types, and the type grants the powers.** A canonical class like `$Cover` is a *shell* — a thin convenience over the base class carrying its type. Whatever the kind can do, the TYPE confers, so a writing that merely carries the type gets the whole power with no subclass at all.
+**A class is a shell over its type, and the type grants the powers.** A canonical class like `$Cover` is a *shell* — a thin convenience over the base class carrying its type. Whatever the class can do, the TYPE confers, so a writing that merely carries the type gets the whole power with no subclass at all.
 
-**The proof already in the code:** persistence. `$TypeOfReferences.specifically` sets the pid (`'$references$'`, the one shared key) and `persist = true` on whatever it types — so `<Type>References</Type>` turns any section into THE references, subclass optional. That is the pattern every kind-power follows.
+**The proof already in the code:** persistence. `$TypeOfReferences.specifically` sets the pid (`'$references$'`, the one shared key) and `persist = true` on whatever it types — so `<Type>References</Type>` turns any section into THE references, subclass optional. That is the pattern every power a type confers follows.
 
 ## The test for a new class
 
-Before adding a canonical subclass, ask what it does that its type could not confer. If the answer is nothing — it is a shell, and it should be *visibly* a shell: a base class, a carried type, and whatever thin dress the kind wears. If the answer is machinery, the machinery probably belongs on the type.
+Before adding a canonical subclass, ask what it does that its type could not confer. If the answer is nothing — it is a shell, and it should be *visibly* a shell: a base class, a carried type, and whatever thin dress the class wears. If the answer is machinery, the machinery probably belongs on the type.
 
 ## <a id="the-view-law"></a>The view law a shell's drawing obeys — written in Solutions 45's own second-appearance wording
 

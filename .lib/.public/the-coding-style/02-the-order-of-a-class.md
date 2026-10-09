@@ -80,9 +80,9 @@
 
 > ***"Can you please throw an exception that doesn't go stale?"***
 
-**The message that prompted this enumerated three of the seven levels** — *"a letter, a word, a sentence"* — **inside [`$Writing.bind`](../../package/src/writing/Writing.tsx), a class whose entire purpose is to not know which kinds exist.** *It would have been wrong the moment a fourth was written, and nothing would have said so.*
+**The message that prompted this enumerated three of the seven levels** — *"a letter, a word, a sentence"* — **inside [`$Writing.bind`](../../package/src/writing/Writing.tsx), a class whose entire purpose is to not know which classes exist.** *It would have been wrong the moment a fourth was written, and nothing would have said so.*
 
-***The rule: say the shape, never the roster.*** The message now reads *"Binding is how a kind of writing lends its composition to writing that carries its type"* — **true for one kind or for twenty.**
+***The rule: say the shape, never the roster.*** The message now reads *"Binding is how a type of writing lends its composition to writing that carries its type"* — **true for one type or for twenty.**
 
 ## And the standing rule this sits beside
 

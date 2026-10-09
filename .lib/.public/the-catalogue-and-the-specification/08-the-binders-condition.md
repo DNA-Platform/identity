@@ -114,9 +114,9 @@
 
 *`wellformed.ts` asks for the chapter that is a book's synopsis once for a canonical listing and once for a topical one. One rule, once the listing carries its relation.*
 
-## <a id="b28"></a>B28 — A kind that draws its own element drops the base's link and format — **MONITOR**, `src`
+## <a id="b28"></a>B28 — A class that draws its own element drops the base's link and format — **MONITOR**, `src`
 
-*`$Image` must draw an `img`, and `$Illustration` its `figure`; both override `view()` and neither goes through `$Writing.view`, where a writing's id, its link (`pd-meaning`, `href`) and its worn format are given. The figure carries the id now (2026-09-20, for the plate a mention allocates); a figure given a `Reference` is still not a link, and a format worn by an image is not drawn. The seam wants the base to hand `drawn` to a kind rather than each kind repeating it.*
+*`$Image` must draw an `img`, and `$Illustration` its `figure`; both override `view()` and neither goes through `$Writing.view`, where a writing's id, its link (`pd-meaning`, `href`) and its worn format are given. The figure carries the id now (2026-09-20, for the plate a mention allocates); a figure given a `Reference` is still not a link, and a format worn by an image is not drawn. The seam wants the base to hand `drawn` to a class rather than each class repeating it.*
 
 ## <a id="b29"></a>B29 — Two synopsis rules, and the anchor's `named` under the chapter's rule — **MONITOR**
 

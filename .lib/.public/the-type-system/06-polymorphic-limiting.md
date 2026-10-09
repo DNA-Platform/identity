@@ -18,7 +18,7 @@
 
 | | |
 |---|---|
-| ***STRUCTURE IS A PROPERTY*** | **A structural fact about a class is declared ON the class, as a property.** *Not computed in a method, not implied by what a bond happens to do, not recoverable only by reading a view. If it is true of the kind, the kind says it* |
+| ***STRUCTURE IS A PROPERTY*** | **A structural fact about a class is declared ON the class, as a property.** *Not computed in a method, not implied by what a bond happens to do, not recoverable only by reading a view. If it is true of the type, the class says it* |
 | ***AN ASSUMPTION IS PRESENT*** | **If a type assumes something, the thing it assumes is THERE.** *A type that assumes a part exists and does not carry it is a type asserting something about somebody else's object* |
 | ***AND UNVERIFIED MEANS UNASSUMED*** | **If the base class does not verify it, the type does not get to assume it.** *This is the one that bites: an assumption the base never checks is a belief, and a subclass built on a belief fails on the first sibling that does not share it* |
 
@@ -28,11 +28,11 @@
 
 ***A subclass needs something the base does not offer, and the fix reaches for a member.*** **`Blank extends $Book`; a blank book still needs a footer; so a nullable `Bottom` chapter is added to hold one.**
 
-**It works. It compiles. Every test passes. And it is wrong**, because the member does not describe the kind — *it describes the absence of a mechanism*, and it puts that absence permanently into the vocabulary of every reader who comes after.
+**It works. It compiles. Every test passes. And it is wrong**, because the member does not describe the class — *it describes the absence of a mechanism*, and it puts that absence permanently into the vocabulary of every reader who comes after.
 
 > ***WHAT THE MEMBER ACTUALLY PROVES:*** **there is no framework mechanism for getting something to the bottom** — *or there is one and it was not found.* **Both are outcomes of the same failure, and neither is fixed by the member.**
 
-***AND THE OTHER REACH IS EQUALLY WRONG.*** **"This does not mean the base should be changed."** *The temptation, once the member is seen to be bad, is to widen the base so it can hold the case — a nullable slot one level up instead of one level down.* **That is the same defect wearing seniority.** *A base earns a member when the member is true of everything beneath it, never when one kind needed somewhere to put something.*
+***AND THE OTHER REACH IS EQUALLY WRONG.*** **"This does not mean the base should be changed."** *The temptation, once the member is seen to be bad, is to widen the base so it can hold the case — a nullable slot one level up instead of one level down.* **That is the same defect wearing seniority.** *A base earns a member when the member is true of everything beneath it, never when one class needed somewhere to put something.*
 
 **What is left is the only honest move: find the mechanism, or say that it does not exist.** *Saying it does not exist is a real answer and it belongs in [chemistry's chapter zero](../../../chemistry/.lib/projection/00-planning.md), because the fix is one level down.*
 
@@ -43,8 +43,8 @@
 | | |
 |---|---|
 | ***`$Book` holds four blocks to get parts into four regions*** | **`_opening`, `_contents`, `_body`, `_closing` in [Book.tsx](../../package/src/libraries/Book.tsx)** — *filtered out of `_block` in the bond and read only by `view()`.* **There is no mechanism for "this part stands at the bottom", so a book keeps four lists and a hand-written view to place them.** *Doug's ruling the same day: "We do NOT cache lots of blocks. We don't cache anything in a composition but our parts because we have NO CONTROL of what is below us."* **And it has a shipped symptom** — the book decides what is a chapter by subtracting five instances it has not finished assigning, so a book that authors its footer last lists that footer in its own table of contents |
-| ***`$Bookmark` hand-rolls an ancestor walk*** | **`chapter()` in Bookmark.tsx asks `instanceof $Chapter` up the parents**, *because `$Writing` has exactly one ancestor walk and it is hard-coded to one kind — `get book()`.* **There is no way to ask for the nearest ancestor carrying a given type**, so the kind that needed one wrote its own |
-| ***six classes declare the same `heading()`*** | **byte-identical in [Section.tsx](../../package/src/writing/Section.tsx), `$Table`, `$Summary`, `$Title`, `$Author`, `$Subject`.** *[Shells Over Types](03-shells-over-types.md) says the TYPE confers the powers — and it does, at runtime.* **An `implements` clause cannot be satisfied by a type conferring anything**, so the member is copied into every kind by hand |
+| ***`$Bookmark` hand-rolls an ancestor walk*** | **`chapter()` in Bookmark.tsx asks `instanceof $Chapter` up the parents**, *because `$Writing` has exactly one ancestor walk and it is hard-coded to one class — `get book()`.* **There is no way to ask for the nearest ancestor carrying a given type**, so the class that needed one wrote its own |
+| ***six classes declare the same `heading()`*** | **byte-identical in [Section.tsx](../../package/src/writing/Section.tsx), `$Table`, `$Summary`, `$Title`, `$Author`, `$Subject`.** *[Shells Over Types](03-shells-over-types.md) says the TYPE confers the powers — and it does, at runtime.* **An `implements` clause cannot be satisfied by a type conferring anything**, so the member is copied into every class by hand |
 
 ***THE THIRD ROW SETTLES THE ARGUMENT.*** **The framework's own central claim is true when the code runs and unsayable when the code is written**, *and six identical lines are what that costs.* **That is not six authors being lazy. That is one gap, paid six times.**
 
@@ -71,11 +71,11 @@
 
 **`Reflection.tsx` opens by explaining itself:** *"A utility that must ask `instanceof` cannot IMPORT what imports it: `$Writing` reaches for reflection in its own methods, so a value import here closes a ring."* **True, and it is a module cycle, and a module cycle is a fact about the world rather than a missing feature.**
 
-***BUT IT DOES NOT JUSTIFY WHAT IT IS USED TO JUSTIFY.*** **The cycle is ALREADY BROKEN, in this same file** — `knows()` takes the four kinds by injection at the composition root, so nothing here imports what imports it. *The registry answers the ASKING.* **It says nothing about where the METHODS live.** *A member on `$Writing` could ask the same injected registry and never import a class either.*
+***BUT IT DOES NOT JUSTIFY WHAT IT IS USED TO JUSTIFY.*** **The cycle is ALREADY BROKEN, in this same file** — `knows()` takes the four classes by injection at the composition root, so nothing here imports what imports it. *The registry answers the ASKING.* **It says nothing about where the METHODS live.** *A member on `$Writing` could ask the same injected registry and never import a class either.*
 
-> ***SO THE CYCLE EXPLAINS THE REGISTRY AND THE REGISTRY WAS MISTAKEN FOR PERMISSION.*** **Once one member moved there for a real reason, the next had somewhere to go** — and `numbered` says so in its own comment: *"FIVE KINDS ASKED FOR THIS SEPARATELY… and five implementations of one reading is what a base is for."* **Five kinds needed a member, no type could confer it, and the utility took it.** *That sentence is this chapter's thesis, written by someone who had not read this chapter.*
+> ***SO THE CYCLE EXPLAINS THE REGISTRY AND THE REGISTRY WAS MISTAKEN FOR PERMISSION.*** **Once one member moved there for a real reason, the next had somewhere to go** — and `numbered` says so in its own comment: *"FIVE KINDS ASKED FOR THIS SEPARATELY… and five implementations of one reading is what a base is for."* **Five classes needed a member, no type could confer it, and the utility took it.** *That sentence is this chapter's thesis, written by someone who had not read this chapter.*
 
-***WHICH MAKES `Reflection` THE PLACE THE BRANCH'S COUPLING ACCUMULATES*** — not because it is badly written, *it is careful and it is well commented* — **but because it is the only object in the branch that may ask what kind a thing is, so every question that crosses two kinds ends there.** *The fix is not to break it up; a smaller utility with the same shape is the same defect in pieces.* **The fix is the mechanism [the third row above](#the-instances) already names: give a `$Type` the power to confer a member, and thirteen of these go home.**
+***WHICH MAKES `Reflection` THE PLACE THE BRANCH'S COUPLING ACCUMULATES*** — not because it is badly written, *it is careful and it is well commented* — **but because it is the only object in the branch that may ask what class a thing is, so every question that crosses two classes ends there.** *The fix is not to break it up; a smaller utility with the same shape is the same defect in pieces.* **The fix is the mechanism [the third row above](#the-instances) already names: give a `$Type` the power to confer a member, and thirteen of these go home.**
 
 # <a id="the-third-face"></a>THE THIRD FACE — designing from the subclasses in front of you
 
@@ -89,13 +89,13 @@
 
 | polymorphism done WRONG — *a base designed from the subclasses that exist* | polymorphism done RIGHT |
 |---|---|
-| a parts member on `$Book` because both books in the repository have a body | a book kind with its own layout, because it is different |
-| an attributes member on `$Writing` because twelve kinds override `view()` | a kind overriding `print()`; an override of `view()` where the element is genuinely a different element |
+| a parts member on `$Book` because both books in the repository have a body | a type of book with its own layout, because it is different |
+| an attributes member on `$Writing` because twelve subclasses override `view()` | a subclass overriding `print()`; an override of `view()` where the element is genuinely a different element |
 | a `:not()` roster naming today's apparatus | a library with its own base types |
-| a position that assumes every book's shape | a kind waiving a rule the specification chain let it waive |
-| a supply giving every section-kind a heading it may not want | a kind carrying its level in the class list instead of overriding |
+| a position that assumes every book's shape | a class waiving a rule the specification chain let it waive |
+| a supply giving every section class a heading it may not want | a class carrying its level in the class list instead of overriding |
 
-***The test is one question:*** **would this base member still be right for a subclass nobody has written?** *If it is only right for the ones in front of you, it is a prediction, and a prediction on a base is a wart.* **The first face and the second are its consequences:** *a member that holds the absence of a mechanism, or a utility that holds a member with the receiver demoted, is a prediction made from one kind's need.*
+***The test is one question:*** **would this base member still be right for a subclass nobody has written?** *If it is only right for the ones in front of you, it is a prediction, and a prediction on a base is a wart.* **The first face and the second are its consequences:** *a member that holds the absence of a mechanism, or a utility that holds a member with the receiver demoted, is a prediction made from one class's need.*
 
 # <a id="the-audit"></a>How this is found, and why it is hard to find
 
@@ -107,7 +107,7 @@
 
 # <a id="see-also"></a>See also
 
-- **[The Type and the Instance](02-the-type-and-the-instance.md)** — *the one question that decides where a member goes, and the reason a kind does not need a subclass*
+- **[The Type and the Instance](02-the-type-and-the-instance.md)** — *the one question that decides where a member goes, and the reason a type does not need a class*
 - **[Shells Over Types](03-shells-over-types.md)** — *the type grants the powers; this chapter is what it costs where the type cannot*
 - **[The Order of a Class](../the-coding-style/02-the-order-of-a-class.md)** — *properties stand second, which is where a structural fact belongs*
 - **[What We Believe](05-what-we-believe.md)** — *the forty-eight rulings this joins*

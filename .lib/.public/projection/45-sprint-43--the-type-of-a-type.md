@@ -68,7 +68,7 @@
 
 ## The conventions
 
-**[ch10](../the-type-system/02-the-type-and-the-instance.md) gained four sections** — the make marker, the assignment workflow verbatim, the block-asking pair with its worked examples, and the bond that composes. **[ch15](../the-coding-style/05-the-spelling-of-a-kind.md) gained three rows** and lost a stale one. **[ch11](../the-coding-style/03-the-coding-style.md) gained three index rows.** All three covers re-edited with the TOC tool in the same act.
+**[ch10](../the-type-system/02-the-type-and-the-instance.md) gained four sections** — the make marker, the assignment workflow verbatim, the block-asking pair with its worked examples, and the bond that composes. **[ch15](../the-coding-style/05-the-spelling-of-a-type.md) gained three rows** and lost a stale one. **[ch11](../the-coding-style/03-the-coding-style.md) gained three index rows.** All three covers re-edited with the TOC tool in the same act.
 
 ***Three stale passages in ch10 were corrected rather than left:*** the `canonicalForm` row, the `$$` bind sentence, and the whole `$Trait` section — all three describing members deleted in Sprints 41 and 42.
 

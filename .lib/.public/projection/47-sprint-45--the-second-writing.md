@@ -94,7 +94,7 @@ $$Section(block: $Block) {
 - [x] **member order is Doug's and untouched**
 - [ ] **SEMANTIC — `$Reference$` promises NOTHING.** *It is `$Annotation$` plus nothing, so a replacement reference cannot be written against it* — **[P1](../the-type-system/04-the-interface-type-system.md#the-four-purposes) unmet, and the reason `$IndexCard` has to reach through reflection to read a url.** **[S15]**
 - [ ] **SEMANTIC — `$Book$` CAN NEVER PROMISE A MEMBER.** *`book()` answers `this`, so any member on `$Book$` is one `$Writing` must have.* **Measured: adding `cover()` to `$Book$` produced 47 compiler errors across 30 files, all of them cascades from that one line.** **[S21]**
-- [ ] **[Q4](#q4) — `reference()` was ADDED to `$Type`**, spelled as [ch15](../the-coding-style/05-the-spelling-of-a-kind.md) has it. *It is a base-class member and it is Doug's to strike.*
+- [ ] **[Q4](#q4) — `reference()` was ADDED to `$Type`**, spelled as [ch15](../the-coding-style/05-the-spelling-of-a-type.md) has it. *It is a base-class member and it is Doug's to strike.*
 
 ### `writing2/Composition.tsx`
 
@@ -216,7 +216,7 @@ $$Section(block: $Block) {
 
 <a id="q2"></a>**Q2 · `$Reference` MOVED — DONE.** *`reflection.means` finds it by the type's name, exactly as `composition()` does, so `Writing.tsx` imports nothing from `reference2` and the cycle that forced it is gone.* **Proved by `loading.test.tsx`.**
 
-<a id="q3"></a>**Q3 · `this[cache](this.name)` — NOT CARRIED.** *v2.2 has no resolution-by-name, so the line would file a key nothing reads.* **[ch15](../the-coding-style/05-the-spelling-of-a-kind.md) says it is part of the template, so this is a template question and it is yours.**
+<a id="q3"></a>**Q3 · `this[cache](this.name)` — NOT CARRIED.** *v2.2 has no resolution-by-name, so the line would file a key nothing reads.* **[ch15](../the-coding-style/05-the-spelling-of-a-type.md) says it is part of the template, so this is a template question and it is yours.**
 
 <a id="q4"></a>**Q4 · `reference()` ADDED to `$Type` — flagged.** *ch15 spells it, and without it `$$Letter` is unreachable now that `prints` is deleted.* **It is still a member on a base class.**
 

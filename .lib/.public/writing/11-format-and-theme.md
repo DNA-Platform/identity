@@ -136,7 +136,7 @@ class $Replacing extends $Format {
 
 ## What was struck getting here
 
-***Four mechanisms were built for this in one day and every one came out.*** `inactivates`, a regulation phase on Annotation, invented from a word Doug used to explain the idea. `review`, a wrapping function folded by the collection. `$Theme` as a class, which a property on the base says better. And per-kind uniqueness, which let a theme and a style fight over one container and lose silently. **Every one was a member added where the system already had a way in**, and the record is in [The Annotation System](07-the-annotation-system.md#the-powers-of-an-annotation).
+***Four mechanisms were built for this in one day and every one came out.*** `inactivates`, a regulation phase on Annotation, invented from a word Doug used to explain the idea. `review`, a wrapping function folded by the collection. `$Theme` as a class, which a property on the base says better. And per-class uniqueness, which let a theme and a style fight over one container and lose silently. **Every one was a member added where the system already had a way in**, and the record is in [The Annotation System](07-the-annotation-system.md#the-powers-of-an-annotation).
 
 ## Promises
 

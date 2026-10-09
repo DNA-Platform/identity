@@ -58,7 +58,7 @@
 | **`$Book`** | ***the class*** | *the shape of the data* |
 | **`$Book` instances** | ***many*** | *one per piece of writing it is bound to* |
 
-***CORRECTED 2026-09-04.*** *An earlier draft said the type names its class through `canonicalForm` and `$$` builds one.* **Both are gone** — `canonicalForm` is [among the four members Doug deleted](../the-coding-style/05-the-spelling-of-a-kind.md), and `Lib.tsx` with its `$$` bind no longer exists. **What a type names today is its REFERENCE kind** (`override get reference()`, the level's own `$$X`), and **what makes one is [`$check(Kind, '!')`](#making-one)**. *The split itself is unchanged; only the two members that expressed it were replaced.*
+***CORRECTED 2026-09-04.*** *An earlier draft said the type names its class through `canonicalForm` and `$$` builds one.* **Both are gone** — `canonicalForm` is [among the four members Doug deleted](../the-coding-style/05-the-spelling-of-a-type.md), and `Lib.tsx` with its `$$` bind no longer exists. **What a type names today is its REFERENCE class** (`override get reference()`, the level's own `$$X`), and **what makes one is [`$check(X, '!')`](#making-one)**. *The split itself is unchanged; only the two members that expressed it were replaced.*
 
 ## <a id="the-problem"></a>The problem this solves — ***base-class scarcity***
 
@@ -102,10 +102,10 @@
 |---|---|---|
 | **1** | ***carry the type*** — `<Writing>…<Type>Book</Type></Writing>` | **nothing.** *No class, no subclass, no import of `$Book`* |
 | **2** | ***write the level*** — `<Book>…</Book>` | *one import* |
-| **3** | ***a new kind, type only*** — `$TypeOfTitle extends $TypeOfParagraph`, `[cache]('Title')`, a specification | ***one declaration and no class*** — *the kind is then written `<Type>Title</Type>`* |
-| **4** | ***a new kind with its own data*** — a class **and** a type | *two declarations, and only needed when the kind holds something a paragraph does not* |
+| **3** | ***a new type of writing, type only*** — `$TypeOfTitle extends $TypeOfParagraph`, `[cache]('Title')`, a specification | ***one declaration and no class*** — *the type is then written `<Type>Title</Type>`* |
+| **4** | ***a new type of writing with its own data*** — a class **and** a type | *two declarations, and only needed when it holds something a paragraph does not* |
 
-***Route 3 is the one the split buys*** — **a kind that is only a meaning.** *`.spec/paragraph/DerivedSpec-Title.tsx` (v1, `.archive/writing/Paragraph.tsx`, deleted) declares two of them, `Title` by deriving a specification and `Quotation` by decorating one, and neither has a class of its own.*
+***Route 3 is the one the split buys*** — **a type that is only a meaning.** *`.spec/paragraph/DerivedSpec-Title.tsx` (v1, `.archive/writing/Paragraph.tsx`, deleted) declares two of them, `Title` by deriving a specification and `Quotation` by decorating one, and neither has a class of its own.*
 
 ## <a id="corollaries"></a>The corollaries, measured rather than argued
 
@@ -130,7 +130,7 @@
 | | | |
 |---|---|---|
 | ***derive*** | `class $TitleSpecification extends $ParagraphSpecification` **+ a rule** | **the standard case** — *the parent's rules run without being named, so nothing can be repealed by forgetting to call up* |
-| ***decorate*** | *hold another specification as `parent`* | **adapt without inheriting** — *a kind can borrow a level's rules without being a subclass of its type* |
+| ***decorate*** | *hold another specification as `parent`* | **adapt without inheriting** — *a type can borrow a level's rules without being a subclass of its type* |
 | ***disable*** | *a rule returns `false`* | **it drops out and its neighbours are untouched** |
 
 ***Deriving is optional and recommended.*** **Doug: *"You derive from the base and extend to add your own. If you need to clean up and remove some, decorate partially like an adapter. Not hard."***
@@ -166,7 +166,7 @@ this.type ??= $(<Asked />);
 
 ***Doug: "What if a way to do check that news up an instance run through `$` if you do a check with '!' as the third argument… Inside check, it would use `$`, so it would be very safe from a DI perspective."***
 
-**`$check(Kind, '!')` makes one through `$`.** The fetch and the evaluation happen in one call, so the two statements that had to stay together become one that cannot come apart:
+**`$check(X, '!')` makes one through `$`.** The fetch and the evaluation happen in one call, so the two statements that had to stay together become one that cannot come apart:
 
 ```tsx
 // the two-statement form, which had to be remembered at every seat
@@ -177,7 +177,7 @@ this.type ??= $(<TypeOfSentence />);
 this.type ??= $check(typeOfSentence, '!');
 ```
 
-***It generalizes what `'block'` already did.*** `$ParamValidation.check` has always materialized an empty `$Block` when the argument is missing and a block is asked for; `'!'` is that behaviour for any kind, built through `$` so the scope answers with whatever it has registered.
+***It generalizes what `'block'` already did.*** `$ParamValidation.check` has always materialized an empty `$Block` when the argument is missing and a block is asked for; `'!'` is that behaviour for any class, built through `$` so the scope answers with whatever it has registered.
 
 **The three-argument form is FIND OR MAKE**, and it is the one Doug named as the definite case: *"checking the elements of a block or the annotations in there for something, and if it's not found, creating one, that is definitely a situation to use it."*
 
@@ -186,7 +186,7 @@ this.type ??= $check(typeOfSentence, '!');
 this.theme = $check(this.findOne($TypeOfTheme), $Theme, '!');
 ```
 
-***THE BOUNDARY, and it is clean:*** **`$check(Kind, '!')` makes an EMPTY one; `$(<Kind>…</Kind>)` writes into one.** Anything created with children keeps the eval form — the catalogue's parts, the parser's makers, a path made from copy — because `$check` takes no children.
+***THE BOUNDARY, and it is clean:*** **`$check(X, '!')` makes an EMPTY one; `$(<X>…</X>)` writes into one.** Anything created with children keeps the eval form — the catalogue's parts, the parser's makers, a path made from copy — because `$check` takes no children.
 
 ```tsx
 const Catalogue = $(catalogue);
@@ -213,7 +213,7 @@ find<T extends $Writing>(asked: (new () => $Type) | string): T[] {
 
 findOne<T extends $Writing>(asked: (new () => $Type) | string): T | undefined {
     const found = this.find<T>(asked);
-    if (found.length > 1) throw new Error(`writing holds one of a kind here, and this one holds ${found.length}.`);
+    if (found.length > 1) throw new Error(`writing holds one of a type here, and this one holds ${found.length}.`);
     return found[0];
 }
 ```
@@ -258,7 +258,7 @@ $Paragraph(block: $Block) {
 }
 ```
 
-*Written the old way round, the class planted its default first and something downstream had to out-rank it.* **Written this way nothing adjudicates: a carried type simply IS the type, and the default is what happens when a page said nothing.** The same three lines stand at all seven levels and at every kind.
+*Written the old way round, the class planted its default first and something downstream had to out-rank it.* **Written this way nothing adjudicates: a carried type simply IS the type, and the default is what happens when a page said nothing.** The same three lines stand at all seven levels and at every type.
 
 ***A REGISTER, and it is where the flexibility comes from:*** a page that carries `<Type>Title</Type>` inside a `$Paragraph` gets a title with no subclass anywhere — [route 3 of the chain](#the-chain), now reachable at every level rather than at the ones that happened to allow it.
 
@@ -292,7 +292,7 @@ $Paragraph(block: $Block) {
 
 | | written | what names it | what the writing wears |
 |---|---|---|---|
-| ***as a class*** | `class $TypeOfCode extends $TypeOfParagraph { name = 'Code' }`, concatenated in the kind's bond | **the `name` member** | `pd-paragraph pd-code` |
+| ***as a class*** | `class $TypeOfCode extends $TypeOfParagraph { name = 'Code' }`, concatenated in the class's bond | **the `name` member** | `pd-paragraph pd-code` |
 | ***as content*** | `<Paragraph><Type>Sidebar</Type>Just words.</Paragraph>` | **what the type SAYS** | `pd-sidebar pd-paragraph` |
 
 ***The second did not work until this was written.*** **`<Type>Sidebar</Type>` produced `pd-type`** — the base's own `name` — *so a type declared where it is used was invisible to every sheet, which is the whole reason a class list exists.* **`$Type`'s bond now reads its content and takes it as its name when it says anything**, and `reflection.classNames` kebabs it: `<Type>Pull Quote</Type>` wears `pd-pull-quote`.
@@ -301,6 +301,6 @@ $Paragraph(block: $Block) {
 
 ### <a id="why-the-class-is-the-point"></a>Why the class is the point and not a convenience
 
-***Doug, the same day, on selectors:*** **"The point of the format is to loosely couple the style… I was taught to almost always code CSS to classes."** *A rule that reaches for an element type is bound to what a kind DRAWS; a rule that reaches for a class is bound to what a kind IS.* **The type is what puts the name in the class list, so a type that cannot name itself is a kind a sheet cannot address** — which is what "we lost functionality" means, exactly.
+***Doug, the same day, on selectors:*** **"The point of the format is to loosely couple the style… I was taught to almost always code CSS to classes."** *A rule that reaches for an element type is bound to what a class DRAWS; a rule that reaches for a class is bound to what a class IS.* **The type is what puts the name in the class list, so a type that cannot name itself is a class a sheet cannot address** — which is what "we lost functionality" means, exactly.
 
 *Measured the day the rule was given: nine theme selectors were addressing tags, and two of them were doing semantic work in secret — `article.pd-document` was excluding the cover because a `$Cover` IS a `$Document`, and `p.pd-paragraph` was excluding headings because a `$Heading` IS a `$Paragraph`. Said as classes, both exclusions became written and rewritable.*

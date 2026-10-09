@@ -8,13 +8,13 @@
 
 ## The two groups, and the line between them
 
-**Every class in `src` marks what it is, and a library dresses marks.** A kind of writing marks itself — `pd-paragraph`, `pd-title` — and an annotation marks the writing it is said of — `pa-reference`, `pa-table`. The marks are the whole of what the base says about appearance; the base ships no style. A library's theme is one styled component written against the marks, and that component is *the base sheet of that library*: what a library's author implements in the subclass of Theme they create.
+**Every class in `src` marks what it is, and a library dresses marks.** A type of writing marks itself — `pd-paragraph`, `pd-title` — and an annotation marks the writing it is said of — `pa-reference`, `pa-table`. The marks are the whole of what the base says about appearance; the base ships no style. A library's theme is one styled component written against the marks, and that component is *the base sheet of that library*: what a library's author implements in the subclass of Theme they create.
 
 **The line between the two groups is whether the class is a box.** A *fundamental* annotation says what a writing is or means and carries a mechanism — a level, an anchor, an id, a hiding, a file — and no box of its own; its mark is dressed in the theme, and nothing is subclassed to change its look. A *replaceable* annotation is a box or a layout said of a writing — a grid, a list, a header, a navigation, a closed page — and carries its own styled component; a library that wants it to look otherwise subclasses it, writes its styled component, and uses its own in place of the framework's, by export or by registration. The policy is [P1 to P9](../projection/102-sprint-97--formats-are-the-unit-of-styled-components.md#the-policy); this chapter is the roster it governs.
 
-## The kinds — what a writing is, dressed by mark in the theme
+## The classes — what a writing is, dressed by mark in the theme
 
-*A kind is not an annotation; it is a composition that marks itself and stands its own annotations in `$Define`, behind whatever the author writes. These rows are what a library's theme has to dress for a bare book to read as that library's.*
+*A class is not an annotation; it is a composition that marks itself and stands its own annotations in `$Define`, behind whatever the author writes. These rows are what a library's theme has to dress for a bare book to read as that library's.*
 
 | class | marks | stands in `$Define` | its element | notes |
 |---|---|---|---|---|
@@ -40,7 +40,7 @@
 | `$Code` | `pd-code` | — | `pre`, its own element, replacing its span at the bond as a Date's `time` does, holding `code` | `numbered` wraps each line in `pd-code-line` carrying the number as `data-line`; a library's `::before { content: attr(data-line) }` shows it |
 | `$Image` · `$Svg` | `pd-image`, `pd-svg` | — | `span` holding `img` / inline `svg` | |
 
-*What a library writes for these:* rules by mark in its theme's component — `.pd-paragraph { margin-block: … }`, `.pd-title { font-size: … }`, `.pd-code { … }` — and nothing else. A kind is never subclassed for its look.
+*What a library writes for these:* rules by mark in its theme's component — `.pd-paragraph { margin-block: … }`, `.pd-title { font-size: … }`, `.pd-code { … }` — and nothing else. A class is never subclassed for its look.
 
 ## The fundamental annotations — what a writing is or means, dressed by mark in the theme
 
@@ -59,7 +59,7 @@
 | `$Narrative` | any writing | — | takes every Parenthetical behind it out of expression | nothing |
 | `$Blank` | a writing with no ink, Space and Break | `pa-blank` | a mark and nothing else, since what wears it has nothing to hide | by mark, if a library blanks something else |
 | `$Append` | a chapter | `pa-append` on its own element — moot once an annotation's writing is not drawn | holds a file's contents or a picture's address beside a chapter, read by a Figure by identifier and type | nothing |
-| `$Author` · `$Subject` · `$About` | a cover | — | each stands a Reference to what it names, from the written form; the book exposes them | the byline a library draws is the library's own kind, with its own mark |
+| `$Author` · `$Subject` · `$About` | a cover | — | each stands a Reference to what it names, from the written form; the book exposes them | the byline a library draws is the library's own class, with its own mark |
 | `$Content` | an entry of a table of contents | `pa-reference` and, on its note, `pa-content` through `attrs` | a Reference whose note draws the entry's name in its **span**, a styled field | `.pa-content` by mark; the span replaced only with the table of contents it belongs to |
 | `$Theme` | a book | — | a Format that provides: its layer answers chemistry's `theme` with it, and chemistry hands its fields live to every template beneath, drawing its `style` as the book's layer; singular, every theme behind it out of expression; no field and no style of its own | **it is the base sheet** — a library's theme is a subclass with fields and the one styled component that dresses every mark above, registered on the library's book class, `$(TheLibrary, Theme)(LibraryTheme)` |
 

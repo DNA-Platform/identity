@@ -37,7 +37,7 @@ export class $LibraryTheme extends $Theme {
 
 ## 2 · Your theme's component — one styled component, of parts
 
-The theme's `style` is the one styled component that dresses the kinds, `pd-`, and every mark whose Format you did not replace. Write it as **parts** — methods returning `css` fragments, composed once in the field — so that a subclass changes one part and keeps the rest:
+The theme's `style` is the one styled component that dresses the classes, `pd-`, and every mark whose Format you did not replace. Write it as **parts** — methods returning `css` fragments, composed once in the field — so that a subclass changes one part and keeps the rest:
 
 ```tsx
     style: ElementType = selection.div`${this.parts()}`;
@@ -65,10 +65,10 @@ A method stands on the prototype before any field runs, so `this.parts()` in the
 | part | dresses | by |
 |---|---|---|
 | `page` | the theme's own element — the page | the font, the ink, the paper, the measure, the margins |
-| `levels` | the seven levels and the kinds of sentence | `.pd-paragraph { margin-block }`, `.pd-title { font-size }`, `.pd-canonical.pd-chapter { counter-increment }` and the label it draws by `::before` |
+| `levels` | the seven levels and the types of sentence | `.pd-paragraph { margin-block }`, `.pd-title { font-size }`, `.pd-canonical.pd-chapter { counter-increment }` and the label it draws by `::before` |
 | `labels` | the one voice every label speaks in | `.pd-label, .pd-chapter .pd-title::before { small, uppercase, letter-spaced, faded }` |
 | `links` | the anchors the framework draws bare | `.pa-reference { color }`, `.pa-self-reference { color: inherit; text-decoration: none }`, `.pa-referent { scroll-margin }` |
-| `apparatus` | the library's own kinds | `.pd-running-head`, `.pd-byline`, `.pd-catchword`, the catchword's glyphs |
+| `apparatus` | the library's own classes | `.pd-running-head`, `.pd-byline`, `.pd-catchword`, the catchword's glyphs |
 | `figures` | the figures and the typeset | the code block and its line numbers from `data-line`, the highlighter's classes, the pictures, an equation's number |
 
 **Three rules for every line of it,** which [The Styling Surface](../the-styling-surface/01-the-base-themes-classes.md#writing-against-them--the-rules-of-the-surface) states whole: a rule names a *mark*, never an element type except the foreign elements the framework does not mark, `img`, `svg`, `pre`; it reaches by *descendant*, never by child or sibling, since a Format in front stands a layer between any two marks; and every quantity is a *value*, never a literal.
@@ -98,7 +98,7 @@ export const Table = $($LibraryTable);
 
 **Two ways to write the template.** `selection.header\`…\`` *rewrites* it — the element kept, the rules yours. `selection(this.style)\`…\`` *extends* it — the base's rules kept, yours after — which is right where the base's template is a mechanism you want, the Table's grid. A chapter then imports `Cover` and `Table` from the library's book file, on the line it imports `Catchword`, and writes the words it always wrote; the subclass is still a Cover to the specification and to every `is`.
 
-**A face in a Format's context may dress the kinds beneath it** — `.pa-cover .pd-title` — because the marks stay on every element for exactly that; it may not dress anything outside its own writing.
+**A face in a Format's context may dress the classes beneath it** — `.pa-cover .pd-title` — because the marks stay on every element for exactly that; it may not dress anything outside its own writing.
 
 ## 4 · A look of your own — a Format from scratch
 
@@ -133,15 +133,15 @@ The manual takes the whole page and shows its code in a tree, and its theme is t
 export class $ManualTheme extends $LibraryTheme {
     protected override parts(): RuleSet[] { return [...super.parts(), this.explorer()]; }
     protected override page(): RuleSet { return css`${super.page()} max-width: none; …`; }
-    protected explorer(): RuleSet { return css`.pd-tabs { … } .pd-leaf { … }`; }
+    protected explorer(): RuleSet { return css`.pd-tabs { … } .pd-page { … }`; }
 }
 ```
 
 Before the policy it rewrote fifteen of the library's rules inside a layer; now it says what differs.
 
-## 7 · A face names the kind with its mark — one author per property, in every order
+## 7 · A face names the class with its mark — one author per property, in every order
 
-A theme's rule for a kind and a face's rule for its own element can land on one element: the cover is a chapter, so `.pd-chapter { margin }` and `.pa-cover { margin: 0 }` both apply to it, at equal specificity, and the tie breaks by the order the components were created — which a theme subclass in another book's file changes, so a page may win where another loses. **So a face's rule for its own element names the kind and its mark together — `.pd-chapter.pa-cover { margin-block: 0 }`, *the chapter that is a cover* — and wins by specificity on every page, in every order;** the theme's rule names the kind alone, `.pd-chapter { margin-block }`, for every chapter; and a face dressing the kinds beneath it, `.pa-table .pd-paragraph`, already has two marks and wins the same way. The marks an annotation takes off or puts on — `pd-canonical`, which Cover, Synopsis and TableOfContents take off their chapter; `pa-framed`, which Framed puts on — are read for what they *mean*, the chapters that are counted and labelled, the chapters that stand down, and never taken off to win. Doug, 2026-10-02: *"Why can't the implementer accommodate this? Can one suppress the other? Annotations can control expression for this reason."* The test library met this twice on the night it was dressed; the policy, applied to every face, left seven pages at 0 pixels — [The Development Policies](07-the-development-policies.md#1--a-face-names-the-kind-with-its-mark-a-theme-names-the-kind-alone) is the rule with its check.
+A theme's rule for a class and a face's rule for its own element can land on one element: the cover is a chapter, so `.pd-chapter { margin }` and `.pa-cover { margin: 0 }` both apply to it, at equal specificity, and the tie breaks by the order the components were created — which a theme subclass in another book's file changes, so a page may win where another loses. **So a face's rule for its own element names the class and its mark together — `.pd-chapter.pa-cover { margin-block: 0 }`, *the chapter that is a cover* — and wins by specificity on every page, in every order;** the theme's rule names the class alone, `.pd-chapter { margin-block }`, for every chapter; and a face dressing the classes beneath it, `.pa-table .pd-paragraph`, already has two marks and wins the same way. The marks an annotation takes off or puts on — `pd-canonical`, which Cover, Synopsis and TableOfContents take off their chapter; `pa-framed`, which Framed puts on — are read for what they *mean*, the chapters that are counted and labelled, the chapters that stand down, and never taken off to win. Doug, 2026-10-02: *"Why can't the implementer accommodate this? Can one suppress the other? Annotations can control expression for this reason."* The test library met this twice on the night it was dressed; the policy, applied to every face, left seven pages at 0 pixels — [The Development Policies](07-the-development-policies.md#1--a-face-names-the-class-with-its-mark-a-theme-names-the-class-alone) is the rule with its check.
 
 ## What you rely on, and what to know before it bites
 

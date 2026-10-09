@@ -15,7 +15,7 @@
 |---|---|---|---|
 | **the library's sheet** — `.me/..reference/2-the-sheet.tsx.tsx` | the library's own code | **hot reload** on the dev server, or a bind | **1.4s** from edit to the computed style changing; a bind 13–27s |
 | **a theme in `src`** — `src/encyclopedia/Theme.tsx` | the language | **`npm run build:quick`, then** a bind or a dev-server reload | **4.4–5.0s** to `dist`, then the bind |
-| **a format in `src`** — `src/application/Toolbar.tsx`, a kind's `$Format` | the language | the same as a theme | the same |
+| **a format in `src`** — `src/application/Toolbar.tsx`, a class's `$Format` | the language | the same as a theme | the same |
 | **the markup itself** — which element wears which class | the framework's drawing (`Writing.view`, `Catalogue.print`, `Ref.view`) | a `src` change; and *seeing* it needs a probe, because the class is assembled at run time | a build and a bind, plus a probe (~10s) |
 
 **The dev server serves the sheet hot and the package from `dist`.** *`.me/..public/.binding/node_modules/@dna-platform/public` is a symlink to the package, but the package's `exports` point at `dist/lib.js`, so a `src` edit is invisible until rollup runs. [The trap this set](05-the-traps.md#stale-dist) is the first in that chapter.*

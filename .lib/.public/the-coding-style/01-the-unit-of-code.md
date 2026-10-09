@@ -76,4 +76,4 @@
 | ***Giving the compiler classes*** | **nothing in it has identity that outlives a stage** — *a `Library` is data, and a phase that held state would be a phase another phase could no longer be built without* |
 | ***A rule with two homes*** | *the recurring shape of every fault in [the compiler's reading](../the-condition-report/08-the-compiler.md)* — **one closed set stated three times, one function copied three times, six levels declared twice.** ***Say it where its invariant is stated, once*** |
 
-***The three programs disagree because they promise different kinds of thing.*** **That is now written down, which was the whole of what was owed.**
+***The three programs disagree because they promise different types of thing.*** **That is now written down, which was the whole of what was owed.**

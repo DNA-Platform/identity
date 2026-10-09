@@ -32,7 +32,7 @@ The discipline of Level Two is, as I read it, set theory's discipline. When the 
 
 > "you're failing to describe this as something that's closed under books! You're reaching for the semantics of authorship, but that's the thing we are defining. It is enough that there is a special type of biography that's called an autobiography… We don't talk about human beings, putting sets and other sets in set theory."
 
-So on this reading, authorship is something the structure produces, not something it reaches outside itself to assert. Everything is said in books: an autobiography is a special kind of biography; the library's canonical is an autobiography; authorship can be read off the catalogue rather than imported into it. That is worked out fully in [The Subjective Subject and the Library](07-the-subjective-subject-and-the-library.md).
+So on this reading, authorship is something the structure produces, not something it reaches outside itself to assert. Everything is said in books: an autobiography is a special type of biography; the library's canonical is an autobiography; authorship can be read off the catalogue rather than imported into it. That is worked out fully in [The Subjective Subject and the Library](07-the-subjective-subject-and-the-library.md).
 
 ## The classes at Level Two
 

@@ -24,7 +24,7 @@
 
 ## How it is extended
 
-- **What a library slugs, it slugs with this**, so a kind that makes an id for itself — a heading, a figure, a footnote — calls `identifier.slug` and agrees with every address the compiler writes.
+- **What a library slugs, it slugs with this**, so a class that makes an id for itself — a heading, a figure, a footnote — calls `identifier.slug` and agrees with every address the compiler writes.
 - **It holds one operation until a second is needed**: Doug named it a utility "to store those operations", and the next one lands here.
 
 ## Promises

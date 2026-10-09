@@ -23,7 +23,7 @@ I see. The error was not in the observation but in the word *cost* — a cost is
 
 Here is the argument in its short form. Calling internalization lossy requires setting the account beside the thing and finding the account wanting. But **you can only ever set one representation beside another.** The comparison the objection depends on cannot be performed — not because our instruments are poor, but because there is no second term.
 
-This is Kant's distinction doing its ordinary work: the noumenon is never given, and everything given is phenomenal. The library does not lose access that other relationships enjoy. It has the only kind of access there is, and its distinction is that it **admits so and organizes accordingly.**
+This is Kant's distinction doing its ordinary work: the noumenon is never given, and everything given is phenomenal. The library does not lose access that other relationships enjoy. It has the only type of access there is, and its distinction is that it **admits so and organizes accordingly.**
 
 ## The inversion
 

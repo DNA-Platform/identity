@@ -8,7 +8,7 @@
 
 ## What they are
 
-**A Biography marks its cover `pa-biography`; an Autobiography is a kind of Biography that marks it `pa-autobiography` too, and specifies that its book is by what it is about.** Doug, 2026-09-25: *"It might help if you made a Biography annotation that just adds pa-biography as an attribute, and then Autobiography as a type of biography that also adds pa-autobiography - for now as placeholders, and Autobiograhy can enforce the author rule in its specification. That will help you see that it needs no name. Title and About cover it."*
+**A Biography marks its cover `pa-biography`; an Autobiography is a type of Biography that marks it `pa-autobiography` too, and specifies that its book is by what it is about.** Doug, 2026-09-25: *"It might help if you made a Biography annotation that just adds pa-biography as an attribute, and then Autobiography as a type of biography that also adds pa-autobiography - for now as placeholders, and Autobiograhy can enforce the author rule in its specification. That will help you see that it needs no name. Title and About cover it."*
 
 | member | what it is | cited |
 |---|---|---|
@@ -41,7 +41,7 @@ export default () => (
 
 - **They are placeholders.** The marks are classes a sheet may style; nothing reads them, and what a biography should do is Doug's to say.
 - **The author rule itself is the compiler's**, in the whole library at once — the one book by its own subject, and the books it catalogues — and Autobiography's specification says the same of one cover, from what the cover holds. *The two agree by construction, since the compiler gave the urls the specification compares.*
-- **A kind of biography** is a class under Biography, calling `super.defines` and adding its own mark, as Autobiography does.
+- **A type of biography** is a class under Biography, calling `super.defines` and adding its own mark, as Autobiography does.
 
 ## Promises
 

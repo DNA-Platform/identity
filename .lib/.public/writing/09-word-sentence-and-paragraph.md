@@ -22,7 +22,7 @@
 
 **The Genesis says it four ways, and none of them measures text.** *E12: "a Letter containing a whole book as a string is one letter."* · *E14: "a whole book of html/react in one letter is calligraphy."* · *E13: Paragraph, relative to a closed Section, is "an emergent sort of letter of its own kind."* · *E15: "like a Letter is the canonical level 1"* — **canonical**, which is to say the exemplar of its level and never a glyph.
 
-***So a level is a position in a nesting order, and its name is the metaphor for the KIND of unit that sits there.*** **A Letter is not one character; it is the thing that may hold anything and answers to nothing beneath it. A Word is not one word; it is a UNITARY composition** — *one thing, atomic in a connected sense, however much prose it carries.*
+***So a level is a position in a nesting order, and its name is the metaphor for the SORT of unit that sits there.*** **A Letter is not one character; it is the thing that may hold anything and answers to nothing beneath it. A Word is not one word; it is a UNITARY composition** — *one thing, atomic in a connected sense, however much prose it carries.*
 
 | what you are making | the level | why |
 |---|---|---|

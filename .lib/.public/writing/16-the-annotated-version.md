@@ -35,12 +35,12 @@ Doug modelled it on genetics, and [the mechanism chapter](07-the-annotation-syst
 
 ## What it built in one sprint, as evidence
 
-Sprint 88 is the measure. Eleven classes in `.public` — a third pair, a theme with eight live values and a provider, four whitespace kinds, three basics — and a test library dressed with them: a card, a byline, a masthead, a catchword, kind labels, a boxed catalogue, a paginated book, a literary book, a typewritten one and a dark one, the whole library's own code under five hundred lines and half of it CSS. Every one of the library's kinds was a class with a mark, and every one of its looks was an annotation in front. Three defects found by driving every link were each fixed in a line or two, because each was at a seam the model already named: a turn, a bond, a title's reference. And a librarian's autobiography grounded the whole, the one book by its own subject, telling its story through hops that the compiler resolved from names alone — [The Object Graph](../writing-a-book/03-the-object-graph.md).
+Sprint 88 is the measure. Eleven classes in `.public` — a third pair, a theme with eight live values and a provider, four whitespace classes, three basics — and a test library dressed with them: a card, a byline, a masthead, a catchword, type labels, a boxed catalogue, a paginated book, a literary book, a typewritten one and a dark one, the whole library's own code under five hundred lines and half of it CSS. Every one of the library's types was a class with a mark, and every one of its looks was an annotation in front. Three defects found by driving every link were each fixed in a line or two, because each was at a seam the model already named: a turn, a bond, a title's reference. And a librarian's autobiography grounded the whole, the one book by its own subject, telling its story through hops that the compiler resolved from names alone — [The Object Graph](../writing-a-book/03-the-object-graph.md).
 
 ## What we got wrong, so it is not got wrong again
 
 - **"Bounded."** The power is not bounded; the ledger is complete. Say *authored*, *reverted*, *computed*, never *sandboxed*.
-- **"Plugins."** An annotation is a writing that expresses a meaning, a gene that confers a phenotype. A plugin is bolted on; an annotation is of the same kind as its host, and its host may be an annotation.
+- **"Plugins."** An annotation is a writing that expresses a meaning, a gene that confers a phenotype. A plugin is bolted on; an annotation is writing, as its host is, and its host may be an annotation.
 - **"A language rather than a framework."** It is React. `$Chemistry` is a mirror between objects and their components, `.public` is one component library on it, the one we built, and Writing is its skeleton. What is new is the form of app design: the object graph first, meaning expressed on it, and the page drawn from the meaning.
 
 ## Where the cost is, honestly

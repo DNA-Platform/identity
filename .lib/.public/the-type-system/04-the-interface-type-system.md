@@ -34,7 +34,7 @@
 | **the type** | which of the seven this writing is | **CLOSED** — a consumer never adds one |
 | **the annotation** | everything else said about this writing | **OPEN** — the entire extension surface |
 
-***A piece of writing carries exactly one of the seven and as many other kinds as it likes.*** **That is multiple inheritance, of the only thing that matters — the rules** — and it happens by CARRYING, never by `extends`. *Measured: a paragraph that is also a list stands at the paragraph level, is found as a list, and both specifications run.*
+***A piece of writing carries exactly one of the seven and as many other types as it likes.*** **That is multiple inheritance, of the only thing that matters — the rules** — and it happens by CARRYING, never by `extends`. *Measured: a paragraph that is also a list stands at the paragraph level, is found as a list, and both specifications run.*
 
 ## <a id="composed-of"></a>What a piece of writing is composed of — HIS, verbatim
 
@@ -66,11 +66,11 @@
 
 ***T0 — THE DEFINITION OUTRANKS THE MEASUREMENT.*** A paragraph is composed of sentences whether or not any reading answers them. **A measurement that contradicts the definition has found a defect in the code, never in the domain.**
 
-***T1 — A KIND IS WHAT YOU CARRY, NOT WHAT YOU INHERIT.*** Writing is a Section because a `$TypeOfSection` is in its block. A class is a convenience for putting it there; it is never itself the evidence. **Falsified if any ask reads a class where it should read the block.**
+***T1 — A TYPE IS WHAT YOU CARRY, NOT WHAT YOU INHERIT.*** Writing is a Section because a `$TypeOfSection` is in its block. A class is a convenience for putting it there; it is never itself the evidence. **Falsified if any ask reads a class where it should read the block.**
 
-***T2 — A CLASS FOLDS ITS TYPE IN; IT NEVER OVERRIDES THE READING.*** The bond writes the type into the block, so a carried type and a folded one are indistinguishable afterwards. **This is what makes the two routes interchangeable, and overriding `type()` is what breaks it.** *Three separate attempts to declare a kind by overriding were tried and each one broke the other route.*
+***T2 — A CLASS FOLDS ITS TYPE IN; IT NEVER OVERRIDES THE READING.*** The bond writes the type into the block, so a carried type and a folded one are indistinguishable afterwards. **This is what makes the two routes interchangeable, and overriding `type()` is what breaks it.** *Three separate attempts to declare a type by overriding were tried and each one broke the other route.*
 
-***T3 — INHERITANCE IS SHALLOW AND CLOSED; COMPOSITION OF KINDS IS OPEN.*** Deepening the type tree is how the framework becomes hard to extend, which is [P2](#the-four-purposes) exactly. **A new kind is a new annotation, never a new level.**
+***T3 — INHERITANCE IS SHALLOW AND CLOSED; COMPOSITION OF TYPES IS OPEN.*** Deepening the type tree is how the framework becomes hard to extend, which is [P2](#the-four-purposes) exactly. **A new type is a new annotation, never a new level.**
 
 ***T4 — EVERY ASK GOES THROUGH THE INTERFACE.*** An implementation that satisfies `$Writing$` honestly must be answerable by every framework member. **Currently FALSE and known:** `searchFor` filters on `instanceof $Writing`, so a foreign implementation is invisible to every search. *This is [P1](#the-four-purposes) unmet.*
 
@@ -85,7 +85,7 @@
 *Audited 2026-09-05, file by file across the six `2` folders. Each line is a measurement, not a reading.*
 
 - ***FIXED 2026-09-05 — the specifications were dead.*** `LetterSpecification` through `PathSpecification` were declared with **zero uses**; every type inherited `WritingSpecification` from `$Annotation`. Each type now carries its own.
-- ***FIXED 2026-09-05 — nothing folded a type in.*** A `$Section` built from its own class answered **`null`** for its kind. Each kind's bond now folds its type into its own block, so **both routes agree**: built from the class or carrying `<TypeOfSection/>`, the answer is Section. *[T2](#theorems) built; it cost the one member below.*
+- ***FIXED 2026-09-05 — nothing folded a type in.*** A `$Section` built from its own class answered **`null`** for its type. Each class's bond now folds its type into its own block, so **both routes agree**: built from the class or carrying `<TypeOfSection/>`, the answer is Section. *[T2](#theorems) built; it cost the one member below.*
 - ***FIXED 2026-09-05 — `specify()` never descended.*** A chapter wrongly inside a paragraph failed at the top and **accepted one level down**; measured again after, it fails. *[T6](#theorems) met.*
 - ***`type()`'s signature lies*** — declared `$Type`, answers `undefined` whenever nothing is written in, which is exactly what `$saysItsKind` exists to catch.
 - ***`specify()` does not dedupe*** — two types on one writing run the base rules twice; v1 skips a repeated constructor.
@@ -95,6 +95,6 @@
 
 ## <a id="the-mistake"></a>The mistake this chapter exists to stop
 
-***Three times in one session the same error was made, and it is worth naming because it is the natural one.*** **A kind was declared by OVERRIDING `type()`** — first as an identity test, then as an invented `declared()` member, then as three plain overrides. *Each attempt worked for the framework's own classes and broke the other route: either a consumer's kind became invisible, or a carried type could no longer win.*
+***Three times in one session the same error was made, and it is worth naming because it is the natural one.*** **A type was declared by OVERRIDING `type()`** — first as an identity test, then as an invented `declared()` member, then as three plain overrides. *Each attempt worked for the framework's own classes and broke the other route: either a consumer's type became invisible, or a carried type could no longer win.*
 
 ***The tell is general:*** **reaching for inheritance to express something the design expresses by carrying.** *Doug named it in one line — "Are you calling loose coupling a wart?" — and the answer was yes, and that was the error.*

@@ -18,15 +18,15 @@
 |---|---|---|
 | **show a property** | a component in front of the writing that holds it, reading it in `write()` | `PreviousTitle`: `this.chapter?.previous.title?.name` — [Next and Previous](../library/07-next-and-previous.md) |
 | **draw a book's layout** | the book class's `write()`, from what the book exposes | the masthead and byline — [Book](../library/05-book.md#how-it-is-extended) |
-| **give a kind a default** | `$Define` adding annotations; `$Bound` adding them to every chapter once the book is whole | `<Paginated />`; `<Framed />` on each chapter — [Dressing a Library](02-dressing-a-library.md) |
-| **insert something** | an annotation: a Format whose layer draws content, or one that appends text | the kind label, designed — [Developing an Annotation](../writing/10-developing-an-annotation.md#if-you-must-insert-something-you-are-still-an-annotation--a-layer-with-content-or-text) |
+| **give a type a default** | `$Define` adding annotations; `$Bound` adding them to every chapter once the book is whole | `<Paginated />`; `<Framed />` on each chapter — [Dressing a Library](02-dressing-a-library.md) |
+| **insert something** | an annotation: a Format whose layer draws content, or one that appends text | the type label, designed — [Developing an Annotation](../writing/10-developing-an-annotation.md#if-you-must-insert-something-you-are-still-an-annotation--a-layer-with-content-or-text) |
 | **dress it** | a theme of your own values and one component of parts, registered on your book class; a face per Format, subclassed and exported under its name; a Format of your own for a look the framework has no word for | [Dressing a Library](02-dressing-a-library.md); [The Styling Surface](../the-styling-surface/.cover.md) |
 
 ## What you rely on
 
-- **The type hierarchy.** A cover is a chapter carrying Cover; a kind of chapter is a class under Chapter; a library's own title is a class under Title, found by class. You never test a name.
+- **The type hierarchy.** A cover is a chapter carrying Cover; a type of chapter is a class under Chapter; a library's own title is a class under Title, found by class. You never test a name.
 - **The annotations, dynamic.** What a writing carries decides what it is and how it draws; a book adds annotations at its bind, a reader's move switches a theme with `$is`, and every annotation's mark is a hook for a rule.
-- **The marks.** Every kind and every annotation marks its element, and the base dresses none of them, so a look is written against marks that are already there — [The Styling Surface](../the-styling-surface/.cover.md) is the roster.
+- **The marks.** Every class and every annotation marks its element, and the base dresses none of them, so a look is written against marks that are already there — [The Styling Surface](../the-styling-surface/.cover.md) is the roster.
 - **The id from the name.** A reference lands on an id the compiler wrote from a name; the title is the location, and a book turns to a chapter by that id. No handle to an element exists, and none is needed — [Chapter and Title](../library/02-chapter-and-title.md#how-they-are-extended).
 - **The compiler's refusals.** A mention nobody spends, a book filed under nothing, a title said twice: the bind refuses them, and the library stays compact and whole.
 

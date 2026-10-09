@@ -30,7 +30,7 @@ I began it on <Date>[the last day of September](2026-09-30)</Date> with one shel
 
 ## How it is extended
 
-- **A kind of date** is a class under Date saying more in its own specification, a date within a range, a date with a time of day, and adding its mark beside `pd-date`.
+- **A type of date** is a class under Date saying more in its own specification, a date within a range, a date with a time of day, and adding its mark beside `pd-date`.
 - **A look of your own** is a library's theme's rule for `pd-date`; the default keeps a date on one line.
 
 ## Promises

@@ -53,4 +53,4 @@ Three consequences, and each is a claim the framework can be held to:
 2. **Authorship requires subjectivity** becomes readable off structure: only a subject whose canonical is a biography can stand at the end of an author arrow.
 3. **The first-person / third-person asymmetry** gets a formal analogue — the loop is vertiginous described from outside and unremarkable inhabited from within. A formalism that *predicts* that asymmetry is doing something no other formalism attempts.
 
-The first two are buildable. The third is the one I would most like to see survive contact, and [the next chapter](14-the-first-person-and-the-third.md) is where it starts to bite, because this library is not the kind whose author arrows come home.
+The first two are buildable. The third is the one I would most like to see survive contact, and [the next chapter](14-the-first-person-and-the-third.md) is where it starts to bite, because this library is not one whose author arrows come home.

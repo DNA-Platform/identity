@@ -19,7 +19,7 @@
 | | the purpose | what it demands |
 |---|---|---|
 | **P1** | ***any part can be replaced*** | every ask goes through an interface |
-| **P2** | ***`$Writing` is easy to subclass*** | inheritance stays shallow; a kind FOLDS a type in |
+| **P2** | ***`$Writing` is easy to subclass*** | inheritance stays shallow; a class FOLDS a type in |
 | **P3** | ***types are causal*** | `specifically` may act, not only judge |
 | **P4** | ***checked at build*** | the check is a build cost and may be paid |
 
@@ -35,13 +35,13 @@
 
 **P7 · THE COMPONENT EXPORTS ARE THREE LINES AND ALWAYS THE SAME.** `export const X = $($X)` · `export const TypeOfX = $($TypeOfX)` · `const typeOfX = TypeOfX`.
 
-**P8 · A REFERENCE KIND GETS NO COMPONENT EXPORT.** *Its name would be `$Letter`, which is the class beside it.* **Doug:** *"we don't export. They aren't unreachable. Just assign that as needed… you can call it `$Letter` in a file that doesn't need `$Letter` as a class."* ***And `$($X)` always answers the same component*** — one static template per class, the lifted component cached on it — **so a local like that is stable and the DI registry, which keys on the component object, stays sound.**
+**P8 · A REFERENCE CLASS GETS NO COMPONENT EXPORT.** *Its name would be `$Letter`, which is the class beside it.* **Doug:** *"we don't export. They aren't unreachable. Just assign that as needed… you can call it `$Letter` in a file that doesn't need `$Letter` as a class."* ***And `$($X)` always answers the same component*** — one static template per class, the lifted component cached on it — **so a local like that is stable and the DI registry, which keys on the component object, stays sound.**
 
 **P9 · A FILE THAT BREAKS THE FOUR OWES A SENTENCE.** *Four do, and each has one:*
 
 | | | |
 |---|---|---|
-| `Writing.tsx` | *3 interfaces, 3 classes, 1 specification, **no type*** | **the base vocabulary.** A base carries no type; a type is what a KIND carries |
+| `Writing.tsx` | *3 interfaces, 3 classes, 1 specification, **no type*** | **the base vocabulary.** A base carries no type; a type is what a CLASS carries |
 | `Composition.tsx` | *interface + class* | ***Doug:*** *"composition can be different. It is a semantic structure to help implement the seven and it's there if something needs to be composition too, but I think it does need an interface"* |
 | `Format.tsx` · `Theme.tsx` | *interface + class* | ***a format is not writing***, and a specification is a specification of writing |
 | the ten dresses | *class, and `AnchorFormat` an interface* | *same* |
@@ -52,7 +52,7 @@
 
 **P10 · THE TYPE CARRIES THE COMPLEXITY; THE CLASS IS A SHELL.** ***Doug:*** *"the type should carry most of the complexity and the classes are shells for another user to subclass because they will feel more normal."*
 
-**P11 · A CLASS NEVER EXTENDS THE KIND ABOVE IT.** ***Doug:*** *"You are supposed to work on the basic types. They should extend composition"* **and, earlier,** *"`$Cover` extends `$Writing`"* **and** *"assume regular `$` class extends writing, and carry the hierarchy in the others."* ***Together: the chain is `$Chemical → $Writing → $Composition → everything`, and `$TypeOfCover extends $TypeOfChapter` carries what `$Cover extends $Chapter` would have said.***
+**P11 · A CLASS NEVER EXTENDS THE TYPE ABOVE IT.** ***Doug:*** *"You are supposed to work on the basic types. They should extend composition"* **and, earlier,** *"`$Cover` extends `$Writing`"* **and** *"assume regular `$` class extends writing, and carry the hierarchy in the others."* ***Together: the chain is `$Chemical → $Writing → $Composition → everything`, and `$TypeOfCover extends $TypeOfChapter` carries what `$Cover extends $Chapter` would have said.***
 
 **P12 · THE BOND CREATES AND ASSIGNS.** ***Doug:*** *"I would move the creation to the bond constructor and leave validation to specifically… otherwise you lock in specific types and that is bad."* **So `$Book` makes its own index and `$Reference` makes its own path, in their bonds** — *and a consumer's own book class makes its own.*
 
@@ -68,7 +68,7 @@ $Section(block: $Block) {
 }
 ```
 
-***A canonical reference folds through the block it was handed, BEFORE `super`***, so the specific kind wins and `$Reference` does not also fold a plain one.
+***A canonical reference folds through the block it was handed, BEFORE `super`***, so the specific type wins and `$Reference` does not also fold a plain one.
 
 **P15 · MEMBER ORDER IS THE SCALE BAR.** *Fields (private · public · protected) · properties · bond · constructor · methods · protected · private.* **A property is argumentless AND returns data.**
 
@@ -80,7 +80,7 @@ $Section(block: $Block) {
 
 **P17 · A TYPE SAYS WHAT IS BENEATH IT AND MAKES WHAT IS BENEATH IT.** ***Doug on the registry that used to:*** *"Why does it need maker registrations? Sounds like a wart."* **`below()` names the type beneath; that type's `makes(tokens)` builds them.** *No string keys, no module-bottom registrations.*
 
-**P18 · A PIECE OF WRITING COMPOSES THE KIND BENEATH IT, OR ITS OWN.** ***Doug, verbatim:*** *"A paragraph is composed of sentences. It can have recursive paragraphs that contribute THEIR parts. That's it. There is no other option."*
+**P18 · A PIECE OF WRITING COMPOSES THE LEVEL BENEATH IT, OR ITS OWN.** ***Doug, verbatim:*** *"A paragraph is composed of sentences. It can have recursive paragraphs that contribute THEIR parts. That's it. There is no other option."*
 
 **P19 · `specify()` CHECKS ONE PIECE OF WRITING AND NEVER DESCENDS.** ***Doug:*** *"we don't want to recursively specify (we will check parts in the compiler)."* ***SUPERSEDED 2026-09-15, in [Sprint 71](../projection/77-sprint-71--compilation.md#r-reversal):*** *"We are setting up a system that runs in compile but not prod so we can. Please understand that that is what you are doing here."* **`specify()` now descends — a rule on the base specifies what was written into a writing, never what the parser makes, whose own promises answer for it — and the specification runs no rule in production, so the descent is a compile cost and never a reader's.** *The compiler confirms each book with one call; the framework walks.*
 
@@ -94,13 +94,13 @@ $Section(block: $Block) {
 
 ## <a id="the-drawing"></a>V · THE DRAWING
 
-**P23 · A KIND WRITES ITS OWN ELEMENT, AND `print(content)` IS WHERE.** ***Superseded 2026-09-08*** — *this said the frame was a span and a kind overrode `frame()`; every `frame()` override is now gone from `src`.* **`view()` builds the content and hands it to `print(content)`, the ONE method a kind overrides, in one line, writing its element with its classes** — `$Paragraph` a `<p>`, `$Section` a `<section>`, `$Quote` a `<blockquote>`. *`frame()` belongs to chemistry.* **The span survives only as the base's answer for a sentence, a word and a letter, and that is honest: HTML has no element for those.**
+**P23 · A CLASS WRITES ITS OWN ELEMENT, AND `print(content)` IS WHERE.** ***Superseded 2026-09-08*** — *this said the frame was a span and a subclass overrode `frame()`; every `frame()` override is now gone from `src`.* **`view()` builds the content and hands it to `print(content)`, the ONE method a subclass overrides, in one line, writing its element with its classes** — `$Paragraph` a `<p>`, `$Section` a `<section>`, `$Quote` a `<blockquote>`. *`frame()` belongs to chemistry.* **The span survives only as the base's answer for a sentence, a word and a letter, and that is honest: HTML has no element for those.**
 
-**P24 · A TEMPLATE METHOD ADDED TO A BASE IS A CLAIM ABOUT EVERY KIND, AND LEAVING ONE UNSWEPT IS A BUG.** ***Doug, on `print`:*** *"If you invent something like print on writing, all things implementing writing might need to change. So go to all of them and ask if that is the way to do it... It is at the level of bug to add print and not have it used uniformly."*
+**P24 · A TEMPLATE METHOD ADDED TO A BASE IS A CLAIM ABOUT EVERY CLASS, AND LEAVING ONE UNSWEPT IS A BUG.** ***Doug, on `print`:*** *"If you invent something like print on writing, all things implementing writing might need to change. So go to all of them and ask if that is the way to do it... It is at the level of bug to add print and not have it used uniformly."*
 
-***The audit that proved him right:*** **fourteen kinds overrode `print`, eleven overrode `view`, and twenty-nine overrode neither — so twenty-nine drew a bare `<span>`.** *Nine of those said by TYPE what they were and drew nothing like it: `$Synopsis`, `$Part`, `$Appendix` and `$References` carry `$TypeOfChapter`; `$Author`, `$Subject`, `$Theorem` and `$Quote` carry `$TypeOfSection`; `$Note` carries `$TypeOfParagraph`.*
+***The audit that proved him right:*** **fourteen classes overrode `print`, eleven overrode `view`, and twenty-nine overrode neither — so twenty-nine drew a bare `<span>`.** *Nine of those said by TYPE what they were and drew nothing like it: `$Synopsis`, `$Part`, `$Appendix` and `$References` carry `$TypeOfChapter`; `$Author`, `$Subject`, `$Theorem` and `$Quote` carry `$TypeOfSection`; `$Note` carries `$TypeOfParagraph`.*
 
-> ***THE MECHANISM, and it is [P11](#the-class)'s shadow: `print` is inherited by CLASS while the hierarchy rides the TYPE.*** **So a kind can say it is a chapter and draw like nothing**, and no compiler, promise or rule will mention it.
+> ***THE MECHANISM, and it is [P11](#the-class)'s shadow: `print` is inherited by CLASS while the hierarchy rides the TYPE.*** **So a class can say it is a chapter and draw like nothing**, and no compiler, promise or rule will mention it.
 
 ***The repair needed no machinery, which is how you know it was the right one:*** **each extends the class its type already extends** — the `$ReferenceCard extends $Reference` precedent. *P11 is untouched: it forbids a class extending the level ABOVE it, and a synopsis is not above a chapter, it IS one.* **Measured after: `<span>` fell to ONE per page, against 11 `<article>`, 36 `<section>`, 138 `<p>` and one `<aside>` on `/turing`.**
 
@@ -132,11 +132,11 @@ $Section(block: $Block) {
 
 ## <a id="the-machinery"></a>VII · THE MACHINERY
 
-**P34 · `instanceof` LIVES IN REFLECTION.** ***Doug:*** *"instanceof should only appear checking a type as a type of type. That is the floor."* **One site now serves the library: `reflection.is`, which `instanceOf` calls.** *The one exception is narrowing to a kind's own fields inside its own specification or type — Doug's own idiom, used four times in v2.1.*
+**P34 · `instanceof` LIVES IN REFLECTION.** ***Doug:*** *"instanceof should only appear checking a type as a type of type. That is the floor."* **One site now serves the library: `reflection.is`, which `instanceOf` calls.** *The one exception is narrowing to a class's own fields inside its own specification or type — Doug's own idiom, used four times in v2.1.*
 
 **P35 · NOTHING IS STORED THAT CAN BE ASKED.** ***Doug:*** *"There should not be a level. Use reflection. Nothing should be stored if it doesn't have to."*
 
-**P36 · A UTILITY HOLDS NO KIND.** *Reflection, the parser, the specification and the html reader know `$Writing`, `$Annotation` and `$Type`, and nothing about covers or cards.* ***Doug:*** *"Why does reflection know anything about covers?"*
+**P36 · A UTILITY HOLDS NO CLASS.** *Reflection, the parser, the specification and the html reader know `$Writing`, `$Annotation` and `$Type`, and nothing about covers or cards.* ***Doug:*** *"Why does reflection know anything about covers?"*
 
 **P37 · A SPECIFICATION IS A PLAIN CLASS AND JUDGES ONLY.** *Never a chemical, built with `new`.* **A procedure the type needs belongs on the type** — *`LetterSpecification` was holding statics that `$TypeOfLetter` reached into, and that was mine and is fixed.*
 

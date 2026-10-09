@@ -26,7 +26,7 @@
 
 ***A unit is `settled` only when no premise is `assumed` or `unknown`.*** **The sprint finishes when every unit is settled, or names honestly why one cannot be** — *a premise needing code that does not exist yet is a real answer and is written as such rather than argued into looking finished.*
 
-### <a id="three-premises"></a>Three kinds of premise, three resolvers
+### <a id="three-premises"></a>Three types of premise, three resolvers
 
 ***This is the load-bearing part, and it is what makes the outward thinking a step of the work rather than an activity beside it.***
 
@@ -148,7 +148,7 @@
 **RESTS ON**
 - `verified` — **annotations are already first-class and the seam already exists.** *`$Annotation` is a `$Writing` with `parenthetical = true`, carrying a specification, able to `supplies(writing, parts)`. `$Type` IS an `$Annotation`.*
 - `verified` — a writing already answers `annotations: $Annotation[]` through reflection.
-- `verified` — that a mention is a sibling of `$Type` rather than a new kind of thing. *Both are annotations; `$Type` is the one that already exists.*
+- `verified` — that a mention is a sibling of `$Type` rather than a new type of thing. *Both are annotations; `$Type` is the one that already exists.*
 - `verified` — ***THE PARSER TAKES IT OUT OF THE PROSE.*** **Doug, 2026-09-17:** *"We have a parser that reads it, saves the key and the quote (possibly same) and then removes itself. The key and start and end indexes in the text, and the quote, and then removes itself from the string."*
 
 ***So the annotation carries FOUR things — key, quote, start, end — and the prose is left clean.*** **The reader never meets `[[great]]`; they meet "great", and where it stood is recorded beside the writing rather than inside it.**
@@ -398,7 +398,7 @@ $[ X ]*       no allocation, just stand in         → an address
 
 | tried | refused because |
 |---|---|
-| `$[…]` for a mention | ***`$` was already taken*** — it means *about the representation of*, and reusing it makes one mark mean two things, which is the `$Catalogue`-names-two-kinds fault one level down in the punctuation |
+| `$[…]` for a mention | ***`$` was already taken*** — it means *about the representation of*, and reusing it makes one mark mean two things, which is the `$Catalogue`-names-two-types fault one level down in the punctuation |
 | `[[…]]` for either side | **MediaWiki's meaning is *link*** — the use side — so declaring with it fights its host, and referring with it leaves two marks doing one job from opposite ends with no principle between them |
 | `&` to declare | ***close to fatal.*** **JSX has an active claim on `&` inside the exact node type we scan** — the host parser sees the text before we do |
 | a pure dot ladder | *the grid came out with **two empty cells** and no account of what they would mean* |
