@@ -1,9 +1,8 @@
-import { Chapter, Heading, Image, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
+import { Chapter, Heading, Image, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Pain, Solution } from './.book';
 
 export default () => (
     <Chapter>
-        <Part>The design</Part>
         <Title>[[ Driving the Build ]]</Title>
         <Section>
             <Heading>How I look at it</Heading>

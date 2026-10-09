@@ -75,8 +75,8 @@ export default () => (
                 wrong turn this class ended. A thing said of a book of this library takes the one rule in the
                 second file below, so it is said of a book of this library and of nothing else. And the class
                 imports the library's subjects from the catalogue through a file beside that book's chapter which
-                imports only the framework, because the catalogue's table imports this manual's door, and a cycle
-                through the door loads half a module.
+                imports only the framework, because the catalogue's table imports this manual's book file, and a cycle
+                through that file loads half a module.
             </Paragraph>
         </Section>
         <Append

@@ -1,8 +1,7 @@
-import { Append, Chapter, Heading, Image, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
+import { Append, Chapter, Heading, Image, Means, Paragraph, Section, Title } from '@dna-platform/public';
 
 export default () => (
     <Chapter>
-        <Part>The design</Part>
         <Title>[[ The Bookshelf ]]</Title>
         <Section>
             <Heading>The design phase begins here</Heading>

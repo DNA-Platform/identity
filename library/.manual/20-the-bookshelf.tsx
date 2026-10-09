@@ -26,7 +26,7 @@ export default () => (
                 after the leaves. Three things are said in it: a caption, of the one line an entry says; an
                 arrow, of the word in a row that leads to the book; and unfolded, of the book, by the switch
                 that reads on. A title in a catalogue's entry refers to the book it stands for, by a reference
-                registered on the class. A library makes its catalogue by saying so in its door, in one line,
+                registered on the class. A library makes its catalogue by saying so in its book file, in one line,
                 and writing its entries.
             </Paragraph>
         </Section>

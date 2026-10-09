@@ -9,7 +9,7 @@ export default () => (
         </Title>
         <Paragraph>
             The parts this library is built with, one chapter to a part, its code beside the chapter that says
-            what it is and how it is used; every other book imports its tools from this manual's door. Start
+            what it is and how it is used; every other book imports its tools from this manual's book file. Start
             with <Means>$[[ ./The Book ]]</Means>, which every book here extends,
             and <Means>$[[ ./The Theme ]]</Means>, which every book dresses itself
             from. <Means>$[[ ./The Cover ]]</Means> is a book's data model, what a cover says and how another

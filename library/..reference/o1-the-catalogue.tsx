@@ -12,7 +12,7 @@ export default () => (
                 This book is the way into every other, so it is laid out as a place to choose from: the
                 bookshelf, designed as one page in <Means>$[[ the design book ]]( Dougs Design / The Bookshelf )</Means> and
                 carried into the library as <Means>$[[ the Bookshelf ]]( Dougs Reference Manual / The Bookshelf )</Means> —
-                a catalogue, a type of book, with its theme. This book's own door says one thing, that the
+                a catalogue, a type of book, with its theme. This book's own book file says one thing, that the
                 library is a catalogue; beside this chapter stands the one file it writes for itself, its
                 subjects, which the other books' bars draw until their own designs come.
             </Paragraph>

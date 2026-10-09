@@ -20,7 +20,9 @@ export default () => (
                 objects: the parts of the book, the part a chapter is in, and a part its chapters. That is all a part
                 confers. It
                 requires no place, no anchor and no form in the table, and the table is written however I write it.
-                A chapter need not be in a part; a book in which one chapter is has every chapter in one.
+                A chapter need not be in a part: it answers its part or none, and the framework assumes nothing
+                about which chapters are in one, so whatever reads parts filters by checking, as this library's
+                book does.
             </Paragraph>
         </Section>
         <Section>

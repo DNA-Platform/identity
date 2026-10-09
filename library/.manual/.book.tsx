@@ -11,6 +11,7 @@ export * from './8-the-author-and-the-subject~code.tsx';
 export * from './9-the-switch~code.tsx';
 export * from './10-the-manual~code.tsx';
 export * from './10-the-manual~entry.tsx';
+export * from './10-the-manual~faces.tsx';
 export * from './10-the-manual~theme.tsx';
 export * from './12-the-layout~code.tsx';
 export * from './13-the-turn~code.tsx';

@@ -27,8 +27,8 @@ export default () => (
             <Paragraph>
                 Nothing else is in the chapter. Its words stay its words, and what the kind adds, the mark,
                 is drawn by the kind itself: a kind is a format whose layer stands the icon before the
-                chapter, which is the door the framework's own chapter on annotations designed for a label
-                of this sort and left unbuilt. In the table of contents the entry notes the icon beside the
+                chapter, which is what the framework's own chapter on annotations designed for a label of
+                this sort and left unbuilt. In the table of contents the entry notes the icon beside the
                 number, and the manual's theme stands it first. The design the key answers
                 is <Means>$[[ the manual's page ]]( Dougs Design / The Manual's Page )</Means>.
             </Paragraph>

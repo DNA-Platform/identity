@@ -1,8 +1,7 @@
-import { Append, Chapter, Heading, Image, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
+import { Append, Chapter, Heading, Image, Means, Paragraph, Section, Title } from '@dna-platform/public';
 
 export default () => (
     <Chapter>
-        <Part>The design</Part>
         <Title>[[ The Manual's Page ]]</Title>
         <Section>
             <Heading>What I come to the manual for</Heading>
@@ -232,8 +231,10 @@ export default () => (
                 and its seven presses between 463 and 759 milliseconds against the 635 to 718 before. What the
                 carrying taught is in the chapters: a part's heading in the table wears an id as every heading
                 does, so a part is named so that no chapter's title wears the same one; a view's rules stand
-                earlier in the sheet than a theme's, so each says the book first and its own class; and a book
-                whose chapters are in parts has every chapter in one, which is the framework's rule and mine.
+                earlier in the sheet than a theme's, so each says the book first and its own class; and the
+                framework assumes nothing about which chapters are in parts, since a chapter answers its part or
+                none and whatever reads parts filters by checking, so the chapters of this book that are not its
+                appendix say no part at all.
             </Paragraph>
             <Paragraph>
                 <Image>![[ built-second-manual.png ]]</Image>
