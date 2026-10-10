@@ -172,7 +172,7 @@ export class $Story extends $LibraryBook {
         );
     }
 
-    override top(): ReactNode {
+    override aboveThePages(): ReactNode {
         const Cover = $(this.cover!);
         const Day = $(ChapterDate);
         return (
@@ -190,22 +190,22 @@ export class $Story extends $LibraryBook {
             <>
                 <Tab
                     chapter={this.cover}
-                    of={BookPaper}
-                    among={this.papers}
+                    annotation={BookPaper}
+                    family={this.papers}
                 >
                     book
                 </Tab>
                 <Tab
                     chapter={this.cover}
-                    of={NightPaper}
-                    among={this.papers}
+                    annotation={NightPaper}
+                    family={this.papers}
                 >
                     night
                 </Tab>
                 <Tab
                     chapter={this.cover}
-                    of={WhitePaper}
-                    among={this.papers}
+                    annotation={WhitePaper}
+                    family={this.papers}
                 >
                     white
                 </Tab>

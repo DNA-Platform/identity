@@ -3,8 +3,8 @@ import { $, $Chemical } from '@dna-platform/chemistry';
 import { $Annotation, $Word, ContainerProps, Given } from '@dna-platform/public';
 
 export class $Switch extends $Word {
-    $of!: Given<$Annotation>;
-    get on(): boolean { return [this.book!.$is].flat().includes(this.$of); }
+    $annotation!: Given<$Annotation>;
+    get on(): boolean { return [this.book!.$is].flat().includes(this.$annotation); }
 
     $Switch(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
@@ -18,7 +18,7 @@ export class $Switch extends $Word {
     press(): void {
         const book = this.book!;
         const annotations = [book.$is].flat();
-        book.$is = this.on ? annotations.filter(annotation => annotation !== this.$of) : [this.$of, ...annotations];
+        book.$is = this.on ? annotations.filter(annotation => annotation !== this.$annotation) : [this.$annotation, ...annotations];
     }
 
     protected override $Define(): void {
@@ -28,12 +28,12 @@ export class $Switch extends $Word {
 }
 
 export class $Tab extends $Switch {
-    $among!: Given<$Annotation>[];
+    $family!: Given<$Annotation>[];
 
     override press(): void {
         const book = this.book!;
-        const annotations = [book.$is].flat().filter(annotation => !this.$among.includes(annotation));
-        book.$is = [this.$of, ...annotations];
+        const annotations = [book.$is].flat().filter(annotation => !this.$family.includes(annotation));
+        book.$is = [this.$annotation, ...annotations];
     }
 }
 

@@ -9,7 +9,7 @@ export class $Keyed extends $Format {
     protected _layer!: ElementType;
     get identifier(): string { return binder.reference(html.copy(this.text))?.identifier ?? ''; }
     get name(): string { return binder.reference(html.copy(this.text))?.name ?? ''; }
-    get entry(): $Chapter | undefined { return (this.book as $LibraryBook | undefined)?.named(this.identifier); }
+    get entry(): $Chapter | undefined { return (this.book as $LibraryBook | undefined)?.chapterAt(this.identifier); }
     get drawing(): string {
         const svg = this.entry?.text.find($Paragraph).flatMap(paragraph => paragraph.text.find($Svg))[0];
         return svg === undefined ? '' : html.copy(svg.text).trim();
@@ -21,7 +21,7 @@ export class $Keyed extends $Format {
         const Icon = $(icon);
         this._layer = (props: { children?: ReactNode }) => (
             <div {...props}>
-                <Icon of={this} />
+                <Icon keyed={this} />
                 {props.children}
             </div>
         );
@@ -39,7 +39,7 @@ export class $Keyed extends $Format {
 }
 
 export class $Icon extends $Word {
-    $of?: $Keyed;
+    $keyed?: $Keyed;
     style: ElementType = selection.span<{ $colour: string }>`
         --colour: ${props => props.$colour};
     `;
@@ -50,7 +50,7 @@ export class $Icon extends $Word {
         const Painted = this.style;
         this._painted = (props: { children?: ReactNode }) => (
             <Painted
-                $colour={this.$of?.colour ?? ''}
+                $colour={this.$keyed?.colour ?? ''}
                 {...props}
             />
         );
@@ -62,8 +62,8 @@ export class $Icon extends $Word {
             <span
                 className="pd-drawing"
                 role="img"
-                aria-label={this.$of?.name}
-                dangerouslySetInnerHTML={{ __html: this.$of?.drawing ?? '' }}
+                aria-label={this.$keyed?.name}
+                dangerouslySetInnerHTML={{ __html: this.$keyed?.drawing ?? '' }}
             />
         );
     }

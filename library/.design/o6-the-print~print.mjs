@@ -45,7 +45,7 @@ const regions = {
     holds: region('pd-holds'),
     front: region('pd-page pd-front pd-open'),
 };
-const printed = `${regions.library}\n${regions.me}\n${regions.holds}\n<div class="pd-pages">\n<section class="pd-desk"></section>\n${regions.front}\n${pages.join('\n')}\n</div>`;
+const printed = `${regions.library}\n${regions.me}\n${regions.holds}\n<div class="pd-pages">\n<section class="pd-catalogue-desk"></section>\n${regions.front}\n${pages.join('\n')}\n</div>`;
 
 const name = basename(page).replace(/~\d+\.html$/u, '').replace(/^\d+-/u, '').split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
 const number = basename(page).match(/~(\d+)\.html$/u)?.[1] ?? '';

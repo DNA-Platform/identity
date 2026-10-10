@@ -1,5 +1,5 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Brief } from './10-the-manual~forward.tsx';
+import { Brief } from './10-the-manual~annotations.tsx';
 import { Manual } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
@@ -46,7 +46,7 @@ export default () => (
             <Paragraph>
                 <Means>$[[ The book ]]( ./The Book )</Means> draws no switch of its own, because the
                 catalogue has nothing to switch; a type that has something to choose from draws it in its
-                switches: the manual its two readings, my story its three papers, the design book its two tones,
+                switches: the manual its file panel's states, my story its three papers, the design book its two tones,
                 so I can look at them. Every switch is one a reader of that book wants; the outline every book
                 once carried was a developer's tool on a reader's page, and it went.
             </Paragraph>

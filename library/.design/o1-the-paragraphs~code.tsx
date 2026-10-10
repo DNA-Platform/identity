@@ -83,16 +83,16 @@ export class DecisionSpecification extends AnnotationSpecification {
 }
 
 export class PainSpecification extends AnnotationSpecification {
-    @specify('a pain is said of a paragraph')
-    $saidOfAParagraph(writing: $Writing): void {
-        $check(writing instanceof $Paragraph, 'a pain is said of a paragraph, and this is not one');
+    @specify('a pain is a paragraph')
+    $isAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'a pain is a paragraph, and this is not one');
     }
 }
 
 export class SolutionSpecification extends AnnotationSpecification {
-    @specify('a solution is said of a paragraph')
-    $saidOfAParagraph(writing: $Writing): void {
-        $check(writing instanceof $Paragraph, 'a solution is said of a paragraph, and this is not one');
+    @specify('a solution is a paragraph')
+    $isAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'a solution is a paragraph, and this is not one');
     }
 }
 

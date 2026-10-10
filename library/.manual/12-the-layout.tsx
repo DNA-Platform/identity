@@ -1,5 +1,5 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Brief } from './10-the-manual~forward.tsx';
+import { Brief } from './10-the-manual~annotations.tsx';
 import { Manual } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 

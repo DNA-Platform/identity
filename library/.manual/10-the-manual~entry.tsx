@@ -8,10 +8,10 @@ import { $Keyed, Icon as icon } from './o1-the-key~code.tsx';
 export class $NumberedEntry extends $Entry {
     label = selection.span.attrs({ className: 'pa-number' })``;
     get number(): number {
-        return (this.book as $LibraryBook).body.indexOf(this.leads!) + 1;
+        return (this.book as $LibraryBook).body.indexOf(this.referencedChapter!) + 1;
     }
     get keyed(): $Keyed | undefined {
-        return this.leads?.annotations.expressed($Keyed);
+        return this.referencedChapter?.annotations.expressed($Keyed);
     }
 
     override note(): ReactNode {
@@ -21,7 +21,7 @@ export class $NumberedEntry extends $Entry {
         return (
             <>
                 {super.note()}
-                {keyed === undefined ? undefined : <Icon of={keyed} />}
+                {keyed === undefined ? undefined : <Icon keyed={keyed} />}
                 {this.number === 0 ? undefined : <Label>{String(this.number)}</Label>}
             </>
         );

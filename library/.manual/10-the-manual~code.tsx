@@ -1,13 +1,13 @@
 import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Append, $Chapter, $Format, $Writing, AnnotationSpecification, Given, specify } from '@dna-platform/public';
-import { Grip as grip, Rail as rail } from './7-the-rail~code.tsx';
-import { Panel as panel } from './11-the-panel~code.tsx';
-import { CodeForward as codeForward, Split as split, WordsForward as wordsForward } from './10-the-manual~forward.tsx';
+import { FilePanelGrip as filePanelGrip, FileRail as fileRail } from './7-the-rail~code.tsx';
+import { FilePanel as filePanel } from './11-the-panel~code.tsx';
+import { CodeForward as codeForward, Split as split, WordsForward as wordsForward } from './10-the-manual~annotations.tsx';
 
 export class $Manual extends $Format {
     specification = new ManualSpecification();
-    $shown: $Append | undefined = undefined;
+    $openFile: $Append | undefined = undefined;
     spread: ElementType = selection.div`
         --night: color-mix(in oklch, #0f2a33 55%, #2b363c);
         --dusk: color-mix(in oklch, #17363f 55%, #343f45);
@@ -39,11 +39,11 @@ export class $Manual extends $Format {
         }
         .pd-book & .pd-words { grid-area: words; min-width: 0; overflow: hidden; }
         .pd-book.pa-code-forward & .pd-words { display: none; }
-        .pd-book & .pd-panel { grid-area: panel; }
-        .pd-book & .pd-rail { grid-area: rail; }
-        .pd-book.pa-code-forward & .pd-rail { display: none; }
-        .pd-book & .pd-grip { grid-area: grip; display: none; }
-        .pd-book.pa-code-forward & .pd-grip { display: block; }
+        .pd-book & .pd-file-panel { grid-area: panel; }
+        .pd-book & .pd-file-rail { grid-area: rail; }
+        .pd-book.pa-code-forward & .pd-file-rail { display: none; }
+        .pd-book & .pd-file-panel-grip { grid-area: grip; display: none; }
+        .pd-book.pa-code-forward & .pd-file-panel-grip { display: block; }
         .pd-book & .pd-words { padding: calc(${({ theme }) => theme.space} * 0.9167) calc(${({ theme }) => theme.space} * 1.5) calc(${({ theme }) => theme.space} * 1.6667); font-size: ${({ theme }) => theme.size}; }
         .pd-book.pa-split & .pd-words { padding: calc(${({ theme }) => theme.space} * 0.9167) calc(${({ theme }) => theme.space} * 1.1667) calc(${({ theme }) => theme.space} * 1.6667) calc(${({ theme }) => theme.space} * 1.3333); }
         .pd-book & .pd-words .pd-chapter { max-width: ${({ theme }) => theme.measure}; margin: 0; }
@@ -96,24 +96,24 @@ export class $Manual extends $Format {
         .pd-book & .pd-words .pd-paragraph .pd-svg { display: block; width: calc(${({ theme }) => theme.space} * 4); height: calc(${({ theme }) => theme.space} * 4); }
         @media (max-width: ${({ theme }) => theme.narrow}) {
             .pd-book &.pd-container.pa-open, .pd-book.pa-split &.pd-container.pa-open, .pd-book.pa-code-forward &.pd-container.pa-open { display: block; height: auto; min-height: 0; }
-            .pd-book & .pd-rail, .pd-book & .pd-grip { display: none; }
+            .pd-book & .pd-file-rail, .pd-book & .pd-file-panel-grip { display: none; }
             .pd-book.pa-code-forward & .pd-words { display: block; }
             .pd-book & .pd-words { padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 0.67) calc(${({ theme }) => theme.space} / 3); }
             .pd-book & .pd-words .pd-title { font-size: calc(1.5 * ${({ theme }) => theme.size}); }
         }
     `;
-    get appends(): $Append[] { return (this.parent as $Chapter).annotations.find($Append).reverse(); }
-    get shown(): $Append | undefined { return this.$shown ?? this.appends[0]; }
-    get readings(): Given<$Annotation>[] {
+    get files(): $Append[] { return (this.parent as $Chapter).annotations.find($Append).reverse(); }
+    get openFile(): $Append | undefined { return this.$openFile ?? this.files[0]; }
+    get filePanelStates(): Given<$Annotation>[] {
         return [wordsForward, split, codeForward];
     }
 
     $Manual(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
         const Spread = this.spread;
-        const Panel = $(panel);
-        const Rail = $(rail);
-        const Grip = $(grip);
+        const FilePanel = $(filePanel);
+        const FileRail = $(fileRail);
+        const FilePanelGrip = $(filePanelGrip);
         this.style = ({ className, children }: { className?: string; children?: ReactNode }) => {
             const chapter = this.parent as $Chapter;
             const open = [...chapter.classes].includes('pa-open');
@@ -124,12 +124,12 @@ export class $Manual extends $Format {
                     </div>
                     {open ? (
                         <>
-                            <Panel chapter={chapter} />
-                            <Rail chapter={chapter} />
-                            <Grip
+                            <FilePanel chapter={chapter} />
+                            <FileRail chapter={chapter} />
+                            <FilePanelGrip
                                 chapter={chapter}
-                                of={split}
-                                among={this.readings}
+                                annotation={split}
+                                family={this.filePanelStates}
                             />
                         </>
                     ) : undefined}
@@ -150,9 +150,9 @@ export class $Manual extends $Format {
 }
 
 export class ManualSpecification extends AnnotationSpecification {
-    @specify('a manual is said of a chapter')
-    $saidOfAChapter(writing: $Writing): void {
-        $check(writing instanceof $Chapter, 'a manual is said of a chapter, and this is not one');
+    @specify('a manual is a chapter read beside its files')
+    $isAChapter(writing: $Writing): void {
+        $check(writing instanceof $Chapter, 'a manual is a chapter read beside its files, and this is not a chapter');
     }
 }
 

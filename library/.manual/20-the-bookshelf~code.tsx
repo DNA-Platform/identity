@@ -5,7 +5,7 @@ import { $LibraryBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 import { Byline as byline, SubjectLine as subjectLine } from './8-the-author-and-the-subject~code.tsx';
 import { Switch as switchOf } from './9-the-switch~code.tsx';
-import { $Index, leads } from './14-the-entry~code.tsx';
+import { $Index, contentOf } from './14-the-entry~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
 import { $Volume, Jacket as jacket } from './19-the-cover~code.tsx';
 import { Bookshelf } from './20-the-bookshelf~theme.tsx';
@@ -14,8 +14,8 @@ export class $Catalogue extends $LibraryBook {
     get books(): $Chapter[] {
         return this.text.find($Chapter).filter(chapter => chapter.is($Synopsis) && chapter !== this.synopsis);
     }
-    override get placed(): ($Chapter | undefined)[] {
-        return [...super.placed, ...this.books];
+    override get laidOutChapters(): ($Chapter | undefined)[] {
+        return [...super.laidOutChapters, ...this.books];
     }
     override get pages(): $Chapter[] {
         return [this.synopsis!, ...this.books, ...this.chapters];
@@ -29,7 +29,7 @@ export class $Catalogue extends $LibraryBook {
         );
     }
 
-    override bottom(): ReactNode {
+    override belowThePages(): ReactNode {
         return (
             <div className="pd-shelf">
                 {this.volumes()}
@@ -42,8 +42,8 @@ export class $Catalogue extends $LibraryBook {
         const Reference = $(reference);
         const rows = this.table?.annotations.expressed($Index)?.entries ?? [];
         return rows.map((row, index) => {
-            const place = leads(row)!.identifier;
-            const chapter = this.named(place);
+            const place = contentOf(row)!.identifier;
+            const chapter = this.chapterAt(place);
             const cover = chapter === undefined ? this.coverOf(place) : this.jacketOf(chapter);
             if (cover === undefined) return undefined;
             return (
@@ -88,7 +88,7 @@ export class $Catalogue extends $LibraryBook {
         );
     }
 
-    reading(cover: $Chapter | undefined): ReactNode {
+    wayIntoTheBook(cover: $Chapter | undefined): ReactNode {
         if (cover === undefined) return undefined;
         const Word = $(word);
         const Reference = $(reference);
@@ -114,8 +114,8 @@ export class $Catalogue extends $LibraryBook {
             .find(cover => cover !== undefined && cover.mention?.identifier === identifier);
     }
 
-    override named(place: string): $Chapter | undefined {
-        return super.named(place) ?? this.books.find(book => this.placeOf(book) === place);
+    override chapterAt(place: string): $Chapter | undefined {
+        return super.chapterAt(place) ?? this.books.find(book => this.placeOf(book) === place);
     }
 
     placeOf(entry: $Chapter): string | undefined {
@@ -126,26 +126,26 @@ export class $Catalogue extends $LibraryBook {
     }
 
     protected override $Bound(): void {
-        const Desk = $(desk);
+        const CatalogueDesk = $(catalogueDesk);
         for (const chapter of [this.synopsis, ...this.books])
             chapter?.annotations.add(this,
-                <Desk />
+                <CatalogueDesk />
             );
         super.$Bound();
     }
 }
 
-export class $Desk extends $Format {
-    specification = new DeskSpecification();
+export class $CatalogueDesk extends $Format {
+    specification = new CatalogueDeskSpecification();
     card: ElementType = selection.div`
         &:not(.pa-open) { display: none; }
     `;
     get chapter(): $Chapter { return this.parent as $Chapter; }
     get catalogue(): $Catalogue { return this.book as $Catalogue; }
-    get own(): boolean { return this.chapter === this.catalogue.synopsis; }
+    get isTheFront(): boolean { return this.chapter === this.catalogue.synopsis; }
     get cover(): $Chapter | undefined { return this.catalogue.jacketOf(this.chapter); }
 
-    $Desk(...chemicals: $Chemical[]) {
+    $CatalogueDesk(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
         const Switch = $(switchOf);
         const Card = this.card;
@@ -153,9 +153,9 @@ export class $Desk extends $Format {
             const catalogue = this.catalogue;
             const cover = this.cover;
             const open = [...this.chapter.classes].includes('pa-open');
-            const Title = this.own ? $(catalogue.title!) : undefined;
+            const Title = this.isTheFront ? $(catalogue.title!) : undefined;
             return catalogue.painted(cover, (
-                <Card className={`${className ?? ''} pd-desk${open ? ' pa-open' : ''}`.trim()}>
+                <Card className={`${className ?? ''} pd-catalogue-desk${open ? ' pa-open' : ''}`.trim()}>
                     {catalogue.jacket(cover)}
                     <div className="pd-words">
                         {Title === undefined ? undefined : (
@@ -168,11 +168,11 @@ export class $Desk extends $Format {
                             {catalogue.line(cover)}
                         </div>
                     )}
-                    {catalogue.reading(cover)}
+                    {catalogue.wayIntoTheBook(cover)}
                     {cover === undefined ? undefined : (
                         <Switch
                             chapter={this.chapter}
-                            of={Unfolded}
+                            annotation={UnfoldedDesk}
                         >
                             read on
                         </Switch>
@@ -184,7 +184,7 @@ export class $Desk extends $Format {
 
     override defines(writing: $Writing): void {
         super.defines(writing);
-        writing.classes.add(this, 'pa-desk');
+        writing.classes.add(this, 'pa-catalogue-desk');
     }
 
     override erase(writing: $Writing): void {
@@ -193,10 +193,10 @@ export class $Desk extends $Format {
     }
 }
 
-export class DeskSpecification extends AnnotationSpecification {
-    @specify('a desk is said of a synopsis')
-    $saidOfASynopsis(writing: $Writing): void {
-        $check(writing instanceof $Chapter && writing.is($Synopsis), 'a desk is said of a synopsis, and this is not one');
+export class CatalogueDeskSpecification extends AnnotationSpecification {
+    @specify('a catalogue desk holds a synopsis')
+    $holdsASynopsis(writing: $Writing): void {
+        $check(writing instanceof $Chapter && writing.is($Synopsis), 'a catalogue desk holds a synopsis, and this is not one');
     }
 }
 
@@ -234,11 +234,11 @@ export class $Arrow extends $Annotation {
     }
 }
 
-export class $Unfolded extends $Annotation {
+export class $UnfoldedDesk extends $Annotation {
     specification = new OfABookSpecification();
 
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-unfolded');
+        writing.classes.add(this, 'pa-unfolded-desk');
     }
 
     override erase(writing: $Writing): void {
@@ -247,27 +247,27 @@ export class $Unfolded extends $Annotation {
 }
 
 export class CaptionSpecification extends AnnotationSpecification {
-    @specify('a caption is said of a paragraph')
-    $saidOfAParagraph(writing: $Writing): void {
-        $check(writing instanceof $Paragraph, 'a caption is said of a paragraph, and this is not one');
+    @specify('a caption is a paragraph')
+    $isAParagraph(writing: $Writing): void {
+        $check(writing instanceof $Paragraph, 'a caption is a paragraph, and this is not one');
     }
 }
 
 export class ArrowSpecification extends AnnotationSpecification {
-    @specify('an arrow is said of a word of a table of contents')
-    $saidOfAWord(writing: $Writing): void {
+    @specify('an arrow is a word of the table of contents')
+    $isAWordOfTheTable(writing: $Writing): void {
         $check(writing instanceof $Word && writing.chapter?.is($TableOfContents) === true,
-            'an arrow is said of a word of a table of contents, and this is not one');
+            'an arrow is a word of the table of contents, and this is not one');
     }
 }
 
 export const Catalogue = $($Catalogue);
-export const Desk = $($Desk);
+export const CatalogueDesk = $($CatalogueDesk);
 export const BookLink = $($BookLink);
 export const Caption = $($Caption);
 export const Arrow = $($Arrow);
-export const Unfolded = $($Unfolded);
-const desk = Desk;
+export const UnfoldedDesk = $($UnfoldedDesk);
+const catalogueDesk = CatalogueDesk;
 $(Catalogue, Self)(BookLink);
 $(Catalogue, Theme)(Bookshelf);
 $(Catalogue, tone)(light);

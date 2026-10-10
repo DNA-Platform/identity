@@ -302,17 +302,17 @@ export class BookshelfCoverSpecification extends CoverSpecification {
 }
 
 export class IllustrationSpecification extends AnnotationSpecification {
-    @specify('an illustration is said of a paragraph of a cover that holds one drawing')
+    @specify('an illustration is a paragraph of a cover that holds one drawing')
     $saidOfADrawing(writing: $Writing): void {
         $check(writing instanceof $Paragraph && writing.chapter?.is($Cover) === true && writing.text.find($Svg).length === 1,
-            'an illustration is said of a paragraph of a cover that holds one drawing, and this is not one');
+            'an illustration is a paragraph of a cover that holds one drawing, and this is not one');
     }
 }
 
 export class SchemeSpecification extends AnnotationSpecification {
-    @specify('a scheme is said of a cover')
-    $saidOfACover(writing: $Writing): void {
-        $check(writing instanceof $Chapter && writing.is($Cover), 'a scheme is said of a cover, and this is not one');
+    @specify('a cover has a scheme')
+    $isACover(writing: $Writing): void {
+        $check(writing instanceof $Chapter && writing.is($Cover), 'a cover has a scheme, and this is not a cover');
     }
 
     @specify('a scheme is given its six colours')
@@ -324,9 +324,9 @@ export class SchemeSpecification extends AnnotationSpecification {
 }
 
 export class WindowSpecification extends AnnotationSpecification {
-    @specify('a window is said of a cover')
-    $saidOfACover(writing: $Writing): void {
-        $check(writing instanceof $Chapter && writing.is($Cover), 'a window is said of a cover, and this is not one');
+    @specify('a cover has a window')
+    $isACover(writing: $Writing): void {
+        $check(writing instanceof $Chapter && writing.is($Cover), 'a cover has a window, and this is not a cover');
     }
 
     @specify('a window is given where it stands on the drawing')
@@ -338,10 +338,10 @@ export class WindowSpecification extends AnnotationSpecification {
 }
 
 export class VolumeSpecification extends AnnotationSpecification {
-    @specify('a volume is said of a chapter that stands for another book')
+    @specify('a volume is a chapter that stands for another book')
     $saidOfAChapterStandingForABook(writing: $Writing): void {
         $check(writing instanceof $Chapter && (writing.is($Synopsis) || writing.is($Cover)),
-            'a volume is said of a chapter that stands for another book, a synopsis of it or a cover filed under it, and this is neither');
+            'a volume is a chapter that stands for another book, a synopsis of it or a cover filed under it, and this is neither');
     }
 
     @specify('a volume holds the cover of a book its chapter stands for')

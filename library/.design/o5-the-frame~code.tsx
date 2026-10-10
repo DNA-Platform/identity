@@ -19,15 +19,15 @@ export class $Design extends $LibraryBook {
             <>
                 <Tab
                     chapter={this.cover}
-                    of={dark}
-                    among={this.tones}
+                    annotation={dark}
+                    family={this.tones}
                 >
                     cobalt
                 </Tab>
                 <Tab
                     chapter={this.cover}
-                    of={light}
-                    among={this.tones}
+                    annotation={light}
+                    family={this.tones}
                 >
                     white
                 </Tab>

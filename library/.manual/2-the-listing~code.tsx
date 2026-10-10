@@ -10,24 +10,24 @@ export const languages: Record<string, string> = { tsx: 'typescript', ts: 'types
 
 const fileMark = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4.5 3.5 8 6 11.5M10 4.5 12.5 8 10 11.5"/></svg>';
 
-export const nameOf = (append: $Append): string => `${append.$identifier}${append.$type}`;
+export const fileNameOf = (file: $Append): string => `${file.$identifier}${file.$type}`;
 
-export const linesOf = (append: $Append | undefined): string[] =>
-    append === undefined ? [] : html.copy(append.text).split('\n');
+export const fileLinesOf = (file: $Append | undefined): string[] =>
+    file === undefined ? [] : html.copy(file.text).split('\n');
 
-export const manualOf = (append: $Append | undefined): $Manual | undefined =>
-    append?.chapter?.annotations.expressed($Manual);
+export const manualOf = (file: $Append | undefined): $Manual | undefined =>
+    file?.chapter?.annotations.expressed($Manual);
 
-export class $Listing extends $Paragraph {
-    $append?: $Append;
-    $reading?: Given<$Annotation>;
-    $among: Given<$Annotation>[] = [];
-    get name(): string { return this.$append === undefined ? '' : nameOf(this.$append); }
-    get language(): string { return languages[(this.$append?.$type ?? '').replace(/^\./u, '')] ?? ''; }
-    get manual(): $Manual | undefined { return manualOf(this.$append); }
-    override get chapter(): $Chapter | undefined { return this.$append?.chapter ?? super.chapter; }
+export class $FileListing extends $Paragraph {
+    $file?: $Append;
+    $filePanelState?: Given<$Annotation>;
+    $family: Given<$Annotation>[] = [];
+    get name(): string { return this.$file === undefined ? '' : fileNameOf(this.$file); }
+    get language(): string { return languages[(this.$file?.$type ?? '').replace(/^\./u, '')] ?? ''; }
+    get manual(): $Manual | undefined { return manualOf(this.$file); }
+    override get chapter(): $Chapter | undefined { return this.$file?.chapter ?? super.chapter; }
 
-    $Listing(...chemicals: $Chemical[]) {
+    $FileListing(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
         this.containers.replace(this, 'span', 'div');
     }
@@ -37,10 +37,10 @@ export class $Listing extends $Paragraph {
     }
 
     press(): void {
-        if (this.$reading === undefined) return;
+        if (this.$filePanelState === undefined) return;
         const book = this.book!;
-        const annotations = [book.$is].flat().filter(annotation => !this.$among.includes(annotation));
-        book.$is = [this.$reading, ...annotations];
+        const annotations = [book.$is].flat().filter(annotation => !this.$family.includes(annotation));
+        book.$is = [this.$filePanelState, ...annotations];
     }
 
     override write(): ReactNode {
@@ -52,8 +52,8 @@ export class $Listing extends $Paragraph {
                     {this.name}
                 </Word>
                 <Code
-                    identifier={this.$append?.$identifier}
-                    type={this.$append?.$type}
+                    identifier={this.$file?.$identifier}
+                    type={this.$file?.$type}
                     language={this.language}
                     numbered
                 />
@@ -63,20 +63,20 @@ export class $Listing extends $Paragraph {
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-listing');
-        const Given = $(opened);
+        this.classes.add(this, 'pd-file-listing');
+        const Given = $(openListing);
         this.annotations.add(this,
             <Given />
         );
     }
 }
 
-export class $Opened extends $Annotation {
-    specification = new OpenedSpecification();
+export class $OpenListing extends $Annotation {
+    specification = new OpenListingSpecification();
 
     override defines(writing: $Writing): void {
-        const listing = writing as $Listing;
-        if (listing.$append !== undefined && listing.manual?.shown === listing.$append) writing.classes.add(this, 'pa-opened');
+        const fileListing = writing as $FileListing;
+        if (fileListing.$file !== undefined && fileListing.manual?.openFile === fileListing.$file) writing.classes.add(this, 'pa-open');
     }
 
     override erase(writing: $Writing): void {
@@ -84,30 +84,30 @@ export class $Opened extends $Annotation {
     }
 }
 
-export class OpenedSpecification extends AnnotationSpecification {
-    @specify('opened is said of a listing')
-    $saidOfAListing(writing: $Writing): void {
-        $check(writing instanceof $Listing, 'opened is said of a listing, and this is not one');
+export class OpenListingSpecification extends AnnotationSpecification {
+    @specify('an open listing is a file listing')
+    $isAFileListing(writing: $Writing): void {
+        $check(writing instanceof $FileListing, 'an open listing is a file listing, and this is not one');
     }
 }
 
-export class $File extends $Tab {
-    $append?: $Append;
+export class $FileTab extends $Tab {
+    $file?: $Append;
     $skeleton = false;
     style: ElementType = selection.button<{ $colour: string }>`
         --colour: ${props => props.$colour};
     `;
     override get on(): boolean {
-        const chapter = this.$append?.chapter;
-        return chapter !== undefined && chapter === (this.book as $LibraryBook).open && this.manual?.shown === this.$append;
+        const chapter = this.$file?.chapter;
+        return chapter !== undefined && chapter === (this.book as $LibraryBook).open && this.manual?.openFile === this.$file;
     }
-    get name(): string { return this.$append === undefined ? '' : nameOf(this.$append); }
-    get manual(): $Manual | undefined { return manualOf(this.$append); }
-    get colour(): string { return this.$append?.chapter?.annotations.expressed($Keyed)?.colour ?? ''; }
-    get lines(): string[] { return linesOf(this.$append); }
-    override get chapter(): $Chapter | undefined { return this.$append?.chapter ?? super.chapter; }
+    get name(): string { return this.$file === undefined ? '' : fileNameOf(this.$file); }
+    get manual(): $Manual | undefined { return manualOf(this.$file); }
+    get colour(): string { return this.$file?.chapter?.annotations.expressed($Keyed)?.colour ?? ''; }
+    get lines(): string[] { return fileLinesOf(this.$file); }
+    override get chapter(): $Chapter | undefined { return this.$file?.chapter ?? super.chapter; }
 
-    $File(...chemicals: $Chemical[]) {
+    $FileTab(...chemicals: $Chemical[]) {
         this.$Switch(...chemicals);
         this.containers.replace(this, 'button', this.style);
     }
@@ -118,8 +118,8 @@ export class $File extends $Tab {
 
     override press(): void {
         const manual = this.manual;
-        if (manual !== undefined) manual.$shown = this.$append;
-        if (this.$of !== undefined) super.press();
+        if (manual !== undefined) manual.$openFile = this.$file;
+        if (this.$annotation !== undefined) super.press();
     }
 
     override write(): ReactNode {
@@ -129,7 +129,7 @@ export class $File extends $Tab {
                     className="pd-drawing"
                     dangerouslySetInnerHTML={{ __html: fileMark }}
                 />
-                <span className="pd-file-name">
+                <span className="pd-tab-name">
                     {this.name}
                 </span>
                 {this.$skeleton ? (
@@ -148,11 +148,11 @@ export class $File extends $Tab {
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-file');
+        this.classes.add(this, 'pd-file-tab');
     }
 }
 
-export const Listing = $($Listing);
-export const Opened = $($Opened);
-export const File = $($File);
-const opened = Opened;
+export const FileListing = $($FileListing);
+export const OpenListing = $($OpenListing);
+export const FileTab = $($FileTab);
+const openListing = OpenListing;

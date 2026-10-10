@@ -62,9 +62,9 @@ export class $Close extends $Annotation {
 }
 
 export class ConceptSpecification extends AnnotationSpecification {
-    @specify('a concept is said of a section')
-    $saidOfASection(writing: $Writing): void {
-        $check(writing instanceof $Section, 'a concept is said of a section, and this is not one');
+    @specify('a concept is a section')
+    $isASection(writing: $Writing): void {
+        $check(writing instanceof $Section, 'a concept is a section, and this is not one');
     }
 
     @specify('a concept is given its number')

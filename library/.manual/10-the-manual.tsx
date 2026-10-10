@@ -1,5 +1,5 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Brief } from './10-the-manual~forward.tsx';
+import { Brief } from './10-the-manual~annotations.tsx';
 import { Manual } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
@@ -34,8 +34,8 @@ export default () => (
                 stands in for it when the panel has the page. Each of the three is a writing with its own element
                 and its own rules, fetched through the scope so another manual may register its own; the spread
                 says only where each stands in its grid, and dresses the words. Which file is in front is the
-                manual's own state, an append set by a press and read by the tabs, the rail and the listings
-                through the chapter they stand in. The readings are three annotations on the book, one in front at
+                manual's own state, a file set by a press and read by the tabs, the rail and the listings
+                through the chapter they stand in. The file panel's states are three annotations on the book, one in front at
                 a time, and the options three more, each a switch. While a manual chapter is open the book wears
                 the layout's class for it, which is the context: the side bar shows the part's folder alone as a
                 tree, with the book's own name at its head as the root, and the rest of the table steps aside; and
@@ -79,7 +79,7 @@ export default () => (
         <Section>
             <Heading>Where a manual bites</Heading>
             <Paragraph>
-                The readings were once a Format given through the switch, and a press replaced the whole book
+                The file panel's states were once a Format given through the switch, and a press replaced the whole book
                 beneath it; they are classes now. A paragraph that is brief must stand directly under the chapter,
                 before its sections, or the rule that asks for it does not find it. The press on the folded strip
                 itself does not open the code; the tab does. And the spread's rules stand earlier in the sheet than
@@ -121,7 +121,7 @@ export default () => (
             identifier="forward"
             type=".tsx"
         >
-            ![[ forward.tsx ]]
+            ![[ annotations.tsx ]]
         </Append>
     </Chapter>
 );

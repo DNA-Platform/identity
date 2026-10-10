@@ -73,9 +73,9 @@ export class $Gallery extends $Format {
 }
 
 export class GallerySpecification extends AnnotationSpecification {
-    @specify('a gallery is said of a chapter')
-    $saidOfAChapter(writing: $Writing): void {
-        $check(writing instanceof $Chapter, 'a gallery is said of a chapter, and this is not one');
+    @specify('a gallery is a chapter')
+    $isAChapter(writing: $Writing): void {
+        $check(writing instanceof $Chapter, 'a gallery is a chapter, and this is not one');
     }
 }
 

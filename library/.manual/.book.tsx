@@ -25,5 +25,5 @@ export * from './18-the-colour~code.tsx';
 export * from './19-the-cover~code.tsx';
 export * from './20-the-bookshelf~theme.tsx';
 export * from './20-the-bookshelf~code.tsx';
-export * from './10-the-manual~forward.tsx';
+export * from './10-the-manual~annotations.tsx';
 export * from './o1-the-key~code.tsx';

@@ -77,7 +77,7 @@ export default () => (
                 <Image>![[ built-split.png ]]</Image>
             </Paragraph>
             <Paragraph>
-                The page's three states are the manual's three readings, words forward, split and code forward,
+                The page's three states are the file panel's, words forward, split and code forward,
                 annotations of one family on the book that a press switches, and the spread lays the page as a grid
                 in each: the words wide with the rail at the edge; the words beside the panel with the editor's
                 tab bar at its head, the file's tabs, the words tab, the dock and the options; and the panel across
@@ -294,7 +294,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 A second reference manual is a book whose every chapter is read that way. Its book file is one
-                line, a class extending the manual's all-in-one book, which brings the readings, the numbers, the
+                line, a class extending the manual's all-in-one book, which brings the file panel's states, the numbers, the
                 light tone, the manual's theme and its numbered row, a folder of every section and the first
                 chapter open when none is named. Its cover, synopsis and table are any book's, the table saying
                 it is an index and wearing the manual's table face, its sections the groups. Every chapter says

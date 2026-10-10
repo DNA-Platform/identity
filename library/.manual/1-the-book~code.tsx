@@ -5,7 +5,7 @@ import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
 import { $Manual } from './10-the-manual~code.tsx';
-import { $Appendix, $Folder, Folder as folder, Root as root, leads } from './14-the-entry~code.tsx';
+import { $Appendix, $TreeFolder, TreeFolder as treeFolder, TreeRoot as treeRoot, contentOf } from './14-the-entry~code.tsx';
 import { Dark as dark, Light as light, Tone as tone, WhiteOverBlack as whiteOverBlack } from './16-the-tone~code.tsx';
 import { $Logo, $Volume, Logo as logo, Mark as mark, painted } from './19-the-cover~code.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
@@ -13,11 +13,11 @@ import { Turn as turn } from './13-the-turn~code.tsx';
 export class $LibraryBook extends $Book {
     specification = new LibraryBookSpecification();
     protected _logo?: $Logo;
-    @inert() protected _places?: Map<string, $Chapter>;
+    @inert() protected _chapterByPlace?: Map<string, $Chapter>;
     get chapters(): $Chapter[] {
         return this.text.find($Chapter).filter(chapter => [...chapter.classes].includes('pd-canonical'));
     }
-    get placed(): ($Chapter | undefined)[] {
+    get laidOutChapters(): ($Chapter | undefined)[] {
         return [this.cover, this.synopsis, this.table, ...this.chapters];
     }
     get pages(): $Chapter[] {
@@ -31,11 +31,11 @@ export class $LibraryBook extends $Book {
         const table = this.table;
         if (table === undefined) return [];
         const places = table.text.find($Section).filter(section => section.is($Appendix))
-            .flatMap(section => section.text.find($Paragraph).map(paragraph => leads(paragraph)?.identifier));
+            .flatMap(section => section.text.find($Paragraph).map(paragraph => contentOf(paragraph)?.identifier));
         return this.chapters.filter(chapter => places.includes(chapter.mention?.identifier ?? ''));
     }
     get open(): $Chapter | undefined {
-        return this.$bookmark === undefined ? undefined : this.named(this.$bookmark);
+        return this.$bookmark === undefined ? undefined : this.chapterAt(this.$bookmark);
     }
     get tones(): Given<$Annotation>[] {
         return [dark, light, whiteOverBlack];
@@ -57,14 +57,14 @@ export class $LibraryBook extends $Book {
                     {this.head()}
                 </div>
                 <div className="pd-pages">
-                    {this.top()}
+                    {this.aboveThePages()}
                     {this.pages.map((chapter, index) => {
                         const Chapter = $(chapter);
                         return (
                             <Chapter key={index} />
                         );
                     })}
-                    {this.bottom()}
+                    {this.belowThePages()}
                 </div>
             </>
         );
@@ -117,26 +117,26 @@ export class $LibraryBook extends $Book {
         );
     }
 
-    top(): ReactNode {
+    aboveThePages(): ReactNode {
         return undefined;
     }
 
-    bottom(): ReactNode {
+    belowThePages(): ReactNode {
         return undefined;
     }
 
-    named(place: string): $Chapter | undefined {
-        return (this._places ?? this.places()).get(place);
+    chapterAt(place: string): $Chapter | undefined {
+        return (this._chapterByPlace ?? this.chapterByPlace()).get(place);
     }
 
-    places(): Map<string, $Chapter> {
-        const places = new Map<string, $Chapter>();
+    chapterByPlace(): Map<string, $Chapter> {
+        const chapterByPlace = new Map<string, $Chapter>();
         for (const chapter of this.chapters)
             for (const section of this.sections(chapter))
-                if (section.mention !== undefined && !places.has(section.mention.identifier)) places.set(section.mention.identifier, chapter);
+                if (section.mention !== undefined && !chapterByPlace.has(section.mention.identifier)) chapterByPlace.set(section.mention.identifier, chapter);
         for (const chapter of this.chapters)
-            if (chapter.mention !== undefined) places.set(chapter.mention.identifier, chapter);
-        return places;
+            if (chapter.mention !== undefined) chapterByPlace.set(chapter.mention.identifier, chapter);
+        return chapterByPlace;
     }
 
     coverOf(identifier: string | undefined): $Chapter | undefined {
@@ -153,9 +153,9 @@ export class $LibraryBook extends $Book {
     }
 
     root(): ReactElement | undefined {
-        const Root = $(root);
+        const TreeRoot = $(treeRoot);
         return (
-            <Root cover={this.cover} />
+            <TreeRoot cover={this.cover} />
         );
     }
 
@@ -188,14 +188,14 @@ export class $LibraryBook extends $Book {
     }
 
     protected override $Bound(): void {
-        this._places = this.places();
-        const Folder = $(folder);
+        this._chapterByPlace = this.chapterByPlace();
+        const TreeFolder = $(treeFolder);
         const table = this.table?.annotations.expressed($TableOfContents);
         for (const part of table?.parts ?? []) {
             const section = this.sectionOf(part);
-            if (section === undefined || section.is($Folder) || !part.chapters.some(chapter => chapter.is($Manual))) continue;
+            if (section === undefined || section.is($TreeFolder) || !part.chapters.some(chapter => chapter.is($Manual))) continue;
             section.annotations.add(this,
-                <Folder />
+                <TreeFolder />
             );
         }
         const root = this.root();
@@ -225,14 +225,14 @@ export class LibraryBookSpecification extends BookSpecification {
 
     @specify('a book of this library has a place for every chapter it holds')
     $placesEveryChapter(book: $LibraryBook): void {
-        $check(book.text.find($Chapter).every(chapter => book.placed.includes(chapter)),
+        $check(book.text.find($Chapter).every(chapter => book.laidOutChapters.includes(chapter)),
             'a book of this library has a place for every chapter it holds, and this one holds a chapter it places nowhere');
     }
 
-    @specify('only an ordinary chapter appends a file')
+    @specify('only an ordinary chapter files a file')
     $onlyAChapterAppends(book: $LibraryBook): void {
         $check(book.text.find($Chapter).every(chapter => book.chapters.includes(chapter) || !chapter.is($Append)),
-            'only an ordinary chapter appends a file, and here a cover, a synopsis or a table of contents appends one');
+            'only an ordinary chapter files a file, and here a cover, a synopsis or a table of contents files one');
     }
 
     @specify('a part read as a manual is listed under a section headed with its name')

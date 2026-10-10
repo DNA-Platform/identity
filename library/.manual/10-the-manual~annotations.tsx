@@ -2,14 +2,14 @@ import { $, $check } from '@dna-platform/chemistry';
 import { $Annotation, $Paragraph, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 
-export class $Reading extends $Annotation {
+export class $FilePanelState extends $Annotation {
     specification = new OfABookSpecification();
 
     override defines(writing: $Writing): void {
         for (const annotation of writing.annotations.after(this))
-            if (annotation instanceof $Reading)
+            if (annotation instanceof $FilePanelState)
                 writing.annotations.express(annotation, false);
-        writing.classes.add(this, 'pa-reading');
+        writing.classes.add(this, 'pa-file-panel-state');
     }
 
     override erase(writing: $Writing): void {
@@ -17,21 +17,21 @@ export class $Reading extends $Annotation {
     }
 }
 
-export class $CodeForward extends $Reading {
+export class $CodeForward extends $FilePanelState {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-code-forward');
     }
 }
 
-export class $WordsForward extends $Reading {
+export class $WordsForward extends $FilePanelState {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-words-forward');
     }
 }
 
-export class $Split extends $Reading {
+export class $Split extends $FilePanelState {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-split');
@@ -50,11 +50,11 @@ export class $LightCode extends $Annotation {
     }
 }
 
-export class $Wrapped extends $Annotation {
+export class $WrappedCode extends $Annotation {
     specification = new OfABookSpecification();
 
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-wrapped');
+        writing.classes.add(this, 'pa-wrapped-code');
     }
 
     override erase(writing: $Writing): void {
@@ -62,11 +62,11 @@ export class $Wrapped extends $Annotation {
     }
 }
 
-export class $Numbered extends $Annotation {
+export class $NumberedCode extends $Annotation {
     specification = new OfABookSpecification();
 
     override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-numbered');
+        writing.classes.add(this, 'pa-numbered-code');
     }
 
     override erase(writing: $Writing): void {
@@ -93,11 +93,11 @@ export class BriefSpecification extends AnnotationSpecification {
     }
 }
 
-export const Reading = $($Reading);
+export const FilePanelState = $($FilePanelState);
 export const CodeForward = $($CodeForward);
 export const WordsForward = $($WordsForward);
 export const Split = $($Split);
 export const LightCode = $($LightCode);
-export const Wrapped = $($Wrapped);
-export const Numbered = $($Numbered);
+export const WrappedCode = $($WrappedCode);
+export const NumberedCode = $($NumberedCode);
 export const Brief = $($Brief);

@@ -2,9 +2,9 @@ import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import { $Chapter, $Paragraph, $Section, specify } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
-import { $Appendix, Folded as folded, Folder as folder } from './14-the-entry~code.tsx';
+import { $Appendix, Folded as folded, TreeFolder as treeFolder } from './14-the-entry~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
-import { $Brief, Numbered as numbered, WordsForward as wordsForward } from './10-the-manual~forward.tsx';
+import { $Brief, NumberedCode as numberedCode, WordsForward as wordsForward } from './10-the-manual~annotations.tsx';
 
 export class $ManualBook extends $LibraryBook {
     override specification = new ManualBookSpecification();
@@ -26,14 +26,14 @@ export class $ManualBook extends $LibraryBook {
 
     protected override $Define(): void {
         super.$Define();
-        this.$is = [wordsForward, numbered];
+        this.$is = [wordsForward, numberedCode];
     }
 
     protected override $Bound(): void {
-        const Folder = $(folder);
+        const TreeFolder = $(treeFolder);
         for (const section of this.table?.text.find($Section) ?? []) {
             section.annotations.add(this,
-                <Folder />
+                <TreeFolder />
             );
             if (section.is($Appendix)) section.$is = [folded];
         }

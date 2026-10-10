@@ -312,10 +312,10 @@ export class $LibraryBookTheme extends $Theme {
 
     protected context(): RuleSet {
         return css`
-            .pd-holds .pd-paragraph.pd-root { display: none; }
-            .pd-book.pa-manual .pd-holds .pd-section:not(.pa-folder) { display: none; }
-            .pd-book.pa-manual .pd-holds .pd-folder { order: -1; }
-            .pd-book.pa-manual .pd-holds .pd-paragraph.pd-root {
+            .pd-holds .pd-paragraph.pd-tree-root { display: none; }
+            .pd-book.pa-manual .pd-holds .pd-section:not(.pa-tree-folder) { display: none; }
+            .pd-book.pa-manual .pd-holds .pd-tree-folder { order: -1; }
+            .pd-book.pa-manual .pd-holds .pd-paragraph.pd-tree-root {
                 display: flex;
                 order: -2;
                 align-items: center;
@@ -326,11 +326,11 @@ export class $LibraryBookTheme extends $Theme {
                 line-height: calc(1.9286 * ${({ theme }) => theme.size});
                 color: ${({ theme }) => theme.sideInk};
             }
-            .pd-book.pa-manual .pd-holds .pd-root .pd-word { display: inline-flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.2917); }
-            .pd-book.pa-manual .pd-holds .pd-root .pd-drawing { width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.faint}; transform: rotate(180deg); }
-            .pd-book.pa-manual .pd-holds .pd-root svg { display: block; width: 100%; height: 100%; }
-            .pd-book.pa-manual .pd-holds .pd-root .pa-reference { color: inherit; text-decoration: none; }
-            .pd-book.pa-manual .pd-holds .pd-root:hover { color: ${({ theme }) => theme.ink}; }
+            .pd-book.pa-manual .pd-holds .pd-tree-root .pd-word { display: inline-flex; align-items: center; gap: calc(${({ theme }) => theme.space} * 0.2917); }
+            .pd-book.pa-manual .pd-holds .pd-tree-root .pd-drawing { width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.faint}; transform: rotate(180deg); }
+            .pd-book.pa-manual .pd-holds .pd-tree-root svg { display: block; width: 100%; height: 100%; }
+            .pd-book.pa-manual .pd-holds .pd-tree-root .pa-reference { color: inherit; text-decoration: none; }
+            .pd-book.pa-manual .pd-holds .pd-tree-root:hover { color: ${({ theme }) => theme.ink}; }
         `;
     }
 
