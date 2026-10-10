@@ -22,7 +22,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The class draws the frame that is on every screen, in five regions named as the frame's sketch
-                names them: the library's bar, with what the book is filed under and the library's own subjects;
+                names them: the library's bar, with the book's subject and the library's own subjects;
                 me, who the book is by; what the book holds, its table of contents; the head, its cover and its
                 switches; and the pages, the synopsis it opens on and then each chapter, one open at a time. The
                 chapter is the page: the framework's own Paginated marks the open one on the chapter's element

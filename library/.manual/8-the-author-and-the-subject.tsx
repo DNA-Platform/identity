@@ -10,12 +10,12 @@ export default () => (
         <Title>[[ The Author and the Subject ]]</Title>
         <Paragraph>
             <Brief />
-            Two paragraphs every book draws from its cover: by whom, and filed under what.
+            Two paragraphs every book draws from its cover: by whom, and its subject.
         </Paragraph>
         <Section>
             <Heading>What the two lines is</Heading>
             <Paragraph>
-                Every cover in this library names who wrote the book and what it is filed under, and the
+                Every cover in this library names who wrote the book and its subject, and the
                 compiler refuses a book that leaves out either. Naming them draws nothing: the framework keeps
                 both on the cover as facts and leaves it to a library to show them. So <Means>$[[ the book ]]( ./The Book )</Means> draws
                 them on every book as two paragraphs: by, which leads to the author's own book, and filed
@@ -27,17 +27,18 @@ export default () => (
             <Heading>How the two lines fits the library's patterns</Heading>
             <Paragraph>
                 Each is a paragraph with content of its own, written by the book, never by a chapter, so the
-                frame places them: filed under stands at the head of the library's bar as its mark and its name,
+                frame places them: the subject stands at the head of the library's bar as its mark and its name,
                 and by stands as me, at the bar's end or the column's foot. Each opens with a word said to be a
-                label — by, filed under — so a theme sets the label apart from the name and a phone can keep
-                the face and drop the words, as the frame's sketch does.
+                label — by, subject — so a theme sets the label apart from the name and a phone can keep
+                the face and drop the words, as the frame's sketch does. The label was filed under until
+                2026-10-10, and I struck it: this is a library, and that is the subject.
             </Paragraph>
         </Section>
         <Section>
             <Heading>How the two lines is used</Heading>
             <Paragraph>
                 A book writes nothing for them; it writes its cover with an author and a subject, and the base
-                draws both. The mark before filed under and the face before by are the theme's, in the colours
+                draws both. The mark before the subject and the face before by are the theme's, in the colours
                 of <Means>$[[ the tone ]]( ./The Tone )</Means>.
             </Paragraph>
         </Section>

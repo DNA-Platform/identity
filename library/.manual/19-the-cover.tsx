@@ -17,7 +17,7 @@ export default () => (
         <Section>
             <Heading>What the cover carries</Heading>
             <Paragraph>
-                The framework's cover says the book's title, its author and the subject it is filed under,
+                The framework's cover says the book's title, its author and its subject,
                 and that is what the bar across the top of every page shows. A design that needs more of a
                 book says more on its cover, as annotations, so that the cover stays the one place a book
                 describes itself. For the bookshelf a cover carries three more things: its scheme — the six

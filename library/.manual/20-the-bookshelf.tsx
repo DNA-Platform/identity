@@ -24,10 +24,12 @@ export default () => (
                 mark when it is filed under itself, as only the library is; the side bar as its table; each
                 book's synopsis, and its own, on a desk, and the shelf of jackets below the pages. Four things
                 are said in it: a desk, of a synopsis, which the class says of its own and of each book's at
-                bind, a Format whose card holds the jacket large beside the chapter's words, the line that says
-                by whom and where it is filed, the way into the book and read on, and which hides itself with
-                its page; a caption, of the one line an entry says; an arrow, of the word in a row that leads to
-                the book; and unfolded, of the book, by the switch that reads on. A title in a catalogue's entry refers to the book it stands for, by a reference
+                bind, a Format whose card holds the jacket large beside the chapter's words, held to the
+                jacket's height, the line that says by whom and the subject, the way into the book with the
+                table's triangle after it, and read on, and which hides itself with its page; a caption, of the
+                one line an entry says; an arrow, of the word in a row that leads to the book; and unfolded, of
+                the book, by the switch that reads on. The title and the two names on the card are live links,
+                the title to the book. A title in a catalogue's entry refers to the book it stands for, by a reference
                 registered on the class. A library makes its catalogue by saying so in its book file, in one line,
                 and writing its entries.
             </Paragraph>

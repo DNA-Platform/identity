@@ -51,7 +51,7 @@ export class $Byline extends $Paragraph {
     }
 }
 
-export class $FiledUnder extends $Paragraph {
+export class $SubjectLine extends $Paragraph {
     $cover?: $Chapter;
     get cover(): $Chapter | undefined { return this.$cover ?? this.book?.cover; }
 
@@ -64,7 +64,7 @@ export class $FiledUnder extends $Paragraph {
             <>
                 <Word>
                     <Said />
-                    filed under
+                    subject
                 </Word>
                 <Word>
                     <Reference>{subject.means!.identifier}</Reference>
@@ -76,9 +76,9 @@ export class $FiledUnder extends $Paragraph {
 
     protected override $Define(): void {
         super.$Define();
-        this.classes.add(this, 'pd-filed-under');
+        this.classes.add(this, 'pd-subject-line');
     }
 }
 
 export const Byline = $($Byline);
-export const FiledUnder = $($FiledUnder);
+export const SubjectLine = $($SubjectLine);

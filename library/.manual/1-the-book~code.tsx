@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from 'react';
 import { $, $check, inert } from '@dna-platform/chemistry';
 import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Part, $Section, $TableOfContents, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
-import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
+import { Byline as byline } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
 import { $Manual } from './10-the-manual~code.tsx';
 import { $Appendix, $Folder, Folder as folder, Root as root, leads } from './14-the-entry~code.tsx';
@@ -109,7 +109,6 @@ export class $LibraryBook extends $Book {
         const Cover = $(this.cover!);
         return (
             <>
-                {this.filed()}
                 <Cover />
                 <div className="pd-switches">
                     {this.switches()}
@@ -150,13 +149,6 @@ export class $LibraryBook extends $Book {
         const Byline = $(byline);
         return (
             <Byline chapter={this.cover} />
-        );
-    }
-
-    filed(): ReactNode {
-        const FiledUnder = $(filedUnder);
-        return (
-            <FiledUnder chapter={this.cover} />
         );
     }
 

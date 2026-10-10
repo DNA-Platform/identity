@@ -8,11 +8,12 @@ import { Split as split } from './10-the-manual~forward.tsx';
 
 export class $Rail extends $Paragraph {
     style: ElementType = selection.div`
-        .pd-book & {
+        .pd-book &.pd-paragraph {
             display: flex;
             flex-direction: column;
             align-items: stretch;
             gap: calc(${({ theme }) => theme.space} / 12);
+            margin: 0;
             padding: calc(${({ theme }) => theme.space} * 0.4167) 0;
             background: linear-gradient(90deg, color-mix(in oklch, var(--night) 82%, white) 0%, var(--night) 22%);
             box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.08);

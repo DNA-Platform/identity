@@ -196,6 +196,7 @@ export class $LibraryBookTheme extends $Theme {
             .pd-book .pd-library { box-sizing: border-box; height: ${({ theme }) => theme.barHeight}; padding: 0 calc(${({ theme }) => theme.space} * 0.75); background: ${({ theme }) => theme.barTint}; border-block-end: thin solid ${({ theme }) => theme.line}; }
             .pd-library .pd-paragraph, .pd-me .pd-paragraph { margin-block: 0; }
             .pd-library .pa-reference, .pd-me .pa-reference { color: inherit; text-decoration: none; }
+            .pd-library .pa-reference:hover .pd-name, .pd-me .pa-reference:hover { text-decoration: underline; text-underline-offset: 3px; }
             .pd-paragraph.pd-logo { display: flex; align-items: center; height: ${({ theme }) => theme.barHeight}; }
             .pd-logo .pa-reference, .pd-me .pd-mark .pa-reference { display: block; }
             .pd-logo .pd-filed, .pd-logo .pd-own { display: block; flex: none; overflow: hidden; transition: width ${({ theme }) => theme.beat} ease, margin ${({ theme }) => theme.beat} ease, opacity ${({ theme }) => theme.beat} ease; }
@@ -229,23 +230,6 @@ export class $LibraryBookTheme extends $Theme {
         return css`
             .pd-head { padding: calc(${({ theme }) => theme.space} * 0.83) calc(${({ theme }) => theme.space} * 1.17) calc(${({ theme }) => theme.space} * 0.58); }
             .pd-head .pd-chapter { margin-block: 0; }
-            .pd-head .pd-filed-under {
-                display: flex;
-                align-items: center;
-                gap: calc(${({ theme }) => theme.space} * 0.3);
-                flex-basis: 100%;
-                margin-block: 0;
-                font-size: calc(0.9 * ${({ theme }) => theme.size});
-                color: ${({ theme }) => theme.soft};
-            }
-            .pd-head .pd-filed-under .pa-label {
-                font-size: calc(0.68 * ${({ theme }) => theme.size});
-                font-weight: 600;
-                letter-spacing: 0.12em;
-                text-transform: uppercase;
-            }
-            .pd-head .pd-filed-under .pd-word + .pd-word { font-weight: 500; }
-            .pd-head .pd-filed-under .pa-reference { color: ${({ theme }) => theme.accent}; text-decoration: none; }
             .pd-head .pd-title {
                 font-family: ${({ theme }) => theme.serif};
                 font-size: calc(2.57 * ${({ theme }) => theme.size});

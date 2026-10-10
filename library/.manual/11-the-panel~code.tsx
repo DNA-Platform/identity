@@ -8,11 +8,13 @@ import { CodeForward as codeForward, LightCode as lightCode, Numbered as numbere
 
 export class $Panel extends $Paragraph {
     style: ElementType = selection.div`
-        .pd-book & {
+        .pd-book &.pd-paragraph {
             display: grid;
             grid-template-rows: auto minmax(0, 1fr);
             min-width: 0;
+            margin: 0;
             overflow: hidden;
+            contain: size;
             background: linear-gradient(90deg, color-mix(in oklch, var(--night) 90%, white) 0%, var(--night) 36px);
             color: var(--glow);
             box-shadow: -10px 0 18px -16px rgba(43, 54, 60, 0.5);
@@ -88,10 +90,11 @@ export class $Panel extends $Paragraph {
 
 export class $Tabs extends $Paragraph {
     style: ElementType = selection.div`
-        .pd-book & {
+        .pd-book &.pd-paragraph {
             display: flex;
             align-items: stretch;
             gap: 1px;
+            margin: 0;
             padding: 0 0 0 2px;
             background: linear-gradient(180deg, color-mix(in oklch, var(--dusk) 88%, white) 0%, var(--dusk) 100%);
             border-block-end: thin solid color-mix(in oklch, var(--foot) 28%, var(--dusk));

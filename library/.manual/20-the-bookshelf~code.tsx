@@ -3,7 +3,7 @@ import { $, $check, $Chemical, inert, selection } from '@dna-platform/chemistry'
 import { $Annotation, $Chapter, $Format, $Paragraph, $Referent, $SelfReference, $Synopsis, $TableOfContents, $Word, $Writing, AnnotationSpecification, Reference as reference, Self, Theme, Word as word, specify } from '@dna-platform/public';
 import { $LibraryBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
-import { Byline as byline, FiledUnder as filedUnder } from './8-the-author-and-the-subject~code.tsx';
+import { Byline as byline, SubjectLine as subjectLine } from './8-the-author-and-the-subject~code.tsx';
 import { Switch as switchOf } from './9-the-switch~code.tsx';
 import { $Index, leads } from './14-the-entry~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
@@ -76,23 +76,14 @@ export class $Catalogue extends $LibraryBook {
         );
     }
 
-    shelved(cover: $Chapter | undefined): ReactNode {
-        if (cover === undefined) return undefined;
-        return (
-            <div className="pd-paragraph pd-shelved">
-                {cover === this.cover ? 'filed under itself' : 'filed here'}
-            </div>
-        );
-    }
-
     line(cover: $Chapter | undefined): ReactNode {
         if (cover === undefined) return undefined;
         const Byline = $(byline);
-        const FiledUnder = $(filedUnder);
+        const SubjectLine = $(subjectLine);
         return (
             <>
                 <Byline cover={cover} />
-                <FiledUnder cover={cover} />
+                <SubjectLine cover={cover} />
             </>
         );
     }
@@ -106,7 +97,7 @@ export class $Catalogue extends $LibraryBook {
             <div className="pd-paragraph pd-read">
                 <Word>
                     <Reference>{address}</Reference>
-                    {cover === this.cover ? 'This is the catalogue' : `Read ${cover.title!.name}`} →
+                    {cover === this.cover ? 'This is the catalogue' : `Read ${cover.title!.name}`}
                 </Word>
             </div>
         );
@@ -167,14 +158,12 @@ export class $Desk extends $Format {
                 <Card className={`${className ?? ''} pd-desk${open ? ' pa-open' : ''}`.trim()}>
                     {catalogue.jacket(cover)}
                     <div className="pd-words">
-                        {catalogue.shelved(cover)}
                         {Title === undefined ? undefined : (
                             <Title />
                         )}
-                        {this.own ? catalogue.line(cover) : undefined}
                         {children}
                     </div>
-                    {this.own || cover === undefined ? undefined : (
+                    {cover === undefined ? undefined : (
                         <div className="pd-line">
                             {catalogue.line(cover)}
                         </div>
