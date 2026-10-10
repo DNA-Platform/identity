@@ -18,7 +18,7 @@
 
 ## In one paragraph
 
-**A chapter says what it is with an annotation. A type of book is a class whose `write()` collects its chapters by what they carry and places each inside an element of its own, and says in its specification what it must hold. Its layout extends the framework's `Paginated`. Its look is a theme — fields and one component of parts — registered on the class; its cover, synopsis and table are faces, subclasses exported under the framework's names. Anything a reader presses adds a class.** Every name is found by the method in [How a Thing Is Named](../the-coding-style/09-how-a-thing-is-named.md).
+**A chapter says what it is with an annotation. A type of book is a class whose `write()` collects its chapters by what they carry and lays each out inside an element of its own, and says in its specification what it must hold. Its layout extends the framework's `Paginated`. Its look is a theme — fields and one component of parts — registered on the class; its cover, synopsis and table are faces, subclasses exported under the framework's names. Anything a reader presses adds a class.** Every name is found by the method in [How a Thing Is Named](../the-coding-style/09-how-a-thing-is-named.md).
 
 ## 1 · A chapter says what it is
 
@@ -34,7 +34,7 @@ By an annotation it carries. The framework's own: `Cover`, `Synopsis`, `TableOfC
 
 A getter per collection, read every time, never kept: `this.text.find($Chapter).filter(chapter => chapter.is($X))`. Never by position, never as what is left over — [a group is named, never left over](../the-first-draft/05-the-book-is-the-layout.md#not-a-remainder). A layout with a place for some types says so in the book's specification — a `$`-method under `@specify`, asserting with `$check` — and the bind's `specify` phase refuses a chapter with no place; so `write()` assumes and never hedges. Doug: *"If you need chapters to have a certain specification, this is exactly what the specification is for. Look it up. Write your components to specification."* [Specification](../utilities/03-specification.md).
 
-## 3 · `write()` places
+## 3 · `write()` lays out
 
 **The chapter is the page, and what a chapter is shown inside is a Format said of it.** A book that is Paginated has the framework mark the open chapter on the chapter's own element and hide the rest, so `write()` draws each page as the chapter it is and no box around it; the manual's spread and the catalogue's desk are Formats said of the chapter, each a layer around the element that wears the chapter's open class and hides itself otherwise. A book draws what stands above its pages and below them, the story's top and the catalogue's shelf, in a method each — [Sprint 106](../projection/111-sprint-106--the-manual-spread-out.md#decisions).
 
