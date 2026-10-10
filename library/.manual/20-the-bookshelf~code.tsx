@@ -163,7 +163,7 @@ export class $CatalogueDesk extends $Format {
                         )}
                         {children}
                     </div>
-                    {cover === undefined ? undefined : (
+                    {cover === undefined || this.isTheFront ? undefined : (
                         <div className="pd-line">
                             {catalogue.line(cover)}
                         </div>

@@ -61,7 +61,7 @@ export default () => (
                 on the book. The triangle is the row's second reference. Nothing on the page was a seventh word.
             </Paragraph>
             <Paragraph>
-                What this takes to build is small: this catalogue as a type of book that places its table's rows
+                What this takes to build is small: this catalogue as a type of book that lays out its table's rows
                 in regions by what each is; a few annotations — a volume said of a row, holding the imported cover; the synopsis
                 said of a row as well as a chapter; an illustration said of a cover; the colour grown to a scheme;
                 and a custom cover in <Means>$[[ the manual ]]( Dougs Reference Manual )</Means> that exposes
@@ -93,12 +93,10 @@ export default () => (
                 <Image>![[ built-open.png ]]</Image>
             </Paragraph>
             <Paragraph>
-                My story pressed, on the desk above the untouched shelf, its row lit in its own band. Two things
-                stand differently from the page, and both on purpose. The way to the book stands under the words
-                rather than inside them, because inside them the fade swallowed it. And the line that says by
-                whom and where it is filed comes after an entry's words, because a chapter is drawn whole and its
-                title cannot be parted from its paragraphs; on the catalogue's own desk it stands under the name
-                as the page had it.
+                My story pressed, on the desk above the untouched shelf, its row lit in its own band. The way to
+                the book stands under the words rather than inside them, because inside them the fade swallowed
+                it; and the line that says by whom and under which subject comes after an entry's words, because
+                a chapter is drawn whole and its title cannot be parted from its paragraphs.
             </Paragraph>
             <Paragraph>
                 <Image>![[ built-unfolded.png ]]</Image>
@@ -113,10 +111,10 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The built view: the appendix first in the contents, the chapter that says how this book is
-                built shown with its files in the manual's look. It is a class the layout puts on the book when
-                the open chapter is in the appendix, so a press on a row of the other group is the way back; the
-                group's heading is not yet a press. This view is designed properly when the manual is, so that
-                what a reference manual looks like is decided once.
+                built shown with its files in the manual's look. It is the manual's own view, said of that
+                chapter, read as <Means>$[[ The Manual's Page ]]( ./The Manual's Page )</Means> decided it,
+                with the shelf and the desk stepping aside while it is open and a press on a row of the other
+                group the way back.
             </Paragraph>
             <Paragraph>
                 <Image>![[ built-phone.png ]]</Image>
@@ -149,6 +147,31 @@ export default () => (
                 crop, and the ruled page with the nib at its corner. The nib is the one set, as the window
                 at −54, −33 on the story's cover; the window is a thing said of the cover, two numbers, so
                 another choice is two numbers changed.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The card, on reading it bound</Heading>
+            <Paragraph>
+                Three days later I read the bound page and said what the card had strayed into. Remove the
+                label above the words entirely. Remove the terminology filed under: this is a library, and that
+                is the subject; filed is not semantically right. Make my name a live link on the book, and the
+                title of the book a live link too, and have it go to the book. Remove that tiny little arrow
+                and use the arrow we use in the table of contents, the triangle. The collapsed state of the
+                writing is to be thinner and always the same height; it was too big, and it was hard to click
+                the books below. The content area uses very little space: widen it, maintain mobile, but make
+                desktop fill more of the space. And on the catalogue's own desk, no by Doug and no subject
+                Library: the subject of a catalogue is the catalogue itself, and we do not need to represent the
+                whole cover.
+            </Paragraph>
+            <Paragraph>
+                So the card is this, and the photographs above are of it. Under the jacket's height in every
+                state but read on and the phone, its rows the words, the line and the way in, the words fading
+                at the foot where they run long. The line says subject, never filed under, and the title, my
+                name and the subject's name are each a link to its book, underlined on hover. The way in ends
+                in the contents' triangle. The words run to seventy-two characters on a desk. And the
+                catalogue's own desk draws its title and its words alone, with the way in and read on beneath
+                them. Where it is: the desk in <Means>$[[ The Bookshelf ]]( Dougs Reference Manual / The Bookshelf )</Means>,
+                the line in <Means>$[[ The Author and the Subject ]]( Dougs Reference Manual / The Author and the Subject )</Means>.
             </Paragraph>
         </Section>
         <Append
