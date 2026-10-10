@@ -242,7 +242,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 grid-template-columns: ${({ theme }) => theme.volume} minmax(0, 1fr);
                 grid-template-rows: minmax(0, 1fr) auto auto;
                 height: calc(${({ theme }) => theme.volume} * 1.5);
-                gap: calc(${({ theme }) => theme.space} * 1.167);
+                column-gap: calc(${({ theme }) => theme.space} * 1.167);
                 align-items: start;
                 margin-block-end: calc(${({ theme }) => theme.space} * 1.167);
                 padding: calc(${({ theme }) => theme.space} * 0.833) ${({ theme }) => theme.space};
@@ -275,7 +275,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 min-height: 0;
                 padding-block-start: calc(${({ theme }) => theme.space} / 4);
                 overflow: clip;
-                mask-image: linear-gradient(to bottom, black calc(100% - ${({ theme }) => theme.space} * 3), transparent 100%);
+                mask-image: linear-gradient(to bottom, black calc(100% - ${({ theme }) => theme.space} * 1.5), transparent 100%);
             }
             .pd-container.pd-catalogue-desk.pa-open .pd-words .pd-chapter { margin-block: 0; max-width: none; scroll-margin-block-start: calc(${({ theme }) => theme.space} * 3.5); }
             .pd-container.pd-catalogue-desk.pa-open .pd-words .pd-title {
@@ -306,7 +306,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 color: var(--band-ink, ${({ theme }) => theme.ink});
             }
             .pd-container.pd-catalogue-desk.pa-open .pd-words .pd-paragraph .pa-reference { color: var(--band-ink, ${({ theme }) => theme.skyInk}); }
-            .pd-container.pd-catalogue-desk.pa-open .pd-line { grid-column: 2; display: flex; flex-wrap: wrap; gap: 0 calc(${({ theme }) => theme.space} / 2); }
+            .pd-container.pd-catalogue-desk.pa-open .pd-line { grid-column: 2; display: flex; flex-wrap: wrap; gap: 0 calc(${({ theme }) => theme.space} / 2); padding-block: calc(${({ theme }) => theme.space} / 4) calc(${({ theme }) => theme.space} / 2); }
             .pd-container.pd-catalogue-desk.pa-open .pd-paragraph.pd-byline, .pd-container.pd-catalogue-desk.pa-open .pd-paragraph.pd-subject-line {
                 display: inline-flex;
                 gap: calc(${({ theme }) => theme.space} / 6);
@@ -321,7 +321,7 @@ export class $Bookshelf extends $LibraryBookTheme {
             .pd-container.pd-catalogue-desk.pa-open .pd-byline .pa-reference, .pd-container.pd-catalogue-desk.pa-open .pd-subject-line .pa-reference { color: var(--band-ink, ${({ theme }) => theme.skyInk}); font-weight: 500; text-decoration: none; }
             .pd-container.pd-catalogue-desk.pa-open .pd-byline .pa-reference:hover, .pd-container.pd-catalogue-desk.pa-open .pd-subject-line .pa-reference:hover { text-decoration: underline; text-decoration-color: var(--band-ink, ${({ theme }) => theme.skyInk}); text-underline-offset: 3px; }
             .pd-container.pd-catalogue-desk.pa-open .pd-words .pa-reference:hover .pd-title, .pd-container.pd-catalogue-desk.pa-open .pd-words .pd-title.pa-reference:hover { text-decoration: underline; text-decoration-color: var(--band, ${({ theme }) => theme.sky}); text-underline-offset: 4px; }
-            .pd-container.pd-catalogue-desk.pa-open .pd-paragraph.pd-read { grid-column: 2; margin: 0; }
+            .pd-container.pd-catalogue-desk.pa-open .pd-paragraph.pd-read { grid-column: 2; grid-row: 3; align-self: end; margin: 0; padding-block-start: calc(${({ theme }) => theme.space} / 3); }
             .pd-container.pd-catalogue-desk.pa-open .pd-read .pd-word {
                 display: inline-flex;
                 align-items: center;
@@ -397,7 +397,7 @@ export class $Bookshelf extends $LibraryBookTheme {
                 .pd-pages { padding: calc(${({ theme }) => theme.space} * 0.667); }
                 .pd-logo { margin-inline-end: calc(${({ theme }) => theme.space} / 2); }
                 .pd-me .pd-word.pd-mark { display: block; }
-                .pd-container.pd-catalogue-desk.pa-open { height: auto; grid-template-columns: ${({ theme }) => theme.cover} minmax(0, 1fr); gap: calc(${({ theme }) => theme.space} * 0.667); padding: calc(${({ theme }) => theme.space} * 0.667); }
+                .pd-container.pd-catalogue-desk.pa-open { height: auto; grid-template-columns: ${({ theme }) => theme.cover} minmax(0, 1fr); column-gap: calc(${({ theme }) => theme.space} * 0.667); row-gap: calc(${({ theme }) => theme.space} / 3); padding: calc(${({ theme }) => theme.space} * 0.667); }
                 .pd-container.pd-catalogue-desk.pa-open .pd-paragraph.pd-jacket { width: ${({ theme }) => theme.cover}; height: calc(${({ theme }) => theme.cover} * 1.5); font-size: calc(0.964 * ${({ theme }) => theme.size}); }
                 .pd-container.pd-catalogue-desk.pa-open .pd-words { max-height: none; mask-image: none; }
                 .pd-container.pd-catalogue-desk.pa-open .pd-word.pd-switch { display: none; }

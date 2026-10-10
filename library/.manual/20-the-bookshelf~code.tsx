@@ -97,7 +97,7 @@ export class $Catalogue extends $LibraryBook {
             <div className="pd-paragraph pd-read">
                 <Word>
                     <Reference>{address}</Reference>
-                    {cover === this.cover ? 'This is the catalogue' : `Read ${cover.title!.name}`}
+                    {`Read ${cover.title!.name}`}
                 </Word>
             </div>
         );

@@ -161,16 +161,20 @@ export default () => (
                 the books below. The content area uses very little space: widen it, maintain mobile, but make
                 desktop fill more of the space. And on the catalogue's own desk, no by Doug and no subject
                 Library: the subject of a catalogue is the catalogue itself, and we do not need to represent the
-                whole cover.
+                whole cover. And on seeing that: the read button should be flush with the bottom of the book;
+                increase the text visible before it fades; and do not say this catalogue on the button, either
+                hide it or give it the name of the book, a regular button with a regular book name, since it is
+                the only self-catalogued book in the library and people will get the joke.
             </Paragraph>
             <Paragraph>
                 So the card is this, and the photographs above are of it. Under the jacket's height in every
                 state but read on and the phone, its rows the words, the line and the way in, the words fading
                 at the foot where they run long. The line says subject, never filed under, and the title, my
                 name and the subject's name are each a link to its book, underlined on hover. The way in ends
-                in the contents' triangle. The words run to seventy-two characters on a desk. And the
-                catalogue's own desk draws its title and its words alone, with the way in and read on beneath
-                them. Where it is: the desk in <Means>$[[ The Bookshelf ]]( Dougs Reference Manual / The Bookshelf )</Means>,
+                in the contents' triangle and stands on the jacket's foot, the last row of the card, whether or
+                not a line stands above it; the words fade over a space and a half, not three. The words run to
+                seventy-two characters on a desk. And the catalogue's own desk draws its title and its words
+                alone, with Read Dougs Library and read on beneath them. Where it is: the desk in <Means>$[[ The Bookshelf ]]( Dougs Reference Manual / The Bookshelf )</Means>,
                 the line in <Means>$[[ The Author and the Subject ]]( Dougs Reference Manual / The Author and the Subject )</Means>.
             </Paragraph>
         </Section>
