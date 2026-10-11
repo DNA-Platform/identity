@@ -25,7 +25,7 @@
    node .me/.manual/6-developing-a-library~workbench.mjs look dougs-story/#closure phone at=.pd-title
    ```
 
-   A look waits for the save to reach the open page, prints what it found, and names a photograph. Read the photograph. Everything else is asked in the same call: `read=` what an element says, `style=` what it computes to, `box=` where it stands, `after=` what is drawn before and after it, `rules=` every rule that names a word in the order they apply, `at=` one element alone, `click=` a press first, `phone` a phone's width, `fresh` a new load. The whole list is at the head of [the file](../../../../.me/.manual/6-developing-a-library~workbench.mjs).
+   A look waits for the save to reach the open page, prints what it found, and names a photograph. Read the photograph. Everything else is asked in the same call: `read=` what an element says, `style=` what it computes to, `box=` where it stands, `after=` what is drawn before and after it, `rules=` every rule that names a word in the order they apply, `at=` one element alone, `click=` a press first, `phone` a phone's width, `fresh` a new load. Two tells from Sprint 107: a look at the built site reads the tab as it was first opened, since a bound page has nothing to hot-reload, so say `fresh` or read the bind before; and `at=` photographs an element on the screen alone, so one below the fold comes back blank and is scrolled into view by a probe instead. The whole list is at the head of [the file](../../../../.me/.manual/6-developing-a-library~workbench.mjs).
 
 3. **Bind once, when the piece of work is done, and look at what it built.**
 
