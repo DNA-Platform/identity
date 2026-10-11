@@ -1,16 +1,16 @@
 import { Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./An Annotation ]]</Keyed>
         <Title>[[ The Part ]]</Title>
         <Paragraph>
             <Brief />
-            How a book of mine is divided into parts, and how a part is read: the manual said of its chapters, in
+            How a book of mine is divided into parts, and how a part is read: the spread said of its chapters, in
             a context of its own.
         </Paragraph>
         <Section>
@@ -39,7 +39,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 How a part's chapters are read is a format said of each of them, and this library has
-                one, <Means>$[[ the manual ]]( ./The Manual )</Means>, which shows a chapter beside its files. The
+                one, <Means>$[[ the spread ]]( ./The Manual )</Means>, which shows a chapter beside its files. The
                 format is the glue between the part and the page; the part itself says nothing of how anything is
                 drawn. A part read as a manual is a context of its own. While one of its chapters is open the book
                 wears the manual's class, the table shows the part's folder alone, open as a tree, with the book's
@@ -51,12 +51,12 @@ export default () => (
         <Section>
             <Heading>How a part is used</Heading>
             <Paragraph>
-                A chapter in a part says its part and that it is a manual at its head, two lines, and nothing else
+                A chapter in a part says its part and that it is a spread at its head, two lines, and nothing else
                 changes in it. The table lists it under the section headed with the part's name, word for word, and
                 the bind refuses a part read as a manual that no section is headed
                 for. <Means>$[[ The catalogue ]]( Dougs Library / The Catalogue )</Means>, the design book's six
                 chapters on how it is built and my story's one each do this, under the appendix of their tables. A
-                second way of reading a part, when one is wanted, is a format of its own beside the manual's, and
+                second way of reading a part, when one is wanted, is a format of its own beside the spread, and
                 the two would share a base named for both then; there is one today, and it stands in the manual's
                 code.
             </Paragraph>

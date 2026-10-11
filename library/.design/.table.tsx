@@ -1,6 +1,5 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
 import { Appendix, Index } from '../.manual/.book';
-import { TableOfContents } from './o5-the-frame~faces.tsx';
 
 export default () => (
     <Chapter>
@@ -11,51 +10,27 @@ export default () => (
             [[ Table of Contents ]]
         </Title>
         <Section>
-            <Heading>The design</Heading>
+            <Heading>The story</Heading>
             <Paragraph>
-                <Content>$[[ ./The Designs I Am Going With ]]</Content>
+                <Content>$[[ ./Latitude ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./What I Am Asked ]]</Content>
+                <Content>$[[ ./Choosing by number ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./Every Concept ]]</Content>
+                <Content>$[[ ./Building from the sketches ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./Driving the Build ]]</Content>
+                <Content>$[[ ./Designing together ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The Bookshelf ]]</Content>
+                <Content>$[[ ./The bookshelf, in an evening ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The Manual's Page ]]</Content>
+                <Content>$[[ ./The manual's page, in eight rounds ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The Design Book's Page ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Library's Home ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./A Reference Manual ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./A Grouping of Projects ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./Layout Ideas ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./A Bookish Page ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./Sketched to Decide ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./Sketched from the Build ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The frame on every screen ]]</Content>
+                <Content>$[[ ./Designing this book ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Parenthetical />
@@ -71,25 +46,28 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Heading>The designs</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Bookshelf ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Manual's Page ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Design Book's Page ]]</Content>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The sketches</Heading>
+            <Paragraph>
+                <Content>$[[ ./Every Concept ]]</Content>
+            </Paragraph>
+        </Section>
+        <Section>
             <Appendix />
             <Heading>How this book is built</Heading>
             <Paragraph>
-                <Content>$[[ ./The Paragraphs ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Concept ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Camera ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Gallery ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Frame ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Print ]]</Content>
+                <Content>$[[ ./The Portfolio ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>

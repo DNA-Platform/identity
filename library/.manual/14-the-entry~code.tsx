@@ -4,7 +4,7 @@ import { $Annotation, $Chapter, $Content, $Format, $Paragraph, $Parenthetical, $
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { FileTab as fileTab, fileNameOf } from './2-the-listing~code.tsx';
 import { $Switch } from './9-the-switch~code.tsx';
-import { $Manual } from './10-the-manual~code.tsx';
+import { $Spread } from './10-the-manual~code.tsx';
 import { Split as split } from './10-the-manual~annotations.tsx';
 import { $Coloured } from './18-the-colour~code.tsx';
 import { $Scheme, $Volume } from './19-the-cover~code.tsx';
@@ -81,9 +81,9 @@ export class $Index extends $Annotation {
             paragraph.annotations.add(this,
                 <Entry />
             );
-            const manual = book.chapterAt(contentOf(paragraph)!.identifier)?.annotations.expressed($Manual);
-            if (manual === undefined) continue;
-            const files = manual.files;
+            const spread = book.chapterAt(contentOf(paragraph)!.identifier)?.annotations.expressed($Spread);
+            if (spread === undefined) continue;
+            const files = spread.files;
             paragraph.text.add(this,
                 <FoldChevron
                     foldedWriting={files.length === 0 ? undefined : paragraph}
@@ -94,7 +94,7 @@ export class $Index extends $Annotation {
                         key={fileNameOf(file)}
                         file={file}
                         annotation={split}
-                        family={manual.filePanelStates}
+                        family={spread.filePanelStates}
                     />
                 ))
             );

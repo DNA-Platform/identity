@@ -6,8 +6,8 @@ import { $Appendix, Folded as folded, TreeFolder as treeFolder } from './14-the-
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
 import { $Brief, NumberedCode as numberedCode, WordsForward as wordsForward } from './10-the-manual~annotations.tsx';
 
-export class $ManualBook extends $LibraryBook {
-    override specification = new ManualBookSpecification();
+export class $Manual extends $LibraryBook {
+    override specification = new ManualSpecification();
     override get open(): $Chapter | undefined {
         return super.open ?? this.body[0];
     }
@@ -41,13 +41,13 @@ export class $ManualBook extends $LibraryBook {
     }
 }
 
-export class ManualBookSpecification extends LibraryBookSpecification {
+export class ManualSpecification extends LibraryBookSpecification {
     @specify('every chapter of a manual opens with a brief')
-    $everyChapterHasABrief(book: $ManualBook): void {
+    $everyChapterHasABrief(book: $Manual): void {
         $check(book.chapters.every(chapter => chapter.text.find($Paragraph).some(paragraph => paragraph.is($Brief))),
             'every chapter of a manual opens with a brief, and one here has none');
     }
 }
 
-export const ManualBook = $($ManualBook);
-$(ManualBook, tone)(light);
+export const Manual = $($Manual);
+$(Manual, tone)(light);

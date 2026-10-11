@@ -3,7 +3,7 @@ import { $, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Paragraph, $Section, html } from '@dna-platform/public';
 import { FileTab as fileTab, fileNameOf } from './2-the-listing~code.tsx';
 import { $Tab } from './9-the-switch~code.tsx';
-import { $Manual } from './10-the-manual~code.tsx';
+import { $Spread } from './10-the-manual~code.tsx';
 import { Split as split } from './10-the-manual~annotations.tsx';
 
 export class $FileRail extends $Paragraph {
@@ -47,7 +47,7 @@ export class $FileRail extends $Paragraph {
         .pd-book.pa-split & .pd-file-tab[aria-pressed='true'] { color: var(--glow); border-inline-start-color: var(--foot); background: var(--dusk); }
         .pd-book & .pd-file-tab:hover .pd-skeleton, .pd-book.pa-split & .pd-file-tab[aria-pressed='true'] .pd-skeleton { opacity: 0.9; }
     `;
-    get manual(): $Manual | undefined { return this.chapter?.annotations.expressed($Manual); }
+    get spread(): $Spread | undefined { return this.chapter?.annotations.expressed($Spread); }
 
     $FileRail(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
@@ -56,14 +56,14 @@ export class $FileRail extends $Paragraph {
 
     override write(): ReactNode {
         const FileTab = $(fileTab);
-        const manual = this.manual;
-        if (manual === undefined) return undefined;
-        return manual.files.map(file => (
+        const spread = this.spread;
+        if (spread === undefined) return undefined;
+        return spread.files.map(file => (
             <FileTab
                 key={fileNameOf(file)}
                 file={file}
                 annotation={split}
-                family={manual.filePanelStates}
+                family={spread.filePanelStates}
                 skeleton
             />
         ));

@@ -24,6 +24,13 @@ import TheFirst17 from '../../../../.manual/17-the-first';
 import TheColour18 from '../../../../.manual/18-the-colour';
 import TheCover19 from '../../../../.manual/19-the-cover';
 import TheBookshelf20 from '../../../../.manual/20-the-bookshelf';
+import TheParagraphs21 from '../../../../.manual/21-the-paragraphs';
+import TheConcept22 from '../../../../.manual/22-the-concept';
+import TheGallery23 from '../../../../.manual/23-the-gallery';
+import TheRoom24 from '../../../../.manual/24-the-room';
+import ThePortfolio25 from '../../../../.manual/25-the-portfolio';
+import TheCamera26 from '../../../../.manual/26-the-camera';
+import ThePrint27 from '../../../../.manual/27-the-print';
 import TheKeyo1 from '../../../../.manual/o1-the-key';
 import ATypeOfBooko2 from '../../../../.manual/o2-a-type-of-book';
 import AThemeo3 from '../../../../.manual/o3-a-theme';
@@ -60,6 +67,13 @@ export const book = () => (
         {TheColour18()}
         {TheCover19()}
         {TheBookshelf20()}
+        {TheParagraphs21()}
+        {TheConcept22()}
+        {TheGallery23()}
+        {TheRoom24()}
+        {ThePortfolio25()}
+        {TheCamera26()}
+        {ThePrint27()}
         {TheKeyo1()}
         {ATypeOfBooko2()}
         {AThemeo3()}

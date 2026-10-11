@@ -1,11 +1,11 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./An Annotation ]]</Keyed>
         <Title>[[ The Entry ]]</Title>
         <Paragraph>
@@ -49,7 +49,7 @@ export default () => (
                 In the manual the entries stand as a tree. A folder is said of each section of the table, with a
                 chevron that folds it and a mark that leads to the section's first chapter, and a chapter's files
                 stand under its row as presses, which the index gives the row at bind, where it says of each row
-                that it is an entry, reading whether the row's chapter is read as a manual and which files it
+                that it is an entry, reading whether the row's chapter is a spread and which files it
                 appends. The chevron is a switch said of the section, and the key stands folded from the start. The tree's look is the folder's own,
                 carried by its layer and read off the book's theme, so a section said to be a folder in any book of
                 mine folds and reads as the manual's tree does, in that book's colours: the base book says a folder

@@ -1,11 +1,11 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./A Layout ]]</Keyed>
         <Title>[[ The Layout ]]</Title>
         <Paragraph>
@@ -35,7 +35,7 @@ export default () => (
                 parts — the paging, the regions, the grid, the phone — and it is given to every book when the
                 book is defined, so it is always there. It is also the one thing on the page that knows the
                 book's address, so it is the layout that lights the library's subject that is this book, by a
-                rule that names that address; and it reads whether the open chapter is read as a manual and
+                rule that names that address; and it reads whether the open chapter is a spread and
                 wears the manual's class on the book while it is, which is the context the tree reads. That is why a tone, a reading and a
                 paper can be annotations that add a class and nothing else: the rules that read the class live
                 in a container that never leaves.

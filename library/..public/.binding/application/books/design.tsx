@@ -4,18 +4,18 @@ import $Book from '../../../../.design/.book';
 import Cover from '../../../../.design/.cover';
 import Synopsis from '../../../../.design/.synopsis';
 import Table from '../../../../.design/.table';
-import TheDesignsIAmGoingWith1 from '../../../../.design/1-the-designs-i-am-going-with';
-import WhatIAmAsked2 from '../../../../.design/2-what-i-am-asked';
-import EveryConcept3 from '../../../../.design/3-every-concept';
-import DrivingTheBuild4 from '../../../../.design/4-driving-the-build';
-import TheBookshelf5 from '../../../../.design/5-the-bookshelf';
-import TheManualsPage6 from '../../../../.design/6-the-manuals-page';
-import TheParagraphso1 from '../../../../.design/o1-the-paragraphs';
-import TheConcepto2 from '../../../../.design/o2-the-concept';
-import TheCamerao3 from '../../../../.design/o3-the-camera';
-import TheGalleryo4 from '../../../../.design/o4-the-gallery';
-import TheFrameo5 from '../../../../.design/o5-the-frame';
-import ThePrinto6 from '../../../../.design/o6-the-print';
+import Latitude1 from '../../../../.design/1-latitude';
+import ChoosingByNumber2 from '../../../../.design/2-choosing-by-number';
+import BuildingFromTheSketches3 from '../../../../.design/3-building-from-the-sketches';
+import DesigningTogether4 from '../../../../.design/4-designing-together';
+import TheBookshelfInAnEvening5 from '../../../../.design/5-the-bookshelf-in-an-evening';
+import TheManualsPageInEightRounds6 from '../../../../.design/6-the-manuals-page-in-eight-rounds';
+import DesigningThisBook7 from '../../../../.design/7-designing-this-book';
+import TheBookshelf8 from '../../../../.design/8-the-bookshelf';
+import TheManualsPage9 from '../../../../.design/9-the-manuals-page';
+import TheDesignBooksPage10 from '../../../../.design/10-the-design-books-page';
+import EveryConcept11 from '../../../../.design/11-every-concept';
+import ThePortfolioo1 from '../../../../.design/o1-the-portfolio';
 
 const Book = $($Book);
 
@@ -24,18 +24,18 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {TheDesignsIAmGoingWith1()}
-        {WhatIAmAsked2()}
-        {EveryConcept3()}
-        {DrivingTheBuild4()}
-        {TheBookshelf5()}
-        {TheManualsPage6()}
-        {TheParagraphso1()}
-        {TheConcepto2()}
-        {TheCamerao3()}
-        {TheGalleryo4()}
-        {TheFrameo5()}
-        {ThePrinto6()}
+        {Latitude1()}
+        {ChoosingByNumber2()}
+        {BuildingFromTheSketches3()}
+        {DesigningTogether4()}
+        {TheBookshelfInAnEvening5()}
+        {TheManualsPageInEightRounds6()}
+        {DesigningThisBook7()}
+        {TheBookshelf8()}
+        {TheManualsPage9()}
+        {TheDesignBooksPage10()}
+        {EveryConcept11()}
+        {ThePortfolioo1()}
     </Book>
 );
 

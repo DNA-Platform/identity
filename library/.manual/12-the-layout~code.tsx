@@ -4,7 +4,7 @@ import { $, selection } from '@dna-platform/chemistry';
 import { $Chapter, $Paginated, $Writing } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
-import { $Manual } from './10-the-manual~code.tsx';
+import { $Spread } from './10-the-manual~code.tsx';
 import { $Scheme } from './19-the-cover~code.tsx';
 
 export class $Layout extends $Paginated {
@@ -51,7 +51,7 @@ export class $Layout extends $Paginated {
         writing.classes.add(this, 'pa-layout');
         const open = (this.book as $LibraryBook).open;
         if (open !== undefined) writing.classes.add(this, 'pa-turned');
-        if (open?.is($Manual)) writing.classes.add(this, 'pa-manual');
+        if (open?.is($Spread)) writing.classes.add(this, 'pa-manual');
     }
 
     override erase(writing: $Writing): void {

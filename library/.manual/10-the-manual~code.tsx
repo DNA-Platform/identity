@@ -5,10 +5,10 @@ import { FilePanelGrip as filePanelGrip, FileRail as fileRail } from './7-the-ra
 import { FilePanel as filePanel } from './11-the-panel~code.tsx';
 import { CodeForward as codeForward, Split as split, WordsForward as wordsForward } from './10-the-manual~annotations.tsx';
 
-export class $Manual extends $Format {
-    specification = new ManualSpecification();
+export class $Spread extends $Format {
+    specification = new SpreadSpecification();
     $openFile: $Append | undefined = undefined;
-    spread: ElementType = selection.div`
+    grid: ElementType = selection.div`
         --night: color-mix(in oklch, #0f2a33 55%, #2b363c);
         --dusk: color-mix(in oklch, #17363f 55%, #343f45);
         --dawn: color-mix(in oklch, #17363f 40%, #4a5560);
@@ -108,9 +108,9 @@ export class $Manual extends $Format {
         return [wordsForward, split, codeForward];
     }
 
-    $Manual(...chemicals: $Chemical[]) {
+    $Spread(...chemicals: $Chemical[]) {
         this.$Format(...chemicals);
-        const Spread = this.spread;
+        const Grid = this.grid;
         const FilePanel = $(filePanel);
         const FileRail = $(fileRail);
         const FilePanelGrip = $(filePanelGrip);
@@ -118,7 +118,7 @@ export class $Manual extends $Format {
             const chapter = this.parent as $Chapter;
             const open = [...chapter.classes].includes('pa-open');
             return (
-                <Spread className={`${className ?? ''}${open ? ' pa-open' : ''}`.trim()}>
+                <Grid className={`${className ?? ''}${open ? ' pa-open' : ''}`.trim()}>
                     <div className="pd-words">
                         {children}
                     </div>
@@ -133,14 +133,14 @@ export class $Manual extends $Format {
                             />
                         </>
                     ) : undefined}
-                </Spread>
+                </Grid>
             );
         };
     }
 
     override defines(writing: $Writing): void {
         super.defines(writing);
-        writing.classes.add(this, 'pa-manual');
+        writing.classes.add(this, 'pa-spread');
     }
 
     override erase(writing: $Writing): void {
@@ -149,11 +149,11 @@ export class $Manual extends $Format {
     }
 }
 
-export class ManualSpecification extends AnnotationSpecification {
-    @specify('a manual is a chapter read beside its files')
+export class SpreadSpecification extends AnnotationSpecification {
+    @specify('a spread is a chapter read beside its files')
     $isAChapter(writing: $Writing): void {
-        $check(writing instanceof $Chapter, 'a manual is a chapter read beside its files, and this is not a chapter');
+        $check(writing instanceof $Chapter, 'a spread is a chapter read beside its files, and this is not a chapter');
     }
 }
 
-export const Manual = $($Manual);
+export const Spread = $($Spread);

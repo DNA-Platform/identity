@@ -1,12 +1,12 @@
 import { Chapter, Heading, Paragraph, Section, Svg, Title } from '@dna-platform/public';
 import { Coloured } from './18-the-colour~code.tsx';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./An Annotation ]]</Keyed>
         <Coloured>#185056</Coloured>
         <Title>[[ An Annotation ]]</Title>

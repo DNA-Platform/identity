@@ -1,11 +1,11 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./A Noun ]]</Keyed>
         <Title>[[ The Rail ]]</Title>
         <Paragraph>
@@ -31,7 +31,7 @@ export default () => (
                 that stands in the panel's tabs and in the chapter's row of the table of contents, given the file
                 it stands for and reading the rest off it. The grip is a tab, the switch that chooses one reading
                 among the three, drawn as the strip itself with the sketch inside it. Both read the chapter they
-                stand in through <Means>$[[ the manual ]]( ./The Manual )</Means> said of it, both carry their own
+                stand in through <Means>$[[ the spread ]]( ./The Manual )</Means> said of it, both carry their own
                 rules on their own element, and <Means>$[[ the panel ]]( ./The Panel )</Means> is their sibling in
                 the spread's grid, which says where each stands and when each is shown.
             </Paragraph>
@@ -39,7 +39,7 @@ export default () => (
         <Section>
             <Heading>How a rail is used</Heading>
             <Paragraph>
-                A chapter that says it is a manual has a rail and a grip; nothing else is written. On a phone
+                A chapter that says it is a spread has a rail and a grip; nothing else is written. On a phone
                 neither is shown, since the files stand under the words there.
             </Paragraph>
         </Section>

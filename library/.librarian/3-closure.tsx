@@ -19,14 +19,14 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 So the script was retired. What it did is
-                now <Means>$[[ the camera ]]( Dougs Design / The Camera )</Means>, a chapter at the back of the
+                now <Means>$[[ the camera ]]( Dougs Reference Manual / The Camera )</Means>, a chapter at the back of the
                 design book that prints the file that takes the photographs. Each sketch is shown once,
                 in <Means>$[[ Every Concept ]]( Dougs Design / Every Concept )</Means>, with its page and its two
                 photographs kept beside that chapter. Any other chapter links to a sketch by its number,
-                as <Means>$[[ the designs I am going with ]]( Dougs Design / The Designs I Am Going With )</Means> does,
-                and <Means>$[[ the concept ]]( Dougs Design / The Concept )</Means> says how. My
+                as <Means>$[[ the designs I am going with ]]( Dougs Design / Choosing by number )</Means> does,
+                and <Means>$[[ the concept ]]( Dougs Reference Manual / The Concept )</Means> says how. My
                 answers had been kept in a file outside as well, and are now written by hand under their questions
-                in <Means>$[[ What I Am Asked ]]( Dougs Design / What I Am Asked )</Means>.
+                in <Means>$[[ What I Am Asked ]]( Dougs Design / Choosing by number )</Means>.
             </Paragraph>
         </Section>
         <Section>
@@ -82,13 +82,13 @@ export default () => (
             <Paragraph>
                 <List />
                 <Line>
-                    <Means>$[[ The concept ]]( Dougs Design / The Concept )</Means>, a numbered sketch of one idea.
+                    <Means>$[[ The concept ]]( Dougs Reference Manual / The Concept )</Means>, a numbered sketch of one idea.
                 </Line>
                 <Line>
-                    <Means>$[[ The paragraphs ]]( Dougs Design / The Paragraphs )</Means>, which say what was asked, what I said and what I chose.
+                    <Means>$[[ The paragraphs ]]( Dougs Reference Manual / The Paragraphs )</Means>, which say what was asked, what I said and what I chose.
                 </Line>
                 <Line>
-                    <Means>$[[ The camera ]]( Dougs Design / The Camera )</Means>, which photographs each sketch.
+                    <Means>$[[ The camera ]]( Dougs Reference Manual / The Camera )</Means>, which photographs each sketch.
                 </Line>
             </Paragraph>
             <Paragraph>

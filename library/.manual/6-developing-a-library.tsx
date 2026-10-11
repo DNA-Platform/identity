@@ -1,11 +1,11 @@
 import { Append, Chapter, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./A Tool ]]</Keyed>
         <Title>[[ Developing a Library ]]</Title>
         <Paragraph>
@@ -45,7 +45,7 @@ export default () => (
                 A look takes under a second, because the browser is already open and the page is already
                 drawn. It can press something first, load the page again as a reader arriving would, and say
                 which of the rules that name a thing wins. What the workbench does for a book is
-                what <Means>$[[ the camera ]]( Dougs Design / The Camera )</Means> does for a concept, and it is kept
+                what <Means>$[[ the camera ]]( ./The Camera )</Means> does for a concept, and it is kept
                 here for the same reason the camera is kept there, which is told
                 in <Means>$[[ Closure ]]( Dougs Story / Closure )</Means>.
             </Paragraph>

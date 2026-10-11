@@ -2,6 +2,7 @@ import { ElementType, ReactNode } from 'react';
 import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Author, $Chapter, $Cover, $Format, $Paragraph, $Subject, $Svg, $Synopsis, $Word, $Writing, AnnotationSpecification, ContainerProps, CoverSpecification, Reference as reference, Word as word, html, specify } from '@dna-platform/public';
 import { Label as label } from './8-the-author-and-the-subject~code.tsx';
+import { $Design } from './24-the-room~code.tsx';
 
 export const painted = (cover: $Chapter | undefined, node: ReactNode, key?: number): ReactNode => {
     const Painted = cover?.annotations.expressed($Scheme)?.painted;
@@ -340,8 +341,8 @@ export class WindowSpecification extends AnnotationSpecification {
 export class VolumeSpecification extends AnnotationSpecification {
     @specify('a volume is a chapter that stands for another book')
     $saidOfAChapterStandingForABook(writing: $Writing): void {
-        $check(writing instanceof $Chapter && (writing.is($Synopsis) || writing.is($Cover)),
-            'a volume is a chapter that stands for another book, a synopsis of it or a cover filed under it, and this is neither');
+        $check(writing instanceof $Chapter && (writing.is($Synopsis) || writing.is($Cover) || writing.is($Design)),
+            'a volume is a chapter that stands for another book, a synopsis of it, a cover filed under it or a design of it, and this is none');
     }
 
     @specify('a volume holds the cover of a book its chapter stands for')
@@ -350,9 +351,10 @@ export class VolumeSpecification extends AnnotationSpecification {
             writing.annotations.expressed($Synopsis)?.means?.identifier,
             writing.annotations.expressed($Subject)?.means?.identifier,
             writing.annotations.expressed($Author)?.means?.identifier,
+            writing.annotations.expressed($Design)?.identifier,
         ];
         $check(writing.annotations.find($Volume).every(volume => volume.cover?.is($Cover) === true && stoodFor.includes(volume.cover.mention?.identifier)),
-            'a volume holds the cover of a book its chapter stands for, the book a synopsis is of or the subject or author a cover is filed under, and one here holds something else');
+            'a volume holds the cover of a book its chapter stands for, the book a synopsis or a design is of or the subject or author a cover is filed under, and one here holds something else');
     }
 }
 

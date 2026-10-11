@@ -1,11 +1,11 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./A Type of Book ]]</Keyed>
         <Title>[[ The Bookshelf ]]</Title>
         <Paragraph>
@@ -64,10 +64,10 @@ export default () => (
                 is the desk and the shelf, and the part that says how this book is built stands at the foot as a
                 heading and a row. Built, once that row is pressed, the part's folder stands alone as the
                 manual's tree with the book's name at its head, the shelf and the desk step aside, and the open
-                chapter is shown beside its file by <Means>$[[ the manual ]]( ./The Manual )</Means>, which the
-                chapter says it is read in, in this book's own colours; the name at the head of the tree leads
-                back. Which view stands is the class the layout puts on the book while a manual chapter is open,
-                and the shelf's own rules name the desk and reach nothing of the manual's.
+                chapter is shown beside its file by <Means>$[[ the spread ]]( ./The Manual )</Means>, which the
+                chapter says at its head, in this book's own colours; the name at the head of the tree leads
+                back. Which view stands is the class the layout puts on the book while a spread is open,
+                and the shelf's own rules name the desk and reach nothing of the spread's.
             </Paragraph>
         </Section>
         <Append

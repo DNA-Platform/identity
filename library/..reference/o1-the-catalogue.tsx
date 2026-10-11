@@ -1,10 +1,10 @@
 import { Append, Chapter, Heading, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
-import { Manual } from '../.manual/.book';
+import { Spread } from '../.manual/.book';
 
 export default () => (
     <Chapter>
         <Part>How this book is built</Part>
-        <Manual />
+        <Spread />
         <Title>[[ The Catalogue ]]</Title>
         <Section>
             <Heading>How this book is laid out</Heading>
@@ -47,7 +47,7 @@ export default () => (
                 the contents as a heading and a row. Built, which is where this chapter is read, that part stands
                 alone as a tree with the book's name at its head, the shelf and the desk step aside, and this
                 chapter is shown beside its file as the reference manual shows a chapter, because it says at its
-                head which part it is in and that it is read as a manual: <Means>$[[ the part ]]( Dougs Reference Manual / The Part )</Means> and <Means>$[[ the manual ]]( Dougs Reference Manual / The Manual )</Means> are
+                head which part it is in and that it is a spread: <Means>$[[ the part ]]( Dougs Reference Manual / The Part )</Means> and <Means>$[[ the spread ]]( Dougs Reference Manual / The Manual )</Means> are
                 both the reference manual's. Which view stands is a class the manual puts on the book while
                 one of its chapters is open; this chapter's row is the way in, and the name at the head of the
                 tree the way out.

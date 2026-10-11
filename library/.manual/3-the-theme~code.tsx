@@ -20,6 +20,7 @@ export class $LibraryBookTheme extends $Theme {
     barHeight = '50px';
     beat = '320ms';
     narrow = '48rem';
+    phoneWidth = '390px';
     colour = '#4e9eb9';
     accent = '#166178';
     bar = '#0c1b1f';
@@ -75,6 +76,19 @@ export class $LibraryBookTheme extends $Theme {
     volume = '11.5rem';
     cover = '8.25rem';
     card = '18rem';
+    barLight = '#ffffff';
+    barMid = '#f1f7f9';
+    barDeep = '#e3f5fa';
+    barShadow = 'none';
+    sideLight = '#ffffff';
+    sideDeep = '#e3f5fa';
+    codeGround = '#f1f7f9';
+    hairline = '1px';
+    stroke = '2px';
+    rise = '-1px';
+    gloss = 'none';
+    ring = '0 0 0 2px #c8f4fb';
+    decisionShadow = 'none';
     photo = '7rem';
     radius = '0.375rem';
     barTint = '#ffffff';
@@ -116,6 +130,7 @@ export class $LibraryBookTheme extends $Theme {
     protected figures(): RuleSet {
         return css`
             .pd-image img { display: block; max-width: 100%; height: auto; }
+            .pa-phone .pd-image img { max-width: min(100%, ${({ theme }) => theme.phoneWidth}); }
             .pd-code { font-family: ${({ theme }) => theme.mono}; overflow-x: auto; }
         `;
     }

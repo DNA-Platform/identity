@@ -1,22 +1,23 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./A Type of Book ]]</Keyed>
         <Title>[[ The Manual ]]</Title>
         <Paragraph>
             <Brief />
-            The view that shows a chapter beside its file, read code first or words first, and the type of book
-            that is one manual through.
+            The spread, the view that shows a chapter beside its file, read code first or words first, and the
+            type of book that is one manual through.
         </Paragraph>
         <Section>
             <Heading>What a manual is</Heading>
             <Paragraph>
-                A manual is a format said of a chapter: the chapter is shown beside its files, as <Means>$[[ Side by Side ]]( Dougs Design / Side by Side )</Means> has
+                A manual is the type of book whose every chapter is a spread, and a spread is a format said of a
+                chapter: the chapter is shown beside its files, as <Means>$[[ Side by Side ]]( Dougs Design / Side by Side )</Means> has
                 it, read two ways, <Means>$[[ the code in front ]]( Dougs Design / The Code in Front )</Means> and <Means>$[[ the words in front ]]( Dougs Design / The Words in Front )</Means>, and
                 between them a split. Every chapter of this book says it at its head, and so does any chapter of
                 mine that documents a tool with the tool's file beside it: the catalogue's one chapter on how it is
@@ -27,20 +28,20 @@ export default () => (
         <Section>
             <Heading>How a manual fits the library's patterns</Heading>
             <Paragraph>
-                A manual is a format said of a chapter, and the one way <Means>$[[ a part ]]( ./The Part )</Means> is
-                read here. Its layer is the spread, a grid that holds the chapter's words and three things that
+                A spread is a format said of a chapter, and the one way <Means>$[[ a part ]]( ./The Part )</Means> is
+                read here. Its layer is a grid that holds the chapter's words and three things that
                 are nouns of their own: <Means>$[[ the panel ]]( ./The Panel )</Means>, with its tabs and its
                 listings; and <Means>$[[ the rail ]]( ./The Rail )</Means> of file presses, with the grip that
                 stands in for it when the panel has the page. Each of the three is a writing with its own element
                 and its own rules, fetched through the scope so another manual may register its own; the spread
                 says only where each stands in its grid, and dresses the words. Which file is in front is the
-                manual's own state, a file set by a press and read by the tabs, the rail and the listings
+                spread's own state, a file set by a press and read by the tabs, the rail and the listings
                 through the chapter they stand in. The file panel's states are three annotations on the book, one in front at
-                a time, and the options three more, each a switch. While a manual chapter is open the book wears
+                a time, and the options three more, each a switch. While a spread is open the book wears
                 the layout's class for it, which is the context: the side bar shows the part's folder alone as a
                 tree, with the book's own name at its head as the root, and the rest of the table steps aside; and
-                the index gives each row of the table that leads to a manual chapter its chevron and its file
-                presses at the bind. In this book every chapter is a manual and none says a part, so every folder
+                the index gives each row of the table that leads to a spread its chevron and its file
+                presses at the bind. In this book every chapter is a spread and none says a part, so every folder
                 is always open and there is no way out, since the book is the manual.
             </Paragraph>
             <Paragraph>
@@ -48,10 +49,10 @@ export default () => (
                 opens on its first chapter when none is named, has the words in front and the line numbers on by
                 default, wears the light tone, says a folder of every section and no way out, and registers its
                 theme and its numbered entry, which notes the icon and the number beside each row. That is some
-                fifteen lines in a file of its own beside the manual's, since the base book draws a manual chapter
+                fifteen lines in a file of its own beside the spread's, since the base book draws a spread
                 and this book extends the base book, and a class never extends across a module cycle; another
                 subject's manual extends it in one line. Its theme is values, its bar and its wash; the spread's
-                look is the manual's wherever a manual stands.
+                look is its own wherever a spread stands.
             </Paragraph>
             <Paragraph>
                 The brief is a paragraph said to be so, written after every chapter's title: a much smaller synopsis
@@ -64,8 +65,8 @@ export default () => (
         <Section>
             <Heading>How a manual is used</Heading>
             <Paragraph>
-                A chapter about a tool says it is a manual at its head, writes its title, a paragraph that says it
-                is brief, its sections, and an append for each file beside it; the manual draws the rest. A new tool
+                A chapter about a tool says it is a spread at its head, writes its title, a paragraph that says it
+                is brief, its sections, and an append for each file beside it; the spread draws the rest. A new tool
                 is a new chapter beside its file, listed in the table under its group. In a book that has parts the
                 chapter says its part too, and the table lists it under the part's section.
             </Paragraph>

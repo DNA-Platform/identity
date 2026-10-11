@@ -1,11 +1,11 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./A Type of Book ]]</Keyed>
         <Title>[[ The Book ]]</Title>
         <Paragraph>
@@ -53,7 +53,7 @@ export default () => (
                 its head, which it leaves to its switches, and what stands below the pages, its shelf, names its
                 entries as pages, and says a desk of its own synopsis and of each book's at bind; <Means>$[[ the manual ]]( ./The Manual )</Means> overrides
                 its switches and gives itself the spread that sets a chapter beside its file; <Means>$[[ my story ]]( Dougs Story / The Sheet )</Means> overrides
-                its head and what stands above the pages, and <Means>$[[ the design book ]]( Dougs Design / The Frame )</Means> says
+                its head and what stands above the pages, and <Means>$[[ the design book ]]( ./The Portfolio )</Means> says
                 which chapter opens when none is named. Each is a few lines, because the frame is this class's.
             </Paragraph>
         </Section>
@@ -72,7 +72,7 @@ export default () => (
                 each <Means>$[[ part's ]]( ./The Part )</Means> section at bind, and the root, the row at the head of
                 the tree that leads back out of a part, which a type may say it has none of; it refuses a part
                 read as a manual that no section is headed for; and its layout reads whether the open chapter is
-                a manual to put the class on the book that is the context.
+                a spread to put the class on the book that is the context.
             </Paragraph>
         </Section>
         <Section>

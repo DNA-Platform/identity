@@ -1,6 +1,5 @@
 import { Author, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
-import { Illustration, Scheme, Volume, Window } from '../.manual/.book';
-import { Cover } from './o5-the-frame~faces.tsx';
+import { Illustration, PortfolioCover as Cover, Scheme, Volume, Window } from '../.manual/.book';
 import LibraryCover from '../..reference/.cover.tsx';
 import StoryCover from '../.librarian/.cover.tsx';
 

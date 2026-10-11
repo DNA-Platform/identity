@@ -1,11 +1,11 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./A Noun ]]</Keyed>
         <Title>[[ The Listing ]]</Title>
         <Paragraph>
@@ -40,7 +40,7 @@ export default () => (
                 A listing is a paragraph with content of its own: the file's name as a word, and the file as the
                 framework's own code figure, numbered and coloured. It is given the file it stands for, an append
                 of its chapter, and reads its name, its type and its chapter off it; whether it is the one in
-                front it reads from <Means>$[[ the manual ]]( ./The Manual )</Means> said of that chapter, and the
+                front it reads from <Means>$[[ the spread ]]( ./The Manual )</Means> said of that chapter, and the
                 press that puts a file in front is the same file press wherever it stands, in the panel's tabs,
                 in <Means>$[[ the rail ]]( ./The Rail )</Means> with the name turned on its side, or in the chapter's
                 row of the table.

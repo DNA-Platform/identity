@@ -23,7 +23,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 I was asked about them by letter, and what I said is kept under each question
-                in <Means>$[[ What I Am Asked ]]( Dougs Design / What I Am Asked )</Means>. Two questions are still
+                in <Means>$[[ What I Am Asked ]]( Dougs Design / Choosing by number )</Means>. Two questions are still
                 open: where I am on a screen, and what goes at the right of a page.
             </Paragraph>
         </Section>
@@ -31,7 +31,7 @@ export default () => (
             <Heading>One design for each type of book</Heading>
             <Paragraph>
                 What came of it is one design for each type of book, kept
-                in <Means>$[[ The Designs I Am Going With ]]( Dougs Design / The Designs I Am Going With )</Means> with
+                in <Means>$[[ The Designs I Am Going With ]]( Dougs Design / Choosing by number )</Means> with
                 the story of how each came to be.
             </Paragraph>
             <Paragraph>

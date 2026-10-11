@@ -1,6 +1,6 @@
-import { $ManualBook } from './10-the-manual~book.tsx';
+import { $Manual } from './10-the-manual~book.tsx';
 
-export default class $ReferenceManual extends $ManualBook { }
+export default class $ReferenceManual extends $Manual { }
 
 export * from './1-the-book~code.tsx';
 export * from './1-the-book~said.tsx';
@@ -26,4 +26,11 @@ export * from './19-the-cover~code.tsx';
 export * from './20-the-bookshelf~theme.tsx';
 export * from './20-the-bookshelf~code.tsx';
 export * from './10-the-manual~annotations.tsx';
+export * from './21-the-paragraphs~code.tsx';
+export * from './22-the-concept~code.tsx';
+export * from './23-the-gallery~code.tsx';
+export * from './24-the-room~code.tsx';
+export * from './25-the-portfolio~code.tsx';
+export * from './25-the-portfolio~theme.tsx';
+export * from './25-the-portfolio~faces.tsx';
 export * from './o1-the-key~code.tsx';

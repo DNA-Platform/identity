@@ -3,7 +3,7 @@ import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Append, $Chapter, $Paragraph, $Writing, AnnotationSpecification, Code as code, ContainerProps, Given, Word as word, html, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { $Tab } from './9-the-switch~code.tsx';
-import { $Manual } from './10-the-manual~code.tsx';
+import { $Spread } from './10-the-manual~code.tsx';
 import { $Keyed } from './o1-the-key~code.tsx';
 
 export const languages: Record<string, string> = { tsx: 'typescript', ts: 'typescript', mjs: 'javascript', js: 'javascript', css: 'css', html: 'xml', svg: 'xml', json: 'json', md: 'markdown' };
@@ -15,8 +15,8 @@ export const fileNameOf = (file: $Append): string => `${file.$identifier}${file.
 export const fileLinesOf = (file: $Append | undefined): string[] =>
     file === undefined ? [] : html.copy(file.text).split('\n');
 
-export const manualOf = (file: $Append | undefined): $Manual | undefined =>
-    file?.chapter?.annotations.expressed($Manual);
+export const spreadOf = (file: $Append | undefined): $Spread | undefined =>
+    file?.chapter?.annotations.expressed($Spread);
 
 export class $FileListing extends $Paragraph {
     $file?: $Append;
@@ -24,7 +24,7 @@ export class $FileListing extends $Paragraph {
     $family: Given<$Annotation>[] = [];
     get name(): string { return this.$file === undefined ? '' : fileNameOf(this.$file); }
     get language(): string { return languages[(this.$file?.$type ?? '').replace(/^\./u, '')] ?? ''; }
-    get manual(): $Manual | undefined { return manualOf(this.$file); }
+    get spread(): $Spread | undefined { return spreadOf(this.$file); }
     override get chapter(): $Chapter | undefined { return this.$file?.chapter ?? super.chapter; }
 
     $FileListing(...chemicals: $Chemical[]) {
@@ -76,7 +76,7 @@ export class $OpenListing extends $Annotation {
 
     override defines(writing: $Writing): void {
         const fileListing = writing as $FileListing;
-        if (fileListing.$file !== undefined && fileListing.manual?.openFile === fileListing.$file) writing.classes.add(this, 'pa-open');
+        if (fileListing.$file !== undefined && fileListing.spread?.openFile === fileListing.$file) writing.classes.add(this, 'pa-open');
     }
 
     override erase(writing: $Writing): void {
@@ -99,10 +99,10 @@ export class $FileTab extends $Tab {
     `;
     override get on(): boolean {
         const chapter = this.$file?.chapter;
-        return chapter !== undefined && chapter === (this.book as $LibraryBook).open && this.manual?.openFile === this.$file;
+        return chapter !== undefined && chapter === (this.book as $LibraryBook).open && this.spread?.openFile === this.$file;
     }
     get name(): string { return this.$file === undefined ? '' : fileNameOf(this.$file); }
-    get manual(): $Manual | undefined { return manualOf(this.$file); }
+    get spread(): $Spread | undefined { return spreadOf(this.$file); }
     get colour(): string { return this.$file?.chapter?.annotations.expressed($Keyed)?.colour ?? ''; }
     get lines(): string[] { return fileLinesOf(this.$file); }
     override get chapter(): $Chapter | undefined { return this.$file?.chapter ?? super.chapter; }
@@ -117,8 +117,8 @@ export class $FileTab extends $Tab {
     }
 
     override press(): void {
-        const manual = this.manual;
-        if (manual !== undefined) manual.$openFile = this.$file;
+        const spread = this.spread;
+        if (spread !== undefined) spread.$openFile = this.$file;
         if (this.$annotation !== undefined) super.press();
     }
 

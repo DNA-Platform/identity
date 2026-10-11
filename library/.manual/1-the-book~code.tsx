@@ -4,7 +4,7 @@ import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Part,
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
-import { $Manual } from './10-the-manual~code.tsx';
+import { $Spread } from './10-the-manual~code.tsx';
 import { $Appendix, $TreeFolder, TreeFolder as treeFolder, TreeRoot as treeRoot, contentOf } from './14-the-entry~code.tsx';
 import { Dark as dark, Light as light, Tone as tone, WhiteOverBlack as whiteOverBlack } from './16-the-tone~code.tsx';
 import { $Logo, $Volume, Logo as logo, Mark as mark, painted } from './19-the-cover~code.tsx';
@@ -193,7 +193,7 @@ export class $LibraryBook extends $Book {
         const table = this.table?.annotations.expressed($TableOfContents);
         for (const part of table?.parts ?? []) {
             const section = this.sectionOf(part);
-            if (section === undefined || section.is($TreeFolder) || !part.chapters.some(chapter => chapter.is($Manual))) continue;
+            if (section === undefined || section.is($TreeFolder) || !part.chapters.some(chapter => chapter.is($Spread))) continue;
             section.annotations.add(this,
                 <TreeFolder />
             );
@@ -238,7 +238,7 @@ export class LibraryBookSpecification extends BookSpecification {
     @specify('a part read as a manual is listed under a section headed with its name')
     $listsEachManualPart(book: $LibraryBook): void {
         const parts = book.table?.annotations.expressed($TableOfContents)?.parts ?? [];
-        const unlisted = parts.find(part => part.chapters.some(chapter => chapter.is($Manual)) && book.sectionOf(part) === undefined);
+        const unlisted = parts.find(part => part.chapters.some(chapter => chapter.is($Spread)) && book.sectionOf(part) === undefined);
         $check(unlisted === undefined,
             `a part read as a manual is listed under a section headed with its name, and "${unlisted?.name}" has none`);
     }

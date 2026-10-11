@@ -1,10 +1,10 @@
 import { Append, Chapter, Heading, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
-import { First, Manual } from '../.manual/.book';
+import { First, Spread } from '../.manual/.book';
 
 export default () => (
     <Chapter>
         <Part>How this book is built</Part>
-        <Manual />
+        <Spread />
         <Title>[[ The Sheet ]]</Title>
         <Section>
             <Heading>How this book is laid out</Heading>
@@ -58,7 +58,7 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 That is the rule I took
-                from <Means>$[[ Matter ]]( Dougs Design / Driving the Build )</Means>: a dark paper carries a
+                from <Means>$[[ Matter ]]( Dougs Design / Designing together )</Means>: a dark paper carries a
                 hint of its own book's hue and never a foreign one. So each paper sets four things, the ground,
                 the paper, the ink and the accent, and the soft words and the hairlines are the ink thinned, as
                 in <Means>$[[ 33 ]]( Dougs Design / Four Schemes )</Means>. The book paper is the one registered on

@@ -3,7 +3,7 @@ import { $, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Paragraph } from '@dna-platform/public';
 import { FileTab as fileTab, FileListing as fileListing, fileNameOf } from './2-the-listing~code.tsx';
 import { Switch as switchOf, Tab as tab } from './9-the-switch~code.tsx';
-import { $Manual } from './10-the-manual~code.tsx';
+import { $Spread } from './10-the-manual~code.tsx';
 import { CodeForward as codeForward, LightCode as lightCode, NumberedCode as numberedCode, Split as split, WordsForward as wordsForward, WrappedCode as wrappedCode } from './10-the-manual~annotations.tsx';
 
 export class $FilePanel extends $Paragraph {
@@ -53,7 +53,7 @@ export class $FilePanel extends $Paragraph {
             .pd-book & { box-shadow: none; }
         }
     `;
-    get manual(): $Manual | undefined { return this.chapter?.annotations.expressed($Manual); }
+    get spread(): $Spread | undefined { return this.chapter?.annotations.expressed($Spread); }
 
     $FilePanel(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
@@ -63,18 +63,18 @@ export class $FilePanel extends $Paragraph {
     override write(): ReactNode {
         const FilePanelBar = $(filePanelBar);
         const FileListing = $(fileListing);
-        const manual = this.manual;
-        if (manual === undefined) return undefined;
+        const spread = this.spread;
+        if (spread === undefined) return undefined;
         return (
             <>
                 <FilePanelBar chapter={this.chapter} />
                 <div className="pd-file-listings">
-                    {manual.files.map(file => (
+                    {spread.files.map(file => (
                         <FileListing
                             key={fileNameOf(file)}
                             file={file}
                             filePanelState={codeForward}
-                            family={manual.filePanelStates}
+                            family={spread.filePanelStates}
                         />
                     ))}
                 </div>
@@ -165,7 +165,7 @@ export class $FilePanelBar extends $Paragraph {
         .pd-book & .pd-options .pd-word.pd-switch:hover { color: var(--glow); }
         .pd-book & .pd-options .pd-word.pd-switch[aria-pressed='true'] { color: var(--glow); background: var(--dawn); border-color: transparent; }
     `;
-    get manual(): $Manual | undefined { return this.chapter?.annotations.expressed($Manual); }
+    get spread(): $Spread | undefined { return this.chapter?.annotations.expressed($Spread); }
 
     $FilePanelBar(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
@@ -176,12 +176,12 @@ export class $FilePanelBar extends $Paragraph {
         const FileTab = $(fileTab);
         const Tab = $(tab);
         const Switch = $(switchOf);
-        const manual = this.manual;
+        const spread = this.spread;
         const chapter = this.chapter;
-        if (manual === undefined) return undefined;
+        if (spread === undefined) return undefined;
         return (
             <>
-                {manual.files.map(file => (
+                {spread.files.map(file => (
                     <FileTab
                         key={fileNameOf(file)}
                         file={file}
@@ -191,7 +191,7 @@ export class $FilePanelBar extends $Paragraph {
                     <Tab
                         chapter={chapter}
                         annotation={wordsForward}
-                        family={manual.filePanelStates}
+                        family={spread.filePanelStates}
                     >
                         words
                     </Tab>
@@ -200,7 +200,7 @@ export class $FilePanelBar extends $Paragraph {
                     <Tab
                         chapter={chapter}
                         annotation={codeForward}
-                        family={manual.filePanelStates}
+                        family={spread.filePanelStates}
                     >
                         full screen
                     </Tab>
@@ -209,7 +209,7 @@ export class $FilePanelBar extends $Paragraph {
                     <Tab
                         chapter={chapter}
                         annotation={split}
-                        family={manual.filePanelStates}
+                        family={spread.filePanelStates}
                     >
                         split
                     </Tab>

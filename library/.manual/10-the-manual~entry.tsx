@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { $, selection } from '@dna-platform/chemistry';
 import type { $LibraryBook } from './1-the-book~code.tsx';
-import { ManualBook } from './10-the-manual~book.tsx';
+import { Manual } from './10-the-manual~book.tsx';
 import { $Entry, Entry } from './14-the-entry~code.tsx';
 import { $Keyed, Icon as icon } from './o1-the-key~code.tsx';
 
@@ -29,4 +29,4 @@ export class $NumberedEntry extends $Entry {
 }
 
 export const NumberedEntry = $($NumberedEntry);
-$(ManualBook, Entry)(NumberedEntry);
+$(Manual, Entry)(NumberedEntry);

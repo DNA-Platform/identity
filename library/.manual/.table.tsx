@@ -92,6 +92,30 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Heading>What a portfolio is made of</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Portfolio ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Paragraphs ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Concept ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Gallery ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Room ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Camera ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Print ]]</Content>
+            </Paragraph>
+        </Section>
+        <Section>
             <Heading>Making the library</Heading>
             <Paragraph>
                 <Content>$[[ ./Initializing a Library ]]</Content>

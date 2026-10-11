@@ -1,0 +1,71 @@
+import { Chapter, Heading, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
+
+export default () => (
+    <Chapter>
+        <Part>The story</Part>
+        <Title>[[ The manual's page, in eight rounds ]]</Title>
+        <Section>
+            <Heading>What I come to the manual for</Heading>
+            <Paragraph>
+                The reference manual is the book I build the library with: one chapter to a part, the code that
+                is the part beside the chapter that says what it is and how it is used. I come to its page to
+                find a part, read what it is, and read its code without leaving the words — or to read the
+                code first and the words beside it, which is the other way round. So the page is a chapter and
+                its files, read two ways: words forward, where the chapter is the page and its files stand by;
+                and code forward, where the file is the page and the chapter is a brief beside it. I decided
+                that in the sketch phase — <Means>$[[ the manual read two ways ]]( ./Choosing by number )</Means> —
+                and the switch between them is a thing said of the book, already built; what the page decides
+                is how each reading looks and how one becomes the other.
+            </Paragraph>
+            <Paragraph>
+                The page beside <Means>$[[ The Manual's Page ]]( ./The Manual's Page )</Means> is the manual's own print — every chapter, every brief, every
+                file, the framework's names on every element — made by <Means>$[[ The Print ]]( Dougs Reference Manual / The Print )</Means> and
+                opened from the file. It begins as the manual looks today, set in the frame
+                that <Means>$[[ The Bookshelf ]]( ./The Bookshelf )</Means> decided: the bar is the cover, with
+                the library's mark as the subject I am filed under, my mark and my name, and my author; the
+                contents stand down the side. From there it is changed one thing at a time, and what I decide
+                is written here in my words, as it was for the bookshelf.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>What I decided on the page, in order</Heading>
+            <Paragraph>
+                The two marks stand next to each other, almost like characters, a small space between; resting on
+                the subject's mark shows the logo of the page a press will go to — the library's mark alone and
+                its name in its ink — with a transition worth watching. The form is utilitarian, a code
+                documentation platform's: the words run wide, the index is a file tree with collapsible levels and
+                marks that help a reader understand, tight enough to scale to a codebase, and the fonts blend the
+                bookshelf's into it — the serif where the library's identity lives, the sans where the manual works.
+                Clicking the code expands it; most of a desk's screen was wasted, so the code and the words now share it.
+            </Paragraph>
+            <Paragraph>
+                The transitions of colour, subtle; the moments of drop shadow, pulled back; little moments of nuance
+                at the edge of perception, while the highest-level percept stays elegant and ordinary, the magic a
+                slight feeling. The near-white bars relate differently on different sides of the page, and that
+                stays. The code shows its black on the right; a press docks it as a tab left against the side bar,
+                as in an editor, and if the words are anywhere they are on the right. Three states, and one toggle is
+                the affordance each time, with a hint of the thing it expands. Syntax highlighting for as many
+                languages as possible, and options for how code is viewed.
+            </Paragraph>
+            <Paragraph>
+                Every piece of code has a mark that grounds it in a design and a colour: one of seven sorts, each a
+                shape and a colour, so related code looks related, with a key. The marks have the same square feel as
+                the site's, as if of a type — a statement about what it means for something to have a visual
+                representation — slightly utilitarian, somewhat abstract, always at the left. The mark belongs to the
+                chapter as well as to its files. The groups of the contents no longer read as sentences foreign to a
+                tree: a folder's mark and its own words.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Generalizing the manual</Heading>
+            <Paragraph>
+                The page was one book's. What came after it took three sprints and was its own journey: a part, which is
+                a grouping of chapters the framework now has; the manual read as a view of a part, so an appendix feels like
+                its own reference manual inside another book; and the manual spread out into nouns of its own, the file
+                panel, the rail and the grip, with every name read as English before I would sign it. All of it is in
+                <Means>$[[ The Manual's Page ]]( ./The Manual's Page )</Means> under what was built, and the rules it
+                left are in the reference manual.
+            </Paragraph>
+        </Section>
+    </Chapter>
+);

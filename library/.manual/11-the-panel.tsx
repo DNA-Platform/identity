@@ -1,11 +1,11 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from './10-the-manual~annotations.tsx';
-import { Manual } from './10-the-manual~code.tsx';
+import { Spread } from './10-the-manual~code.tsx';
 import { Keyed } from './o1-the-key~code.tsx';
 
 export default () => (
     <Chapter>
-        <Manual />
+        <Spread />
         <Keyed>$[[ ./A Noun ]]</Keyed>
         <Title>[[ The Panel ]]</Title>
         <Paragraph>
@@ -31,9 +31,9 @@ export default () => (
                 A panel is a paragraph with content of its own, drawn as a box: the tabs, which are a paragraph of
                 switches, and under them <Means>$[[ a listing ]]( ./The Listing )</Means> for each file the chapter
                 appends, the one in front shown and the rest kept. It reads everything it draws off the chapter it
-                stands in, through <Means>$[[ the manual ]]( ./The Manual )</Means> said of that chapter: which files
+                stands in, through <Means>$[[ the spread ]]( ./The Manual )</Means> said of that chapter: which files
                 there are, which is in front, and which states of the panel a tab may choose among. Nothing is handed to it.
-                Its rules are its own, on its own element, and the manual's spread only says where in its grid
+                Its rules are its own, on its own element, and the spread only says where in its grid
                 the panel stands. Another manual that wants a different panel registers its own class for the
                 panel's, and the spread draws that one.
             </Paragraph>
@@ -41,7 +41,7 @@ export default () => (
         <Section>
             <Heading>How a panel is used</Heading>
             <Paragraph>
-                A chapter that says it is a manual has a panel; nothing else is written. A tab pressed shows its
+                A chapter that says it is a spread has a panel; nothing else is written. A tab pressed shows its
                 file; the words tab puts the words back in front; the dock fills the page with the panel, and the
                 grip at the edge, which is <Means>$[[ the rail's ]]( ./The Rail )</Means>, pulls the words back.
             </Paragraph>
