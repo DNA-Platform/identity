@@ -111,7 +111,7 @@
 **To read first, for a brainstorm.** *A start and not a boundary.*
 
 1. **His story**, `.me/.librarian/`, four dated chapters: what the library is for, what was chosen, how it is built and how it is written.
-2. **`.me/.design/1-the-designs-i-am-going-with.tsx`**: the seven designs the build is of.
+2. **`.me/.design/2-choosing-by-number.tsx`**: the seven designs the build is of.
 3. **[How a Library Is Designed](../writing-a-book/01-01-how-a-library-is-designed.md)**: which thing in the library each element of a design is, views as ranks, and what the Binder knows.
 4. **[How a Library Is Developed](../writing-a-book/01-02-how-a-library-is-developed.md)**: before any edit.
 5. **His manual**, `.me/.manual/`: the book file, the theme, and the parts built so far, each beside its chapter.
