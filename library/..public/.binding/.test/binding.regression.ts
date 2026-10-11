@@ -94,6 +94,7 @@ describe('a bind of the test library', () => {
             expect(existsSync(at), `${route.name} was not rendered at ${at}`).toBe(true);
             const html = readFileSync(at, 'utf8');
             expect(html, `${route.name} left #root empty`).not.toContain('<div id="root"></div>');
+            expect(html, `${route.name}'s head does not carry the arrival`).toContain('(document,location.hash);</script>');
             for (const chapter of route.chapters) {
                 expect(chapter.address).toBe(`${route.address}#${chapter.address.split('#')[1]}`);
                 expect(html, `${chapter.name} is not in ${route.name}'s print`).toContain(`id="${chapter.address.split('#')[1]}"`);
@@ -337,8 +338,11 @@ describe('a bind of the test library', () => {
         // AND THE PAGES LIGHTER AGAIN BY S1, the annotations' writing no longer in them: the paper 18,280 bytes before
         // and 12,820 after; the manual holds near 200 KB because it prints the library's own files, which grew with it.
         expect(statSync(placeOf(galley.face, manual)).size).toBeLessThan(200 * 1024);
-        expect(page('A Paper').length).toBeLessThan(14 * 1024);
-        expect(page('The Library').length).toBeLessThan(13 * 1024);
+        // AND HEAVIER BY THE ARRIVAL since 2026-10-11, 1,620 bytes in every page's head so a link to a chapter
+        // shows that chapter at the first paint — Doug: "Hard to feel like the links work."
+        const arrival = 1620;
+        expect(page('A Paper').length).toBeLessThan(14 * 1024 + arrival);
+        expect(page('The Library').length).toBeLessThan(13 * 1024 + arrival);
     });
 
     it('drew the persona\'s poem as three lines, each a div wearing the sentence\'s mark and its own', () => {
@@ -700,7 +704,7 @@ describe('a bind of the test library whose catalogue\'s table leaves out a chapt
         broken = pulled();
         const table = join(broken.library, 'library', '.table.tsx');
         const written = readFileSync(table, 'utf8');
-        const without = written.replace('            <Paragraph><Content>$[[ ./Of Libby ]]</Content></Paragraph>\n', '');
+        const without = written.replace(/ *<Paragraph>\r?\n *<Content>\$\[\[ \.\/Of Libby \]\]<\/Content>\r?\n *<\/Paragraph>\r?\n/u, '');
         if (without === written) throw new Error('the library\'s table no longer writes the entry this stage takes out');
         writeFileSync(table, without);
     });
@@ -722,7 +726,7 @@ describe('a bind of the test library whose catalogue\'s table leaves out a book 
         broken = pulled();
         const table = join(broken.library, 'library', '.table.tsx');
         const written = readFileSync(table, 'utf8');
-        const without = written.replace('<Word><Content>[[ Libby ]]**</Content></Word> ', '');
+        const without = written.replace(/<Word>\s*<Content>\[\[ Libby \]\]\*\*<\/Content>\s*<\/Word> /u, '');
         if (without === written) throw new Error('the library\'s table no longer writes the answer this stage takes out');
         writeFileSync(table, without);
     });

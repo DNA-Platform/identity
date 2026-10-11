@@ -1,8 +1,9 @@
-import { Append, Chapter, Code, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Append, Chapter, Code, Heading, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
 import { Appendix, Catchword } from './.book';
 
 export default () => (
     <Chapter>
+        <Part>The tools</Part>
         <Title>[[ The Book ]]</Title>
         <Section>
             <Heading>What a book is here</Heading>
@@ -34,9 +35,19 @@ export default () => (
                 is the book class every book of this library extends, and the same file is imported from the
                 manual's door by every one of them.
             </Paragraph>
-            <Paragraph><Code identifier="code" numbered /></Paragraph>
+            <Paragraph>
+                <Code
+                    identifier="code"
+                    numbered
+                />
+            </Paragraph>
         </Section>
         <Catchword />
-        <Append identifier="code" type=".tsx">![[ code.tsx ]]</Append>
+        <Append
+            identifier="code"
+            type=".tsx"
+        >
+            ![[ code.tsx ]]
+        </Append>
     </Chapter>
 );

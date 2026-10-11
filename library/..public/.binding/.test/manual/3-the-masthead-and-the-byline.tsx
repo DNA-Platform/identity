@@ -1,8 +1,9 @@
-import { Append, Chapter, Code, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Append, Chapter, Code, Heading, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
 import { Appendix, Catchword } from './.book';
 
 export default () => (
     <Chapter>
+        <Part>The tools</Part>
         <Title>[[ The Masthead and the Byline ]]</Title>
         <Section>
             <Heading>Where a reader is</Heading>
@@ -22,9 +23,19 @@ export default () => (
         <Section>
             <Appendix />
             <Heading>[[[ The masthead's file ]]]</Heading>
-            <Paragraph><Code identifier="code" numbered /></Paragraph>
+            <Paragraph>
+                <Code
+                    identifier="code"
+                    numbered
+                />
+            </Paragraph>
         </Section>
         <Catchword />
-        <Append identifier="code" type=".tsx">![[ code.tsx ]]</Append>
+        <Append
+            identifier="code"
+            type=".tsx"
+        >
+            ![[ code.tsx ]]
+        </Append>
     </Chapter>
 );
