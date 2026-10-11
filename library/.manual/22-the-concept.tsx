@@ -21,9 +21,10 @@ export default () => (
                 precedent; the idea in a sentence, said to be its caption, the one line a card shows; its three
                 photographs; what I said of it, an answer; where it is built when it is, said to be its where, a
                 line that refers to the place and shows only in the concept opened; and last the sketch's own
-                code, said to be its source, which a concept opened across the screen shows under a close, a
-                word written in the section as a link back. The number is drawn where the section says it is a concept, as the note of that
-                saying, so it stands on the card before the name.
+                code, said to be its source, which a concept opened across the screen shows. The number and the
+                way back out of an opened concept are drawn where the section says it is a concept, as the note
+                of that saying, so the number stands on the card before the name and nothing of the screen is
+                written in the section.
             </Paragraph>
             <Paragraph>
                 A photograph is a paragraph that holds one image and says which device it was taken at: a desk,

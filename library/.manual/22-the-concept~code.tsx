@@ -1,10 +1,11 @@
 import { ReactNode } from 'react';
 import { $, $check, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Image, $Paragraph, $Reference, $Section, $Word, $Writing, AnnotationSpecification, html, specify } from '@dna-platform/public';
+import { $Annotation, $Image, $Paragraph, $Reference, $Section, $Word, $Writing, AnnotationSpecification, Reference as reference, Word as word, html, specify } from '@dna-platform/public';
 
 export class $Concept extends $Annotation {
     specification = new ConceptSpecification();
-    span = selection.span.attrs({ className: 'pa-number' })``;
+    span = selection.span.attrs({ className: 'pd-number' })``;
+    close = selection.span.attrs({ className: 'pd-close' })``;
     get number(): number {
         const written = html.copy(this.text).trim();
         return written === '' ? NaN : Number(written);
@@ -12,12 +13,27 @@ export class $Concept extends $Annotation {
 
     override note(): ReactNode {
         const Span = this.span;
-        return <Span>{this.number}</Span>;
+        const Close = this.close;
+        const Word = $(word);
+        const Reference = $(reference);
+        const back = this.chapter?.mention?.identifier;
+        return (
+            <>
+                <Span>{this.number}</Span>
+                {back === undefined ? undefined : (
+                    <Close>
+                        <Word>
+                            <Reference>{back}</Reference>
+                            ×
+                        </Word>
+                    </Close>
+                )}
+            </>
+        );
     }
 
     override defines(writing: $Writing): void {
         writing.classes.add(this, 'pa-concept');
-        if ((writing as $Section).mention?.identifier === this.book?.$bookmark) writing.classes.add(this, 'pa-open');
     }
 
     override erase(writing: $Writing): void {
@@ -109,18 +125,6 @@ export class $Source extends $Annotation {
     }
 }
 
-export class $Close extends $Annotation {
-    specification = new OfAConceptSpecification();
-
-    override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-close');
-    }
-
-    override erase(writing: $Writing): void {
-        writing.classes.revert(this);
-    }
-}
-
 export class $Where extends $Annotation {
     specification = new WhereSpecification();
 
@@ -192,5 +196,4 @@ export const Phone = $($Phone);
 export const Thumbnail = $($Thumbnail);
 export const Precedent = $($Precedent);
 export const Source = $($Source);
-export const Close = $($Close);
 export const Where = $($Where);

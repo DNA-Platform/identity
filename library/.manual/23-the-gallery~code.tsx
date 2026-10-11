@@ -16,6 +16,9 @@ export const thumbnailOf = (concept: $Section): string => {
 export class $Gallery extends $Format {
     specification = new GallerySpecification();
     themeProvider = true;
+    get chapter(): $Chapter { return this.parent as $Chapter; }
+    get concepts(): $Section[] { return (this.book as $LibraryBook).sections(this.chapter).filter(section => section.is($Concept)); }
+    get open(): $Section | undefined { return this.concepts.find(concept => concept.mention?.identifier === this.book?.$bookmark); }
     style = selection.div`
         .pd-book & .pd-chapter.pa-gallery .pd-section {
             display: grid;
@@ -50,21 +53,21 @@ export class $Gallery extends $Format {
             transition: border-color ${({ theme }) => theme.beat} ease, box-shadow ${({ theme }) => theme.beat} ease, transform ${({ theme }) => theme.beat} ease;
         }
         .pd-book & .pa-gallery .pd-section.pa-concept:hover .pa-thumbnail img { border-color: var(--band); box-shadow: ${({ theme }) => theme.lift}; transform: translateY(${({ theme }) => theme.rise}); }
-        .pd-book & .pa-gallery .pd-section.pa-concept .pa-number { grid-area: number; font-size: calc(0.7857 * ${({ theme }) => theme.size}); font-weight: 600; color: var(--foot-ink); font-variant-numeric: tabular-nums; }
-        .pd-book & .pa-gallery .pd-section.pa-concept.pa-designed .pa-number::before, .pd-book & .pa-gallery .pd-section.pa-concept.pa-decided .pa-number::before {
+        .pd-book & .pa-gallery .pd-section.pa-concept .pd-number { grid-area: number; font-size: calc(0.7857 * ${({ theme }) => theme.size}); font-weight: 600; color: var(--foot-ink); font-variant-numeric: tabular-nums; }
+        .pd-book & .pa-gallery .pd-section.pa-concept.pa-designed .pd-number::before, .pd-book & .pa-gallery .pd-section.pa-concept.pa-decided .pd-number::before {
             margin-inline-end: calc(${({ theme }) => theme.space} / 4);
             font-size: calc(0.6786 * ${({ theme }) => theme.size});
             font-weight: 500;
             letter-spacing: 0.06em;
             text-transform: uppercase;
         }
-        .pd-book & .pa-gallery .pd-section.pa-concept.pa-designed .pa-number::before { content: 'designed'; color: var(--band-ink); }
-        .pd-book & .pa-gallery .pd-section.pa-concept.pa-decided .pa-number::before { content: 'decided'; color: var(--foot-ink); }
+        .pd-book & .pa-gallery .pd-section.pa-concept.pa-designed .pd-number::before { content: 'designed'; color: var(--band-ink); }
+        .pd-book & .pa-gallery .pd-section.pa-concept.pa-decided .pd-number::before { content: 'decided'; color: var(--foot-ink); }
         .pd-book & .pa-gallery .pd-section.pa-concept .pa-self-reference.pd-container { grid-area: name; grid-column: name; }
         .pd-book & .pa-gallery .pd-section.pa-concept .pd-sentence.pd-heading { margin: 0; padding: 0; border: 0; font-family: ${({ theme }) => theme.serif}; font-size: calc(0.9643 * ${({ theme }) => theme.size}); font-weight: 600; color: ${({ theme }) => theme.heading}; }
         .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-caption { grid-area: caption; margin: calc(${({ theme }) => theme.space} / 8) 0 0; font-size: calc(0.8571 * ${({ theme }) => theme.size}); line-height: 1.5; color: ${({ theme }) => theme.soft}; }
         .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-precedent { grid-area: precedent; margin: calc(${({ theme }) => theme.space} / 8) 0 0; font-size: calc(0.8214 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.faint}; }
-        .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-desk, .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-phone, .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-source, .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-close, .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-answer, .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-where { display: none; }
+        .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-desk, .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-phone, .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-source, .pd-book & .pa-gallery .pd-section.pa-concept .pd-close, .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-answer, .pd-book & .pa-gallery .pd-section.pa-concept .pd-paragraph.pa-where { display: none; }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open {
             position: fixed;
             inset: ${({ theme }) => theme.barHeight} 0 0 ${({ theme }) => theme.holdsColumn};
@@ -82,12 +85,12 @@ export class $Gallery extends $Format {
             cursor: default;
         }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph, .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pa-self-reference.pd-container { max-width: calc(${({ theme }) => theme.space} * 46.67); }
-        .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pa-number { display: inline-block; margin-inline-end: calc(${({ theme }) => theme.space} * 0.4167); font-size: calc(0.9286 * ${({ theme }) => theme.size}); }
+        .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-number { display: inline-block; margin-inline-end: calc(${({ theme }) => theme.space} * 0.4167); font-size: calc(0.9286 * ${({ theme }) => theme.size}); }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pa-self-reference.pd-container { display: inline; }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-sentence.pd-heading { display: inline; font-size: calc(2 * ${({ theme }) => theme.size}); letter-spacing: -0.02em; }
-        .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph.pa-close { display: block; position: absolute; top: calc(${({ theme }) => theme.space} * 0.9167); right: calc(${({ theme }) => theme.space} * 1.5); margin: 0; font-size: calc(1.857 * ${({ theme }) => theme.size}); line-height: 1; }
-        .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pa-close .pa-reference { color: ${({ theme }) => theme.faint}; text-decoration: none; }
-        .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pa-close .pa-reference:hover { color: ${({ theme }) => theme.ink}; }
+        .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-close { display: block; position: absolute; top: calc(${({ theme }) => theme.space} * 0.9167); right: calc(${({ theme }) => theme.space} * 1.5); margin: 0; font-size: calc(1.857 * ${({ theme }) => theme.size}); line-height: 1; }
+        .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-close .pa-reference { color: ${({ theme }) => theme.faint}; text-decoration: none; }
+        .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-close .pa-reference:hover { color: ${({ theme }) => theme.ink}; }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph.pa-thumbnail { display: none; }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph.pa-precedent { font-size: calc(0.9286 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.soft}; }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph.pa-caption { margin: calc(${({ theme }) => theme.space} * 0.4167) 0 calc(${({ theme }) => theme.space} * 0.8333); font-family: ${({ theme }) => theme.serif}; font-size: calc(1.2143 * ${({ theme }) => theme.size}); line-height: 1.55; color: ${({ theme }) => theme.ink}; max-width: 64ch; }
@@ -95,7 +98,7 @@ export class $Gallery extends $Format {
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph.pa-desk img, .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph.pa-phone img { border: thin solid ${({ theme }) => theme.line}; border-radius: ${({ theme }) => theme.radius}; box-shadow: ${({ theme }) => theme.shadow}; }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph.pa-answer { max-width: 68ch; }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph.pa-where { display: block; margin-block-start: calc(${({ theme }) => theme.space} / 2); font-size: calc(0.9643 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.soft}; }
-        .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pa-number { grid-area: number; align-self: baseline; }
+        .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-number { grid-area: number; align-self: baseline; }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pa-self-reference.pd-container { grid-area: name; grid-column: name; align-self: baseline; }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph.pa-precedent { grid-area: precedent; }
         .pd-book & .pa-gallery .pd-section.pa-concept.pa-open .pd-paragraph.pa-caption { grid-area: caption; }
@@ -117,6 +120,11 @@ export class $Gallery extends $Format {
     override defines(writing: $Writing): void {
         super.defines(writing);
         writing.classes.add(this, 'pa-gallery');
+        const open = this.open;
+        const opened = this.concepts.find(concept => [...concept.classes].includes('pa-open'));
+        if (opened === open) return;
+        opened?.classes.revert(this);
+        open?.classes.add(this, 'pa-open');
     }
 
     override erase(writing: $Writing): void {
@@ -146,10 +154,10 @@ export class $Strip extends $Format {
             transition: border-color ${({ theme }) => theme.beat} ease, box-shadow ${({ theme }) => theme.beat} ease;
         }
         .pd-book & .pd-thumb:hover img { border-color: var(--band); box-shadow: ${({ theme }) => theme.lift}; }
-        .pd-book & .pd-thumb.pa-chosen img { border-color: var(--band-ink); box-shadow: ${({ theme }) => theme.ring}; }
+        .pd-book & .pd-thumb.pd-chosen img { border-color: var(--band-ink); box-shadow: ${({ theme }) => theme.ring}; }
         .pd-book & .pd-thumb .pd-name { display: block; margin-block-start: calc(${({ theme }) => theme.space} / 5); font-size: calc(0.8571 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.soft}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .pd-book & .pd-thumb.pa-chosen .pd-name { color: var(--band-ink); }
-        .pd-book & .pd-thumb .pd-name .pa-number { margin-inline-end: calc(${({ theme }) => theme.space} / 5); font-weight: 600; color: var(--foot-ink); font-variant-numeric: tabular-nums; }
+        .pd-book & .pd-thumb.pd-chosen .pd-name { color: var(--band-ink); }
+        .pd-book & .pd-thumb .pd-name .pd-number { margin-inline-end: calc(${({ theme }) => theme.space} / 5); font-weight: 600; color: var(--foot-ink); font-variant-numeric: tabular-nums; }
     `;
     get paragraph(): $Paragraph { return this.parent as $Paragraph; }
     get places(): string[] {
@@ -160,8 +168,8 @@ export class $Strip extends $Format {
         return [...new Set(this.places.map(place => conceptAt(book, place)).filter((concept): concept is $Section => concept !== undefined))];
     }
     get chosen(): Set<string> {
-        const decision = (this.paragraph.parent as $Writing | undefined)?.text.find($Paragraph).find(paragraph => paragraph.is($Decision));
-        return new Set(decision?.text.find($Word).map(w => w.annotations.expressed($Reference)?.identifier).filter((place): place is string => place !== undefined));
+        const decisions = (this.paragraph.parent as $Writing | undefined)?.text.find($Paragraph).filter(paragraph => paragraph.is($Decision)) ?? [];
+        return new Set(decisions.flatMap(decision => decision.text.find($Word).map(w => w.annotations.expressed($Reference)?.identifier)).filter((place): place is string => place !== undefined));
     }
 
     $Strip(...chemicals: $Chemical[]) {
@@ -178,13 +186,13 @@ export class $Strip extends $Format {
                         return (
                             <Word key={index}>
                                 <Reference>{place}</Reference>
-                                <span className={`pd-thumb${chosen.has(place) ? ' pa-chosen' : ''}`}>
+                                <span className={`pd-thumb${chosen.has(place) ? ' pd-chosen' : ''}`}>
                                     <img
                                         src={thumbnailOf(concept)}
                                         alt=""
                                     />
                                     <span className="pd-name">
-                                        <span className="pa-number">{concept.annotations.expressed($Concept)?.number}</span>
+                                        <span className="pd-number">{concept.annotations.expressed($Concept)?.number}</span>
                                         {concept.canonical?.name}
                                     </span>
                                 </span>

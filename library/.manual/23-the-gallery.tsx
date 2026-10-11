@@ -20,9 +20,10 @@ export default () => (
                 group of concepts is a grid, and each concept is a card: its small photograph first, then the
                 number with the fate's word before it, the name, the caption, and what it is drawn after, in a
                 faint line. A card opens across the pages when its place is the one I am at, and then it shows
-                the desk's and the phone's photographs at their own size, what I said, and the sketch's code; the
-                concept says of itself that it is open when the book's bookmark names it, and the gallery reads
-                that, so no card keeps a state of its own.
+                the desk's and the phone's photographs at their own size, what I said, and the sketch's code,
+                with the way back drawn beside its number. The gallery marks the one concept the book's bookmark
+                names as open, as the paginated layout marks a page, so no card keeps a state of its own and
+                nothing of the screen is written in a section.
             </Paragraph>
         </Section>
         <Section>
