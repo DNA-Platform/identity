@@ -38,7 +38,7 @@ export default () => (
                 <List />
                 <Line>
                     The library's own catalogue
-                    is <Means>$[[ a shelf of covers under black and sky ]]( Dougs Design / The library's catalogue )</Means>,
+                    is <Means>$[[ a shelf of covers under black and sky ]]( Dougs Design / The library catalogue )</Means>,
                     with a view I can switch.
                 </Line>
                 <Line>

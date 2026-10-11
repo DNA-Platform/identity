@@ -1,10 +1,11 @@
-// Photographs each concept of this book that is newer than its photographs, at a desk's width and at a phone's,
-// and says what on it runs past the edge of the screen. Run from anywhere:
+// Photographs each concept of this book that is newer than its photographs, at a desk's width, at a phone's, and small,
+// the desk at a third of its pixels for a card, and says what on it runs past the edge of the screen. Run from anywhere:
 //
 //     node .me/.design/o3-the-camera~camera.mjs
 //
-// A concept is a page kept beside a chapter under its number, as 3-every-concept~025.html. Its two
-// photographs are kept beside it under the same number. Bind the book afterwards.
+// A concept is a page kept beside a chapter under its number, as 3-every-concept~025.html. Its three
+// photographs are kept beside it under the same number. Every photograph is taken at one pixel per pixel of the
+// screen it shows, so a photograph's own size is its device's. Bind the book afterwards.
 import { createRequire } from 'node:module';
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -13,8 +14,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const book = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(join(book, '../../package.json'));
 const devices = [
-    { name: 'desk', width: 1280, height: 800 },
-    { name: 'phone', width: 390, height: 844 },
+    { name: 'desk', width: 1280, height: 800, scale: 1 },
+    { name: 'phone', width: 390, height: 844, scale: 1 },
+    { name: 'small', width: 1280, height: 800, scale: 0.3 },
 ];
 
 const older = (photograph, concept) => !existsSync(photograph) || statSync(photograph).mtimeMs < statSync(concept).mtimeMs;
@@ -28,7 +30,7 @@ else {
     const browser = await puppeteer.launch({ headless: true, ignoreDefaultArgs: ['--hide-scrollbars'] });
     for (const shot of wanted) {
         const page = await browser.newPage();
-        await page.setViewport({ width: shot.device.width, height: shot.device.height, deviceScaleFactor: 1 });
+        await page.setViewport({ width: shot.device.width, height: shot.device.height, deviceScaleFactor: shot.device.scale });
         await page.goto(pathToFileURL(join(book, shot.file)).href, { waitUntil: 'networkidle0' });
         await page.evaluate(() => document.fonts.ready);
         await new Promise(done => setTimeout(done, 500));

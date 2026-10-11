@@ -68,7 +68,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>[[[ The library's catalogue ]]]</Heading>
+            <Heading>[[[ The library catalogue ]]]</Heading>
             <Paragraph>
                 <Question />
                 The library's own page, where everything I keep is found from. Which one of these is it?
