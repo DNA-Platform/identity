@@ -21,6 +21,19 @@ Git carries what is tracked. What `.gitignore` excludes — the scans under `lib
 
 **No path moves unverified, and nothing is overwritten on trust.** A mismatch stops that path and says so; it is never recorded as sent.
 
+## The store: the pipelines' bulk products
+
+Doug, 2026-10-12: *"You have to manage your git changes."* *"Maybe we can't be keeping all this data in memory. We'll need to have some sort of manifest or other document that can be checked in, so that it can inform a fresh puller how to replenish the data store if need be."* The artifacts had been committed whole since 2026-09-17, and each regeneration added another copy of thousands of files to the history: 3.0 GB of it when a rename would have added another 24,846 files.
+
+So the bulky, remade products are **stored**, not committed. That means checkpoints, MEIs, metamers, moments, organized stacks, movies and verification arrays. The rule lives in `src/pipelines/store.py` (`is_stored`), and `.gitignore` carries the same lines. They stay where each pipeline writes them. Beside them, each pipeline's `artifacts/<dataset>/STORE.json` is tracked: every stored file with its size and sha256, and the command that remakes each kind. Code, configs, covers, figures and small records stay in git.
+
+- `python -m pipelines.store record`: writes the manifests from what is on disk. Every run does this before it commits ([the run](01-03-als-remote--the-run.md)), so a run's branch carries its manifests and its worktree holds the files.
+- `python -m pipelines.store check`: compares every recorded file against its digest. It reports what is missing, changed or unrecorded.
+- `python -m pipelines.store replenish`: brings what this machine lacks from the box's `main`, folder by folder through `receive`. Each file is placed only if its digest is the manifest's; what the box lacks too is remade by the named command.
+- `python -m pipelines.store adopt <checkout>`: on the box, at [close](01-08-als-remote--closing-a-run.md). It copies a run's stored files from its worktree into the box's `main`, checked the same way.
+
+**The box holds the store.** Products are made there, and a fresh clone anywhere replenishes from it.
+
 ## Parity: the two machines hold the same data
 
 Doug, 2026-09-28: *"You want the two boxes in the same state."* *"Yes data will be moved manually, but we don't get that very often."* *"You can adjust whatever is there to remove files that are there so that you can overwrite them with this data."* *"If there was some artifactual stuff that was ignored but never removed, delete it from github."*

@@ -31,7 +31,15 @@ bash "$R/command.sh" > "$R/log.txt" 2>&1
 rc=$?
 { echo "end:     $(date -Is)"; echo "exit:    $rc"; } >> "$R/meta.txt"
 
-# Everything the run made is committed, failed runs included. A file GitHub would refuse is left
+# THE STORE, 2026-10-12: what the pipelines store (src/pipelines/store.py) stays in this worktree, out of git; its
+# manifests record every file's sha256 and are committed with the run, and `close` adopts the files into the box's
+# main and replenishes them home by those manifests. Doug: "We'll need to have some sort of manifest or other
+# document that can be checked in, so that it can inform a fresh puller how to replenish the data store."
+if [ -f src/pipelines/store.py ]; then
+    (cd src && python -m pipelines.store record) >> "$R/log.txt" 2>&1 || echo "store record failed" >> "$R/log.txt"
+fi
+
+# Everything else the run made is committed, failed runs included. A file GitHub would refuse is left
 # out and recorded with its sha256, so `receive` can bring it back and prove the bytes.
 git add -A
 : > "$R/not-committed.tsv"

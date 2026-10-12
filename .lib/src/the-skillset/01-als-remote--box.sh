@@ -376,6 +376,14 @@ close() {
     fi
     # 5. the box's main back in step with main here
     box_pull || return 1
+    # 6. the store (src/pipelines/store.py): the run's manifests came home with its branch, its stored files did not -
+    # they are adopted from its worktree into the box's main, then replenished here, every file checked by sha256
+    if [ -f "$REPO/src/pipelines/store.py" ]; then
+        box_script "cd src && ../.venv/bin/python -m pipelines.store adopt ../../$branch" || return 1
+        local py="$REPO/.venv/Scripts/python.exe"; [ -x "$py" ] || py="$REPO/.venv/bin/python"
+        (cd "$REPO/src" && "$py" -m pipelines.store replenish) || return 1
+        echo "4. the store: the run's stored files on both mains, each matching its manifest"
+    fi
     echo "CLOSED: $branch is home, and both machines are on $(git rev-parse --short HEAD)"
 }
 

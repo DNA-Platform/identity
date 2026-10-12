@@ -50,6 +50,11 @@ after, so `close` can be rerun until it prints `CLOSED`. Nothing is overwritten 
    ([parity](01-04-als-remote--the-files-git-does-not-carry.md)).
 5. **The box back on `main`.** The box's `main` is pulled (`pull`) and proven to equal `main` here and
    on GitHub. After a close, both machines are on one commit.
+6. **The store, to both mains** ([the store](01-04-als-remote--the-files-git-does-not-carry.md)). The
+   run's manifests came home with its branch; its stored files did not. On the box, `store adopt` copies
+   each file the manifests list from the run's worktree into the box's `main`, checked by sha256. Here,
+   `store replenish` brings the same files from the box's `main`, checked again. After a close, both
+   machines hold every file the manifests name.
 
 ## Not losing track
 
