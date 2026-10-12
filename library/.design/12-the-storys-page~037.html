@@ -23,9 +23,10 @@
     .story { --ground: #f5eedf; --band: #d9c3a3; --band-ink: #4a3626; --foot: #a3b6cc; --foot-ink: #2a4262; --ink: #2f4a6a; --window-x: -54px; --window-y: -33px; }
     body { --ground: #f5eedf; --band: #d9c3a3; --band-ink: #4a3626; --foot: #a3b6cc; --foot-ink: #2a4262; --ink: #2f4a6a; }
     /* the tint: one accent and the faintest wash, as the other three books are coloured; never the band's amber on the page */
-    body[data-tint="pen"] { --accent: var(--foot-ink); --accent-tint: color-mix(in oklab, var(--foot) 30%, white); --wash: radial-gradient(900px 520px at 18% -10%, color-mix(in oklab, var(--foot) 18%, white) 0%, transparent 62%), linear-gradient(135deg, color-mix(in oklab, var(--foot) 10%, white) 0%, #ffffff 50%, color-mix(in oklab, var(--foot) 5%, white) 100%); }
-    body[data-tint="sky"] { --accent: #4a6ea0; --accent-tint: #e3edfb; --wash: radial-gradient(900px 520px at 18% -10%, #e9f0fb 0%, transparent 62%), linear-gradient(135deg, #f0f5fd 0%, #ffffff 50%, #f5f8fd 100%); }
-    body[data-tint="slate"] { --accent: #343c4a; --accent-tint: #eef1f6; --wash: radial-gradient(900px 520px at 18% -10%, #eff1f5 0%, transparent 62%), linear-gradient(135deg, #f4f6f9 0%, #ffffff 50%, #f5f6f9 100%); }
+    /* the paper is white; the tint stands only at the edges, a short fade under the bar and along the contents' edge, where the regions meet */
+    body[data-tint="pen"] { --accent: var(--foot-ink); --accent-tint: color-mix(in oklab, var(--foot) 30%, white); --wash: linear-gradient(180deg, color-mix(in oklab, var(--foot) 12%, white), transparent) top / 100% 48px no-repeat, linear-gradient(90deg, color-mix(in oklab, var(--foot) 8%, white), transparent) left / 40px 100% no-repeat, #ffffff; }
+    body[data-tint="sky"] { --accent: #4a6ea0; --accent-tint: #e3edfb; --wash: linear-gradient(180deg, #e9f0fb, transparent) top / 100% 48px no-repeat, linear-gradient(90deg, #f0f5fd, transparent) left / 40px 100% no-repeat, #ffffff; }
+    body[data-tint="slate"] { --accent: #343c4a; --accent-tint: #eef1f6; --wash: linear-gradient(180deg, #eff1f5, transparent) top / 100% 48px no-repeat, linear-gradient(90deg, #f4f6f9, transparent) left / 40px 100% no-repeat, #ffffff; }
     * { box-sizing: border-box; margin: 0; }
     html, body { height: 100%; }
     body { display: grid; grid-template-columns: var(--side) minmax(0, 1fr); grid-template-rows: var(--bar) auto minmax(0, 1fr); grid-template-areas: 'library library' 'holds head' 'holds pages'; background: var(--wash); color: var(--text); font: 400 14px/1.6 var(--sans); }
@@ -200,7 +201,7 @@
     /* ---- journal: every entry on one page, newest first, its date in a gutter at the left with a dot on the line; a hairline between entries; no turn ---- */
     body[data-view="journal"] .pd-pages { display: flex; flex-direction: column; padding: 24px 40px 120px; font-size: 17px; line-height: 1.65; }
     body[data-view="journal"] .pd-pages > .pd-top, body[data-view="journal"] .pd-pages > .pa-synopsis, body[data-view="journal"] .pd-pages > .pd-container[data-chapter] { display: none; }
-    body[data-view="journal"] .pa-page { position: relative; width: 100%; max-width: 810px; margin: 0 auto; padding: 40px 0 48px 190px; background: linear-gradient(90deg, transparent, var(--line) 12% 88%, transparent) top / 100% 1px no-repeat; scroll-margin-top: 16px; }
+    body[data-view="journal"] .pa-page { position: relative; width: 100%; max-width: 810px; margin: 0 auto; padding: 40px 0 48px 190px; background: linear-gradient(90deg, transparent, var(--line) 12% 88%, transparent) bottom / 100% 1px no-repeat; scroll-margin-top: 16px; }
     body[data-view="journal"] .pa-page > time.pd-date, body[data-view="journal"] .pa-page .pd-chapter > time.pd-date { display: flex; align-items: baseline; gap: 8px; position: absolute; left: 0; top: 96px; width: 160px; font: 500 12px/1.5 var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
     body[data-view="journal"] .pa-page time.pd-date::before { content: ''; flex: none; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-tint), var(--accent)); box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px color-mix(in oklab, var(--accent-tint) 70%, white), var(--shadow); }
     /* the entry's number in the gutter above its date, pale and large, as the Exhibition hangs its plate numbers */
