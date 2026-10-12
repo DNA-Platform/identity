@@ -161,7 +161,11 @@ $BOX_ENV
 ALS_ENV_END
 git worktree add -q ../$branch -b $branch
 exclude=\$(git rev-parse --git-common-dir)/info/exclude
-git ls-files -z --others --ignored --exclude-standard --directory library/data | tr '\0' '\n' | while IFS= read -r p; do
+# Only the top of each ignored subtree is linked. Since 2026-10-12 library/data un-ignores its directories (its covers
+# are tracked), so git lists every directory AND every file under it, and a file inside a linked folder is the same file.
+git ls-files -z --others --ignored --exclude-standard --directory library/data | tr '\0' '\n' |
+    awk '{ if (top != \"\" && index(\$0, top) == 1) next; print; if (\$0 ~ /\\/\$/) top = \$0 }' |
+    while IFS= read -r p; do
     p=\${p%/}
     ln -sfn \$A/main/\$p ../$branch/\$p
     grep -qxF \"/\$p\" \$exclude || echo \"/\$p\" >> \$exclude
