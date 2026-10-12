@@ -95,6 +95,7 @@ export class $Layout extends $Paginated {
                 gap: calc(${({ theme }) => theme.space} * 0.42) calc(${({ theme }) => theme.space} * 0.83);
                 min-width: 0;
             }
+            .pa-layout .pd-head:empty { display: none; }
             .pa-layout .pd-switches {
                 display: flex;
                 flex-wrap: wrap;

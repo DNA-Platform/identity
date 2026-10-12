@@ -32,7 +32,6 @@ export class $Typeset extends $LibraryBookTheme {
         return css`
             .pd-book .pd-library { position: relative; background: linear-gradient(180deg, ${({ theme }) => theme.barLight} 0%, ${({ theme }) => theme.barMid} 60%, ${({ theme }) => theme.barDeep} 100%); border-block-end: thin solid ${({ theme }) => theme.line}; box-shadow: ${({ theme }) => theme.barShadow}; }
             .pd-book .pd-library::after { content: ''; position: absolute; left: 0; right: 0; bottom: calc(-1 * ${({ theme }) => theme.hairline}); height: ${({ theme }) => theme.stroke}; background: linear-gradient(90deg, var(--band) 0 40%, var(--ground) 40% 70%, var(--foot) 70%); opacity: 0.75; }
-            .pd-book .pd-head { display: none; }
         `;
     }
 
