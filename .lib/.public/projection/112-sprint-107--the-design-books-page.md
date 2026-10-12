@@ -91,7 +91,7 @@ The third page designed from a print by [the method](../writing-a-book/00-03-des
 
 ## The page, as it stands
 
-*Compacted 2026-10-12 from 558 words: the page as it stood at the plan is the sketch beside [The Design Book's Page](../../../../.me/.design/10-the-design-books-page.tsx) in his design book, `10-the-design-books-page~036.html`, photographed three ways under it; the book as built is that chapter's exhibit.*
+*Compacted 2026-10-12 from 558 words: the page as it stood at the plan is the sketch beside [The Design Book's Page](../../../../.me/.design/11-the-design-books-page.tsx) in his design book, `10-the-design-books-page~036.html`, photographed three ways under it; the book as built is that chapter's exhibit.*
 
 ## <a id="the-name"></a>The name, proposed
 
@@ -171,7 +171,7 @@ The third page designed from a print by [the method](../writing-a-book/00-03-des
 
 **The galley:** `library/.public-temp`, the identity repository's tree at the plan push, served on 4243 and removed at the close, nothing of it left.
 
-**To see it:** the built site on 4242 from the bind of 2026-10-11, `/dougs-design/` opening on Latitude with its strips, `#the-bookshelf` the first room with its plate, exhibit and the built-in paragraph before the turn, `#the-shelf` a concept opened, `#choosing-by-number` the strips with their chosen rings, `#the-design-books-page` the book's own room with the second portfolio's page. Live, `node .me/.manual/6-developing-a-library~workbench.mjs` then `look dougs-design`, `phone` after any address. After a bind, `node .me/.manual/27-the-print~print.mjs dougs-design .me/.design/10-the-design-books-page~036.html` remakes the print and `node .me/.manual/26-the-camera~camera.mjs .me/.design` photographs it.
+**To see it:** the built site on 4242 from the bind of 2026-10-11, `/dougs-design/` opening on Latitude with its strips, `#the-bookshelf` the first room with its plate, exhibit and the built-in paragraph before the turn, `#the-shelf` a concept opened, `#choosing-by-number` the strips with their chosen rings, `#the-design-books-page` the book's own room with the second portfolio's page. Live, `node .me/.manual/6-developing-a-library~workbench.mjs` then `look dougs-design`, `phone` after any address. After a bind, `node .me/.manual/27-the-print~print.mjs dougs-design .me/.design/11-the-design-books-page~036.html` remakes the print and `node .me/.manual/26-the-camera~camera.mjs .me/.design` photographs it.
 
 **Read first, for a brainstorm.** [Designing a Page from Its Print](../writing-a-book/00-03-designing-a-page-from-its-print.md), the method and its three pages; in his design book *The Bookshelf* and *The Manual's Page*, the two write-ups of a page designed from its print, and *Choosing by number*, where his story's design is decided as concept 29, the reading view of 25 under the frame's top bar with the chapters down the side; his story itself, `.me/.librarian`, with its appendix *The Sheet* and the code, faces and theme beside it, which is what the page replaces; in his manual *The Print* and *The Camera*, which make the page and photograph it.
 
