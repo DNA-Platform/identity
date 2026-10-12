@@ -170,6 +170,11 @@ git ls-files -z --others --ignored --exclude-standard --directory library/data |
     ln -sfn \$A/main/\$p ../$branch/\$p
     grep -qxF \"/\$p\" \$exclude || echo \"/\$p\" >> \$exclude
 done
+# The stored products: every file the run's STORE.json manifests list, copied from main by the store's own adopt (run
+# from the worktree, main its source, each file checked by sha256), so a run finds the twins, MEIs and metamers main
+# holds and remakes only what its command changes. A copy, never a link: what a run remakes must not touch main's
+# copy before the run is closed. Without it every run retrained every twin it could not find (2026-10-13).
+(cd ../$branch/src && \$A/main/.venv/bin/python -m pipelines.store adopt \$A/main)
 mkdir -p ../$branch/runs/$branch
 cat > ../$branch/runs/$branch/command.sh <<'ALS_COMMAND_END'
 $cmd
@@ -460,6 +465,8 @@ send_list() {
 receive() {
     local src=${1%/} dst=${2:-}
     [ -n "$src" ] && [ -n "$dst" ] || { echo "usage: receive <box-path> <local-dir>"; return 2; }
+    # a Windows path from a Python caller (C:\...): tar here reads 'C:' as a remote host
+    ! command -v cygpath > /dev/null || dst=$(cygpath -u "$dst")
     local man; man=$(mktemp)
     box "cd $ROOT && find '$src' -type f -print0 | sort -z | xargs -0 -r sha256sum" > "$man" || return 1
     mkdir -p "$dst"

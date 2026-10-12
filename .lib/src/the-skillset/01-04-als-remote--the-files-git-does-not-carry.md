@@ -31,6 +31,7 @@ So the bulky, remade products are **stored**, not committed. That means checkpoi
 - `python -m pipelines.store check`: compares every recorded file against its digest. It reports what is missing, changed or unrecorded.
 - `python -m pipelines.store replenish`: brings what this machine lacks from the box's `main`, folder by folder through `receive`. Each file is placed only if its digest is the manifest's; what the box lacks too is remade by the named command.
 - `python -m pipelines.store adopt <checkout>`: on the box, at [close](01-08-als-remote--closing-a-run.md). It copies a run's stored files from its worktree into the box's `main`, checked the same way.
+- The same `adopt`, run the other way at [launch](01-03-als-remote--the-run.md): from the new worktree, with `main` as its source. A run starts with every stored file `main` holds, as a copy, so it remakes only what its command changes. Before 2026-10-13 a worktree held none of them, and a run retrained every twin it could not find.
 
 **The box holds the store.** Products are made there, and a fresh clone anywhere replenishes from it.
 
