@@ -75,9 +75,7 @@ The fourth page designed from a print by [the method](../writing-a-book/00-03-de
 
 ## <a id="the-page"></a>The page, as initialized
 
-[`11-the-storys-page~037.html`](../../../../.me/.design/12-the-storys-page~037.html), made by [The Print](../../../../.me/.manual/27-the-print~print.mjs) from the story's print at the bind of 2026-10-11: five regions, seven pages, Ghost-Writing open. Its first round, written against the print's names: the clean frame of 034, 035 and 036, the light bar with the two marks and his name, the near-white contents with the story's row lit in its own ground and, from 29, each chapter's date at the right of its row; the sheet as built on a faint wash of the book's two hues, the running line with his name underlined in his orange, the cover's drawing, the chapter's date, the rule, the title, the large first letter, the words set to both edges, the turn at the foot, in its three papers; on a phone the chapters a row of pills and the sheet the screen. One value changed from the sheet as built: the serif is Source Serif, the library's own, in place of Georgia. The page stands beside a design chapter at 11 in the designs part of his design book, [The Story's Page](../../../../.me/.design/12-the-storys-page.tsx), with the story as built as its exhibit and the three photographs of 037 under it; Every Concept became chapter 12 so the folder reads in the parts' order, its 133 files renamed, nothing naming the number. Bound 2026-10-12: every reference resolves, the design book's 998 writings specified, five pages proved; plate 04 on `http://localhost:4242/dougs-design/#the-storys-page`.
-
-*One fault in the first round, so it is not repeated: a top-level constant in the page's script named `top` is refused by the browser, since `top` is the window's own, and the whole script never ran; the photographs showed the frame with no sheet. Named `runningHead`.*
+*Compacted 2026-10-12 from 278 words: the page as initialized is told in [The journal, in seven rounds](../../../../.me/.design/8-the-journal-in-seven-rounds.tsx) and the design as decided in [The design](#the-design) below.*
 
 ## <a id="decisions"></a>Decisions
 
@@ -106,27 +104,19 @@ The fourth page designed from a print by [the method](../writing-a-book/00-03-de
 
 ## Test scenarios
 
-- *U1:* a book extending `$Journal` with three dated chapters draws all three on one page, newest first, with each entry's number and date; a press on *newest first* draws them oldest first and reorders the rows; the bookmark lights its row and the arrival scrolls to it; a chapter with no date is refused by the bind in a sentence; a chapter whose part is not its date's month is refused in a sentence; the synopsis is no page. Covers [AE1](#ae1), [AE2](#ae2).
-- *U2:* the story's folder holds four chapters and the dot files; the bind passes; the catalogue's card for the story reads the new synopsis.
-- *U3:* every value listed in D5 measured equal on the live page and on 037.
-- *U5:* the links checker at zero; the camera photographs nothing new but what changed; the room on 4242 shows the exhibit and gathers *The Journal* and the story.
-- *U6:* the galley binds first time or names what the recipe lacks, which is then written into the chapter. Covers [AE3](#ae3).
-- *U7:* the catalogue and the manual against the galley differ in nothing a reader sees but the manual's new chapter; the design book differs only in its new chapters and numbers. Covers [AE4](#ae4), [AE5](#ae5).
+*Spent at the close, 2026-10-12: a scenario that survived is a rule the bind runs or a look the ledger records, read where it runs. The section stood here at 210 words.*
 
 ## Risks
 
-- **The press's default.** If the annotation set in `$is` at bound is not read by the print, the page prints oldest first and hydration flips it. *Mitigated* by the workbench's `built fresh` look and the arrival's frames if a flip shows.
-- **The arrival on a page where every entry shows.** It removes `pa-open` from the print's open entry and adds it to the fragment's; nothing hides by that mark in the journal's layout, so only the row and the scroll change. *Checked* on the built site at an entry's address.
-- **The renumbering's links.** Twenty-six in ten files, and any the grep did not see. *Mitigated* by the links checker at zero before the bind.
-- **The galley's noise.** The design book changes on purpose; the diff is read for the catalogue and the manual first.
+*Spent at the close, 2026-10-12: none fired; the two faults the build met are in Where things stand and What Building Found. The section stood here at 138 words.*
 
 ## The plan checked against itself
 
-Every requirement lands: R1 in U1 and U2, R2 in U1, R3 and R4 in U1 and U3, R5 and R6 in U5, R7 by U5's restraint, R8 and R9 in U2, R10 and R11 in U7, AE1 to AE5 in the scenarios. No unit lacks a mechanism; the one open mechanism at the brainstorm, every entry on one page under a layout that shows one, is D2. His to name: the design chapter and its page, and the story chapter of the rounds, each a proxy until he says.
+*Spent at the close, 2026-10-12: it passed before the work started. The section stood here at 90 words.*
 
 ## <a id="where-things-stand"></a>Where things stand
 
-**Next: `/ce-compound`, then his reading.** Every unit is built, gated and committed 2026-10-12, the day it was planned. His to read and name: the design chapter *The Story's Page* and its page 037; the story chapter *The journal, in five rounds* and its copy; the manual's chapter *The Journal* and its copy; the sentence added to his synopsis; the three sentences rewritten in The Book, The Layout and The Tone; and the Closure's sentence that says the story is a journal.
+**Next: `/ce-brainstorm` for the next sprint, which on his word at the close *"will be to start a new project"*; that is this session's expectation of the subject and his to set in the room.** The sprint is closed, 2026-10-12: every unit built, every gate green, the lessons compounded, the chapter compacted, pushed in all three places. His to read and name, each a yes or a no: the manual's chapter *The Journal*; the design book's *The Story's Page* and *The journal, in seven rounds*, whose titles are proxies; the sentence added to his synopsis; the sentences rewritten in The Book, The Layout, The Tone and Closure. Owed to a sprint of its own: Every Concept as a view over every chapter's sketches, on his ruling recorded in How a Book Is Built §11.
 
 **State.** Complete: the Journal in the manual ([U1](#u1)), the story as a journal ([U2](#u2)), Typeset measured ([U3](#u3)), the manual's chapter ([U4](#u4)), the design book ([U5](#u5)), the second journal in a galley ([U6](#u6)), the gates ([U7](#u7)), the close ([U8](#u8)). In progress: nothing. Blocked on Doug: his readings.
 
@@ -142,18 +132,20 @@ Every requirement lands: R1 in U1 and U2, R2 in U1, R3 and R4 in U1 and U3, R5 a
 
 **The ledger, newest first.**
 
-**[U7](#u7), [U8](#u8), gated and closed 2026-10-12.** The numbers above; committed with the commit tool to the three places.
+**[U7](#u7), [U8](#u8), gated and closed 2026-10-12.** The detail is in What was built and Verification above.
 
-**[U6](#u6), proved and thrown away 2026-10-12.** A second journal from the manual's chapter alone; the recipe held as written, nothing lacking.
+**[U6](#u6), proved and thrown away 2026-10-12.** The detail is in What was built and Verification above.
 
-**[U5](#u5), the design book, 2026-10-12.** The renumbering and the relink by one script; the story chapter of the rounds in his voice from this chapter's record, two of its headings renamed at the proof; the design chapter's references and exhibit.
+**[U5](#u5), the design book, 2026-10-12.** The detail is in What was built and Verification above.
 
-**[U4](#u4), the manual's chapter, 2026-10-12.** Written when the bind refused its three files as chapters.
+**[U4](#u4), the manual's chapter, 2026-10-12.** The detail is in What was built and Verification above.
 
-**[U3](#u3), measured 2026-10-12.** The values above, each equal to 037.
+**[U3](#u3), measured 2026-10-12.** The detail is in What was built and Verification above.
 
-**[U1](#u1), [U2](#u2), written and seen 2026-10-12.** The Journal and the story on the workbench, the press pressed and the order flipped; the box-sizing and the day's order corrected on the look.
+**[U1](#u1), [U2](#u2), written and seen 2026-10-12.** The detail is in What was built and Verification above.
 
 **To see it:** the page from the file, `.me/.design/12-the-storys-page~037.html`; its room on the built site, `http://localhost:4242/dougs-design/#the-storys-page`; the story as built, `http://localhost:4242/dougs-story/`. Live, `node .me/.manual/6-developing-a-library~workbench.mjs` then `look dougs-design/#the-storys-page`. After a bind, `node .me/.manual/27-the-print~print.mjs dougs-story .me/.design/12-the-storys-page~037.html` refreshes the print and keeps the page's style and script; `node .me/.manual/26-the-camera~camera.mjs .me/.design` photographs it.
 
 **Read first, to design.** [Designing a Page from Its Print](../writing-a-book/00-03-designing-a-page-from-its-print.md), the method; concepts [25](../../../../.me/.design/13-every-concept~025.html) and [29](../../../../.me/.design/13-every-concept~029.html), the design, read whole; his manual's [The Journal](../../../../.me/.manual/28-the-journal.tsx) with its code, theme and faces beside it, which replaced his story's sheet; [How a Book Is Built](../writing-a-book/00-02-how-a-book-is-built.md) §10, the portfolio's recipe, which the journal's follows.
+
+**Read first, for a brainstorm of a new project.** [Library Tree](../../../../.claude/library/library-tree/.cover.md), what a branch is and [how one is set up](../../../../.claude/library/library-tree/04-setup.md); [Teamsmanship's workflows](../../../../.claude/library/..teamsmanship/19-workflows.md); and, for how a library on `.public` is written, [The Library's Words](../writing-a-book/00-01-the-librarys-words.md), [How a Book Is Built](../writing-a-book/00-02-how-a-book-is-built.md) and [Designing a Page from Its Print](../writing-a-book/00-03-designing-a-page-from-its-print.md), the fourth page among them.

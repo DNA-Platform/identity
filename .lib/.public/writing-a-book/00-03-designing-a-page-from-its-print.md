@@ -74,6 +74,20 @@ The design book's own page, [The Design Book's Page](../../../../.me/.design/11-
 
 Two things the page taught about the method. A Format's layer draws around a chapter and cannot reach inside it, so what must stand before the chapter's turn is a paragraph the book adds to the chapter, in the pattern of the turn. And a text's `find` reads a writing's direct children, so a rule over a chapter's paragraphs walks its sections first, or it reads nothing.
 
+## The fourth page, a book to be read
+
+His story's page, [The Story's Page](../../../../.me/.design/12-the-storys-page.tsx), was the fourth designed this way in [Sprint 108](../projection/113-sprint-108--the-journal.md) and the first whose subject is read rather than browsed; its rounds are [The journal, in seven rounds](../../../../.me/.design/8-the-journal-in-seven-rounds.tsx). Each thing on it, asked which of the library's words it is:
+
+| on the page | in the library's words | stands |
+|---|---|---|
+| every entry on one page, newest first | the chapters, each `Dated` and saying its month as its `Part`; the `Journal` lays them out, its own layout showing every page | built |
+| the number and the date in the gutter | the chapter's own date, placed by Typeset; the number a word the journal adds to the entry | built |
+| *newest first*, a press at the top of the contents | `NewestFirst` said of the book by a switch, on by default | built |
+| the rows, each dated, the open one lit | the table of contents' entries with a word the journal adds; the open row the bookmark's or the latest's | built |
+| the white paper, the tints at the edges | the theme, Typeset, registered on the Journal | built |
+
+**Three things the page taught the method.** *Explore, never ask.* Asked which comparable the page should read like, Doug: *"This is why we design. You have to explore these. You are wasting my time asking me to imagine."* Comparables are explored as mockups he can open, and on one page with a switch between them, never as a question and never as a file each: *"Too much html. Give me options to move between them."* *A sketch is a quick mockup and lives beside the chapter that designs it*, as 034 to 037 do, never in a chapter that holds everything. *The paper is white.* *"We are white themed, with subtle and interesting color gradients and drop shadows. None of this yellowy faux parchment"*; and when the surface still read grey, *"the main area of text needs to be over white paper… Stop fighting the color white like it's a bad thing. How many sites are really off-white."* A tint mixed into a whole surface at a tenth reads as grey; the bookshelf's wash is a fortieth; the gradients go at the edges where regions meet, *"affecting how boundaries look when they come together."*
+
 ## What is still the binder's
 
 A page knows of another book what it imports: a catalogue's row imports its book's cover and its synopsis, and the subject's mark is the subject's cover imported, so a book's colours and its drawing are said once, on its cover. What no import answers — the reverse of a reference, the chain upward, a count — the binder holds while it runs and hands to no page yet; a design names the fact in the library's words, *filed under*, *by*, *refers to*, and the binder compiles it in the direction the screen needs. Doug: *"If not, we should add that."*

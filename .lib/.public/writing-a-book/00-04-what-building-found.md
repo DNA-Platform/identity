@@ -65,6 +65,11 @@ A line each: a rule that held or a thing that bit, and where it is caught. The r
 - **The base's `pages` leaves the appendix out** — it is what the turn walks — **and a book that draws its pages by walking `pages` never draws an appendix chapter.** Pages are drawn from `chapters`; the turn from `pages`.
 - **Two escapes from the rule against combinators, both position-free.** A child that must fill its parent's height without `> *`: the parent `display: grid; grid-template-rows: minmax(0, 1fr)` stretches its one child. A hover that must reach a sibling region: `.pd-library:has(.pd-filed:hover) .pd-logo`, the one combinator that reads as a sentence about the bar, and the one the base's layout already uses.
 - **A heading repeated across two chapters of a manual is an id worn twice on its page** — *What a cover says* stood in two chapters; the proof refused the page. Name a section for its chapter.
+- **A resource needs its chapter first** — three `~code`, `~theme` and `~faces` files written before their chapter were read as chapters with no title, `NO-TITLE`, and the catalogue refused the library until the chapter stood ([Sprint 108](../projection/113-sprint-108--the-journal.md)).
+- **A theme part named for a base field is a typecheck error, not a silent loss** — a part `wash()` against the base's field `wash` is `TS2425`, so the rule that no part takes a value's name is enforced where the names meet.
+- **An element with padding is sized on its border box or its text runs past the page** — an entry of 810 with a gutter's padding of 190 measured 1,000 wide and overflowed the pages under a scrollbar until it said `box-sizing: border-box`; the base sets no box-sizing, so a rule that pads a sized element says it.
+- **A word added to a writing's text by `text.add` stands before what was written**, as the index's presses do; a word meant to stand last takes `order` in the flex row.
+- **A press's default state is set in `$is` when the book is bound**, so the switch reads on and the print draws it pressed; an annotation added in `$Define` is expressed but not pressed, and the switch cannot take it off.
 
 ## Open
 

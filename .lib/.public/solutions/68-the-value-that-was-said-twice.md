@@ -60,6 +60,10 @@ for (const sheet of document.styleSheets)
 
 The Exhibition's story part said `.pd-pages .pd-heading { color: heading }` and, later in the same component, `.pd-pages .pa-self-reference { color: inherit }`, so a chapter's heading, which carries its own self-reference, inherited the chapter's ink at equal weight, and the measurement read ink where the sketch said its heading colour. No second author this time, one theme saying a value twice for one element by two of its classes; the repair the same: the heading's rule names the sentence's class, `.pd-pages .pd-sentence.pd-heading`, and outweighs the self-reference's. Found by [a probe](../projection/112-sprint-107--the-design-books-page.md#where-things-stand) that lists every rule in every sheet that matches an element and sets a property, in sheet order, since the workbench's `rules=` lists by a word in the selector and the winning rule held none of the words asked.
 
+## The fifth time — 2026-10-12, Sprint 108, a theme against the layout
+
+Doug, reading the journal bound: *"There seems to be a white band above the main content area that is purposeless."* It was the frame's head region, the row the base book draws for a cover and its switches, which the journal draws nothing into; the base theme pads it, and Typeset's rule hiding it, `.pd-book .pd-head { display: none }`, lost to the layout's rule placing it, `.pa-layout .pd-head { display: flex }`, at equal weight, since the layout's styled component stood later in the sheet than the theme's that day. Two authors on one property again, a theme and a Format. The repair is not a heavier selector: whether an empty region takes room is the layout's business, so [The Layout](../../../../.me/.manual/12-the-layout~code.tsx) says `.pa-layout .pd-head:empty { display: none }` for every book, and the theme says nothing of it. *The rule it adds:* a theme never hides a region the layout places; a region that may be empty is the layout's to collapse.
+
 ## What to do when a style will not take
 
 1. ***Ask the browser what matched.*** **Never re-read the theme** — the theme is what told you the wrong thing the first time.
