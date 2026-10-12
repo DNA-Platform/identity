@@ -46,9 +46,10 @@ export default () => (
             <Paragraph>
                 A book never writes it; the book class gives it. What a type of book wants inside the page it
                 says with a Format of its own, given the same way: the spread
-                of <Means>$[[ the manual ]]( ./The Manual )</Means> sets a chapter beside its file, the sheet
-                of <Means>$[[ my story ]]( Dougs Story / The Sheet )</Means> sets the page's width. Neither is
-                a layout; each is said of the book beside it.
+                of <Means>$[[ the manual ]]( ./The Manual )</Means> sets a chapter beside its file. That is not
+                a layout; it is said of the book beside it. A type of book that wants every page shown at once
+                gives a layout of its own under this one, registered in a line,
+                as <Means>$[[ the journal ]]( ./The Journal )</Means> does.
             </Paragraph>
         </Section>
         <Section>

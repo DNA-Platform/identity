@@ -31,6 +31,7 @@ import TheRoom24 from '../../../../.manual/24-the-room';
 import ThePortfolio25 from '../../../../.manual/25-the-portfolio';
 import TheCamera26 from '../../../../.manual/26-the-camera';
 import ThePrint27 from '../../../../.manual/27-the-print';
+import TheJournal28 from '../../../../.manual/28-the-journal';
 import TheKeyo1 from '../../../../.manual/o1-the-key';
 import ATypeOfBooko2 from '../../../../.manual/o2-a-type-of-book';
 import AThemeo3 from '../../../../.manual/o3-a-theme';
@@ -74,6 +75,7 @@ export const book = () => (
         {ThePortfolio25()}
         {TheCamera26()}
         {ThePrint27()}
+        {TheJournal28()}
         {TheKeyo1()}
         {ATypeOfBooko2()}
         {AThemeo3()}

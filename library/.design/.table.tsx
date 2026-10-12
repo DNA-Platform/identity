@@ -33,6 +33,9 @@ export default () => (
                 <Content>$[[ ./Designing this book ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The journal, in five rounds ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ Dougs Design ]]</Content>
@@ -55,6 +58,9 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Content>$[[ ./The Design Book's Page ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Story's Page ]]</Content>
             </Paragraph>
         </Section>
         <Section>

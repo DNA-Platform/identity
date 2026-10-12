@@ -1,8 +1,9 @@
-import { Chapter, Date, Heading, Line, List, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Chapter, Date, Heading, Line, List, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
 import { Dated, First } from '../.manual/.book';
 
 export default () => (
     <Chapter>
+        <Part>October 2026</Part>
         <Dated>
             <Date>[5 October 2026](2026-10-05)</Date>
         </Dated>
@@ -92,9 +93,10 @@ export default () => (
                 </Line>
             </Paragraph>
             <Paragraph>
-                This book carries <Means>$[[ the sheet ]]( ./The Sheet )</Means>, and the catalogue
-                carries <Means>$[[ the two bars ]]( Dougs Library / The Catalogue )</Means>. Each says how its own
-                book is laid out.
+                This book is <Means>$[[ a journal ]]( Dougs Reference Manual / The Journal )</Means>, a type of
+                book kept in the reference manual, and carries nothing of its own. The catalogue
+                carries <Means>$[[ the two bars ]]( Dougs Library / The Catalogue )</Means>, which say how it is
+                laid out.
             </Paragraph>
             <Paragraph>
                 An appendix reads like a page of the reference manual, because a chapter that carries its file is

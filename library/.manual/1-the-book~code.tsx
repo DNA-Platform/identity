@@ -207,12 +207,16 @@ export class $LibraryBook extends $Book {
                 subject={this.coverOf(this.subject?.means?.identifier)}
             />
         ), this);
+        this.turns();
+        super.$Bound();
+    }
+
+    protected turns(): void {
         const Turn = $(turn);
         for (const chapter of this.body)
             chapter.text.add(this,
                 <Turn />
             );
-        super.$Bound();
     }
 }
 

@@ -11,10 +11,12 @@ import DesigningTogether4 from '../../../../.design/4-designing-together';
 import TheBookshelfInAnEvening5 from '../../../../.design/5-the-bookshelf-in-an-evening';
 import TheManualsPageInEightRounds6 from '../../../../.design/6-the-manuals-page-in-eight-rounds';
 import DesigningThisBook7 from '../../../../.design/7-designing-this-book';
-import TheBookshelf8 from '../../../../.design/8-the-bookshelf';
-import TheManualsPage9 from '../../../../.design/9-the-manuals-page';
-import TheDesignBooksPage10 from '../../../../.design/10-the-design-books-page';
-import EveryConcept11 from '../../../../.design/11-every-concept';
+import TheJournalInFiveRounds8 from '../../../../.design/8-the-journal-in-five-rounds';
+import TheBookshelf9 from '../../../../.design/9-the-bookshelf';
+import TheManualsPage10 from '../../../../.design/10-the-manuals-page';
+import TheDesignBooksPage11 from '../../../../.design/11-the-design-books-page';
+import TheStorysPage12 from '../../../../.design/12-the-storys-page';
+import EveryConcept13 from '../../../../.design/13-every-concept';
 import ThePortfolioo1 from '../../../../.design/o1-the-portfolio';
 
 const Book = $($Book);
@@ -31,10 +33,12 @@ export const book = () => (
         {TheBookshelfInAnEvening5()}
         {TheManualsPageInEightRounds6()}
         {DesigningThisBook7()}
-        {TheBookshelf8()}
-        {TheManualsPage9()}
-        {TheDesignBooksPage10()}
-        {EveryConcept11()}
+        {TheJournalInFiveRounds8()}
+        {TheBookshelf9()}
+        {TheManualsPage10()}
+        {TheDesignBooksPage11()}
+        {TheStorysPage12()}
+        {EveryConcept13()}
         {ThePortfolioo1()}
     </Book>
 );

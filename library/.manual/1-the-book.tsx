@@ -52,8 +52,8 @@ export default () => (
                 A type of book is a class under this one. <Means>$[[ The catalogue ]]( Dougs Library / The Catalogue )</Means> overrides
                 its head, which it leaves to its switches, and what stands below the pages, its shelf, names its
                 entries as pages, and says a desk of its own synopsis and of each book's at bind; <Means>$[[ the manual ]]( ./The Manual )</Means> overrides
-                its switches and gives itself the spread that sets a chapter beside its file; <Means>$[[ my story ]]( Dougs Story / The Sheet )</Means> overrides
-                its head and what stands above the pages, and <Means>$[[ the design book ]]( ./The Portfolio )</Means> says
+                its switches and gives itself the spread that sets a chapter beside its file; <Means>$[[ the journal ]]( ./The Journal )</Means> overrides
+                its head, adds no turn and lays every entry on one page, and <Means>$[[ the design book ]]( ./The Portfolio )</Means> says
                 which chapter opens when none is named. Each is a few lines, because the frame is this class's.
             </Paragraph>
         </Section>

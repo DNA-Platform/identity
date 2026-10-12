@@ -1,6 +1,5 @@
 import { About, Author, Autobiography, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
-import { Illustration, Scheme, Volume, Window } from '../.manual/.book';
-import { Cover } from './o1-the-sheet~faces.tsx';
+import { Illustration, JournalCover as Cover, Scheme, Volume, Window } from '../.manual/.book';
 import LibraryCover from '../..reference/.cover.tsx';
 
 export default () => (

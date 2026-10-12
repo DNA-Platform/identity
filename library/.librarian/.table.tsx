@@ -1,6 +1,5 @@
-import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, Title, Word } from '@dna-platform/public';
-import { Appendix, Index } from '../.manual/.book';
-import { TableOfContents } from './o1-the-sheet~faces.tsx';
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Index } from '../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -11,7 +10,7 @@ export default () => (
             [[ Table of Contents ]]
         </Title>
         <Section>
-            <Heading>The story</Heading>
+            <Heading>October 2026</Heading>
             <Paragraph>
                 <Content>$[[ ./Starting Over ]]</Content>
             </Paragraph>
@@ -35,13 +34,6 @@ export default () => (
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Appendix />
-            <Heading>How this book is built</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Sheet ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>

@@ -197,7 +197,9 @@ export default () => (
                 built, so that it is the most relevant place to begin from. Its chapters are annotated by date and
                 time, and it is to have a view that sorts them for recency. It is
                 for my story. Where it
-                is: <Means>$[[ my story reads as 29, the sheet of 25 under the white bar over the black side, its chapters at the side ]]( Dougs Story / The Sheet )</Means>.
+                is: it was built as 29, then designed again from the story's own print
+                in <Means>$[[ The Story's Page ]]( ./The Story's Page )</Means> and built
+                as <Means>$[[ the journal, every entry on one page newest first ]]( Dougs Reference Manual / The Journal )</Means>.
             </Paragraph>
         </Section>
         <Section>

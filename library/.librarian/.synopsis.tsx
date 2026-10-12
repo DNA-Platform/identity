@@ -9,7 +9,8 @@ export default () => (
         </Title>
         <Paragraph>
             My own account, and the one book here that is by its own subject: a story about me and what I create,
-            told so that the rest of the library can be navigated from it. It begins
+            told so that the rest of the library can be navigated from it. It is a journal, read newest first,
+            every entry dated and all of them on one page. It begins
             with <Means>$[[ ./Starting Over ]]</Means>, where this library was begun again from
             nothing; <Means>$[[ ./Choosing a Design ]]</Means> is how its look was
             decided; <Means>$[[ ./Closure ]]</Means> is why everything the library needs stands inside it;

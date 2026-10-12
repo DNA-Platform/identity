@@ -42,9 +42,8 @@ export default () => (
             <Heading>How a tone is used</Heading>
             <Paragraph>
                 A book registers its tone on its class in one line, as the base registers dark for every
-                book: <Means>$[[ the manual ]]( ./The Manual )</Means> and <Means>$[[ the design book ]]( ./The Portfolio )</Means> take
-                light, <Means>$[[ my story ]]( Dougs Story / The Sheet )</Means> white over black. The design book
-                offers white and the black top bar as tabs at its head.
+                book: <Means>$[[ the manual ]]( ./The Manual )</Means>, <Means>$[[ the design book ]]( ./The Portfolio )</Means> and <Means>$[[ the journal ]]( ./The Journal )</Means> take
+                light. The design book offers white and the black top bar as tabs at its head.
             </Paragraph>
         </Section>
         <Section>

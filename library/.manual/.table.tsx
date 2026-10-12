@@ -84,6 +84,9 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Rail ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Journal ]]</Content>
+            </Paragraph>
         </Section>
         <Section>
             <Heading>The designs</Heading>
