@@ -11,7 +11,7 @@ import DesigningTogether4 from '../../../../.design/4-designing-together';
 import TheBookshelfInAnEvening5 from '../../../../.design/5-the-bookshelf-in-an-evening';
 import TheManualsPageInEightRounds6 from '../../../../.design/6-the-manuals-page-in-eight-rounds';
 import DesigningThisBook7 from '../../../../.design/7-designing-this-book';
-import TheJournalInFiveRounds8 from '../../../../.design/8-the-journal-in-five-rounds';
+import TheJournalInSevenRounds8 from '../../../../.design/8-the-journal-in-seven-rounds';
 import TheBookshelf9 from '../../../../.design/9-the-bookshelf';
 import TheManualsPage10 from '../../../../.design/10-the-manuals-page';
 import TheDesignBooksPage11 from '../../../../.design/11-the-design-books-page';
@@ -33,7 +33,7 @@ export const book = () => (
         {TheBookshelfInAnEvening5()}
         {TheManualsPageInEightRounds6()}
         {DesigningThisBook7()}
-        {TheJournalInFiveRounds8()}
+        {TheJournalInSevenRounds8()}
         {TheBookshelf9()}
         {TheManualsPage10()}
         {TheDesignBooksPage11()}

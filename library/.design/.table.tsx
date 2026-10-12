@@ -33,7 +33,7 @@ export default () => (
                 <Content>$[[ ./Designing this book ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The journal, in five rounds ]]</Content>
+                <Content>$[[ ./The journal, in seven rounds ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Parenthetical />

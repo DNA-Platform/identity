@@ -4,7 +4,7 @@ import { Answer, Decision, Pain, Question, Solution } from '../.manual/.book';
 export default () => (
     <Chapter>
         <Part>The story</Part>
-        <Title>[[ The journal, in five rounds ]]</Title>
+        <Title>[[ The journal, in seven rounds ]]</Title>
         <Section>
             <Heading>What I come to my story for</Heading>
             <Paragraph>
@@ -72,6 +72,24 @@ export default () => (
                 at the edge of perception: a gradient on the lit row with a line of light along its top, lines
                 between entries that fade at their ends, a halo on the date's dot, and a radial lift of the blue
                 at the page's corner.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Two rounds on the built page</Heading>
+            <Paragraph>
+                <Pain />
+                Built and bound the same day, the journal showed a white band above the words that served no
+                purpose, and under it the page read grey. No one wants to read on gray.
+            </Paragraph>
+            <Paragraph>
+                <Solution />
+                The band was the frame's head, the row where a book's cover and switches stand, which the journal
+                draws nothing into; the layout now gives an empty region no room, for every book. The grey was
+                the page's wash, my story's blue mixed into the whole surface where the bookshelf mixes a fortieth
+                of a tint; the paper is white, and the tint stands only at the edges where the page meets the bar
+                and the contents. I asked for interesting subtle gradients at the edges of things, affecting how
+                boundaries look when they come together, with the words over white paper, and that is the rule
+                now: stop fighting the colour white. The same stands on the page, so the design is the record.
             </Paragraph>
         </Section>
         <Section>
