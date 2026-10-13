@@ -6,7 +6,8 @@ import {
 } from './7-the-writing~writing.ts';
 
 const referents: Referents = { Doug: 'Dougs Story', Claude: 'Dougs Claude' };
-const manualImportPath = '../../.manual/.book';
+const manualImportPath = '../../../.manual/.book';
+const claudeManualImportPath = '../../.manual/.book';
 const artifactBlock = (command: string, content: string, oldText = '', newText = ''): Block =>
     ({ type: 'artifact', id: 'notes', title: 'Notes', contentType: 'text/markdown', command, content, oldText, newText });
 
@@ -50,17 +51,20 @@ describe('the writing', () => {
         expect(lines).toContain('        <Word>2</Word>');
     });
 
-    it('writes one chapter for the whole conversation, each exchange a section headed by its speaker and timed', () => {
+    it('writes one chapter for the whole conversation, each message timed and headed by its speaker', () => {
         const question = sampleTextMessage('m1', 'Doug', 'A question');
         const path = [question, sampleTextMessage('m2', 'Claude', 'An answer', 'm1')];
-        const chapter = writtenChapter(sampleConversation('c', 'A Conversation', path), path, referents, manualImportPath);
+        const conversation = sampleConversation('c', 'A Conversation', path);
+        const chapter = writtenChapter(conversation, path, referents, manualImportPath, claudeManualImportPath);
         expect(chapter.fileName).toBe('1-june-15-2026.tsx');
         expect(chapter.title).toBe('15 June 2026');
         expect(chapter.tsx).toContain('<Part>June 2026</Part>');
         expect(chapter.tsx).toContain(`<Speaker>${referenceForm('Doug', 'Dougs Story', '$')}</Speaker>`);
         expect(chapter.tsx).toContain(`<Speaker>${referenceForm('Claude', 'Dougs Claude', '$')}</Speaker>`);
-        expect(chapter.tsx).toContain('at="2026-06-15T10:00:00Z"');
+        expect(chapter.tsx).toContain('        <Message\n            at="2026-06-15T10:00:00Z"\n        >');
         expect(chapter.tsx).toContain('<Paragraph>A question</Paragraph>');
+        expect(chapter.tsx).toContain(`import { Dated, Message, Speaker } from '${manualImportPath}';`);
+        expect(chapter.tsx).not.toContain(`from '${claudeManualImportPath}'`);
     });
 
     it("replays an artifact's versions into a file each and the final under its name, counting thinking unwritten", () => {
@@ -70,11 +74,14 @@ describe('the writing', () => {
             artifactBlock('update', '', 'world', 'there'),
         ];
         const path = [sampleMessage('m1', 'Claude', blocks)];
-        const chapter = writtenChapter(sampleConversation('a', 'Artifacts', path), path, referents, manualImportPath);
+        const conversation = sampleConversation('a', 'Artifacts', path);
+        const chapter = writtenChapter(conversation, path, referents, manualImportPath, claudeManualImportPath);
         expect(chapter.files.map(file => file.name))
             .toEqual(['1-june-15-2026~notes.v1.md', '1-june-15-2026~notes.v2.md', '1-june-15-2026~notes.md']);
         expect(chapter.files.map(file => file.content)).toEqual(['Hello world', 'Hello there', 'Hello there']);
         expect(chapter.tsx).toContain(literalForm('notes.v2.md'));
+        expect(chapter.tsx).toContain('<Artifact>Made the artifact “Notes”</Artifact>');
+        expect(chapter.tsx).toContain(`import { Artifact } from '${claudeManualImportPath}';`);
         expect(chapter.thinkingCount).toBe(1);
     });
 });

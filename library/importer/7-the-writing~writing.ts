@@ -72,6 +72,7 @@ export const writtenChapter = (
     path: Message[],
     referents: Referents,
     manualImportPath: string,
+    claudeManualImportPath: string,
 ): WrittenChapter => {
     const firstDay = path[0]?.sentAt.slice(0, 10) ?? conversation.createdAt.slice(0, 10);
     const [year, month, day] = firstDay.split('-').map(Number);
@@ -115,14 +116,14 @@ export const writtenChapter = (
         const verb = artifactVersion.versionCount === 1 ? 'Made' : block.command === 'rewrite' ? 'Rewrote' : 'Changed';
         const sentence = `${verb} the artifact “${escapedText(artifactVersion.title)}”`;
 
-        return elementLines('Paragraph', [sentence], 3, ['<Artifact />']);
+        return elementLines('Artifact', [sentence], 3);
     };
     const messageBlockLines = (block: Block): string[] => {
         if (block.type === 'text') return blockLines(block.text, 3);
         if (block.type === 'action')
-            return elementLines('Paragraph', [escapedText(actionSentence(block.name, block.input))], 3, ['<Action />']);
+            return elementLines('Action', [escapedText(actionSentence(block.name, block.input))], 3);
         if (block.type === 'results' && block.text.trim() !== '')
-            return elementLines('Paragraph', [escapedText(block.text.trim().slice(0, 4000))], 3, ['<Result />']);
+            return elementLines('Result', [escapedText(block.text.trim().slice(0, 4000))], 3);
         if (block.type === 'artifact') return artifactLines(block);
         if (block.type === 'thinking')
             thinkingCount++;
@@ -132,13 +133,10 @@ export const writtenChapter = (
 
     for (const message of path) {
         bodyLines.push(
-            `${indentation(2)}<Section>`,
-            `${indentation(3)}<Exchange`,
-            `${indentation(4)}at="${message.sentAt}"`,
-            `${indentation(3)}/>`,
-            `${indentation(3)}<Heading>`,
-            `${indentation(4)}<Speaker>${speakerReference(message.speaker, referents)}</Speaker>`,
-            `${indentation(3)}</Heading>`,
+            `${indentation(2)}<Message`,
+            `${indentation(3)}at="${message.sentAt}"`,
+            `${indentation(2)}>`,
+            `${indentation(3)}<Speaker>${speakerReference(message.speaker, referents)}</Speaker>`,
         );
         const bodyLengthBefore = bodyLines.length;
         for (const block of message.blocks)
@@ -147,34 +145,38 @@ export const writtenChapter = (
             const attachmentExtension = attachment.extension.toLowerCase();
             const extension = knownExtensions.includes(attachmentExtension) ? attachmentExtension : 'txt';
             addFile(uniqueBaseName(slugFromName(attachment.name.replace(/\.[^.]+$/u, ''))), extension, attachment.text);
-            const sentence = `Attached “${escapedText(attachment.name)}”`;
-            bodyLines.push(...elementLines('Paragraph', [sentence], 3, ['<Attached />']));
+            bodyLines.push(...elementLines('Attachment', [`Attached “${escapedText(attachment.name)}”`], 3));
         }
         for (const uploadName of message.uploads) {
             const sentence = `Uploaded “${escapedText(uploadName)}”, whose content the export does not carry`;
-            bodyLines.push(...elementLines('Paragraph', [sentence], 3, ['<Attached />']));
+            bodyLines.push(...elementLines('Attachment', [sentence], 3));
         }
         if (bodyLines.length === bodyLengthBefore)
-            bodyLines.push(...elementLines('Paragraph', ['Nothing was written in this message'], 3, ['<Attached />']));
-        bodyLines.push(`${indentation(2)}</Section>`);
+            bodyLines.push(...elementLines('Paragraph', ['Nothing was written in this message'], 3));
+        bodyLines.push(`${indentation(2)}</Message>`);
     }
     for (const artifactVersion of artifactVersions.values())
         addArtifactFile(slugFromName(artifactVersion.title), artifactVersion);
 
     const isUsedInBody = (elementName: string): boolean => bodyLines.some(line =>
         line.includes(`<${elementName}>`) || line.includes(`<${elementName} `) || line.trim() === `<${elementName}`);
-    const alwaysImported = ['Chapter', 'Date', 'Heading', 'Paragraph', 'Part', 'Section', 'Title'];
+    const alwaysImported = ['Chapter', 'Date', 'Paragraph', 'Part', 'Title'];
     const packageWords = [
         'Append', 'Bold', 'Chapter', 'Code', 'Date', 'Emphasis', 'Equation', 'Heading', 'Line', 'List', 'Math', 'Paragraph',
-        'Part', 'Reference', 'Section', 'Table', 'Title', 'Word',
+        'Part', 'Reference', 'Table', 'Title', 'Word',
     ];
-    const manualWords = ['Action', 'Artifact', 'Attached', 'Dated', 'Exchange', 'Quoted', 'Result', 'Speaker', 'Verbatim'];
+    const manualWords = ['Dated', 'Message', 'Quoted', 'Speaker', 'Verbatim'];
+    const claudeManualWords = ['Action', 'Artifact', 'Attachment', 'Result'];
     const packageImports = packageWords
         .filter(word => alwaysImported.includes(word) || (word === 'Append' ? appendices.length > 0 : isUsedInBody(word)));
-    const manualImports = manualWords.filter(word => ['Dated', 'Exchange', 'Speaker'].includes(word) || isUsedInBody(word));
+    const manualImports = manualWords.filter(word => ['Dated', 'Message', 'Speaker'].includes(word) || isUsedInBody(word));
+    const claudeManualImports = claudeManualWords.filter(isUsedInBody);
+    const claudeImportLine = claudeManualImports.length === 0
+        ? [] : [`import { ${claudeManualImports.join(', ')} } from '${claudeManualImportPath}';`];
     const tsx = [
         `import { ${packageImports.join(', ')} } from '@dna-platform/public';`,
         `import { ${manualImports.join(', ')} } from '${manualImportPath}';`,
+        ...claudeImportLine,
         '',
         'export default () => (',
         `${indentation(1)}<Chapter>`,

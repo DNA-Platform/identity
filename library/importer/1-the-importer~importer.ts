@@ -68,6 +68,7 @@ export const run = async (args: Arguments): Promise<void> => {
     const folders: LibraryFolders = {
         library: args.library,
         claude: join(args.library, '.claude'),
+        claudeManual: join(args.library, '.claude', '.manual'),
         conversations: join(args.library, '.claude', '.conversations'),
     };
     const heldRecords = importRecords(folders.conversations);
@@ -164,7 +165,10 @@ const listProjectConversations = (
 };
 
 const writeChapterIntoFolder = (intoFolder: string, conversation: Conversation): void => {
-    const chapter = writtenChapter(conversation, shownPath(conversation), referents, '../.manual/.book');
+    const manualImportPath = '../.manual/.book';
+    const claudeManualImportPath = '../.claude/.manual/.book';
+    const path = shownPath(conversation);
+    const chapter = writtenChapter(conversation, path, referents, manualImportPath, claudeManualImportPath);
     const folder = join(intoFolder, slugFromName(conversation.name));
     mkdirSync(folder, { recursive: true });
     writeFileSync(join(folder, chapter.fileName), chapter.tsx, 'utf8');

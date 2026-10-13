@@ -6,7 +6,7 @@ import {
     writtenChapter, type Appendix, type Referents,
 } from './7-the-writing~writing.ts';
 
-export type LibraryFolders = { library: string; claude: string; conversations: string };
+export type LibraryFolders = { library: string; claude: string; claudeManual: string; conversations: string };
 export type Scheme = { ground: string; band: string; bandInk: string; foot: string; footInk: string; ink: string };
 export type WrittenBook = { folder: string; files: string[] };
 export type WrittenEntry = { entryPath: string | undefined; tablePath: string; files: string[] };
@@ -50,6 +50,8 @@ const relativePath = (fromFolder: string, toFolder: string): string => {
 };
 const manualImportPath = (folders: LibraryFolders, folder: string): string =>
     `${relativePath(folder, join(folders.library, '.manual'))}/.book`;
+const claudeManualImportPath = (folders: LibraryFolders, folder: string): string =>
+    `${relativePath(folder, folders.claudeManual)}/.book`;
 const packageImportLine = (packageWords: string[]): string =>
     `import { ${packageWords.join(', ')} } from '@dna-platform/public';`;
 const manualImportLine = (manualWords: string[], importPath: string): string =>
@@ -103,7 +105,14 @@ export const conversationBook = (
 ): WrittenBook => {
     const folder = join(folders.conversations, slugFromName(name));
     const importPath = manualImportPath(folders, folder);
-    const chapter = writtenChapter(conversation, path, referents, importPath);
+    const chapter = writtenChapter(conversation, path, referents, importPath, claudeManualImportPath(folders, folder));
+    const coverManualWords = ['Messages', 'Participant', 'Participants', 'Period', 'Scheme'];
+    const speakers = [...new Set(path.map(message => message.speaker))];
+    const participantLines = [
+        '<Participants>',
+        ...speakers.map(speaker => `    <Participant>${referenceForm(speaker, referents[speaker], '$')}</Participant>`),
+        '</Participants>',
+    ];
     const openingBlock = path.find(message => message.speaker === 'Doug')?.blocks.find(block => block.type === 'text');
     const openingLine = openingBlock?.type === 'text' ? openingBlock.text.split(/\n/u)[0] : '';
     const summaryText = conversation.summary !== ''
@@ -122,8 +131,9 @@ export const conversationBook = (
     );
     const files = [
         writtenFile(join(folder, '.book.tsx'), bookFileText(importPath, 'Conversation', name)),
-        writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, ['Messages', 'Period', 'Scheme'], packageWords, [
+        writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, coverManualWords, packageWords, [
             ...schemeLines(scheme),
+            ...participantLines,
             '<Period',
             `    from="${path[0]?.sentAt ?? conversation.createdAt}"`,
             `    to="${path.at(-1)?.sentAt ?? conversation.updatedAt}"`,

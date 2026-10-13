@@ -6,6 +6,7 @@ import Synopsis from '../../../../.claude/.synopsis';
 import Table from '../../../../.claude/.table';
 import OurConversations1 from '../../../../.claude/1-our-conversations';
 import SemanticReferenceTheory2 from '../../../../.claude/2-semantic-reference-theory';
+import ClaudesReferenceManual3 from '../../../../.claude/3-claudes-reference-manual';
 
 const Book = $($Book);
 
@@ -16,6 +17,7 @@ export const book = () => (
         {Table()}
         {OurConversations1()}
         {SemanticReferenceTheory2()}
+        {ClaudesReferenceManual3()}
     </Book>
 );
 

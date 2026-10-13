@@ -4,6 +4,7 @@ export const books = {
     ".claude": () => import("./books/claude"),
     ".claude/.conversations": () => import("./books/claude/conversations"),
     ".claude/.conversations/semantic-primes": () => import("./books/claude/conversations/semantic-primes"),
+    ".claude/.manual": () => import("./books/claude/manual"),
     ".claude/.semantic-reference-theory": () => import("./books/claude/semantic-reference-theory"),
     ".design": () => import("./books/design"),
     ".librarian": () => import("./books/librarian"),

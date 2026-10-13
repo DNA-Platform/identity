@@ -1,14 +1,24 @@
 import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
-import { $Annotation, $Chapter, $Cover, $Date, $Heading, $Means, $Paragraph, $Section, $Word, $Writing, AnnotationSpecification, specify } from '@dna-platform/public';
+import {
+    $Annotation, $Chapter, $Cover, $Date, $Heading, $Means, $Paragraph, $Referent, $Section, $Word, $Writing,
+    AnnotationSpecification, SectionSpecification, specify,
+} from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { $Dated } from './4-the-date~code.tsx';
 import { dayOf, monthOf } from './28-the-journal~code.tsx';
 
-export class $Speaker extends $Means {
+export class $Speaker extends $Heading {
     protected override $Define(): void {
         super.$Define();
         this.classes.add(this, 'pd-speaker');
+    }
+
+    protected override $Bound(): void {
+        super.$Bound();
+        const referent = this.annotations.expressed($Referent);
+        if (referent !== undefined)
+            this.annotations.remove(this, referent);
     }
 }
 
@@ -19,58 +29,49 @@ export class $Time extends $Date {
     }
 }
 
+export class $Participant extends $Means {
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-participant');
+    }
+}
+
+export class $Participants extends $Paragraph {
+    get participants(): $Participant[] { return this.text.find($Participant); }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-participants');
+    }
+}
+
 export const Speaker = $($Speaker);
 export const Time = $($Time);
+export const Participant = $($Participant);
+export const Participants = $($Participants);
 const time = Time;
 
-export class $Exchange extends $Annotation {
-    specification = new ExchangeSpecification();
+export class $Message extends $Section {
+    override specification = new MessageSpecification();
     $at: string | undefined = undefined;
     get when(): string { return this.$at ?? ''; }
-    get speaker(): $Speaker | undefined {
-        const section = this.parent as $Section | undefined;
-        return section?.text.find($Heading)[0]?.text.find($Speaker)[0];
-    }
+    get speaker(): $Speaker | undefined { return this.text.find($Speaker)[0]; }
 
-    override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-exchange');
-    }
-
-    override erase(writing: $Writing): void {
-        writing.classes.revert(this);
-    }
-
-    override note(): ReactNode {
+    override write(): ReactNode {
         const Time = $(time);
         return (
-            <Time>
-                {`[${this.when}](${this.when})`}
-            </Time>
+            <>
+                {super.write()}
+                <Time>
+                    {`[${this.when}](${this.when})`}
+                </Time>
+            </>
         );
     }
-}
 
-export class $Action extends $Annotation {
-    specification = new OfAParagraphSpecification();
-
-    override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-action');
-    }
-
-    override erase(writing: $Writing): void {
-        writing.classes.revert(this);
-    }
-}
-
-export class $Result extends $Annotation {
-    specification = new OfAParagraphSpecification();
-
-    override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-result');
-    }
-
-    override erase(writing: $Writing): void {
-        writing.classes.revert(this);
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-message');
     }
 }
 
@@ -79,30 +80,6 @@ export class $Quoted extends $Annotation {
 
     override defines(writing: $Writing): void {
         writing.classes.add(this, 'pa-quoted');
-    }
-
-    override erase(writing: $Writing): void {
-        writing.classes.revert(this);
-    }
-}
-
-export class $Attached extends $Annotation {
-    specification = new OfAParagraphSpecification();
-
-    override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-attached');
-    }
-
-    override erase(writing: $Writing): void {
-        writing.classes.revert(this);
-    }
-}
-
-export class $Artifact extends $Annotation {
-    specification = new OfAParagraphSpecification();
-
-    override defines(writing: $Writing): void {
-        writing.classes.add(this, 'pa-artifact');
     }
 
     override erase(writing: $Writing): void {
@@ -155,22 +132,17 @@ export class $Messages extends $Annotation {
     }
 }
 
-export class ExchangeSpecification extends AnnotationSpecification {
-    @specify('an exchange is said of a section')
-    $saidOfASection(writing: $Writing): void {
-        $check(writing instanceof $Section, 'an exchange is said of a section, and this is not one');
+export class MessageSpecification extends SectionSpecification {
+    @specify('a message says when it was said')
+    $saysWhen(message: $Message): void {
+        $check(message.when !== '' && !Number.isNaN(Date.parse(message.when)),
+            'a message says when it was said, as an instant the machine can read, and this one does not');
     }
 
-    @specify('an exchange says when it was said')
-    $saysWhen(writing: $Writing): void {
-        const when = writing.annotations.expressed($Exchange)?.when ?? '';
-        $check(when !== '' && !Number.isNaN(Date.parse(when)), 'an exchange says when it was said, as an instant the machine can read, and this one does not');
-    }
-
-    @specify('an exchange is headed by its speaker')
-    $headedByItsSpeaker(writing: $Writing): void {
-        $check(writing.annotations.expressed($Exchange)?.speaker !== undefined,
-            'an exchange is headed by its speaker, a word that refers to them, and this one is not');
+    @specify('a message is headed by its speaker')
+    $headedByItsSpeaker(message: $Message): void {
+        $check(message.canonical instanceof $Speaker,
+            'a message is headed by its speaker, a heading that refers to them, and this one is not');
     }
 }
 
@@ -195,26 +167,25 @@ export class VerbatimSpecification extends AnnotationSpecification {
     }
 }
 
-export const Exchange = $($Exchange);
-export const Action = $($Action);
-export const Result = $($Result);
+export const Message = $($Message);
 export const Quoted = $($Quoted);
-export const Attached = $($Attached);
-export const Artifact = $($Artifact);
 export const Verbatim = $($Verbatim);
 export const Period = $($Period);
 export const Messages = $($Messages);
 
 export class $Conversation extends $LibraryBook {
     override specification = new ConversationSpecification();
+    get participants(): $Participant[] {
+        return this.cover?.text.find($Participants)[0]?.participants ?? [];
+    }
     get period(): $Period | undefined {
         return this.cover?.annotations.expressed($Period);
     }
-    get messages(): $Messages | undefined {
+    get messageCount(): $Messages | undefined {
         return this.cover?.annotations.expressed($Messages);
     }
-    get exchanges(): $Section[] {
-        return this.body.flatMap(chapter => chapter.text.find($Section).filter(section => section.is($Exchange)));
+    get messages(): $Message[] {
+        return this.body.flatMap(chapter => chapter.text.find($Message));
     }
     override get pages(): $Chapter[] {
         const body = [...this.body].sort((a, b) => dayOf(a).localeCompare(dayOf(b)));
@@ -223,10 +194,10 @@ export class $Conversation extends $LibraryBook {
 }
 
 export class ConversationSpecification extends LibraryBookSpecification {
-    @specify('a conversation says its period and how many messages it holds')
-    $saysItsPeriodAndHowMany(book: $Conversation): void {
-        $check(book.period !== undefined && book.messages !== undefined,
-            'a conversation says its period and how many messages it holds, on its cover, and this one says less');
+    @specify('a conversation says its participants, its period and how many messages it holds')
+    $saysItsParticipantsPeriodAndCount(book: $Conversation): void {
+        $check(book.participants.length > 0 && book.period !== undefined && book.messageCount !== undefined,
+            'a conversation says its participants, its period and how many messages it holds, on its cover, and this one says less');
     }
 
     @specify('every chapter of a conversation is dated')
@@ -242,10 +213,10 @@ export class ConversationSpecification extends LibraryBookSpecification {
             `every chapter of a conversation says the month of its date as its part, and "${astray.title?.name}" says "${astray.part?.name ?? 'none'}" for ${monthOf(astray)}`);
     }
 
-    @specify('every chapter of a conversation holds an exchange')
-    $everyChapterHoldsAnExchange(book: $Conversation): void {
-        const empty = book.body.find(chapter => !chapter.text.find($Section).some(section => section.is($Exchange)));
-        $check(empty === undefined, `every chapter of a conversation holds an exchange, and "${empty?.title?.name}" holds none`);
+    @specify('every chapter of a conversation holds a message')
+    $everyChapterHoldsAMessage(book: $Conversation): void {
+        const empty = book.body.find(chapter => chapter.text.find($Message).length === 0);
+        $check(empty === undefined, `every chapter of a conversation holds a message, and "${empty?.title?.name}" holds none`);
     }
 }
 

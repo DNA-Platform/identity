@@ -2,47 +2,52 @@
   "books": [
     {
       "folder": "..reference",
-      "digest": "458c4b68f725ce09",
+      "digest": "bf859f4a98931bd3",
       "walked": 112
     },
     {
       "folder": ".claude",
-      "digest": "26db7c00998d5e11",
-      "walked": 38
+      "digest": "f2c0dae1533543a2",
+      "walked": 49
     },
     {
       "folder": ".claude/.conversations",
-      "digest": "9ca8bd6dedec8d10",
+      "digest": "aef9e172dec4da34",
       "walked": 27
     },
     {
       "folder": ".claude/.conversations/semantic-primes",
-      "digest": "2889c0946f515075",
-      "walked": 630
+      "digest": "5b48bf902f34462d",
+      "walked": 615
+    },
+    {
+      "folder": ".claude/.manual",
+      "digest": "56956202d55eadca",
+      "walked": 39
     },
     {
       "folder": ".claude/.semantic-reference-theory",
-      "digest": "d94e6c6915da4869",
+      "digest": "903b90b7f1634f0f",
       "walked": 294
     },
     {
       "folder": ".design",
-      "digest": "3126438c7ab60a77",
+      "digest": "f754c2d1b4a5631f",
       "walked": 1056
     },
     {
       "folder": ".librarian",
-      "digest": "4e196a031e9e7128",
+      "digest": "f12e9ac5c1030db2",
       "walked": 179
     },
     {
       "folder": ".manual",
-      "digest": "266ef19ea44c0b42",
+      "digest": "e1b51ebb67d36281",
       "walked": 748
     },
     {
       "folder": "importer",
-      "digest": "cbf943f7bfcbb90d",
+      "digest": "f3e2819fad106d58",
       "walked": 139
     }
   ]

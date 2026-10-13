@@ -10,21 +10,23 @@ export default () => (
         <Title>[[ The Conversation ]]</Title>
         <Paragraph>
             <Brief />
-            The type of book a conversation with Claude is imported as, formatted as Claude formats one: a
-            chapter of exchanges, each headed by who said it, and the data about the conversation on its cover.
+            The type of book a conversation is: a book of messages, each said by a speaker at a time, in order, any
+            number of speakers, with the participants, the period and the count on its cover.
         </Paragraph>
         <Section>
             <Heading>The conversation, a type of book</Heading>
             <Paragraph>
-                A conversation is a book whose cover says when it was held, from which instant to which, and how
-                many messages it holds, how many of them on the screen and how many left on other paths, since a
-                conversation is a tree once a message is edited or asked again and the book keeps the path that
-                was shown. Those are annotations with values, not words, so that the page reports them and every
-                catalogue of conversations can read them, by date, by size, by whatever is said of them. The
-                first version imports the whole conversation into one chapter, dated with its first day and in the
-                part of its month, as an entry of <Means>$[[ a journal ]]( ./The Journal )</Means> is; the days,
-                the sittings and the summaries that make a long conversation navigable come by hand after. The
-                type asks that every chapter be dated, say its month, and hold at least one exchange.
+                A conversation is a book whose cover says who took part, each participant a word that refers to the
+                book that stands for them in this library, my autobiography for me and what stands for Claude for
+                him; when it was held, from which instant to which; and how many messages it holds, how many of
+                them on the screen and how many left on other paths, since a conversation is a tree once a message
+                is edited or asked again and the book keeps the path that was shown. Those are annotations with
+                values and a paragraph of participants, so that the page reports them and every catalogue of
+                conversations can read them, by date, by size, by who was there. The first version imports the
+                whole conversation into one chapter, dated with its first day and in the part of its month, as an
+                entry of <Means>$[[ a journal ]]( ./The Journal )</Means> is; the days, the sittings and the
+                summaries that make a long conversation navigable come by hand after. The type asks that every
+                chapter be dated, say its month, and hold at least one message.
             </Paragraph>
             <Paragraph>
                 The cover says where the conversation is filed: under the book that catalogues all of them, and
@@ -35,25 +37,24 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>An exchange, and what it carries</Heading>
+            <Heading>A message, and what it is made of</Heading>
             <Paragraph>
-                An exchange is one message: a section said to be an exchange, told the instant it was said, and
-                headed by who said it, a word that refers to them. A reference to me points to my autobiography,
-                which is the referent that stands for me in this library; a reference to Claude points to what
-                stands for Claude here. What was said stands as paragraphs, lists, headings, code, tables and
-                formulas, the ordinary writing of this library, converted once when the conversation is imported
-                and never read from a string when the page is drawn. A word that was typed as code is said
-                verbatim. A paragraph that was quoted is said quoted.
+                A message is one thing one participant said at one time. It is a section of its own kind, not a
+                section said to be something: it says when it was said, as an instant, and it is headed by its
+                speaker, a heading whose words refer to the participant's book, so that every message of mine
+                leads to my autobiography and every message of Claude's to what stands for him. There are no
+                turns and no pairs of messages; a message stands alone in its order, and three speakers read the
+                same as two. What was said stands inside it as the ordinary writing of this library, paragraphs,
+                lists, headings, code, tables and formulas, converted once when the conversation is imported and
+                never read from a string when the page is drawn. A word that was typed as code is said verbatim.
+                A paragraph that was quoted is said quoted.
             </Paragraph>
             <Paragraph>
-                A search of the web or a run of code that Claude made in an exchange is one paragraph saying what
-                was done, said to be an action, and what came back is the paragraph after, said to be its
-                results; the page shows them as Claude does, a row that opens on what came back. A file attached
-                to a message stands beside the chapter, and a paragraph of the exchange names it as attached. An
-                artifact the conversation made stands beside the chapter too, every version of it, and a
-                paragraph names it; the chapter lists its files at its foot
-                as <Means>$[[ the listing ]]( ./The Listing )</Means> shows them. The thinking behind an answer is
-                not in the book, and an uploaded file whose content was never exported is named and no more.
+                What a message holds that is not said, a thing done and what came back, a file made, a file
+                given, is not a paragraph wearing a mark but a writing of its own, and what those are depends on
+                who was speaking: Claude's are said
+                in <Means>$[[ Claudes Reference Manual ]]</Means>, which specializes this chapter, as a
+                manual of another participant's would. The thinking behind an answer is not in the book.
             </Paragraph>
         </Section>
         <Append

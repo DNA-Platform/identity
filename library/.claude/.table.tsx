@@ -20,6 +20,15 @@ export default () => (
                     <Content>[[ ▷ ]]( Our Conversations )**</Content>
                 </Word>
             </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Claudes Reference Manual ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Claudes Reference Manual )**</Content>
+                </Word>
+            </Paragraph>
         </Section>
         <Section>
             <Heading>August 2026</Heading>

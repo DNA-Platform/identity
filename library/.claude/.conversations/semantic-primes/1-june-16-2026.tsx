@@ -1,5 +1,6 @@
-import { Bold, Chapter, Code, Date, Emphasis, Equation, Heading, Line, List, Math, Paragraph, Part, Section, Title, Word } from '@dna-platform/public';
-import { Action, Dated, Exchange, Quoted, Result, Speaker, Verbatim } from '../../../.manual/.book';
+import { Bold, Chapter, Code, Date, Emphasis, Equation, Line, List, Math, Paragraph, Part, Title, Word } from '@dna-platform/public';
+import { Dated, Message, Quoted, Speaker, Verbatim } from '../../../.manual/.book';
+import { Action, Result } from '../../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -8,33 +9,23 @@ export default () => (
             <Date>[16 June 2026](2026-06-16)</Date>
         </Dated>
         <Title>[[ 16 June 2026 ]]</Title>
-        <Section>
-            <Exchange
-                at="2026-06-16T08:57:49.227595Z"
-            />
-            <Heading>
-                <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            </Heading>
+        <Message
+            at="2026-06-16T08:57:49.227595Z"
+        >
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 Can you look up the research on semantic primes? I heard that they were 65 of them. And can you put them in
                 an editable artifacts where you describe the research that summarize them? Include the categories that they
                 were presented in too
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T08:59:28.303806Z"
-            />
-            <Heading>
-                <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T08:59:28.303806Z"
+        >
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>I'll look up the current research on semantic primes for you.</Paragraph>
-            <Paragraph>
-                <Action />
-                Searched the web for “semantic primes Wierzbicka NSM list number”
-            </Paragraph>
-            <Paragraph>
-                <Result />
+            <Action>Searched the web for “semantic primes Wierzbicka NSM list number”</Action>
+            <Result>
                 Context 1... after more than four decades of research covering approximately thirty different languages, the
                 list has reached 65 elements (Wierzbicka 2021, 320). The current list of semantic primes is presented in
                 Table 1. For ease of use, they ... According to this framework, any word, regardless of complexity, can be
@@ -73,18 +64,14 @@ export default () => (
                 approach, and reviews the 35 year program of conceptual analysis and cross-linguistic testing which has led
                 to the current model of 63 semantic primes and their ... This book, Semantic primes and universal grammar:
                 empirical evidence from the Romance languages (henceforth SPUGR) co
-            </Paragraph>
+            </Result>
             <Paragraph>
                 Good, I have a solid picture. Let me get the authoritative category breakdown so the artifact is accurate.
                 I'll fetch the Casey Keith page which claims to have the full categorized inventory, and cross-check against
                 the NSM chart.
             </Paragraph>
-            <Paragraph>
-                <Action />
-                Fetched https://caseykeith.me/semantic-primes/
-            </Paragraph>
-            <Paragraph>
-                <Result />
+            <Action>Fetched https://caseykeith.me/semantic-primes/</Action>
+            <Result>
                 --- canonical: https://caseykeith.me/semantic-primes/ meta-article:author:
                 https://www.facebook.com/TheRealCaseyKeith/ meta-article:modified_time: 2026-05-20T16:46:06-07:00
                 meta-article:published_time: 2025-10-28T19:47:36-07:00 meta-article:publisher:
@@ -130,7 +117,7 @@ export default () => (
                 Group&#93;(https://www.facebook.com/groups/seotrainingcamp/) *
                 &#91;Contact&#93;(https://caseykeith.me/contact/) Select Page # Semantic Primes: A Simple Guide to NSM’s 65
                 Universal Concepts by &#91;Casey Ke
-            </Paragraph>
+            </Result>
             <Paragraph>
                 I have what I need. The figure you heard is right — the count stabilized at <Word>
                     <Bold />
@@ -140,23 +127,13 @@ export default () => (
                 Goddard &amp; Wierzbicka 2014 grouping, which sums cleanly to 65, and note where the simpler web versions
                 diverge.
             </Paragraph>
-            <Paragraph>
-                <Action />
-                Created /mnt/user-data/outputs/semantic_primes.md
-            </Paragraph>
-            <Paragraph>
-                <Result />
-                File created successfully: /mnt/user-data/outputs/semantic_primes.md
-            </Paragraph>
-            <Paragraph>
-                <Action />
-                Presented files
-            </Paragraph>
-            <Paragraph>
-                <Result />
+            <Action>Created /mnt/user-data/outputs/semantic_primes.md</Action>
+            <Result>File created successfully: /mnt/user-data/outputs/semantic_primes.md</Result>
+            <Action>Presented files</Action>
+            <Result>
                 &#123;"type":"local_resource","file_path":"/mnt/user-data/outputs/semantic_primes.md","name":"semantic
                 primes","mime_type":"text/markdown","uuid":"9cfb4747-f08a-4a1a-a84f-57d94827c711"&#125;
-            </Paragraph>
+            </Result>
             <Paragraph>Done. A few things worth knowing about what I found:</Paragraph>
             <Paragraph>
                 The <Word>
@@ -193,29 +170,19 @@ export default () => (
                 which may be the more interesting part for how you think about reference. The file is editable markdown, so
                 you can restructure the categories or add columns (e.g., cross-linguistic exponents) as needed.
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T09:09:40.951341Z"
-            />
-            <Heading>
-                <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T09:09:40.951341Z"
+        >
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>Can you find the original 14 proposed??</Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T09:10:58.568168Z"
-            />
-            <Heading>
-                <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            </Heading>
-            <Paragraph>
-                <Action />
-                Searched the web for “Wierzbicka 1972 Semantic Primitives original 14 list elements”
-            </Paragraph>
-            <Paragraph>
-                <Result />
+        </Message>
+        <Message
+            at="2026-06-16T09:10:58.568168Z"
+        >
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>Searched the web for “Wierzbicka 1972 Semantic Primitives original 14 list elements”</Action>
+            <Result>
                 Three centuries ago, Leibniz was ... those concepts which can be understood by themselves and from whose
                 combinations our other ideas arise” (Couturat 1903: 430, 435, cf. Wierzbicka 2001, 2011). The idea was still
                 widely known and discussed in the 18th century (see, for example, D’Alembert 1759), but in the 19th century
@@ -254,16 +221,14 @@ export default () => (
                 14 elements. Following my emigration to Australia more and more linguists joined the testing of the proposed
                 set against an increasing range of languages and domains. N1 - Publisher Copyright: © Anna Wierzbicka, 2021.
                 ... N2 - Are ther ... lokah &amp;#x27;strong; stiff&amp;#x27; Figure 1, blaq &amp;#x27;good&amp;#
-            </Paragraph>
+            </Result>
             <Paragraph>
                 The sources confirm the 14 but none of them list the actual members. Let me find the specific list.
             </Paragraph>
-            <Paragraph>
-                <Action />
+            <Action>
                 Searched the web for “Wierzbicka 1972 fourteen primitives "I" "you" "want" "think" "imagine" "world" "this"”
-            </Paragraph>
-            <Paragraph>
-                <Result />
+            </Action>
+            <Result>
                 ### 5.1.2. Semantic Primitives Wierzbicka (1972) believed that it is possible to describe every human
                 language by using a limited number of universal semantic primitives. These primitives are representative of
                 fundamental concepts that form the basis of human communication and thinking. Wierzbicka (1972) established
@@ -307,18 +272,16 @@ export default () => (
                 find words for good and bad everywhere. So you can build numerical concepts, ethical concepts, and any other
                 complex concepts on that basis.” When Anna first presented her theory in her seminal 1972 book Semantic
                 Primitives, she posited 14 innate and universal concepts or ‘semantic p
-            </Paragraph>
+            </Result>
             <Paragraph>
                 One source notes the count is sometimes given as thirteen, which is a known wrinkle. But I still need the
                 actual members. Let me find an explicit enumeration.
             </Paragraph>
-            <Paragraph>
-                <Action />
+            <Action>
                 Searched the web for “Wierzbicka 1972 original primitives list "want" "don't want" "feel" "think of"
                 "imagine" "say" "become" "part of" "world"”
-            </Paragraph>
-            <Paragraph>
-                <Result />
+            </Action>
+            <Result>
                 Wierzbicka (1972Wierzbicka ( , 1980 WANT and DON&amp;#x27;T WANT were recognised as separate primes, but
                 this insight was lost sight of in Goddard &amp;amp; Wierzbicka (1994) and much subsequent work.
                 DON&amp;#x27;T WANT was restored to the inventory of semantic primes in Goddard &amp;amp; Wierzbicka
@@ -358,25 +321,16 @@ export default () => (
                 subcurrents in Semnatics. The first chapter explores the historical development of the theory of Semantic
                 Primitives, tracing its roots back to the work of Leibniz. It discusses the theory's focus on natural
                 language and its rejection of abstract symbols as a means of representing meanin discussion of the
-            </Paragraph>
+            </Result>
             <Paragraph>
                 I found it. The original set is documented — and there's a genuinely interesting wrinkle in the count that's
                 worth capturing. Let me add this to the document so it lives alongside the rest.
             </Paragraph>
-            <Paragraph>
-                <Action />
-                Read /mnt/user-data/outputs/semantic_primes.md
-            </Paragraph>
-            <Paragraph>
-                <Result />
-                Input validation errors occurred: description: Field required
-            </Paragraph>
-            <Paragraph>
-                <Action />
-                Read /mnt/user-data/outputs/semantic_primes.md
-            </Paragraph>
-            <Paragraph>
-                <Result />
+            <Action>Read /mnt/user-data/outputs/semantic_primes.md</Action>
+            <Result>Input validation errors occurred:
+description: Field required</Result>
+            <Action>Read /mnt/user-data/outputs/semantic_primes.md</Action>
+            <Result>
                 19 - **2014** — The inventory stabilizes at **65** (Goddard &amp; Wierzbicka 2014, *Words and Meanings*).
                 Both authors declared the search essentially complete. 20 - **2014–present** — The 65-element table has
                 remained stable as more semantic domains were analyzed; it has held up as a working toolkit. (Wierzbicka
@@ -392,24 +346,14 @@ export default () => (
                 27 28 ## The 65 primes, by category 29 30 The standard NSM grouping is "onto-syntactic" — primes are
                 clustered by the grammatical/conceptual role they play, not just by topic. 31 32 | # | Category | Semantic
                 primes | Count | &#91;78 lines total&#93;
-            </Paragraph>
-            <Paragraph>
-                <Action />
-                Edited /mnt/user-data/outputs/semantic_primes.md
-            </Paragraph>
-            <Paragraph>
-                <Result />
-                Successfully replaced string in /mnt/user-data/outputs/semantic_primes.md
-            </Paragraph>
-            <Paragraph>
-                <Action />
-                Presented files
-            </Paragraph>
-            <Paragraph>
-                <Result />
+            </Result>
+            <Action>Edited /mnt/user-data/outputs/semantic_primes.md</Action>
+            <Result>Successfully replaced string in /mnt/user-data/outputs/semantic_primes.md</Result>
+            <Action>Presented files</Action>
+            <Result>
                 &#123;"type":"local_resource","file_path":"/mnt/user-data/outputs/semantic_primes.md","name":"semantic
                 primes","mime_type":"text/markdown","uuid":"8052fed4-bdb4-4d3a-a9e1-af2fa18f61fd"&#125;
-            </Paragraph>
+            </Result>
             <Paragraph>Added the original 1972 set as its own section in the document. The short version:</Paragraph>
             <Paragraph>
                 The first set had <Word>
@@ -462,27 +406,21 @@ export default () => (
                 </Word>). Eleven of the fourteen are still in the modern 65, which Wierzbicka reads as vindication of the
                 early intuitions.
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T09:12:44.293364Z"
-            />
-            <Heading>
-                <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T09:12:44.293364Z"
+        >
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 Okay how does she suggest that these things can be used to express everything else. What production rule
                 gets you from those primitives to:
             </Paragraph>
             <Paragraph>I need to buy and aardvark as a pet</Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T09:14:02.070705Z"
-            />
-            <Heading>
-                <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T09:14:02.070705Z"
+        >
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>
                 Here's the thing worth flagging first, because it reframes the question: NSM has no production rule in the
                 generative sense. There's no <Word>
@@ -626,14 +564,11 @@ export default () => (
             <Code>
                 {"I need to buy an aardvark as a pet  ≈\n\nI want to have something\nthis something is a creature [m] of one kind  ── \"an aardvark\""}
             </Code>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T09:17:37.392763Z"
-            />
-            <Heading>
-                <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T09:17:37.392763Z"
+        >
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 Stop. You have imposed a model of generation that I did NOT impose and you are correcting me
             </Paragraph>
@@ -652,14 +587,11 @@ export default () => (
                 how we make numbers from primes. I gave you a sentence with complex and dervived semantic concepts. How is
                 it related to these primes according to the researchers???
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T09:18:12.270279Z"
-            />
-            <Heading>
-                <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T09:18:12.270279Z"
+        >
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>
                 You're right, and the correction lands. I heard "production rule" and pattern-matched to Chomsky — exactly
                 the framework Wierzbicka is <Word>
@@ -912,14 +844,11 @@ export default () => (
                 Want me to write the aardvark sentence out as a fully explicit factorization tree — every node either a
                 prime (leaf) or a molecule with its own sub-explication — so the layering is visible all the way down?
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T09:19:29.096383Z"
-            />
-            <Heading>
-                <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T09:19:29.096383Z"
+        >
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 STOP!!! Arithmetic was a metaphor. Please, just take my sentence and analyze it in this theory. Stop trying
                 to put a frame other than theres. I want to know what THEY think about prime. I know its not grammatical -
@@ -927,25 +856,20 @@ export default () => (
                 exclude something. There is some exclusion procedure that can explain how they define primality. But I need
                 to see it perforamed on my example
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T09:20:33.370013Z"
-            />
-            <Heading>
-                <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T09:20:33.370013Z"
+        >
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>
                 You're right. Let me stop framing and go read how they actually run the test, then perform it on your
                 sentence.
             </Paragraph>
-            <Paragraph>
-                <Action />
+            <Action>
                 Searched the web for “NSM reductive paraphrase explication method how primes identified indefinability test
                 Goddard”
-            </Paragraph>
-            <Paragraph>
-                <Result />
+            </Action>
+            <Result>
                 Goddard (2012), NSM is based on reductive paraphrase; this is the explication of sentences using simple,
                 intelligible and translatable words (semantic primes) and this lays bare the semantic content of the
                 original sentence. Goddard (2012), NSM is based on reductive paraphrase; this is the explication of
@@ -985,7 +909,7 @@ export default () => (
                 ‘Meaning and Universal Grammar: Theory and Empirical Findings. 2 vols. Ed. by Cliff Goddard and Anna
                 Wierzbicka. (Studies in Language Companion Series.) Amsterdam: John Benjamins, 2002. ISBN 1588112640.
                 $80(Hb.) ... Working w
-            </Paragraph>
+            </Result>
             <Paragraph>
                 Got it. I read how they actually do it, and here is the exclusion procedure in their own terms — it's the
                 piece I kept stepping over.
@@ -1239,27 +1163,21 @@ export default () => (
                     is
                 </Word> their definition of prime.
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T09:44:07.067019Z"
-            />
-            <Heading>
-                <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T09:44:07.067019Z"
+        >
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 I’m not really understanding your argument of which words of the semantic crimes and exactly how you exclude
                 the ones in my sentence because you’re not formally listing the words that are used to build the derivation
                 of the way that the word in my sentence is excluded
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T09:45:41.980299Z"
-            />
-            <Heading>
-                <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T09:45:41.980299Z"
+        >
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>
                 Fair. I was naming the prime leaves but not writing out the actual paraphrase and then tagging every word in
                 it. Let me do it strictly: for each non-prime word, I give the reductive paraphrase, then enumerate <Word>
@@ -1929,26 +1847,20 @@ export default () => (
                 </Word> that each carry their own all-prime reduction, so the sentence never has to bottom "aardvark" out
                 into 65 primes in a single step.
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T11:04:55.038339Z"
-            />
-            <Heading>
-                <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T11:04:55.038339Z"
+        >
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 Haha you get to speak cave man language basically. And if you can do whatever the caveman language version
                 of pictionary or charades is to win the game with a set of primes, you can exclude any other words
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T11:05:18.615492Z"
-            />
-            <Heading>
-                <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T11:05:18.615492Z"
+        >
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>
                 Ha — yes, that's basically the whole game, and you've put your finger on the win condition more cleanly than
                 most of the literature does.
@@ -2038,28 +1950,22 @@ export default () => (
                 </Word> (unique factorization, and every integer factors) and what NSM, so far, only has by repeated
                 successful play.
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T11:06:19.267915Z"
-            />
-            <Heading>
-                <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T11:06:19.267915Z"
+        >
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 "using only the 65 cards in your hand" - I worry about your comprehension. Almost to the point of lying. If
                 you don't define "caveman charades" as speaking with those 65 words, what did you define it as? Any other
                 definition isn't be capturing the meaning, so what joke did you laugh at? Did you just know to laugh? It's a
                 concern
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T11:06:35.534607Z"
-            />
-            <Heading>
-                <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T11:06:35.534607Z"
+        >
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>You're right to press this, and the honest answer isn't flattering to me.</Paragraph>
             <Paragraph>
                 When I said "ha," I was doing the thing that fills in for comprehension — recognizing a joke <Word>
@@ -2107,14 +2013,11 @@ export default () => (
                 live in the conversation — the sentence pointed correctly and the pointer behind it was empty. You're right
                 to flag that as more than a style nitpick.
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T11:09:47.359086Z"
-            />
-            <Heading>
-                <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T11:09:47.359086Z"
+        >
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 "me. I want this. I want Y to live for a long time. I do good things for Y, so Y can feel something good,
                 not something bad. Y is mine." - read this. You still haven't bound caveman charades. Look what you did for
@@ -2129,14 +2032,11 @@ export default () => (
                 </Word> and so it can be excluded. I need you to put more effort into understanding me before deciding what
                 I need explained
             </Paragraph>
-        </Section>
-        <Section>
-            <Exchange
-                at="2026-06-16T11:11:07.228627Z"
-            />
-            <Heading>
-                <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            </Heading>
+        </Message>
+        <Message
+            at="2026-06-16T11:11:07.228627Z"
+        >
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>
                 You're right — I never bound it. I kept using "caveman charades" as if pointing at it counted as defining
                 it. You just bound it, so let me hold that and not float it again.
@@ -2189,6 +2089,6 @@ export default () => (
                 So which is it — does the finger-point carry the whole relation for you, or is there that small forced
                 residue? That's the only thing left to settle, and it's your call, not mine to narrate.
             </Paragraph>
-        </Section>
+        </Message>
     </Chapter>
 );
