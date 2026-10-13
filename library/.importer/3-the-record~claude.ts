@@ -109,6 +109,7 @@ const mappingFromRaw = (rawMapping: RawRecord): Mapping => ({
 
 export const claudeExportSource = (exportFiles: ExportFiles): Source => ({
     name: `${basename(exportFiles.folder)} of ${exportFiles.account}`,
+    exportedOn: basename(exportFiles.folder),
     projects: () => {
         const projectsArchive = archiveFromFile(exportFiles.archives.projects);
         const rawProjects = jsonEntries(projectsArchive, name => name.startsWith('projects/'));

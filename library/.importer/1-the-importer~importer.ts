@@ -1,11 +1,11 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { exportSource } from './3-the-record~claude.ts';
 import type { Conversation, Mapping, Project } from './3-the-record~record.ts';
 import { conversationPairings, type Pairing } from './4-the-pairing~pairing.ts';
 import {
-    ledgerLinesWithConversation, ledgerState, readLedger, writeLedger, type LedgerLine,
+    importRecord, importRecords, importState, recordIdentifier, recordSuffix, writeImportRecord, type HeldRecord,
 } from './5-the-ledger~ledger.ts';
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
 import { slugFromName, writtenChapter, type Referents } from './7-the-writing~writing.ts';
@@ -27,6 +27,7 @@ const dougsClaudeCaption = 'My conversations with Claude and the projects they w
 const ourConversationsCaption = 'All of them, newest first:';
 const projectCaption = 'A project of mine, and the conversations held in it:';
 const noMappingWords = '  no mapping captured off the application; every conversation will be unpaired';
+const recordAppendix = { identifier: recordIdentifier, type: '.json' };
 
 export type Arguments = {
     projectName: string | undefined;
@@ -37,7 +38,12 @@ export type Arguments = {
     overwrite: boolean;
 };
 
-type ExportReading = { projects: Project[]; mapping: Mapping | undefined; conversations: Conversation[] };
+type ExportReading = {
+    exportedOn: string;
+    projects: Project[];
+    mapping: Mapping | undefined;
+    conversations: Conversation[];
+};
 
 export const parsedArguments = (argv: string[]): Arguments => ({
     projectName: flagValue(argv, '--project'),
@@ -59,8 +65,13 @@ export const run = async (args: Arguments): Promise<void> => {
     const projectPairings = pairings.filter(pairing => pairing.projectName === args.projectName);
     const conversationOfPairing = (pairing: Pairing): Conversation =>
         reading.conversations.find(conversation => conversation.id === pairing.conversationId)!;
-    const ledgerLines = readLedger(args.library);
-    listProjectConversations(args.projectName, projectPairings, conversationOfPairing, ledgerLines);
+    const folders: LibraryFolders = {
+        library: args.library,
+        claude: join(args.library, '.claude'),
+        conversations: join(args.library, '.claude', 'conversations'),
+    };
+    const heldRecords = importRecords(folders.conversations);
+    listProjectConversations(args.projectName, projectPairings, conversationOfPairing, folders, heldRecords);
     const chosenConversations = projectPairings
         .filter(pairing => !pairing.excluded && (args.onlyTitle === undefined || pairing.title === args.onlyTitle))
         .map(conversationOfPairing);
@@ -75,7 +86,7 @@ export const run = async (args: Arguments): Promise<void> => {
     }
     const project = reading.projects.find(candidate => candidate.name === args.projectName);
     if (project === undefined) throw new Error(`no project named ${args.projectName} in the export`);
-    writeProjectBooks(args, project, reading.projects, chosenConversations, ledgerLines);
+    writeProjectBooks(args, folders, project, reading, chosenConversations, heldRecords);
 };
 
 const exportReading = async (): Promise<ExportReading> => {
@@ -104,7 +115,7 @@ const exportReading = async (): Promise<ExportReading> => {
         + blockCountWords);
     console.log(`read in ${elapsedSeconds(started)}`);
 
-    return { projects, mapping, conversations };
+    return { exportedOn: source.exportedOn, projects, mapping, conversations };
 };
 
 const mappingReport = (mapping: Mapping): string => {
@@ -130,7 +141,8 @@ const listProjectConversations = (
     projectName: string,
     projectPairings: Pairing[],
     conversationOfPairing: (pairing: Pairing) => Conversation,
-    ledgerLines: LedgerLine[],
+    folders: LibraryFolders,
+    heldRecords: Map<string, HeldRecord>,
 ): void => {
     const includedPairings = projectPairings.filter(pairing => !pairing.excluded);
     const byHandCount = includedPairings.filter(pairing => pairing.byHand).length;
@@ -139,8 +151,8 @@ const listProjectConversations = (
     for (const pairing of includedPairings) {
         const conversation = conversationOfPairing(pairing);
         const path = shownPath(conversation);
-        const ledgerLine = ledgerLines.find(line => line.conversationId === conversation.id);
-        const stateWord = ledgerState(conversation, ledgerLine).padEnd(6);
+        const record = heldRecords.get(conversation.id)?.record;
+        const stateWord = importState(conversation, folders.conversations, record).padEnd(6);
         const shownWords = `${path.length} shown of ${conversation.messages.length}`;
         const countWords = `${shownWords}, ${asideCount(conversation, path)} aside`;
         const dayWords = countedNoun(pathDays(path).length, 'day');
@@ -165,16 +177,12 @@ const writeChapterIntoFolder = (intoFolder: string, conversation: Conversation):
 
 const writeProjectBooks = (
     args: Arguments,
+    folders: LibraryFolders,
     project: Project,
-    projects: Project[],
+    reading: ExportReading,
     chosenConversations: Conversation[],
-    ledgerLines: LedgerLine[],
+    heldRecords: Map<string, HeldRecord>,
 ): void => {
-    const folders: LibraryFolders = {
-        library: args.library,
-        claude: join(args.library, '.claude'),
-        conversations: join(args.library, '.claude', 'conversations'),
-    };
     const filesTouched: string[] = [];
     const dougsClaudeFiles = registerBook(
         folders, folders.claude, 'Dougs Claude', 'Claude', 'Library', 'The Library',
@@ -184,47 +192,59 @@ const writeProjectBooks = (
         folders, folders.conversations, 'Our Conversations', 'Conversations', 'Claude', 'Dougs Claude',
         wrappedLines(ourConversationsSynopsis), schemes[1],
     );
-    const ourConversationsEntryFiles = registerEntry(
+    const ourConversationsEntry = registerEntry(
         folders, folders.claude, 'Our Conversations', folders.conversations, new Date().toISOString(),
         ourConversationsCaption, '**',
     );
     const dougsClaudeEntryFiles = libraryEntry(folders.library, 'Dougs Claude', folders.claude, dougsClaudeCaption);
     filesTouched.push(...dougsClaudeFiles, ...dougsClaudeEntryFiles);
-    filesTouched.push(...ourConversationsFiles, ...ourConversationsEntryFiles);
-    const namedProjects = projects.filter(candidate => candidate.name !== '');
+    filesTouched.push(...ourConversationsFiles, ...ourConversationsEntry.files);
+    const namedProjects = reading.projects.filter(candidate => candidate.name !== '');
     const scheme = schemes[(namedProjects.findIndex(candidate => candidate.id === project.id) + 1) % schemes.length];
     const writtenProjectBook = projectBook(folders, project, scheme);
     filesTouched.push(...writtenProjectBook.files);
     filesTouched.push(...registerEntry(
         folders, folders.claude, project.name, writtenProjectBook.folder, project.updatedAt, projectCaption, '**',
-    ));
-    let updatedLedgerLines = ledgerLines;
+    ).files);
     const namesTaken = new Set<string>();
     let writtenCount = 0;
     let keptCount = 0;
     for (const conversation of chosenConversations) {
-        const ledgerLine = ledgerLines.find(line => line.conversationId === conversation.id);
-        const standingLine = ledgerLine !== undefined && existsSync(ledgerLine.folder) ? ledgerLine : undefined;
-        if (standingLine !== undefined && (!args.overwrite || ledgerState(conversation, standingLine) === 'edited')) {
+        const heldRecord = heldRecords.get(conversation.id);
+        const heldBookFolder = heldRecord === undefined
+            ? undefined : join(folders.conversations, heldRecord.record.bookFolder);
+        const bookStands = heldBookFolder !== undefined && existsSync(heldBookFolder);
+        const standingRecord = bookStands ? heldRecord : undefined;
+        const state = importState(conversation, folders.conversations, standingRecord?.record);
+        if (standingRecord !== undefined && (!args.overwrite || state === 'edited')) {
             keptCount++;
             continue;
         }
-        const name = standingLine?.name ?? uniqueBookName(folders.conversations, conversation.name, namesTaken);
+        const name = standingRecord?.record.name
+            ?? uniqueBookName(folders.conversations, conversation.name, namesTaken);
         const path = shownPath(conversation);
         const writtenBook = conversationBook(folders, conversation, path, name, [project.name], scheme, referents);
         const conversationCaption = `A conversation, ${countedNoun(path.length, 'exchange')}:`;
+        const entry = registerEntry(
+            folders, folders.conversations, name, writtenBook.folder, conversation.updatedAt,
+            conversationCaption, '**', recordAppendix,
+        );
+        const entryStem = entry.entryPath?.replace(/\.tsx$/u, '');
+        const newRecordPath = entryStem === undefined ? undefined : `${entryStem}${recordSuffix}`;
+        const recordPath = standingRecord?.path ?? newRecordPath;
+        if (recordPath === undefined)
+            throw new Error(`no entry stands for "${name}" in ${folders.conversations}, so its record has no place`);
+        const bookFolder = basename(writtenBook.folder);
+        const record = importRecord(conversation, folders.conversations, name, bookFolder, reading.exportedOn);
+        writeImportRecord(recordPath, record);
         filesTouched.push(
             ...writtenBook.files,
-            ...registerEntry(
-                folders, folders.conversations, name, writtenBook.folder, conversation.updatedAt,
-                conversationCaption, '**',
-            ),
+            ...entry.files,
+            recordPath,
             ...projectEntry(folders, writtenProjectBook.folder, name, writtenBook.folder, conversation.createdAt),
         );
-        updatedLedgerLines = ledgerLinesWithConversation(updatedLedgerLines, conversation, name, writtenBook.folder);
         writtenCount++;
     }
-    writeLedger(args.library, updatedLedgerLines);
     console.log(`\nwrote ${countedNoun(writtenCount, 'conversation')}, kept ${keptCount}, `
         + `${countedNoun(filesTouched.length, 'file')} touched under ${folders.claude}`);
 };

@@ -22,14 +22,17 @@ export default () => (
                 book's size and its dates because the book's own cover says them. Each entry is dated with the
                 book's date and says the month of its date as its part, as a journal asks, and the page lays every
                 entry out newest first with its number and its day in the gutter, the way into the book on its
-                title. The type asks, besides what a journal asks, that every entry stand for a book.
+                title. The type asks, besides what a journal asks, that every entry stand for a book; and it lets an
+                entry file a file of its own, where a cover, a synopsis or a table may not, so that what is known
+                about a book can stand beside its entry.
             </Paragraph>
             <Paragraph>
                 It is the very simple book that catalogues all of my conversations, since there will be other
                 books that catalogue them more effectively, by project and by whatever else is said of them; and
                 for now the book that catalogues those catalogues wears it too, until a shelf is designed for
-                projects. The entries are written by the importer, one for each conversation it brings in, and
-                the register reads them.
+                projects. The entries are written by the importer, one for each conversation it brings in, each
+                filing the record of its import beside it, which the importer reads back and the binder never
+                reads; the register reads the entries.
             </Paragraph>
         </Section>
         <Append

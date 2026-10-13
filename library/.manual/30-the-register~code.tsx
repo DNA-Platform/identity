@@ -1,5 +1,5 @@
 import { $, $check } from '@dna-platform/chemistry';
-import { $Chapter, $Synopsis, Theme, specify } from '@dna-platform/public';
+import { $Append, $Chapter, $Synopsis, Theme, specify } from '@dna-platform/public';
 import { Layout as layout } from './12-the-layout~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
 import { $Journal, JournalLayout, JournalSpecification } from './28-the-journal~code.tsx';
@@ -26,6 +26,13 @@ export class RegisterSpecification extends JournalSpecification {
     $everyEntryStandsForABook(book: $Register): void {
         const astray = book.entries.find(chapter => chapter.annotations.expressed($Synopsis)?.means === undefined);
         $check(astray === undefined, `every entry of a register stands for a book, holding its synopsis, and "${astray?.title?.name}" stands for none`);
+    }
+
+    @specify('only an ordinary chapter or an entry files a file')
+    override $onlyAChapterAppends(book: $Register): void {
+        const filing = [...book.chapters, ...book.entries];
+        $check(book.text.find($Chapter).every(chapter => filing.includes(chapter) || !chapter.is($Append)),
+            'only an ordinary chapter or an entry files a file, and here a cover, a synopsis or a table of contents files one');
     }
 }
 

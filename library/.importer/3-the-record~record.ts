@@ -60,6 +60,7 @@ export type Mapping = { capturedAt: string; projects: MappedProject[] };
 
 export type Source = {
     name: string;
+    exportedOn: string;
     projects(): Project[];
     memories(): Memory[];
     mapping(): Mapping | undefined;

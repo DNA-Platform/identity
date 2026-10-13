@@ -3,12 +3,13 @@ import { join, relative } from 'node:path';
 import type { Conversation, Message, Project } from './3-the-record~record.ts';
 import {
     appendLines, escapedText, knownExtensions, mentionForm, notationName, referenceForm, slugFromName, titleForm,
-    writtenChapter, type Referents,
+    writtenChapter, type Appendix, type Referents,
 } from './7-the-writing~writing.ts';
 
 export type LibraryFolders = { library: string; claude: string; conversations: string };
 export type Scheme = { ground: string; band: string; bandInk: string; foot: string; footInk: string; ink: string };
 export type WrittenBook = { folder: string; files: string[] };
+export type WrittenEntry = { entryPath: string | undefined; tablePath: string; files: string[] };
 
 export const schemes: Scheme[] = [
     { ground: '#f3f0f8', band: '#c9bfe3', bandInk: '#3a2d63', foot: '#8f7fc0', footInk: '#2e2350', ink: '#3a2d63' },
@@ -182,14 +183,16 @@ export const registerEntry = (
     instant: string,
     captionText: string,
     stars: string,
-): string[] => {
+    appendix?: Appendix,
+): WrittenEntry => {
     const tablePath = join(folder, '.table.tsx');
     const tableText = readFileSync(tablePath, 'utf8');
-    if (tableListsBook(tableText, name)) return [];
+    if (tableListsBook(tableText, name)) return { entryPath: entryPathFor(folder, name), tablePath, files: [] };
     const importPath = manualImportPath(folders, folder);
     const entryPath = join(folder, `${nextChapterNumber(folder)}-${slugFromName(name)}.tsx`);
     const bookRelativePath = relativePath(folder, bookFolder);
-    const packageWords = ['Chapter', 'Date', 'Means', 'Paragraph', 'Part', 'Synopsis', 'Title'];
+    const appendixWords = appendix === undefined ? [] : ['Append'];
+    const packageWords = [...appendixWords, 'Chapter', 'Date', 'Means', 'Paragraph', 'Part', 'Synopsis', 'Title'];
     writtenFile(entryPath, entryFileText(importPath, ['Caption', 'Dated', 'Volume'], packageWords, bookRelativePath, [
         `<Part>${monthHeading(instant)}</Part>`,
         '<Dated>',
@@ -202,11 +205,21 @@ export const registerEntry = (
         ...indentedLines(1, captionLines(captionText, name)),
         '</Paragraph>',
         '<Synopsis>{TheSynopsis()}</Synopsis>',
+        ...(appendix === undefined ? [] : appendLines(appendix, 0)),
     ]));
     const insertionPoint = tableText.includes(whereThisBookStandsSection) ? whereThisBookStandsSection : '    </Chapter>';
     writtenFile(tablePath, tableWithRow(tableText, monthHeading(instant), rowLines(name, stars), insertionPoint));
 
-    return [entryPath, tablePath];
+    return { entryPath, tablePath, files: [entryPath, tablePath] };
+};
+
+const entryPathFor = (folder: string, name: string): string | undefined => {
+    const chapterFileNames = readdirSync(folder)
+        .filter(fileName => /^o*\d/u.test(fileName) && fileName.endsWith('.tsx') && !fileName.includes('~'));
+    const entryFileName = chapterFileNames
+        .find(fileName => readFileSync(join(folder, fileName), 'utf8').includes(titleLine(name)));
+
+    return entryFileName === undefined ? undefined : join(folder, entryFileName);
 };
 
 export const projectBook = (folders: LibraryFolders, project: Project, scheme: Scheme): WrittenBook => {

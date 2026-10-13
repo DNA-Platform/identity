@@ -3,30 +3,37 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Conversation } from './3-the-record~record.ts';
 
-export type LedgerLine = {
+export type ImportRecord = {
     conversationId: string;
     name: string;
-    folder: string;
+    bookFolder: string;
+    exportedOn: string;
     updatedAt: string;
     messageCount: number;
     digest: string;
     importedAt: string;
 };
 
-export type LedgerState = 'new' | 'in' | 'grown' | 'edited';
+export type ImportState = 'new' | 'in' | 'grown' | 'edited';
+export type HeldRecord = { record: ImportRecord; path: string };
 
-export const ledgerFilePath = (library: string): string => join(library, '.importer', '5-the-ledger~ledger.json');
+export const recordIdentifier = 'import';
+export const recordSuffix = `~${recordIdentifier}.json`;
 
-export const writeLedger = (library: string, ledgerLines: LedgerLine[]): void => {
-    const sortedLines = [...ledgerLines].sort((first, second) => first.folder.localeCompare(second.folder));
-    writeFileSync(ledgerFilePath(library), JSON.stringify(sortedLines, null, 2) + '\n', 'utf8');
+export const importRecords = (registerFolder: string): Map<string, HeldRecord> => {
+    const heldRecords = new Map<string, HeldRecord>();
+    if (!existsSync(registerFolder)) return heldRecords;
+    for (const fileName of readdirSync(registerFolder).filter(name => name.endsWith(recordSuffix))) {
+        const path = join(registerFolder, fileName);
+        const record = JSON.parse(readFileSync(path, 'utf8')) as ImportRecord;
+        heldRecords.set(record.conversationId, { record, path });
+    }
+
+    return heldRecords;
 };
 
-export const readLedger = (library: string): LedgerLine[] => {
-    if (!existsSync(ledgerFilePath(library)))
-        writeLedger(library, []);
-
-    return JSON.parse(readFileSync(ledgerFilePath(library), 'utf8')) as LedgerLine[];
+export const writeImportRecord = (path: string, record: ImportRecord): void => {
+    writeFileSync(path, JSON.stringify(record, null, 2) + '\n', 'utf8');
 };
 
 export const folderDigest = (folder: string): string => {
@@ -38,30 +45,32 @@ export const folderDigest = (folder: string): string => {
     return hash.digest('hex').slice(0, 16);
 };
 
-export const ledgerState = (conversation: Conversation, ledgerLine: LedgerLine | undefined): LedgerState => {
-    if (ledgerLine === undefined) return 'new';
-    if (folderDigest(ledgerLine.folder) !== ledgerLine.digest) return 'edited';
-    const hasGrown = conversation.updatedAt > ledgerLine.updatedAt || conversation.messages.length > ledgerLine.messageCount;
+export const importState = (
+    conversation: Conversation,
+    registerFolder: string,
+    record: ImportRecord | undefined,
+): ImportState => {
+    if (record === undefined) return 'new';
+    if (folderDigest(join(registerFolder, record.bookFolder)) !== record.digest) return 'edited';
+    const hasGrown = conversation.updatedAt > record.updatedAt || conversation.messages.length > record.messageCount;
     if (hasGrown) return 'grown';
 
     return 'in';
 };
 
-export const ledgerLinesWithConversation = (
-    ledgerLines: LedgerLine[],
+export const importRecord = (
     conversation: Conversation,
+    registerFolder: string,
     name: string,
-    folder: string,
-): LedgerLine[] => {
-    const ledgerLine: LedgerLine = {
-        conversationId: conversation.id,
-        name,
-        folder,
-        updatedAt: conversation.updatedAt,
-        messageCount: conversation.messages.length,
-        digest: folderDigest(folder),
-        importedAt: new Date().toISOString(),
-    };
-
-    return [...ledgerLines.filter(otherLine => otherLine.conversationId !== conversation.id), ledgerLine];
-};
+    bookFolder: string,
+    exportedOn: string,
+): ImportRecord => ({
+    conversationId: conversation.id,
+    name,
+    bookFolder,
+    exportedOn,
+    updatedAt: conversation.updatedAt,
+    messageCount: conversation.messages.length,
+    digest: folderDigest(join(registerFolder, bookFolder)),
+    importedAt: new Date().toISOString(),
+});
