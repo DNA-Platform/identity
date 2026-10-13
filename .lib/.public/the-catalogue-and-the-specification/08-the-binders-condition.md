@@ -162,6 +162,10 @@
 
 *The structure handed every file beside a chapter to the TypeScript parser whatever its type, since B33 had it read a resource for what it referred to; a knowledge file of Doug's, plain text with a stray quote, opened a string that ran to the line's end and `[[t₁]]` in a logic document read as a title. Doug: "No resource file should be interpreted. Why would it be? All we do is show the code." and "You read chapters for references. That's it." The catalogue reads chapters and the book's own file alone; `RESOURCE-NAMES` and the refusal of a literal in a resource are gone with the reading, their two promises flipped to say a resource raises nothing; the faults number twenty-three; unit 154 of 154, regression 48 of 48.*
 
+## <a id="b40"></a>B40 — One child drew every page and kept every book it drew — **TREATED 2026-10-14**, [Sprint 109](../projection/114-sprint-109--dougs-importer.md)
+
+*The render was one child drawing every page, and a child keeps every chemical it makes: measured by a probe in the trial copy's draw, the heap after each page, collected first, climbed from 224 MB to 6.3 GB over 29 pages and never fell, half a gigabyte retained per megabyte of chapter source, so one project of twenty conversations ran a 4 GB heap out. Treated as specify was: stale pages drawn in children bounded by a budget of source, and every page whose book did not change kept, written again from its markup — [The Binder, As Built](07-the-binder.md#kept). Where the retained memory goes in the substrate is not found; the child's exit is what frees it.* **MONITOR, the substrate's:** *a book built with `$()` and drawn is not released when the drawing is done.*
+
 ## <a id="how"></a>How to use this register
 
 - **Cleaning:** *read the entries marked TREAT; treat them; mark them with the date. Add what you found on the way, whether or not you treated it.*
