@@ -76,6 +76,12 @@ commit_record() {   # commit_record <name> <files...>
     if grep -qF -f <(secret REIMER_PASSWORD) "$@" 2>/dev/null; then
         echo "REFUSED: the lab password appears in the record - not committing" >&2; return 1
     fi
+    # Other people's credentials, which the lab's files can carry: on 2026-10-13 a probe printed a git remote whose URL
+    # held a lab member's GitHub token. A token, or a password inside a URL, stops the record here.
+    if grep -qE '(ghp_|gho_|ghu_|ghs_|ghr_|github_pat_)[A-Za-z0-9_]{20,}|https?://[^/@[:space:]]+:[^/@[:space:]]+@' "$@" 2>/dev/null; then
+        echo "REFUSED: a credential (a GitHub token, or a password in a URL) appears in the record - not committing" >&2
+        return 1
+    fi
     git add -- "$@" && git commit -q -m "lab: $name" -- "$@" \
         && bash "$HERE/01-als-remote--box.sh" sync | tail -1 \
         && echo "(recorded: $(git log --oneline -1 | cut -c1-60))"
