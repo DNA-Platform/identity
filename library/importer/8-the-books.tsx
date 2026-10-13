@@ -17,7 +17,7 @@ export default () => (
                 messages it holds, its synopsis what it came to, its table, and in the first version one chapter
                 holding every exchange. It is filed under the book that catalogues all of my conversations, which
                 is its one home whatever the mapping says. Each project that catalogues it is a book of its
-                own, <Means>$[[ a project book ]]( Dougs Reference Manual / The Project )</Means>, a reference
+                own, <Means>$[[ a project book ]]( Dougs Reference Manual / The Project Manual )</Means>, a reference
                 manual of the project's knowledge files and a catalogue of its conversations by
                 topic, which is the way back from a conversation to its project; and a project's book is a
                 subject, so what I later write about a project can be filed under it. Both kinds of catalogue are

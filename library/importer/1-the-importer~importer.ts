@@ -174,8 +174,10 @@ const writeChapterIntoFolder = (intoFolder: string, conversation: Conversation):
     writeFileSync(join(folder, chapter.fileName), chapter.tsx, 'utf8');
     for (const chapterFile of chapter.files)
         writeFileSync(join(folder, chapterFile.name), chapterFile.content, 'utf8');
-    const reportWords = `${countedNoun(chapter.files.length, 'file')} beside it, `
-        + `${countedNoun(chapter.thinkingCount, 'thinking block')} left out`;
+    const fileWords = countedNoun(chapter.files.length, 'file');
+    const thinkingWords = countedNoun(chapter.thinkingCount, 'thinking block');
+    const resultWords = countedNoun(chapter.resultCount, 'result');
+    const reportWords = `${fileWords} beside it, ${thinkingWords} and ${resultWords} left out`;
     console.log(`\nwrote ${join(folder, chapter.fileName)} with ${reportWords}`);
 };
 
@@ -190,11 +192,11 @@ const writeProjectBooks = (
     const filesTouched: string[] = [];
     const dougsClaudeFiles = registerBook(
         folders, folders.claude, 'Dougs Claude', 'Claude', 'Library', 'The Library',
-        wrappedLines(dougsClaudeSynopsis), schemes[5],
+        wrappedLines(dougsClaudeSynopsis), schemes[5], args.overwrite,
     );
     const ourConversationsFiles = registerBook(
         folders, folders.conversations, 'Our Conversations', 'Conversations', 'Claude', 'Dougs Claude',
-        wrappedLines(ourConversationsSynopsis), schemes[1],
+        wrappedLines(ourConversationsSynopsis), schemes[1], args.overwrite,
     );
     const ourConversationsEntry = registerEntry(
         folders, folders.claude, 'Our Conversations', folders.conversations, new Date().toISOString(),
@@ -205,7 +207,7 @@ const writeProjectBooks = (
     filesTouched.push(...ourConversationsFiles, ...ourConversationsEntry.files);
     const namedProjects = reading.projects.filter(candidate => candidate.name !== '');
     const scheme = schemes[(namedProjects.findIndex(candidate => candidate.id === project.id) + 1) % schemes.length];
-    const writtenProjectBook = projectBook(folders, project, scheme);
+    const writtenProjectBook = projectBook(folders, project, scheme, args.overwrite);
     filesTouched.push(...writtenProjectBook.files);
     filesTouched.push(...registerEntry(
         folders, folders.claude, project.name, writtenProjectBook.folder, project.updatedAt, projectCaption, '**',

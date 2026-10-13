@@ -2,11 +2,11 @@ import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import {
     $Annotation, $Chapter, $Cover, $Date, $Heading, $Means, $Paragraph, $Referent, $Section, $Word, $Writing,
-    AnnotationSpecification, SectionSpecification, specify,
+    AnnotationSpecification, Referent as referent, SectionSpecification, identifier, specify,
 } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { $Dated } from './4-the-date~code.tsx';
-import { dayOf, monthOf } from './28-the-journal~code.tsx';
+import { dayOf } from './28-the-journal~code.tsx';
 
 export class $Speaker extends $Heading {
     protected override $Define(): void {
@@ -72,6 +72,11 @@ export class $Message extends $Section {
     protected override $Define(): void {
         super.$Define();
         this.classes.add(this, 'pd-message');
+        if (this.when === '') return;
+        const Referent = $(referent);
+        this.annotations.add(this,
+            <Referent>{identifier.slug(this.when.replace(/Z$/u, ''))}</Referent>
+        );
     }
 }
 
@@ -206,11 +211,11 @@ export class ConversationSpecification extends LibraryBookSpecification {
         $check(undated === undefined, `every chapter of a conversation is dated, and "${undated?.title?.name}" is not`);
     }
 
-    @specify('every chapter of a conversation says the month of its date as its part')
-    $everyChapterSaysItsMonth(book: $Conversation): void {
-        const astray = book.body.find(chapter => chapter.part?.name !== monthOf(chapter));
-        $check(astray === undefined, astray === undefined ? '' :
-            `every chapter of a conversation says the month of its date as its part, and "${astray.title?.name}" says "${astray.part?.name ?? 'none'}" for ${monthOf(astray)}`);
+    @specify('every message of a conversation is addressed by its time')
+    $everyMessageIsAddressed(book: $Conversation): void {
+        const unaddressed = book.messages.find(message => message.annotations.expressed($Referent) === undefined);
+        $check(unaddressed === undefined,
+            `every message of a conversation is addressed by its time, and the one at "${unaddressed?.when}" is not`);
     }
 
     @specify('every chapter of a conversation holds a message')

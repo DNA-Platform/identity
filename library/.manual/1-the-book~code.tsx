@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode } from 'react';
 import { $, $check, inert } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Part, $Section, $TableOfContents, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Part, $Section, $TableOfContents, $Topic, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
-import { Byline as byline } from './8-the-author-and-the-subject~code.tsx';
+import { Byline as byline, TopicLine as topicLine } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
 import { $Spread } from './10-the-manual~code.tsx';
 import { $Appendix, $TreeFolder, TreeFolder as treeFolder, TreeRoot as treeRoot, contentOf } from './14-the-entry~code.tsx';
@@ -39,6 +39,9 @@ export class $LibraryBook extends $Book {
     }
     get tones(): Given<$Annotation>[] {
         return [dark, light, whiteOverBlack];
+    }
+    get topics(): $Topic[] {
+        return this.cover?.annotations.find($Topic) ?? [];
     }
 
     override write(): ReactNode {
@@ -81,6 +84,7 @@ export class $LibraryBook extends $Book {
     me(): ReactNode {
         const Mark = $(mark);
         const Reference = $(reference);
+        const TopicLine = $(topicLine);
         const author = this.coverOf(this.author?.means?.identifier);
         return (
             <>
@@ -90,6 +94,9 @@ export class $LibraryBook extends $Book {
                         <Reference>{author.mention!.identifier}</Reference>
                     </Mark>
                 ))}
+                {this.topics.length === 0 ? undefined : (
+                    <TopicLine cover={this.cover} />
+                )}
             </>
         );
     }

@@ -1,5 +1,6 @@
-import { Author, Chapter, Cover, Means, Paragraph, Subject, Title } from '@dna-platform/public';
+import { Author, Chapter, Cover, Subject, Title } from '@dna-platform/public';
 import { Messages, Participant, Participants, Period, Scheme } from '../../../.manual/.book';
+import { Project } from '../../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -27,8 +28,6 @@ export default () => (
         <Title>[[ Semantic Primes ]]</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Paragraph>
-            <Means>***[[ Semantic Reference Theory ]]</Means>
-        </Paragraph>
+        <Project>***[[ Semantic Reference Theory ]]</Project>
     </Chapter>
 );

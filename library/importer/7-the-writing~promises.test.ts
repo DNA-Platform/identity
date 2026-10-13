@@ -58,7 +58,7 @@ describe('the writing', () => {
         const chapter = writtenChapter(conversation, path, referents, manualImportPath, claudeManualImportPath);
         expect(chapter.fileName).toBe('1-june-15-2026.tsx');
         expect(chapter.title).toBe('15 June 2026');
-        expect(chapter.tsx).toContain('<Part>June 2026</Part>');
+        expect(chapter.tsx).not.toContain('<Part>');
         expect(chapter.tsx).toContain(`<Speaker>${referenceForm('Doug', 'Dougs Story', '$')}</Speaker>`);
         expect(chapter.tsx).toContain(`<Speaker>${referenceForm('Claude', 'Dougs Claude', '$')}</Speaker>`);
         expect(chapter.tsx).toContain('        <Message\n            at="2026-06-15T10:00:00Z"\n        >');
@@ -80,8 +80,50 @@ describe('the writing', () => {
             .toEqual(['1-june-15-2026~notes.v1.md', '1-june-15-2026~notes.v2.md', '1-june-15-2026~notes.md']);
         expect(chapter.files.map(file => file.content)).toEqual(['Hello world', 'Hello there', 'Hello there']);
         expect(chapter.tsx).toContain(literalForm('notes.v2.md'));
-        expect(chapter.tsx).toContain('<Artifact>Made the artifact “Notes”</Artifact>');
+        expect(chapter.tsx).toContain(figure('Artifact', 'notes.v1', '.md', 'Made the artifact “Notes”'));
+        expect(chapter.tsx).toContain(figure('Artifact', 'notes.v2', '.md', 'Changed the artifact “Notes”'));
         expect(chapter.tsx).toContain(`import { Artifact } from '${claudeManualImportPath}';`);
         expect(chapter.thinkingCount).toBe(1);
     });
+
+    it('keeps an action and counts its result unwritten, as thinking is', () => {
+        const blocks: Block[] = [
+            { type: 'action', name: 'web_search', input: { query: 'primes' } },
+            { type: 'results', text: 'a page of findings' },
+            { type: 'text', text: 'Found it.' },
+        ];
+        const path = [sampleMessage('m1', 'Claude', blocks)];
+        const conversation = sampleConversation('r', 'Results', path);
+        const chapter = writtenChapter(conversation, path, referents, manualImportPath, claudeManualImportPath);
+        expect(chapter.tsx).toContain('<Action>Searched the web for “primes”</Action>');
+        expect(chapter.tsx).not.toContain('<Result');
+        expect(chapter.tsx).toContain(`import { Action } from '${claudeManualImportPath}';`);
+        expect(chapter.resultCount).toBe(1);
+    });
+
+    it('files an attachment beside the chapter and names it where it was given, an upload by name alone', () => {
+        const given = {
+            ...sampleTextMessage('m1', 'Doug', 'Read this'),
+            attachments: [{ name: 'notes.txt', extension: 'txt', size: 5, text: 'hello' }],
+            uploads: ['photo.png', ''],
+        };
+        const conversation = sampleConversation('g', 'Given', [given]);
+        const chapter = writtenChapter(conversation, [given], referents, manualImportPath, claudeManualImportPath);
+        expect(chapter.files.map(file => file.name)).toEqual(['1-june-15-2026~notes.txt']);
+        expect(chapter.tsx).toContain(figure('Attachment', 'notes', '.txt', 'Attached “notes.txt”'));
+        expect(chapter.tsx)
+            .toContain('<Attachment>Uploaded “photo.png”, whose content the export does not carry</Attachment>');
+        expect(chapter.tsx)
+            .toContain('<Attachment>Uploaded a file without a name, whose content the export does not carry</Attachment>');
+        expect(chapter.tsx).toContain(literalForm('notes.txt'));
+    });
 });
+
+const figure = (elementName: string, identifier: string, type: string, sentence: string): string => [
+    `            <${elementName}`,
+    `                identifier="${identifier}"`,
+    `                type="${type}"`,
+    '            >',
+    `                ${sentence}`,
+    `            </${elementName}>`,
+].join('\n');

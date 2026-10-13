@@ -105,7 +105,8 @@ export const conversationBook = (
 ): WrittenBook => {
     const folder = join(folders.conversations, slugFromName(name));
     const importPath = manualImportPath(folders, folder);
-    const chapter = writtenChapter(conversation, path, referents, importPath, claudeManualImportPath(folders, folder));
+    const claudeImportPath = claudeManualImportPath(folders, folder);
+    const chapter = writtenChapter(conversation, path, referents, importPath, claudeImportPath);
     const coverManualWords = ['Messages', 'Participant', 'Participants', 'Period', 'Scheme'];
     const speakers = [...new Set(path.map(message => message.speaker))];
     const participantLines = [
@@ -118,19 +119,15 @@ export const conversationBook = (
     const summaryText = conversation.summary !== ''
         ? conversation.summary.replace(/\*\*[^*]*\*\*\s*/u, '').split(/\n\n/u)[0] : openingLine;
     const synopsisLines = wrappedLines(escapedText(summaryText.replace(/[*_`#>]/gu, '')));
-    const projectWords = projectNames.length > 0 ? ['Means', 'Paragraph'] : [];
-    const packageWords = ['Author', 'Chapter', 'Cover', ...projectWords, 'Subject', 'Title'];
-    const projectLines = projectNames.flatMap(projectName => [
-        '<Paragraph>',
-        `    <Means>***${titleForm(nameInForm(projectName))}</Means>`,
-        '</Paragraph>',
-    ]);
+    const packageWords = ['Author', 'Chapter', 'Cover', 'Subject', 'Title'];
+    const projectImportLines = projectNames.length > 0 ? [manualImportLine(['Project'], claudeImportPath)] : [];
+    const projectLines = projectNames.map(projectName => `<Project>***${titleForm(nameInForm(projectName))}</Project>`);
     const monthSection = sectionLines(
         monthHeading(path[0]?.sentAt ?? conversation.createdAt),
         [...contentLines(chapter.title), ...parentheticalLines(name)],
     );
     const files = [
-        writtenFile(join(folder, '.book.tsx'), bookFileText(importPath, 'Conversation', name)),
+        writtenFile(join(folder, '.book.tsx'), bookFileText(claudeImportPath, 'ClaudeConversation', name)),
         writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, coverManualWords, packageWords, [
             ...schemeLines(scheme),
             ...participantLines,
@@ -146,7 +143,7 @@ export const conversationBook = (
             authorLine,
             subjectLine('Conversations', 'Our Conversations'),
             ...projectLines,
-        ])),
+        ], projectImportLines)),
         writtenFile(join(folder, '.synopsis.tsx'), synopsisFileText(synopsisLines)),
         writtenFile(join(folder, '.table.tsx'), tableFileText(importPath, ['Index'], monthSection)),
         writtenFile(join(folder, chapter.fileName), chapter.tsx),
@@ -166,13 +163,16 @@ export const registerBook = (
     subjectName: string,
     synopsisLines: string[],
     scheme: Scheme,
+    overwrite = false,
 ): string[] => {
-    if (existsSync(join(folder, '.book.tsx'))) return [];
     const importPath = manualImportPath(folders, folder);
+    const bookFilePath = join(folder, '.book.tsx');
+    const bookFile = (): string => writtenFile(bookFilePath, bookFileText(importPath, 'Register', about));
+    if (existsSync(bookFilePath)) return overwrite ? [bookFile()] : [];
     const standsSection = sectionLines('Where this book stands', parentheticalLines(name));
 
     return [
-        writtenFile(join(folder, '.book.tsx'), bookFileText(importPath, 'Register', about)),
+        bookFile(),
         writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, ['Scheme'], coverPackageWords, [
             ...schemeLines(scheme),
             titleLine(name),
@@ -232,10 +232,12 @@ const entryPathFor = (folder: string, name: string): string | undefined => {
     return entryFileName === undefined ? undefined : join(folder, entryFileName);
 };
 
-export const projectBook = (folders: LibraryFolders, project: Project, scheme: Scheme): WrittenBook => {
+export const projectBook = (folders: LibraryFolders, project: Project, scheme: Scheme, overwrite = false): WrittenBook => {
     const folder = join(folders.claude, `.${slugFromName(project.name)}`);
-    if (existsSync(join(folder, '.book.tsx'))) return { folder, files: [] };
     const importPath = manualImportPath(folders, folder);
+    const bookFilePath = join(folder, '.book.tsx');
+    const bookFile = (): string => writtenFile(bookFilePath, bookFileText(importPath, 'ProjectManual', project.name));
+    if (existsSync(bookFilePath)) return { folder, files: overwrite ? [bookFile()] : [] };
     const projectDescription = project.description
         || `A project of mine with Claude, ${project.documents.length} knowledge files and the conversations held in it.`;
     const projectImportLines = [
@@ -249,7 +251,7 @@ export const projectBook = (folders: LibraryFolders, project: Project, scheme: S
     const descriptionText = project.description || 'What this project is, as Claude held it.';
     const instructionsText = project.instructions || 'No instructions were set on this project.';
     const files = [
-        writtenFile(join(folder, '.book.tsx'), bookFileText(importPath, 'Project', project.name)),
+        bookFile(),
         writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, ['Scheme'], coverPackageWords, [
             ...schemeLines(scheme),
             titleLine(project.name),
@@ -398,8 +400,16 @@ const bookFileText = (importPath: string, baseName: string, name: string): strin
     '',
 ].join('\n');
 
-const coverFileText = (importPath: string, manualWords: string[], packageWords: string[], lines: string[]): string =>
-    chapterFileText([packageImportLine(packageWords), manualImportLine(manualWords, importPath)], ['<Cover />', ...lines]);
+const coverFileText = (
+    importPath: string,
+    manualWords: string[],
+    packageWords: string[],
+    lines: string[],
+    moreImportLines: string[] = [],
+): string => chapterFileText(
+    [packageImportLine(packageWords), manualImportLine(manualWords, importPath), ...moreImportLines],
+    ['<Cover />', ...lines],
+);
 
 const synopsisFileText = (synopsisLines: string[]): string => chapterFileText(
     [packageImportLine(['Chapter', 'Paragraph', 'Parenthetical', 'Synopsis', 'Title'])],

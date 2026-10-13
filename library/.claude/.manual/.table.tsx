@@ -18,6 +18,9 @@ export default () => (
                 <Content>$[[ ./The Artifact and the Attachment ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The Project ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ Claudes Reference Manual ]]</Content>

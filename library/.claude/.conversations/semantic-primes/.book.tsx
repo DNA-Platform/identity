@@ -1,3 +1,3 @@
-import { $Conversation } from '../../../.manual/.book';
+import { $ClaudeConversation } from '../../.manual/.book';
 
-export default class $SemanticPrimes extends $Conversation { }
+export default class $SemanticPrimes extends $ClaudeConversation { }

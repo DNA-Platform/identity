@@ -2,7 +2,14 @@ import type { Block, Conversation, Message, Speaker } from './3-the-record~recor
 
 export type Referents = Record<Speaker, string>;
 export type WrittenFile = { name: string; content: string };
-export type WrittenChapter = { fileName: string; title: string; tsx: string; files: WrittenFile[]; thinkingCount: number };
+export type WrittenChapter = {
+    fileName: string;
+    title: string;
+    tsx: string;
+    files: WrittenFile[];
+    thinkingCount: number;
+    resultCount: number;
+};
 export type Appendix = { identifier: string; type: string };
 type ProsePiece = string | string[];
 type ArtifactVersion = { title: string; contentType: string; content: string; versionCount: number };
@@ -67,6 +74,15 @@ export const appendLines = (appendix: Appendix, depth: number): string[] => [
     `${indentation(depth)}</Append>`,
 ];
 
+export const figureLines = (elementName: string, appendix: Appendix, sentence: string, depth: number): string[] => [
+    `${indentation(depth)}<${elementName}`,
+    `${indentation(depth + 1)}identifier="${appendix.identifier}"`,
+    `${indentation(depth + 1)}type="${appendix.type}"`,
+    `${indentation(depth)}>`,
+    ...proseLines([sentence], depth + 1),
+    `${indentation(depth)}</${elementName}>`,
+];
+
 export const writtenChapter = (
     conversation: Conversation,
     path: Message[],
@@ -85,6 +101,7 @@ export const writtenChapter = (
     const baseNameCounts = new Map<string, number>();
     const bodyLines: string[] = [];
     let thinkingCount = 0;
+    let resultCount = 0;
 
     const uniqueBaseName = (baseName: string): string => {
         const baseNameCount = (baseNameCounts.get(baseName) ?? 0) + 1;
@@ -92,13 +109,15 @@ export const writtenChapter = (
 
         return baseNameCount === 1 ? baseName : `${baseName}-${baseNameCount}`;
     };
-    const addFile = (identifier: string, type: string, content: string): void => {
-        files.push({ name: `${chapterStem}~${identifier}.${type}`, content });
-        appendices.push({ identifier, type: `.${type}` });
+    const addFile = (identifier: string, type: string, content: string): Appendix => {
+        const appendix = { identifier, type: `.${type}` };
+        files.push({ name: `${chapterStem}~${identifier}${appendix.type}`, content });
+        appendices.push(appendix);
+
+        return appendix;
     };
-    const addArtifactFile = (identifier: string, artifactVersion: ArtifactVersion): void => {
+    const addArtifactFile = (identifier: string, artifactVersion: ArtifactVersion): Appendix =>
         addFile(identifier, fileExtension(artifactVersion.contentType, artifactVersion.title), artifactVersion.content);
-    };
     const artifactLines = (block: Extract<Block, { type: 'artifact' }>): string[] => {
         const artifactVersion = artifactVersions.get(block.id)
             ?? { title: block.title || block.id, contentType: block.contentType, content: '', versionCount: 0 };
@@ -112,21 +131,22 @@ export const writtenChapter = (
             artifactVersion.contentType = block.contentType;
         artifactVersion.versionCount++;
         artifactVersions.set(block.id, artifactVersion);
-        addArtifactFile(`${slugFromName(artifactVersion.title)}.v${artifactVersion.versionCount}`, artifactVersion);
+        const versionIdentifier = `${slugFromName(artifactVersion.title)}.v${artifactVersion.versionCount}`;
+        const appendix = addArtifactFile(versionIdentifier, artifactVersion);
         const verb = artifactVersion.versionCount === 1 ? 'Made' : block.command === 'rewrite' ? 'Rewrote' : 'Changed';
         const sentence = `${verb} the artifact “${escapedText(artifactVersion.title)}”`;
 
-        return elementLines('Artifact', [sentence], 3);
+        return figureLines('Artifact', appendix, sentence, 3);
     };
     const messageBlockLines = (block: Block): string[] => {
         if (block.type === 'text') return blockLines(block.text, 3);
         if (block.type === 'action')
             return elementLines('Action', [escapedText(actionSentence(block.name, block.input))], 3);
-        if (block.type === 'results' && block.text.trim() !== '')
-            return elementLines('Result', [escapedText(block.text.trim().slice(0, 4000))], 3);
         if (block.type === 'artifact') return artifactLines(block);
         if (block.type === 'thinking')
             thinkingCount++;
+        if (block.type === 'results')
+            resultCount++;
 
         return [];
     };
@@ -144,11 +164,12 @@ export const writtenChapter = (
         for (const attachment of message.attachments) {
             const attachmentExtension = attachment.extension.toLowerCase();
             const extension = knownExtensions.includes(attachmentExtension) ? attachmentExtension : 'txt';
-            addFile(uniqueBaseName(slugFromName(attachment.name.replace(/\.[^.]+$/u, ''))), extension, attachment.text);
-            bodyLines.push(...elementLines('Attachment', [`Attached “${escapedText(attachment.name)}”`], 3));
+            const baseName = uniqueBaseName(slugFromName(attachment.name.replace(/\.[^.]+$/u, '')));
+            const appendix = addFile(baseName, extension, attachment.text);
+            bodyLines.push(...figureLines('Attachment', appendix, `Attached ${fileWords(attachment.name)}`, 3));
         }
         for (const uploadName of message.uploads) {
-            const sentence = `Uploaded “${escapedText(uploadName)}”, whose content the export does not carry`;
+            const sentence = `Uploaded ${fileWords(uploadName)}, whose content the export does not carry`;
             bodyLines.push(...elementLines('Attachment', [sentence], 3));
         }
         if (bodyLines.length === bodyLengthBefore)
@@ -160,13 +181,13 @@ export const writtenChapter = (
 
     const isUsedInBody = (elementName: string): boolean => bodyLines.some(line =>
         line.includes(`<${elementName}>`) || line.includes(`<${elementName} `) || line.trim() === `<${elementName}`);
-    const alwaysImported = ['Chapter', 'Date', 'Paragraph', 'Part', 'Title'];
+    const alwaysImported = ['Chapter', 'Date', 'Paragraph', 'Title'];
     const packageWords = [
         'Append', 'Bold', 'Chapter', 'Code', 'Date', 'Emphasis', 'Equation', 'Heading', 'Line', 'List', 'Math', 'Paragraph',
-        'Part', 'Reference', 'Table', 'Title', 'Word',
+        'Reference', 'Table', 'Title', 'Word',
     ];
     const manualWords = ['Dated', 'Message', 'Quoted', 'Speaker', 'Verbatim'];
-    const claudeManualWords = ['Action', 'Artifact', 'Attachment', 'Result'];
+    const claudeManualWords = ['Action', 'Artifact', 'Attachment'];
     const packageImports = packageWords
         .filter(word => alwaysImported.includes(word) || (word === 'Append' ? appendices.length > 0 : isUsedInBody(word)));
     const manualImports = manualWords.filter(word => ['Dated', 'Message', 'Speaker'].includes(word) || isUsedInBody(word));
@@ -180,7 +201,6 @@ export const writtenChapter = (
         '',
         'export default () => (',
         `${indentation(1)}<Chapter>`,
-        `${indentation(2)}<Part>${monthName} ${year}</Part>`,
         `${indentation(2)}<Dated>`,
         `${indentation(3)}<Date>[${title}](${firstDay})</Date>`,
         `${indentation(2)}</Dated>`,
@@ -192,10 +212,11 @@ export const writtenChapter = (
         '',
     ].join('\n');
 
-    return { fileName: `${chapterStem}.tsx`, title, tsx, files, thinkingCount };
+    return { fileName: `${chapterStem}.tsx`, title, tsx, files, thinkingCount, resultCount };
 };
 
 const speakerReference = (speaker: Speaker, referents: Referents): string => referenceForm(speaker, referents[speaker], '$');
+const fileWords = (fileName: string): string => fileName === '' ? 'a file without a name' : `“${escapedText(fileName)}”`;
 
 const actionSentences: Record<string, (input: any) => string> = {
     web_search: input => `Searched the web for “${input?.query ?? ''}”`,

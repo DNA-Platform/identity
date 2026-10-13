@@ -10,7 +10,8 @@ export default () => (
         <Title>[[ The Author and the Subject ]]</Title>
         <Paragraph>
             <Brief />
-            Two paragraphs every book draws from its cover: by whom, and its subject.
+            Two paragraphs every book draws from its cover: by whom, and its subject; and a third a book draws
+            when its cover names topics, the other catalogues it stands in.
         </Paragraph>
         <Section>
             <Heading>What the two lines is</Heading>
@@ -39,7 +40,10 @@ export default () => (
             <Paragraph>
                 A book writes nothing for them; it writes its cover with an author and a subject, and the base
                 draws both. The mark before the subject and the face before by are the theme's, in the colours
-                of <Means>$[[ the tone ]]( ./The Tone )</Means>.
+                of <Means>$[[ the tone ]]( ./The Tone )</Means>. A cover may name topics besides its subject,
+                the other catalogues the book stands in, as <Means>$[[ a conversation ]]( ./The Conversation )</Means> names
+                each project that catalogues it; a book with topics draws a topic line beside its byline, each
+                topic a word leading to that catalogue, and a book with none draws nothing.
             </Paragraph>
         </Section>
         <Section>

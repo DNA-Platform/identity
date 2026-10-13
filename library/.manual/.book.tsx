@@ -38,5 +38,5 @@ export * from './28-the-journal~theme.tsx';
 export * from './28-the-journal~faces.tsx';
 export * from './29-the-conversation~code.tsx';
 export * from './30-the-register~code.tsx';
-export * from './31-the-project~code.tsx';
+export * from './31-the-project-manual~code.tsx';
 export * from './o1-the-key~code.tsx';

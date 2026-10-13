@@ -6,6 +6,7 @@ import Synopsis from '../../../../../.claude/.manual/.synopsis';
 import Table from '../../../../../.claude/.manual/.table';
 import TheActionAndTheResult1 from '../../../../../.claude/.manual/1-the-action-and-the-result';
 import TheArtifactAndTheAttachment2 from '../../../../../.claude/.manual/2-the-artifact-and-the-attachment';
+import TheProject3 from '../../../../../.claude/.manual/3-the-project';
 
 const Book = $($Book);
 
@@ -16,6 +17,7 @@ export const book = () => (
         {Table()}
         {TheActionAndTheResult1()}
         {TheArtifactAndTheAttachment2()}
+        {TheProject3()}
     </Book>
 );
 

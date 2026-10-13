@@ -94,7 +94,7 @@ export default () => (
                 <Content>$[[ ./The Register ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
+                <Content>$[[ ./The Project Manual ]]</Content>
             </Paragraph>
         </Section>
         <Section>

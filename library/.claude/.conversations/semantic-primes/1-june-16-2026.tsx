@@ -1,10 +1,9 @@
-import { Bold, Chapter, Code, Date, Emphasis, Equation, Line, List, Math, Paragraph, Part, Title, Word } from '@dna-platform/public';
+import { Bold, Chapter, Code, Date, Emphasis, Equation, Line, List, Math, Paragraph, Title, Word } from '@dna-platform/public';
 import { Dated, Message, Quoted, Speaker, Verbatim } from '../../../.manual/.book';
-import { Action, Result } from '../../.manual/.book';
+import { Action } from '../../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Part>June 2026</Part>
         <Dated>
             <Date>[16 June 2026](2026-06-16)</Date>
         </Dated>
@@ -25,99 +24,12 @@ export default () => (
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>I'll look up the current research on semantic primes for you.</Paragraph>
             <Action>Searched the web for “semantic primes Wierzbicka NSM list number”</Action>
-            <Result>
-                Context 1... after more than four decades of research covering approximately thirty different languages, the
-                list has reached 65 elements (Wierzbicka 2021, 320). The current list of semantic primes is presented in
-                Table 1. For ease of use, they ... According to this framework, any word, regardless of complexity, can be
-                paraphrased using these primes, revealing a clear and universally translatable meaning. These paraphrases,
-                known as explications, can offer valuable applications for many natural language processing (NLP) tasks, but
-                producing them has traditionally been a slow, manual process. In this work, we present the first study of
-                using large language models (LLMs) to generate NSM explications. We introduce automatic evaluation methods,
-                a tailored dataset for training and evaluation, and fine-tuned models for this task. Our 1B and 8B models
-                outperform GPT-4o in producing accurate, cross-translatable explications, marking a significant step toward
-                universal semantic representation with LLMs and opening up new possibilities for applications in semantic
-                analysis, translation, and beyond. ... Join ResearchGate to access over 30 million figures and 160+ million
-                publications – all in one place.Join for free ... Context 1... after more than four decades of research
-                covering approximately thirty different languages, the list has reached 65 elements (Wierzbicka 2021, 320).
-                The current list of semantic primes is presented in Table 1. For ease of use, they are grouped into various
-                "onto-syntactical" categories. ... ... ... These paraphrases, called explications, provide a clear,
-                universal way to describe and compare word meanings without the circularity, jargon, or culture-specific
-                assumptions of conventional semantic approaches like dictionary definitions. Wierzbicka’s initial list of
-                primes included fourteen words (1972). In the last · decade, it has been proposed that the search for
-                semantic primitives has · reached its goal and is set at a total of sixty-ﬁve (see Table 10.1) (Goddard ...
-                Semantic primes, English exponents (after Goddard and Wierzbicka 2014) I, YOU, SOMEONE, SOMETHING~THING,
-                PEOPLE, BODY substantives ... Content may be subject to copyright. ... Content may be subject to copyright.
-                C:/ITOOLS/WMS/CUP-NEW/54645598/WORKINGFOLDER/ROMERO-HYB/9781108839136C10.3D ... Natural language is a
-                human-speciﬁc symbolic system for expressing meaning. Meaning is embodied at the level of each linguistic
-                element, as well as through · combinations of elements. When meaning is considered in combination with ...
-                The chapter is structured as follows. Section 10.2 describes theoretical · foundations of the NSM approach
-                and its main concepts, such as semantic · primitives, universal syntax, and semantic molecules. Section 10.3
-                demon- strates how NSM can be applied to studying “formal”linguistic context, in · particular through
-                studying lexical meaning and conceptual inter-connections · Wierzbicka’s initial list of primes included
-                fourteen words (1972). In the last · decade, it has been proposed that the search for semantic primitives
-                has · reached its goal and is set at a total of sixty-ﬁve (see Table 10.1) (Goddard · and Wierzbicka 2014;
-                Goddard 2018a). The primitives have been identiﬁed by · trial and error in the process of designing
-                deﬁnitions of several lexical domains, primarily emotion terms, speech acts, and concrete vocabulary. The
-                univer- sality of NSM has been tested on a signiﬁcant number (about three dozen) of · related and unrelated
-                languages (Goddard and Wierzbicka 1994, 2002; Peeters · 2006; see Gladkova and Larina 2018 and the NSM
-                Homepage for an overview). It enumerates the main theoretical and methodological arguments underpinning the
-                approach, and reviews the 35 year program of conceptual analysis and cross-linguistic testing which has led
-                to the current model of 63 semantic primes and their ... This book, Semantic primes and universal grammar:
-                empirical evidence from the Romance languages (henceforth SPUGR) co
-            </Result>
             <Paragraph>
                 Good, I have a solid picture. Let me get the authoritative category breakdown so the artifact is accurate.
                 I'll fetch the Casey Keith page which claims to have the full categorized inventory, and cross-check against
                 the NSM chart.
             </Paragraph>
             <Action>Fetched https://caseykeith.me/semantic-primes/</Action>
-            <Result>
-                --- canonical: https://caseykeith.me/semantic-primes/ meta-article:author:
-                https://www.facebook.com/TheRealCaseyKeith/ meta-article:modified_time: 2026-05-20T16:46:06-07:00
-                meta-article:published_time: 2025-10-28T19:47:36-07:00 meta-article:publisher:
-                https://www.facebook.com/TheRealCaseyKeith/ meta-article:section: Semantic SEO meta-description: Discover
-                what semantic primes are... the universal concepts shared by all languages, forming the foundation of human
-                meaning and thought. meta-fb:app_id: 230783246365585 meta-generator: Site Kit by Google 1.180.0
-                meta-google-adsense-platform-account: ca-host-pub-2644536267352236 meta-google-adsense-platform-domain:
-                sitekit.withgoogle.com meta-msapplication-TileImage:
-                https://bunny-wp-pullzone-39ootodtxn.b-cdn.net/wp-content/uploads/cropped-Casey-Keith-1-270x270.webp
-                meta-og:description: Discover what semantic primes are... the universal concepts shared by all languages,
-                forming the foundation of human meaning and thought. meta-og:image:
-                https://bunny-wp-pullzone-39ootodtxn.b-cdn.net/wp-content/uploads/Casey-Keith-1.jpg meta-og:image:alt:
-                Photo-of-Casey-Keith-SEO-expert. meta-og:image:height: 900 meta-og:image:secure_url:
-                https://bunny-wp-pullzone-39ootodtxn.b-cdn.net/wp-content/uploads/Casey-Keith-1.jpg meta-og:image:type:
-                image/jpeg meta-og:image:width: 900 meta-og:locale: en_US meta-og:site_name: Casey Keith meta-og:title:
-                Semantic Primes: A Simple Guide To NSM's 65 Universal Concepts • Casey Keith meta-og:type: article
-                meta-og:updated_time: 2026-05-20T16:46:06-07:00 meta-og:url: https://caseykeith.me/semantic-primes/
-                meta-robots: follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large meta-twitter:card:
-                summary_large_image meta-twitter:creator: @Therealcasey805 meta-twitter:data1: Casey Keith
-                meta-twitter:data2: 2 minutes meta-twitter:description: Discover what semantic primes are... the universal
-                concepts shared by all languages, forming the foundation of human meaning and thought. meta-twitter:image:
-                https://bunny-wp-pullzone-39ootodtxn.b-cdn.net/wp-content/uploads/Casey-Keith-1.jpg meta-twitter:label1:
-                Written by meta-twitter:label2: Time to read meta-twitter:site: @Therealcasey805 meta-twitter:title:
-                Semantic Primes: A Simple Guide To NSM's 65 Universal Concepts • Casey Keith meta-viewport:
-                width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0 title: Semantic Primes: A Simple
-                Guide To NSM's 65 Universal Concepts • Casey Keith --- &#91;about:blank&#93;(about:blank)
-                &lt;casey@caseykeith.me&gt; - &#91;Facebook&#93;(https://www.facebook.com/TheRealCaseyKeith) -
-                &#91;X&#93;(https://twitter.com/TheRealCasey805) -
-                &#91;Instagram&#93;(https://www.instagram.com/therealcaseykeith/) -
-                &#91;Facebook&#93;(https://www.facebook.com/TheRealCaseyKeith) -
-                &#91;X&#93;(https://twitter.com/TheRealCasey805) -
-                &#91;Instagram&#93;(https://www.instagram.com/therealcaseykeith/) -
-                &#91;Subscriptions&#93;(https://caseykeith.me/my-account/wps_subscriptions/) &#91;0
-                Items&#93;(https://caseykeith.me/cart/) &#91;!&#91;Casey
-                Keith&#93;(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iOTAwIiB2aWV3Qm94PSIwIDAgOTAwIDkwMCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgc3R5bGU9ImZpbGw6I2NmZDRkYjtmaWxsLW9wYWNpdHk6IDAuMTsiLz48L3N2Zz4=)&#93;(https://caseykeith.me/)
-                - &#91;Home&#93;(https://caseykeith.me) - &#91;Casey GPTs&#93;(https://caseykeith.me/product/casey-gpts/) *
-                &#91;Subscriptions&#93;(https://caseykeith.me/my-account/wps_subscriptions/) * &#91;Lost
-                password&#93;(https://caseykeith.me/my-account/lost-password/) - &#91;FREE TOOLS&#93;(#) * &#91;Keyword
-                Extractor&#93;(https://caseykeith.me/keyword-extractor/) * &#91;Semantic Keyword Clustering
-                Tool&#93;(https://caseykeith.me/keyword-clusterer/) * &#91;Word
-                Strings&#93;(https://caseykeith.me/word-string-tool/) - &#91;Book Me&#93;(https://caseykeith.me/book-me/) -
-                &#91;Casey Keith&#93;(https://caseykeith.me/about/) * &#91;My Facebook
-                Group&#93;(https://www.facebook.com/groups/seotrainingcamp/) *
-                &#91;Contact&#93;(https://caseykeith.me/contact/) Select Page # Semantic Primes: A Simple Guide to NSM’s 65
-                Universal Concepts by &#91;Casey Ke
-            </Result>
             <Paragraph>
                 I have what I need. The figure you heard is right — the count stabilized at <Word>
                     <Bold />
@@ -128,12 +40,7 @@ export default () => (
                 diverge.
             </Paragraph>
             <Action>Created /mnt/user-data/outputs/semantic_primes.md</Action>
-            <Result>File created successfully: /mnt/user-data/outputs/semantic_primes.md</Result>
             <Action>Presented files</Action>
-            <Result>
-                &#123;"type":"local_resource","file_path":"/mnt/user-data/outputs/semantic_primes.md","name":"semantic
-                primes","mime_type":"text/markdown","uuid":"9cfb4747-f08a-4a1a-a84f-57d94827c711"&#125;
-            </Result>
             <Paragraph>Done. A few things worth knowing about what I found:</Paragraph>
             <Paragraph>
                 The <Word>
@@ -182,97 +89,12 @@ export default () => (
         >
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Action>Searched the web for “Wierzbicka 1972 Semantic Primitives original 14 list elements”</Action>
-            <Result>
-                Three centuries ago, Leibniz was ... those concepts which can be understood by themselves and from whose
-                combinations our other ideas arise” (Couturat 1903: 430, 435, cf. Wierzbicka 2001, 2011). The idea was still
-                widely known and discussed in the 18th century (see, for example, D’Alembert 1759), but in the 19th century
-                it faded from philosophical discourse and eventually it was largely forgotten. In 1963, however, it was
-                revived by the Polish linguist Andrzej Bogusławski.1 A few years later, it was taken up in my own work, and
-                in 1972, in my book Semantic Primitives, a first hypothetical set of universal human concepts – “semantic
-                primitives”, as they were then called – was actually proposed. It included 14 elements.... Three centuries
-                ago, Leibniz was convinced that indeed there are such concepts, and he called this hypothetical set of
-                universal concepts “the alphabet of human thoughts”. He wrote, for example: “the alphabet of human thoughts
-                is the catalogue of primitive concepts, that it, those concepts which cannot be made clearer by means of any
-                definitions”, and “the alphabet of human thoughts is the catalogue of those concepts which can be understood
-                by themselves and from whose combinations our other ideas arise” (Couturat 1903: 430, 435, cf. Wierzbicka
-                2001, 2011). The idea was still widely known and discussed in the 18th century (see, for example, D’Alembert
-                1759), but in the 19th century it faded from philosophical discourse and eventually it was largely
-                forgotten. In 1963, however, it was revived by the Polish linguist Andrzej Bogusławski.1 A few years later,
-                it was taken up in my own work, and in 1972, in my book Semantic Primitives, a first hypothetical set of
-                universal human concepts – “ Russian Journal of Linguistics Vol 25, No 2 (2021): QS Subject Focus Summit
-                2020 on Modern Languages and Linguistics Three hundred years ago Leibniz was convinced that there are indeed
-                such concepts and that they can be identifie Wierzbicka, Anna. / “Semantic Primitives”, fifty years later.
-                In: Russian Journal of Linguistics. 2021 ; Vol. 25, No. 2. pp. 317-342. ... abstract = &amp;quot;Are there
-                any concepts that all human beings share? Three hundred years ago Leibniz was convinced that there are
-                indeed such concepts and that they can be identified by trial and error. He called this hypothetical set
-                “the alphabet of human thoughts”. Gradually, however, the idea faded from philosophical discourse and
-                eventually it was largely forgotten. It was revived in the early 1960s by the Polish linguist Andrzej
-                Bogus&#123;\l&#125;awski. A few years later it was taken up in my own work and in 1972 in my book “Semantic
-                Primitives” a first hypothetical set of “universal semantic primitives” was actually proposed. It included
-                14 elements. Following my emigration to Australia more and more linguists joined the testing of the proposed
-                set against an increasing range of languages and domains. Wierzbicka, Anna. / “Semantic Primitives”, fifty
-                years later. In: Russian Journal of Linguistics. 2021 ; Vol. 25, No. 2. pp. 317-342. ... abstract = "Are
-                there any concepts that all human beings share? Three hundred years ago Leibniz was convinced that there are
-                indeed such concepts and that they can be identified by trial and error. He called this hypothetical set
-                “the alphabet of human thoughts”. Gradually, however, the idea faded from philosophical discourse and
-                eventually it was largely forgotten. It was revived in the early 1960s by the Polish linguist Andrzej
-                Bogus&#123;\l&#125;awski. A few years later it was taken up in my own work and in 1972 in my book “Semantic
-                Primitives” a first hypothetical set of “universal semantic primitives” was actually proposed. It included
-                14 elements. Following my emigration to Australia more and more linguists joined the testing of the proposed
-                set against an increasing range of languages and domains. N1 - Publisher Copyright: © Anna Wierzbicka, 2021.
-                ... N2 - Are ther ... lokah &amp;#x27;strong; stiff&amp;#x27; Figure 1, blaq &amp;#x27;good&amp;#
-            </Result>
             <Paragraph>
                 The sources confirm the 14 but none of them list the actual members. Let me find the specific list.
             </Paragraph>
             <Action>
                 Searched the web for “Wierzbicka 1972 fourteen primitives "I" "you" "want" "think" "imagine" "world" "this"”
             </Action>
-            <Result>
-                ### 5.1.2. Semantic Primitives Wierzbicka (1972) believed that it is possible to describe every human
-                language by using a limited number of universal semantic primitives. These primitives are representative of
-                fundamental concepts that form the basis of human communication and thinking. Wierzbicka (1972) established
-                64 universal semantic primes, which consist of basic words or ideas that cannot be defined in relation to
-                more elementary concepts. However, these primes can be utilized to describe all other concepts present
-                within a language. Semantic Primitives suggest that concepts should be organized as multiple layers from the
-                concrete to abstract ones. Decision-making that runs on concrete concepts can be completed through the
-                upper-level abstract concepts that contain those concrete concepts. Thus, it is critical to represent the
-                hierarchical and linking relationships between concepts. - Born: 10 March 1938 (age 88) Warsaw, Poland -
-                Awards: Prize of the Foundation for Polish Science (2010) Dobrushin Award (2010) Academic background - Alma
-                mater: Warsaw University Academic work - Main interests: Semantics, pragmatics and cross-cultural
-                linguistics - Notable ideas: Natural semantic metalanguage Anna Wierzbicka (Polish: &#91;&#91;ˈanna
-                vʲɛʐˈbʲitska&#93;&#93;(./Help:IPA/Polish); born 10 March 1938) is a
-                &#91;Polish&#93;(https://en.wikipedia.org/wiki/Polish_people)
-                &#91;linguist&#93;(https://en.wikipedia.org/wiki/Linguistics) who is emeritus Professor at the
-                &#91;Australian National University&#93;(https://en.wikipedia.org/wiki/Australian_National_University),
-                &#91;Canberra&#93;(https://en.wikipedia.org/wiki/Canberra).
-                &#91;&#91;1&#93;&#93;(./Anna_Wierzbicka#cite_note-1) Brought up in
-                &#91;Poland&#93;(https://en.wikipedia.org/wiki/Poland), she graduated from &#91;Warsaw
-                University&#93;(https://en.wikipedia.org/wiki/Warsaw_University) and emigrated to Australia in 1972, where
-                she has lived since. With over twenty published books, many of which have been translated into other
-                languages, she is a prolific writer. Wierzbicka is known for her work in
-                &#91;semantics&#93;(https://en.wikipedia.org/wiki/Semantics),
-                &#91;pragmatics&#93;(https://en.wikipedia.org/wiki/Pragmatics) and &#91;cross-cultural
-                linguistics&#93;(https://en.wikipedia.org/wiki/Anthropological_linguistics), especially for the &#91;natural
-                semantic metalanguage&#93;(https://en.wikipedia.org/wiki/Natural_semantic_metalanguage) and the concept of
-                &#91;semantic primes&#93;(https://en.wikipedia.org/wiki/Semantic_primes). Her research agenda resembles
-                &#91;Gottfried Wilhelm Leibniz&#93;(https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz)'s original "
-                &#91;alphabet of human thought&#93;(https://en.wikipedia.org/wiki/Alphabet_of_human_thought)". Wierzbicka
-                credits her colleague, linguist &#91;Andrzej
-                Bogusławski&#93;(https://en.wikipedia.org/wiki/Andrzej_Bogus%C5%82awski), with reviving it in the late
-                1960s. &#91;&#91;2&#93;&#93;(./Anna_Wierzbicka#cite_note-2) |External videos !&#91;&#93;() Wierzbicka was
-                born in 1938, just before the outbreak of Linguistics giant who discovered a mini-language Anna Wierzbicka.
-                Anna Wierzbicka. ‘Anna Wierzbicka’ is a name many students of linguistics across the last few decades will
-                have inevitably encountered. Anna is known for the theory she founded, Natural Semantic Metalanguage (NSM).
-                And as at the end of 2015, she has retired from teaching after 40 years at the ANU. Based on 17th century
-                German philosopher Gottfried Leibniz’s idea of an ‘alphabet of human thoughts’, NSM is a “mini-language”
-                whose words correspond to core concepts, innate and universal, transcending particular languages and
-                cultures. Anna explains: “According to our research, every language has a word for one and two. Some don’t
-                have words for three, four, and so on. But one, two, some, many, all – you find those everywhere. You also
-                find words for good and bad everywhere. So you can build numerical concepts, ethical concepts, and any other
-                complex concepts on that basis.” When Anna first presented her theory in her seminal 1972 book Semantic
-                Primitives, she posited 14 innate and universal concepts or ‘semantic p
-            </Result>
             <Paragraph>
                 One source notes the count is sometimes given as thirteen, which is a known wrinkle. But I still need the
                 actual members. Let me find an explicit enumeration.
@@ -281,79 +103,14 @@ export default () => (
                 Searched the web for “Wierzbicka 1972 original primitives list "want" "don't want" "feel" "think of"
                 "imagine" "say" "become" "part of" "world"”
             </Action>
-            <Result>
-                Wierzbicka (1972Wierzbicka ( , 1980 WANT and DON&amp;#x27;T WANT were recognised as separate primes, but
-                this insight was lost sight of in Goddard &amp;amp; Wierzbicka (1994) and much subsequent work.
-                DON&amp;#x27;T WANT was restored to the inventory of semantic primes in Goddard &amp;amp; Wierzbicka
-                (2014a). ... &amp;#x27;It&amp;#x27;s mine!&amp;#x27;. Re-thinking the conceptual semantics of &amp;quot;
-                possession &amp;quot; through NSM ... This article is &amp;quot;in press&amp;quot;. ABSTRACT. This study has
-                two main parts. It begins with a conceptual and semantic analysis in the Natural Semantic Metalanguage (NSM)
-                framework (Wierzbicka, 1996; Peeters, 2006) Goddard &amp;amp; Wierzbicka, 2002, 2014a) of what linguists
-                term “true possession” or “ownership”. The requirements of the NSM framework force the analysis to be
-                conducted using very simple expressions that are available not only in English, but (ideally) in all
-                languages. The main proposal is that true possession is anchored in a semantic prime with an egocentric
-                perspective that occurs in a predicative construction, i.e. Wierzbicka (1972Wierzbicka ( , 1980 WANT and
-                DON'T WANT were recognised as separate primes, but this insight was lost sight of in Goddard &amp;
-                Wierzbicka (1994) and much subsequent work. DON'T WANT was restored to the inventory of semantic primes in
-                Goddard &amp; Wierzbicka (2014a). ... 'It's mine!'. Re-thinking the conceptual semantics of " possession "
-                through NSM ... This article is "in press". ABSTRACT. This study has two main parts. It begins with a
-                conceptual and semantic analysis in the Natural Semantic Metalanguage (NSM) framework (Wierzbicka, 1996;
-                Peeters, 2006) Goddard &amp; Wierzbicka, 2002, 2014a) of what linguists term “true possession” or
-                “ownership”. The requirements of the NSM framework force the analysis to be conducted using very simple
-                expressions that are available not only in English, but (ideally) in all languages. The main proposal is
-                that true possession is anchored in a semantic prime with an egocentri This paper aims to provide a
-                comprehensive overview of Anna Wierzbicka&amp;#x27;s theory of Semantic Primitives. It examines the
-                theory&amp;#x27;s historical development, its strengths and weaknesses, and its potential for creating a
-                semantic dictionary. For the past twenty something years, hardly a theory has caused as much uproar and
-                discussion in Semantics as Anna Wierzbickas theory of the Semantic Primitives. Her theory, inspired by te
-                works of Leibniz and other inquiries into the relation between language and thought, and first set out in
-                detail in 1972 in her work “Semantic Primitives”, was among the first serious attempts to "establish" a
-                semantic explanation for the connection between the meaning of words in human language and human thought
-                processes: since humans use language as their only known tool to formulate thoughts, it followed that the
-                meaning of words in any given language could only be explained using other words. Wierzbicka took up this
-                idea but concluded that in this process of substitution, that is, of explaining words with other words, it
-                would be logical to try to explain complex terms in ever less complex terms until, at some point, one would
-                end up with a set of words that could not, and needed not be, explain Through experimenting, she devised
-                such a set of words and called these the "Semantic Primitives", in reference to their basic simplicity and
-                fundamental position in the relation of thought and language. Over the years, Wirzbicka has constantly
-                refined her theory, and updated the list of Semantic Primitives, and a ever growing number of scholars of
-                Semantics has begun to adopt Wierzbickas theory, making it one of the more popular and widely accepted
-                subcurrents in Semnatics. The first chapter explores the historical development of the theory of Semantic
-                Primitives, tracing its roots back to the work of Leibniz. It discusses the theory's focus on natural
-                language and its rejection of abstract symbols as a means of representing meanin discussion of the
-            </Result>
             <Paragraph>
                 I found it. The original set is documented — and there's a genuinely interesting wrinkle in the count that's
                 worth capturing. Let me add this to the document so it lives alongside the rest.
             </Paragraph>
             <Action>Read /mnt/user-data/outputs/semantic_primes.md</Action>
-            <Result>Input validation errors occurred:
-description: Field required</Result>
             <Action>Read /mnt/user-data/outputs/semantic_primes.md</Action>
-            <Result>
-                19 - **2014** — The inventory stabilizes at **65** (Goddard &amp; Wierzbicka 2014, *Words and Meanings*).
-                Both authors declared the search essentially complete. 20 - **2014–present** — The 65-element table has
-                remained stable as more semantic domains were analyzed; it has held up as a working toolkit. (Wierzbicka
-                2021 revisited the list 50 years on, reconceptualizing one prime — MINE — but did not change the count.) 21
-                22 The primes were identified by **trial and error** while building definitions across domains — emotion
-                terms, speech acts, and concrete vocabulary in particular. Universality has been tested against roughly
-                **30+ related and unrelated languages**, including Polish, Russian, English, Spanish, French, Mandarin,
-                Japanese, Korean, Lao, Mbula, Yankunytjatjara, Arrernte, and Ewe. 23 24 &gt; **A note on the count.** You
-                will see charts that tally to 63 rather than 65. The difference is almost entirely in the *existence /
-                possession / specification* category: simplified web versions list just `BE (THERE IS)` and `HAVE`, while
-                the authoritative 2014 inventory splits this into four primes (`BE somewhere`, `THERE IS`, `BE
-                someone/something`, `(IS) MINE`). The list below follows the 2014 version and sums to exactly 65. 25 26 ---
-                27 28 ## The 65 primes, by category 29 30 The standard NSM grouping is "onto-syntactic" — primes are
-                clustered by the grammatical/conceptual role they play, not just by topic. 31 32 | # | Category | Semantic
-                primes | Count | &#91;78 lines total&#93;
-            </Result>
             <Action>Edited /mnt/user-data/outputs/semantic_primes.md</Action>
-            <Result>Successfully replaced string in /mnt/user-data/outputs/semantic_primes.md</Result>
             <Action>Presented files</Action>
-            <Result>
-                &#123;"type":"local_resource","file_path":"/mnt/user-data/outputs/semantic_primes.md","name":"semantic
-                primes","mime_type":"text/markdown","uuid":"8052fed4-bdb4-4d3a-a9e1-af2fa18f61fd"&#125;
-            </Result>
             <Paragraph>Added the original 1972 set as its own section in the document. The short version:</Paragraph>
             <Paragraph>
                 The first set had <Word>
@@ -869,47 +626,6 @@ description: Field required</Result>
                 Searched the web for “NSM reductive paraphrase explication method how primes identified indefinability test
                 Goddard”
             </Action>
-            <Result>
-                Goddard (2012), NSM is based on reductive paraphrase; this is the explication of sentences using simple,
-                intelligible and translatable words (semantic primes) and this lays bare the semantic content of the
-                original sentence. Goddard (2012), NSM is based on reductive paraphrase; this is the explication of
-                sentences using simple, intelligible and translatable words (semantic primes) and this lays bare the
-                semantic content of the original sentence. To make a semantic analysis using the reductive phrase;
-                Wierzibicka and Goddard (2002), proposed a non-arbitrary and irreducible semantic core containing a lexicon
-                of indefinable expressions also called semantic primes. ... A comparative study of Kikuyu Proverbs and its
-                English equivalents on the role and position of women: A Natural Semantic Metalanguage perspective ...
-                Proverbs are part of any culture. They are symbolic as they carry the cultural wisdom and heritage of any
-                community. Studies in the past have shown that proverbs just like other oral traditions help in the
-                construction of identities and ideologies. Such identities and ideologies are as in gender, the roles of
-                those genders and stereotypes alike. (Goddard 2012(Goddard , 2016. Они предоставляют механизмы для отражения
-                семантической сложности и моделирования отношений между последовательными уровнями иерархии. ... ... This
-                introduction to the Special Issue summarises Anna Wierzbicka's contribution to the linguistic study of
-                meaning. It presents the foundations of the approach known as the Natural Semantic Metalanguage (NSM)
-                developed by Wierzbicka. The current state of the approach is discussed in the article with the ideas of 65
-                semantic primitives, universal grammar and the principle of reductive paraphrase in semantic explications.
-                Each prime functions as a core semantic atom from which the meanings of more complex lexical items are
-                constructed via reductive paraphrase (&amp;quot;explication&amp;quot;). This approach is fundamentally
-                contrastive to symbol manipulation systems that lack ... NSM asserts the existence of language-independent
-                semantic primes—minimal, irreducible units such as WANT, KNOW, DO, GOOD, BAD, and others—demonstrated by
-                their ubiquity in natural languages (Goddard et al., 2016, Baartmans et al., 17 May 2025). Each prime
-                functions as a core semantic atom from which the meanings of more complex lexical items are constructed via
-                reductive paraphrase ("explication"). This approach is fundamentally contrastive to symbol manipulation
-                systems that lack content and to frameworks that embed formal ontologies of entities, properties, and events
-                (0712.1529, 0808.1211). In NSM, meaning is compositionally grounded in these primes, eschewing abstract
-                higher-order logic or extensive type hierarchies in favor of explicit semantic universals. Explications
-                constrain themselves to the primes and minimal molecules (compound elements composed of primes), striving
-                for semantic transparency and universality. In NSM, similar phenomena (implicit content, semantic ambiguity)
-                are addressed via reductive paraphrase into semantic primes, sidestepping higher-order logic and type-based
-                machinery. While both frameworks aim to recover "missing text," NSM relies on explicit, universal elements,
-                whereas ontological approaches leverage formal relations and context-driven inference. NSM methodology thus
-                offers a complementary descriptivist mechanism with broader applicability in cross-cultural semantic
-                mapping. With the emergence of NSM-powered LLMs, explication generation—once manual and expert-driven—is now
-                scalable, automatable, and statistically evaluable. Datasets exceeding 44,000 word–usage–explication
-                triplets (Baartmans et al., 17 May 2025) provide robust training and benchmarking. DeepNSM Book Review:
-                ‘Meaning and Universal Grammar: Theory and Empirical Findings. 2 vols. Ed. by Cliff Goddard and Anna
-                Wierzbicka. (Studies in Language Companion Series.) Amsterdam: John Benjamins, 2002. ISBN 1588112640.
-                $80(Hb.) ... Working w
-            </Result>
             <Paragraph>
                 Got it. I read how they actually do it, and here is the exclusion procedure in their own terms — it's the
                 piece I kept stepping over.
