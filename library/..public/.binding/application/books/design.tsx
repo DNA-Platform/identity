@@ -17,6 +17,7 @@ import TheManualsPage10 from '../../../../.design/10-the-manuals-page';
 import TheDesignBooksPage11 from '../../../../.design/11-the-design-books-page';
 import TheStorysPage12 from '../../../../.design/12-the-storys-page';
 import EveryConcept13 from '../../../../.design/13-every-concept';
+import TheConversationsPage14 from '../../../../.design/14-the-conversations-page';
 import ThePortfolioo1 from '../../../../.design/o1-the-portfolio';
 
 const Book = $($Book);
@@ -39,6 +40,7 @@ export const book = () => (
         {TheDesignBooksPage11()}
         {TheStorysPage12()}
         {EveryConcept13()}
+        {TheConversationsPage14()}
         {ThePortfolioo1()}
     </Book>
 );

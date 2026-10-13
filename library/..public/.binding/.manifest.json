@@ -2,6 +2,7 @@
   "assembled": [
     ".binding/application/books/reference.tsx",
     ".binding/application/books/design.tsx",
+    ".binding/application/books/importer.tsx",
     ".binding/application/books/librarian.tsx",
     ".binding/application/books/manual.tsx"
   ],
@@ -13,16 +14,18 @@
   "rendered": [
     "dougs-library/index.html",
     "dougs-design/index.html",
+    "dougs-importer/index.html",
     "dougs-story/index.html",
     "dougs-reference-manual/index.html",
     "index.html"
   ],
   "bundled": [
-    "assets/.cover-BiKTef4v.js",
-    "assets/.cover-_24QYHwE.js",
-    "assets/.synopsis-Dxs2pwBr.js",
-    "assets/.synopsis-G_-_mzTT.js",
-    "assets/.synopsis-oz5KbUuF.js",
+    "assets/.cover-BDT8GiVO.js",
+    "assets/.cover-CHhLe5-g.js",
+    "assets/.synopsis-CIEXo-pa.js",
+    "assets/.synopsis-DRBnvP2p.js",
+    "assets/.synopsis-M9lo-4nl.js",
+    "assets/.synopsis-Q9CTFDku.js",
     "assets/KaTeX_AMS-Regular-BQhdFMY1.woff2",
     "assets/KaTeX_AMS-Regular-DMm9YOAa.woff",
     "assets/KaTeX_AMS-Regular-DRggAlZN.ttf",
@@ -82,11 +85,12 @@
     "assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff",
     "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
     "assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf",
-    "assets/design-bn7Yh4eZ.js",
+    "assets/design-CkLyAhDy.js",
+    "assets/importer-Do645apv.js",
     "assets/index-BgQkainO.css",
-    "assets/index-cm-CiWOb.js",
-    "assets/librarian-BGu06NBF.js",
-    "assets/manual-FazCn--8.js",
-    "assets/reference-B7XSxMKy.js"
+    "assets/index-DLqI9Xwi.js",
+    "assets/librarian-z93CtvNY.js",
+    "assets/manual-BG4nAkur.js",
+    "assets/reference-DhNRiarb.js"
   ]
 }

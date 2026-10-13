@@ -62,6 +62,9 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Story's Page ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Conversation's Page ]]</Content>
+            </Paragraph>
         </Section>
         <Section>
             <Heading>The sketches</Heading>

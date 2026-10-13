@@ -2,6 +2,7 @@
 export const books = {
     "..reference": () => import("./books/reference"),
     ".design": () => import("./books/design"),
+    ".importer": () => import("./books/importer"),
     ".librarian": () => import("./books/librarian"),
     ".manual": () => import("./books/manual"),
 };

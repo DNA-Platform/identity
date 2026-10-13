@@ -42,6 +42,15 @@ export default () => (
                 </Word>
             </Paragraph>
             <Paragraph>
+                <Word>
+                    <Content>$[[ ./Dougs Importer ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Dougs Importer )**</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ ./Synopsis ]]</Content>

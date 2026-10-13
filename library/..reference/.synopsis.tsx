@@ -12,12 +12,14 @@ export default () => (
             filed under it, directly or through another book.
         </Paragraph>
         <Paragraph>
-            Three books are filed here. <Means>$[[ Dougs Story ]]</Means> is where to begin — the one book by
+            Four books are filed here. <Means>$[[ Dougs Story ]]</Means> is where to begin — the one book by
             its own subject, written so that the rest of the library can be navigated from it, and it begins
             with <Means>$[[ starting over ]]( Dougs Story / Starting Over )</Means>. <Means>$[[ Dougs Design ]]</Means> is
             where every page of this library was decided, each sketch kept beside the telling with its
             photographs and its code. <Means>$[[ Dougs Reference Manual ]]</Means> holds the parts the library
-            is built with, one chapter to a part, the code beside the chapter that says what it is.
+            is built with, one chapter to a part, the code beside the chapter that says what it
+            is. <Means>$[[ Dougs Importer ]]</Means> is how my conversations get in, one chapter to a stage and
+            the code that runs it beside the chapter.
         </Paragraph>
         <Paragraph>
             Press a book on the shelf, or its name in the contents, to see what it is here, on the desk above
