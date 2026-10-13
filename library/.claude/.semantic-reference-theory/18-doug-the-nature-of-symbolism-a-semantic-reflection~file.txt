@@ -1,0 +1,42 @@
+S1. How does the word red relate to the color red?
+
+S2. The word red symbolizes the color red
+
+S1. And a word is a type of symbol, and a color is something more literal?
+
+S2. Yes, I would say that’s approximately accurate
+
+S1. So is it fair to say that symbols symbolize literals
+
+S2. Yes, I think that accurately characterizes the abstract relationship between the word red and it’s color
+
+S1. Would you agree that “symbol” and “symbolize” have nearly the same symbol?
+
+S2. Haha yes, I suppose they do. The word “symbolize” literally has the word “symbol” in it
+
+S1. Can a symbol do anything else other than symbolize something?
+
+S2. No, I don’t think so. That about wraps it up. We might say a particular symbol feels natural or not based on how it fits into the language in a broader sense, but that is subjective. The symbol itself does nothing but symbolize
+
+S1. So then might symbolism express the idea that when we say “symbol” and “symbolize” we are referring to the same thing. Except one expresses its role as the subject - as it is in the conversation! And the other expresses the role it plays in relation to its literal?
+
+S2: Yes I agree that the difference is more about the role that it plays and less about the thing we are referring to. Symbols are exactly those things which symbolize
+
+A symbol symbolizes a literal
+Synbol is the subject
+Symbolize is the relationship 
+
+// a symbol symbolizes a literal
+sym =sym> lit 
+
+// The symbol is literally the relationship between the two
+(sym, lit) ‎ = = sym
+
+// A symbol can play the role of a subject
+sym -> subject
+
+// A symbol can play the role of a relationship
+sym -> relationship
+
+// A symbol is an object too, because we literally have a word for it
+(sym) =(sym)> sym

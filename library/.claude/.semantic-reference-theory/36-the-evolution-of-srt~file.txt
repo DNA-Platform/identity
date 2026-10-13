@@ -1,0 +1,398 @@
+# The Evolution of SRT
+
+This document records Semantic Reference Theory as it has actually evolved, in phases. It is written this way on purpose. The theory advances by realization, and the realizations overturn earlier forms — a most-specific that was first a term and then a witness, an inheritance arrow that was read three ways before one was kept, an extension claim made and then refuted by its own proof. Preserving the phases is not bookkeeping. The forms we abandoned are where the errors live, and a reader who does not see them abandoned will re-derive them. So each phase records what was believed, what broke it, and what replaced it. The current edge of the theory is the last phase, and it is open.
+
+The primitive has been stable throughout.
+
+```
+x =t> y
+```
+
+This transpiles to `R(x, y, t)`, the only primitive of the theory: `x` relates to `y` through `t`. Equality is `x =eq> y`, written `x == y`. Free variables in an axiom are universally closed; existential introduction is explicit.
+
+---
+
+## Phase I — The relational core
+
+The first stable achievement is a set of axioms governing relationships and their inheritance. It carries the lineage of *The Semantics of Relationships*, which named three — Universality, Specification, Directionality — and showed the most-specific relationship `(x, y)` falling out of them. The set then grew to six.
+
+```
+Universality     E[r]: x =t> y =|> x =r> y
+Specification    x => y =|> E(s: x =s> y): A[t: x =t> y]: x' =s> y' =|> x' =t> y'
+Directionality   x =s> y =|> x =t> y =||> x =t> y !=|> x =s> y
+Uniqueness       s == (x, y) & s == (x', y') =|> x == x' & y == y'
+Representation   x =s> y =|> E[x', y']: s == (x', y')
+```
+
+Universality posits a top relationship `r`: every relationship between two referents is also a relationship through `r`. The naming recommends the interpretation — `r` is *relationship*.
+
+Specification posits, for any related pair, a most-specific relationship that inherits into every relationship between the pair. The witness is restricted — `E(s: x =s> y)` posits an `s` that actually relates `x` and `y`, so the relating is a condition on what exists rather than an antecedent that could be satisfied vacuously.
+
+Directionality forbids distinct relationships of one pair from mutually inheriting. This is what makes inheritance directed, and it upgrades Specification's most-specific from existing to unique: two rival most-specifics for the same pair would each inherit the other, which Directionality forbids unless they are the same.
+
+Uniqueness fixes a most-specific to one pair — the dual of Directionality, which fixes a pair and collapses rival relationships. Uniqueness fixes a relationship and collapses rival pairs.
+
+Representation makes every relationship some pair's most-specific. With Specification giving each pair a unique bottom and Uniqueness making distinct pairs have distinct bottoms, Representation closes a bijection between related pairs and relationships. Its single existential is irreducible — it is the one axiom that posits rather than collapses.
+
+The base reading of the inheritance arrow is relation-inclusion.
+
+```
+s -> t  :=  x =s> y =|> x =t> y
+```
+
+Where this holds for all `x` and `y`, `s` inherits into `t`: every pair `s` relates, `t` relates.
+
+Three facts follow. The arrow is reflexive and transitive by logic alone. It is antisymmetric by Directionality: if `s -> t` and `t -> s`, the two relate the same pairs, and any shared pair lets Directionality force `s == t`.
+
+```
+(E[u, v]: u =s> v)  &  s -> t  &  t -> s  =|>  s == t
+```
+
+So the relational core is a partial order on relationships, with a top from Universality, a bottom per pair from Specification, and a bijection to related pairs from Uniqueness and Representation.
+
+**A realization within this phase, worth preserving because it corrects a tempting error.** The antisymmetry proof needs a shared pair, which raised the worry that a relationship relating *nothing* would escape it — two such would inherit each other vacuously, and a "totality" axiom seemed needed to forbid them. The worry is misplaced. To be a relationship is to occupy the relation position of some relating; a thing that relates nothing is not a relationship that fails to relate, but a referent that simply never appears in the relation slot. So the shared-pair hypothesis is automatic, and no totality axiom is needed. The empty relationship is not a gap to be closed but a non-case.
+
+---
+
+## Phase II — Qualification, and the trichotomy of the arrow
+
+The sixth axiom concerns when a relating can fail.
+
+```
+Qualification    t -> (x, y) =|> x' !-> x | y' !-> y =|> x' !=t> y'
+```
+
+If `t` inherits the most-specific `(x, y)`, and either `x'` fails to inherit `x` or `y'` fails to inherit `y`, then `x'` does not relate to `y'` through `t`. Read as types: a relationship type is a signature `t(x:X, y:Y)`, and failing the inheritance condition at a role-occupant disqualifies the relating. Types say what could be true; they do not generate truth.
+
+Qualification uses the arrow at positions the base reading does not cover — subject (`x' !-> x`) and object (`y' !-> y`). This forced the question of what `->` means off the relation position, and the answer was a trichotomy: any `T' -> T` resolves, off one shared configuration, into exactly one of three role-pairings — relation, subject, or object.
+
+```
+T' -> T  :=  E[x, x', y, y', t]:  x =(x, y)> y  &  x' =t> y'  =|>
+      ( T' == t   &  T == (x, y) )
+    | ( T' == x'  &  T == x )
+    | ( T' == y'  &  T == y )
+```
+
+One configuration, one inheritance notion, read from whichever position the referents occupy. This is the definition Qualification requires — it can disqualify on the failure of the subject- or object-pairing only because those pairings are defined here.
+
+**The realization that opens the next phase.** This trichotomy is stated, but it is not yet *pinned* in a way that makes cross-position inheritance well-typed on its own, and later phases lean on it heavily — the reconciliation of the two tops and the structure-preservation conditions both read inheritance across positions. The single arrow carrying three readings becomes a pressure point, and the relationship `r -> ref` (Phase IV) is where the pressure shows: it is false under the relation reading and true under the referent reading, so one unindexed arrow cannot carry both without asserting a falsehood. Pinning the role-indexed arrow is the largest piece of work the theory currently owes.
+
+---
+
+## Phase III — Confirming the relational core against role hierarchies
+
+Before building further, the relational core was checked against an established theory rather than assumed novel. Description logic studies role hierarchies — partial orders of binary relations under inclusion. The check is a map, built with both directions verified and the bounds named.
+
+Send each relationship to the set of pairs it relates, its extension. Send `s -> t` to the inclusion of `s`'s extension in `t`'s. Under this map: each relationship is a binary relation, from `R` directly; `s -> t` holds exactly when `s`'s extension is contained in `t`'s, immediately from the base reading; the order is its own reflexive-transitive closure, because the base arrow is already reflexive and transitive; and no two distinct relationships are equivalent, by antisymmetry.
+
+So SRT's relational inheritance is the role-inclusion fragment of a role hierarchy, established under the map. The role-based inheritance description logic formalized appears to be the same notion as SRT's relational inheritance, on that fragment.
+
+The bounds are real. Role hierarchies in full include role *composition* — "related through `s`, then `t`" — and SRT has no composition operator, deliberately: composition carries an existential middle that, iterated, runs to infinity, so SRT keeps composition symbolic, minting a named composite on demand rather than closing the relationship set under an operator. And where description logic enforces directedness by a syntactic restriction on the language, SRT derives it from Directionality — same effect, a theorem rather than a restriction.
+
+**The correction this phase forced.** It had been loosely said that SRT's inheritance is non-extensional where role hierarchies are extensional — that two relationships might relate the same pairs yet differ. The antisymmetry proof refutes this: mutual inheritance is coextension, and it derives `s == t`. So on the inclusion fragment SRT and role hierarchies *agree* that coextensive relationships are identical. SRT's non-extensionality, where it lives, lives in the role-readings or in symbolism — not in relational inclusion. The map corrected a claim that had been asserted from intuition.
+
+---
+
+## Phase IV — The top referent type, and identity
+
+Universality gives a top relationship. The parallel commitment one level over, on referents, is an axiom for the same reason: nothing prior grounds the existence of a top, so it must be posited.
+
+```
+Identity     E[ref]: x -> ref  &  ref == (ref, ref)
+```
+
+There exists a referent `ref` that every referent inherits, whose most-specific relationship with itself is itself. The naming recommends the interpretation — `ref` is *referent*, the type every referent bears by being one. As `r` tops the relationship hierarchy, `ref` tops the type hierarchy. The second conjunct pins `ref` as its own most-specific, so its canonical form is `ref =ref> ref`, all three positions the same referent.
+
+From this the universal self-relation is a theorem.
+
+```
+x =x> x
+```
+
+Every referent inherits `ref`; the canonical form of `ref` is all-equal; to inherit `ref` is to bear that form, and the most-specific way to bear it at `x`, short of being `ref`, is `x =x> x`. The self-relation, which had been treated as carrying axiomatic weight, is a consequence of every referent being a referent.
+
+The reason this matters. Read the top type's canonical form under two names for the one referent.
+
+```
+ref =ref> ref
+eq  =eq>  eq
+```
+
+The first says everything is a referent, including the one representing referent-hood; the second says everything equals itself, including the one representing equality. They are the same statement about the same all-equal form. For any referent:
+
+```
+x -> ref
+x =x> x
+x =ref> x
+```
+
+So "`x` is a referent," the type-label `x =ref> x`, is the same statement as "`x` equals itself," `x =x> x`. Labeling every referent a referent is saying every referent equals itself. Equality is not added as a separate primitive; it is what the universal type-label already is. The step from `x =x> x` to `x =ref> x` is licensed by form, not by substituting equals — inheriting the all-equal canonical form simply is having one's own all-equal self-relation.
+
+**A structural realization recorded here.** `ref` and `eq` are the same referent, or synonyms for it should we formalize the identification. But the role conditions the name. `ref` is type-like, the type of being a thing here, and is wrong for *comparison*. `eq` is relationship-like, the relating between things that are the same, and is wrong for *type-comprehension*. They coincide because the all-equal form is at once the universal type-label and self-equality. This is the first clean instance of a fact the theory keeps meeting: a referent may need different names in different roles, even when it is one referent. The role indexes the name; the referent is single. This realization is what makes pinning the role-indexed arrow (Phase II's debt) not merely a technical fix but a step the theory's own content demands.
+
+---
+
+## Phase V — Inheritance as the self-relation
+
+A bolder reading of the arrow emerged, unifying it with the self-relation.
+
+```
+x -> t  :=  x =t> x
+```
+
+To inherit `t` is to bear `t` as a self-relation. This collapses three things classical systems keep apart — that `x` has property `t`, that `x` is of type `t`, that `x` inherits `t` — into one statement. The property arrow and the inheritance arrow become one, and `x =y> x` reads, for any `y`, as `x` inheriting `y`.
+
+The boldness sits where it should. The all-equal self-relation is a form at which several general rules degenerate to the same thing, which is why `x =x> x`, `ref`, and `eq` keep arriving from different directions — the form is over-determined. This is where redundancy hides, and finding it minimizes the axioms.
+
+**The realization, and a correction of the order of generality.** It first appeared that the type-label case was fundamental and everything else a special case of it. The opposite is true, and the symbol case shows it. Inheriting through specification gives substitution into the relation position at *any* form.
+
+```
+symbol =symbol> literal
+x =x> y
+x =symbol> y
+```
+
+Specializing the occupants of `symbol =symbol> literal` to `x` and `y` gives `x =x> y`, and the relation reading puts `symbol` into the relation position, giving `x =symbol> y`. The same rule, at the all-equal form, gives the identity result of Phase IV.
+
+```
+ref =ref> ref
+x =x> x
+x =ref> x
+```
+
+These are one substitution rule at two forms. The `ref` case is the maximally collapsed corner, all three positions equal; the `symbol` case keeps the object distinct and never collapses. So the type-label result is the *degenerate* instance, and the symbol case is the general one. The symbol case cannot be synthesized from the type-label case — the type-label case is only what remains when the object collapses into the subject too. The generality runs opposite to how it first appeared, and the correction is the content of this phase.
+
+---
+
+## Phase VI — What it is to inherit a relationship
+
+If `x' =t'> y'` is to be a faithful specialization of `x =t> y`, what is required? This phase records both a wrong answer and the right one.
+
+**The wrong answer, preserved because it is tempting.** That `x' =t'> y'` should imply `x' =t> y'`. This asks too little — it follows from `t' -> t` alone, by the relation reading at the occupants. It is only substitutability of the relation, not faithful specialization.
+
+A second wrong turn, also preserved: a competing definition of subject-inheritance as a *universal* condition ("`x'` carries every relationship `x` carries") was invented and then withdrawn, because inventing a parallel formalism to justify the existing one is no justification — the theory already has its definition in the Phase II trichotomy, and the task is to work from it, not to replace it.
+
+**The right answer.** The child must preserve the structure of the parent: every inheritance holding among the three positions of the parent must hold among the three of the child, and all three positions specialize — the relation among them. This is nine conditions — three that each occupant inherit its position, and six that every inheritance edge between positions be preserved.
+
+The three position inheritances:
+
+```
+x' -> x
+t' -> t
+y' -> y
+```
+
+The six cross-position preservations — every ordered pair of the three positions, in both directions:
+
+```
+x -> y =|> x' -> y'
+y -> x =|> y' -> x'
+x -> t =|> x' -> t'
+t -> x =|> t' -> x'
+y -> t =|> y' -> t'
+t -> y =|> t' -> y'
+```
+
+Together these nine say that the map carrying `(x, t, y)` to `(x', t', y')` preserves the whole inheritance structure among the positions — a structure-preserving specialization, not merely a relation that still holds.
+
+A valid specialization of `Manager =supervises> Employee`, where a manager is an employee, is `SeniorManager =mentorsThroughManagerialCoaching> Manager`: subject, object, and relation all specialize, supervising becoming a more specific supervising. The relation position is not a fixed operator carried down unchanged; it is a third position specializing like the others. Treating it as inert is the habit of reading the relationship as a function applied to arguments, and it is the wrong habit.
+
+The structure preserved is the inheritance pattern among the positions, read through inheritance rather than raw identity: two positions are the same when they mutually inherit, ordered when one inherits the other, independent when neither does. The governing asymmetry is that different may generalize to same but same may not specialize to different — identifications may be added going up, never removed going down. So the more general form is the more identified, the more specific the more distinct. The all-equal form is the top; the form with all three positions distinct lies below.
+
+Two consequences follow from the asymmetry rather than being stipulated. A property — subject and object identified — is a kind of relationship, but no relationship derives from a property, since that would split the identification going down. And one makes symbols only from symbols, by the same monotonicity.
+
+Finding the pattern is recursive: the form of `x =t> y` needs the inheritance among `x`, `t`, `y`, which needs the relationships they participate in, and so on. It terminates, because only the relationships that actually apply are consulted — a finite catalogue — and Directionality makes the inheritance graph acyclic, bottoming out at literals and self-relations. Becoming more specific is descending this graph by accumulating applicable relationships, and the recursion that finds them measures specificity.
+
+**The realization that bounds this phase.** The structure does not compose freely, and that is correct. If the parent has a cross-position edge into a position then further specialized — `y'` inherits `x'`, and `x'` is refined to `x''` with `x'' -> x'` — preserving the edge needs `y' -> x''`, which does not follow from `x'' -> x'`. Inheritance does not run backward down a specialization. So inheriting a relationship is transitive only when specialization does not orphan an incoming cross-position edge. Whether such an edge should break the inheritance or be re-established downward is unsettled.
+
+---
+
+## Phase VII — Symbolization as the up-direction
+
+Phase V's substitution rule places symbolization at a precise spot: generalization. Specializing — going down — substitutes a concrete more-specific referent, preserves structure, needs no symbol, and is always available. Generalizing — going up — cannot place a bare type into a relatum position, because a type-label is not a relatum. It must place a symbol for "some X," a referent that inherits X and stands for an arbitrary inheritor.
+
+Two forms for "an employee" were considered. The first puts the existential in the position:
+
+```
+(e -> Employee)
+e -> Employee
+(e -> Employee) =symbol> e
+```
+
+`e` is introduced existentially by making the symbol; it compiles to something existential but is named, and reasoned about symbolically. The second lifts the relationship to symbols and keeps the existential inside the symbol's own definition, so the graph stays one of definite edges:
+
+```
+(SeniorManager) =(supervises)> (SomeEmployee)
+E[e]: (SomeEmployee) =(SomeEmployee)> e -> Manager
+```
+
+The graph now carries only definite edges between symbol nodes; the abstraction is a node with an existential definition, not an existential edge. Everything stays describable by a relationship graph.
+
+`(SomeEmployee)` is the most-specific generalization of its type, and that is what a class is. A type points symbolically down to its instances; a class structurally characterizes their collection. In SRT they are one node, because the symbol is itself a referent in the graph — pointing down and being the upper bound coincide. Symbols enter the inheritance hierarchy as nodes. Its upper structure is symbolic, built by generalizing; its lower structure is the concrete referents, the literal floor. Classes are free, made going up; instances are earned, found going down.
+
+**The realization that keeps this honest, and that superseded an earlier one.** An earlier formulation had transduction fire "at the inconsistency boundary" — mint a witness whenever an existential lacked one. That is wrong, and the correction is the content here: you do not wish things into being. Missing a *symbol* is fine, because symbols are made freely. Missing a *thing* is a real problem, because a referent cannot be conjured and the descent to a concrete witness can fail or be impossible. But generalization is self-witnessing — one generalizes from a specific thing, so the witness is already in hand. Talking abstractly is always safe; bringing an abstraction down to a *new* concrete witness is where it can fail. Symbolization adds symbols, never things. Reference outruns realization: one can speak of far more than one can point to, and that is the ordinary condition of language.
+
+This is also where SRT meets Gödel. The tradition after Gödel extends a theory by reflection, preserving consistency, and pays with an unbounded ordinal climb — a transfinite patching of holes. SRT extends by symbolization, preserving semantics through symbolism, and stays finite. The incompleteness was never a hole. It is the ordinary fact that one has not named everything, and one mints a symbol on finding a thing worth studying. Read correctly, the patch is not an axiom but a new symbol pointing at a new thing — which is what reference is. Frozen as a static layer of axioms, symbolization gains nothing and the Gödel sentence reappears; kept as the act of naming a newly-found thing, there is no hole to patch.
+
+---
+
+## Definitions and notation
+
+The phases above use a notation that has itself been evolving. This section collects it. Some entries are settled; some are marked evolving, because the right form is still being found, and a record that froze them would misrepresent the theory.
+
+### The ternary operator and its family
+
+The one primitive, written in surface form and transpiled:
+
+```
+x =t> y          R(x, y, t)
+```
+
+`x` relates to `y` through `t`. The arrowhead carries the relationship type. From it the rest of the family is built. Equality is the relationship through `eq`:
+
+```
+x == y           x =eq> y
+```
+
+Relatedness — that a pair relates at all — is the relationship through the top `r`, which by Universality every related pair has:
+
+```
+x => y           x =r> y
+```
+
+Negation of a relating, and of an inheritance, are written with `!`:
+
+```
+x !=t> y         not ( x =t> y )
+x !-> y          not ( x -> y )
+```
+
+These negations carry weight only in Qualification, where a relating is disqualified by an occupant's failure to inherit.
+
+### Quantifiers and closure
+
+Free variables in an axiom are universally closed; the universal quantifier is usually left implicit, as in the base reading of `->`. Existential introduction is always explicit, because introducing a referent is an act with content. Two forms, distinguished:
+
+```
+E[x]: P              there exists x with P
+E(x: Q): P           there exists x with Q, and P     (the restriction Q is asserted, not assumed)
+```
+
+The restricted form `E(s: x =s> y)` in Specification posits an `s` that genuinely relates the pair — the relating is part of what is claimed to exist, not an antecedent that could be met vacuously.
+
+### The most-specific relationship — an evolving definition
+
+The notation `(x, y)` denotes the most-specific relationship between `x` and `y`. Its definition has moved, and the movement matters.
+
+It began as a definite description:
+
+```
+(x, y)  :=  the s such that x =s> y and s -> t for every t with x =t> y
+```
+
+The phrase "the s such that" presupposes that exactly one such `s` exists. There was then a temptation to make `(x, y)` a function symbol in the signature — `m(x, y)` — which reads cleanly but is wrong, because a total function symbol asserts a value everywhere and so smuggles in a totality the axioms do not grant. The settled form treats `(x, y)` as nothing more than the witness Specification provides:
+
+```
+(x, y)  is the s witnessed by Specification, unique by Directionality
+```
+
+Existence comes from Specification, uniqueness from Directionality, and `(x, y)` abbreviates that witnessed-and-unique `s` — no function symbol, no presupposition beyond what the two axioms prove. The notation is sugar for the witness, and the only non-logical symbol remains `R`.
+
+### The inheritance arrow — an evolving definition
+
+The arrow `->` is the most actively evolving notation in the theory. It has three readings on record, and a fourth piece still owed.
+
+The base reading is relation-inclusion:
+
+```
+s -> t  :=  x =s> y =|> x =t> y
+```
+
+The trichotomy generalizes it: any `T' -> T` resolves, off one shared configuration, into a relation-pairing, a subject-pairing, or an object-pairing — one inheritance notion read from whichever position the referents occupy.
+
+```
+T' -> T  :=  E[x, x', y, y', t]:  x =(x, y)> y  &  x' =t> y'  =|>
+      ( T' == t   &  T == (x, y) )
+    | ( T' == x'  &  T == x )
+    | ( T' == y'  &  T == y )
+```
+
+The bold reading identifies inheritance with the self-relation:
+
+```
+x -> t  :=  x =t> x
+```
+
+To inherit `t` is to bear `t` as a self-relation, unifying the property arrow, the type-membership arrow, and the inheritance arrow into one.
+
+What is owed is the role index. Under a single unindexed arrow the relationship `r -> ref` is at once false (relation reading) and true (referent reading), so the arrow must carry which position it speaks of — `->` read on the relation, the subject, or the object. Until that index is written, the readings above coexist by context, and statements that read inheritance across positions are conditional on the index being pinned. The arrow is, deliberately, recorded as unfinished.
+
+### Symbolization
+
+A canonical symbol is written in parentheses around its referent. The symbol represents what it symbolizes:
+
+```
+(x) =(x)> x
+```
+
+Symbolization preserves inheritance — lifting a relationship to its symbols preserves the inheritance among them:
+
+```
+(x, y) -> t  =|>  ((x, y)) -> (t)
+```
+
+The generalization "some X" — the up-direction of inheritance — is a symbol that inherits its type and stands for an arbitrary inheritor. Two forms are on record: the existential in the position,
+
+```
+(e -> Employee)          with   e -> Employee   and   (e -> Employee) =symbol> e
+```
+
+and the lifted form that keeps the relationship graph one of definite edges, sequestering the existential inside the symbol's definition,
+
+```
+(SomeEmployee)           with   E[e]: (SomeEmployee) =(SomeEmployee)> e -> Manager
+```
+
+### The named constants
+
+The constants of the theory, with the readings their names recommend:
+
+```
+r        relationship      the top relationship; every relating is a relating through r
+ref      referent          the top referent type; every referent inherits ref
+eq       equality          self-identity; x =eq> y is x == y
+```
+
+`r` and `ref` are the two tops, one over relationships and one over referents. `ref` and `eq` are the same referent, or synonyms for it should the identification be formalized — `ref` for the type role, `eq` for the comparison role, one referent named for the role it plays.
+
+---
+
+## The discipline of the work
+
+One methodological principle governed the development above and is worth stating, because it is why some of the work is trustworthy and earlier attempts were not. Reason from the primitive `R(x, y, t)`, the explicit axioms, and explicit definitions, in the theory's own terms. When borrowing from another formalism — as the relational core was confirmed against role hierarchies — do not assert a resemblance; build the map, verify it in both directions, and use only the part that checks, naming the bounds. Analogy is legitimate exactly to the extent the isomorphism is precise. The errors preserved in the phases above are, almost all of them, the cost of importing a familiar framework's verdict in place of reasoning from SRT's own axioms; the corrections are what reasoning from the axioms restored.
+
+---
+
+## The current edge
+
+The work the theory now owes, stated so it does not collapse into one block of conditions. Propositional logic admits a single axiom; it should not be given one. The elegant statement names the few things that generate the rest.
+
+The role-indexed reading of `->` must be pinned, so that a referent in one position inheriting a referent in another is well-typed. Phase II raised the debt; Phase IV showed the theory's content demands it; Phases IV and VI both lean on it. The relationship `r -> ref` is the forcing case — false under the relation reading, true under the referent reading.
+
+The cross-position conditions of Phase VI must be resolved: whether they are independent, whether pairwise preservation is complete, and how they behave under composition. They do not compose freely; the orphaned-edge case is open between breaking the inheritance and re-establishing the edge.
+
+The type side needs its own most-specific. A referent under several incomparable types has no canonical type, where a pair under several relationships has one by Specification. Either a most-specific-type axiom is added — the type-side echo of Specification — or multiple maximal types are tolerated and the default arrow is set-valued.
+
+Symbolization needs its axiom as the up-direction — the minimal generator for "some X," the form of the symbol node, and the precise content of the act that adds a symbol when reference requires it.
+
+And sets must be reached, through how unspecific things relate to all possible substitutions. Until that goes through, no claim about unifying mathematics is earned.
+
+---
+
+## On this document
+
+The phases are preserved deliberately, including the wrong forms: the function-symbol most-specific that smuggled totality and was returned to the Specification witness; the invented auxiliary predicates and a non-existent equality referent that were removed; the universal subject-inheritance invented and withdrawn; the inconsistency-boundary transduction superseded by the honest dead-end; the non-extensionality claim refuted by its own proof; the order of generality corrected so the symbol case is general and the type-label case degenerate. These are not errors to be embarrassed by but the structure of the work, and a reader needs them to avoid re-deriving them.
+
+The load-bearing parts are Phases I through IV: the six axioms, the facts about the base arrow, the role-hierarchy correspondence, and the Identity axiom with its theorem. These are proved or checked. Phases V through VII are strong proposal — the self-relation arrow, the structure-preservation account, the substitution rule and symbolization. The steadiness of the prose should not be read as equal confidence across the two; the line is at the end of Phase IV.
+
+The honest soft spot remains the role-indexed arrow, which several clean statements in Phases IV and VI silently depend on and which is not yet pinned. The identification of `ref` and `eq` is flagged, not made. And the claim that the all-equal form and the generic form sit at opposite poles of one ordering is stated more confidently than the enumeration of forms yet supports — whether the orderings invert across the whole range or only meet at the poles is itself part of the current edge.

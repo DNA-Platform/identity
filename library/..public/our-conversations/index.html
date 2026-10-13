@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dougs Library</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 28 28%22%3E%3Cstyle%3E.pd-illustration%7Bfill%3Anone%3Bstroke%3A%231f5a60%3Bstroke-width%3A1.7%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.pd-illustration .fill%7Bfill%3A%238db9bd%3Bstroke%3A%231f5a60%7D.pd-illustration .light%7Bfill%3A%23ffffff%3Bstroke%3Anone%7D%3C%2Fstyle%3E%3CclipPath id%3D%22window%22%3E%3Crect width%3D%2228%22 height%3D%2228%22%2F%3E%3C%2FclipPath%3E%3Crect width%3D%2228%22 height%3D%2228%22 fill%3D%22%23c3e3e6%22%2F%3E%3Cg clip-path%3D%22url(%23window)%22%3E%3Csvg x%3D%22-43.361%22 y%3D%22-10.361%22 width%3D%2299.36%22 height%3D%2299.36%22 viewBox%3D%220 0 64 64%22 class%3D%22pd-illustration%22%3E%3Cpath class%3D%22light%22 d%3D%22M9 7h46v50H9z%22%2F%3E%3Cpath d%3D%22M9 7h46v50H9zM9 24h46M9 41h46%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 11h5v13h-5zM20 9h4v15h-4zM26 13h6v11h-6zM34 10h4v14h-4zM40 14h6v10h-6z%22%2F%3E%3Cpath d%3D%22M48 24l4-12 3 1-4 11z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 28h4v13h-4zM19 30h7v11h-7zM28 27h4v14h-4zM34 31h5v10h-5zM41 28h6v13h-6zM49 29h3v12h-3z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 46h6v11h-6zM21 44h4v13h-4zM27 47h8v10h-8zM37 45h4v12h-4zM43 48h6v9h-6z%22%2F%3E%3Cpath d%3D%22M50 57l3-11 3 1-3 10z%22%2F%3E%3C%2Fsvg%3E%3C%2Fg%3E%3Crect x%3D%221.319%22 y%3D%221.319%22 width%3D%2225.361%22 height%3D%2225.361%22 fill%3D%22none%22 stroke%3D%22%231f5a60%22 stroke-width%3D%222.639%22%2F%3E%3C%2Fsvg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@500;600;700&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="/assets/index-BGM852en.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BgQkainO.css">
+  <link rel="stylesheet" href="/sheets/8fe6c1bf2033.css" />
+  <script>(function(){var k=[];function on(e){var r=document.getElementById('root');if(!r||!r.contains(e.target)||e.__replayed)return;k.push({t:e.target,type:e.type});}document.addEventListener('click',on,true);window.__replayKept=function(){document.removeEventListener('click',on,true);var q=k;k=[];q.forEach(function(one){if(!document.contains(one.t))return;var ev=new MouseEvent(one.type,{bubbles:true,cancelable:true});ev.__replayed=true;one.t.dispatchEvent(ev);});};})();</script>
+  <style>.pa-arriving .pd-pages{visibility:hidden}</style><script>((document, hash) => {
+  const root = document.documentElement;
+  const fragment = hash.replace(/^#/u, "");
+  if (fragment === "") return void 0;
+  root.classList.add("pa-arriving");
+  const open = () => {
+    root.classList.remove("pa-arriving");
+    const target = document.getElementById(fragment);
+    const chapter = target === null ? null : target.closest(".pd-pages .pa-page");
+    if (chapter === null || chapter.classList.contains("pa-open")) return void 0;
+    const layersOf = (page) => {
+      const layers = [];
+      for (let above = page.parentElement; above !== null && !above.classList.contains("pd-pages"); above = above.parentElement)
+        if (above.classList.contains("pd-container")) layers.push(above);
+      return layers;
+    };
+    for (const was of Array.from(document.querySelectorAll(".pd-pages .pa-page.pa-open"))) {
+      was.classList.remove("pa-open");
+      for (const layer of layersOf(was)) layer.classList.remove("pa-open");
+    };
+    chapter.classList.add("pa-open");
+    for (const layer of layersOf(chapter)) layer.classList.add("pa-open");
+    const title = chapter.querySelector(".pd-title");
+    const place = title === null || title.id === "" ? fragment : title.id;
+    for (const row2 of Array.from(document.querySelectorAll(".pd-holds .pa-entry.pa-open"))) row2.classList.remove("pa-open");
+    const anchor = document.querySelector(`.pd-holds a[href$="#${place}"]`);
+    const row = anchor === null ? null : anchor.querySelector(".pa-entry") ?? anchor.closest(".pa-entry");
+    row?.classList.add("pa-open");
+    const turned = () => {
+      if (typeof chapter.scrollIntoView === "function") chapter.scrollIntoView();
+    };
+    turned();
+    if (document.readyState !== "complete") document.defaultView?.addEventListener("load", turned, { once: true });
+    return place;
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      open();
+    });
+    return void 0;
+  };
+  return open();
+})(document,location.hash);</script>
+  </head>
+  <body>
+    <div id="root"><!--$--><div class="sc-ArhAj btCzLP pd-container"><div class="sc-hTRmSx ddMtMo pd-container"><div class="pd-book pa-newest-first pa-paginated pa-layout pa-turned pa-tone pa-light"><div class="pd-library"><div class="pd-paragraph pd-logo"><div class="sc-iJCTZA cRVkBD pd-scheme"><span class="pd-own"><a href="/our-conversations/" class="sc-eCAoTo pa-reference pd-container"><span class="sc-giAsBR dZvfnY pd-container"><span class="pd-word pd-mark pa-reference"><span class="pd-drawing"></span></span></span></a></span></div><span class="pd-names"><div class="sc-iJCTZA cRVkBD pd-scheme"><span class="pd-name"><a href="/our-conversations/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Our Conversations</span></a></span></div></span></div></div><div class="pd-me"><div class="pd-paragraph pd-byline"><span class="pd-word pa-label">by</span><a href="/dougs-story/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Doug</span></a></div></div><div class="pd-holds"><nav class="sc-crzogQ pd-container"><div class="pd-chapter pa-table-of-contents"><a href="/our-conversations/#table-of-contents" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><span id="table-of-contents" class="pd-sentence pd-title pa-parenthetical pa-reference pa-self-reference pa-referent" hidden=""></span></a><div class="pd-section"><a href="#june-2026" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="june-2026" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">June 2026</div></a><div class="sc-fKgHSI hcfsAk pd-container"><div class="pd-paragraph pa-entry pa-open"><a href="/our-conversations/#semantic-primes" class="sc-dIrNh pa-reference pd-container"><span class="pd-word pa-reference"><span class="sc-bqGEVu pa-content">Semantic Primes</span></span></a><a href="/semantic-primes/" class="sc-dIrNh pa-reference pd-container"><span class="pd-word pa-reference pa-arrow"><span class="sc-bqGEVu pa-content">▷</span></span></a></div></div></div><div class="pd-section"><a href="#where-this-book-stands" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="where-this-book-stands" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">Where this book stands</div></a><span class="pd-paragraph pa-parenthetical" hidden=""></span></div><div class="pd-paragraph pd-entry-order"><button type="button" aria-pressed="true" class="pd-word pd-switch">newest first</button></div><div class="pd-paragraph pd-tree-root"><a href="/our-conversations/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference"><span class="pd-drawing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5 10.5 8 6 12.5"/></svg></span>Our Conversations</span></a></div></div></nav></div><div class="pd-head"></div><div class="pd-pages"><div class="pd-chapter pa-open pa-page pa-synopsis pa-volume pa-dated pa-part"><a href="/our-conversations/#semantic-primes" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="semantic-primes" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">Semantic Primes</div></a><div class="pd-paragraph pa-caption">A conversation, 18 exchanges: <a href="/semantic-primes/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Semantic Primes</span></a>.</div><span class="pd-word pd-entry-number">1</span><div class="pd-paragraph">The conversation centered on semantic primes and Natural Semantic Metalanguage (NSM) theory, with the person requesting research on the topic and a structured editable artifact. Claude created a markdown document covering the history of NSM, the canonical 65-prime inventory organized by onto-syntactic categories, and the original 1972 set of 14 primitives proposed by Wierzbicka. The document included a table mapping original 1972 primes to their modern descendants and noted which three (IMAGINE, BECOME, WORLD) did not survive cross-linguistic testing.</div><time dateTime="2026-06-16" class="pd-word pd-date">16 June 2026</time></div></div></div></div></div><!--/$--></div>
+  </body>
+</html>

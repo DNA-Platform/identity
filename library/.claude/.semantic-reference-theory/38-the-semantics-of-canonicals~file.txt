@@ -1,0 +1,128 @@
+:: # The Semantics of Canonicals
+:: - A more foundational expression
+:: - All citations are to Semantic Reference Theory: A Foundational Sketch
+:: - by its own :: headings, numbered from the top of each block
+
+---
+
+:: Motivation
+:: The Sketch posits four blocks: ::so ::ref ::rep ::ind
+:: Each names a configuration of ::op.1
+:: They are not four things
+:: They are one most specific relationship read from four positions
+:: Substituting (x,y) into the subject and object of ::so.1 produces the other three
+:: Canonicals are then a condition on that one thing, and need no posit of their own
+
+---
+
+:: The four readings
+
+E[x, y]:
+    x =(x,y)> y             :: ::so.1   subject := x          object := y            relationship := (x,y)
+    (x,y) =(x,y)> y         :: ::ref.1  reference := (x,y)    referent := y
+    x =(x,y)> (x,y)         :: ::rep.1  representative := x   representation := (x,y)
+    (x,y) =(x,y)> (x,y)     :: ::ind.1  individual := (x,y)
+
+:: The relation is (x,y) throughout
+:: The pairs are { x, (x,y) } with { y, (x,y) }
+
+:: And the == line of each block states that pair's bottom
+
+    (x,y) == (x,y)          :: ::so.2   relationship == (subject, object)
+    ((x,y),y) == (x,y)      :: ::ref.2  reference == (reference, referent)
+    (x,(x,y)) == (x,y)      :: ::rep.2  representation == (representative, representation)
+    ((x,y),(x,y)) == (x,y)  :: ::ind.2  individual == (individual, individual)
+
+:: ::so.2 is the substitution itself
+:: The other three are the other three pairs
+
+---
+
+:: ::id does not collapse
+
+:: ::id.1 is identity =identification> identity
+:: The subject equals the object and the relation is distinct
+:: Under that configuration the four pairs stay four
+:: ::id carries no == line: there would be four, and no grounds to choose one
+
+---
+
+:: The two collapses
+
+(x,y) == x
+    x =x> y                 :: ::ref.1  reference := x        referent := y
+    x == (x,y)              :: ::ref.2  which is the case condition itself
+
+(x,y) == y
+    x =y> y                 :: ::rep.1  representative := x   representation := y
+    y == (x,y)              :: ::rep.2  which is the case condition itself
+
+:: ::ref.2 and ::rep.2 are not further facts
+:: Each states the condition under which its own block's reading survives
+
+---
+
+:: The canonical
+
+x =canonical> x             :: ::id.1   identity := x         identification := canonical
+x =y> canonical             :: ::so.1   subject := x          object := canonical    relationship := y
+(x, canonical) == y         :: ::so.2
+canonical(x) == y
+
+:: y is canonical for x when both collapses hold on the one pair, in both orders
+
+(x,y) == y                  :: ::rep.2  x is a representative of y
+(y,x) == y                  :: ::ref.2  y is a reference for x
+
+:: Knowing y, we know x
+:: That is the canonicity
+
+---
+
+:: Frames
+
+:: Each of the four readings gives one direction only
+:: ::con.5 is (representative, referent) == representation
+:: Reading two on it gives representation =representation> referent, which is ::ref.1
+:: Canonicity would require (referent, representation) == representation as well
+:: So a frame is a reference for what it means without thereby being its canonical
+:: Whether ::con.5 is the right orientation is open
+
+---
+
+:: What was used
+
+:: ::op.1
+:: ::so.1  ::so.2
+:: ::ref.1 ::ref.2
+:: ::rep.1 ::rep.2
+:: ::id.1  and the absence of an ::id.2
+:: ::ind.1 ::ind.2
+:: ::con.5 in the frame section only
+
+:: Not used: ::inh ::ref.3 ::rep.3 ::ind.3 ::dich ::fund ::con.1 ::con.2 ::con.3
+
+:: What was replaced
+
+:: Four E[...] blocks become one
+::     ::ref ::rep and ::ind are readings of ::so, not separate posits
+:: The missing == line in ::id
+::     was a gap, is now the non-collapsing configuration
+:: ::ref.2 and ::rep.2
+::     were further facts, are now the survival conditions of their own readings
+:: The canonical
+::     had no place in the Sketch, is now a condition on ::ref.2 and ::rep.2 together
+
+:: What was rejected while building this
+:: Recorded because the abandoned forms are where the errors live
+
+:: Uniqueness, from The Evolution of SRT, Phase I
+::     s == (x, y) & s == (x', y') =|> x == x' & y == y'
+::     refuted: (x,y) is the bottom of four pairs, not one
+
+:: (x,y) =(x,y)> x and (x,y) =(x,y)> y, from Eight Beautiful Discoveries
+::     superseded by the four readings
+
+:: x --> y := (x,y) == y, from The Semantics of Inheritance in Action
+::     rejected from the syntax
+::     the ::rep collapse already names what it named

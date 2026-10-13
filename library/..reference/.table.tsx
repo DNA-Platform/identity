@@ -51,6 +51,15 @@ export default () => (
                 </Word>
             </Paragraph>
             <Paragraph>
+                <Word>
+                    <Content>$[[ ./Dougs Claude ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Dougs Claude )**</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ ./Synopsis ]]</Content>

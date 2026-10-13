@@ -1,10 +1,14 @@
 {
   "assembled": [
     ".binding/application/books/reference.tsx",
+    ".binding/application/books/claude.tsx",
+    ".binding/application/books/claude/conversations.tsx",
+    ".binding/application/books/claude/conversations/semantic-primes.tsx",
+    ".binding/application/books/claude/semantic-reference-theory.tsx",
     ".binding/application/books/design.tsx",
-    ".binding/application/books/importer.tsx",
     ".binding/application/books/librarian.tsx",
-    ".binding/application/books/manual.tsx"
+    ".binding/application/books/manual.tsx",
+    ".binding/application/books/importer.tsx"
   ],
   "written": [
     ".binding/application/books.ts",
@@ -13,19 +17,28 @@
   ],
   "rendered": [
     "dougs-library/index.html",
+    "dougs-claude/index.html",
+    "our-conversations/index.html",
+    "semantic-primes/index.html",
+    "semantic-reference-theory/index.html",
     "dougs-design/index.html",
-    "dougs-importer/index.html",
     "dougs-story/index.html",
     "dougs-reference-manual/index.html",
+    "dougs-importer/index.html",
     "index.html"
   ],
   "bundled": [
-    "assets/.cover-DRsQ0YrM.js",
-    "assets/.cover-DZQbwZNL.js",
-    "assets/.synopsis-BjMIWvFK.js",
-    "assets/.synopsis-CxEbmTtv.js",
-    "assets/.synopsis-DKlqDVpy.js",
-    "assets/.synopsis-DQBgBsxP.js",
+    "assets/.cover-CuKdE7iR.js",
+    "assets/.cover-D5kU1IqQ.js",
+    "assets/.synopsis-Bwf4hdRV.js",
+    "assets/.synopsis-C-KF0VKB.js",
+    "assets/.synopsis-CQcHEZXy.js",
+    "assets/.synopsis-DEGftRxY.js",
+    "assets/.synopsis-DQYgQ2Gy.js",
+    "assets/.synopsis-DXGk8jnW.js",
+    "assets/.synopsis-D_4KfuJK.js",
+    "assets/.synopsis-VV6PfGVp.js",
+    "assets/31-the-project~code-c-jNeo6x.js",
     "assets/KaTeX_AMS-Regular-BQhdFMY1.woff2",
     "assets/KaTeX_AMS-Regular-DMm9YOAa.woff",
     "assets/KaTeX_AMS-Regular-DRggAlZN.ttf",
@@ -85,12 +98,16 @@
     "assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff",
     "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
     "assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf",
-    "assets/design-C2E8P4CS.js",
-    "assets/importer-CiUpnAJq.js",
+    "assets/claude-CdtWaLB2.js",
+    "assets/conversations-Dgbc7aDu.js",
+    "assets/design-B1N_SbAE.js",
+    "assets/importer-VXrGuOge.js",
+    "assets/index-BGM852en.js",
     "assets/index-BgQkainO.css",
-    "assets/index-Dfm_hPO0.js",
-    "assets/librarian-DVxQ7HD_.js",
-    "assets/manual-Y7kVUir_.js",
-    "assets/reference-svqDgfKT.js"
+    "assets/librarian-CCUb_z0_.js",
+    "assets/manual-Dw1-mMMP.js",
+    "assets/reference-CJTqu-e1.js",
+    "assets/semantic-primes-80FbhC97.js",
+    "assets/semantic-reference-theory-CD_huP4C.js"
   ]
 }

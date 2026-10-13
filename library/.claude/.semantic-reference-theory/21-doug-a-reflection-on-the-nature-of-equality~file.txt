@@ -1,0 +1,52 @@
+Well it's derived in SRT. All numbers can be symbolized right? When we say that there is a number 2 and that it is equal to itself, what is it that we imagine? 
+
+I would argue we think something like"
+
+"2" is equal to the thing that "1 + 1" is also equal to. 
+
+Notice that because it can be "2" and "1+1", we seem to think there is a literal out there, so:
+
+(2) =(2)> 2 & ((2),2) == (2)  & 2 =(2)> 2  [this is the condition for canonical symbol
+
+(1+1) =(1+1)> 2  (without the other stuff, this just says 1+1 is a representation of 2)
+
+Clearly (1+1) -> (2) right? It gets it's properties from 2
+
+So (1+1) =(2)> 2   
+
+Now for the canonical symbols only, we have:
+
+2 =(2)> 2
+
+3 =(3)> 3
+
+...
+
+On the referents, not the symbols, if we say 
+
+A[(x)]: eq -> (x)
+
+Then we have made a relation where
+
+2 =eq> 2
+3 =eq> 3
+
+etc...
+
+This forces us to imagine that:
+
+(2) =(eq)> 2  (notice that we switched to symbolic relationships. Relationships between literals become symbolic when lifted to the symbol
+
+And since (2) is most specific in symbolism, in this case:
+
+(2) -> (eq)
+
+Backwards in symbolism!
+
+But since (2) =(2)> (1+1) we can now say 
+
+(2) =(eq)> (1+1)
+
+!!!
+
+That is the nature of symbolism
