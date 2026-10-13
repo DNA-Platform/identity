@@ -97,7 +97,18 @@ test stimulus - each twin its own, and the pre twin reading the post responses -
 metameric moments**, every half-second bin, the pre twin reading the pre recording (pre-pre) and the
 post one (pre-post). The null and unconditioned metamers were retired on 2026-10-09 (*"we don't need the
 null and unconditioned at all"*). One fast path for all of it, 0.51 s a metamer on the 45-px twin, held
-against the single-image recipe by `check.py`; an inventory closes every run.
+against the single-image recipe by `check.py`; an inventory closes every run. Since 2026-10-13 the moments are
+denoised by the spontaneous analysis's 2026-09-21 seed model, fitted per pairing (*"I want us to be doing what we did
+in the spontaneous analysis project"*).
+
+## `receptive_field` - the plain linear receptive field
+
+[`src/pipelines/receptive_field/`](../../pipelines/receptive_field/.cover.md). Each tracked cell's
+response-weighted average of the images, before and after DOI - no model, nothing to choose - with the
+fields' pages, the spectrum and the filter from before to after, convergence and certainty against
+trials; then every dataset side by side, CaImAn beside Suite2P in each mouse. Made a pipeline from the
+receptive-field analysis on 2026-10-13 (*"We are making this a pipeline ... so we can compare all of the
+datasets and segmentation methods"*).
 
 ## Where the analyses sit
 
