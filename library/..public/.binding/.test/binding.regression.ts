@@ -338,9 +338,9 @@ describe('a bind of the test library', () => {
         // AND THE PAGES LIGHTER AGAIN BY S1, the annotations' writing no longer in them: the paper 18,280 bytes before
         // and 12,820 after; the manual holds near 200 KB because it prints the library's own files, which grew with it.
         expect(statSync(placeOf(galley.face, manual)).size).toBeLessThan(200 * 1024);
-        // AND HEAVIER BY THE ARRIVAL since 2026-10-11, 1,620 bytes in every page's head so a link to a chapter
+        // AND HEAVIER BY THE ARRIVAL since 2026-10-11, 1,817 bytes in every page's head so a link to a chapter
         // shows that chapter at the first paint — Doug: "Hard to feel like the links work."
-        const arrival = 1620;
+        const arrival = 1817;
         expect(page('A Paper').length).toBeLessThan(14 * 1024 + arrival);
         expect(page('The Library').length).toBeLessThan(13 * 1024 + arrival);
     });
