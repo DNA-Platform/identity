@@ -72,7 +72,7 @@
 | the same, with two names that slug to one fragment — "Table of Contents" and "Table Of Contents" | 2 | `SAME-ADDRESS` | source |
 | a chapter titled with its own book's name, whose fragment is the cover's | 2 | `SAME-ADDRESS` | source |
 | a name that leaves no address — "???" | 3 | `NO-ADDRESS` | source |
-| a resource that titles a chapter or allocates a mention, and so stands on every page | 1, 2 | `RESOURCE-NAMES` | source |
+| a resource that titles a chapter or allocates a mention, and so stands on every page | 1, 2 | ~~`RESOURCE-NAMES`~~ — gone 2026-10-14, since a resource is never read ([B39](08-the-binders-condition.md#b39)): a name stands in a chapter or nowhere | source |
 | a reference to a name the library does not hold, in prose, in a string, or as an element | 3 | `UNKNOWN-REFERENCE`, and the transform's `missing` | source |
 | a name nobody refers to | 4 | `UNREFERENCED-MENTION` | source |
 | a book its catalogue does not answer for | 4 | `NOT-LISTED` | source |
