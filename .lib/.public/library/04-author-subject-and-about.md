@@ -1,4 +1,4 @@
-# Author, Subject and About
+# Author, Subject, Topic and About
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
@@ -17,7 +17,8 @@
 | `.means` | the Reference it stands, expressed — what the author, the subject or the about means; `reference` until 2026-09-26 | *"expose it as a property"*; Doug, 2026-09-26, on a map of every class standing a Reference: *"Yes, means everywhere"* — [Sprint 84](../projection/90-sprint-84--means-and-the-table.md) |
 | `.$Define()` | reads its compiled `[text](url)` through the binder and stands `<Reference>{url}</Reference>` among its own annotations | *"Annotations of Annotations"* |
 | `.write()` | draws its words | — |
-| `AuthorSpecification` · `SubjectSpecification` | **an author is said of a cover** · **a subject is said of a cover** | R12 |
+| `Topic` | Subject's twin for the compiler's third relation, the catalogue a book stands in besides its subject; a cover may name as many as catalogue it, each answering `name` and `means` as a subject does — **added 2026-10-14** | Doug, [Sprint 109](../projection/114-sprint-109--dougs-importer.md): *"We should have a Topic like we have a Subject in the actual framework"* |
+| `AuthorSpecification` · `SubjectSpecification` · `TopicSpecification` | **an author is said of a cover** · **a subject is said of a cover** · **a topic is said of a cover** | R12 |
 | `AboutSpecification` | **about is said of a cover**; **about names its own book** — its url is its chapter's title's | *"it needs no name. Title and About cover it"* |
 
 **What each says, and how the compiler reads it:**
@@ -26,6 +27,7 @@
 |---|---|---|
 | `<Author>*[[ A Persona ]]</Author>` | an author edge — the whole of it, since an author is answered by nothing | this book is by A Persona |
 | `<Subject>**[[ Libraries ]]( The Library )</Subject>` | a catalogue edge, answered by `[[ A Paper ]]**` in The Library's table; the words are the subject's name and the paren the book that is that subject | this book is filed under Libraries, which is the library's own catalogue |
+| `<Topic>***[[ Mathematics ]]( The Encyclopedia of Math )</Topic>` | a topic edge, answered by `[[ A Paper ]]***` in that catalogue's table, `TOPIC-IS-CATALOGUE` and `NOT-LISTED` holding both halves; the compiler reads the stars, so a library's own annotation may carry the same form under another name, as Doug's conversation covers say the project a conversation was held in with Claude's own `Project`, on his word that a project is not a topic | this book is catalogued by Mathematics besides, one of the other catalogues it stands in, which may be many |
 | `<About>[[ Libby ]]</About>`, after the title | a second title form naming the book itself | this book is about what it is called, so others may be filed under it |
 
 **Every one may give words apart from its name**, the paren tight against the bracket: `<Subject>**[[ Libraries ]]( The Library )</Subject>` shows "Libraries" and means The Library — which is how the top of a library is filed under what it is about without a second book, [What a Library Is](../writing-a-book/01-what-a-library-is.md). *Doug: "You always need to be able to say text versus id as an option."*
@@ -67,7 +69,7 @@ export default () => (
 
 ## Promises
 
-Five in the second half of [`.tests/cover.test.tsx`](../../package/.tests/cover.test.tsx): an author answers its words and a reference to its url standing among its own annotations; a subject and an about answer the same way; each is said of a cover, and on the synopsis says so; about names its own book, its url its title's; a library's own author, under another name, answers the same. In the compiler's: a book filed under one about nothing raises `NOT-A-SUBJECT`, and a cover whose second title form names another book raises `TITLED-TWICE`; the structure reads the library, Libby and the persona as about something, [promised over the test library](../../package/.binding/catalogue/structure.test.ts).
+Six in the second half of [`.tests/cover.test.tsx`](../../package/.tests/cover.test.tsx): an author answers its words and a reference to its url standing among its own annotations; a subject and an about answer the same way; a topic answers as a subject does, and a cover may name several; each is said of a cover, and on the synopsis says so; about names its own book, its url its title's; a library's own author, under another name, answers the same. In the compiler's: a book filed under one about nothing raises `NOT-A-SUBJECT`, and a cover whose second title form names another book raises `TITLED-TWICE`; the structure reads the library, Libby and the persona as about something, [promised over the test library](../../package/.binding/catalogue/structure.test.ts).
 
 ## Gate
 

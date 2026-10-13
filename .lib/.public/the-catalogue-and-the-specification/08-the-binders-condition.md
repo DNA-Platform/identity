@@ -166,6 +166,10 @@
 
 *The render was one child drawing every page, and a child keeps every chemical it makes: measured by a probe in the trial copy's draw, the heap after each page, collected first, climbed from 224 MB to 6.3 GB over 29 pages and never fell, half a gigabyte retained per megabyte of chapter source, so one project of twenty conversations ran a 4 GB heap out. Treated as specify was: stale pages drawn in children bounded by a budget of source, and every page whose book did not change kept, written again from its markup — [The Binder, As Built](07-the-binder.md#kept). Where the retained memory goes in the substrate is not found; the child's exit is what frees it.* **MONITOR, the substrate's:** *a book built with `$()` and drawn is not released when the drawing is done.*
 
+## <a id="b41"></a>B41 — The render's default budget sits at the default heap's edge — **OPEN, a pitch to Doug, 2026-10-14**, [Sprint 109](../projection/114-sprint-109--dougs-importer.md)
+
+*B40's treatment bounds a child by the rendering's `budget`, 8 MB of chapter source by default, chosen the same morning from the measure of half a gigabyte retained per megabyte. The same afternoon, on the trial copy with twenty-one conversations, the first batch of 22 pages died at four gigabytes, in the child's own words* JavaScript heap out of memory*: 8 MB times half a gigabyte is the default heap, so the default leaves no room. Treated in the library and not the package, since a library sets its own in `.pubconfig`: Doug's library and the trial copy say 4, and 31 pages drew in 3 children in 96 s.* **The pitch:** *a default of 4, or a child spawned with a heap the budget is sized to; and the budget counts chapter source alone, while a file inserted by a literal is drawn too, which is unmeasured.*
+
 ## <a id="how"></a>How to use this register
 
 - **Cleaning:** *read the entries marked TREAT; treat them; mark them with the date. Add what you found on the way, whether or not you treated it.*
