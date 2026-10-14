@@ -26,9 +26,18 @@ export default () => (
                 conversation with no record is new, and a run writes it. One whose export now shows a later time
                 or more messages has grown since, and a run writes it again, since nothing of mine is in it. One
                 equal to its record is in, and a run leaves it. And one whose files no longer match their digest
-                has been edited by hand, and the importer never touches it, whatever flag the run was given;
-                when such a one has grown since as well, the run says so beside it, and the re-import is mine to
-                do by hand, with my edits applied again after, as I said on 2026-10-14.
+                has been edited by hand, and a run never touches it unless told to re-import; when such a one
+                has grown since as well, the run says so beside it.
+            </Paragraph>
+            <Paragraph>
+                Told to re-import, the run writes an edited book again from the export and keeps every file of
+                it as I had it, where the import overwrote it or no longer writes it, as a plain-text file beside
+                the fresh chapter, named for the chapter and for the file it was, and printed by the chapter in
+                a closing section, each file as I had it, so the bind accounts for it and my edits stand on the
+                page beside the fresh import until I apply them again and strike the file. The record keeps when the book was re-imported and which files
+                were kept, and every listing says beside the conversation, while any kept file still stands,
+                how many files of my edits wait to be applied; so I always know which conversations were
+                re-imported and what changes I have yet to make, as I asked on 2026-10-14.
             </Paragraph>
             <Paragraph>
                 The record stands with the entry, so what I do to a conversation by hand, cutting it, renaming

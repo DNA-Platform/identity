@@ -5,10 +5,11 @@ import { exportSource } from './3-the-record~claude.ts';
 import type { Conversation, Mapping, Project } from './3-the-record~record.ts';
 import { conversationPairings, type Exclusions, type Pairing } from './4-the-pairing~pairing.ts';
 import {
-    hasGrown, importRecord, importRecords, importState, recordIdentifier, recordSuffix, writeImportRecord, type HeldRecord,
+    folderContents, hasGrown, importRecord, importRecords, importState, keptEdits, keptEditsStanding, recordIdentifier,
+    recordSuffix, standingKeptEdits, writeImportRecord, type HeldRecord, type Reimport,
 } from './5-the-ledger~ledger.ts';
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
-import { slugFromName, writtenChapter, type Referents } from './7-the-writing~writing.ts';
+import { slugFromName, titleFromName, writtenChapter, type Referents } from './7-the-writing~writing.ts';
 import {
     conversationBook, libraryEntry, orderRegisterTable, projectBook, projectEntry, registerBook, registerEntry, schemes,
     uniqueBookName, wrappedLines, type LibraryFolders, type Scheme,
@@ -42,6 +43,7 @@ export type Arguments = Selection & {
     library: string;
     write: boolean;
     overwrite: boolean;
+    reimport: boolean;
 };
 
 type ExportReading = {
@@ -60,6 +62,7 @@ export const parsedArguments = (argv: string[]): Arguments => ({
     library: flagValue(argv, '--library') ?? resolve(importerFolder, '..'),
     write: argv.includes('--write'),
     overwrite: argv.includes('--overwrite'),
+    reimport: argv.includes('--reimport'),
 });
 
 export const configurationPath = (library: string): string =>
@@ -236,13 +239,18 @@ const pairingReport = (pairings: Pairing[]): string => {
     ].join(' · ');
 };
 
-const importedWords = (heldRecord: HeldRecord | undefined, conversation?: Conversation): string => {
+const importedWords = (heldRecord: HeldRecord | undefined, registerFolder: string, conversation?: Conversation): string => {
     if (heldRecord === undefined) return '';
-    const { importedAt, exportedOn } = heldRecord.record;
+    const { importedAt, exportedOn, reimportedAt } = heldRecord.record;
     const grownSince = conversation !== undefined && hasGrown(conversation, heldRecord.record);
-    const grownWords = grownSince ? ', grown since: re-import it and re-apply what you edited' : '';
+    const grownWords = grownSince ? ', grown since: re-import it with --reimport and re-apply what you edited' : '';
+    const waiting = keptEditsStanding(registerFolder, heldRecord.record);
+    const reimportedWords = reimportedAt === undefined ? '' : `, re-imported ${reimportedAt.slice(0, 10)}`;
+    const waitingWords = waiting.length === 0 ? '' : `, ${countedNoun(waiting.length, 'file')} of your edits to apply`;
 
-    return ` · imported ${importedAt.slice(0, 10)} from the export of ${exportedOn}${grownWords}`;
+    const whenWords = `imported ${importedAt.slice(0, 10)} from the export of ${exportedOn}`;
+
+    return ` · ${whenWords}${reimportedWords}${waitingWords}${grownWords}`;
 };
 
 const listSelectedConversations = (
@@ -267,7 +275,7 @@ const listSelectedConversations = (
         const nameWords = conversation.name || 'Untitled';
         const projectWords = pairing.projectName ?? 'no project';
         const edited = heldRecord !== undefined && stateWord.trim() === 'edited';
-        const whenWords = importedWords(heldRecord, edited ? conversation : undefined);
+        const whenWords = importedWords(heldRecord, folders.conversations, edited ? conversation : undefined);
         const evidenceWords = `${projectWords} · ${pairing.evidence}${whenWords}`;
         console.log(`  ${stateWord} ${nameWords} · ${countWords} · ${dayWords} · ${evidenceWords}`);
     }
@@ -287,7 +295,7 @@ const listHeldConversations = (
         const conversation = reading.conversations.find(candidate => candidate.id === heldRecord.record.conversationId);
         const stateWord = conversation === undefined
             ? 'gone  ' : importState(conversation, folders.conversations, heldRecord.record).padEnd(6);
-        console.log(`  ${stateWord} ${heldRecord.record.name}${importedWords(heldRecord)}`);
+        console.log(`  ${stateWord} ${heldRecord.record.name}${importedWords(heldRecord, folders.conversations)}`);
     }
 };
 
@@ -353,6 +361,7 @@ const writeBooks = (
     filesTouched.push(...dougsClaudeFiles, ...dougsClaudeEntryFiles);
     filesTouched.push(...ourConversationsFiles, ...ourConversationsEntry.files);
     const namesTaken = new Set<string>();
+    const reimportedWords: string[] = [];
     let writtenCount = 0;
     let keptCount = 0;
     for (const projectName of [...new Set(included.map(pairing => pairing.projectName))]) {
@@ -366,15 +375,28 @@ const writeBooks = (
             const bookStands = heldBookFolder !== undefined && existsSync(heldBookFolder);
             const standingRecord = bookStands ? heldRecord : undefined;
             const state = importState(conversation, folders.conversations, standingRecord?.record);
-            if (standingRecord !== undefined && (state === 'edited' || (state === 'in' && !args.overwrite))) {
+            const reimporting = state === 'edited' && args.reimport;
+            const keptAsIs = (state === 'edited' && !reimporting) || (state === 'in' && !args.overwrite);
+            if (standingRecord !== undefined && keptAsIs) {
                 keptCount++;
                 continue;
             }
             const name = standingRecord?.record.name
-                ?? uniqueBookName(folders.conversations, conversation.name, namesTaken);
+                ?? uniqueBookName(folders.conversations, titleFromName(conversation.name), namesTaken);
             const path = shownPath(conversation);
             const projectNames = written.project === undefined ? [] : [written.project.name];
-            const book = conversationBook(folders, conversation, path, name, projectNames, written.scheme, referents);
+            const before = heldBookFolder === undefined ? new Map<string, string>() : folderContents(heldBookFolder);
+            const drawn = conversationBook(folders, conversation, path, name, projectNames, written.scheme, referents);
+            const drawnFileNames = drawn.files.map(file => basename(file));
+            const newlyKept = reimporting ? keptEdits(drawn.folder, drawn.chapterStem, before, drawnFileNames) : [];
+            const kept = standingKeptEdits(drawn.folder);
+            const book = kept.length === 0 ? drawn : conversationBook(
+                folders, conversation, path, name, projectNames, written.scheme, referents, kept.map(one => one.appendix),
+            );
+            const reimport = reimportOf(reimporting, standingRecord?.record.reimportedAt, kept.map(one => one.fileName));
+            if (reimporting)
+                reimportedWords.push(`  ${name}: ${countedNoun(newlyKept.length, 'file')} of yours kept beside the chapter, `
+                    + 'printed at its end; strike each when its edits are applied');
             const conversationCaption = `A conversation, ${countedNoun(path.length, 'exchange')}:`;
             const entry = registerEntry(
                 folders, folders.conversations, name, book.folder, conversation.updatedAt,
@@ -386,7 +408,7 @@ const writeBooks = (
             if (recordPath === undefined)
                 throw new Error(`no entry stands for "${name}" in ${folders.conversations}, so its record has no place`);
             const bookFolder = basename(book.folder);
-            const record = importRecord(conversation, folders.conversations, name, bookFolder, reading.exportedOn);
+            const record = importRecord(conversation, folders.conversations, name, bookFolder, reading.exportedOn, reimport);
             writeImportRecord(recordPath, record);
             filesTouched.push(...book.files, ...entry.files, recordPath);
             if (written.folder !== undefined)
@@ -397,6 +419,18 @@ const writeBooks = (
     filesTouched.push(...orderRegisterTable(folders.conversations), ...orderRegisterTable(folders.claude));
     console.log(`\nwrote ${countedNoun(writtenCount, 'conversation')}, kept ${keptCount}, `
         + `${countedNoun(filesTouched.length, 'file')} touched under ${folders.claude}`);
+    if (reimportedWords.length > 0) console.log(['re-imported:', ...reimportedWords].join('\n'));
+};
+
+const reimportOf = (
+    reimporting: boolean,
+    reimportedAt: string | undefined,
+    keptFileNames: string[],
+): Reimport | undefined => {
+    if (reimporting) return { reimportedAt: new Date().toISOString(), keptEdits: keptFileNames };
+    if (reimportedAt === undefined) return undefined;
+
+    return { reimportedAt, keptEdits: keptFileNames };
 };
 
 const flagValue = (argv: string[], flag: string): string | undefined => {

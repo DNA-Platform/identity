@@ -8,7 +8,7 @@ import {
 
 export type LibraryFolders = { library: string; claude: string; claudeManual: string; conversations: string };
 export type Scheme = { ground: string; band: string; bandInk: string; foot: string; footInk: string; ink: string };
-export type WrittenBook = { folder: string; files: string[] };
+export type WrittenBook = { folder: string; files: string[]; chapterStem: string };
 export type WrittenEntry = { entryPath: string | undefined; tablePath: string; files: string[] };
 
 export const schemes: Scheme[] = [
@@ -102,11 +102,12 @@ export const conversationBook = (
     projectNames: string[],
     scheme: Scheme,
     referents: Referents,
+    keptAppendices: Appendix[] = [],
 ): WrittenBook => {
     const folder = join(folders.conversations, slugFromName(name));
     const importPath = manualImportPath(folders, folder);
     const claudeImportPath = claudeManualImportPath(folders, folder);
-    const chapter = writtenChapter(conversation, path, referents, importPath, claudeImportPath);
+    const chapter = writtenChapter(conversation, path, referents, importPath, claudeImportPath, keptAppendices);
     const coverManualWords = ['Messages', 'Participant', 'Participants', 'Period', 'Scheme'];
     const speakers = [...new Set(path.map(message => message.speaker))];
     const participantLines = [
@@ -151,7 +152,7 @@ export const conversationBook = (
     for (const chapterFile of chapter.files)
         files.push(writtenFile(join(folder, chapterFile.name), chapterFile.content));
 
-    return { folder, files };
+    return { folder, files, chapterStem: chapter.fileName.replace(/\.tsx$/u, '') };
 };
 
 export const registerBook = (
@@ -237,7 +238,7 @@ export const projectBook = (folders: LibraryFolders, project: Project, scheme: S
     const importPath = manualImportPath(folders, folder);
     const bookFilePath = join(folder, '.book.tsx');
     const bookFile = (): string => writtenFile(bookFilePath, bookFileText(importPath, 'ProjectManual', project.name));
-    if (existsSync(bookFilePath)) return { folder, files: overwrite ? [bookFile()] : [] };
+    if (existsSync(bookFilePath)) return { folder, files: overwrite ? [bookFile()] : [], chapterStem: '' };
     const projectDescription = project.description
         || `A project of mine with Claude, ${project.documents.length} knowledge files and the conversations held in it.`;
     const projectImportLines = [
@@ -304,7 +305,7 @@ export const projectBook = (folders: LibraryFolders, project: Project, scheme: S
         ...sectionLines('Where this book stands', []),
     ])));
 
-    return { folder, files };
+    return { folder, files, chapterStem: '' };
 };
 
 export const projectEntry = (

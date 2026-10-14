@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import type { Block } from './3-the-record~record.ts';
 import { sampleConversation, sampleMessage, sampleTextMessage } from './3-the-record~samples.ts';
 import {
-    blockLines, escapedText, inlinePieces, literalForm, referenceForm, titleForm, writtenChapter, type Referents,
+    blockLines, escapedText, inlinePieces, literalForm, referenceForm, slugFromName, titleForm, titleFromName,
+    writtenChapter, type Referents,
 } from './7-the-writing~writing.ts';
 
 const referents: Referents = { Doug: 'Dougs Story', Claude: 'Dougs Claude' };
@@ -12,6 +13,17 @@ const artifactBlock = (command: string, content: string, oldText = '', newText =
     ({ type: 'artifact', id: 'notes', title: 'Notes', contentType: 'text/markdown', command, content, oldText, newText });
 
 describe('the writing', () => {
+    // Doug, 2026-10-14: "remember to convert sensible things. & should be and. Are there other conversions like that
+    // that are obvious? Do do intelligent title conversion for the chapters and the title of the book too."
+    it("slugs a name as the library's Identifier does, a sign that reads as a word that word, and titles sensibly", () => {
+        expect(slugFromName('Semantics of Types & More')).toBe('semantics-of-types-and-more');
+        expect(slugFromName('C++ at 100% @ home')).toBe('c-plus-plus-at-100-percent-at-home');
+        expect(slugFromName('Понимание основ СРТ')).toBe('понимание-основ-срт');
+        expect(titleFromName('💬 the price of gram is getting high')).toBe('the price of gram is getting high');
+        expect(titleFromName('  Semantic   Primes  ')).toBe('Semantic Primes');
+        expect(titleFromName('🎉')).toBe('Untitled');
+    });
+
     it('escapes what the notation and TSX would read, so a bracket in a message stays a bracket', () => {
         expect(escapedText(`${titleForm('x')} {y} <z> & w`)).toBe('&#91;&#91; x &#93;&#93; &#123;y&#125; &lt;z&gt; &amp; w');
     });
@@ -99,6 +111,18 @@ describe('the writing', () => {
         expect(chapter.tsx).not.toContain('<Result');
         expect(chapter.tsx).toContain(`import { Action } from '${claudeManualImportPath}';`);
         expect(chapter.resultCount).toBe(1);
+    });
+
+    it('prints a file kept from a re-import in a closing section, inserted by a Code figure and never appended', () => {
+        const question = sampleTextMessage('m1', 'Doug', 'A question');
+        const kept = [{ identifier: 'edited-synopsis-tsx', type: '.txt' }];
+        const conversation = sampleConversation('e', 'Edited', [question]);
+        const chapter = writtenChapter(conversation, [question], referents, manualImportPath, claudeManualImportPath, kept);
+        expect(chapter.tsx).toContain('<Heading>As I had it before the re-import</Heading>');
+        expect(chapter.tsx).toContain('<Paragraph>synopsis, as I had it:</Paragraph>');
+        expect(chapter.tsx).toContain(`<Code language="tsx">${literalForm('edited-synopsis-tsx.txt')}</Code>`);
+        expect(chapter.tsx).not.toContain('<Append');
+        expect(chapter.tsx).toMatch(/import \{[^}]*\bSection\b[^}]*\} from '@dna-platform\/public'/u);
     });
 
     it('files an attachment beside the chapter and names it where it was given, an upload by name alone', () => {

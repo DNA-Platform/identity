@@ -1,4 +1,4 @@
-import { Bold, Chapter, Code, Date, Emphasis, Equation, Line, List, Math, Paragraph, Title, Word } from '@dna-platform/public';
+import { Bold, Chapter, Code, Date, Emphasis, Equation, Heading, Line, List, Math, Paragraph, Section, Title, Word } from '@dna-platform/public';
 import { Dated, Message, Quoted, Speaker, Verbatim } from '../../../.manual/.book';
 import { Action } from '../../.manual/.book';
 
@@ -1806,5 +1806,10 @@ export default () => (
                 residue? That's the only thing left to settle, and it's your call, not mine to narrate.
             </Paragraph>
         </Message>
+        <Section>
+            <Heading>As I had it before the re-import</Heading>
+            <Paragraph>synopsis, as I had it:</Paragraph>
+            <Code language="tsx">![[ edited-synopsis-tsx.txt ]]</Code>
+        </Section>
     </Chapter>
 );

@@ -31,8 +31,12 @@ export default () => (
                 library grows at the pace the bind is measured to bear; and for each it says whether it is new,
                 in, grown or edited, and when it was imported and from which export, which the record beside the
                 conversation's entry holds. A run writes what is new and what has grown since its import, leaves
-                what is in, and never touches what I edited. Run with nothing named it lists what the library
-                holds already, newest import first. While the importer is being made it overwrites what it wrote, on a flag said at
+                what is in, and never touches what I edited unless told to re-import, when it keeps my edits
+                beside the fresh chapter and says so, as <Means>$[[ the ledger ]]( ./The Ledger )</Means> tells.
+                Run with nothing named it lists what the library holds already, newest import first. A book's
+                title is the conversation's name made sensible, its spaces collapsed and a pictograph the
+                application put first dropped, and its address is the title's letters in any script, a sign that
+                reads as a word read as it. While the importer is being made it overwrites what it wrote, on a flag said at
                 the run; once it is done it never does, since a conversation once imported is edited by hand.
             </Paragraph>
             <Paragraph>

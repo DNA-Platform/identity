@@ -45,10 +45,23 @@ export const slugFromName = (name: string): string => {
         .toLowerCase()
         .replace(/['’]/gu, '')
         .replace(/&/gu, ' and ')
+        .replace(/\+/gu, ' plus ')
+        .replace(/@/gu, ' at ')
+        .replace(/%/gu, ' percent ')
         .replace(/[^\p{L}\p{N}]+/gu, '-')
         .replace(/^-+|-+$/gu, '');
 
     return slug === '' ? 'untitled' : slug.slice(0, 60);
+};
+
+export const titleFromName = (name: string): string => {
+    const title = name
+        .replace(/^[\p{Extended_Pictographic}\p{Emoji_Presentation}️\s]+/u, '')
+        .replace(/[\p{Extended_Pictographic}\p{Emoji_Presentation}️\s]+$/u, '')
+        .replace(/\s+/gu, ' ')
+        .trim();
+
+    return title === '' ? 'Untitled' : title;
 };
 
 export const fileExtension = (contentType: string, title: string): string => {
@@ -89,6 +102,7 @@ export const writtenChapter = (
     referents: Referents,
     manualImportPath: string,
     claudeManualImportPath: string,
+    keptAppendices: Appendix[] = [],
 ): WrittenChapter => {
     const firstDay = path[0]?.sentAt.slice(0, 10) ?? conversation.createdAt.slice(0, 10);
     const [year, month, day] = firstDay.split('-').map(Number);
@@ -179,12 +193,23 @@ export const writtenChapter = (
     for (const artifactVersion of artifactVersions.values())
         addArtifactFile(slugFromName(artifactVersion.title), artifactVersion);
 
+    if (keptAppendices.length > 0) {
+        bodyLines.push(`${indentation(2)}<Section>`, `${indentation(3)}<Heading>As I had it before the re-import</Heading>`);
+        for (const appendix of keptAppendices) {
+            const fileWords = appendix.identifier.replace(/^edited-/u, '').replace(/-(tsx|ts|md|json|txt)$/u, '');
+            bodyLines.push(
+                `${indentation(3)}<Paragraph>${fileWords}, as I had it:</Paragraph>`,
+                `${indentation(3)}<Code language="tsx">${literalForm(`${appendix.identifier}${appendix.type}`)}</Code>`,
+            );
+        }
+        bodyLines.push(`${indentation(2)}</Section>`);
+    }
     const isUsedInBody = (elementName: string): boolean => bodyLines.some(line =>
         line.includes(`<${elementName}>`) || line.includes(`<${elementName} `) || line.trim() === `<${elementName}`);
     const alwaysImported = ['Chapter', 'Date', 'Paragraph', 'Title'];
     const packageWords = [
         'Append', 'Bold', 'Chapter', 'Code', 'Date', 'Emphasis', 'Equation', 'Heading', 'Line', 'List', 'Math', 'Paragraph',
-        'Reference', 'Table', 'Title', 'Word',
+        'Reference', 'Section', 'Table', 'Title', 'Word',
     ];
     const manualWords = ['Dated', 'Message', 'Quoted', 'Speaker', 'Verbatim'];
     const claudeManualWords = ['Action', 'Artifact', 'Attachment'];
