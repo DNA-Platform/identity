@@ -1,0 +1,20 @@
+import { $ } from '@dna-platform/chemistry';
+import { opened } from '../../../opened';
+import $Book from '../../../../../../.claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals/.book';
+import Cover from '../../../../../../.claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals/.cover';
+import Synopsis from '../../../../../../.claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals/.synopsis';
+import Table from '../../../../../../.claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals/.table';
+import July2220261 from '../../../../../../.claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals/1-july-22-2026';
+
+const Book = $($Book);
+
+export const book = () => (
+    <Book>
+        {Cover()}
+        {Synopsis()}
+        {Table()}
+        {July2220261()}
+    </Book>
+);
+
+if (import.meta.hot) import.meta.hot.accept(next => { if (next !== undefined) opened.open(next.book); });

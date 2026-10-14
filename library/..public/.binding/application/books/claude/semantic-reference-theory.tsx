@@ -43,6 +43,25 @@ import TheEvolutionOfSrt36 from '../../../../../.claude/.semantic-reference-theo
 import SemanticReferenceTheoryAFoundationalSketch37 from '../../../../../.claude/.semantic-reference-theory/37-semantic-reference-theory-a-foundational-sketch';
 import TheSemanticsOfCanonicals38 from '../../../../../.claude/.semantic-reference-theory/38-the-semantics-of-canonicals';
 import SemanticPrimes39 from '../../../../../.claude/.semantic-reference-theory/39-semantic-primes';
+import ConvertingSharedConversationToDocument40 from '../../../../../.claude/.semantic-reference-theory/40-converting-shared-conversation-to-document';
+import UnifyingSrtAxiomsWithSymbolization41 from '../../../../../.claude/.semantic-reference-theory/41-unifying-srt-axioms-with-symbolization';
+import SrtAsAGithubProject42 from '../../../../../.claude/.semantic-reference-theory/42-srt-as-a-github-project';
+import SpecifyingSrt43 from '../../../../../.claude/.semantic-reference-theory/43-specifying-srt';
+import FrustrationWithAiReasoningAndCommunicationGaps44 from '../../../../../.claude/.semantic-reference-theory/44-frustration-with-ai-reasoning-and-communication-gaps';
+import OnticStructuralRealism45 from '../../../../../.claude/.semantic-reference-theory/45-ontic-structural-realism';
+import RepresentationAndThePartWholeDichotomy46 from '../../../../../.claude/.semantic-reference-theory/46-representation-and-the-part-whole-dichotomy';
+import SrtAxiomsAndSpecialization47 from '../../../../../.claude/.semantic-reference-theory/47-srt-axioms-and-specialization';
+import SemanticReferenceTheoryFoundationsAndPhilosophicalConu48 from '../../../../../.claude/.semantic-reference-theory/48-semantic-reference-theory-foundations-and-philosophical-conu';
+import DistinguishingTypeCategoryAndKindInEnglish49 from '../../../../../.claude/.semantic-reference-theory/49-distinguishing-type-category-and-kind-in-english';
+import RelationshipsAndInheriance50 from '../../../../../.claude/.semantic-reference-theory/50-relationships-and-inheriance';
+import InexplicablePhenomena51 from '../../../../../.claude/.semantic-reference-theory/51-inexplicable-phenomena';
+import TheSemanticsOfBooks52 from '../../../../../.claude/.semantic-reference-theory/52-the-semantics-of-books';
+import CollectionSemanticsAndCanonicalRepresentatives53 from '../../../../../.claude/.semantic-reference-theory/53-collection-semantics-and-canonical-representatives';
+import StringLengthNotationAndFoundationalSketchGeneralizatio54 from '../../../../../.claude/.semantic-reference-theory/54-string-length-notation-and-foundational-sketch-generalizatio';
+import LearningSrtSyntaxAndTranspilerFundamentals55 from '../../../../../.claude/.semantic-reference-theory/55-learning-srt-syntax-and-transpiler-fundamentals';
+import FoundationsTypesAndProperties56 from '../../../../../.claude/.semantic-reference-theory/56-foundations-types-and-properties';
+import SemanticsOfTypesAndMore57 from '../../../../../.claude/.semantic-reference-theory/57-semantics-of-types-and-more';
+import SemanticsOfRepresentation58 from '../../../../../.claude/.semantic-reference-theory/58-semantics-of-representation';
 
 const Book = $($Book);
 
@@ -90,6 +109,25 @@ export const book = () => (
         {SemanticReferenceTheoryAFoundationalSketch37()}
         {TheSemanticsOfCanonicals38()}
         {SemanticPrimes39()}
+        {ConvertingSharedConversationToDocument40()}
+        {UnifyingSrtAxiomsWithSymbolization41()}
+        {SrtAsAGithubProject42()}
+        {SpecifyingSrt43()}
+        {FrustrationWithAiReasoningAndCommunicationGaps44()}
+        {OnticStructuralRealism45()}
+        {RepresentationAndThePartWholeDichotomy46()}
+        {SrtAxiomsAndSpecialization47()}
+        {SemanticReferenceTheoryFoundationsAndPhilosophicalConu48()}
+        {DistinguishingTypeCategoryAndKindInEnglish49()}
+        {RelationshipsAndInheriance50()}
+        {InexplicablePhenomena51()}
+        {TheSemanticsOfBooks52()}
+        {CollectionSemanticsAndCanonicalRepresentatives53()}
+        {StringLengthNotationAndFoundationalSketchGeneralizatio54()}
+        {LearningSrtSyntaxAndTranspilerFundamentals55()}
+        {FoundationsTypesAndProperties56()}
+        {SemanticsOfTypesAndMore57()}
+        {SemanticsOfRepresentation58()}
     </Book>
 );
 
