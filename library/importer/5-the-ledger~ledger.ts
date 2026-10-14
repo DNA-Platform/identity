@@ -45,6 +45,9 @@ export const folderDigest = (folder: string): string => {
     return hash.digest('hex').slice(0, 16);
 };
 
+export const hasGrown = (conversation: Conversation, record: ImportRecord): boolean =>
+    conversation.updatedAt > record.updatedAt || conversation.messages.length > record.messageCount;
+
 export const importState = (
     conversation: Conversation,
     registerFolder: string,
@@ -52,8 +55,7 @@ export const importState = (
 ): ImportState => {
     if (record === undefined) return 'new';
     if (folderDigest(join(registerFolder, record.bookFolder)) !== record.digest) return 'edited';
-    const hasGrown = conversation.updatedAt > record.updatedAt || conversation.messages.length > record.messageCount;
-    if (hasGrown) return 'grown';
+    if (hasGrown(conversation, record)) return 'grown';
 
     return 'in';
 };

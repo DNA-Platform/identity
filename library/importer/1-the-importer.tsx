@@ -26,10 +26,19 @@ export default () => (
             <Paragraph>
                 Run bare it says what it would write and stops. Run to write it writes, and reports: the
                 conversations found, paired, unpaired, ambiguous and excluded; the messages on the screen and on
-                other paths; the files written. It takes a project's worth at a time, never the whole export in
-                one run, so the library grows at the pace the bind is measured to bear. While the importer is
-                being made it overwrites what it wrote, on a flag said at the run; once it is done it never does,
-                since a conversation once imported is edited by hand.
+                other paths; the files written. It takes a project, a collection its configuration names, or
+                particular conversations named by title or by id, never the whole export in one run, so the
+                library grows at the pace the bind is measured to bear; and for each it says whether it is new,
+                in, grown or edited, and when it was imported and from which export, which the record beside the
+                conversation's entry holds. A run writes what is new and what has grown since its import, leaves
+                what is in, and never touches what I edited. Run with nothing named it lists what the library
+                holds already, newest import first. While the importer is being made it overwrites what it wrote, on a flag said at
+                the run; once it is done it never does, since a conversation once imported is edited by hand.
+            </Paragraph>
+            <Paragraph>
+                Its configuration stands beside this chapter: what is excluded as not mine, the scripts a title
+                may not be in and the projects, and the collections, each a name over a list of conversations by
+                title or id. A conversation with a Russian title is not mine, and the configuration says so.
             </Paragraph>
         </Section>
         <Append
@@ -37,6 +46,18 @@ export default () => (
             type=".ts"
         >
             ![[ importer.ts ]]
+        </Append>
+        <Append
+            identifier="configuration"
+            type=".json"
+        >
+            ![[ configuration.json ]]
+        </Append>
+        <Append
+            identifier="promises.test"
+            type=".ts"
+        >
+            ![[ promises.test.ts ]]
         </Append>
     </Chapter>
 );

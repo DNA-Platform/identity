@@ -25,9 +25,10 @@ export default () => (
             <Paragraph>
                 The pairing stands as a file beside this chapter, one line per conversation with its project
                 and the evidence, and I edit it: a line I write is read before any evidence. The same file holds
-                the exclusions. A conversation that is not mine, one filed under a project of Ana's, or one with
-                a title in Russian, is proposed for exclusion and stays out unless I strike the line; nothing is
-                excluded by language alone, since I write Russian too.
+                the exclusions. A conversation that is not mine is proposed for exclusion and stays out unless I
+                strike the line, and what is not mine <Means>$[[ the importer's configuration ]]( ./The Importer )</Means> names:
+                a project that is not mine, Ana's, and a script a title may not be in, Cyrillic, since a
+                conversation with a Russian title is not mine, whoever wrote it in my account.
             </Paragraph>
         </Section>
         <Append

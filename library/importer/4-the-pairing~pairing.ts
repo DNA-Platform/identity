@@ -12,11 +12,13 @@ export type Pairing = {
     byHand: boolean;
 };
 
+export type Exclusions = { scripts: string[]; projects: string[] };
+
 type DocumentEvidence = { documentName: string; holdingProjectNames: string[] };
 type MappingEvidence = { projectName: string; how: string };
 type ProjectDecision = { projectName: string | undefined; evidence: string };
 
-const cyrillicLetters = /[Ѐ-ӿ]/u;
+const noExclusions: Exclusions = { scripts: [], projects: [] };
 const threeDaysInMilliseconds = 3 * 86400e3;
 const millisecondsPerUnit: Record<string, number> = {
     minute: 60e3,
@@ -35,11 +37,23 @@ export const writePairings = (library: string, pairings: Pairing[]): void => {
     writeFileSync(pairingsFilePath(library), JSON.stringify(pairings, null, 2) + '\n', 'utf8');
 };
 
+export const exclusionReason = (
+    conversation: Conversation,
+    projectName: string | undefined,
+    exclusions: Exclusions,
+): string => {
+    if (projectName !== undefined && exclusions.projects.includes(projectName)) return `filed under ${projectName}`;
+    const script = exclusions.scripts.find(candidate => new RegExp(`\\p{Script=${candidate}}`, 'u').test(conversation.name));
+
+    return script === undefined ? '' : `a title in ${script}`;
+};
+
 export const conversationPairings = (
     library: string,
     conversations: Conversation[],
     projects: Project[],
     mapping: Mapping | undefined,
+    exclusions: Exclusions = noExclusions,
 ): Pairing[] => {
     const previousPairings = new Map(readPairings(library).map(pairing => [pairing.conversationId, pairing]));
     const conversationsByTitle = new Map<string, Conversation[]>();
@@ -54,9 +68,7 @@ export const conversationPairings = (
         }
         const sameTitleConversations = conversationsByTitle.get(conversation.name) ?? [];
         const { projectName, evidence } = projectDecision(conversation, sameTitleConversations, projects, mapping);
-        const isUnderAna = projectName !== undefined && /^ana/iu.test(projectName);
-        const isCyrillicTitle = cyrillicLetters.test(conversation.name);
-        const reason = isUnderAna ? `filed under ${projectName}` : isCyrillicTitle ? 'a title in Cyrillic' : '';
+        const reason = exclusionReason(conversation, projectName, exclusions);
         pairings.push({
             conversationId: conversation.id,
             title: conversation.name,

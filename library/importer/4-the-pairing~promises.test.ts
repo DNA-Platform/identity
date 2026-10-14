@@ -64,15 +64,22 @@ describe('the pairing', () => {
             .toBe(`ambiguous: a knowledge search answered with "Axioms.md", held by Seren, and the mapping says ${srt}`);
     });
 
-    it("proposes a conversation under a project of Ana's, or with a Cyrillic title, for exclusion", () => {
+    // Doug, 2026-10-14: "If it has a Russian title, it is not mine. Perhaps we can detect Russian characters and
+    // skip those" — the scripts and the projects that are not his are the configuration's to name.
+    it('proposes a conversation under a project the configuration excludes, or titled in a script it excludes', () => {
         const mappedAna = sampleMapping("Ana's Universe", [{ title: 'Recursion', lastMessage: 'Jun 15' }]);
         const recursion = sampleConversation('f', 'Recursion');
-        const conversations = [recursion, sampleConversation('g', 'Понимание основ')];
-        const [underAna, cyrillic] = conversationPairings(freshLibrary(), conversations, [], mappedAna);
+        const russian = sampleConversation('g', 'Понимание основ');
+        const conversations = [recursion, russian, sampleConversation('h', 'Mine')];
+        const exclusions = { scripts: ['Cyrillic'], projects: ["Ana's Universe"] };
+        const [underAna, cyrillic, mine] = conversationPairings(freshLibrary(), conversations, [], mappedAna, exclusions);
         expect(underAna.excluded).toBe(true);
         expect(underAna.reason).toBe("filed under Ana's Universe");
         expect(cyrillic.excluded).toBe(true);
         expect(cyrillic.reason).toBe('a title in Cyrillic');
+        expect(mine.excluded).toBe(false);
+        const [unconfigured] = conversationPairings(freshLibrary(), [russian], [], mappedAna);
+        expect(unconfigured.excluded).toBe(false);
     });
 
     it('keeps a line written by hand over any evidence, and writes every line back to the file', () => {

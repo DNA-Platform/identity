@@ -3,15 +3,15 @@ import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { exportSource } from './3-the-record~claude.ts';
 import type { Conversation, Mapping, Project } from './3-the-record~record.ts';
-import { conversationPairings, type Pairing } from './4-the-pairing~pairing.ts';
+import { conversationPairings, type Exclusions, type Pairing } from './4-the-pairing~pairing.ts';
 import {
-    importRecord, importRecords, importState, recordIdentifier, recordSuffix, writeImportRecord, type HeldRecord,
+    hasGrown, importRecord, importRecords, importState, recordIdentifier, recordSuffix, writeImportRecord, type HeldRecord,
 } from './5-the-ledger~ledger.ts';
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
 import { slugFromName, writtenChapter, type Referents } from './7-the-writing~writing.ts';
 import {
     conversationBook, libraryEntry, orderRegisterTable, projectBook, projectEntry, registerBook, registerEntry, schemes,
-    uniqueBookName, wrappedLines, type LibraryFolders,
+    uniqueBookName, wrappedLines, type LibraryFolders, type Scheme,
 } from './8-the-books~books.ts';
 import {
     archiveFiling, archiveStatistics, archiveTranscripts, countDifferences, differenceLines, filingDifferences,
@@ -33,9 +33,11 @@ const projectCaption = 'A project of mine, and the conversations held in it:';
 const noMappingWords = '  no mapping captured off the application; every conversation will be unpaired';
 const recordAppendix = { identifier: recordIdentifier, type: '.json' };
 
-export type Arguments = {
-    projectName: string | undefined;
-    onlyTitle: string | undefined;
+export type Configuration = { excluded: Exclusions; collections: Record<string, string[]> };
+export type Selection = { projectName: string | undefined; collectionName: string | undefined; onlyNames: string[] };
+type ConversationOf = (pairing: Pairing) => Conversation;
+
+export type Arguments = Selection & {
     intoFolder: string | undefined;
     library: string;
     write: boolean;
@@ -52,23 +54,61 @@ type ExportReading = {
 
 export const parsedArguments = (argv: string[]): Arguments => ({
     projectName: flagValue(argv, '--project'),
-    onlyTitle: flagValue(argv, '--only'),
+    collectionName: flagValue(argv, '--collection'),
+    onlyNames: flagValues(argv, '--only'),
     intoFolder: flagValue(argv, '--into'),
     library: flagValue(argv, '--library') ?? resolve(importerFolder, '..'),
     write: argv.includes('--write'),
     overwrite: argv.includes('--overwrite'),
 });
 
-export const run = async (args: Arguments): Promise<void> => {
-    const reading = await exportReading();
-    const pairings = conversationPairings(args.library, reading.conversations, reading.projects, reading.mapping);
-    console.log(pairingReport(pairings));
-    if (args.projectName === undefined) {
-        if (!args.write) console.log('nothing written — pass --write with --project');
-        return;
+export const configurationPath = (library: string): string =>
+    join(library, 'importer', '1-the-importer~configuration.json');
+
+export const configurationFrom = (text: string): Configuration => {
+    const read = JSON.parse(text) as Partial<Configuration>;
+
+    return {
+        excluded: { scripts: read.excluded?.scripts ?? [], projects: read.excluded?.projects ?? [] },
+        collections: read.collections ?? {},
+    };
+};
+
+export const readConfiguration = (library: string): Configuration => {
+    const path = configurationPath(library);
+
+    return configurationFrom(existsSync(path) ? readFileSync(path, 'utf8') : '{}');
+};
+
+export const selectedPairings = (
+    pairings: Pairing[],
+    selection: Selection,
+    collections: Record<string, string[]>,
+): Pairing[] => {
+    const named = (names: string[]) => (pairing: Pairing): boolean =>
+        names.includes(pairing.title) || names.includes(pairing.conversationId);
+    const narrowed = (candidates: Pairing[]): Pairing[] =>
+        selection.onlyNames.length === 0 ? candidates : candidates.filter(named(selection.onlyNames));
+    if (selection.projectName !== undefined)
+        return narrowed(pairings.filter(pairing => pairing.projectName === selection.projectName));
+    if (selection.collectionName !== undefined) {
+        const collection = collections[selection.collectionName];
+        if (collection === undefined)
+            throw new Error(`the configuration names no collection called ${selection.collectionName}`);
+        return narrowed(pairings.filter(named(collection)));
     }
-    const projectPairings = pairings.filter(pairing => pairing.projectName === args.projectName);
-    const conversationOfPairing = (pairing: Pairing): Conversation =>
+
+    return narrowed(selection.onlyNames.length === 0 ? [] : pairings);
+};
+
+export const run = async (args: Arguments): Promise<void> => {
+    const configuration = readConfiguration(args.library);
+    const reading = await exportReading();
+    const pairings = conversationPairings(
+        args.library, reading.conversations, reading.projects, reading.mapping, configuration.excluded,
+    );
+    console.log(pairingReport(pairings));
+    const conversationOfPairing: ConversationOf = pairing =>
         reading.conversations.find(conversation => conversation.id === pairing.conversationId)!;
     const folders: LibraryFolders = {
         library: args.library,
@@ -77,17 +117,22 @@ export const run = async (args: Arguments): Promise<void> => {
         conversations: join(args.library, '.claude', '.conversations'),
     };
     const heldRecords = importRecords(folders.conversations);
-    listProjectConversations(args.projectName, projectPairings, conversationOfPairing, folders, heldRecords);
-    const pairedConversations = projectPairings.filter(pairing => !pairing.excluded).map(conversationOfPairing);
-    console.log(archiveCheckReport(args.projectName, reading, pairedConversations));
+    const selected = selectedPairings(pairings, args, configuration.collections);
+    if (selected.length === 0) {
+        listHeldConversations(reading, heldRecords, folders);
+        console.log('\nnothing selected — pass --project, --collection or --only');
+        return;
+    }
+    listSelectedConversations(selectionWords(args), selected, conversationOfPairing, folders, heldRecords);
+    const included = selected.filter(pairing => !pairing.excluded);
+    const includedConversations = included.map(conversationOfPairing);
+    const wholeProject = args.projectName !== undefined && args.onlyNames.length === 0;
+    console.log(archiveCheckReport(included, reading, conversationOfPairing, wholeProject));
     console.log(differenceLines('written back against the export', writtenDifferences(
-        pairedConversations, heldRecords, folders.conversations,
+        includedConversations, heldRecords, folders.conversations,
     )).join('\n'));
-    const chosenConversations = projectPairings
-        .filter(pairing => !pairing.excluded && (args.onlyTitle === undefined || pairing.title === args.onlyTitle))
-        .map(conversationOfPairing);
     if (args.intoFolder !== undefined) {
-        for (const conversation of chosenConversations)
+        for (const conversation of includedConversations)
             writeChapterIntoFolder(args.intoFolder, conversation);
         return;
     }
@@ -95,9 +140,7 @@ export const run = async (args: Arguments): Promise<void> => {
         console.log('\nnothing written — pass --write');
         return;
     }
-    const project = reading.projects.find(candidate => candidate.name === args.projectName);
-    if (project === undefined) throw new Error(`no project named ${args.projectName} in the export`);
-    writeProjectBooks(args, folders, project, reading, chosenConversations, heldRecords);
+    writeBooks(args, folders, reading, included, conversationOfPairing, heldRecords);
 };
 
 const exportReading = async (): Promise<ExportReading> => {
@@ -136,23 +179,42 @@ const exportReading = async (): Promise<ExportReading> => {
     return { exportedOn: source.exportedOn, projects, mapping, conversations, counts };
 };
 
-const archiveCheckReport = (projectName: string, reading: ExportReading, pairedConversations: Conversation[]): string => {
+const archiveCheckReport = (
+    included: Pairing[],
+    reading: ExportReading,
+    conversationOfPairing: ConversationOf,
+    wholeProject: boolean,
+): string => {
     const statisticsPath = join(accountFolder, '.statistics.md');
     if (!existsSync(statisticsPath)) return '\nno archive to check against';
     const statistics = archiveStatistics(readFileSync(statisticsPath, 'utf8'));
     const transcripts = archiveTranscripts(accountFolder);
-    const filedNames = archiveFiling(accountFolder, projectName);
-    const filingLines = filedNames === undefined
-        ? [`filing: the archive has no project named ${projectName}`]
-        : differenceLines('filing', filingDifferences(pairedConversations, filedNames, transcripts));
+    const projectNames = [...new Set(included.map(pairing => pairing.projectName))]
+        .filter((name): name is string => name !== undefined);
+    const filingOfProject = (projectName: string): string[] => {
+        const filedNames = archiveFiling(accountFolder, projectName);
+        const ours = included.filter(pairing => pairing.projectName === projectName).map(conversationOfPairing);
+        if (filedNames === undefined) return [`filing of ${projectName}: the archive has no project of that name`];
+
+        return differenceLines(`filing of ${projectName}`, filingDifferences(ours, filedNames, transcripts));
+    };
+    const filingLines = wholeProject
+        ? projectNames.flatMap(filingOfProject) : ['filing: checked when a project is run whole'];
 
     return [
         '',
         `checked against the archive, ${countedNoun(transcripts.size, 'transcript')}`,
         ...differenceLines('counts', countDifferences(reading.counts, statistics)),
         ...filingLines,
-        ...differenceLines('messages', transcriptDifferences(pairedConversations, transcripts)),
+        ...differenceLines('messages', transcriptDifferences(included.map(conversationOfPairing), transcripts)),
     ].join('\n');
+};
+
+const selectionWords = (selection: Selection): string => {
+    if (selection.projectName !== undefined) return selection.projectName;
+    if (selection.collectionName !== undefined) return `the collection ${selection.collectionName}`;
+
+    return 'named';
 };
 
 const mappingReport = (mapping: Mapping): string => {
@@ -174,30 +236,59 @@ const pairingReport = (pairings: Pairing[]): string => {
     ].join(' · ');
 };
 
-const listProjectConversations = (
-    projectName: string,
-    projectPairings: Pairing[],
-    conversationOfPairing: (pairing: Pairing) => Conversation,
+const importedWords = (heldRecord: HeldRecord | undefined, conversation?: Conversation): string => {
+    if (heldRecord === undefined) return '';
+    const { importedAt, exportedOn } = heldRecord.record;
+    const grownSince = conversation !== undefined && hasGrown(conversation, heldRecord.record);
+    const grownWords = grownSince ? ', grown since: re-import it and re-apply what you edited' : '';
+
+    return ` · imported ${importedAt.slice(0, 10)} from the export of ${exportedOn}${grownWords}`;
+};
+
+const listSelectedConversations = (
+    heading: string,
+    selected: Pairing[],
+    conversationOfPairing: ConversationOf,
     folders: LibraryFolders,
     heldRecords: Map<string, HeldRecord>,
 ): void => {
-    const includedPairings = projectPairings.filter(pairing => !pairing.excluded);
-    const byHandCount = includedPairings.filter(pairing => pairing.byHand).length;
+    const included = selected.filter(pairing => !pairing.excluded);
+    const byHandCount = included.filter(pairing => pairing.byHand).length;
     const byHandWords = byHandCount > 0 ? `, ${byHandCount} by hand` : '';
-    console.log(`\n${projectName}: ${countedNoun(includedPairings.length, 'conversation')} paired${byHandWords}`);
-    for (const pairing of includedPairings) {
+    console.log(`\n${heading}: ${countedNoun(included.length, 'conversation')}${byHandWords}`);
+    for (const pairing of included) {
         const conversation = conversationOfPairing(pairing);
         const path = shownPath(conversation);
-        const record = heldRecords.get(conversation.id)?.record;
-        const stateWord = importState(conversation, folders.conversations, record).padEnd(6);
+        const heldRecord = heldRecords.get(conversation.id);
+        const stateWord = importState(conversation, folders.conversations, heldRecord?.record).padEnd(6);
         const shownWords = `${path.length} shown of ${conversation.messages.length}`;
         const countWords = `${shownWords}, ${asideCount(conversation, path)} aside`;
         const dayWords = countedNoun(pathDays(path).length, 'day');
         const nameWords = conversation.name || 'Untitled';
-        console.log(`  ${stateWord} ${nameWords} · ${countWords} · ${dayWords} · ${pairing.evidence}`);
+        const projectWords = pairing.projectName ?? 'no project';
+        const edited = heldRecord !== undefined && stateWord.trim() === 'edited';
+        const whenWords = importedWords(heldRecord, edited ? conversation : undefined);
+        const evidenceWords = `${projectWords} · ${pairing.evidence}${whenWords}`;
+        console.log(`  ${stateWord} ${nameWords} · ${countWords} · ${dayWords} · ${evidenceWords}`);
     }
-    for (const pairing of projectPairings.filter(pairing => pairing.excluded))
+    for (const pairing of selected.filter(pairing => pairing.excluded))
         console.log(`  out    ${pairing.title} · ${pairing.reason}`);
+};
+
+const listHeldConversations = (
+    reading: ExportReading,
+    heldRecords: Map<string, HeldRecord>,
+    folders: LibraryFolders,
+): void => {
+    console.log(`\nin the library: ${countedNoun(heldRecords.size, 'conversation')}`);
+    const newestFirst = [...heldRecords.values()]
+        .sort((first, second) => second.record.importedAt.localeCompare(first.record.importedAt));
+    for (const heldRecord of newestFirst) {
+        const conversation = reading.conversations.find(candidate => candidate.id === heldRecord.record.conversationId);
+        const stateWord = conversation === undefined
+            ? 'gone  ' : importState(conversation, folders.conversations, heldRecord.record).padEnd(6);
+        console.log(`  ${stateWord} ${heldRecord.record.name}${importedWords(heldRecord)}`);
+    }
 };
 
 const writeChapterIntoFolder = (intoFolder: string, conversation: Conversation): void => {
@@ -217,12 +308,32 @@ const writeChapterIntoFolder = (intoFolder: string, conversation: Conversation):
     console.log(`\nwrote ${join(folder, chapter.fileName)} with ${reportWords}`);
 };
 
-const writeProjectBooks = (
+type WrittenProject = { project: Project | undefined; folder: string | undefined; scheme: Scheme; files: string[] };
+
+const writtenProject = (
     args: Arguments,
     folders: LibraryFolders,
-    project: Project,
     reading: ExportReading,
-    chosenConversations: Conversation[],
+    projectName: string | undefined,
+): WrittenProject => {
+    const project = projectName === undefined ? undefined : reading.projects.find(one => one.name === projectName);
+    if (projectName !== undefined && project === undefined) throw new Error(`no project named ${projectName} in the export`);
+    const namedProjects = reading.projects.filter(candidate => candidate.name !== '');
+    const schemeIndex = project === undefined ? 0 : namedProjects.findIndex(candidate => candidate.id === project.id) + 1;
+    const scheme = schemes[schemeIndex % schemes.length];
+    if (project === undefined) return { project, folder: undefined, scheme, files: [] };
+    const book = projectBook(folders, project, scheme, args.overwrite);
+    const entry = registerEntry(folders, folders.claude, project.name, book.folder, project.updatedAt, projectCaption, '**');
+
+    return { project, folder: book.folder, scheme, files: [...book.files, ...entry.files] };
+};
+
+const writeBooks = (
+    args: Arguments,
+    folders: LibraryFolders,
+    reading: ExportReading,
+    included: Pairing[],
+    conversationOfPairing: ConversationOf,
     heldRecords: Map<string, HeldRecord>,
 ): void => {
     const filesTouched: string[] = [];
@@ -241,51 +352,47 @@ const writeProjectBooks = (
     const dougsClaudeEntryFiles = libraryEntry(folders.library, 'Dougs Claude', folders.claude, dougsClaudeCaption);
     filesTouched.push(...dougsClaudeFiles, ...dougsClaudeEntryFiles);
     filesTouched.push(...ourConversationsFiles, ...ourConversationsEntry.files);
-    const namedProjects = reading.projects.filter(candidate => candidate.name !== '');
-    const scheme = schemes[(namedProjects.findIndex(candidate => candidate.id === project.id) + 1) % schemes.length];
-    const writtenProjectBook = projectBook(folders, project, scheme, args.overwrite);
-    filesTouched.push(...writtenProjectBook.files);
-    filesTouched.push(...registerEntry(
-        folders, folders.claude, project.name, writtenProjectBook.folder, project.updatedAt, projectCaption, '**',
-    ).files);
     const namesTaken = new Set<string>();
     let writtenCount = 0;
     let keptCount = 0;
-    for (const conversation of chosenConversations) {
-        const heldRecord = heldRecords.get(conversation.id);
-        const heldBookFolder = heldRecord === undefined
-            ? undefined : join(folders.conversations, heldRecord.record.bookFolder);
-        const bookStands = heldBookFolder !== undefined && existsSync(heldBookFolder);
-        const standingRecord = bookStands ? heldRecord : undefined;
-        const state = importState(conversation, folders.conversations, standingRecord?.record);
-        if (standingRecord !== undefined && (!args.overwrite || state === 'edited')) {
-            keptCount++;
-            continue;
+    for (const projectName of [...new Set(included.map(pairing => pairing.projectName))]) {
+        const written = writtenProject(args, folders, reading, projectName);
+        filesTouched.push(...written.files);
+        for (const pairing of included.filter(candidate => candidate.projectName === projectName)) {
+            const conversation = conversationOfPairing(pairing);
+            const heldRecord = heldRecords.get(conversation.id);
+            const heldBookFolder = heldRecord === undefined
+                ? undefined : join(folders.conversations, heldRecord.record.bookFolder);
+            const bookStands = heldBookFolder !== undefined && existsSync(heldBookFolder);
+            const standingRecord = bookStands ? heldRecord : undefined;
+            const state = importState(conversation, folders.conversations, standingRecord?.record);
+            if (standingRecord !== undefined && (state === 'edited' || (state === 'in' && !args.overwrite))) {
+                keptCount++;
+                continue;
+            }
+            const name = standingRecord?.record.name
+                ?? uniqueBookName(folders.conversations, conversation.name, namesTaken);
+            const path = shownPath(conversation);
+            const projectNames = written.project === undefined ? [] : [written.project.name];
+            const book = conversationBook(folders, conversation, path, name, projectNames, written.scheme, referents);
+            const conversationCaption = `A conversation, ${countedNoun(path.length, 'exchange')}:`;
+            const entry = registerEntry(
+                folders, folders.conversations, name, book.folder, conversation.updatedAt,
+                conversationCaption, '**', recordAppendix,
+            );
+            const entryStem = entry.entryPath?.replace(/\.tsx$/u, '');
+            const newRecordPath = entryStem === undefined ? undefined : `${entryStem}${recordSuffix}`;
+            const recordPath = standingRecord?.path ?? newRecordPath;
+            if (recordPath === undefined)
+                throw new Error(`no entry stands for "${name}" in ${folders.conversations}, so its record has no place`);
+            const bookFolder = basename(book.folder);
+            const record = importRecord(conversation, folders.conversations, name, bookFolder, reading.exportedOn);
+            writeImportRecord(recordPath, record);
+            filesTouched.push(...book.files, ...entry.files, recordPath);
+            if (written.folder !== undefined)
+                filesTouched.push(...projectEntry(folders, written.folder, name, book.folder, conversation.createdAt));
+            writtenCount++;
         }
-        const name = standingRecord?.record.name
-            ?? uniqueBookName(folders.conversations, conversation.name, namesTaken);
-        const path = shownPath(conversation);
-        const writtenBook = conversationBook(folders, conversation, path, name, [project.name], scheme, referents);
-        const conversationCaption = `A conversation, ${countedNoun(path.length, 'exchange')}:`;
-        const entry = registerEntry(
-            folders, folders.conversations, name, writtenBook.folder, conversation.updatedAt,
-            conversationCaption, '**', recordAppendix,
-        );
-        const entryStem = entry.entryPath?.replace(/\.tsx$/u, '');
-        const newRecordPath = entryStem === undefined ? undefined : `${entryStem}${recordSuffix}`;
-        const recordPath = standingRecord?.path ?? newRecordPath;
-        if (recordPath === undefined)
-            throw new Error(`no entry stands for "${name}" in ${folders.conversations}, so its record has no place`);
-        const bookFolder = basename(writtenBook.folder);
-        const record = importRecord(conversation, folders.conversations, name, bookFolder, reading.exportedOn);
-        writeImportRecord(recordPath, record);
-        filesTouched.push(
-            ...writtenBook.files,
-            ...entry.files,
-            recordPath,
-            ...projectEntry(folders, writtenProjectBook.folder, name, writtenBook.folder, conversation.createdAt),
-        );
-        writtenCount++;
     }
     filesTouched.push(...orderRegisterTable(folders.conversations), ...orderRegisterTable(folders.claude));
     console.log(`\nwrote ${countedNoun(writtenCount, 'conversation')}, kept ${keptCount}, `
@@ -297,6 +404,9 @@ const flagValue = (argv: string[], flag: string): string | undefined => {
 
     return flagIndex >= 0 ? argv[flagIndex + 1] : undefined;
 };
+
+const flagValues = (argv: string[], flag: string): string[] =>
+    argv.flatMap((word, index) => word === flag && argv[index + 1] !== undefined ? [argv[index + 1]] : []);
 
 const countedNoun = (count: number, noun: string): string => `${count} ${noun}${count === 1 ? '' : 's'}`;
 const elapsedSeconds = (since: number): string => `${((Date.now() - since) / 1000).toFixed(1)}s`;

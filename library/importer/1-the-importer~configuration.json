@@ -1,0 +1,7 @@
+{
+  "excluded": {
+    "scripts": ["Cyrillic"],
+    "projects": ["Ana's Career", "Ana's Fiverr Inbox"]
+  },
+  "collections": {}
+}
