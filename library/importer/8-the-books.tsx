@@ -40,5 +40,11 @@ export default () => (
         >
             ![[ books.ts ]]
         </Append>
+        <Append
+            identifier="promises.test"
+            type=".ts"
+        >
+            ![[ promises.test.ts ]]
+        </Append>
     </Chapter>
 );

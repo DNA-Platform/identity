@@ -10,6 +10,105 @@ export default () => (
             [[ Table of Contents ]]
         </Title>
         <Section>
+            <Heading>September 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Semantics of Representation ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Semantics of Representation )**</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Semantics of Types &amp; More ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Semantics of Types &amp; More )**</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Foundations: Types &amp; Properties ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Foundations: Types &amp; Properties )**</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>August 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./String length notation and foundational sketch generalization ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( String length notation and foundational sketch generalization )**</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Collection semantics and canonical representatives ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Collection semantics and canonical representatives )**</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>July 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Learning SRT syntax and transpiler fundamentals ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Learning SRT syntax and transpiler fundamentals )**</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./The Semantics of Books ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( The Semantics of Books )**</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Inexplicable Phenomena ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Inexplicable Phenomena )**</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Relationships &amp; Inheriance ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Relationships &amp; Inheriance )**</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Distinguishing type, category, and kind in English ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Distinguishing type, category, and kind in English )**</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
             <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
@@ -102,105 +201,6 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( Converting shared conversation to document )**</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>July 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ ./Learning SRT syntax and transpiler fundamentals ]]</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( Learning SRT syntax and transpiler fundamentals )**</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ ./The Semantics of Books ]]</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( The Semantics of Books )**</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ ./Inexplicable Phenomena ]]</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( Inexplicable Phenomena )**</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ ./Relationships &amp; Inheriance ]]</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( Relationships &amp; Inheriance )**</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ ./Distinguishing type, category, and kind in English ]]</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( Distinguishing type, category, and kind in English )**</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>August 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ ./String length notation and foundational sketch generalization ]]</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( String length notation and foundational sketch generalization )**</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ ./Collection semantics and canonical representatives ]]</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( Collection semantics and canonical representatives )**</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ ./Semantics of Representation ]]</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( Semantics of Representation )**</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ ./Semantics of Types &amp; More ]]</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( Semantics of Types &amp; More )**</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ ./Foundations: Types &amp; Properties ]]</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( Foundations: Types &amp; Properties )**</Content>
                 </Word>
             </Paragraph>
         </Section>

@@ -376,10 +376,33 @@ const tableListsBook = (tableText: string, name: string): boolean =>
 const tableWithRow = (tableText: string, heading: string, lines: string[], insertionPoint: string): string => {
     const headingElement = `<Heading>${heading}</Heading>`;
     const rowText = indentedLines(3, lines).join('\n');
-    if (tableText.includes(headingElement)) return tableText.replace(headingElement, () => `${headingElement}\n${rowText}`);
+    if (tableText.includes(headingElement))
+        return orderedTableText(tableText.replace(headingElement, () => `${headingElement}\n${rowText}`));
     const sectionText = `        <Section>\n            ${headingElement}\n${rowText}\n        </Section>\n`;
 
-    return tableText.replace(insertionPoint, () => `${sectionText}${insertionPoint}`);
+    return orderedTableText(tableText.replace(insertionPoint, () => `${sectionText}${insertionPoint}`));
+};
+
+const sectionForm = /^ {8}<Section>\n {12}<Heading>([^<]*)<\/Heading>\n[\s\S]*?^ {8}<\/Section>\n/gmu;
+const isMonthHeading = (heading: string): boolean => !Number.isNaN(Date.parse(heading));
+
+export const orderedTableText = (tableText: string): string => {
+    const monthSections = [...tableText.matchAll(sectionForm)].filter(match => isMonthHeading(match[1]));
+    const newestFirst = [...monthSections].sort((a, b) => Date.parse(b[1]) - Date.parse(a[1])).map(match => match[0]);
+    let placed = 0;
+    const placedSection = (section: string, heading: string): string =>
+        isMonthHeading(heading) ? newestFirst[placed++] : section;
+
+    return tableText.replace(sectionForm, placedSection);
+};
+
+export const orderRegisterTable = (folder: string): string[] => {
+    const tablePath = join(folder, '.table.tsx');
+    if (!existsSync(tablePath)) return [];
+    const tableText = readFileSync(tablePath, 'utf8');
+    const ordered = orderedTableText(tableText);
+
+    return ordered === tableText ? [] : [writtenFile(tablePath, ordered)];
 };
 
 const chapterFileText = (importLines: string[], lines: string[]): string => [

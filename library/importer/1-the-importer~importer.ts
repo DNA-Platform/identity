@@ -10,8 +10,8 @@ import {
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
 import { slugFromName, writtenChapter, type Referents } from './7-the-writing~writing.ts';
 import {
-    conversationBook, libraryEntry, projectBook, projectEntry, registerBook, registerEntry, schemes, uniqueBookName,
-    wrappedLines, type LibraryFolders,
+    conversationBook, libraryEntry, orderRegisterTable, projectBook, projectEntry, registerBook, registerEntry, schemes,
+    uniqueBookName, wrappedLines, type LibraryFolders,
 } from './8-the-books~books.ts';
 import {
     archiveFiling, archiveStatistics, archiveTranscripts, countDifferences, differenceLines, filingDifferences,
@@ -287,6 +287,7 @@ const writeProjectBooks = (
         );
         writtenCount++;
     }
+    filesTouched.push(...orderRegisterTable(folders.conversations), ...orderRegisterTable(folders.claude));
     console.log(`\nwrote ${countedNoun(writtenCount, 'conversation')}, kept ${keptCount}, `
         + `${countedNoun(filesTouched.length, 'file')} touched under ${folders.claude}`);
 };
