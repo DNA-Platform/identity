@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { exportSource } from './3-the-record~claude.ts';
@@ -13,6 +13,10 @@ import {
     conversationBook, libraryEntry, projectBook, projectEntry, registerBook, registerEntry, schemes, uniqueBookName,
     wrappedLines, type LibraryFolders,
 } from './8-the-books~books.ts';
+import {
+    archiveFiling, archiveStatistics, archiveTranscripts, countDifferences, differenceLines, filingDifferences,
+    transcriptDifferences, writtenDifferences, type ExportCounts,
+} from './9-the-check~check.ts';
 
 const importerFolder = dirname(fileURLToPath(import.meta.url));
 export const accountFolder = resolve(importerFolder, '..', '..', '..', 'dna-library', 'library', 'claude-dna');
@@ -43,6 +47,7 @@ type ExportReading = {
     projects: Project[];
     mapping: Mapping | undefined;
     conversations: Conversation[];
+    counts: ExportCounts;
 };
 
 export const parsedArguments = (argv: string[]): Arguments => ({
@@ -73,6 +78,11 @@ export const run = async (args: Arguments): Promise<void> => {
     };
     const heldRecords = importRecords(folders.conversations);
     listProjectConversations(args.projectName, projectPairings, conversationOfPairing, folders, heldRecords);
+    const pairedConversations = projectPairings.filter(pairing => !pairing.excluded).map(conversationOfPairing);
+    console.log(archiveCheckReport(args.projectName, reading, pairedConversations));
+    console.log(differenceLines('written back against the export', writtenDifferences(
+        pairedConversations, heldRecords, folders.conversations,
+    )).join('\n'));
     const chosenConversations = projectPairings
         .filter(pairing => !pairing.excluded && (args.onlyTitle === undefined || pairing.title === args.onlyTitle))
         .map(conversationOfPairing);
@@ -115,8 +125,34 @@ const exportReading = async (): Promise<ExportReading> => {
     console.log(`  ${countedNoun(conversations.length, 'conversation')}, ${countedNoun(messageCount, 'message')}: `
         + blockCountWords);
     console.log(`read in ${elapsedSeconds(started)}`);
+    const counts: ExportCounts = {
+        conversationCount: conversations.length,
+        messageCount,
+        projectCount: projects.length,
+        documentCount,
+        contentfulCount: conversations.filter(conversation => conversation.messages.length > 0).length,
+    };
 
-    return { exportedOn: source.exportedOn, projects, mapping, conversations };
+    return { exportedOn: source.exportedOn, projects, mapping, conversations, counts };
+};
+
+const archiveCheckReport = (projectName: string, reading: ExportReading, pairedConversations: Conversation[]): string => {
+    const statisticsPath = join(accountFolder, '.statistics.md');
+    if (!existsSync(statisticsPath)) return '\nno archive to check against';
+    const statistics = archiveStatistics(readFileSync(statisticsPath, 'utf8'));
+    const transcripts = archiveTranscripts(accountFolder);
+    const filedNames = archiveFiling(accountFolder, projectName);
+    const filingLines = filedNames === undefined
+        ? [`filing: the archive has no project named ${projectName}`]
+        : differenceLines('filing', filingDifferences(pairedConversations, filedNames, transcripts));
+
+    return [
+        '',
+        `checked against the archive, ${countedNoun(transcripts.size, 'transcript')}`,
+        ...differenceLines('counts', countDifferences(reading.counts, statistics)),
+        ...filingLines,
+        ...differenceLines('messages', transcriptDifferences(pairedConversations, transcripts)),
+    ].join('\n');
 };
 
 const mappingReport = (mapping: Mapping): string => {

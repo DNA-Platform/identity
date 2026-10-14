@@ -1,4 +1,4 @@
-var y=Object.defineProperty;var i=(h,g)=>y(h,"name",{value:g,configurable:!0});import{j as e,C as d,T as c,P as u,c as r,H as s,a as n,d as o,W as f,M as t,A as a,$ as v}from"./index-Bx5PtAsv.js";import{f as x,O as I,I as w,S as l,B as p}from"./31-the-project-manual~code-lp5RhMs9.js";import{C as j,S as k}from"./.synopsis-DpQUOwAa.js";import"./.cover-Br-wZ0IX.js";const b=class b extends x{};i(b,"$Importer");let m=b;const C=i(()=>e.jsxs(d,{children:[e.jsx(I,{}),e.jsx(w,{}),e.jsxs(c,{children:[e.jsx(u,{}),"[Table of Contents](/dougs-importer/#table-of-contents)"]}),e.jsxs(r,{children:[e.jsx(s,{children:"The run"}),e.jsx(n,{children:e.jsx(o,{children:"[The Importer](/dougs-importer/#the-importer)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Export](/dougs-importer/#the-export)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Record](/dougs-importer/#the-record)"})}),e.jsxs(n,{children:[e.jsx(u,{}),e.jsx(f,{children:e.jsx(o,{children:"[Dougs Importer](/dougs-importer/)"})}),e.jsx(f,{children:e.jsx(o,{children:"[Synopsis](/dougs-importer/#synopsis)"})}),e.jsx(f,{children:e.jsx(o,{children:"[Table of Contents](/dougs-importer/#table-of-contents)"})})]})]}),e.jsxs(r,{children:[e.jsx(s,{children:"From the export to a book"}),e.jsx(n,{children:e.jsx(o,{children:"[The Pairing](/dougs-importer/#the-pairing)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Ledger](/dougs-importer/#the-ledger)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Thread](/dougs-importer/#the-thread)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Writing](/dougs-importer/#the-writing)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Books](/dougs-importer/#the-books)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Check](/dougs-importer/#the-check)"})})]})]}),"Table"),H=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Importer](/dougs-importer/#the-importer)"}),e.jsxs(n,{children:[e.jsx(p,{}),"The run: the stages in order, from an export on disk to conversations filed in this library, and the report of what it did."]}),e.jsxs(r,{children:[e.jsx(s,{children:"Nine stages and nothing hidden between them"}),e.jsxs(n,{children:["A conversation gets into this library in stages, and each stage is a chapter of this book with its code beside it, so a change to the code is never a question about which page owes an edit. The importer finds ",e.jsx(t,{children:"[the export](/dougs-importer/#the-export)"})," where it lands, reads it into ",e.jsx(t,{children:"[one record](/dougs-importer/#the-record)"}),", pairs each conversation to its project by ",e.jsx(t,{children:"[evidence](/dougs-importer/#the-pairing)"}),", asks ",e.jsx(t,{children:"[the ledger](/dougs-importer/#the-ledger)"})," which conversations are new, walks ",e.jsx(t,{children:"[the thread](/dougs-importer/#the-thread)"})," that was on the screen, turns what was said into ",e.jsx(t,{children:"[writing](/dougs-importer/#the-writing)"}),", writes ",e.jsx(t,{children:"[the books](/dougs-importer/#the-books)"}),", and ",e.jsx(t,{children:"[checks](/dougs-importer/#the-check)"})," what it wrote against the archive the export was first read into."]}),e.jsx(n,{children:"Run bare it says what it would write and stops. Run to write it writes, and reports: the conversations found, paired, unpaired, ambiguous and excluded; the messages on the screen and on other paths; the files written. It takes a project's worth at a time, never the whole export in one run, so the library grows at the pace the bind is measured to bear. While the importer is being made it overwrites what it wrote, on a flag said at the run; once it is done it never does, since a conversation once imported is edited by hand."})]}),e.jsx(a,{identifier:"importer",type:".ts",children:`import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+var v=Object.defineProperty;var i=(h,g)=>v(h,"name",{value:g,configurable:!0});import{j as e,C as d,T as c,P as b,c as r,H as s,a as n,d as o,W as f,M as a,A as t,$ as y}from"./index-DnYyghk8.js";import{f as x,O as w,I,S as l,B as p}from"./31-the-project-manual~code-DOq7KaTM.js";import{C as j,S as C}from"./.synopsis-C-dy6Ptk.js";import"./.cover-Cgvio87L.js";const u=class u extends x{};i(u,"$Importer");let m=u;const k=i(()=>e.jsxs(d,{children:[e.jsx(w,{}),e.jsx(I,{}),e.jsxs(c,{children:[e.jsx(b,{}),"[Table of Contents](/dougs-importer/#table-of-contents)"]}),e.jsxs(r,{children:[e.jsx(s,{children:"The run"}),e.jsx(n,{children:e.jsx(o,{children:"[The Importer](/dougs-importer/#the-importer)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Export](/dougs-importer/#the-export)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Record](/dougs-importer/#the-record)"})}),e.jsxs(n,{children:[e.jsx(b,{}),e.jsx(f,{children:e.jsx(o,{children:"[Dougs Importer](/dougs-importer/)"})}),e.jsx(f,{children:e.jsx(o,{children:"[Synopsis](/dougs-importer/#synopsis)"})}),e.jsx(f,{children:e.jsx(o,{children:"[Table of Contents](/dougs-importer/#table-of-contents)"})})]})]}),e.jsxs(r,{children:[e.jsx(s,{children:"From the export to a book"}),e.jsx(n,{children:e.jsx(o,{children:"[The Pairing](/dougs-importer/#the-pairing)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Ledger](/dougs-importer/#the-ledger)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Thread](/dougs-importer/#the-thread)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Writing](/dougs-importer/#the-writing)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Books](/dougs-importer/#the-books)"})}),e.jsx(n,{children:e.jsx(o,{children:"[The Check](/dougs-importer/#the-check)"})})]})]}),"Table"),H=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Importer](/dougs-importer/#the-importer)"}),e.jsxs(n,{children:[e.jsx(p,{}),"The run: the stages in order, from an export on disk to conversations filed in this library, and the report of what it did."]}),e.jsxs(r,{children:[e.jsx(s,{children:"Nine stages and nothing hidden between them"}),e.jsxs(n,{children:["A conversation gets into this library in stages, and each stage is a chapter of this book with its code beside it, so a change to the code is never a question about which page owes an edit. The importer finds ",e.jsx(a,{children:"[the export](/dougs-importer/#the-export)"})," where it lands, reads it into ",e.jsx(a,{children:"[one record](/dougs-importer/#the-record)"}),", pairs each conversation to its project by ",e.jsx(a,{children:"[evidence](/dougs-importer/#the-pairing)"}),", asks ",e.jsx(a,{children:"[the ledger](/dougs-importer/#the-ledger)"})," which conversations are new, walks ",e.jsx(a,{children:"[the thread](/dougs-importer/#the-thread)"})," that was on the screen, turns what was said into ",e.jsx(a,{children:"[writing](/dougs-importer/#the-writing)"}),", writes ",e.jsx(a,{children:"[the books](/dougs-importer/#the-books)"}),", and ",e.jsx(a,{children:"[checks](/dougs-importer/#the-check)"})," what it wrote against the archive the export was first read into."]}),e.jsx(n,{children:"Run bare it says what it would write and stops. Run to write it writes, and reports: the conversations found, paired, unpaired, ambiguous and excluded; the messages on the screen and on other paths; the files written. It takes a project's worth at a time, never the whole export in one run, so the library grows at the pace the bind is measured to bear. While the importer is being made it overwrites what it wrote, on a flag said at the run; once it is done it never does, since a conversation once imported is edited by hand."})]}),e.jsx(t,{identifier:"importer",type:".ts",children:`import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { exportSource } from './3-the-record~claude.ts';
@@ -13,6 +13,10 @@ import {
     conversationBook, libraryEntry, projectBook, projectEntry, registerBook, registerEntry, schemes, uniqueBookName,
     wrappedLines, type LibraryFolders,
 } from './8-the-books~books.ts';
+import {
+    archiveFiling, archiveStatistics, archiveTranscripts, countDifferences, differenceLines, filingDifferences,
+    transcriptDifferences, writtenDifferences, type ExportCounts,
+} from './9-the-check~check.ts';
 
 const importerFolder = dirname(fileURLToPath(import.meta.url));
 export const accountFolder = resolve(importerFolder, '..', '..', '..', 'dna-library', 'library', 'claude-dna');
@@ -43,6 +47,7 @@ type ExportReading = {
     projects: Project[];
     mapping: Mapping | undefined;
     conversations: Conversation[];
+    counts: ExportCounts;
 };
 
 export const parsedArguments = (argv: string[]): Arguments => ({
@@ -73,6 +78,11 @@ export const run = async (args: Arguments): Promise<void> => {
     };
     const heldRecords = importRecords(folders.conversations);
     listProjectConversations(args.projectName, projectPairings, conversationOfPairing, folders, heldRecords);
+    const pairedConversations = projectPairings.filter(pairing => !pairing.excluded).map(conversationOfPairing);
+    console.log(archiveCheckReport(args.projectName, reading, pairedConversations));
+    console.log(differenceLines('written back against the export', writtenDifferences(
+        pairedConversations, heldRecords, folders.conversations,
+    )).join('\\n'));
     const chosenConversations = projectPairings
         .filter(pairing => !pairing.excluded && (args.onlyTitle === undefined || pairing.title === args.onlyTitle))
         .map(conversationOfPairing);
@@ -115,8 +125,34 @@ const exportReading = async (): Promise<ExportReading> => {
     console.log(\`  \${countedNoun(conversations.length, 'conversation')}, \${countedNoun(messageCount, 'message')}: \`
         + blockCountWords);
     console.log(\`read in \${elapsedSeconds(started)}\`);
+    const counts: ExportCounts = {
+        conversationCount: conversations.length,
+        messageCount,
+        projectCount: projects.length,
+        documentCount,
+        contentfulCount: conversations.filter(conversation => conversation.messages.length > 0).length,
+    };
 
-    return { exportedOn: source.exportedOn, projects, mapping, conversations };
+    return { exportedOn: source.exportedOn, projects, mapping, conversations, counts };
+};
+
+const archiveCheckReport = (projectName: string, reading: ExportReading, pairedConversations: Conversation[]): string => {
+    const statisticsPath = join(accountFolder, '.statistics.md');
+    if (!existsSync(statisticsPath)) return '\\nno archive to check against';
+    const statistics = archiveStatistics(readFileSync(statisticsPath, 'utf8'));
+    const transcripts = archiveTranscripts(accountFolder);
+    const filedNames = archiveFiling(accountFolder, projectName);
+    const filingLines = filedNames === undefined
+        ? [\`filing: the archive has no project named \${projectName}\`]
+        : differenceLines('filing', filingDifferences(pairedConversations, filedNames, transcripts));
+
+    return [
+        '',
+        \`checked against the archive, \${countedNoun(transcripts.size, 'transcript')}\`,
+        ...differenceLines('counts', countDifferences(reading.counts, statistics)),
+        ...filingLines,
+        ...differenceLines('messages', transcriptDifferences(pairedConversations, transcripts)),
+    ].join('\\n');
 };
 
 const mappingReport = (mapping: Mapping): string => {
@@ -270,7 +306,7 @@ if (invokedDirectly)
         console.error(String(error.message ?? error));
         process.exit(1);
     });
-`})]}),"TheImporter1"),N=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Export](/dougs-importer/#the-export)"}),e.jsxs(n,{children:[e.jsx(p,{}),"What is read, and where it is found: the export Claude gives of an account, and the mapping of conversations to projects read off the application, both left where they land."]}),e.jsxs(r,{children:[e.jsx(s,{children:"A manifest and four archives"}),e.jsx(n,{children:"An export of my Claude account arrives as a small manifest naming four archives, which the browser must fetch since their links are single-use: the account's metadata, its projects with every knowledge file inline, its memories, and every conversation in one array, with every message as a tree of blocks, text, thinking, a tool used and what it returned, and the artifacts among them. The export says nothing about which project a conversation belongs to; that is read off the application by a capture that takes the screen, and written as a mapping beside the export."}),e.jsxs(n,{children:["All of it lands in a sister repository on this machine, in dated folders, by that repository's own command; a fresh export is made there on my go-ahead, since the capture takes my screen. The importer reads the newest export and the latest mapping where they stand, and copies none of it into the library. It never reads the markdown that repository wrote from the export, which kept only the text and walked the tree as a list; the code there was the beginning of this, and the archive there is ",e.jsx(t,{children:"[the check](/dougs-importer/#the-check)"}),"."]})]}),e.jsx(a,{identifier:"export",type:".ts",children:`import { closeSync, createReadStream, existsSync, openSync, readdirSync, readFileSync, readSync } from 'node:fs';
+`})]}),"TheImporter1"),N=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Export](/dougs-importer/#the-export)"}),e.jsxs(n,{children:[e.jsx(p,{}),"What is read, and where it is found: the export Claude gives of an account, and the mapping of conversations to projects read off the application, both left where they land."]}),e.jsxs(r,{children:[e.jsx(s,{children:"A manifest and four archives"}),e.jsx(n,{children:"An export of my Claude account arrives as a small manifest naming four archives, which the browser must fetch since their links are single-use: the account's metadata, its projects with every knowledge file inline, its memories, and every conversation in one array, with every message as a tree of blocks, text, thinking, a tool used and what it returned, and the artifacts among them. The export says nothing about which project a conversation belongs to; that is read off the application by a capture that takes the screen, and written as a mapping beside the export."}),e.jsxs(n,{children:["All of it lands in a sister repository on this machine, in dated folders, by that repository's own command; a fresh export is made there on my go-ahead, since the capture takes my screen. The importer reads the newest export and the latest mapping where they stand, and copies none of it into the library. It never reads the markdown that repository wrote from the export, which kept only the text and walked the tree as a list; the code there was the beginning of this, and the archive there is ",e.jsx(a,{children:"[the check](/dougs-importer/#the-check)"}),"."]})]}),e.jsx(t,{identifier:"export",type:".ts",children:`import { closeSync, createReadStream, existsSync, openSync, readdirSync, readFileSync, readSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Readable } from 'node:stream';
 import { StringDecoder } from 'node:string_decoder';
@@ -422,7 +458,7 @@ export async function* streamedObjects(path: string): AsyncGenerator<unknown> {
         }
     }
 }
-`})]}),"TheExport2"),P=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Record](/dougs-importer/#the-record)"}),e.jsxs(n,{children:[e.jsx(p,{}),"One record for every source: a conversation with its messages as a tree of blocks, and a project with its documents and its memory; each source a reader into it, and nothing after the reading knows a source's words."]}),e.jsxs(r,{children:[e.jsx(s,{children:"The seam"}),e.jsx(n,{children:"Every source I have spoken to Claude through is packaged its own way, and every one holds the same things: a conversation with a name and its times, its messages in a tree, since a message edited or asked again makes a branch, each message by someone at an instant and made of blocks; and a project with a name, a description, its knowledge files and what Claude remembers of it. The record is those things in this library's words, and a reader is the forty lines that rename one source's words into them, once. The stages after the record never see a source, so the second source, the sessions of Claude Code on this machine, is one more reader and nothing else moves."}),e.jsxs(n,{children:["The Claude export's reader streams the one array of conversations, cutting each loose as it closes, so what is held at any moment is one conversation and not the archive, and reads the small archives by their directory; the whole export is read in under twenty seconds without a dependency. The export's own names, ",e.jsx(t,{children:"[the ones its schema gives](/dougs-importer/#the-export)"}),", appear in the reader and nowhere else."]})]}),e.jsx(a,{identifier:"record",type:".ts",children:`export type Speaker = 'Doug' | 'Claude';
+`})]}),"TheExport2"),S=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Record](/dougs-importer/#the-record)"}),e.jsxs(n,{children:[e.jsx(p,{}),"One record for every source: a conversation with its messages as a tree of blocks, and a project with its documents and its memory; each source a reader into it, and nothing after the reading knows a source's words."]}),e.jsxs(r,{children:[e.jsx(s,{children:"The seam"}),e.jsx(n,{children:"Every source I have spoken to Claude through is packaged its own way, and every one holds the same things: a conversation with a name and its times, its messages in a tree, since a message edited or asked again makes a branch, each message by someone at an instant and made of blocks; and a project with a name, a description, its knowledge files and what Claude remembers of it. The record is those things in this library's words, and a reader is the forty lines that rename one source's words into them, once. The stages after the record never see a source, so the second source, the sessions of Claude Code on this machine, is one more reader and nothing else moves."}),e.jsxs(n,{children:["The Claude export's reader streams the one array of conversations, cutting each loose as it closes, so what is held at any moment is one conversation and not the archive, and reads the small archives by their directory; the whole export is read in under twenty seconds without a dependency. The export's own names, ",e.jsx(a,{children:"[the ones its schema gives](/dougs-importer/#the-export)"}),", appear in the reader and nowhere else."]})]}),e.jsx(t,{identifier:"record",type:".ts",children:`export type Speaker = 'Doug' | 'Claude';
 
 export type Block =
     | { type: 'text'; text: string }
@@ -492,7 +528,7 @@ export type Source = {
 };
 
 export const rootParentId = '00000000-0000-4000-8000-000000000000';
-`}),e.jsx(a,{identifier:"claude",type:".ts",children:`import { readFileSync } from 'node:fs';
+`}),e.jsx(t,{identifier:"claude",type:".ts",children:`import { readFileSync } from 'node:fs';
 import { basename } from 'node:path';
 import {
     archiveFromFile, jsonEntries, newestExportFiles, streamedObjects, type ExportFiles,
@@ -628,7 +664,7 @@ export const claudeExportSource = (exportFiles: ExportFiles): Source => ({
 });
 
 export const exportSource = (account: string): Source => claudeExportSource(newestExportFiles(account));
-`}),e.jsx(a,{identifier:"samples",type:".ts",children:`import {
+`}),e.jsx(t,{identifier:"samples",type:".ts",children:`import {
     rootParentId, type Block, type Conversation, type Mapping, type Message, type Project, type Speaker,
 } from './3-the-record~record.ts';
 
@@ -688,7 +724,7 @@ export const sampleKnowledgeSearch = (documentName: string): Block[] => [
     { type: 'action', name: 'project_knowledge_search', input: { query: documentName } },
     { type: 'results', text: \`Found in \${documentName}: a passage\` },
 ];
-`})]}),"TheRecord3"),S=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Pairing](/dougs-importer/#the-pairing)"}),e.jsxs(n,{children:[e.jsx(p,{}),"Which project a conversation belongs to, by evidence the importer names and I dispose of, and which conversations are not mine and stay out."]}),e.jsxs(r,{children:[e.jsx(s,{children:"The machine proposes and I dispose"}),e.jsx(n,{children:"The export pairs nothing: two records in five hundred name a project. So the importer gathers evidence and says it by name. A conversation that searched its project's knowledge and was answered with a document the project holds is paired by that document, with certainty. The mapping captured off the application pairs by title, with its relative date and its position to tell apart the ten conversations that share one name. A project's memory may name a conversation. For a session of Claude Code the working folder is the project. Where the evidence agrees the conversation is paired; where it conflicts or is silent the conversation is left unpaired and reported, and it has its home in the book that catalogues all of them either way."}),e.jsx(n,{children:"The pairing stands as a file beside this chapter, one line per conversation with its project and the evidence, and I edit it: a line I write is read before any evidence. The same file holds the exclusions. A conversation that is not mine, one filed under a project of Ana's, or one with a title in Russian, is proposed for exclusion and stays out unless I strike the line; nothing is excluded by language alone, since I write Russian too."})]}),e.jsx(a,{identifier:"pairing",type:".ts",children:`import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+`})]}),"TheRecord3"),P=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Pairing](/dougs-importer/#the-pairing)"}),e.jsxs(n,{children:[e.jsx(p,{}),"Which project a conversation belongs to, by evidence the importer names and I dispose of, and which conversations are not mine and stay out."]}),e.jsxs(r,{children:[e.jsx(s,{children:"The machine proposes and I dispose"}),e.jsx(n,{children:"The export pairs nothing: two records in five hundred name a project. So the importer gathers evidence and says it by name. A conversation that searched its project's knowledge and was answered with a document the project holds is paired by that document, with certainty. The mapping captured off the application pairs by title, with its relative date and its position to tell apart the ten conversations that share one name. A project's memory may name a conversation. For a session of Claude Code the working folder is the project. Where the evidence agrees the conversation is paired; where it conflicts or is silent the conversation is left unpaired and reported, and it has its home in the book that catalogues all of them either way."}),e.jsx(n,{children:"The pairing stands as a file beside this chapter, one line per conversation with its project and the evidence, and I edit it: a line I write is read before any evidence. The same file holds the exclusions. A conversation that is not mine, one filed under a project of Ana's, or one with a title in Russian, is proposed for exclusion and stays out unless I strike the line; nothing is excluded by language alone, since I write Russian too."})]}),e.jsx(t,{identifier:"pairing",type:".ts",children:`import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Conversation, Mapping, Project } from './3-the-record~record.ts';
 
@@ -862,7 +898,7 @@ const isTitleMapped = (conversation: Conversation, mapping: Mapping | undefined)
     mapping?.projects
         .some(mappedProject => mappedProject.conversations.some(mappedRow => mappedRow.title.trim() === conversation.name))
         ?? false;
-`}),e.jsx(a,{identifier:"pairings",type:".json",children:`[
+`}),e.jsx(t,{identifier:"pairings",type:".json",children:`[
   {
     "conversationId": "5d5653bc-709b-4a1e-8955-65ac0b7e85e2",
     "title": "Doug & Ana's Recursive Universe",
@@ -5318,7 +5354,7 @@ const isTitleMapped = (conversation: Conversation, mapping: Mapping | undefined)
     "byHand": false
   }
 ]
-`}),e.jsx(a,{identifier:"promises.test",type:".ts",children:`import { mkdirSync, mkdtempSync, rmSync } from 'node:fs';
+`}),e.jsx(t,{identifier:"promises.test",type:".ts",children:`import { mkdirSync, mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
@@ -5413,7 +5449,7 @@ describe('the pairing', () => {
         expect(readPairings(library)).toEqual(pairings);
     });
 });
-`})]}),"ThePairing4"),F=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Ledger](/dougs-importer/#the-ledger)"}),e.jsxs(n,{children:[e.jsx(p,{}),"What the importer wrote, kept as a record beside each conversation's entry in the book that holds them all, so that it knows which conversations are already in, which have grown since, which are new, and which I have edited by hand and it must never touch."]}),e.jsxs(r,{children:[e.jsx(s,{children:"A record beside every entry"}),e.jsx(n,{children:"Many conversations are short, and after a few runs it is hard to know which are in. So the importer keeps its ledger in the conversations book itself: beside each entry of the register of all my conversations stands a file named for the entry, the record of that conversation's import, with the conversation's id, the name and folder of its book, the export it was read from, the export's time of last change and its count of messages at the import, and the digest of the files written. The entry lists the file, so the binder accounts for it, and reads nothing of it, since a resource is shown and never interpreted. A conversation with no record is new. One whose export now shows a later time or more messages has grown since, and is reported. One equal to its record is in. And one whose files no longer match their digest has been edited by hand, and the importer never touches it, whatever flag the run was given."}),e.jsxs(n,{children:["The record stands with the entry, so what I do to a conversation by hand, cutting it, renaming it, striking it from the register, carries its record along or removes it, and the state of the import is never a file apart that can disagree with the books. While the importer is being made it overwrites what it wrote, on a flag said at the run, since the shape of a book is still being decided on ",e.jsx(t,{children:"[its page](/dougs-design/#the-conversations-page)"}),". Once it is done the flag goes, and a conversation once imported is mine: cut into days or sittings, summarized, annotated, by hand."]})]}),e.jsx(a,{identifier:"ledger",type:".ts",children:`import { createHash } from 'node:crypto';
+`})]}),"ThePairing4"),F=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Ledger](/dougs-importer/#the-ledger)"}),e.jsxs(n,{children:[e.jsx(p,{}),"What the importer wrote, kept as a record beside each conversation's entry in the book that holds them all, so that it knows which conversations are already in, which have grown since, which are new, and which I have edited by hand and it must never touch."]}),e.jsxs(r,{children:[e.jsx(s,{children:"A record beside every entry"}),e.jsx(n,{children:"Many conversations are short, and after a few runs it is hard to know which are in. So the importer keeps its ledger in the conversations book itself: beside each entry of the register of all my conversations stands a file named for the entry, the record of that conversation's import, with the conversation's id, the name and folder of its book, the export it was read from, the export's time of last change and its count of messages at the import, and the digest of the files written. The entry lists the file, so the binder accounts for it, and reads nothing of it, since a resource is shown and never interpreted. A conversation with no record is new. One whose export now shows a later time or more messages has grown since, and is reported. One equal to its record is in. And one whose files no longer match their digest has been edited by hand, and the importer never touches it, whatever flag the run was given."}),e.jsxs(n,{children:["The record stands with the entry, so what I do to a conversation by hand, cutting it, renaming it, striking it from the register, carries its record along or removes it, and the state of the import is never a file apart that can disagree with the books. While the importer is being made it overwrites what it wrote, on a flag said at the run, since the shape of a book is still being decided on ",e.jsx(a,{children:"[its page](/dougs-design/#the-conversations-page)"}),". Once it is done the flag goes, and a conversation once imported is mine: cut into days or sittings, summarized, annotated, by hand."]})]}),e.jsx(t,{identifier:"ledger",type:".ts",children:`import { createHash } from 'node:crypto';
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Conversation } from './3-the-record~record.ts';
@@ -5489,7 +5525,7 @@ export const importRecord = (
     digest: folderDigest(join(registerFolder, bookFolder)),
     importedAt: new Date().toISOString(),
 });
-`}),e.jsx(a,{identifier:"promises.test",type:".ts",children:`import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+`}),e.jsx(t,{identifier:"promises.test",type:".ts",children:`import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
@@ -5547,7 +5583,7 @@ describe('the ledger', () => {
         expect(heldRecords.get('r')?.record.exportedOn).toBe('2026-10-01');
     });
 });
-`})]}),"TheLedger5"),T=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Thread](/dougs-importer/#the-thread)"}),e.jsxs(n,{children:[e.jsx(p,{}),"The conversation as it stood on the screen, which is one path through a tree, and the count of what was left on other paths."]}),e.jsxs(r,{children:[e.jsx(s,{children:"A tree, and the path a reader sees"}),e.jsx(n,{children:"Every time I edit a message or ask for another answer, the conversation branches, and what the application shows me is never the tree but one path through it, from the first thing said to whichever end I was last standing on. Each message carries the one it was said after, so the path is a walk: take the latest message nothing answers, follow the parents to the root, and turn it around. That path is the conversation as far as a reader is concerned, and the importer says what it left behind rather than rounding it off: a conversation of a hundred and six messages that shows eighty-four has twenty-two on other paths, and the cover says so."})]}),e.jsx(a,{identifier:"thread",type:".ts",children:`import { rootParentId, type Conversation, type Message } from './3-the-record~record.ts';
+`})]}),"TheLedger5"),T=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Thread](/dougs-importer/#the-thread)"}),e.jsxs(n,{children:[e.jsx(p,{}),"The conversation as it stood on the screen, which is one path through a tree, and the count of what was left on other paths."]}),e.jsxs(r,{children:[e.jsx(s,{children:"A tree, and the path a reader sees"}),e.jsx(n,{children:"Every time I edit a message or ask for another answer, the conversation branches, and what the application shows me is never the tree but one path through it, from the first thing said to whichever end I was last standing on. Each message carries the one it was said after, so the path is a walk: take the latest message nothing answers, follow the parents to the root, and turn it around. That path is the conversation as far as a reader is concerned, and the importer says what it left behind rather than rounding it off: a conversation of a hundred and six messages that shows eighty-four has twenty-two on other paths, and the cover says so."})]}),e.jsx(t,{identifier:"thread",type:".ts",children:`import { rootParentId, type Conversation, type Message } from './3-the-record~record.ts';
 
 export const shownPath = (conversation: Conversation): Message[] => {
     const messagesById = new Map(conversation.messages.map(message => [message.id, message]));
@@ -5569,7 +5605,7 @@ export const asideCount = (conversation: Conversation, path: Message[]): number 
     conversation.messages.length - path.length;
 
 export const pathDays = (path: Message[]): string[] => [...new Set(path.map(message => message.sentAt.slice(0, 10)))];
-`}),e.jsx(a,{identifier:"promises.test",type:".ts",children:`import { describe, expect, it } from 'vitest';
+`}),e.jsx(t,{identifier:"promises.test",type:".ts",children:`import { describe, expect, it } from 'vitest';
 import { sampleConversation, sampleTextMessage } from './3-the-record~samples.ts';
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
 
@@ -5592,7 +5628,7 @@ describe('the thread', () => {
         expect(pathDays(shownPath(branched))).toEqual(['2026-06-15', '2026-06-16']);
     });
 });
-`})]}),"TheThread6"),A=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Writing](/dougs-importer/#the-writing)"}),e.jsxs(n,{children:[e.jsx(p,{}),"What was said, turned into this library's writing once, on the way in, and never read from a string when a page is drawn."]}),e.jsxs(r,{children:[e.jsx(s,{children:"Once, on the way in"}),e.jsxs(n,{children:["A message's text comes out of the export as markdown, and what belongs in a library is writing. The conversion happens here, once: a message becomes an exchange of ",e.jsx(t,{children:"[a conversation](/dougs-reference-manual/#the-conversation)"}),", headed by who said it and told its instant, and what was said becomes paragraphs, lists, headings, code, tables, formulas, a word set bold or in emphasis, a word typed as code said verbatim, a quoted paragraph said quoted, and a link to the web a word that refers to it. The markup of the file it lands in is the library's own, expanded, one element to a line, so the checker that reads the shape of every file here reads these too."]}),e.jsx(n,{children:"A search of the web or a run of code that Claude made becomes one paragraph saying what was done and the paragraph after it saying what came back. An artifact the conversation made becomes a file beside the chapter, every version of it, its updates replayed, with a paragraph naming it where it was made. The text of a file pasted or attached becomes a file beside the chapter too; an uploaded file, whose content the export never carries, is named and no more. The thinking behind an answer is counted and left out."})]}),e.jsx(a,{identifier:"writing",type:".ts",children:`import type { Block, Conversation, Message, Speaker } from './3-the-record~record.ts';
+`})]}),"TheThread6"),A=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Writing](/dougs-importer/#the-writing)"}),e.jsxs(n,{children:[e.jsx(p,{}),"What was said, turned into this library's writing once, on the way in, and never read from a string when a page is drawn."]}),e.jsxs(r,{children:[e.jsx(s,{children:"Once, on the way in"}),e.jsxs(n,{children:["A message's text comes out of the export as markdown, and what belongs in a library is writing. The conversion happens here, once: a message becomes an exchange of ",e.jsx(a,{children:"[a conversation](/dougs-reference-manual/#the-conversation)"}),", headed by who said it and told its instant, and what was said becomes paragraphs, lists, headings, code, tables, formulas, a word set bold or in emphasis, a word typed as code said verbatim, a quoted paragraph said quoted, and a link to the web a word that refers to it. The markup of the file it lands in is the library's own, expanded, one element to a line, so the checker that reads the shape of every file here reads these too."]}),e.jsx(n,{children:"A search of the web or a run of code that Claude made becomes one paragraph saying what was done and the paragraph after it saying what came back. An artifact the conversation made becomes a file beside the chapter, every version of it, its updates replayed, with a paragraph naming it where it was made. The text of a file pasted or attached becomes a file beside the chapter too; an uploaded file, whose content the export never carries, is named and no more. The thinking behind an answer is counted and left out."})]}),e.jsx(t,{identifier:"writing",type:".ts",children:`import type { Block, Conversation, Message, Speaker } from './3-the-record~record.ts';
 
 export type Referents = Record<Speaker, string>;
 export type WrittenFile = { name: string; content: string };
@@ -6055,7 +6091,7 @@ export const proseLines = (pieces: ProsePiece[], depth: number): string[] => {
 
     return outputLines;
 };
-`}),e.jsx(a,{identifier:"promises.test",type:".ts",children:`import { describe, expect, it } from 'vitest';
+`}),e.jsx(t,{identifier:"promises.test",type:".ts",children:`import { describe, expect, it } from 'vitest';
 import type { Block } from './3-the-record~record.ts';
 import { sampleConversation, sampleMessage, sampleTextMessage } from './3-the-record~samples.ts';
 import {
@@ -6184,7 +6220,7 @@ const figure = (elementName: string, identifier: string, type: string, sentence:
     \`                \${sentence}\`,
     \`            </\${elementName}>\`,
 ].join('\\n');
-`})]}),"TheWriting7"),L=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Books](/dougs-importer/#the-books)"}),e.jsxs(n,{children:[e.jsx(p,{}),"What is left on disk: a conversation as a book, every conversation filed under one book that catalogues them all, and a book per project that catalogues its own besides."]}),e.jsxs(r,{children:[e.jsx(s,{children:"One home, and as many catalogues as I like"}),e.jsxs(n,{children:["A conversation is a book: its book file one line, its cover saying when it was held and how many messages it holds, its synopsis what it came to, its table, and in the first version one chapter holding every exchange. It is filed under the book that catalogues all of my conversations, which is its one home whatever the mapping says. Each project that catalogues it is a book of its own, ",e.jsx(t,{children:"[a project book](/dougs-reference-manual/#the-project-manual)"}),", a reference manual of the project's knowledge files and a catalogue of its conversations by topic, which is the way back from a conversation to its project; and a project's book is a subject, so what I later write about a project can be filed under it. Both kinds of catalogue are filed under Dougs Claude, the book that catalogues the conversations book and the project books together. The catalogue of all of them is a very simple book for now; the shelves and the tables that catalogue them more effectively come with their pages."]}),e.jsxs(n,{children:["A book's name is its title, an untitled conversation numbered Untitled 1 and on by a count the importer keeps, a repeated title the same, and never a date, since a conversation happens across time. A folder that exists is never entered unless the run says to overwrite and ",e.jsx(t,{children:"[the ledger](/dougs-importer/#the-ledger)"})," says the book is still the importer's; a catalogue's chapter and row are added where its table lacks the reference."]})]}),e.jsx(a,{identifier:"books",type:".ts",children:`import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+`})]}),"TheWriting7"),L=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Books](/dougs-importer/#the-books)"}),e.jsxs(n,{children:[e.jsx(p,{}),"What is left on disk: a conversation as a book, every conversation filed under one book that catalogues them all, and a book per project that catalogues its own besides."]}),e.jsxs(r,{children:[e.jsx(s,{children:"One home, and as many catalogues as I like"}),e.jsxs(n,{children:["A conversation is a book: its book file one line, its cover saying when it was held and how many messages it holds, its synopsis what it came to, its table, and in the first version one chapter holding every exchange. It is filed under the book that catalogues all of my conversations, which is its one home whatever the mapping says. Each project that catalogues it is a book of its own, ",e.jsx(a,{children:"[a project book](/dougs-reference-manual/#the-project-manual)"}),", a reference manual of the project's knowledge files and a catalogue of its conversations by topic, which is the way back from a conversation to its project; and a project's book is a subject, so what I later write about a project can be filed under it. Both kinds of catalogue are filed under Dougs Claude, the book that catalogues the conversations book and the project books together. The catalogue of all of them is a very simple book for now; the shelves and the tables that catalogue them more effectively come with their pages."]}),e.jsxs(n,{children:["A book's name is its title, an untitled conversation numbered Untitled 1 and on by a count the importer keeps, a repeated title the same, and never a date, since a conversation happens across time. A folder that exists is never entered unless the run says to overwrite and ",e.jsx(a,{children:"[the ledger](/dougs-importer/#the-ledger)"})," says the book is still the importer's; a catalogue's chapter and row are added where its table lacks the reference."]})]}),e.jsx(t,{identifier:"books",type:".ts",children:`import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import type { Conversation, Message, Project } from './3-the-record~record.ts';
 import {
@@ -6675,4 +6711,224 @@ const rowLines = (name: string, stars: string): string[] => [
     '    </Word>',
     '</Paragraph>',
 ];
-`})]}),"TheBooks8"),M=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Check](/dougs-importer/#the-check)"}),e.jsxs(n,{children:[e.jsx(p,{}),"What the importer wrote, checked against the archive the export was first read into, and then against the bind."]}),e.jsxs(r,{children:[e.jsx(s,{children:"Two readings of one export"}),e.jsxs(n,{children:["The sister repository holds an older reading of the same export, as markdown: a transcript per conversation with its count of messages, a book per project with the conversations its scaffold filed there, and the statistics of the whole. The importer never reads that archive as a source, but it is a check: every count of ours against its statistics, our pairing of a project against its scaffold's, our count of messages in each conversation against its transcript's, every difference listed by name in the report. Then the bind, which holds every book to its type and every reference to its place; and a promise that reads every written conversation back against the export and finds the exchanges equal to ",e.jsx(t,{children:"[the thread](/dougs-importer/#the-thread)"}),"."]})]})]}),"TheCheck9"),R=v(m),G=i(()=>e.jsxs(R,{children:[j(),k(),C(),H(),N(),P(),S(),F(),T(),A(),L(),M()]}),"book");export{G as book};
+`})]}),"TheBooks8"),M=i(()=>e.jsxs(d,{children:[e.jsx(l,{}),e.jsx(c,{children:"[The Check](/dougs-importer/#the-check)"}),e.jsxs(n,{children:[e.jsx(p,{}),"What the importer wrote, checked against the archive the export was first read into, and then against the bind."]}),e.jsxs(r,{children:[e.jsx(s,{children:"Two readings of one export"}),e.jsxs(n,{children:["The sister repository holds an older reading of the same export, as markdown: a transcript per conversation with its count of messages, a book per project with the conversations its scaffold filed there, and the statistics of the whole. The importer never reads that archive as a source, but it is a check: every count of ours against its statistics, our pairing of a project against its scaffold's, our count of messages in each conversation against its transcript's, every difference listed by name in the report. Then the bind, which holds every book to its type and every reference to its place; and the run reads every conversation it has written back through its record, the instants of its messages in order, and finds them equal to ",e.jsx(a,{children:"[the thread](/dougs-importer/#the-thread)"})," or says from which message they stray."]}),e.jsx(n,{children:"The run reports the check whether it writes or not, after the project's conversations: the counts of the whole export against the statistics, the project's conversations we paired against the ones the scaffold filed, each conversation's messages against its transcript's count, and what stands written against the export. A difference is not a fault; the archive's reading is older and its own, and the report is where the two are read side by side."})]}),e.jsx(t,{identifier:"check",type:".ts",children:`import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import type { Conversation } from './3-the-record~record.ts';
+import type { HeldRecord } from './5-the-ledger~ledger.ts';
+import { shownPath } from './6-the-thread~thread.ts';
+
+export type ExportCounts = {
+    conversationCount: number;
+    messageCount: number;
+    projectCount: number;
+    documentCount: number;
+    contentfulCount: number;
+};
+export type ArchiveStatistics = ExportCounts;
+export type ArchiveTranscript = { fileName: string; uuid: string; title: string; messageCount: number };
+export type Difference = { name: string; ours: string; theirs: string };
+
+const countLabels: Record<keyof ArchiveStatistics, string> = {
+    conversationCount: 'Conversations',
+    messageCount: 'Messages',
+    projectCount: 'Projects',
+    documentCount: 'Project documents',
+    contentfulCount: 'Conversations with content',
+};
+
+export const archiveStatistics = (text: string): ArchiveStatistics => {
+    const counted = (label: string): number => Number(new RegExp(\`\\\\*\\\\*\${label}:\\\\*\\\\* (\\\\d+)\`, 'u').exec(text)?.[1] ?? 0);
+    const statistics = {} as ArchiveStatistics;
+    for (const [field, label] of Object.entries(countLabels) as [keyof ArchiveStatistics, string][])
+        statistics[field] = counted(label);
+
+    return statistics;
+};
+
+export const frontMatter = (text: string): string => /^---\\r?\\n([\\s\\S]*?)\\r?\\n---/u.exec(text)?.[1] ?? '';
+
+export const transcriptMeta = (fileName: string, text: string): ArchiveTranscript => {
+    const matter = frontMatter(text);
+    const field = (name: string): string => new RegExp(\`^\${name}: (.*)$\`, 'mu').exec(matter)?.[1]?.trim() ?? '';
+
+    return {
+        fileName,
+        uuid: field('uuid'),
+        title: field('title').replace(/^"(.*)"$/u, '$1'),
+        messageCount: Number(field('messages') || 0),
+    };
+};
+
+export const filedTranscriptNames = (coverText: string): string[] =>
+    [...coverText.matchAll(/\\]\\(\\.\\.\\/\\.\\.\\/conversations\\/([^)]+)\\)/gu)].map(match => match[1]);
+
+export const archiveTranscripts = (archiveFolder: string): Map<string, ArchiveTranscript> => {
+    const folder = join(archiveFolder, 'conversations');
+    const transcripts = new Map<string, ArchiveTranscript>();
+    if (!existsSync(folder)) return transcripts;
+    for (const fileName of readdirSync(folder).filter(name => name.endsWith('.md'))) {
+        const transcript = transcriptMeta(fileName, readFileSync(join(folder, fileName), 'utf8').slice(0, 2000));
+        transcripts.set(transcript.fileName, transcript);
+    }
+
+    return transcripts;
+};
+
+export const archiveFiling = (archiveFolder: string, projectName: string): string[] | undefined => {
+    const folder = join(archiveFolder, 'projects');
+    if (!existsSync(folder)) return undefined;
+    for (const projectFolder of readdirSync(folder)) {
+        const coverPath = join(folder, projectFolder, '.cover.md');
+        if (!existsSync(coverPath)) continue;
+        const coverText = readFileSync(coverPath, 'utf8');
+        const title = /^title: "?(.*?)"?\\s*$/mu.exec(frontMatter(coverText))?.[1];
+        if (title === projectName) return filedTranscriptNames(coverText);
+    }
+
+    return undefined;
+};
+
+export const countDifferences = (ours: ExportCounts, theirs: ArchiveStatistics): Difference[] =>
+    (Object.keys(countLabels) as (keyof ArchiveStatistics)[])
+        .filter(field => ours[field] !== theirs[field])
+        .map(field => ({ name: countLabels[field], ours: String(ours[field]), theirs: String(theirs[field]) }));
+
+export const filingDifferences = (
+    ours: Conversation[],
+    filedNames: string[],
+    transcripts: Map<string, ArchiveTranscript>,
+): Difference[] => {
+    const theirIds = new Set(filedNames.map(fileName => transcripts.get(fileName)?.uuid).filter(uuid => uuid !== undefined));
+    const ourIds = new Set(ours.map(conversation => conversation.id));
+    const transcriptsById = new Map([...transcripts.values()].map(transcript => [transcript.uuid, transcript]));
+    const differences: Difference[] = ours
+        .filter(conversation => !theirIds.has(conversation.id))
+        .map(conversation => ({ name: conversation.name || 'Untitled', ours: 'paired', theirs: 'not filed' }));
+    for (const uuid of theirIds)
+        if (!ourIds.has(uuid))
+            differences.push({ name: transcriptsById.get(uuid)?.title ?? uuid, ours: 'not paired', theirs: 'filed' });
+
+    return differences;
+};
+
+export const transcriptDifferences = (ours: Conversation[], transcripts: Map<string, ArchiveTranscript>): Difference[] => {
+    const transcriptsById = new Map([...transcripts.values()].map(transcript => [transcript.uuid, transcript]));
+
+    return ours.flatMap(conversation => {
+        const transcript = transcriptsById.get(conversation.id);
+        const name = conversation.name || 'Untitled';
+        const ours = \`\${conversation.messages.length} messages\`;
+        if (transcript === undefined) return [{ name, ours, theirs: 'no transcript' }];
+        if (transcript.messageCount === conversation.messages.length) return [];
+
+        return [{ name, ours, theirs: \`\${transcript.messageCount} messages\` }];
+    });
+};
+
+export const chapterInstants = (chapterText: string): string[] =>
+    [...chapterText.matchAll(/^\\s*at="([^"]+)"$/gmu)].map(match => match[1]);
+
+export const writtenInstants = (bookFolder: string): string[] => {
+    if (!existsSync(bookFolder)) return [];
+    const chapterFileNames = readdirSync(bookFolder)
+        .filter(fileName => /^\\d/u.test(fileName) && fileName.endsWith('.tsx') && !fileName.includes('~'))
+        .sort((a, b) => Number(/^\\d+/u.exec(a)![0]) - Number(/^\\d+/u.exec(b)![0]));
+
+    return chapterFileNames.flatMap(fileName => chapterInstants(readFileSync(join(bookFolder, fileName), 'utf8')));
+};
+
+export const writtenDifferences = (
+    conversations: Conversation[],
+    heldRecords: Map<string, HeldRecord>,
+    registerFolder: string,
+): Difference[] => conversations.flatMap(conversation => {
+    const heldRecord = heldRecords.get(conversation.id);
+    if (heldRecord === undefined) return [];
+    const written = writtenInstants(join(registerFolder, heldRecord.record.bookFolder));
+    const thread = shownPath(conversation).map(message => message.sentAt);
+    if (written.length === thread.length && written.every((instant, index) => instant === thread[index])) return [];
+    const firstAstray = written.findIndex((instant, index) => instant !== thread[index]);
+    const where = firstAstray < 0 ? 'at the end' : \`from message \${firstAstray + 1}\`;
+    const ours = \`\${written.length} written, astray \${where}\`;
+
+    return [{ name: heldRecord.record.name, ours, theirs: \`\${thread.length} shown\` }];
+});
+
+export const differenceLines = (heading: string, differences: Difference[]): string[] => [
+    \`\${heading}: \${differences.length === 0 ? 'no difference' : \`\${differences.length} differ\`}\`,
+    ...differences.map(difference => \`  \${difference.name} · ours \${difference.ours} · theirs \${difference.theirs}\`),
+];
+`}),e.jsx(t,{identifier:"promises.test",type:".ts",children:`import { describe, expect, it } from 'vitest';
+import { sampleConversation, sampleTextMessage } from './3-the-record~samples.ts';
+import { writtenChapter, type Referents } from './7-the-writing~writing.ts';
+import {
+    archiveStatistics, chapterInstants, countDifferences, differenceLines, filedTranscriptNames, filingDifferences,
+    transcriptDifferences, transcriptMeta, type ArchiveTranscript,
+} from './9-the-check~check.ts';
+
+const referents: Referents = { Doug: 'Dougs Story', Claude: 'Dougs Claude' };
+const statisticsText = [
+    '---', 'title: Export Statistics', '---', '', '# Export Statistics', '',
+    '- **Conversations:** 523', '- **Messages:** 19704', '- **Projects:** 41', '- **Project documents:** 222',
+    '- **Artifacts:** 246', '- **Date range:** 2024-09-25 to 2026-09-11', '- **Conversations with content:** 513',
+].join('\\n');
+const transcriptText = [
+    '---', 'uuid: 7683c3d7', 'title: "Seren & The Hard Problem"', 'created: 2024-09-25T23:43:33Z', 'messages: 688', '---',
+    '', '# Seren & The Hard Problem',
+].join('\\n');
+const coverText = [
+    '---', 'title: "Semantic Reference Theory"', '---', '', '| # | Title | | Date | Messages |', '|---|---|-|---|---|',
+    '| 01 | [A Continuation...](01-a-continuation....md) | [.md](../../conversations/2026-05-25-a-continuation....md) '
+        + '| 2026-05-25 | 8 |',
+    '| 08 | [Semantic Primes](08-semantic-primes.md) | [.md](../../conversations/2026-06-16-semantic-primes.md) '
+        + '| 2026-06-16 | 18 |',
+].join('\\n');
+const transcript = (fileName: string, uuid: string, title: string, messageCount: number): [string, ArchiveTranscript] =>
+    [fileName, { fileName, uuid, title, messageCount }];
+const transcripts = new Map<string, ArchiveTranscript>([
+    transcript('2026-05-25-a-continuation....md', 'c1', 'A Continuation...', 8),
+    transcript('2026-06-16-semantic-primes.md', 'c8', 'Semantic Primes', 18),
+]);
+
+describe('the check', () => {
+    it("reads the archive's statistics, a transcript's front matter and a project cover's filing", () => {
+        expect(archiveStatistics(statisticsText)).toEqual({
+            conversationCount: 523, messageCount: 19704, projectCount: 41, documentCount: 222, contentfulCount: 513,
+        });
+        expect(transcriptMeta('t.md', transcriptText))
+            .toEqual({ fileName: 't.md', uuid: '7683c3d7', title: 'Seren & The Hard Problem', messageCount: 688 });
+        expect(filedTranscriptNames(coverText))
+            .toEqual(['2026-05-25-a-continuation....md', '2026-06-16-semantic-primes.md']);
+    });
+
+    it('lists only the counts that differ, by name', () => {
+        const ours = {
+            conversationCount: 523, messageCount: 19704, projectCount: 41, documentCount: 222, contentfulCount: 512,
+        };
+        expect(countDifferences(ours, archiveStatistics(statisticsText)))
+            .toEqual([{ name: 'Conversations with content', ours: '512', theirs: '513' }]);
+    });
+
+    it('tells a conversation we paired and the scaffold did not file from the reverse, and a count that differs', () => {
+        const primes = sampleConversation('c8', 'Semantic Primes', [sampleTextMessage('m1', 'Doug', 'q')]);
+        const books = sampleConversation('c16', 'The Semantics of Books', [sampleTextMessage('m1', 'Doug', 'q')]);
+        const filedNames = filedTranscriptNames(coverText);
+        expect(filingDifferences([primes, books], filedNames, transcripts)).toEqual([
+            { name: 'The Semantics of Books', ours: 'paired', theirs: 'not filed' },
+            { name: 'A Continuation...', ours: 'not paired', theirs: 'filed' },
+        ]);
+        expect(transcriptDifferences([primes, books], transcripts)).toEqual([
+            { name: 'Semantic Primes', ours: '1 messages', theirs: '18 messages' },
+            { name: 'The Semantics of Books', ours: '1 messages', theirs: 'no transcript' },
+        ]);
+        expect(differenceLines('filing', [])).toEqual(['filing: no difference']);
+    });
+
+    it('reads a written chapter back and finds its messages at the instants of the thread', () => {
+        const question = sampleTextMessage('m1', 'Doug', 'A question', undefined, '2026-06-15T10:00:00Z');
+        const path = [question, sampleTextMessage('m2', 'Claude', 'An answer', 'm1', '2026-06-15T10:01:00Z')];
+        const chapter = writtenChapter(sampleConversation('c', 'A Conversation', path), path, referents, '../m', '../c');
+        expect(chapterInstants(chapter.tsx)).toEqual(['2026-06-15T10:00:00Z', '2026-06-15T10:01:00Z']);
+    });
+});
+`})]}),"TheCheck9"),$=y(m),G=i(()=>e.jsxs($,{children:[j(),C(),k(),H(),N(),S(),P(),F(),T(),A(),L(),M()]}),"book");export{G as book};
