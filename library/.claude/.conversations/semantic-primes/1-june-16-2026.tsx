@@ -1806,10 +1806,5 @@ export default () => (
                 residue? That's the only thing left to settle, and it's your call, not mine to narrate.
             </Paragraph>
         </Message>
-        <Section>
-            <Heading>As I had it before the re-import</Heading>
-            <Paragraph>synopsis, as I had it:</Paragraph>
-            <Code language="tsx">![[ edited-synopsis-tsx.txt ]]</Code>
-        </Section>
     </Chapter>
 );

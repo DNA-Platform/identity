@@ -5,8 +5,8 @@ import { exportSource } from './3-the-record~claude.ts';
 import type { Conversation, Mapping, Project } from './3-the-record~record.ts';
 import { conversationPairings, type Exclusions, type Pairing } from './4-the-pairing~pairing.ts';
 import {
-    folderContents, hasGrown, importRecord, importRecords, importState, keptEdits, keptEditsStanding, recordIdentifier,
-    recordSuffix, standingKeptEdits, writeImportRecord, type HeldRecord, type Reimport,
+    folderContents, hasGrown, importRecord, importRecords, importState, keptEdits, keptEditsStanding, keptEditsStruck,
+    recordIdentifier, recordSuffix, standingKeptEdits, tendStruckEdits, writeImportRecord, type HeldRecord, type Reimport,
 } from './5-the-ledger~ledger.ts';
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
 import { slugFromName, titleFromName, writtenChapter, type Referents } from './7-the-writing~writing.ts';
@@ -120,6 +120,10 @@ export const run = async (args: Arguments): Promise<void> => {
         conversations: join(args.library, '.claude', '.conversations'),
     };
     const heldRecords = importRecords(folders.conversations);
+    if (args.write) {
+        const tended = [...heldRecords.values()].flatMap(heldRecord => tendStruckEdits(folders.conversations, heldRecord));
+        if (tended.length > 0) console.log(`tended ${countedNoun(tended.length, 'file')} after kept copies were struck`);
+    }
     const selected = selectedPairings(pairings, args, configuration.collections);
     if (selected.length === 0) {
         listHeldConversations(reading, heldRecords, folders);
@@ -245,12 +249,14 @@ const importedWords = (heldRecord: HeldRecord | undefined, registerFolder: strin
     const grownSince = conversation !== undefined && hasGrown(conversation, heldRecord.record);
     const grownWords = grownSince ? ', grown since: re-import it with --reimport and re-apply what you edited' : '';
     const waiting = keptEditsStanding(registerFolder, heldRecord.record);
+    const struck = keptEditsStruck(registerFolder, heldRecord.record);
     const reimportedWords = reimportedAt === undefined ? '' : `, re-imported ${reimportedAt.slice(0, 10)}`;
     const waitingWords = waiting.length === 0 ? '' : `, ${countedNoun(waiting.length, 'file')} of your edits to apply`;
-
+    const struckWords = struck.length === 0
+        ? '' : `, ${countedNoun(struck.length, 'kept copy')} struck: a run that writes tends the chapter`;
     const whenWords = `imported ${importedAt.slice(0, 10)} from the export of ${exportedOn}`;
 
-    return ` · ${whenWords}${reimportedWords}${waitingWords}${grownWords}`;
+    return ` · ${whenWords}${reimportedWords}${waitingWords}${struckWords}${grownWords}`;
 };
 
 const listSelectedConversations = (

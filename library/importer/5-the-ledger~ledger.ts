@@ -130,3 +130,57 @@ export const keptEdits = (
 
 export const keptEditsStanding = (registerFolder: string, record: ImportRecord): string[] =>
     (record.keptEdits ?? []).filter(fileName => existsSync(join(registerFolder, record.bookFolder, fileName)));
+
+export const keptEditsStruck = (registerFolder: string, record: ImportRecord): string[] =>
+    (record.keptEdits ?? []).filter(fileName => !existsSync(join(registerFolder, record.bookFolder, fileName)));
+
+const keptHeading = 'As I had it before the re-import';
+const keptSectionForm = new RegExp(
+    `^ {8}<Section>\\n {12}<Heading>${keptHeading}</Heading>\\n([\\s\\S]*?)^ {8}</Section>\\n`, 'mu',
+);
+const printedForm = new RegExp(
+    '^ {12}<Paragraph>.*</Paragraph>\\n {12}<Code language="tsx">!\\[\\[ (edited-[^ ]+)\\.txt \\]\\]</Code>\\n', 'gmu',
+);
+
+export const chapterWithoutStruck = (chapterText: string, struckFileNames: string[]): string => {
+    const identifiers = struckFileNames.map(fileName => keptEditForm.exec(fileName)?.[2]).filter(one => one !== undefined);
+    const section = keptSectionForm.exec(chapterText);
+    if (section === null || identifiers.length === 0) return chapterText;
+    const remaining = section[1].replace(printedForm, (printed, identifier: string) =>
+        identifiers.includes(identifier) ? '' : printed);
+    const sectionText = remaining.trim() === '' ? '' : [
+        '        <Section>',
+        `            <Heading>${keptHeading}</Heading>`,
+        remaining.replace(/\n$/u, ''),
+        '        </Section>',
+        '',
+    ].join('\n');
+
+    return chapterText.replace(keptSectionForm, () => sectionText);
+};
+
+export const tendStruckEdits = (registerFolder: string, heldRecord: HeldRecord): string[] => {
+    const struck = keptEditsStruck(registerFolder, heldRecord.record);
+    if (struck.length === 0) return [];
+    const bookFolder = join(registerFolder, heldRecord.record.bookFolder);
+    const touched: string[] = [];
+    const chapterStems = new Set(struck.map(fileName => keptEditForm.exec(fileName)?.[1]).filter(one => one !== undefined));
+    for (const chapterStem of chapterStems) {
+        const chapterPath = join(bookFolder, `${chapterStem}.tsx`);
+        if (!existsSync(chapterPath)) continue;
+        const chapterText = readFileSync(chapterPath, 'utf8');
+        const tended = chapterWithoutStruck(chapterText, struck);
+        if (tended === chapterText) continue;
+        writeFileSync(chapterPath, tended, 'utf8');
+        touched.push(chapterPath);
+    }
+    const record: ImportRecord = {
+        ...heldRecord.record,
+        keptEdits: keptEditsStanding(registerFolder, heldRecord.record),
+        digest: folderDigest(bookFolder),
+    };
+    writeImportRecord(heldRecord.path, record);
+    heldRecord.record = record;
+
+    return [...touched, heldRecord.path];
+};

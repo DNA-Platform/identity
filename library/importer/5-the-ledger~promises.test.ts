@@ -4,8 +4,8 @@ import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { sampleConversation, sampleTextMessage } from './3-the-record~samples.ts';
 import {
-    folderContents, folderDigest, importRecord, importRecords, importState, keptEditName, keptEdits, keptEditsStanding,
-    recordSuffix, standingKeptEdits, writeImportRecord,
+    chapterWithoutStruck, folderContents, folderDigest, importRecord, importRecords, importState, keptEditName, keptEdits,
+    keptEditsStanding, recordSuffix, standingKeptEdits, tendStruckEdits, writeImportRecord,
 } from './5-the-ledger~ledger.ts';
 
 const registerFolder = mkdtempSync(join(tmpdir(), 'records-'));
@@ -74,6 +74,39 @@ describe('the ledger', () => {
         expect(keptEditsStanding(registerFolder, record)).toHaveLength(2);
         rmSync(join(folder, kept[0].fileName));
         expect(keptEditsStanding(registerFolder, record)).toEqual([kept[1].fileName]);
+    });
+
+    it('tends a struck kept file: its printing leaves the chapter, the section with the last, the record after', () => {
+        const slug = bookFolder('tended');
+        const folder = join(registerFolder, slug);
+        const printed = (identifier: string): string =>
+            `            <Paragraph>${identifier.replace(/^edited-|-tsx$/gu, '')}, as I had it:</Paragraph>\n`
+            + `            <Code language="tsx">![[ ${identifier}.txt ]]</Code>\n`;
+        const section = (...identifiers: string[]): string =>
+            '        <Section>\n            <Heading>As I had it before the re-import</Heading>\n'
+            + `${identifiers.map(printed).join('')}        </Section>\n`;
+        const chapter = (body: string): string =>
+            `    <Chapter>\n        <Title>[[ 15 June 2026 ]]</Title>\n${body}    </Chapter>\n`;
+        const both = chapter(section('edited-synopsis-tsx', 'edited-cover-tsx'));
+        const struckSynopsis = ['1-june-15-2026~edited-synopsis-tsx.txt'];
+        expect(chapterWithoutStruck(both, struckSynopsis)).toBe(chapter(section('edited-cover-tsx')));
+        expect(chapterWithoutStruck(both, [...struckSynopsis, '1-june-15-2026~edited-cover-tsx.txt'])).toBe(chapter(''));
+        expect(chapterWithoutStruck(chapter(''), struckSynopsis)).toBe(chapter(''));
+        writeFileSync(join(folder, '1-june-15-2026.tsx'), both);
+        writeFileSync(join(folder, '1-june-15-2026~edited-cover-tsx.txt'), 'the cover as he had it');
+        const conversation = sampleConversation('t', 'Tended', twoMessages);
+        const keptCover = '1-june-15-2026~edited-cover-tsx.txt';
+        const reimport = { reimportedAt: '2026-10-15T00:00:00Z', keptEdits: [...struckSynopsis, keptCover] };
+        const recordPath = join(registerFolder, `4-tended${recordSuffix}`);
+        writeImportRecord(recordPath, importRecord(conversation, registerFolder, 'Tended', slug, '2026-10-01', reimport));
+        const heldRecord = importRecords(registerFolder).get('t')!;
+        expect(importState(conversation, registerFolder, heldRecord.record)).toBe('in');
+        const touched = tendStruckEdits(registerFolder, heldRecord);
+        expect(touched).toEqual([join(folder, '1-june-15-2026.tsx'), recordPath]);
+        expect(folderContents(folder).get('1-june-15-2026.tsx')).toBe(chapter(section('edited-cover-tsx')));
+        expect(heldRecord.record.keptEdits).toEqual(['1-june-15-2026~edited-cover-tsx.txt']);
+        expect(importState(conversation, registerFolder, heldRecord.record)).toBe('in');
+        expect(tendStruckEdits(registerFolder, heldRecord)).toEqual([]);
     });
 
     it('keeps one record per conversation, the later written replacing the earlier at the same path', () => {

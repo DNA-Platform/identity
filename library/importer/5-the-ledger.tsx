@@ -34,10 +34,14 @@ export default () => (
                 it as I had it, where the import overwrote it or no longer writes it, as a plain-text file beside
                 the fresh chapter, named for the chapter and for the file it was, and printed by the chapter in
                 a closing section, each file as I had it, so the bind accounts for it and my edits stand on the
-                page beside the fresh import until I apply them again and strike the file. The record keeps when the book was re-imported and which files
-                were kept, and every listing says beside the conversation, while any kept file still stands,
-                how many files of my edits wait to be applied; so I always know which conversations were
-                re-imported and what changes I have yet to make, as I asked on 2026-10-14.
+                page beside the fresh import until I apply them again and strike the file. The record keeps when
+                the book was re-imported and which files were kept, and every listing says beside the
+                conversation, while any kept file still stands, how many files of my edits wait to be applied; so
+                I always know which conversations were re-imported and what changes I have yet to make, as I
+                asked on 2026-10-14. When I strike a kept file, the next run that writes takes its printing out
+                of the chapter, the section with the last of them, and takes the book as it then stands, my
+                edits applied, as the state its record knows; a bare run says meanwhile that a kept copy was
+                struck.
             </Paragraph>
             <Paragraph>
                 The record stands with the entry, so what I do to a conversation by hand, cutting it, renaming
