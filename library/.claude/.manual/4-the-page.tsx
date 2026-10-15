@@ -28,7 +28,8 @@ export default () => (
                 profile that keeps the sign-in once I have logged in there, and leaves it open with a port a
                 later command attaches to: one command opens it on the application and keeps it open, and the
                 others list its tabs, open a page, say what an element says, print its tree or its computed
-                styles, or photograph it. The file beside this chapter is that tool, run from the repository's
+                styles, photograph it, scroll to an element, hover or press one and say what changed, or name what
+                runs past the right edge at a width. The file beside this chapter is that tool, run from the repository's
                 root.
             </Paragraph>
         </Section>

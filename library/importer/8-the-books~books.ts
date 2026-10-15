@@ -37,6 +37,10 @@ const tablePackageWords = [
     'Chapter', 'Content', 'Heading', 'Paragraph', 'Parenthetical', 'Section', 'TableOfContents', 'Title', 'Word',
 ];
 const coverPackageWords = ['About', 'Author', 'Chapter', 'Cover', 'Subject', 'Title'];
+const drawnCoverPackageWords = ['About', 'Author', 'Chapter', 'Paragraph', 'Subject', 'Svg', 'Title'];
+const windowLines = (x: number, y: number): string[] => ['<Window', `    x="${x}"`, `    y="${y}"`, '/>'];
+const illustrationLines = ['<Paragraph>', '    <Illustration />', '    <Svg>![[ illustration.svg ]]</Svg>', '</Paragraph>'];
+const drawingFileName = '.cover~illustration.svg';
 const entryPackageWords = ['Chapter', 'Means', 'Paragraph', 'Synopsis', 'Title'];
 const dateFormat = { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' } as const;
 const monthFormat = { month: 'long', year: 'numeric', timeZone: 'UTC' } as const;
@@ -46,7 +50,7 @@ const indentedLines = (depth: number, lines: string[]): string[] => lines.map(li
 const relativePath = (fromFolder: string, toFolder: string): string => {
     const path = relative(fromFolder, toFolder).split('\\').join('/');
 
-    return path.startsWith('./') || path.startsWith('../') ? path : `./${path}`;
+    return path === '..' || path.startsWith('./') || path.startsWith('../') ? path : `./${path}`;
 };
 const manualImportPath = (folders: LibraryFolders, folder: string): string =>
     `${relativePath(folder, join(folders.library, '.manual'))}/.book`;
@@ -56,6 +60,19 @@ const packageImportLine = (packageWords: string[]): string =>
     `import { ${packageWords.join(', ')} } from '@dna-platform/public';`;
 const manualImportLine = (manualWords: string[], importPath: string): string =>
     `import { ${manualWords.join(', ')} } from '${importPath}';`;
+const volumeImportLines = (
+    folder: string, folders: LibraryFolders, subjectFolder: string, projectFolders: string[] = [],
+): string[] => [
+    `import SubjectCover from '${relativePath(folder, subjectFolder)}/.cover.tsx';`,
+    `import StoryCover from '${relativePath(folder, join(folders.library, '.librarian'))}/.cover.tsx';`,
+    ...projectFolders.map((projectFolder, index) =>
+        `import ProjectCover${index + 1} from '${relativePath(folder, projectFolder)}/.cover.tsx';`),
+];
+const volumeLines = (projectCount = 0): string[] => [
+    '<Volume>{SubjectCover()}</Volume>',
+    '<Volume>{StoryCover()}</Volume>',
+    ...Array.from({ length: projectCount }, (_, index) => `<Volume>{ProjectCover${index + 1}()}</Volume>`),
+];
 const monthHeading = (instant: string): string => new Date(instant).toLocaleString('en-GB', monthFormat);
 const dayWords = (instant: string): string => new Date(instant).toLocaleDateString('en-GB', dateFormat);
 const dateReference = (instant: string): string => `[${dayWords(instant)}](${instant.slice(0, 10)})`;
@@ -108,7 +125,10 @@ export const conversationBook = (
     const importPath = manualImportPath(folders, folder);
     const claudeImportPath = claudeManualImportPath(folders, folder);
     const chapter = writtenChapter(conversation, path, referents, importPath, claudeImportPath, keptAppendices);
-    const coverManualWords = ['Messages', 'Participant', 'Participants', 'Period', 'Scheme'];
+    const coverManualWords = [
+        'BookshelfCover as Cover', 'Illustration', 'Messages', 'Participant', 'Participants', 'Period', 'Scheme',
+        'Volume', 'Window',
+    ];
     const speakers = [...new Set(path.map(message => message.speaker))];
     const participantLines = [
         '<Participants>',
@@ -120,8 +140,10 @@ export const conversationBook = (
     const summaryText = conversation.summary !== ''
         ? conversation.summary.replace(/\*\*[^*]*\*\*\s*/u, '').split(/\n\n/u)[0] : openingLine;
     const synopsisLines = wrappedLines(escapedText(summaryText.replace(/[*_`#>]/gu, '')));
-    const packageWords = ['Author', 'Chapter', 'Cover', 'Subject', 'Title'];
+    const packageWords = ['Author', 'Chapter', 'Paragraph', 'Subject', 'Svg', 'Title'];
     const projectImportLines = projectNames.length > 0 ? [manualImportLine(['Project'], claudeImportPath)] : [];
+    const drawingSource = join(folders.conversations, drawingFileName);
+    const drawingText = existsSync(drawingSource) ? readFileSync(drawingSource, 'utf8') : '';
     const projectLines = projectNames.map(projectName => `<Project>***${titleForm(nameInForm(projectName))}</Project>`);
     const monthSection = sectionLines(
         monthHeading(path[0]?.sentAt ?? conversation.createdAt),
@@ -130,7 +152,9 @@ export const conversationBook = (
     const files = [
         writtenFile(join(folder, '.book.tsx'), bookFileText(claudeImportPath, 'ClaudeConversation', name)),
         writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, coverManualWords, packageWords, [
+            ...volumeLines(),
             ...schemeLines(scheme),
+            ...windowLines(-32, -26),
             ...participantLines,
             '<Period',
             `    from="${path[0]?.sentAt ?? conversation.createdAt}"`,
@@ -144,7 +168,9 @@ export const conversationBook = (
             authorLine,
             subjectLine('Conversations', 'Our Conversations'),
             ...projectLines,
-        ], projectImportLines)),
+            ...illustrationLines,
+        ], [...projectImportLines, ...volumeImportLines(folder, folders, folders.conversations)])),
+        writtenFile(join(folder, drawingFileName), drawingText),
         writtenFile(join(folder, '.synopsis.tsx'), synopsisFileText(synopsisLines)),
         writtenFile(join(folder, '.table.tsx'), tableFileText(importPath, ['Index'], monthSection)),
         writtenFile(join(folder, chapter.fileName), chapter.tsx),
@@ -162,25 +188,35 @@ export const registerBook = (
     about: string,
     subjectWords: string,
     subjectName: string,
+    subjectFolder: string,
     synopsisLines: string[],
     scheme: Scheme,
+    bookType: 'Catalogue' | 'Register',
+    coverFace: 'BookshelfCover' | 'JournalCover',
+    drawingText: string,
     overwrite = false,
 ): string[] => {
     const importPath = manualImportPath(folders, folder);
     const bookFilePath = join(folder, '.book.tsx');
-    const bookFile = (): string => writtenFile(bookFilePath, bookFileText(importPath, 'Register', about));
+    const bookFile = (): string => writtenFile(bookFilePath, bookFileText(importPath, bookType, about));
     if (existsSync(bookFilePath)) return overwrite ? [bookFile()] : [];
     const standsSection = sectionLines('Where this book stands', parentheticalLines(name));
 
     return [
         bookFile(),
-        writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, ['Scheme'], coverPackageWords, [
+        writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, [
+            `${coverFace} as Cover`, 'Illustration', 'Scheme', 'Volume', 'Window',
+        ], drawnCoverPackageWords, [
+            ...volumeLines(),
             ...schemeLines(scheme),
+            ...windowLines(-32, -26),
             titleLine(name),
             authorLine,
             subjectLine(subjectWords, subjectName),
             `<About>${titleForm(nameInForm(about))}</About>`,
-        ])),
+            ...illustrationLines,
+        ], volumeImportLines(folder, folders, subjectFolder))),
+        writtenFile(join(folder, drawingFileName), drawingText),
         writtenFile(join(folder, '.synopsis.tsx'), synopsisFileText(synopsisLines)),
         writtenFile(join(folder, '.table.tsx'), tableFileText(importPath, ['Arrow', 'Index'], standsSection)),
     ];
@@ -233,7 +269,9 @@ const entryPathFor = (folder: string, name: string): string | undefined => {
     return entryFileName === undefined ? undefined : join(folder, entryFileName);
 };
 
-export const projectBook = (folders: LibraryFolders, project: Project, scheme: Scheme, overwrite = false): WrittenBook => {
+export const projectBook = (
+    folders: LibraryFolders, project: Project, scheme: Scheme, drawingText: string, overwrite = false,
+): WrittenBook => {
     const folder = join(folders.claude, `.${slugFromName(project.name)}`);
     const importPath = manualImportPath(folders, folder);
     const bookFilePath = join(folder, '.book.tsx');
@@ -253,13 +291,19 @@ export const projectBook = (folders: LibraryFolders, project: Project, scheme: S
     const instructionsText = project.instructions || 'No instructions were set on this project.';
     const files = [
         bookFile(),
-        writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, ['Scheme'], coverPackageWords, [
+        writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, [
+            'Cover', 'Illustration', 'Scheme', 'Volume', 'Window',
+        ], drawnCoverPackageWords, [
+            ...volumeLines(),
             ...schemeLines(scheme),
+            ...windowLines(-32, -26),
             titleLine(project.name),
             authorLine,
             subjectLine('Claude', 'Dougs Claude'),
             `<About>${titleForm(nameInForm(project.name))}</About>`,
-        ])),
+            ...illustrationLines,
+        ], volumeImportLines(folder, folders, folders.claude))),
+        writtenFile(join(folder, drawingFileName), drawingText),
         writtenFile(join(folder, '.synopsis.tsx'), synopsisFileText(wrappedLines(escapedText(projectDescription)))),
         writtenFile(join(folder, '1-the-project.tsx'), chapterFileText(projectImportLines, [
             '<Spread />',

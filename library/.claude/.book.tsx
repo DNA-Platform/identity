@@ -1,3 +1,3 @@
-import { $Register } from '../.manual/.book';
+import { $Catalogue } from '../.manual/.book';
 
-export default class $Claude extends $Register { }
+export default class $Claude extends $Catalogue { }

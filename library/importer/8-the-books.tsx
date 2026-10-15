@@ -33,12 +33,40 @@ export default () => (
                 overwrite and <Means>$[[ the ledger ]]( ./The Ledger )</Means> says the book is still the
                 importer's; a catalogue's chapter and row are added where its table lacks the reference.
             </Paragraph>
+            <Paragraph>
+                Every book the importer writes wears a cover as my other books do: the face its kind wears, a
+                bookshelf cover for a conversation and for Dougs Claude, a journal cover for Our Conversations, a
+                manual's for a project, each with a scheme, a window and a drawing, so that the mark in the header
+                draws and a shelf can hold the book; and each with its subject's cover and my story's as volumes,
+                which is how the header leads from any book to the one it is filed under and to me. The three
+                drawings stand beside this chapter. Every conversation wears the one drawing of Our Conversations,
+                so a conversation is told at a glance wherever its mark is drawn. And Dougs Claude is a bookshelf,
+                so the books it catalogues stand on it as jackets.
+            </Paragraph>
         </Section>
         <Append
             identifier="books"
             type=".ts"
         >
             ![[ books.ts ]]
+        </Append>
+        <Append
+            identifier="dougs-claude"
+            type=".svg"
+        >
+            ![[ dougs-claude.svg ]]
+        </Append>
+        <Append
+            identifier="our-conversations"
+            type=".svg"
+        >
+            ![[ our-conversations.svg ]]
+        </Append>
+        <Append
+            identifier="project"
+            type=".svg"
+        >
+            ![[ project.svg ]]
         </Append>
         <Append
             identifier="promises.test"

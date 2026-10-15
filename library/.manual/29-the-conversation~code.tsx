@@ -78,12 +78,25 @@ export class $Message extends $Section {
 
     override write(): ReactNode {
         const Time = $(time);
+        const speaker = this.speaker;
+        const Speaker = speaker === undefined ? undefined : $(speaker);
+        const said = [...this.text].filter(chemical => chemical !== speaker);
         return (
             <>
-                {super.write()}
+                {Speaker === undefined ? undefined : (
+                    <Speaker />
+                )}
                 <Time>
                     {`[${shownTime(this.when)}](${this.when})`}
                 </Time>
+                <div className="pd-said">
+                    {said.map((chemical, index) => {
+                        const Said = $(chemical);
+                        return (
+                            <Said key={index} />
+                        );
+                    })}
+                </div>
             </>
         );
     }

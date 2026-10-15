@@ -20,6 +20,7 @@ import {
 } from './9-the-check~check.ts';
 
 const importerFolder = dirname(fileURLToPath(import.meta.url));
+const drawingBeside = (name: string): string => readFileSync(join(importerFolder, `8-the-books~${name}.svg`), 'utf8');
 export const accountFolder = resolve(importerFolder, '..', '..', '..', 'dna-library', 'library', 'claude-dna');
 export const referents: Referents = { Doug: 'Dougs Story', Claude: 'Dougs Claude' };
 
@@ -336,7 +337,7 @@ const writtenProject = (
     const schemeIndex = project === undefined ? 0 : namedProjects.findIndex(candidate => candidate.id === project.id) + 1;
     const scheme = schemes[schemeIndex % schemes.length];
     if (project === undefined) return { project, folder: undefined, scheme, files: [] };
-    const book = projectBook(folders, project, scheme, args.overwrite);
+    const book = projectBook(folders, project, scheme, drawingBeside('project'), args.overwrite);
     const entry = registerEntry(folders, folders.claude, project.name, book.folder, project.updatedAt, projectCaption, '**');
 
     return { project, folder: book.folder, scheme, files: [...book.files, ...entry.files] };
@@ -352,12 +353,14 @@ const writeBooks = (
 ): void => {
     const filesTouched: string[] = [];
     const dougsClaudeFiles = registerBook(
-        folders, folders.claude, 'Dougs Claude', 'Claude', 'Library', 'The Library',
-        wrappedLines(dougsClaudeSynopsis), schemes[5], args.overwrite,
+        folders, folders.claude, 'Dougs Claude', 'Claude', 'Library', 'The Library', join(folders.library, '..reference'),
+        wrappedLines(dougsClaudeSynopsis), schemes[5], 'Catalogue', 'BookshelfCover', drawingBeside('dougs-claude'),
+        args.overwrite,
     );
     const ourConversationsFiles = registerBook(
-        folders, folders.conversations, 'Our Conversations', 'Conversations', 'Claude', 'Dougs Claude',
-        wrappedLines(ourConversationsSynopsis), schemes[1], args.overwrite,
+        folders, folders.conversations, 'Our Conversations', 'Conversations', 'Claude', 'Dougs Claude', folders.claude,
+        wrappedLines(ourConversationsSynopsis), schemes[1], 'Register', 'JournalCover', drawingBeside('our-conversations'),
+        args.overwrite,
     );
     const ourConversationsEntry = registerEntry(
         folders, folders.claude, 'Our Conversations', folders.conversations, new Date().toISOString(),

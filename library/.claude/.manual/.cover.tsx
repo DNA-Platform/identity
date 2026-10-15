@@ -1,9 +1,13 @@
-import { Author, Chapter, Cover, Subject, Title } from '@dna-platform/public';
-import { Scheme } from '../../.manual/.book';
+import { Author, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
+import { Cover, Illustration, Scheme, Volume, Window } from '../../.manual/.book';
+import SubjectCover from '../.cover.tsx';
+import StoryCover from '../../.librarian/.cover.tsx';
 
 export default () => (
     <Chapter>
         <Cover />
+        <Volume>{SubjectCover()}</Volume>
+        <Volume>{StoryCover()}</Volume>
         <Scheme
             ground="#eff1f6"
             band="#c0c9df"
@@ -12,8 +16,16 @@ export default () => (
             footInk="#1f2d50"
             ink="#2a3a63"
         />
+        <Window
+            x="-22"
+            y="-50"
+        />
         <Title>[[ Claudes Reference Manual ]]</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Claude ]]( Dougs Claude )</Subject>
+        <Paragraph>
+            <Illustration />
+            <Svg>![[ illustration.svg ]]</Svg>
+        </Paragraph>
     </Chapter>
 );

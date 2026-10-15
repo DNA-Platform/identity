@@ -19,6 +19,8 @@ const usage = [
     'node 4-the-page~browser.mjs style <url> <selector> <properties,comma,separated>',
     'node 4-the-page~browser.mjs shot <url> <file.png>      photograph the page',
     'node 4-the-page~browser.mjs scroll <url> <selector>    scroll an element into view, at the top',
+    'node 4-the-page~browser.mjs hover <url> <selector> [watch]   hover an element; print the watched element\'s classes before and after',
+    'node 4-the-page~browser.mjs press <url> <selector> [watch]   press an element; print the watched element\'s classes before and after',
     'node 4-the-page~browser.mjs over <url> [width]         name the elements past the right edge at a width',
 ].join('\n');
 
@@ -116,6 +118,16 @@ const run = async () => {
             await page.$eval(selector, node => node.scrollIntoView({ block: 'start' }));
             await new Promise(resolve => setTimeout(resolve, 800));
             console.log(`scrolled to ${selector}`);
+            return;
+        }
+        if (command === 'hover' || command === 'press') {
+            const watched = third ?? selector;
+            const classesOf = () => page.$eval(watched, node => `${node.tagName.toLowerCase()}.${[...node.classList].join('.')}`).catch(() => 'nothing matches');
+            const before = await classesOf();
+            if (command === 'hover') await page.hover(selector);
+            else await page.click(selector);
+            await new Promise(resolve => setTimeout(resolve, 600));
+            console.log(`before: ${before}\nafter:  ${await classesOf()}`);
             return;
         }
         if (command === 'over') {

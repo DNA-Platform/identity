@@ -1,4 +1,4 @@
-import { Bold, Chapter, Code, Date, Emphasis, Equation, Heading, Line, List, Math, Paragraph, Section, Title, Word } from '@dna-platform/public';
+import { Bold, Chapter, Code, Date, Emphasis, Equation, Line, List, Math, Paragraph, Title, Word } from '@dna-platform/public';
 import { Dated, Message, Quoted, Speaker, Verbatim } from '../../../.manual/.book';
 import { Action } from '../../.manual/.book';
 
