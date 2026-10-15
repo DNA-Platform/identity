@@ -41,7 +41,10 @@ export default () => (
                 asked on 2026-10-14. When I strike a kept file, the next run that writes takes its printing out
                 of the chapter, the section with the last of them, and takes the book as it then stands, my
                 edits applied, as the state its record knows; a bare run says meanwhile that a kept copy was
-                struck.
+                struck. The re-import writes one fresh chapter, as the import does, so a book I have cut into
+                chapters comes back as one chapter with my chapters kept beside it as text, nothing lost and
+                not the shape I cut; the re-import of a cut book is the next thing to design, since many of
+                these will be cut.
             </Paragraph>
             <Paragraph>
                 The record stands with the entry, so what I do to a conversation by hand, cutting it, renaming

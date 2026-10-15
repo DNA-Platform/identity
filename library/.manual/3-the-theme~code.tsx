@@ -95,6 +95,12 @@ export class $LibraryBookTheme extends $Theme {
     skyInk = '#166178';
     lift = 'inset 5px 0 0 rgba(0, 0, 0, 0.14), inset 6px 0 0 rgba(255, 255, 255, 0.12), 0 14px 24px -12px rgba(0, 0, 0, 0.5)';
     openSpine = 'inset 7px 0 0 rgba(0, 0, 0, 0.14), inset 8px 0 0 rgba(255, 255, 255, 0.12), 0 12px 22px -14px rgba(0, 0, 0, 0.5)';
+    sans = "'Inter', system-ui, sans-serif";
+    muted = '#516770';
+    bubble = 'rgba(16, 37, 44, 0.05)';
+    shade = 'rgba(16, 37, 44, 0.03)';
+    pill = '#166178';
+    column = '48rem';
     style: ElementType = selection.div`${this.parts()}`;
 
     protected parts(): RuleSet[] {
