@@ -29,6 +29,15 @@ export default () => (
                     <Content>[[ ▷ ]]( Claudes Reference Manual )**</Content>
                 </Word>
             </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Claudes Design ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Claudes Design )**</Content>
+                </Word>
+            </Paragraph>
         </Section>
         <Section>
             <Heading>August 2026</Heading>

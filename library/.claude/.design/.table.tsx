@@ -1,0 +1,37 @@
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Index } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <TableOfContents />
+        <Index />
+        <Title>
+            <Parenthetical />
+            [[ Table of Contents ]]
+        </Title>
+        <Section>
+            <Heading>The story</Heading>
+            <Paragraph>
+                <Content>$[[ ./Starting from the audit ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Claudes Design ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>The sketches</Heading>
+            <Paragraph>
+                <Content>$[[ ./Every Concept ]]</Content>
+            </Paragraph>
+        </Section>
+    </Chapter>
+);

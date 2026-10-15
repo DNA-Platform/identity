@@ -23,6 +23,7 @@ export const books = {
     ".claude/.conversations/string-length-notation-and-foundational-sketch-generalizatio": () => import("./books/claude/conversations/string-length-notation-and-foundational-sketch-generalizatio"),
     ".claude/.conversations/the-semantics-of-books": () => import("./books/claude/conversations/the-semantics-of-books"),
     ".claude/.conversations/unifying-srt-axioms-with-symbolization": () => import("./books/claude/conversations/unifying-srt-axioms-with-symbolization"),
+    ".claude/.design": () => import("./books/claude/design"),
     ".claude/.manual": () => import("./books/claude/manual"),
     ".claude/.semantic-reference-theory": () => import("./books/claude/semantic-reference-theory"),
     ".design": () => import("./books/design"),
