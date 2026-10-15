@@ -39,6 +39,17 @@ export class $Participant extends $Means {
 export class $Participants extends $Paragraph {
     get participants(): $Participant[] { return this.text.find($Participant); }
 
+    override write(): ReactNode {
+        const participants = this.participants;
+        return participants.flatMap((participant, index) => {
+            const Participant = $(participant);
+            const between = index === 0 ? '' : index === participants.length - 1 ? ' and ' : ', ';
+            return [between, (
+                <Participant key={index} />
+            )];
+        });
+    }
+
     protected override $Define(): void {
         super.$Define();
         this.classes.add(this, 'pd-participants');
@@ -50,6 +61,14 @@ export const Time = $($Time);
 export const Participant = $($Participant);
 export const Participants = $($Participants);
 const time = Time;
+
+const shownTime = (instant: string): string => {
+    const date = new Date(instant);
+    if (Number.isNaN(date.getTime())) return instant;
+    const day = date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+    const hour = date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
+    return `${hour} UTC, ${day}`;
+};
 
 export class $Message extends $Section {
     override specification = new MessageSpecification();
@@ -63,7 +82,7 @@ export class $Message extends $Section {
             <>
                 {super.write()}
                 <Time>
-                    {`[${this.when}](${this.when})`}
+                    {`[${shownTime(this.when)}](${this.when})`}
                 </Time>
             </>
         );
@@ -78,7 +97,40 @@ export class $Message extends $Section {
             <Referent>{identifier.slug(this.when.replace(/Z$/u, ''))}</Referent>
         );
     }
+
+    protected override $Bound(): void {
+        const author = this.book?.author?.means?.identifier;
+        if (author !== undefined && this.speaker?.means?.identifier === author) {
+            const Mine = $(mine);
+            this.annotations.add(this,
+                <Mine />
+            );
+        }
+        super.$Bound();
+    }
 }
+
+export class $Mine extends $Annotation {
+    specification = new MineSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-mine');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class MineSpecification extends AnnotationSpecification {
+    @specify('mine is said of a message')
+    $saidOfAMessage(writing: $Writing): void {
+        $check(writing instanceof $Message, 'mine is said of a message, and this is not one');
+    }
+}
+
+export const Mine = $($Mine);
+const mine = Mine;
 
 export class $Quoted extends $Annotation {
     specification = new OfAParagraphSpecification();

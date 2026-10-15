@@ -4,7 +4,9 @@ import {
     $Annotation, $Chapter, $Cover, $Paragraph, $Reference, $Writing, AnnotationSpecification, Reference as reference,
     Word as word, binder, html, specify,
 } from '@dna-platform/public';
+import { Theme } from '@dna-platform/public';
 import { $Conversation, Label as label } from '../../.manual/.book';
+import { ApplicationForm } from './4-the-page~theme.tsx';
 
 export class $Project extends $Annotation {
     specification = new ProjectSpecification();
@@ -82,3 +84,4 @@ export class $ClaudeConversation extends $Conversation {
 }
 
 export const ClaudeConversation = $($ClaudeConversation);
+$(ClaudeConversation, Theme)(ApplicationForm);

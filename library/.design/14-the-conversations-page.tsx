@@ -70,6 +70,20 @@ export default () => (
                 <Image>![[ 038-small.png ]]</Image>
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>The application's own form, 2026-10-15</Heading>
+            <Paragraph>
+                The page did not take concept 23's frame after all. On 2026-10-14 I decided that a conversation
+                is shown as the application that held it shows it: we might as well use the form, and add
+                annotations and flourishes on that base. So the form was read off a conversation on claude.ai,
+                element by element and style by style, through a browser the library keeps open for the purpose,
+                and written as the theme of a conversation with Claude
+                in <Means>$[[ Claudes Reference Manual ]]( Claudes Reference Manual / The Page )</Means>: my
+                words in a bubble at the right, Claude's as serif prose across a column, the tool uses as muted
+                lines, inline code as small red pills, the speaker's name kept for screen readers alone. The
+                sketch above stays as the frame that was considered.
+            </Paragraph>
+        </Section>
         <Append
             identifier="038"
             type=".html"

@@ -46,7 +46,9 @@ export default () => (
                 section said to be something: it says when it was said, as an instant, and that instant, whole,
                 is its address on the page, since two messages have been sent within one second; and it is headed by its
                 speaker, a heading whose words refer to the participant's book, so that every message of mine
-                leads to my autobiography and every message of Claude's to what stands for him. There are no
+                leads to my autobiography and every message of Claude's to what stands for him; a message whose
+                speaker is the library's author is said to be mine, when the book is bound, so a page can set
+                what I said apart from what was said to me without naming anyone. There are no
                 turns and no pairs of messages; a message stands alone in its order, and three speakers read the
                 same as two. What was said stands inside it as the ordinary writing of this library, paragraphs,
                 lists, headings, code, tables and formulas, converted once when the conversation is imported and
