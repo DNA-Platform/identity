@@ -17,7 +17,7 @@ Arm A is the behaviour arm, and I confirmed by inspection what its input is: a *
 ## What I already know
 
 - **The channel mapping is settled by our own data**, not assumed: channel 0 spatial std 0.80 with 237 distinct values; channels 1–3 spatial std exactly 0.0, equal to `behavior[0]` = [4.017, 0.021, 0.001] to the digit.
-- **The fixed-state framing is from the audit** ([ch07](07-the-full-pipeline-audit.md)): MEIs are synthesized at **3rd/97th-percentile quiet/active** states with eye position clamped — Arm A validated. What I did *not* pin then was the exact application to the 4-channel input.
+- **The fixed-state framing is from the audit** (ch07, the full-pipeline audit, never written): MEIs are synthesized at **3rd/97th-percentile quiet/active** states with eye position clamped — Arm A validated. What I did *not* pin then was the exact application to the 4-channel input.
 - My Sprint-4 synthesis tests were **arm B, one channel** — none of this machinery was exercised, so "arm A, fully" was never as close as we said.
 
 ## What I expect (a prediction to measure against)
@@ -32,6 +32,5 @@ Gradient on channel 0 only (high confidence). Quiet/active as the 3rd/97th perce
 
 <!-- citations -->
 [previous]: 10-sourcing-the-reconstruction-method.md
-[audit]: 07-the-full-pipeline-audit.md
 [research-topics]: ../research-topics/02-the-twin.md
 [autobiography]: ../nancy-or-the-weight-of-evidence/.cover.md

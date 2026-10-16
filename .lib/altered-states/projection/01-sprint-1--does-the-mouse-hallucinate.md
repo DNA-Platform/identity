@@ -4,6 +4,8 @@
 
 ---
 
+> *2026-10-15, at Doug's ruling: this sprint's question - whether the mouse hallucinates, and what it is seeing - is not one this research asks. No one measures perception, and it is known that DOI and other serotonergic psychedelics profoundly alter neural activity and visual perception. The research characterizes exactly how DOI affects neural representation in mouse V1; changes in what is represented are a proxy for some aspect of hallucination. See [The Altered Cortex, ch2](../the-altered-cortex/02-the-question-made-falsifiable.md). The sprint is kept as the record of where the project began.*
+
 The first sprint on the altered-states branch. We have a dataset worth being careful with: thousands of cells in mouse primary visual cortex (V1), recorded simultaneously, across ~45 minutes of controlled image stimuli **before** and ~45 minutes **after** the animal received DOI — a Shulgin DOx-series psychedelic (a 5-HT2A agonist). The question is the one the project is named for: **is the mouse in an altered state of perception — is there evidence it is hallucinating — and if so, can we recover what it is seeing?** This chapter is the plan, written before the work per [Sprints](../../../.claude/library/library-tree/03-sprints.md); it is completed at the retro.
 
 ## Aim

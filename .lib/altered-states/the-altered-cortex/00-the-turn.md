@@ -47,25 +47,25 @@ A filename is not a read. Remembering a file is not reading it.
    [DRY homes](03-the-analysis-plan.md#the-map--where-every-piece-lives-open-the-file-do-not-guess) naming the one
    owner of every piece of logic, and the [Lessons](03-the-analysis-plan.md#the-lessons-that-cost-the-most) —
    every expensive mistake as one line and a reason. Timeless: concepts and owners, never a count.
-3. [ch6, Generating the hallucination](06-generating-the-hallucination.md) — **the current direction** (post-delivery):
-   the per-image hallucination synthesis; where composition lives (rank-one readout, factorized Gram, Gauss-Newton
+3. [ch6, Generating the hallucination proxy](06-generating-the-hallucination.md) — **the current direction** (post-delivery):
+   the per-image synthesis of what the post-DOI activity may represent; where composition lives (rank-one readout, factorized Gram, Gauss-Newton
    image-solve — the fill is that solve missing the overlap-inverse); the feature vocabulary; the coherence-vs-gain
    split and resolution wall; the canvas worked properly (rescale the network's kernels, not just the image); and
    **the generative prior** — the released band is a null space to *sample* (DDNM/ILVR/DPS, Sensorium-Viz), with each
-   sample bound to that trial's activity. Descend when resuming the hallucination work; not every turn.
-4. [ch7, The criteria for hallucination](07-the-criteria-for-hallucination.md) — **what would count as
-   evidence**, sharper than H5/H6: three clauses (asymmetry between the cross-model directions, unexplained
+   sample bound to that trial's activity. Descend when resuming the proxy work; not every turn.
+4. [ch7, The criteria for a hallucination proxy](07-the-criteria-for-hallucination.md) — **what the proxy
+   is**, sharper than H5/H6: three clauses (asymmetry between the cross-model directions, unexplained
    variance, and white-across-trials-but-structured-within-one), each killing an alternative the others cannot.
    Holds the null clause 3 names for itself — a random rotation in TRIAL space preserves the covariance exactly
    while Gaussianising single trials, so any excess is higher-order. That null is what convicted the
    cortical-clustering result as second-order. Also the precedent search behind each clause. Descend before
-   claiming any hallucination result; not every turn.
+   reporting any proxy result; not every turn.
 
 **Depth 3 — the code.** Only the file the map names as the owner. Read the **whole file**, not the region you
 mean to edit — rivals get born in the unread part of a file you already had open.
 
 **Depth 4 — the reference chapters** ([ch1](01-the-dataset-and-the-design.md) the dataset,
-[ch2](02-the-question-made-falsifiable.md) the falsifiable question, [ch4](04-cataloguing-the-deck.md) the deck).
+[ch2](02-the-question-made-falsifiable.md) the question, how DOI affects neural representation, [ch4](04-cataloguing-the-deck.md) the deck).
 Near-timeless; descend only when the *science* needs them — not every turn.
 
 ## The code-reading policy — before writing any line
@@ -116,7 +116,7 @@ with a link**, dated state into [ch5](05-the-working-state.md). When a new way o
 | [the cover](.cover.md) | what the book is; the TOC by kind | **short, and points**. No state, no lists. |
 | **this chapter** | the reading list + the turn contract | the graph, and the reasons. Short on purpose. |
 | [the map](03-the-analysis-plan.md) | the DRY homes; what each study is for | concepts and owners. **Never a count, never a date.** |
-| [ch7](07-the-criteria-for-hallucination.md) | what would count as evidence, and its nulls | the definition and its precedent. Changes when the definition does. |
+| [ch7](07-the-criteria-for-hallucination.md) | what the proxy is, and its nulls | the definition and its precedent. Changes when the definition does. |
 | [ch5](05-the-working-state.md) | active code, ✓/✗ studies, still-open, the **audit trail** | the ONLY volatile layer. Rewritten every turn. |
 | [`--check.py`](00-the-turn--check.py) | the executable form of this chapter | errors only, no warnings |
 

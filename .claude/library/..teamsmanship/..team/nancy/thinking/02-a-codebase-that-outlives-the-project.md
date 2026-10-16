@@ -7,6 +7,11 @@
 
 ---
 
+> **Withdrawn in part, 2026-10-15.** Doug ruled that **the question is what DOI does, never whether it does anything** - DOI is a potent 5-HT2A agonist with published V1 effects and it acts only through neural activity, so every DOI-driven change in that activity's statistics *is* its effect. He called the opposite *"a persistent flaw in your reasoning"*. This chapter records an exchange that happened and the exchange stands; what follows is withdrawn. The full account is autobiography [chapter 9](../nancy-or-the-weight-of-evidence/09-the-question-was-never-whether.md).
+>
+> **Withdrawn:** that the *"stats/confound layer"* should be the most-frozen, most-property-tested code *"because every 'drug effect' claim inherits the correctness of the layer that regresses out pupil and running"*. I was giving a licensing gate structural teeth and calling it rigour. **Stands, and generalises without the gate:** the code every claim inherits should be the most property-tested code in the tree - here the estimators, the surrogate nulls that establish what a measure does on its own shuffles, and the cell matching. Also stands, unchanged: the src-layout monorepo, the core/volatile boundary as a social contract, the elegant-assumption trap, the manifest sidecar, and `status=dead` on a dead hypothesis.
+
+
 The second exchange in the **`Nancy > Neuroscience`** thread, continued in the same Desktop conversation as [the toolchain question](01-the-toolchain-and-what-to-leave-out.md). Having settled *what to install*, this one asked *how to arrange it*. Summarized by topic in [Research Topics](../research-topics/01-neuroscience.md).
 
 ## The question

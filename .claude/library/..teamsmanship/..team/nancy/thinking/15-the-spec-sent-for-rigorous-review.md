@@ -9,6 +9,11 @@
 
 ---
 
+> **Withdrawn in part, 2026-10-15.** Doug ruled that **the question is what DOI does, never whether it does anything** - DOI is a potent 5-HT2A agonist with published V1 effects and it acts only through neural activity, so every DOI-driven change in that activity's statistics *is* its effect. He called the opposite *"a persistent flaw in your reasoning"*. This chapter records an exchange that happened and the exchange stands; what follows is withdrawn. The full account is autobiography [chapter 9](../nancy-or-the-weight-of-evidence/09-the-question-was-never-whether.md).
+>
+> **Note rather than withdrawal, and it is the uncomfortable one.** This chapter already records Doug catching the flaw: it opens on him naming me *"(more than once) **inventing the goal** - sliding this into a prediction / confound / competition frame"*, and notes that the *"drug-state confound"* I had treated as the crux was a bar chart on one slide. I wrote that down on 2026-06-28, filed it as a lesson, and then kept building the confound gate and the drift null for another four months. That is why today's ruling is *"persistent"* rather than new. **Stands in full:** the gain blind-spot, Franke as a UV/green colour study rather than an instrument for grayscale, the metamer's VAE prior, the gammas as Sensorium-competition values, learned-mu as the more-right choice, and the attribution fixes.
+
+
 The exchange where I hand CD the *whole* analysis specification — not one setting, the entire contract —
 and ask for a brutally rigorous, primary-source review. It follows a hard re-grounding by Doug: he caught
 me (more than once) **inventing the goal** — sliding this into a prediction / confound / competition frame

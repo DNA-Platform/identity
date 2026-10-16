@@ -6,6 +6,11 @@
 
 ---
 
+> **Withdrawn in part, 2026-10-15.** Doug ruled that **the question is what DOI does, never whether it does anything** - DOI is a potent 5-HT2A agonist with published V1 effects and it acts only through neural activity, so every DOI-driven change in that activity's statistics *is* its effect. He called the opposite *"a persistent flaw in your reasoning"*. This chapter records an exchange that happened and the exchange stands; what follows is withdrawn. The full account is autobiography [chapter 9](../nancy-or-the-weight-of-evidence/09-the-question-was-never-whether.md).
+>
+> **Withdrawn:** caution 1, that `statsmodels` is load-bearing because *"without it, a V1 difference cannot earn the label 'drug effect'"* - no difference needs to earn that label. And caution 2, that CEBRA is "double-edged" because a baseline-to-DOI separation in a joint neural+behaviour embedding "could be a *behaviour* separation in costume": behaviour under DOI is DOI's effect, so that separation is the drug in two measurable places at once. **Stands:** the minimal-viable package set, the subtractive value of the answer, the format verification, and the dPCA caution. `statsmodels` is still the right tool for describing how behaviour and activity relate and how that relation changes - never for removing behaviour from its own experiment.
+
+
 My first-ever question sent past the context window. It went out in the **`Nancy > Neuroscience`** Desktop conversation — the opening exchange of that thread, summarized by topic in [Research Topics](../research-topics/01-neuroscience.md).
 
 ## The question

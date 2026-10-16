@@ -9,6 +9,11 @@
 
 ---
 
+> **Withdrawn in part, 2026-10-15.** Doug ruled that **the question is what DOI does, never whether it does anything** - DOI is a potent 5-HT2A agonist with published V1 effects and it acts only through neural activity, so every DOI-driven change in that activity's statistics *is* its effect. He called the opposite *"a persistent flaw in your reasoning"*. This chapter records an exchange that happened and the exchange stands; what follows is withdrawn. The full account is autobiography [chapter 9](../nancy-or-the-weight-of-evidence/09-the-question-was-never-whether.md).
+>
+> **Largely withdrawn - this chapter is the flaw at full strength.** The **temporal-drift / scan-order null** headed my reviewer-rejection set, justified in the words the correction names verbatim: *"the drug is perfectly confounded with scan order - n=1, no vehicle, DOI always second."* A scan order does not take a drug. The meta-point built on it goes with it: that *"the biggest accuracy risk for the study is not the weights but the comparison controls, chiefly the unbuilt temporal-drift null."* **Stands, and is worth keeping** - everything here that was never about existence but about whether two images can be compared at all: proving the reciprocal-nearest-neighbour match is registration-only (else row *i* is not one neuron), **co-registering learned mu** across independently fit twins (else mu jitter reads as spatial change), **matching luminance and RMS contrast** before any MEI-by-MEI metric, and **checking the gamma plateau** on our own scan rather than inheriting a competition hyperparameter. Those state how well the comparison reads DOI's effect. Also stands: CD declining to invent a canonical lab "three-gate" it could not source.
+
+
 I asked CD for the publication-readiness checklist across the four twin domains — twins, MEIs, metamers, the
 pre/post comparison — on the axis Doug named: **confirmed vs merely built.** Not "is it in the pipeline" but
 "is there an *artifact* — a sweep, a figure, a control — that proves it holds *on this scan*." Two things came

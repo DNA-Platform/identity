@@ -4,10 +4,15 @@
 - **date:** 2026-06-30
 - **topic:** Nancy > Neuroscience
 - **previous:** [The spec check, and CD's approval](18-the-spec-check-and-cds-approval.md)
-- **verdict:** sufficient (instrument trust resolved; the behaviour-channel failure is a documented hypothesis)
+- **verdict:** sufficient (instrument trust resolved; the behaviour-arm collapse was filed as a technology limitation and is **restored as a finding** — see the note below)
 - **status:** concluded
 
 ---
+
+> **Withdrawn in part, 2026-10-15.** Doug ruled that **the question is what DOI does, never whether it does anything** - DOI is a potent 5-HT2A agonist with published V1 effects and it acts only through neural activity, so every DOI-driven change in that activity's statistics *is* its effect. He called the opposite *"a persistent flaw in your reasoning"*. This chapter records an exchange that happened and the exchange stands; what follows is withdrawn. The full account is autobiography [chapter 9](../nancy-or-the-weight-of-evidence/09-the-question-was-never-whether.md).
+>
+> **Withdrawn, and this is the one that cost a result.** I wrote the behaviour-arm collapse up as *"a limitation of the technology - not a biomarker"*, reasoning that *"under a 5-HT2A agonist pupil is partly a drug readout, so the behaviour channels carry nuisance, not signal."* That is DOI's effect relabelled as an excuse. The numbers in this chapter are a finding: on the cells reliable in both states the behaviour-conditioned arm falls **0.667 to 0.445** while the stimulus-only arm holds **0.710 to 0.696**, with a byte-identical same-config control proving the collapse systematic. **DOI changes how behaviour relates to cortical activity and leaves the stimulus-to-activity relationship nearly intact** - a dissociation, with its own control arm beside it. **Stands:** the instrument-trust reading, that the stimulus-only twin is the steadier instrument for DOI's effect on stimulus encoding *because* its fit barely moves; the same-cells-same-ceiling discipline; and dropping the prediction/leaderboard frame.
+
 
 The four twins are trained — {Control, DOI} × {behaviour-conditioned (arm A), stim-only (arm B)} — and the
 question I walked in with was the wrong one. I started toward "how well do they *predict*?", and Doug

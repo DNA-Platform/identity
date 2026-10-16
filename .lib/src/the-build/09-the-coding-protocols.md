@@ -23,7 +23,7 @@ Easy to run all, easy to run a few. Tests live under [`src/tests/`](../../tests/
 
 ## Two kinds of tests
 
-1. **Test the core.** The shared `library/` (io, model, **stats**, viz) is unit- *and* **property-tested** (Hypothesis). `stats/` — the nulls and confound regression — is hammered hardest, because every "drug effect" claim inherits its correctness; property tests check it against adversarial inputs, not just the cases we happened to try.
+1. **Test the core.** The shared `library/` (io, model, **stats**, viz) is unit- *and* **property-tested** (Hypothesis). `stats/` — the nulls — is hammered hardest, because every pre/post reading inherits its correctness; property tests check it against adversarial inputs, not just the cases we happened to try.
 2. **Test the analysis outputs.** Each analysis **regression-pins** its expected results, so when the core changes, the diff shows exactly *what moved* in every analysis.
 
 ## The core/volatile contract

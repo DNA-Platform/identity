@@ -34,7 +34,7 @@ By design the same natural images are shown in both scans, so the ~100 repeated 
 
 ## Behavioral covariates
 
-Each trial also carries `behavior` (3 scalars) and `pupil_center` (`x, y`) — see [the format](02-the-static-scan-format.md). These are not bookkeeping: arousal and locomotion change markedly under DOI, so they are the nuisance variables the analysis must regress out or match before a neural difference can be called a drug effect — the confound documented in [chapter 5](05-caveats.md).
+Each trial also carries `behavior` (3 scalars) and `pupil_center` (`x, y`) — see [the format](02-the-static-scan-format.md). These are not bookkeeping: arousal and locomotion change markedly under DOI. They are part of what DOI does, recorded beside the neural responses and reported with them, never regressed out of them ([chapter 5](05-caveats.md)).
 
 ---
 

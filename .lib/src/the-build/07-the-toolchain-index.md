@@ -20,7 +20,7 @@ Packages already frozen in the [lockfile](../../../requirements.in) are marked *
 | pandas | tabular wrangling — `unit_stack_coords.csv`, trial/cell tables | [docs](https://pandas.pydata.org/docs/) | [pandas-dev/pandas](https://github.com/pandas-dev/pandas) | active | data · pinned |
 | scikit-learn | classical ML — decoders, PCA, cross-val for drug-state classification | [docs](https://scikit-learn.org/stable/) | [scikit-learn/scikit-learn](https://github.com/scikit-learn/scikit-learn) | active | data · pinned |
 | pytorch (`torch`) | tensor/autograd backend for the digital twin and CEBRA | [docs](https://pytorch.org/docs/stable/) | [pytorch/pytorch](https://github.com/pytorch/pytorch) | active | model · pinned (CPU wheel) |
-| statsmodels | GLM / mixed-effects to regress out the pupil+running confound | [docs](https://www.statsmodels.org/stable/) | [statsmodels/statsmodels](https://github.com/statsmodels/statsmodels) | active | data · **★ add** |
+| statsmodels | GLM / mixed-effects models | [docs](https://www.statsmodels.org/stable/) | [statsmodels/statsmodels](https://github.com/statsmodels/statsmodels) | active | data · **★ add** |
 | matplotlib | every project figure — we render them ourselves to match the published paper figures; the lab packages ship none ([note](#figures-rendered-by-us-not-the-packages)) | [docs](https://matplotlib.org/stable/) | [matplotlib/matplotlib](https://github.com/matplotlib/matplotlib) | active | data · pinned |
 | seaborn | statistical plotting over matplotlib | [docs](https://seaborn.pydata.org/) | [mwaskom/seaborn](https://github.com/mwaskom/seaborn) | active | data · pinned |
 
@@ -68,7 +68,7 @@ The lines to append to [`requirements.in`](../../../requirements.in) when these 
 
 ```
 # --- Standard (added) ---
-statsmodels          # GLM / mixed-effects: regress out the pupil+running confound
+statsmodels          # GLM / mixed-effects models
 
 # --- Neuroscience-specific ---
 pynapple             # tuning curves, trial-aligned analyses

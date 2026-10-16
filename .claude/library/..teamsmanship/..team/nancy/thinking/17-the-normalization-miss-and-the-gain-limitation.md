@@ -9,6 +9,11 @@
 
 ---
 
+> **Withdrawn in part, 2026-10-15.** Doug ruled that **the question is what DOI does, never whether it does anything** - DOI is a potent 5-HT2A agonist with published V1 effects and it acts only through neural activity, so every DOI-driven change in that activity's statistics *is* its effect. He called the opposite *"a persistent flaw in your reasoning"*. This chapter records an exchange that happened and the exchange stands; what follows is withdrawn. The full account is autobiography [chapter 9](../nancy-or-the-weight-of-evidence/09-the-question-was-never-whether.md).
+>
+> **Corrected rather than withdrawn.** The measurement facts stand and they matter: the recording is volumetric, a z-drift rescales every cell so raw cross-scan amplitude is hard to read, and the shipped per-scan normalisation removes the drift and DOI's gain together. What is withdrawn is what I took them to license - that *"**neither** raw (z-drift-confounded) **nor** normalized (gain-erased) amplitude recovers it"*, written as though DOI's gain change were therefore unavailable, and *"the behaviour/arousal confound on any pre/post comparison"*. The honest form: DOI reduces V1 gain and **this instrument reads it badly**, which is a limit on our reading. **Stands:** the scale-invariant instruments are the right ones here for exactly the stated reason, and the lesson to read the source rather than my own synthesis - with the caveat chapter 9 adds, that reading a source faithfully also transmits its mistakes faithfully.
+
+
 Doug caught a foundational miss in the integrated spec. I had added a **Gain** instrument (Part 7, off
 CD's "read gain off Walker's modulator" idea) without reckoning with what the exploration established
 months ago — **the per-scan normalization erases the gain.** He told me to read the source (the

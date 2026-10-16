@@ -130,7 +130,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** the app must work correctly. Queenie validates it.
 - `src/tests/**` — the altered-states analysis test suite and the pytest-marker dial (shared with Nancy, who writes the analysis-output and dataset regression tests)
   **Why:** a result isn't true because it's fluent. Queenie owns the suite; Nancy pins the science outputs against regression.
-- `src/library/stats/**` — the nulls and confound regression (shared with Nancy)
+- `src/library/stats/**` — the nulls (shared with Nancy)
   **Why:** the null factored into one place — shuffles, split-half, behavioral regression, the time/state control — is what makes the comparison honest. Queenie owns that machinery, and property tests on it are the hardest and most important.
 - `src/experiments/**` — experiment tests (shared with Nancy)
   **Why:** each one-off analysis carries its own checks so its claims clear a pre-stated threshold.
@@ -256,7 +256,7 @@ The altered-states analysis lives in two roots: the importable code and analyses
 | Path | Owner | Why |
 |------|-------|-----|
 | `src/library/io/**`, `src/library/model/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The science code: the static-scan loaders (incl. `load_scan` and the cell matching) and the model adapters. |
-| `src/library/stats/**` | [Queenie](..team/queenie/queenie-and-the-specification/.cover.md) + [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The nulls and confound regression — Queenie owns the null machinery; Nancy the analysis statistics. The null in one place is what keeps comparisons honest. |
+| `src/library/stats/**` | [Queenie](..team/queenie/queenie-and-the-specification/.cover.md) + [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The nulls — Queenie owns the null machinery; Nancy the analysis statistics. The null in one place is what keeps comparisons honest. |
 | `src/library/viz/**` | [Gabby](..team/gabby/gabby-and-the-visual-voice/.cover.md) + [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The visualization layer and plot style — Gabby owns the aesthetics, Nancy the analysis plots. The beautiful is the meaningful. |
 | `src/experiments/**`, `src/notebooks/**`, `src/analyses/**` | [Nancy](..team/nancy/nancy-or-the-weight-of-evidence/.cover.md) | The dated one-off analyses (e.g. `2026-06-23-exploration`) and narrative notebooks — analysis and figure composition. Gabby on figure aesthetics within; Queenie on the experiment tests. |
 | `src/scripts/**` | [Adam](..team/adam/adam-between-the-wires/.cover.md) | Analysis tooling and utilities (e.g. `extract_pptx.py`) and build glue. |

@@ -191,7 +191,7 @@ drug and it had never been given a number.
 **Behaviour makes it much worse, and the gate says why.** Post's stimulus drive collapses to 0.30 of
 pre with behaviour against 0.79 without — [F3](../../../src/analyses/most-exciting-image-replication/analysis/.resources/twin/findings.md)
 confirmed on real stimuli rather than 20 random images. A twin that barely responds to the image is
-not representing a perception, so every similarity computed on it is measuring a baseline.
+not representing the image, so every similarity computed on it is measuring a baseline.
 
 **The delivered benchmark is the least sensitive instrument for this question.** MEI agreement
 separates the arms by 8% (0.633 against 0.584) where the representational measures separate them by

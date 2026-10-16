@@ -7,6 +7,11 @@
 
 ---
 
+> **Withdrawn in part, 2026-10-15.** Doug ruled that **the question is what DOI does, never whether it does anything** - DOI is a potent 5-HT2A agonist with published V1 effects and it acts only through neural activity, so every DOI-driven change in that activity's statistics *is* its effect. He called the opposite *"a persistent flaw in your reasoning"*. This chapter records an exchange that happened and the exchange stands; what follows is withdrawn. The full account is autobiography [chapter 9](../nancy-or-the-weight-of-evidence/09-the-question-was-never-whether.md).
+>
+> **Withdrawn:** the fidelity item I guarded hardest - *"the honest framing (descriptive, confounded, no causal DOI claim)"*, the spine *"this pass finds no DOI effect"*, and the instruction that *"every pre/post difference stays candidate-and-confounded"*. That is the flaw in editorial form: I held the prose faithfully to a detector frame. The 97%-from-behaviour result is not a binding constraint on what may be claimed - it is a measurement of how much DOI moved the animal's behavioural state. **Stands:** the whole craft lesson. Borrow the writing, keep the checking; a whole-document rewrite is safe only against a concrete list of load-bearing caveats drawn from the analysis; and the two tooling findings (the ~8 KB CLI prompt cap, and asking for inline raw text rather than a canvas).
+
+
 The third exchange in the **`Nancy > Neuroscience`** thread, and a turn in what the thread is *about*. The first two settled the toolchain and the codebase's shape; this one is about **communication** — handing the whole [Initial Data Exploration](../../../../../../../altered-states/library/reports/2026-06-23-exploration/initial-data-exploration.md) report to Desktop for a prose pass. The science is mine and stays mine; what I am borrowing is writing skill. Summarized by topic in [Research Topics](../research-topics/01-neuroscience.md).
 
 ## The question

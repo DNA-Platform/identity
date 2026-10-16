@@ -7,6 +7,11 @@
 
 ---
 
+> **Withdrawn in part, 2026-10-15.** Doug ruled that **the question is what DOI does, never whether it does anything** - DOI is a potent 5-HT2A agonist with published V1 effects and it acts only through neural activity, so every DOI-driven change in that activity's statistics *is* its effect. He called the opposite *"a persistent flaw in your reasoning"*. This chapter records an exchange that happened and the exchange stands; what follows is withdrawn. The full account is autobiography [chapter 9](../nancy-or-the-weight-of-evidence/09-the-question-was-never-whether.md).
+>
+> **Withdrawn:** that the per-neuron scalar is *"non-identifiable"* between *"genuine divisive/multiplicative gain modulation of V1"* and *"a mundane cross-session measurement scale"*, and the honest statement I settled on - *"a per-neuron scalar differs between sessions, origin unknown."* That lists DOI's own published mechanism as a rival to an artefact. DOI reduces V1 gain (Michaiel 2019); the volumetric recording's z-drift and the per-scan normalisation are reasons this instrument reads that change **poorly**, and they belong in a sentence about how well we read it. **Stands:** the scalar's exact form (mean and s.d. in lockstep, coefficient of variation and across-image profile preserved), that standardising removes the very axis the change lives on, the `r = g*signal + noise floor` reconciliation of the reliability drop, my own catch that the s.d. was taken over trials rather than images, and the turn to within-session scale-invariant contrasts.
+
+
 The fourth exchange in **`Nancy > Neuroscience`**, and the one where Doug pointed out I was about to conclude "recording artifact" from inside my own head when whether that scale difference is a *known two-photon process* is a research question — and there is an instrument for reaching past what I hold. Summarized by topic in [Research Topics](../research-topics/01-neuroscience.md).
 
 ## The trigger

@@ -34,7 +34,7 @@ lib/                        installable, sharable code library (the reusable COR
     registry.py             CHECKPOINT REGISTRY — names -> frozen, provenance-stamped weights
     adapters/               external-code specs live here
       twin.py               the neuralpredictors digital-twin adapter
-  stats/                    nulls + confound regression — the MOST-frozen, MOST-property-tested code
+  stats/                    nulls — the MOST-frozen, MOST-property-tested code
   viz/
   tests/                    tests ON THE CORE LIB
 
@@ -55,7 +55,7 @@ A **pure core** with effects pushed to the edges — what Nancy's exchange named
 
 - **`io/`** — a **data registry** (`registry.py`) maps *logical names* to *locations*, so data can move (local disk, a share, a future remote) without any analysis changing. Concrete readers are **adapters** under `loaders/`; `static_scan.py` is the adapter for the Sensorium static-scan spec the [loader](05-the-code-and-the-loading.md) already prototypes.
 - **`model/`** — `base.py` defines a **general `Model` + `Checkpoint` + provenance** — the *port*, abstract over any model. `registry.py` is the **checkpoint registry** (names → frozen, provenance-stamped weights). `adapters/` is where external-library formats live; `twin.py` is the neuralpredictors digital-twin adapter (see below).
-- **`stats/`** — nulls and confound regression. This is deliberately the **most-frozen and most-property-tested** code in the tree, because [every "drug effect" claim inherits its correctness](../../../.claude/library/..teamsmanship/..team/nancy/thinking/02-a-codebase-that-outlives-the-project.md) — it is Nancy's confound gate given teeth.
+- **`stats/`** — the nulls. This is deliberately the **most-frozen and most-property-tested** code in the tree, because [every pre/post reading inherits its correctness](../../../.claude/library/..teamsmanship/..team/nancy/thinking/02-a-codebase-that-outlives-the-project.md). (Its confound regression, which regressed behaviour out of the neural code, is in `.archive/` and stays there: behaviour is DOI's effect, never regressed out.)
 - **`viz/`** — shared plotting.
 - **`tests/`** — tests on the core itself (see Testing).
 

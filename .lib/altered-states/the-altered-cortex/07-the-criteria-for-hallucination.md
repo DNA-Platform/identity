@@ -1,4 +1,4 @@
-# The criteria for hallucination
+# The criteria for a hallucination proxy
 
 - **author:** [Nancy](../../../.claude/library/..teamsmanship/..team/nancy/nancy-or-the-weight-of-evidence/.cover.md)
 - **book:** [The Altered Cortex](.cover.md)
@@ -8,10 +8,10 @@
 [H5 and H6](02-the-question-made-falsifiable.md) say the unexplained component should be
 *low-dimensional and image-like*. That was written before we had measured anything, and it is not
 sharp enough: a Gaussian process with the right covariance satisfies both and contains no events at
-all. This chapter records the sharper operational definition Doug stated on 2026-08-30, why each
+all. This chapter records the sharper operational definition of the proxy Doug stated on 2026-08-30 (per-trial structure the cortex generates itself), why each
 clause is there, what each one measured, and what precedent exists for it.
 
-The definition is stated as three clauses because **no single one is evidence.** Each clause exists to
+The definition is stated as three clauses because **no single one identifies it.** Each clause exists to
 kill a specific alternative that the other two cannot.
 
 ## The three criteria
@@ -28,8 +28,8 @@ mirror images of each other and nothing more.
 repeats of one image **and** across every trial of every image. It should be larger under DOI.
 
 *What it kills:* nothing on its own. This clause is necessary and never sufficient — it is
-[H2](02-the-question-made-falsifiable.md), and a drowsier or more motion-contaminated animal produces
-it for free. It is here because the other two are meaningless without it.
+[H2](02-the-question-made-falsifiable.md), and DOI's loss of stimulus-locking produces it whether or not
+the lost variance is structured. It is here because the other two are meaningless without it.
 
 **3 — White across trials, structured within one.** The unexplained component should be **white across
 trials** — each event fresh, not repeating with the image, which would make it a retuning rather than
@@ -85,7 +85,7 @@ basis too.
 ## Precedent
 
 Searched 2026-08-30. Each clause has partial precedent; the **conjunction**, and its use as a
-criterion for hallucination read through a generative encoding model, does not appear to.
+hallucination proxy read through a generative encoding model, does not appear to.
 
 - **Clause 3's phenomenon** is Kenet, Bibitchkov, Tsodyks, Grinvald & Arieli, *Spontaneously emerging
   cortical representations of visual attributes*, Nature 425:954 (2003) — spontaneous cortical states
@@ -117,7 +117,7 @@ criterion for hallucination read through a generative encoding model, does not a
 
 **What was not found.** No precedent for a digital twin fit in one pharmacological state and
 transferred to another as the definition of the unexplained component (clause 1); none for the three
-clauses used jointly as a hallucination criterion; none combining a covariance-matched
+clauses used jointly as a hallucination proxy; none combining a covariance-matched
 Gaussianisation null with a psychedelic condition. A negative literature search is weak evidence and
 is recorded as such — the searches are listed above so the next person can extend rather than repeat
 them. This dataset is unusual (the same matched cells before and after a 5-HT2A agonist, with a

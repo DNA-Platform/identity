@@ -5,6 +5,11 @@
 
 ---
 
+> **Withdrawn in part, 2026-10-15.** Doug ruled that **the question is what DOI does, never whether it does anything** - DOI is a potent 5-HT2A agonist with published V1 effects and it acts only through neural activity, so every DOI-driven change in that activity's statistics *is* its effect. He called the opposite *"a persistent flaw in your reasoning"*. This chapter records an exchange that happened and the exchange stands; what follows is withdrawn. The full account is autobiography [chapter 9](../nancy-or-the-weight-of-evidence/09-the-question-was-never-whether.md).
+>
+> **Withdrawn:** the control block. *"Temporal-drift null runs FIRST, and every effect must clear it... Highest-priority control"*, the behaviour step *"match+regress the behaviour marginals, verify behaviour no longer decodes pre/post from the residual"*, and the gate *"H1-H6 only after each carries its null."* Regressing behaviour out removes the drug from its own experiment, and no effect owes a no-drug null a licence. **Stands:** post cold-primary rather than warm-started (warm-starting biases the post twin toward pre-drug features, which blurs the reading); FEVE published / CC_norm ours; the MEI gradient and blur verbatim with the p=2 constraint labelled ours; fixed-state MEIs with the eye clamped; the raw gain-ratio as a headline; **n=1 so the 5-seed spread is the error bar, and never report a difference inside it** - that is the instrument's resolution, not a licence; the matching-QC subset as an instrument check on whether row *i* is one neuron; and the unblocked-first ordering that makes Phase 2 the first real number.
+
+
 Memory against compaction. The *why* is chapter 07, the full-pipeline audit *(never written)*; this is the **do-this** for the run. Scannable on purpose.
 
 ## Execution invariants (must not forget)

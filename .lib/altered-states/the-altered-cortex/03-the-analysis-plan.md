@@ -21,7 +21,7 @@ they are contract, not etiquette.
 
 **Where code lives** — the boundary is [The Build ch8](../../../src/.lib/the-build/08-the-organization.md) (Libby's chapter;
 read it, don't restate it): **`src/library/`** is the shared core — `io` (loading + the data registry), `model`,
-`stats` (nulls, confound control, and the map-reading machinery), `viz` (the shared palette). **Analyses import
+`stats` (nulls and the map-reading machinery), `viz` (the shared palette). **Analyses import
 it and never edit it.** So a function that isn't about *this* experiment goes there and is imported — never
 copied. `library/stats/binning.py` and `gradient.py` exist because `binned()`/`gradient_axis()` were living
 inside one study; `metrics.py`'s own header records the five scripts that each grew a private copy of the image
@@ -60,8 +60,9 @@ another file is not a check).
 **bh and no-bh are always separate, and always both produced.** Figures for **all four twins**
 (`pre`, `post`, `pre-bh`, `post-bh`); if something is compared, **both conditions get their own figure** — never
 one grid holding both. A shared figure invites reading across the conditions, and they are not comparable: the
-`-bh` arm carries the eye-shifter/arousal confound, and its visual field sign even flips post. The pooled number
-is the one that hides the confound.
+`-bh` twins condition on pupil, running and eye position, which DOI changes, so their pre/post readouts carry DOI's
+change in behaviour as the twin models it beside its change in image tuning; their visual field sign even flips
+post. The pooled number hides which is which.
 
 **Bins come from the data.** `library.stats.binned` chooses its bin count by **LOOCV** (a regressogram; too few
 bins oversmooths, too many is noise — cross-validation sees both); `library.stats.hist_bins` uses
