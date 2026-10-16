@@ -36,7 +36,8 @@ export default () => (
                 a scheme of six colours, a window, the participants, each a reference to a person's book, the
                 period from the first instant to the last, the messages shown and the messages in all, the title
                 in the reference form, the author as my librarian, the subject as the conversations book, the
-                project as Claude's own annotation, and an illustration inserted from the file beside the cover.
+                project as Claude's own annotation, the account right after it as its twin, leading to the
+                account's mention in Dougs Claude, and an illustration inserted from the file beside the cover.
                 Its synopsis is the application's own summary as one paragraph, kept for the catalogue and never
                 shown on the page. Its table lists the days under headings by month, each a reference to the
                 day's chapter, then every artifact version in an appendix section headed Artifacts, each entry
@@ -60,8 +61,9 @@ export default () => (
                 sentence as the caption, its file beside the chapter, the export's id of the artifact and the
                 place of the version chapter it opens; a file given to him is an attachment with its file
                 beside the chapter, or the sentence alone when the export carries no content. A file beside a
-                chapter is named for the chapter and the file, chapter, tilde, name and type, and stands there
-                only because the chapter inserts it. The message says of itself that its headings are opaque,
+                chapter is named for the chapter and the file, chapter, tilde, name and type, the type the
+                application gave the file and never one chosen for it, and stands there only because the chapter
+                inserts it. The message says of itself that its headings are opaque,
                 by <Means>$[[ The Address ]]( Dougs Reference Manual / The Address )</Means>, so a heading inside
                 an answer is not a place.
             </Paragraph>
@@ -85,8 +87,9 @@ export default () => (
                 date the conversation's last day, the conversation's cover as a volume, the title, a caption
                 counting the exchanges and leading to the book, the synopsis inserted from the book's own, and
                 the record appended from the file beside it. The record is the import's memory of the
-                conversation, the application's id, the name, the folder, the export it came from, when the
-                conversation last changed, how many messages it held, the digest of what was written and when,
+                conversation, the application's id, the name, the folder, the account it was held under, the
+                export it came from, when the conversation last changed, how many messages it held, the digest
+                of what was written and when,
                 which is how a later run knows a conversation is already in, has grown, or was edited by hand,
                 as <Means>$[[ The Ledger ]]( Dougs Importer / The Ledger )</Means> says. The conversations
                 book's table lists every entry under its month with an arrow leading into the book.
@@ -108,12 +111,24 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Heading>What the export holds that the form does not carry</Heading>
+            <Paragraph>
+                The export carries things the form leaves out, each counted by the import and written nowhere:
+                Claude's thinking and a tool's result, left out on my ruling; a prompt the application injected;
+                a memory Claude read or wrote; a place card on a map; the link from a conversation to an artifact
+                published on the web, whose published copy the export keeps in a category of its own; and a
+                conversation captured live from the application, which holds more than the export does. Each is
+                a form owed if it is ever wanted, said here first and then written, never written around.
+            </Paragraph>
+        </Section>
+        <Section>
             <Heading>The older account</Heading>
             <Paragraph>
                 My older account's export is in the application's earlier shape, one archive with its own
                 schema, and its import is being generalized by the other team to read it. It writes this same
-                form and nothing else: a conversation from either account is one kind of book, told apart by its
-                record and by nothing on its page.
+                form and nothing else: a conversation from either account is one kind of book, told apart by
+                the account its cover says, <Means>$[[ The Account ]]( ./The Account )</Means>, the line its
+                page draws for it, and the field in its record.
             </Paragraph>
         </Section>
         <Append

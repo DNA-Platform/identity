@@ -23,11 +23,20 @@ export default () => (
                 source, the sessions of Claude Code on this machine, is one more reader and nothing else moves.
             </Paragraph>
             <Paragraph>
-                The Claude export's reader streams the one array of conversations, cutting each loose as it
-                closes, so what is held at any moment is one conversation and not the archive, and reads the
-                small archives by their directory; the whole export is read in under twenty seconds without a
-                dependency. The export's own names, <Means>$[[ the ones its schema gives ]]( ./The Export )</Means>,
+                The Claude export's reader streams the one array of conversations from wherever it stands in its
+                archive, cutting each loose as it closes, so what is held at any moment is one conversation and
+                not the archive, and reads the small archives by their directory; my newer account is read in
+                under ten seconds and my older one in under twenty, without a dependency. Every block is named
+                in the record's words, an upload, a prompt the application put in, a budget, so none is
+                counted as unknown. The export's own names, <Means>$[[ the ones its schema gives ]]( ./The Export )</Means>,
                 appear in the reader and nowhere else.
+            </Paragraph>
+            <Paragraph>
+                And the reader keeps, beside each conversation, the traces <Means>$[[ the pairing ]]( ./The Pairing )</Means> reads
+                to tell which project it was held in: the passages a search of a project's files returned, the
+                project folders of Claude's memory it touched, and the conversations a search of my other
+                conversations found. They are the tool's words, so the reader takes them, and nothing after it
+                knows a tool's name.
             </Paragraph>
         </Section>
         <Append

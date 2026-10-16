@@ -9,6 +9,7 @@ import { $Conversation, Label as label, Light as light, Tone as tone } from '../
 import { ApplicationForm } from './4-the-page~theme.tsx';
 import { $Artifact, $Attachment } from './2-the-artifact-and-the-attachment~code.tsx';
 import { Pane as pane } from './5-the-pane~code.tsx';
+import { $Account, AccountLine as accountLine } from './7-the-account~code.tsx';
 
 export class $Project extends $Annotation {
     specification = new ProjectSpecification();
@@ -72,6 +73,7 @@ const projectLine = ProjectLine;
 export class $ClaudeConversation extends $Conversation {
     $shown: $Artifact | $Attachment | undefined = undefined;
     get project(): $Project | undefined { return this.cover?.annotations.expressed($Project); }
+    get account(): $Account | undefined { return this.cover?.annotations.expressed($Account); }
 
     override write(): ReactNode {
         const Pane = $(pane);
@@ -85,11 +87,15 @@ export class $ClaudeConversation extends $Conversation {
 
     override me(): ReactNode {
         const ProjectLine = $(projectLine);
+        const AccountLine = $(accountLine);
         return (
             <>
                 {super.me()}
                 {this.project === undefined ? undefined : (
                     <ProjectLine cover={this.cover} />
+                )}
+                {this.account === undefined ? undefined : (
+                    <AccountLine cover={this.cover} />
                 )}
             </>
         );

@@ -13,14 +13,19 @@ export default () => (
         <Section>
             <Heading>One home, and as many catalogues as I like</Heading>
             <Paragraph>
-                A conversation is a book: its book file one line, its cover saying when it was held and how many
-                messages it holds, its synopsis what it came to, its table, and in the first version one chapter
-                holding every exchange. It is filed under the book that catalogues all of my conversations, which
+                A conversation is a book: its book file one line, its cover saying when it was held, how many
+                messages it holds and which of <Means>$[[ my accounts ]]( Dougs Claude / The Accounts )</Means> it
+                came from, its synopsis what it came to, its table, and a chapter for each day it was held, in
+                the form <Means>$[[ the imported conversation ]]( Claudes Reference Manual / The Imported Conversation )</Means> sets
+                down. It is filed under the book that catalogues all of my conversations, which
                 is its one home whatever the mapping says. Each project that catalogues it is a book of its
                 own, <Means>$[[ a project book ]]( Dougs Reference Manual / The Project Manual )</Means>, a reference
                 manual of the project's knowledge files and a catalogue of its conversations by
                 topic, which is the way back from a conversation to its project; and a project's book is a
-                subject, so what I later write about a project can be filed under it. Both kinds of catalogue are
+                subject, so what I later write about a project can be filed under it. A project book is written
+                once and left, and written whole again only when a run takes its project whole and says to
+                overwrite, from the project as both accounts hold it, every conversation standing in the library
+                entered in it again. Both kinds of catalogue are
                 filed under Dougs Claude, the book that catalogues the conversations book and the project
                 books together. The catalogue of all of them is a very
                 simple book for now; the shelves and the tables that catalogue them more effectively come with

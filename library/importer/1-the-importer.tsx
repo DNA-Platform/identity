@@ -40,9 +40,12 @@ export default () => (
                 the run; once it is done it never does, since a conversation once imported is edited by hand.
             </Paragraph>
             <Paragraph>
-                Its configuration stands beside this chapter: what is excluded as not mine, the scripts a title
-                may not be in and the projects, and the collections, each a name over a list of conversations by
-                title or id. A conversation with a Russian title is not mine, and the configuration says so.
+                Its configuration stands beside this chapter: <Means>$[[ my accounts ]]( Dougs Claude / The Accounts )</Means>,
+                the older first, each by its name, its folder in the sister repository and the address that
+                holds it, which an export must match to be read; what is excluded as not mine, the scripts a
+                title may not be in and the projects; and the collections, each a name over a list of
+                conversations by title or id. A conversation with a Russian title is not mine, and the
+                configuration says so.
             </Paragraph>
         </Section>
         <Append

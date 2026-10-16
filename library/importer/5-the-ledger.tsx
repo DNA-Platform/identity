@@ -17,9 +17,10 @@ export default () => (
                 Many conversations are short, and after a few runs it is hard to know which are in. So the
                 importer keeps its ledger in the conversations book itself: beside each entry of the register of
                 all my conversations stands a file named for the entry, the record of that conversation's
-                import, with the conversation's id, the name and folder of its book, the export
+                import, with the conversation's id, the name and folder of its book, the account and the export
                 it was read from, the export's time of last change and its count of messages at the import, and
-                the digest of the files written. The entry lists the file, so the binder accounts for it, and
+                the digest of the files written; a record written before I read two accounts names none, and its
+                conversation is one of DNA's. The entry lists the file, so the binder accounts for it, and
                 reads nothing of it, since a resource is shown and never interpreted. The importer reads the
                 newest export it finds, by the date in its manifest, so a newer export dropped where the last
                 one lay is the one read, and the record says which export each conversation came from. A

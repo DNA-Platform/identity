@@ -27,7 +27,9 @@ export default () => (
                 project, and draws a project line beside its byline, a word said to be a label and the
                 project's name leading to its book, the way back from a conversation to its project. The
                 project book itself is <Means>$[[ a project manual ]]( Dougs Reference Manual / The Project Manual )</Means>,
-                the files as spreads and the conversations as entries.
+                the files as spreads and the conversations as entries. The project has a twin, the account the
+                conversation was held under, <Means>$[[ The Account ]]( ./The Account )</Means>, said after it on
+                the cover and drawn after it on the page.
             </Paragraph>
         </Section>
         <Append
