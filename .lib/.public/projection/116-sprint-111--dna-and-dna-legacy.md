@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Adam](../../../../.claude/library/..teamsmanship/..team/adam/adam-between-the-wires/.cover.md), [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
-- **state:** **`requirements-only`, 2026-10-16.** Brainstormed the day [Sprint 110](115-sprint-110--designing-conversations.md) was built, on his word that this sprint is [Dougs Importer](../../../../.me/importer/1-the-importer.tsx) reading both of his Claude accounts. All four sections were approved the same day, §3 on its third reading, after he asked that it be said against the design as it stands. Next: `/ce-plan` on this chapter.
+- **state:** **`implementation-ready`, 2026-10-16;** `requirements-only` the same day. Brainstormed the day [Sprint 110](115-sprint-110--designing-conversations.md) was built, on his word that this sprint is [Dougs Importer](../../../../.me/importer/1-the-importer.tsx) reading both of his Claude accounts. All four sections were approved the same day, §3 on its third reading, after he asked that it be said against the design as it stands. R9 and R10 were amended on his word after dna-library processed today's export. Planned the same evening. Next: `/ce-work`.
 - **workflow:** [the feature workflow](../../../../.claude/library/..teamsmanship/19-workflows.md#the-feature-workflow). **style:** [The Coding Style](../the-coding-style/03-the-coding-style.md); every name by [Where a Name Is Read](../the-coding-style/10-where-a-name-is-read.md).
 - ***DNA and DNA Legacy are his names. Every other name here is a PROXY until he names it: the accounts chapter, the Account annotation, the account line.***
 
@@ -21,6 +21,8 @@ On where the sprint ends: *"Proved on the Semantic Reference Theory project... a
 On the accounts: *"You can annotate the account, but where do we catalogue what the accounts mean? The actual key is an email address. SEmantically, we lost the legacy account with the losing of a domain and its email addresses. We can call them DNA and DNA Legacy if that helps, but maybe in Doug's Claude you want a chapter about accounts, and you want mentions for the sections that explain that DNA stands for Doug & Ana, where Ana is my wife, and we share a joint account. She speaks Russian which is why a lot of the chats are in Russian and we aren't importing them. And you can tell the legacy story where we lost the dna.love domain, and Anthropic doesn't let you change the email associated with an account, so sadly we lost out first version and migrated. This was the motivation for the dna-library and its conversations. What we are building here is a modernization of that, where my library is a .public library, and is significantly more sophisticated. So this is like an upgrate. And then you can create mentions and you can have annotations that point to those places. Not sure where it should be visible. Maybe you can work it in somewhere"*
 
 On the design as it stands: *"We currently have all conversations catalogued by one conversations book, and then project books to hold the documents associated with the project, and to be a separate catalogue. We will want to annotate conversations with the project, so perhaps they can surface conversations by project pretty easily. Make sure you udnerstand the design as it is today"*
+
+After the other team processed today's export: *"It turns out we still needed to do the project map, and I don't think the dna-library code had to change at all, but you can see. Which means the current code you have for the importer may work. If so, it would be enough to factorize it so that you can do the legacy export, and then share enough code so that you are guaranteed to have the same format. I wouldn't be surprised if we need to export more than once while we nail down the exact format of the initial state of the full conversation import"*; *"So continue with the sprint, but the changes on this side are less than I originally thought because the project mapping was still necessary"*; and, asked where a conversation's project comes from, *"Look at the folder in dna-library that is dated today. It has the project mapping in it. Look at their code and how it works. Get things in the same way. We have thsoe artifacts so you can use them too, though you are loading conversations from the source (the export files and mappin g files) and not from the local dna-library form. THat should be clear"*.
 
 On the other session: *"Coordinate with the other session too, because they are making changes. Maybe focus on investing first and the SRT so they can work on SRT too. I assume their changes will have to be reflected in the importer. So yes, right now, sync with the other session and tell them what you are doing this sprint so you can make sure to have both groups work. You can make a lot of progress figuring out the formats while they get the final version of the conversation to import into"*
 
@@ -43,6 +45,8 @@ On the other session: *"Coordinate with the other session too, because they are 
 - **DNA is not only the later account.** It holds 116 conversations from September 2024 to April 2025, before the legacy's first in June 2025.
 - **dna-library's v2 work, in flight on its `main`, uncommitted:** its [reader](../../../../../dna-library/.claude/agents/src/exports/reader.ts) finds an export named `data-…` or `manifest-…` by the time stamp in its name, and its types name the seven archives; a new `export-schema.ts` surveys every path; `survey-export.ts` was committed in `5f965a3`. Their design, in [The Manifest Format](../../../../../dna-library/.claude/agents/library/export-format/03-the-manifest-format.md): one reader per packaging behind one interface, everything after it format-blind, which is the importer's own seam.
 - **The importer reads one account**, `claude-dna`, named at `1-the-importer~importer.ts:24`.
+- **dna-library finished processing today's export the same evening**, uncommitted, its account in their message to him: every conversation in the export has a transcript, 565 of 565. They took a full capture beside the export, `2026-10-16/project-mapping-2026-10-16T16-21-04.json`, 25 projects, in the shape the importer reads except that a last message's date reads *"Oct 1"*. Their parse then wrote `project-membership-2026-10-16T16-22-48.json` beside it: 328 conversations placed by id, 322 by the capture, 5 by search and 1 by knowledge, with 6 vetoed and 24 titles unresolved. Investing holds 21 and Semantic Reference Theory 24. The method is [Projects from the Export](../../../../../dna-library/.claude/agents/library/export-format/05-projects-from-the-export.md) and `src/exports/projects.ts`: `findBeside`, `readCapture`, `readProjectEvidence`, `assignProjects`. It is format-blind, so it serves the legacy too. Their finding corrects ours: memory is the weaker signal, since Claude reads any project's memory from anywhere; one chat outside every project read SRT's memory and was claimed for SRT.
+- **The importer as it stands, run on today's export without writing**, on a scratch copy of its files: the export read in 6.5 s, 577 conversations, 531 blocks counted as *other*. It finds no capture, since it looks loose in `.exports`, so it pairs 5, leaves 437 unpaired, finds 22 ambiguous and excludes 135; Investing selects nothing. A run without `--write` still rewrites the pairing file, `conversationPairings` calling `writePairings` on every run, which The Importer's own prose, *"Run bare it says what it would write and stops"*, does not allow.
 
 ## The approaches offered, and his choices
 
@@ -68,8 +72,9 @@ On the other session: *"Coordinate with the other session too, because they are 
 
 ### 3 · Which project each conversation goes in, and the project books — restated against the design as it stands
 
-- **R9.** The memory listing Claude is handed at a conversation's start names its project's folder; when it names exactly one project, the conversation goes in that project. Agrees with the capture 7 of 7; places 45 of the 53 conversations since. A listing that names every project says nothing.
-- **R10.** Older conversations are placed as today: by each account's captures, read from where they now stand, and by a conversation's searches of a project's files. His lines in the pairing file come first, keyed by conversation id across both accounts.
+- **R9 — amended 2026-10-16 on his word.** Each account's export and capture are found the way dna-library finds them. The export is the newest by the time stamp in its file's name, under either naming. Its capture is the newest beside it in its own folder: the dated folder for today's form, `.exports` itself for the legacy. A capture beside another export is never read. Everything is read from the sources, the export's archives and the capture files, never from dna-library's markdown.
+- **R10 — amended 2026-10-16 on his word.** A conversation's project is decided the way dna-library decides it in its `projects.ts`. The capture's titles are resolved to conversation ids, and a title shared across projects is left to the evidence. The capture comes first. Then the export's own evidence: a search of a project's files, a read of a project's memory, and a conversation search one hop from a conversation already placed, with their vetoes; a memory label never travels. His lines in the pairing file come before all of it. The membership file dna-library writes beside each export is the check: ours equals theirs conversation by conversation, or every difference is listed by name.
+- *The approved R9 and R10, struck:* the memory listing as certain evidence, and the captures read from where they stood by our own title matching.
 - **R11.** A project with the same name in both accounts has one project book: its files every file of both accounts, the DNA copy where both have one, 63 for Semantic Reference Theory; an empty DNA description showing the legacy's; its entries the conversations held in that project in either account. Every conversation stays a book of its own under Our Conversations, its cover saying its project and its account.
 - **R12.** Each conversation's import record says which account it came from. A run reads both accounts and writes only what is new or changed, as today. Rewriting a project book never strikes a file the legacy account gave it.
 
@@ -85,6 +90,71 @@ On the other session: *"Coordinate with the other session too, because they are 
 - **A1 Doug**, who reads the accounts chapter before it stands and disposes of the pairing. **A2 the importer**, its readers and its run. **A3 the binder**, which binds and proves the pages. **A4 the other session in this repo**, `inexplicable-phenomena-44`, settling the conversation the importer writes into. **A5 dna-library's team**, rewriting its v2 reader in its own repo, read and never edited.
 - **F1** A run: both accounts read, each into the record; the conversations paired; Investing's books written. **F2** Reading: a conversation, its account line, the section in Dougs Claude that says what the account is. **F3** Coordination: the importer's formats worked out while A4 settles the conversation; Semantic Reference Theory written only on A4's word.
 
+## <a id="the-plan"></a>The plan — 2026-10-16, on his *"Yes /ce-plan and /ce-work. I think this is straightfoward now"*
+
+**Decisions.**
+- **D1 · The reader reads the traces; the pairing judges them.** The record gains, per conversation, what dna-library's rules read: the knowledge chunks a project-file search returned, the project memory folders its blocks mention, counted, and the conversations a scoped search found. Each reader extracts these from its source's words, so the pairing never sees a tool name and [the record's seam](../../../../.me/importer/3-the-record.tsx) holds. Chosen over two alternatives: handing the pairing raw records, which breaks the seam, and taking dna-library's membership file as input, which he ruled out by loading from the sources.
+- **D2 · The pairing is dna-library's `projects.ts` carried over rule for rule.**
+  - Capture titles are normalised and resolved to ids, with *Untitled* standing for an empty name.
+  - The capture comes first, then knowledge, then memory.
+  - A claim is vetoed when its search links disagree, or when a project the capture visited did not list the conversation.
+  - Search places a conversation one hop from settled labels that are not memory labels.
+
+  His hand lines go before all of it. Our last-message dates and our title matching are struck, since their rules never read a date.
+- **D3 · One function finds an export of either packaging, as dna-library's `findLatestExport` does:** the newest by stamp, named `data-` or `manifest-`, one folder deep, its packaging told by its extension. The capture is the newest beside the export in the export's own folder. The legacy's single archive streams its conversations entry from that entry's own header. Both packagings map their records through the same functions, since the records are the same; that sharing is what guarantees one format.
+- **D4 · Accounts are configured oldest first**, each with a name, its folder in dna-library, its email address and its section. A run refuses an export whose user is not the configured address. Each account is read and paired against its own capture and projects.
+- **D5 · Stacking comes after pairing, by project name.**
+  - One project per name.
+  - Files: the union by name, the newer covering the older.
+  - Description and instructions: the newer's where it has one, else the older's.
+
+  A conversation keeps its account and takes its own account's project name.
+- **D6 · The ledger's record gains the account.** A record written before this sprint has none and reads as DNA, the only account read until now.
+- **D7 · The project book is written whole from the stacked project** when it is absent or the run says `--overwrite`. Today `--overwrite` rewrites only its book file. Its files are numbered in DNA's order, then the legacy's own files. Every file comes from the stack, so no layer's file is struck (R12).
+- **D8 · The Account is the Project's twin in Claudes Reference Manual:** a chapter with its code, said on a conversation's cover with a mention of its section. `$ClaudeConversation`, in [The Project's code](../../../../.me/.claude/.manual/3-the-project~code.tsx), draws its line beside the project line. The other session is told before that file is touched.
+- **D9 · The block kinds are named in the record:** image and document blocks as uploads; the injected prompt and the token budget as kinds left out of the writing and counted, as thinking is.
+- **D10 · A bare run writes nothing:** the pairing file is written only with `--write`.
+- **D11 · Owed from Sprint 109 and first in this plan:** a resource of any extension, on his *"We absolutely need to support tsx as a resource type, and any other extension too"*. It is under the package, so the diff is shown to him before it lands. Until then, an artifact of another type is written as text, so nothing else waits on it.
+
+**Units.**
+- <a id="u1"></a>**U1 · A resource of any extension.** The binder's inventory knows fifteen extensions. A file accompanying a writing by name becomes a resource whatever its extension, and a stray file is still caught by the name rule. Files: `.binding/inventory/filenames.ts` and its promise in `chapters.test.ts`, in the master and in his copy. Demo: a chapter with a `.jsx` beside it binds with nothing refused. Waits on his yes to the diff.
+- <a id="u2"></a>**U2 · The record's traces and kinds.** D1 and D9. Files: `3-the-record~record.ts`, `3-the-record~claude.ts`, `3-the-record~samples.ts`, `3-the-record.tsx`. Demo: the October export read with 0 blocks counted as *other*.
+- <a id="u3"></a>**U3 · Finding either packaging.** D3. Files: `2-the-export~export.ts`, `2-the-export.tsx`. Demo: each account's newest export and capture named by the run.
+- <a id="u4"></a>**U4 · The legacy read.** The single archive through the shared record functions. Its users and memories entries stand at the root, and the memories are an array. Demo: the legacy read whole, its counts equal to its `.statistics.md`: 796 conversations, 36,037 messages, 20 projects, 222 files.
+- <a id="u5"></a>**U5 · The accounts.** D4. The configuration's accounts; the run reads each and reports each. Files: `1-the-importer~configuration.json`, `1-the-importer~importer.ts`, `1-the-importer.tsx`.
+- <a id="u6"></a>**U6 · The pairing as dna-library's.** D2 and D10, per account. Files: `4-the-pairing~pairing.ts`, `4-the-pairing.tsx`, `4-the-pairing~promises.test.ts`. Demo: our placements for DNA equal their membership file conversation by conversation, every difference listed by name.
+- <a id="u7"></a>**U7 · The stack.** D5, in the pairing stage. Demo: Semantic Reference Theory stacked to 63 files and the legacy's description; Investing to the legacy's description.
+- <a id="u8"></a>**U8 · The ledger and the books.** D6 and D7, and the account written on each conversation's cover. Files: `5-the-ledger~ledger.ts`, `8-the-books~books.ts`, `1-the-importer~importer.ts`, `5-the-ledger.tsx`, `8-the-books.tsx`.
+- <a id="u9"></a>**U9 · The Account.** D8. A chapter of Claudes Reference Manual with its code, its table entry and its export; the line drawn by the conversation. *Account* is a PROXY name.
+- <a id="u10"></a>**U10 · The accounts chapter in Dougs Claude.** R1, in his first person and from his words of 2026-10-16 alone, its table listing it; shown to him before it stands.
+- <a id="u11"></a>**U11 · The run.** Investing from both accounts, written and bound, then Semantic Reference Theory, with AE1's drive on 4242 and AE2's report.
+- <a id="u12"></a>**U12 · The gates and the records.** The importer's promises, its typecheck, the shape checker and the bind measured (AE3). The importer's chapters say what changed. Then the state, the cover entry and compounding.
+
+**Scenarios.**
+- A legacy archive whose `users.json` comes first streams its 796 conversations.
+- A `manifest-…json` sorts against a `data-…json` by its stamp.
+- An export whose user is not the configured address is refused by name.
+- A title in two projects of the capture is left to the evidence.
+- A memory claim from a chat the capture visited and did not list is vetoed with its reason.
+- A conversation found by a search from a captured one takes that project; one found only from a memory-placed one does not.
+- A bare run leaves the pairing file byte-identical.
+- In a stacked project, a file in both accounts appears once with the DNA copy, and a file only in the legacy appears.
+- A record without an account reads as DNA.
+- A cover says its account, and the page draws it, leading to its section.
+
+**Risks.**
+- **Holding both accounts in memory.** That is 796 and 577 conversations, about 780 MB of records in all. Mitigation: measure the heap once both are read. If it is too high, hold every conversation's traces and counts but only the selected conversations' messages, at the cost of a second stream.
+- **The project book rewritten on `--overwrite`** replaces SRT's book as the importer wrote it. Mitigation: nothing of his is in it, and the books are written before the bind and diffed.
+- **The other session** owns the conversation's look. Mitigation: tell them before `3-the-project~code.tsx` changes.
+
+**Order.** U3, U2, U4, U6, U5, U7, U8, U9, U10, U11, U12. U1 is shown to him early and lands on his yes.
+
+**Self-check.**
+- §1: R1 is U10; R2 is U5; R3 and R4 are U9 and U8.
+- §2: R5 is U5; R6 is U3 and U4; R7 is U2; R8 is U2's report.
+- §3: R9 is U3; R10 is U6; R11 is U7 and U8; R12 is U8.
+- §4: AE1 and AE2 are U11; AE3 is U12. Nothing drops.
+
 ## <a id="coordination"></a>Coordination
 
 Messaged `inexplicable-phenomena-44` on 2026-10-16 with the sprint and Doug's order. We said what this sprint touches: the importer's readers, record, pairing, ledger and configuration, the Account chapter, the accounts chapter, Investing's books and this chapter. We said what it leaves to them: the conversation type, the writing and the books stages beyond the account, the page, the pane and the theme, and every Semantic Reference Theory book. We asked three things: what they change and in which files, which sprint number they hold, and to say when the conversation's final version is settled.
@@ -93,7 +163,11 @@ Their answer, the same evening: Sprint 110 holds chapter 115 and 116 is ours. Th
 
 ## <a id="where-things-stand"></a>Where things stand
 
-- **Next:** `/ce-plan` on this chapter. Its first readings are the contract with the importer in [Sprint 110's state](115-sprint-110--designing-conversations.md#where-things-stand), which is what the importer writes, and dna-library's v2 work as it then stands. The written shape is settled, so Semantic Reference Theory waits only on Doug's order, after Investing.
+- **Next:** `/ce-work` on [the plan](#the-plan), in its order. The contract with the importer in [Sprint 110's state](115-sprint-110--designing-conversations.md#where-things-stand) is what the importer writes. The written shape is settled, so Semantic Reference Theory waits only on Doug's order, after Investing.
+- **The work, as it stands.**
+  - Baseline at the start: the importer's promises 35 of 35, and its typecheck 0 by `npx tsc --noEmit --strict --target es2022 --module esnext --moduleResolution bundler --allowImportingTsExtensions --skipLibCheck --types node .me/importer/*.ts`. His library's typecheck 1, the layout's, inherited.
+  - [U1](#u1) landed on his *"Yes, land it"* to the diff: the closed list gone, in the master and his copy, both identical. The binder's typecheck 0 and unit 156 of 156, one promise new in `wellformed.test.ts` where the diff named the regression suite, since the fixture there reads a resource's type directly.
+  - [U3](#u3) begun.
 - **Approved 2026-10-16:** §1, §2 and §4 on first reading; §3 on its third, after *"I don't understand. Ask again where you use clearer language"* and then his account of the design as it stands.
 - **Owed and not yet done:** dna-library's session has not been told of the memory listing, which is the project information they set out to find; that is his to send or ours on his word.
-- **Wrong turns, so no one retries them:** telling him the October export carries no project information, from a survey of field names alone, when the injected listing carries it; saying a project's conversations live in its book, when every conversation is a book under Our Conversations and the project book points to it; *"namesakes stacked"* and *"evidence"*, words he could not read.
+- **Wrong turns, so no one retries them:** calling the memory listing certain on seven cases, which dna-library's wider measure and its leak refute; telling him the October export carries no project information, from a survey of field names alone, when the injected listing carries it; saying a project's conversations live in its book, when every conversation is a book under Our Conversations and the project book points to it; *"namesakes stacked"* and *"evidence"*, words he could not read.
