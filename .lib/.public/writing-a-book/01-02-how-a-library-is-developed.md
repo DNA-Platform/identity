@@ -38,6 +38,14 @@
 
 4. **Close the workbench when the session ends:** the same file with `close`.
 
+5. **Open the library's own browser once, in the background, and leave it open for the session — 2026-10-15.** It is essential to developing Doug's library and nothing closes it but Doug:
+
+   ```
+   node .me/.claude/.manual/4-the-page~browser.mjs open
+   ```
+
+   A visible Chrome with its own profile on claude.ai, where he logs in once and stays signed in, kept open with a debugging port the other commands attach to: `tabs`, `go`, `text`, `html`, `tree`, `style`, `shot`, `scroll`, `hover`, `press`, `over`, each with an address. It is a browser and not an interface for calls, Doug: *"It's not something you make API calls with… Remember to do more tab management… Reuse them if you aren't going back."* The tool keeps one tab per place and navigates it; `close` shuts what a drive left open. **To show Doug a page, open it in his own browser**, `cmd //c start "" "C:\\path\\to\\page.html"`, never in the library's. The chapter that holds the tool is [The Page](../../../../.me/.claude/.manual/4-the-page.tsx) in Claudes Reference Manual.
+
 **Three signs the protocol is being broken:** a script written into the scratchpad to see a page; a second bind inside one piece of work; a claim about how something looks with no photograph named.
 
 **<a id="warnings"></a>What a look's `wrong:` lines are, and are not — 2026-10-15.** A look prints every console error of the page as a `wrong:` line, and the lines are read, never counted: React prints one line for a warning that fired a thousand times, and none at all for the same fault drawn on the server by the bind, so a page can bind, prove and be committed while it loops on the open page. Three tells from [Sprint 109](../projection/114-sprint-109--dougs-importer.md#u17): a page that never compiled prints no warning, so a zero after a cut is a claim about the cut until the page is seen; a hot reload that was refused leaves `createRoot() on a container` and a hydration line on every later look until the workbench is restarted cold; and a fault that disappears under a cut is not evidence until the cut is put back and the fault returns, since the dev server re-bundles its dependencies under a long session and a cut landing in that window proves nothing. A theme's rules printed as text down a page are not a layout's fault but a stylesheet handed to React as children, [Solutions 115](../solutions/115-the-theme-that-answered-its-stylesheet.md).
