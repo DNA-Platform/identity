@@ -52,6 +52,12 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Heading>How this book is built</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Accounts ]]</Content>
+            </Paragraph>
+        </Section>
+        <Section>
             <Heading>Where this book stands</Heading>
             <Paragraph>
                 <Parenthetical />

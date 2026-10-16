@@ -1,10 +1,9 @@
 import { readFileSync } from 'node:fs';
-import { basename } from 'node:path';
 import {
-    archiveFromFile, jsonEntries, newestExportFiles, streamedObjects, type ExportFiles,
+    archiveFromFile, jsonEntries, newestExportFiles, streamedObjects, type Archive, type ExportFiles,
 } from './2-the-export~export.ts';
 import type {
-    Attachment, Block, Conversation, Mapping, Memory, Message, Project, Source, Speaker,
+    Attachment, Block, Conversation, Mapping, Memory, Message, Project, Source, Speaker, Traces,
 } from './3-the-record~record.ts';
 
 type RawRecord = Record<string, any>;
@@ -42,8 +41,33 @@ const blockFromRaw = (rawBlock: RawRecord): Block => {
         };
     }
     if (rawBlock.type === 'tool_use') return { type: 'action', name: rawBlock.name ?? '', input: rawBlock.input };
+    if (rawBlock.type === 'image' || rawBlock.type === 'document')
+        return { type: 'upload', name: rawBlock.title ?? rawBlock.file_uuid ?? '' };
+    if (rawBlock.type === 'injected_prompt_block') return { type: 'prompt', source: rawBlock.injection_source ?? '' };
+    if (rawBlock.type === 'token_budget') return { type: 'budget' };
 
     return { type: 'other', name: rawBlock.type ?? '' };
+};
+
+const projectMemoryPath = /\/projects\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/gu;
+const conversationId = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gu;
+const scopedSearchName = /conversation_search|recent_chats/u;
+
+const tracesFromRaw = (rawConversation: RawRecord): Traces => {
+    const rawBlocks = ((rawConversation.chat_messages ?? []) as RawRecord[])
+        .flatMap(rawMessage => (rawMessage.content ?? []) as RawRecord[]);
+    const resultsOf = (matchesName: (name: string) => boolean): RawRecord[] =>
+        rawBlocks.filter(rawBlock => rawBlock.type === 'tool_result' && matchesName(rawBlock.name ?? ''));
+    const knowledge = resultsOf(name => name === 'project_knowledge_search')
+        .flatMap(rawBlock => (Array.isArray(rawBlock.content) ? rawBlock.content : []) as RawRecord[])
+        .map(contentPart => String(contentPart?.text ?? ''));
+    const memoryText = JSON.stringify(rawConversation.chat_messages ?? []);
+    const memoryProjects = [...memoryText.matchAll(projectMemoryPath)].map(match => match[1]);
+    const found = new Set(resultsOf(name => scopedSearchName.test(name))
+        .flatMap(rawBlock => JSON.stringify(rawBlock.content ?? '').match(conversationId) ?? []));
+    found.delete(rawConversation.uuid);
+
+    return { knowledge, memoryProjects, found: [...found] };
 };
 
 const attachmentFromRaw = (rawAttachment: RawRecord): Attachment => ({
@@ -70,6 +94,7 @@ const conversationFromRaw = (rawConversation: RawRecord): Conversation => ({
     createdAt: rawConversation.created_at,
     updatedAt: rawConversation.updated_at,
     messages: (rawConversation.chat_messages ?? []).map(messageFromRaw),
+    traces: tracesFromRaw(rawConversation),
 });
 
 const projectFromRaw = (rawProject: RawRecord): Project => ({
@@ -107,30 +132,48 @@ const mappingFromRaw = (rawMapping: RawRecord): Mapping => ({
     })),
 });
 
-export const claudeExportSource = (exportFiles: ExportFiles): Source => ({
-    name: `${basename(exportFiles.folder)} of ${exportFiles.account}`,
-    exportedOn: basename(exportFiles.folder),
-    projects: () => {
-        const projectsArchive = archiveFromFile(exportFiles.archives.projects);
-        const rawProjects = jsonEntries(projectsArchive, name => name.startsWith('projects/'));
+export const claudeExportSource = (exportFiles: ExportFiles): Source => {
+    const archives = new Map<string, Archive>();
+    const archiveOf = (category: string): Archive => {
+        const path = exportFiles.archives[category];
+        if (path === undefined) throw new Error(`the export of ${exportFiles.exportedOn} has no ${category} archive`);
+        const archive = archives.get(path) ?? archiveFromFile(path);
+        archives.set(path, archive);
 
-        return (rawProjects as RawRecord[]).map(projectFromRaw);
-    },
-    memories: () => {
-        const memoriesArchive = archiveFromFile(exportFiles.archives.memories);
-        const rawMemories = jsonEntries(memoriesArchive, name => name.startsWith('memories/'));
+        return archive;
+    };
 
-        return (rawMemories as RawRecord[]).flatMap(memoriesFromRaw);
-    },
-    mapping: () => {
-        if (exportFiles.mapping === undefined) return undefined;
+    return {
+        name: `${exportFiles.exportedOn} of ${exportFiles.account}`,
+        exportedOn: exportFiles.exportedOn,
+        packaging: exportFiles.packaging,
+        folder: exportFiles.folder,
+        user: () => {
+            const rawUsers = jsonEntries(archiveOf('light_metadata'), name => name === 'users.json').flat();
 
-        return mappingFromRaw(JSON.parse(readFileSync(exportFiles.mapping, 'utf8')));
-    },
-    conversations: async function* () {
-        for await (const rawConversation of streamedObjects(exportFiles.archives.conversations))
-            yield conversationFromRaw(rawConversation as RawRecord);
-    },
-});
+            return String((rawUsers as RawRecord[])[0]?.email_address ?? '');
+        },
+        projects: () => {
+            const rawProjects = jsonEntries(archiveOf('projects'), name => name.startsWith('projects/'));
+
+            return (rawProjects as RawRecord[]).map(projectFromRaw);
+        },
+        memories: () => {
+            const rawMemories = jsonEntries(archiveOf('memories'), name => name.startsWith('memories/'));
+
+            return (rawMemories as RawRecord[]).flatMap(memoriesFromRaw);
+        },
+        mapping: () => {
+            if (exportFiles.mapping === undefined) return undefined;
+
+            return mappingFromRaw(JSON.parse(readFileSync(exportFiles.mapping, 'utf8')));
+        },
+        conversations: async function* () {
+            archives.clear();
+            for await (const rawConversation of streamedObjects(exportFiles.archives.conversations, 'conversations.json'))
+                yield conversationFromRaw(rawConversation as RawRecord);
+        },
+    };
+};
 
 export const exportSource = (account: string): Source => claudeExportSource(newestExportFiles(account));

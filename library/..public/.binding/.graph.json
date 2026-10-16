@@ -2,162 +2,162 @@
   "books": [
     {
       "folder": "..reference",
-      "digest": "1975b5e96f776aac",
+      "digest": "7fc81aa4c0be9e68",
       "walked": 112
     },
     {
       "folder": ".claude",
-      "digest": "65f9383c2e63fc41",
+      "digest": "ac6827917a6ebbba",
       "walked": 58
     },
     {
       "folder": ".claude/.conversations",
-      "digest": "8a04c41eabf7170a",
+      "digest": "0eb99c54a94f7375",
       "walked": 228
     },
     {
       "folder": ".claude/.conversations/collection-semantics-and-canonical-representatives",
-      "digest": "9ef198c70ae97ded",
+      "digest": "4c806c2fa98b4cbd",
       "walked": 488
     },
     {
       "folder": ".claude/.conversations/conservation-of-time-complexity",
-      "digest": "e6258f6d5e73ade8",
+      "digest": "726178c420e38dc1",
       "walked": 2377
     },
     {
       "folder": ".claude/.conversations/converting-shared-conversation-to-document",
-      "digest": "f97652f3e956d61c",
+      "digest": "dfcd26c90ee30a39",
       "walked": 37
     },
     {
       "folder": ".claude/.conversations/distinguishing-type-category-and-kind-in-english",
-      "digest": "e587ba44723a03b6",
+      "digest": "d25495dc29278de9",
       "walked": 342
     },
     {
       "folder": ".claude/.conversations/foundations-types-and-properties",
-      "digest": "6a592b240e24d908",
+      "digest": "3b062292c202a3cc",
       "walked": 2647
     },
     {
       "folder": ".claude/.conversations/frustration-with-ai-reasoning-and-communication-gaps",
-      "digest": "2d6b3888f9280f6d",
+      "digest": "462b017e8400b792",
       "walked": 518
     },
     {
       "folder": ".claude/.conversations/inexplicable-phenomena",
-      "digest": "d58440a17c5e1c52",
+      "digest": "48e3495651c99b9b",
       "walked": 791
     },
     {
       "folder": ".claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals",
-      "digest": "f920b3483d0a8cd8",
+      "digest": "06b54bb809a2f28d",
       "walked": 875
     },
     {
       "folder": ".claude/.conversations/metalogical-subjectivity",
-      "digest": "8524b2c061dd4013",
+      "digest": "bff520532e6025df",
       "walked": 5173
     },
     {
       "folder": ".claude/.conversations/ontic-structural-realism",
-      "digest": "4b395cdcaf216897",
+      "digest": "79bcf0db433b3dd8",
       "walked": 1153
     },
     {
       "folder": ".claude/.conversations/relationships-and-inheriance",
-      "digest": "28cd0c1e12e5d85b",
+      "digest": "f0a583154fefc422",
       "walked": 4150
     },
     {
       "folder": ".claude/.conversations/representation-and-the-part-whole-dichotomy",
-      "digest": "6c965c4f4edac145",
+      "digest": "4a6763847aeb316e",
       "walked": 1465
     },
     {
       "folder": ".claude/.conversations/semantic-primes",
-      "digest": "94195c7398022060",
+      "digest": "0b7cdf1d88666efd",
       "walked": 604
     },
     {
       "folder": ".claude/.conversations/semantic-reference-theory-foundations-and-philosophical-conu",
-      "digest": "e6e0e0c2a52c289c",
+      "digest": "1262559d9462fcdf",
       "walked": 2835
     },
     {
       "folder": ".claude/.conversations/semantics-of-representation",
-      "digest": "cefb4a18dfd782a8",
+      "digest": "f670cf30d10f5a8a",
       "walked": 621
     },
     {
       "folder": ".claude/.conversations/semantics-of-types-and-more",
-      "digest": "8bbadef080632b3d",
+      "digest": "4e2787fa1f50a400",
       "walked": 1203
     },
     {
       "folder": ".claude/.conversations/specifying-srt",
-      "digest": "eaa33dab6e0cf9e1",
+      "digest": "e6cc65b323b11ed1",
       "walked": 6452
     },
     {
       "folder": ".claude/.conversations/srt-as-a-github-project",
-      "digest": "9b2ad60cdc3fd9ef",
+      "digest": "ec45d1d0824b0fda",
       "walked": 1964
     },
     {
       "folder": ".claude/.conversations/srt-axioms-and-specialization",
-      "digest": "722cad9213e68d76",
+      "digest": "cbd6518ebdcca3c0",
       "walked": 5918
     },
     {
       "folder": ".claude/.conversations/string-length-notation-and-foundational-sketch-generalizatio",
-      "digest": "2b6b727cbb727d44",
+      "digest": "10921c63c01deca3",
       "walked": 55
     },
     {
       "folder": ".claude/.conversations/the-semantics-of-books",
-      "digest": "aa09ebc4b5bc919d",
+      "digest": "6605883c8f4bcc96",
       "walked": 2011
     },
     {
       "folder": ".claude/.conversations/unifying-srt-axioms-with-symbolization",
-      "digest": "aa97e5e15cd0ed71",
+      "digest": "145490f87dee1ba3",
       "walked": 14324
     },
     {
       "folder": ".claude/.design",
-      "digest": "df0c952d51661c82",
+      "digest": "ee14d37d8869979d",
       "walked": 148
     },
     {
       "folder": ".claude/.manual",
-      "digest": "68e276cd6c4db7e5",
-      "walked": 83
+      "digest": "f7a8cd5f800a6d5d",
+      "walked": 124
     },
     {
       "folder": ".claude/.semantic-reference-theory",
-      "digest": "bb71fc0c1ca5c593",
+      "digest": "3d59440e3146e393",
       "walked": 448
     },
     {
       "folder": ".design",
-      "digest": "4a2d815b32d9fe5a",
+      "digest": "304c3742a897ba68",
       "walked": 1060
     },
     {
       "folder": ".librarian",
-      "digest": "37002b2e0ddffb84",
+      "digest": "4dc7961de9874a85",
       "walked": 179
     },
     {
       "folder": ".manual",
-      "digest": "ccf97fbf7c8a1a84",
+      "digest": "ace8e08d4f3291f3",
       "walked": 782
     },
     {
       "folder": "importer",
-      "digest": "d585bd2f36d94b1f",
+      "digest": "cc121b9dbde13408",
       "walked": 154
     }
   ]

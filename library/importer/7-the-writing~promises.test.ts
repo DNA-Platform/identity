@@ -67,6 +67,17 @@ describe('the writing', () => {
             '</Paragraph>',
         ]);
     });
+
+    // Found by the session that wrote down the imported conversation's form, 2026-10-16: a numbered list whose
+    // items stand apart by blank lines drew "1." six times, one list to an item.
+    it('keeps a list whose items stand apart by blank lines one list, and ends it at a list of another kind', () => {
+        expect(blockLines('1. one\n\n2. two\n\n   still two\n\n3. three', 0)).toEqual([
+            '<Paragraph>', '    <List ordered />', '    <Line>one</Line>', '    <Line>two still two</Line>',
+            '    <Line>three</Line>', '</Paragraph>',
+        ]);
+        expect(blockLines('1. one\n\n- other', 0).filter(line => line.includes('<List'))).toHaveLength(2);
+    });
+
     it("turns headings, lists, code and tables into the library's elements", () => {
         const markdown = '# Heading\n\n- one\n- two\n\n```ts\nlet x = 1;\n```\n\n| a | b |\n|---|---|\n| 1 | 2 |';
         const lines = blockLines(markdown, 0);

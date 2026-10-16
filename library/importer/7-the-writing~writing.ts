@@ -421,8 +421,26 @@ export const blockLines = (text: string, depth: number): string[] => {
             const isContinuation = (nextLine: string): boolean =>
                 listItems.length > 0 && nextLine.trim() !== '' && /^\s{2,}/u.test(nextLine);
             const isItem = (nextLine: string): boolean => bulletForm.test(nextLine) || numberedForm.test(nextLine);
-            while (lineIndex < lines.length && (isItem(lines[lineIndex]) || isContinuation(lines[lineIndex]))) {
-                if (isItem(lines[lineIndex])) {
+            const filledIndexFrom = (blankIndex: number): number => {
+                let filledIndex = blankIndex;
+                while (filledIndex < lines.length && lines[filledIndex].trim() === '') filledIndex++;
+
+                return filledIndex;
+            };
+            const continuesAfterBlank = (blankIndex: number): boolean => {
+                const filledLine = lines[filledIndexFrom(blankIndex)];
+                if (filledLine === undefined || listItems.length === 0) return false;
+                if (!isItem(filledLine)) return /^\s{2,}/u.test(filledLine);
+                const indent = filledLine.length - filledLine.trimStart().length;
+
+                return indent > listItems[0].indent || numberedForm.test(filledLine) === listItems[0].ordered;
+            };
+            const continuesList = (nextLine: string): boolean =>
+                isItem(nextLine) || isContinuation(nextLine) || (nextLine.trim() === '' && continuesAfterBlank(lineIndex));
+            while (lineIndex < lines.length && continuesList(lines[lineIndex])) {
+                if (lines[lineIndex].trim() === '')
+                    lineIndex = filledIndexFrom(lineIndex);
+                else if (isItem(lines[lineIndex])) {
                     const itemLine = lines[lineIndex++];
                     const indent = itemLine.length - itemLine.trimStart().length;
                     const ordered = numberedForm.test(itemLine);

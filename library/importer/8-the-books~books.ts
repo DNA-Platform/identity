@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import type { Conversation, Message, Project } from './3-the-record~record.ts';
 import {
@@ -117,6 +117,7 @@ export const conversationBook = (
     path: Message[],
     name: string,
     projectNames: string[],
+    accountName: string | undefined,
     scheme: Scheme,
     referents: Referents,
     keptAppendices: Appendix[] = [],
@@ -141,7 +142,14 @@ export const conversationBook = (
         ? conversation.summary.replace(/\*\*[^*]*\*\*\s*/u, '').split(/\n\n/u)[0] : openingLine;
     const synopsisLines = wrappedLines(escapedText(summaryText.replace(/[*_`#>]/gu, '')));
     const packageWords = ['Author', 'Chapter', 'Paragraph', 'Subject', 'Svg', 'Title'];
-    const projectImportLines = projectNames.length > 0 ? [manualImportLine(['Project'], claudeImportPath)] : [];
+    const claudeManualWords = [
+        ...(accountName === undefined ? [] : ['Account']),
+        ...(projectNames.length > 0 ? ['Project'] : []),
+    ];
+    const projectImportLines = claudeManualWords.length > 0 ? [manualImportLine(claudeManualWords, claudeImportPath)] : [];
+    const accountKey = `Dougs Claude / ${notationName(accountName ?? '')}`;
+    const accountLines = accountName === undefined
+        ? [] : [`<Account>${referenceForm(escapedText(accountName), accountKey, '$')}</Account>`];
     const drawingSource = join(folders.conversations, drawingFileName);
     const drawingText = existsSync(drawingSource) ? readFileSync(drawingSource, 'utf8') : '';
     const projectLines = projectNames.map(projectName => `<Project>***${titleForm(nameInForm(projectName))}</Project>`);
@@ -166,6 +174,7 @@ export const conversationBook = (
             authorLine,
             subjectLine('Conversations', 'Our Conversations'),
             ...projectLines,
+            ...accountLines,
             ...illustrationLines,
         ], [...projectImportLines, ...volumeImportLines(folder, folders, folders.conversations)])),
         writtenFile(join(folder, drawingFileName), drawingText),
@@ -270,13 +279,16 @@ const entryPathFor = (folder: string, name: string): string | undefined => {
 };
 
 export const projectBook = (
-    folders: LibraryFolders, project: Project, scheme: Scheme, drawingText: string, overwrite = false,
+    folders: LibraryFolders, project: Project, scheme: Scheme, drawingText: string, overwrite = false, whole = false,
 ): WrittenBook => {
     const folder = join(folders.claude, `.${slugFromName(project.name)}`);
     const importPath = manualImportPath(folders, folder);
     const bookFilePath = join(folder, '.book.tsx');
     const bookFile = (): string => writtenFile(bookFilePath, bookFileText(importPath, 'ProjectManual', project.name));
-    if (existsSync(bookFilePath)) return { folder, files: overwrite ? [bookFile()] : [], chapterStem: '' };
+    if (existsSync(bookFilePath) && !whole) return { folder, files: overwrite ? [bookFile()] : [], chapterStem: '' };
+    if (existsSync(folder))
+        for (const entry of readdirSync(folder, { withFileTypes: true }))
+            if (entry.isFile()) rmSync(join(folder, entry.name));
     const projectDescription = project.description
         || `A project of mine with Claude, ${project.documents.length} knowledge files and the conversations held in it.`;
     const projectImportLines = [

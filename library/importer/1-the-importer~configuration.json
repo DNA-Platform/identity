@@ -1,4 +1,8 @@
 {
+  "accounts": [
+    { "name": "DNA Legacy", "folder": "claude-legacy", "address": "support@dna.love" },
+    { "name": "DNA", "folder": "claude-dna", "address": "doug.rubino@gmail.com" }
+  ],
   "excluded": {
     "scripts": ["Cyrillic"],
     "projects": ["Ana's Career", "Ana's Fiverr Inbox"]

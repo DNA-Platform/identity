@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Conversation } from './3-the-record~record.ts';
+import type { Pairing } from './4-the-pairing~pairing.ts';
 import type { HeldRecord } from './5-the-ledger~ledger.ts';
 import { shownPath } from './6-the-thread~thread.ts';
 
@@ -109,6 +110,22 @@ export const transcriptDifferences = (ours: Conversation[], transcripts: Map<str
         if (transcript.messageCount === conversation.messages.length) return [];
 
         return [{ name, ours, theirs: `${transcript.messageCount} messages` }];
+    });
+};
+
+type MembershipFile = { projects: { name: string; conversations: { uuid: string }[] }[] };
+
+export const membershipDifferences = (pairings: Pairing[], membershipText: string): Difference[] => {
+    const membership = JSON.parse(membershipText) as MembershipFile;
+    const theirProjects = new Map(membership.projects.flatMap(project =>
+        project.conversations.map(member => [member.uuid, project.name] as const)));
+
+    return pairings.flatMap(pairing => {
+        const ours = pairing.projectName ?? 'no project';
+        const theirs = theirProjects.get(pairing.conversationId) ?? 'no project';
+        if (ours === theirs) return [];
+
+        return [{ name: pairing.title || 'Untitled', ours: pairing.byHand ? `${ours}, by hand` : ours, theirs }];
     });
 };
 

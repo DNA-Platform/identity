@@ -39,5 +39,11 @@ export default () => (
                 </Word>
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>What an import writes</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Imported Conversation ]]</Content>
+            </Paragraph>
+        </Section>
     </Chapter>
 );

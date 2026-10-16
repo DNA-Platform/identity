@@ -29,6 +29,16 @@ describe('the ledger', () => {
         writeImportRecord(recordPath, record);
         expect(importRecords(registerFolder).get('c')).toEqual({ record, path: recordPath });
         expect(record.exportedOn).toBe('2026-09-11');
+        expect(record.account).toBeUndefined();
+    });
+
+    // Doug, 2026-10-16: "You can annotate the account" — the record says which account a conversation came from.
+    it('keeps the account a conversation came from beside the export, when the run names one', () => {
+        const conversation = sampleConversation('l', 'Legacy', twoMessages);
+        const slug = bookFolder('legacy');
+        const record = importRecord(conversation, registerFolder, 'Legacy', slug, '2026-05-27', undefined, 'DNA Legacy');
+        expect(record.account).toBe('DNA Legacy');
+        expect(Object.keys(record).slice(0, 5)).toEqual(['conversationId', 'name', 'bookFolder', 'account', 'exportedOn']);
     });
 
     it('says new with no record, in when it matches, grown when the export has more, edited when a file changed', () => {

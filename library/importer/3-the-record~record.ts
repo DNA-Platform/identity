@@ -15,6 +15,9 @@ export type Block =
         oldText: string;
         newText: string;
     }
+    | { type: 'upload'; name: string }
+    | { type: 'prompt'; source: string }
+    | { type: 'budget' }
     | { type: 'other'; name: string };
 
 export type Attachment = { name: string; extension: string; size: number; text: string };
@@ -29,6 +32,8 @@ export type Message = {
     uploads: string[];
 };
 
+export type Traces = { knowledge: string[]; memoryProjects: string[]; found: string[] };
+
 export type Conversation = {
     id: string;
     name: string;
@@ -36,6 +41,7 @@ export type Conversation = {
     createdAt: string;
     updatedAt: string;
     messages: Message[];
+    traces: Traces;
 };
 
 export type Document = { id: string; name: string; content: string };
@@ -61,6 +67,9 @@ export type Mapping = { capturedAt: string; projects: MappedProject[] };
 export type Source = {
     name: string;
     exportedOn: string;
+    packaging: string;
+    folder: string;
+    user(): string;
     projects(): Project[];
     memories(): Memory[];
     mapping(): Mapping | undefined;

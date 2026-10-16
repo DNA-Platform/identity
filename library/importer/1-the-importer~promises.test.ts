@@ -3,7 +3,7 @@ import { configurationFrom, parsedArguments, selectedPairings } from './1-the-im
 import type { Pairing } from './4-the-pairing~pairing.ts';
 
 const pairing = (conversationId: string, title: string, projectName: string | undefined, excluded = false): Pairing =>
-    ({ conversationId, title, projectName, evidence: 'the mapping, by title', excluded, reason: '', byHand: false });
+    ({ conversationId, title, account: 'DNA', projectName, evidence: 'the capture', excluded, reason: '', byHand: false });
 const pairings = [
     pairing('p1', 'Semantic Primes', 'Semantic Reference Theory'),
     pairing('p2', 'Specifying SRT', 'Semantic Reference Theory'),
@@ -19,9 +19,11 @@ describe('the importer', () => {
     // Doug, 2026-10-14: "We should probably have an abstraction where we can configure the import in certain ways…
     // We also need to be able to run the importer for specific conversations or specific collections of conversations."
     it('reads its configuration with every part given a default, so an empty file configures nothing', () => {
-        expect(configurationFrom('{}')).toEqual({ excluded: { scripts: [], projects: [] }, collections: {} });
+        expect(configurationFrom('{}')).toEqual({ accounts: [], excluded: { scripts: [], projects: [] }, collections: {} });
         expect(configurationFrom('{"excluded":{"scripts":["Cyrillic"]},"collections":{"a":["x"]}}'))
-            .toEqual({ excluded: { scripts: ['Cyrillic'], projects: [] }, collections: { a: ['x'] } });
+            .toEqual({ accounts: [], excluded: { scripts: ['Cyrillic'], projects: [] }, collections: { a: ['x'] } });
+        const account = { name: 'DNA Legacy', folder: 'claude-legacy', address: 'support@dna.love' };
+        expect(configurationFrom(JSON.stringify({ accounts: [account] })).accounts).toEqual([account]);
     });
 
     it("selects a project's conversations, a collection's by title or id, or the ones named, narrowing by name", () => {

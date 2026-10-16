@@ -5,6 +5,7 @@ import type { Conversation, Mapping, Project } from './3-the-record~record.ts';
 export type Pairing = {
     conversationId: string;
     title: string;
+    account: string;
     projectName: string | undefined;
     evidence: string;
     excluded: boolean;
@@ -14,19 +15,19 @@ export type Pairing = {
 
 export type Exclusions = { scripts: string[]; projects: string[] };
 
-type DocumentEvidence = { documentName: string; holdingProjectNames: string[] };
-type MappingEvidence = { projectName: string; how: string };
-type ProjectDecision = { projectName: string | undefined; evidence: string };
+type EvidenceKind = 'capture' | 'knowledge' | 'memory' | 'search';
+type Assignment = { projectId: string; kind: EvidenceKind; through?: string };
+type CaptureReading = {
+    placed: Map<string, string>;
+    outside: Set<string>;
+    names: Map<string, string>;
+    shared: Map<string, string[]>;
+};
 
 const noExclusions: Exclusions = { scripts: [], projects: [] };
-const threeDaysInMilliseconds = 3 * 86400e3;
-const millisecondsPerUnit: Record<string, number> = {
-    minute: 60e3,
-    hour: 3600e3,
-    day: 86400e3,
-    week: 7 * 86400e3,
-    month: 30 * 86400e3,
-};
+const shortestChunk = 120;
+const probeLength = 80;
+const emptyCapture: CaptureReading = { placed: new Map(), outside: new Set(), names: new Map(), shared: new Map() };
 
 export const pairingsFilePath = (library: string): string => join(library, 'importer', '4-the-pairing~pairings.json');
 
@@ -48,139 +49,232 @@ export const exclusionReason = (
     return script === undefined ? '' : `a title in ${script}`;
 };
 
+const comparableTitle = (title: string): string =>
+    title.replace(/["“”‘’'`]/gu, '').replace(/\s+/gu, ' ').trim().toLowerCase();
+
+const titleOf = (conversation: Conversation): string => comparableTitle(conversation.name || 'Untitled');
+
+export const captureReading = (mapping: Mapping | undefined, conversations: Conversation[]): CaptureReading => {
+    if (mapping === undefined) return emptyCapture;
+    const conversationsByTitle = new Map<string, string[]>();
+    for (const conversation of conversations) {
+        const title = titleOf(conversation);
+        conversationsByTitle.set(title, [...(conversationsByTitle.get(title) ?? []), conversation.id]);
+    }
+    const capturedIn = new Map<string, string[]>();
+    const names = new Map<string, string>();
+    for (const mappedProject of mapping.projects) {
+        names.set(mappedProject.id, mappedProject.name);
+        for (const mappedRow of mappedProject.conversations) {
+            const title = comparableTitle(mappedRow.title);
+            capturedIn.set(title, [...(capturedIn.get(title) ?? []), mappedProject.id]);
+        }
+    }
+    const placed = new Map<string, string>();
+    const shared = new Map<string, string[]>();
+    for (const [title, projectIds] of capturedIn) {
+        const matchingIds = conversationsByTitle.get(title) ?? [];
+        const distinctProjectIds = [...new Set(projectIds)];
+        if (matchingIds.length > 0 && distinctProjectIds.length === 1 && matchingIds.length <= projectIds.length)
+            for (const matchingId of matchingIds) placed.set(matchingId, distinctProjectIds[0]);
+        else if (matchingIds.length > 0)
+            shared.set(title, distinctProjectIds.map(projectId => names.get(projectId) ?? projectId));
+    }
+    const outside = new Set(conversations
+        .filter(conversation => conversation.createdAt < mapping.capturedAt && !placed.has(conversation.id))
+        .filter(conversation => !capturedIn.has(titleOf(conversation)))
+        .map(conversation => conversation.id));
+
+    return { placed, outside, names, shared };
+};
+
+const knowledgeProject = (conversation: Conversation, projects: Project[]): string | undefined => {
+    const owners = new Set<string>();
+    for (const chunk of conversation.traces.knowledge) {
+        const body = chunk.slice(chunk.indexOf('\n') + 1);
+        if (body.length < shortestChunk) continue;
+        const middle = Math.floor(body.length / 2);
+        const probe = body.slice(middle - probeLength / 2, middle + probeLength / 2);
+        const holders = projects.filter(project => project.documents.some(document => document.content.includes(probe)));
+        if (holders.length === 1) owners.add(holders[0].id);
+    }
+
+    return owners.size === 1 ? [...owners][0] : undefined;
+};
+
+const memoryProject = (conversation: Conversation, projectIds: Set<string>): string | undefined => {
+    const mentions = new Map<string, number>();
+    for (const projectId of conversation.traces.memoryProjects)
+        if (projectIds.has(projectId)) mentions.set(projectId, (mentions.get(projectId) ?? 0) + 1);
+    const ranked = [...mentions].sort((first, second) => second[1] - first[1]);
+    if (ranked.length === 1) return ranked[0][0];
+    if (ranked.length > 1 && ranked[0][1] >= 2 && ranked[0][1] > ranked[1][1]) return ranked[0][0];
+
+    return undefined;
+};
+
+const searchLinks = (conversations: Conversation[]): Map<string, Set<string>> => {
+    const known = new Set(conversations.map(conversation => conversation.id));
+    const links = new Map<string, Set<string>>();
+    const link = (from: string, to: string): void => {
+        links.set(from, (links.get(from) ?? new Set()).add(to));
+    };
+    for (const conversation of conversations)
+        for (const foundId of conversation.traces.found)
+            if (known.has(foundId) && foundId !== conversation.id) {
+                link(conversation.id, foundId);
+                link(foundId, conversation.id);
+            }
+
+    return links;
+};
+
+type Veto = { claim: Assignment; reason: string };
+type Decided = { assignments: Map<string, Assignment>; vetoes: Map<string, Veto> };
+
+export const decidedProjects = (conversations: Conversation[], projects: Project[], capture: CaptureReading): Decided => {
+    const projectIds = new Set(projects.map(project => project.id));
+    const links = searchLinks(conversations);
+    const assignments = new Map<string, Assignment>();
+    const vetoes = new Map<string, Veto>();
+    const direct = new Map<string, Assignment>();
+    for (const conversation of conversations) {
+        const knowledge = knowledgeProject(conversation, projects);
+        const memory = knowledge === undefined ? memoryProject(conversation, projectIds) : undefined;
+        if (knowledge !== undefined) direct.set(conversation.id, { projectId: knowledge, kind: 'knowledge' });
+        else if (memory !== undefined) direct.set(conversation.id, { projectId: memory, kind: 'memory' });
+    }
+    for (const [conversationId, projectId] of capture.placed)
+        assignments.set(conversationId, { projectId, kind: 'capture' });
+    const claims = new Map<string, string>([
+        ...[...direct].map(([conversationId, claim]) => [conversationId, claim.projectId] as const),
+        ...capture.placed,
+    ]);
+    const disagreement = (conversationId: string, projectId: string): string | undefined => {
+        let inProject = 0;
+        let outsideAny = 0;
+        for (const neighbour of links.get(conversationId) ?? []) {
+            const claimed = claims.get(neighbour);
+            if (claimed !== undefined && claimed !== projectId)
+                return 'a conversation it is linked to by search is in another project';
+            if (claimed === projectId) inProject++;
+            else if (capture.outside.has(neighbour)) outsideAny++;
+        }
+        const visited = capture.names.has(projectId);
+        if (visited && capture.outside.has(conversationId)) return 'the capture visited the project and did not list it';
+        if (visited && outsideAny > inProject)
+            return `search links it mostly to conversations outside any project, ${outsideAny} outside and ${inProject} in`;
+
+        return undefined;
+    };
+    for (const [conversationId, claim] of direct) {
+        if (assignments.has(conversationId)) continue;
+        const reason = disagreement(conversationId, claim.projectId);
+        if (reason === undefined) assignments.set(conversationId, claim);
+        else vetoes.set(conversationId, { claim, reason });
+    }
+    const settled = new Map([...assignments].filter(([, assignment]) => assignment.kind !== 'memory'));
+    for (const [conversationId, neighbours] of links) {
+        if (assignments.has(conversationId)) continue;
+        const reached = [...neighbours].filter(neighbour => settled.has(neighbour));
+        const reachedProjectIds = new Set(reached.map(neighbour => settled.get(neighbour)!.projectId));
+        if (reachedProjectIds.size !== 1) continue;
+        const [projectId] = reachedProjectIds;
+        if (disagreement(conversationId, projectId) === undefined)
+            assignments.set(conversationId, { projectId, kind: 'search', through: reached[0] });
+    }
+
+    return { assignments, vetoes };
+};
+
+const assignmentWords = (assignment: Assignment, titleOfId: Map<string, string>): string => {
+    if (assignment.kind === 'capture') return 'the capture';
+    if (assignment.kind === 'knowledge') return 'a search of its project\'s files';
+    if (assignment.kind === 'memory') return 'a read of its project\'s memory';
+    const throughTitle = titleOfId.get(assignment.through ?? '') ?? assignment.through;
+
+    return `a conversation search, one hop from "${throughTitle}"`;
+};
+
+const evidenceWords = (
+    assignment: Assignment | undefined,
+    veto: Veto | undefined,
+    shared: string[] | undefined,
+    titleOfId: Map<string, string>,
+    nameOfProject: (projectId: string) => string,
+): string => {
+    if (assignment !== undefined) return assignmentWords(assignment, titleOfId);
+    if (veto !== undefined) {
+        const claimWords = assignmentWords(veto.claim, titleOfId);
+
+        return `none: ${claimWords} said ${nameOfProject(veto.claim.projectId)}, vetoed since ${veto.reason}`;
+    }
+    if (shared !== undefined) return `none: the capture lists this title in ${shared.join(' and ')}`;
+
+    return 'none';
+};
+
+const stackedProject = (newer: Project, older: Project): Project => {
+    const newerNames = new Set(newer.documents.map(document => document.name));
+
+    return {
+        ...newer,
+        description: newer.description || older.description,
+        instructions: newer.instructions || older.instructions,
+        createdAt: older.createdAt < newer.createdAt ? older.createdAt : newer.createdAt,
+        documents: [...newer.documents, ...older.documents.filter(document => !newerNames.has(document.name))],
+    };
+};
+
+export const stackedProjects = (layersOldestFirst: Project[][]): Project[] => {
+    const stacked: Project[] = [];
+    const stackedByName = new Map<string, number>();
+    for (const layer of [...layersOldestFirst].reverse())
+        for (const project of layer) {
+            const position = project.name === '' ? undefined : stackedByName.get(project.name);
+            if (position === undefined) {
+                if (project.name !== '') stackedByName.set(project.name, stacked.length);
+                stacked.push(project);
+            } else
+                stacked[position] = stackedProject(stacked[position], project);
+        }
+
+    return stacked;
+};
+
 export const conversationPairings = (
     library: string,
+    account: string,
     conversations: Conversation[],
     projects: Project[],
     mapping: Mapping | undefined,
     exclusions: Exclusions = noExclusions,
 ): Pairing[] => {
     const previousPairings = new Map(readPairings(library).map(pairing => [pairing.conversationId, pairing]));
-    const conversationsByTitle = new Map<string, Conversation[]>();
-    for (const conversation of conversations)
-        conversationsByTitle.set(conversation.name, [...(conversationsByTitle.get(conversation.name) ?? []), conversation]);
-    const pairings: Pairing[] = [];
-    for (const conversation of conversations) {
+    const capture = captureReading(mapping, conversations);
+    const { assignments, vetoes } = decidedProjects(conversations, projects, capture);
+    const titleOfId = new Map(conversations.map(conversation => [conversation.id, conversation.name || 'Untitled']));
+    const nameOfProject = (projectId: string): string =>
+        projects.find(project => project.id === projectId)?.name || capture.names.get(projectId) || projectId;
+
+    return conversations.map(conversation => {
         const previousPairing = previousPairings.get(conversation.id);
-        if (previousPairing?.byHand) {
-            pairings.push(previousPairing);
-            continue;
-        }
-        const sameTitleConversations = conversationsByTitle.get(conversation.name) ?? [];
-        const { projectName, evidence } = projectDecision(conversation, sameTitleConversations, projects, mapping);
+        if (previousPairing?.byHand) return { ...previousPairing, account };
+        const assignment = assignments.get(conversation.id);
+        const projectName = assignment === undefined ? undefined : nameOfProject(assignment.projectId);
+        const shared = capture.shared.get(titleOf(conversation));
+        const evidence = evidenceWords(assignment, vetoes.get(conversation.id), shared, titleOfId, nameOfProject);
         const reason = exclusionReason(conversation, projectName, exclusions);
-        pairings.push({
+
+        return {
             conversationId: conversation.id,
             title: conversation.name,
+            account,
             projectName,
             evidence,
             excluded: reason !== '',
             reason,
             byHand: false,
-        });
-    }
-    writePairings(library, pairings);
-
-    return pairings;
-};
-
-const projectDecision = (
-    conversation: Conversation,
-    sameTitleConversations: Conversation[],
-    projects: Project[],
-    mapping: Mapping | undefined,
-): ProjectDecision => {
-    const documentEvidence = evidenceFromDocuments(conversation, projects);
-    const mappingEvidence = evidenceFromMapping(conversation, sameTitleConversations, mapping);
-    const holdingProjectNames = documentEvidence?.holdingProjectNames ?? [];
-    const searchAnswer = documentEvidence === undefined
-        ? '' : `a knowledge search answered with "${documentEvidence.documentName}"`;
-    const heldBy = `held by ${holdingProjectNames.join(' and ')}`;
-    const agreesWithMapping = mappingEvidence !== undefined
-        && (holdingProjectNames.length === 0 || holdingProjectNames.includes(mappingEvidence.projectName));
-    if (mappingEvidence !== undefined && agreesWithMapping)
-        return {
-            projectName: mappingEvidence.projectName,
-            evidence: documentEvidence === undefined ? mappingEvidence.how : `${searchAnswer}, and ${mappingEvidence.how}`,
         };
-    if (mappingEvidence !== undefined)
-        return {
-            projectName: undefined,
-            evidence: `ambiguous: ${searchAnswer}, ${heldBy}, and the mapping says ${mappingEvidence.projectName}`,
-        };
-    if (holdingProjectNames.length === 1) return { projectName: holdingProjectNames[0], evidence: searchAnswer };
-    if (holdingProjectNames.length > 1) return { projectName: undefined, evidence: `ambiguous: ${searchAnswer}, ${heldBy}` };
-    if (isTitleMapped(conversation, mapping))
-        return { projectName: undefined, evidence: 'ambiguous: the mapping names this title more than once' };
-
-    return { projectName: undefined, evidence: 'none' };
+    });
 };
-
-const evidenceFromDocuments = (conversation: Conversation, projects: Project[]): DocumentEvidence | undefined => {
-    let knowledgeSearched = false;
-    for (const message of conversation.messages) {
-        for (const block of message.blocks) {
-            if (block.type === 'action' && block.name === 'project_knowledge_search')
-                knowledgeSearched = true;
-            if (block.type !== 'results' || !knowledgeSearched) continue;
-            const namedDocument = projects
-                .flatMap(project => project.documents)
-                .find(document => document.name !== '' && block.text.includes(document.name));
-            if (namedDocument === undefined) continue;
-            const holdingProjects = projects
-                .filter(project => project.documents.some(document => document.name === namedDocument.name));
-
-            return { documentName: namedDocument.name, holdingProjectNames: holdingProjects.map(project => project.name) };
-        }
-    }
-
-    return undefined;
-};
-
-const evidenceFromMapping = (
-    conversation: Conversation,
-    sameTitleConversations: Conversation[],
-    mapping: Mapping | undefined,
-): MappingEvidence | undefined => {
-    if (mapping === undefined) return undefined;
-    const capturedAt = new Date(mapping.capturedAt);
-    for (const mappedProject of mapping.projects) {
-        const mappedRows = mappedProject.conversations.filter(mappedRow => mappedRow.title.trim() === conversation.name);
-        if (mappedRows.length === 0) continue;
-        if (sameTitleConversations.length === 1 && mappedRows.length === 1)
-            return { projectName: mappedProject.name, how: 'the mapping, by title' };
-        for (const mappedRow of mappedRows) {
-            const messageDate = lastMessageDate(mappedRow.lastMessage, capturedAt);
-            if (messageDate === undefined) continue;
-            const millisecondsFromMessage = (candidate: Conversation): number =>
-                Math.abs(new Date(candidate.updatedAt).getTime() - messageDate.getTime());
-            const nearestConversation = [...sameTitleConversations]
-                .sort((first, second) => millisecondsFromMessage(first) - millisecondsFromMessage(second))[0];
-            const isNearest = nearestConversation?.id === conversation.id;
-            if (isNearest && millisecondsFromMessage(conversation) < threeDaysInMilliseconds)
-                return {
-                    projectName: mappedProject.name,
-                    how: `the mapping, by title and its last message ${mappedRow.lastMessage}`,
-                };
-        }
-    }
-
-    return undefined;
-};
-
-const lastMessageDate = (lastMessage: string, capturedAt: Date): Date | undefined => {
-    const agoMatch = /^(\d+)\s+(minute|hour|day|week|month)s?\s+ago$/u.exec(lastMessage);
-    if (agoMatch !== null)
-        return new Date(capturedAt.getTime() - Number(agoMatch[1]) * (millisecondsPerUnit[agoMatch[2]] ?? 0));
-    const parsedDate = new Date(`${lastMessage} ${capturedAt.getUTCFullYear()}`);
-    if (Number.isNaN(parsedDate.getTime())) return undefined;
-    if (parsedDate > capturedAt)
-        parsedDate.setUTCFullYear(capturedAt.getUTCFullYear() - 1);
-
-    return parsedDate;
-};
-
-const isTitleMapped = (conversation: Conversation, mapping: Mapping | undefined): boolean =>
-    mapping?.projects
-        .some(mappedProject => mappedProject.conversations.some(mappedRow => mappedRow.title.trim() === conversation.name))
-        ?? false;

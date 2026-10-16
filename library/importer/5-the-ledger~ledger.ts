@@ -8,6 +8,7 @@ export type ImportRecord = {
     conversationId: string;
     name: string;
     bookFolder: string;
+    account?: string;
     exportedOn: string;
     updatedAt: string;
     messageCount: number;
@@ -75,10 +76,12 @@ export const importRecord = (
     bookFolder: string,
     exportedOn: string,
     reimport?: Reimport,
+    account?: string,
 ): ImportRecord => ({
     conversationId: conversation.id,
     name,
     bookFolder,
+    ...(account === undefined ? {} : { account }),
     exportedOn,
     updatedAt: conversation.updatedAt,
     messageCount: conversation.messages.length,
