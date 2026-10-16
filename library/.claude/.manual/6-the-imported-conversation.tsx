@@ -117,7 +117,9 @@ export default () => (
                 Claude's thinking and a tool's result, left out on my ruling; a prompt the application injected;
                 a memory Claude read or wrote; a place card on a map; the link from a conversation to an artifact
                 published on the web, whose published copy the export keeps in a category of its own; and a
-                conversation captured live from the application, which holds more than the export does. Each is
+                conversation captured live from the application, which holds an artifact's content as the
+                export does not, counts its turns in its own way, and is compared with the export by when each
+                last changed and never by count. Each is
                 a form owed if it is ever wanted, said here first and then written, never written around.
             </Paragraph>
         </Section>
