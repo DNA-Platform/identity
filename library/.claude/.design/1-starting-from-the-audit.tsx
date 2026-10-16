@@ -35,9 +35,16 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 The method is the one <Means>$[[ Dougs Design ]]</Means> settled: a question, a few pages of HTML
-                shown together with a switch, chosen by number, built to match. The sketches live
-                in <Means>$[[ Every Concept ]]( ./Every Concept )</Means>, numbered from one in this book, and
-                each design that is decided gets a room of its own here, with the page as built beside its sketch.
+                shown together with a switch, chosen by number, built to match. The sketches live beside the
+                chapter that designs from them, numbered from one in this book, never gathered on a page of their
+                own, which is the pattern Dougs Design tried first and stopped carrying forward because it does not
+                scale; and each design that is decided keeps the page as built beside its sketch. The first
+                is <Means>$[[ the conversation's page ]]( ./The Conversation's Page )</Means>, and its first sketch
+                is <Means>$[[ concept 1 ]]( ./A Conversation, in the Library's Frame )</Means>, a conversation of
+                mine in the frame every book of this library wears, refused the same night for an orange it took
+                from my own book and for names over the messages; its second
+                is <Means>$[[ concept 2 ]]( ./A Conversation, as the Application Shows It )</Means>, the chat text
+                as the application has it and an artifact opening beside the words as the application opens one.
             </Paragraph>
         </Section>
     </Chapter>

@@ -1,0 +1,38 @@
+Doug, [3/21/2025 1:23 PM]
+Shor's algorithm is a quantum algorithm for factorizing large numbers, which runs in polynomial time. RSA encryption is based on factorizing numbers into primes. Numbers are easy to multiply but hard to factorize, leading to the asymmetry that makes for good encryption. We know the numbers we multiplied but no one can figure out which ones we used. 
+
+RSA requires 300+ digit numbers to be factorized. More modern protocols require 100+ digit numbers. 
+
+In 2001, 15 was the largest number factorized by Shor on a quantum computer
+In 2012 it was 21
+In 2022 it was 35
+
+We need to to factorize this number before security becomes compromised by quantum techniques:
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+
+We're a bit of a ways off :)
+
+And those were with faulty quantum computers, meaning we won't even get the right answer 100% of the time. We can always run the algorithm over and over until we break the code, but what if we end up needing to run it so many times with a lot of qubits that we end up right back with the time complexity of a classical computer?
+
+Doug, [3/21/2025 1:31 PM]
+I personally don't believe in the reality of quantum computing, following the reasoning of mathematician Richard Gil, who notes that noise increases exponentially with the number of qubits in a quantum system. So you get a magical polynomial time algorithm which destroys a certain type of encryption, but you need to solve an exponentially increasing noise problem - which basically means the more "transistors" (qubits) the computer has, you need something like exponentially colder temperature to keep them stable, or they simply return the wrong answer more and more and more frequently
+
+To date, we have never created a fault tolerate quantum computer with even one qubit - meaning if it returns a zero or one, we don't know if it's accurate. There are fault tolerant quantum algorithms being developed, but they are at the expense of speed, so if the error rate goes up exponentially with qubits, we end up with exponentially slower and slower fault tolerant machines. 
+
+We haven't made it to 1 yet and we need to get 3300 of them to crack RSA. And the technology needed to control the entropy of the quantum processor scales exponentially with the number of quits. We are 0% of the way there
+
+And here's the lovely thing about quantum computing: if it were ever to become *practical* how would we know? The test is to run algorithms that classical computers can't practically, so we have no way of verifying the correctness of their output!!! So how can we know that the quantum computer is working? 
+
+There are deep physical and philosophical problems with quantum computing. Quantum computers are vaporware in its purest form
+
+Doug, [3/21/2025 1:35 PM]
+I'm a big fan of Scott Aarronson, who is a brilliant, articulate and hilarious theoretical computer scientist and logician. He did most of the foundational work in complexity classes for quantum machines. I like listening to him on podcasts. So I know more about this subject than perhaps one aught to for a technology that won't ever exist :)

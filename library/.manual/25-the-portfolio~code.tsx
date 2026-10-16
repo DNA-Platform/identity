@@ -4,7 +4,6 @@ import { $Chapter, $Paragraph, Theme, specify } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { $Index, contentOf } from './14-the-entry~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
-import { $Gallery } from './23-the-gallery~code.tsx';
 import { $Design, $Exhibit, BuiltIn as builtIn, Plate as plate, Room as room, within } from './24-the-room~code.tsx';
 import { Exhibition } from './25-the-portfolio~theme.tsx';
 
@@ -61,10 +60,6 @@ export class PortfolioSpecification extends LibraryBookSpecification {
             'a portfolio shows every design it holds as built, in a paragraph said to be the exhibit, and one here has none');
     }
 
-    @specify('a portfolio keeps its sketches in a gallery')
-    $keepsAGallery(book: $Portfolio): void {
-        $check(book.chapters.some(chapter => chapter.is($Gallery)), 'a portfolio keeps its sketches in a gallery, and this one has none');
-    }
 }
 
 export const Portfolio = $($Portfolio);

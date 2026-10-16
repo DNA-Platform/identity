@@ -5,7 +5,7 @@ import Cover from '../../../../../.claude/.design/.cover';
 import Synopsis from '../../../../../.claude/.design/.synopsis';
 import Table from '../../../../../.claude/.design/.table';
 import StartingFromTheAudit1 from '../../../../../.claude/.design/1-starting-from-the-audit';
-import EveryConcept2 from '../../../../../.claude/.design/2-every-concept';
+import TheConversationsPage2 from '../../../../../.claude/.design/2-the-conversations-page';
 
 const Book = $($Book);
 
@@ -15,7 +15,7 @@ export const book = () => (
         {Synopsis()}
         {Table()}
         {StartingFromTheAudit1()}
-        {EveryConcept2()}
+        {TheConversationsPage2()}
     </Book>
 );
 

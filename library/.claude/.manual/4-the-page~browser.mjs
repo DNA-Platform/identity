@@ -12,6 +12,7 @@ const [command, ...words] = process.argv.slice(2);
 const usage = [
     'node 4-the-page~browser.mjs open                       open the browser on claude.ai and keep it open',
     'node 4-the-page~browser.mjs tabs                       list the open tabs',
+    'node 4-the-page~browser.mjs close [place]              close the tabs left open, all but the first, or those at one place',
     'node 4-the-page~browser.mjs go <url>                   open a url in a tab of its own, kept',
     'node 4-the-page~browser.mjs text <url> [selector]      print what the page, or one element, says',
     'node 4-the-page~browser.mjs html <url> <selector>      print an element\'s outer HTML',
@@ -32,11 +33,15 @@ const attached = async () => {
     }
 };
 
+// ONE TAB PER PLACE: a tab is kept per origin, claude.ai, the workbench, the built site, a file, and navigated to the
+// address asked for rather than a new tab opened for every address; a tab already at the address is reused as it is.
+const placeOf = (url) => { try { return new URL(url).origin; } catch { return url; } };
 const pageAt = async (browser, url) => {
     const pages = await browser.pages();
     const open = pages.find(page => page.url().split('#')[0] === url.split('#')[0]);
     if (open !== undefined) return open;
-    const page = await browser.newPage();
+    const atThePlace = pages.find(page => placeOf(page.url()) === placeOf(url) && !page.url().startsWith('https://claude.ai/chat/'));
+    const page = atThePlace ?? await browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
     return page;
 };
@@ -65,6 +70,18 @@ const run = async () => {
     try {
         if (command === 'tabs') {
             for (const page of await browser.pages()) console.log(`${page.url()}  ·  ${await page.title()}`);
+            return;
+        }
+        if (command === 'close') {
+            const pages = await browser.pages();
+            const place = words[0];
+            let closed = 0;
+            for (const page of pages.slice(1)) {
+                if (place !== undefined && !page.url().includes(place)) continue;
+                await page.close();
+                closed += 1;
+            }
+            console.log(`closed ${closed} of ${pages.length} tabs; ${pages.length - closed} open`);
             return;
         }
         const [url, selector, third] = words;

@@ -205,6 +205,27 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Heading>March 2025</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Conservation of Time Complexity ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Conservation of Time Complexity )**</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Metalogical Subjectivity ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Metalogical Subjectivity )**</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
             <Heading>Where this book stands</Heading>
             <Paragraph>
                 <Parenthetical />

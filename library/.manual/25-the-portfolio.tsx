@@ -20,8 +20,10 @@ export default () => (
                 each part under a section headed with its name; the type asks that no chapter is in none. The
                 story, how the library came to look so, is read as prose with the turn at its foot. The designs
                 are chapters that each name the book they are of and are read as rooms, which the portfolio
-                says of them at bind. The sketches are a chapter of concepts read as a gallery, which the chapter
-                says of itself. And how the book is built is its appendix, read as the manual reads a chapter.
+                says of them at bind. The sketches stand beside the chapter that designs from them, numbered in
+                the book and kept with their photographs; a chapter of every concept read as a gallery, which the
+                first portfolio kept and says of itself, is a pattern stopped for not scaling. And how the book is
+                built is its appendix, read as the manual reads a chapter.
                 The book opens on the story's first chapter when nothing is bookmarked and draws no switches.
             </Paragraph>
             <Paragraph>

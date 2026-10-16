@@ -30,7 +30,12 @@ export default () => (
                 others list its tabs, open a page, say what an element says, print its tree or its computed
                 styles, photograph it, scroll to an element, hover or press one and say what changed, or name what
                 runs past the right edge at a width. The file beside this chapter is that tool, run from the repository's
-                root.
+                root. It is an essential tool of developing this library and is opened at the start of a session, in the
+                background, with <Means>$[[ the command ]]( Dougs Reference Manual / Developing a Library )</Means> said
+                there: node .me/.claude/.manual/4-the-page~browser.mjs open; it stays open as a resource until I
+                close it, and I log in there once. It is a browser and not an interface for calls: it keeps one tab
+                per place, the application, the workbench, the built site, a file, and goes to an address in the tab
+                it has rather than opening another, and what it leaves open is closed with its close command.
             </Paragraph>
         </Section>
         <Append

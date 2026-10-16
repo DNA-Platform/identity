@@ -24,6 +24,8 @@ import LearningSrtSyntaxAndTranspilerFundamentals17 from '../../../../../.claude
 import FoundationsTypesAndProperties18 from '../../../../../.claude/.conversations/18-foundations-types-and-properties';
 import SemanticsOfTypesAndMore19 from '../../../../../.claude/.conversations/19-semantics-of-types-and-more';
 import SemanticsOfRepresentation20 from '../../../../../.claude/.conversations/20-semantics-of-representation';
+import MetalogicalSubjectivity21 from '../../../../../.claude/.conversations/21-metalogical-subjectivity';
+import ConservationOfTimeComplexity22 from '../../../../../.claude/.conversations/22-conservation-of-time-complexity';
 
 const Book = $($Book);
 
@@ -52,6 +54,8 @@ export const book = () => (
         {FoundationsTypesAndProperties18()}
         {SemanticsOfTypesAndMore19()}
         {SemanticsOfRepresentation20()}
+        {MetalogicalSubjectivity21()}
+        {ConservationOfTimeComplexity22()}
     </Book>
 );
 

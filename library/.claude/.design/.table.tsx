@@ -28,9 +28,9 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>The sketches</Heading>
+            <Heading>The designs</Heading>
             <Paragraph>
-                <Content>$[[ ./Every Concept ]]</Content>
+                <Content>$[[ ./The Conversation's Page ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>
