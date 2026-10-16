@@ -167,7 +167,29 @@ Their answer, the same evening: Sprint 110 holds chapter 115 and 116 is ours. Th
 - **The work, as it stands.**
   - Baseline at the start: the importer's promises 35 of 35, and its typecheck 0 by `npx tsc --noEmit --strict --target es2022 --module esnext --moduleResolution bundler --allowImportingTsExtensions --skipLibCheck --types node .me/importer/*.ts`. His library's typecheck 1, the layout's, inherited.
   - [U1](#u1) landed on his *"Yes, land it"* to the diff: the closed list gone, in the master and his copy, both identical. The binder's typecheck 0 and unit 156 of 156, one promise new in `wellformed.test.ts` where the diff named the regression suite, since the fixture there reads a resource's type directly.
-  - [U3](#u3) begun.
+  - The binder's regression suite after U1: 53 of 53.
+  - [U3](#u3) done.
+    - The newest export is found by the stamp in its name, `data-` or `manifest-`, one folder deep, in either packaging, and its capture is the newest beside it. A conversations entry streams from its own header wherever it stands in the archive.
+    - Both packagings map through one set of record functions: the single archive's categories all point at the archive itself.
+    - Read without writing, today's export takes 6.6 s and finds its capture of 2026-10-16: 25 projects, 360 conversations filed.
+  - [U2](#u2) done. Blocks are named: 146 uploads, 383 prompts, 2 budgets, none left as *other* (R7). Each conversation carries its traces, and the source names its user, packaging and folder.
+  - [U4](#u4) done. The legacy reads through the same reader: 796 conversations, 36,037 messages, 20 projects, 222 files, all equal to its `.statistics.md`. It takes 17.1 s, and its capture of 2026-05-17 is found beside the archive.
+  - [U6](#u6) done.
+    - `projects.ts`'s rules carried over: capture, knowledge, memory, one search hop, vetoes. A bare run writes no pairing file (D10).
+    - Measured on DNA against dna-library's `project-membership-2026-10-16T16-22-48.json`: no difference.
+    - Measured on DNA Legacy: 512 paired, 60 unpaired, 224 excluded.
+  - [U5](#u5) done. The accounts are configured oldest first and an export must match its address. Both accounts held together take 975 MB of heap, so the risk's mitigation is not needed.
+  - [U7](#u7) done. `stackedProjects` gives Investing 103 conversations, 82 from the legacy and 21 from DNA, with 1 excluded for a Cyrillic title.
+  - Investing's filing against the legacy archive differs in 3 places. "TON's "Make TON Great Again" roadmap explained" is placed by the capture, which lists it quoted where the old scaffold matched exactly. "Solana's creation and Simplex integration" and "TON price collapse analysis" are in no capture and were placed by the old scaffold's word overlap, which dna-library has since struck, so they stay unpaired unless he writes a line.
+  - [U8](#u8) done but for the Account type.
+    - The record keeps the account.
+    - The project book is written whole when absent, or when the run takes its project whole with `--overwrite`, and every standing conversation's entry is written in it again.
+    - The cover writes `<Account>$[[ DNA ]]( Dougs Claude / DNA )</Account>` after the Project.
+  - The list defect found by the other session is fixed in the writing: a list whose items stand apart by blank lines stays one list, with a promise.
+  - Promises 40 of 40; the importer's typecheck 0; the shape checker 15 files, 0 faults. The one line over 125 characters, in the check's promises, is inherited at the mirror's HEAD.
+  - [U10](#u10) drafted at `.me/.claude/o1-the-accounts.tsx` and listed in Dougs Claude's table. Its sections are headed by the mentions `[[[ DNA Legacy ]]]` and `[[[ DNA ]]]`, on his word: *"Mentions should be able to create ids anywhere in a piece of writing. That is essential"* and *"Make sure to make good mention ids for the accounts so that we might move them around in the future and everything would work."* The copy was rewritten on *"take what I wrong and turn it into a coherent explanation of teh accounts"*, and his read of it is owed.
+  - [U9](#u9): the exact form was sent to the other session, whose rule is that the form's chapter and types change first. Who writes the Account type and its line waits on their answer.
+  - The importer's chapters say all of it: The Importer, The Export, The Record, The Pairing, The Ledger, The Books.
 - **Approved 2026-10-16:** §1, §2 and §4 on first reading; §3 on its third, after *"I don't understand. Ask again where you use clearer language"* and then his account of the design as it stands.
 - **Owed and not yet done:** dna-library's session has not been told of the memory listing, which is the project information they set out to find; that is his to send or ours on his word.
-- **Wrong turns, so no one retries them:** calling the memory listing certain on seven cases, which dna-library's wider measure and its leak refute; telling him the October export carries no project information, from a survey of field names alone, when the injected listing carries it; saying a project's conversations live in its book, when every conversation is a book under Our Conversations and the project book points to it; *"namesakes stacked"* and *"evidence"*, words he could not read.
+- **Wrong turns, so no one retries them:** reading the notation's `Name` as a book or a chapter only and telling him a mention could not reach a section, when `Book / Mention` is a key and `[[[ X ]]]` makes the id anywhere; calling the memory listing certain on seven cases, which dna-library's wider measure and its leak refute; telling him the October export carries no project information, from a survey of field names alone, when the injected listing carries it; saying a project's conversations live in its book, when every conversation is a book under Our Conversations and the project book points to it; *"namesakes stacked"* and *"evidence"*, words he could not read.
