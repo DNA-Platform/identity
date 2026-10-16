@@ -2,8 +2,7 @@ import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import {
     $Annotation, $Chapter, $Cover, $Date, $Heading, $Means, $Paragraph, $Referent, $Section, $Word, $Writing,
-    AnnotationSpecification, Reference as reference, Referent as referent, SectionSpecification, Word as word, identifier,
-    specify,
+    AnnotationSpecification, Referent as referent, SectionSpecification, identifier, specify,
 } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { $Dated } from './4-the-date~code.tsx';
@@ -300,35 +299,10 @@ export class $DayCount extends $Word {
     }
 }
 
-// The row at the head of the side that leads to the first day, where what it came to stands.
-export class $CameToRow extends $Paragraph {
-    override write(): ReactNode {
-        const place = (this.book as $Conversation).pages[0]?.mention?.identifier;
-        if (place === undefined) return undefined;
-        const Word = $(word);
-        const Reference = $(reference);
-        return (
-            <Word>
-                <Reference>
-                    {place}
-                </Reference>
-                What it came to
-            </Word>
-        );
-    }
-
-    protected override $Define(): void {
-        super.$Define();
-        this.classes.add(this, 'pd-came-to-row');
-    }
-}
-
 export const Tally = $($Tally);
 export const DayCount = $($DayCount);
-export const CameToRow = $($CameToRow);
 const tally = Tally;
 const dayCount = DayCount;
-const cameToRow = CameToRow;
 
 export class $Conversation extends $LibraryBook {
     override specification = new ConversationSpecification();
@@ -362,17 +336,6 @@ export class $Conversation extends $LibraryBook {
         );
     }
 
-    override aboveThePages(): ReactNode {
-        const synopsis = this.synopsis;
-        const first = this.pages[0];
-        if (synopsis === undefined || first === undefined || (this.open ?? first) !== first) return undefined;
-        const Synopsis = $(synopsis);
-        return (
-            <div className="pd-came-to">
-                <Synopsis />
-            </div>
-        );
-    }
 
     protected override $Bound(): void {
         const DayCount = $(dayCount);
@@ -384,10 +347,6 @@ export class $Conversation extends $LibraryBook {
                 <DayCount entry={chapter} />
             );
         }
-        const CameToRow = $(cameToRow);
-        this.table?.text.add(this,
-            <CameToRow />
-        );
         super.$Bound();
     }
 }

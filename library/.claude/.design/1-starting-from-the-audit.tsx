@@ -44,7 +44,9 @@ export default () => (
                 mine in the frame every book of this library wears, refused the same night for an orange it took
                 from my own book and for names over the messages; its second
                 is <Means>$[[ concept 2 ]]( ./A Conversation, as the Application Shows It )</Means>, the chat text
-                as the application has it and an artifact opening beside the words as the application opens one.
+                as the application has it and an artifact opening beside the words as the application opens one;
+                its third is <Means>$[[ concept 3 ]]( ./A Conversation, as the Application Measures )</Means>, the
+                same page at the application's own measures, read in its browser rather than imitated.
             </Paragraph>
         </Section>
     </Chapter>

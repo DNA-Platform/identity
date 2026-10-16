@@ -1,4 +1,4 @@
-import { Append, Chapter, Heading, Image, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
+import { Append, Chapter, Heading, Image, Line, Means, Paragraph, Part, Section, Table, Title, Word } from '@dna-platform/public';
 import { Answer, Desk, Phone, Question, Thumbnail } from '../../.manual/.book';
 
 export default () => (
@@ -110,7 +110,11 @@ export default () => (
                 which <Means>$[[ Conservation of Time Complexity ]]</Means> shows with thirteen; the code box is
                 <Means>$[[ Dougs Reference Manual ]]</Means>'s and the heading rule its address annotation. What
                 the sketch has and the page does not yet: the way back at the head, which moved to the next
-                sprint, and the pane's publish, which the library has no use for.
+                sprint, and the pane's publish, which the library has no use for. And two things the page has
+                otherwise than the sketch, on my word when I looked at it built: Claude's prose and its headings
+                in the sans at my words' size, the tighter font, so that it reads as a conversation; and no box
+                of what it came to above the first day, since that is the application's summary and not a
+                cataloguing of mine, which is to come by hand.
             </Paragraph>
             <Paragraph>
                 <Desk />
@@ -125,6 +129,130 @@ export default () => (
                 <Image>![[ 002-small.png ]]</Image>
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>The application measured, against the sketch and the page</Heading>
+            <Paragraph>
+                When I looked at the page built to 002 the font did not read as one size, and I asked for the
+                tighter one and for the application to be measured rather than imitated. So the application was
+                read in the library's own browser, signed in as me, by computed style on three of my
+                conversations, and set beside what 002 drew and what the library had bound. The table is the
+                triangulation; where the three agree there is nothing to decide, and where they differ the
+                application is the answer unless I say otherwise.
+            </Paragraph>
+            <Paragraph>
+                <Table />
+                <Line>
+                    <Word>What</Word>
+                    <Word>Sketch 002</Word>
+                    <Word>The application</Word>
+                    <Word>The page as bound</Word>
+                </Line>
+                <Line>
+                    <Word>The column</Word>
+                    <Word>760 wide</Word>
+                    <Word>768 wide</Word>
+                    <Word>760 asked for and 810 read, the journal's rule for an open chapter outweighing the theme's line; 768 since, said under the journal's own selector</Word>
+                </Line>
+                <Line>
+                    <Word>My words</Word>
+                    <Word>Inter 15 over 22.5, box 18 round, black at 5 percent, 12 by 16, 78 percent at most</Word>
+                    <Word>its sans 15 over 20, box 12 round, black at 5 percent, 12 by 16, 601 of 768 at most</Word>
+                    <Word>Inter 15 over 22.5, box 18 round</Word>
+                </Line>
+                <Line>
+                    <Word>Claude's prose</Word>
+                    <Word>Source Serif 4 16.5 over 26.4</Word>
+                    <Word>its serif 15 over 22, ink 11 11 11</Word>
+                    <Word>Source Serif 4 16.5 over 26.4, then Inter 15 over 22.5 when I asked for the tighter font</Word>
+                </Line>
+                <Line>
+                    <Word>A heading in an answer</Word>
+                    <Word>serif 17 over 22, semibold</Word>
+                    <Word>not reached by the probe</Word>
+                    <Word>serif 17, then sans 16</Word>
+                </Line>
+                <Line>
+                    <Word>A list</Word>
+                    <Word>indented 1.3 em</Word>
+                    <Word>indented 30, items in the prose's serif at 15 over 22</Word>
+                    <Word>indented 1.3 em</Word>
+                </Line>
+                <Line>
+                    <Word>A block of code</Word>
+                    <Word>white at half strength, hairline, 12 round, 14 padding, mono 14 over 22.75, a bar naming the language with a copy</Word>
+                    <Word>the same box and type, no bar, the copy on hover</Word>
+                    <Word>as 002</Word>
+                </Line>
+                <Line>
+                    <Word>An artifact</Word>
+                    <Word>a card: glyph, title, a line to open it</Word>
+                    <Word>a line 32 tall: icon, the title in the sans at 14 over 20 in grey, the word Artifact</Word>
+                    <Word>as 002</Word>
+                </Line>
+                <Line>
+                    <Word>A file given</Word>
+                    <Word>a chip at the head of my words</Word>
+                    <Word>a tile 96 wide with the name at 14 and a type badge</Word>
+                    <Word>as 002</Word>
+                </Line>
+                <Line>
+                    <Word>The hour</Word>
+                    <Word>on hover, 11, faint</Word>
+                    <Word>the date under an answer, 11 over 17, grey, always</Word>
+                    <Word>as 002</Word>
+                </Line>
+                <Line>
+                    <Word>What it came to</Word>
+                    <Word>a box above the first day</Word>
+                    <Word>nothing of the kind</Word>
+                    <Word>gone, on my word</Word>
+                </Line>
+                <Line>
+                    <Word>The paper</Word>
+                    <Word>white</Word>
+                    <Word>252 252 251</Word>
+                    <Word>white, by my rule on whites</Word>
+                </Line>
+            </Paragraph>
+            <Paragraph>
+                <Question />
+                Page 003 carries the application's measures where the three differed on numbers alone, and holds
+                two switches for the two places the application does a thing differently: the artifact as 002's
+                card or as the application's slim line, and the code with 002's bar naming its language or with
+                the application's copy on hover. A heading's measure in the application is still owed.
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>[[[ A Conversation, as the Application Measures ]]]</Heading>
+            <Paragraph>
+                Concept 3, concept 2 at the application's own measures: the column 768 wide; my words in the sans
+                at 15 over 20 in a box 12 round on black at five percent; Claude's prose in the serif at 15 over 22
+                in the application's ink; lists indented 30; the code box white at half strength with a 0.8
+                hairline; no box of what it came to and no row for it; and the head, the title with who took
+                part and the tally, scrolling away with the words instead of staying fixed above them, since a
+                sticky head is not how the application reads. The artifact and the code each wear a switch at
+                the head, for me to press and say. Decided, 16 October 2026, when I pressed them: the artifact
+                stays a card and the code keeps its bar naming the language with a copy, both as 002 had them and
+                as the switches opened; Claude's prose takes the application's serif at 15 over 22, which this
+                page shows and which I left to the design; the head scrolls. The page as bound carries all of
+                it, theme and type, with nothing re-imported. One number stayed wrong on the bound page until
+                the last bind of that night: the column read 810 where the theme asked 768, the journal's rule
+                for an open chapter outweighing the theme's line; said under the journal's own selector it
+                reads 768.
+            </Paragraph>
+            <Paragraph>
+                <Desk />
+                <Image>![[ 003-desk.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                <Phone />
+                <Image>![[ 003-phone.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                <Thumbnail />
+                <Image>![[ 003-small.png ]]</Image>
+            </Paragraph>
+        </Section>
         <Append
             identifier="001"
             type=".html"
@@ -136,6 +264,12 @@ export default () => (
             type=".html"
         >
             ![[ 002.html ]]
+        </Append>
+        <Append
+            identifier="003"
+            type=".html"
+        >
+            ![[ 003.html ]]
         </Append>
     </Chapter>
 );

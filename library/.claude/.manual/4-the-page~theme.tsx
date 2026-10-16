@@ -2,8 +2,9 @@ import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
 import { $Typeset } from '../../.manual/.book';
 
-// Concept 2 of Claudes Design, carried in as it was decided: the chat text as the application has it, white across every
-// surface with a tint only in the last pixels before an edge, and the pane's column when one is open.
+// Concept 3 of Claudes Design, the application measured in its own browser and carried in as decided: the chat text at its
+// measures, white across every surface with a tint only in the last pixels before an edge, the head scrolling away with the
+// words, and the pane's column when one is open.
 export class $ApplicationForm extends $Typeset {
     sans = "'Inter', system-ui, sans-serif";
     mono = "ui-monospace, 'Cascadia Code', Consolas, monospace";
@@ -14,7 +15,7 @@ export class $ApplicationForm extends $Typeset {
 
     protected override parts(): RuleSet[] {
         return [
-            ...super.parts(), this.surfaces(), this.top(), this.days(), this.cameTo(), this.exchanges(), this.said(),
+            ...super.parts(), this.surfaces(), this.top(), this.rows(), this.openDay(), this.exchanges(), this.said(),
             this.cards(), this.paneColumn(), this.phone(),
         ];
     }
@@ -24,8 +25,14 @@ export class $ApplicationForm extends $Typeset {
             .pd-book .pd-library { background: linear-gradient(180deg, #ffffff 0%, #ffffff 84%, #fbfcfe 100%); }
             .pd-book .pd-me { background: linear-gradient(180deg, #ffffff 0%, #ffffff 84%, #fbfcfe 100%); }
             .pd-book .pd-holds { background: linear-gradient(90deg, #ffffff 0%, #ffffff 88%, #fbfcfe 100%); }
-            .pd-book .pd-head { background: #ffffff; box-shadow: 0 8px 22px rgba(43, 54, 60, .025); }
+            .pd-book .pd-head { background: #ffffff; box-shadow: none; }
             .pd-book .pd-pages { background: #ffffff; }
+            @media (min-width: ${({ theme }) => theme.narrow}) {
+                .pd-book.pa-layout { height: 100vh; overflow-y: auto; grid-template-rows: auto auto auto; }
+                .pd-book.pa-layout .pd-pages { overflow: visible; }
+                .pd-book.pa-layout .pd-library, .pd-book.pa-layout .pd-me { position: sticky; top: 0; z-index: 3; }
+                .pd-book.pa-layout .pd-holds { position: sticky; top: ${({ theme }) => theme.barHeight}; align-self: start; max-height: calc(100vh - ${({ theme }) => theme.barHeight}); }
+            }
         `;
     }
 
@@ -42,7 +49,7 @@ export class $ApplicationForm extends $Typeset {
         `;
     }
 
-    protected days(): RuleSet {
+    protected rows(): RuleSet {
         return css`
             .pd-book .pd-holds .pd-chapter { display: flex; flex-direction: column; }
             .pd-book .pd-holds .pd-section.pa-appendix { display: none; }
@@ -52,20 +59,12 @@ export class $ApplicationForm extends $Typeset {
             .pd-book .pd-holds .pd-paragraph.pa-entry .pd-day-count { margin-inline-start: auto; font-size: 11px; color: ${({ theme }) => theme.faint}; }
             .pd-book .pd-holds .pd-paragraph.pa-entry:hover { background: #f8fafc; }
             .pd-book .pd-holds .pd-paragraph.pa-entry.pa-open { background: linear-gradient(90deg, #eff4fa, #f8fafd); color: ${({ theme }) => theme.heading}; font-weight: 500; }
-            .pd-book .pd-holds .pd-came-to-row { order: -1; display: flex; align-items: center; gap: 9px; margin: 0 0 10px; padding: 6px 18px 6px 16px; font-family: ${({ theme }) => theme.sans}; font-size: 13px; font-style: italic; color: ${({ theme }) => theme.soft}; }
-            .pd-book .pd-holds .pd-came-to-row::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: ${({ theme }) => theme.faint}; }
-            .pd-book .pd-holds .pd-came-to-row .pa-reference { color: inherit; text-decoration: none; }
         `;
     }
 
-    protected cameTo(): RuleSet {
+    protected openDay(): RuleSet {
         return css`
-            .pd-book .pd-pages .pd-came-to { box-sizing: border-box; width: min(760px, 100%); margin: 0 auto 26px; padding: 14px 18px; border-radius: 12px; background: #fbfcfd; }
-            .pd-book .pd-pages .pd-came-to::before { content: 'What it came to'; display: block; margin-block-end: 4px; font-family: ${({ theme }) => theme.sans}; font-size: 10.5px; font-weight: 600; line-height: 1.4; letter-spacing: .12em; text-transform: uppercase; color: ${({ theme }) => theme.faint}; }
-            .pd-book .pd-pages .pd-came-to .pd-chapter { display: block; }
-            .pd-book .pd-pages .pd-came-to .pd-chapter > .pd-title, .pd-book .pd-pages .pd-came-to .pd-chapter > a.pa-self-reference, .pd-book .pd-pages .pd-came-to .pd-turn { display: none; }
-            .pd-book .pd-pages .pd-came-to .pd-paragraph { margin: 0; font-family: ${({ theme }) => theme.sans}; font-size: 14px; line-height: 1.6; color: ${({ theme }) => theme.soft}; }
-            .pd-book .pd-pages .pa-page { width: min(760px, 100%); margin: 0 auto; }
+            .pd-book .pd-pages .pd-chapter.pa-page { width: 100%; max-width: 768px; margin: 0 auto; }
             .pd-book .pd-pages .pa-page > .pd-title, .pd-book .pd-pages .pa-page > a.pa-self-reference .pd-title { margin: 0 0 22px; font-family: ${({ theme }) => theme.sans}; font-size: 11.5px; font-weight: 600; line-height: 1.4; letter-spacing: .14em; text-transform: uppercase; color: ${({ theme }) => theme.faint}; }
             .pd-book .pd-pages .pd-turn, .pd-book .pd-pages .pa-page > .pd-word.pd-date { display: none; }
         `;
@@ -80,18 +79,18 @@ export class $ApplicationForm extends $Typeset {
             .pd-book .pd-pages .pd-message.pa-mine > .pd-word.pd-time { left: auto; right: 0; }
             .pd-book .pd-pages .pd-message:hover > .pd-word.pd-time { opacity: 1; }
             .pd-book .pd-pages .pd-message > .pd-said { display: flex; flex-direction: column; gap: 10px; min-width: 0; overflow-wrap: anywhere; }
-            .pd-book .pd-pages .pd-message.pa-mine > .pd-said { margin-inline-start: auto; width: fit-content; max-width: 78%; padding: 12px 16px; border-radius: 18px; background: rgba(11, 11, 11, .05); gap: 8px; }
+            .pd-book .pd-pages .pd-message.pa-mine > .pd-said { margin-inline-start: auto; width: fit-content; max-width: 78%; padding: 12px 16px; border-radius: 12px; background: rgba(11, 11, 11, .05); gap: 8px; }
         `;
     }
 
     protected said(): RuleSet {
         return css`
-            .pd-book .pd-pages .pd-message .pd-said .pd-paragraph { margin: 0; font-family: ${({ theme }) => theme.serif}; font-size: 16.5px; line-height: 1.6; color: ${({ theme }) => theme.ink}; }
-            .pd-book .pd-pages .pd-message.pa-mine .pd-said .pd-paragraph { font-family: ${({ theme }) => theme.sans}; font-size: 15px; line-height: 1.5; }
-            .pd-book .pd-pages .pd-message .pd-said .pd-heading { margin: 8px 0 0; padding: 0; border: 0; font-family: ${({ theme }) => theme.serif}; font-size: 17px; font-weight: 600; line-height: 1.3; color: ${({ theme }) => theme.heading}; }
+            .pd-book .pd-pages .pd-message .pd-said .pd-paragraph { margin: 0; font-family: ${({ theme }) => theme.serif}; font-size: 15px; line-height: 22px; color: #0b0b0b; }
+            .pd-book .pd-pages .pd-message.pa-mine .pd-said .pd-paragraph { font-family: ${({ theme }) => theme.sans}; line-height: 20px; }
+            .pd-book .pd-pages .pd-message .pd-said .pd-heading { margin: 8px 0 0; padding: 0; border: 0; font-family: ${({ theme }) => theme.serif}; font-size: 16px; font-weight: 600; line-height: 22px; color: #0b0b0b; }
             .pd-book .pd-pages .pd-message .pa-emphasis { font-style: italic; }
             .pd-book .pd-pages .pd-message .pa-bold { font-weight: 600; }
-            .pd-book .pd-pages .pd-message .pa-list { padding-inline-start: 1.3em; }
+            .pd-book .pd-pages .pd-message .pa-list { padding-inline-start: 30px; }
             .pd-book .pd-pages .pd-message .pa-list .pa-item { display: list-item; list-style: disc outside; }
             .pd-book .pd-pages .pd-message .pa-list.pa-ordered .pa-item { list-style: decimal outside; }
             .pd-book .pd-pages .pd-message .pa-list .pa-item + .pa-item { margin-block-start: 4px; }

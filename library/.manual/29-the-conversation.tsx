@@ -28,10 +28,11 @@ export default () => (
                 the side as its parts, each with its count of messages; the chapters I cut it into by hand after,
                 by topic or by sitting, are dated the same way, titled as I like, and stand in whatever part I
                 say. Under the title stand who took part and a tally, how many messages over how many days and
-                from which day to which; what the conversation came to, its synopsis, stands above the first day
-                and nowhere else, with a row at the head of the side that leads back to it. The type asks that
-                every chapter be dated and hold at least one message, and that every message be addressed by its
-                time, so that an index can point at one.
+                from which day to which, and the page opens on the first day with nothing above it: the synopsis
+                the import writes is the application's summary and not a cataloguing of mine, so it stays where
+                the catalogue reads it, on the cover, and never on the page. The type asks that every chapter be
+                dated and hold at least one message, and that every message be addressed by its time, so that an
+                index can point at one.
             </Paragraph>
             <Paragraph>
                 The cover says where the conversation is filed: under the book that catalogues all of them, its
