@@ -39,7 +39,6 @@
     ".binding/application/routes.ts"
   ],
   "rendered": [
-    "claudes-design/index.html",
     "dougs-library/index.html",
     "dougs-claude/index.html",
     "our-conversations/index.html",
@@ -65,6 +64,7 @@
     "string-length-notation-and-foundational-sketch-generalization/index.html",
     "the-semantics-of-books/index.html",
     "unifying-srt-axioms-with-symbolization/index.html",
+    "claudes-design/index.html",
     "claudes-reference-manual/index.html",
     "semantic-reference-theory/index.html",
     "dougs-design/index.html",
@@ -405,6 +405,14 @@
       "sheet": "sheets/7415f3429344.css",
       "markup": ".pages/unifying-srt-axioms-with-symbolization.html"
     },
+    "/claudes-design": {
+      "folder": ".claude/.design",
+      "digest": "df0c952d51661c82",
+      "references": "17ef5721d728c51f",
+      "binder": "872aa3461ace450a",
+      "sheet": "sheets/ce6445006a02.css",
+      "markup": ".pages/claudes-design.html"
+    },
     "/claudes-reference-manual": {
       "folder": ".claude/.manual",
       "digest": "68e276cd6c4db7e5",
@@ -452,14 +460,6 @@
       "binder": "872aa3461ace450a",
       "sheet": "sheets/d501d83cee57.css",
       "markup": ".pages/dougs-importer.html"
-    },
-    "/claudes-design": {
-      "folder": ".claude/.design",
-      "digest": "df0c952d51661c82",
-      "references": "17ef5721d728c51f",
-      "binder": "872aa3461ace450a",
-      "sheet": "sheets/ce6445006a02.css",
-      "markup": ".pages/claudes-design.html"
     }
   }
 }
