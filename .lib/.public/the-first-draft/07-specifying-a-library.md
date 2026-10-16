@@ -92,7 +92,7 @@
 | **the read, cold** | ~20 minutes | 63 processes at batch 16, strictly one after another |
 | **the read, steady** | **~9 seconds** | one book changed is one process; the digest carries the rest |
 
-***Two fixes are owed and neither is built.*** **Processes run one at a time** — `spawnSync` in a loop — *so the whole read is serial on a machine with eight cores; a pool would cut the cold build by most of that factor, and it is the largest lever left after the cache.* **And the render redraws every page every build**, though the manifest and the graph together already know which books changed — *a page whose book's digest still holds, and whose `.pubconfig` has not moved, does not need drawing again.*
+***Two fixes were owed here, and both are built.*** **Processes ran one at a time** — `spawnSync` in a loop — *so the whole read was serial on a machine with fourteen cores; since 2026-10-16 each stage says in its configuration how many children run at once, `specification.parallel` and `rendering.parallel`, one unless the library says more, under the one loop in [`children.ts`](../../package/.binding/children.ts), and each child says its peak memory in its last line so the number is set on evidence — [The Binder, As Built](../the-catalogue-and-the-specification/07-the-binder.md#children).* **And the render redrew every page every build**, though the manifest and the graph together already knew which books changed — *since [Sprint 109](../projection/114-sprint-109--dougs-importer.md) a page whose book's digest, references and binder still hold is written again from its kept markup, [the kept pages](../the-catalogue-and-the-specification/07-the-binder.md#kept).*
 
 ### <a id="fixed"></a>What was fixed here, because a thousand makes it a million
 
