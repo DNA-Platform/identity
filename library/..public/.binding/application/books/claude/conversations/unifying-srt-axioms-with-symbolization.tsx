@@ -5,6 +5,9 @@ import Cover from '../../../../../../.claude/.conversations/unifying-srt-axioms-
 import Synopsis from '../../../../../../.claude/.conversations/unifying-srt-axioms-with-symbolization/.synopsis';
 import Table from '../../../../../../.claude/.conversations/unifying-srt-axioms-with-symbolization/.table';
 import May3120261 from '../../../../../../.claude/.conversations/unifying-srt-axioms-with-symbolization/1-may-31-2026';
+import June120262 from '../../../../../../.claude/.conversations/unifying-srt-axioms-with-symbolization/2-june-1-2026';
+import June220263 from '../../../../../../.claude/.conversations/unifying-srt-axioms-with-symbolization/3-june-2-2026';
+import June320264 from '../../../../../../.claude/.conversations/unifying-srt-axioms-with-symbolization/4-june-3-2026';
 
 const Book = $($Book);
 
@@ -14,6 +17,9 @@ export const book = () => (
         {Synopsis()}
         {Table()}
         {May3120261()}
+        {June120262()}
+        {June220263()}
+        {June320264()}
     </Book>
 );
 

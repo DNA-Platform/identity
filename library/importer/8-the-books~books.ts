@@ -3,7 +3,7 @@ import { join, relative } from 'node:path';
 import type { Conversation, Message, Project } from './3-the-record~record.ts';
 import {
     appendLines, escapedText, knownExtensions, mentionForm, notationName, referenceForm, slugFromName, titleForm,
-    writtenChapter, type Appendix, type Referents,
+    writtenConversation, type Appendix, type Referents, type WrittenChapter,
 } from './7-the-writing~writing.ts';
 
 export type LibraryFolders = { library: string; claude: string; claudeManual: string; conversations: string };
@@ -124,7 +124,7 @@ export const conversationBook = (
     const folder = join(folders.conversations, slugFromName(name));
     const importPath = manualImportPath(folders, folder);
     const claudeImportPath = claudeManualImportPath(folders, folder);
-    const chapter = writtenChapter(conversation, path, referents, importPath, claudeImportPath, keptAppendices);
+    const written = writtenConversation(conversation, path, referents, importPath, claudeImportPath, keptAppendices);
     const coverManualWords = [
         'BookshelfCover as Cover', 'Illustration', 'Messages', 'Participant', 'Participants', 'Period', 'Scheme',
         'Volume', 'Window',
@@ -145,10 +145,8 @@ export const conversationBook = (
     const drawingSource = join(folders.conversations, drawingFileName);
     const drawingText = existsSync(drawingSource) ? readFileSync(drawingSource, 'utf8') : '';
     const projectLines = projectNames.map(projectName => `<Project>***${titleForm(nameInForm(projectName))}</Project>`);
-    const monthSection = sectionLines(
-        monthHeading(path[0]?.sentAt ?? conversation.createdAt),
-        [...contentLines(chapter.title), ...parentheticalLines(name)],
-    );
+    const tableSections = [...monthSectionsOf(written.chapters, name), ...artifactSectionOf(written.versions)];
+    const tableManualWords = written.versions.length === 0 ? ['Index'] : ['Appendix', 'Index'];
     const files = [
         writtenFile(join(folder, '.book.tsx'), bookFileText(claudeImportPath, 'ClaudeConversation', name)),
         writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, coverManualWords, packageWords, [
@@ -172,13 +170,15 @@ export const conversationBook = (
         ], [...projectImportLines, ...volumeImportLines(folder, folders, folders.conversations)])),
         writtenFile(join(folder, drawingFileName), drawingText),
         writtenFile(join(folder, '.synopsis.tsx'), synopsisFileText(synopsisLines)),
-        writtenFile(join(folder, '.table.tsx'), tableFileText(importPath, ['Index'], monthSection)),
-        writtenFile(join(folder, chapter.fileName), chapter.tsx),
+        writtenFile(join(folder, '.table.tsx'), tableFileText(importPath, tableManualWords, tableSections)),
+        ...[...written.chapters, ...written.versions]
+            .map(chapter => writtenFile(join(folder, chapter.fileName), chapter.tsx)),
     ];
-    for (const chapterFile of chapter.files)
-        files.push(writtenFile(join(folder, chapterFile.name), chapterFile.content));
+    for (const chapter of written.chapters)
+        for (const chapterFile of chapter.files)
+            files.push(writtenFile(join(folder, chapterFile.name), chapterFile.content));
 
-    return { folder, files, chapterStem: chapter.fileName.replace(/\.tsx$/u, '') };
+    return { folder, files, chapterStem: written.chapters[0].fileName.replace(/\.tsx$/u, '') };
 };
 
 export const registerBook = (
@@ -527,6 +527,36 @@ const schemeLines = (scheme: Scheme): string[] =>
 
 const sectionLines = (heading: string, lines: string[]): string[] =>
     ['<Section>', `    <Heading>${heading}</Heading>`, ...indentedLines(1, lines), '</Section>'];
+
+// The days of a conversation under their months, the book's own line under the first; an artifact's versions in
+// an appendix section of parenthetical entries, which the index does not list and the side does not show, since
+// the binder asks that every chapter be listed and the proof that every link on the page land.
+const monthSectionsOf = (chapters: WrittenChapter[], name: string): string[] => {
+    const months: { heading: string; lines: string[] }[] = [];
+    for (const chapter of chapters) {
+        const heading = monthHeading(chapter.day ?? '');
+        const month = months.at(-1);
+        if (month !== undefined && month.heading === heading) month.lines.push(...contentLines(chapter.title));
+        else months.push({ heading, lines: contentLines(chapter.title) });
+    }
+    months[0]?.lines.push(...parentheticalLines(name));
+
+    return months.flatMap(month => sectionLines(month.heading, month.lines));
+};
+
+const artifactSectionOf = (versions: WrittenChapter[]): string[] => versions.length === 0 ? [] : [
+    '<Section>',
+    '    <Appendix />',
+    '    <Heading>Artifacts</Heading>',
+    ...indentedLines(1, versions.flatMap(version => [
+        '<Paragraph>',
+        '    <Parenthetical />',
+        `    <Content>${mentionForm(`./${nameInForm(version.title)}`)}</Content>`,
+        '</Paragraph>',
+    ])),
+    '</Section>',
+];
+
 
 const contentLines = (name: string): string[] =>
     ['<Paragraph>', `    <Content>${mentionForm(`./${nameInForm(name)}`)}</Content>`, '</Paragraph>'];

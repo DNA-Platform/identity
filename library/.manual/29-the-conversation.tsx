@@ -22,21 +22,26 @@ export default () => (
                 them on the screen and how many left on other paths, since a conversation is a tree once a message
                 is edited or asked again and the book keeps the path that was shown. Those are annotations with
                 values and a paragraph of participants, so that the page reports them and every catalogue of
-                conversations can read them, by date, by size, by who was there. The first version imports the
-                whole conversation into one chapter, dated with its first day as an entry
-                of <Means>$[[ a journal ]]( ./The Journal )</Means> is; the chapters it is cut into by hand after,
+                conversations can read them, by date, by size, by who was there. The import writes a conversation
+                one chapter per day it was held, each dated with its day as an entry
+                of <Means>$[[ a journal ]]( ./The Journal )</Means> is and titled with it, so the days stand down
+                the side as its parts, each with its count of messages; the chapters I cut it into by hand after,
                 by topic or by sitting, are dated the same way, titled as I like, and stand in whatever part I
-                say. The type asks that every chapter be dated and hold at least one message, and that every
-                message be addressed by its time, so that an index can point at one.
+                say. Under the title stand who took part and a tally, how many messages over how many days and
+                from which day to which; what the conversation came to, its synopsis, stands above the first day
+                and nowhere else, with a row at the head of the side that leads back to it. The type asks that
+                every chapter be dated and hold at least one message, and that every message be addressed by its
+                time, so that an index can point at one.
             </Paragraph>
             <Paragraph>
                 The cover says where the conversation is filed: under the book that catalogues all of them, its
                 subject. Where it was held is a fact about the application it came from and not about
                 conversations, so a conversation with Claude says its project with Claude's own annotation,
                 in <Means>$[[ Claudes Reference Manual ]]</Means>, which specializes this type to draw it, and
-                that is the way back from a conversation to its project. The synopsis is what the conversation came to, in a paragraph. It is designed
-                on <Means>$[[ its own page ]]( Dougs Design / The Conversation's Page )</Means>, in the frame
-                of the application the conversations come from.
+                that is the way back from a conversation to its project. The synopsis is what the conversation
+                came to, in a paragraph. It is designed
+                on <Means>$[[ its own page ]]( Claudes Design / The Conversation's Page )</Means>, as the
+                application the conversations come from shows one, in the frame every book of this library wears.
             </Paragraph>
         </Section>
         <Section>
@@ -52,10 +57,11 @@ export default () => (
                 turns and no pairs of messages; a message stands alone in its order, and three speakers read the
                 same as two. What was said stands inside it as the ordinary writing of this library, paragraphs,
                 lists, headings, code, tables and formulas, converted once when the conversation is imported and
-                never read from a string when the page is drawn. A heading inside a message is the message's own
-                structure and no address of the page: the message takes the heading's referent and its self-link
-                off, so six answers may each be headed Proof sketch and a page wears one address per message, its
-                instant, as the application has it. A word that was typed as code is said verbatim.
+                never read from a string when the page is drawn. A message is opaque, in the words
+                of <Means>$[[ The Address ]]( ./The Address )</Means>: a heading inside it is its own structure and
+                no address of the page, so six answers may each be headed Proof sketch and a page wears one
+                address per message, its instant, as the application has it. A word that was typed as code is
+                said verbatim.
                 A paragraph that was quoted is said quoted.
             </Paragraph>
             <Paragraph>

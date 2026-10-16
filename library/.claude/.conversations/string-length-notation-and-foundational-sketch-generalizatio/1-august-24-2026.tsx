@@ -1,5 +1,5 @@
-import { Chapter, Code, Date, Paragraph, Title, Word } from '@dna-platform/public';
-import { Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
+import { Chapter, Date, Paragraph, Title, Word } from '@dna-platform/public';
+import { CodeBox, Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
 import { Action } from '../../.manual/.book';
 
 export default () => (
@@ -34,9 +34,13 @@ export default () => (
                 canonical qualification”
             </Action>
             <Paragraph>Reading your two lines against the Sketch's five forms:</Paragraph>
-            <Code>
-                {"string =length> string          identification form: identity =identification> identity\nlength =(length,string)> string relationship form:  subject =relationship> object,\n                                                     relationship == (subject, object)"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`string =length> string          identification form: identity =identification> identity
+length =(length,string)> string relationship form:  subject =relationship> object,
+                                                     relationship == (subject, object)`}
+            </CodeBox>
             <Paragraph>
                 So <Word>
                     <Verbatim />
@@ -51,9 +55,12 @@ export default () => (
                     (p,x)
                 </Word>, and the call notation is just a name for the witness:
             </Paragraph>
-            <Code>
-                {"x =p> x  &  p => x  =|>  p(x) := (p, x)\nx.p      == p(x)                (object-first spelling of the same referent)"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`x =p> x  &  p => x  =|>  p(x) := (p, x)
+x.p      == p(x)                (object-first spelling of the same referent)`}
+            </CodeBox>
             <Paragraph>
                 "Length of string" reads subject-first; <Word>
                     <Verbatim />
@@ -64,9 +71,12 @@ export default () => (
                 </Word>.
             </Paragraph>
             <Paragraph>Run it through the other Sketch forms and each one gives the call a fixed-point shape:</Paragraph>
-            <Code>
-                {"relationship:    subject(object)             == (subject, object)     -- unconstrained\nreference:       reference(referent)         == reference\nrepresentation:  representative(representation) == representation\nindividuality:   individual(individual)      == individual"}
-            </Code>
+            <CodeBox>
+                {`relationship:    subject(object)             == (subject, object)     -- unconstrained
+reference:       reference(referent)         == reference
+representation:  representative(representation) == representation
+individuality:   individual(individual)      == individual`}
+            </CodeBox>
             <Paragraph>
                 So the canonical symbol is the self-call: <Word>
                     <Verbatim />

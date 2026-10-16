@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { exportSource } from './3-the-record~claude.ts';
@@ -9,7 +9,7 @@ import {
     recordIdentifier, recordSuffix, standingKeptEdits, tendStruckEdits, writeImportRecord, type HeldRecord, type Reimport,
 } from './5-the-ledger~ledger.ts';
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
-import { slugFromName, titleFromName, writtenChapter, type Referents } from './7-the-writing~writing.ts';
+import { slugFromName, titleFromName, writtenConversation, type Referents } from './7-the-writing~writing.ts';
 import {
     conversationBook, libraryEntry, orderRegisterTable, projectBook, projectEntry, registerBook, registerEntry, schemes,
     uniqueBookName, wrappedLines, type LibraryFolders, type Scheme,
@@ -310,17 +310,21 @@ const writeChapterIntoFolder = (intoFolder: string, conversation: Conversation):
     const manualImportPath = '../.manual/.book';
     const claudeManualImportPath = '../.claude/.manual/.book';
     const path = shownPath(conversation);
-    const chapter = writtenChapter(conversation, path, referents, manualImportPath, claudeManualImportPath);
+    const written = writtenConversation(conversation, path, referents, manualImportPath, claudeManualImportPath);
     const folder = join(intoFolder, slugFromName(conversation.name));
     mkdirSync(folder, { recursive: true });
-    writeFileSync(join(folder, chapter.fileName), chapter.tsx, 'utf8');
-    for (const chapterFile of chapter.files)
-        writeFileSync(join(folder, chapterFile.name), chapterFile.content, 'utf8');
-    const fileWords = countedNoun(chapter.files.length, 'file');
-    const thinkingWords = countedNoun(chapter.thinkingCount, 'thinking block');
-    const resultWords = countedNoun(chapter.resultCount, 'result');
-    const reportWords = `${fileWords} beside it, ${thinkingWords} and ${resultWords} left out`;
-    console.log(`\nwrote ${join(folder, chapter.fileName)} with ${reportWords}`);
+    for (const chapter of [...written.chapters, ...written.versions]) {
+        writeFileSync(join(folder, chapter.fileName), chapter.tsx, 'utf8');
+        for (const chapterFile of chapter.files)
+            writeFileSync(join(folder, chapterFile.name), chapterFile.content, 'utf8');
+    }
+    const fileCount = written.chapters.reduce((sum, chapter) => sum + chapter.files.length, 0);
+    const chapterWords = `${countedNoun(written.chapters.length, 'chapter')} and `
+        + countedNoun(written.versions.length, 'artifact version');
+    const thinkingWords = countedNoun(written.thinkingCount, 'thinking block');
+    const resultWords = countedNoun(written.resultCount, 'result');
+    const reportWords = `${countedNoun(fileCount, 'file')} beside them, ${thinkingWords} and ${resultWords} left out`;
+    console.log(`\nwrote ${chapterWords} under ${folder} with ${reportWords}`);
 };
 
 type WrittenProject = { project: Project | undefined; folder: string | undefined; scheme: Scheme; files: string[] };
@@ -402,6 +406,10 @@ const writeBooks = (
             const book = kept.length === 0 ? drawn : conversationBook(
                 folders, conversation, path, name, projectNames, written.scheme, referents, kept.map(one => one.appendix),
             );
+            const keptFileNames = new Set(kept.map(one => one.fileName));
+            const bookFileNames = new Set(book.files.map(file => basename(file)));
+            for (const fileName of before.keys())
+                if (!bookFileNames.has(fileName) && !keptFileNames.has(fileName)) rmSync(join(drawn.folder, fileName));
             const reimport = reimportOf(reimporting, standingRecord?.record.reimportedAt, kept.map(one => one.fileName));
             if (reimporting)
                 reimportedWords.push(`  ${name}: ${countedNoun(newlyKept.length, 'file')} of yours kept beside the chapter, `

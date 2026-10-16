@@ -5,6 +5,7 @@ import Cover from '../../../../../../.claude/.conversations/semantics-of-types-a
 import Synopsis from '../../../../../../.claude/.conversations/semantics-of-types-and-more/.synopsis';
 import Table from '../../../../../../.claude/.conversations/semantics-of-types-and-more/.table';
 import September920261 from '../../../../../../.claude/.conversations/semantics-of-types-and-more/1-september-9-2026';
+import September1020262 from '../../../../../../.claude/.conversations/semantics-of-types-and-more/2-september-10-2026';
 
 const Book = $($Book);
 
@@ -14,6 +15,7 @@ export const book = () => (
         {Synopsis()}
         {Table()}
         {September920261()}
+        {September1020262()}
     </Book>
 );
 

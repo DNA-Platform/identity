@@ -1,5 +1,5 @@
-import { Append, Bold, Chapter, Code, Date, Emphasis, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
-import { Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
+import { Append, Bold, Chapter, Date, Emphasis, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
+import { CodeBox, Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
 import { Action, Attachment } from '../../.manual/.book';
 
 export default () => (
@@ -33,9 +33,17 @@ export default () => (
             <Paragraph>
                 Scratchpad, mapping onto the Sketch's ::rep block with representative := item, representation := container:
             </Paragraph>
-            <Code>
-                {"E[container, item]:\n    item =container> container           :: ::rep.1\n    container == (item, container)       :: ::rep.2\n    item -> representative\n    container -> representation\n\ncontainer<item> := E[item]: item =container> container"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`E[container, item]:
+    item =container> container           :: ::rep.1
+    container == (item, container)       :: ::rep.2
+    item -> representative
+    container -> representation
+
+container<item> := E[item]: item =container> container`}
+            </CodeBox>
             <Paragraph>
                 So <Word>
                     <Verbatim />
@@ -47,9 +55,10 @@ export default () => (
                 Where canonicals enter, using the condition from The Semantics of Canonicals (both collapses on one pair,
                 both orders):
             </Paragraph>
-            <Code>
-                {"(item, container) == container        :: item represents container   (::rep.2)\n(container, item) == container        :: container refers to item     (::ref.2)"}
-            </Code>
+            <CodeBox>
+                {`(item, container) == container        :: item represents container   (::rep.2)
+(container, item) == container        :: container refers to item     (::ref.2)`}
+            </CodeBox>
             <Paragraph>
                 The second line is <Word>
                     <Verbatim />
@@ -100,9 +109,12 @@ export default () => (
             <Paragraph>
                 Yes — and this lines up with three things already in the corpus, which is a good sign it's the right cut.
             </Paragraph>
-            <Code>
-                {"x =y> y & (x,y) == y     :: x is a canonical representative of y\nx =x> y & (x,y) == x     :: x is the canonical symbol of y"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`x =y> y & (x,y) == y     :: x is a canonical representative of y
+x =x> y & (x,y) == x     :: x is the canonical symbol of y`}
+            </CodeBox>
             <Paragraph>Checks against the files:</Paragraph>
             <Paragraph>
                 <List ordered />
@@ -148,9 +160,12 @@ export default () => (
                 That's a stronger, separately nameable case rather than the definition of canonical.
             </Paragraph>
             <Paragraph>One consequence for the collection block. As you wrote it:</Paragraph>
-            <Code>
-                {"item =container> container\ncontainer == (item, container)"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`item =container> container
+container == (item, container)`}
+            </CodeBox>
             <Paragraph>
                 the second line is the canonical-representative condition. So <Word>
                     <Verbatim />
@@ -215,9 +230,12 @@ export default () => (
                 </Word> the pair with its representative, so the collection isn't added to the representation — the block's
                 existential ranges over it. Writing it out:
             </Paragraph>
-            <Code>
-                {"representatives(y) := E[x]: x =y> y\ncanon(y)           := E[x]: x =y> y & (x,y) == y     :: x --> y"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`representatives(y) := E[x]: x =y> y
+canon(y)           := E[x]: x =y> y & (x,y) == y     :: x --> y`}
+            </CodeBox>
             <Paragraph>
                 The set view is the first line read as a totality of unique parts. Agreed that's where the set-theory
                 intuition comes from, and that analogy (across representations) and metaphor (into symbolism) are where
@@ -229,18 +247,29 @@ export default () => (
                     The split, with the book example.
                 </Word>
             </Paragraph>
-            <Code>
-                {"E[book]:\n    a =book> book        (a, book) == book      :: an actual book, canon\n    autobiography =book> book\n    (autobiography, book) != book               :: non-canon"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`E[book]:
+    a =book> book        (a, book) == book      :: an actual book, canon
+    autobiography =book> book
+    (autobiography, book) != book               :: non-canon`}
+            </CodeBox>
             <Paragraph>
                 <Word>
                     <Bold />
                     What I can show for a non-canon representative.
                 </Word> Let x =y&gt; y with (x,y) == t, t != y. Scratchpad:
             </Paragraph>
-            <Code>
-                {"x =t> y                       :: t := (x,y), Specification\nx =t> t                       :: ::rep.1 reading of ::so.1 with (x,y) substituted\n(x, t) == t                   :: ::rep.2 by the same substitution\nso  x --> t                   :: x is a canonical representative of t\nt -> y                        :: Specification: (x,y) inherits from every relation between x and y, y included"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`x =t> y                       :: t := (x,y), Specification
+x =t> t                       :: ::rep.1 reading of ::so.1 with (x,y) substituted
+(x, t) == t                   :: ::rep.2 by the same substitution
+so  x --> t                   :: x is a canonical representative of t
+t -> y                        :: Specification: (x,y) inherits from every relation between x and y, y included`}
+            </CodeBox>
             <Paragraph>
                 So every non-canon representative factors: <Word>
                     <Bold />
@@ -530,9 +559,9 @@ export default () => (
         >
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>Recorded as stated:</Paragraph>
-            <Code>
-                {"(x,x) == x        :: where individuality holds"}
-            </Code>
+            <CodeBox>
+                {`(x,x) == x        :: where individuality holds`}
+            </CodeBox>
             <Paragraph>
                 That is the Sketch's individuality block, <Word>
                     <Verbatim />
@@ -584,15 +613,18 @@ export default () => (
                     What the two collapses share.
                 </Word> The general form has three positions and three referents:
             </Paragraph>
-            <Code>
-                {"x =(x,y)> y            :: three distinct referents"}
-            </Code>
+            <CodeBox>
+                {`x =(x,y)> y            :: three distinct referents`}
+            </CodeBox>
             <Paragraph>
                 In each collapse the third referent is one of the first two, so the form has only two referents left in it:
             </Paragraph>
-            <Code>
-                {"(x,y) == x    x =x> y    :: referential\n(x,y) == y    x =y> y    :: representational"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`(x,y) == x    x =x> y    :: referential
+(x,y) == y    x =y> y    :: representational`}
+            </CodeBox>
             <Paragraph>
                 That is the mapping you're pointing at: a collapse turns the arity-3 form into an arity-2 mapping from x to
                 y, with the relationship carried by one endpoint rather than by a third thing. <Word>
@@ -618,9 +650,14 @@ export default () => (
                     A. Define  0  by canonical delegation.
                 </Word> The most specific relationship is the referent that x is canonical to and that is canonical to y:
             </Paragraph>
-            <Code>
-                {"def (x,y) == t:\n    x =t> y\n    x =canonical> t        :: (x,t) == t   representational\n    t =canonical> y        :: (t,y) == t   referential"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`def (x,y) == t:
+    x =t> y
+    x =canonical> t        :: (x,t) == t   representational
+    t =canonical> y        :: (t,y) == t   referential`}
+            </CodeBox>
             <Paragraph>
                 The collapses come out as the degenerate cases: t == x drops the third line to <Word>
                     <Verbatim />
@@ -645,9 +682,13 @@ export default () => (
                     B. Define  0  by the Sketch's bound inheritance,
                 </Word> as the relationship every other relationship between x and y is reached from:
             </Paragraph>
-            <Code>
-                {"def (x,y) == t:\n    x =t> y\n    A[t']: x =t'> y =|> t -(x,y)> t'"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`def (x,y) == t:
+    x =t> y
+    A[t']: x =t'> y =|> t -(x,y)> t'`}
+            </CodeBox>
             <Paragraph>
                 This uses only <Word>
                     <Verbatim />
@@ -933,9 +974,15 @@ export default () => (
                     x =t&gt; y
                 </Word>:
             </Paragraph>
-            <Code>
-                {"subject =relationship> object                    :: all three distinct        [Sketch]\nreference =reference> referent                   :: t == x                    [Sketch]\nrepresentative =representation> representation   :: t == y                    [Sketch]\nidentity =identification> identity               :: x == y, t distinct        [Sketch]\nindividual =individual> individual               :: all three equal           [Sketch]"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`subject =relationship> object                    :: all three distinct        [Sketch]
+reference =reference> referent                   :: t == x                    [Sketch]
+representative =representation> representation   :: t == y                    [Sketch]
+identity =identification> identity               :: x == y, t distinct        [Sketch]
+individual =individual> individual               :: all three equal           [Sketch]`}
+            </CodeBox>
             <Paragraph>
                 Those are the five ways three positions can coincide, and there are no others. So the situations where the
                 most specific relationship collapses into a relatum are exactly <Word>
@@ -952,9 +999,10 @@ export default () => (
                     ==
                 </Word> lines are the collapses themselves:
             </Paragraph>
-            <Code>
-                {"reference == (reference, referent)                    :: (x,y) == x   [Sketch ::ref.2]\nrepresentation == (representative, representation)    :: (x,y) == y   [Sketch ::rep.2]"}
-            </Code>
+            <CodeBox>
+                {`reference == (reference, referent)                    :: (x,y) == x   [Sketch ::ref.2]
+representation == (representative, representation)    :: (x,y) == y   [Sketch ::rep.2]`}
+            </CodeBox>
             <Paragraph>
                 This also answers where the semantic definition of <Word>
                     <Verbatim />
@@ -973,9 +1021,13 @@ export default () => (
             <Paragraph>
                 So the definition you're looking for, in the Sketch's own form, is a disjunction of two situations:
             </Paragraph>
-            <Code>
-                {"def x =canonical> y:                                           [proposal]\n    reference := x, referent := y                :: ::ref holds, (x,y) == x\n  | representative := x, representation := y     :: ::rep holds, (x,y) == y"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`def x =canonical> y:                                           [proposal]
+    reference := x, referent := y                :: ::ref holds, (x,y) == x
+  | representative := x, representation := y     :: ::rep holds, (x,y) == y`}
+            </CodeBox>
             <Paragraph>
                 One check, which is the kind of thing I should have been doing all along. <Word>
                     <Verbatim />
@@ -1187,9 +1239,13 @@ export default () => (
         >
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>Read it again. The words in the five relations, as the Sketch writes them:</Paragraph>
-            <Code>
-                {"subject, object, relationship\nreference, referent\nrepresentative, representation\nidentification, identity\nindividual, individuality"}
-            </Code>
+            <CodeBox>
+                {`subject, object, relationship
+reference, referent
+representative, representation
+identification, identity
+individual, individuality`}
+            </CodeBox>
             <Paragraph>
                 That's eleven if individual and individuality are counted separately, ten if they're one word in two forms —
                 which fits the pattern, since every block after the first is one stem read from two positions (refer-,

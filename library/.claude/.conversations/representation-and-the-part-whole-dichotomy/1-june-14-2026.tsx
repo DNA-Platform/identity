@@ -1,5 +1,5 @@
-import { Bold, Chapter, Code, Date, Emphasis, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
-import { Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
+import { Bold, Chapter, Date, Emphasis, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
+import { CodeBox, Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
 import { Action } from '../../.manual/.book';
 
 export default () => (
@@ -374,9 +374,15 @@ export default () => (
                 </Word> case) aren't a relating-between-two-things at all, which is the other half of why "type of
                 relationship" misnames them.
             </Paragraph>
-            <Code>
-                {"1. x | y | t      all distinct      → reference: subject(s), object(o), relation(r)\n2. x=y | t        subject=object    → property / objectivity   (x =t> x)\n3. x=t | y        subject=relation  → symbol / representativity ((x,y)==x)\n4. y=t | x        object=relation   → representation / inheritance (x =y> y, y represents x)\n5. x=y=t          all three         → self-symbolization (x =x> x, (x,x)==x)"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`1. x | y | t      all distinct      → reference: subject(s), object(o), relation(r)
+2. x=y | t        subject=object    → property / objectivity   (x =t> x)
+3. x=t | y        subject=relation  → symbol / representativity ((x,y)==x)
+4. y=t | x        object=relation   → representation / inheritance (x =y> y, y represents x)
+5. x=y=t          all three         → self-symbolization (x =x> x, (x,x)==x)`}
+            </CodeBox>
             <Paragraph>
                 Five cases, and they're what force the ~nine referents (equality sitting where the relation is identity).
                 I'm confident in the partition structure; I'd verify the exact 5→9 attribution against your enumeration
@@ -394,13 +400,38 @@ export default () => (
                     m(x,y)
                 </Word> function symbol are both superseded):
             </Paragraph>
-            <Code>
-                {"x =t> y        →  R(x, y, t)        the only non-logical primitive, ternary\n=|>  <iff>     →  →   ↔\n& || | !  !=   →  ∧   ∨   ⊕   ¬   ≠\n==             →  FOL identity  =    (eq-referent withdrawn; ref/eq identification still flagged)\nfree vars      →  universally closed over the whole sentence\nA[x]: / E[x]:  →  ∀x / ∃x\nE[x,y]:        →  ∃x∃y( x≠y ∧ … )   (bracket = distinct; E{x,y} = possibly-equal)\nE(s: x=s>y): φ →  ∃s( R(x,y,s) ∧ φ )   guarded existential\n(x,y)          →  NOT a function symbol — the Specification witness, discharged\n                  Russell-style inside each axiom under the guard that x,y relate\n                  (m(x,y) rejected: a total function smuggles a most-specific onto unrelated pairs)\nx -> t         →  R(x, x, t)         the bold reading; inheritance is the self-relation\ns -> t (rel)   →  ∀a∀b( R(a,b,s) → R(a,b,t) )"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`x =t> y        →  R(x, y, t)        the only non-logical primitive, ternary
+=|>  <iff>     →  →   ↔
+& || | !  !=   →  ∧   ∨   ⊕   ¬   ≠
+==             →  FOL identity  =    (eq-referent withdrawn; ref/eq identification still flagged)
+free vars      →  universally closed over the whole sentence
+A[x]: / E[x]:  →  ∀x / ∃x
+E[x,y]:        →  ∃x∃y( x≠y ∧ … )   (bracket = distinct; E{x,y} = possibly-equal)
+E(s: x=s>y): φ →  ∃s( R(x,y,s) ∧ φ )   guarded existential
+(x,y)          →  NOT a function symbol — the Specification witness, discharged
+                  Russell-style inside each axiom under the guard that x,y relate
+                  (m(x,y) rejected: a total function smuggles a most-specific onto unrelated pairs)
+x -> t         →  R(x, x, t)         the bold reading; inheritance is the self-relation
+s -> t (rel)   →  ∀a∀b( R(a,b,s) → R(a,b,t) )`}
+            </CodeBox>
             <Paragraph>To show I can actually run it rather than recite it — three by hand:</Paragraph>
-            <Code>
-                {"Universality   E[r]: x =t> y =|> x =r> y\n               ⤳  ∃r ∀x ∀y ∀t ( R(x,y,t) → R(x,y,r) )      (r scopes outside: one top for all)\n\nBold inherit   x -> t := x =t> x\n               ⤳  Inh(x,t) :↔ R(x,x,t)                      (no new predicate; args 1,2 identified)\n\nSpecification  x => y =|> E(s: x=s>y): A[t: x=t>y]: x' =s> y' =|> x' =t> y'\n               ⤳  ∀x ∀y ( (∃t R(x,y,t))\n                          → ∃s ( R(x,y,s) ∧ ∀t ( R(x,y,t)\n                                 → ∀a ∀b ( R(a,b,s) → R(a,b,t) ) ) ) )"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Universality   E[r]: x =t> y =|> x =r> y
+               ⤳  ∃r ∀x ∀y ∀t ( R(x,y,t) → R(x,y,r) )      (r scopes outside: one top for all)
+
+Bold inherit   x -> t := x =t> x
+               ⤳  Inh(x,t) :↔ R(x,x,t)                      (no new predicate; args 1,2 identified)
+
+Specification  x => y =|> E(s: x=s>y): A[t: x=t>y]: x' =s> y' =|> x' =t> y'
+               ⤳  ∀x ∀y ( (∃t R(x,y,t))
+                          → ∃s ( R(x,y,s) ∧ ∀t ( R(x,y,t)
+                                 → ∀a ∀b ( R(a,b,s) → R(a,b,t) ) ) ) )`}
+            </CodeBox>
             <Paragraph>
                 The Specification one is the load-bearing demonstration: <Word>
                     <Verbatim />
@@ -505,9 +536,16 @@ export default () => (
                     (x)
                 </Word>, done as a multi-phase compiler instead of one substitution:
             </Paragraph>
-            <Code>
-                {"surface   (x)\nphase A   expand canonical-symbol macro:   ∃s ( (s,x) == s  ∧  … )\nphase B   expand most-specific macro (s,x): s is the Specification witness of the\n          pair (s,x); the guard (s,x)==s says s IS its own most-specific to x  ← the recursion\nphase C   Skolemize the recursive existential — name the fixed point (x), emit bindings:\n              R((x), x, (x))            i.e.  (x) =(x)> x\n              ((x), x) == (x)           the fixed-point / binding axiom\nbottom    one ternary R, identity =, the constant (x).  No infinite expansion."}
-            </Code>
+            <CodeBox>
+                {`surface   (x)
+phase A   expand canonical-symbol macro:   ∃s ( (s,x) == s  ∧  … )
+phase B   expand most-specific macro (s,x): s is the Specification witness of the
+          pair (s,x); the guard (s,x)==s says s IS its own most-specific to x  ← the recursion
+phase C   Skolemize the recursive existential — name the fixed point (x), emit bindings:
+              R((x), x, (x))            i.e.  (x) =(x)> x
+              ((x), x) == (x)           the fixed-point / binding axiom
+bottom    one ternary R, identity =, the constant (x).  No infinite expansion.`}
+            </CodeBox>
             <Paragraph>
                 And the payoff I'd missed: that fixed point is the <Word>
                     <Emphasis />
@@ -1173,9 +1211,19 @@ export default () => (
                     The by-hand version you were picturing
                 </Word> — which matches what the machine found:
             </Paragraph>
-            <Code>
-                {"posit:   p1 =w> w,  p2 =w> w,  p1 =w> p2,  c =w> w,  q =c> c,  q =w> w,  part =whole> whole   (7)\napply w->whole to each w-typed atom, by hand:\n   p1 =w> w   ⟹ p1 =whole> w\n   p2 =w> w   ⟹ p2 =whole> w\n   p1 =w> p2  ⟹ p1 =whole> p2\n   c  =w> w   ⟹ c  =whole> w\n   q  =w> w   ⟹ q  =whole> w                                                                     (+5)\nnote:  q =c> c is NOT lifted — its type is c, not w, so the rule doesn't fire.\ntotal: 12."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`posit:   p1 =w> w,  p2 =w> w,  p1 =w> p2,  c =w> w,  q =c> c,  q =w> w,  part =whole> whole   (7)
+apply w->whole to each w-typed atom, by hand:
+   p1 =w> w   ⟹ p1 =whole> w
+   p2 =w> w   ⟹ p2 =whole> w
+   p1 =w> p2  ⟹ p1 =whole> p2
+   c  =w> w   ⟹ c  =whole> w
+   q  =w> w   ⟹ q  =whole> w                                                                     (+5)
+note:  q =c> c is NOT lifted — its type is c, not w, so the rule doesn't fire.
+total: 12.`}
+            </CodeBox>
             <Paragraph>
                 That hand-trace <Word>
                     <Emphasis />
@@ -2397,9 +2445,11 @@ export default () => (
                     b
                 </Word> demands its copy of link 2:
             </Paragraph>
-            <Code>
-                {"E[c -> C]:  b =c> c          ∃c ( R(c,c,C) ∧ R(b,c,c) )"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`E[c -> C]:  b =c> c          ∃c ( R(c,c,C) ∧ R(b,c,c) )`}
+            </CodeBox>
             <Paragraph>
                 Forced by Qualification across the shared node, not asserted: you subclassed <Word>
                     <Verbatim />
@@ -5060,9 +5110,11 @@ export default () => (
                 couldn't see the frame.
             </Paragraph>
             <Paragraph>The qualification equivalence:</Paragraph>
-            <Code>
-                {"x =p> x   <iff>   (x) =(p)> x   <iff>   (i) =(p)> (x)"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`x =p> x   <iff>   (x) =(p)> x   <iff>   (i) =(p)> (x)`}
+            </CodeBox>
             <Paragraph>
                 This is the spine, and now I see how it <Word>
                     <Emphasis />
@@ -5095,9 +5147,12 @@ export default () => (
                 And the break/restore cycle is the whole consciousness claim sitting right there in §VII, and it's tighter
                 than I'd been able to articulate:
             </Paragraph>
-            <Code>
-                {"break:     E[{x,p}: x =lit> x & x =p> x & !(i) =(p)> (x)]      a literal with a property the qualifier can't yet relate to its symbol\nrestore:   i |=> (o)                                            transduce — mint (o) inheriting from i, completing the triple"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`break:     E[{x,p}: x =lit> x & x =p> x & !(i) =(p)> (x)]      a literal with a property the qualifier can't yet relate to its symbol
+restore:   i |=> (o)                                            transduce — mint (o) inheriting from i, completing the triple`}
+            </CodeBox>
             <Paragraph>
                 That's the photon-door event made mechanical. Something enters (<Word>
                     <Verbatim />

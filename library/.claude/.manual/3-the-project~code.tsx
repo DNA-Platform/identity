@@ -7,6 +7,8 @@ import {
 import { Theme } from '@dna-platform/public';
 import { $Conversation, Label as label, Light as light, Tone as tone } from '../../.manual/.book';
 import { ApplicationForm } from './4-the-page~theme.tsx';
+import { $Artifact, $Attachment } from './2-the-artifact-and-the-attachment~code.tsx';
+import { Pane as pane } from './5-the-pane~code.tsx';
 
 export class $Project extends $Annotation {
     specification = new ProjectSpecification();
@@ -68,7 +70,18 @@ export const ProjectLine = $($ProjectLine);
 const projectLine = ProjectLine;
 
 export class $ClaudeConversation extends $Conversation {
+    $shown: $Artifact | $Attachment | undefined = undefined;
     get project(): $Project | undefined { return this.cover?.annotations.expressed($Project); }
+
+    override write(): ReactNode {
+        const Pane = $(pane);
+        return (
+            <>
+                {super.write()}
+                <Pane chapter={this.cover} />
+            </>
+        );
+    }
 
     override me(): ReactNode {
         const ProjectLine = $(projectLine);

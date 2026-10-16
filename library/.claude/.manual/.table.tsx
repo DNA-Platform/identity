@@ -24,6 +24,9 @@ export default () => (
                 <Content>$[[ ./The Page ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The Pane ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ Claudes Reference Manual ]]</Content>

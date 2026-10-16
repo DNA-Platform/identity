@@ -3,7 +3,7 @@ import type { Block } from './3-the-record~record.ts';
 import { sampleConversation, sampleMessage, sampleTextMessage } from './3-the-record~samples.ts';
 import {
     blockLines, escapedText, inlinePieces, literalForm, referenceForm, slugFromName, titleForm, titleFromName,
-    writtenChapter, type Referents,
+    writtenConversation, type Referents,
 } from './7-the-writing~writing.ts';
 
 const referents: Referents = { Doug: 'Dougs Story', Claude: 'Dougs Claude' };
@@ -74,15 +74,20 @@ describe('the writing', () => {
         expect(lines).toContain('    <List />');
         expect(lines).toContain('    <Line>one</Line>');
         expect(lines).toContain('    language="ts"');
+        expect(lines).toContain('    {`let x = 1;`}');
+        expect(blockLines('```\nfirst `line`\nsecond ${two}\n```', 0)).toEqual([
+            '<CodeBox>', '    {`first \\`line\\`', 'second \\${two}`}', '</CodeBox>',
+        ]);
         expect(lines).toContain('    <Table />');
         expect(lines).toContain('        <Word>2</Word>');
     });
 
-    it('writes one chapter for the whole conversation, each message timed and headed by its speaker', () => {
+    it('writes a chapter for each day of the conversation, each message timed and headed by its speaker', () => {
         const question = sampleTextMessage('m1', 'Doug', 'A question');
         const path = [question, sampleTextMessage('m2', 'Claude', 'An answer', 'm1')];
         const conversation = sampleConversation('c', 'A Conversation', path);
-        const chapter = writtenChapter(conversation, path, referents, manualImportPath, claudeManualImportPath);
+        const written = writtenConversation(conversation, path, referents, manualImportPath, claudeManualImportPath);
+        const [chapter] = written.chapters;
         expect(chapter.fileName).toBe('1-june-15-2026.tsx');
         expect(chapter.title).toBe('15 June 2026');
         expect(chapter.tsx).not.toContain('<Part>');
@@ -94,6 +99,19 @@ describe('the writing', () => {
         expect(chapter.tsx).not.toContain(`from '${claudeManualImportPath}'`);
     });
 
+    it('cuts a conversation held over two days into two chapters, each dated and holding only its own messages', () => {
+        const first = sampleTextMessage('m1', 'Doug', 'Day one', undefined, '2026-06-15T10:00:00Z');
+        const second = sampleTextMessage('m2', 'Claude', 'Day two', 'm1', '2026-06-16T09:00:00Z');
+        const conversation = sampleConversation('d', 'Days', [first, second]);
+        const written = writtenConversation(conversation, [first, second], referents, manualImportPath,
+            claudeManualImportPath);
+        expect(written.chapters.map(one => one.fileName)).toEqual(['1-june-15-2026.tsx', '2-june-16-2026.tsx']);
+        expect(written.chapters[1].tsx).toContain('<Date>[16 June 2026](2026-06-16)</Date>');
+        expect(written.chapters[0].tsx).toContain('Day one');
+        expect(written.chapters[0].tsx).not.toContain('Day two');
+        expect(written.chapters[1].tsx).toContain('Day two');
+    });
+
     it("replays an artifact's versions into a file each and the final under its name, counting thinking unwritten", () => {
         const blocks: Block[] = [
             { type: 'thinking', text: 'hidden' },
@@ -102,15 +120,28 @@ describe('the writing', () => {
         ];
         const path = [sampleMessage('m1', 'Claude', blocks)];
         const conversation = sampleConversation('a', 'Artifacts', path);
-        const chapter = writtenChapter(conversation, path, referents, manualImportPath, claudeManualImportPath);
+        const written = writtenConversation(conversation, path, referents, manualImportPath, claudeManualImportPath);
+        const [chapter] = written.chapters;
         expect(chapter.files.map(file => file.name))
             .toEqual(['1-june-15-2026~notes.v1.md', '1-june-15-2026~notes.v2.md', '1-june-15-2026~notes.md']);
         expect(chapter.files.map(file => file.content)).toEqual(['Hello world', 'Hello there', 'Hello there']);
         expect(chapter.tsx).toContain(literalForm('notes.v2.md'));
-        expect(chapter.tsx).toContain(figure('Artifact', 'notes.v1', '.md', 'Made the artifact “Notes”'));
-        expect(chapter.tsx).toContain(figure('Artifact', 'notes.v2', '.md', 'Changed the artifact “Notes”'));
+        expect(chapter.tsx).toContain('                artifact="notes"\n                place="notes-v1"\n            >');
+        expect(chapter.tsx)
+            .toContain('                place="notes-v1"\n            >\n                Made the artifact “Notes”');
+        expect(chapter.tsx)
+            .toContain('                place="notes-v2"\n            >\n                Changed the artifact “Notes”');
+        expect(written.versions.map(one => one.fileName)).toEqual(['o1-notes-v1.tsx', 'o2-notes-v2.tsx']);
+        expect(written.versions[0].tsx).toContain('<Version />');
+        expect(written.versions[0].tsx).toContain('<Title>[[ Notes v1 ]]</Title>');
+        expect(written.versions[0].tsx).toContain('<Opaque />');
+        expect(written.versions[0].tsx).toContain('<Heading>Notes at version 1</Heading>');
+        expect(written.versions[0].tsx).toContain('<Paragraph>Hello world</Paragraph>');
+        expect(written.versions[1].tsx).toContain('<Paragraph>Hello there</Paragraph>');
+        expect(written.versions[0].tsx).toContain(`import { Opaque } from '${manualImportPath}';`);
+        expect(written.versions[0].tsx).toContain(`import { Version } from '${claudeManualImportPath}';`);
         expect(chapter.tsx).toContain(`import { Artifact } from '${claudeManualImportPath}';`);
-        expect(chapter.thinkingCount).toBe(1);
+        expect(written.thinkingCount).toBe(1);
     });
 
     it('keeps an action and counts its result unwritten, as thinking is', () => {
@@ -121,18 +152,21 @@ describe('the writing', () => {
         ];
         const path = [sampleMessage('m1', 'Claude', blocks)];
         const conversation = sampleConversation('r', 'Results', path);
-        const chapter = writtenChapter(conversation, path, referents, manualImportPath, claudeManualImportPath);
+        const written = writtenConversation(conversation, path, referents, manualImportPath, claudeManualImportPath);
+        const [chapter] = written.chapters;
         expect(chapter.tsx).toContain('<Action>Searched the web for “primes”</Action>');
         expect(chapter.tsx).not.toContain('<Result');
         expect(chapter.tsx).toContain(`import { Action } from '${claudeManualImportPath}';`);
-        expect(chapter.resultCount).toBe(1);
+        expect(written.resultCount).toBe(1);
     });
 
     it('prints a file kept from a re-import in a closing section, inserted by a Code figure and never appended', () => {
         const question = sampleTextMessage('m1', 'Doug', 'A question');
         const kept = [{ identifier: 'edited-synopsis-tsx', type: '.txt' }];
         const conversation = sampleConversation('e', 'Edited', [question]);
-        const chapter = writtenChapter(conversation, [question], referents, manualImportPath, claudeManualImportPath, kept);
+        const [chapter] = writtenConversation(conversation, [question], referents, manualImportPath,
+            claudeManualImportPath, kept)
+            .chapters;
         expect(chapter.tsx).toContain('<Heading>As I had it before the re-import</Heading>');
         expect(chapter.tsx).toContain('<Paragraph>synopsis, as I had it:</Paragraph>');
         expect(chapter.tsx).toContain(`<Code language="tsx">${literalForm('edited-synopsis-tsx.txt')}</Code>`);
@@ -147,7 +181,8 @@ describe('the writing', () => {
             uploads: ['photo.png', ''],
         };
         const conversation = sampleConversation('g', 'Given', [given]);
-        const chapter = writtenChapter(conversation, [given], referents, manualImportPath, claudeManualImportPath);
+        const [chapter] = writtenConversation(conversation, [given], referents, manualImportPath, claudeManualImportPath)
+            .chapters;
         expect(chapter.files.map(file => file.name)).toEqual(['1-june-15-2026~notes.txt']);
         expect(chapter.tsx).toContain(figure('Attachment', 'notes', '.txt', 'Attached “notes.txt”'));
         expect(chapter.tsx)

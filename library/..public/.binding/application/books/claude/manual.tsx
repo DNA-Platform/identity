@@ -8,6 +8,7 @@ import TheActionAndTheResult1 from '../../../../../.claude/.manual/1-the-action-
 import TheArtifactAndTheAttachment2 from '../../../../../.claude/.manual/2-the-artifact-and-the-attachment';
 import TheProject3 from '../../../../../.claude/.manual/3-the-project';
 import ThePage4 from '../../../../../.claude/.manual/4-the-page';
+import ThePane5 from '../../../../../.claude/.manual/5-the-pane';
 
 const Book = $($Book);
 
@@ -20,6 +21,7 @@ export const book = () => (
         {TheArtifactAndTheAttachment2()}
         {TheProject3()}
         {ThePage4()}
+        {ThePane5()}
     </Book>
 );
 

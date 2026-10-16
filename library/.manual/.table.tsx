@@ -72,6 +72,12 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Part ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Address ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Code Box ]]</Content>
+            </Paragraph>
         </Section>
         <Section>
             <Heading>The types of book</Heading>

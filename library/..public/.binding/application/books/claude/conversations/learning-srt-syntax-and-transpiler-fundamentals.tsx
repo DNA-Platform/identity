@@ -5,6 +5,7 @@ import Cover from '../../../../../../.claude/.conversations/learning-srt-syntax-
 import Synopsis from '../../../../../../.claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals/.synopsis';
 import Table from '../../../../../../.claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals/.table';
 import July2220261 from '../../../../../../.claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals/1-july-22-2026';
+import July2320262 from '../../../../../../.claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals/2-july-23-2026';
 
 const Book = $($Book);
 
@@ -14,6 +15,7 @@ export const book = () => (
         {Synopsis()}
         {Table()}
         {July2220261()}
+        {July2320262()}
     </Book>
 );
 

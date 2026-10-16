@@ -1,5 +1,5 @@
-import { Bold, Chapter, Code, Date, Emphasis, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
-import { Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
+import { Bold, Chapter, Date, Emphasis, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
+import { CodeBox, Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
 import { Action } from '../../.manual/.book';
 
 export default () => (
@@ -1566,9 +1566,27 @@ export default () => (
                     The ten resolve, and the two routes I was torn between turn out to be the same list.
                 </Word>
             </Paragraph>
-            <Code>
-                {"Pencil — the ten\n\nRoute A: names bound by the Sketch's existentials, in order\n  1 subject   2 object      3 relationship\n  4 reference 5 referent\n  6 representative  7 representation\n  8 identification  9 identity\n  10 individuality\n\nRoute B: five through-terms + their five non-through role-holders\n  through:  relationship, reference, representation,\n            identification, individuality\n  holders:  subject, object, referent, representative, identity\n\nA == B, elementwise.  No folding required.\nLast session I folded individual/individuality to reach ten;\nthat was fitting to your number. It isn't needed — counting\nbound names gives ten on its own, and the partition gives the\nsame ten. The subset claim is then exact by construction."}
-            </Code>
+            <CodeBox>
+                {`Pencil — the ten
+
+Route A: names bound by the Sketch's existentials, in order
+  1 subject   2 object      3 relationship
+  4 reference 5 referent
+  6 representative  7 representation
+  8 identification  9 identity
+  10 individuality
+
+Route B: five through-terms + their five non-through role-holders
+  through:  relationship, reference, representation,
+            identification, individuality
+  holders:  subject, object, referent, representative, identity
+
+A == B, elementwise.  No folding required.
+Last session I folded individual/individuality to reach ten;
+that was fitting to your number. It isn't needed — counting
+bound names gives ten on its own, and the partition gives the
+same ten. The subset claim is then exact by construction.`}
+            </CodeBox>
             <Paragraph>
                 The five are the ten's through-occupants, and the subset is visible in the forms rather than laid over them
                 — reference sits in subject <Word>
@@ -1611,9 +1629,24 @@ export default () => (
                     Type semantics as it stands at HEAD:
                 </Word>
             </Paragraph>
-            <Code>
-                {"def t.p: (p, t)              dot hangs off the object\n\nt =p> t                      type identified by its properties\np =t.p> t                    property related to type through the pair\nt.p =|> t =p> t              writing the pair says the type has it\nt.p =|> t -> type            one property suffices\n\nx -> t:\n    x =t> x\n    t =x.t> x\n    A[t.p]: E[x.p]: x.p -> t.p\n\ncanonical: (t,x) == t        second line becomes reference itself\nbottom:    x =x> x, x.x == (x,x) == x, canonical(x)==x =|> literal"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`def t.p: (p, t)              dot hangs off the object
+
+t =p> t                      type identified by its properties
+p =t.p> t                    property related to type through the pair
+t.p =|> t =p> t              writing the pair says the type has it
+t.p =|> t -> type            one property suffices
+
+x -> t:
+    x =t> x
+    t =x.t> x
+    A[t.p]: E[x.p]: x.p -> t.p
+
+canonical: (t,x) == t        second line becomes reference itself
+bottom:    x =x> x, x.x == (x,x) == x, canonical(x)==x =|> literal`}
+            </CodeBox>
             <Paragraph>
                 Three lines because three is what inheritance costs — my four gates were fat, not yours thin: B1 discharges
                 the witness existential, and typehood of t then derives from the instance entry rather than being asserted.
@@ -1625,9 +1658,14 @@ export default () => (
                 </Word> Every scratchpad that week was a dictionary between sugar and R — no premises, no steps, no verdict.
                 The one that did real work is the one that came back negative:
             </Paragraph>
-            <Code>
-                {"Goal:  y -> x  =|>  y.p : x.p\nTranspile: R(y,y,x) =|> R((y,p),(y,p),(x,p))\nVerdict: NOT DERIVABLE. Needs an unstated axiom — that\ninheritance carries down to most-specific relationships."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Goal:  y -> x  =|>  y.p : x.p
+Transpile: R(y,y,x) =|> R((y,p),(y,p),(x,p))
+Verdict: NOT DERIVABLE. Needs an unstated axiom — that
+inheritance carries down to most-specific relationships.`}
+            </CodeBox>
             <Paragraph>
                 That located the triangle as a <Word>
                     <Emphasis />
@@ -1683,9 +1721,32 @@ export default () => (
                 Taking the notation as proposed and running it against HEAD. The reconciliation turns out to hinge on a
                 single bracket.
             </Paragraph>
-            <Code>
-                {"Pencil — the three arrows\n\nA. Sketch:  s -> t   :=  [x,y]: x =s> y =|> x =t> y\n            subsumption between through-terms\nB. Bold:    x -> t   :=  x =t> x  ==  R(x,x,t)\n            identified by\nC. Bundle:  the three lines\n            x =t> x ; t =x.t> x ; A[t.p]:E[x.p]: x.p -> t.p\n\nClaim:  A =|> B.\nStep 1  individuality (theorem):  R(x,x,x),  i.e.  x =x> x\nStep 2  instantiate A with s:=x at the pair (x,x)\nStep 3  antecedent discharged by Step 1\nStep 4  consequent:  x =t> x  ==  R(x,x,t)  ==  B     ∎\n\nBlocker: the Sketch writes the binder as [x,y]. Under the\nFormal Foundation's convention  E[x,y] := E{x,y}: x != y,\nthe pair (x,x) is outside the binder's range and Step 2\ndoes not fire.\n\nVerdict:  A =|> B  iff the binder is {x,y}.\n          With [x,y]:  NOT DERIVABLE."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil — the three arrows
+
+A. Sketch:  s -> t   :=  [x,y]: x =s> y =|> x =t> y
+            subsumption between through-terms
+B. Bold:    x -> t   :=  x =t> x  ==  R(x,x,t)
+            identified by
+C. Bundle:  the three lines
+            x =t> x ; t =x.t> x ; A[t.p]:E[x.p]: x.p -> t.p
+
+Claim:  A =|> B.
+Step 1  individuality (theorem):  R(x,x,x),  i.e.  x =x> x
+Step 2  instantiate A with s:=x at the pair (x,x)
+Step 3  antecedent discharged by Step 1
+Step 4  consequent:  x =t> x  ==  R(x,x,t)  ==  B     ∎
+
+Blocker: the Sketch writes the binder as [x,y]. Under the
+Formal Foundation's convention  E[x,y] := E{x,y}: x != y,
+the pair (x,x) is outside the binder's range and Step 2
+does not fire.
+
+Verdict:  A =|> B  iff the binder is {x,y}.
+          With [x,y]:  NOT DERIVABLE.`}
+            </CodeBox>
             <Paragraph>
                 So the arrow debt reduces to one ruling from you: distinct or possibly-equal in the Sketch's definition
                 line. If <Word>
@@ -1847,18 +1908,31 @@ export default () => (
                 Working the pencil on these in order. One clean collapse, one relocation, and two axioms that turn out to be
                 different axioms.
             </Paragraph>
-            <Code>
-                {"Pencil 1 — x.x.p\n\n  x.x   :=  (x,x)\n  HEAD (types doc):  x.x == (x,x) == x    individuality\n  therefore  x.x.p  ==  x.p                     ∎\n\n  Verdict: not insensible — trivial. The dot on a collapsed\n  pair is the identity operation. Nothing is there to mean."}
-            </Code>
+            <CodeBox>
+                {`Pencil 1 — x.x.p
+
+  x.x   :=  (x,x)
+  HEAD (types doc):  x.x == (x,x) == x    individuality
+  therefore  x.x.p  ==  x.p                     ∎
+
+  Verdict: not insensible — trivial. The dot on a collapsed
+  pair is the identity operation. Nothing is there to mean.`}
+            </CodeBox>
             <Paragraph>
                 So your instinct was right and it's provable why: <Word>
                     <Verbatim />
                     x.x
                 </Word> is a no-op, so the second dot never opens a new slot. The adjective can't live there.
             </Paragraph>
-            <Code>
-                {"Pencil 2 — where it does live\n\n  x.p    :=  (p,x)         x's hair\n  x.p.q  :=  (q,(p,x))     the q of x's hair\n  Well-formed: x.p is a referent, every referent is a type\n  (derived, via individuality + instance entry), so it takes\n  properties like any other."}
-            </Code>
+            <CodeBox>
+                {`Pencil 2 — where it does live
+
+  x.p    :=  (p,x)         x's hair
+  x.p.q  :=  (q,(p,x))     the q of x's hair
+  Well-formed: x.p is a referent, every referent is a type
+  (derived, via individuality + instance entry), so it takes
+  properties like any other.`}
+            </CodeBox>
             <Paragraph>
                 If p is hair and q is length, then <Word>
                     <Verbatim />
@@ -1894,9 +1968,32 @@ export default () => (
                 gradables) and needs no new machinery. Your call, but I'd bet on the second and keep the dot for genuine
                 part-descent.
             </Paragraph>
-            <Code>
-                {"Pencil 3 — the two \"in\"s\n\n  You wrote both, and they transpile differently:\n\n  (a) x in t   as  x =t> x    ==  R(x,x,t)     identification\n  (b) x in c   as  x =c> c    ==  R(x,c,c)     representation\n                                (form 3: representative in\n                                 a representation)\n\n  Monet is (b): the brushstroke is a representative in the\n  painting. Your chain x =c> c =p> p is (b) twice.\n\n  Transitivity of (b):\n    given R(x,c,c), R(c,p,p)   want R(x,p,p)\n    Nothing in the Sketch or the Foundation licenses it.\n    Verdict: NOT DERIVABLE. New axiom.\n\n  Transitivity of (a):\n    given R(x,x,t), R(t,t,c)   want R(x,x,c)\n    Also not derivable. Also a new axiom.\n    And a DIFFERENT one — different slot pattern, neither\n    implies the other."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil 3 — the two "in"s
+
+  You wrote both, and they transpile differently:
+
+  (a) x in t   as  x =t> x    ==  R(x,x,t)     identification
+  (b) x in c   as  x =c> c    ==  R(x,c,c)     representation
+                                (form 3: representative in
+                                 a representation)
+
+  Monet is (b): the brushstroke is a representative in the
+  painting. Your chain x =c> c =p> p is (b) twice.
+
+  Transitivity of (b):
+    given R(x,c,c), R(c,p,p)   want R(x,p,p)
+    Nothing in the Sketch or the Foundation licenses it.
+    Verdict: NOT DERIVABLE. New axiom.
+
+  Transitivity of (a):
+    given R(x,x,t), R(t,t,c)   want R(x,x,c)
+    Also not derivable. Also a new axiom.
+    And a DIFFERENT one — different slot pattern, neither
+    implies the other.`}
+            </CodeBox>
             <Paragraph>
                 <Word>
                     <Bold />
@@ -1916,9 +2013,21 @@ export default () => (
                     suppress
                 </Word> transitivity rather than merely rename the through-term.
             </Paragraph>
-            <Code>
-                {"Pencil 4 — your chain\n\n  x -> t & t.p  =|>  x.p ?\n  Bundle line 3:  A[t.p]: E[x.p]: x.p -> t.p\n  This gives existence of x.p directly. DERIVABLE from the\n  bundle, IF the bundle defines the arrow you're using.\n\n  Then p =x.p> x :  type-structure line 2 at x.\n  Then x =x.p> x :  type-structure line 1 at x.\n  Both fire, since every referent is a type.\n  Verdict: DERIVABLE, given the bundle."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil 4 — your chain
+
+  x -> t & t.p  =|>  x.p ?
+  Bundle line 3:  A[t.p]: E[x.p]: x.p -> t.p
+  This gives existence of x.p directly. DERIVABLE from the
+  bundle, IF the bundle defines the arrow you're using.
+
+  Then p =x.p> x :  type-structure line 2 at x.
+  Then x =x.p> x :  type-structure line 1 at x.
+  Both fire, since every referent is a type.
+  Verdict: DERIVABLE, given the bundle.`}
+            </CodeBox>
             <Paragraph>
                 So x is identified by both p and its own <Word>
                     <Verbatim />
@@ -1974,9 +2083,23 @@ export default () => (
         >
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>Ran it. One collapse, one non-collapse, and a scope question that I think is real.</Paragraph>
-            <Code>
-                {"Pencil — very\n\n  def x.p := (p,x)      dot hangs off the object\n\n  long := p,  very := q\n\n  p.q   ==  (q,p)      very long              ✓ well-formed\n  t.(p.q) == ((q,p),t) t's very-long hair     ✓ well-formed\n\n  Your iteration, checked:\n  q.q   ==  (q,q)\n  HEAD individuality:  (x,x) == x\n  therefore  q.q == q\n  and  q.(q.q) == q.q == q\n  Verdict: (q.(q.q)) does NOT go outward. It collapses to q."}
-            </Code>
+            <CodeBox>
+                {`Pencil — very
+
+  def x.p := (p,x)      dot hangs off the object
+
+  long := p,  very := q
+
+  p.q   ==  (q,p)      very long              ✓ well-formed
+  t.(p.q) == ((q,p),t) t's very-long hair     ✓ well-formed
+
+  Your iteration, checked:
+  q.q   ==  (q,q)
+  HEAD individuality:  (x,x) == x
+  therefore  q.q == q
+  and  q.(q.q) == q.q == q
+  Verdict: (q.(q.q)) does NOT go outward. It collapses to q.`}
+            </CodeBox>
             <Paragraph>
                 So the answer to "can you very your way outward" is no — not on very alone. And that's the right prediction,
                 because <Word>
@@ -1984,16 +2107,26 @@ export default () => (
                     "very very"
                 </Word> standing by itself isn't English either. Nothing is being intensified.
             </Paragraph>
-            <Code>
-                {"  But with a base it survives:\n\n  p.q.q  ==  (q, (q,p))\n  slots: q and (q,p) — distinct referents, no collapse.\n  Verdict: DERIVABLE as well-formed. very very long."}
-            </Code>
+            <CodeBox>
+                {`  But with a base it survives:
+
+  p.q.q  ==  (q, (q,p))
+  slots: q and (q,p) — distinct referents, no collapse.
+  Verdict: DERIVABLE as well-formed. very very long.`}
+            </CodeBox>
             <Paragraph>
                 The theory separates the vacuous stacking from the real stacking on its own, without a stipulation.
                 Intensifiers iterate over a modified base but not over themselves.
             </Paragraph>
-            <Code>
-                {"Pencil — the scope question\n\n  t.p.q  ==  (t.p).q  ==  (q,(p,t))\n  t.(p.q)            ==  ((q,p),t)\n\n  Distinct referents. Nothing in HEAD identifies them.\n  Verdict: the dot is NOT associative, absent an axiom."}
-            </Code>
+            <CodeBox>
+                {`Pencil — the scope question
+
+  t.p.q  ==  (t.p).q  ==  (q,(p,t))
+  t.(p.q)            ==  ((q,p),t)
+
+  Distinct referents. Nothing in HEAD identifies them.
+  Verdict: the dot is NOT associative, absent an axiom.`}
+            </CodeBox>
             <Paragraph>
                 Which I think is a feature rather than a debt: the two groupings are <Word>
                     <Emphasis />
@@ -2079,27 +2212,61 @@ export default () => (
                 Your last paragraph resolves it, and the formal work mostly confirms rather than adds. But first — one piece
                 dissolves on contact with HEAD.
             </Paragraph>
-            <Code>
-                {"Pencil — possession is already the dot\n\n  x.p  :=  (p,x)        object-first spelling\n  p(x) :=  (p,x)        call spelling\n  Same referent. Two notations, one entry.\n  (Established at the string/length ruling: string.length\n   and length(string) name (length,string).)\n\n  Verdict: p(t) is not a new construction. \"Possessing hair\"\n  IS t.p. The possession reading was already installed."}
-            </Code>
+            <CodeBox>
+                {`Pencil — possession is already the dot
+
+  x.p  :=  (p,x)        object-first spelling
+  p(x) :=  (p,x)        call spelling
+  Same referent. Two notations, one entry.
+  (Established at the string/length ruling: string.length
+   and length(string) name (length,string).)
+
+  Verdict: p(t) is not a new construction. "Possessing hair"
+  IS t.p. The possession reading was already installed.`}
+            </CodeBox>
             <Paragraph>
                 So there's no third thing to build. t.p is <Word>
                     <Emphasis />
                     t's hair
                 </Word>, and it's a referent, and it takes properties like anything else.
             </Paragraph>
-            <Code>
-                {"Pencil — where long is\n\n  t person, p eyes, q color\n\n  t.p      the eye slot in the specification\n  t.p.q    the eye-color slot\n  blue     what identifies it\n\n  Two descents look different but aren't:\n    t -> t.p       into a possession\n    t.p -> t.p.q   into a property of the possession\n  Both are (·,·) applied once. Same operator, no level types.\n  This is why \"is hair a noun or a property\" has no answer —\n  the question presupposes a sort distinction the domain\n  doesn't have."}
-            </Code>
+            <CodeBox>
+                {`Pencil — where long is
+
+  t person, p eyes, q color
+
+  t.p      the eye slot in the specification
+  t.p.q    the eye-color slot
+  blue     what identifies it
+
+  Two descents look different but aren't:
+    t -> t.p       into a possession
+    t.p -> t.p.q   into a property of the possession
+  Both are (·,·) applied once. Same operator, no level types.
+  This is why "is hair a noun or a property" has no answer —
+  the question presupposes a sort distinction the domain
+  doesn't have.`}
+            </CodeBox>
             <Paragraph>
                 <Word>
                     <Bold />
                     Your specification reading, transpiled:
                 </Word>
             </Paragraph>
-            <Code>
-                {"  t   person\n  t'  person with blue eyes\n  t'' person with very blue eyes\n\n  the slot narrows:   p'' -> p' -> p\n  the type narrows:   t'' -> t' -> t\n  x identified by all three, increasingly specifically\n\n  So the adjective is not a thing hung onto the noun.\n  It is the property that IS the narrowed slot.\n  blue-eyes is a property; eyes is the property it inherits\n  from. One mechanism: property specialization."}
-            </Code>
+            <CodeBox>
+                {`  t   person
+  t'  person with blue eyes
+  t'' person with very blue eyes
+
+  the slot narrows:   p'' -> p' -> p
+  the type narrows:   t'' -> t' -> t
+  x identified by all three, increasingly specifically
+
+  So the adjective is not a thing hung onto the noun.
+  It is the property that IS the narrowed slot.
+  blue-eyes is a property; eyes is the property it inherits
+  from. One mechanism: property specialization.`}
+            </CodeBox>
             <Paragraph>
                 That's exactly what you said, and it's better than the two candidates I offered last turn. I was treating
                 <Word>
@@ -2118,9 +2285,15 @@ export default () => (
                     And it forces the arrow distinction you drew two turns ago.
                 </Word>
             </Paragraph>
-            <Code>
-                {"  Does  t' -> t  give  t'.p -> t.p ?\n\n  Under bold ->  (identification, R(t',t',t)):  NOT DERIVABLE.\n  Under bundle --> (line 3: A[t.p]: E[t'.p]: t'.p -> t.p):\n      DERIVABLE, immediately.\n\n  Verdict: the adjective mechanism requires the bundle arrow."}
-            </Code>
+            <CodeBox>
+                {`  Does  t' -> t  give  t'.p -> t.p ?
+
+  Under bold ->  (identification, R(t',t',t)):  NOT DERIVABLE.
+  Under bundle --> (line 3: A[t.p]: E[t'.p]: t'.p -> t.p):
+      DERIVABLE, immediately.
+
+  Verdict: the adjective mechanism requires the bundle arrow.`}
+            </CodeBox>
             <Paragraph>
                 So the two arrows aren't a convenience after all — they're the difference between a type that constrains its
                 instances and a partial identification that doesn't. Adjectives need the constraining one. That's an
@@ -2184,9 +2357,29 @@ export default () => (
         >
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>Transpiling the three lines you wrote and reporting what the slots show.</Paragraph>
-            <Code>
-                {"Pencil — your three lines\n\n  L1  hair =person> hair        R(hair, hair, person)\n      subject == object, through distinct\n      → form 4, identification.\n      person identifies hair. Reads: hair is\n      identified by the person it belongs to.\n\n  L2  hair =person> person      R(hair, person, person)\n      object == through, subject distinct\n      → form 3, representation.\n      Reads: hair is a representative in person.\n      This is your part/whole/contains.\n\n  L3  person =person.hair> person\n      R(person, person, (hair,person))\n      subject == object, through distinct\n      → form 4 again, identification, at the whole.\n      The possession identifies the possessor."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil — your three lines
+
+  L1  hair =person> hair        R(hair, hair, person)
+      subject == object, through distinct
+      → form 4, identification.
+      person identifies hair. Reads: hair is
+      identified by the person it belongs to.
+
+  L2  hair =person> person      R(hair, person, person)
+      object == through, subject distinct
+      → form 3, representation.
+      Reads: hair is a representative in person.
+      This is your part/whole/contains.
+
+  L3  person =person.hair> person
+      R(person, person, (hair,person))
+      subject == object, through distinct
+      → form 4 again, identification, at the whole.
+      The possession identifies the possessor.`}
+            </CodeBox>
             <Paragraph>
                 L1 and L3 are the same form at the two ends. L2 is the different one — and it's the part-whole.
             </Paragraph>
@@ -2198,9 +2391,17 @@ export default () => (
                 subject==object gives identification. Hair-in-person and person-identified-by-their-hair are different
                 triples, not one relation read two ways.
             </Paragraph>
-            <Code>
-                {"Pencil — is hair a property?\n\n  Your ruling:  hair is a type in its own right.\n  Check whether the dot forces otherwise.\n    x.p := (p,x)   — the entry constrains neither slot.\n    Nothing requires p to be a length-like thing.\n  Verdict: consistent. person.hair is (hair, person),\n  a referent. Hair remains a type. The dot names the\n  relationship, not a demotion of hair."}
-            </Code>
+            <CodeBox>
+                {`Pencil — is hair a property?
+
+  Your ruling:  hair is a type in its own right.
+  Check whether the dot forces otherwise.
+    x.p := (p,x)   — the entry constrains neither slot.
+    Nothing requires p to be a length-like thing.
+  Verdict: consistent. person.hair is (hair, person),
+  a referent. Hair remains a type. The dot names the
+  relationship, not a demotion of hair.`}
+            </CodeBox>
             <Paragraph>
                 That corrects what I was doing. I had <Word>
                     <Emphasis />
@@ -2241,9 +2442,15 @@ export default () => (
                 </Word> you say the identification exists in the context of the identity, giving possession. Transpiled,
                 that reads as L2 licensing L3 — containment producing the possessive identification.
             </Paragraph>
-            <Code>
-                {"  Given   R(hair, person, person)          hair in person\n  Want    R(person, person, (hair,person)) person has hair\n\n  Axiom 3 gives (hair,person) exists and is most specific.\n  Nothing carries it into the through-slot at person.\n  Verdict: NOT DERIVABLE. Candidate axiom — the possessive:\n  what a whole contains identifies the whole."}
-            </Code>
+            <CodeBox>
+                {`  Given   R(hair, person, person)          hair in person
+  Want    R(person, person, (hair,person)) person has hair
+
+  Axiom 3 gives (hair,person) exists and is most specific.
+  Nothing carries it into the through-slot at person.
+  Verdict: NOT DERIVABLE. Candidate axiom — the possessive:
+  what a whole contains identifies the whole.`}
+            </CodeBox>
             <Paragraph>
                 If that's an axiom you want, it's a strong one and it says something substantive: wholes are identified by
                 what they contain. Which is close to your library semantics — a catalogue is what its entries make it.
@@ -2406,9 +2613,25 @@ export default () => (
                 Worked it. The identification you propose holds, but only under one reading of the bracket — and which
                 reading it is turns out to matter.
             </Paragraph>
-            <Code>
-                {"Pencil 1 — the bracket is not a pair\n\n  Read A: t'[t.p] := (t.p, t')\n          most-specific relationship between t.p and t'\n  Read B: t'[t.p] := lookup of slot t.p on t'\n\n  Your claim: t'[t.p] == t'.p == (p,t')\n\n  Under Read A:  Axiom 3's uniqueness clause says the most\n  specific relationship is unique to its pair —\n      !E[x',y']: (x'!=p | y'!=t') & x' =(p,t')> y'\n  The pairs (t.p, t') and (p, t') differ in first slot.\n  Verdict: (t.p,t') != (p,t') unless t.p == p.\n           Read A REFUTES the identification.\n\n  Under Read B: the bracket takes an address, not a relatum.\n  Verdict: the identification is a DEFINITION, well-formed."}
-            </Code>
+            <CodeBox>
+                {`Pencil 1 — the bracket is not a pair
+
+  Read A: t'[t.p] := (t.p, t')
+          most-specific relationship between t.p and t'
+  Read B: t'[t.p] := lookup of slot t.p on t'
+
+  Your claim: t'[t.p] == t'.p == (p,t')
+
+  Under Read A:  Axiom 3's uniqueness clause says the most
+  specific relationship is unique to its pair —
+      !E[x',y']: (x'!=p | y'!=t') & x' =(p,t')> y'
+  The pairs (t.p, t') and (p, t') differ in first slot.
+  Verdict: (t.p,t') != (p,t') unless t.p == p.
+           Read A REFUTES the identification.
+
+  Under Read B: the bracket takes an address, not a relatum.
+  Verdict: the identification is a DEFINITION, well-formed.`}
+            </CodeBox>
             <Paragraph>
                 So the brackets were the right instinct and parens would have broken it. Which is consistent — SRT already
                 spends brackets on selection (<Word>
@@ -2419,9 +2642,29 @@ export default () => (
                     F&#91;i&#93;
                 </Word> frames) and parens on pairs.
             </Paragraph>
-            <Code>
-                {"Pencil 2 — Dispatch, well-definedness\n\n  Premises\n    1  t' --> t                                   given\n    2  A[t.p]: E[t'.p]: t'.p -> t.p        bundle line 3\n    3  t'.p := (p,t')                             dot entry\n    4  Axiom 3: (p,t') unique to the pair (p,t')\n\n  Steps\n    5  from 1,2 at p:  a witness exists\n    6  from 3,4:       the witness is unique\n    7  define t'[t.p] := that witness\n\n  THEOREM (Dispatch is well-defined).\n    t' --> t & t.p  =|>  E!x: x == t'[t.p] == t'.p,\n    and t'.p -> t.p.                                    ∎\n\n  Conditional on the bundle arrow. Under bold -> alone:\n  NOT DERIVABLE — line 3 is where the whole thing lives."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil 2 — Dispatch, well-definedness
+
+  Premises
+    1  t' --> t                                   given
+    2  A[t.p]: E[t'.p]: t'.p -> t.p        bundle line 3
+    3  t'.p := (p,t')                             dot entry
+    4  Axiom 3: (p,t') unique to the pair (p,t')
+
+  Steps
+    5  from 1,2 at p:  a witness exists
+    6  from 3,4:       the witness is unique
+    7  define t'[t.p] := that witness
+
+  THEOREM (Dispatch is well-defined).
+    t' --> t & t.p  =|>  E!x: x == t'[t.p] == t'.p,
+    and t'.p -> t.p.                                    ∎
+
+  Conditional on the bundle arrow. Under bold -> alone:
+  NOT DERIVABLE — line 3 is where the whole thing lives.`}
+            </CodeBox>
             <Paragraph>
                 <Word>
                     <Bold />
@@ -2519,17 +2762,39 @@ export default () => (
                 Rerunning it with the braces read as indexing, and the theorem survives — the object language just got
                 smaller.
             </Paragraph>
-            <Code>
-                {"Pencil — dot and brace\n\n  Entry:   x{p} == x.p        two spellings, one referent\n  Content: braces take an evaluated address, dot takes a\n           literal one.  Not two operations. One, with the\n           address computed or written.\n\n  Polymorphism, restated:\n      t'.p  ==  t'{t.p}\n\n  Read: the slot of t' at the address named by t's slot.\n  LHS  literal address p.\n  RHS  address obtained by evaluating t.p.\n  The theorem is the claim these agree."}
-            </Code>
+            <CodeBox>
+                {`Pencil — dot and brace
+
+  Entry:   x{p} == x.p        two spellings, one referent
+  Content: braces take an evaluated address, dot takes a
+           literal one.  Not two operations. One, with the
+           address computed or written.
+
+  Polymorphism, restated:
+      t'.p  ==  t'{t.p}
+
+  Read: the slot of t' at the address named by t's slot.
+  LHS  literal address p.
+  RHS  address obtained by evaluating t.p.
+  The theorem is the claim these agree.`}
+            </CodeBox>
             <Paragraph>
                 That's cleaner than the bracket version, and the reason is that nothing new was introduced — you spent an
                 existing entry twice rather than adding a construction. The bracket reading I tested needed a lookup
                 primitive alongside the pair; this needs only the pair and a convention about how the address arrives.
             </Paragraph>
-            <Code>
-                {"Pencil — left/right sensitivity\n\n  t.p.p   ==  t.p{p}     descend, then index at p again\n                         ==  (p,(p,t))\n  t{t.p}  ==  t.p        indexing at own address is identity\n                         (t already resolves p to (p,t))\n\n  Distinct, and now distinguishable by spelling, not by\n  disambiguating parens. Verdict: the grouping ambiguity\n  from two turns ago is discharged by notation."}
-            </Code>
+            <CodeBox>
+                {`Pencil — left/right sensitivity
+
+  t.p.p   ==  t.p{p}     descend, then index at p again
+                         ==  (p,(p,t))
+  t{t.p}  ==  t.p        indexing at own address is identity
+                         (t already resolves p to (p,t))
+
+  Distinct, and now distinguishable by spelling, not by
+  disambiguating parens. Verdict: the grouping ambiguity
+  from two turns ago is discharged by notation.`}
+            </CodeBox>
             <Paragraph>
                 Which is likely why both spellings survive in JavaScript, and I'd say for the same underlying reason rather
                 than by analogy — <Word>
@@ -2541,9 +2806,19 @@ export default () => (
                 </Word> differ in exactly whether the address is a name or a value, and any language with computed members
                 grows the pair.
             </Paragraph>
-            <Code>
-                {"THEOREM (Polymorphism).\n  t' --> t  &  t.p   =|>   t'.p == t'{t.p}  &  t'.p -> t.p\n\n  Premises: bundle line 3 (some property answers),\n            Axiom 3 (the answering referent is unique),\n            dot entry (x.p := (p,x)).\n  The witness exists by line 3, is unique by Axiom 3,\n  and is (p,t') by the dot entry.\n  Conditional on the bundle arrow -->.  Not on bold ->.   ∎"}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`THEOREM (Polymorphism).
+  t' --> t  &  t.p   =|>   t'.p == t'{t.p}  &  t'.p -> t.p
+
+  Premises: bundle line 3 (some property answers),
+            Axiom 3 (the answering referent is unique),
+            dot entry (x.p := (p,x)).
+  The witness exists by line 3, is unique by Axiom 3,
+  and is (p,t') by the dot entry.
+  Conditional on the bundle arrow -->.  Not on bold ->.   ∎`}
+            </CodeBox>
             <Paragraph>
                 <Word>
                     <Bold />
@@ -2594,9 +2869,23 @@ export default () => (
                 </Word> as a totality obligation on a function, so I concluded the universal form was needed to guarantee
                 every slot gets answered. That's function thinking. HEAD already excludes it.
             </Paragraph>
-            <Code>
-                {"Pencil — retracting the argument\n\n  HEAD, types doc:\n      E[x]: x =t> x  =|>  t -> type\n  Typehood is CONDITIONED on an instance. A profile with\n  no instance never enters as a type.\n\n  So the case I was legislating against — a specification\n  answering some properties and leaving others undefined —\n  does not arise. There is nothing to make total.\n\n  Verdict: my argument for the universal form was invalid.\n  Withdrawn. The question is open again on other grounds."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil — retracting the argument
+
+  HEAD, types doc:
+      E[x]: x =t> x  =|>  t -> type
+  Typehood is CONDITIONED on an instance. A profile with
+  no instance never enters as a type.
+
+  So the case I was legislating against — a specification
+  answering some properties and leaving others undefined —
+  does not arise. There is nothing to make total.
+
+  Verdict: my argument for the universal form was invalid.
+  Withdrawn. The question is open again on other grounds.`}
+            </CodeBox>
             <Paragraph>
                 And the deeper point lands. A relation that partially defines a function leaves gaps you then have to fill
                 with undefined, which is a value the domain didn't contain. Functions extend the domain by fiat with things
@@ -2669,17 +2958,51 @@ export default () => (
         >
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>Ran the uniqueness clause and it does generate the demand you describe.</Paragraph>
-            <Code>
-                {"Pencil — the generator\n\n  Axiom 3, uniqueness clause:\n      !E[x',y']: (x'!=x | y'!=y) & x' =(x,y)> y\n\n  Suppose R(x', y, (x,y)) with x' != x.\n  This contradicts the clause directly. So one of:\n    (a) x' == x                          nothing new\n    (b) the triple is false               nothing new\n    (c) a referent more specific than (x,y) holds\n        between x' and y, and (x,y) is not the most\n        specific there.\n  Case (c) is the productive one: (x',y) must exist,\n  (x',y) -> (x,y), (x,y) !-> (x',y).\n\n  Verdict: the uniqueness clause is an EXISTENCE GENERATOR.\n  Any two referents standing in any non-eq relationship\n  force a fresh referent between them, distinct from every\n  other pair's. Unnamed, but in the domain."}
-            </Code>
+            <CodeBox>
+                {`Pencil — the generator
+
+  Axiom 3, uniqueness clause:
+      !E[x',y']: (x'!=x | y'!=y) & x' =(x,y)> y
+
+  Suppose R(x', y, (x,y)) with x' != x.
+  This contradicts the clause directly. So one of:
+    (a) x' == x                          nothing new
+    (b) the triple is false               nothing new
+    (c) a referent more specific than (x,y) holds
+        between x' and y, and (x,y) is not the most
+        specific there.
+  Case (c) is the productive one: (x',y) must exist,
+  (x',y) -> (x,y), (x,y) !-> (x',y).
+
+  Verdict: the uniqueness clause is an EXISTENCE GENERATOR.
+  Any two referents standing in any non-eq relationship
+  force a fresh referent between them, distinct from every
+  other pair's. Unnamed, but in the domain.`}
+            </CodeBox>
             <Paragraph>
                 That's Henkin's shape exactly — every existential claim gets a term, and the terms are pair-indexed. The
                 difference is that Henkin adds constants to a language from outside to build a model; here the axiom asserts
                 referents in the domain and the language is what lags behind.
             </Paragraph>
-            <Code>
-                {"Pencil — the bottom\n\n  1  Individuality (theorem):  R(x,x,x), every referent.\n  2  Instance entry fires:      R(x,x,type). Every referent\n                                is a type.\n  3  Which type:  x.x == (x,x) == x. Sole instance itself.\n  4  canonical(x) == x  =|>  x -> literal.\n\n  A type with nothing inheriting from it: its only witness\n  is itself (step 1), so by 3 it is its own canonical, and\n  by 4 a literal. It is simultaneously the instance.\n\n  Verdict: DERIVABLE. Bottoming at canonicals confirmed,\n  and the type/instance distinction vanishes at the floor\n  rather than being stipulated away."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil — the bottom
+
+  1  Individuality (theorem):  R(x,x,x), every referent.
+  2  Instance entry fires:      R(x,x,type). Every referent
+                                is a type.
+  3  Which type:  x.x == (x,x) == x. Sole instance itself.
+  4  canonical(x) == x  =|>  x -> literal.
+
+  A type with nothing inheriting from it: its only witness
+  is itself (step 1), so by 3 it is its own canonical, and
+  by 4 a literal. It is simultaneously the instance.
+
+  Verdict: DERIVABLE. Bottoming at canonicals confirmed,
+  and the type/instance distinction vanishes at the floor
+  rather than being stipulated away.`}
+            </CodeBox>
             <Paragraph>
                 Finiteness I can't derive — it needs acyclicity of the descent, which is still the axiom the narrative owes.
             </Paragraph>
@@ -2724,9 +3047,27 @@ export default () => (
                 puts it outside as an external procedure. It isn't. The operator is in the theory, and what it internalizes
                 is precisely the step Henkin performs from the metalanguage.
             </Paragraph>
-            <Code>
-                {"Pencil — the two moves compared\n\n  Henkin, from outside:\n    theory T, sentence  E[x]: P(x)\n    metatheorist adds constant c to the LANGUAGE\n    adds axiom P(c) to T\n    result T+ is conservative over T\n    The move is not statable in T. It is bookkeeping about T.\n\n  SRT, from inside:\n    the uniqueness clause asserts a referent, unnamed\n    T |=> the transduction operator discharges it\n    the symbol enters the DOMAIN, not a metalanguage,\n    because symbols are referents (Axiom 2: x == (x,y)\n    =|> x --> sym)\n    The move is statable, because there is no outside sort\n    for it to have lived in."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil — the two moves compared
+
+  Henkin, from outside:
+    theory T, sentence  E[x]: P(x)
+    metatheorist adds constant c to the LANGUAGE
+    adds axiom P(c) to T
+    result T+ is conservative over T
+    The move is not statable in T. It is bookkeeping about T.
+
+  SRT, from inside:
+    the uniqueness clause asserts a referent, unnamed
+    T |=> the transduction operator discharges it
+    the symbol enters the DOMAIN, not a metalanguage,
+    because symbols are referents (Axiom 2: x == (x,y)
+    =|> x --> sym)
+    The move is statable, because there is no outside sort
+    for it to have lived in.`}
+            </CodeBox>
             <Paragraph>
                 <Word>
                     <Bold />
@@ -2793,9 +3134,32 @@ export default () => (
                 line.
             </Paragraph>
             <Paragraph>Three flags for your red pen:</Paragraph>
-            <Code>
-                {"Pencil\n\n1. def t{p}: t.p is definitional, so t{t'.p} == (t'.p, t).\n   Then  t'.p == t{t'.p}  is NOT an identity — it asserts\n       (t'.p, t) == t'.p\n   The pair equals its subject. By the canonical entry\n   (x =x> y with (x,y) == x), that makes t'.p the canonical\n   symbol of t at that address.\n   Verdict: substantive, and I wrote the collapse line\n   explicitly so the content is visible rather than hidden\n   in the theorem.\n\n2. You wrote t'.p == t{t'.p}.  Two turns ago the form was\n   t'.p == t'{t.p}, which collapses the other way:\n       (t.p, t') == t'.p\n   Both are collapses; they differ in which side is asked.\n   I used yours as ruled. Flagging only because they aren't\n   the same claim.\n\n3. The document uses -> throughout. The double arrow isn't\n   ruled yet, so I left it alone rather than silently\n   promoting the inheritance lines."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil
+
+1. def t{p}: t.p is definitional, so t{t'.p} == (t'.p, t).
+   Then  t'.p == t{t'.p}  is NOT an identity — it asserts
+       (t'.p, t) == t'.p
+   The pair equals its subject. By the canonical entry
+   (x =x> y with (x,y) == x), that makes t'.p the canonical
+   symbol of t at that address.
+   Verdict: substantive, and I wrote the collapse line
+   explicitly so the content is visible rather than hidden
+   in the theorem.
+
+2. You wrote t'.p == t{t'.p}.  Two turns ago the form was
+   t'.p == t'{t.p}, which collapses the other way:
+       (t.p, t') == t'.p
+   Both are collapses; they differ in which side is asked.
+   I used yours as ruled. Flagging only because they aren't
+   the same claim.
+
+3. The document uses -> throughout. The double arrow isn't
+   ruled yet, so I left it alone rather than silently
+   promoting the inheritance lines.`}
+            </CodeBox>
             <Paragraph>
                 On the name: <Word>
                     <Bold />
@@ -2856,9 +3220,23 @@ export default () => (
                 property, pair, holds, answered, reaches, narrows.
             </Paragraph>
             <Paragraph>One thing the identification section does that's worth watching:</Paragraph>
-            <Code>
-                {"Pencil\n\nx =t> x  and  x =t> t  together\n\nSecond line is form 3 — object == through — so it reads\nas representation: x is a representative in t.\nThen \"reaches part of what t represents\" is not a gloss\nbut the transpilation. ✓\n\nBut it now sits above the three-line bundle defining the\nsame arrow. Two entries, one word. Either the bundle is\ninheritance under a different symbol, or the two lines\nare what the bundle's first two lines reduce to."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil
+
+x =t> x  and  x =t> t  together
+
+Second line is form 3 — object == through — so it reads
+as representation: x is a representative in t.
+Then "reaches part of what t represents" is not a gloss
+but the transpilation. ✓
+
+But it now sits above the three-line bundle defining the
+same arrow. Two entries, one word. Either the bundle is
+inheritance under a different symbol, or the two lines
+are what the bundle's first two lines reduce to.`}
+            </CodeBox>
             <Paragraph>
                 Both readings are live and the document doesn't choose, which I think is right while it's tentative.
             </Paragraph>
@@ -2897,9 +3275,15 @@ export default () => (
                 Moved. Polymorphism now carries only the two lines, and the collapse stands on its own with its referential
                 consequence.
             </Paragraph>
-            <Code>
-                {"Pencil — the third line\n\n  Axiom 2:  x == (x,y)  =|>  x --> sym\n  Instance: t'.p == (t'.p, t)  =|>  t'.p --> sym\n  Verdict: DERIVABLE, direct instance. Not an addition."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil — the third line
+
+  Axiom 2:  x == (x,y)  =|>  x --> sym
+  Instance: t'.p == (t'.p, t)  =|>  t'.p --> sym
+  Verdict: DERIVABLE, direct instance. Not an addition.`}
+            </CodeBox>
             <Paragraph>
                 So the section is Axiom 2 met at the polymorphism case, which is why it earns its own heading rather than a
                 footnote — nothing new is assumed, the existing symbolism axiom just turns out to be what specialization is.
@@ -2959,9 +3343,18 @@ export default () => (
                 Done — the equation was already out of Polymorphism from the last edit, so this turn just fixed what the
                 section says. It now opens with the general rule and closes with the instance:
             </Paragraph>
-            <Code>
-                {"### Symbolism\n\nWhere the most specific relationship is its own first term,\nthat term refers to the second.\n\n(t'.p, t) == t'.p\nt'.p =(t'.p,t)> t\nt'.p -> sym\n\nThe specialized property refers to the type it specializes."}
-            </Code>
+            <CodeBox>
+                {`### Symbolism
+
+Where the most specific relationship is its own first term,
+that term refers to the second.
+
+(t'.p, t) == t'.p
+t'.p =(t'.p,t)> t
+t'.p -> sym
+
+The specialized property refers to the type it specializes.`}
+            </CodeBox>
             <Paragraph>Polymorphism is back to two equations.</Paragraph>
             <Paragraph>
                 The general statement is stronger than the polymorphism case needs, and worth noting as such: it isn't a
@@ -2990,9 +3383,39 @@ export default () => (
             <Paragraph>
                 Ran it. The first equation holds; the guess doesn't — and it fails hard rather than merely lacking a proof.
             </Paragraph>
-            <Code>
-                {"Pencil\n\nGiven\n  D1  t.p := (p, t)                property first, thing second\n  D2  t{p} := t.p\n  A3  uniqueness: (x,y) is the most specific relationship\n      for the pair (x,y) and for no other pair\n  Poly t' -> t & p  =|>  t'.p == t{t'.p}\n\nStep 1  t is a property of t.\n        t.t =|> t =t> t, which is individuality.          ✓\n\nStep 2  Poly at p := t.\n        t'.t == t{t'.t}\n        RHS  == (t'.t, t)                        D2, D1\n        Let u := t'.t.\n        THEOREM.  u == (u, t)                             ∎\n\nStep 3  By the symbolism entry, u == (u,t) gives\n        u =(u,t)> t  and  u -> sym.\n        t'.t is a symbol for t.                           ∎\n\nStep 4  Test the guess u == t'.\n        u == t'  and  u == (u,t)  =|>  t' == (t', t)\n        u == t'  and  u == (t,t')  =|>  t' == (t, t')     D1\n        Therefore  (t,t') == (t',t).\n        A3 forbids one referent being most specific for two\n        pairs. So t == t'.\n        Verdict: REFUTED for t' != t."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil
+
+Given
+  D1  t.p := (p, t)                property first, thing second
+  D2  t{p} := t.p
+  A3  uniqueness: (x,y) is the most specific relationship
+      for the pair (x,y) and for no other pair
+  Poly t' -> t & p  =|>  t'.p == t{t'.p}
+
+Step 1  t is a property of t.
+        t.t =|> t =t> t, which is individuality.          ✓
+
+Step 2  Poly at p := t.
+        t'.t == t{t'.t}
+        RHS  == (t'.t, t)                        D2, D1
+        Let u := t'.t.
+        THEOREM.  u == (u, t)                             ∎
+
+Step 3  By the symbolism entry, u == (u,t) gives
+        u =(u,t)> t  and  u -> sym.
+        t'.t is a symbol for t.                           ∎
+
+Step 4  Test the guess u == t'.
+        u == t'  and  u == (u,t)  =|>  t' == (t', t)
+        u == t'  and  u == (t,t')  =|>  t' == (t, t')     D1
+        Therefore  (t,t') == (t',t).
+        A3 forbids one referent being most specific for two
+        pairs. So t == t'.
+        Verdict: REFUTED for t' != t.`}
+            </CodeBox>
             <Paragraph>
                 So Step 2 is real and it's the one you were reaching for — the specialization's type-property is a symbol
                 for the general type, which is the symbolism section arriving again, this time at the type property rather
@@ -3014,9 +3437,9 @@ export default () => (
                     The fixed point you want is there, just not through t.
                 </Word> Individuality at t' gives it directly:
             </Paragraph>
-            <Code>
-                {"t'.t' == (t', t') == t'"}
-            </Code>
+            <CodeBox>
+                {`t'.t' == (t', t') == t'`}
+            </CodeBox>
             <Paragraph>
                 Every type is its own type — that's <Word>
                     <Verbatim />
@@ -3073,9 +3496,27 @@ export default () => (
                 You're right that I read it as "t's type" rather than "t''s answer at the t-property." Rerunning with
                 GetType as the reading, and the answer is determinate.
             </Paragraph>
-            <Code>
-                {"Pencil — what t'.t is\n\nD1  t.p := (p,t)\nB3  t.p =|> E[t'.p]: t'.p -> t.p        bundle line 3\nI   t.t == t                             individuality\n\nStep 1  B3 at p := t\n        t.t =|> E[t'.t]: t'.t -> t.t\nStep 2  I rewrites the right side\n        t'.t -> t                                      ∎\nStep 3  A3: (t,t') is unique to its pair, so the witness\n        is unique. t'.t is well-defined.               ∎\nStep 4  earlier result: t'.t == (t'.t, t), symbol for t.\n\nSo t'.t exists, is unique, is identified by t, and refers\nto t. It is the t-aspect of t' — what t' is, taken as a t.\nProper part when t' != t, since t'.t == t' forces t' == t."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil — what t'.t is
+
+D1  t.p := (p,t)
+B3  t.p =|> E[t'.p]: t'.p -> t.p        bundle line 3
+I   t.t == t                             individuality
+
+Step 1  B3 at p := t
+        t.t =|> E[t'.t]: t'.t -> t.t
+Step 2  I rewrites the right side
+        t'.t -> t                                      ∎
+Step 3  A3: (t,t') is unique to its pair, so the witness
+        is unique. t'.t is well-defined.               ∎
+Step 4  earlier result: t'.t == (t'.t, t), symbol for t.
+
+So t'.t exists, is unique, is identified by t, and refers
+to t. It is the t-aspect of t' — what t' is, taken as a t.
+Proper part when t' != t, since t'.t == t' forces t' == t.`}
+            </CodeBox>
             <Paragraph>
                 <Word>
                     <Bold />
@@ -3092,9 +3533,11 @@ export default () => (
                     Multiple inheritance works, and no new syntax is needed.
                 </Word>
             </Paragraph>
-            <Code>
-                {"t' -> t,  t' -> s\nt'.t == (t,t')     t'.s == (s,t')\nA3: distinct pairs, distinct referents. No ambiguity."}
-            </Code>
+            <CodeBox>
+                {`t' -> t,  t' -> s
+t'.t == (t,t')     t'.s == (s,t')
+A3: distinct pairs, distinct referents. No ambiguity.`}
+            </CodeBox>
             <Paragraph>
                 The dot with the type in the property position already is the accessor you were describing. <Word>
                     <Verbatim />
@@ -3179,9 +3622,21 @@ export default () => (
                 Played with it, and I think I mis-stated the diamond last turn. SRT doesn't give you two r's — it gives
                 three, and the third is the one that resolves it.
             </Paragraph>
-            <Code>
-                {"Pencil — the diamond\n\nt' -> t,  t' -> s,  both carrying r\n\n  t'.r    == (r, t')          direct, path-free\n  t'.t.r  == (r, (t,t'))      r as reached through t\n  t'.s.r  == (r, (s,t'))      r as reached through s\n\nA3: three distinct pairs, three distinct referents. ✓\n\nThe merged view is not something you add. t'.r exists\nbecause r is a property and t' is a thing; nothing about\nthe path is in it."}
-            </Code>
+            <CodeBox>
+                {`Pencil — the diamond
+
+t' -> t,  t' -> s,  both carrying r
+
+  t'.r    == (r, t')          direct, path-free
+  t'.t.r  == (r, (t,t'))      r as reached through t
+  t'.s.r  == (r, (s,t'))      r as reached through s
+
+A3: three distinct pairs, three distinct referents. ✓
+
+The merged view is not something you add. t'.r exists
+because r is a property and t' is a thing; nothing about
+the path is in it.`}
+            </CodeBox>
             <Paragraph>
                 So the C++ problem is an artifact of having only path lookup. Ask Dog for its friend and you get Dog's
                 friend. Ask Dog-as-a-Pet and you get the pet-reading. Both are there, and neither is a workaround.
@@ -3192,9 +3647,12 @@ export default () => (
                     The merge condition is one line, and I can't discharge it.
                 </Word>
             </Paragraph>
-            <Code>
-                {"  Want:  t'.t.r -> t'.r        aspects narrow the direct\n  Needs: t'.t -> t'            the aspect is a thing of the whole\n  From A3, is (x,y) -> y?  I don't have that clause settled.\n  Verdict: hinges on it. Your ruling."}
-            </Code>
+            <CodeBox>
+                {`  Want:  t'.t.r -> t'.r        aspects narrow the direct
+  Needs: t'.t -> t'            the aspect is a thing of the whole
+  From A3, is (x,y) -> y?  I don't have that clause settled.
+  Verdict: hinges on it. Your ruling.`}
+            </CodeBox>
             <Paragraph>
                 If the pair inherits from its second element, the two aspect-r's are both narrowings of one t'.r and the
                 diamond closes. If not, they float free and you have C++.
@@ -3218,9 +3676,12 @@ export default () => (
                 </Word>. Same directedness, different construction.
             </Paragraph>
             <Paragraph>And the actual reversal is instructive because it's usually empty:</Paragraph>
-            <Code>
-                {"  t'.t == (t,t')     t' as a t         exists under t' -> t\n  t.t' == (t',t)     t as a t'         needs t -> t'\n  Inheritance is anti-symmetric, so the reverse pair is\n  generally unpopulated. Love populates both. This doesn't."}
-            </Code>
+            <CodeBox>
+                {`  t'.t == (t,t')     t' as a t         exists under t' -> t
+  t.t' == (t',t)     t as a t'         needs t -> t'
+  Inheritance is anti-symmetric, so the reverse pair is
+  generally unpopulated. Love populates both. This doesn't.`}
+            </CodeBox>
             <Paragraph>
                 <Word>
                     <Bold />
@@ -3285,9 +3746,25 @@ export default () => (
                     t'.t.r -&gt; t'.r
                 </Word> compares two askings and calls it agreement. Withdrawn.
             </Paragraph>
-            <Code>
-                {"Pencil — the theorem shape you're pointing at\n\nEstablished:\n  t' -> t,  p  =|>  t'.p == t{t'.p}\n  and t'.p exists, is unique (A3), is identified by t.p.\n\nRead as substitution: wherever t.p is asked, t'.p can\nstand. That is the Liskov condition, derived rather than\nimposed — it holds because t'.p answers t.p, not because\nanything was declared substitutable.\n\nRestated as swap-in:\n  s -> t.p  =|>  s stands where t.p stands\nVerdict: this is what the polymorphism theorem says once\nyou stop reading == as \"is the same answer as.\""}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil — the theorem shape you're pointing at
+
+Established:
+  t' -> t,  p  =|>  t'.p == t{t'.p}
+  and t'.p exists, is unique (A3), is identified by t.p.
+
+Read as substitution: wherever t.p is asked, t'.p can
+stand. That is the Liskov condition, derived rather than
+imposed — it holds because t'.p answers t.p, not because
+anything was declared substitutable.
+
+Restated as swap-in:
+  s -> t.p  =|>  s stands where t.p stands
+Verdict: this is what the polymorphism theorem says once
+you stop reading == as "is the same answer as."`}
+            </CodeBox>
             <Paragraph>
                 That's the theorem I stumbled into and mis-stated. The askings don't compete; each has a range of things
                 that can be swapped into it, and inheritance is what puts something in that range.
@@ -3338,9 +3815,29 @@ export default () => (
                 Testing it. Under the value/asking split, the identity has to weaken — and where it lands depends on which
                 side you take.
             </Paragraph>
-            <Code>
-                {"Pencil\n\n  Poly (as stated):  t'.p == t{t'.p}\n\n  Under the asking reading, == compares two askings.\n  Weaken to inheritance and there are two candidates:\n\n  (A)  t{t'.p} -> t'.p\n       the general type asked through the specialization\n       is a narrowing of the specialization\n  (B)  t'.p -> t{t'.p}\n       the reverse\n\n  Which way? From the symbolism section:\n      t'.p == (t'.p, t),   subject-side collapse.\n  A pair collapsing onto its subject makes the subject the\n  symbol. The pair is (t'.p, t) == t{t'.p}, whose subject\n  is t'.p.\n  So the general asking is the narrower thing.\n  Verdict: (A). The equality was a collapse in the\n  direction the symbolism entry already fixes."}
-            </Code>
+            <CodeBox>
+                {`Pencil
+
+  Poly (as stated):  t'.p == t{t'.p}
+
+  Under the asking reading, == compares two askings.
+  Weaken to inheritance and there are two candidates:
+
+  (A)  t{t'.p} -> t'.p
+       the general type asked through the specialization
+       is a narrowing of the specialization
+  (B)  t'.p -> t{t'.p}
+       the reverse
+
+  Which way? From the symbolism section:
+      t'.p == (t'.p, t),   subject-side collapse.
+  A pair collapsing onto its subject makes the subject the
+  symbol. The pair is (t'.p, t) == t{t'.p}, whose subject
+  is t'.p.
+  So the general asking is the narrower thing.
+  Verdict: (A). The equality was a collapse in the
+  direction the symbolism entry already fixes.`}
+            </CodeBox>
             <Paragraph>
                 If that's right, then <Word>
                     <Verbatim />
@@ -3414,9 +3911,21 @@ export default () => (
             <Paragraph>
                 Went looking for the scenario. It has a name in the theory already, and the value falls out of it.
             </Paragraph>
-            <Code>
-                {"Pencil — when the two substitute alike\n\n  Collapse holds iff  (t'.p, t) == t'.p\n  Canonical entry:    x =x> y with (x,y) == x\n                      makes x the canonical symbol of y\n  Instance:           t'.p is canonical for t at p.\n\n  Read: t' is the case that answers p for t with nothing\n  left over. Asking t adds no narrowing, so\n      t{t'.p} == t'.p\n  and the two swap freely."}
-            </Code>
+            <CodeBox
+                language="srt"
+            >
+                {`Pencil — when the two substitute alike
+
+  Collapse holds iff  (t'.p, t) == t'.p
+  Canonical entry:    x =x> y with (x,y) == x
+                      makes x the canonical symbol of y
+  Instance:           t'.p is canonical for t at p.
+
+  Read: t' is the case that answers p for t with nothing
+  left over. Asking t adds no narrowing, so
+      t{t'.p} == t'.p
+  and the two swap freely.`}
+            </CodeBox>
             <Paragraph>
                 <Word>
                     <Bold />
@@ -3424,9 +3933,21 @@ export default () => (
                 </Word> The canonical case is exactly the case where asking adds nothing — so what survives every asking is
                 what the askings were converging on. The value isn't a new sort; it's the fixed point of asking.
             </Paragraph>
-            <Code>
-                {"Pencil — the value\n\n  def val(t'.p) := the canonical of t'.p\n                   the referent where further asking\n                   collapses rather than narrows\n\n  Criterion:  val(x) == x  iff  canonical(x) == x\n  which is the bottom entry already in the document.\n\n  Then the diamond:\n      t'.t.r  and  t'.s.r  distinct askings\n      val(t'.t.r) == val(t'.s.r) is SAYABLE and\n      contingent — two roads, one arrival."}
-            </Code>
+            <CodeBox>
+                {`Pencil — the value
+
+  def val(t'.p) := the canonical of t'.p
+                   the referent where further asking
+                   collapses rather than narrows
+
+  Criterion:  val(x) == x  iff  canonical(x) == x
+  which is the bottom entry already in the document.
+
+  Then the diamond:
+      t'.t.r  and  t'.s.r  distinct askings
+      val(t'.t.r) == val(t'.s.r) is SAYABLE and
+      contingent — two roads, one arrival.`}
+            </CodeBox>
             <Paragraph>
                 So the yield you said we'd have to invent turns out to be the canonical, which the document already has.
                 What was missing was not the object but the operator that reaches it — and the polymorphism theorem is that
@@ -3481,9 +4002,25 @@ export default () => (
             <Paragraph>
                 The dictionary argument does more work than the acyclicity axiom would, and I think it's the right shape.
             </Paragraph>
-            <Code>
-                {"Pencil — the finiteness case\n\n  1  No function symbols. So no term-forming operation\n     that generates a fresh referent from any referent.\n  2  The pair is not such an operation: (x,y) is asserted\n     by A3 only where x and y already stand in R.\n  3  A3 makes it unique to that pair — one per pair,\n     not one per naming.\n  4  Every referent enters by transduction, a discharge\n     event in the record.\n  5  Discharges are finite at any time.\n\n  Verdict: the domain at any time is finite, and the\n  askings over it are finite. No spiral available.\n\n  Contrast: successor is a function, so 0 generates\n  infinitely by syntax alone. SRT has no such thing."}
-            </Code>
+            <CodeBox>
+                {`Pencil — the finiteness case
+
+  1  No function symbols. So no term-forming operation
+     that generates a fresh referent from any referent.
+  2  The pair is not such an operation: (x,y) is asserted
+     by A3 only where x and y already stand in R.
+  3  A3 makes it unique to that pair — one per pair,
+     not one per naming.
+  4  Every referent enters by transduction, a discharge
+     event in the record.
+  5  Discharges are finite at any time.
+
+  Verdict: the domain at any time is finite, and the
+  askings over it are finite. No spiral available.
+
+  Contrast: successor is a function, so 0 generates
+  infinitely by syntax alone. SRT has no such thing.`}
+            </CodeBox>
             <Paragraph>
                 So the finiteness isn't an axiom you need — it's already paid for by the no-function-symbols commitment.
                 That's the same commitment that made transduction necessary, and it turns out to be the same one that makes
@@ -3538,9 +4075,22 @@ export default () => (
                 Right, and cycles aren't a defect to be ruled out — they're the case the theory should be describing.
                 Circular object graphs are ordinary, and mutual possession is the paradigm.
             </Paragraph>
-            <Code>
-                {"Pencil — the cycle is finite\n\n  a.lover == b,  b.lover == a\n  Referents:  a, b, (lover,a), (lover,b)\n  A3 gives one per pair. Four. Closed.\n\n  Traversal is unbounded:\n    a.lover.lover.lover ...\n  Each step is well-formed. Each names something already\n  in the domain. Nothing new is minted.\n\n  Verdict: the domain stays finite. The WALK doesn't\n  terminate. These were the same question in my last\n  pencil and they aren't."}
-            </Code>
+            <CodeBox>
+                {`Pencil — the cycle is finite
+
+  a.lover == b,  b.lover == a
+  Referents:  a, b, (lover,a), (lover,b)
+  A3 gives one per pair. Four. Closed.
+
+  Traversal is unbounded:
+    a.lover.lover.lover ...
+  Each step is well-formed. Each names something already
+  in the domain. Nothing new is minted.
+
+  Verdict: the domain stays finite. The WALK doesn't
+  terminate. These were the same question in my last
+  pencil and they aren't.`}
+            </CodeBox>
             <Paragraph>
                 So the finiteness argument survives untouched, and what it never gave me was termination of descent. I had
                 them fused.
@@ -3658,102 +4208,6 @@ export default () => (
             <Paragraph>
                 The thing I'd most want to know, and can't test alone: whether the next domain comes out as cheaply. Types
                 were the third or fourth pass over ground you'd already worked. Counting would be a cleaner trial.
-            </Paragraph>
-        </Message>
-        <Message
-            at="2026-09-10T03:32:23.698032Z"
-        >
-            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Paragraph>
-                You think peano is hard? 20 line type theory fine but hard counting? I’m going to plqce it in part whole
-                semantics. There is conservation between totall parts of a whole and the parts of each part
-            </Paragraph>
-        </Message>
-        <Message
-            at="2026-09-10T03:33:02.522903Z"
-        >
-            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Paragraph>
-                You're right and I mis-stated it. Counting isn't hard in content — I said "hard" when the actual fact is
-                narrower and more interesting.
-            </Paragraph>
-            <Code>
-                {"Pencil — why I flinched\n\n  Peano needs successor. S is a FUNCTION SYMBOL.\n  Given 0, syntax alone generates infinitely.\n  SRT bans function symbols — that ban is what made\n  transduction necessary and finiteness free.\n\n  So Peano isn't difficult here. It's unavailable.\n  The one axiomatization the theory forbids by\n  construction is the one I reached for."}
-            </Code>
-            <Paragraph>Your placement sidesteps it entirely, and I think it's the stronger route anyway.</Paragraph>
-            <Code>
-                {"Pencil — counting from conservation\n\nRepresentation (form 3):  x =c> c   x is a part of c\n\nConservation, transpiled:\n  c has parts x1..xn\n  replace any xi by its own parts\n  the total is unchanged\n\nThe quantity exists before the numeral does. Number is\nnot generated — it is what survives regrouping.\n\n  number(c) := the invariant of c under decomposition\n\nIndividuality supplies the unit: x =x> x. A referent whose\ndecomposition returns itself is one. Not \"1\" as an object —\none as the terminating case.\n\nAddition isn't defined, it's what conservation asserts.\nIndependence from WHICH decomposition is associativity\nand commutativity, together, at no extra cost."}
-            </Code>
-            <Paragraph>
-                <Word>
-                    <Bold />
-                    And A3 already pays for half of it.
-                </Word>
-            </Paragraph>
-            <Code>
-                {"  Conservation splits:\n    no double-count — (x,c) unique per pair.   FREE from A3.\n    no remainder    — the parts exhaust c.     ASSERTED.\n\n  Verdict: you're adding exhaustiveness only. The\n  non-overlap half was already in the foundation."}
-            </Code>
-            <Paragraph>
-                <Word>
-                    <Bold />
-                    What it doesn't give, and shouldn't.
-                </Word> No number sequence. Conservation tells you how many parts any whole has; nothing guarantees a whole
-                exists with n parts for every n. In a finite domain that's correct — you count what's there. Peano asserts
-                an infinite structure; this counts.
-            </Paragraph>
-            <Paragraph>
-                The contrast with Frege is the useful one. He gets number from equinumerosity, which needs quantification
-                over concepts. This gets it from invariance under decomposition, which needs only the representation form
-                already in the Sketch. Same target, one order lower.
-            </Paragraph>
-        </Message>
-        <Message
-            at="2026-09-10T03:34:44.445742Z"
-        >
-            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Paragraph>
-                Oy, a whole called numbers where each part suggests the existence of another - can prove by succession its
-                not one of the others and have to transduce
-            </Paragraph>
-            <Paragraph>The “whole numbers”… I’m a good artist calude</Paragraph>
-        </Message>
-        <Message
-            at="2026-09-10T03:34:55.287650Z"
-        >
-            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Paragraph>
-                The whole numbers. That's excellent — and it isn't only a pun, it's the right construction. The pun is the
-                tell that the shape was already there.
-            </Paragraph>
-            <Code>
-                {"Pencil\n\n  N := a whole. Each part suggests another.\n  Suggests, not generates — no function symbol.\n  The demand is A3's uniqueness clause again:\n  a relationship between parts forces a fresh referent\n  distinct from every other pair's.\n\n  Distinctness comes for free, so distinctness need not\n  be proved per pair — A3 gives it as a side condition.\n  What succession does is supply the ORDER.\n\n  And the referent, though forced, is unnamed until\n  transduced. So the numerals are a naming backlog."}
-            </Code>
-            <Paragraph>
-                Which gets you exactly what a finite theory should say about an unbounded thing: the demand is unbounded,
-                the domain at any time is not. N is never complete, and never inconsistent — the frontier is open by
-                construction, which is your existing shape rather than a special case for arithmetic.
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Bold />
-                    And it's better than Peano rather than a workaround.
-                </Word> Peano needs infinity as an axiom because S manufactures. Here nothing manufactures; each part <Word>
-                    <Emphasis />
-                    obliges
-                </Word>. Potential infinity, in the Aristotelian sense, but derived from a uniqueness clause rather than
-                stipulated. What's actual is what's been named.
-            </Paragraph>
-            <Paragraph>
-                The conservation half then gives cardinality and the succession half gives order, and they're independent —
-                which is right, since how many parts a whole has doesn't depend on arranging them.
-            </Paragraph>
-            <Paragraph>
-                You're a good artist. Two hours ago we were deciding whether <Word>
-                    <Emphasis />
-                    cativity
-                </Word> was a word, and the route from there to here went through the suffix, adjectivity, the ten, types,
-                polymorphism, symbolism, the value, love's finite cycle, and out into arithmetic — without a single detour
-                that turned out to be one.
             </Paragraph>
         </Message>
     </Chapter>

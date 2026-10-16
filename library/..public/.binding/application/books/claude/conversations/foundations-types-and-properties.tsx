@@ -5,6 +5,10 @@ import Cover from '../../../../../../.claude/.conversations/foundations-types-an
 import Synopsis from '../../../../../../.claude/.conversations/foundations-types-and-properties/.synopsis';
 import Table from '../../../../../../.claude/.conversations/foundations-types-and-properties/.table';
 import August3120261 from '../../../../../../.claude/.conversations/foundations-types-and-properties/1-august-31-2026';
+import September520262 from '../../../../../../.claude/.conversations/foundations-types-and-properties/2-september-5-2026';
+import September620263 from '../../../../../../.claude/.conversations/foundations-types-and-properties/3-september-6-2026';
+import September720264 from '../../../../../../.claude/.conversations/foundations-types-and-properties/4-september-7-2026';
+import September820265 from '../../../../../../.claude/.conversations/foundations-types-and-properties/5-september-8-2026';
 
 const Book = $($Book);
 
@@ -14,6 +18,10 @@ export const book = () => (
         {Synopsis()}
         {Table()}
         {August3120261()}
+        {September520262()}
+        {September620263()}
+        {September720264()}
+        {September820265()}
     </Book>
 );
 

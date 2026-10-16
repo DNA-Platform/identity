@@ -15,6 +15,9 @@ export default () => (
                 <Content>$[[ ./22 July 2026 ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./23 July 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ Learning SRT syntax and transpiler fundamentals ]]</Content>

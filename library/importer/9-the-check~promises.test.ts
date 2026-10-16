@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { sampleConversation, sampleTextMessage } from './3-the-record~samples.ts';
-import { writtenChapter, type Referents } from './7-the-writing~writing.ts';
+import { writtenConversation, type Referents } from './7-the-writing~writing.ts';
 import {
     archiveStatistics, chapterInstants, countDifferences, differenceLines, filedTranscriptNames, filingDifferences,
     transcriptDifferences, transcriptMeta, type ArchiveTranscript,
@@ -67,7 +67,7 @@ describe('the check', () => {
     it('reads a written chapter back and finds its messages at the instants of the thread', () => {
         const question = sampleTextMessage('m1', 'Doug', 'A question', undefined, '2026-06-15T10:00:00Z');
         const path = [question, sampleTextMessage('m2', 'Claude', 'An answer', 'm1', '2026-06-15T10:01:00Z')];
-        const chapter = writtenChapter(sampleConversation('c', 'A Conversation', path), path, referents, '../m', '../c');
+        const [chapter] = writtenConversation(sampleConversation('c', 'A Conversation', path), path, referents, '../m', '../c').chapters;
         expect(chapterInstants(chapter.tsx)).toEqual(['2026-06-15T10:00:00Z', '2026-06-15T10:01:00Z']);
     });
 });

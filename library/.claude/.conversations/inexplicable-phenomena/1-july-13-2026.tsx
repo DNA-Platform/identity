@@ -1,5 +1,5 @@
-import { Bold, Chapter, Code, Date, Emphasis, Heading, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
-import { Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
+import { Bold, Chapter, Date, Emphasis, Heading, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
+import { CodeBox, Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
 import { Action } from '../../.manual/.book';
 
 export default () => (
@@ -506,9 +506,28 @@ export default () => (
                 many readings.
             </Paragraph>
             <Paragraph>Here is the object, concretely — the frontmatter every book/chapter carries:</Paragraph>
-            <Code>
-                {"Book {\n  id            : canonical title            // the (x) — its symbol\n  type          : Axiom | Theorem | Definition | Chapter\n                | Catalogue | Obligation | Consequence | Goal | ...\n  author        : → Book                     // Doug, Seren, Ana, ...\n  subject       : → Book                     // what this is ABOUT\n  status        : proved | checked | proposal | hypothetical | superseded\n  body          : prose + formulas\n  refers_to     : [→ Book]                   // outgoing edges (authored)\n  supersedes    : [→ Book]                   // the preserved errors\n  obligations   : [Obligation]               // the holes in THIS book\n}\n\nObligation {                                 // a marked incompleteness — a `sorry`\n  in            : → Book                     // constitutively lives in a book\n  blocks        : [→ Book]                   // what rests on it\n  status        : open | in_progress | champion_needed\n  difficulty    : good_first | medium | hard | foundational\n  issue         : → GitHub issue             // the sync point\n}"}
-            </Code>
+            <CodeBox>
+                {`Book {
+  id            : canonical title            // the (x) — its symbol
+  type          : Axiom | Theorem | Definition | Chapter
+                | Catalogue | Obligation | Consequence | Goal | ...
+  author        : → Book                     // Doug, Seren, Ana, ...
+  subject       : → Book                     // what this is ABOUT
+  status        : proved | checked | proposal | hypothetical | superseded
+  body          : prose + formulas
+  refers_to     : [→ Book]                   // outgoing edges (authored)
+  supersedes    : [→ Book]                   // the preserved errors
+  obligations   : [Obligation]               // the holes in THIS book
+}
+
+Obligation {                                 // a marked incompleteness — a \`sorry\`
+  in            : → Book                     // constitutively lives in a book
+  blocks        : [→ Book]                   // what rests on it
+  status        : open | in_progress | champion_needed
+  difficulty    : good_first | medium | hard | foundational
+  issue         : → GitHub issue             // the sync point
+}`}
+            </CodeBox>
             <Paragraph>
                 Two derived fields never authored, always computed: <Word>
                     <Verbatim />
@@ -595,9 +614,10 @@ export default () => (
                 This is your actual question, and it has a clean answer. The frontier is not authored. It is the result of
                 one query:
             </Paragraph>
-            <Code>
-                {"Frontier  :=  flatten( book.obligations  for book in Library )\n              sorted by  |obligation.blocks|   descending"}
-            </Code>
+            <CodeBox>
+                {`Frontier  :=  flatten( book.obligations  for book in Library )
+              sorted by  |obligation.blocks|   descending`}
+            </CodeBox>
             <Paragraph>
                 That's it. You collect every hole in every book, and rank by how much rests on it. Obligation #01 (the
                 role-indexed arrow) sits at the top <Word>

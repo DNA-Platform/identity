@@ -1,12 +1,15 @@
 import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import {
-    $Annotation, $Chapter, $Cover, $Date, $Heading, $Means, $Paragraph, $Referent, $Section, $SelfReference, $Word, $Writing,
-    AnnotationSpecification, Referent as referent, SectionSpecification, identifier, specify,
+    $Annotation, $Chapter, $Cover, $Date, $Heading, $Means, $Paragraph, $Referent, $Section, $Word, $Writing,
+    AnnotationSpecification, Reference as reference, Referent as referent, SectionSpecification, Word as word, identifier,
+    specify,
 } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { $Dated } from './4-the-date~code.tsx';
 import { dayOf } from './28-the-journal~code.tsx';
+import { $Index, contentOf } from './14-the-entry~code.tsx';
+import { Opaque as opaque } from './32-the-address~code.tsx';
 
 export class $Speaker extends $Heading {
     protected override $Define(): void {
@@ -104,6 +107,10 @@ export class $Message extends $Section {
     protected override $Define(): void {
         super.$Define();
         this.classes.add(this, 'pd-message');
+        const Opaque = $(opaque);
+        this.annotations.add(this,
+            <Opaque />
+        );
         if (this.when === '') return;
         const Referent = $(referent);
         this.annotations.add(this,
@@ -119,13 +126,6 @@ export class $Message extends $Section {
                 <Mine />
             );
         }
-        for (const heading of this.text.find($Heading))
-            if (!(heading instanceof $Speaker)) {
-                const referent = heading.annotations.expressed($Referent);
-                const self = heading.annotations.expressed($SelfReference);
-                for (const annotation of [referent, self])
-                    if (annotation !== undefined) heading.annotations.remove(heading, annotation);
-            }
         super.$Bound();
     }
 }
@@ -250,6 +250,86 @@ export const Verbatim = $($Verbatim);
 export const Period = $($Period);
 export const Messages = $($Messages);
 
+const dayWords = (instant: string | undefined): string => instant === undefined || instant === '' ? ''
+    : new Date(instant).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+// The line of counts under the title: how many messages over how many days, and from which day to which.
+export class $Tally extends $Paragraph {
+    override write(): ReactNode {
+        const book = this.book as $Conversation;
+        const shown = book.messageCount?.shown ?? book.messages.length;
+        const days = book.body.length;
+        const from = dayWords(book.period?.from);
+        const to = dayWords(book.period?.to);
+        return (
+            <>
+                <span className="pd-tally-count">
+                    <b>
+                        {shown}
+                    </b>
+                    {days === 1 ? ' messages in ' : ' messages over '}
+                    <b>
+                        {days}
+                    </b>
+                    {days === 1 ? ' day' : ' days'}
+                </span>
+                <span className="pd-tally-period">
+                    {from === to ? from : `${from} to ${to}`}
+                </span>
+            </>
+        );
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-tally');
+    }
+}
+
+// The count of messages a day holds, beside its entry in the side.
+export class $DayCount extends $Word {
+    $entry?: $Chapter;
+
+    override write(): ReactNode {
+        return String(this.$entry?.text.find($Message).length ?? 0);
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-day-count');
+    }
+}
+
+// The row at the head of the side that leads to the first day, where what it came to stands.
+export class $CameToRow extends $Paragraph {
+    override write(): ReactNode {
+        const place = (this.book as $Conversation).pages[0]?.mention?.identifier;
+        if (place === undefined) return undefined;
+        const Word = $(word);
+        const Reference = $(reference);
+        return (
+            <Word>
+                <Reference>
+                    {place}
+                </Reference>
+                What it came to
+            </Word>
+        );
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-came-to-row');
+    }
+}
+
+export const Tally = $($Tally);
+export const DayCount = $($DayCount);
+export const CameToRow = $($CameToRow);
+const tally = Tally;
+const dayCount = DayCount;
+const cameToRow = CameToRow;
+
 export class $Conversation extends $LibraryBook {
     override specification = new ConversationSpecification();
     get participants(): $Participant[] {
@@ -266,7 +346,49 @@ export class $Conversation extends $LibraryBook {
     }
     override get pages(): $Chapter[] {
         const body = [...this.body].sort((a, b) => dayOf(a).localeCompare(dayOf(b)));
-        return [this.synopsis, ...body, ...this.appendix].filter((chapter): chapter is $Chapter => chapter !== undefined);
+        return [...body, ...this.appendix];
+    }
+    override get open(): $Chapter | undefined {
+        return super.open ?? this.pages[0];
+    }
+
+    override head(): ReactNode {
+        const Tally = $(tally);
+        return (
+            <>
+                {super.head()}
+                <Tally chapter={this.cover} />
+            </>
+        );
+    }
+
+    override aboveThePages(): ReactNode {
+        const synopsis = this.synopsis;
+        const first = this.pages[0];
+        if (synopsis === undefined || first === undefined || (this.open ?? first) !== first) return undefined;
+        const Synopsis = $(synopsis);
+        return (
+            <div className="pd-came-to">
+                <Synopsis />
+            </div>
+        );
+    }
+
+    protected override $Bound(): void {
+        const DayCount = $(dayCount);
+        for (const paragraph of this.table?.annotations.expressed($Index)?.entries ?? []) {
+            const place = contentOf(paragraph)?.identifier;
+            const chapter = place === undefined ? undefined : this.chapterAt(place);
+            if (chapter === undefined || !this.body.includes(chapter)) continue;
+            paragraph.text.add(this,
+                <DayCount entry={chapter} />
+            );
+        }
+        const CameToRow = $(cameToRow);
+        this.table?.text.add(this,
+            <CameToRow />
+        );
+        super.$Bound();
     }
 }
 

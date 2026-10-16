@@ -103,6 +103,14 @@ export default () => (
                 switch is left on the page. After his word on the whites, the bar, the side and the head are
                 white across their whole surface, and a tint stands only in the last pixels before an edge, the
                 bar's foot, the side's right edge, the open day's row a breath lighter: the page he said we have.
+                Built the same day: every conversation is written one chapter per day, so the days down the side
+                are the book's own index, <Means>$[[ SRT Axioms &amp; Specialization ]]</Means> reading as five
+                days with its code boxed and its notation marked; an artifact's version is a chapter of the
+                conversation that <Means>$[[ the pane ]]( Claudes Reference Manual / The Pane )</Means> draws,
+                which <Means>$[[ Conservation of Time Complexity ]]</Means> shows with thirteen; the code box is
+                <Means>$[[ Dougs Reference Manual ]]</Means>'s and the heading rule its address annotation. What
+                the sketch has and the page does not yet: the way back at the head, which moved to the next
+                sprint, and the pane's publish, which the library has no use for.
             </Paragraph>
             <Paragraph>
                 <Desk />

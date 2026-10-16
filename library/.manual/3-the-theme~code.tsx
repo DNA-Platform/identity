@@ -157,6 +157,11 @@ export class $LibraryBookTheme extends $Theme {
             .hljs-string, .hljs-regexp, .hljs-number { color: ${({ theme }) => theme.string}; }
             .hljs-title, .hljs-type, .hljs-tag, .hljs-name, .hljs-attr { color: ${({ theme }) => theme.type}; }
             .hljs-comment, .hljs-meta { color: ${({ theme }) => theme.comment}; }
+            .pd-code-box { border: 1px solid rgba(11, 11, 11, .1); border-radius: 12px; background: rgba(255, 255, 255, .5); overflow: hidden; }
+            .pd-code-box .pd-code-bar { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px 6px 14px; border-block-end: 1px solid rgba(11, 11, 11, .07); background: rgba(11, 11, 11, .025); font-family: ${({ theme }) => theme.sans}; font-size: 11.5px; font-weight: 500; line-height: 1.4; color: ${({ theme }) => theme.soft}; }
+            .pd-code-box .pd-code-bar .pd-copy { border: 0; background: none; padding: 2px 8px; border-radius: 6px; font: inherit; color: inherit; cursor: pointer; }
+            .pd-code-box .pd-code-bar .pd-copy:hover { background: rgba(11, 11, 11, .05); color: ${({ theme }) => theme.ink}; }
+            .pd-code-box pre { margin: 0; padding: 14px; font-family: ${({ theme }) => theme.mono}; font-size: 14px; line-height: 22.75px; color: #14181f; overflow: auto; }
         `;
     }
 

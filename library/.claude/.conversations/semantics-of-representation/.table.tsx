@@ -15,6 +15,9 @@ export default () => (
                 <Content>$[[ ./10 September 2026 ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./11 September 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ Semantics of Representation ]]</Content>

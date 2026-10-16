@@ -1,5 +1,5 @@
-import { Bold, Chapter, Code, Date, Emphasis, Equation, Line, List, Math, Paragraph, Title, Word } from '@dna-platform/public';
-import { Dated, Message, Quoted, Speaker, Verbatim } from '../../../.manual/.book';
+import { Bold, Chapter, Date, Emphasis, Equation, Line, List, Math, Paragraph, Title, Word } from '@dna-platform/public';
+import { CodeBox, Dated, Message, Quoted, Speaker, Verbatim } from '../../../.manual/.book';
 import { Action } from '../../.manual/.book';
 
 export default () => (
@@ -318,9 +318,12 @@ export default () => (
                 </Word> are all deep. Here's an illustrative explication (my construction in NSM style — there's no
                 canonical published "aardvark" explication, but this follows the conventions faithfully):
             </Paragraph>
-            <Code>
-                {"I need to buy an aardvark as a pet  ≈\n\nI want to have something\nthis something is a creature [m] of one kind  ── \"an aardvark\""}
-            </Code>
+            <CodeBox>
+                {`I need to buy an aardvark as a pet  ≈
+
+I want to have something
+this something is a creature [m] of one kind  ── "an aardvark"`}
+            </CodeBox>
         </Message>
         <Message
             at="2026-06-16T09:17:37.392763Z"

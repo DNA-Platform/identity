@@ -24,6 +24,16 @@ export default () => (
                 shape of every file here reads these too.
             </Paragraph>
             <Paragraph>
+                A conversation is written one chapter per day it was held, each dated with its day and titled with
+                it, and holding only that day's messages, so the days stand down the side of its page as its
+                parts. A block of code is written as a code box, which names its language at its head; a block
+                whose language was not named but that reads as SRT notation is named srt. Every version of an
+                artifact is written as a chapter of its own besides its file, said to be a version, a document
+                converted to writing under an opaque section and code set in a code box, titled with the
+                artifact's title and its number; the table lists them in an appendix section the side does not
+                show, and the card in the message refers to its version by title.
+            </Paragraph>
+            <Paragraph>
                 A search of the web or a run of code that Claude made becomes one paragraph saying what was
                 done and the paragraph after it saying what came back. An artifact the conversation made becomes
                 a file beside the chapter, every version of it, its updates replayed, with a paragraph naming it

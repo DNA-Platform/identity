@@ -5,6 +5,20 @@ import Cover from '../../../../../../.claude/.conversations/conservation-of-time
 import Synopsis from '../../../../../../.claude/.conversations/conservation-of-time-complexity/.synopsis';
 import Table from '../../../../../../.claude/.conversations/conservation-of-time-complexity/.table';
 import March2120251 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/1-march-21-2025';
+import March2220252 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/2-march-22-2025';
+import QuantumComputingRealityCheckV1o1 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o1-quantum-computing-reality-check-v1';
+import QuantumComputingRealityCheckClickbaitEditionV2o2 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o2-quantum-computing-reality-check-clickbait-edition-v2';
+import QuantumComputingAMathematicalRealityCheckV3o3 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o3-quantum-computing-a-mathematical-reality-check-v3';
+import The50000YearQuantumComputingMythV4o4 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o4-the-50-000-year-quantum-computing-myth-v4';
+import QuantumComputingsImpossibleNumbersV5o5 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o5-quantum-computings-impossible-numbers-v5';
+import QuantumComputingsImpossibleMathematicsV6o6 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o6-quantum-computings-impossible-mathematics-v6';
+import WhenMathMeetsPostTruthTheQuantumComputingRealityV7o7 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o7-when-math-meets-post-truth-the-quantum-computing-reality-v7';
+import QuantumComputingTheEmperorsNewQubitsV8o8 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o8-quantum-computing-the-emperors-new-qubits-v8';
+import QuantumComputingAMathematicalRealityCheckV9o9 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o9-quantum-computing-a-mathematical-reality-check-v9';
+import QuantumComputingTheMathematicsOfImpossibilityV10o10 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o10-quantum-computing-the-mathematics-of-impossibility-v10';
+import QuantumComputingAndEncryptionAMathematicalAssessmentVo11 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o11-quantum-computing-and-encryption-a-mathematical-assessment-v';
+import TheThermodynamicsOfImpossibilityQuantumComputingVsPhyo12 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o12-the-thermodynamics-of-impossibility-quantum-computing-vs-phy';
+import QuantumComputingVsPhysicsWhyBreakingEncryptionIsImpoo13 from '../../../../../../.claude/.conversations/conservation-of-time-complexity/o13-quantum-computing-vs-physics-why-breaking-encryption-is-impo';
 
 const Book = $($Book);
 
@@ -14,6 +28,20 @@ export const book = () => (
         {Synopsis()}
         {Table()}
         {March2120251()}
+        {March2220252()}
+        {QuantumComputingRealityCheckV1o1()}
+        {QuantumComputingRealityCheckClickbaitEditionV2o2()}
+        {QuantumComputingAMathematicalRealityCheckV3o3()}
+        {The50000YearQuantumComputingMythV4o4()}
+        {QuantumComputingsImpossibleNumbersV5o5()}
+        {QuantumComputingsImpossibleMathematicsV6o6()}
+        {WhenMathMeetsPostTruthTheQuantumComputingRealityV7o7()}
+        {QuantumComputingTheEmperorsNewQubitsV8o8()}
+        {QuantumComputingAMathematicalRealityCheckV9o9()}
+        {QuantumComputingTheMathematicsOfImpossibilityV10o10()}
+        {QuantumComputingAndEncryptionAMathematicalAssessmentVo11()}
+        {TheThermodynamicsOfImpossibilityQuantumComputingVsPhyo12()}
+        {QuantumComputingVsPhysicsWhyBreakingEncryptionIsImpoo13()}
     </Book>
 );
 

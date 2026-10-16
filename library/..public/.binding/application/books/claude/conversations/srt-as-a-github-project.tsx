@@ -5,6 +5,8 @@ import Cover from '../../../../../../.claude/.conversations/srt-as-a-github-proj
 import Synopsis from '../../../../../../.claude/.conversations/srt-as-a-github-project/.synopsis';
 import Table from '../../../../../../.claude/.conversations/srt-as-a-github-project/.table';
 import June320261 from '../../../../../../.claude/.conversations/srt-as-a-github-project/1-june-3-2026';
+import June420262 from '../../../../../../.claude/.conversations/srt-as-a-github-project/2-june-4-2026';
+import June520263 from '../../../../../../.claude/.conversations/srt-as-a-github-project/3-june-5-2026';
 
 const Book = $($Book);
 
@@ -14,6 +16,8 @@ export const book = () => (
         {Synopsis()}
         {Table()}
         {June320261()}
+        {June420262()}
+        {June520263()}
     </Book>
 );
 

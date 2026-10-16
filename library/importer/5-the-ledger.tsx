@@ -50,8 +50,9 @@ export default () => (
                 The record stands with the entry, so what I do to a conversation by hand, cutting it, renaming
                 it, striking it from the register, carries its record along or removes it, and the state of the
                 import is never a file apart that can disagree with the books. While the importer is being made
-                it overwrites what it wrote, on a flag said at the run, since the shape of a book is still being
-                decided on <Means>$[[ its page ]]( Dougs Design / The Conversation's Page )</Means>. Once it is
+                it overwrites what it wrote, on a flag said at the run, and removes what it wrote before and no longer
+                writes, my kept edits excepted, since the shape of a book is still being
+                decided on <Means>$[[ its page ]]( Claudes Design / The Conversation's Page )</Means>. Once it is
                 done the flag goes, and a conversation once imported is mine: cut into days or sittings,
                 summarized, annotated, by hand.
             </Paragraph>

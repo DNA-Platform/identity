@@ -4,7 +4,7 @@
   },
   "rendering": {
     "title": "Dougs Library",
-    "budget": 4,
+    "budget": 2,
     "stylesheets": [
       "../../page.css"
     ],

@@ -27,5 +27,20 @@ export default () => (
                 </Word>
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>September 2026</Heading>
+            <Paragraph>
+                <Content>$[[ ./5 September 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./6 September 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./7 September 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./8 September 2026 ]]</Content>
+            </Paragraph>
+        </Section>
     </Chapter>
 );

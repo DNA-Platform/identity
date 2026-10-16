@@ -7,6 +7,11 @@ export type WrittenChapter = {
     title: string;
     tsx: string;
     files: WrittenFile[];
+    day?: string;
+};
+export type WrittenConversation = {
+    chapters: WrittenChapter[];
+    versions: WrittenChapter[];
     thinkingCount: number;
     resultCount: number;
 };
@@ -51,7 +56,9 @@ export const slugFromName = (name: string): string => {
         .replace(/[^\p{L}\p{N}]+/gu, '-')
         .replace(/^-+|-+$/gu, '');
 
-    return slug === '' ? 'untitled' : slug.slice(0, 60);
+    const cut = slug.slice(0, 60).replace(/-+$/u, '');
+
+    return cut === '' ? 'untitled' : cut;
 };
 
 export const titleFromName = (name: string): string => {
@@ -87,157 +94,253 @@ export const appendLines = (appendix: Appendix, depth: number): string[] => [
     `${indentation(depth)}</Append>`,
 ];
 
-export const figureLines = (elementName: string, appendix: Appendix, sentence: string, depth: number): string[] => [
+export const figureLines = (
+    elementName: string,
+    appendix: Appendix,
+    pieces: ProsePiece[],
+    depth: number,
+    attributeLines: string[] = [],
+): string[] => [
     `${indentation(depth)}<${elementName}`,
     `${indentation(depth + 1)}identifier="${appendix.identifier}"`,
     `${indentation(depth + 1)}type="${appendix.type}"`,
+    ...attributeLines.map(attributeLine => `${indentation(depth + 1)}${attributeLine}`),
     `${indentation(depth)}>`,
-    ...proseLines([sentence], depth + 1),
+    ...proseLines(pieces, depth + 1),
     `${indentation(depth)}</${elementName}>`,
 ];
 
-export const writtenChapter = (
+const packageWordList = [
+    'Append', 'Bold', 'Chapter', 'Code', 'Date', 'Emphasis', 'Equation', 'Heading', 'Line', 'List', 'Math', 'Means',
+    'Paragraph', 'Reference', 'Section', 'Table', 'Title', 'Word',
+];
+const manualWordList = ['CodeBox', 'Dated', 'Message', 'Opaque', 'Quoted', 'Speaker', 'Verbatim'];
+const claudeManualWordList = ['Action', 'Artifact', 'Attachment', 'Version'];
+const boxLanguages: Record<string, string> = {
+    tsx: 'typescript', ts: 'typescript', js: 'javascript', mjs: 'javascript', html: 'xml', svg: 'xml',
+    md: 'markdown', sh: 'bash',
+};
+
+const isUsedIn = (lines: string[], elementName: string): boolean => lines.some(line =>
+    line.includes(`<${elementName}>`) || line.includes(`<${elementName} `) || line.trim() === `<${elementName}`);
+
+const importLines = (
+    bodyLines: string[],
+    alwaysPackage: string[],
+    alwaysManual: string[],
+    manualImportPath: string,
+    claudeManualImportPath: string,
+    hasAppendices: boolean,
+): string[] => {
+    const packageImports = packageWordList
+        .filter(word => alwaysPackage.includes(word) || (word === 'Append' ? hasAppendices : isUsedIn(bodyLines, word)));
+    const manualImports = manualWordList.filter(word => alwaysManual.includes(word) || isUsedIn(bodyLines, word));
+    const claudeImports = claudeManualWordList.filter(word => isUsedIn(bodyLines, word));
+
+    return [
+        `import { ${packageImports.join(', ')} } from '@dna-platform/public';`,
+        ...(manualImports.length === 0 ? [] : [`import { ${manualImports.join(', ')} } from '${manualImportPath}';`]),
+        ...(claudeImports.length === 0 ? [] : [`import { ${claudeImports.join(', ')} } from '${claudeManualImportPath}';`]),
+    ];
+};
+
+const chapterText = (imports: string[], chapterLines: string[]): string =>
+    [
+        ...imports, '', 'export default () => (', `${indentation(1)}<Chapter>`, ...chapterLines,
+        `${indentation(1)}</Chapter>`, ');', '',
+    ].join('\n');
+
+const dayNames = (day: string): { title: string; stem: string } => {
+    const [year, month, dayOfMonth] = day.split('-').map(Number);
+    const date = new Date(Date.UTC(year, month - 1, dayOfMonth));
+    const monthName = date.toLocaleString('en-GB', { month: 'long', timeZone: 'UTC' });
+
+    return { title: `${dayOfMonth} ${monthName} ${year}`, stem: `${monthName.toLowerCase()}-${dayOfMonth}-${year}` };
+};
+
+// A version of an artifact is a chapter of its own, a document as writing under an opaque section, code as a code box.
+const versionChapter = (
+    ordinal: number,
+    versionTitle: string,
+    artifactVersion: ArtifactVersion,
+    manualImportPath: string,
+    claudeManualImportPath: string,
+): WrittenChapter => {
+    const extension = fileExtension(artifactVersion.contentType, artifactVersion.title);
+    const isDocument = extension === 'md' || extension === 'txt';
+    const sectionHeading = versionTitle.replace(/ v(\d+)((?:-\d+)?)$/u, ' at version $1$2');
+    const bodyLines = isDocument
+        ? [
+            `${indentation(2)}<Section>`,
+            `${indentation(3)}<Opaque />`,
+            `${indentation(3)}<Heading>${escapedText(sectionHeading)}</Heading>`,
+            ...blockLines(artifactVersion.content, 3),
+            `${indentation(2)}</Section>`,
+        ]
+        : codeLines(boxLanguages[extension] ?? extension, artifactVersion.content, 2);
+    const chapterLines = [
+        `${indentation(2)}<Version />`,
+        `${indentation(2)}<Title>${titleForm(escapedText(versionTitle))}</Title>`,
+        ...bodyLines,
+    ];
+    const imports = importLines(chapterLines, ['Chapter', 'Title'], [], manualImportPath, claudeManualImportPath, false);
+
+    const fileName = `o${ordinal}-${slugFromName(versionTitle)}.tsx`;
+
+    return { fileName, title: versionTitle, tsx: chapterText(imports, chapterLines), files: [] };
+};
+
+export const writtenConversation = (
     conversation: Conversation,
     path: Message[],
     referents: Referents,
     manualImportPath: string,
     claudeManualImportPath: string,
     keptAppendices: Appendix[] = [],
-): WrittenChapter => {
-    const firstDay = path[0]?.sentAt.slice(0, 10) ?? conversation.createdAt.slice(0, 10);
-    const [year, month, day] = firstDay.split('-').map(Number);
-    const monthName = new Date(Date.UTC(year, month - 1, day)).toLocaleString('en-GB', { month: 'long', timeZone: 'UTC' });
-    const title = `${day} ${monthName} ${year}`;
-    const chapterStem = `1-${monthName.toLowerCase()}-${day}-${year}`;
-    const files: WrittenFile[] = [];
-    const appendices: Appendix[] = [];
+): WrittenConversation => {
+    const days: { day: string; messages: Message[] }[] = [];
+    for (const message of path) {
+        const day = message.sentAt.slice(0, 10);
+        const last = days.at(-1);
+        if (last !== undefined && last.day === day) last.messages.push(message);
+        else days.push({ day, messages: [message] });
+    }
+    if (days.length === 0) days.push({ day: conversation.createdAt.slice(0, 10), messages: [] });
     const artifactVersions = new Map<string, ArtifactVersion>();
-    const baseNameCounts = new Map<string, number>();
-    const bodyLines: string[] = [];
+    const versions: WrittenChapter[] = [];
+    const versionTitles = new Set<string>();
     let thinkingCount = 0;
     let resultCount = 0;
 
-    const uniqueBaseName = (baseName: string): string => {
-        const baseNameCount = (baseNameCounts.get(baseName) ?? 0) + 1;
-        baseNameCounts.set(baseName, baseNameCount);
+    const uniqueVersionTitle = (title: string): string => {
+        let versionTitle = title;
+        for (let count = 2; versionTitles.has(versionTitle); count++) versionTitle = `${title}-${count}`;
+        versionTitles.add(versionTitle);
 
-        return baseNameCount === 1 ? baseName : `${baseName}-${baseNameCount}`;
-    };
-    const addFile = (identifier: string, type: string, content: string): Appendix => {
-        const appendix = { identifier, type: `.${type}` };
-        files.push({ name: `${chapterStem}~${identifier}${appendix.type}`, content });
-        appendices.push(appendix);
-
-        return appendix;
-    };
-    const addArtifactFile = (identifier: string, artifactVersion: ArtifactVersion): Appendix =>
-        addFile(identifier, fileExtension(artifactVersion.contentType, artifactVersion.title), artifactVersion.content);
-    const artifactLines = (block: Extract<Block, { type: 'artifact' }>): string[] => {
-        const artifactVersion = artifactVersions.get(block.id)
-            ?? { title: block.title || block.id, contentType: block.contentType, content: '', versionCount: 0 };
-        if (block.command === 'create' || block.command === 'rewrite' || artifactVersion.versionCount === 0)
-            artifactVersion.content = block.content || artifactVersion.content;
-        else if (block.command === 'update' && block.oldText !== '')
-            artifactVersion.content = artifactVersion.content.replace(block.oldText, block.newText);
-        if (block.title !== '')
-            artifactVersion.title = block.title;
-        if (block.contentType !== '')
-            artifactVersion.contentType = block.contentType;
-        artifactVersion.versionCount++;
-        artifactVersions.set(block.id, artifactVersion);
-        const versionIdentifier = `${slugFromName(artifactVersion.title)}.v${artifactVersion.versionCount}`;
-        const appendix = addArtifactFile(versionIdentifier, artifactVersion);
-        const verb = artifactVersion.versionCount === 1 ? 'Made' : block.command === 'rewrite' ? 'Rewrote' : 'Changed';
-        const sentence = `${verb} the artifact “${escapedText(artifactVersion.title)}”`;
-
-        return figureLines('Artifact', appendix, sentence, 3);
-    };
-    const messageBlockLines = (block: Block): string[] => {
-        if (block.type === 'text') return blockLines(block.text, 3);
-        if (block.type === 'action')
-            return elementLines('Action', [escapedText(actionSentence(block.name, block.input))], 3);
-        if (block.type === 'artifact') return artifactLines(block);
-        if (block.type === 'thinking')
-            thinkingCount++;
-        if (block.type === 'results')
-            resultCount++;
-
-        return [];
+        return versionTitle;
     };
 
-    for (const message of path) {
-        bodyLines.push(
-            `${indentation(2)}<Message`,
-            `${indentation(3)}at="${message.sentAt}"`,
-            `${indentation(2)}>`,
-            `${indentation(3)}<Speaker>${speakerReference(message.speaker, referents)}</Speaker>`,
-        );
-        const bodyLengthBefore = bodyLines.length;
-        for (const block of message.blocks)
-            bodyLines.push(...messageBlockLines(block));
-        for (const attachment of message.attachments) {
-            const attachmentExtension = attachment.extension.toLowerCase();
-            const extension = knownExtensions.includes(attachmentExtension) ? attachmentExtension : 'txt';
-            const baseName = uniqueBaseName(slugFromName(attachment.name.replace(/\.[^.]+$/u, '')));
-            const appendix = addFile(baseName, extension, attachment.text);
-            bodyLines.push(...figureLines('Attachment', appendix, `Attached ${fileWords(attachment.name)}`, 3));
-        }
-        for (const uploadName of message.uploads) {
-            const sentence = `Uploaded ${fileWords(uploadName)}, whose content the export does not carry`;
-            bodyLines.push(...elementLines('Attachment', [sentence], 3));
-        }
-        if (bodyLines.length === bodyLengthBefore)
-            bodyLines.push(...elementLines('Paragraph', ['Nothing was written in this message'], 3));
-        bodyLines.push(`${indentation(2)}</Message>`);
-    }
-    for (const artifactVersion of artifactVersions.values())
-        addArtifactFile(slugFromName(artifactVersion.title), artifactVersion);
+    const chapters = days.map(({ day, messages }, dayIndex): WrittenChapter => {
+        const { title, stem } = dayNames(day);
+        const chapterStem = `${dayIndex + 1}-${stem}`;
+        const files: WrittenFile[] = [];
+        const appendices: Appendix[] = [];
+        const baseNameCounts = new Map<string, number>();
+        const bodyLines: string[] = [];
 
-    if (keptAppendices.length > 0) {
-        bodyLines.push(`${indentation(2)}<Section>`, `${indentation(3)}<Heading>As I had it before the re-import</Heading>`);
-        for (const appendix of keptAppendices) {
-            const fileWords = appendix.identifier.replace(/^edited-/u, '').replace(/-(tsx|ts|md|json|txt)$/u, '');
+        const uniqueBaseName = (baseName: string): string => {
+            const baseNameCount = (baseNameCounts.get(baseName) ?? 0) + 1;
+            baseNameCounts.set(baseName, baseNameCount);
+
+            return baseNameCount === 1 ? baseName : `${baseName}-${baseNameCount}`;
+        };
+        const addFile = (identifier: string, type: string, content: string): Appendix => {
+            const appendix = { identifier, type: `.${type}` };
+            files.push({ name: `${chapterStem}~${identifier}${appendix.type}`, content });
+            appendices.push(appendix);
+
+            return appendix;
+        };
+        const addArtifactFile = (identifier: string, artifactVersion: ArtifactVersion): Appendix =>
+            addFile(identifier, fileExtension(artifactVersion.contentType, artifactVersion.title), artifactVersion.content);
+        const artifactLines = (block: Extract<Block, { type: 'artifact' }>): string[] => {
+            const artifactVersion = artifactVersions.get(block.id)
+                ?? { title: block.title || block.id, contentType: block.contentType, content: '', versionCount: 0 };
+            if (block.command === 'create' || block.command === 'rewrite' || artifactVersion.versionCount === 0)
+                artifactVersion.content = block.content || artifactVersion.content;
+            else if (block.command === 'update' && block.oldText !== '')
+                artifactVersion.content = artifactVersion.content.replace(block.oldText, block.newText);
+            if (block.title !== '')
+                artifactVersion.title = block.title;
+            if (block.contentType !== '')
+                artifactVersion.contentType = block.contentType;
+            artifactVersion.versionCount++;
+            artifactVersions.set(block.id, artifactVersion);
+            const versionIdentifier = `${slugFromName(artifactVersion.title)}.v${artifactVersion.versionCount}`;
+            const appendix = addArtifactFile(versionIdentifier, artifactVersion);
+            const plainTitle = titleFromName(artifactVersion.title).replace(/[()[\]{}]/gu, '').replace(/\s+/gu, ' ').trim();
+            const versionName = `${plainTitle} v${artifactVersion.versionCount}`;
+            const versionTitle = uniqueVersionTitle(versionName);
+            const ordinal = versions.length + 1;
+            versions.push(versionChapter(ordinal, versionTitle, artifactVersion, manualImportPath, claudeManualImportPath));
+            const verb = artifactVersion.versionCount === 1 ? 'Made' : block.command === 'rewrite' ? 'Rewrote' : 'Changed';
+            const sentence = `${verb} the artifact “${escapedText(artifactVersion.title)}”`;
+
+            const attributes = [`artifact="${escapedText(block.id)}"`, `place="${slugFromName(versionTitle)}"`];
+
+            return figureLines('Artifact', appendix, [sentence], 3, attributes);
+        };
+        const messageBlockLines = (block: Block): string[] => {
+            if (block.type === 'text') return blockLines(block.text, 3);
+            if (block.type === 'action')
+                return elementLines('Action', [escapedText(actionSentence(block.name, block.input))], 3);
+            if (block.type === 'artifact') return artifactLines(block);
+            if (block.type === 'thinking')
+                thinkingCount++;
+            if (block.type === 'results')
+                resultCount++;
+
+            return [];
+        };
+
+        for (const message of messages) {
             bodyLines.push(
-                `${indentation(3)}<Paragraph>${fileWords}, as I had it:</Paragraph>`,
-                `${indentation(3)}<Code language="tsx">${literalForm(`${appendix.identifier}${appendix.type}`)}</Code>`,
+                `${indentation(2)}<Message`,
+                `${indentation(3)}at="${message.sentAt}"`,
+                `${indentation(2)}>`,
+                `${indentation(3)}<Speaker>${speakerReference(message.speaker, referents)}</Speaker>`,
             );
+            const bodyLengthBefore = bodyLines.length;
+            for (const block of message.blocks)
+                bodyLines.push(...messageBlockLines(block));
+            for (const attachment of message.attachments) {
+                const attachmentExtension = attachment.extension.toLowerCase();
+                const extension = knownExtensions.includes(attachmentExtension) ? attachmentExtension : 'txt';
+                const baseName = uniqueBaseName(slugFromName(attachment.name.replace(/\.[^.]+$/u, '')));
+                const appendix = addFile(baseName, extension, attachment.text);
+                bodyLines.push(...figureLines('Attachment', appendix, [`Attached ${fileWords(attachment.name)}`], 3));
+            }
+            for (const uploadName of message.uploads) {
+                const sentence = `Uploaded ${fileWords(uploadName)}, whose content the export does not carry`;
+                bodyLines.push(...elementLines('Attachment', [sentence], 3));
+            }
+            if (bodyLines.length === bodyLengthBefore)
+                bodyLines.push(...elementLines('Paragraph', ['Nothing was written in this message'], 3));
+            bodyLines.push(`${indentation(2)}</Message>`);
         }
-        bodyLines.push(`${indentation(2)}</Section>`);
-    }
-    const isUsedInBody = (elementName: string): boolean => bodyLines.some(line =>
-        line.includes(`<${elementName}>`) || line.includes(`<${elementName} `) || line.trim() === `<${elementName}`);
-    const alwaysImported = ['Chapter', 'Date', 'Paragraph', 'Title'];
-    const packageWords = [
-        'Append', 'Bold', 'Chapter', 'Code', 'Date', 'Emphasis', 'Equation', 'Heading', 'Line', 'List', 'Math', 'Paragraph',
-        'Reference', 'Section', 'Table', 'Title', 'Word',
-    ];
-    const manualWords = ['Dated', 'Message', 'Quoted', 'Speaker', 'Verbatim'];
-    const claudeManualWords = ['Action', 'Artifact', 'Attachment'];
-    const packageImports = packageWords
-        .filter(word => alwaysImported.includes(word) || (word === 'Append' ? appendices.length > 0 : isUsedInBody(word)));
-    const manualImports = manualWords.filter(word => ['Dated', 'Message', 'Speaker'].includes(word) || isUsedInBody(word));
-    const claudeManualImports = claudeManualWords.filter(isUsedInBody);
-    const claudeImportLine = claudeManualImports.length === 0
-        ? [] : [`import { ${claudeManualImports.join(', ')} } from '${claudeManualImportPath}';`];
-    const tsx = [
-        `import { ${packageImports.join(', ')} } from '@dna-platform/public';`,
-        `import { ${manualImports.join(', ')} } from '${manualImportPath}';`,
-        ...claudeImportLine,
-        '',
-        'export default () => (',
-        `${indentation(1)}<Chapter>`,
-        `${indentation(2)}<Dated>`,
-        `${indentation(3)}<Date>[${title}](${firstDay})</Date>`,
-        `${indentation(2)}</Dated>`,
-        `${indentation(2)}<Title>${titleForm(title)}</Title>`,
-        ...bodyLines,
-        ...appendices.flatMap(appendix => appendLines(appendix, 2)),
-        `${indentation(1)}</Chapter>`,
-        ');',
-        '',
-    ].join('\n');
+        if (dayIndex === days.length - 1)
+            for (const artifactVersion of artifactVersions.values())
+                addArtifactFile(slugFromName(artifactVersion.title), artifactVersion);
 
-    return { fileName: `${chapterStem}.tsx`, title, tsx, files, thinkingCount, resultCount };
+        if (dayIndex === 0 && keptAppendices.length > 0) {
+            const keptHeading = `${indentation(3)}<Heading>As I had it before the re-import</Heading>`;
+            bodyLines.push(`${indentation(2)}<Section>`, keptHeading);
+            for (const appendix of keptAppendices) {
+                const fileWords = appendix.identifier.replace(/^edited-/u, '').replace(/-(tsx|ts|md|json|txt)$/u, '');
+                bodyLines.push(
+                    `${indentation(3)}<Paragraph>${fileWords}, as I had it:</Paragraph>`,
+                    `${indentation(3)}<Code language="tsx">${literalForm(`${appendix.identifier}${appendix.type}`)}</Code>`,
+                );
+            }
+            bodyLines.push(`${indentation(2)}</Section>`);
+        }
+        const chapterLines = [
+            `${indentation(2)}<Dated>`,
+            `${indentation(3)}<Date>[${title}](${day})</Date>`,
+            `${indentation(2)}</Dated>`,
+            `${indentation(2)}<Title>${titleForm(title)}</Title>`,
+            ...bodyLines,
+            ...appendices.flatMap(appendix => appendLines(appendix, 2)),
+        ];
+        const imports = importLines(
+            chapterLines, ['Chapter', 'Date', 'Paragraph', 'Title'], ['Dated', 'Message', 'Speaker'],
+            manualImportPath, claudeManualImportPath, appendices.length > 0,
+        );
+
+        return { fileName: `${chapterStem}.tsx`, title, tsx: chapterText(imports, chapterLines), files, day };
+    });
+
+    return { chapters, versions, thinkingCount, resultCount };
 };
 
 const speakerReference = (speaker: Speaker, referents: Referents): string => referenceForm(speaker, referents[speaker], '$');
@@ -347,16 +450,31 @@ export const blockLines = (text: string, depth: number): string[] => {
     return outputLines;
 };
 
+const notationForm = /=\|>|<\|=\|>|=[a-z']*>|^::/mu;
+
+// A listing stands in the chapter as the lines it is, a template literal whose first line opens it and whose last
+// closes it, so a block of code can be read where it is written.
+const listingLines = (listing: string, depth: number): string[] => {
+    const escaped = listing.replace(/\r\n?/gu, '\n').replace(/\\/gu, '\\\\').replace(/`/gu, '\\`').replace(/\$\{/gu, '\\${');
+    const lines = escaped.split('\n');
+    lines[0] = `${indentation(depth)}{\`${lines[0]}`;
+    lines[lines.length - 1] = `${lines[lines.length - 1]}\`}`;
+
+    return lines;
+};
+
+// A block of code is a code box; one whose language was not named but that reads as SRT notation is named srt.
 const codeLines = (language: string, listing: string, depth: number): string[] => {
-    const listingLine = `${indentation(depth + 1)}{${JSON.stringify(listing)}}`;
-    if (language === '') return [`${indentation(depth)}<Code>`, listingLine, `${indentation(depth)}</Code>`];
+    const named = language !== '' ? language : notationForm.test(listing) ? 'srt' : '';
+    if (named === '')
+        return [`${indentation(depth)}<CodeBox>`, ...listingLines(listing, depth + 1), `${indentation(depth)}</CodeBox>`];
 
     return [
-        `${indentation(depth)}<Code`,
-        `${indentation(depth + 1)}language="${language.replace(/"/gu, '')}"`,
+        `${indentation(depth)}<CodeBox`,
+        `${indentation(depth + 1)}language="${named.replace(/"/gu, '')}"`,
         `${indentation(depth)}>`,
-        listingLine,
-        `${indentation(depth)}</Code>`,
+        ...listingLines(listing, depth + 1),
+        `${indentation(depth)}</CodeBox>`,
     ];
 };
 

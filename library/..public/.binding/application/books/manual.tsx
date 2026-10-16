@@ -35,6 +35,8 @@ import TheJournal28 from '../../../../.manual/28-the-journal';
 import TheConversation29 from '../../../../.manual/29-the-conversation';
 import TheRegister30 from '../../../../.manual/30-the-register';
 import TheProjectManual31 from '../../../../.manual/31-the-project-manual';
+import TheAddress32 from '../../../../.manual/32-the-address';
+import TheCodeBox33 from '../../../../.manual/33-the-code-box';
 import TheKeyo1 from '../../../../.manual/o1-the-key';
 import ATypeOfBooko2 from '../../../../.manual/o2-a-type-of-book';
 import AThemeo3 from '../../../../.manual/o3-a-theme';
@@ -82,6 +84,8 @@ export const book = () => (
         {TheConversation29()}
         {TheRegister30()}
         {TheProjectManual31()}
+        {TheAddress32()}
+        {TheCodeBox33()}
         {TheKeyo1()}
         {ATypeOfBooko2()}
         {AThemeo3()}
