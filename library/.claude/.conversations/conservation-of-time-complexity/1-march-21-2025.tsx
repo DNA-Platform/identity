@@ -223,10 +223,17 @@ export default () => (
                     <Word>
                         <Bold />
                         Quantum Computing (RSA-cracking capability)
-                    </Word>: - Progress from 15 (2001) to 21 (2012) to 35 (2022) shows about 4.17% annual growth rate in
-                    factorization capability - At this rate, reaching 3300 would take approximately 111 years - Estimated
-                    arrival: ~2133
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>
+                        Progress from 15 (2001) to 21 (2012) to 35 (2022) shows about 4.17% annual growth rate in
+                        factorization capability
+                    </Line>
+                    <Line>At this rate, reaching 3300 would take approximately 111 years</Line>
+                    <Line>Estimated arrival: ~2133</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -234,9 +241,14 @@ export default () => (
                     <Word>
                         <Bold />
                         Self-Driving Cars (Level 5 autonomy)
-                    </Word>: - Disengagement rates have improved by about 50% annually - At current rates, Level 5 autonomy
-                    threshold could be reached in ~10 years - Estimated arrival: ~2032
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Disengagement rates have improved by about 50% annually</Line>
+                    <Line>At current rates, Level 5 autonomy threshold could be reached in ~10 years</Line>
+                    <Line>Estimated arrival: ~2032</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -244,9 +256,14 @@ export default () => (
                     <Word>
                         <Bold />
                         Fusion Energy (Commercial power)
-                    </Word>: - Q factor (energy output/input) has grown at ~19% annually - Commercial viability threshold
-                    could be reached in ~19 years - Estimated arrival: ~2041
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Q factor (energy output/input) has grown at ~19% annually</Line>
+                    <Line>Commercial viability threshold could be reached in ~19 years</Line>
+                    <Line>Estimated arrival: ~2041</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 The AI/AGI calculation shows a negative growth rate due to inconsistent benchmarking methods across
@@ -352,10 +369,19 @@ export default () => (
                     <Word>
                         <Bold />
                         Error Rate Requirements
-                    </Word>: - To factorize a 2048-bit RSA number, we need logical error rates of approximately 1.52 ×
-                    10^-16 per operation - With current 1/1000 physical error rates, each logical qubit would require about
-                    112 physical qubits with optimal error correction
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>
+                        To factorize a 2048-bit RSA number, we need logical error rates of approximately 1.52 × 10^-16 per
+                        operation
+                    </Line>
+                    <Line>
+                        With current 1/1000 physical error rates, each logical qubit would require about 112 physical qubits
+                        with optimal error correction
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -363,10 +389,14 @@ export default () => (
                     <Word>
                         <Bold />
                         Factorization Progress Rate
-                    </Word>: - Currently averaging only 0.06 bits/year growth in factorization capability - At this rate,
-                    reaching 2048-bit capability would take approximately 34,676 years - Estimated year of achievement:
-                    36,698 CE
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Currently averaging only 0.06 bits/year growth in factorization capability</Line>
+                    <Line>At this rate, reaching 2048-bit capability would take approximately 34,676 years</Line>
+                    <Line>Estimated year of achievement: 36,698 CE</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -374,10 +404,16 @@ export default () => (
                     <Word>
                         <Bold />
                         The Exponential Wall
-                    </Word>: - Scale-up factor needed from current capability (35) to RSA-2048: 399x - Even with improving
-                    physical error rates by orders of magnitude, the quantum advantage disappears when accounting for error
-                    correction overhead
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Scale-up factor needed from current capability (35) to RSA-2048: 399x</Line>
+                    <Line>
+                        Even with improving physical error rates by orders of magnitude, the quantum advantage disappears
+                        when accounting for error correction overhead
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -385,10 +421,16 @@ export default () => (
                     <Word>
                         <Bold />
                         Practical Reality
-                    </Word>: - The total system (3300 logical qubits × error correction overhead × algorithm depth) results
-                    in approximately 2^58 operations - This approaches or exceeds classical computing requirements, negating
-                    any quantum advantage
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>
+                        The total system (3300 logical qubits × error correction overhead × algorithm depth) results in
+                        approximately 2^58 operations
+                    </Line>
+                    <Line>This approaches or exceeds classical computing requirements, negating any quantum advantage</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 This analysis shows why quantum computing for RSA-breaking isn't just far away—it may be fundamentally
@@ -430,9 +472,15 @@ export default () => (
                     <Word>
                         <Bold />
                         Encryption Standards Growth
-                    </Word>: - RSA key lengths have grown at an average rate of 4.06% annually - Current standard (3072
-                    bits) is projected to increase to 6101 bits by 2040 and 66,594 bits by 2100
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>RSA key lengths have grown at an average rate of 4.06% annually</Line>
+                    <Line>
+                        Current standard (3072 bits) is projected to increase to 6101 bits by 2040 and 66,594 bits by 2100
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -440,13 +488,21 @@ export default () => (
                     <Word>
                         <Bold />
                         Widening Gap
-                    </Word>: - Quantum factoring capability grows at only 0.059 bits/year - Encryption complexity grows at
-                    approximately 4% annually - The gap between quantum capability and encryption complexity is <Word>
-                        <Bold />
-                        actively widening
-                    </Word> - By 2040: RSA at 6101 bits vs. quantum at 6.2 bits (gap: 6094.8 bits) - By 2100: RSA at 66,594
-                    bits vs. quantum at 9.7 bits (gap: 66,584.3 bits)
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Quantum factoring capability grows at only 0.059 bits/year</Line>
+                    <Line>Encryption complexity grows at approximately 4% annually</Line>
+                    <Line>
+                        The gap between quantum capability and encryption complexity is <Word>
+                            <Bold />
+                            actively widening
+                        </Word>
+                    </Line>
+                    <Line>By 2040: RSA at 6101 bits vs. quantum at 6.2 bits (gap: 6094.8 bits)</Line>
+                    <Line>By 2100: RSA at 66,594 bits vs. quantum at 9.7 bits (gap: 66,584.3 bits)</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -454,10 +510,16 @@ export default () => (
                     <Word>
                         <Bold />
                         The Race Timeline
-                    </Word>: - At current rates, quantum computers would break today's 3072-bit encryption around the year
-                    54,080 - Post-quantum cryptography standards are already being finalized (2022-2025) - Widespread
-                    implementation expected by 2028-2030
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>
+                        At current rates, quantum computers would break today's 3072-bit encryption around the year 54,080
+                    </Line>
+                    <Line>Post-quantum cryptography standards are already being finalized (2022-2025)</Line>
+                    <Line>Widespread implementation expected by 2028-2030</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -465,10 +527,19 @@ export default () => (
                     <Word>
                         <Bold />
                         The Final Verdict
-                    </Word>: - Quantum computers won't break even today's encryption standards until 52,052 years after
-                    post-quantum cryptography is widely adopted - Even in the extreme case where quantum progress
-                    accelerated 100x, it would still be centuries behind the cryptographic standards of the time
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>
+                        Quantum computers won't break even today's encryption standards until 52,052 years after
+                        post-quantum cryptography is widely adopted
+                    </Line>
+                    <Line>
+                        Even in the extreme case where quantum progress accelerated 100x, it would still be centuries behind
+                        the cryptographic standards of the time
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 This analysis confirms your point perfectly. We're not just dealing with an exponential scaling problem in
@@ -1417,11 +1488,16 @@ export default () => (
             <Paragraph>
                 <List ordered />
                 <Line>
-                    A detailed step-by-step calculation showing precisely how I arrived at the 52,055 year timeline: -
-                    Converting the factorization progress to bits - Calculating the average annual progress rate - Computing
-                    the gap that needs to be closed - Dividing to find the years needed - Adding to the current year to get
-                    the projected breakthrough year
+                    A detailed step-by-step calculation showing precisely how I arrived at the 52,055 year timeline:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Converting the factorization progress to bits</Line>
+                    <Line>Calculating the average annual progress rate</Line>
+                    <Line>Computing the gap that needs to be closed</Line>
+                    <Line>Dividing to find the years needed</Line>
+                    <Line>Adding to the current year to get the projected breakthrough year</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -1710,13 +1786,16 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <List ordered />
-                <Line>
-                    A comprehensive, formally structured mathematical proof with proper notation showing: - Clear
-                    definitions of variables and functions - Step-by-step derivation of the 52,055 year timeline - Detailed
-                    equations for the exponential error scaling problem - Formal analysis of the computational resources
-                    required for error correction - Comparison with classical computing resources - The conclusion that
-                    quantum advantage is negated by error correction overhead
-                </Line>
+                <Line>A comprehensive, formally structured mathematical proof with proper notation showing:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>Clear definitions of variables and functions</Line>
+                    <Line>Step-by-step derivation of the 52,055 year timeline</Line>
+                    <Line>Detailed equations for the exponential error scaling problem</Line>
+                    <Line>Formal analysis of the computational resources required for error correction</Line>
+                    <Line>Comparison with classical computing resources</Line>
+                    <Line>The conclusion that quantum advantage is negated by error correction overhead</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -1768,10 +1847,14 @@ export default () => (
                     <Word>
                         <Bold />
                         Added factorization success rates
-                    </Word>: I've researched and included the actual success rates from the original experiments: - 2001 NMR
-                    experiment: 48% success rate - 2012 photonic experiment: 29% success rate - 2022 superconducting
-                    processor: 39% success rate
+                    </Word>: I've researched and included the actual success rates from the original experiments:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>2001 NMR experiment: 48% success rate</Line>
+                    <Line>2012 photonic experiment: 29% success rate</Line>
+                    <Line>2022 superconducting processor: 39% success rate</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -1862,9 +1945,13 @@ export default () => (
                         <Bold />
                         Fault rates don't stay constant with scale
                     </Word>. As the number of qubits increases, the fault rate increases exponentially. With current
-                    technologies, this is approximated by: - System-wide fault rate ≈ 1 - (1 - ε)^(N²) - Where ε is the
-                    individual qubit error rate and N is the number of qubits
+                    technologies, this is approximated by:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>System-wide fault rate ≈ 1 - (1 - ε)^(N²)</Line>
+                    <Line>Where ε is the individual qubit error rate and N is the number of qubits</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -1873,9 +1960,13 @@ export default () => (
                         <Bold />
                         The time complexity penalty is enormous
                     </Word>. For an algorithm that needs to be correct, we need to run it multiple times to get the right
-                    answer. The expected number of runs needed is: - Expected runs = 1/P(success) - Where P(success) = (1 -
-                    fault rate)^(operations)
+                    answer. The expected number of runs needed is:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Expected runs = 1/P(success)</Line>
+                    <Line>Where P(success) = (1 - fault rate)^(operations)</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 For Shor's algorithm on an n-bit number, the operations scale as O(n³), meaning the operations needed grow
@@ -2050,21 +2141,34 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <List ordered />
-                <Line>
-                    Broken down the exponential barriers into four clear factors that anyone can understand: - <Word>
-                        <Bold />
-                        Exponential Error Accumulation
-                    </Word>: How errors multiply as qubit count increases - <Word>
-                        <Bold />
-                        Exponential Cooling Requirements
-                    </Word>: Why keeping qubits cold becomes exponentially harder at scale - <Word>
-                        <Bold />
-                        Exponential Error Correction Overhead
-                    </Word>: How error correction creates a massive physical qubit requirement - <Word>
-                        <Bold />
-                        Exponential Verification Problem
-                    </Word>: The challenge of knowing if a quantum computer is working correctly
-                </Line>
+                <Line>Broken down the exponential barriers into four clear factors that anyone can understand:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>
+                        <Word>
+                            <Bold />
+                            Exponential Error Accumulation
+                        </Word>: How errors multiply as qubit count increases
+                    </Line>
+                    <Line>
+                        <Word>
+                            <Bold />
+                            Exponential Cooling Requirements
+                        </Word>: Why keeping qubits cold becomes exponentially harder at scale
+                    </Line>
+                    <Line>
+                        <Word>
+                            <Bold />
+                            Exponential Error Correction Overhead
+                        </Word>: How error correction creates a massive physical qubit requirement
+                    </Line>
+                    <Line>
+                        <Word>
+                            <Bold />
+                            Exponential Verification Problem
+                        </Word>: The challenge of knowing if a quantum computer is working correctly
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -2363,9 +2467,16 @@ export default () => (
                     <Word>
                         <Bold />
                         Breaking 2048-bit RSA with Current Error Rates:
-                    </Word> - N = 4096 logical qubits - G = 2048^2 ≈ 4×10^6 operations - ε = 10^-3 - P(success) =
-                    (0.999)^(4096·4×10^6) ≈ 10^-17804 - R = 10^17804 repetitions needed
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>N = 4096 logical qubits</Line>
+                    <Line>G = 2048^2 ≈ 4×10^6 operations</Line>
+                    <Line>ε = 10^-3</Line>
+                    <Line>P(success) = (0.999)^(4096·4×10^6) ≈ 10^-17804</Line>
+                    <Line>R = 10^17804 repetitions needed</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -2373,10 +2484,16 @@ export default () => (
                     <Word>
                         <Bold />
                         Required Error Rate for Practical Quantum RSA Breaking:
-                    </Word> - Setting R ≤ 10^6 (reasonable repetition limit) - Solving: (1-ε)^(4096·4×10^6) ≥ 10^-6 - Taking
-                    logs: (4096·4×10^6)·log(1-ε) ≥ -6·log(10) - Approximating log(1-ε) ≈ -ε for small ε - ε ≤
-                    6·log(10)/(4096·4×10^6) ≈ 10^-12
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Setting R ≤ 10^6 (reasonable repetition limit)</Line>
+                    <Line>Solving: (1-ε)^(4096·4×10^6) ≥ 10^-6</Line>
+                    <Line>Taking logs: (4096·4×10^6)·log(1-ε) ≥ -6·log(10)</Line>
+                    <Line>Approximating log(1-ε) ≈ -ε for small ε</Line>
+                    <Line>ε ≤ 6·log(10)/(4096·4×10^6) ≈ 10^-12</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -2384,9 +2501,15 @@ export default () => (
                     <Word>
                         <Bold />
                         Physical Qubits Needed for Error Correction:
-                    </Word> - Target logical error rate: δ = 10^-15 - Code distance: d = 2·log(1/δ)/log(1/ε)+1 ≈ 2·15/3+1 =
-                    11 - Physical qubits per logical: d^2 = 121 - Total physical qubits: 4096·121 ≈ 496,000
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Target logical error rate: δ = 10^-15</Line>
+                    <Line>Code distance: d = 2·log(1/δ)/log(1/ε)+1 ≈ 2·15/3+1 = 11</Line>
+                    <Line>Physical qubits per logical: d^2 = 121</Line>
+                    <Line>Total physical qubits: 4096·121 ≈ 496,000</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -2394,9 +2517,14 @@ export default () => (
                     <Word>
                         <Bold />
                         Cooling Power Required:
-                    </Word> - N = 496,000 physical qubits - P_cooling = 10^-12·496,000·exp(0.05·496,000) watts - P_cooling ≈
-                    5×10^-7·exp(24,800) ≈ 5×10^-7·10^10,764 ≈ 5×10^10,757 watts
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>N = 496,000 physical qubits</Line>
+                    <Line>P_cooling = 10^-12·496,000·exp(0.05·496,000) watts</Line>
+                    <Line>P_cooling ≈ 5×10^-7·exp(24,800) ≈ 5×10^-7·10^10,764 ≈ 5×10^10,757 watts</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -2404,8 +2532,13 @@ export default () => (
                     <Word>
                         <Bold />
                         Thermodynamic Limit Comparison:
-                    </Word> - Earth's total energy production: ~10^13 watts - Ratio: P_cooling/Earth_energy ≈ 5×10^10,744
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Earth's total energy production: ~10^13 watts</Line>
+                    <Line>Ratio: P_cooling/Earth_energy ≈ 5×10^10,744</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -2413,10 +2546,15 @@ export default () => (
                     <Word>
                         <Bold />
                         Maintaining 30% Fault Tolerance with 1000-Digit Numbers:
-                    </Word> - 1000 digits ≈ 3322 bits (log2(10^1000)) - Required system error rate: 0.7 (for 30% success) -
-                    Solving for per-qubit error rate: (1-ε)^(6644·3322^2) = 0.7 - ε ≈ -log(0.7)/(6644·3322^2) ≈
-                    0.356/7.3×10^10 ≈ 4.9×10^-12
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>1000 digits ≈ 3322 bits (log2(10^1000))</Line>
+                    <Line>Required system error rate: 0.7 (for 30% success)</Line>
+                    <Line>Solving for per-qubit error rate: (1-ε)^(6644·3322^2) = 0.7</Line>
+                    <Line>ε ≈ -log(0.7)/(6644·3322^2) ≈ 0.356/7.3×10^10 ≈ 4.9×10^-12</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 These calculations demonstrate that current quantum computing faces fundamental barriers from multiple
@@ -2525,10 +2663,17 @@ export default () => (
                     <Word>
                         <Bold />
                         Breaking 2048-bit RSA with Current Error Rates (Kalai Model):
-                    </Word> - N = 4096 logical qubits &#91;5&#93; - G = 2048² ≈ 4×10^6 operations &#91;4&#93; - ε₀ = 10^-3
-                    &#91;3&#93; - α = 0.1 (conservative estimate) &#91;1,2&#93; - P(success) = (0.999)^(0.1·4096²·4×10^6) ≈
-                    (0.999)^(6.7×10^15) ≈ 10^-2.9×10^12 - R = 10^2.9×10^12 repetitions needed (effectively infinite)
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>N = 4096 logical qubits &#91;5&#93;</Line>
+                    <Line>G = 2048² ≈ 4×10^6 operations &#91;4&#93;</Line>
+                    <Line>ε₀ = 10^-3 &#91;3&#93;</Line>
+                    <Line>α = 0.1 (conservative estimate) &#91;1,2&#93;</Line>
+                    <Line>P(success) = (0.999)^(0.1·4096²·4×10^6) ≈ (0.999)^(6.7×10^15) ≈ 10^-2.9×10^12</Line>
+                    <Line>R = 10^2.9×10^12 repetitions needed (effectively infinite)</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -2536,10 +2681,16 @@ export default () => (
                     <Word>
                         <Bold />
                         Required Error Rate for Practical Quantum RSA Breaking:
-                    </Word> - Setting R ≤ 10^6 (reasonable repetition limit) - Solving: (1-ε₀)^(0.1·4096²·4×10^6) ≥ 10^-6 -
-                    Taking logs: (0.1·4096²·4×10^6)·log(1-ε₀) ≥ -6·log(10) - Approximating log(1-ε₀) ≈ -ε₀ for small ε₀ - ε₀
-                    ≤ 6·log(10)/(0.1·4096²·4×10^6) ≈ 10^-17
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Setting R ≤ 10^6 (reasonable repetition limit)</Line>
+                    <Line>Solving: (1-ε₀)^(0.1·4096²·4×10^6) ≥ 10^-6</Line>
+                    <Line>Taking logs: (0.1·4096²·4×10^6)·log(1-ε₀) ≥ -6·log(10)</Line>
+                    <Line>Approximating log(1-ε₀) ≈ -ε₀ for small ε₀</Line>
+                    <Line>ε₀ ≤ 6·log(10)/(0.1·4096²·4×10^6) ≈ 10^-17</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 This is about 14 orders of magnitude better than current technology, and beyond what many physicists believe
@@ -2551,10 +2702,17 @@ export default () => (
                     <Word>
                         <Bold />
                         Physical Qubits Needed for Error Correction (with Kalai Scaling):
-                    </Word> - Target logical error rate: δ = 10^-15 &#91;7&#93; - N = 4096 qubits - Code distance with Kalai
-                    scaling: d = 2·log(1/δ)/log(1/ε₀)·√N+1 - d ≈ 2·15/3·√4096+1 ≈ 10·64+1 ≈ 641 - Physical qubits per
-                    logical: d² = 411,000 - Total physical qubits: 4096·411,000 ≈ 1.68×10^9 (1.68 billion)
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Target logical error rate: δ = 10^-15 &#91;7&#93;</Line>
+                    <Line>N = 4096 qubits</Line>
+                    <Line>Code distance with Kalai scaling: d = 2·log(1/δ)/log(1/ε₀)·√N+1</Line>
+                    <Line>d ≈ 2·15/3·√4096+1 ≈ 10·64+1 ≈ 641</Line>
+                    <Line>Physical qubits per logical: d² = 411,000</Line>
+                    <Line>Total physical qubits: 4096·411,000 ≈ 1.68×10^9 (1.68 billion)</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -2562,9 +2720,14 @@ export default () => (
                     <Word>
                         <Bold />
                         Cooling Power Required:
-                    </Word> - N = 1.68×10^9 physical qubits - P_cooling = 10^-12·1.68×10^9·exp(0.01·(1.68×10^9)²) watts -
-                    P_cooling ≈ 1.68×10^-3·exp(2.8×10^17) ≈ effectively infinite
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>N = 1.68×10^9 physical qubits</Line>
+                    <Line>P_cooling = 10^-12·1.68×10^9·exp(0.01·(1.68×10^9)²) watts</Line>
+                    <Line>P_cooling ≈ 1.68×10^-3·exp(2.8×10^17) ≈ effectively infinite</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -2572,10 +2735,15 @@ export default () => (
                     <Word>
                         <Bold />
                         Maintaining 30% Fault Tolerance with 1000-Digit Numbers:
-                    </Word> - 1000 digits ≈ 3322 bits &#91;log₂(10^1000)&#93; - Required system error rate: 0.7 (for 30%
-                    success) - With Kalai scaling: (1-ε₀)^(0.1·(2·3322)²·3322²) = 0.7 - ε₀ ≈ -log(0.7)/(0.1·(2·3322)²·3322²)
-                    ≈ 0.356/(0.1·4.4×10^14) ≈ 8×10^-17
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>1000 digits ≈ 3322 bits &#91;log₂(10^1000)&#93;</Line>
+                    <Line>Required system error rate: 0.7 (for 30% success)</Line>
+                    <Line>With Kalai scaling: (1-ε₀)^(0.1·(2·3322)²·3322²) = 0.7</Line>
+                    <Line>ε₀ ≈ -log(0.7)/(0.1·(2·3322)²·3322²) ≈ 0.356/(0.1·4.4×10^14) ≈ 8×10^-17</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 These calculations incorporating Gil Kalai's exponential error scaling provide an even stronger case that
@@ -4093,9 +4261,16 @@ export default () => (
                     <Word>
                         <Bold />
                         With Error Rates and Repetitions
-                    </Word>: - Success probability: P(success) = (1-ε)^q where ε is error rate per qubit and q is qubit
-                    count - Expected repetitions: R = 1/P(success) - Total complexity: O(n³) × R
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>
+                        Success probability: P(success) = (1-ε)^q where ε is error rate per qubit and q is qubit count
+                    </Line>
+                    <Line>Expected repetitions: R = 1/P(success)</Line>
+                    <Line>Total complexity: O(n³) × R</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -4160,9 +4335,15 @@ export default () => (
                     <Word>
                         <Bold />
                         Historical Progress Data
-                    </Word>: - 1994: Shor's algorithm proposed (theoretical) - 2001: 15 factored (IBM, NMR approach) - 2012:
-                    21 factored (Photonic quantum computer) - 2022: 35 factored (Superconducting qubits)
+                    </Word>:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>1994: Shor's algorithm proposed (theoretical)</Line>
+                    <Line>2001: 15 factored (IBM, NMR approach)</Line>
+                    <Line>2012: 21 factored (Photonic quantum computer)</Line>
+                    <Line>2022: 35 factored (Superconducting qubits)</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -4244,9 +4425,12 @@ export default () => (
             <Paragraph>
                 <List />
                 <Line>For 2048-bit RSA with error correction:</Line>
-                <Line>Optimistic: ~10 million physical qubits</Line>
-                <Line>Realistic: &gt;100 million physical qubits</Line>
-                <Line>Current largest: ~100-200 qubits</Line>
+                <Paragraph>
+                    <List />
+                    <Line>Optimistic: ~10 million physical qubits</Line>
+                    <Line>Realistic: &gt;100 million physical qubits</Line>
+                    <Line>Current largest: ~100-200 qubits</Line>
+                </Paragraph>
             </Paragraph>
             <Heading>Synthesis and Conclusion</Heading>
             <Paragraph>When we combine the theoretical complexity analysis with empirical progress:</Paragraph>

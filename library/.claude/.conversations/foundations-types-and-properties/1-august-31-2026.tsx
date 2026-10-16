@@ -1379,12 +1379,16 @@ export default () => (
                     whose recorded values admit no further specification is literal there. Another catalogue may specify
                     them.
                 </Line>
-                <Line>
-                    Conditions on specification for tree behaviour: - Irreflexive: nothing specifies itself. Self-instance
-                    is individuality, not specification. - Acyclic on both the specification relation and the value
-                    relation. - Unique immediate type: each instance specifies exactly one type directly. Without this the
-                    structure is a DAG, not a tree. This is the condition that bears on subtyping and needs your ruling.
-                </Line>
+                <Line>Conditions on specification for tree behaviour:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>Irreflexive: nothing specifies itself. Self-instance is individuality, not specification.</Line>
+                    <Line>Acyclic on both the specification relation and the value relation.</Line>
+                    <Line>
+                        Unique immediate type: each instance specifies exactly one type directly. Without this the structure
+                        is a DAG, not a tree. This is the condition that bears on subtyping and needs your ruling.
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <Word>
@@ -3037,42 +3041,58 @@ export default () => (
                         s -(x,y)&gt; t
                     </Word>.
                 </Line>
-                <Line>
-                    Five foundational forms, each an existential with its own shape: 1. relationship: <Word>
-                        <Verbatim />
-                        subject =relationship&gt; object
-                    </Word>, <Word>
-                        <Verbatim />
-                        relationship == (subject, object)
-                    </Word> 2. reference: <Word>
-                        <Verbatim />
-                        reference =reference&gt; referent
-                    </Word>, <Word>
-                        <Verbatim />
-                        reference == (reference, referent)
-                    </Word>, <Word>
-                        <Verbatim />
-                        reference -&gt; relationship
-                    </Word> 3. representation: <Word>
-                        <Verbatim />
-                        representative =representation&gt; representation
-                    </Word>, <Word>
-                        <Verbatim />
-                        representative -&gt; representation -&gt; reference
-                    </Word> 4. identification: <Word>
-                        <Verbatim />
-                        identity =identification&gt; identity
-                    </Word> 5. individuality: <Word>
-                        <Verbatim />
-                        individual =individual&gt; individual
-                    </Word>, <Word>
-                        <Verbatim />
-                        individual == (individual, individual)
-                    </Word>, <Word>
-                        <Verbatim />
-                        individual -&gt; identity
-                    </Word>
-                </Line>
+                <Line>Five foundational forms, each an existential with its own shape:</Line>
+                <Paragraph>
+                    <List ordered />
+                    <Line>
+                        relationship: <Word>
+                            <Verbatim />
+                            subject =relationship&gt; object
+                        </Word>, <Word>
+                            <Verbatim />
+                            relationship == (subject, object)
+                        </Word>
+                    </Line>
+                    <Line>
+                        reference: <Word>
+                            <Verbatim />
+                            reference =reference&gt; referent
+                        </Word>, <Word>
+                            <Verbatim />
+                            reference == (reference, referent)
+                        </Word>, <Word>
+                            <Verbatim />
+                            reference -&gt; relationship
+                        </Word>
+                    </Line>
+                    <Line>
+                        representation: <Word>
+                            <Verbatim />
+                            representative =representation&gt; representation
+                        </Word>, <Word>
+                            <Verbatim />
+                            representative -&gt; representation -&gt; reference
+                        </Word>
+                    </Line>
+                    <Line>
+                        identification: <Word>
+                            <Verbatim />
+                            identity =identification&gt; identity
+                        </Word>
+                    </Line>
+                    <Line>
+                        individuality: <Word>
+                            <Verbatim />
+                            individual =individual&gt; individual
+                        </Word>, <Word>
+                            <Verbatim />
+                            individual == (individual, individual)
+                        </Word>, <Word>
+                            <Verbatim />
+                            individual -&gt; identity
+                        </Word>
+                    </Line>
+                </Paragraph>
                 <Line>
                     The dichotomy apparatus, and the fundamental dichotomy: <Word>
                         <Verbatim />

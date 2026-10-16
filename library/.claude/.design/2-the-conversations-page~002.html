@@ -13,8 +13,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <style>
-    /* ---- concept 2: a conversation as the application shows it, in the library's frame; nothing reinvented ---- */
-    :root { --paper: #ffffff; --side: #f9fafc; --bar: #ffffff; --ink: #343c4a; --head: #1a1f36; --soft: #727d8c; --faint: #9ea8b5; --line: #e4e9f2; --accent: #166178; --sea: #4e9eb9;
+    /* ---- concept 2: a conversation as the application shows it, in the library's frame; nothing reinvented; white everywhere, a tint only in the last pixels before an edge ---- */
+    :root { --paper: #ffffff; --side: #fbfcfd; --bar: #ffffff; --ink: #343c4a; --head: #1a1f36; --soft: #727d8c; --faint: #9ea8b5; --line: #e4e9f2; --accent: #166178; --sea: #4e9eb9;
         --tint: rgba(11, 11, 11, .05); --serif: 'Source Serif 4', Georgia, serif; --sans: 'Inter', system-ui, sans-serif; --mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
         --keyword: #1f5fbf; --string: #9a3b1e; --type: #116b4a; --comment: #7a8491;
         --holds: 240px; --bar-h: 52px; }
@@ -28,8 +28,8 @@
     [hidden] { display: none !important; }
 
     /* ---- the bar, as the journal's: the marks and the name on near-white, me at the right ---- */
-    .pd-library { grid-area: library; display: flex; align-items: center; gap: 10px; padding: 0 18px; background: linear-gradient(180deg, #ffffff, #f8fafd); border-bottom: 1px solid var(--line); }
-    .pd-me { grid-area: library; justify-self: end; z-index: 1; display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding: 0 20px; background: linear-gradient(180deg, #fcfcfd, #f2f4f9); border-bottom: 1px solid var(--line); font-size: 13px; color: var(--soft); }
+    .pd-library { grid-area: library; display: flex; align-items: center; gap: 10px; padding: 0 18px; background: linear-gradient(180deg, #ffffff 0%, #ffffff 84%, #fbfcfe 100%); border-bottom: 1px solid var(--line); }
+    .pd-me { grid-area: library; justify-self: end; z-index: 1; display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding: 0 20px; background: linear-gradient(180deg, #ffffff 0%, #ffffff 84%, #fbfcfe 100%); border-bottom: 1px solid var(--line); font-size: 13px; color: var(--soft); }
     .pd-logo { display: flex; align-items: center; gap: 6px; }
     .pd-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 6px; background: #c0c9df; }
     .pd-mark .pd-drawing svg { width: 24px; height: 24px; stroke: #2a3a63; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -42,18 +42,18 @@
     .pd-me .pd-project-line { display: flex; gap: 6px; align-items: center; } .pd-me .pd-project-line .pa-reference { color: var(--accent); }
 
     /* ---- the side: the days as the parts of the conversation, the journal's guide ---- */
-    .pd-holds { grid-area: holds; overflow: auto; padding: 18px 0 20px; background: linear-gradient(90deg, #fdfdfe, #f7f9fc); border-right: 1px solid var(--line); font-size: 13px; }
+    .pd-holds { grid-area: holds; overflow: auto; padding: 18px 0 20px; background: linear-gradient(90deg, #ffffff 0%, #ffffff 88%, #fbfcfe 100%); border-right: 1px solid var(--line); font-size: 13px; }
     .pd-holds .pd-title, .pd-holds .pa-parenthetical, .pd-holds .pd-tree-root, .pd-holds .pd-heading { display: none; }
     .pd-holds .pd-section { margin: 0 0 14px; }
     .pd-holds .pd-day { display: flex; align-items: center; gap: 9px; padding: 6px 18px 6px 16px; color: var(--ink); cursor: pointer; }
     .pd-holds .pd-day::before { content: ''; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--sea); }
     .pd-holds .pd-day small { margin-left: auto; color: var(--faint); font-size: 11px; }
-    .pd-holds .pd-day:hover { background: #f3f6fb; } .pd-holds .pd-day.pa-open { background: linear-gradient(90deg, #e6edf7, #f0f4fa); color: var(--head); font-weight: 500; }
+    .pd-holds .pd-day:hover { background: #f8fafc; } .pd-holds .pd-day.pa-open { background: linear-gradient(90deg, #eff4fa, #f8fafd); color: var(--head); font-weight: 500; }
     .pd-holds .pd-came-to-row { display: flex; align-items: center; gap: 9px; margin: 0 0 10px; padding: 6px 18px 6px 16px; color: var(--soft); font-style: italic; cursor: pointer; }
     .pd-holds .pd-came-to-row::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--faint); }
 
     /* ---- the head: the way back when there is one, the title, who took part in the byline's form, the report ---- */
-    .pd-head { grid-area: head; display: grid; gap: 6px; align-items: end; padding: 18px 36px 14px; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 6px 18px rgba(43, 54, 60, .04); }
+    .pd-head { grid-area: head; display: grid; gap: 6px; align-items: end; padding: 18px 36px 14px; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: 0 8px 22px rgba(43, 54, 60, .025); }
     .pd-head header, .pd-head header > .pd-scheme, .pd-head .pd-chapter.pa-cover { display: contents; }
     .pd-head .pd-switches, .pd-head .pa-illustration { display: none; }
     .pd-head .pd-back { grid-row: 1; display: inline-flex; align-items: center; gap: 6px; width: fit-content; font-size: 12.5px; color: var(--accent); }

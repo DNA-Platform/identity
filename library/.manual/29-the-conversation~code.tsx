@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import {
-    $Annotation, $Chapter, $Cover, $Date, $Heading, $Means, $Paragraph, $Referent, $Section, $Word, $Writing,
+    $Annotation, $Chapter, $Cover, $Date, $Heading, $Means, $Paragraph, $Referent, $Section, $SelfReference, $Word, $Writing,
     AnnotationSpecification, Referent as referent, SectionSpecification, identifier, specify,
 } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
@@ -119,6 +119,13 @@ export class $Message extends $Section {
                 <Mine />
             );
         }
+        for (const heading of this.text.find($Heading))
+            if (!(heading instanceof $Speaker)) {
+                const referent = heading.annotations.expressed($Referent);
+                const self = heading.annotations.expressed($SelfReference);
+                for (const annotation of [referent, self])
+                    if (annotation !== undefined) heading.annotations.remove(heading, annotation);
+            }
         super.$Bound();
     }
 }

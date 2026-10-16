@@ -24,7 +24,7 @@ const start = html.indexOf('<div id="root">');
 const root = html.slice(start, html.indexOf('<script', start));
 // the framework's names stay; a styled component's hash goes; a picture's address is made relative to the page
 const clean = (markup) => markup
-    .replace(/ class="([^"]*)"/gu, (m, c) => { const kept = c.split(' ').filter(x => /^p[ad]-/u.test(x)); return kept.length ? ` class="${kept.join(' ')}"` : ''; })
+    .replace(/ class="([^"]*)"/gu, (m, c) => { const kept = c.split(' ').filter(x => /^(p[ad]-|hljs|language-)/u.test(x)); return kept.length ? ` class="${kept.join(' ')}"` : ''; })
     .replace(/ src="\/([^/"]+)\/([^"]*)"/gu, (m, folder, file) => ` src="${relative(dirname(page), join(library, folder)).replace(/\\/gu, '/') || '.'}/${file}"`)
     .replace(/<!--\$-->|<!--\/\$-->/gu, '');
 // one element, balanced, from its opening tag

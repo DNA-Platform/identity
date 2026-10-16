@@ -313,18 +313,22 @@ export const blockLines = (text: string, depth: number): string[] => {
             outputLines.push(...tableLines(tableRows, depth));
             continue;
         }
-        const listForm = bulletForm.test(line) ? bulletForm : numberedForm.test(line) ? numberedForm : undefined;
-        if (listForm !== undefined) {
-            const listItems: string[] = [];
+        if (bulletForm.test(line) || numberedForm.test(line)) {
+            const listItems: ListItem[] = [];
             const isContinuation = (nextLine: string): boolean =>
                 listItems.length > 0 && nextLine.trim() !== '' && /^\s{2,}/u.test(nextLine);
-            while (lineIndex < lines.length && (listForm.test(lines[lineIndex]) || isContinuation(lines[lineIndex]))) {
-                if (listForm.test(lines[lineIndex]))
-                    listItems.push(lines[lineIndex++].replace(listForm, ''));
-                else
-                    listItems[listItems.length - 1] += ` ${lines[lineIndex++].trim()}`;
+            const isItem = (nextLine: string): boolean => bulletForm.test(nextLine) || numberedForm.test(nextLine);
+            while (lineIndex < lines.length && (isItem(lines[lineIndex]) || isContinuation(lines[lineIndex]))) {
+                if (isItem(lines[lineIndex])) {
+                    const itemLine = lines[lineIndex++];
+                    const indent = itemLine.length - itemLine.trimStart().length;
+                    const ordered = numberedForm.test(itemLine);
+                    const text = itemLine.replace(ordered ? numberedForm : bulletForm, '');
+                    listItems.push({ indent, ordered, text, items: [] });
+                } else
+                    listItems[listItems.length - 1].text += ` ${lines[lineIndex++].trim()}`;
             }
-            outputLines.push(...listLines(listItems, listForm === numberedForm, depth));
+            outputLines.push(...listLines(nestedItems(listItems), depth));
             continue;
         }
         if (quoteForm.test(line)) {
@@ -369,11 +373,29 @@ const tableLines = (tableRows: string[][], depth: number): string[] => {
     return outputLines;
 };
 
-const listLines = (listItems: string[], ordered: boolean, depth: number): string[] => {
-    const listElement = `<List${ordered ? ' ordered' : ''} />`;
+type ListItem = { indent: number; ordered: boolean; text: string; items: ListItem[] };
+
+// Items indented under an item are its own list, as deep as the markdown nests them.
+const nestedItems = (flatItems: ListItem[]): ListItem[] => {
+    const topItems: ListItem[] = [];
+    const open: ListItem[] = [];
+    for (const item of flatItems) {
+        while (open.length > 0 && open[open.length - 1].indent >= item.indent) open.pop();
+        (open.length === 0 ? topItems : open[open.length - 1].items).push(item);
+        open.push(item);
+    }
+
+    return topItems;
+};
+
+// A list is a paragraph said to be a list, its items lines; a nested list is a paragraph inside it, one deeper.
+const listLines = (listItems: ListItem[], depth: number): string[] => {
+    const listElement = `<List${listItems[0]?.ordered ? ' ordered' : ''} />`;
     const outputLines = [`${indentation(depth)}<Paragraph>`, `${indentation(depth + 1)}${listElement}`];
-    for (const listItem of listItems)
-        outputLines.push(...elementLines('Line', inlinePieces(listItem.trim()), depth + 1));
+    for (const listItem of listItems) {
+        outputLines.push(...elementLines('Line', inlinePieces(listItem.text.trim()), depth + 1));
+        if (listItem.items.length > 0) outputLines.push(...listLines(listItem.items, depth + 1));
+    }
     outputLines.push(`${indentation(depth)}</Paragraph>`);
 
     return outputLines;
@@ -384,6 +406,8 @@ const markedWordLines = (markName: string, text: string): string[] =>
 
 const inlineForms: [RegExp, (innerText: string) => ProsePiece][] = [
     [/\$\$([^$]+?)\$\$/gu, innerText => [`<Equation>{${JSON.stringify(innerText.trim())}}</Equation>`]],
+    [/\\\[([\s\S]+?)\\\]/gu, innerText => [`<Equation>{${JSON.stringify(innerText.trim())}}</Equation>`]],
+    [/\\\(([^\n]+?)\\\)/gu, innerText => [`<Math>{${JSON.stringify(innerText.trim())}}</Math>`]],
     [/`([^`\n]+?)`/gu, innerText => markedWordLines('Verbatim', innerText)],
     [/\*\*(.+?)\*\*/gu, innerText => markedWordLines('Bold', innerText)],
     [/(?<![\w*])\*([^*\n]+?)\*(?!\*)/gu, innerText => markedWordLines('Emphasis', innerText)],

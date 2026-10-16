@@ -20,10 +20,10 @@ export default () => (
             <Paragraph>
                 <Question />
                 What was open on page 001: my words in the application's grey or in my colour, and where a file
-                opens. What is open on page 002, each a thing to say by its place: the hour of a message shown
-                only on hover; the word before who took part; what it came to above the first day; and the pane's
-                foot, a version with its arrows, a download and a publish, which the application has and this
-                library may not need.
+                opens. What was open on page 002, each a thing to say by its place, and each answered as 002 has
+                it on 16 October 2026: the hour of a message shown only on hover; the word before who took part,
+                between; what it came to above the first day; and the pane's foot, the version with its arrows,
+                a download and a publish, as the application's.
             </Paragraph>
             <Paragraph>
                 <Answer />
@@ -48,6 +48,11 @@ export default () => (
                 We can remove the option, I want the document to open the same way it does in the Claude app, to
                 the side. But can you please try to get the interaction the same as is in the app. It's not quite
                 right yet.
+            </Paragraph>
+            <Paragraph>
+                <Answer />
+                This looks phenomenal. Whiten up the header. It's still a sad grey, and make those gradients much
+                more subtle, nuanced, at the edges, at the edge of perception, clean, artful, and we have it.
             </Paragraph>
         </Section>
         <Section>
@@ -95,7 +100,9 @@ export default () => (
                 code, the version with its arrows and the tools at the foot; the pressed card is marked, and a
                 second press, or the close, shuts it. My uploads are chips at the head of my own words, as the
                 application shows them, and open in the same pane. On a phone the pane covers the words. No
-                switch is left on the page.
+                switch is left on the page. After his word on the whites, the bar, the side and the head are
+                white across their whole surface, and a tint stands only in the last pixels before an edge, the
+                bar's foot, the side's right edge, the open day's row a breath lighter: the page he said we have.
             </Paragraph>
             <Paragraph>
                 <Desk />

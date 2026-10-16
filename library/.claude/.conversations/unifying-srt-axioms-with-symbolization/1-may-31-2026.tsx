@@ -6698,17 +6698,26 @@ export default () => (
                     <Word>
                         <Bold />
                         Specification does not give, and must be added:
-                    </Word> 1. <Word>
-                        <Bold />
-                        Extensionality
-                    </Word> — <Word>
-                        <Verbatim />
-                        (same pairs) =|&gt; s == s'
-                    </Word>. Converts coextension into uniqueness. (Your forward/injective leg.) 2. <Word>
-                        <Bold />
-                        Pair-recovery
-                    </Word> — same most-specific ⇒ same pair. (Your backward leg.)
+                    </Word>
                 </Line>
+                <Paragraph>
+                    <List ordered />
+                    <Line>
+                        <Word>
+                            <Bold />
+                            Extensionality
+                        </Word> — <Word>
+                            <Verbatim />
+                            (same pairs) =|&gt; s == s'
+                        </Word>. Converts coextension into uniqueness. (Your forward/injective leg.)
+                    </Line>
+                    <Line>
+                        <Word>
+                            <Bold />
+                            Pair-recovery
+                        </Word> — same most-specific ⇒ same pair. (Your backward leg.)
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 And these two added principles are <Word>

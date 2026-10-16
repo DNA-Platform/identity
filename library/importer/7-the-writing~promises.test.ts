@@ -46,12 +46,27 @@ describe('the writing', () => {
             .toEqual(['<Paragraph>', '    (<Word>', '        <Bold />', '        bold', '    </Word>)', '</Paragraph>']);
     });
 
-    it('reads a formula between dollars as one element, and never the span between two dollar-named words', () => {
+    it('reads a formula between dollars or TeX brackets, never the span between dollar-named words', () => {
         expect(inlinePieces('the sum $a+b$ is')).toEqual(['the sum ', ['<Math>{"a+b"}</Math>'], ' is']);
+        expect(inlinePieces('the sum \\(a+b\\) is'))
+            .toEqual(['the sum ', ['<Math>{"a+b"}</Math>'], ' is']);
+        expect(inlinePieces('so \\[E = mc^2\\] holds'))
+            .toEqual(['so ', ['<Equation>{"E = mc^2"}</Equation>'], ' holds']);
         const named = inlinePieces('depends on $Chemistry, where `$Chemistry` lives, and a $Chemical draws');
         expect(named.filter(piece => Array.isArray(piece) && piece[0].startsWith('<Math>'))).toEqual([]);
     });
 
+    it('nests a list indented under an item as a paragraph of its own inside the list, one deeper', () => {
+        const lines = blockLines('- one\n  - one a\n  - one b\n- two\n  1. two a', 0);
+        expect(lines).toEqual([
+            '<Paragraph>', '    <List />', '    <Line>one</Line>',
+            '    <Paragraph>', '        <List />', '        <Line>one a</Line>', '        <Line>one b</Line>',
+            '    </Paragraph>',
+            '    <Line>two</Line>',
+            '    <Paragraph>', '        <List ordered />', '        <Line>two a</Line>', '    </Paragraph>',
+            '</Paragraph>',
+        ]);
+    });
     it("turns headings, lists, code and tables into the library's elements", () => {
         const markdown = '# Heading\n\n- one\n- two\n\n```ts\nlet x = 1;\n```\n\n| a | b |\n|---|---|\n| 1 | 2 |';
         const lines = blockLines(markdown, 0);

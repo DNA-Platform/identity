@@ -379,15 +379,24 @@ export default () => (
                 <List ordered />
                 <Line>
                     The key insight from Gödel's second incompleteness theorem is that G is provably equivalent to Con(T)
-                    within T. Specifically: * T ⊢ G ↔ Con(T)
+                    within T. Specifically:
                 </Line>
-                <Line>This means: *   T ⊢ ¬G ↔ ¬Con(T)</Line>
-                <Line>
-                    Now in T ∪ &#123;¬G&#125;: <Word>
-                        <Emphasis />
-                           We have ¬G as an axiom, so T ∪ &#123;¬G&#125; ⊢ ¬G 
-                    </Word> From step 2, T ⊢ ¬G ↔ ¬Con(T) * Therefore, T ∪ &#123;¬G&#125; ⊢ ¬Con(T)
-                </Line>
+                <Paragraph>
+                    <List />
+                    <Line>T ⊢ G ↔ Con(T)</Line>
+                </Paragraph>
+                <Line>This means:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>T ⊢ ¬G ↔ ¬Con(T)</Line>
+                </Paragraph>
+                <Line>Now in T ∪ &#123;¬G&#125;:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>We have ¬G as an axiom, so T ∪ &#123;¬G&#125; ⊢ ¬G</Line>
+                    <Line>From step 2, T ⊢ ¬G ↔ ¬Con(T)</Line>
+                    <Line>Therefore, T ∪ &#123;¬G&#125; ⊢ ¬Con(T)</Line>
+                </Paragraph>
             </Paragraph>
             <Heading>Explanation</Heading>
             <Paragraph>
@@ -402,21 +411,27 @@ export default () => (
             <Heading>Proof Sketch</Heading>
             <Paragraph>
                 <List ordered />
-                <Line>
-                    For the direction Con(T ∪ &#123;G&#125;) → Con(T): <Word>
-                        <Emphasis />
-                           If T ∪ &#123;G&#125; is consistent, then T must be consistent 
-                    </Word> This is because any proof in T is also a valid proof in T ∪ &#123;G&#125;
-                </Line>
-                <Line>
-                    For the direction Con(T) → Con(T ∪ &#123;G&#125;): <Word>
-                        <Emphasis />
-                           From the First Transductive Consistency Theorem, we know T ∪ &#123;¬G&#125; ⊢ ¬Con(T) 
-                    </Word> By the Transductive Dichotomy Lemma, if T ∪ &#123;¬G&#125; implies inconsistency, then T ∪
-                    &#123;G&#125; cannot imply inconsistency when T is consistent * Therefore, if T is consistent, T ∪
-                    &#123;G&#125; must also be consistent
-                </Line>
-                <Line>Combining these results: *   Con(T) ↔ Con(T ∪ &#123;G&#125;)</Line>
+                <Line>For the direction Con(T ∪ &#123;G&#125;) → Con(T):</Line>
+                <Paragraph>
+                    <List />
+                    <Line>If T ∪ &#123;G&#125; is consistent, then T must be consistent</Line>
+                    <Line>This is because any proof in T is also a valid proof in T ∪ &#123;G&#125;</Line>
+                </Paragraph>
+                <Line>For the direction Con(T) → Con(T ∪ &#123;G&#125;):</Line>
+                <Paragraph>
+                    <List />
+                    <Line>From the First Transductive Consistency Theorem, we know T ∪ &#123;¬G&#125; ⊢ ¬Con(T)</Line>
+                    <Line>
+                        By the Transductive Dichotomy Lemma, if T ∪ &#123;¬G&#125; implies inconsistency, then T ∪
+                        &#123;G&#125; cannot imply inconsistency when T is consistent
+                    </Line>
+                    <Line>Therefore, if T is consistent, T ∪ &#123;G&#125; must also be consistent</Line>
+                </Paragraph>
+                <Line>Combining these results:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>Con(T) ↔ Con(T ∪ &#123;G&#125;)</Line>
+                </Paragraph>
             </Paragraph>
             <Heading>Explanation</Heading>
             <Paragraph>
@@ -1229,10 +1244,13 @@ export default () => (
             <Paragraph>Claude: Here's how it works formally within a theory T:</Paragraph>
             <Paragraph>
                 <List ordered />
-                <Line>
-                    To prove A → B in T, we can: - Assume A as a temporary assumption - Use this assumption along with other
-                    axioms and theorems to derive B - Discharge the assumption and conclude A → B
-                </Line>
+                <Line>To prove A → B in T, we can:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>Assume A as a temporary assumption</Line>
+                    <Line>Use this assumption along with other axioms and theorems to derive B</Line>
+                    <Line>Discharge the assumption and conclude A → B</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 Claude: You're completely right that if we already have a proof of B in T (that is, T ⊢ B), then we can
@@ -1353,10 +1371,15 @@ export default () => (
                 <List ordered />
                 <Line>
                     The second half goes into depth on first-order theories, with Peano Arithmetic (PA) serving as the
-                    primary case study. This section includes: - The complete axiomatization of PA - Examples of formal
-                    proofs within PA (like proving the commutativity of addition) - A thorough explanation of Gödel's
-                    incompleteness theorems in the context of PA - Discussion of the standard and non-standard models of PA
+                    primary case study. This section includes:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>The complete axiomatization of PA</Line>
+                    <Line>Examples of formal proofs within PA (like proving the commutativity of addition)</Line>
+                    <Line>A thorough explanation of Gödel's incompleteness theorems in the context of PA</Line>
+                    <Line>Discussion of the standard and non-standard models of PA</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -1773,15 +1796,24 @@ export default () => (
                 <List ordered />
                 <Line>
                     The key insight from Gödel's second incompleteness theorem is that G is provably equivalent to Con(T)
-                    within T. Specifically: * T ⊢ G ↔ Con(T)
+                    within T. Specifically:
                 </Line>
-                <Line>This means: *   T ⊢ ¬G ↔ ¬Con(T)</Line>
-                <Line>
-                    Now in T ∪ &#123;¬G&#125;: <Word>
-                        <Emphasis />
-                           We have ¬G as an axiom, so T ∪ &#123;¬G&#125; ⊢ ¬G 
-                    </Word> From step 2, T ⊢ ¬G ↔ ¬Con(T) * Therefore, T ∪ &#123;¬G&#125; ⊢ ¬Con(T)
-                </Line>
+                <Paragraph>
+                    <List />
+                    <Line>T ⊢ G ↔ Con(T)</Line>
+                </Paragraph>
+                <Line>This means:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>T ⊢ ¬G ↔ ¬Con(T)</Line>
+                </Paragraph>
+                <Line>Now in T ∪ &#123;¬G&#125;:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>We have ¬G as an axiom, so T ∪ &#123;¬G&#125; ⊢ ¬G</Line>
+                    <Line>From step 2, T ⊢ ¬G ↔ ¬Con(T)</Line>
+                    <Line>Therefore, T ∪ &#123;¬G&#125; ⊢ ¬Con(T)</Line>
+                </Paragraph>
             </Paragraph>
             <Heading>Explanation</Heading>
             <Paragraph>
@@ -1796,21 +1828,27 @@ export default () => (
             <Heading>Proof Sketch</Heading>
             <Paragraph>
                 <List ordered />
-                <Line>
-                    For the direction Con(T ∪ &#123;G&#125;) → Con(T): <Word>
-                        <Emphasis />
-                           If T ∪ &#123;G&#125; is consistent, then T must be consistent 
-                    </Word> This is because any proof in T is also a valid proof in T ∪ &#123;G&#125;
-                </Line>
-                <Line>
-                    For the direction Con(T) → Con(T ∪ &#123;G&#125;): <Word>
-                        <Emphasis />
-                           From the First Transductive Consistency Theorem, we know T ∪ &#123;¬G&#125; ⊢ ¬Con(T) 
-                    </Word> By the Transductive Dichotomy Lemma, if T ∪ &#123;¬G&#125; implies inconsistency, then T ∪
-                    &#123;G&#125; cannot imply inconsistency when T is consistent * Therefore, if T is consistent, T ∪
-                    &#123;G&#125; must also be consistent
-                </Line>
-                <Line>Combining these results: *   Con(T) ↔ Con(T ∪ &#123;G&#125;)</Line>
+                <Line>For the direction Con(T ∪ &#123;G&#125;) → Con(T):</Line>
+                <Paragraph>
+                    <List />
+                    <Line>If T ∪ &#123;G&#125; is consistent, then T must be consistent</Line>
+                    <Line>This is because any proof in T is also a valid proof in T ∪ &#123;G&#125;</Line>
+                </Paragraph>
+                <Line>For the direction Con(T) → Con(T ∪ &#123;G&#125;):</Line>
+                <Paragraph>
+                    <List />
+                    <Line>From the First Transductive Consistency Theorem, we know T ∪ &#123;¬G&#125; ⊢ ¬Con(T)</Line>
+                    <Line>
+                        By the Transductive Dichotomy Lemma, if T ∪ &#123;¬G&#125; implies inconsistency, then T ∪
+                        &#123;G&#125; cannot imply inconsistency when T is consistent
+                    </Line>
+                    <Line>Therefore, if T is consistent, T ∪ &#123;G&#125; must also be consistent</Line>
+                </Paragraph>
+                <Line>Combining these results:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>Con(T) ↔ Con(T ∪ &#123;G&#125;)</Line>
+                </Paragraph>
             </Paragraph>
             <Heading>Explanation</Heading>
             <Paragraph>
@@ -2007,15 +2045,24 @@ export default () => (
                 <List ordered />
                 <Line>
                     The key insight from Gödel's second incompleteness theorem is that G is provably equivalent to Con(T)
-                    within T. Specifically: * T ⊢ G ↔ Con(T)
+                    within T. Specifically:
                 </Line>
-                <Line>This means: *   T ⊢ ¬G ↔ ¬Con(T)</Line>
-                <Line>
-                    Now in T ∪ &#123;¬G&#125;: <Word>
-                        <Emphasis />
-                           We have ¬G as an axiom, so T ∪ &#123;¬G&#125; ⊢ ¬G 
-                    </Word> From step 2, T ⊢ ¬G ↔ ¬Con(T) * Therefore, T ∪ &#123;¬G&#125; ⊢ ¬Con(T)
-                </Line>
+                <Paragraph>
+                    <List />
+                    <Line>T ⊢ G ↔ Con(T)</Line>
+                </Paragraph>
+                <Line>This means:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>T ⊢ ¬G ↔ ¬Con(T)</Line>
+                </Paragraph>
+                <Line>Now in T ∪ &#123;¬G&#125;:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>We have ¬G as an axiom, so T ∪ &#123;¬G&#125; ⊢ ¬G</Line>
+                    <Line>From step 2, T ⊢ ¬G ↔ ¬Con(T)</Line>
+                    <Line>Therefore, T ∪ &#123;¬G&#125; ⊢ ¬Con(T)</Line>
+                </Paragraph>
             </Paragraph>
             <Heading>Explanation</Heading>
             <Paragraph>
@@ -2030,21 +2077,27 @@ export default () => (
             <Heading>Proof Sketch</Heading>
             <Paragraph>
                 <List ordered />
-                <Line>
-                    For the direction Con(T ∪ &#123;G&#125;) → Con(T): <Word>
-                        <Emphasis />
-                           If T ∪ &#123;G&#125; is consistent, then T must be consistent 
-                    </Word> This is because any proof in T is also a valid proof in T ∪ &#123;G&#125;
-                </Line>
-                <Line>
-                    For the direction Con(T) → Con(T ∪ &#123;G&#125;): <Word>
-                        <Emphasis />
-                           From the First Transductive Consistency Theorem, we know T ∪ &#123;¬G&#125; ⊢ ¬Con(T) 
-                    </Word> By the Transductive Dichotomy Lemma, if T ∪ &#123;¬G&#125; implies inconsistency, then T ∪
-                    &#123;G&#125; cannot imply inconsistency when T is consistent * Therefore, if T is consistent, T ∪
-                    &#123;G&#125; must also be consistent
-                </Line>
-                <Line>Combining these results: *   Con(T) ↔ Con(T ∪ &#123;G&#125;)</Line>
+                <Line>For the direction Con(T ∪ &#123;G&#125;) → Con(T):</Line>
+                <Paragraph>
+                    <List />
+                    <Line>If T ∪ &#123;G&#125; is consistent, then T must be consistent</Line>
+                    <Line>This is because any proof in T is also a valid proof in T ∪ &#123;G&#125;</Line>
+                </Paragraph>
+                <Line>For the direction Con(T) → Con(T ∪ &#123;G&#125;):</Line>
+                <Paragraph>
+                    <List />
+                    <Line>From the First Transductive Consistency Theorem, we know T ∪ &#123;¬G&#125; ⊢ ¬Con(T)</Line>
+                    <Line>
+                        By the Transductive Dichotomy Lemma, if T ∪ &#123;¬G&#125; implies inconsistency, then T ∪
+                        &#123;G&#125; cannot imply inconsistency when T is consistent
+                    </Line>
+                    <Line>Therefore, if T is consistent, T ∪ &#123;G&#125; must also be consistent</Line>
+                </Paragraph>
+                <Line>Combining these results:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>Con(T) ↔ Con(T ∪ &#123;G&#125;)</Line>
+                </Paragraph>
             </Paragraph>
             <Heading>Explanation</Heading>
             <Paragraph>
@@ -2558,10 +2611,16 @@ export default () => (
             <Paragraph>
                 <List ordered />
                 <Line>
-                    In particular, there exists a formula Prov_T(x) in the language of T such that for any formula φ of T: -
-                    Prov_T(⌜φ⌝) is true if and only if φ is provable in T - If T is consistent and extends Robinson
-                    arithmetic, then whenever φ is provable in T, T ⊢ Prov_T(⌜φ⌝)
+                    In particular, there exists a formula Prov_T(x) in the language of T such that for any formula φ of T:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Prov_T(⌜φ⌝) is true if and only if φ is provable in T</Line>
+                    <Line>
+                        If T is consistent and extends Robinson arithmetic, then whenever φ is provable in T, T ⊢
+                        Prov_T(⌜φ⌝)
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 This theorem establishes that any sufficiently expressive recursively enumerable theory can represent its
@@ -2804,10 +2863,16 @@ export default () => (
                 <List ordered />
                 <Line>
                     For any recursively enumerable theory S, there exists a formula Prov_S(x) expressible in the language of
-                    T such that for any formula φ of S: - Prov_S(⌜φ⌝) is true in the standard model of T if and only if φ is
-                    provable in S - If T extends Robinson arithmetic and is consistent, then whenever φ is provable in S, T
-                    ⊢ Prov_S(⌜φ⌝)
+                    T such that for any formula φ of S:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Prov_S(⌜φ⌝) is true in the standard model of T if and only if φ is provable in S</Line>
+                    <Line>
+                        If T extends Robinson arithmetic and is consistent, then whenever φ is provable in S, T ⊢
+                        Prov_S(⌜φ⌝)
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -2865,12 +2930,15 @@ export default () => (
                 </Line>
                 <Line>
                     In particular, there exists a formula Prov_T(x) in the language of T such that for any formula φ of T:
-                    <Word>
-                        <Emphasis />
-                         Prov_T(⌜φ⌝) is true if and only if φ is provable in T 
-                    </Word> If T is consistent and extends Robinson arithmetic, then whenever φ is provable in T, T ⊢
-                    Prov_T(⌜φ⌝)
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Prov_T(⌜φ⌝) is true if and only if φ is provable in T</Line>
+                    <Line>
+                        If T is consistent and extends Robinson arithmetic, then whenever φ is provable in T, T ⊢
+                        Prov_T(⌜φ⌝)
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 Explanation The Linguistic Representation Theorem establishes that any sufficiently expressive recursively
@@ -3300,10 +3368,14 @@ export default () => (
                 <List ordered />
                 <Line>
                     Added precise citations to all key results, including specific page numbers and theorem numbers where
-                    possible: - Kleene (1952, Theorem 15, Chapter 10, p. 288) for the representation of recursive relations
-                    - Rogers (1967, Chapter 5, Theorem 5.3) for the enumeration theorem - Tarski, Mostowski, Robinson (1953,
-                    Chapter 3) for representability theory
+                    possible:
                 </Line>
+                <Paragraph>
+                    <List />
+                    <Line>Kleene (1952, Theorem 15, Chapter 10, p. 288) for the representation of recursive relations</Line>
+                    <Line>Rogers (1967, Chapter 5, Theorem 5.3) for the enumeration theorem</Line>
+                    <Line>Tarski, Mostowski, Robinson (1953, Chapter 3) for representability theory</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
@@ -3384,21 +3456,34 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <List ordered />
-                <Line>
-                    The proof shows that Q satisfies our definition of sufficient expressiveness by: - Showing it can
-                    represent all primitive recursive functions (with a specific citation to Tarski, Mostowski, and
-                    Robinson's Theorem 7) - Noting it has the necessary coding mechanisms - Pointing out it trivially
-                    extends itself
-                </Line>
+                <Line>The proof shows that Q satisfies our definition of sufficient expressiveness by:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>
+                        Showing it can represent all primitive recursive functions (with a specific citation to Tarski,
+                        Mostowski, and Robinson's Theorem 7)
+                    </Line>
+                    <Line>Noting it has the necessary coding mechanisms</Line>
+                    <Line>Pointing out it trivially extends itself</Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 <List ordered />
-                <Line>
-                    The explanation explores the implications of this result: - It highlights that even without the full
-                    strength of induction, Q still reaches the threshold of metalogical universality - It explains why Q is
-                    subject to Gödel's incompleteness theorems despite being weaker than PA - It connects this to Q's role
-                    as a base theory in discussions of interpretability and relative consistency
-                </Line>
+                <Line>The explanation explores the implications of this result:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>
+                        It highlights that even without the full strength of induction, Q still reaches the threshold of
+                        metalogical universality
+                    </Line>
+                    <Line>
+                        It explains why Q is subject to Gödel's incompleteness theorems despite being weaker than PA
+                    </Line>
+                    <Line>
+                        It connects this to Q's role as a base theory in discussions of interpretability and relative
+                        consistency
+                    </Line>
+                </Paragraph>
             </Paragraph>
             <Paragraph>
                 This addition strengthens the document by providing a concrete application of the abstract theorem, showing

@@ -52,7 +52,10 @@ export default () => (
                 turns and no pairs of messages; a message stands alone in its order, and three speakers read the
                 same as two. What was said stands inside it as the ordinary writing of this library, paragraphs,
                 lists, headings, code, tables and formulas, converted once when the conversation is imported and
-                never read from a string when the page is drawn. A word that was typed as code is said verbatim.
+                never read from a string when the page is drawn. A heading inside a message is the message's own
+                structure and no address of the page: the message takes the heading's referent and its self-link
+                off, so six answers may each be headed Proof sketch and a page wears one address per message, its
+                instant, as the application has it. A word that was typed as code is said verbatim.
                 A paragraph that was quoted is said quoted.
             </Paragraph>
             <Paragraph>
