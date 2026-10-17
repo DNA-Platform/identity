@@ -178,6 +178,14 @@
 
 *[`manifest/synced.ts`](../../package/.binding/manifest/synced.ts) calls `configure()` for the one field it needs, `manifest.origin`, and `configure()` refuses any field no section reads; so a field the master had just learned, `parallel`, written into Doug's copy's `.pubconfig` before the copy synced, stopped the sync that would have brought the code reading it: "rendering names parallel, and rendering reads no such field". The order is sync first, then say the new field. The sync should read its origin alone.*
 
+## <a id="b44"></a>B44 — `specification.mode` is declared, checked and read by nothing — **MONITOR, 2026-10-17**
+
+*The specification's configuration declares `mode`, development or production, and checks it, and no stage reads it: a specifying child runs in development and a drawing child in production by the two stages' own lines, `NODE_ENV` set where each child is opened. Either the specifying child takes its mode from the field, or the field is struck; no library names it, so striking it costs nothing. Found while weighing the pitch to load each stale book once: the two stages open their servers in different modes by design, the specification checking in development and the prerender drawing as a reader's browser will in production, so one loading would be two servers anyway, and the pitch is withdrawn — [The Binder, As Built](07-the-binder.md#children).*
+
+## <a id="b45"></a>B45 — The dot does not carry a slash through a title — **MONITOR, 2026-10-17**, treated by ruling in the import
+
+*`language.ts` promises that a dot escapes the character after it, so `TON./Cocoon` is a title holding a slash, and `whole()` has been the open seam since 2026-09-18. The first imported title with a slash, "Allbirds GPU pivot and TON/Cocoon connection", was written with the escape in all four places it stands and the catalogue refused every reference to it, UNKNOWN-REFERENCE naming the unescaped form, so somewhere the title form and the reference are read through different rules, or `reaches` splits what `name()` had kept. Not found; Doug ruled around it for titles: "As long as it doesn't break files on any OS and won't cause me problems in vscode, use the one that looks like the slash. Predict more problems like this and fix similarly." The import writes the division slash, U+2215, which reaches no file name since a folder is the slug; the contract chapter says so. The escape stays the grammar's promise, unkept for a title, which is ours to keep or to strike from `language.ts`.*
+
 ## <a id="how"></a>How to use this register
 
 - **Cleaning:** *read the entries marked TREAT; treat them; mark them with the date. Add what you found on the way, whether or not you treated it.*
