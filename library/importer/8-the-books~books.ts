@@ -1,14 +1,23 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { basename, join, relative } from 'node:path';
 import type { Conversation, Message, Project } from './3-the-record~record.ts';
+import { identifier } from '@dna-platform/public';
+import { escaped } from '../..public/.binding/catalogue/language.ts';
+import { written } from '../..public/.binding/catalogue/reading.ts';
 import {
-    appendLines, escapedText, mentionForm, notationName, referenceForm, resourceExtension, slugFromName, titleForm,
-    writtenConversation, type Appendix, type Referents, type WrittenChapter,
+    appendLines, mentionForm, referenceForm, resourceExtension, slugFromName, titleForm, titleFromName, writtenConversation,
+    type Appendix, type Referents, type WrittenChapter,
 } from './7-the-writing~writing.ts';
 
 export type LibraryFolders = { library: string; claude: string; claudeManual: string; conversations: string };
 export type Scheme = { ground: string; band: string; bandInk: string; foot: string; footInk: string; ink: string };
 export type WrittenBook = { folder: string; files: string[]; chapterStem: string };
+export type BookName = { words: string; key: string };
+export type ConversationNaming = { name: BookName; folderName: string };
+
+export const conversationKeyPrefix = 'claude--';
+export const shortIdLength = 8;
+export const plainName = (name: string): BookName => ({ words: name, key: name });
 export type WrittenEntry = { entryPath: string | undefined; tablePath: string; files: string[] };
 
 export const schemes: Scheme[] = [
@@ -25,14 +34,21 @@ export const schemes: Scheme[] = [
 const whereThisBookStandsSection = '        <Section>\n            <Heading>Where this book stands</Heading>';
 const authorLine = `<Author>${referenceForm('Doug', 'The Librarian', '*')}</Author>`;
 const subjectLine = (words: string, name: string): string => `<Subject>${referenceForm(words, name, '**')}</Subject>`;
-const nameInForm = (name: string): string => notationName(escapedText(name));
-const captionLines = (captionText: string, name: string): string[] => {
+const nameInForm = (name: string): string => written(escaped(name));
+const titleText = (bookName: BookName): string => bookName.words === bookName.key
+    ? titleForm(nameInForm(bookName.key)) : referenceForm(written(bookName.words), nameInForm(bookName.key));
+const mentionText = (bookName: BookName, within = false): string => {
+    const key = `${within ? './' : ''}${nameInForm(bookName.key)}`;
+
+    return bookName.words === bookName.key ? mentionForm(key) : referenceForm(written(bookName.words), key, '$');
+};
+const captionLines = (captionText: string, bookName: BookName): string[] => {
     const lines = wrappedLines(captionText);
-    lines[lines.length - 1] += ` <Means>${mentionForm(nameInForm(name))}</Means>.`;
+    lines[lines.length - 1] += ` <Means>${mentionText(bookName)}</Means>.`;
 
     return lines;
 };
-const titleLine = (name: string): string => `<Title>${titleForm(nameInForm(name))}</Title>`;
+const titleLine = (bookName: BookName): string => `<Title>${titleText(bookName)}</Title>`;
 const tablePackageWords = [
     'Chapter', 'Content', 'Heading', 'Paragraph', 'Parenthetical', 'Section', 'TableOfContents', 'Title', 'Word',
 ];
@@ -82,16 +98,22 @@ const bookClassName = (name: string): string => {
     return `$${capitalized.replace(/[^\p{L}\p{N}]/gu, '')}`;
 };
 
-export const uniqueBookName = (folder: string, name: string, namesTaken: Set<string>): string => {
-    const baseName = name === '' ? 'Untitled' : name;
-    for (let nameCount = 1; ; nameCount++) {
-        const candidateName = nameCount === 1 ? baseName : `${baseName} ${nameCount}`;
-        const candidateSlug = slugFromName(candidateName);
-        if (existsSync(join(folder, candidateSlug)) || namesTaken.has(candidateSlug)) continue;
-        namesTaken.add(candidateSlug);
+export const shortId = (conversationId: string): string => conversationId.replace(/-/gu, '').slice(0, shortIdLength);
 
-        return candidateName;
-    }
+export const uniqueConversationName = (
+    folder: string, title: string, conversationId: string, namesTaken: Set<string>,
+): ConversationNaming => {
+    const short = shortId(conversationId);
+    const key = `${conversationKeyPrefix}${title}--${short}`;
+    const folderName = `${conversationKeyPrefix}${slugFromName(title)}--${short}`;
+    const address = identifier.slug(key);
+    if (namesTaken.has(folderName) || namesTaken.has(address) || existsSync(join(folder, folderName)))
+        throw new Error(`"${key}" would stand where another book stands, ${folderName}: two conversations' ids open with `
+            + `the same ${shortIdLength} characters, or a run that stopped left this book behind`);
+    namesTaken.add(folderName);
+    namesTaken.add(address);
+
+    return { name: { words: title, key }, folderName };
 };
 
 export const wrappedLines = (text: string, width = 108): string[] => {
@@ -115,17 +137,17 @@ export const conversationBook = (
     folders: LibraryFolders,
     conversation: Conversation,
     path: Message[],
-    name: string,
+    naming: ConversationNaming,
     projectNames: string[],
     accountName: string | undefined,
     scheme: Scheme,
     referents: Referents,
     keptAppendices: Appendix[] = [],
 ): WrittenBook => {
-    const folder = join(folders.conversations, slugFromName(name));
+    const folder = join(folders.conversations, naming.folderName);
     const importPath = manualImportPath(folders, folder);
     const claudeImportPath = claudeManualImportPath(folders, folder);
-    const written = writtenConversation(conversation, path, referents, importPath, claudeImportPath, keptAppendices);
+    const conversationWriting = writtenConversation(conversation, path, referents, importPath, claudeImportPath, keptAppendices);
     const coverManualWords = [
         'BookshelfCover as Cover', 'Illustration', 'Messages', 'Participant', 'Participants', 'Period', 'Scheme',
         'Volume', 'Window',
@@ -140,23 +162,24 @@ export const conversationBook = (
     const openingLine = openingBlock?.type === 'text' ? openingBlock.text.split(/\n/u)[0] : '';
     const summaryText = conversation.summary !== ''
         ? conversation.summary.replace(/\*\*[^*]*\*\*\s*/u, '').split(/\n\n/u)[0] : openingLine;
-    const synopsisLines = wrappedLines(escapedText(summaryText.replace(/[*_`#>]/gu, '')));
+    const synopsisLines = wrappedLines(written(summaryText.replace(/[*_`#>]/gu, '')));
     const packageWords = ['Author', 'Chapter', 'Paragraph', 'Subject', 'Svg', 'Title'];
     const claudeManualWords = [
         ...(accountName === undefined ? [] : ['Account']),
+        'Origin',
         ...(projectNames.length > 0 ? ['Project'] : []),
     ];
-    const projectImportLines = claudeManualWords.length > 0 ? [manualImportLine(claudeManualWords, claudeImportPath)] : [];
-    const accountKey = `Dougs Claude / ${notationName(accountName ?? '')}`;
+    const projectImportLines = [manualImportLine(claudeManualWords, claudeImportPath)];
+    const accountKey = `Dougs Claude / ${nameInForm(accountName ?? '')}`;
     const accountLines = accountName === undefined
-        ? [] : [`<Account>${referenceForm(escapedText(accountName), accountKey, '$')}</Account>`];
+        ? [] : [`<Account>${referenceForm(written(accountName), accountKey, '$')}</Account>`];
     const drawingSource = join(folders.conversations, drawingFileName);
     const drawingText = existsSync(drawingSource) ? readFileSync(drawingSource, 'utf8') : '';
     const projectLines = projectNames.map(projectName => `<Project>***${titleForm(nameInForm(projectName))}</Project>`);
-    const tableSections = [...monthSectionsOf(written.chapters, name), ...artifactSectionOf(written.versions)];
-    const tableManualWords = written.versions.length === 0 ? ['Index'] : ['Appendix', 'Index'];
+    const tableSections = [...monthSectionsOf(conversationWriting.chapters, naming.name), ...artifactSectionOf(conversationWriting.versions)];
+    const tableManualWords = conversationWriting.versions.length === 0 ? ['Index'] : ['Appendix', 'Index'];
     const files = [
-        writtenFile(join(folder, '.book.tsx'), bookFileText(claudeImportPath, 'ClaudeConversation', name)),
+        writtenFile(join(folder, '.book.tsx'), bookFileText(claudeImportPath, 'ClaudeConversation', naming.name.key)),
         writtenFile(join(folder, '.cover.tsx'), coverFileText(importPath, coverManualWords, packageWords, [
             ...volumeLines(),
             ...schemeLines(scheme),
@@ -170,24 +193,25 @@ export const conversationBook = (
             `    shown="${path.length}"`,
             `    all="${conversation.messages.length}"`,
             '/>',
-            titleLine(name),
+            titleLine(naming.name),
             authorLine,
             subjectLine('Conversations', 'Our Conversations'),
             ...projectLines,
             ...accountLines,
+            `<Origin>${conversation.id}</Origin>`,
             ...illustrationLines,
         ], [...projectImportLines, ...volumeImportLines(folder, folders, folders.conversations)])),
         writtenFile(join(folder, drawingFileName), drawingText),
         writtenFile(join(folder, '.synopsis.tsx'), synopsisFileText(synopsisLines)),
         writtenFile(join(folder, '.table.tsx'), tableFileText(importPath, tableManualWords, tableSections)),
-        ...[...written.chapters, ...written.versions]
+        ...[...conversationWriting.chapters, ...conversationWriting.versions]
             .map(chapter => writtenFile(join(folder, chapter.fileName), chapter.tsx)),
     ];
-    for (const chapter of written.chapters)
+    for (const chapter of conversationWriting.chapters)
         for (const chapterFile of chapter.files)
             files.push(writtenFile(join(folder, chapterFile.name), chapterFile.content));
 
-    return { folder, files, chapterStem: written.chapters[0].fileName.replace(/\.tsx$/u, '') };
+    return { folder, files, chapterStem: conversationWriting.chapters[0].fileName.replace(/\.tsx$/u, '') };
 };
 
 export const registerBook = (
@@ -209,7 +233,7 @@ export const registerBook = (
     const bookFilePath = join(folder, '.book.tsx');
     const bookFile = (): string => writtenFile(bookFilePath, bookFileText(importPath, bookType, about));
     if (existsSync(bookFilePath)) return overwrite ? [bookFile()] : [];
-    const standsSection = sectionLines('Where this book stands', parentheticalLines(name));
+    const standsSection = sectionLines('Where this book stands', parentheticalLines(plainName(name)));
 
     return [
         bookFile(),
@@ -219,7 +243,7 @@ export const registerBook = (
             ...volumeLines(),
             ...schemeLines(scheme),
             ...windowLines(-32, -26),
-            titleLine(name),
+            titleLine(plainName(name)),
             authorLine,
             subjectLine(subjectWords, subjectName),
             `<About>${titleForm(nameInForm(about))}</About>`,
@@ -234,7 +258,7 @@ export const registerBook = (
 export const registerEntry = (
     folders: LibraryFolders,
     folder: string,
-    name: string,
+    name: BookName,
     bookFolder: string,
     instant: string,
     captionText: string,
@@ -245,7 +269,7 @@ export const registerEntry = (
     const tableText = readFileSync(tablePath, 'utf8');
     if (tableListsBook(tableText, name)) return { entryPath: entryPathFor(folder, name), tablePath, files: [] };
     const importPath = manualImportPath(folders, folder);
-    const entryPath = join(folder, `${nextChapterNumber(folder)}-${slugFromName(name)}.tsx`);
+    const entryPath = join(folder, `${nextChapterNumber(folder)}-${slugFromName(name.key)}.tsx`);
     const bookRelativePath = relativePath(folder, bookFolder);
     const appendixWords = appendix === undefined ? [] : ['Append'];
     const packageWords = [...appendixWords, 'Chapter', 'Date', 'Means', 'Paragraph', 'Part', 'Synopsis', 'Title'];
@@ -269,7 +293,20 @@ export const registerEntry = (
     return { entryPath, tablePath, files: [entryPath, tablePath] };
 };
 
-const entryPathFor = (folder: string, name: string): string | undefined => {
+export const struckEntry = (folder: string, entryStem: string, name: BookName, stars: string): string[] => {
+    const tablePath = join(folder, '.table.tsx');
+    const rowText = `${indentedLines(3, rowLines(name, stars)).join('\n')}\n`;
+    const tableText = readFileSync(tablePath, 'utf8');
+    const emptySection = /^ {8}<Section>\n {12}<Heading>[^<]*<\/Heading>\n {8}<\/Section>\n/gmu;
+    writtenFile(tablePath, tableText.replace(rowText, '').replace(emptySection, ''));
+    const stem = basename(entryStem);
+    for (const fileName of readdirSync(folder))
+        if (fileName === `${stem}.tsx` || fileName.startsWith(`${stem}~`)) rmSync(join(folder, fileName));
+
+    return [tablePath];
+};
+
+const entryPathFor = (folder: string, name: BookName): string | undefined => {
     const chapterFileNames = readdirSync(folder)
         .filter(fileName => /^o*\d/u.test(fileName) && fileName.endsWith('.tsx') && !fileName.includes('~'));
     const entryFileName = chapterFileNames
@@ -279,7 +316,12 @@ const entryPathFor = (folder: string, name: string): string | undefined => {
 };
 
 export const projectBook = (
-    folders: LibraryFolders, project: Project, scheme: Scheme, drawingText: string, overwrite = false, whole = false,
+    folders: LibraryFolders,
+    project: Project,
+    scheme: Scheme,
+    drawingText: string,
+    overwrite = false,
+    whole = false,
 ): WrittenBook => {
     const folder = join(folders.claude, `.${slugFromName(project.name)}`);
     const importPath = manualImportPath(folders, folder);
@@ -309,45 +351,46 @@ export const projectBook = (
             ...volumeLines(),
             ...schemeLines(scheme),
             ...windowLines(-32, -26),
-            titleLine(project.name),
+            titleLine(plainName(project.name)),
             authorLine,
             subjectLine('Claude', 'Dougs Claude'),
             `<About>${titleForm(nameInForm(project.name))}</About>`,
             ...illustrationLines,
         ], volumeImportLines(folder, folders, folders.claude))),
         writtenFile(join(folder, drawingFileName), drawingText),
-        writtenFile(join(folder, '.synopsis.tsx'), synopsisFileText(wrappedLines(escapedText(projectDescription)))),
+        writtenFile(join(folder, '.synopsis.tsx'), synopsisFileText(wrappedLines(written(projectDescription)))),
         writtenFile(join(folder, '1-the-project.tsx'), chapterFileText(projectImportLines, [
             '<Spread />',
-            titleLine('The Project'),
+            titleLine(plainName('The Project')),
             '<Paragraph>',
             '    <Brief />',
-            ...indentedLines(1, wrappedLines(escapedText(descriptionText))),
+            ...indentedLines(1, wrappedLines(written(descriptionText))),
             '</Paragraph>',
             ...sectionLines('Its instructions', [
                 '<Paragraph>',
-                ...indentedLines(1, wrappedLines(escapedText(instructionsText))),
+                ...indentedLines(1, wrappedLines(written(instructionsText))),
                 '</Paragraph>',
             ]),
         ])),
     ];
     const chapterNames = ['The Project'];
-    const baseNameCounts = new Map<string, number>();
+    const addressesTaken = new Set([project.name, 'The Project', 'Synopsis', 'Table of Contents'].map(name => identifier.slug(name)));
     for (const [documentIndex, document] of project.documents.entries()) {
-        const documentBaseName = document.name.split('/').at(-1)!.replace(/\.[^.]+$/u, '');
-        const baseNameCount = (baseNameCounts.get(slugFromName(documentBaseName)) ?? 0) + 1;
-        baseNameCounts.set(slugFromName(documentBaseName), baseNameCount);
-        const documentTitle = baseNameCount === 1 ? documentBaseName : `${documentBaseName} ${baseNameCount}`;
+        const documentBaseName = titleFromName(document.name.split('/').at(-1)!.replace(/\.[^.]+$/u, '')) || 'Untitled';
+        let documentTitle = documentBaseName;
+        for (let titleCount = 2; addressesTaken.has(identifier.slug(documentTitle)); titleCount++)
+            documentTitle = `${documentBaseName} ${titleCount}`;
+        addressesTaken.add(identifier.slug(documentTitle));
         const extensionFromName = (/\.([a-z0-9]+)$/iu.exec(document.name)?.[1] ?? '').toLowerCase();
         const documentExtension = resourceExtension(extensionFromName);
         const chapterStem = `${documentIndex + 2}-${slugFromName(documentTitle)}`;
-        const briefText = `A knowledge file of the project, “${escapedText(document.name)}”, `
+        const briefText = `A knowledge file of the project, “${written(document.name)}”, `
             + 'as it was uploaded to Claude.';
         chapterNames.push(documentTitle);
         files.push(writtenFile(join(folder, `${chapterStem}~file.${documentExtension}`), document.content));
         files.push(writtenFile(join(folder, `${chapterStem}.tsx`), chapterFileText(documentImportLines, [
             '<Spread />',
-            titleLine(documentTitle),
+            titleLine(plainName(documentTitle)),
             '<Paragraph>',
             '    <Brief />',
             ...indentedLines(1, wrappedLines(briefText)),
@@ -355,7 +398,7 @@ export const projectBook = (
             ...appendLines({ identifier: 'file', type: `.${documentExtension}` }, 0),
         ])));
     }
-    const filesSectionLines = [...chapterNames.flatMap(contentLines), ...parentheticalLines(project.name)];
+    const filesSectionLines = [...chapterNames.flatMap(contentLines), ...parentheticalLines(plainName(project.name))];
     files.push(writtenFile(join(folder, '.table.tsx'), tableFileText(importPath, ['Arrow', 'Index'], [
         ...sectionLines('The project and its files', filesSectionLines),
         ...sectionLines('Where this book stands', []),
@@ -367,7 +410,7 @@ export const projectBook = (
 export const projectEntry = (
     folders: LibraryFolders,
     folder: string,
-    name: string,
+    name: BookName,
     bookFolder: string,
     instant: string,
 ): string[] => {
@@ -375,7 +418,7 @@ export const projectEntry = (
     const tableText = readFileSync(tablePath, 'utf8');
     if (tableListsBook(tableText, name)) return [];
     const importPath = manualImportPath(folders, folder);
-    const entryPath = join(folder, `${nextChapterNumber(folder)}-${slugFromName(name)}.tsx`);
+    const entryPath = join(folder, `${nextChapterNumber(folder)}-${slugFromName(name.key)}.tsx`);
     const bookRelativePath = relativePath(folder, bookFolder);
     writtenFile(entryPath, entryFileText(importPath, ['Brief', 'Volume'], entryPackageWords, bookRelativePath, [
         '<Volume>{TheCover()}</Volume>',
@@ -391,12 +434,13 @@ export const projectEntry = (
     return [entryPath, tablePath];
 };
 
-export const libraryEntry = (library: string, name: string, bookFolder: string, captionText: string): string[] => {
+export const libraryEntry = (library: string, bookName: string, bookFolder: string, captionText: string): string[] => {
+    const name = plainName(bookName);
     const catalogueFolder = join(library, '..reference');
     const tablePath = join(catalogueFolder, '.table.tsx');
     const tableText = readFileSync(tablePath, 'utf8');
     if (tableListsBook(tableText, name)) return [];
-    const entryPath = join(catalogueFolder, `${nextChapterNumber(catalogueFolder)}-${slugFromName(name)}.tsx`);
+    const entryPath = join(catalogueFolder, `${nextChapterNumber(catalogueFolder)}-${slugFromName(bookName)}.tsx`);
     const bookRelativePath = relativePath(catalogueFolder, bookFolder);
     writtenFile(entryPath, entryFileText('../.manual/.book', ['Caption', 'Volume'], entryPackageWords, bookRelativePath, [
         '<Volume>{TheCover()}</Volume>',
@@ -427,8 +471,8 @@ const nextChapterNumber = (folder: string): number => {
     return Math.max(0, ...fileNames.map(fileName => Number(/^(\d+)-/u.exec(fileName)?.[1] ?? 0))) + 1;
 };
 
-const tableListsBook = (tableText: string, name: string): boolean =>
-    tableText.includes(mentionForm(`./${nameInForm(name)}`));
+const tableListsBook = (tableText: string, name: BookName): boolean =>
+    tableText.includes(`]]( ${nameInForm(name.key)} )`);
 
 const tableWithRow = (tableText: string, heading: string, lines: string[], insertionPoint: string): string => {
     const headingElement = `<Heading>${heading}</Heading>`;
@@ -548,7 +592,7 @@ const sectionLines = (heading: string, lines: string[]): string[] =>
 // The days of a conversation under their months, the book's own line under the first; an artifact's versions in
 // an appendix section of parenthetical entries, which the index does not list and the side does not show, since
 // the binder asks that every chapter be listed and the proof that every link on the page land.
-const monthSectionsOf = (chapters: WrittenChapter[], name: string): string[] => {
+const monthSectionsOf = (chapters: WrittenChapter[], bookName: BookName): string[] => {
     const months: { heading: string; lines: string[] }[] = [];
     for (const chapter of chapters) {
         const heading = monthHeading(chapter.day ?? '');
@@ -556,7 +600,7 @@ const monthSectionsOf = (chapters: WrittenChapter[], name: string): string[] => 
         if (month !== undefined && month.heading === heading) month.lines.push(...contentLines(chapter.title));
         else months.push({ heading, lines: contentLines(chapter.title) });
     }
-    months[0]?.lines.push(...parentheticalLines(name));
+    months[0]?.lines.push(...parentheticalLines(bookName));
 
     return months.flatMap(month => sectionLines(month.heading, month.lines));
 };
@@ -578,11 +622,11 @@ const artifactSectionOf = (versions: WrittenChapter[]): string[] => versions.len
 const contentLines = (name: string): string[] =>
     ['<Paragraph>', `    <Content>${mentionForm(`./${nameInForm(name)}`)}</Content>`, '</Paragraph>'];
 
-const parentheticalLines = (name: string): string[] => [
+const parentheticalLines = (name: BookName): string[] => [
     '<Paragraph>',
     '    <Parenthetical />',
     '    <Word>',
-    `        <Content>${mentionForm(nameInForm(name))}</Content>`,
+    `        <Content>${mentionText(name)}</Content>`,
     '    </Word>',
     '    <Word>',
     `        <Content>${mentionForm('./Synopsis')}</Content>`,
@@ -593,14 +637,14 @@ const parentheticalLines = (name: string): string[] => [
     '</Paragraph>',
 ];
 
-const rowLines = (name: string, stars: string): string[] => [
+const rowLines = (name: BookName, stars: string): string[] => [
     '<Paragraph>',
     '    <Word>',
-    `        <Content>${mentionForm(`./${nameInForm(name)}`)}</Content>`,
+    `        <Content>${mentionText(name, true)}</Content>`,
     '    </Word>',
     '    <Word>',
     '        <Arrow />',
-    `        <Content>${referenceForm('▷', nameInForm(name))}${stars}</Content>`,
+    `        <Content>${referenceForm('▷', nameInForm(name.key))}${stars}</Content>`,
     '    </Word>',
     '</Paragraph>',
 ];

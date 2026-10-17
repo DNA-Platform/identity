@@ -1,3 +1,6 @@
+import { identifier } from '@dna-platform/public';
+import { escaped, sanitized } from '../..public/.binding/catalogue/language.ts';
+import { written } from '../..public/.binding/catalogue/reading.ts';
 import type { Block, Conversation, Message, Speaker } from './3-the-record~record.ts';
 
 export type Referents = Record<Speaker, string>;
@@ -47,45 +50,21 @@ const extensionsByLanguage: Record<string, string> = {
 
 const extractedTextExtensions = ['pdf', 'doc', 'docx', 'odt', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx'];
 const extensionForm = /^[a-z0-9]{1,10}$/u;
-const divisionSlash = '∕';
 const openingWordCount = 8;
 const untitledDayFormat = { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' } as const;
 
 const indentation = (depth: number): string => '    '.repeat(depth);
 const lineWidth = (depth: number): number => 124 - 4 * depth;
 
-export const escapedText = (text: string): string => text
-    .replace(/&/gu, '&amp;')
-    .replace(/</gu, '&lt;')
-    .replace(/>/gu, '&gt;')
-    .replace(/\{/gu, '&#123;')
-    .replace(/\}/gu, '&#125;')
-    .replace(/\[/gu, '&#91;')
-    .replace(/\]/gu, '&#93;');
-
 export const slugFromName = (name: string): string => {
-    const slug = name
-        .toLowerCase()
-        .replace(/['’]/gu, '')
-        .replace(/&/gu, ' and ')
-        .replace(/\+/gu, ' plus ')
-        .replace(/@/gu, ' at ')
-        .replace(/%/gu, ' percent ')
-        .replace(/[^\p{L}\p{N}]+/gu, '-')
-        .replace(/^-+|-+$/gu, '');
-
-    const cut = slug.slice(0, 60).replace(/-+$/u, '');
+    const cut = identifier.slug(name).slice(0, 60).replace(/-+$/u, '');
 
     return cut === '' ? 'untitled' : cut;
 };
 
-export const titleFromName = (name: string): string => name
+export const titleFromName = (name: string): string => sanitized(name
     .replace(/^[\p{Extended_Pictographic}\p{Emoji_Presentation}️\s]+/u, '')
-    .replace(/[\p{Extended_Pictographic}\p{Emoji_Presentation}️\s]+$/u, '')
-    .replace(/\//gu, divisionSlash)
-    .replace(/[()[\]{}]/gu, '')
-    .replace(/\s+/gu, ' ')
-    .trim();
+    .replace(/[\p{Extended_Pictographic}\p{Emoji_Presentation}️\s]+$/u, ''));
 
 const openingSentence = (conversation: Conversation): string => {
     const dougsMessages = conversation.messages.filter(message => message.speaker === 'Doug');
@@ -96,7 +75,7 @@ const openingSentence = (conversation: Conversation): string => {
     return text.split(/(?<=[.!?])\s|\n/u)[0] ?? '';
 };
 
-const hasWords = (title: string): boolean => /[\p{L}\p{N}]/u.test(title);
+const hasWords = (title: string): boolean => identifier.slug(title) !== '';
 
 export const conversationTitle = (conversation: Conversation): string => {
     const given = titleFromName(conversation.name);
@@ -125,7 +104,6 @@ export const fileExtension = (contentType: string, title: string, language = '')
 const artifactExtension = (artifactVersion: ArtifactVersion): string =>
     fileExtension(artifactVersion.contentType, artifactVersion.title, artifactVersion.language);
 
-export const notationName = (name: string): string => name.replace(/\./gu, '..').replace(/\//gu, './');
 export const titleForm = (name: string): string => `[[ ${name} ]]`;
 export const mentionForm = (name: string): string => `$[[ ${name} ]]`;
 export const referenceForm = (words: string, name: string, prefix = ''): string => `${prefix}[[ ${words} ]]( ${name} )`;
@@ -161,7 +139,7 @@ const packageWordList = [
     'Paragraph', 'Reference', 'Section', 'Table', 'Title', 'Word',
 ];
 const manualWordList = ['CodeBox', 'Dated', 'Message', 'Opaque', 'Quoted', 'Speaker', 'Verbatim'];
-const claudeManualWordList = ['Action', 'Artifact', 'Attachment', 'Version'];
+const claudeManualWordList = ['Action', 'Artifact', 'Attachment', 'Origin', 'Version'];
 const boxLanguages: Record<string, string> = {
     tsx: 'typescript', ts: 'typescript', js: 'javascript', mjs: 'javascript', html: 'xml', svg: 'xml',
     md: 'markdown', sh: 'bash', py: 'python', jsx: 'javascript', ahk: 'autohotkey',
@@ -219,14 +197,14 @@ const versionChapter = (
         ? [
             `${indentation(2)}<Section>`,
             `${indentation(3)}<Opaque />`,
-            `${indentation(3)}<Heading>${escapedText(sectionHeading)}</Heading>`,
+            `${indentation(3)}<Heading>${written(sectionHeading)}</Heading>`,
             ...blockLines(artifactVersion.content, 3),
             `${indentation(2)}</Section>`,
         ]
         : codeLines(boxLanguages[extension] ?? extension, artifactVersion.content, 2);
     const chapterLines = [
         `${indentation(2)}<Version />`,
-        `${indentation(2)}<Title>${titleForm(escapedText(versionTitle))}</Title>`,
+        `${indentation(2)}<Title>${titleForm(written(escaped(versionTitle)))}</Title>`,
         ...bodyLines,
     ];
     const imports = importLines(chapterLines, ['Chapter', 'Title'], [], manualImportPath, claudeManualImportPath, false);
@@ -312,16 +290,16 @@ export const writtenConversation = (
             const ordinal = versions.length + 1;
             versions.push(versionChapter(ordinal, versionTitle, artifactVersion, manualImportPath, claudeManualImportPath));
             const verb = artifactVersion.versionCount === 1 ? 'Made' : block.command === 'rewrite' ? 'Rewrote' : 'Changed';
-            const sentence = `${verb} the artifact “${escapedText(artifactVersion.title)}”`;
+            const sentence = `${verb} the artifact “${written(artifactVersion.title)}”`;
 
-            const attributes = [`artifact="${escapedText(block.id)}"`, `place="${slugFromName(versionTitle)}"`];
+            const attributes = [`artifact="${written(block.id)}"`, `place="${identifier.slug(versionTitle)}"`];
 
             return figureLines('Artifact', appendix, [sentence], 3, attributes);
         };
         const messageBlockLines = (block: Block): string[] => {
             if (block.type === 'text') return blockLines(block.text, 3);
             if (block.type === 'action')
-                return elementLines('Action', [escapedText(actionSentence(block.name, block.input))], 3);
+                return elementLines('Action', [written(actionSentence(block.name, block.input))], 3);
             if (block.type === 'artifact') return artifactLines(block);
             if (block.type === 'thinking')
                 thinkingCount++;
@@ -336,6 +314,7 @@ export const writtenConversation = (
                 `${indentation(2)}<Message`,
                 `${indentation(3)}at="${message.sentAt}"`,
                 `${indentation(2)}>`,
+                `${indentation(3)}<Origin>${message.id}</Origin>`,
                 `${indentation(3)}<Speaker>${speakerReference(message.speaker, referents)}</Speaker>`,
             );
             const bodyLengthBefore = bodyLines.length;
@@ -375,7 +354,7 @@ export const writtenConversation = (
             `${indentation(2)}<Dated>`,
             `${indentation(3)}<Date>[${title}](${day})</Date>`,
             `${indentation(2)}</Dated>`,
-            `${indentation(2)}<Title>${titleForm(title)}</Title>`,
+            `${indentation(2)}<Title>${titleForm(written(escaped(title)))}</Title>`,
             ...bodyLines,
             ...appendices.flatMap(appendix => appendLines(appendix, 2)),
         ];
@@ -391,7 +370,7 @@ export const writtenConversation = (
 };
 
 const speakerReference = (speaker: Speaker, referents: Referents): string => referenceForm(speaker, referents[speaker], '$');
-const fileWords = (fileName: string): string => fileName === '' ? 'a file without a name' : `“${escapedText(fileName)}”`;
+const fileWords = (fileName: string): string => fileName === '' ? 'a file without a name' : `“${written(fileName)}”`;
 
 const actionSentences: Record<string, (input: any) => string> = {
     web_search: input => `Searched the web for “${input?.query ?? ''}”`,
@@ -451,7 +430,8 @@ export const blockLines = (text: string, depth: number): string[] => {
             continue;
         }
         if (headingForm.test(line)) {
-            outputLines.push(...elementLines('Heading', inlinePieces(headingForm.exec(line)![2].trim()), depth));
+            const headingText = headingForm.exec(line)![2].replace(/\*\*(.+?)\*\*|__(.+?)__/gu, '$1$2').trim();
+            outputLines.push(...elementLines('Heading', inlinePieces(headingText), depth));
             lineIndex++;
             continue;
         }
@@ -516,13 +496,19 @@ export const blockLines = (text: string, depth: number): string[] => {
 };
 
 const notationForm = /=\|>|<\|=\|>|=[a-z']*>|^::/mu;
+const bracketForm = /[[\]]/u;
 
 // A listing stands in the chapter as the lines it is, a template literal whose first line opens it and whose last
 // closes it, so a block of code can be read where it is written.
+const templateText = (text: string): string => text.replace(/\\/gu, '\\\\').replace(/`/gu, '\\`').replace(/\$\{/gu, '\\${');
+const unscanned = (text: string): string => (bracketForm.test(text) ? '${\'\'}' : '');
+
+const stringForm = (text: string): string =>
+    bracketForm.test(text) ? `\`${unscanned(text)}${templateText(text)}\`` : JSON.stringify(text);
+
 const listingLines = (listing: string, depth: number): string[] => {
-    const escaped = listing.replace(/\r\n?/gu, '\n').replace(/\\/gu, '\\\\').replace(/`/gu, '\\`').replace(/\$\{/gu, '\\${');
-    const lines = escaped.split('\n');
-    lines[0] = `${indentation(depth)}{\`${lines[0]}`;
+    const lines = templateText(listing.replace(/\r\n?/gu, '\n')).split('\n');
+    lines[0] = `${indentation(depth)}{\`${unscanned(listing)}${lines[0]}`;
     lines[lines.length - 1] = `${lines[lines.length - 1]}\`}`;
 
     return lines;
@@ -548,7 +534,7 @@ const tableLines = (tableRows: string[][], depth: number): string[] => {
     for (const tableRow of tableRows) {
         outputLines.push(`${indentation(depth + 1)}<Line>`);
         for (const cell of tableRow)
-            outputLines.push(...elementLines('Word', [escapedText(unmarkedText(cell))], depth + 2));
+            outputLines.push(...elementLines('Word', [written(unmarkedText(cell))], depth + 2));
         outputLines.push(`${indentation(depth + 1)}</Line>`);
     }
     outputLines.push(`${indentation(depth)}</Paragraph>`);
@@ -585,25 +571,25 @@ const listLines = (listItems: ListItem[], depth: number): string[] => {
 };
 
 const markedWordLines = (markName: string, text: string): string[] =>
-    ['<Word>', `    <${markName} />`, `    ${escapedText(text)}`, '</Word>'];
+    ['<Word>', `    <${markName} />`, `    ${written(text)}`, '</Word>'];
 
 const inlineForms: [RegExp, (innerText: string) => ProsePiece][] = [
-    [/\$\$([^$]+?)\$\$/gu, innerText => [`<Equation>{${JSON.stringify(innerText.trim())}}</Equation>`]],
-    [/\\\[([\s\S]+?)\\\]/gu, innerText => [`<Equation>{${JSON.stringify(innerText.trim())}}</Equation>`]],
-    [/\\\(([^\n]+?)\\\)/gu, innerText => [`<Math>{${JSON.stringify(innerText.trim())}}</Math>`]],
+    [/\$\$([^$]+?)\$\$/gu, innerText => [`<Equation>{${stringForm(innerText.trim())}}</Equation>`]],
+    [/\\\[([\s\S]+?)\\\]/gu, innerText => [`<Equation>{${stringForm(innerText.trim())}}</Equation>`]],
+    [/\\\(([^\n]+?)\\\)/gu, innerText => [`<Math>{${stringForm(innerText.trim())}}</Math>`]],
     [/`([^`\n]+?)`/gu, innerText => markedWordLines('Verbatim', innerText)],
     [/\*\*(.+?)\*\*/gu, innerText => markedWordLines('Bold', innerText)],
     [/(?<![\w*])\*([^*\n]+?)\*(?!\*)/gu, innerText => markedWordLines('Emphasis', innerText)],
     [/(?<!\w)_([^_\n]+?)_(?!\w)/gu, innerText => markedWordLines('Emphasis', innerText)],
-    [/\$(?=\S)([^$\n\u0000]+?)(?<=\S)\$(?!\d)/gu, innerText => [`<Math>{${JSON.stringify(innerText)}}</Math>`]],
+    [/\$(?=\S)([^$\n\u0000]+?)(?<=\S)\$(?!\d)/gu, innerText => [`<Math>{${stringForm(innerText)}}</Math>`]],
 ];
 
 export const inlinePieces = (text: string): ProsePiece[] => {
     const elementPieces: ProsePiece[] = [];
     const placeholder = (): string => `\u0000${elementPieces.length - 1}\u0000`;
     let markedText = text.replace(/\[([^\]\n]+)\]\((https?:\/\/[^)\s]+)\)/gu, (_, words: string, url: string) => {
-        const referenceLine = `    <Reference>${escapedText(url)}</Reference>`;
-        elementPieces.push(['<Word>', referenceLine, `    ${escapedText(words)}`, '</Word>']);
+        const referenceLine = `    <Reference>${written(url)}</Reference>`;
+        elementPieces.push(['<Word>', referenceLine, `    ${written(words)}`, '</Word>']);
 
         return placeholder();
     });
@@ -619,7 +605,7 @@ export const inlinePieces = (text: string): ProsePiece[] => {
         if (placeholderMatch !== null)
             pieces.push(elementPieces[Number(placeholderMatch[1])]);
         else if (part !== '')
-            pieces.push(escapedText(part));
+            pieces.push(written(part));
     }
 
     return pieces;

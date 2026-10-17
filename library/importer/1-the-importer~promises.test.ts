@@ -1,5 +1,8 @@
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { configurationFrom, parsedArguments, selectedPairings } from './1-the-importer~importer.ts';
+import { configurationFrom, importsOf, parsedArguments, selectedPairings } from './1-the-importer~importer.ts';
 import type { Pairing } from './4-the-pairing~pairing.ts';
 
 const pairing = (conversationId: string, title: string, projectName: string | undefined, excluded = false): Pairing =>
@@ -19,11 +22,24 @@ describe('the importer', () => {
     // Doug, 2026-10-14: "We should probably have an abstraction where we can configure the import in certain ways…
     // We also need to be able to run the importer for specific conversations or specific collections of conversations."
     it('reads its configuration with every part given a default, so an empty file configures nothing', () => {
-        expect(configurationFrom('{}')).toEqual({ accounts: [], excluded: { scripts: [], projects: [] }, collections: {} });
+        expect(configurationFrom('{}')).toEqual({ excluded: { scripts: [], projects: [] }, collections: {} });
         expect(configurationFrom('{"excluded":{"scripts":["Cyrillic"]},"collections":{"a":["x"]}}'))
-            .toEqual({ accounts: [], excluded: { scripts: ['Cyrillic'], projects: [] }, collections: { a: ['x'] } });
-        const account = { name: 'DNA Legacy', folder: 'claude-legacy', address: 'support@dna.love' };
-        expect(configurationFrom(JSON.stringify({ accounts: [account] })).accounts).toEqual([account]);
+            .toEqual({ excluded: { scripts: ['Cyrillic'], projects: [] }, collections: { a: ['x'] } });
+    });
+
+    // Doug, 2026-10-17: "it should be associated with the documentation of a specific configuration of the importer…
+    // DNA Legacy is a different import than DNA, and we will have other imports from other platforms."
+    it('reads each import from its own chapter, in the chapters\' order, its ledger beside its configuration', () => {
+        const importer = mkdtempSync(join(tmpdir(), 'importer-'));
+        const legacy = { name: 'DNA Legacy', folder: 'claude-legacy', address: 'support@dna.love' };
+        writeFileSync(join(importer, '1-the-importer~configuration.json'), '{}');
+        writeFileSync(join(importer, '11-dna~configuration.json'), JSON.stringify({ ...legacy, name: 'DNA' }));
+        writeFileSync(join(importer, '10-dna-legacy~configuration.json'), JSON.stringify(legacy));
+        expect(importsOf(importer)).toEqual([
+            { ...legacy, ledger: join(importer, '10-dna-legacy~ledger.json') },
+            { ...legacy, name: 'DNA', ledger: join(importer, '11-dna~ledger.json') },
+        ]);
+        rmSync(importer, { recursive: true, force: true });
     });
 
     it("selects a project's conversations, a collection's by title or id, or the ones named, narrowing by name", () => {

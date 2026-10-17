@@ -24,6 +24,9 @@ export default () => (
                 <Content>$[[ ./The Account ]]</Content>
             </Paragraph>
             <Paragraph>
+                <Content>$[[ ./The Origin ]]</Content>
+            </Paragraph>
+            <Paragraph>
                 <Content>$[[ ./The Page ]]</Content>
             </Paragraph>
             <Paragraph>

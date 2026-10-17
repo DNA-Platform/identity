@@ -32,9 +32,20 @@ export default () => (
                 their pages.
             </Paragraph>
             <Paragraph>
-                A book's name is its title, an untitled conversation numbered Untitled 1 and on by a count the
-                importer keeps, a repeated title the same, and never a date, since a conversation happens across
-                time. A folder that exists is never entered unless the run says to
+                A conversation's book shows its title and is named apart from every other book of mine: its key
+                is claude, two dashes, the title, two dashes and the first eight characters of the application's
+                own id for it, and its folder is the same with the title's slug. So no conversation can collide
+                with a book of another kind, two conversations of one title are told apart by their ids and
+                never by a number, and a conversation keeps its key on every run. The page shows only the title,
+                written as the application gave it, and only the key is spelled for the notation. A title is
+                the application's own, sanitized by the binder's rule for any name nobody chose: a slash, a
+                backslash, a parenthesis or a bracket written as the one that looks like it, what cannot be seen
+                taken out, and every space one space. A chat the application left untitled takes the first
+                sentence of my first message, and failing that the day it began. The ledger is keyed by the
+                conversation's id and the book carries the same id on its cover, so whatever the title, the book
+                is found again and never imported twice. A file of a project takes its own name, numbered
+                against every title its book holds. A folder that exists
+                is never entered unless the run says to
                 overwrite and <Means>$[[ the ledger ]]( ./The Ledger )</Means> says the book is still the
                 importer's; a catalogue's chapter and row are added where its table lacks the reference.
             </Paragraph>

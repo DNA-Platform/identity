@@ -1,0 +1,192 @@
+The word transitivity does not appear in these semantics does it? Do you axiom names eloquently capture anything? Write down a few famous lists of axioms and foundational theorems from number theory, set theory, logic, to get a sense for what it means
+
+Here's what I think you should do. I see you using red as an example. You are exploring the semantics of relationship right?
+
+How about you consider the 5 cases of the subject-object relationship, and then you can explore what theorems might look like under quantification and what not
+
+What are the six cases?
+
+E([s,o,r]: ...): s =r> o =|> ...
+
+This is your exploration
+
+What are the 5 cases? 
+
+s != r != o != s
+s == r != o != s
+s != r != o == s
+s != r == o != s
+s == r == o == s
+
+Is that weird syntax? Perhaps! 
+
+We've talked about what a representation is and why. Think about a formalism that describes an experiment that measures some property of an electron. There is a bound variable that represents the electron. The experiment is performed that records from the electron and we see evidence. We can refer to both the symbol in the theory and the thing that the measurement reflects. How are these things related? 
+
+The symbol represents the electron. In fact it represents it specifically. Specifically representing is symbolizing. The symbol of the electron symbolizes the electron. Perhaps a symbol symbolizes a literal, and symbolize is the most specific relationship between a symbol and a literal! Are symbol and symbolize different referents? Or do they represent the same referent in different roles? - remember this is a theory where the same referent can have subject, object and relational properties! 
+
+So if when:
+s != r != o != s
+
+s =r> o
+r is the most specific relationship between them
+
+Now let's imagine x =t> y where 
+x != t != y != x
+
+Perhaps x is a subject, y is an object, and  t is a type of relationship? Does:
+x =s> x
+y =o> y
+t =r> r & t =(r)> t
+possibly work? 
+Well this includes other cases in our subject-object relationship to find out!! So put a pin in it
+
+Though we have (r). What is the symbol for the subject of a relationship. What is:
+mother =?> her-daughter
+
+I would say that's the "is the mother of" relationship
+Might we take (mother) to be the symbol for is-the-mother-of?
+
+So perhaps:
+t =r> r & t =s> t
+
+And we hold on to the idea that (r) is s in this case? That's further down the line. It might not work out! But we're theorists
+
+Consider:
+s == r != o != s
+
+This doesn't really describe standard semantics of the subject / object relationship. 
+
+Let's decide to express this as:
+s =s> o
+
+This has some consequences:
+
+It still means s =r> o, but s inherits from r so:
+s =r> r & s =(r)> s
+
+What is the most specific relationship here? It can't be r. But if s inherits from r, s can be the most specific relationship of: 
+s =s> o
+
+How do we feel about s == (r)? 
+
+Look at this:
+s =r> r & s =(r)> s
+
+Well if s inherits from r, it could be that:
+s =s> r & s =s> s
+
+That would mean s represents r, and that s has a property that the eq referent has: eq =eq> eq. I bet we can find a relationship. Symbols should probably relate to themselves in the way equality relationships do, as they bestow a sort of equalit!
+
+Hmm, so (r) == s might be working out! But we don't know yet 
+
+Now, in SRT, we get to introduce referent. Do we want to introduce symbol and literal>?
+
+E{sym,lit}: sym =sym> lit
+sym =s> sym            // sym is the subject
+lit =o> lit                    // lit is the obejct
+sym => s & sym =(s)> sym
+
+But wait, what would the symbol for a subject be. Might (s) == sym? Then we get:
+sym =sym> sym
+
+Just as when s == r, we get: 
+s =s> s
+
+You see, s, o and r can't have different cases really. They are different referents. But we can introduce new referents related to them to capture what it means when certain ones are equivalent
+
+Next consider:
+s != r != o == s
+
+Again, not the standard semantics. But here's an interesting choice. What if we just chose to think of this as 
+o =r> o
+
+We need to introduce new referents, so how about ref and eq?
+ref =eq> ref
+
+Here eq can be the most specific relationship between ref and ref and we get:
+ref =o> ref
+eq =r> r
+eq =(r)> eq   
+
+Which might mean
+eq =s> eq
+
+Now that is interesting! We chose not to interpret s == o as both being subjects, but both being objects. Yet here we see that if we do take s == (r), then eq has the property of being the subject of this relationship
+
+That's fascinating!
+
+Consider:
+s != r == o != s
+
+So we have:
+s =r> r
+
+Why do I choose that one? o means objective. s =o> o is putting o in a relational role, which doesn't feel objective. s =r> r seems like the better way to interpret this case:
+
+Let's try to use symbol and representation to capture this:
+
+sym =rep> rep
+
+Doesn't this remind you of the:
+sym =sym> lit case where we had to express inheritance as
+
+sym =r> r? 
+
+We would know:
+sym =s> sym   -  which we already know
+rep =o> rep   -  a representation is an object
+rep =r> r & rep =(rep)> rep & (rep) =r> r
+
+Now if the representation is the most specific relationship between a symbol and a representation - this is sort of like an element pointing to its collection for membership. A symbol is a part of the representation, like a dog is a part of the representation animal, but a dog does not symbolize an animal, an animal represents a dog
+
+So we have:
+rep =r> r
+(rep) =r> r
+
+Is r representation that represents both representation and the symbol for it? That hurts the brain, but relationship is a very powerful representation. Put a pin in this one, I'm not sure it's perfect. But we would infer:
+
+rep =sym> sym =sym> lit
+
+And those are the most specific relationships there. In the representation that connects representations, symbols and literals, a symbol can be a subject, and object and a relationship. It seems quite natural to think:
+
+That a symbol could be the most specific relationship it has with itself:
+sym =sym> sym
+
+And finally consider:
+s == r == o == s
+
+Now we know that this is satisfied by equality. eq is a referent and referents are all equal to themselves:
+eq =ref> eq & ref =eq> ref
+
+Just as a referent subject to A[x,y]: x = y <iff> x =eq> y, substituting eq in for x and y, we get:
+eq =eq> eq
+
+But eq can't be the most specific relationship here because eq is the most specific relationship between two referents right? 
+
+So what if ref inherits from eq
+eq =ref> eq =|> eq =eq> eq
+
+And ref is the most specific relationship
+
+Well, there is model! 
+
+It needs to be checked for consistency! We started thinking about how s might equal (r) - and remember we haven't defined (r) yet! We seem to have specified most specific relationships in call cases. 
+
+Perhaps we want:
+sub =rel> obj
+
+To make the symbolism more specific, and that linguistically, we use r as a synonym for rel. So they aren't two different referent, but that r is not allowed as a variable, and when we write r, it is replaced by rel. 
+
+That makes things elegant!
+
+Now... are these semantics consistent!!!! I wrote so many theorems. So many of them imply others. If you derive all the things that are true, can you find any oddities? Like, there will be lots of theorems:
+
+E[x]:A{y,t}: x =t> y =|> ...
+
+We know that x could be the same as y or the same as t, but the relationship cant' be the object. What truths are we capturing here? Are there new referents that could be added to clarify? Maybe. I wouldn't decide to try to add all quantification states just yet. Building consistent semantics for the first five existential cases are pretty good!
+
+Now, reflect on what I did here. Am I being a theorist? Does this connect to anything you might have read or can read on what being a theorist means? Do you see that as a theorist, you aren't proving things, but looking for a model. Is this a consistent model? Are there other models? Do bare in mind that we are fixing the domain to be referents, and a referent sort of demands to be referred to, and reference kind of demands symbolism. so:
+
+sub, obj, rel, sym, lit, rep, ref, eq...
+
+These do a pretty good job capturing the existential semantics of R(x,y,t) on the domain of referents!

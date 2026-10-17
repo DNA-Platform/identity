@@ -1,0 +1,19 @@
+My theory of consciousness is based on Godelian self-reference. It started as an extension of first order logic where one can use a canonical metalanguage (like Godel created) to produce semantic assertions about the theory. Do you want to be sure you are doing logic? Reify your belief in logic by expressing belief in consistency with the provability predicate. Require a construction protocol for things like proof by contradiction or the sort of hypothetical implication proof where you assume something random, prove something else and conclude the assumption implies the conclusion. Where did those things come from? Well if construction is part of the process, when you construct with the metalanguage, you might bump into something that breaks a semantic assertion - like an assertion in programming - which is often compiled out for release! Or not. But it's not in the type system. Then, when one's semantic assertions (which cannot be axioms because the metalanguage depends on the axioms so the formalism would have to change to accomodate them) are violated, semantic reflection is the version of proof that kicks in to conclude that there's a problem with the semantic assertions. And if one can conclude that an action can be taken to preserve or restore consistency while also preserving the semantics of the thing you are doing, you can "transduce" new symbolic structures like axioms.
+
+Why is a Godel sentence true? Because it violates the semantic assertions of logic that we make in the metalanguage. Sure, we can't prove consistency, but if transducing not G is like declaring yourself to be inconsistent in the metalanguage, then you would do well not to transduce not G. But why transduce G?
+
+Well this is my answer to Hilbert. He mathematics to be complete, and by extension arithmetic. Well completeness is not a condition of a static formalism. But it is the epistemic motive of a dynamic one! A semantic formalism that can talk about itself can say that it aspires to be complete
+
+But the whole process is just an augmented proof with spots for constructions, regular proof, reflection, and use of the |=> transduction operator! A mashup of material implication => and semantic entailment |= in model theory!
+
+I argue that in this formalism, such moments are equivalent to moments of consciousness when the procedure is implemented computationally on a physical computer. How? By deriving in the Newtonian method the following sentence "A conscious experience is an inexplicable yet self-evident metaphysical phenomenon". Self-evident from Descartes, inexplicable from Chalmers, and metaphysical in this case means the physical execution of a metalogical operation. I think we can agree that transduction is thoroughly metalogical
+
+And I am proud to be able to articulate that... pretty well!!
+
+But I don't think anything living except Douglas Hofstadter has taking the requisite background to actually comprehend that approach. So... I started semantic reference theory. We tackle semantics head on, and we make references the area of inquiry in a first order logic on the domain of referents. What is a referent? Well, name a theory, open a dictionary, and name any term in the theory, word in the dictionary, or symbol on the page - that is a referent. 
+
+Here's what we accomplished today. 
+
+We have a lot more - all the way up to formalizing what a perspective means, and what the semantics if the first person perspective is. But today was about nailing down the linguistic / semantic back-and-forth that is what it means to develop semantic reference theory
+
+Here's a plug. What are the semantics of reference? Well reference is what's used to understand the relationship between language and meaning. And the relationship between language and meaning is... semantics. So Semantic Reference Theory is a reference for a theory of semantics!

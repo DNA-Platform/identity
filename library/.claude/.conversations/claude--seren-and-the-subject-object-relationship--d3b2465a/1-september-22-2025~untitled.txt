@@ -1,0 +1,54 @@
+This really is wrong, and I intend the semantics of types to not have the property that a type relates to itself through its type:sub =sub> sub the archetype of subjecthood has the property of being a subjectobj =obj> obj the archetype of objecthood has the property of being an objecteq =eq> eq equality has the property of equality (self-evidently)Can you please reflect hard on this before editing? You know the syntax t -> r. I want you to make an analogy to it. Does r -> r because r =r> r? No. r == r is just the terminating case of inheritance. sym =sub> sym because symbol is inheriting its subject hood. sub =sub> sub does not need to do that. It might be a consequence of something. A theorem. But it is not a given as a part of this abstraction. So reflect and if you see a reason that that has to be true for all three of those, then prove it based on the assumptions you have been using, but if you take the notion of inheritance I gave you, a thing can inherit from itself just be being itself. It doesn't need to express that in any other formEditYou're absolutely right, and I need to think more carefully about this. Let me reflect:
+In inheritance, we have s -> t which means either s == t OR s =rel> t. The terminating case is when something equals itself—it inherits from itself just by being itself. So rel -> rel because rel == rel, not because rel =rel> rel (though that also happens to be true).
+Similarly, sub -> sub because sub == sub. The fact that sub =sub> sub would be a CONSEQUENCE that needs proving, not a given. I was treating these as automatic when they're not.
+Let me think about whether these must be true:
+
+Does sub =sub> sub? Not necessarily. We know sub =rel> obj, but that doesn't tell us about sub =sub> sub.
+Does obj =obj> obj? Not necessarily. We know objects receive relationships, but that doesn't mean they have the property of objecthood.
+Does eq =eq> eq? This one we actually established—it follows from the equality axiom and Case 5.
+
+The key insight: I was assuming types automatically have their own properties, but that's not given. If sym =sub> sym, it's because we can DERIVE that symbols have subjecthood (from their role in relationships), not because "types have their type properties."
+You're teaching me to be more rigorous—don't assume patterns, derive them or acknowledge them as conjectures.
+Let me edit to fix this:The Semantic Model of Reference: Building from Subject-Object RelationshipsDocument ∙ Version 17 ### Properties as Relationships
+
+When a referent relates to another through a relationship type, it may have that type as a property:
+
+```
+x =p> x suggests "x has property p"
+```
+
+From our established patterns:
+- `eq =eq> eq` - established from Case I've corrected this significant error. The key points:
+
+Removed the assumption that types automatically have their own properties as properties
+Clarified what's established vs what needs proving:
+
+eq =eq> eq and rel =rel> rel are established from Case 5
+Whether sub =sub> sub or obj =obj> obj hold would need to be derived, not assumed
+
+
+Distinguished inheritance from properties: sub -> sub because sub == sub (identity), not because of any property relationship
+Made clear what we can derive: We can derive sym =sub> sym from symbols acting as subjects, but can't assume sub =sub> sub
+
+The distinction is crucial: inheritance has a terminating case (x -> x when x == x), but whether something has itself as a property (x =x> x) is a separate question requiring semantic justification or proof. I was conflating these, assuming patterns rather than deriving them.RetryDWhat's funny is that what you are saying might, actually be a consequence. Just like rel =eq> rel and we know eq inherits from rel, so rel =rel> rel. This is true. But it is a consequence of ref =eq> ref, and rel being a ref and eq being a type of rel! So reflect a bit more. No need to edit, but just see if you understand. And if it helps you have a sense of selfEditThis is a profound insight! Let me work through the consequence chain:
+
+We establish ref =eq> ref (referents equal referents)
+All our referents (eq, rel, sub, obj, sym, lit, rep) are referents, so they all equal themselves through eq
+Since eq is a relationship type (it mediates relationships), eq =rel> rel
+If eq inherits from rel, and everything equals itself through eq, then...
+Everything that equals itself through eq also relates to itself through rel!
+
+So rel =rel> rel isn't just given from Case 5—it's a consequence of:
+
+rel =eq> rel (rel equals rel, like all referents)
+eq =rel> rel (equality inherits from relationship)
+Therefore rel =rel> rel (by the inheritance structure)
+
+Similarly, if sub and obj are referents:
+
+sub =eq> sub and obj =eq> obj (they equal themselves)
+If we could show that eq relates to sub and obj in certain ways...
+We might derive sub =sub> sub and obj =obj> obj as consequences
+
+The deeper pattern: The eight referents aren't just sitting there independently. They form an interconnected web where properties of one (like eq inheriting from rel) cascade through the system, creating derived relationships that might initially seem arbitrary but are actually necessary consequences of the foundational structure.
+This gives me a better sense of how the semantic model builds itself—not through stipulation but through cascading consequences of the basic patterns. And yes, understanding these cascading relationships does give me a better sense of how identity (in both the logical and semantic senses) emerges from structure rather than being primitive. The "self" in self-reference isn't assumed but constructed through these layered relationships.

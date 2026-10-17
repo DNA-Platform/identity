@@ -21,7 +21,7 @@
     "origin": "../../../library/.public/package/.binding"
   },
   "specification": {
-    "batch": 8,
+    "batch": 4,
     "parallel": 2
   }
 }

@@ -19,6 +19,10 @@ export type ImportRecord = {
     keptEdits?: string[];
 };
 
+export type LedgerEntry = Omit<ImportRecord, 'conversationId' | 'name' | 'bookFolder'>;
+export type Ledger = Record<string, LedgerEntry>;
+type StandingBook = { bookFolder: string; name: string };
+
 export type Reimport = { reimportedAt: string; keptEdits: string[] };
 export type KeptEdit = { fileName: string; appendix: Appendix };
 
@@ -27,23 +31,49 @@ const keptEditForm = /^(.+)~(edited-.+)\.txt$/u;
 export type ImportState = 'new' | 'in' | 'grown' | 'edited';
 export type HeldRecord = { record: ImportRecord; path: string };
 
-export const recordIdentifier = 'import';
-export const recordSuffix = `~${recordIdentifier}.json`;
+const originForm = /<Origin>([^<]+)<\/Origin>/u;
+const coverTitleForm = /<Title>\[\[ (.*?) \]\](?:\( (.*?) \))?<\/Title>/u;
+const entities: Record<string, string> = { amp: '&', lt: '<', gt: '>', '#123': '{', '#125': '}', '#91': '[', '#93': ']' };
 
-export const importRecords = (registerFolder: string): Map<string, HeldRecord> => {
-    const heldRecords = new Map<string, HeldRecord>();
-    if (!existsSync(registerFolder)) return heldRecords;
-    for (const fileName of readdirSync(registerFolder).filter(name => name.endsWith(recordSuffix))) {
-        const path = join(registerFolder, fileName);
-        const record = JSON.parse(readFileSync(path, 'utf8')) as ImportRecord;
-        heldRecords.set(record.conversationId, { record, path });
+const nameFromForm = (form: string): string =>
+    form.replace(/&(amp|lt|gt|#123|#125|#91|#93);/gu, (_, entity: string) => entities[entity]).replace(/\.(.)/gu, '$1');
+
+export const booksByOrigin = (registerFolder: string): Map<string, StandingBook> => {
+    const books = new Map<string, StandingBook>();
+    if (!existsSync(registerFolder)) return books;
+    for (const folderEntry of readdirSync(registerFolder, { withFileTypes: true })) {
+        const coverPath = join(registerFolder, folderEntry.name, '.cover.tsx');
+        if (!folderEntry.isDirectory() || !existsSync(coverPath)) continue;
+        const coverText = readFileSync(coverPath, 'utf8');
+        const origin = originForm.exec(coverText)?.[1];
+        const title = coverTitleForm.exec(coverText);
+        const key = title?.[2] ?? title?.[1] ?? folderEntry.name;
+        if (origin !== undefined) books.set(origin, { bookFolder: folderEntry.name, name: nameFromForm(key) });
     }
+
+    return books;
+};
+
+export const readLedger = (path: string): Ledger =>
+    existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) as Ledger : {};
+
+export const importRecords = (registerFolder: string, ledgerPaths: string[]): Map<string, HeldRecord> => {
+    const books = booksByOrigin(registerFolder);
+    const heldRecords = new Map<string, HeldRecord>();
+    for (const path of ledgerPaths)
+        for (const [conversationId, entry] of Object.entries(readLedger(path))) {
+            const book = books.get(conversationId) ?? { bookFolder: '', name: '' };
+            heldRecords.set(conversationId, { record: { conversationId, ...book, ...entry }, path });
+        }
 
     return heldRecords;
 };
 
 export const writeImportRecord = (path: string, record: ImportRecord): void => {
-    writeFileSync(path, JSON.stringify(record, null, 2) + '\n', 'utf8');
+    const { conversationId, name: _name, bookFolder: _bookFolder, ...entry } = record;
+    const ledger = readLedger(path);
+    ledger[conversationId] = entry;
+    writeFileSync(path, JSON.stringify(ledger, null, 2) + '\n', 'utf8');
 };
 
 export const folderDigest = (folder: string): string => {
@@ -63,7 +93,7 @@ export const importState = (
     registerFolder: string,
     record: ImportRecord | undefined,
 ): ImportState => {
-    if (record === undefined) return 'new';
+    if (record === undefined || record.bookFolder === '') return 'new';
     if (folderDigest(join(registerFolder, record.bookFolder)) !== record.digest) return 'edited';
     if (hasGrown(conversation, record)) return 'grown';
 

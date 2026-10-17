@@ -1,5 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
+import ts from 'typescript';
 import type { Conversation } from './3-the-record~record.ts';
 import type { Pairing } from './4-the-pairing~pairing.ts';
 import type { HeldRecord } from './5-the-ledger~ledger.ts';
@@ -127,6 +129,37 @@ export const membershipDifferences = (pairings: Pairing[], membershipText: strin
 
         return [{ name: pairing.title || 'Untitled', ours: pairing.byHand ? `${ours}, by hand` : ours, theirs }];
     });
+};
+
+export type BinderCheck = { bookCount: number; keyCount: number; faults: string[] };
+
+export const binderCheck = async (library: string, bindingFolder: string, written: string[] = []): Promise<BinderCheck> => {
+    const binderModule = async (path: string) => import(pathToFileURL(join(bindingFolder, path)).href);
+    const { configure } = await binderModule('configuration/configuration.ts');
+    const { walk } = await binderModule('inventory/walk.ts');
+    const { misaccounted } = await binderModule('inventory/accounting.ts');
+    const { problem } = await binderModule('inventory/library.ts');
+    const { catalogue } = await binderModule('catalogue/catalogue.ts');
+    const { holds } = await binderModule('catalogue/holds.ts');
+    const { missing, transforming } = await binderModule('reference/transform.ts');
+    const chosen = configure(bindingFolder);
+    const found = walk(library, chosen);
+    const held = catalogue(found, chosen);
+    const faults = [...misaccounted(found, chosen), ...holds(found, held)].map(fault => String(problem(fault)));
+    const unparsed = written.filter(file => file.endsWith('.tsx') && existsSync(file)).flatMap(file => {
+        const book = found.books.find((one: { path: string }) => resolve(dirname(file)) === resolve(one.path));
+        const made = transforming(readFileSync(file, 'utf8'), file, held, book);
+        const missed: string[] = made.missing.map((one: unknown) => missing(one, held.keys()));
+        const parsed = ts.transpileModule(made.text, {
+            fileName: file, reportDiagnostics: true, compilerOptions: { jsx: ts.JsxEmit.Preserve },
+        });
+        const refused = (parsed.diagnostics ?? []).map(diagnostic =>
+            `${file}: once transformed, ${ts.flattenDiagnosticMessageText(diagnostic.messageText, ' ')}`);
+
+        return [...missed, ...refused];
+    });
+
+    return { bookCount: found.books.length, keyCount: held.keys().length, faults: [...faults, ...unparsed] };
 };
 
 export const chapterInstants = (chapterText: string): string[] =>

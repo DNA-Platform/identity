@@ -1,6 +1,6 @@
 import { Bold, Chapter, Date, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
 import { Dated, Message, Speaker } from '../../../.manual/.book';
-import { Action, Artifact, Attachment } from '../../.manual/.book';
+import { Action, Artifact, Attachment, Origin } from '../../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -11,6 +11,7 @@ export default () => (
         <Message
             at="2025-03-21T17:51:17.196966Z"
         >
+            <Origin>30b7e596-43c1-43ae-95cf-525954992cc2</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 In three sentences, rate this on a scale of accuracy, with a mind for scientific accuracy, published fact,
@@ -27,6 +28,7 @@ export default () => (
         <Message
             at="2025-03-21T17:51:20.941507Z"
         >
+            <Origin>a19143fd-deef-476f-b227-8a68602990d4</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>Based on the provided text about quantum computing and Shor's algorithm:</Paragraph>
             <Paragraph>
@@ -41,6 +43,7 @@ export default () => (
         <Message
             at="2025-03-21T17:54:04.112399Z"
         >
+            <Origin>545a2ea1-7a09-4a69-8747-bc638cd61a92</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Paragraph>
                 Let me analyze this systematically by using published research to evaluate quantum computing progress.
@@ -61,6 +64,7 @@ export default () => (
         <Message
             at="2025-03-21T18:13:37.117896Z"
         >
+            <Origin>eb9c9850-9489-465a-a9ae-4b61aff35c49</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Artifact
                 identifier="quantum-computing-reality-check.v1"

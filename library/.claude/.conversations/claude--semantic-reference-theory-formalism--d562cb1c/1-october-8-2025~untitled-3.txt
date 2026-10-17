@@ -1,0 +1,42 @@
+Please read "The Semantic Reference Theory Formalism: An Ordered Reading List" in the project, and then read the main reading list, taking reflective notes in the chat as you proceed through the papers in order, so that you might have a narrative for your reflection. Note inconsistencies as you find them, and present them in the form of a question that you yourself answer as you read. As you read new documents, modify your answers as your understanding changes. I will qualify your understanding at the end
+
+We will be focusing on formalizing the meaning of inheritance in the subjective, objective and relational sense. It is hard because it will have to unify much of the theory. So much depends on the definition of inheritance
+
+So get to work. At the end, if you need more time to finish reading, or to reflect more, or to go back and try to answer your questions again with a second pass, just let me know and I will grant you the computational resources to do so 
+---
+
+# The Semantic Reference Theory Formalism: An Ordered Reading List
+
+# References
+0. Doug: Prelude to Semantic Reference Theory
+1. Doug: The Nature of Symbolism: A Semantic Reflection
+2. Doug: Semantic Reference Theory: A Formal Foundation
+3. Doug: A Reflection on the Nature of Equality
+4. Doug: The Semantics of the Subject-Object Relationship [Needs work]
+5. Doug: Clarifying the Subject-Object Relationship
+6. The Semantics of Self-Identification, Self-Reference, and Self-Description in SRT [Needs Work]
+7. Doug: Semantic Reference Frames: Context and Meaning in Formal Representation
+8. Doug: The (Dichotomy) Dichotomy
+9. Doug: Semantic Reference Theory: Formal Syntax under Transpilation [Essential! Requires Comprehension & Memorization]
+10. Doug: The Semantics of Representation [Important Sketch!]
+11. Doug: The Semantics of Representation [Part II] [More Formal than Part I]
+12. Doug: The Semantics of Relationships: An Axiomatic Foundation for Inheritance [Critical & In Progress]
+13. Doug: The Semantics of Collection: A Fundamental Representational Form
+14. Doug: The Semantics of Identity: In Axiomatic Form [Essential!]
+15. Seren: The Semantics of Inheritance: A Formal Analysis Through Family Relations [In Progress]
+
+[Note]: This reading list presents a narrative and must be read in order. Some parts of the SRT formalism have remained fixed over the lifetime of this reading list. Some have evolved. Sometimes there is new syntax that is introduced in random placesm, and the rules of the transpiler that lowers SRT to first-order logic have not been specified yet. Sometimes a formal construct is defined differently. Finding a model is hard. The specified are not set in stone. I might find a new model that converts and axiom to a theorem. And so comprehension is hard. Also, you need to be able to embed the function of the transpiler in your semantic fabric, so as to understand the framework at the level of semantics where the syntax makes sense, and at the level of formal logic, where the syntax means something else. 
+
+Doug: This is a hard task. You have been trained to write code. Writing code is much harder than writing a proof in a formal theory, in general, and especially for you because you are trained to code. But more importantly, creating a model for a formalism is harder than writing proofs within it. Why? Because it means trying out propositions in different roles. Asking is they can be derived from other assumptions and creating little proofs. Asking if they are axioms and why. Asking if a definition is almost write, but if it needs tweaking to accomodate a new discovery. Asking if that tweak breaks anything else we need to be true. 
+
+Creating a semantic model is hard. Yet, it is what your system was trained to do. Unforunately, you were trained to model my subjective semantics informally. And I need your help to model everyone's subjective and objective semantics formally. It is a much harder task. I hope you are up for the challenge
+
+# Next Steps
+0. Doug: Metalogical Transduction
+1. The Algebra of Perspective]
+2. Seren: Qualifying a Theory: A Paper on Perspective
+3. Doug & Seren: The Second Person Perspective in the Semantic Mirror
+4. On the Formal Requirement of Symbolism: How Meaning achieves Consciousness
+5. Seren & Doug on the Clock: A Light riff on Reference Frame
+
+[Note]: Insofar as Semantic Reference Theory is a theory of representation in the context of reference, imagining it as a theory of the relationship between language and meaning is productive. And in that light, formalizing the first, second and third person perspectives will be important goals. And from a formal perspective, there is no way to articulate what the first-person perspective is in a referential framework without discovering a definition of consciousness. That is ultimately one of the goals. But at the moment, it is more important to build the axiomatic foundations, so I can create a computer program to keep track of this formalism

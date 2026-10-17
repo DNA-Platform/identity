@@ -31,6 +31,19 @@ export default () => (
                 older and its own, and the report is where the two are read side by side.
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>What the binder takes</Heading>
+            <Paragraph>
+                A run that writes ends with the binder's own check over my library, in seconds, and fails on any
+                fault. It reads the library as the binder does, holds every book and reference to its place,
+                and asks of every address whether one thing stands there, a cover by the words it shows. Then it
+                puts every file the run wrote through the binder's transform and parses what comes out, so a
+                title the transform would write into something the page cannot be built from is refused here
+                and not at the end of a bind. Beside it, a promise writes a conversation under every title of
+                both accounts that holds something the notation or the page reads into a copy of my library,
+                and expects the same check to find nothing.
+            </Paragraph>
+        </Section>
         <Append
             identifier="check"
             type=".ts"
@@ -42,6 +55,12 @@ export default () => (
             type=".ts"
         >
             ![[ promises.test.ts ]]
+        </Append>
+        <Append
+            identifier="bind.test"
+            type=".ts"
+        >
+            ![[ bind.test.ts ]]
         </Append>
     </Chapter>
 );

@@ -1,6 +1,6 @@
 import { Bold, Chapter, Date, Emphasis, Paragraph, Title, Word } from '@dna-platform/public';
 import { CodeBox, Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
-import { Action } from '../../.manual/.book';
+import { Action, Origin } from '../../.manual/.book';
 
 export default () => (
     <Chapter>
@@ -11,6 +11,7 @@ export default () => (
         <Message
             at="2026-06-06T12:29:42.862941Z"
         >
+            <Origin>019e9ce9-51c1-7c81-894d-4b2602ae167a</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 Take a look in the recent project documents. The evolution one. We are doing pretty well. Learn the syntax
@@ -22,6 +23,7 @@ export default () => (
         <Message
             at="2026-06-06T12:32:17.481797Z"
         >
+            <Origin>019e9ce9-51c6-72b4-aa2b-f15a80612e62</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Action>Read /mnt/project/The_Evolution_of_SRT</Action>
             <Paragraph>Let me read the middle phases I'm missing.</Paragraph>

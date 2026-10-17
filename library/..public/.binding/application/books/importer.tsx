@@ -13,6 +13,8 @@ import TheThread6 from '../../../../importer/6-the-thread';
 import TheWriting7 from '../../../../importer/7-the-writing';
 import TheBooks8 from '../../../../importer/8-the-books';
 import TheCheck9 from '../../../../importer/9-the-check';
+import DnaLegacy10 from '../../../../importer/10-dna-legacy';
+import Dna11 from '../../../../importer/11-dna';
 
 const Book = $($Book);
 
@@ -30,6 +32,8 @@ export const book = () => (
         {TheWriting7()}
         {TheBooks8()}
         {TheCheck9()}
+        {DnaLegacy10()}
+        {Dna11()}
     </Book>
 );
 

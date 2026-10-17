@@ -10,6 +10,7 @@ import { ApplicationForm } from './4-the-page~theme.tsx';
 import { $Artifact, $Attachment } from './2-the-artifact-and-the-attachment~code.tsx';
 import { Pane as pane } from './5-the-pane~code.tsx';
 import { $Account, AccountLine as accountLine } from './7-the-account~code.tsx';
+import { $Origin } from './8-the-origin~code.tsx';
 
 export class $Project extends $Annotation {
     specification = new ProjectSpecification();
@@ -74,6 +75,7 @@ export class $ClaudeConversation extends $Conversation {
     $shown: $Artifact | $Attachment | undefined = undefined;
     get project(): $Project | undefined { return this.cover?.annotations.expressed($Project); }
     get account(): $Account | undefined { return this.cover?.annotations.expressed($Account); }
+    get origin(): string | undefined { return this.cover?.annotations.expressed($Origin)?.uuid; }
 
     override write(): ReactNode {
         const Pane = $(pane);

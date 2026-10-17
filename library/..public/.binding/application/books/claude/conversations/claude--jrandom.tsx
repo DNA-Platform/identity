@@ -1,0 +1,20 @@
+import { $ } from '@dna-platform/chemistry';
+import { opened } from '../../../opened';
+import $Book from '../../../../../../.claude/.conversations/claude--jrandom/.book';
+import Cover from '../../../../../../.claude/.conversations/claude--jrandom/.cover';
+import Synopsis from '../../../../../../.claude/.conversations/claude--jrandom/.synopsis';
+import Table from '../../../../../../.claude/.conversations/claude--jrandom/.table';
+import January1120261 from '../../../../../../.claude/.conversations/claude--jrandom/1-january-11-2026';
+
+const Book = $($Book);
+
+export const book = () => (
+    <Book>
+        {Cover()}
+        {Synopsis()}
+        {Table()}
+        {January1120261()}
+    </Book>
+);
+
+if (import.meta.hot) import.meta.hot.accept(next => { if (next !== undefined) opened.open(next.book); });

@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { newestBeside } from './2-the-export~export.ts';
@@ -9,16 +9,17 @@ import {
 } from './4-the-pairing~pairing.ts';
 import {
     folderContents, hasGrown, importRecord, importRecords, importState, keptEdits, keptEditsStanding, keptEditsStruck,
-    recordIdentifier, recordSuffix, standingKeptEdits, tendStruckEdits, writeImportRecord, type HeldRecord, type Reimport,
+    standingKeptEdits, tendStruckEdits, writeImportRecord, type HeldRecord, type Reimport,
 } from './5-the-ledger~ledger.ts';
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
 import { conversationTitle, slugFromName, writtenConversation, type Referents } from './7-the-writing~writing.ts';
 import {
-    conversationBook, libraryEntry, orderRegisterTable, projectBook, projectEntry, registerBook, registerEntry, schemes,
-    uniqueBookName, wrappedLines, type LibraryFolders, type Scheme,
+    conversationBook, libraryEntry, orderRegisterTable, plainName, projectBook, projectEntry,
+    registerBook, registerEntry, schemes, uniqueConversationName, wrappedLines, type BookName,
+    type ConversationNaming, type LibraryFolders, type Scheme,
 } from './8-the-books~books.ts';
 import {
-    archiveFiling, archiveStatistics, archiveTranscripts, countDifferences, differenceLines, filingDifferences,
+    archiveFiling, archiveStatistics, archiveTranscripts, binderCheck, countDifferences, differenceLines, filingDifferences,
     membershipDifferences, transcriptDifferences, writtenDifferences, type ExportCounts,
 } from './9-the-check~check.ts';
 
@@ -36,10 +37,9 @@ const dougsClaudeCaption = 'My conversations with Claude and the projects they w
 const ourConversationsCaption = 'All of them, newest first:';
 const projectCaption = 'A project of mine, and the conversations held in it:';
 const noMappingWords = '  no mapping captured off the application; every conversation will be unpaired';
-const recordAppendix = { identifier: recordIdentifier, type: '.json' };
 
-export type Account = { name: string; folder: string; address: string };
-export type Configuration = { accounts: Account[]; excluded: Exclusions; collections: Record<string, string[]> };
+export type Account = { name: string; folder: string; address: string; ledger: string };
+export type Configuration = { excluded: Exclusions; collections: Record<string, string[]> };
 export type Selection = { projectName: string | undefined; collectionName: string | undefined; onlyNames: string[] };
 type ConversationOf = (pairing: Pairing) => Conversation;
 
@@ -86,11 +86,21 @@ export const configurationFrom = (text: string): Configuration => {
     const read = JSON.parse(text) as Partial<Configuration>;
 
     return {
-        accounts: read.accounts ?? [],
         excluded: { scripts: read.excluded?.scripts ?? [], projects: read.excluded?.projects ?? [] },
         collections: read.collections ?? {},
     };
 };
+
+const importConfigurationForm = /^(\d+)-(.+)~configuration\.json$/u;
+
+export const importsOf = (importerFolder: string): Account[] => readdirSync(importerFolder)
+    .map(fileName => ({ fileName, numbered: importConfigurationForm.exec(fileName) }))
+    .filter(({ numbered }) => numbered !== null && numbered[2] !== 'the-importer')
+    .sort((first, second) => Number(first.numbered![1]) - Number(second.numbered![1]))
+    .map(({ fileName }) => ({
+        ...JSON.parse(readFileSync(join(importerFolder, fileName), 'utf8')) as Omit<Account, 'ledger'>,
+        ledger: join(importerFolder, fileName.replace(/~configuration.json$/u, '~ledger.json')),
+    }));
 
 export const readConfiguration = (library: string): Configuration => {
     const path = configurationPath(library);
@@ -121,8 +131,9 @@ export const selectedPairings = (
 
 export const run = async (args: Arguments): Promise<void> => {
     const configuration = readConfiguration(args.library);
-    if (configuration.accounts.length === 0) throw new Error('the configuration names no account to read');
-    const reading = await accountsReading(configuration.accounts);
+    const accounts = importsOf(join(args.library, 'importer'));
+    if (accounts.length === 0) throw new Error('the importer holds no import: a chapter with a configuration beside it');
+    const reading = await accountsReading(accounts);
     const pairings = reading.accounts.flatMap(accountReading => conversationPairings(
         args.library, accountReading.account.name, accountReading.conversations, accountReading.projects,
         accountReading.mapping, configuration.excluded,
@@ -139,7 +150,7 @@ export const run = async (args: Arguments): Promise<void> => {
         claudeManual: join(args.library, '.claude', '.manual'),
         conversations: join(args.library, '.claude', '.conversations'),
     };
-    const heldRecords = importRecords(folders.conversations);
+    const heldRecords = importRecords(folders.conversations, accounts.map(account => account.ledger));
     if (args.write) {
         writePairings(args.library, pairings);
         const tended = [...heldRecords.values()].flatMap(heldRecord => tendStruckEdits(folders.conversations, heldRecord));
@@ -171,7 +182,12 @@ export const run = async (args: Arguments): Promise<void> => {
         console.log('\nnothing written — pass --write');
         return;
     }
-    writeBooks(args, folders, reading, included, conversationOfPairing, heldRecords);
+    const filesTouched = writeBooks(args, folders, reading, included, conversationOfPairing, heldRecords);
+    const checked = await binderCheck(args.library, join(args.library, '..public', '.binding'), filesTouched);
+    console.log(`\nthe binder's check: ${countedNoun(checked.bookCount, 'book')}, ${countedNoun(checked.keyCount, 'key')}, `
+        + countedNoun(checked.faults.length, 'fault'));
+    if (checked.faults.length > 0)
+        throw new Error(['the library does not hold together after the write:', ...checked.faults.slice(0, 20)].join('\n'));
 };
 
 const accountsReading = async (accounts: Account[]): Promise<Reading> => {
@@ -397,8 +413,11 @@ const writtenProject = (
     const scheme = schemes[schemeIndex % schemes.length];
     if (project === undefined) return { project, folder: undefined, scheme, files: [] };
     const wholeProject = args.overwrite && args.projectName !== undefined && args.onlyNames.length === 0;
-    const book = projectBook(folders, project, scheme, drawingBeside('project'), args.overwrite, wholeProject);
-    const entry = registerEntry(folders, folders.claude, project.name, book.folder, project.updatedAt, projectCaption, '**');
+    const drawing = drawingBeside('project');
+    const book = projectBook(folders, project, scheme, drawing, args.overwrite, wholeProject);
+    const entry = registerEntry(
+        folders, folders.claude, plainName(project.name), book.folder, project.updatedAt, projectCaption, '**',
+    );
 
     return { project, folder: book.folder, scheme, files: [...book.files, ...entry.files] };
 };
@@ -410,7 +429,7 @@ const writeBooks = (
     included: Pairing[],
     conversationOfPairing: ConversationOf,
     heldRecords: Map<string, HeldRecord>,
-): void => {
+): string[] => {
     const filesTouched: string[] = [];
     const dougsClaudeFiles = registerBook(
         folders, folders.claude, 'Dougs Claude', 'Claude', 'Library', 'The Library', join(folders.library, '..reference'),
@@ -423,7 +442,7 @@ const writeBooks = (
         args.overwrite,
     );
     const ourConversationsEntry = registerEntry(
-        folders, folders.claude, 'Our Conversations', folders.conversations, new Date().toISOString(),
+        folders, folders.claude, plainName('Our Conversations'), folders.conversations, new Date().toISOString(),
         ourConversationsCaption, '**',
     );
     const dougsClaudeEntryFiles = libraryEntry(folders.library, 'Dougs Claude', folders.claude, dougsClaudeCaption);
@@ -439,35 +458,40 @@ const writeBooks = (
         for (const pairing of included.filter(candidate => candidate.projectName === projectName)) {
             const conversation = conversationOfPairing(pairing);
             const heldRecord = heldRecords.get(conversation.id);
-            const heldBookFolder = heldRecord === undefined
+            const heldBookFolder = heldRecord === undefined || heldRecord.record.bookFolder === ''
                 ? undefined : join(folders.conversations, heldRecord.record.bookFolder);
             const bookStands = heldBookFolder !== undefined && existsSync(heldBookFolder);
             const standingRecord = bookStands ? heldRecord : undefined;
             const state = importState(conversation, folders.conversations, standingRecord?.record);
             const reimporting = state === 'edited' && args.reimport;
             const keptAsIs = (state === 'edited' && !reimporting) || (state === 'in' && !args.overwrite);
+            const title = conversationTitle(conversation);
+            const standingName = (held: HeldRecord): BookName => ({ words: title, key: held.record.name });
             if (standingRecord !== undefined && keptAsIs) {
                 keptCount++;
                 if (written.folder !== undefined)
                     filesTouched.push(...projectEntry(
-                        folders, written.folder, standingRecord.record.name, heldBookFolder!, conversation.createdAt,
+                        folders, written.folder, standingName(standingRecord), heldBookFolder!, conversation.createdAt,
                     ));
                 continue;
             }
-            const name = standingRecord?.record.name
-                ?? uniqueBookName(folders.conversations, conversationTitle(conversation), namesTaken);
+            const standing = standingRecord;
+            const naming: ConversationNaming = standing === undefined
+                ? uniqueConversationName(folders.conversations, title, conversation.id, namesTaken)
+                : { name: standingName(standing), folderName: standing.record.bookFolder };
+            const name = naming.name.key;
             const path = shownPath(conversation);
             const projectNames = written.project === undefined ? [] : [written.project.name];
             const accountName = reading.readingOf(pairing).account.name;
-            const before = heldBookFolder === undefined ? new Map<string, string>() : folderContents(heldBookFolder);
+            const before = standing === undefined ? new Map<string, string>() : folderContents(heldBookFolder!);
             const drawn = conversationBook(
-                folders, conversation, path, name, projectNames, accountName, written.scheme, referents,
+                folders, conversation, path, naming, projectNames, accountName, written.scheme, referents,
             );
             const drawnFileNames = drawn.files.map(file => basename(file));
             const newlyKept = reimporting ? keptEdits(drawn.folder, drawn.chapterStem, before, drawnFileNames) : [];
             const kept = standingKeptEdits(drawn.folder);
             const book = kept.length === 0 ? drawn : conversationBook(
-                folders, conversation, path, name, projectNames, accountName, written.scheme, referents,
+                folders, conversation, path, naming, projectNames, accountName, written.scheme, referents,
                 kept.map(one => one.appendix),
             );
             const keptFileNames = new Set(kept.map(one => one.fileName));
@@ -480,24 +504,20 @@ const writeBooks = (
                     + 'printed at its end; strike each when its edits are applied');
             const conversationCaption = `A conversation, ${countedNoun(path.length, 'exchange')}:`;
             const entry = registerEntry(
-                folders, folders.conversations, name, book.folder, conversation.updatedAt,
-                conversationCaption, '**', recordAppendix,
+                folders, folders.conversations, naming.name, book.folder, conversation.updatedAt, conversationCaption, '**',
             );
-            const entryStem = entry.entryPath?.replace(/\.tsx$/u, '');
-            const newRecordPath = entryStem === undefined ? undefined : `${entryStem}${recordSuffix}`;
-            const recordPath = standingRecord?.path ?? newRecordPath;
-            if (recordPath === undefined)
-                throw new Error(`no entry stands for "${name}" in ${folders.conversations}, so its record has no place`);
-            const bookFolder = basename(book.folder);
             const accountReading = reading.readingOf(pairing);
+            const recordPath = accountReading.account.ledger;
             const record = importRecord(
-                conversation, folders.conversations, name, bookFolder, accountReading.exportedOn, reimport,
+                conversation, folders.conversations, name, basename(book.folder), accountReading.exportedOn, reimport,
                 accountReading.account.name,
             );
             writeImportRecord(recordPath, record);
             filesTouched.push(...book.files, ...entry.files, recordPath);
             if (written.folder !== undefined)
-                filesTouched.push(...projectEntry(folders, written.folder, name, book.folder, conversation.createdAt));
+                filesTouched.push(
+                    ...projectEntry(folders, written.folder, naming.name, book.folder, conversation.createdAt),
+                );
             writtenCount++;
         }
     }
@@ -505,6 +525,8 @@ const writeBooks = (
     console.log(`\nwrote ${countedNoun(writtenCount, 'conversation')}, kept ${keptCount}, `
         + `${countedNoun(filesTouched.length, 'file')} touched under ${folders.claude}`);
     if (reimportedWords.length > 0) console.log(['re-imported:', ...reimportedWords].join('\n'));
+
+    return filesTouched;
 };
 
 const reimportOf = (

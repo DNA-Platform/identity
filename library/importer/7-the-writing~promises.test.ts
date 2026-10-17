@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { Block } from './3-the-record~record.ts';
 import { sampleConversation, sampleMessage, sampleTextMessage } from './3-the-record~samples.ts';
 import {
-    blockLines, conversationTitle, escapedText, fileExtension, inlinePieces, literalForm, referenceForm, resourceExtension,
+    blockLines, conversationTitle, fileExtension, inlinePieces, literalForm, referenceForm, resourceExtension,
     slugFromName, titleForm, titleFromName, writtenConversation, type Referents,
 } from './7-the-writing~writing.ts';
 
@@ -29,11 +29,20 @@ describe('the writing', () => {
     // Doug, 2026-10-17, on a slash in a title, the catalogue's separator: "As long as it doesn't break files on any
     // OS and won't cause me problems in vscode, use the one that looks lile the slash. Predict more problems like
     // this and fix similarly." The rules of a title are written in The Imported Conversation.
-    it('keeps a title out of the notation\'s way, a slash the one that looks like it and brackets gone', () => {
+    // And 2026-10-17, of the binder's sanitizer: "Make sure the sanitizer is very smart." A title is sanitized by the
+    // binder's own rule and never by a copy of it here: each character the notation reads is the lookalike.
+    it('keeps a title out of the notation\'s way by the binder\'s sanitizer, each of its characters a lookalike', () => {
         expect(titleFromName('Allbirds GPU pivot and TON/Cocoon connection'))
             .toBe('Allbirds GPU pivot and TON∕Cocoon connection');
         expect(slugFromName(titleFromName('24/7 convenience stores'))).toBe('24-7-convenience-stores');
-        expect(titleFromName('Notes (draft) [v2] {x}')).toBe('Notes draft v2 x');
+        expect(titleFromName('Notes (draft) [v2] {x}')).toBe('Notes ❨draft❩ ⁅v2⁆ {x}');
+        expect(titleFromName('💬 История Биткоина.\nКто такой Са…')).toBe('История Биткоина. Кто такой Са…');
+    });
+
+    it('cuts a file\'s name at sixty letters of the library\'s own slug, and names one with none untitled', () => {
+        expect(slugFromName('P ≠ NP')).toBe('p-not-equals-np');
+        expect(slugFromName('a'.repeat(70))).toHaveLength(60);
+        expect(slugFromName('🎉')).toBe('untitled');
     });
 
     it('titles a chat with no title by its first sentence, else as untitled on the day it began', () => {
@@ -45,7 +54,8 @@ describe('the writing', () => {
     });
 
     it('escapes what the notation and TSX would read, so a bracket in a message stays a bracket', () => {
-        expect(escapedText(`${titleForm('x')} {y} <z> & w`)).toBe('&#91;&#91; x &#93;&#93; &#123;y&#125; &lt;z&gt; &amp; w');
+        const lines = blockLines(`${titleForm('x')} {y} <z> & w`, 0);
+        expect(lines.join('\n')).toContain('&#91;&#91; x &#93;&#93; &#123;y&#125; &lt;z&gt; &amp; w');
     });
 
     it('turns a marked word into a Word element holding its mark, expanded over lines', () => {
@@ -110,6 +120,27 @@ describe('the writing', () => {
         expect(resourceExtension('')).toBe('txt');
     });
 
+    // Found binding Semantic Reference Theory, 2026-10-17: SRT's own brackets, E![t] and [[t₁]], in a listing or a
+    // formula were read by the catalogue as its notation. A string holding a bracket is a template with a
+    // substitution, which the catalogue does not read, and the page shows it exactly.
+    it('keeps a bracket in a listing or a formula out of the notation, and leaves a string without one as it was', () => {
+        const listing = blockLines('```\n(x,y) := E![t]:x =t> y\n```', 0);
+        expect(listing.find(line => line.includes('E![t]'))).toContain("{`${''}(x,y)");
+        const commutator = inlinePieces('the commutator \\([[a,b]]\\) here').flat().join(' ');
+        expect(commutator).toContain("<Math>{`${''}[[a,b]]`}</Math>");
+        expect(inlinePieces('a sum \\(x + y\\) here').flat().join(' ')).toContain('<Math>{"x + y"}</Math>');
+    });
+
+    // Found binding Semantic Reference Theory, 2026-10-17: "### **Question 4**: *the case*" left a heading of a lone
+    // colon once the library split the heading at it, and a heading with no words has no id. A heading is set bold
+    // already, so its own bold marks are dropped.
+    it('writes a heading without its own bold marks, so no colon is left standing alone', () => {
+        expect(blockLines('### **Critical Questions Emerging**:', 0)).toEqual([
+            '<Heading>Critical Questions Emerging:</Heading>',
+        ]);
+        expect(blockLines('### __Question 4__: the case', 0)).toEqual(['<Heading>Question 4: the case</Heading>']);
+    });
+
     it("turns headings, lists, code and tables into the library's elements", () => {
         const markdown = '# Heading\n\n- one\n- two\n\n```ts\nlet x = 1;\n```\n\n| a | b |\n|---|---|\n| 1 | 2 |';
         const lines = blockLines(markdown, 0);
@@ -139,7 +170,8 @@ describe('the writing', () => {
         expect(chapter.tsx).toContain('        <Message\n            at="2026-06-15T10:00:00Z"\n        >');
         expect(chapter.tsx).toContain('<Paragraph>A question</Paragraph>');
         expect(chapter.tsx).toContain(`import { Dated, Message, Speaker } from '${manualImportPath}';`);
-        expect(chapter.tsx).not.toContain(`from '${claudeManualImportPath}'`);
+        expect(chapter.tsx).toContain(`import { Origin } from '${claudeManualImportPath}';`);
+        expect(chapter.tsx).toContain('<Origin>m1</Origin>');
     });
 
     it('cuts a conversation held over two days into two chapters, each dated and holding only its own messages', () => {
@@ -153,6 +185,17 @@ describe('the writing', () => {
         expect(written.chapters[0].tsx).toContain('Day one');
         expect(written.chapters[0].tsx).not.toContain('Day two');
         expect(written.chapters[1].tsx).toContain('Day two');
+    });
+
+    // Found binding Semantic Reference Theory, 2026-10-17: "Symbols vs. Sets", a version's title with a dot, named
+    // itself "vs Sets" while its table asked for "vs. Sets", since the dot escapes what follows unless doubled.
+    it("titles a version with every dot doubled, as its book's table asks for it", () => {
+        const dotted = { ...artifactBlock('create', 'Hello'), title: 'Symbols vs. Sets' } as Block;
+        const written = writtenConversation(
+            sampleConversation('d', 'Dotted', [sampleMessage('m1', 'Claude', [dotted])]),
+            [sampleMessage('m1', 'Claude', [dotted])], referents, manualImportPath, claudeManualImportPath,
+        );
+        expect(written.versions[0].tsx).toContain('<Title>[[ Symbols vs.. Sets v1 ]]</Title>');
     });
 
     it("replays an artifact's versions into a file each and the final under its name, counting thinking unwritten", () => {
@@ -183,7 +226,7 @@ describe('the writing', () => {
         expect(written.versions[1].tsx).toContain('<Paragraph>Hello there</Paragraph>');
         expect(written.versions[0].tsx).toContain(`import { Opaque } from '${manualImportPath}';`);
         expect(written.versions[0].tsx).toContain(`import { Version } from '${claudeManualImportPath}';`);
-        expect(chapter.tsx).toContain(`import { Artifact } from '${claudeManualImportPath}';`);
+        expect(chapter.tsx).toContain(`import { Artifact, Origin } from '${claudeManualImportPath}';`);
         expect(written.thinkingCount).toBe(1);
     });
 
@@ -199,7 +242,7 @@ describe('the writing', () => {
         const [chapter] = written.chapters;
         expect(chapter.tsx).toContain('<Action>Searched the web for “primes”</Action>');
         expect(chapter.tsx).not.toContain('<Result');
-        expect(chapter.tsx).toContain(`import { Action } from '${claudeManualImportPath}';`);
+        expect(chapter.tsx).toContain(`import { Action, Origin } from '${claudeManualImportPath}';`);
         expect(written.resultCount).toBe(1);
     });
 

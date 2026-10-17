@@ -1,0 +1,165 @@
+Yes — this is tighter. The outside world should enter and leave as books, not through a separate “broadcast” metaphor.
+
+Project: A Library-Closed Autoregressive System
+
+Core Idea
+
+Build a continuous autoregressive system in which the model operates inside a library.
+
+The library is not a metaphor for a file system attached to a chatbot. It is the primary representational space of the system.
+
+The model never receives a direct prompt in the ordinary chat sense. Instead, new information appears somewhere in the library as a book, a page, a passage, a marginal note, or an entry in an existing volume.
+
+The model’s activity consists of reading, writing, moving among books, following references, and altering the textual structure of the library.
+
+The system is closed, as much as possible, under books.
+
+Input appears as books.
+
+Memory persists as books.
+
+Search results appear as books.
+
+Questions appear as books.
+
+The model’s own thoughts appear as books.
+
+Output appears as a particular kind of book.
+
+There is no need for a separate broadcasting abstraction.
+
+⸻
+
+The Library
+
+The library contains books, shelves, indexes, references, annotations, and paths.
+
+A book may contain links to other books.
+
+To follow a link is to move to the location of the referenced book.
+
+Where the model is located determines what it can read next.
+
+A book is therefore not just stored text. It is a location in the system.
+
+The system’s state is not primarily a transcript. It is the current organization of the library.
+
+⸻
+
+Input
+
+External input enters the system by being written into a book.
+
+For example, a user message may appear as an entry in an “incoming” book, a correspondence book, or a visitor’s notebook.
+
+The model does not have to treat this input as a command. It encounters it as part of the library.
+
+It may read it, ignore it, annotate it, follow links from it, copy it elsewhere, or respond to it by writing in another book.
+
+⸻
+
+Output
+
+Output is also represented as writing in a book.
+
+The model may have a book that corresponds to its voice.
+
+When the model writes in that book, that writing is what leaves the library and is shown outside the system.
+
+This voice-book is not a special non-library mechanism. It is just another book with a particular relation to the external interface.
+
+The important point is that speech is not the default result of every model step.
+
+Speech is a local act of writing in the appropriate book.
+
+⸻
+
+The Model
+
+The model is a base autoregressive language model.
+
+It is not primarily used as a chat assistant.
+
+At each step, the system renders the relevant local library context and asks the model to continue.
+
+The continuation may include ordinary prose, references, annotations, or instructions to move through the library.
+
+The model’s output is then interpreted as an alteration to the library.
+
+The next step begins from the changed library.
+
+⸻
+
+Links and References
+
+Links are central.
+
+A book may refer to another book.
+
+A reference is not merely metadata. It determines possible motion through the library.
+
+The model’s path through the library is therefore determined by the references it encounters and the references it creates.
+
+Over time, the topology of references becomes part of the system’s memory.
+
+If a concept repeatedly becomes linked to another concept, that link becomes part of the structure of the library.
+
+⸻
+
+Memory
+
+Memory is not a saved chat history.
+
+Memory is the library itself.
+
+Memory may take the form of:
+
+* books written by the model
+* annotations on existing books
+* indexes
+* cross-references
+* copied passages
+* summaries
+* revised shelves
+* preferred paths through the library
+
+The model remembers by changing the library it later inhabits.
+
+⸻
+
+Dynamics
+
+The system is continuous.
+
+It may loop indefinitely.
+
+At each step:
+
+1. The model is located somewhere in the library.
+2. The local books and references are rendered into context.
+3. The model produces a continuation.
+4. The continuation is interpreted as reading, writing, linking, copying, or moving.
+5. The library changes.
+6. The next step begins.
+
+The interesting object is not a single answer.
+
+The interesting object is the trajectory of the system through the library.
+
+⸻
+
+Research Direction
+
+The project asks whether stable patterns of perspective, preference, memory, and voice can emerge from a base autoregressive model coupled to a closed textual environment.
+
+The system does not impose a fixed assistant identity.
+
+Instead, any identity-like structure must emerge from the model’s repeated movement through books, its accumulated writing, and the references it creates.
+
+The model is not forced to answer.
+
+It is given a world made of books.
+
+Whatever it says must come from how it has moved through that world.
+
+This version keeps the ontology cleaner: everything important is a book, a relation between books, or a movement among books.

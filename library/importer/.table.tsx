@@ -54,5 +54,14 @@ export default () => (
                 <Content>$[[ ./The Check ]]</Content>
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>The imports</Heading>
+            <Paragraph>
+                <Content>$[[ ./DNA Legacy ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./DNA ]]</Content>
+            </Paragraph>
+        </Section>
     </Chapter>
 );

@@ -1,0 +1,31 @@
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Index } from '../../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <TableOfContents />
+        <Index />
+        <Title>
+            <Parenthetical />
+            [[ Table of Contents ]]
+        </Title>
+        <Section>
+            <Heading>September 2025</Heading>
+            <Paragraph>
+                <Content>$[[ ./7 September 2025 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Semantic Reference Theory Analysis ]]( claude--Semantic Reference Theory Analysis--111afff4 )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+    </Chapter>
+);

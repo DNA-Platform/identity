@@ -31,929 +31,929 @@ export default () => (
             <Heading>Conversations</Heading>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Allbirds GPU pivot and TON∕Cocoon connection ]]</Content>
+                    <Content>$[[ Clarity act cryptocurrency bill prospects ]]( ./claude--Clarity act cryptocurrency bill prospects--effbe068 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Allbirds GPU pivot and TON∕Cocoon connection )***</Content>
+                    <Content>[[ ▷ ]]( claude--Clarity act cryptocurrency bill prospects--effbe068 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Clarity act cryptocurrency bill prospects ]]</Content>
+                    <Content>$[[ Correcting memory bias toward disagreement ]]( ./claude--Correcting memory bias toward disagreement--74a7bf5d )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Clarity act cryptocurrency bill prospects )***</Content>
+                    <Content>[[ ▷ ]]( claude--Correcting memory bias toward disagreement--74a7bf5d )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Correcting memory bias toward disagreement ]]</Content>
+                    <Content>$[[ Fiverr's connection to Telegram's Mira AI ]]( ./claude--Fiverr's connection to Telegram's Mira AI--2ebab90b )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Correcting memory bias toward disagreement )***</Content>
+                    <Content>[[ ▷ ]]( claude--Fiverr's connection to Telegram's Mira AI--2ebab90b )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Fiverr's connection to Telegram's Mira AI ]]</Content>
+                    <Content>$[[ Investing around Ukraine war outcomes ]]( ./claude--Investing around Ukraine war outcomes--e2ba3953 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Fiverr's connection to Telegram's Mira AI )***</Content>
+                    <Content>[[ ▷ ]]( claude--Investing around Ukraine war outcomes--e2ba3953 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Investing around Ukraine war outcomes ]]</Content>
+                    <Content>$[[ Microsoft's earnings surge and AI competition outlook ]]( ./claude--Microsoft's earnings surge and AI competition outlook--a2758d30 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Investing around Ukraine war outcomes )***</Content>
+                    <Content>[[ ▷ ]]( claude--Microsoft's earnings surge and AI competition outlook--a2758d30 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Microsoft's earnings surge and AI competition outlook ]]</Content>
+                    <Content>$[[ Stablecoin architecture origins and Tether's conceptual lineage ]]( ./claude--Stablecoin architecture origins and Tether's conceptual lineage--fea3a58f )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Microsoft's earnings surge and AI competition outlook )***</Content>
+                    <Content>[[ ▷ ]]( claude--Stablecoin architecture origins and Tether's conceptual lineage--fea3a58f )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Stablecoin architecture origins and Tether's conceptual lineage ]]</Content>
+                    <Content>$[[ the price of gram is getting h… ]]( ./claude--the price of gram is getting h…--79d439db )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Stablecoin architecture origins and Tether's conceptual lineage )***</Content>
+                    <Content>[[ ▷ ]]( claude--the price of gram is getting h…--79d439db )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./the price of gram is getting h… ]]</Content>
+                    <Content>$[[ Monad unstaking failing in Atomic Wallet ]]( ./claude--Monad unstaking failing in Atomic Wallet--eef8f474 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( the price of gram is getting h… )***</Content>
+                    <Content>[[ ▷ ]]( claude--Monad unstaking failing in Atomic Wallet--eef8f474 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Monad unstaking failing in Atomic Wallet ]]</Content>
+                    <Content>$[[ Using a Telegram username on a new account ]]( ./claude--Using a Telegram username on a new account--dd7f5daa )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Monad unstaking failing in Atomic Wallet )***</Content>
+                    <Content>[[ ▷ ]]( claude--Using a Telegram username on a new account--dd7f5daa )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Using a Telegram username on a new account ]]</Content>
+                    <Content>$[[ TON browser alternatives and dark web access ]]( ./claude--TON browser alternatives and dark web access--e9d30c6e )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Using a Telegram username on a new account )***</Content>
+                    <Content>[[ ▷ ]]( claude--TON browser alternatives and dark web access--e9d30c6e )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TON browser alternatives and dark web access ]]</Content>
+                    <Content>$[[ Finding renamed bots section in Telegram ]]( ./claude--Finding renamed bots section in Telegram--5962d97d )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TON browser alternatives and dark web access )***</Content>
+                    <Content>[[ ▷ ]]( claude--Finding renamed bots section in Telegram--5962d97d )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Finding renamed bots section in Telegram ]]</Content>
+                    <Content>$[[ Catch up on recent conversatio… ]]( ./claude--Catch up on recent conversatio…--44558158 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Finding renamed bots section in Telegram )***</Content>
+                    <Content>[[ ▷ ]]( claude--Catch up on recent conversatio…--44558158 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Catch up on recent conversatio… ]]</Content>
+                    <Content>$[[ Telegram's hypothetical "Telephone" product theory ]]( ./claude--Telegram's hypothetical "Telephone" product theory--cda3c1bb )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Catch up on recent conversatio… )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram's hypothetical "Telephone" product theory--cda3c1bb )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram's hypothetical "Telephone" product theory ]]</Content>
+                    <Content>$[[ Macro drivers behind the crypto spike ]]( ./claude--Macro drivers behind the crypto spike--9c22a884 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram's hypothetical "Telephone" product theory )***</Content>
+                    <Content>[[ ▷ ]]( claude--Macro drivers behind the crypto spike--9c22a884 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Macro drivers behind the crypto spike ]]</Content>
+                    <Content>$[[ Travel arbitrage opportunities between Tbilisi, London, and New York ]]( ./claude--Travel arbitrage opportunities between Tbilisi, London, and New York--979027d4 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Macro drivers behind the crypto spike )***</Content>
+                    <Content>[[ ▷ ]]( claude--Travel arbitrage opportunities between Tbilisi, London, and New York--979027d4 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Travel arbitrage opportunities between Tbilisi, London, and New York ]]</Content>
+                    <Content>$[[ X Money's US launch and financial competition ]]( ./claude--X Money's US launch and financial competition--a8e9cd85 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Travel arbitrage opportunities between Tbilisi, London, and New York )***</Content>
+                    <Content>[[ ▷ ]]( claude--X Money's US launch and financial competition--a8e9cd85 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./X Money's US launch and financial competition ]]</Content>
+                    <Content>$[[ Monad Labs tokenomics and valuation problems ]]( ./claude--Monad Labs tokenomics and valuation problems--769751fe )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( X Money's US launch and financial competition )***</Content>
+                    <Content>[[ ▷ ]]( claude--Monad Labs tokenomics and valuation problems--769751fe )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Monad Labs tokenomics and valuation problems ]]</Content>
+                    <Content>$[[ Bitcoin's decline despite institutional adoption ]]( ./claude--Bitcoin's decline despite institutional adoption--34b037fb )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Monad Labs tokenomics and valuation problems )***</Content>
+                    <Content>[[ ▷ ]]( claude--Bitcoin's decline despite institutional adoption--34b037fb )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Bitcoin's decline despite institutional adoption ]]</Content>
+                    <Content>$[[ TON and GRAM ecosystem updates ]]( ./claude--TON and GRAM ecosystem updates--d5d0756e )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Bitcoin's decline despite institutional adoption )***</Content>
+                    <Content>[[ ▷ ]]( claude--TON and GRAM ecosystem updates--d5d0756e )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TON and GRAM ecosystem updates ]]</Content>
+                    <Content>$[[ MTONGA ]]( ./claude--MTONGA--8b957fb0 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TON and GRAM ecosystem updates )***</Content>
+                    <Content>[[ ▷ ]]( claude--MTONGA--8b957fb0 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./MTONGA ]]</Content>
+                    <Content>$[[ SpaceX IPO analysis and market reaction ]]( ./claude--SpaceX IPO analysis and market reaction--7fa923e8 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( MTONGA )***</Content>
+                    <Content>[[ ▷ ]]( claude--SpaceX IPO analysis and market reaction--7fa923e8 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./SpaceX IPO analysis and market reaction ]]</Content>
+                    <Content>$[[ Preserving narrative continuity across accounts ]]( ./claude--Preserving narrative continuity across accounts--febe219c )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( SpaceX IPO analysis and market reaction )***</Content>
+                    <Content>[[ ▷ ]]( claude--Preserving narrative continuity across accounts--febe219c )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Preserving narrative continuity across accounts ]]</Content>
+                    <Content>$[[ TON consensus mechanism competition ]]( ./claude--TON consensus mechanism competition--b4dbad61 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Preserving narrative continuity across accounts )***</Content>
+                    <Content>[[ ▷ ]]( claude--TON consensus mechanism competition--b4dbad61 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TON consensus mechanism competition ]]</Content>
+                    <Content>$[[ Any news on when we can expect… ]]( ./claude--Any news on when we can expect…--e5150a82 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TON consensus mechanism competition )***</Content>
+                    <Content>[[ ▷ ]]( claude--Any news on when we can expect…--e5150a82 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Any news on when we can expect… ]]</Content>
+                    <Content>$[[ Calculating ownership percentage in tonx ]]( ./claude--Calculating ownership percentage in tonx--277e30ae )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Any news on when we can expect… )***</Content>
+                    <Content>[[ ▷ ]]( claude--Calculating ownership percentage in tonx--277e30ae )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Calculating ownership percentage in tonx ]]</Content>
+                    <Content>$[[ AI-consumable tech stack architecture ]]( ./claude--AI-consumable tech stack architecture--3d9e1597 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Calculating ownership percentage in tonx )***</Content>
+                    <Content>[[ ▷ ]]( claude--AI-consumable tech stack architecture--3d9e1597 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./AI-consumable tech stack architecture ]]</Content>
+                    <Content>$[[ Wise US listing and ADR comparison ]]( ./claude--Wise US listing and ADR comparison--e0f15ab3 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( AI-consumable tech stack architecture )***</Content>
+                    <Content>[[ ▷ ]]( claude--Wise US listing and ADR comparison--e0f15ab3 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Wise US listing and ADR comparison ]]</Content>
+                    <Content>$[[ Original Telegram Open Network whitepaper ]]( ./claude--Original Telegram Open Network whitepaper--2fe78c27 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Wise US listing and ADR comparison )***</Content>
+                    <Content>[[ ▷ ]]( claude--Original Telegram Open Network whitepaper--2fe78c27 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Original Telegram Open Network whitepaper ]]</Content>
+                    <Content>$[[ Stars to TON conversion restrictions and pricing ]]( ./claude--Stars to TON conversion restrictions and pricing--3950d95e )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Original Telegram Open Network whitepaper )***</Content>
+                    <Content>[[ ▷ ]]( claude--Stars to TON conversion restrictions and pricing--3950d95e )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Stars to TON conversion restrictions and pricing ]]</Content>
+                    <Content>$[[ Telegram bots and AI use cases ]]( ./claude--Telegram bots and AI use cases--ced9ca31 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Stars to TON conversion restrictions and pricing )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram bots and AI use cases--ced9ca31 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram bots and AI use cases ]]</Content>
+                    <Content>$[[ TON's "Make TON Great Again" roadmap explained ]]( ./claude--TON's "Make TON Great Again" roadmap explained--3186970a )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram bots and AI use cases )***</Content>
+                    <Content>[[ ▷ ]]( claude--TON's "Make TON Great Again" roadmap explained--3186970a )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TON's "Make TON Great Again" roadmap explained ]]</Content>
+                    <Content>$[[ TONX after-hours price spike analysis ]]( ./claude--TONX after-hours price spike analysis--6f29d20e )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TON's "Make TON Great Again" roadmap explained )***</Content>
+                    <Content>[[ ▷ ]]( claude--TONX after-hours price spike analysis--6f29d20e )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TONX after-hours price spike analysis ]]</Content>
+                    <Content>$[[ Monad technology development and viability assessment ]]( ./claude--Monad technology development and viability assessment--9eb19e42 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TONX after-hours price spike analysis )***</Content>
+                    <Content>[[ ▷ ]]( claude--Monad technology development and viability assessment--9eb19e42 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Monad technology development and viability assessment ]]</Content>
+                    <Content>$[[ TON price adoption metrics and network effects ]]( ./claude--TON price adoption metrics and network effects--3d4d9b62 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Monad technology development and viability assessment )***</Content>
+                    <Content>[[ ▷ ]]( claude--TON price adoption metrics and network effects--3d4d9b62 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TON price adoption metrics and network effects ]]</Content>
+                    <Content>$[[ TON blockchain upgrade and fee implications ]]( ./claude--TON blockchain upgrade and fee implications--8eb3976a )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TON price adoption metrics and network effects )***</Content>
+                    <Content>[[ ▷ ]]( claude--TON blockchain upgrade and fee implications--8eb3976a )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TON blockchain upgrade and fee implications ]]</Content>
+                    <Content>$[[ Crypto gainers amid Q1 market decline ]]( ./claude--Crypto gainers amid Q1 market decline--9a518c42 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TON blockchain upgrade and fee implications )***</Content>
+                    <Content>[[ ▷ ]]( claude--Crypto gainers amid Q1 market decline--9a518c42 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Crypto gainers amid Q1 market decline ]]</Content>
+                    <Content>$[[ Telegram accessibility anomaly in Russia ]]( ./claude--Telegram accessibility anomaly in Russia--0bd4552d )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Crypto gainers amid Q1 market decline )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram accessibility anomaly in Russia--0bd4552d )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram accessibility anomaly in Russia ]]</Content>
+                    <Content>$[[ Understanding perpetual leverage and liquidation risks on TON ]]( ./claude--Understanding perpetual leverage and liquidation risks on TON--e9f37566 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram accessibility anomaly in Russia )***</Content>
+                    <Content>[[ ▷ ]]( claude--Understanding perpetual leverage and liquidation risks on TON--e9f37566 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Understanding perpetual leverage and liquidation risks on TON ]]</Content>
+                    <Content>$[[ Allbirds GPU pivot and TON∕Cocoon connection ]]( ./claude--Allbirds GPU pivot and TON∕Cocoon connection--16ab9276 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Understanding perpetual leverage and liquidation risks on TON )***</Content>
+                    <Content>[[ ▷ ]]( claude--Allbirds GPU pivot and TON∕Cocoon connection--16ab9276 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Coinbase BTC withdrawal hold period ]]</Content>
+                    <Content>$[[ Coinbase BTC withdrawal hold period ]]( ./claude--Coinbase BTC withdrawal hold period--db3a873c )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Coinbase BTC withdrawal hold period )***</Content>
+                    <Content>[[ ▷ ]]( claude--Coinbase BTC withdrawal hold period--db3a873c )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TONX staking rewards and share price disconnect ]]</Content>
+                    <Content>$[[ TONX staking rewards and share price disconnect ]]( ./claude--TONX staking rewards and share price disconnect--140a3ecf )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TONX staking rewards and share price disconnect )***</Content>
+                    <Content>[[ ▷ ]]( claude--TONX staking rewards and share price disconnect--140a3ecf )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Elon Musk's X messenger competing with Telegram ]]</Content>
+                    <Content>$[[ Elon Musk's X messenger competing with Telegram ]]( ./claude--Elon Musk's X messenger competing with Telegram--83f9413b )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Elon Musk's X messenger competing with Telegram )***</Content>
+                    <Content>[[ ▷ ]]( claude--Elon Musk's X messenger competing with Telegram--83f9413b )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./MON's role in Telegram's cryptocurrency ecosystem ]]</Content>
+                    <Content>$[[ MON's role in Telegram's cryptocurrency ecosystem ]]( ./claude--MON's role in Telegram's cryptocurrency ecosystem--97853a83 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( MON's role in Telegram's cryptocurrency ecosystem )***</Content>
+                    <Content>[[ ▷ ]]( claude--MON's role in Telegram's cryptocurrency ecosystem--97853a83 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Perpetual swaps and the unbounded loss problem ]]</Content>
+                    <Content>$[[ Perpetual swaps and the unbounded loss problem ]]( ./claude--Perpetual swaps and the unbounded loss problem--4e0e301e )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Perpetual swaps and the unbounded loss problem )***</Content>
+                    <Content>[[ ▷ ]]( claude--Perpetual swaps and the unbounded loss problem--4e0e301e )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TON validator rewards and staking profitability ]]</Content>
+                    <Content>$[[ TON validator rewards and staking profitability ]]( ./claude--TON validator rewards and staking profitability--0d2e8949 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TON validator rewards and staking profitability )***</Content>
+                    <Content>[[ ▷ ]]( claude--TON validator rewards and staking profitability--0d2e8949 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Hedging geopolitical oil disruption with US supply alternatives ]]</Content>
+                    <Content>$[[ Hedging geopolitical oil disruption with US supply alternatives ]]( ./claude--Hedging geopolitical oil disruption with US supply alternatives--957941dd )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Hedging geopolitical oil disruption with US supply alternatives )***</Content>
+                    <Content>[[ ▷ ]]( claude--Hedging geopolitical oil disruption with US supply alternatives--957941dd )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Delta Chat's origins and encryption ]]</Content>
+                    <Content>$[[ Delta Chat's origins and encryption ]]( ./claude--Delta Chat's origins and encryption--11a0f63e )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Delta Chat's origins and encryption )***</Content>
+                    <Content>[[ ▷ ]]( claude--Delta Chat's origins and encryption--11a0f63e )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram censorship and surveillance resistance in Russia ]]</Content>
+                    <Content>$[[ Telegram censorship and surveillance resistance in Russia ]]( ./claude--Telegram censorship and surveillance resistance in Russia--61079543 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram censorship and surveillance resistance in Russia )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram censorship and surveillance resistance in Russia--61079543 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Orchid and Gitcoin: crypto projects solving fundamental problems ]]</Content>
+                    <Content>$[[ Orchid and Gitcoin: crypto projects solving fundamental problems ]]( ./claude--Orchid and Gitcoin: crypto projects solving fundamental problems--78955886 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Orchid and Gitcoin: crypto projects solving fundamental problems )***</Content>
+                    <Content>[[ ▷ ]]( claude--Orchid and Gitcoin: crypto projects solving fundamental problems--78955886 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Monad L1 security model and consensus mechanism ]]</Content>
+                    <Content>$[[ Monad L1 security model and consensus mechanism ]]( ./claude--Monad L1 security model and consensus mechanism--35932016 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Monad L1 security model and consensus mechanism )***</Content>
+                    <Content>[[ ▷ ]]( claude--Monad L1 security model and consensus mechanism--35932016 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram wallet KYC and staking tax obligations ]]</Content>
+                    <Content>$[[ Telegram wallet KYC and staking tax obligations ]]( ./claude--Telegram wallet KYC and staking tax obligations--828fa88c )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram wallet KYC and staking tax obligations )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram wallet KYC and staking tax obligations--828fa88c )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Russia's technical capabilities against Telegram and MTProto ]]</Content>
+                    <Content>$[[ Russia's technical capabilities against Telegram and MTProto ]]( ./claude--Russia's technical capabilities against Telegram and MTProto--740d0173 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Russia's technical capabilities against Telegram and MTProto )***</Content>
+                    <Content>[[ ▷ ]]( claude--Russia's technical capabilities against Telegram and MTProto--740d0173 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Monad's technical progress and Telegram integration ]]</Content>
+                    <Content>$[[ Monad's technical progress and Telegram integration ]]( ./claude--Monad's technical progress and Telegram integration--282239f1 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Monad's technical progress and Telegram integration )***</Content>
+                    <Content>[[ ▷ ]]( claude--Monad's technical progress and Telegram integration--282239f1 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Understanding TRON crypto and its technical innovations ]]</Content>
+                    <Content>$[[ Understanding TRON crypto and its technical innovations ]]( ./claude--Understanding TRON crypto and its technical innovations--c48524e1 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Understanding TRON crypto and its technical innovations )***</Content>
+                    <Content>[[ ▷ ]]( claude--Understanding TRON crypto and its technical innovations--c48524e1 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram mesh networking and censorship resistance ]]</Content>
+                    <Content>$[[ Telegram mesh networking and censorship resistance ]]( ./claude--Telegram mesh networking and censorship resistance--06edc90c )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram mesh networking and censorship resistance )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram mesh networking and censorship resistance--06edc90c )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TONX company overview and financial analysis ]]</Content>
+                    <Content>$[[ TONX company overview and financial analysis ]]( ./claude--TONX company overview and financial analysis--2017c510 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TONX company overview and financial analysis )***</Content>
+                    <Content>[[ ▷ ]]( claude--TONX company overview and financial analysis--2017c510 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Tether's technical origins and cryptography mystery ]]</Content>
+                    <Content>$[[ Tether's technical origins and cryptography mystery ]]( ./claude--Tether's technical origins and cryptography mystery--42e15967 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Tether's technical origins and cryptography mystery )***</Content>
+                    <Content>[[ ▷ ]]( claude--Tether's technical origins and cryptography mystery--42e15967 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Competitive calibration and foundational innovation ]]</Content>
+                    <Content>$[[ Competitive calibration and foundational innovation ]]( ./claude--Competitive calibration and foundational innovation--6aff23d6 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Competitive calibration and foundational innovation )***</Content>
+                    <Content>[[ ▷ ]]( claude--Competitive calibration and foundational innovation--6aff23d6 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Nikolai Durov's research at Steklov Institute ]]</Content>
+                    <Content>$[[ Nikolai Durov's research at Steklov Institute ]]( ./claude--Nikolai Durov's research at Steklov Institute--6946d851 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Nikolai Durov's research at Steklov Institute )***</Content>
+                    <Content>[[ ▷ ]]( claude--Nikolai Durov's research at Steklov Institute--6946d851 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Origins of darkweb operational security ]]</Content>
+                    <Content>$[[ Origins of darkweb operational security ]]( ./claude--Origins of darkweb operational security--315e20fc )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Origins of darkweb operational security )***</Content>
+                    <Content>[[ ▷ ]]( claude--Origins of darkweb operational security--315e20fc )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TONX company's TON holdings percentage ]]</Content>
+                    <Content>$[[ TONX company's TON holdings percentage ]]( ./claude--TONX company's TON holdings percentage--5680f410 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TONX company's TON holdings percentage )***</Content>
+                    <Content>[[ ▷ ]]( claude--TONX company's TON holdings percentage--5680f410 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Trump's impact on TON and Telegram's resilience ]]</Content>
+                    <Content>$[[ Trump's impact on TON and Telegram's resilience ]]( ./claude--Trump's impact on TON and Telegram's resilience--f3e6588f )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Trump's impact on TON and Telegram's resilience )***</Content>
+                    <Content>[[ ▷ ]]( claude--Trump's impact on TON and Telegram's resilience--f3e6588f )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Sunny King's innovations in TON and Monad ]]</Content>
+                    <Content>$[[ Sunny King's innovations in TON and Monad ]]( ./claude--Sunny King's innovations in TON and Monad--3b918cc5 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Sunny King's innovations in TON and Monad )***</Content>
+                    <Content>[[ ▷ ]]( claude--Sunny King's innovations in TON and Monad--3b918cc5 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./UAE as crypto-fiat bridge for Telegram's digital ecosystem ]]</Content>
+                    <Content>$[[ UAE as crypto-fiat bridge for Telegram's digital ecosystem ]]( ./claude--UAE as crypto-fiat bridge for Telegram's digital ecosystem--a3aa6b90 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( UAE as crypto-fiat bridge for Telegram's digital ecosystem )***</Content>
+                    <Content>[[ ▷ ]]( claude--UAE as crypto-fiat bridge for Telegram's digital ecosystem--a3aa6b90 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Executing a 40K position in TONX via Interactive Brokers ]]</Content>
+                    <Content>$[[ Executing a 40K position in TONX via Interactive Brokers ]]( ./claude--Executing a 40K position in TONX via Interactive Brokers--95cdfad3 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Executing a 40K position in TONX via Interactive Brokers )***</Content>
+                    <Content>[[ ▷ ]]( claude--Executing a 40K position in TONX via Interactive Brokers--95cdfad3 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Pricing TONX as a closed-end fund without redemption ]]</Content>
+                    <Content>$[[ Pricing TONX as a closed-end fund without redemption ]]( ./claude--Pricing TONX as a closed-end fund without redemption--eef159b9 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Pricing TONX as a closed-end fund without redemption )***</Content>
+                    <Content>[[ ▷ ]]( claude--Pricing TONX as a closed-end fund without redemption--eef159b9 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram's cryptocurrency infrastructure play ]]</Content>
+                    <Content>$[[ Telegram's cryptocurrency infrastructure play ]]( ./claude--Telegram's cryptocurrency infrastructure play--d7da5541 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram's cryptocurrency infrastructure play )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram's cryptocurrency infrastructure play--d7da5541 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TONX News ]]</Content>
+                    <Content>$[[ TONX News ]]( ./claude--TONX News--fa18c40f )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TONX News )***</Content>
+                    <Content>[[ ▷ ]]( claude--TONX News--fa18c40f )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Sunny King's crypto projects and anonymous inventors ]]</Content>
+                    <Content>$[[ Sunny King's crypto projects and anonymous inventors ]]( ./claude--Sunny King's crypto projects and anonymous inventors--83a8ee17 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Sunny King's crypto projects and anonymous inventors )***</Content>
+                    <Content>[[ ▷ ]]( claude--Sunny King's crypto projects and anonymous inventors--83a8ee17 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./DAT premium to discount shift analysis ]]</Content>
+                    <Content>$[[ DAT premium to discount shift analysis ]]( ./claude--DAT premium to discount shift analysis--5aa0012e )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( DAT premium to discount shift analysis )***</Content>
+                    <Content>[[ ▷ ]]( claude--DAT premium to discount shift analysis--5aa0012e )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TON digital asset treasury companies on stock exchanges ]]</Content>
+                    <Content>$[[ TON digital asset treasury companies on stock exchanges ]]( ./claude--TON digital asset treasury companies on stock exchanges--12e2f498 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TON digital asset treasury companies on stock exchanges )***</Content>
+                    <Content>[[ ▷ ]]( claude--TON digital asset treasury companies on stock exchanges--12e2f498 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Russia's Telegram throttling via TSPU infrastructure ]]</Content>
+                    <Content>$[[ Russia's Telegram throttling via TSPU infrastructure ]]( ./claude--Russia's Telegram throttling via TSPU infrastructure--f9847388 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Russia's Telegram throttling via TSPU infrastructure )***</Content>
+                    <Content>[[ ▷ ]]( claude--Russia's Telegram throttling via TSPU infrastructure--f9847388 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram situation in Russia unfolding ]]</Content>
+                    <Content>$[[ Telegram situation in Russia unfolding ]]( ./claude--Telegram situation in Russia unfolding--9d7069cb )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram situation in Russia unfolding )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram situation in Russia unfolding--9d7069cb )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Russian internet censorship and Telegram targeting ]]</Content>
+                    <Content>$[[ Russian internet censorship and Telegram targeting ]]( ./claude--Russian internet censorship and Telegram targeting--0ef8e097 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Russian internet censorship and Telegram targeting )***</Content>
+                    <Content>[[ ▷ ]]( claude--Russian internet censorship and Telegram targeting--0ef8e097 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Solana's origins and technical architecture ]]</Content>
+                    <Content>$[[ Solana's origins and technical architecture ]]( ./claude--Solana's origins and technical architecture--47b15d86 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Solana's origins and technical architecture )***</Content>
+                    <Content>[[ ▷ ]]( claude--Solana's origins and technical architecture--47b15d86 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Safe US investment options and I Bonds ]]</Content>
+                    <Content>$[[ Safe US investment options and I Bonds ]]( ./claude--Safe US investment options and I Bonds--8035e2e6 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Safe US investment options and I Bonds )***</Content>
+                    <Content>[[ ▷ ]]( claude--Safe US investment options and I Bonds--8035e2e6 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram access in Russia amid Roskomnadzor blocking ]]</Content>
+                    <Content>$[[ Telegram access in Russia amid Roskomnadzor blocking ]]( ./claude--Telegram access in Russia amid Roskomnadzor blocking--e0c39081 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram access in Russia amid Roskomnadzor blocking )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram access in Russia amid Roskomnadzor blocking--e0c39081 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TONX stock liquidity and trading issues ]]</Content>
+                    <Content>$[[ TONX stock liquidity and trading issues ]]( ./claude--TONX stock liquidity and trading issues--40f035ed )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TONX stock liquidity and trading issues )***</Content>
+                    <Content>[[ ▷ ]]( claude--TONX stock liquidity and trading issues--40f035ed )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Manuel Stotz's Satorica and TON connection ]]</Content>
+                    <Content>$[[ Manuel Stotz's Satorica and TON connection ]]( ./claude--Manuel Stotz's Satorica and TON connection--2df6e607 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Manuel Stotz's Satorica and TON connection )***</Content>
+                    <Content>[[ ▷ ]]( claude--Manuel Stotz's Satorica and TON connection--2df6e607 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./TON blockchain integration with Telegram ]]</Content>
+                    <Content>$[[ TON blockchain integration with Telegram ]]( ./claude--TON blockchain integration with Telegram--21b2518c )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( TON blockchain integration with Telegram )***</Content>
+                    <Content>[[ ▷ ]]( claude--TON blockchain integration with Telegram--21b2518c )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Crypto market spike triggers and patterns ]]</Content>
+                    <Content>$[[ Crypto market spike triggers and patterns ]]( ./claude--Crypto market spike triggers and patterns--04fb2d5e )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Crypto market spike triggers and patterns )***</Content>
+                    <Content>[[ ▷ ]]( claude--Crypto market spike triggers and patterns--04fb2d5e )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram vs WhatsApp: measuring platform success ]]</Content>
+                    <Content>$[[ Telegram vs WhatsApp: measuring platform success ]]( ./claude--Telegram vs WhatsApp: measuring platform success--581aa9cf )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram vs WhatsApp: measuring platform success )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram vs WhatsApp: measuring platform success--581aa9cf )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Is there any special connectio… ]]</Content>
+                    <Content>$[[ Is there any special connectio… ]]( ./claude--Is there any special connectio…--49675976 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Is there any special connectio… )***</Content>
+                    <Content>[[ ▷ ]]( claude--Is there any special connectio…--49675976 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Scion's macro short positions and options exposure ]]</Content>
+                    <Content>$[[ Scion's macro short positions and options exposure ]]( ./claude--Scion's macro short positions and options exposure--d398390c )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Scion's macro short positions and options exposure )***</Content>
+                    <Content>[[ ▷ ]]( claude--Scion's macro short positions and options exposure--d398390c )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram, TON Foundation, and FTX connections ]]</Content>
+                    <Content>$[[ Telegram, TON Foundation, and FTX connections ]]( ./claude--Telegram, TON Foundation, and FTX connections--13e79925 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram, TON Foundation, and FTX connections )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram, TON Foundation, and FTX connections--13e79925 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Bitcoin gift tax obligations ]]</Content>
+                    <Content>$[[ Bitcoin gift tax obligations ]]( ./claude--Bitcoin gift tax obligations--50948882 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Bitcoin gift tax obligations )***</Content>
+                    <Content>[[ ▷ ]]( claude--Bitcoin gift tax obligations--50948882 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Anonymous Cryptographers ]]</Content>
+                    <Content>$[[ Anonymous Cryptographers ]]( ./claude--Anonymous Cryptographers--0c566126 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Anonymous Cryptographers )***</Content>
+                    <Content>[[ ▷ ]]( claude--Anonymous Cryptographers--0c566126 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./The Vitalik Connection ]]</Content>
+                    <Content>$[[ The Vitalik Connection ]]( ./claude--The Vitalik Connection--d9c8723e )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( The Vitalik Connection )***</Content>
+                    <Content>[[ ▷ ]]( claude--The Vitalik Connection--d9c8723e )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Understanding Atomic ]]</Content>
+                    <Content>$[[ Understanding Atomic ]]( ./claude--Understanding Atomic--2409f6b1 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Understanding Atomic )***</Content>
+                    <Content>[[ ▷ ]]( claude--Understanding Atomic--2409f6b1 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./The Bitcoin Whitepaper ]]</Content>
+                    <Content>$[[ The Bitcoin Whitepaper ]]( ./claude--The Bitcoin Whitepaper--7ad0c9ba )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( The Bitcoin Whitepaper )***</Content>
+                    <Content>[[ ▷ ]]( claude--The Bitcoin Whitepaper--7ad0c9ba )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Atomic Wallet ]]</Content>
+                    <Content>$[[ Atomic Wallet ]]( ./claude--Atomic Wallet--f5461736 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Atomic Wallet )***</Content>
+                    <Content>[[ ▷ ]]( claude--Atomic Wallet--f5461736 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./ADI and TON Foundation staking integration ]]</Content>
+                    <Content>$[[ ADI and TON Foundation staking integration ]]( ./claude--ADI and TON Foundation staking integration--48fb38b5 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( ADI and TON Foundation staking integration )***</Content>
+                    <Content>[[ ▷ ]]( claude--ADI and TON Foundation staking integration--48fb38b5 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Hypothetical Net Worth ]]</Content>
+                    <Content>$[[ Hypothetical Net Worth ]]( ./claude--Hypothetical Net Worth--1b3e1cdd )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Hypothetical Net Worth )***</Content>
+                    <Content>[[ ▷ ]]( claude--Hypothetical Net Worth--1b3e1cdd )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Russian vs US Taxes ]]</Content>
+                    <Content>$[[ Russian vs US Taxes ]]( ./claude--Russian vs US Taxes--0b92edb0 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Russian vs US Taxes )***</Content>
+                    <Content>[[ ▷ ]]( claude--Russian vs US Taxes--0b92edb0 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./jrandom ]]</Content>
+                    <Content>$[[ jrandom ]]( ./claude--jrandom--91b5970b )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( jrandom )***</Content>
+                    <Content>[[ ▷ ]]( claude--jrandom--91b5970b )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Monero ]]</Content>
+                    <Content>$[[ Monero ]]( ./claude--Monero--f0ae0332 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Monero )***</Content>
+                    <Content>[[ ▷ ]]( claude--Monero--f0ae0332 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Bitcoin &amp; TON ]]</Content>
+                    <Content>$[[ Bitcoin &amp; TON ]]( ./claude--Bitcoin &amp; TON--9108715b )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Bitcoin &amp; TON )***</Content>
+                    <Content>[[ ▷ ]]( claude--Bitcoin &amp; TON--9108715b )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Bitcoin ]]</Content>
+                    <Content>$[[ Bitcoin ]]( ./claude--Bitcoin--c3b4dd81 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Bitcoin )***</Content>
+                    <Content>[[ ▷ ]]( claude--Bitcoin--c3b4dd81 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Monad Valuation ]]</Content>
+                    <Content>$[[ Monad Valuation ]]( ./claude--Monad Valuation--072f8ae3 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Monad Valuation )***</Content>
+                    <Content>[[ ▷ ]]( claude--Monad Valuation--072f8ae3 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Telegram Wallet ]]</Content>
+                    <Content>$[[ Telegram Wallet ]]( ./claude--Telegram Wallet--11fa8197 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Telegram Wallet )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram Wallet--11fa8197 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Uncertainty ]]</Content>
+                    <Content>$[[ Uncertainty ]]( ./claude--Uncertainty--5052d0dc )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Uncertainty )***</Content>
+                    <Content>[[ ▷ ]]( claude--Uncertainty--5052d0dc )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Russia's Telegram blocking and packet sniffing capabilities ]]</Content>
+                    <Content>$[[ Russia's Telegram blocking and packet sniffing capabilities ]]( ./claude--Russia's Telegram blocking and packet sniffing capabilities--ab538435 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Russia's Telegram blocking and packet sniffing capabilities )***</Content>
+                    <Content>[[ ▷ ]]( claude--Russia's Telegram blocking and packet sniffing capabilities--ab538435 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ ./Well TONX is doing very well..… ]]</Content>
+                    <Content>$[[ Well TONX is doing very well.… ]]( ./claude--Well TONX is doing very well..…--c7f58366 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( Well TONX is doing very well..… )***</Content>
+                    <Content>[[ ▷ ]]( claude--Well TONX is doing very well..…--c7f58366 )***</Content>
                 </Word>
             </Paragraph>
         </Section>

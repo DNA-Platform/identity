@@ -1,0 +1,43 @@
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Index } from '../../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <TableOfContents />
+        <Index />
+        <Title>
+            <Parenthetical />
+            [[ Table of Contents ]]
+        </Title>
+        <Section>
+            <Heading>June 2026</Heading>
+            <Paragraph>
+                <Content>$[[ ./6 June 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./7 June 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./9 June 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./10 June 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./13 June 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ SRT Axioms &amp; Specialization ]]( claude--SRT Axioms &amp; Specialization--b3d24e04 )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+    </Chapter>
+);

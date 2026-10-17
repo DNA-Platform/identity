@@ -26,6 +26,7 @@ export class $ApplicationForm extends $Typeset {
             .pd-book .pd-me { background: linear-gradient(180deg, #ffffff 0%, #ffffff 84%, #fbfcfe 100%); }
             .pd-book .pd-holds { background: linear-gradient(90deg, #ffffff 0%, #ffffff 88%, #fbfcfe 100%); }
             .pd-book .pd-head { background: #ffffff; box-shadow: none; }
+            .pd-book.pa-layout .pd-library::after { content: none; }
             .pd-book .pd-pages { background: #ffffff; }
             @media (min-width: ${({ theme }) => theme.narrow}) {
                 .pd-book.pa-layout { height: 100vh; overflow-y: auto; grid-template-rows: auto auto auto; }
@@ -91,9 +92,10 @@ export class $ApplicationForm extends $Typeset {
             .pd-book .pd-pages .pd-message .pa-emphasis { font-style: italic; }
             .pd-book .pd-pages .pd-message .pa-bold { font-weight: 600; }
             .pd-book .pd-pages .pd-message .pa-list { padding-inline-start: 30px; }
-            .pd-book .pd-pages .pd-message .pa-list .pa-item { display: list-item; list-style: disc outside; }
-            .pd-book .pd-pages .pd-message .pa-list.pa-ordered .pa-item { list-style: decimal outside; }
-            .pd-book .pd-pages .pd-message .pa-list .pa-item + .pa-item { margin-block-start: 4px; }
+            .pd-book .pd-pages .pd-message .pd-paragraph.pa-list .pd-line.pa-item { display: list-item; position: static; margin: 0; padding-inline-start: 0; list-style: disc outside; }
+            .pd-book .pd-pages .pd-message .pd-paragraph.pa-list .pd-line.pa-item::before { content: none; }
+            .pd-book .pd-pages .pd-message .pd-paragraph.pa-list.pa-ordered .pd-line.pa-item { list-style: decimal outside; }
+            .pd-book .pd-pages .pd-message .pd-paragraph.pa-list .pd-line.pa-item + .pd-line.pa-item { margin-block-start: 4px; }
             .pd-book .pd-pages .pd-message .pa-list .pa-list { margin: 4px 0 0; }
             .pd-book .pd-pages .pd-message .pa-verbatim { font-family: ${({ theme }) => theme.mono}; font-size: 13.5px; padding: 1px 4px; border-radius: 5px; background: rgba(11, 11, 11, .05); color: #8e2626; }
             .pd-book .pd-pages .pd-message .pd-word.pa-reference { color: ${({ theme }) => theme.accent}; text-decoration: underline; text-decoration-color: color-mix(in srgb, ${({ theme }) => theme.accent} 35%, transparent); text-underline-offset: 3px; }

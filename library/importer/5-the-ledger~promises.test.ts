@@ -1,15 +1,16 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { sampleConversation, sampleTextMessage } from './3-the-record~samples.ts';
 import {
     chapterWithoutStruck, folderContents, folderDigest, importRecord, importRecords, importState, keptEditName, keptEdits,
-    keptEditsStanding, recordSuffix, standingKeptEdits, tendStruckEdits, writeImportRecord,
+    keptEditsStanding, standingKeptEdits, tendStruckEdits, writeImportRecord,
 } from './5-the-ledger~ledger.ts';
 
 const registerFolder = mkdtempSync(join(tmpdir(), 'records-'));
 afterAll(() => rmSync(registerFolder, { recursive: true, force: true }));
+const ledgerPath = join(registerFolder, 'ledger.json');
 
 const bookFolder = (slug: string): string => {
     mkdirSync(join(registerFolder, slug));
@@ -17,18 +18,29 @@ const bookFolder = (slug: string): string => {
 
     return slug;
 };
+const coverFor = (slug: string, origin: string, words: string): void => writeFileSync(
+    join(registerFolder, slug, '.cover.tsx'),
+    `<Title>[[ ${words} ]]( claude--${words} )</Title>\n<Origin>${origin}</Origin>\n`,
+);
 const twoMessages = [sampleTextMessage('m1', 'Doug', 'hello'), sampleTextMessage('m2', 'Claude', 'hi')];
 
 describe('the ledger', () => {
-    it('finds no record in a register with none, and reads back each record written beside an entry', () => {
-        expect(importRecords(join(registerFolder, 'nowhere')).size).toBe(0);
+    // Doug, 2026-10-17: "we don't use names because we might rename the conversations", and "We don't want files to
+    // grow per import": one ledger to an import, keyed by the conversation's id, its book found by the Origin it wears.
+    it('keeps a ledger keyed by id with no name or folder, and finds the book by its origin wherever it stands', () => {
+        expect(importRecords(join(registerFolder, 'nowhere'), []).size).toBe(0);
         const conversation = sampleConversation('c', 'A Conversation', twoMessages);
-        const slug = bookFolder('a-conversation');
-        const record = importRecord(conversation, registerFolder, 'A Conversation', slug, '2026-09-11');
-        const recordPath = join(registerFolder, `1-a-conversation${recordSuffix}`);
-        writeImportRecord(recordPath, record);
-        expect(importRecords(registerFolder).get('c')).toEqual({ record, path: recordPath });
-        expect(record.exportedOn).toBe('2026-09-11');
+        const slug = bookFolder('claude--a-conversation');
+        coverFor(slug, 'c', 'A Conversation');
+        const record = importRecord(conversation, registerFolder, 'claude--A Conversation', slug, '2026-09-11');
+        writeImportRecord(ledgerPath, record);
+        expect(importRecords(registerFolder, [ledgerPath]).get('c')).toEqual({ record, path: ledgerPath });
+        const ledger = JSON.parse(readFileSync(ledgerPath, 'utf8'));
+        expect(Object.keys(ledger.c)).not.toContain('name');
+        expect(Object.keys(ledger.c)).not.toContain('bookFolder');
+        renameSync(join(registerFolder, slug), join(registerFolder, 'renamed-by-hand'));
+        expect(importRecords(registerFolder, [ledgerPath]).get('c')?.record.bookFolder).toBe('renamed-by-hand');
+        renameSync(join(registerFolder, 'renamed-by-hand'), join(registerFolder, slug));
         expect(record.account).toBeUndefined();
     });
 
@@ -109,9 +121,10 @@ describe('the ledger', () => {
         const conversation = sampleConversation('t', 'Tended', twoMessages);
         const keptCover = '1-june-15-2026~edited-cover-tsx.txt';
         const reimport = { reimportedAt: '2026-10-15T00:00:00Z', keptEdits: [...struckSynopsis, keptCover] };
-        const recordPath = join(registerFolder, `4-tended${recordSuffix}`);
+        coverFor(slug, 't', 'Tended');
+        const recordPath = ledgerPath;
         writeImportRecord(recordPath, importRecord(conversation, registerFolder, 'Tended', slug, '2026-10-01', reimport));
-        const heldRecord = importRecords(registerFolder).get('t')!;
+        const heldRecord = importRecords(registerFolder, [ledgerPath]).get('t')!;
         expect(importState(conversation, registerFolder, heldRecord.record)).toBe('in');
         const touched = tendStruckEdits(registerFolder, heldRecord);
         expect(touched).toEqual([join(folder, '1-june-15-2026.tsx'), recordPath]);
@@ -124,10 +137,10 @@ describe('the ledger', () => {
     it('keeps one record per conversation, the later written replacing the earlier at the same path', () => {
         const conversation = sampleConversation('r', 'Replaced', twoMessages);
         const slug = bookFolder('replaced');
-        const recordPath = join(registerFolder, `3-replaced${recordSuffix}`);
+        const recordPath = ledgerPath;
         writeImportRecord(recordPath, importRecord(conversation, registerFolder, 'Replaced', slug, '2026-09-11'));
         writeImportRecord(recordPath, importRecord(conversation, registerFolder, 'Replaced', slug, '2026-10-01'));
-        const heldRecords = importRecords(registerFolder);
+        const heldRecords = importRecords(registerFolder, [ledgerPath]);
         expect([...heldRecords.keys()].filter(conversationId => conversationId === 'r')).toHaveLength(1);
         expect(heldRecords.get('r')?.record.exportedOn).toBe('2026-10-01');
     });

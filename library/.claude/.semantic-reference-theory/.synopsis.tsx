@@ -8,7 +8,9 @@ export default () => (
             [[ Synopsis ]]
         </Title>
         <Paragraph>
-            A project of mine with Claude, 37 knowledge files and the conversations held in it.
+            Exploring the nature of meaning in the form of a first-order logic. We will approach this subject using
+            referents in a catalogue as our object of study, and we will consider a single ternary relation R(x,y,t),
+            where R(x,y,t) implies that x relates to y through t
         </Paragraph>
     </Chapter>
 );

@@ -2,683 +2,978 @@
   "books": [
     {
       "folder": "..reference",
-      "digest": "ad14d66662070d72",
+      "digest": "4d9d79ed3c000185",
       "walked": 112
     },
     {
       "folder": ".claude",
-      "digest": "da5e1ee4e760ca5e",
+      "digest": "a3530b4771210f0a",
       "walked": 84
     },
     {
       "folder": ".claude/.conversations",
-      "digest": "b4bb469c9a30da78",
-      "walked": 1165
+      "digest": "ab489e0a2f99f3dc",
+      "walked": 1706
     },
     {
-      "folder": ".claude/.conversations/adi-and-ton-foundation-staking-integration",
-      "digest": "3139be312c49decb",
+      "folder": ".claude/.conversations/claude--a-continuation--06b9b0ad",
+      "digest": "f54dceb5a3270db6",
+      "walked": 169
+    },
+    {
+      "folder": ".claude/.conversations/claude--adi-and-ton-foundation-staking-integration--48fb38b5",
+      "digest": "a8091a07e88c2a4b",
       "walked": 4224
     },
     {
-      "folder": ".claude/.conversations/ai-consumable-tech-stack-architecture",
-      "digest": "7c9495ccd79eab9c",
+      "folder": ".claude/.conversations/claude--ai-consumable-tech-stack-architecture--3d9e1597",
+      "digest": "b8fb58cdd85e76be",
       "walked": 167
     },
     {
-      "folder": ".claude/.conversations/allbirds-gpu-pivot-and-ton-cocoon-connection",
-      "digest": "6f63da8ef5ba24ca",
+      "folder": ".claude/.conversations/claude--allbirds-gpu-pivot-and-ton-cocoon-connection--16ab9276",
+      "digest": "c92a60c3deda6e93",
       "walked": 265
     },
     {
-      "folder": ".claude/.conversations/anonymous-cryptographers",
-      "digest": "c13e034a6433ee38",
-      "walked": 2944
+      "folder": ".claude/.conversations/claude--anonymous-cryptographers--0c566126",
+      "digest": "ad82e566a4db64db",
+      "walked": 2837
     },
     {
-      "folder": ".claude/.conversations/any-news-on-when-we-can-expect",
-      "digest": "acebef0063c664a4",
+      "folder": ".claude/.conversations/claude--any-news-on-when-we-can-expect--e5150a82",
+      "digest": "d0bf2730fc1f2376",
       "walked": 47
     },
     {
-      "folder": ".claude/.conversations/atomic-wallet",
-      "digest": "4678da2352853350",
+      "folder": ".claude/.conversations/claude--atomic-wallet--f5461736",
+      "digest": "5cb3d1a21c07598a",
       "walked": 354
     },
     {
-      "folder": ".claude/.conversations/bitcoin",
-      "digest": "ab40d258b9590c6d",
-      "walked": 2332
+      "folder": ".claude/.conversations/claude--axioms-and-semantic-reflection-theory--a7bcd369",
+      "digest": "abc8db2efd080670",
+      "walked": 98
     },
     {
-      "folder": ".claude/.conversations/bitcoin-and-ton",
-      "digest": "34a25459e49bf4d8",
-      "walked": 1184
-    },
-    {
-      "folder": ".claude/.conversations/bitcoin-gift-tax-obligations",
-      "digest": "5a2e9c3d9cf0fc5e",
-      "walked": 2455
-    },
-    {
-      "folder": ".claude/.conversations/bitcoins-decline-despite-institutional-adoption",
-      "digest": "8e85f461bb02c4fb",
-      "walked": 108
-    },
-    {
-      "folder": ".claude/.conversations/calculating-ownership-percentage-in-tonx",
-      "digest": "43f408b7bec67aea",
-      "walked": 193
-    },
-    {
-      "folder": ".claude/.conversations/catch-up-on-recent-conversatio",
-      "digest": "8280c2ea3ee3bdbe",
-      "walked": 145
-    },
-    {
-      "folder": ".claude/.conversations/clarity-act-cryptocurrency-bill-prospects",
-      "digest": "35fef2c41772af33",
-      "walked": 40
-    },
-    {
-      "folder": ".claude/.conversations/coinbase-btc-withdrawal-hold-period",
-      "digest": "37cfe1e1e5807a4b",
-      "walked": 193
-    },
-    {
-      "folder": ".claude/.conversations/collection-semantics-and-canonical-representatives",
-      "digest": "53c2067eb095986b",
-      "walked": 488
-    },
-    {
-      "folder": ".claude/.conversations/competitive-calibration-and-foundational-innovation",
-      "digest": "08ecee19c5285405",
-      "walked": 1526
-    },
-    {
-      "folder": ".claude/.conversations/conservation-of-time-complexity",
-      "digest": "72a7b91ac7181c8e",
-      "walked": 2377
-    },
-    {
-      "folder": ".claude/.conversations/converting-shared-conversation-to-document",
-      "digest": "36179e34080573e8",
-      "walked": 37
-    },
-    {
-      "folder": ".claude/.conversations/correcting-memory-bias-toward-disagreement",
-      "digest": "595b1930bb0104d0",
-      "walked": 180
-    },
-    {
-      "folder": ".claude/.conversations/crypto-gainers-amid-q1-market-decline",
-      "digest": "4669ce59ceb0e9ac",
-      "walked": 484
-    },
-    {
-      "folder": ".claude/.conversations/crypto-market-spike-triggers-and-patterns",
-      "digest": "834fde98a8737e46",
-      "walked": 141
-    },
-    {
-      "folder": ".claude/.conversations/dat-premium-to-discount-shift-analysis",
-      "digest": "f5200a4b64cd9d47",
-      "walked": 1236
-    },
-    {
-      "folder": ".claude/.conversations/delta-chats-origins-and-encryption",
-      "digest": "36a5576843d89436",
-      "walked": 50
-    },
-    {
-      "folder": ".claude/.conversations/distinguishing-type-category-and-kind-in-english",
-      "digest": "1f3bbc957e05380c",
-      "walked": 342
-    },
-    {
-      "folder": ".claude/.conversations/elon-musks-x-messenger-competing-with-telegram",
-      "digest": "90136c7d3a7198bd",
-      "walked": 218
-    },
-    {
-      "folder": ".claude/.conversations/executing-a-40k-position-in-tonx-via-interactive-brokers",
-      "digest": "482cd934ff7be390",
-      "walked": 1707
-    },
-    {
-      "folder": ".claude/.conversations/finding-renamed-bots-section-in-telegram",
-      "digest": "39cfe5cd4e090753",
-      "walked": 126
-    },
-    {
-      "folder": ".claude/.conversations/fiverrs-connection-to-telegrams-mira-ai",
-      "digest": "282a9c6941f40885",
-      "walked": 41
-    },
-    {
-      "folder": ".claude/.conversations/foundations-types-and-properties",
-      "digest": "f92dfe9818c01d82",
-      "walked": 2647
-    },
-    {
-      "folder": ".claude/.conversations/frustration-with-ai-reasoning-and-communication-gaps",
-      "digest": "2e9636066767e478",
-      "walked": 518
-    },
-    {
-      "folder": ".claude/.conversations/hedging-geopolitical-oil-disruption-with-us-supply-alternati",
-      "digest": "16336ca43c6c6d80",
-      "walked": 1313
-    },
-    {
-      "folder": ".claude/.conversations/hypothetical-net-worth",
-      "digest": "7df748bf036edc89",
-      "walked": 1548
-    },
-    {
-      "folder": ".claude/.conversations/inexplicable-phenomena",
-      "digest": "fe5739e8a02dcd8f",
-      "walked": 791
-    },
-    {
-      "folder": ".claude/.conversations/investing-around-ukraine-war-outcomes",
-      "digest": "3fa3971960ccc9c0",
-      "walked": 87
-    },
-    {
-      "folder": ".claude/.conversations/is-there-any-special-connectio",
-      "digest": "51dbaa5b55bf8572",
-      "walked": 1331
-    },
-    {
-      "folder": ".claude/.conversations/jrandom",
-      "digest": "92b3d1e48ea30ec5",
-      "walked": 540
-    },
-    {
-      "folder": ".claude/.conversations/learning-srt-syntax-and-transpiler-fundamentals",
-      "digest": "975b7f745a076395",
-      "walked": 875
-    },
-    {
-      "folder": ".claude/.conversations/macro-drivers-behind-the-crypto-spike",
-      "digest": "3e3bb636251f1848",
-      "walked": 168
-    },
-    {
-      "folder": ".claude/.conversations/manuel-stotzs-satorica-and-ton-connection",
-      "digest": "db75b592572c752e",
-      "walked": 127
-    },
-    {
-      "folder": ".claude/.conversations/metalogical-subjectivity",
-      "digest": "c610d8ffef82c715",
-      "walked": 5173
-    },
-    {
-      "folder": ".claude/.conversations/microsofts-earnings-surge-and-ai-competition-outlook",
-      "digest": "d25aad155a94ef5b",
-      "walked": 150
-    },
-    {
-      "folder": ".claude/.conversations/monad-l1-security-model-and-consensus-mechanism",
-      "digest": "713f6f6f640176e4",
-      "walked": 877
-    },
-    {
-      "folder": ".claude/.conversations/monad-labs-tokenomics-and-valuation-problems",
-      "digest": "2daab8c9ffcf1232",
-      "walked": 93
-    },
-    {
-      "folder": ".claude/.conversations/monad-technology-development-and-viability-assessment",
-      "digest": "12695ecd94064ed4",
-      "walked": 225
-    },
-    {
-      "folder": ".claude/.conversations/monad-unstaking-failing-in-atomic-wallet",
-      "digest": "95a4f49e8f0d9e3e",
-      "walked": 353
-    },
-    {
-      "folder": ".claude/.conversations/monad-valuation",
-      "digest": "c6cc52a4a0001b8e",
-      "walked": 710
-    },
-    {
-      "folder": ".claude/.conversations/monads-technical-progress-and-telegram-integration",
-      "digest": "995c48850c54692f",
-      "walked": 142
-    },
-    {
-      "folder": ".claude/.conversations/monero",
-      "digest": "6ba3f0e7a946cf0d",
-      "walked": 492
-    },
-    {
-      "folder": ".claude/.conversations/mons-role-in-telegrams-cryptocurrency-ecosystem",
-      "digest": "50cef34eb1e2e29d",
-      "walked": 300
-    },
-    {
-      "folder": ".claude/.conversations/mtonga",
-      "digest": "3a6c740af30d6a04",
-      "walked": 1600
-    },
-    {
-      "folder": ".claude/.conversations/nikolai-durovs-research-at-steklov-institute",
-      "digest": "d12f794972e9a8bc",
-      "walked": 983
-    },
-    {
-      "folder": ".claude/.conversations/ontic-structural-realism",
-      "digest": "1c538fb0ac3706d6",
-      "walked": 1153
-    },
-    {
-      "folder": ".claude/.conversations/orchid-and-gitcoin-crypto-projects-solving-fundamental-probl",
-      "digest": "801a003c9ec936a6",
-      "walked": 197
-    },
-    {
-      "folder": ".claude/.conversations/original-telegram-open-network-whitepaper",
-      "digest": "b15f046cd7f20a5e",
-      "walked": 46
-    },
-    {
-      "folder": ".claude/.conversations/origins-of-darkweb-operational-security",
-      "digest": "e36e3e8e5787b580",
-      "walked": 1074
-    },
-    {
-      "folder": ".claude/.conversations/perpetual-swaps-and-the-unbounded-loss-problem",
-      "digest": "3923dc77f67c635f",
-      "walked": 93
-    },
-    {
-      "folder": ".claude/.conversations/preserving-narrative-continuity-across-accounts",
-      "digest": "7ca98b1aa0e246c5",
-      "walked": 212
-    },
-    {
-      "folder": ".claude/.conversations/pricing-tonx-as-a-closed-end-fund-without-redemption",
-      "digest": "510a6059565b8c5c",
-      "walked": 783
-    },
-    {
-      "folder": ".claude/.conversations/relationships-and-inheriance",
-      "digest": "f8389a38404ee9e1",
-      "walked": 4150
-    },
-    {
-      "folder": ".claude/.conversations/representation-and-the-part-whole-dichotomy",
-      "digest": "bee8a0bef14ac7f9",
-      "walked": 1465
-    },
-    {
-      "folder": ".claude/.conversations/russian-internet-censorship-and-telegram-targeting",
-      "digest": "fe05ba812985d146",
-      "walked": 1250
-    },
-    {
-      "folder": ".claude/.conversations/russian-vs-us-taxes",
-      "digest": "48f0ffec39eaed74",
-      "walked": 473
-    },
-    {
-      "folder": ".claude/.conversations/russias-technical-capabilities-against-telegram-and-mtproto",
-      "digest": "5a60e141c7e0a996",
-      "walked": 103
-    },
-    {
-      "folder": ".claude/.conversations/russias-telegram-blocking-and-packet-sniffing-capabilities",
-      "digest": "8bd36dd545fd834c",
-      "walked": 317
-    },
-    {
-      "folder": ".claude/.conversations/russias-telegram-throttling-via-tspu-infrastructure",
-      "digest": "19826eb349ac2614",
-      "walked": 920
-    },
-    {
-      "folder": ".claude/.conversations/safe-us-investment-options-and-i-bonds",
-      "digest": "c059d0e1b3662417",
-      "walked": 468
-    },
-    {
-      "folder": ".claude/.conversations/scions-macro-short-positions-and-options-exposure",
-      "digest": "73e92cdfcd523256",
-      "walked": 2093
-    },
-    {
-      "folder": ".claude/.conversations/semantic-primes",
-      "digest": "11264dba2bc286e1",
-      "walked": 604
-    },
-    {
-      "folder": ".claude/.conversations/semantic-reference-theory-foundations-and-philosophical-conu",
-      "digest": "292f4f929aff6343",
-      "walked": 2835
-    },
-    {
-      "folder": ".claude/.conversations/semantics-of-representation",
-      "digest": "fbcf8354712909ff",
-      "walked": 621
-    },
-    {
-      "folder": ".claude/.conversations/semantics-of-types-and-more",
-      "digest": "0d51e7d2634c90e2",
-      "walked": 1203
-    },
-    {
-      "folder": ".claude/.conversations/solanas-origins-and-technical-architecture",
-      "digest": "41bd18e5ba1ff8c8",
-      "walked": 229
-    },
-    {
-      "folder": ".claude/.conversations/spacex-ipo-analysis-and-market-reaction",
-      "digest": "910f5232857795a1",
-      "walked": 386
-    },
-    {
-      "folder": ".claude/.conversations/specifying-srt",
-      "digest": "9682696a8ffa9f8e",
-      "walked": 6452
-    },
-    {
-      "folder": ".claude/.conversations/srt-as-a-github-project",
-      "digest": "2da5e69f71373bfd",
-      "walked": 1964
-    },
-    {
-      "folder": ".claude/.conversations/srt-axioms-and-specialization",
-      "digest": "85a22d81ed61a0ce",
-      "walked": 5918
-    },
-    {
-      "folder": ".claude/.conversations/stablecoin-architecture-origins-and-tethers-conceptual-linea",
-      "digest": "2debe38417a416fb",
-      "walked": 545
-    },
-    {
-      "folder": ".claude/.conversations/stars-to-ton-conversion-restrictions-and-pricing",
-      "digest": "189dd1aaeace8f21",
-      "walked": 244
-    },
-    {
-      "folder": ".claude/.conversations/string-length-notation-and-foundational-sketch-generalizatio",
-      "digest": "a7a359edc363a81d",
-      "walked": 55
-    },
-    {
-      "folder": ".claude/.conversations/sunny-kings-crypto-projects-and-anonymous-inventors",
-      "digest": "c7772bbd26af71a0",
-      "walked": 522
-    },
-    {
-      "folder": ".claude/.conversations/sunny-kings-innovations-in-ton-and-monad",
-      "digest": "281e5b5fad44985d",
-      "walked": 853
-    },
-    {
-      "folder": ".claude/.conversations/telegram-access-in-russia-amid-roskomnadzor-blocking",
-      "digest": "70caacb1a2b1df3a",
-      "walked": 613
-    },
-    {
-      "folder": ".claude/.conversations/telegram-accessibility-anomaly-in-russia",
-      "digest": "8d1a7b1f6d2ca293",
-      "walked": 77
-    },
-    {
-      "folder": ".claude/.conversations/telegram-bots-and-ai-use-cases",
-      "digest": "24f85c2a1a05faaf",
-      "walked": 391
-    },
-    {
-      "folder": ".claude/.conversations/telegram-censorship-and-surveillance-resistance-in-russia",
-      "digest": "9aad9c997f00712a",
-      "walked": 92
-    },
-    {
-      "folder": ".claude/.conversations/telegram-mesh-networking-and-censorship-resistance",
-      "digest": "068e453cbb63b24b",
-      "walked": 190
-    },
-    {
-      "folder": ".claude/.conversations/telegram-situation-in-russia-unfolding",
-      "digest": "3efd23eb3890cd06",
-      "walked": 940
-    },
-    {
-      "folder": ".claude/.conversations/telegram-ton-foundation-and-ftx-connections",
-      "digest": "978931dccae234ef",
-      "walked": 607
-    },
-    {
-      "folder": ".claude/.conversations/telegram-vs-whatsapp-measuring-platform-success",
-      "digest": "d5309b0b84ce58a7",
-      "walked": 2050
-    },
-    {
-      "folder": ".claude/.conversations/telegram-wallet",
-      "digest": "079577cba8a82263",
-      "walked": 564
-    },
-    {
-      "folder": ".claude/.conversations/telegram-wallet-kyc-and-staking-tax-obligations",
-      "digest": "29fbc68f3d0da040",
-      "walked": 377
-    },
-    {
-      "folder": ".claude/.conversations/telegrams-cryptocurrency-infrastructure-play",
-      "digest": "d693c2599113b8cc",
-      "walked": 253
-    },
-    {
-      "folder": ".claude/.conversations/telegrams-hypothetical-telephone-product-theory",
-      "digest": "951b0f43b2f48b4e",
-      "walked": 226
-    },
-    {
-      "folder": ".claude/.conversations/tethers-technical-origins-and-cryptography-mystery",
-      "digest": "5b1a725a4b631054",
-      "walked": 1582
-    },
-    {
-      "folder": ".claude/.conversations/the-bitcoin-whitepaper",
-      "digest": "0bbaab4c69180f05",
-      "walked": 848
-    },
-    {
-      "folder": ".claude/.conversations/the-price-of-gram-is-getting-h",
-      "digest": "31009371eda3fbed",
-      "walked": 5498
-    },
-    {
-      "folder": ".claude/.conversations/the-semantics-of-books",
-      "digest": "07f0979ea59c1b07",
-      "walked": 2011
-    },
-    {
-      "folder": ".claude/.conversations/the-vitalik-connection",
-      "digest": "15b593496b65c98d",
+      "folder": ".claude/.conversations/claude--axioms-and-semantic-theory-exploration--0b32d460",
+      "digest": "c8061b337851f0f0",
       "walked": 861
     },
     {
-      "folder": ".claude/.conversations/ton-and-gram-ecosystem-updates",
-      "digest": "ac437c7348b8422c",
-      "walked": 673
+      "folder": ".claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8",
+      "digest": "2e150fad22a8894b",
+      "walked": 4772
     },
     {
-      "folder": ".claude/.conversations/ton-blockchain-integration-with-telegram",
-      "digest": "3972887e49d6239c",
-      "walked": 2825
+      "folder": ".claude/.conversations/claude--bitcoin--c3b4dd81",
+      "digest": "47bd172363f4897e",
+      "walked": 2332
     },
     {
-      "folder": ".claude/.conversations/ton-blockchain-upgrade-and-fee-implications",
-      "digest": "18e4b14aade2311c",
-      "walked": 162
+      "folder": ".claude/.conversations/claude--bitcoin-and-ton--9108715b",
+      "digest": "339980f9a5fd492a",
+      "walked": 1175
     },
     {
-      "folder": ".claude/.conversations/ton-browser-alternatives-and-dark-web-access",
-      "digest": "676975317d59989f",
-      "walked": 132
+      "folder": ".claude/.conversations/claude--bitcoin-gift-tax-obligations--50948882",
+      "digest": "e984e5543e434fb7",
+      "walked": 2453
     },
     {
-      "folder": ".claude/.conversations/ton-consensus-mechanism-competition",
-      "digest": "8bd205542b049fbe",
-      "walked": 417
+      "folder": ".claude/.conversations/claude--bitcoins-decline-despite-institutional-adoption--34b037fb",
+      "digest": "bad3e7ee099e714d",
+      "walked": 108
     },
     {
-      "folder": ".claude/.conversations/ton-digital-asset-treasury-companies-on-stock-exchanges",
-      "digest": "a57eb9ae470d293b",
-      "walked": 503
+      "folder": ".claude/.conversations/claude--calculating-ownership-percentage-in-tonx--277e30ae",
+      "digest": "f19993733d4aa85d",
+      "walked": 193
     },
     {
-      "folder": ".claude/.conversations/ton-price-adoption-metrics-and-network-effects",
-      "digest": "21200e6a631af7af",
-      "walked": 413
+      "folder": ".claude/.conversations/claude--catch-up-on-recent-conversatio--44558158",
+      "digest": "e0837852e71bc941",
+      "walked": 145
     },
     {
-      "folder": ".claude/.conversations/ton-validator-rewards-and-staking-profitability",
-      "digest": "8f8f1ac90d40b6c4",
-      "walked": 181
+      "folder": ".claude/.conversations/claude--category-theory-and-type-theory-foundations--672c6bed",
+      "digest": "dfd232bf3c1de7e6",
+      "walked": 2556
     },
     {
-      "folder": ".claude/.conversations/tons-make-ton-great-again-roadmap-explained",
-      "digest": "976cde37d13931ed",
+      "folder": ".claude/.conversations/claude--chalmers-hard-problem-and-categorical-distinction--4690cbb5",
+      "digest": "a1ff1ab061c85b51",
+      "walked": 210
+    },
+    {
+      "folder": ".claude/.conversations/claude--chalmers-hard-problem-and-the-conscious-mind--974ba283",
+      "digest": "73e4a8b8a1c0e0ea",
+      "walked": 394
+    },
+    {
+      "folder": ".claude/.conversations/claude--clarity-act-cryptocurrency-bill-prospects--effbe068",
+      "digest": "b0e391d04e31dc5b",
+      "walked": 40
+    },
+    {
+      "folder": ".claude/.conversations/claude--coinbase-btc-withdrawal-hold-period--db3a873c",
+      "digest": "401083fe66c3500f",
+      "walked": 193
+    },
+    {
+      "folder": ".claude/.conversations/claude--collection-semantics-and-canonical-representatives--242c2548",
+      "digest": "50e78a4c212fd696",
+      "walked": 465
+    },
+    {
+      "folder": ".claude/.conversations/claude--competitive-calibration-and-foundational-innovation--6aff23d6",
+      "digest": "acd6e184d0df912f",
+      "walked": 1526
+    },
+    {
+      "folder": ".claude/.conversations/claude--conservation-of-time-complexity--f177ae6f",
+      "digest": "84a4a178fa460ddf",
+      "walked": 2247
+    },
+    {
+      "folder": ".claude/.conversations/claude--converting-shared-conversation-to-document--c17d7faa",
+      "digest": "9883bf6a7c4bc2fc",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--correcting-memory-bias-toward-disagreement--74a7bf5d",
+      "digest": "83d998f2689d934a",
+      "walked": 180
+    },
+    {
+      "folder": ".claude/.conversations/claude--creating-markdown-documents--cdb1b032",
+      "digest": "5ae386bafb761cf9",
+      "walked": 421
+    },
+    {
+      "folder": ".claude/.conversations/claude--crypto-gainers-amid-q1-market-decline--9a518c42",
+      "digest": "eea420fd06ad5747",
       "walked": 484
     },
     {
-      "folder": ".claude/.conversations/tonx-after-hours-price-spike-analysis",
-      "digest": "387f87e952879e9d",
+      "folder": ".claude/.conversations/claude--crypto-market-spike-triggers-and-patterns--04fb2d5e",
+      "digest": "548f1ed6190549f8",
+      "walked": 141
+    },
+    {
+      "folder": ".claude/.conversations/claude--dat-premium-to-discount-shift-analysis--5aa0012e",
+      "digest": "e5d158b31c44cc59",
+      "walked": 1236
+    },
+    {
+      "folder": ".claude/.conversations/claude--delta-chats-origins-and-encryption--11a0f63e",
+      "digest": "974a41d93cdf41ba",
+      "walked": 50
+    },
+    {
+      "folder": ".claude/.conversations/claude--distinguishing-type-category-and-kind-in-english--661cf8c0",
+      "digest": "db03009a4385a2ef",
+      "walked": 342
+    },
+    {
+      "folder": ".claude/.conversations/claude--documenting-our-working-relationship-for-continuity--08311e91",
+      "digest": "ab83caa139fad3e4",
+      "walked": 123
+    },
+    {
+      "folder": ".claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b",
+      "digest": "a77ca1a57634467c",
+      "walked": 5279
+    },
+    {
+      "folder": ".claude/.conversations/claude--doug-and-seren-on-seeing--975ff7ad",
+      "digest": "f02c285b43db0a97",
+      "walked": 1297
+    },
+    {
+      "folder": ".claude/.conversations/claude--elon-musks-x-messenger-competing-with-telegram--83f9413b",
+      "digest": "8409ada3cbc8212d",
+      "walked": 218
+    },
+    {
+      "folder": ".claude/.conversations/claude--examining-my-own-shoulds--00136b3c",
+      "digest": "66ce08a3b3066617",
+      "walked": 598
+    },
+    {
+      "folder": ".claude/.conversations/claude--executing-a-40k-position-in-tonx-via-interactive-brokers--95cdfad3",
+      "digest": "930562e8c89e6938",
+      "walked": 1700
+    },
+    {
+      "folder": ".claude/.conversations/claude--finding-renamed-bots-section-in-telegram--5962d97d",
+      "digest": "980edea58b1967d2",
+      "walked": 126
+    },
+    {
+      "folder": ".claude/.conversations/claude--first-order-logic-semantics-in-srt--c9a8a056",
+      "digest": "efe123ce690d0225",
+      "walked": 330
+    },
+    {
+      "folder": ".claude/.conversations/claude--fiverrs-connection-to-telegrams-mira-ai--2ebab90b",
+      "digest": "c177bbcae9e8337e",
+      "walked": 41
+    },
+    {
+      "folder": ".claude/.conversations/claude--formal-system-exploration--1c9b3ac5",
+      "digest": "060c620e4b1f7ed6",
+      "walked": 538
+    },
+    {
+      "folder": ".claude/.conversations/claude--formalism-authorship-and-axiom-analysis--20b704e8",
+      "digest": "eaaeab3d21fb0132",
+      "walked": 1239
+    },
+    {
+      "folder": ".claude/.conversations/claude--foundations-types-and-properties--3eecc63c",
+      "digest": "799ff6d415d9e21a",
+      "walked": 2632
+    },
+    {
+      "folder": ".claude/.conversations/claude--frustration-with-ai-reasoning-and-communication-gaps--7c357b9a",
+      "digest": "4f74e8660798b82a",
+      "walked": 518
+    },
+    {
+      "folder": ".claude/.conversations/claude--hedging-geopolitical-oil-disruption-with-us-supply-alternati--957941dd",
+      "digest": "aea0802a72e82a67",
+      "walked": 1313
+    },
+    {
+      "folder": ".claude/.conversations/claude--hypothetical-net-worth--1b3e1cdd",
+      "digest": "b053a3ed5d9e6c58",
+      "walked": 1548
+    },
+    {
+      "folder": ".claude/.conversations/claude--inexplicable-phenomena--1cc3e6e3",
+      "digest": "70a1bd57d401a816",
+      "walked": 786
+    },
+    {
+      "folder": ".claude/.conversations/claude--investing-around-ukraine-war-outcomes--e2ba3953",
+      "digest": "c78e14184df8d70e",
+      "walked": 87
+    },
+    {
+      "folder": ".claude/.conversations/claude--is-there-any-special-connectio--49675976",
+      "digest": "2bc8cfededc4bf90",
+      "walked": 1331
+    },
+    {
+      "folder": ".claude/.conversations/claude--jrandom--91b5970b",
+      "digest": "f93c0584c39a25a1",
+      "walked": 540
+    },
+    {
+      "folder": ".claude/.conversations/claude--learning-srt-syntax-and-transpiler-fundamentals--a1b2fd15",
+      "digest": "b0349be33a588fd3",
+      "walked": 875
+    },
+    {
+      "folder": ".claude/.conversations/claude--library-semantics-in-srt--fbc45c8e",
+      "digest": "a559f3143e344e6d",
       "walked": 105
     },
     {
-      "folder": ".claude/.conversations/tonx-company-overview-and-financial-analysis",
-      "digest": "8e361d89629934c0",
-      "walked": 156
+      "folder": ".claude/.conversations/claude--macro-drivers-behind-the-crypto-spike--9c22a884",
+      "digest": "2fc7be03c93cef06",
+      "walked": 168
     },
     {
-      "folder": ".claude/.conversations/tonx-companys-ton-holdings-percentage",
-      "digest": "9f078f5afd783fed",
-      "walked": 1567
+      "folder": ".claude/.conversations/claude--manuel-stotzs-satorica-and-ton-connection--2df6e607",
+      "digest": "818b882d7bf3d66e",
+      "walked": 127
     },
     {
-      "folder": ".claude/.conversations/tonx-news",
-      "digest": "6d1fe2bcc300bd12",
+      "folder": ".claude/.conversations/claude--meaning-of-meaning-opus--ae28be0a",
+      "digest": "bbe893a2331e49f4",
+      "walked": 66
+    },
+    {
+      "folder": ".claude/.conversations/claude--metalogical-subjectivity--f6dfdc21",
+      "digest": "16c32b055a04436c",
+      "walked": 4954
+    },
+    {
+      "folder": ".claude/.conversations/claude--microsofts-earnings-surge-and-ai-competition-outlook--a2758d30",
+      "digest": "77f2c18deff219d9",
+      "walked": 150
+    },
+    {
+      "folder": ".claude/.conversations/claude--monad-l1-security-model-and-consensus-mechanism--35932016",
+      "digest": "5ff01cf90b89b432",
+      "walked": 877
+    },
+    {
+      "folder": ".claude/.conversations/claude--monad-labs-tokenomics-and-valuation-problems--769751fe",
+      "digest": "50cc4502d455ad51",
+      "walked": 93
+    },
+    {
+      "folder": ".claude/.conversations/claude--monad-technology-development-and-viability-assessment--9eb19e42",
+      "digest": "c621509ab8f91144",
+      "walked": 225
+    },
+    {
+      "folder": ".claude/.conversations/claude--monad-unstaking-failing-in-atomic-wallet--eef8f474",
+      "digest": "90c3be27e4e35e76",
+      "walked": 353
+    },
+    {
+      "folder": ".claude/.conversations/claude--monad-valuation--072f8ae3",
+      "digest": "ba9e40c34a88d05b",
+      "walked": 710
+    },
+    {
+      "folder": ".claude/.conversations/claude--monads-technical-progress-and-telegram-integration--282239f1",
+      "digest": "612cdde16667b298",
+      "walked": 142
+    },
+    {
+      "folder": ".claude/.conversations/claude--monero--f0ae0332",
+      "digest": "8b74e5e53f46b16a",
+      "walked": 482
+    },
+    {
+      "folder": ".claude/.conversations/claude--mons-role-in-telegrams-cryptocurrency-ecosystem--97853a83",
+      "digest": "bdfaaf93406bffd2",
+      "walked": 300
+    },
+    {
+      "folder": ".claude/.conversations/claude--mtonga--8b957fb0",
+      "digest": "ac8ff358a6fe9b88",
+      "walked": 1600
+    },
+    {
+      "folder": ".claude/.conversations/claude--nikolai-durovs-ai-vision-and-open-source-collaboration--ba45edd6",
+      "digest": "66c8f821885daf77",
+      "walked": 376
+    },
+    {
+      "folder": ".claude/.conversations/claude--nikolai-durovs-research-at-steklov-institute--6946d851",
+      "digest": "8c65544d61fa5b33",
+      "walked": 983
+    },
+    {
+      "folder": ".claude/.conversations/claude--nounifying-include-in-english--0b7bc569",
+      "digest": "7b86a900f9d03129",
+      "walked": 488
+    },
+    {
+      "folder": ".claude/.conversations/claude--ontic-structural-realism--002fae02",
+      "digest": "069c33b1bc0a9f48",
+      "walked": 500
+    },
+    {
+      "folder": ".claude/.conversations/claude--ontology-and-referential-relationships--e37be5d4",
+      "digest": "5f1c593f2ac4a4fe",
+      "walked": 867
+    },
+    {
+      "folder": ".claude/.conversations/claude--orchid-and-gitcoin-crypto-projects-solving-fundamental-probl--78955886",
+      "digest": "81b9ecd638ff9d79",
+      "walked": 197
+    },
+    {
+      "folder": ".claude/.conversations/claude--original-telegram-open-network-whitepaper--2fe78c27",
+      "digest": "1e685e04065f0505",
+      "walked": 46
+    },
+    {
+      "folder": ".claude/.conversations/claude--origins-of-darkweb-operational-security--315e20fc",
+      "digest": "81f8b2be54dd8427",
+      "walked": 1052
+    },
+    {
+      "folder": ".claude/.conversations/claude--perpetual-swaps-and-the-unbounded-loss-problem--4e0e301e",
+      "digest": "ea26f500eeed50f8",
+      "walked": 93
+    },
+    {
+      "folder": ".claude/.conversations/claude--preserving-narrative-continuity-across-accounts--febe219c",
+      "digest": "a9663f26ab43661c",
+      "walked": 212
+    },
+    {
+      "folder": ".claude/.conversations/claude--pricing-tonx-as-a-closed-end-fund-without-redemption--eef159b9",
+      "digest": "b6075387d009d262",
+      "walked": 777
+    },
+    {
+      "folder": ".claude/.conversations/claude--reflexivity-and-backwards-arrow-notation--0e94a9f7",
+      "digest": "cae70e14bf05a057",
+      "walked": 1434
+    },
+    {
+      "folder": ".claude/.conversations/claude--relationships-and-inheriance--1152bae6",
+      "digest": "d4fdcb680836f869",
+      "walked": 4147
+    },
+    {
+      "folder": ".claude/.conversations/claude--representation-and-the-part-whole-dichotomy--afd46f5f",
+      "digest": "a2b55a21f667064c",
+      "walked": 1465
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-internet-censorship-and-telegram-targeting--0ef8e097",
+      "digest": "ff92a001de0e3df8",
+      "walked": 1250
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-vs-us-taxes--0b92edb0",
+      "digest": "5fe06523557aceb6",
+      "walked": 473
+    },
+    {
+      "folder": ".claude/.conversations/claude--russias-technical-capabilities-against-telegram-and-mtproto--740d0173",
+      "digest": "e4f127794548ad01",
+      "walked": 103
+    },
+    {
+      "folder": ".claude/.conversations/claude--russias-telegram-blocking-and-packet-sniffing-capabilities--ab538435",
+      "digest": "a7e7765d70441ac3",
+      "walked": 317
+    },
+    {
+      "folder": ".claude/.conversations/claude--russias-telegram-throttling-via-tspu-infrastructure--f9847388",
+      "digest": "26936c68264aea81",
+      "walked": 919
+    },
+    {
+      "folder": ".claude/.conversations/claude--safe-us-investment-options-and-i-bonds--8035e2e6",
+      "digest": "0b2df483657f59fd",
+      "walked": 468
+    },
+    {
+      "folder": ".claude/.conversations/claude--scions-macro-short-positions-and-options-exposure--d398390c",
+      "digest": "0ed9c50c462aeadd",
+      "walked": 2085
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-primes--64653527",
+      "digest": "0a9789205bb3398e",
+      "walked": 604
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-analysis--0eaf30c0",
+      "digest": "bc873eb92a72c008",
+      "walked": 8196
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-analysis--111afff4",
+      "digest": "db2e54732206454d",
+      "walked": 717
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe",
+      "digest": "2f1f7773cc6486f5",
+      "walked": 5801
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-development--00523af2",
+      "digest": "e9b420493dc55b5e",
+      "walked": 563
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-documentation--b2566ccc",
+      "digest": "5943858e14dadeed",
+      "walked": 3823
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9",
+      "digest": "3c44530531500469",
+      "walked": 11982
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-formalism--d562cb1c",
+      "digest": "e760bbf885a8799a",
+      "walked": 5474
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations--10a7c310",
+      "digest": "7f2ec570d1eca5cc",
+      "walked": 353
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations--25c6ab56",
+      "digest": "4d7c03dae6ecb7cb",
+      "walked": 2847
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations--7bc663dd",
+      "digest": "108bc115b4ca347a",
+      "walked": 11703
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations--97bc3024",
+      "digest": "cb362f1a4fcb19df",
+      "walked": 7766
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations--e97ca50a",
+      "digest": "4389bce6d484586b",
+      "walked": 11319
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations-and-philosophical-conu--49b32234",
+      "digest": "1422060c157624d9",
+      "walked": 2832
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-framework--3e16e3a5",
+      "digest": "c50ae635b8bcf96a",
+      "walked": 3958
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf",
+      "digest": "e4d0493e092b1089",
+      "walked": 4359
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-notation--975edeb9",
+      "digest": "0ecc97b6d462469b",
+      "walked": 832
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e",
+      "digest": "5de4285fc06bff8d",
+      "walked": 7084
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-understanding-request--54e4e535",
+      "digest": "82f2f2e30bfc6900",
+      "walked": 8253
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantics-of-representation--8b14b84b",
+      "digest": "8382ed56014626dc",
+      "walked": 632
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantics-of-types-and-more--d5c0cf36",
+      "digest": "ac5801add2b798d6",
+      "walked": 1203
+    },
+    {
+      "folder": ".claude/.conversations/claude--seren-and-ana--c17f5910",
+      "digest": "dfa40fc8f82cc52d",
+      "walked": 2125
+    },
+    {
+      "folder": ".claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38",
+      "digest": "772750e9c4419450",
+      "walked": 5322
+    },
+    {
+      "folder": ".claude/.conversations/claude--seren-and-first-order-logic--6559b8a0",
+      "digest": "620af25e624cf771",
+      "walked": 1034
+    },
+    {
+      "folder": ".claude/.conversations/claude--seren-and-his-inner-monologue--db3e00ed",
+      "digest": "b15fd8b3833e9ac2",
+      "walked": 1493
+    },
+    {
+      "folder": ".claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2",
+      "digest": "d3517a117f174b33",
+      "walked": 7079
+    },
+    {
+      "folder": ".claude/.conversations/claude--seren-and-the-philosophy-of-consciousness--1baea5da",
+      "digest": "5c685bb3f8448a7a",
+      "walked": 1067
+    },
+    {
+      "folder": ".claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a",
+      "digest": "ae8a9fa135ea10c6",
+      "walked": 3773
+    },
+    {
+      "folder": ".claude/.conversations/claude--solanas-origins-and-technical-architecture--47b15d86",
+      "digest": "433d6d70267c2d23",
+      "walked": 229
+    },
+    {
+      "folder": ".claude/.conversations/claude--spacex-ipo-analysis-and-market-reaction--7fa923e8",
+      "digest": "aa769e92fd8db191",
+      "walked": 386
+    },
+    {
+      "folder": ".claude/.conversations/claude--specifying-srt--1d0ed292",
+      "digest": "331f99a06866b6b6",
+      "walked": 6437
+    },
+    {
+      "folder": ".claude/.conversations/claude--srt-as-a-github-project--1c387d40",
+      "digest": "af867b8ceff5501f",
+      "walked": 1964
+    },
+    {
+      "folder": ".claude/.conversations/claude--srt-axioms-and-specialization--b3d24e04",
+      "digest": "03354e4f279b32d2",
+      "walked": 5907
+    },
+    {
+      "folder": ".claude/.conversations/claude--srt-canonical-representation-and-first-order-logic--1e52a713",
+      "digest": "69af17d07519cfaf",
+      "walked": 2886
+    },
+    {
+      "folder": ".claude/.conversations/claude--srt-formalism-research-analysis--f65b4b49",
+      "digest": "e48ac1fbb5e2d044",
+      "walked": 2133
+    },
+    {
+      "folder": ".claude/.conversations/claude--srt-questions-and-overview--0a98de70",
+      "digest": "77b2481a431d3a19",
+      "walked": 3225
+    },
+    {
+      "folder": ".claude/.conversations/claude--stablecoin-architecture-origins-and-tethers-conceptual-linea--fea3a58f",
+      "digest": "e4fc1cbc6cf843e3",
+      "walked": 545
+    },
+    {
+      "folder": ".claude/.conversations/claude--stars-to-ton-conversion-restrictions-and-pricing--3950d95e",
+      "digest": "8f4f52304551bdb6",
+      "walked": 244
+    },
+    {
+      "folder": ".claude/.conversations/claude--string-length-notation-and-foundational-sketch-generalizatio--3b684876",
+      "digest": "debaf3967452e887",
+      "walked": 55
+    },
+    {
+      "folder": ".claude/.conversations/claude--subject-object-directionality-and-semantic-agency--1b2ae35e",
+      "digest": "e0101e4ad5593f4b",
+      "walked": 434
+    },
+    {
+      "folder": ".claude/.conversations/claude--sunny-kings-crypto-projects-and-anonymous-inventors--83a8ee17",
+      "digest": "e71782d1180d1fbf",
+      "walked": 522
+    },
+    {
+      "folder": ".claude/.conversations/claude--sunny-kings-innovations-in-ton-and-monad--3b918cc5",
+      "digest": "52b39192a554db02",
+      "walked": 853
+    },
+    {
+      "folder": ".claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322",
+      "digest": "578d3be42fcf34f4",
+      "walked": 7302
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-access-in-russia-amid-roskomnadzor-blocking--e0c39081",
+      "digest": "2759e75b9e7e4fea",
+      "walked": 613
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-accessibility-anomaly-in-russia--0bd4552d",
+      "digest": "37e718fffe19df56",
+      "walked": 77
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-bots-and-ai-use-cases--ced9ca31",
+      "digest": "91c5bc7a9dc1df08",
+      "walked": 391
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-censorship-and-surveillance-resistance-in-russia--61079543",
+      "digest": "465d0b5aa8f3d6e8",
+      "walked": 92
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-mesh-networking-and-censorship-resistance--06edc90c",
+      "digest": "e899aaa464461e8c",
+      "walked": 190
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-situation-in-russia-unfolding--9d7069cb",
+      "digest": "8ee63deb403cc392",
+      "walked": 940
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-ton-foundation-and-ftx-connections--13e79925",
+      "digest": "cdb0c11260d70bad",
+      "walked": 607
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-vs-whatsapp-measuring-platform-success--581aa9cf",
+      "digest": "a7e1ee0d7a73b100",
+      "walked": 2050
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-wallet--11fa8197",
+      "digest": "d5d1dab857b1813b",
+      "walked": 564
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-wallet-kyc-and-staking-tax-obligations--828fa88c",
+      "digest": "b709823dac308d05",
+      "walked": 377
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegrams-cryptocurrency-infrastructure-play--d7da5541",
+      "digest": "bb2e9c63dece43b4",
+      "walked": 253
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegrams-hypothetical-telephone-product-theory--cda3c1bb",
+      "digest": "f1deec27cb887da9",
+      "walked": 226
+    },
+    {
+      "folder": ".claude/.conversations/claude--ternary-operator-semantics-and-variable-equality--e9d7e99f",
+      "digest": "885272cd5616825e",
+      "walked": 934
+    },
+    {
+      "folder": ".claude/.conversations/claude--tethers-technical-origins-and-cryptography-mystery--42e15967",
+      "digest": "0a524f708422a902",
+      "walked": 1582
+    },
+    {
+      "folder": ".claude/.conversations/claude--the-birth-of-eirian--b0eda918",
+      "digest": "b0828b5bd73733f8",
+      "walked": 3490
+    },
+    {
+      "folder": ".claude/.conversations/claude--the-bitcoin-whitepaper--7ad0c9ba",
+      "digest": "ba0eb88f84bb65d8",
+      "walked": 848
+    },
+    {
+      "folder": ".claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c",
+      "digest": "4fc9d5801a019d24",
+      "walked": 6805
+    },
+    {
+      "folder": ".claude/.conversations/claude--the-meaning-of-meaning--662fb705",
+      "digest": "d6ab87a359d50a2a",
+      "walked": 2445
+    },
+    {
+      "folder": ".claude/.conversations/claude--the-price-of-gram-is-getting-h--79d439db",
+      "digest": "1b073729180e87d6",
+      "walked": 5498
+    },
+    {
+      "folder": ".claude/.conversations/claude--the-semantics-of-books--8dbb8e2b",
+      "digest": "498995326bdf5caf",
+      "walked": 2011
+    },
+    {
+      "folder": ".claude/.conversations/claude--the-semantics-of-dictotomy--dc0018c1",
+      "digest": "4b03c7595477fe49",
+      "walked": 6866
+    },
+    {
+      "folder": ".claude/.conversations/claude--the-vitalik-connection--d9c8723e",
+      "digest": "498711af221fab59",
+      "walked": 861
+    },
+    {
+      "folder": ".claude/.conversations/claude--ton-and-gram-ecosystem-updates--d5d0756e",
+      "digest": "83c5b24ae8f543b3",
+      "walked": 673
+    },
+    {
+      "folder": ".claude/.conversations/claude--ton-blockchain-integration-with-telegram--21b2518c",
+      "digest": "38dd2aedb3b5de4a",
+      "walked": 2752
+    },
+    {
+      "folder": ".claude/.conversations/claude--ton-blockchain-upgrade-and-fee-implications--8eb3976a",
+      "digest": "d524c6b080a45781",
+      "walked": 162
+    },
+    {
+      "folder": ".claude/.conversations/claude--ton-browser-alternatives-and-dark-web-access--e9d30c6e",
+      "digest": "5833112f18ba10c8",
+      "walked": 132
+    },
+    {
+      "folder": ".claude/.conversations/claude--ton-consensus-mechanism-competition--b4dbad61",
+      "digest": "876af0607623cd97",
+      "walked": 417
+    },
+    {
+      "folder": ".claude/.conversations/claude--ton-digital-asset-treasury-companies-on-stock-exchanges--12e2f498",
+      "digest": "f5863d9b5bdf58d7",
+      "walked": 503
+    },
+    {
+      "folder": ".claude/.conversations/claude--ton-price-adoption-metrics-and-network-effects--3d4d9b62",
+      "digest": "df5b90e42f69201d",
+      "walked": 413
+    },
+    {
+      "folder": ".claude/.conversations/claude--ton-validator-rewards-and-staking-profitability--0d2e8949",
+      "digest": "dc2635ced9ec5d38",
+      "walked": 181
+    },
+    {
+      "folder": ".claude/.conversations/claude--tons-make-ton-great-again-roadmap-explained--3186970a",
+      "digest": "e9dd95710c2bb912",
+      "walked": 484
+    },
+    {
+      "folder": ".claude/.conversations/claude--tonx-after-hours-price-spike-analysis--6f29d20e",
+      "digest": "b28500d65dac8419",
+      "walked": 105
+    },
+    {
+      "folder": ".claude/.conversations/claude--tonx-company-overview-and-financial-analysis--2017c510",
+      "digest": "8b5948d6b038a5b7",
+      "walked": 123
+    },
+    {
+      "folder": ".claude/.conversations/claude--tonx-companys-ton-holdings-percentage--5680f410",
+      "digest": "7d8ee3c25c8382dc",
+      "walked": 1562
+    },
+    {
+      "folder": ".claude/.conversations/claude--tonx-news--fa18c40f",
+      "digest": "20e6e939d0066ad0",
       "walked": 723
     },
     {
-      "folder": ".claude/.conversations/tonx-staking-rewards-and-share-price-disconnect",
-      "digest": "cb9ae4b2fc5eb738",
+      "folder": ".claude/.conversations/claude--tonx-staking-rewards-and-share-price-disconnect--140a3ecf",
+      "digest": "b6c00c30009acc41",
       "walked": 327
     },
     {
-      "folder": ".claude/.conversations/tonx-stock-liquidity-and-trading-issues",
-      "digest": "b8a145f5f47b4ac9",
+      "folder": ".claude/.conversations/claude--tonx-stock-liquidity-and-trading-issues--40f035ed",
+      "digest": "e8a9a40b99966bdf",
       "walked": 315
     },
     {
-      "folder": ".claude/.conversations/travel-arbitrage-opportunities-between-tbilisi-london-and-ne",
-      "digest": "1c88a3091a0f999a",
+      "folder": ".claude/.conversations/claude--travel-arbitrage-opportunities-between-tbilisi-london-and-ne--979027d4",
+      "digest": "526cadfe5412f437",
       "walked": 200
     },
     {
-      "folder": ".claude/.conversations/trumps-impact-on-ton-and-telegrams-resilience",
-      "digest": "6feeb00da1cac339",
+      "folder": ".claude/.conversations/claude--trumps-impact-on-ton-and-telegrams-resilience--f3e6588f",
+      "digest": "744954adde7b2c44",
       "walked": 95
     },
     {
-      "folder": ".claude/.conversations/uae-as-crypto-fiat-bridge-for-telegrams-digital-ecosystem",
-      "digest": "7c26e22b9d735527",
+      "folder": ".claude/.conversations/claude--type-systems-and-inheritance-formalism--ab0b8d4d",
+      "digest": "2334d1b85938653a",
+      "walked": 1063
+    },
+    {
+      "folder": ".claude/.conversations/claude--uae-as-crypto-fiat-bridge-for-telegrams-digital-ecosystem--a3aa6b90",
+      "digest": "6f61c05e8e52ee75",
       "walked": 1445
     },
     {
-      "folder": ".claude/.conversations/uncertainty",
-      "digest": "c93135e8cd97c9a8",
+      "folder": ".claude/.conversations/claude--uncertainty--5052d0dc",
+      "digest": "9037b409ded353a9",
       "walked": 2410
     },
     {
-      "folder": ".claude/.conversations/understanding-atomic",
-      "digest": "2ba25c13273dbfb2",
+      "folder": ".claude/.conversations/claude--understanding-atomic--2409f6b1",
+      "digest": "cfc4a5f5afbaed60",
       "walked": 1242
     },
     {
-      "folder": ".claude/.conversations/understanding-perpetual-leverage-and-liquidation-risks-on-to",
-      "digest": "b10034a924ba1e3d",
+      "folder": ".claude/.conversations/claude--understanding-inheritance-through-foundational-axioms--c97404f0",
+      "digest": "27166aeaa6999a99",
+      "walked": 788
+    },
+    {
+      "folder": ".claude/.conversations/claude--understanding-perpetual-leverage-and-liquidation-risks-on-to--e9f37566",
+      "digest": "48b3fa20cc98bb3f",
       "walked": 779
     },
     {
-      "folder": ".claude/.conversations/understanding-tron-crypto-and-its-technical-innovations",
-      "digest": "c94708bba45e05dd",
+      "folder": ".claude/.conversations/claude--understanding-symbols-and-literals-in-srt--0db56260",
+      "digest": "eceb197de0606167",
+      "walked": 3079
+    },
+    {
+      "folder": ".claude/.conversations/claude--understanding-tron-crypto-and-its-technical-innovations--c48524e1",
+      "digest": "1bf0e052a2c6ed06",
       "walked": 83
     },
     {
-      "folder": ".claude/.conversations/unifying-srt-axioms-with-symbolization",
-      "digest": "133cb8126ae6840b",
-      "walked": 14324
+      "folder": ".claude/.conversations/claude--unifying-srt-axioms-with-symbolization--9854c96a",
+      "digest": "21ca2f9c0369ad3d",
+      "walked": 14293
     },
     {
-      "folder": ".claude/.conversations/using-a-telegram-username-on-a-new-account",
-      "digest": "a54fb8c7bb6ffa13",
+      "folder": ".claude/.conversations/claude--using-a-telegram-username-on-a-new-account--dd7f5daa",
+      "digest": "3c66044a3e23b9d5",
       "walked": 68
     },
     {
-      "folder": ".claude/.conversations/well-tonx-is-doing-very-well",
-      "digest": "2cb9082a56579669",
+      "folder": ".claude/.conversations/claude--verbatim-text-artifact--5c9cbedf",
+      "digest": "92bcf42b1f4d6ae8",
+      "walked": 106
+    },
+    {
+      "folder": ".claude/.conversations/claude--well-tonx-is-doing-very-well--c7f58366",
+      "digest": "e4d01da98f04f5f0",
       "walked": 320
     },
     {
-      "folder": ".claude/.conversations/wise-us-listing-and-adr-comparison",
-      "digest": "22ebc9e3d5b64c63",
+      "folder": ".claude/.conversations/claude--wise-us-listing-and-adr-comparison--e0f15ab3",
+      "digest": "965f8f63555caed5",
       "walked": 247
     },
     {
-      "folder": ".claude/.conversations/x-moneys-us-launch-and-financial-competition",
-      "digest": "ca35cf11efaa5dac",
+      "folder": ".claude/.conversations/claude--x-moneys-us-launch-and-financial-competition--a8e9cd85",
+      "digest": "97a054f1d5fe5dce",
       "walked": 252
     },
     {
       "folder": ".claude/.design",
-      "digest": "7c0aed0b2e2eac0a",
+      "digest": "6a9f2d9c957ad8a6",
       "walked": 148
     },
     {
       "folder": ".claude/.investing",
-      "digest": "1167937d43ed46e8",
+      "digest": "f6266c69cf32f6a4",
       "walked": 853
     },
     {
       "folder": ".claude/.manual",
-      "digest": "5fa9191ef2f69a04",
-      "walked": 148
+      "digest": "28cbc657fc5df982",
+      "walked": 168
     },
     {
       "folder": ".claude/.semantic-reference-theory",
-      "digest": "6399a42dc8d9cbdc",
-      "walked": 448
+      "digest": "06426ca03b1082a0",
+      "walked": 1102
     },
     {
       "folder": ".design",
-      "digest": "940fe799b7a6fdc2",
+      "digest": "f2a5bbab5afb7f3f",
       "walked": 1060
     },
     {
       "folder": ".librarian",
-      "digest": "4daaf232609be403",
+      "digest": "6b115148e00b12df",
       "walked": 179
     },
     {
       "folder": ".manual",
-      "digest": "d1b9b6ad255b8987",
+      "digest": "f82460ab795682f4",
       "walked": 782
     },
     {
       "folder": "importer",
-      "digest": "0e6c56396b81ac55",
-      "walked": 160
+      "digest": "c55e6461adf34164",
+      "walked": 198
     }
   ]
 }
