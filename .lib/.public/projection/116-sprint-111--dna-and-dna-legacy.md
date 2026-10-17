@@ -155,6 +155,26 @@ On the other session: *"Coordinate with the other session too, because they are 
 - §3: R9 is U3; R10 is U6; R11 is U7 and U8; R12 is U8.
 - §4: AE1 and AE2 are U11; AE3 is U12. Nothing drops.
 
+## <a id="the-imports-memory"></a>The import's memory — added 2026-10-17 on his word
+
+*"The importer also needs to add resource files somewhere with metadata about the import. We probably need to use annotative ids to correlate… we should be using annotations to store information about the chat and messages. We don't necessarily have to display it… we don't use names because we might rename the conversations. That needs to be stored as a resource file in a logical place."* Asked where: *"the importer makes sense, though it should be associated with the documentation of a specific configuration of the importer, so that you can associate the specific import with the ledger. DNA Legacy is a different import than DNA, and we will have other imports from other platforms that are also unique."* Asked about message ids: *"Can it just use the conversation id as the id? Is the export id from anthropic? Find the most natural thing. I think you want to create annotatons that store the info on the annotation so it is in the object model, but it doesn't need to be surfaced right now. Conversations and all .public documents are meant to be read, meant to be accessed as object model, meant to be interacted with as user interface all in equal measure."*
+
+- **R13.** Every conversation's cover and every message say the application's own id, Anthropic's, in an annotation of Claude's. It is held in the object model and drawn nowhere. The name `Origin` is a PROXY.
+- **R14.** Each import is a chapter of Dougs Importer documenting its configuration, DNA Legacy and DNA now and any other platform later. Its configuration and its ledger are that chapter's resources.
+- **R15.** The ledger is keyed by conversation id and holds no name and no folder: the export, the application's last-updated time and message count, when it was imported and re-imported, the digest of what was written, and the edits kept.
+- **R16.** A run finds a conversation's book by the `Origin` on its cover, wherever it stands and whatever it is called, so a book renamed, moved or cut is found. The per-entry records beside Our Conversations retire into the ledgers.
+
+- <a id="u13"></a>**U13 · `Origin`.** The annotation, its chapter and code in Claudes Reference Manual, built by the other session under its rule that the form changes first, and the form chapter's section with it.
+- <a id="u14"></a>**U14 · The imports as chapters.** A chapter of Dougs Importer for each import, with its configuration and ledger beside it; The Importer's configuration keeps what is excluded and the collections.
+- <a id="u15"></a>**U15 · The ledger by id, the book by its `Origin`.** The ledger's stage reads and writes the per-import ledgers, finds books by `Origin`, and migrates the 184 records. The writing writes `Origin` on covers and messages.
+- <a id="u16"></a>**U16 · One re-import.** All 184 books rewritten into the form, bound, and checked by the binder's check in the run.
+
+Approved 2026-10-17 on his *"Approve all. Make sure the sanitizer is very smart. like & to and and / to whatever we came up with, and everything else we thought of and ponder corner cases that are unseen thus far too!"*, after *"It is very important that we normalize text for ids exactly teh same. There should be dedicated code. It should be well tested with promises. It should be part of the binder. Never duplicated. And used broadly. We need to sanitize. And then in the importer, we need to handle uniqueness… correlate imports by some sort of Guid from anthropic"*. The final bind's proof found the reason: 366 links missed and some ids were worn twice, because a title made its id from its words while the catalogue addressed it by its key.
+
+- <a id="u17"></a>**U17 · One id for every name, under the package.** The Identifier's slug is the one normalization of text into an id, made smart and promised case by case. A title, a mention and a heading wear the id their address gives them, the fragment of a chapter or the last segment of a book. Only an element with no address makes its id from its words.
+- <a id="u18"></a>**U18 · One sanitizer for names, in the binder beside the grammar.** It turns a name nobody chose into one that every layer reads back as itself, with lookalikes where a character is the notation's own. It has its inverse spelling for the notation, and a JSX spelling beside the reading that decodes it. The importer imports all three and deletes its copies.
+- <a id="u19"></a>**U19 · Keys from the application's id.** A conversation's key is `claude--<title>--<first eight of its uuid>`, its words the title and its folder `claude--<slug>--<uuid8>`. The importer asserts no two keys coincide, then one re-import, the bind, the proof and the drive.
+
 ## <a id="coordination"></a>Coordination
 
 Messaged `inexplicable-phenomena-44` on 2026-10-16 with the sprint and Doug's order. We said what this sprint touches: the importer's readers, record, pairing, ledger and configuration, the Account chapter, the accounts chapter, Investing's books and this chapter. We said what it leaves to them: the conversation type, the writing and the books stages beyond the account, the page, the pane and the theme, and every Semantic Reference Theory book. We asked three things: what they change and in which files, which sprint number they hold, and to say when the conversation's final version is settled.
@@ -200,6 +220,66 @@ Their answer, the same evening: Sprint 110 holds chapter 115 and 116 is ours. Th
     - A title that holds no letter or digit takes the first sentence of his first message, at most eight words; otherwise "Untitled, <day it began>". Books are numbered by slug.
     - The record keeps the application's own name as `conversationName`.
     - Three titles across both accounts hold a slash. The one written tonight, Allbirds, was taken out with its two entries by hand and written again.
+  - Committed and pushed by the tool after Investing bound: project `4559d63`, the other session's held edits riding with it.
+  - Semantic Reference Theory written from both accounts: 79 conversations (60 new, 18 in, 1 grown, none edited), the project book whole from both, 63 files.
+    - "Ontic Structural Realism" names two DNA conversations, and the capture lists the title under SRT and under Physics. A search places one in SRT. The other had been filed under SRT in September by the old title matching. On his *"decide based on your intuition"*, it is Physics by elimination, written into the pairing file as his line. Physics is not one of the two projects, so its September book was taken out, to return with Physics.
+    - SRT's own brackets, `E![t]` and `[[t₁]]`, in listings and formulas were read by the catalogue as its notation. A string holding a bracket is now a template with a substitution, `${''}`, which the catalogue does not read and the page shows as nothing; prose brackets were already entities. The other session wrote it into the form as The notation in the text.
+  - His word on keys: *"Still; do claude-- because we don't want random collisions in the library"*, after *"We can increment as long as we can find a way for the importer to know what was imported - maybe there's an id - so that whatever title, the importer wont reimport it"*.
+    - Measured first: 1,001 of his conversations across both accounts; 20 titles repeat over 168 conversations; none equals another book of his library.
+    - Built on the notation's naming paren. The key is `claude--<title>` and the words are the title, so a cover reads `[[ Ontic Structural Realism ]]( claude--Ontic Structural Realism )`. Every reference carries the key. Folders are `claude--<slug>`. Repeats are numbered in key and folder, never in words.
+    - The record stays keyed by conversation id. A moved book's old folder, entry, record and row are removed by the run, and its record says `movedFrom`.
+    - The other session confirmed from `annotations.ts` and `structure.ts` that the catalogue keys on the paren, and fixed the two references in Claudes Design.
+    - All 184 books rewritten: 79, 103 and the two unfiled.
+  - Titles inside a project book: a knowledge file named like a conversation, then one named for its project, "semantic-reference-theory", met the book's own title (SAME-ADDRESS). The ", the file" rule written for the first went with the keys. A file's title is now numbered by slug against every title the book holds. Promises 47 of 47.
+  - A run hung for six hours on a numbering loop of ours: a number put after a title past the file name's 60-character cut never changed the cut name. Titles are now told apart by their whole address, the library's uncut slug, and a number stands after the cut. With a promise.
+  - A version chapter's own title now doubles its dots as its table does; "Symbols vs. Sets" had named itself "vs Sets" (CHAPTER-NOT-LISTED).
+  - Under the package, on his *"Fix the binder. Why can't we have 027-2?"*: a chapter whose file name after its number opens with a digit is imported by a symbol prefixed `Chapter`, since a symbol may not open with a digit, while the file name stays the author's. In the master and his copy; typecheck 0, unit 157, regression 54.
+  - His questions *"Do you have promises on the bind? Are you syncing the binder in all three places… Are you testing it well?"*, answered as asked.
+    - The other session's EPERM fix had not reached his copy of the binder and was synced. The master and his copy now match in every file a bind does not generate; the mirror follows his copy through the commit tool.
+    - No promise bound what the importer writes, and every refusal tonight was found by the real bind. Now the run ends with the binder's own check (configure, walk, misaccounted, catalogue, holds) over his library, 2.2 s, failing on any fault.
+    - A promise, `9-the-check~bind.test.ts`, writes a conversation in every hazard of tonight into a copy of his library and expects the check to find nothing: 50 of 50, in 12 s.
+    - Its limit: it reads his library as it stands, so the other session's half-built `Origin` made it fail with NO-TITLE. Watching it go red on a deliberate break of the slash conversion is still owed.
+  - His `.pubconfig` `specification.batch` lowered from 8 to 4 after a specify child ran out of heap on eight large legacy books.
+  - The full bind with every book keyed has not yet completed. It waits on the other session's `Origin` standing whole, then on one re-import into that form, U13 to U16.
+  - [U13](#u13) to [U16](#u16), the import's memory, built 2026-10-17.
+    - `Origin` was built by the other session in Claudes Reference Manual: `$Origin` holding the application's uuid, answering `uuid` (since `id` is every chemical's own), drawing nothing. The writing writes it on every cover after the account and on every message before the speaker.
+    - Each import is a chapter of Dougs Importer, DNA Legacy (10) and DNA (11), with its configuration and its ledger beside it. The run finds its imports by those chapters, in their order; The Importer's configuration keeps only what is excluded and the collections.
+    - On his *"We don't want files to grow per import… we want one ledger per import configuration (like per dataset but dataset modulo the date because we reimport on most recent)"*, one ledger to an import, updated in place by every run. It is keyed by the conversation's id with no name and no folder; a run joins each line to its book by the `Origin` on the book's cover and reads the book's key off its title.
+    - The `~import.json` records beside Our Conversations' entries retired, and the move logic of the keys went with them.
+    - One clean slate: the 184 keyed books, their 368 entry files and the register's rows were cleared and written fresh. The ledgers hold 139 conversations for DNA Legacy and 45 for DNA.
+    - The binder's check after the last run: 195 books, 2,110 keys, 0 faults.
+    - Promises 51 of 51. The bind promise was seen red on a deliberate undoing of the slash conversion, UNKNOWN-REFERENCE on the slashed title, and green when restored.
+  - The full bind of the final form found two more things.
+    - Specify refused 21 headings in 4 SRT books: "a referent is the id its writing answers to, and this one holds none". A probe that wrapped the specification's check caught the writing, `$Heading ':' in $Message`. Markdown headings like `**Question 4**: *…*` were written as a bold Word and a colon, the library splits a heading at its colon, and the lone colon has no words. A heading is set bold already, so the writing drops a heading's own bold marks, with a promise. The bind promise runs only the catalogue check, so a failure of specify is not within its reach; that is its limit, recorded.
+    - With every book rewritten, specify passed: 195 books, 315,212 writings in 49 children two at once, peak 3,058 MB, 351 s. The bundle, which builds every book in one process, then ran out of Node's default heap. That is the cost Sprint 109's The Binder, As Built named, *"the bundle rebuilt whole… whose cost at five hundred books decides a per-book bundle"*, arriving at 195. The bind runs tonight with `NODE_OPTIONS=--max-old-space-size=8192`, and a per-book bundle is a pitch for the binder, his yes needed.
+  - [U17](#u17), [U18](#u18) and [U19](#u19) begun 2026-10-17. Before any code, 3,815 names from both accounts were scanned for what they hold: `/` 32 times, parentheses 31, brackets 5, `>` in eight "Claude > …" titles, `P = NP` beside `P ≠ NP`, `C++`, `$`, `#`, one newline, emoji, and Russian throughout. Lookalikes were photographed in the library's three faces; `❨ ❩` and `⁅ ⁆` read closest.
+  - [U17](#u17) done, under the package on his approval.
+    - `identifier.normalized` added, and `identifier.slug` begins from it: NFC, every apostrophe, `=` equals, `≠` not equals, a sharp after a letter, invisibles and variation selectors dropped, a script's marks kept in its word.
+    - Measured before landing: 2,669 names in 2,360 files of his library and the test library, 0 addresses moved.
+    - `binder.referent(link)` is the one rule a Title, a Mention and a Heading wear: the fragment of their address, made from the key, or the slug of their words where the address is a book's.
+    - The binder's address check claims those same ids, a cover by the words it shows (`Naming` carries them), seen red without the change and green with it.
+    - This reverses the rule of 2026-09-26 that a title never reads its url's fragment, on his approval of the proposal that named it. Recorded in the Identifier's chapter.
+    - Gates: the package's typecheck 0; the Identifier 17 of 17; the suite 358 of 370. The 12 red are the draw counts the cascade sprint left owed, measured red at HEAD's source.
+  - [U18](#u18) done.
+    - `sanitized`, `escaped` and `shown` in `catalogue/language.ts`, `written` in `catalogue/reading.ts`.
+    - Promised over 31 hazards from the scan and predicted beside it: no character of the language's, idempotent, the raw name's address, read back whole as a name, as prose and by the page's binder.
+    - The transform writes a form's words back into prose with `written`, seen red without it.
+    - Found by the scan: the words before a paren were dot-escaped, so twelve titles showed `A Continuation......`; the importer now escapes only names.
+    - The importer imports the binder's functions and its `escapedText`, `notationName` and `addressFromName` are gone. Its file-name slug is the Identifier's cut at 60. `place` is the uncut slug, which a long version title would otherwise miss.
+    - Gates: the binder's typecheck 0, unit green but for inherited reds. The catalogue's performance test misses 17 of 1,055 parses, and the render performance test fails a SPEC fault in a table, both identical on the unsynced copy and at HEAD's package. The regression suite 53 of 54; the 54th, the children's, is an EPERM on Vite's deps folder when galleys bind side by side, and green alone, twice. Synced to his copy: 9 files.
+  - [U19](#u19) done.
+    - Keys are `claude--<title>--<uuid8>`, and the run throws where two ids open alike. Measured: 1,373 conversations across both accounts, 1,373 short ids.
+    - The run's check now puts every file it wrote through the binder's transform and parses it. The bind promise writes 13 hazard titles, two of them alike, and is seen red on bare words and green restored. Importer promises 55 of 55, typecheck 0.
+    - The other session wrote all six changes into The Imported Conversation before the re-import, changing none.
+    - One clean slate, then Investing 103, Semantic Reference Theory 79, and the two unfiled conversations, Metalogical Subjectivity and Conservation of Time Complexity, by id. Claudes Design's two references took the new keys. The binder's check: 195 books, 2,110 keys, 0 faults.
+    - **The full bind passed**, 714.7 s. Specify: 195 books, 315,215 writings, 49 children, peak 3,288 MB. Bundle: 455 files, 30.2 s, with the 8 GB heap. Render: 195 pages in 31 children, peak 3,561 MB. **Proof: 196 pages read back, no fault**, where the last bind had missed 366 links.
+    - Driven on 4242:
+      - Our Conversations' 184 entries all land on its page, and no id is worn twice.
+      - Investing's 103 land.
+      - "A Continuation..." reads with three dots, and "TON∕Cocoon" with its lookalike.
+      - A cover's title wears the slug of its words.
+      - 97 headings inside messages wear no id, so the other session's Opaque holds under U17.
+      - 0 console errors.
   - [U11](#u11), Investing written: 103 conversations, 82 from DNA Legacy and 21 from DNA, 1,197 files. Every cover carries `<Account>` after `<Project>`, and every record its account. The project book holds 1 project chapter, the legacy's description showing through, and 103 entries. The DNA checks show no difference. Promises 44 of 44, typecheck 0.
 - **Approved 2026-10-16:** §1, §2 and §4 on first reading; §3 on its third, after *"I don't understand. Ask again where you use clearer language"* and then his account of the design as it stands.
 - **Owed and not yet done:** dna-library's session has not been told of the memory listing, which is the project information they set out to find; that is his to send or ours on his word.

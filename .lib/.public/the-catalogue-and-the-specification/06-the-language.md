@@ -75,6 +75,29 @@ $[[ the log ]]( My Library Log )           the address of My Library Log; the an
 
 ***A table has to NAME a book without CLAIMING its name.*** **`[[ X ]]` claims** — *so a catalogue listing a book that way collides with that book's own title, and the duplicate-title check fires, correctly.* The canonical relations answer with `[[ X ]]*` and `[[ X ]]**`; **a topic had no form to answer with at all**, so a topical catalogue could not corroborate anything. *Three prefixes and two postfixes was the asymmetry; this is the symmetry finishing itself rather than a new idea.* **Flagged for Doug rather than assumed.**
 
+### <a id="nobody-chose"></a>A name nobody chose, added 2026-10-17 in [Sprint 111](../projection/116-sprint-111--dna-and-dna-legacy.md#u18), U18
+
+***Doug, 2026-10-17:*** *"It is very important that we normalize text for ids exactly teh same. There should be dedicated code… It should be part of the binder. Never duplicated… We need to sanitize."* And of a slash in a title, earlier the same day: *"use the one that looks lile the slash. Predict more problems like this and fix similarly."*
+
+**Four functions stand in the binder, each written once, and a writer of chapters imports them.** His importer does, and keeps no copy of any.
+
+| function | where | what it does |
+|---|---|---|
+| `sanitized(text)` | [`language.ts`](../../package/.binding/catalogue/language.ts) | makes text that nobody chose (a conversation's title, a file's name) into a name every layer reads back as itself |
+| `escaped(name)` | `language.ts` | the inverse of `name`: every `.` and `/` escaped, so `Dr. Who` is written `Dr.. Who` and read back `Dr. Who` |
+| `shown(words, named, meant)` | `language.ts` | what a form shows: the bracket as written when a paren names it, and otherwise the name it means. The scanner and the transform both ask it |
+| `written(text)` | [`reading.ts`](../../package/.binding/catalogue/reading.ts) | the inverse of `reads`: `&`, `<`, `>`, the braces and the brackets spelled as entities, so prose reads back as itself and is never read as a form |
+
+**What `sanitized` does.**
+- It begins from the Identifier's `normalized`: composed, one space for every space, nothing invisible.
+- Each character that is the language's own becomes the lookalike that reads closest to it in the library's three faces, photographed before choosing: `/` is `∕`, `\` is `∖`, `( )` are `❨ ❩`, `[ ]` are `⁅ ⁆`.
+- Every other sign stays as written, `&`, `$`, `*`, `>`, `#`, `…`, since a name is shown as it was given.
+- Its promises run over the names a scan of 3,815 in his two accounts found holding something the language or JSX reads, and the hazards predicted beside them. Each one is read back whole as a book once escaped, read back whole as JSX prose once written, and slugs to the address its raw name would.
+
+***And the bracket before a paren is never escaped.*** It is shown as written and never read as a name. Writing `Dr.. Who` there shows two dots: twelve of his conversations showed `A Continuation......` that way until 2026-10-17.
+
+***The transform writes a form's words back into prose with `written`.*** Prose is read with its entities spelled, so `Claude &gt; Notes` shows `Claude > Notes`. Written back bare, that `>` is a character JSX refuses inside an element, and eight of his conversation titles hold one.
+
 ---
 
 ## <a id="structure"></a>What it compiles into
