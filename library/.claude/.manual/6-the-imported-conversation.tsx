@@ -45,6 +45,41 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Heading>The title</Heading>
+            <Paragraph>
+                A book's title is the conversation's name made sensible, and a name the application gave can
+                hold anything, so the import writes it to the catalogue's grammar before it writes anything
+                else. The grammar reads a title through the notation, so what holds for the words of a
+                reference holds for a title: a slash in a title is the separator between a book and its
+                chapter, and the grammar's escape for it, a dot before the slash, does not carry through a
+                title today, so a slash the name carries is written as the sign that looks like one, the
+                division slash, "TON∕Cocoon", on my ruling, since it reaches no file name, the folder being the
+                slug, which makes every sign a dash; the dot escapes the character after it and is otherwise
+                dropped, so a dot the name carries is written doubled, "v1..2"; a title never begins with a dot
+                and a slash, which means within here; a bracket of either kind ends or opens a form, a
+                parenthesis closes the name slot a reference may carry, and a brace opens an expression in the
+                file, so none of the three stands in a title; any other sign the grammar or the file reads
+                specially is written as its lookalike or dropped the same way when one is found; a
+                newline ends a form, and runs of whitespace read as one space; an ampersand is written as its
+                entity, as a less-than and a greater-than are, and a brace as its number; a pictograph the
+                application put first is dropped. The title's slug is the book's address, and the slug keeps
+                every alphabet, reads an ampersand, a plus, an at-sign and a percent sign as words and makes a
+                dash of any other sign, so a title must slug to something, and two titles that slug alike are
+                one address, which the catalogue refuses, so a second conversation whose title slugs like an
+                earlier one is numbered. The same spelling is written wherever the title stands: the cover's
+                title form, the entry's title and its reference, and every table that lists it.
+            </Paragraph>
+            <Paragraph>
+                A conversation the application gave no name takes its title from its first message, the
+                first sentence of it cut to a handful of words and made sensible as any title is, which is
+                how the application names a chat itself; a first message with no words in it, a picture
+                alone, leaves the conversation titled by the day it began, Untitled followed by the date; and
+                either is numbered when its slug repeats. The record keeps the application's own name, empty
+                or not, as the conversation's name right after its id, beside the title the import gave as the
+                record's name.
+            </Paragraph>
+        </Section>
+        <Section>
             <Heading>The day</Heading>
             <Paragraph>
                 Each day of the conversation is a chapter, numbered in order and named by the day, with the date
@@ -62,8 +97,10 @@ export default () => (
                 place of the version chapter it opens; a file given to him is an attachment with its file
                 beside the chapter, or the sentence alone when the export carries no content. A file beside a
                 chapter is named for the chapter and the file, chapter, tilde, name and type, the type the
-                application gave the file and never one chosen for it, and stands there only because the chapter
-                inserts it. The message says of itself that its headings are opaque,
+                application gave the file and never one chosen for it, with one exception: a document the export
+                holds only as the text extracted from it, a pdf or a spreadsheet, is written as a text file, since
+                a document's type on a file of text would misstate it. A file stands beside a chapter only because
+                the chapter inserts it. The message says of itself that its headings are opaque,
                 by <Means>$[[ The Address ]]( Dougs Reference Manual / The Address )</Means>, so a heading inside
                 an answer is not a place.
             </Paragraph>

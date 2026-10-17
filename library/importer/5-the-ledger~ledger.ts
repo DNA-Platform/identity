@@ -6,6 +6,7 @@ import type { Appendix } from './7-the-writing~writing.ts';
 
 export type ImportRecord = {
     conversationId: string;
+    conversationName?: string;
     name: string;
     bookFolder: string;
     account?: string;
@@ -79,6 +80,7 @@ export const importRecord = (
     account?: string,
 ): ImportRecord => ({
     conversationId: conversation.id,
+    conversationName: conversation.name,
     name,
     bookFolder,
     ...(account === undefined ? {} : { account }),

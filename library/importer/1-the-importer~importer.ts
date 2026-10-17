@@ -12,7 +12,7 @@ import {
     recordIdentifier, recordSuffix, standingKeptEdits, tendStruckEdits, writeImportRecord, type HeldRecord, type Reimport,
 } from './5-the-ledger~ledger.ts';
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
-import { slugFromName, titleFromName, writtenConversation, type Referents } from './7-the-writing~writing.ts';
+import { conversationTitle, slugFromName, writtenConversation, type Referents } from './7-the-writing~writing.ts';
 import {
     conversationBook, libraryEntry, orderRegisterTable, projectBook, projectEntry, registerBook, registerEntry, schemes,
     uniqueBookName, wrappedLines, type LibraryFolders, type Scheme,
@@ -455,7 +455,7 @@ const writeBooks = (
                 continue;
             }
             const name = standingRecord?.record.name
-                ?? uniqueBookName(folders.conversations, titleFromName(conversation.name), namesTaken);
+                ?? uniqueBookName(folders.conversations, conversationTitle(conversation), namesTaken);
             const path = shownPath(conversation);
             const projectNames = written.project === undefined ? [] : [written.project.name];
             const accountName = reading.readingOf(pairing).account.name;

@@ -1,0 +1,22 @@
+import { $ } from '@dna-platform/chemistry';
+import { opened } from '../../../opened';
+import $Book from '../../../../../../.claude/.conversations/correcting-memory-bias-toward-disagreement/.book';
+import Cover from '../../../../../../.claude/.conversations/correcting-memory-bias-toward-disagreement/.cover';
+import Synopsis from '../../../../../../.claude/.conversations/correcting-memory-bias-toward-disagreement/.synopsis';
+import Table from '../../../../../../.claude/.conversations/correcting-memory-bias-toward-disagreement/.table';
+import July2120261 from '../../../../../../.claude/.conversations/correcting-memory-bias-toward-disagreement/1-july-21-2026';
+import July2220262 from '../../../../../../.claude/.conversations/correcting-memory-bias-toward-disagreement/2-july-22-2026';
+
+const Book = $($Book);
+
+export const book = () => (
+    <Book>
+        {Cover()}
+        {Synopsis()}
+        {Table()}
+        {July2120261()}
+        {July2220262()}
+    </Book>
+);
+
+if (import.meta.hot) import.meta.hot.accept(next => { if (next !== undefined) opened.open(next.book); });

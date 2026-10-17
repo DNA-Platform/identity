@@ -52,6 +52,18 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Heading>July 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ ./Investing ]]</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( Investing )**</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
             <Heading>How this book is built</Heading>
             <Paragraph>
                 <Content>$[[ ./The Accounts ]]</Content>

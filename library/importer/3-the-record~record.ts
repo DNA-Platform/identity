@@ -10,6 +10,7 @@ export type Block =
         id: string;
         title: string;
         contentType: string;
+        language: string;
         command: string;
         content: string;
         oldText: string;

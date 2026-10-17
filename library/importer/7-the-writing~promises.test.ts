@@ -2,15 +2,17 @@ import { describe, expect, it } from 'vitest';
 import type { Block } from './3-the-record~record.ts';
 import { sampleConversation, sampleMessage, sampleTextMessage } from './3-the-record~samples.ts';
 import {
-    blockLines, escapedText, inlinePieces, literalForm, referenceForm, slugFromName, titleForm, titleFromName,
-    writtenConversation, type Referents,
+    blockLines, conversationTitle, escapedText, fileExtension, inlinePieces, literalForm, referenceForm, resourceExtension,
+    slugFromName, titleForm, titleFromName, writtenConversation, type Referents,
 } from './7-the-writing~writing.ts';
 
 const referents: Referents = { Doug: 'Dougs Story', Claude: 'Dougs Claude' };
 const manualImportPath = '../../../.manual/.book';
 const claudeManualImportPath = '../../.manual/.book';
-const artifactBlock = (command: string, content: string, oldText = '', newText = ''): Block =>
-    ({ type: 'artifact', id: 'notes', title: 'Notes', contentType: 'text/markdown', command, content, oldText, newText });
+const artifactBlock = (command: string, content: string, oldText = '', newText = ''): Block => ({
+    type: 'artifact', id: 'notes', title: 'Notes', contentType: 'text/markdown', language: '',
+    command, content, oldText, newText,
+});
 
 describe('the writing', () => {
     // Doug, 2026-10-14: "remember to convert sensible things. & should be and. Are there other conversions like that
@@ -21,7 +23,25 @@ describe('the writing', () => {
         expect(slugFromName('Понимание основ СРТ')).toBe('понимание-основ-срт');
         expect(titleFromName('💬 the price of gram is getting high')).toBe('the price of gram is getting high');
         expect(titleFromName('  Semantic   Primes  ')).toBe('Semantic Primes');
-        expect(titleFromName('🎉')).toBe('Untitled');
+        expect(titleFromName('🎉')).toBe('');
+    });
+
+    // Doug, 2026-10-17, on a slash in a title, the catalogue's separator: "As long as it doesn't break files on any
+    // OS and won't cause me problems in vscode, use the one that looks lile the slash. Predict more problems like
+    // this and fix similarly." The rules of a title are written in The Imported Conversation.
+    it('keeps a title out of the notation\'s way, a slash the one that looks like it and brackets gone', () => {
+        expect(titleFromName('Allbirds GPU pivot and TON/Cocoon connection'))
+            .toBe('Allbirds GPU pivot and TON∕Cocoon connection');
+        expect(slugFromName(titleFromName('24/7 convenience stores'))).toBe('24-7-convenience-stores');
+        expect(titleFromName('Notes (draft) [v2] {x}')).toBe('Notes draft v2 x');
+    });
+
+    it('titles a chat with no title by its first sentence, else as untitled on the day it began', () => {
+        const words = 'Please help me plan a trip to Tbilisi next spring with my family. Thanks';
+        const opening = sampleTextMessage('m', 'Doug', words);
+        expect(conversationTitle(sampleConversation('t', '', [opening]))).toBe('Please help me plan a trip to Tbilisi');
+        expect(conversationTitle(sampleConversation('u', '???', []))).toBe('Untitled, 15 June 2026');
+        expect(conversationTitle(sampleConversation('v', 'Given', [opening]))).toBe('Given');
     });
 
     it('escapes what the notation and TSX would read, so a bracket in a message stays a bracket', () => {
@@ -76,6 +96,18 @@ describe('the writing', () => {
             '    <Line>three</Line>', '</Paragraph>',
         ]);
         expect(blockLines('1. one\n\n- other', 0).filter(line => line.includes('<List'))).toHaveLength(2);
+    });
+
+    // Ruled in The Imported Conversation, 2026-10-16: a resource keeps the type the application gave the file,
+    // never .txt chosen for it; the text the export extracted from a document stays text.
+    it('names a file by the type the application gave it, a code artifact by its language', () => {
+        expect(fileExtension('application/vnd.ant.code', 'Solver', 'python')).toBe('py');
+        expect(fileExtension('application/vnd.ant.code', 'Hotkeys', 'autohotkey')).toBe('ahk');
+        expect(fileExtension('text/markdown', 'Notes')).toBe('md');
+        expect(fileExtension('', 'diagram.mmd')).toBe('mmd');
+        expect(resourceExtension('text/plain')).toBe('txt');
+        expect(resourceExtension('docx')).toBe('txt');
+        expect(resourceExtension('')).toBe('txt');
     });
 
     it("turns headings, lists, code and tables into the library's elements", () => {

@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@500;600;700&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/index-BnLaSEQE.js"></script>
+    <script type="module" crossorigin src="/assets/index-P2dvu1WP.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-BgQkainO.css">
   <link rel="stylesheet" href="/sheets/d501d83cee57.css" />
   <script>(function(){var k=[];function on(e){var r=document.getElementById('root');if(!r||!r.contains(e.target)||e.__replayed)return;k.push({t:e.target,type:e.type});}document.addEventListener('click',on,true);window.__replayKept=function(){document.removeEventListener('click',on,true);var q=k;k=[];q.forEach(function(one){if(!document.contains(one.t))return;var ev=new MouseEvent(one.type,{bubbles:true,cancelable:true});ev.__replayed=true;one.t.dispatchEvent(ev);});};})();</script>
@@ -74,7 +74,7 @@
 <span class="pd-code-line" data-line="12">    recordIdentifier, recordSuffix, standingKeptEdits, tendStruckEdits, writeImportRecord, <span class="hljs-keyword">type</span> <span class="hljs-title class_">HeldRecord</span>, <span class="hljs-keyword">type</span> <span class="hljs-title class_">Reimport</span>,</span>
 <span class="pd-code-line" data-line="13">} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./5-the-ledger~ledger.ts&#x27;</span>;</span>
 <span class="pd-code-line" data-line="14"><span class="hljs-keyword">import</span> { asideCount, pathDays, shownPath } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./6-the-thread~thread.ts&#x27;</span>;</span>
-<span class="pd-code-line" data-line="15"><span class="hljs-keyword">import</span> { slugFromName, titleFromName, writtenConversation, <span class="hljs-keyword">type</span> <span class="hljs-title class_">Referents</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./7-the-writing~writing.ts&#x27;</span>;</span>
+<span class="pd-code-line" data-line="15"><span class="hljs-keyword">import</span> { conversationTitle, slugFromName, writtenConversation, <span class="hljs-keyword">type</span> <span class="hljs-title class_">Referents</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./7-the-writing~writing.ts&#x27;</span>;</span>
 <span class="pd-code-line" data-line="16"><span class="hljs-keyword">import</span> {</span>
 <span class="pd-code-line" data-line="17">    conversationBook, libraryEntry, orderRegisterTable, projectBook, projectEntry, registerBook, registerEntry, schemes,</span>
 <span class="pd-code-line" data-line="18">    uniqueBookName, wrappedLines, <span class="hljs-keyword">type</span> <span class="hljs-title class_">LibraryFolders</span>, <span class="hljs-keyword">type</span> <span class="hljs-title class_">Scheme</span>,</span>
@@ -517,7 +517,7 @@
 <span class="pd-code-line" data-line="455">                <span class="hljs-keyword">continue</span>;</span>
 <span class="pd-code-line" data-line="456">            }</span>
 <span class="pd-code-line" data-line="457">            <span class="hljs-keyword">const</span> name = standingRecord?.<span class="hljs-property">record</span>.<span class="hljs-property">name</span></span>
-<span class="pd-code-line" data-line="458">                ?? <span class="hljs-title function_">uniqueBookName</span>(folders.<span class="hljs-property">conversations</span>, <span class="hljs-title function_">titleFromName</span>(conversation.<span class="hljs-property">name</span>), namesTaken);</span>
+<span class="pd-code-line" data-line="458">                ?? <span class="hljs-title function_">uniqueBookName</span>(folders.<span class="hljs-property">conversations</span>, <span class="hljs-title function_">conversationTitle</span>(conversation), namesTaken);</span>
 <span class="pd-code-line" data-line="459">            <span class="hljs-keyword">const</span> path = <span class="hljs-title function_">shownPath</span>(conversation);</span>
 <span class="pd-code-line" data-line="460">            <span class="hljs-keyword">const</span> projectNames = written.<span class="hljs-property">project</span> === <span class="hljs-literal">undefined</span> ? [] : [written.<span class="hljs-property">project</span>.<span class="hljs-property">name</span>];</span>
 <span class="pd-code-line" data-line="461">            <span class="hljs-keyword">const</span> accountName = reading.<span class="hljs-title function_">readingOf</span>(pairing).<span class="hljs-property">account</span>.<span class="hljs-property">name</span>;</span>

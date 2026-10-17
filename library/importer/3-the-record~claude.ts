@@ -34,6 +34,7 @@ const blockFromRaw = (rawBlock: RawRecord): Block => {
             id: artifactInput.id ?? '',
             title: artifactInput.title ?? '',
             contentType: artifactInput.type ?? '',
+            language: artifactInput.language ?? '',
             command: artifactInput.command ?? '',
             content: artifactInput.content ?? '',
             oldText: artifactInput.old_str ?? '',

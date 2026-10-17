@@ -38,7 +38,9 @@ describe('the ledger', () => {
         const slug = bookFolder('legacy');
         const record = importRecord(conversation, registerFolder, 'Legacy', slug, '2026-05-27', undefined, 'DNA Legacy');
         expect(record.account).toBe('DNA Legacy');
-        expect(Object.keys(record).slice(0, 5)).toEqual(['conversationId', 'name', 'bookFolder', 'account', 'exportedOn']);
+        expect(Object.keys(record).slice(0, 6))
+            .toEqual(['conversationId', 'conversationName', 'name', 'bookFolder', 'account', 'exportedOn']);
+        expect(record.conversationName).toBe('Legacy');
     });
 
     it('says new with no record, in when it matches, grown when the export has more, edited when a file changed', () => {

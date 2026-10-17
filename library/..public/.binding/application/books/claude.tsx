@@ -8,6 +8,7 @@ import OurConversations1 from '../../../../.claude/1-our-conversations';
 import SemanticReferenceTheory2 from '../../../../.claude/2-semantic-reference-theory';
 import ClaudesReferenceManual3 from '../../../../.claude/3-claudes-reference-manual';
 import ClaudesDesign4 from '../../../../.claude/4-claudes-design';
+import Investing5 from '../../../../.claude/5-investing';
 import TheAccountso1 from '../../../../.claude/o1-the-accounts';
 
 const Book = $($Book);
@@ -21,6 +22,7 @@ export const book = () => (
         {SemanticReferenceTheory2()}
         {ClaudesReferenceManual3()}
         {ClaudesDesign4()}
+        {Investing5()}
         {TheAccountso1()}
     </Book>
 );

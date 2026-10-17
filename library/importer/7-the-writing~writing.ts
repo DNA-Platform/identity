@@ -17,9 +17,7 @@ export type WrittenConversation = {
 };
 export type Appendix = { identifier: string; type: string };
 type ProsePiece = string | string[];
-type ArtifactVersion = { title: string; contentType: string; content: string; versionCount: number };
-
-export const knownExtensions = ['ts', 'tsx', 'js', 'mjs', 'json', 'md', 'css', 'html', 'sh', 'txt', 'csv', 'svg'];
+type ArtifactVersion = { title: string; contentType: string; language: string; content: string; versionCount: number };
 
 const extensionsByContentType: Record<string, string> = {
     'text/markdown': 'md',
@@ -27,11 +25,31 @@ const extensionsByContentType: Record<string, string> = {
     'text/html': 'html',
     'text/css': 'css',
     'text/csv': 'csv',
+    'text/typescript': 'ts',
     'application/javascript': 'js',
     'application/json': 'json',
     'application/vnd.ant.react': 'tsx',
+    'application/vnd.ant.mermaid': 'mmd',
     'image/svg+xml': 'svg',
 };
+
+const extensionsByLanguage: Record<string, string> = {
+    python: 'py',
+    typescript: 'ts',
+    javascript: 'js',
+    autohotkey: 'ahk',
+    bash: 'sh',
+    shell: 'sh',
+    markdown: 'md',
+    plaintext: 'txt',
+    text: 'txt',
+};
+
+const extractedTextExtensions = ['pdf', 'doc', 'docx', 'odt', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx'];
+const extensionForm = /^[a-z0-9]{1,10}$/u;
+const divisionSlash = '∕';
+const openingWordCount = 8;
+const untitledDayFormat = { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' } as const;
 
 const indentation = (depth: number): string => '    '.repeat(depth);
 const lineWidth = (depth: number): number => 124 - 4 * depth;
@@ -61,23 +79,51 @@ export const slugFromName = (name: string): string => {
     return cut === '' ? 'untitled' : cut;
 };
 
-export const titleFromName = (name: string): string => {
-    const title = name
-        .replace(/^[\p{Extended_Pictographic}\p{Emoji_Presentation}️\s]+/u, '')
-        .replace(/[\p{Extended_Pictographic}\p{Emoji_Presentation}️\s]+$/u, '')
-        .replace(/\s+/gu, ' ')
-        .trim();
+export const titleFromName = (name: string): string => name
+    .replace(/^[\p{Extended_Pictographic}\p{Emoji_Presentation}️\s]+/u, '')
+    .replace(/[\p{Extended_Pictographic}\p{Emoji_Presentation}️\s]+$/u, '')
+    .replace(/\//gu, divisionSlash)
+    .replace(/[()[\]{}]/gu, '')
+    .replace(/\s+/gu, ' ')
+    .trim();
 
-    return title === '' ? 'Untitled' : title;
+const openingSentence = (conversation: Conversation): string => {
+    const dougsMessages = conversation.messages.filter(message => message.speaker === 'Doug');
+    const firstMessage = [...dougsMessages].sort((first, second) => first.sentAt.localeCompare(second.sentAt))[0];
+    const firstText = firstMessage?.blocks.find(block => block.type === 'text');
+    const text = firstText?.type === 'text' ? firstText.text.replace(/[*_`#>]/gu, '').trim() : '';
+
+    return text.split(/(?<=[.!?])\s|\n/u)[0] ?? '';
 };
 
-export const fileExtension = (contentType: string, title: string): string => {
-    const extensionFromTitle = /\.([a-z0-9]+)$/iu.exec(title.trim())?.[1]?.toLowerCase();
-    const extensionFromContentType = contentType.replace(/^.*\//u, '').toLowerCase();
-    const extension = extensionsByContentType[contentType] ?? extensionFromTitle ?? extensionFromContentType;
+const hasWords = (title: string): boolean => /[\p{L}\p{N}]/u.test(title);
 
-    return knownExtensions.includes(extension) ? extension : 'txt';
+export const conversationTitle = (conversation: Conversation): string => {
+    const given = titleFromName(conversation.name);
+    if (hasWords(given)) return given;
+    const opening = titleFromName(openingSentence(conversation)).split(' ').slice(0, openingWordCount).join(' ');
+    if (hasWords(opening)) return opening;
+    const day = new Date(conversation.createdAt).toLocaleDateString('en-GB', untitledDayFormat);
+
+    return `Untitled, ${day}`;
 };
+
+export const resourceExtension = (givenType: string): string => {
+    const given = givenType.trim().toLowerCase().replace(/^\./u, '');
+    const extension = extensionsByContentType[given] ?? extensionsByLanguage[given] ?? given;
+    if (extractedTextExtensions.includes(extension)) return 'txt';
+
+    return extensionForm.test(extension) ? extension : 'txt';
+};
+
+export const fileExtension = (contentType: string, title: string, language = ''): string => {
+    const extensionFromTitle = /\.([a-z0-9]+)$/iu.exec(title.trim())?.[1] ?? '';
+
+    return resourceExtension(extensionsByContentType[contentType] ?? (language || extensionFromTitle));
+};
+
+const artifactExtension = (artifactVersion: ArtifactVersion): string =>
+    fileExtension(artifactVersion.contentType, artifactVersion.title, artifactVersion.language);
 
 export const notationName = (name: string): string => name.replace(/\./gu, '..').replace(/\//gu, './');
 export const titleForm = (name: string): string => `[[ ${name} ]]`;
@@ -118,7 +164,7 @@ const manualWordList = ['CodeBox', 'Dated', 'Message', 'Opaque', 'Quoted', 'Spea
 const claudeManualWordList = ['Action', 'Artifact', 'Attachment', 'Version'];
 const boxLanguages: Record<string, string> = {
     tsx: 'typescript', ts: 'typescript', js: 'javascript', mjs: 'javascript', html: 'xml', svg: 'xml',
-    md: 'markdown', sh: 'bash',
+    md: 'markdown', sh: 'bash', py: 'python', jsx: 'javascript', ahk: 'autohotkey',
 };
 
 const isUsedIn = (lines: string[], elementName: string): boolean => lines.some(line =>
@@ -166,7 +212,7 @@ const versionChapter = (
     manualImportPath: string,
     claudeManualImportPath: string,
 ): WrittenChapter => {
-    const extension = fileExtension(artifactVersion.contentType, artifactVersion.title);
+    const extension = artifactExtension(artifactVersion);
     const isDocument = extension === 'md' || extension === 'txt';
     const sectionHeading = versionTitle.replace(/ v(\d+)((?:-\d+)?)$/u, ' at version $1$2');
     const bodyLines = isDocument
@@ -242,10 +288,10 @@ export const writtenConversation = (
             return appendix;
         };
         const addArtifactFile = (identifier: string, artifactVersion: ArtifactVersion): Appendix =>
-            addFile(identifier, fileExtension(artifactVersion.contentType, artifactVersion.title), artifactVersion.content);
+            addFile(identifier, artifactExtension(artifactVersion), artifactVersion.content);
         const artifactLines = (block: Extract<Block, { type: 'artifact' }>): string[] => {
-            const artifactVersion = artifactVersions.get(block.id)
-                ?? { title: block.title || block.id, contentType: block.contentType, content: '', versionCount: 0 };
+            const firstVersion = { title: block.title || block.id, contentType: block.contentType, language: '' };
+            const artifactVersion = artifactVersions.get(block.id) ?? { ...firstVersion, content: '', versionCount: 0 };
             if (block.command === 'create' || block.command === 'rewrite' || artifactVersion.versionCount === 0)
                 artifactVersion.content = block.content || artifactVersion.content;
             else if (block.command === 'update' && block.oldText !== '')
@@ -254,11 +300,13 @@ export const writtenConversation = (
                 artifactVersion.title = block.title;
             if (block.contentType !== '')
                 artifactVersion.contentType = block.contentType;
+            if (block.language !== '')
+                artifactVersion.language = block.language;
             artifactVersion.versionCount++;
             artifactVersions.set(block.id, artifactVersion);
             const versionIdentifier = `${slugFromName(artifactVersion.title)}.v${artifactVersion.versionCount}`;
             const appendix = addArtifactFile(versionIdentifier, artifactVersion);
-            const plainTitle = titleFromName(artifactVersion.title).replace(/[()[\]{}]/gu, '').replace(/\s+/gu, ' ').trim();
+            const plainTitle = titleFromName(artifactVersion.title) || 'Untitled';
             const versionName = `${plainTitle} v${artifactVersion.versionCount}`;
             const versionTitle = uniqueVersionTitle(versionName);
             const ordinal = versions.length + 1;
@@ -294,8 +342,7 @@ export const writtenConversation = (
             for (const block of message.blocks)
                 bodyLines.push(...messageBlockLines(block));
             for (const attachment of message.attachments) {
-                const attachmentExtension = attachment.extension.toLowerCase();
-                const extension = knownExtensions.includes(attachmentExtension) ? attachmentExtension : 'txt';
+                const extension = resourceExtension(attachment.extension);
                 const baseName = uniqueBaseName(slugFromName(attachment.name.replace(/\.[^.]+$/u, '')));
                 const appendix = addFile(baseName, extension, attachment.text);
                 bodyLines.push(...figureLines('Attachment', appendix, [`Attached ${fileWords(attachment.name)}`], 3));

@@ -42,6 +42,21 @@ describe('the books', () => {
         expect(orderedTableText(orderedTableText(written))).toBe(orderedTableText(written));
     });
 
+    it('keeps the months together where the first stands, a section of the book\'s own after them', () => {
+        const written = table(
+            section('October 2026', 'Our Conversations'),
+            section('How this book is built', 'The Accounts'),
+            section('July 2026', 'Investing'),
+            section('Where this book stands', 'Dougs Claude'),
+        );
+        expect(orderedTableText(written)).toBe(table(
+            section('October 2026', 'Our Conversations'),
+            section('July 2026', 'Investing'),
+            section('How this book is built', 'The Accounts'),
+            section('Where this book stands', 'Dougs Claude'),
+        ));
+    });
+
     // Doug, 2026-10-16: "We consider the new account to be a continuation of that one, with same named projects,
     // so they exist on top of each other" — a project taken whole is written whole from the stack.
     it('leaves a written project book alone, and writes it whole when the run takes the project whole', () => {

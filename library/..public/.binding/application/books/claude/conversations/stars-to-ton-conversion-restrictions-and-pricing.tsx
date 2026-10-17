@@ -1,0 +1,20 @@
+import { $ } from '@dna-platform/chemistry';
+import { opened } from '../../../opened';
+import $Book from '../../../../../../.claude/.conversations/stars-to-ton-conversion-restrictions-and-pricing/.book';
+import Cover from '../../../../../../.claude/.conversations/stars-to-ton-conversion-restrictions-and-pricing/.cover';
+import Synopsis from '../../../../../../.claude/.conversations/stars-to-ton-conversion-restrictions-and-pricing/.synopsis';
+import Table from '../../../../../../.claude/.conversations/stars-to-ton-conversion-restrictions-and-pricing/.table';
+import May820261 from '../../../../../../.claude/.conversations/stars-to-ton-conversion-restrictions-and-pricing/1-may-8-2026';
+
+const Book = $($Book);
+
+export const book = () => (
+    <Book>
+        {Cover()}
+        {Synopsis()}
+        {Table()}
+        {May820261()}
+    </Book>
+);
+
+if (import.meta.hot) import.meta.hot.accept(next => { if (next !== undefined) opened.open(next.book); });

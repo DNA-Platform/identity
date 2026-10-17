@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import { join, relative } from 'node:path';
 import type { Conversation, Message, Project } from './3-the-record~record.ts';
 import {
-    appendLines, escapedText, knownExtensions, mentionForm, notationName, referenceForm, slugFromName, titleForm,
+    appendLines, escapedText, mentionForm, notationName, referenceForm, resourceExtension, slugFromName, titleForm,
     writtenConversation, type Appendix, type Referents, type WrittenChapter,
 } from './7-the-writing~writing.ts';
 
@@ -339,7 +339,7 @@ export const projectBook = (
         baseNameCounts.set(slugFromName(documentBaseName), baseNameCount);
         const documentTitle = baseNameCount === 1 ? documentBaseName : `${documentBaseName} ${baseNameCount}`;
         const extensionFromName = (/\.([a-z0-9]+)$/iu.exec(document.name)?.[1] ?? '').toLowerCase();
-        const documentExtension = knownExtensions.includes(extensionFromName) ? extensionFromName : 'txt';
+        const documentExtension = resourceExtension(extensionFromName);
         const chapterStem = `${documentIndex + 2}-${slugFromName(documentTitle)}`;
         const briefText = `A knowledge file of the project, “${escapedText(document.name)}”, `
             + 'as it was uploaded to Claude.';
@@ -446,9 +446,14 @@ const isMonthHeading = (heading: string): boolean => !Number.isNaN(Date.parse(he
 export const orderedTableText = (tableText: string): string => {
     const monthSections = [...tableText.matchAll(sectionForm)].filter(match => isMonthHeading(match[1]));
     const newestFirst = [...monthSections].sort((a, b) => Date.parse(b[1]) - Date.parse(a[1])).map(match => match[0]);
-    let placed = 0;
-    const placedSection = (section: string, heading: string): string =>
-        isMonthHeading(heading) ? newestFirst[placed++] : section;
+    let monthsPlaced = false;
+    const placedSection = (section: string, heading: string): string => {
+        if (!isMonthHeading(heading)) return section;
+        if (monthsPlaced) return '';
+        monthsPlaced = true;
+
+        return newestFirst.join('');
+    };
 
     return tableText.replace(sectionForm, placedSection);
 };
