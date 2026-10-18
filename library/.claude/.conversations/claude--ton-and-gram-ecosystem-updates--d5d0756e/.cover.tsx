@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ TON and GRAM ecosystem updates ]]( claude--TON and GRAM ecosystem updates--d5d0756e )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA ]]( Dougs Claude / DNA )</Account>
         <Origin>d5d0756e-8e7d-4602-87ec-08e4f9512379</Origin>
         <Paragraph>

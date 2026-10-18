@@ -1,0 +1,108 @@
+chemistry.ts:645 Created placeholder: {class: '$Badge', hasView: 'function', viewValue: ƒ}
+chemistry.ts:645 Created placeholder: {class: '$Badge', hasView: 'function', viewValue: ƒ}
+chemistry.ts:645 Created placeholder: {class: '$ListItem', hasView: 'function', viewValue: ƒ}
+chemistry.ts:645 Created placeholder: {class: '$Chemical', hasView: 'function', viewValue: ƒ}
+chemistry.ts:329 modifyChildren for $Card: {$$typeof: Symbol(react.transitional.element), key: null, props: {…}, _owner: FiberNode, type: ƒ, …}
+page.tsx:31 Card.view - this.badge: $Badge {_isSetup: false, children: Array(0), $label: 'Badge', $color: 'blue', Component: ƒ, …}
+chemistry.ts:329 modifyChildren for $Card: {$$typeof: Symbol(react.transitional.element), key: null, props: {…}, _owner: FiberNode, type: ƒ, …}
+page.tsx:31 Card.view - this.badge: $Badge {_isSetup: false, children: Array(0), $label: 'Badge', $color: 'blue', Component: ƒ, …}
+chemistry.ts:329 modifyChildren for $OptionalCard: {$$typeof: Symbol(react.transitional.element), key: null, props: {…}, _owner: FiberNode, type: ƒ, …}
+page.tsx:65 Optional Card.view - this.badge: undefined
+chemistry.ts:329 modifyChildren for $OptionalCard: {$$typeof: Symbol(react.transitional.element), key: null, props: {…}, _owner: FiberNode, type: ƒ, …}
+page.tsx:65 Optional Card.view - this.badge: undefined
+page.tsx:65 Optional Card.view - this.badge: undefined
+page.tsx:65 Optional Card.view - this.badge: undefined
+chemistry.ts:329 modifyChildren for $List: (3) [{…}, {…}, {…}]
+chemistry.ts:329 modifyChildren for $List: (3) [{…}, {…}, {…}]
+chemistry.ts:329 modifyChildren for $Document: (4) [{…}, {…}, {…}, {…}]
+chemistry.ts:329 modifyChildren for $Document: (4) [{…}, {…}, {…}, {…}]
+chemistry.ts:689 reactivate: $Badge, already reactivated: undefined
+chemistry.ts:725 reactivate: $Badge has 1 reactive properties
+chemistry.ts:198 applyBinding: $Card has 1 bindings
+chemistry.ts:207 applyBinding: Checking binding for property 'badge', expects class: $Badge
+chemistry.ts:210 applyBinding: MATCH! Binding $Badge to $Card.badge
+chemistry.ts:240 bindChild: Binding $Badge to $Card.badge
+chemistry.ts:269 bindChild: Replacing placeholder with real child for badge
+chemistry.ts:283 bindChild: All bindings satisfied for $Card
+chemistry.ts:288 bindChild: Triggering final update to remove hidden elements
+chemistry.ts:689 reactivate: $Card, already reactivated: undefined
+chemistry.ts:725 reactivate: $Card has 3 reactive properties
+chemistry.ts:689 reactivate: $OptionalCard, already reactivated: undefined
+chemistry.ts:725 reactivate: $OptionalCard has 2 reactive properties
+chemistry.ts:689 reactivate: $OptionalCard, already reactivated: undefined
+chemistry.ts:725 reactivate: $OptionalCard has 1 reactive properties
+chemistry.ts:689 reactivate: $ListItem, already reactivated: undefined
+chemistry.ts:725 reactivate: $ListItem has 1 reactive properties
+chemistry.ts:198 applyBinding: $List has 1 bindings
+chemistry.ts:207 applyBinding: Checking binding for property 'items', expects class: $ListItem
+chemistry.ts:210 applyBinding: MATCH! Binding $ListItem to $List.items
+chemistry.ts:240 bindChild: Binding $ListItem to $List.items
+chemistry.ts:254 bindChild: Adding to array items, current length: 0
+chemistry.ts:283 bindChild: All bindings satisfied for $List
+chemistry.ts:288 bindChild: Triggering final update to remove hidden elements
+chemistry.ts:689 reactivate: $ListItem, already reactivated: undefined
+chemistry.ts:725 reactivate: $ListItem has 1 reactive properties
+chemistry.ts:198 applyBinding: $List has 1 bindings
+chemistry.ts:207 applyBinding: Checking binding for property 'items', expects class: $ListItem
+chemistry.ts:210 applyBinding: MATCH! Binding $ListItem to $List.items
+chemistry.ts:240 bindChild: Binding $ListItem to $List.items
+chemistry.ts:254 bindChild: Adding to array items, current length: 1
+chemistry.ts:283 bindChild: All bindings satisfied for $List
+chemistry.ts:288 bindChild: Triggering final update to remove hidden elements
+chemistry.ts:689 reactivate: $ListItem, already reactivated: undefined
+chemistry.ts:725 reactivate: $ListItem has 1 reactive properties
+chemistry.ts:198 applyBinding: $List has 1 bindings
+chemistry.ts:207 applyBinding: Checking binding for property 'items', expects class: $ListItem
+chemistry.ts:210 applyBinding: MATCH! Binding $ListItem to $List.items
+chemistry.ts:240 bindChild: Binding $ListItem to $List.items
+chemistry.ts:254 bindChild: Adding to array items, current length: 2
+chemistry.ts:283 bindChild: All bindings satisfied for $List
+chemistry.ts:288 bindChild: Triggering final update to remove hidden elements
+chemistry.ts:689 reactivate: $List, already reactivated: undefined
+chemistry.ts:725 reactivate: $List has 4 reactive properties
+chemistry.ts:689 reactivate: $TextBlock, already reactivated: undefined
+chemistry.ts:725 reactivate: $TextBlock has 1 reactive properties
+chemistry.ts:198 applyBinding: $Document has 1 bindings
+chemistry.ts:207 applyBinding: Checking binding for property 'blocks', expects class: $Chemical
+chemistry.ts:210 applyBinding: MATCH! Binding $TextBlock to $Document.blocks
+chemistry.ts:240 bindChild: Binding $TextBlock to $Document.blocks
+chemistry.ts:254 bindChild: Adding to array blocks, current length: 0
+chemistry.ts:283 bindChild: All bindings satisfied for $Document
+chemistry.ts:288 bindChild: Triggering final update to remove hidden elements
+chemistry.ts:689 reactivate: $ImageBlock, already reactivated: undefined
+chemistry.ts:725 reactivate: $ImageBlock has 1 reactive properties
+chemistry.ts:198 applyBinding: $Document has 1 bindings
+chemistry.ts:207 applyBinding: Checking binding for property 'blocks', expects class: $Chemical
+chemistry.ts:210 applyBinding: MATCH! Binding $ImageBlock to $Document.blocks
+chemistry.ts:240 bindChild: Binding $ImageBlock to $Document.blocks
+chemistry.ts:254 bindChild: Adding to array blocks, current length: 1
+chemistry.ts:283 bindChild: All bindings satisfied for $Document
+chemistry.ts:288 bindChild: Triggering final update to remove hidden elements
+chemistry.ts:689 reactivate: $TextBlock, already reactivated: undefined
+chemistry.ts:725 reactivate: $TextBlock has 1 reactive properties
+chemistry.ts:198 applyBinding: $Document has 1 bindings
+chemistry.ts:207 applyBinding: Checking binding for property 'blocks', expects class: $Chemical
+chemistry.ts:210 applyBinding: MATCH! Binding $TextBlock to $Document.blocks
+chemistry.ts:240 bindChild: Binding $TextBlock to $Document.blocks
+chemistry.ts:254 bindChild: Adding to array blocks, current length: 2
+chemistry.ts:283 bindChild: All bindings satisfied for $Document
+chemistry.ts:288 bindChild: Triggering final update to remove hidden elements
+chemistry.ts:689 reactivate: $ImageBlock, already reactivated: undefined
+chemistry.ts:725 reactivate: $ImageBlock has 1 reactive properties
+chemistry.ts:198 applyBinding: $Document has 1 bindings
+chemistry.ts:207 applyBinding: Checking binding for property 'blocks', expects class: $Chemical
+chemistry.ts:210 applyBinding: MATCH! Binding $ImageBlock to $Document.blocks
+chemistry.ts:240 bindChild: Binding $ImageBlock to $Document.blocks
+chemistry.ts:254 bindChild: Adding to array blocks, current length: 3
+chemistry.ts:283 bindChild: All bindings satisfied for $Document
+chemistry.ts:288 bindChild: Triggering final update to remove hidden elements
+chemistry.ts:689 reactivate: $Document, already reactivated: undefined
+chemistry.ts:725 reactivate: $Document has 4 reactive properties
+chemistry.ts:329 modifyChildren for $Card: {$$typeof: Symbol(react.transitional.element), key: null, props: {…}, _owner: FiberNode, type: ƒ, …}
+page.tsx:31 Card.view - this.badge: $Badge {children: Array(0), _isSetup: true, parent: $Card, …}
+chemistry.ts:329 modifyChildren for $Card: {$$typeof: Symbol(react.transitional.element), key: null, props: {…}, _owner: FiberNode, type: ƒ, …}
+page.tsx:31 Card.view - this.badge: $Badge {children: Array(0), _isSetup: true, parent: $Card, …}
+chemistry.ts:329 modifyChildren for $List: (3) [{…}, {…}, {…}]
+chemistry.ts:329 modifyChildren for $List: (3) [{…}, {…}, {…}]
+chemistry.ts:329 modifyChildren for $Document: (4) [{…}, {…}, {…}, {…}]
+chemistry.ts:329 modifyChildren for $Document: (4) [{…}, {…}, {…}, {…}]

@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ jrandom ]]( claude--jrandom--91b5970b )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>91b5970b-3152-42ff-9c5d-5c3c6ded3b1e</Origin>
         <Paragraph>

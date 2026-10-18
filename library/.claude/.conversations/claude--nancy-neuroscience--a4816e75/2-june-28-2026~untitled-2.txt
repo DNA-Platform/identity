@@ -1,0 +1,234 @@
+
+
+# Specification — Altered-States DOI Digital-Twin Analysis
+
+The authoritative, self-contained specification for this analysis. For each part it states **what it
+does**, the **function** that does it, the **published method** it reproduces, and the **citation** that
+justifies it. The code implements this document; this document does not describe the code. It is kept
+current; anything unconfirmed is marked **⚠** and listed under Open Questions.
+
+**The goal.** This is a *descriptive* study of representation in mouse primary visual cortex. A digital
+twin (a deep encoding model) is an **instrument**: trained to predict each neuron's response to an image,
+it can then be run **forward** — synthesizing each cell's *most-exciting image* (MEI), the visual feature
+that cell encodes — and **inverted** — reconstructing the image a population represents. We build twins
+for a baseline state and a DOI (5-HT2A hallucinogen) state, on the neurons tracked across both, and ask
+**how the represented features change under the drug**. The aim is *what the cells encode and how that
+representation moves* — not prediction accuracy, not a benchmark score.
+
+**A data constraint that shapes everything: amplitude is not comparable across the two scans.** The
+recording is **volumetric**, and a z-drift rescales every cell's amplitude across the field — so absolute
+two-photon response magnitude is *not interpretable* between scans. The dataset therefore ships, and we
+use, a **per-neuron per-scan std normalization** (each cell divided by its own per-scan response s.d.).
+That normalization is necessary (it removes the z-drift) but it **also removes the one DOI effect the
+literature documents — the response-gain reduction (Michaiel)** — the very quantity it divides out. So
+this analysis lives in **scale-invariant** space throughout (the twin trains on normalized responses; MEIs
+and metamers are contrast-constrained). The absolute gain is a **documented limitation**, sought — if at
+all — only with scale-invariant, *within-scan* signatures, **never cross-scan amplitude**. See Part 7.
+
+---
+
+## Rules
+
+1. **Published-exact.** Every method and setting reproduces a published one, cited in its part. We use
+   the published code; we do not reimplement. The one exception is the metamer (Part 6): no public code
+   exists, so it is a reimplementation from the paper's Methods.
+2. **Matched cells only.** The *entire* pipeline — training, validation, MEIs, reconstruction, and the
+   pre/post comparison — runs on the **neurons tracked across both scans**, matched by
+   reciprocal nearest-neighbour in the functional-stack coordinates within a distance cutoff (≈10 µm).
+   The matching is the lab's own method; the count is whatever it produces.
+3. **The method-source lineage (Reimer/Tolias), not the closest-looking paper.** Twin = **Lurz 2021 /
+   Sensorium**; MEIs and the gain modulator = **Walker 2019**; metamers = **Cobos 2022**. **Franke 2022 is
+   a downstream colour-study application** — it inherits its architecture and MEI procedure from Walker +
+   Lurz and adds behaviour-as-channels and a colour readout we don't use. From Franke we borrow **only**
+   (a) the quiet/active **percentile states** (3rd / 97th of pupil + locomotion — colourless, transfers)
+   and (b) the **two-states → compare fixed-state outputs** scaffold. We do **not** use its colour readout
+   or behaviour-as-channels.
+
+---
+
+## The four twins
+
+A 2×2: **{baseline, DOI} × {behaviour, no-behaviour}**.
+
+| Twin     | State    | Behaviour | What "behaviour" means here                                           |
+|----------|----------|-----------|-----------------------------------------------------------------------|
+| pre · A  | baseline | yes       | image core + behaviour → **modulator** (per-neuron gain) + eye-shifter |
+| pre · B  | baseline | no        | image core only                                                       |
+| post · A | DOI      | yes       | image core + behaviour → **modulator** (per-neuron gain) + eye-shifter |
+| post · B | DOI      | no        | image core only                                                       |
+
+**Behaviour enters via the modulator, not as image channels.** Walker's twin conditions on behaviour
+through a **modulator** that predicts a per-neuron multiplicative **gain** from the behavioural variables
+(pupil size, pupil derivative, running). This is the canonical Reimer/Tolias behaviour mechanism. (It does
+**not** cleanly recover the *absolute* DOI gain — that is erased by the per-scan normalization; see Part 7.)
+Eye position (pupil centre) feeds the **shifter**.
+The no-behaviour arm B is *our* control (does conditioning on behaviour change the recovered features?) —
+not Franke's; Franke always includes behaviour. [Cite: Walker 2019. ⚠ behaviour-as-channels + CoordConv
+position channels were a Franke-era device; with the modulator + learned-μ they are unneeded — confirm dropped, Open Q.]
+
+---
+
+## Parts
+
+### 1 · Data — load the matched-cell recordings
+- **Does:** return the dataloaders for one (state, arm), restricted to the matched cells in matched-pair
+  order; arm A provides the behavioural variables (for the modulator) and eye position (for the shifter).
+- **Function:** `load(state, arm) → (dataloaders, data_key)`
+- **Published method:** `sensorium.datasets.static_loaders` (neuron subset via `neuron_ids`; `normalize=True`
+  — the per-neuron per-scan std normalization that removes the volumetric z-drift; see the data constraint
+  above and Part 7).
+- **Why right:** the static-scan loader is the published interface for this data format; the matching is
+  the lab's functional-stack pairing; the per-scan std normalization is the shipped, necessary preprocessing
+  (the z-drift makes raw amplitude uninterpretable).
+- **Cite:** sinzlab/sensorium; Erin walkthrough §5 (the shipped normalization).
+
+### 2 · Twin — build the encoding model
+- **Does:** build one seed — a 4-layer convolutional core → per-neuron Gaussian readout, with an
+  eye-position **shifter** and, for arm A, a behavioural **modulator** (Walker/Ding) on the readout output.
+- **Function:** `build_twin(loaders, arm, seed) → model`
+- **Published method:** `sensorium.models.stacked_core_full_gauss_readout` (core + Gaussian readout +
+  shifter) + a `neuralpredictors` MLP **modulator** for arm A.
+- **Readout = learned-μ** (each cell's RF position is a free parameter), **not** the cortical-coordinate
+  predictor. Justification (Lurz, from source): the cortical predictor exists to cut per-neuron parameters
+  for **cross-animal transfer / data-efficiency** — a rationale that is *absent* for a single-session,
+  single-mouse scan with thousands of trials. So learned-μ is the appropriate readout here *full stop*,
+  not a patch. (It also removes the shared map whose elevation row collapsed under behaviour-as-channels —
+  a problem the modulator design avoids anyway, since behaviour no longer enters the core.)
+- **Settings:** Sensorium-2022 baseline core — `layers 4, input_kern 9, hidden_kern 7, hidden_channels 64,
+  depth_separable`. Regularization `gamma_input = 6.3831, gamma_readout = 0.0076`. ⚠ these are the
+  **Sensorium-2022 competition** values, fit on *other* data; `gamma_input` directly sets MEI Gabor-ness,
+  so do **not** cite them to Lurz — re-derive / plateau-check on our baseline matched scan (Open Q 3).
+- **Cite:** Lurz 2021 (Gaussian readout); Walker 2019 (shifter, modulator); Sensorium-2022 (the codeable baseline).
+
+### 3 · Training — fit the ensemble
+- **Does:** train an ensemble for one (state, arm) to convergence; resumable.
+- **Function:** `train(state, arm, n_seeds) → ensemble`
+- **Published method:** `sensorium.training.standard_trainer`; `mei.modules.EnsembleModel`.
+- **Settings:** early-stop on validation correlation, best weights restored; `lr_init = 0.009`,
+  `lr_decay_steps = 4`, Poisson loss (the Sensorium baseline trainer). Convergence, not a clock.
+- **Why right:** the Sensorium baseline trainer is the published fitting procedure; the ensemble is the
+  published twin. ⚠ The seed count (we use **5**) is a **lab convention**, not paper-specified — cite it as
+  such, not as anyone's verbatim value (Open Q 5).
+- **Cite:** Lurz 2021; Sensorium-2022.
+
+### 4 · Validation — is the twin a trustworthy instrument?
+- **Does:** check that a trained ensemble predicts held-out responses well enough to trust its reads.
+  *An instrument check, not the goal.*
+- **Function:** `validate(ensemble, loaders) → report`
+- **Checks:** FEVE (Schoppe noise-ceiling-corrected) + correlation-to-average + RF map is 2-D (not
+  collapsed) + MEIs are structured. ⚠ The bar is **relative/sanity** (does the twin clear what its own
+  reliability allows), **not** "must match Lurz's absolute number" — that imports another rig's expectations.
+- **Published method:** `sensorium.utility.scores.get_fev`, `get_signal_correlations`.
+- ⚠ `get_fev` drops unreliable cells *per state*; a pre/post FEVE must use the **full-length FEVE masked to
+  cells reliable in both states** (the `feve_full` fix already built) (Open Q 4).
+- **Cite:** Schoppe 2016.
+
+### 5 · MEI — what each cell encodes (the feature axis)
+- **Does:** synthesize, by gradient ascent on the ensemble at a fixed behaviour state, the image that most
+  excites one neuron — its preferred visual feature.
+- **Function:** `mei(ensemble, neuron, state) → image`
+- **Published method:** `mei.methods.gradient_ascent` + the `nnvision` walker operators (Walker's recipe).
+- **Recipe (Walker, primary):** random-image init → **regularized gradient ascent to convergence**;
+  gradient preconditioning (Fourier smoothing, magnitude normalization, Gaussian gradient blur); a fixed
+  **contrast/energy budget** (L2-norm form, `PNormConstraintAndClip` p=2 — settled); ~1000 iterations.
+  **Before any pre/post comparison, match mean luminance + RMS contrast to a common value** (Walker). Same
+  fixed behaviour state for **both** twins (3rd/97th percentile — Franke's mechanics). ⚠ The exact blur
+  σ/step schedule must be lifted **verbatim from Walker's online Methods** before freezing (Open Q 1); the
+  L2-budget magnitude is calibrated to our standardized-image range (≈25 in Franke's instantiation).
+- **Cite:** Walker 2019 (recipe); Franke 2022 (the percentile state mechanics only).
+
+### 6 · Metamer — what a population represents (the feature axis, population)
+- **Does:** recover the image a matched population is encoding by inverting the ensemble — descent on the
+  image until the predicted population response matches a target.
+- **Function:** `metamer(ensemble, target_response) → image`
+- **Published method:** Cobos 2022 — **encoder-inversion in the latent space of a generative image prior**
+  (a VAE; Glow is an alternative) + a response-matching loss, **multi-seed with a stability check**. The
+  prior is what produced Cobos's near-identical reconstructions. ⚠ A **blank-init pixel-space SGD** (no
+  prior) is the underdetermined **baseline variant**, *not* the headline method — either build the prior or
+  label the deliverable "pixel-space population reconstruction (Cobos baseline)" and lower expectations
+  (Open Q 2). No public code → reimplementation from the Methods; ⚠ lift the optimizer/iteration counts
+  verbatim from Cobos's full text.
+- **Cite:** Cobos 2022.
+
+### 7 · Gain — a documented limitation, not a buildable instrument
+- **The problem:** DOI's documented V1 effect is a response-gain reduction (Michaiel). But on this
+  **volumetric** recording the z-drift makes raw cross-scan amplitude uninterpretable, and the per-scan
+  normalization that fixes the z-drift **erases the gain**. So the absolute gain is **not recoverable here
+  by cross-scan amplitude** — raw is z-drift-confounded, normalized is gain-erased. A modulator fit on
+  normalized responses is itself in normalized units and inherits the same cross-scan problem; "read the
+  gain off the modulator / off raw amplitude" (an earlier proposal here, and CD's) does **not** survive this.
+- **Consequence:** the analysis is scale-invariant throughout (the feature axis — Parts 5–6, 8); the
+  absolute gain is **stated as a limitation, not measured** off the twin.
+- **⚠ Open (for CD):** is there a valid *within-scan, scale-invariant* gain signature — e.g. the shape of
+  the modulator's behaviour→gain function relative to each scan's own scale, or a tuning-relative measure —
+  that separates a real DOI gain change from the z-drift; or is the absolute gain simply not addressable in
+  this data? (Open Q 9.)
+- **Cite:** Michaiel 2019 (the effect); the volumetric z-drift + per-scan normalization (the constraint).
+
+### 8 · Comparison — how the representation changes under DOI
+- **Does:** compare pre vs post on the matched cells on the **feature axis** — per-cell MEIs at the same
+  fixed state (scale-invariant metrics: MEI×MEI correlation in the RF mask, spatial-frequency/orientation
+  shift, RF size/complexity) and population metamers. The amplitude/gain axis is a limitation (Part 7), not
+  a measured comparison here.
+- **Function:** `compare(pre, post) → report`
+- **Calibrate expectations:** Franke found behavioural state leaves MEI *spatial* structure largely
+  unchanged, so **pre-specify** what magnitude of spatial change counts as real. Keep the **model-free
+  backbone** (reliability, population geometry, behaviour decode — all scale-invariant) — the twin *adds*
+  the feature (MEI) and population (metamer) reads on top; it does not replace the descriptive pass.
+- **Cite:** Michaiel 2019; Franke 2022 (the null calibration).
+
+---
+
+## File structure
+
+One file per part; flat, no nested packages.
+
+```
+most-exciting-image/
+  specification.md      this file — the authoritative spec
+  data.py               Part 1   load
+  twin.py               Parts 2–3   build_twin (core + readout + shifter + modulator), train
+  validate.py           Part 4   validate
+  mei.py                Part 5   mei
+  metamer.py            Part 6   metamer
+  gain.py               Part 7   (only if a valid within-scan gain signature exists — Open Q 9)
+  compare.py            Part 8   compare
+  run.py                orchestrates the four twins end to end
+  _checkpoints/         trained ensembles (one per twin)
+  results/              figures
+```
+
+---
+
+## References
+
+| # | Work | What it justifies |
+|---|---|---|
+| 1 | **Lurz et al. 2021** — generalization in data-driven V1 models | the Gaussian readout (and why learned-μ here) |
+| 2 | **Walker et al. 2019** — inception loops | MEI recipe + the behaviour **modulator** (the behaviour mechanism) |
+| 3 | **Cobos et al. 2022** (bioRxiv 2022.12.09.519708) — neural metamers | metamer = encoder-inversion + generative prior |
+| 4 | **Sensorium 2022** (sinzlab) | the codeable baseline twin + trainer defaults + gamma values |
+| 5 | **Franke et al. 2022** (Nature) — behavioural-state tuning | **scaffolding only**: the quiet/active percentiles + the 2-state comparison |
+| 6 | **Michaiel et al. 2019** (Cell Reports) — DOI reduces V1 gain | the gain prior the amplitude read reproduces |
+| 7 | **Schoppe et al. 2016** | the FEVE instrument check |
+| — | **sinzlab/sensorium**, **sinzlab/nnvision**, **mei**, **neuralpredictors** | the published code packages we run |
+
+---
+
+## Open questions
+
+1. **⚠ Walker MEI preconditioning** — lift the exact blur σ / step schedule verbatim from Walker's online
+   Methods before freezing the recipe; calibrate the L2-budget magnitude to our standardized-image range.
+2. **⚠ Metamer prior** — build Cobos's generative (VAE) prior + multi-seed/stability, or label the
+   pixel-space version "baseline"; lift Cobos's optimizer/iteration counts verbatim.
+3. **⚠ Gammas** — 6.3831 / 0.0076 are Sensorium-competition values fit on other data; re-derive / plateau-
+   check on our baseline matched scan. Share one set across all four twins; never cite to Lurz.
+4. **⚠ Pre/post FEVE** — wire the full-length, reliable-in-both FEVE before any cross-state FEVE claim.
+5. **⚠ Ensemble size** — "5 seeds" is a lab convention, not paper-specified; confirm.
+6. **⚠ Modulator architecture** — confirm the exact Walker/Ding MLP-modulator form and behaviour inputs.
+7. **⚠ Position channels** — confirm they are dropped (the modulator + learned-μ remove their purpose).
+8. **⚠ MEI behaviour-state mechanism** — set the channels to the percentile value vs rejection-sample a
+   real trial at that percentile; confirm against the loader code; identical fixed state pre and post.
+9. **⚠ Gain recoverability (Part 7)** — the absolute DOI gain is erased by the per-scan normalization that
+   the volumetric z-drift requires; is there a within-scan, scale-invariant gain signature, or is the
+   absolute gain a stated limitation of this data? (Reframed Part 7; for CD.)

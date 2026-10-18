@@ -1,0 +1,327 @@
+// src/App.tsx - fixed version
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import mapRegistry from './components/maps';
+
+// Props interfaces for styled components
+interface ThumbItemProps {
+  selected: boolean;
+}
+
+interface MapViewportProps {
+  $hasGrid: boolean; // Use $ prefix to avoid passing to DOM element
+}
+
+// Styled components
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+`;
+
+const Header = styled.header`
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  padding: 15px 20px;
+  z-index: 100; /* Higher z-index to appear above the map */
+  position: relative; /* Needed for z-index to work */
+`;
+
+const SelectorContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+const SelectorLabel = styled.label`
+  font-weight: 600;
+  color: #495057;
+  margin-right: 12px;
+  font-size: 16px;
+`;
+
+const SelectWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const MapSelect = styled.select`
+  appearance: none;
+  padding: 10px 40px 10px 15px;
+  font-size: 14px;
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 220px;
+  color: #495057;
+  transition: all 0.2s ease;
+  
+  &:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  &:hover {
+    border-color: #adb5bd;
+  }
+`;
+
+const SelectArrow = styled.span`
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #6c757d;
+  font-size: 10px;
+`;
+
+const MapInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const MapTitle = styled.h2`
+  margin: 0;
+  font-size: 20px;
+  color: #343a40;
+  font-weight: 500;
+`;
+
+const MapDescription = styled.p`
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  color: #6c757d;
+  max-width: 600px;
+`;
+
+const ThumbGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 15px auto;
+  max-width: 1200px;
+  padding: 0 20px 15px;
+  background-color: #f8f9fa;
+  position: relative;
+  z-index: 90; /* Above map but below header */
+`;
+
+const ThumbItem = styled.div<ThumbItemProps>`
+  width: 140px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid ${props => props.selected ? '#007bff' : 'transparent'};
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+`;
+
+const ThumbImage = styled.div`
+  height: 80px;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: #6c757d;
+  font-size: 24px;
+`;
+
+const ThumbLabel = styled.div`
+  padding: 8px 10px;
+  font-size: 13px;
+  background-color: #f8f9fa;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+// Fixed MapViewport component with proper typing
+const MapViewport = styled.div<MapViewportProps>`
+  position: absolute;
+  top: ${props => props.$hasGrid ? '155px' : '70px'};
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+`;
+
+const ToggleButton = styled.button`
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  color: #495057;
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+  }
+  
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  svg {
+    margin-right: 6px;
+  }
+`;
+
+// Main App component
+function App(): JSX.Element {
+  // Find the world map in the registry, fallback to first map
+  const worldMapEntry = mapRegistry.find(map => map.id === 'world-map--world') || mapRegistry[0];
+  //const worldMapEntry = mapRegistry.find(map => map.id === 'test-map--test') || mapRegistry[0];
+  
+  // Set world map as default
+  const [selectedMapId, setSelectedMapId] = useState<string>(worldMapEntry?.id || '');
+  
+  // View mode toggle
+  const [viewMode, setViewMode] = useState<'dropdown' | 'grid'>('dropdown');
+  
+  // Find the selected map component
+  const selectedMap = mapRegistry.find(map => map.id === selectedMapId);
+  
+  // Toggle between dropdown and grid view
+  const toggleViewMode = (): void => {
+    setViewMode(viewMode === 'dropdown' ? 'grid' : 'dropdown');
+  };
+
+  // Get initial letter for thumbnail
+  const getInitial = (name: string): string => {
+    return name && name.length > 0 ? name.charAt(0).toUpperCase() : '?';
+  };
+
+  // Render the selected map component
+  const renderMap = () => {
+    if (!selectedMap || !selectedMap.component) {
+      return null;
+    }
+    
+    const MapComponent = selectedMap.component;
+    return <MapComponent />;
+  };
+
+  // If no maps are available, show a message
+  if (mapRegistry.length === 0) {
+    return (
+      <AppContainer>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <p>No maps have been registered. Please add maps to the registry.</p>
+        </div>
+      </AppContainer>
+    );
+  }
+
+  return (
+    <AppContainer>
+      <Header>
+        <SelectorContainer>
+          {viewMode === 'dropdown' ? (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <SelectorLabel htmlFor="map-select">Map Gallery: </SelectorLabel>
+              <SelectWrapper>
+                <MapSelect
+                  id="map-select"
+                  aria-label="Select a map"
+                  value={selectedMapId}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedMapId(e.target.value)}
+                >
+                  {mapRegistry.map(map => (
+                    <option key={map.id} value={map.id}>{map.name}</option>
+                  ))}
+                </MapSelect>
+                <SelectArrow>▼</SelectArrow>
+              </SelectWrapper>
+            </div>
+          ) : (
+            <MapInfo>
+              <MapTitle>Map Gallery</MapTitle>
+              {selectedMap && viewMode === 'grid' && (
+                <MapDescription>
+                  {selectedMap.name ? `Viewing: ${selectedMap.name}` : 'Select a map'}
+                </MapDescription>
+              )}
+            </MapInfo>
+          )}
+          
+          <ToggleButton 
+            onClick={toggleViewMode}
+            aria-label={`Switch to ${viewMode === 'dropdown' ? 'grid' : 'dropdown'} view`}
+            type="button"
+          >
+            {viewMode === 'dropdown' ? (
+              <>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
+                </svg>
+                Grid View
+              </>
+            ) : (
+              <>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path d="M4.5 6a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                Dropdown View
+              </>
+            )}
+          </ToggleButton>
+        </SelectorContainer>
+      </Header>
+      
+      {viewMode === 'grid' && (
+        <ThumbGrid role="tablist" aria-label="Map selection grid">
+          {mapRegistry.map(map => (
+            <ThumbItem 
+              key={map.id} 
+              selected={map.id === selectedMapId}
+              onClick={() => setSelectedMapId(map.id)}
+              role="tab"
+              aria-selected={map.id === selectedMapId}
+              tabIndex={0}
+              onKeyDown={(e: React.KeyboardEvent) => {
+                if (e.key === 'Enter' || e.key === ' ' || e.key === 'Space') {
+                  setSelectedMapId(map.id);
+                  e.preventDefault();
+                }
+              }}
+            >
+              <ThumbImage>{getInitial(map.name)}</ThumbImage>
+              <ThumbLabel title={map.name}>{map.name}</ThumbLabel>
+            </ThumbItem>
+          ))}
+        </ThumbGrid>
+      )}
+      
+      {/* Fixed: Use $hasGrid with $ prefix for transient prop */}
+      <MapViewport $hasGrid={viewMode === 'grid'}>
+        {renderMap()}
+      </MapViewport>
+    </AppContainer>
+  );
+}
+
+export default App;

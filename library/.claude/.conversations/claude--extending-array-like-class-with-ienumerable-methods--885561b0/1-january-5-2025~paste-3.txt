@@ -1,0 +1,293 @@
+class Region {
+    private _leftParent: number;
+    private _topParent: number;
+    private _rightParent: number;
+    private _bottomParent: number;
+    protected _parent: () => Region = () => this;
+    private _onChange: Subscribable<Region> = new Subscribable<Region>();
+
+    unit(): number { return this._rightParent - this._leftParent; }
+    unitAbs(): number { return this.base().unit(); }
+    parent(): Region { return this._parent(); }
+    base(): Region { return this.isBase() ? this : this.parent().base(); }
+    isBase(): boolean { return this.parent() === this; }
+    onChange(): Subscribable<Region> { return this._onChange; }
+
+    topAbs(): number { return this.isBase() ? this._topParent : this.parent().topAbs(); }
+    leftAbs(): number { return this.isBase() ? this._leftParent : this.parent().leftAbs(); }
+    rightAbs(): number { return this.isBase() ? this._rightParent : this.parent().rightAbs(); }
+    bottomAbs(): number { return this.isBase() ? this._bottomParent : this.parent().bottomAbs(); }
+
+    topParent(): number { return this._topParent; }
+    leftParent(): number { return this._leftParent; }
+    rightParent(): number { return this._rightParent; }
+    bottomParent(): number { return this._bottomParent; }
+
+    left() { return this.toRelativeLocation(this.leftAbs(), "x"); }
+    right() { return this.toRelativeLocation(this.rightAbs(), "x"); }
+    top() { return this.toRelativeLocation(this.topAbs(), "y"); }
+    bottom() { return this.toRelativeLocation(this.bottomAbs(), "y"); }
+
+    boundsParent(): [number, number, number, number] {
+        return [this._leftParent, this._topParent, this._rightParent, this._bottomParent];
+    }
+
+    rectParent(): Rect {
+        return this.boundsParent();
+    }
+
+    centerParent(): Position {
+        var bounds = this.boundsParent();
+        return [
+            (bounds[2] + bounds[0]) / 2,  // (right + left) / 2
+            (bounds[1] + bounds[3]) / 2   // (top + bottom) / 2
+        ];
+    }
+
+    widthParent() {
+        var bounds = this.boundsParent();
+        return bounds[2] - bounds[0];  // right - left
+    }
+
+    heightParent() {
+        var bounds = this.boundsParent();
+        return bounds[1] - bounds[3];  // top - bottom
+    }
+
+    boundsAbs(): [number, number, number, number] {
+        return this.base().boundsParent();
+    }
+
+    rectAbs(): Rect {
+        return this.base().rectParent();
+    }
+
+    centerAbs(): Position {
+        return this.base().centerParent();
+    }
+
+    widthAbs(): number {
+        return this.base().widthParent();
+    }
+
+    heightAbs(): number {
+        return this.base().heightParent();
+    }
+
+    // Relative positions
+    bounds(): [number, number, number, number] {
+        return [this.left(), this.top(), this.right(), this.bottom()];
+    }
+
+    rect(): Rect { return this.bounds(); }
+
+    center(newCenter?: Position) {
+        if (newCenter) {
+            this.moveTo(newCenter);
+            this.onChange().fire(this);
+        }
+        return [
+            (this.right() + this.left()) / 2,
+            (this.top() + this.bottom()) / 2
+        ];
+    }
+
+    // Width and height with optional resizing
+    width(newWidth?: number, proportional = true) {
+        if (newWidth) {
+            const scaleFactor = newWidth / this.width();
+            this.size([newWidth, proportional ? this.height() * scaleFactor : this.height()]);
+            this.onChange().fire(this);
+        }
+        return Math.abs(this.left() - this.right());
+    }
+
+    height(newHeight?: number, proportional = true) {
+        if (newHeight) {
+            const scaleFactor = newHeight / this.height();
+            this.size([proportional ? this.width() * scaleFactor : this.width(), newHeight]);
+            this.onChange().fire(this);
+        }
+        return Math.abs(this.top() - this.bottom());
+    }
+
+    size(newSize?: Size) {
+        if (newSize) {
+            const center = this.centerParent();
+            const newWidth = this.toParentUnits(newSize[0]);
+            const newHeight = this.toParentUnits(newSize[1]);
+
+            this._leftParent = center[0] - newWidth / 2;
+            this._rightParent = center[0] + newWidth / 2;
+            this._topParent = center[1] + newHeight / 2;
+            this._bottomParent = center[1] - newHeight / 2;
+            this.onChange().fire(this);
+        }
+        return [this.width(), this.height()];
+    }
+
+    constructor(left: number, top: number, right: number, bottom: number, parent?: () => Region) {
+        if (left > right || bottom > top)
+            throw `Invalid Region: ${[left, top, right, bottom]}`;
+
+        this._leftParent = left;
+        this._topParent = top;
+        this._bottomParent = bottom;
+        this._rightParent = right;
+        if (parent !== undefined)
+            this._parent = parent;
+    }
+
+    floorAbs(): Region {
+        var base = this.base();
+        base._leftParent = Math.floor(base._leftParent);
+        base._topParent = Math.floor(base._topParent);
+        base._rightParent = Math.floor(base._rightParent);
+        base._bottomParent = Math.floor(base._bottomParent);
+        this.onChange().fire(this);
+        return this;
+    }
+
+    moveTo(newCenter: Position): Region {
+        const newCenterParent = this.toParentPosition(newCenter);
+        const deltaX = newCenterParent[0] - this.centerParent()[0];
+        const deltaY = newCenterParent[1] - this.centerParent()[1];
+        this._leftParent += deltaX;
+        this._rightParent += deltaX;
+        this._topParent += deltaY;
+        this._bottomParent += deltaY;
+        this.onChange().fire(this);
+        return this;
+    }
+
+    toRelativeUnits(length: number): number {
+        return Region.round(length / this.widthParent());
+    }
+
+    toRelativeLocation(location: number, axis: "x" | "y"): number {
+        return Region.round(
+            axis === "x"
+                ? (location - this._leftParent) / this.unit()
+                : (location - this._bottomParent) / this.unit()
+        );
+    }
+
+    toRelativePosition(position: Position): Position {
+        const x = this.toRelativeLocation(position[0], "x");
+        const y = this.toRelativeLocation(position[1], "y");
+        return [Region.round(x), Region.round(y)];
+    }
+
+    toParentUnits(length: number): number {
+        return roundPrecisely(length * this.widthParent());
+    }
+
+    toParentLocation(location: number, axis: "x" | "y"): number {
+        return Region.round(
+            axis === "x"
+                ? this._leftParent + location * this.unit()
+                : this._bottomParent + location * this.unit()
+        );
+    }
+
+    toParentPosition(position: Position): Position {
+        const x = this.toParentLocation(position[0], "x");
+        const y = this.toParentLocation(position[1], "y");
+        return [Region.round(x), Region.round(y)];
+    }
+
+
+    angle(position: Position, units: "degrees" | "radians" = "degrees"): number {
+        const center = this.center();
+        const deltaX = position[0] - center[0];
+        const deltaY = position[1] - center[1];
+        const radians = Math.atan2(deltaY, deltaX); // Returns angle in radians
+
+        // Normalize and convert based on units
+        if (units === "degrees") return Region.to360(Region.toDegrees(radians));
+        return Region.to2Pi(radians);
+    }
+
+    // Returns the radius (distance from the center) in relative units
+    radius(position: Position): number {
+        const center = this.center();
+        const deltaX = position[0] - center[0];
+        const deltaY = position[1] - center[1];
+        return Math.sqrt(deltaX ** 2 + deltaY ** 2);
+    }
+
+    toString() {
+        return this.isBase() || this.parent().isBase() ?
+            `[${this.bounds()}], [${this.boundsAbs()}]` :
+            `[${this.bounds()}], [${this.boundsParent()}], [${this.boundsAbs()}]`
+    }
+
+    static fromRect(rect: Rect): Region {
+        return new Region(rect[0], rect[1], rect[2], rect[3]);
+    }
+
+    static fromArray(rect: [number, number, number, number]): Region {
+        return Region.fromRect(rect);
+    }
+
+    static toRadians(degrees: number): number {
+        return Region.to2Pi((degrees * Math.PI) / 180);
+    }
+
+    // Converts radians to degrees
+    static toDegrees(radians: number): number {
+        return Region.to360((radians * 180) / Math.PI);
+    }
+
+    static to2Pi(radians: number): number {
+        const twoPi = 2 * Math.PI;
+        return ((radians % twoPi) + twoPi) % twoPi;
+    }
+
+    // Normalizes degrees to the range [0, 360)
+    static to360(degrees: number): number {
+        const fullCircle = 360;
+        return ((degrees % fullCircle) + fullCircle) % fullCircle;
+    }
+
+    private static round(value: number) {
+        return roundPrecisely(value, 3);
+    }
+}
+
+class Regions {
+    constructor() {
+        throw new Error("Regions is a static class");
+    }
+
+    static union(first: Region, second: Region): Region
+    static union(...regions: Region[]): Region {
+        // Must have the same parent. The Union is the smallest region that contains all the specified ones. It would have their same parent
+    }
+
+    static intersection(first: Region, second: Region): Region
+    static intersection(...regions: Region[]): Region {
+        // Must have the same parent. The intersection is the largest subregion that in all the children
+    }
+
+    static lines(region: Region, axis: "x" | "y", count: number): Region[]
+    static lines(region: Region, axis: "x" | "y", sequence: Vector, norm?: boolean): Region[]
+    static lines(region: Region, axis: "x" | "y", sequence: Vector | number, norm: boolean = true): Region[] {
+        // Splits into vertical or horizontal subregions, using the passed in region as a parent
+        // Vector must have dim() == 1
+        //In the case of sequence being a number, it is assigned to cound and var rng = [0, axis == "x" ? this.width() : this.height()]; Vector.linspace(count + 1, rng) should work
+        // Norm means using sequence.norm(rng)
+        // An arbitrary vector may have values in any direction, so make sure right is the min of the two and left is the max and analogously for top and bottom 
+    }
+
+    static grid(region: Region, xCount: number, yCount?: number): Region[][]
+    static grid(region: Region, xSequence: Vector, ySequence?: Vector, norm?: boolean): Region[][]
+    static grid(region: Region, xCount: number, ySequence: Vector, norm?: boolean): Region[][]
+    static grid(region: Region, xSequence: Vector, yCount: number, norm?: boolean): Region[][]
+    static grid(region: Region, xSequence: Vector | number, ySequence?: Vector | number, norm: boolean = true): Region[][] {
+        // Makes a grid of regions
+        // If ySequence is not specified, the x value is used
+        // It should work if one is a number and the other a vector as seen in the overloads
+        // This can probably be accomplished by calculating lines for each dimension and then creating the cross product of intersections
+    }
+}

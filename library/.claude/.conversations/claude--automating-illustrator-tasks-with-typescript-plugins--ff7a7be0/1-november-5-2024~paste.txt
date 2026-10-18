@@ -1,0 +1,138 @@
+// Returns the currently active document
+// Usage:
+//   const doc = getActiveDocument();
+function getActiveDocument(): Document | null {
+    if (app.documents.length === 0) {
+        alert("No documents are open.");
+        return null;
+    }
+    return app.activeDocument;
+}
+
+// Gets a document by its name
+// Usage:
+//   const doc = getDocumentByName("MyDocumentName");
+function getDocumentByName(name: string): Document {
+    for (let i = 0; i < app.documents.length; i++) {
+        if (app.documents[i].name === name) {
+            return app.documents[i];
+        }
+    }
+    throw new Error(`Document with the name '${name}' not found.`);
+}
+
+// Gets a layer from a document by index (supports negative indexing) or name
+// Usage:
+//   const layer = getLayer(doc, 0);        // Get the first layer
+//   const layer = getLayer(doc, -1);       // Get the last layer
+//   const layer = getLayer(doc, "LayerName"); // Get layer by name
+function getLayer(doc: Document, identifier?: number | string): Layer {
+    if (doc.layers.length === 0) {
+        throw new Error("No layers in the document.");
+    }
+
+    if (identifier === undefined) {
+        return doc.layers[0];  // Default to the first layer if no identifier is provided
+    }
+
+    if (typeof identifier === "number") {
+        // Adjust for negative indexing
+        const index = identifier < 0 ? doc.layers.length + identifier : identifier;
+        return doc.layers[index];
+    } else if (typeof identifier === "string") {
+        for (let i = 0; i < doc.layers.length; i++) {
+            if (doc.layers[i].name === identifier) {
+                return doc.layers[i];
+            }
+        }
+        throw new Error(`Layer with the name '${identifier}' not found.`);
+    } else {
+        throw new Error("Invalid identifier. Must be a number (index) or string (layer name).");
+    }
+}
+
+// Gets an item in a layer by index (supports negative indexing) or name
+// Usage:
+//   const item = getItem(layer, 0);         // Get the first item in the layer
+//   const item = getItem(layer, -1);        // Get the last item in the layer
+//   const item = getItem(layer, "ItemName"); // Get item by name
+function getItem(layer: Layer, identifier?: number | string): PageItem {
+    if (layer.pageItems.length === 0) {
+        throw new Error("No items in the layer.");
+    }
+
+    if (identifier === undefined) {
+        return layer.pageItems[0];  // Default to the first item if no identifier is provided
+    }
+
+    if (typeof identifier === "number") {
+        // Adjust for negative indexing
+        const index = identifier < 0 ? layer.pageItems.length + identifier : identifier;
+        return layer.pageItems[index];
+    } else if (typeof identifier === "string") {
+        for (let i = 0; i < layer.pageItems.length; i++) {
+            if (layer.pageItems[i].name === identifier) {
+                return layer.pageItems[i];
+            }
+        }
+        throw new Error(`Item with the name '${identifier}' not found.`);
+    } else {
+        throw new Error("Invalid identifier. Must be a number (index) or string (item name).");
+    }
+}
+
+// Groups items in a layer by indices (supports negative indexing) or names; groups all if no arguments are provided
+// Usage:
+//   groupItems(layer);                    // Group all items in the layer
+//   groupItems(layer, 0, "ItemName", -2); // Group specific items by index or name
+// Groups items in a layer by indices (supports negative indexing) or names; groups all if no arguments are provided
+// Usage:
+//   groupItems(layer);                    // Group all items in the layer
+//   groupItems(layer, 0, "ItemName", -2); // Group specific items by index or name
+function groupItems(layer: Layer, ...identifiers: (number | string)[]): GroupItem {
+    if (layer.pageItems.length === 0) {
+        throw new Error("No items in the layer to group.");
+    }
+
+    const itemsToGroup: PageItem[] = [];
+
+    if (identifiers.length === 0) {
+        // No arguments provided, group all items
+        for (let i = 0; i < layer.pageItems.length; i++) {
+            itemsToGroup.push(layer.pageItems[i]);
+        }
+    } else {
+        // Process each argument to add specific items to the group
+        for (let j = 0; j < identifiers.length; j++) {
+            const identifier = identifiers[j];
+            if (typeof identifier === "number") {
+                // Adjust for negative indexing
+                const index = identifier < 0 ? layer.pageItems.length + identifier : identifier;
+                itemsToGroup.push(layer.pageItems[index]);
+            } else if (typeof identifier === "string") {
+                // Get item by name
+                let found = false;
+                for (let i = 0; i < layer.pageItems.length; i++) {
+                    if (layer.pageItems[i].name === identifier) {
+                        itemsToGroup.push(layer.pageItems[i]);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    throw new Error(`Item with the name '${identifier}' not found.`);
+                }
+            } else {
+                throw new Error("Invalid identifier. Must be a number (index) or string (item name).");
+            }
+        }
+    }
+
+    // Group the items
+    const group = layer.groupItems.add();
+    for (let m = 0; m < itemsToGroup.length; m++) {
+        itemsToGroup[m].move(group, ElementPlacement.PLACEATEND);
+    }
+
+    return group;
+}

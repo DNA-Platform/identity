@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ String length notation and foundational sketch generalization ]]( claude--String length notation and foundational sketch generalization--3b684876 )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Semantic Reference Theory ]]</Project>
+        <Project>***[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Project>
         <Account>$[[ DNA ]]( Dougs Claude / DNA )</Account>
         <Origin>3b684876-b6c6-4a72-96ef-1ca0f82333c9</Origin>
         <Paragraph>

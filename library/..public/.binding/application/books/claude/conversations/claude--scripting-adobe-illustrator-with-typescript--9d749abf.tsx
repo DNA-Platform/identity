@@ -1,0 +1,20 @@
+import { $ } from '@dna-platform/chemistry';
+import { opened } from '../../../opened';
+import $Book from '../../../../../../.claude/.conversations/claude--scripting-adobe-illustrator-with-typescript--9d749abf/.book';
+import Cover from '../../../../../../.claude/.conversations/claude--scripting-adobe-illustrator-with-typescript--9d749abf/.cover';
+import Synopsis from '../../../../../../.claude/.conversations/claude--scripting-adobe-illustrator-with-typescript--9d749abf/.synopsis';
+import Table from '../../../../../../.claude/.conversations/claude--scripting-adobe-illustrator-with-typescript--9d749abf/.table';
+import December1520241 from '../../../../../../.claude/.conversations/claude--scripting-adobe-illustrator-with-typescript--9d749abf/1-december-15-2024';
+
+const Book = $($Book);
+
+export const book = () => (
+    <Book>
+        {Cover()}
+        {Synopsis()}
+        {Table()}
+        {December1520241()}
+    </Book>
+);
+
+if (import.meta.hot) import.meta.hot.accept(next => { if (next !== undefined) opened.open(next.book); });

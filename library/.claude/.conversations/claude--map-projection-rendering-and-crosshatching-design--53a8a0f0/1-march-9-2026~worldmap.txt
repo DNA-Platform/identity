@@ -1,0 +1,47 @@
+// src/components/maps/WorldMap.tsx
+import React from 'react';
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  ZoomableGroup
+} from 'react-simple-maps';
+import MapContainer from './MapContainer';
+import DiagonalPatternBackground from './DiagonalPatternBackground';
+import FourColorMapColoring from './FourColorMapColoring';
+
+// URL to your GeoJSON data
+const geoUrl = '/countries-110m.json';
+
+const Map: React.FC = () => {
+  return (
+    <MapContainer filename="world-map.svg">
+      <ComposableMap
+        projection="geoMercator"
+        projectionConfig={{
+          scale: 127
+        }}
+      >
+        {/* Add the diagonal pattern background BEFORE the ZoomableGroup */}
+        {/* This ensures it renders behind all map elements */}
+        <DiagonalPatternBackground 
+          backgroundColor="#f8f9fa" 
+          lineColor="#e9ecef" 
+          lineWidth={2}
+          lineSpacing={6}
+          direction="left" // Use "right" for / lines or "left" for \ lines
+        />
+        
+        <ZoomableGroup center={[0, 20]} zoom={1}>
+          <Geographies geography={geoUrl}>
+            {({ geographies }) => (
+              <FourColorMapColoring geographies={geographies}/>
+            )}
+          </Geographies>
+        </ZoomableGroup>
+      </ComposableMap>
+    </MapContainer>
+  );
+};
+
+export default Map;

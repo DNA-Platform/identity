@@ -1,0 +1,88 @@
+# Project Configuration
+
+## Getting Started
+
+**New here?** Read `docs/PROJECT.md` for what this project is, then `/status` for where things stand.
+
+**Returning?** Run `/status` to see current state, or `/implement-phase` to continue work.
+
+## What Is This
+
+**dna-patternity** is a stock art automation pipeline. It takes vector art (SVGs) from creation to live listings on Adobe Stock. The pipeline handles file conversion (SVG → EPS), compliance validation, metadata curation, SFTP upload, and portal approval automation via Playwright. Alongside the pipeline, we maintain a curated portfolio of original geometric vector art.
+
+## Workflow
+
+This project uses **spec-driven development** with phased delivery. Work is organized into phases, each containing user stories that are implemented, tested, and documented before presenting to the human (Doug) for review.
+
+- **`docs/WORKFLOW.md`** — Overview and links to sub-docs
+- **`docs/workflow/`** — PHASE-LIFECYCLE, STORY-FORMAT, ESCALATION, AGENT-REGISTRY
+- **`docs/PROJECT.md`** — Project scope, active team roster, tech stack
+
+We follow a structured planning-and-execution cadence:
+
+1. Planning a phase: discuss technical approach, ask clarifying questions, iterate until agreed.
+2. Writing the plan: create phase directory in `docs/phases/` with PLAN.md, STORIES.md, STATUS.md.
+3. Tracking progress: check off items in STATUS.md as stories complete.
+4. Documentation update: revise all docs at end of each phase.
+
+## Agents
+
+Agent definitions live in `.claude/agents/`. Active team is defined in `docs/PROJECT.md`:
+
+| Agent | Role |
+|-------|------|
+| Project Manager | Orchestration, stories, coordination |
+| Architect | Pipeline design, tech decisions |
+| Backend Lead | Scripts, conversion, automation |
+| QA Engineer | Testing the pipeline |
+| DevOps Engineer | SFTP, environments, scheduling |
+| Stock Compliance Specialist | Adobe Stock rules, validation |
+| Asset Cataloger | Portfolio tracking, catalogue |
+
+## Key Rules
+
+1. **Check the team roster.** Only invoke agents listed in `docs/PROJECT.md`.
+2. **Never present incomplete work.** Stories must pass QA before human review.
+3. **Escalate only when required.** Doug decides art direction, design approvals, and ambiguous requirements.
+4. **Context is precious.** Reference docs by path instead of inlining.
+5. **Test everything.** No story is "done" without passing tests.
+6. **Document as you go.** Update CATALOGUE.md, STATUS.md, and JOURNAL.md.
+7. **Spell it CATALOGUE.** Always.
+
+## Commands
+
+```bash
+# To be configured once tech stack is decided
+# Placeholder for Phase 1:
+# npm run validate     # Run compliance checks
+# npm run convert      # SVG → EPS conversion
+# npm run upload       # SFTP upload
+# npm run approve      # Playwright portal approval
+```
+
+## Project Structure
+
+```
+repo/                        # Art files (SVGs, generated EPS)
+docs/
+  PROJECT.md                 # Project identity, active team, tech stack
+  REQUIREMENTS.md            # Product requirements (source of truth)
+  DECISIONS.md               # Architecture Decision Records (ADRs)
+  WORKFLOW.md                # Workflow overview + links
+  workflow/                  # PHASE-LIFECYCLE, STORY-FORMAT, ESCALATION, AGENT-REGISTRY
+  stocks/                    # Adobe Stock specs, metadata, upload, approval, rejections
+  portfolio/                 # CATALOGUE, PALETTES, VARIATIONS, PACKAGING
+  architecture/              # Pipeline design, system overview
+  phases/                    # Phase-specific plans and story maps
+  runbooks/                  # Manual procedures (SFTP, approval)
+JOURNAL.md                   # Timestamped narrative by Seren
+.claude/
+  agents/                    # Agent definitions (7 active + 4 inactive)
+  commands/                  # Slash commands
+  mcp.json                   # MCP server configuration
+.env                         # Credentials (NEVER commit)
+```
+
+## MCP Servers
+
+- **Context7** — Up-to-date library documentation. Add `use context7` to prompts needing current API docs.

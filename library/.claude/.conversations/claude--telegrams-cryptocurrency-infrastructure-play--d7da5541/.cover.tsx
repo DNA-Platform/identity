@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Telegram's cryptocurrency infrastructure play ]]( claude--Telegram's cryptocurrency infrastructure play--d7da5541 )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>d7da5541-3dae-4679-9e1f-02371889e91f</Origin>
         <Paragraph>

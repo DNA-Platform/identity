@@ -1,0 +1,129 @@
+/** A comprehensive list of named colors, combining X11 and CSS3 color standards */
+enum WebColor {
+    // Pink Colors
+    MediumVioletRed = "#C71585", // Strong pinkish violet
+    DeepPink = "#FF1493", // Vivid pink
+    PaleVioletRed = "#DB7093", // Light pinkish violet
+    HotPink = "#FF69B4", // Bright, warm pink
+    LightPink = "#FFB6C1", // Soft pink
+    Pink = "#FFC0CB", // Standard pink
+
+    // Red Colors
+    DarkRed = "#8B0000", // Very dark red
+    Red = "#FF0000", // Primary red
+    FireBrick = "#B22222", // Brick red
+    Crimson = "#DC143C", // Intense red with slight purple
+    IndianRed = "#CD5C5C", // Moderate red
+    LightCoral = "#F08080", // Soft coral red
+    Salmon = "#FA8072", // Light pinkish red
+    DarkSalmon = "#E9967A", // Muted salmon
+    LightSalmon = "#FFA07A", // Pale salmon
+
+    // Orange Colors
+    OrangeRed = "#FF4500", // Reddish orange
+    Tomato = "#FF6347", // Light orange-red
+    DarkOrange = "#FF8C00", // Deep orange
+    Coral = "#FF7F50", // Soft orange
+    Orange = "#FFA500", // Standard orange
+
+    // Yellow Colors
+    DarkKhaki = "#BDB76B", // Muted khaki
+    Gold = "#FFD700", // Shiny yellow gold
+    Khaki = "#F0E68C", // Pale yellowish tan
+    PeachPuff = "#FFDAB9", // Peach-toned yellow
+    Yellow = "#FFFF00", // Primary yellow
+    PaleGoldenrod = "#EEE8AA", // Light yellow-gold
+    Moccasin = "#FFE4B5", // Soft peachy yellow
+    PapayaWhip = "#FFEFD5", // Pale papaya color
+    LightGoldenrodYellow = "#FAFAD2", // Very light yellow
+    LemonChiffon = "#FFFACD", // Soft pale yellow
+    LightYellow = "#FFFFE0", // Almost white yellow
+
+    // Brown Colors
+    Maroon = "#800000", // Dark reddish-brown
+    Brown = "#A52A2A", // Standard brown
+    SaddleBrown = "#8B4513", // Rich brown
+    Sienna = "#A0522D", // Earthy brown
+    Chocolate = "#D2691E", // Warm brown
+    DarkGoldenrod = "#B8860B", // Dark yellow-brown
+    Peru = "#CD853F", // Light brown
+    RosyBrown = "#BC8F8F", // Brown with red tones
+    Goldenrod = "#DAA520", // Warm yellow-brown
+    SandyBrown = "#F4A460", // Pale yellow-brown
+    Tan = "#D2B48C", // Light brown
+    Burlywood = "#DEB887", // Light sandy brown
+    Wheat = "#F5DEB3", // Very light tan
+    NavajoWhite = "#FFDEAD", // Soft peach
+    Bisque = "#FFE4C4", // Light peachy beige
+    BlanchedAlmond = "#FFEBCD", // Pale almond
+    Cornsilk = "#FFF8DC", // Pale yellowish cream
+
+    // Purple, Violet, and Magenta Colors
+    Indigo = "#4B0082", // Deep purple-blue
+    Purple = "#800080", // Pure purple
+    DarkMagenta = "#8B008B", // Dark purplish pink
+    DarkViolet = "#9400D3", // Deep violet
+    DarkSlateBlue = "#483D8B", // Muted blue-violet
+    BlueViolet = "#8A2BE2", // Vivid blue-purple
+    DarkOrchid = "#9932CC", // Muted purple
+    Fuchsia = "#FF00FF", // Bright magenta (same as Magenta)
+    Magenta = "#FF00FF", // Common name for bright pink
+    SlateBlue = "#6A5ACD", // Muted blue-purple
+    MediumSlateBlue = "#7B68EE", // Light slate blue
+    MediumOrchid = "#BA55D3", // Medium pinkish purple
+    MediumPurple = "#9370DB", // Light purple
+    Orchid = "#DA70D6", // Light pink-purple
+    Violet = "#EE82EE", // Bright violet
+    Plum = "#DDA0DD", // Light purplish pink
+    Thistle = "#D8BFD8", // Pale lavender
+    Lavender = "#E6E6FA", // Light lavender
+
+    // Blue Colors
+    MidnightBlue = "#191970", // Deep dark blue
+    Navy = "#000080", // Dark navy blue
+    DarkBlue = "#00008B", // Dark pure blue
+    MediumBlue = "#0000CD", // Medium pure blue
+    Blue = "#0000FF", // Standard blue
+    RoyalBlue = "#4169E1", // Bright royal blue
+    SteelBlue = "#4682B4", // Muted blue
+    DodgerBlue = "#1E90FF", // Vivid blue
+    DeepSkyBlue = "#00BFFF", // Bright cyan-blue
+    CornflowerBlue = "#6495ED", // Light blue
+    SkyBlue = "#87CEEB", // Standard sky blue
+    LightSkyBlue = "#87CEFA", // Pale sky blue
+    LightSteelBlue = "#B0C4DE", // Light muted blue
+    LightBlue = "#ADD8E6", // Pale blue
+    PowderBlue = "#B0E0E6", // Very light blue
+
+    // Cyan Colors
+    Teal = "#008080", // Deep teal
+    DarkCyan = "#008B8B", // Dark cyan
+    LightSeaGreen = "#20B2AA", // Bright teal
+    CadetBlue = "#5F9EA0", // Muted blue-green
+    DarkTurquoise = "#00CED1", // Deep cyan-turquoise
+    MediumTurquoise = "#48D1CC", // Bright turquoise
+    Turquoise = "#40E0D0", // Bright blue-green
+    Aqua = "#00FFFF", // Bright cyan (same as Cyan)
+    Cyan = "#00FFFF", // Common cyan
+    Aquamarine = "#7FFFD4", // Light greenish blue
+    PaleTurquoise = "#AFEEEE", // Pale blue-green
+    LightCyan = "#E0FFFF", // Very pale cyan
+
+    // Gray and Black Colors
+    Black = "#000000", // Pure black
+    DarkSlateGray = "#2F4F4F", // Very dark gray-green
+    DimGray = "#696969", // Medium dark gray
+    SlateGray = "#708090", // Muted gray-blue
+    Gray = "#808080", // Standard gray
+    LightSlateGray = "#778899", // Light gray-blue
+    DarkGray = "#A9A9A9", // Dark gray
+    Silver = "#C0C0C0", // Light gray
+    LightGray = "#D3D3D3", // Very light gray
+    Gainsboro = "#DCDCDC", // Pale gray
+
+    // White Colors
+    White = "#FFFFFF", // Pure white
+    Snow = "#FFFAFA", // Very pale white
+    Ivory = "#FFFFF0", // Soft pale white
+    Honeydew = "#F0FFF0", // Greenish white
+}

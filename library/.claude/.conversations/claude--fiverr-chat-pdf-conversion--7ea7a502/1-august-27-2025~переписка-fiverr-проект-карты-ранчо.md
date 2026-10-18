@@ -1,0 +1,1073 @@
+# Переписка Fiverr: Проект карты Cooper Ranch/Creekside Ranch
+
+**Участники:** Kaitlyn Webb (kwebb89) и Ana (anastasiaillust)  
+**Период:** 16 июня - 5 августа 2025  
+**Проект:** Создание иллюстрированной карты ранчо в Монтане
+
+## Краткое описание проекта
+
+Kaitlyn обратилась к художнице Ana с просьбой создать персонализированную карту ранчо Cooper Ranch/Creekside Ranch в Монтане в качестве подарка владельцу. Проект включал создание детальной иллюстрированной карты с множеством зданий, достопримечательностей и особенностями местности в стиле Disney theme park map.
+
+---
+
+## Переписка
+
+### 16 июня 2025
+
+**Kaitlyn (10:34 AM):**
+Hi Ana, 
+
+I hope you're doing well! 
+
+I was hoping you could help me with a map project. I recently visited a ranch in Montana and thought it would be a meaningful gift to create a custom map for the owner. 
+
+To get started, I've used Google Earth to mark key landmarks like buildings, rivers, and highways. I also included reference photos within the GEarth project that I hope will be helpful. 
+
+I'd be happy to hop on a call or connect however you prefer to walk you through everything in more detail. 
+
+Looking forward to hearing your thoughts! 
+
+Best, 
+Kaitlyn
+
+---
+
+**Ana (10:34 AM):**
+Thanks for your message!
+Right now I'm a bit busy but I'll come back to you asap.
+Meanwhile to save your time you could text me all the details regarding your project: some references, deadlines, your expectations and all the other info necessary for the work. If you haven't decided on those details yet, I'll help you to choose the package that works best for you or I can provide you with a Custom Offer.
+
+---
+
+**Kaitlyn (10:48 AM):**
+The Cooper Ranch is located in Montana, with a notable nearby landmark being the "Yellowstone Ranch" from the TV show, which is in Darby, Montana (see attachment for reference).
+
+One key feature (amongst more) that we'd like to include on the map is clay pigeon shooting. I've provided reference photos of the sport—we'd love to see this illustrated as someone shooting at a clay disc mid-air, with the disc shattering.
+
+We've also included a photo of "The Coopers" sign, which we'd like placed along the entry road on the map.
+At the Bitterroot River, we envision rainbow trout jumping out of the water or splashing to help bring the river to life.
+
+These kinds of small, vivid details would be great to incorporate to make the map feel dynamic and personalized.
+
+---
+
+**Kaitlyn (10:50 AM):**
+(SORRY - THAT WAS SENT PREMATURELY) SEE FULL MESSAGE BELOW!
+
+The Cooper Ranch is located in Montana, with a notable nearby landmark being the "Yellowstone Ranch" from the TV show, which is in Darby, Montana (see attachment for reference).
+
+One key feature (amongst others) that we'd like to include on the map is clay pigeon shooting. I've provided reference photos of the sport—we'd love to see this illustrated as someone shooting at a clay disc mid-air, with the disc shattering.
+
+We've also included a photo of "The Coopers" sign, which we'd like placed along the entry road on the map.
+
+At the Bitterroot River, we envision rainbow trout jumping out of the water or splashing to help bring the river to life.
+
+These kinds of small, vivid details would be great to incorporate to make the map feel dynamic and personalized.
+
+Best,
+Kaitlyn
+
+---
+
+**Ana (12:14 PM):**
+Hi Kaitlyn,
+
+Thank you so much for your lovely message — what a meaningful idea for a gift! I can already imagine how special it would be to turn this ranch into a beautiful illustrated map filled with personal details.
+
+Before I can give you an exact quote, I'd love to ask just a few things:
+
+Could you take a quick look at my portfolio (https://www.fiverr.com/users/anastasiaillust/portfolio) and let me know which style or specific map feels closest to what you'd like? My illustrations vary a bit in tone — some are more soft and painterly, others more minimal or bold — so this will help me tailor the look to your vision.
+
+Do you have a rough idea of how many illustrated elements you'd like me to include? (Buildings, animals, signs, trees, etc.) This affects the total price, as I usually price based on the number and complexity of icons.
+
+If there's any particular aesthetic (fonts, colors, vibe) that you'd like me to match — from a website, logo, or printed material — feel free to send that along too!
+
+Once I understand your preferences and the scope, I'll send over a clear quote and timeline. From what you've described, I'd absolutely love to work on this with you.
+
+Looking forward to hearing more soon!
+
+Warmly,
+Ana 😊
+
+---
+
+**Kaitlyn (1:00 PM):**
+Hi Ana,
+
+Thanks again — I'm thrilled at the idea of working together on this!
+
+For style, I'd love the map to be inspired by something more fun and whimsical, similar to a Disney theme park map like this one: https://www.dreamsunlimitedtravel.com/disneyland/disneyland-map.htm.
+
+Visually, I'm especially drawn to the style of your Danube River map—bold, vibrant colors with strong, eye-catching details.
+
+Since the map will depict a rustic Montana ranch, I'm completely open to whatever font you feel best suits the environment and style — I trust your creative instincts!
+
+Let me know if you're able to access this Google Earth link:
+https://earth.google.com/web/search/119+N+Main+St,+Darby,+MT+59829/@45.9886012,-114.18846709,1293.32595779a,1749.63062047d,35y,-0h,0t,0r/data=CiwiJgokCZSa8JqABEdAEa9ZmBuvAEdAGZiKkkiQiFzAIWxU0BNcjlzAQgIIAToDCgEwQgIIAEoICIjVqeABEAA
+
+I've marked key landmarks, animal placements, and other important elements. For example, if you click the purple pin labeled "Yellowstone Ranch," you'll see I've attached a photo of the actual house to reference for the map illustration (see attached). I'll be finalizing everything today and can send the complete file by 3:30 PM PST.
+
+In terms of scope, here's a rough idea of what we're hoping to include:
+
+- Buildings: 15–20
+- Animals: 8–10 (e.g., 4 buffalo, 4 fish)
+- Signs: 2–3 (photos attached)
+- Trees: Representing the Bitterroot Forest and other areas — maybe 4–6 groupings
+
+Let me know if you have any issues accessing the map or if there's anything else you need from me to move forward. I'm really looking forward to seeing your creative magic bring this to life!
+
+Warmly,
+Kaitlyn
+
+---
+
+**Ana (11:31 PM):**
+Hello, and thank you for your message!
+
+I wanted to let you know that I've received it and truly appreciate your interest. I'm currently under a very high workload and may need a little time before I can send you a thoughtful and complete reply.
+
+I'll do my best to respond as soon as possible — hopefully later today.
+Thank you so much for your patience and understanding.
+
+Warmly,
+Ana 😊
+
+---
+
+### 17 июня 2025
+
+**Ana (11:07 PM):**
+Hi Kaitlyn,
+
+Thank you again — I'm really excited about this project! It's such a thoughtful and original gift idea, and I would truly love to help bring it to life.
+
+I noticed you listed around 15–20 buildings — I'd love to clarify one small thing before I give you a finalized quote. Do you envision each of these buildings being illustrated as a unique icon? Or are some of them similar enough that we could reuse or slightly modify the same design for multiple locations? I ask because each unique illustrated element like a building typically costs around $25, so the total cost depends quite a bit on how many individual icons we'll need.
+
+Also, I tried opening the Google Earth link, but unfortunately I'm only seeing a blank base map without any markers or photos. Would it be possible for you to send me the Google Earth project file instead? Here's a quick way to do that:
+
+How to save and send your Google Earth file:
+
+Open your project in Google Earth.
+
+Click on the three dots (⋮) next to your project's name.
+
+Choose "Export as KML" or "Download KML file."
+
+Send me the downloaded .kml or .kmz file as an attachment.
+
+Once I can view the file with all your notes and reference images, I'll be able to better understand how varied the buildings are and whether there are ways we can simplify the process while keeping all the charm and detail you're looking for.
+
+Just to give you a rough idea of the current estimate based on your notes:
+
+20 buildings × $25 = $500
+
+8 animals × $15 = $120
+
+Base map (roads, rivers, trees, signage) = $100
+Estimated total: ~$720
+
+Of course, this is flexible — we can absolutely adjust the content and layout to match your vision and your budget. I'd love to keep refining things with you and make sure we strike the perfect balance.
+
+Thanks again for such an inspiring brief — it's exactly the kind of project I enjoy most, and I'm really looking forward to collaborating with you!
+
+Warmly,
+Ana 😊
+
+---
+
+### 18 июня 2025
+
+**Kaitlyn (7:44 AM):**
+Hi Ana,
+
+This all sounds fantastic! 😊
+
+I'll take a look at the map and finalize the count of how many buildings will need unique icons versus those that can be slightly modified and repurposed—your suggestion for subtle distinctions is a great one.
+
+Thank you for the helpful tip on saving the Google Earth file! I'll work on that and send it your way as soon as I can.
+
+I truly appreciate the thoughtfulness and attention to detail you bring to your work. I'm so glad I found your profile!
+
+Talk soon!
+Kat
+
+---
+
+**Ana (7:54 AM):**
+Thank you so much for your kind words, Kat!
+I'm really looking forward to your updates 😊
+
+---
+
+**Kaitlyn (3:35 PM):**
+I've got a link that should work: https://earth.google.com/earth/d/1x8J_00ottDt5KqHtuOstQjvHw2xckrQ5?usp=sharing
+
+However, I may need to grant you access — would you mind sharing your email just in case? I'll also send the file as a KML attachment as a backup.
+
+So far, I have a total of 18 custom icons, and I don't anticipate going beyond 20.
+
+I've also attached a list of all the landmarks for reference.
+
+On the map:
+- Blue pins are confirmed and ready to be started.
+- Green pins are pending final confirmation — I'm still double-checking those.
+
+Would you be able to get started on the confirmed (blue) pins in the meantime, or would you prefer to wait until the finalized map is ready?
+
+Best,
+Kat
+
+---
+
+### 19 июня 2025
+
+**Kaitlyn (7:09 AM):**
+Hi Ana,
+
+Just checking in to make sure you're able to access the Google Earth project—either via the shared link or the KML file I uploaded. Let me know if you run into any issues!
+
+I'll be adding the final details into the project as soon as possible and will update you once everything is ready to go.
+
+Thanks again—I'm really looking forward to your work on this!
+
+Best,
+Kat
+
+---
+
+**Ana (9:34 AM):**
+Hi Kat,
+
+Thank you so much for the materials you sent! I'll go through everything shortly and get back to you with a response.
+I really appreciate your patience!
+
+Warm regards,
+Ana😊
+
+---
+
+**Kaitlyn (1:02 PM):**
+Great! I just want to make sure that when you click on a pin, you're able to see any attached images—those are meant to serve as references for the custom icons. I'm not sure if those show up properly in the KML file, but they should be visible through the link I shared.
+
+If needed, I'm happy to compile the photos into a document and send them over for your review.
+
+---
+
+### 20 июня 2025
+
+**Ana (1:56 AM):**
+Hi Kat,
+
+Thank you so much for all the care and detail you've put into organizing this — truly amazing! And yes, I was able to open the Google Earth link without any trouble — the pins and attached photos all show up perfectly.
+
+I absolutely agree that working step by step could be a great approach for a project like this. There's quite a lot of information to process, and at this stage, it's a bit tricky for me to estimate the full scope precisely. Luckily, Fiverr has a helpful tool called Extra Services, which allows us to move forward gradually — we can plan each stage together, and I'll be able to send you offers for each next step as needed.
+
+How about we begin with the base map of the ranch and a small set of key buildings — just the most unique ones? That way, we can establish the layout and define the illustration style early on. I've spent some time studying rustic ranch aesthetics, and I think I'll need to step slightly outside my usual drawing style for this one. So your thoughts and feedback on the look will be very important to me as we go.
+
+I'd propose starting with a $250 custom offer, which would include the full base map (with roads, trees, streams, mountains — all the landscape structure) and 5 illustrated icons. The map itself will evolve as we go, of course — and I won't charge extra for changes to the base if we need to adjust it to fit new elements later.
+
+I'd be ready to begin on Tuesday, June 24.
+What do you think?
+
+Warmly,
+Ana 😊
+
+---
+
+**Kaitlyn (7:11 AM):**
+Thank you so much — I really appreciate your thoughtful approach and the care you're putting into this! I'm glad to hear the link is working smoothly and that everything's showing up as intended.
+
+I absolutely agree with your step-by-step suggestion — I know this is a complex project, and taking it one stage at a time sounds like the right approach. The Extra Services option on Fiverr seems like a great way to keep things flexible and collaborative as we move forward.
+
+Starting with the base map and a few key buildings makes perfect sense. I'm happy to provide as much feedback as needed along the way!
+
+I'm about to attach an updated document — the changes are very minor, if any. I mainly wanted to reorganize the pin names in a more structured sequence to make things easier for you.
+
+Let me know if you'd like me to supply more detail — for example, names of the mountain ranges — or if that's something you're able to gather directly from Google Earth. Happy to help however I can!
+
+Best,
+Kaitlyn
+
+---
+
+**Ana (9:28 AM):**
+Hi Kaitlyn,
+
+Thank you so much!
+
+I'll go ahead and send over the custom offer and start easing into the first steps of the work.
+
+There's just one thing I'd love to clarify at this stage — the size of the map. It can be either the aspect ratio (like 3:2, square, etc.) or the intended print dimensions in any units you prefer (inches, cm, etc.). This will help me plan the layout and composition right from the start.
+
+Looking forward to hearing from you!
+Warmly,
+Ana 😊
+
+---
+
+**Ana (9:31 AM):**
+Here's your custom offer
+
+$250
+I will be the cartographer that designs and illustrates your custom vector travel map
+To create a base map layout (landscape, roads, trees, streams, mountains) + 5 unique illustrated icons of key buildings or landmarks.
+This stage will help define the visual style and composition. Revisions to the base map will be included as the project develops.
+
+Read more
+Your offer includes
+
+3 Revisions
+
+12 Days Delivery
+
+Source file
+
+High resolution
+
+Color
+
+Background/scene
+
+draw 1 additional icon
+
+Revisions
+
+View order
+
+---
+
+**Kaitlyn (9:46 AM):**
+Great—just to confirm, is the 12-day delivery timeline for the first portion or for the entire project?
+
+---
+
+**Kaitlyn (10:25 AM):**
+Also—apologies for not mentioning this earlier! The ranch should be the main focal point, with the downtown Darby area as a secondary element.
+
+---
+
+### 24 июня 2025
+
+**Kaitlyn (12:29 PM):**
+Hi Ana! 
+
+Excited to see the "Creekside Ranch" project progressing! 
+
+I'm currently waiting on confirmation for a few outstanding items, but in the meantime, I've attached the latest breakdown of landmarks and related details for your review.
+
+You'll also find an updated KML file attached and a revised Google Maps link, here: https://earth.google.com/web/search/Darby,+Montana/@46.00835735,-114.1783457,1218.87324693a,8675.62322491d,30.0000004y,0h,0t,0r/data=CiwiJgokCQZfQnig_0ZAEYKgC0qv_UZAGYN7Z-2riVzAIctLBIpGjFzAQgIIAToDCgEwQgIIAEoICMvhnf8BEAA
+
+Please let me know if you're unable to access any of the docs or link!
+
+---
+
+### 25 июня 2025
+
+**Ana (12:17 AM):**
+Hi Kaitlyn,
+
+Thank you so much for the updated list — it's incredibly helpful!
+
+I believe the base map along with the first 5 illustrated landmarks should be ready for an initial review by Monday.
+
+Before I begin illustrating the buildings, I'd love for you to let me know exactly which 5 landmarks you'd like me to include in this first phase. It would be great if you could confirm:
+
+The exact names you'd like labeled on the map
+
+The reference images for each landmark
+
+I see there are many helpful photos in the Google Earth project — I'd just ask that you double-check that the first 5 you choose have clear and appropriate reference images attached, so I can confidently begin illustrating them.
+
+I'm ready to start today as soon as I have your selections!
+
+Warmly,
+Ana 😊
+
+---
+
+**Ana (12:18 AM):**
+I saw your note about making the ranch the main focus and keeping Downtown Darby more secondary — thank you for clarifying that!
+
+I'd love to suggest an approach where the map is oriented with Creekside Ranch in the foreground and Darby appearing in the background, almost like it's set further away. What do you think about that?
+
+If you have a different perspective in mind, feel free to explore it directly in Google Earth — it's a great tool for testing out angles and viewpoints. You can tilt the view and rotate the orientation to get a better sense of how the landscape might look from a certain direction.
+
+I think this is an important moment for us to align on the overall viewpoint and composition of the map — it will shape the entire feel of the illustration.
+
+Looking forward to your thoughts!
+
+---
+
+**Kaitlyn (7:14 AM):**
+That's great to hear! I'll go ahead and confirm the first five buildings and send over an updated Word document, along with the reference images to use - ASAP! The additional images attached to the landmarks should be helpful for capturing different angle perspectives.
+
+And yes — I think the map orientation idea is a strong one!
+
+Really looking forward to seeing your wonderful work come to life.
+
+---
+
+**Kaitlyn (8:41 AM):**
+Attached is the Word document with images to get you started — for now, I've focused on just one area.
+
+Would it be helpful if I continued updating this document with all the reference images we plan to use? I can add more as they're confirmed and send over updated versions as we go.
+
+I've also updated the original document by marking the images we've already shared, so we can easily keep track of progress on my end.
+
+---
+
+### 26 июня 2025
+
+**Kaitlyn (6:12 PM):**
+Hi Ana,
+
+Just checking in to see how things are going! 
+
+I've attached the updated documents for your reference. I'm still waiting on confirmation for a few items, but hopefully what I've sent so far gives you a solid starting point.
+
+There are still a few buildings on the ranch that I haven't been able to find images of—Google and other sources haven't turned up much. I'm currently waiting on the ranch owner to send over any photos they have.
+
+In the meantime, if you happen to know of a quicker way to gather those images or have any suggestions, I'm all ears!
+
+Also, here's the latest Google Maps link: https://earth.google.com/web/search/united+states+post+office+darby+montana/@45.99058354,-114.18133544,1264.81829989a,1652.73045475d,35y,-18.14169606h,31.25368798t,-0r/data=CiwiJgokCSUYhqxa6EBAESqPsYM4zEBAGdhNjVNwZF3AIePQvjYfiF3AQgIIAToDCgEwQgIIAEoICMvhnf8BEAA
+
+Let me know if you need anything in the meantime—I'll be sure to send updates as they come in!
+
+---
+
+### 27 июня 2025
+
+**Ana (8:31 AM):**
+Hi Kaitlyn,
+
+Thank you so much for the incredible amount of work you've put into gathering all this information — I'm truly impressed!
+
+At the same time, with several documents and so many wonderful references coming in, I'm finding it a little hard to stay fully oriented just yet.
+
+I'm ready to begin working on the map — and I'd love to confirm:
+Should I go ahead and start from the viewpoint angle I last shared? If that's the one you'd like to use as the base orientation, I'll begin shaping the map from there.
+
+I'm also ready to start developing the illustration style for the landmarks, but I just need a little help narrowing it down. I can see that you've collected a lot of great reference images, and it looks like you're working toward organizing them by area. Would you mind simply replying with the exact names of the first 5 landmarks you'd like me to draw?
+
+I'm guessing they might include "Two Feathers," "Two Feathers Barn," and "Clay Pigeon Shooting" — but I'd love your confirmation, and to know the remaining two.
+
+Apologies for the extra clarification — I just want to make sure I'm moving in the right direction, especially with such a rich and detailed brief.
+
+And yes — I think your idea of continuously updating the document with new images is fantastic!
+
+Warmly,
+Ana 😊
+
+---
+
+**Kaitlyn (8:54 AM):**
+Hi Ana,
+
+I totally get it! I really appreciate your attention to detail and your clarity in checking in before diving in further!
+
+Yes, please go ahead and begin with the last viewpoint angle you shared for the base for the map.
+
+As for the landmarks, here are the first five I'd love for you to start with:
+1.	Two Feathers
+2.	Two Feathers Barn
+3.	Clay Pigeon Shooting
+4.	4x4's driving from Stone Hill (no image yet) to Two Feathers
+5.	Adult/baby buffalo grazing in the pastures
+
+Let me know if you need any clarification on those.
+
+Thanks again — I'm so excited to see how this comes together!
+
+---
+
+### 30 июня 2025
+
+**Ana (3:22 AM):**
+Hi Kaitlyn,
+
+Thank you so much for your understanding — I really appreciate it!
+
+I'm now getting started on the map layout, and I'll also prepare a few style variations for the icons so we can explore the right visual direction together. I'm excited to dive in!
+
+Thank you as well for clarifying the first five landmarks — that's a huge help. I'm happy to begin with those.
+
+And if it's not too much trouble, would you mind accepting the offer when you have a moment? That way everything will be officially in motion on my end.
+
+Can't wait to share the first sketches with you soon!
+Warmly,
+Ana 😊
+
+---
+
+**Kaitlyn (7:29 AM):**
+Great—and yes, I officially accept the offer! Please let me know if this message is sufficient, or if there's anything else I need to do on my end.
+
+---
+
+### 1 июля 2025
+
+**Ana (3:57 AM):**
+Hi Kaitlyn,
+Would you mind double-checking whether the offer has been accepted on your end?
+Instead of seeing "Withdraw Offer," you should see two buttons — "Accept" or "Decline."
+(At least that's how I believe it appears from the client side — I haven't seen the buyer interface myself.)
+
+The order will officially begin only after you click "Accept."
+
+Thank you so much! 😊
+Ana
+
+---
+
+### 7 июля 2025
+
+**Kaitlyn (8:49 AM):**
+Hi Ana,
+
+Just wanted to check in and see how everything is going, and if there's any additional information I can provide to help.
+
+---
+
+**Ana (9:02 AM):**
+Hi Kaitlyn,
+
+Thank you for checking in! Yes — everything's going well on my end, and I'm actively working on the map layout and icons now.
+
+I'm really enjoying the process, and I hope to share the first results with you soon!
+
+Warmly,
+Ana 😊
+
+---
+
+**Kaitlyn (11:21 AM):**
+Amazing! Thanks so much 😊
+
+---
+
+### 8 июля 2025
+
+**Ana (11:21 PM):**
+Hi Kaitlyn,
+
+I wanted to send over a little preview — but just to set expectations clearly, this is only a very early draft of the map, and it's nowhere near finished yet!
+
+I've been experimenting with a light, doodle-style illustration approach for the icons — it's actually quite close in spirit to the Danube River map you mentioned liking earlier. That visual tone felt like a natural fit for Creekside Ranch, and I thought it could give us a playful, approachable base to build on.
+
+The map background itself is very rough at this stage. The shapes of fields, mountains, and roads are just loosely sketched in for now — I haven't started rendering textures, shadows, light accents, grasses, or any of the finer scenic elements yet. These will all be added as we continue developing the layout and layering in more icons.
+
+I included a few trees just to give a sense of where things might go visually, but the final landscape will be much more detailed and varied.
+
+The font and label layout are also temporary placeholders — I'll refine all of that once more of the map comes together and I can balance the full composition. For now, I'd love for you to simply focus on the icon style itself, and let me know whether you feel this is a direction I can keep working in.
+
+Also, just to clarify — the base map work (fields, mountains, overall layout) was included in the first order and is already covered. So even though it's unfinished right now, it will continue to evolve as we go — at no additional cost. From here on out, I'll only be sending offers for new icons, while I keep refining and completing the map behind the scenes.
+
+I'd be so happy to hear any thoughts or feedback that could help me better understand your vision and fine-tune the overall direction.
+
+Thank you so much again!
+Warmly,
+Ana 😊
+
+---
+
+### 9 июля 2025
+
+**Kaitlyn (7:22 AM):**
+Hi Ana,
+
+What you've shared so far looks absolutely amazing — it's really starting to come to life, and I'm so impressed by the direction you're taking it!
+
+The icon style feels very promising, and I'd love for you to keep moving forward with it.
+
+I'll be sending over the remaining icons shortly so you have everything you need to wrap up the map.
+
+You mentioned the first draft would be completed by July 13th — do you have an idea of when the final version might be ready? I'd be happy to pay for an expedited timeline if that's something you're able to accommodate. Of course, I completely understand if your current schedule doesn't allow for that.
+
+Thanks again for your wonderful work so far — I'm really excited to see the finished product!
+
+Much appreciation!
+Best,
+Kaitlyn
+
+---
+
+**Ana (11:47 PM):**
+Hi Kaitlyn,
+
+Thank you so much for your kind words — I'm really happy to hear that the direction and icon style are resonating with you! I'd absolutely love to keep moving forward on the map.
+
+Let's go ahead and choose the next 10 icons — ideally, ones that already have reference images available. This next batch would be $200 total (10 icons × $20), and I can have all 10 completed by Saturday.
+
+These 10 icons will allow me to make significant progress on the illustrated parts of the map itself. The sooner I have the icons in place, the faster I can enrich the map with all the supporting terrain and decorative elements. Once all icons are drawn and placed, I'll be able to complete the entire project within a single day.
+
+Does this workflow make sense? I just want to make sure I've explained the process clearly.
+
+If you're hoping to have everything done by Monday, we can absolutely discuss that — I could carve out some time on Sunday as well. At the moment, I'm not sure how many icons are still needed in total, but I'm ready to adjust if needed.
+The most efficient way for us to move forward would be if, in reply to this message, you could send me a list of the icons I'm ready to start illustrating — as long as the reference images for those icons are already included in the documents (and please feel free to attach them again for clarity).
+
+As soon as I receive the list with images, I'll begin working right away and send you a request for Extra Service for the corresponding amount — calculated as $20 per icon.
+
+Looking forward to your thoughts!
+Warmly,
+Ana 😊
+
+---
+
+### 10 июля 2025
+
+**Kaitlyn (3:09 PM):**
+Hi Ana,
+
+Yes, the workflow makes complete sense!
+
+Next 10 Items (see highlighted in GREEN on attached doc):
+
+- Downtown Darby:
+1. "Richard Cromwell Memorial Rodeo Grounds" 
+2. "Darby High School"
+3. "Right To Bare Arms Exercise" (gym)
+
+- Chief Joseph Ranch:
+4. I"Chief Joseph Ranch" (AKA – "Yellowstone Dutton Ranch") 
+5. "Chief Joseph Bunkhouse" (AKA – "Yellowstone Dutton Bunkhouse") 
+6. "Yellowstone Dutton Ranch" sign – have fans parked outside of here taking pictures in front of the sign
+7. "Chief Joseph Ranch" sign
+
+- Creekside Ranch:
+8. "Creekside Ranch" sign
+9. "The Coopers" sign
+10. "Bitterroot National Forest" sign
+
+---
+
+**Ana (5:02 PM):**
+Hi Kaitlyn,
+thank you so much!
+I'll start drawing 
+i will send you an Extra Service offer a bit later
+
+Thank you so much for being so helpful :)
+
+---
+
+### 11 июля 2025
+
+**Kaitlyn (1:30 PM):**
+Hi Ana, quick question — do you offer printing, laminating, or any related services? Or is the map delivered solely as a high-resolution printable file?
+
+---
+
+**Kaitlyn (1:34 PM):**
+Never mind! We will take care of printing. Hoping to have some more pictures over to you ASAP!
+
+---
+
+### 13 июля 2025
+
+**Ana (10:06 AM):**
+Hi Kaitlyn,
+just so you know - everything is ok! I hope to finish all new 10 icons today.
+We are getting closer to the final result! 
+I'm attaching a screenshot of my working file — everything is still in progress and nothing is finished yet, so don't be alarmed by the flat-looking map :) There's still a lot of work ahead, but I'll do my best to finish everything on time.
+
+---
+
+**Ana (12:08 PM):**
+Hi Kaitlyn!
+
+I've just finished the icon set, and now I'd love to propose our next step.
+
+Would you be able to send me the next batch of map elements? It could be more icons, or even just labels or text you'd like to add.
+
+I'm really eager to begin polishing the map itself — but if I jump into that now, there's a good chance I'll need to redo parts later once new elements are added. So I think it would be most efficient if we finalize any necessary changes to the existing icons first, and then move forward by adding new components.
+
+Let me know what you think! I'm ready to keep going 😊
+
+Warmly,
+Ana
+
+---
+
+### 14 июля 2025
+
+**Kaitlyn (7:48 AM):**
+Hi Ana,
+
+Yes, I'll be sending over the next batch shortly for you to add in.
+
+I'm just waiting on a few final items so you can start creating the icons. For the missing images, I'll share the labels you can use as placeholders in the meantime.
+
+Once I get those over to you, when do you think you'd be able to finalize the map?
+
+It's looking fantastic—great work!
+
+---
+
+**Kaitlyn (9:40 AM):**
+Please see the updated doc attached.
+
+Let's definitely prioritize all the "Creekside Ranch" generic icons highlighted in lime green, with the bright pink highlights marked as secondary.
+
+I am working on getting the remaining images over to you from my contact at the ranch.
+
+Thank you!
+Kaitlyn
+
+---
+
+**Ana (9:48 AM):**
+Hi Kaitlyn,
+
+I just wanted to let you know that I have an international flight tomorrow, but I'll be working whenever I can — your project is truly a favorite, and it's absolutely a priority for me.
+
+I'd say that, if needed, I could have the full map finished within three days, as long as there aren't more than about 10 new icons to add.
+
+From what I can see, most of the icons are already in place — so what's left is mainly labels and decorative details, which come together fairly quickly.
+
+I'm excited to keep going and really looking forward to bringing everything to life!
+
+Warmly,
+Ana
+
+---
+
+**Kaitlyn (11:28 AM):**
+Hooray!
+
+Please see the updated doc.
+
+The snippet you shared for the "Two Feathers" area looks great — thank you! Just one small revision: the clay pigeon shooting, 4x4s, and buffalo should actually be placed next to Stone Hill House, just across the way (please see the attached image for reference). I don't have a photo of that house just yet, but you can use the label as a placeholder for now.
+
+Here's a quick update on the status of the icons:
+- Priority items (green): 23 total
+- Final items (red): 5 total — I should have these ready to share in the next couple of days
+- Secondary icons (pink): 12 total
+- On Hold: 4 items
+
+That's a total of 44 items. If that's too much, I can remove some of the pink items.
+
+Just let me know.
+
+Safe travels!
+Kaitlyn
+
+---
+
+### 16 июля 2025
+
+**Ana (7:42 AM):**
+Hi Kaitlyn,
+
+I received everything — thank you! Many of the icons are already in place, so no worries — things are moving along.
+
+I'm really hoping to get as much done as possible over the next day or two. I'm doing my best to finish quickly, but I also want to make sure the quality stays high.
+
+Just wanted to keep you in the loop — I'm actively working on the illustrations!
+
+Warmly,
+Ana😊
+
+---
+
+**Kaitlyn (7:52 AM):**
+Thanks so much for the update!
+
+---
+
+### 18 июля 2025
+
+**Ana (11:23 AM):**
+Hi Kaitlyn!
+
+I've made good progress on the map — all of the green icons are now included. I'd really appreciate it if you could take a look and confirm that everything is present and accurate.
+
+I've also added some of the pink icons and wanted to check in with you: do you think we should include more? From my perspective, Darby is already feeling quite full — it's not a huge town on the map, and I'd like to avoid overcrowding it.
+
+I've attached a screenshot of my working file as well. You'll see I've outlined a few areas in red — would you have any suggestions for what we might include there? Perhaps a label for the state name, or something decorative like a compass? If you'd like to add any short text or other details, I'm happy to include that too!
+
+Also, just to note: I haven't fully polished the map design itself yet. I plan to go back and add smaller details and decorative elements (like trees, flowers, etc.) once all icons are finalized.
+
+In the next day or so, I'll also calculate the total cost of everything added beyond the original order (which covered the base map and 5 icons). Since then, I've completed 10 more icons, plus several new ones recently — I'll go through and tally them so I can send you the invoice.
+
+Thank you again for your patience — I'm really enjoying this project and excited to keep going!
+
+Warmly,
+Ana😊
+
+---
+
+### 20 июля 2025
+
+**Kaitlyn (7:11 PM):**
+Hi Ana,
+
+Apologies for the delayed reply!
+
+I completely agree—Darby is looking pretty full, good call. I'm thinking of swapping out one of the buildings there for the Brigand Taphouse, since that was one of our key elements to include. I'll send that over shortly.
+
+On a positive note, I received a few of the missing items to help fill out Creekside Ranch a bit more. I've highlighted them in neon blue below and included an updated PDF for your reference:
+
+Stone Hill – show 4x4s driving to "Two Feathers" (red line) with dust
+
+Eagle View
+
+Koko Pelli
+
+Creekside Cabin
+
+The map looks accurate at a glance, but I'll be able to review it more closely tomorrow.
+
+In the meantime, could you please add these four elements to the map? That should nearly wrap up everything we were missing!
+
+Thanks so much,
+Kat
+
+---
+
+### 21 июля 2025
+
+**Kaitlyn (10:02 AM):**
+Just checking in to see if you needed anything else from me!
+
+---
+
+### 22 июля 2025
+
+**Ana (7:42 AM):**
+Hi Kaitlyn,
+I received your files — thank you so much for the clarification!
+I'll start working on the map today and aim to finish it as soon as possible.
+Thank you again for your patience!
+
+---
+
+### 23 июля 2025
+
+**Ana (9:05 AM):**
+Hi Kat!
+Could you please clarify if I need to draw this building AND 4x4?
+Or maybe only 4x4?
+
+---
+
+**Kaitlyn (9:14 AM):**
+Yes! And the 4x4s will be driving to and from Two Feathers, so we should be all set on that since you already included it.
+
+Let me know if that all makes sense!
+
+---
+
+### 24 июля 2025
+
+**Ana (9:32 AM):**
+Hi Kaitlyn,
+
+I've added the missing icons you highlighted in your document. I haven't yet drawn the second 4x4 vehicle heading toward the ranch, but I will take care of that. I'm waiting for your next round of feedback.
+
+Just a quick reminder — the map isn't finished yet. I can see that there's still quite a bit of work ahead to make it feel cohesive and natural. But at this stage, we can at least assess whether any more icons are needed.
+
+Also, I'd like to estimate the cost of the work I've done over the past few days so you have a better sense of the budget. I've added quite a few icons, and I want to make sure you have a clear picture of what that will mean in terms of cost.
+
+Looking forward to hearing your feedback!
+
+---
+
+**Kaitlyn (9:49 AM):**
+Hi Ana,
+
+I just spoke with someone at the ranch who reviewed the draft and provided feedback. I'm thrilled to share that they're absolutely blown away by it!
+
+I'll be sending over a few updates for the map shortly—nothing major, just swapping and repositioning a few icons, and addressing the items you circled in red, etc.
+
+As for the cost, let's keep the project moving forward if that works for you.
+
+---
+
+**Kaitlyn (12:00 PM):**
+I've attached a marked-up version of the map for your reference. Here are the updates to make:
+
+1. Add "The Big Sky Country" in large font at the center of the map.
+2. In the top left corner (left of Darby), add trees and a trail labeled "Tin Cup Trail Head". Label the entire area as "Tin Cup".
+3. Label the entire left side of the map as the "Trapper Peak" mountain range and draw mountains (like "The Sapphires")
+4. Label the mountain range in the top right as "The Sapphires".
+5. Relocate the elements labeled "Morel Mushroom Hunting", picnic area, firepit, shelter, and pizza oven to below the Bitter Root River (see arrows).
+6. Label this newly grouped area as "CB Ranch".
+7. Move Rod's House to just below McCoy Creek Road East (see arrow).
+8. Move Calvin & Lynda's below the road, replacing "Shop".
+9. Replace the original Calvin & Lynda's location with a "Duck Pond" (see image reference).
+10. Move Creekside Cabin below and next to the Shop (see arrow).
+11. Move Stone Hill next to what is now the Trout Pond, and add that name to the pond.
+12. Move the buffalo icon(s) down to where the other buffalo are—there will now be a group of buffalo near Stone Hill.
+13. In the space where the buffalo were, add cows instead (see image reference).
+
+Let me know if any of that doesn't make sense!
+
+---
+
+**Kaitlyn (12:42 PM):**
+14. Add "Jay & Diane" + "Black Elk Ranch" (see Google Earth image attached)
+
+---
+
+### 25 июля 2025
+
+**Ana (2:22 AM):**
+Hi Kaitlyn,
+
+Thank you so much for your feedback! I'm really happy to hear that the team at the ranch liked the map — that truly means a lot to me. And I'm especially excited that we'll be making it even better together!
+
+I've gone ahead and made the changes you requested.
+What would you like my next step to be?
+
+Warmly,
+Ana
+
+---
+
+**Ana (8:03 AM):**
+Thank you so much for your patience and for trusting me with your project!
+I just wanted to let you know that I'll be away for the weekend and back on Monday. I'll be very happy to continue working on your project after the weekend.
+
+If anything is truly urgent, please don't hesitate to let me know — I'll do my best to accommodate it.
+
+Wishing you a lovely weekend!
+
+---
+
+**Kaitlyn (9:42 AM):**
+Amazing—thank you!
+
+I've attached the updated markups for the map—just a few small changes!
+
+If possible, could you move "CB Ranch" slightly above the "Bitterroot River" and replace its original location with "River Ranch"? That would be perfect. I also shifted "Eagle View" down and diagonally, and replaced it with the "1886 Barn." Please add that new icon in—since it's an old barn, it might be nice to visually distinguish it from the others with a more weathered or historic look.
+
+In terms of prioritizing focus—just like you mentioned—I'd love to draw more attention to Creekside Ranch. A few suggestions:
+- Scale down "The Sapphires" so we can reposition "Chief Joseph Ranch" and "Darby" farther from Creekside Ranch to enhance the sense of distance.
+- Include the newly added "1886 Barn" (see attached Google Earth reference).
+
+Additional Details to Add:
+- Fans taking photos in front of the "Yellowstone Dutton Ranch" sign
+- People fishing along the Bitterroot River
+- An extra 4x4 vehicle driving from "Stone Hill" to "Two Feathers" (just to visually balance that open space)
+
+Font Usage:
+- Do you think it makes sense to highlight only the landmarks within Creekside Ranch using a bold or distinct font, and then use a more neutral style for the rest of the map? That could help naturally guide the eye to the central area of focus.
+- Lastly, I really love how you've started color-coding the regions—let's continue with that approach and assign a consistent, unique color to each area.
+
+Let me know your thoughts!
+
+---
+
+### 28 июля 2025
+
+**Kaitlyn (8:54 AM):**
+Hi Ana,
+Hope you had a great weekend!
+Just wanted to check in to see how things are going and if there's any additional information you need from me.
+Best,
+Kaitlyn
+
+---
+
+### 29 июля 2025
+
+**Ana (9:14 AM):**
+Hey Kaitlyn!
+I'm continuing work on the map — I still have a few icons left to draw, and I'm hoping to finish them today.
+Thank you so much for your patience!
+
+---
+
+**Ana (10:35 AM):**
+Hi Kaitlyn,
+
+I've done my best to incorporate all the changes you mentioned, and I also added a few small details to the grass and ground to give everything a bit more life.
+
+I'd love to hear what you think about how the map is coming along — do you feel the changes are working well? Is there anything else we could refine or adjust further?
+
+Looking forward to your thoughts! 😊
+
+Warmly,
+Ana
+
+---
+
+**Kaitlyn (5:40 PM):**
+It looks so amazing! 🤩I am going to share this with someone just to get the greenlight. If that works for you?
+
+---
+
+**Ana (10:30 PM):**
+Hey!
+Sure, it works for me :)
+Thank you so much
+
+---
+
+### 30 июля 2025
+
+**Kaitlyn (8:45 AM):**
+Hello!
+
+I've reattched an updated map.
+
+Just a few minor tweaks:
+- Let's make Stone Hill more prominent—it's one of the main lodges on the ranch, along with Two Feathers.
+- Please see the markup on the map for the updated clay pigeon shooting location. Make sure they're shown shooting toward the trees (away from the property).
+- I've added one more icon: "Hay Barn", which can go just above the road where the clay pigeon shooters were originally placed.
+
+Let me know if you have any questions!
+
+---
+
+### 31 июля 2025
+
+**Ana (6:52 AM):**
+Hi Kaitlyn!
+Thank you so much for the updated file. Today or tomorrow, I'd like to take a moment to review the budget and send you a Custom Offer, if that works for you.
+
+Also, I wanted to get your thoughts on something regarding the clay pigeon shooting. With the addition of the new hay shed, and the increased size of Stone Hill, the space around the shooters has become a bit tricky. Wherever I place them now, they seem to be facing either animals or residential areas – and every direction looks a bit strange. One option makes it look like they're aiming toward the buffalo, another toward the barns or houses.
+
+Do you have any ideas or preferences for how we might resolve this visually?
+
+---
+
+### 5 августа 2025
+
+**Ana (3:22 AM):**
+Hi Keitlyn!
+How are you?
+Just checking if everything is ok on your side 
+
+Warmly,
+Ana
+
+---
+
+## Итоги проекта
+
+Проект представлял собой создание детальной иллюстрированной карты ранчо Cooper Ranch/Creekside Ranch в Монтане. Работа включала:
+
+**Объем работ:**
+- Базовая карта местности с дорогами, реками, горами
+- Более 40 уникальных иконок зданий и достопримечательностей
+- Детализированные иллюстрации животных, людей, активностей
+- Несколько раундов правок и дополнений
+
+**Стоимость:**
+- Первоначальный заказ: $250 (базовая карта + 5 иконок)
+- Дополнительные иконки: ~$20 за штуку
+- Общая стоимость проекта: приблизительно $1000+
+
+**Временные рамки:**
+- Начало: 20 июня 2025
+- Активная работа: июль-август 2025
+- Статус на момент окончания переписки: в процессе финальных правок
+
+**Особенности:**
+- Поэтапная работа с постепенным добавлением элементов
+- Стиль Disney theme park map
+- Фокус на Creekside Ranch как главном элементе
+- Множество персонализированных деталей (глинобитная стрельба, рыбалка, буффало и т.д.)
+
+Проект демонстрирует профессиональный подход к кастомной иллюстрации с детальным планированием, регулярной обратной связью и высоким уровнем персонализации.

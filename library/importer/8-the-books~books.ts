@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import { basename, join, relative } from 'node:path';
 import type { Conversation, Message, Project } from './3-the-record~record.ts';
 import { identifier } from '@dna-platform/public';
-import { escaped } from '../..public/.binding/catalogue/language.ts';
+import { escaped, sanitized } from '../..public/.binding/catalogue/language.ts';
 import { written } from '../..public/.binding/catalogue/reading.ts';
 import {
     appendLines, mentionForm, referenceForm, resourceExtension, slugFromName, titleForm, titleFromName, writtenConversation,
@@ -18,6 +18,11 @@ export type ConversationNaming = { name: BookName; folderName: string };
 export const conversationKeyPrefix = 'claude--';
 export const shortIdLength = 8;
 export const plainName = (name: string): BookName => ({ words: name, key: name });
+export const projectBookName = (name: string): BookName => {
+    const words = sanitized(name);
+
+    return { words, key: `${conversationKeyPrefix}${words}` };
+};
 export type WrittenEntry = { entryPath: string | undefined; tablePath: string; files: string[] };
 
 export const schemes: Scheme[] = [
@@ -175,7 +180,7 @@ export const conversationBook = (
         ? [] : [`<Account>${referenceForm(written(accountName), accountKey, '$')}</Account>`];
     const drawingSource = join(folders.conversations, drawingFileName);
     const drawingText = existsSync(drawingSource) ? readFileSync(drawingSource, 'utf8') : '';
-    const projectLines = projectNames.map(projectName => `<Project>***${titleForm(nameInForm(projectName))}</Project>`);
+    const projectLines = projectNames.map(projectName => `<Project>***${titleText(projectBookName(projectName))}</Project>`);
     const tableSections = [...monthSectionsOf(conversationWriting.chapters, naming.name), ...artifactSectionOf(conversationWriting.versions)];
     const tableManualWords = conversationWriting.versions.length === 0 ? ['Index'] : ['Appendix', 'Index'];
     const files = [
@@ -351,10 +356,10 @@ export const projectBook = (
             ...volumeLines(),
             ...schemeLines(scheme),
             ...windowLines(-32, -26),
-            titleLine(plainName(project.name)),
+            titleLine(projectBookName(project.name)),
             authorLine,
             subjectLine('Claude', 'Dougs Claude'),
-            `<About>${titleForm(nameInForm(project.name))}</About>`,
+            `<About>${titleText(projectBookName(project.name))}</About>`,
             ...illustrationLines,
         ], volumeImportLines(folder, folders, folders.claude))),
         writtenFile(join(folder, drawingFileName), drawingText),
@@ -398,7 +403,7 @@ export const projectBook = (
             ...appendLines({ identifier: 'file', type: `.${documentExtension}` }, 0),
         ])));
     }
-    const filesSectionLines = [...chapterNames.flatMap(contentLines), ...parentheticalLines(plainName(project.name))];
+    const filesSectionLines = [...chapterNames.flatMap(contentLines), ...parentheticalLines(projectBookName(project.name))];
     files.push(writtenFile(join(folder, '.table.tsx'), tableFileText(importPath, ['Arrow', 'Index'], [
         ...sectionLines('The project and its files', filesSectionLines),
         ...sectionLines('Where this book stands', []),

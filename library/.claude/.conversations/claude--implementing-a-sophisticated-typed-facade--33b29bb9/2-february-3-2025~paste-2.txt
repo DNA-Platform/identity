@@ -1,0 +1,284 @@
+class $TestApp {
+    x: any = 0;
+    y: any = 0;
+    name = "App";
+    typename = "Application";
+    documents: $TestDocument[] = [new $TestDocument("1", true), new $TestDocument("2", false)];
+    activeDocument(): $TestDocument { return this.documents[0]; }
+}
+
+class $TestDocument {
+    typename = "Document";
+    layers: $TestLayer[] = [new $TestLayer("1", true), new $TestLayer("2", false)];
+    activeLayer(): $TestLayer { return this.layers[0]; }
+    get(index: number) { return this.layers[index]; }
+    constructor(public name: string, public active: boolean) { }
+}
+
+class $TestLayer {
+    constructor(public name: string, public active: boolean) { }
+}
+
+var $testApp = new $TestApp();
+
+class $CommandTests extends TestClass {
+    testConstructor() {
+        var expression = "$testApp.x = $testApp.name;";
+        var cmd = new $Command(expression);
+        var actual = cmd.expression();
+        var expected = expression;
+        var m = this.assertEquals(actual, expected, "Command should store expression exactly", false); if (m) throw m;
+
+        var ref = new $Reference("$testApp.name");
+        var cmd = new $Command(ref);
+        var actual = cmd.expression();
+        var expected = "$testApp.name;";
+        var m = this.assertEquals(actual, expected, "Command should add semicolon to references", false); if (m) throw m;
+    }
+
+    testAdd() {
+        var expression = "$testApp.x = $testApp.name;";
+        var cmd = new $Command(expression);
+        var m = this.assertEquals(expression, cmd.expression(), "Command should store initial expression", false); if (m) throw m;
+
+        var secondExpression = "$testApp.y = $testApp.x;";
+        var newCmd = cmd.add(secondExpression);
+
+        var actual = newCmd.expression();
+        var expected = "$testApp.x = $testApp.name;\n$testApp.y = $testApp.x;";
+        var m = this.assertEquals(actual, expected, "Add should combine expressions with newline", false); if (m) throw m;
+    }
+
+    testExecute() {
+        var expression = "$testApp.x = $testApp.name;";
+        var cmd = new $Command(expression);
+        cmd.execute();
+        
+        var actual = $testApp.x;
+        var expected = "App";
+        var m = this.assertEquals(actual, expected, "Execute should run the command", false); if (m) throw m;
+    }
+}
+
+
+class $VariableReferenceTests extends TestClass {
+    testAddress(): void {
+        var ref = new $VariableReference("$testApp");
+        var actual = ref.address();
+        var actual2 = ref.loc();
+        var expected = "$testApp";
+        var m = this.assertEquals(actual, expected, "The address is the name of the variable", false); if (m) throw m;
+        var m = this.assertEquals(actual2, expected, "The address is the name of the variable", false); if (m) throw m;
+    }
+
+    testResolve(): void {
+        var ref = new $VariableReference("$testApp");
+        var actual = ref.$resolve();
+        var expected = $testApp;
+        var m = this.assertEquals(actual, expected, "Variable reference.$resolves to global object", false); if (m) throw m;
+    }
+}
+
+class $PropertyReferenceTests extends TestClass {
+    testAddress() {
+        var obj = new $Reference("$testApp");
+        var ref = new $PropertyReference(obj, "name");
+        var actual = ref.address();
+        var expected = "$testApp.name";
+        var m = this.assertEquals(actual, expected, "Property reference creates correct path", false); if (m) throw m;
+        
+        var nested = new $PropertyReference(obj, "documents[0].name");
+        var actual = nested.address();
+        var expected = "$testApp.documents[0].name";
+        var m = this.assertEquals(actual, expected, "Property reference handles nested paths", false); if (m) throw m;
+    }
+
+    testObject() {
+        var obj = new $Reference("$testApp");
+        var ref = new $PropertyReference(obj, "name");
+        var actual = ref.object().address();
+        var expected = "$testApp";
+        var m = this.assertEquals(actual, expected, "Property reference keeps object reference", false); if (m) throw m;
+    }
+
+    testResolve() {
+        var obj = new $Reference("$testApp");
+        var ref = new $PropertyReference(obj, "name");
+        var actual = ref.$resolve();
+        var expected = "App";
+        var m = this.assertEquals(actual, expected, "Property reference.$resolves simple property", false); if (m) throw m;
+
+        var nested = new $PropertyReference(obj, "documents[0].name");
+        var actual = nested.$resolve();
+        var expected = "1";
+        var m = this.assertEquals(actual, expected, "Property reference.$resolves nested path", false); if (m) throw m;
+    }
+}
+
+class $ArrayReferenceTests extends TestClass {
+    testAddress() {
+        var obj = new $Reference("$testApp");
+        var ref = new $ArrayReference(obj, "documents", (a, i) => new $IndexerReference(a, i));
+        var actual = ref.address();
+        var expected = "$testApp.documents";
+        var m = this.assertEquals(actual, expected, "Array reference creates path to array", false); if (m) throw m;
+    }
+
+    testAt() {
+        var obj = new $Reference("$testApp");
+        var ref = new $ArrayReference(obj, "documents", (a, i) => new $IndexerReference(a, i));
+        
+        var element = ref.at(0);
+        var actual = element.address();
+        var expected = "$testApp.documents[0]";
+        var m = this.assertEquals(actual, expected, "At returns indexed reference", false); if (m) throw m;
+
+        var element2 = ref.at(1);
+        var actual = element2.address();
+        var expected = "$testApp.documents[1]";
+        var m = this.assertEquals(actual, expected, "At works with different indices", false); if (m) throw m;
+    }
+
+    testResolve() {
+        var obj = new $Reference("$testApp");
+        var ref = new $ArrayReference(obj, "documents", (a, i) => new $IndexerReference(a, i));
+        var actual = ref.$resolve();
+        var expected = $testApp.documents;
+        var m = this.assertEquals(actual, expected, "Array reference.$resolves to array", false); if (m) throw m;
+    }
+}
+
+class $MethodCallReferenceTests extends TestClass {
+    testAddress() {
+        var obj = new $Reference("$testApp");
+        var method = obj.$get("activeDocument");
+        var ref = new $MethodCallReference(method, []);
+        var actual = ref.address();
+        var expected = "$testApp.activeDocument()";
+        var m = this.assertEquals(actual, expected, "Method call formats with no args", false); if (m) throw m;
+        
+        var ref2 = new $MethodCallReference(method, [1, $str("test")]);
+        var actual = ref2.address();
+        var expected = '$testApp.activeDocument(1,"test")';
+        var m = this.assertEquals(actual, expected, "Method call formats with args", false); if (m) throw m;
+    }
+
+    testResolve() {
+        var obj = new $Reference("$testApp");
+        var method = obj.$get("activeDocument");
+        var ref = new $MethodCallReference(method, []);
+        var actual = ref.$resolve();
+        var expected = $testApp.documents[0];
+        var m = this.assertEquals(actual, expected, "Method call.$resolves to return value", false); if (m) throw m;
+    }
+}
+
+class $FunctionCallReferenceTests extends TestClass {
+    testAddress() {
+        var funcRef = new $Reference("$testApp.activeDocument");
+        var ref = new $FunctionCallReference(funcRef, []);
+        var actual = ref.address();
+        var expected = "$testApp.activeDocument()";
+        var m = this.assertEquals(actual, expected, "Function call formats with no args", false); if (m) throw m;
+
+        var ref2 = new $FunctionCallReference(funcRef, [0, $str("test")]);
+        var actual = ref2.address();
+        var expected = '$testApp.activeDocument(0,"test")';
+        var m = this.assertEquals(actual, expected, "Function call formats with mixed args", false); if (m) throw m;
+    }
+
+    testFunc() {
+        var funcRef = new $Reference("$testApp.activeDocument");
+        var ref = new $FunctionCallReference(funcRef, []);
+        var actual = ref.func().address();
+        var expected = "$testApp.activeDocument";
+        var m = this.assertEquals(actual, expected, "Func returns function reference", false); if (m) throw m;
+    }
+
+    testArgs() {
+        var funcRef = new $Reference("$testApp.activeDocument");
+        var ref = new $FunctionCallReference(funcRef, [0, $str("test")]);
+        var actual = ref.args().length();
+        var expected = 2;
+        var m = this.assertEquals(actual, expected, "Args returns correct number of arguments", false); if (m) throw m;
+
+        var firstArg = ref.args().first().address();
+        var expectedFirstArg = "0";
+        var m = this.assertEquals(firstArg, expectedFirstArg, "Arguments are converted to references", false); if (m) throw m;
+    }
+
+    testResolve() {
+        var funcRef = new $Reference("$testApp.activeDocument");
+        var ref = new $FunctionCallReference(funcRef, []);
+        var actual = ref.$resolve();
+        var expected = $testApp.documents[0];
+        var m = this.assertEquals(actual, expected, "Function call.$resolves to return value", false); if (m) throw m;
+    }
+}
+
+class $IndexerReferenceTests extends TestClass {
+    testAddress() {
+        var arr = new $Reference("$testApp.documents");
+        var ref = new $IndexerReference(arr, 0);
+        var actual = ref.address();
+        var expected = "$testApp.documents[0]";
+        var m = this.assertEquals(actual, expected, "Index reference handles numeric index", false); if (m) throw m;
+
+        var ref2 = new $IndexerReference(arr, "name");
+        var actual = ref2.address();
+        var expected = '$testApp.documents["name"]';
+        var m = this.assertEquals(actual, expected, "Index reference handles string key", false); if (m) throw m;
+    }
+
+    testResolve() {
+        var arr = new $Reference("$testApp.documents");
+        var ref = new $IndexerReference(arr, 0);
+        var actual = ref.$resolve();
+        var expected = $testApp.documents[0];
+        var m = this.assertEquals(actual, expected, "Index reference.$resolves array element", false); if (m) throw m;
+    }
+}
+
+class $ArrayLiteralReferenceTests extends TestClass {
+    testAddress() {
+        var ref = new $ArrayLiteralReference([1, $str("test"), true]);
+        var actual = ref.address();
+        var expected = '[1,"test",true]';
+        var m = this.assertEquals(actual, expected, "Array literal formats mixed values", false); if (m) throw m;
+
+        var ref2 = new $ArrayLiteralReference([]);
+        var actual = ref2.address();
+        var expected = "[]";
+        var m = this.assertEquals(actual, expected, "Array literal handles empty array", false); if (m) throw m;
+    }
+
+    testResolve() {
+        var testArray = [1, $str("test").loc(), true];
+        var ref = new $ArrayLiteralReference(testArray);
+        var actual = ref.$resolve();
+        var expected = [1, "test", true];
+        var m = this.assertEquals(actual, expected, "Array literal.$resolves to original array", false); if (m) throw m;
+    }
+}
+
+class $StringLiteralReferenceTests extends TestClass {
+    testAddress() {
+        var ref = new $StringLiteralReference("test");
+        var actual = ref.address();
+        var expected = '"test"';
+        var m = this.assertEquals(actual, expected, "String literal uses double quotes by default", false); if (m) throw m;
+
+        var ref2 = new $StringLiteralReference("test", "'");
+        var actual = ref2.address();
+        var expected = "'test'";
+        var m = this.assertEquals(actual, expected, "String literal respects quote type", false); if (m) throw m;
+    }
+
+    testResolve() {
+        var testString = "test";
+        var ref = new $StringLiteralReference(testString);
+        var actual = ref.$resolve();
+        var expected = testString;
+        var m = this.assertEquals(actual, expected, "String literal.$resolves to original string", false); if (m) throw m;
+    }
+}

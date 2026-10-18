@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Hedging geopolitical oil disruption with US supply alternatives ]]( claude--Hedging geopolitical oil disruption with US supply alternatives--957941dd )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>957941dd-ea86-448e-8f95-e22c9632b5be</Origin>
         <Paragraph>

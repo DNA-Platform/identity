@@ -1,0 +1,246 @@
+import * as vscode from 'vscode';
+import * as svgson from 'svgson';
+import * as ts from 'typescript';
+
+export class SvgDocument {
+    private uri: vscode.Uri;
+    private document: vscode.TextDocument;
+    private _ast?: svgson.INode;
+    private dirty: boolean = false;
+    private initialized: boolean = false;
+
+    constructor(document: vscode.TextDocument) {
+        this.uri = document.uri;
+        this.document = document;
+    }
+
+    get ast(): svgson.INode {
+        if (!this.initialized || !this._ast) {
+            throw new Error('SvgDocument not initialized. Call initialize() first.');
+        }
+        return this._ast;
+    }
+
+    async initialize(): Promise<void> {
+        if (this.initialized) return;
+        
+        const content = this.document.getText() || '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"></svg>';
+        this._ast = await svgson.parse(content);
+        this.initialized = true;
+    }
+
+    markDirty(): void {
+        this.dirty = true;
+    }
+
+    async sync(): Promise<void> {
+        if (!this.dirty || !this._ast) return;
+
+        const newContent = svgson.stringify(this._ast);
+        const edit = new vscode.WorkspaceEdit();
+        edit.replace(
+            this.uri,
+            new vscode.Range(
+                this.document.positionAt(0),
+                this.document.positionAt(this.document.getText().length)
+            ),
+            newContent
+        );
+        
+        await vscode.workspace.applyEdit(edit);
+        this.dirty = false;
+    }
+}
+
+
+
+export class TypeScriptServiceRepl {
+    private document: SvgDocument | null = null;
+    private terminal: vscode.Terminal;
+    private virtualDocUri: vscode.Uri;
+    private _virtualDoc?: vscode.TextDocument;
+    private initialized: boolean = false;
+
+    get ast(): vscode.TextDocument {
+        if (!this.initialized || !this._virtualDoc) {
+            throw new Error('The TypeScript REPL has not been initialized yet.');
+        }
+        return this._virtualDoc;
+    }
+
+    constructor() {
+        this.terminal = vscode.window.createTerminal({
+            name: 'TypeScript SVG REPL',
+            shellPath: process.platform === 'win32' ? 'cmd.exe' : 'bash'
+        });
+
+        // Create a virtual TypeScript document for our REPL
+        this.virtualDocUri = vscode.Uri.parse('untitled:repl.ts');
+    }
+
+    async initialize() {
+        // Create our virtual TypeScript document
+        this._virtualDoc = await vscode.workspace.openTextDocument({
+            language: 'typescript',
+            content: ''
+        });
+        this.initialized = true;
+    }
+
+    async setActiveDocument(document: SvgDocument) {
+        this.document = document;
+
+        // Update type definitions in the virtual document
+        const typeContent = `
+            interface SvgNode {
+                name: string;
+                type: string;
+                value: string;
+                attributes: { [key: string]: string };
+                children: SvgNode[];
+            }
+
+            declare const svg: SvgNode;
+            declare function markDirty(): void;
+            declare function sync(): Promise<void>;
+        `;
+
+        const edit = new vscode.WorkspaceEdit();
+        edit.insert(this.virtualDocUri, new vscode.Position(0, 0), typeContent);
+        await vscode.workspace.applyEdit(edit);
+    }
+
+    async executeCommand(command: string) {
+        if (!this.document) {
+            return;
+        }
+
+        try {
+            // Get TypeScript diagnostics and compilation
+            const diagnostics = await vscode.languages.getDiagnostics(this.virtualDocUri);
+            if (diagnostics.length > 0) {
+                const errors = diagnostics
+                    .filter(d => d.severity === vscode.DiagnosticSeverity.Error)
+                    .map(d => d.message)
+                    .join('\n');
+                if (errors) {
+                    this.terminal.sendText(`// TypeScript Errors:\n${errors}`);
+                    return;
+                }
+            }
+
+            // Execute the command with our context
+            const context = {
+                svg: this.document.ast,
+                markDirty: () => this.document?.markDirty(),
+                sync: () => this.document?.sync()
+            };
+
+            const result = new Function('context', `
+                with (context) {
+                    ${command}
+                }
+            `)(context);
+
+            if (result !== undefined) {
+                this.terminal.sendText(`// Result: ${JSON.stringify(result, null, 2)}`);
+            }
+
+            await this.document?.sync();
+        } catch (error) {
+            this.terminal.sendText(`// Error: ${error}`);
+        }
+    }
+
+    show() {
+        this.terminal.show();
+    }
+
+    dispose() {
+        this.terminal.dispose();
+    }
+}
+
+// Commands registration helper
+export function registerReplCommands(
+    context: vscode.ExtensionContext, 
+    repl: TypeScriptServiceRepl
+) {
+    context.subscriptions.push(
+        vscode.commands.registerCommand('extension.openSvgRepl', () => {
+            repl.show();
+        })
+    );
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('extension.executeReplCommand', async () => {
+            const command = await vscode.window.showInputBox({
+                prompt: 'Enter REPL command',
+                ignoreFocusOut: true
+            });
+
+            if (command) {
+                await repl.executeCommand(command);
+            }
+        })
+    );
+}
+
+export function activate(context: vscode.ExtensionContext) {
+    let currentDocument: SvgDocument | null = null;
+    const repl = new TypeScriptServiceRepl();
+
+    // Register REPL commands
+    registerReplCommands(context, repl);
+
+    // Keep your existing command
+    context.subscriptions.push(
+        vscode.commands.registerCommand('extension.executeSvgScript', async () => {
+            const editor = vscode.window.activeTextEditor;
+            if (!editor || !currentDocument) {
+                vscode.window.showErrorMessage('No SVG document is currently active');
+                return;
+            }
+
+            const script = await vscode.window.showInputBox({
+                prompt: 'Enter script to execute on the SVG'
+            });
+
+            if (!script) return;
+
+            try {
+                const context = {
+                    svg: currentDocument.ast,
+                    markDirty: () => currentDocument?.markDirty()
+                };
+
+                new Function('context', `
+                    with (context) {
+                        ${script}
+                    }
+                `)(context);
+
+                await currentDocument.sync();
+            } catch (error) {
+                vscode.window.showErrorMessage(`Error executing script: ${error}`);
+            }
+        })
+    );
+
+    context.subscriptions.push(
+        vscode.window.onDidChangeActiveTextEditor(async (editor) => {
+            if (editor?.document.languageId === 'xml') {
+                currentDocument = new SvgDocument(editor.document);
+                await currentDocument.initialize();
+                repl.setActiveDocument(currentDocument);
+            }
+        })
+    );
+
+    // Clean up
+    context.subscriptions.push({
+        dispose: () => {
+            repl.dispose();
+        }
+    });
+}

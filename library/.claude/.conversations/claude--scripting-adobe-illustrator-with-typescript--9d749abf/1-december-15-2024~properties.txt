@@ -1,0 +1,473 @@
+class SetProperties<TQueryItem extends QueryItem = QueryItem> {
+    protected _query: TQueryItem;
+    
+    constructor(query: TQueryItem, queryName?: string) {
+        if (query === undefined) throw "queryItem undefined";
+        this._query = query;
+        if (query !== undefined)
+            this._query.name(queryName);
+    }
+
+    name(name: string): this { this._query.name(name); return this; }
+    index(newIndex: number): this { this._query.moveTo(newIndex); return this; }
+    locationToFront(): this { this._query.moveTo(0); return this; }
+    locationToBack(): this { this._query.moveTo(-1); return this; }
+    locationBefore(referenceItem: QueryItem) { this._query.move(referenceItem, ElementPlacement.PLACEBEFORE); }
+    locationAfter(referenceItem: QueryItem) { this._query.move(referenceItem, ElementPlacement.PLACEAFTER); }
+    q():QueryItem { return this._query; }
+}
+
+class SetPageItemProperties<TQueryItem extends QueryItem = PageItemQuery> extends SetProperties<PageItemQuery> {
+    protected _pageItemQuery(): TQueryItem { return this._query as any; }
+    URL(value: string): this { this._query.item().URL = value; return this; }
+    artworkKnockout(value: KnockoutState): this { this._query.item().artworkKnockout = value; return this; }
+    blendingMode(value: BlendModes): this { this._query.item().blendingMode = value; return this; }
+    height(value: number): this { this._query.item().height = value; return this; }
+    hidden(value: boolean): this { this._query.item().hidden = value; return this; }
+    isIsolated(value: boolean): this { this._query.item().isIsolated = value; return this; }
+    left(value: number): this { this._query.item().left = value; return this; }
+    locked(value: boolean): this { this._query.item().locked = value; return this; }
+    note(value: string): this { this._query.item().note = value; return this; }
+    opacity(value: number): this { this._query.item().opacity = value; return this; }
+    pixelAligned(value: boolean): this { this._query.item().pixelAligned = value; return this; }
+    position(value: Point | [number, number]): this { this._query.item().position = value; return this; }
+    selected(value: boolean): this { this._query.item().selected = value; return this; }
+    sliced(value: boolean): this { this._query.item().sliced = value; return this; }
+    top(value: number): this { this._query.item().top = value; return this; }
+    width(value: number): this { this._query.item().width = value; return this; }
+    wrapInside(value: boolean): this { this._query.item().wrapInside = value; return this; }
+    wrapOffset(value: number): this { this._query.item().wrapOffset = value; return this; }
+    wrapped(value: boolean): this { this._query.item().wrapped = value; return this; }
+    q():PageItemQuery { return this._query as any; }
+}
+
+class SetApplicationProperties extends SetProperties<ApplicationQuery> {
+    pasteRemembersLayers(value: boolean): this { this._query.item().pasteRemembersLayers = value; return this; }
+    coordinateSystem(value: CoordinateSystem): this { this._query.item().coordinateSystem = value; return this; }
+    userInteractionLevel(value: UserInteractionLevel): this { this._query.item().userInteractionLevel = value; return this; }
+    q():ApplicationQuery { return this._query as any; }
+}
+
+class SetDocumentProperties extends SetProperties<DocumentQuery> {
+    XMPString(value: string): this { this._query.item().XMPString = value; return this; }
+    activeDataSet(value: DataSet): this { this._query.item().activeDataSet = value; return this; }
+    activeLayer(value: LayerQuery): this { this._query.item().activeLayer = value.item(); return this; }
+    cropBox(value: Rect): this { this._query.item().cropBox = value; return this; }
+    cropStyle(value: CropOptions): this { this._query.item().cropStyle = value; return this; }
+    defaultFillColor(value: Color): this { this._query.item().defaultFillColor = value; return this; }
+    defaultFillOverprint(value: boolean): this { this._query.item().defaultFillOverprint = value; return this; }
+    defaultFilled(value: boolean): this { this._query.item().defaultFilled = value; return this; }
+    defaultStrokeCap(value: StrokeCap): this { this._query.item().defaultStrokeCap = value; return this; }
+    defaultStrokeColor(value: Color): this { this._query.item().defaultStrokeColor = value; return this; }
+    defaultStrokeDashOffset(value: number): this { this._query.item().defaultStrokeDashOffset = value; return this; }
+    defaultStrokeDashes(value: number[]): this { this._query.item().defaultStrokeDashes = value; return this; }
+    defaultStrokeJoin(value: StrokeJoin): this { this._query.item().defaultStrokeJoin = value; return this; }
+    defaultStrokeMiterLimit(value: number): this { this._query.item().defaultStrokeMiterLimit = value; return this; }
+    defaultStrokeOverprint(value: boolean): this { this._query.item().defaultStrokeOverprint = value; return this; }
+    defaultStrokeWidth(value: number): this { this._query.item().defaultStrokeWidth = value; return this; }
+    defaultStroked(value: boolean): this { this._query.item().defaultStroked = value; return this; }
+    pageOrigin(value: Point | [number, number]): this { this._query.item().pageOrigin = value; return this; }
+    rasterEffectSettings(value: RasterEffectOptions): this { this._query.item().rasterEffectSettings = value; return this; }
+    rulerOrigin(value: Point | [number, number]): this { this._query.item().rulerOrigin = value; return this; }
+    saved(value: boolean): this { this._query.item().saved = value; return this; }
+    selection(value: any): this { this._query.item().selection = value; return this; }
+    variablesLocked(value: boolean): this { this._query.item().variablesLocked = value; return this; }
+    q():DocumentQuery { return this._query as any; }
+}
+
+class SetArtboardProperties extends SetProperties<ArtboardQuery> {
+    artboardRect(value: Rect): this { this._query.item().artboardRect = value; return this; }
+    rulerOrigin(value: Point | [number, number]): this { this._query.item().rulerOrigin = value; return this; }
+    rulerPAR(value: number): this { this._query.item().rulerPAR = value; return this; }
+    showCenter(value: boolean): this { this._query.item().showCenter = value; return this; }
+    showCrossHairs(value: boolean): this { this._query.item().showCrossHairs = value; return this; }
+    showSafeAreas(value: boolean): this { this._query.item().showSafeAreas = value; return this; }
+    q():ArtboardQuery { return this._query as any; }
+}
+
+class SetLayerProperties extends SetProperties<LayerQuery> {
+    artworkKnockout(value: KnockoutState): this { this._query.item().artworkKnockout = value; return this; }
+    blendingMode(value: BlendModes): this { this._query.item().blendingMode = value; return this; }
+    color(value: RGBColor): this { this._query.item().color = value; return this; }
+    dimPlacedImages(value: boolean): this { this._query.item().dimPlacedImages = value; return this; }
+    hasSelectedArtwork(value: boolean): this { this._query.item().hasSelectedArtwork = value; return this; }
+    isIsolated(value: boolean): this { this._query.item().isIsolated = value; return this; }
+    locked(value: boolean): this { this._query.item().locked = value; return this; }
+    opacity(value: number): this { this._query.item().opacity = value; return this; }
+    preview(value: boolean): this { this._query.item().preview = value; return this; }
+    printable(value: boolean): this { this._query.item().printable = value; return this; }
+    sliced(value: boolean): this { this._query.item().sliced = value; return this; }
+    visible(value: boolean): this { this._query.item().visible = value; return this; }
+    q():LayerQuery { return this._query as any; }
+}
+
+class SetStoryProperties extends SetProperties<StoryQuery> {
+    q():StoryQuery { return this._query as any; }
+}
+
+class SetGroupItemProperties extends SetPageItemProperties<GroupItemQuery> {
+    clipped(value: boolean): this { this._pageItemQuery().item().clipped = value; return this; }
+    q():GroupItemQuery { return this._query as any; }
+}
+
+class SetPathItemProperties extends SetPageItemProperties<PathItemQuery> {
+    clipping(value: boolean): this { this._pageItemQuery().item().clipping = value; return this; }
+    closed(value: boolean): this { this._pageItemQuery().item().closed = value; return this; }
+    evenodd(value: boolean): this { this._pageItemQuery().item().evenodd = value; return this; }
+    fillColor(value: Color): this { this._pageItemQuery().item().fillColor = value; return this; }
+    fillOverprint(value: boolean): this { this._pageItemQuery().item().fillOverprint = value; return this; }
+    filled(value: boolean): this { this._pageItemQuery().item().filled = value; return this; }
+    guides(value: boolean): this { this._pageItemQuery().item().guides = value; return this; }
+    polarity(value: PolarityValues): this { this._pageItemQuery().item().polarity = value; return this; }
+    resolution(value: number): this { this._pageItemQuery().item().resolution = value; return this; }
+    strokeCap(value: StrokeCap): this { this._pageItemQuery().item().strokeCap = value; return this; }
+    strokeColor(value: Color): this { this._pageItemQuery().item().strokeColor = value; return this; }
+    strokeDashOffset(value: number): this { this._pageItemQuery().item().strokeDashOffset = value; return this; }
+    strokeDashes(value: number[]): this { this._pageItemQuery().item().strokeDashes = value; return this; }
+    strokeJoin(value: StrokeJoin): this { this._pageItemQuery().item().strokeJoin = value; return this; }
+    strokeMiterLimit(value: number): this { this._pageItemQuery().item().strokeMiterLimit = value; return this; }
+    strokeOverprint(value: boolean): this { this._pageItemQuery().item().strokeOverprint = value; return this; }
+    strokeWidth(value: number): this { this._pageItemQuery().item().strokeWidth = value; return this; }
+    stroked(value: boolean): this { this._pageItemQuery().item().stroked = value; return this; }
+    q():PathItemQuery { return this._query as any; }
+}
+
+class SetTextFrameProperties extends SetPageItemProperties<TextFrameQuery> {
+    anchor(value: Point | [number, number]): this { this._pageItemQuery().item().anchor = value; return this; }
+    antialias(value: TextAntialias): this { this._pageItemQuery().item().antialias = value; return this; }
+    columnCount(value: number): this { this._pageItemQuery().item().columnCount = value; return this; }
+    columnGutter(value: number): this { this._pageItemQuery().item().columnGutter = value; return this; }
+    contents(value: string): this { this._pageItemQuery().item().contents = value; return this; }
+    endTValue(value: number): this { this._pageItemQuery().item().endTValue = value; return this; }
+    firstBaseline(value: FirstBaselineType): this { this._pageItemQuery().item().firstBaseline = value; return this; }
+    firstBaselineMin(value: number): this { this._pageItemQuery().item().firstBaselineMin = value; return this; }
+    flowLinksHorizontally(value: boolean): this { this._pageItemQuery().item().flowLinksHorizontally = value; return this; }
+    orientation(value: TextOrientation): this { this._pageItemQuery().item().orientation = value; return this; }
+    rowCount(value: number): this { this._pageItemQuery().item().rowCount = value; return this; }
+    rowGutter(value: number): this { this._pageItemQuery().item().rowGutter = value; return this; }
+    spacing(value: number): this { this._pageItemQuery().item().spacing = value; return this; }
+    startTValue(value: number): this { this._pageItemQuery().item().startTValue = value; return this; }
+    q():TextFrameQuery { return this._query as any; }
+}
+
+class SetGradientProperties extends SetProperties<GradientQuery> {
+    name(value: string): this { this._query.item().name = value; return this; }
+    type(value: GradientType): this { this._query.item().type = value; return this; }
+    q():GradientQuery { return this._query as any; }
+}
+
+class SetCompoundPathItemProperties extends SetPageItemProperties<CompoundPathItemQuery> {
+    q():CompoundPathItemQuery { return this._query as any; }
+}
+
+class SetRasterItemProperties extends SetPageItemProperties<RasterItemQuery> {
+    boundingBox(value: Rect): this { this._pageItemQuery().item().boundingBox = value; return this; }
+    embedded(value: boolean): this { this._pageItemQuery().item().embedded = value; return this; }
+    matrix(value: Matrix): this { this._pageItemQuery().item().matrix = value; return this; }
+    overprint(value: boolean): this { this._pageItemQuery().item().overprint = value; return this; }
+    q():RasterItemQuery { return this._query as any; }
+}
+
+class SetPlacedItemProperties extends SetPageItemProperties<PlacedItemQuery> {
+    file(value: File): this { this._pageItemQuery().item().file = value; return this; }
+    matrix(value: Matrix): this { this._pageItemQuery().item().matrix = value; return this; }
+    q():PlacedItemQuery { return this._query as any; }
+}
+
+class SetSymbolItemProperties extends SetPageItemProperties<SymbolItemQuery> {
+    symbol(value: Symbol): this { this._pageItemQuery().item().symbol = value; return this; }
+    q():SymbolItemQuery { return this._query as any; }
+}
+
+class SetMeshItemProperties extends SetPageItemProperties<MeshItemQuery> {
+    q():MeshItemQuery { return this._query as any; }
+}
+
+class SetPluginItemProperties extends SetPageItemProperties<PluginItemQuery> {
+    q():PluginItemQuery { return this._query as any; }
+}
+
+class SetGraphItemProperties extends SetPageItemProperties<GraphItemQuery> {
+    contentVariable(value: any): this { this._pageItemQuery().item().contentVariable = value; return this; }
+    q():GraphItemQuery { return this._query as any; }
+}
+
+class SetLegacyTextItemProperties extends SetPageItemProperties<LegacyTextItemQuery> {
+    q():LegacyTextItemQuery { return this._query as any; }
+}
+
+class SetNonNativeItemProperties extends SetPageItemProperties<NonNativeItemQuery> {
+    q():NonNativeItemQuery { return this._query as any; }
+}
+
+class SetSwatchProperties extends SetProperties<SwatchQuery> {
+    color(value: Color): this { this.q().item().color = value; return this; }
+    name(value: string): this { this.q().item().name = value; return this; }
+    q():SwatchQuery { return this._query as any; }
+}
+
+class SetBrushProperties extends SetProperties<BrushQuery> {
+    name(value: string): this { this.q().item().name = value; return this; }
+    q():BrushQuery { return this._query as any; }
+}
+
+class SetTagProperties extends SetProperties<TagQuery> {
+    name(value: string): this { this.q().item().name = value; return this; }
+    value(value: string): this { this.q().item().value = value; return this; }
+    q():TagQuery { return this._query as any; }
+}
+
+class SetSymbolProperties extends SetProperties<SymbolQuery> {
+    name(value: string): this { this.q().item().name = value; return this; }
+    q():SymbolQuery { return this._query as any; }
+}
+
+class SetTextRangeProperties extends SetProperties<TextRangeQuery> {
+    characterOffset(value: number): this { this.q().item().characterOffset = value; return this; }
+    contents(value: string): this { this.q().item().contents = value; return this; }
+    kerning(value: number): this { this.q().item().kerning = value; return this; }
+    length(value: number): this { this.q().item().length = value; return this; }
+    q():TextRangeQuery { return this._query as any; }
+}
+
+class SetInsertionPointProperties extends SetProperties<InsertionPointQuery> {
+    q():InsertionPointQuery { return this._query as any; }
+}
+
+class SetParagraphStyleProperties extends SetProperties<ParagraphStyleQuery> {
+    q():ParagraphStyleQuery { return this._query as any; }
+}
+
+class SetPatternProperties extends SetProperties<PatternQuery> {
+    q():PatternQuery { return this._query as any; }
+}
+
+class SetSpotProperties extends SetProperties<SpotQuery> {
+    color(value: Color): this { this.q().item().color = value; return this; }
+    colorType(value: ColorModel): this { this.q().item().colorType = value; return this; }
+    q():SpotQuery { return this._query as any; }
+}
+
+class SetCharacterStyleProperties extends SetProperties<CharacterStyleQuery> {
+    q():CharacterStyleQuery { return this._query as any; }
+}
+
+class SetArtStyleProperties extends SetProperties<ArtStyleQuery> {
+    q():ArtStyleQuery { return this._query as any; }
+}
+
+class SetVariableProperties extends SetProperties<VariableQuery> {
+    kind(value: VariableKind): this { this.q().item().kind = value; return this; }
+    q():VariableQuery { return this._query as any; }
+}
+
+class SetDataSetProperties extends SetProperties<DataSetQuery> {
+    q():DataSetQuery { return this._query as any; }
+}
+
+class SetViewProperties extends SetProperties<ViewQuery> {
+    centerPoint(value: Point | [number, number]): this { this.q().item().centerPoint = value; return this; }
+    screenMode(value: ScreenMode): this { this.q().item().screenMode = value; return this; }
+    zoom(value: number): this { this.q().item().zoom = value; return this; }
+    q():ViewQuery { return this._query as any; }
+}
+
+class SetPathPointProperties extends SetProperties<PathPointQuery> {
+    anchor(value: Position): this { this.q().anchor(value); return this; }
+    leftDirection(value: Position): this { this.q().leftDirection(value); return this; }
+    pointType(value: PointType): this { this.q().item().pointType = value; return this; }
+    rightDirection(value: Position): this { this.q().rightDirection(value); return this; }
+    selected(value: PathPointSelection): this { this.q().item().selected = value; return this; }
+    q():PathPointQuery { return this._query as any; }
+}
+
+class SetGradientStopProperties extends SetProperties<GradientStopQuery> {
+    color(value: Color): this { this.q().item().color = value; return this; }
+    midPoint(value: number): this { this.q().item().midPoint = value; return this; }
+    opacity(value: number): this { this.q().item().opacity = value; return this; }
+    rampPoint(value: number): this { this.q().item().rampPoint = value; return this; }
+    q():GradientStopQuery { return this._query as any; }
+}
+
+class SetPropertiesTests extends AppTestClass {
+    constructor() {
+        super();
+        this.decorateExceptions = false;
+    }
+
+    testIndex(): void {
+        var doc = api.activeDocument();
+        var layer = doc.activeLayer();
+
+        // Test moving in empty layer
+        const path1 = layer.pathItems().createPathItem("Path 1");
+        path1.set().index(0);
+        this.assertEquals(path1.index(), 0, "Single item should stay at index 0");
+
+        // Test moving with multiple items
+        const path2 = layer.pathItems().createPathItem("Path 2");
+        const path3 = layer.pathItems().createPathItem("Path 3");
+        const path4 = layer.pathItems().createPathItem("Path 4");
+        
+        path4.set().index(1);  // Move to middle
+        this.assertEquals(path4.index(), 1, "Path4 should be at index 1");
+        
+        path2.set().index(0);  // Move to front
+        this.assertEquals(path2.index(), 0, "Path2 should be at index 0");
+        
+        path3.set().index(3);  // Move to end
+        this.assertEquals(path3.index(), 3, "Path3 should be at back");
+
+        // Test with new layer
+        const layer2 = doc.layers().create();
+        layer2.set().index(0);
+        this.assertEquals(layer2.index(), 0, "New layer should move to front");
+        
+        // Cleanup
+        layer.pathItems().removeAll();
+        layer2.remove();
+    }
+
+    testLocationToFront(): void {
+        var doc = api.activeDocument();
+        var layer = doc.activeLayer();
+
+        // Test with single item
+        const single = layer.pathItems().create("Single").set().q();
+        single.set().locationToFront();
+        this.assertEquals(single.index(), 0, "Single item should stay at front");
+
+        // Test with three items
+        const back = layer.pathItems().create().set("Back").q();
+        const middle = layer.pathItems().create("Middle").set().q();
+        const front = layer.pathItems().createPathItem("Front");
+        
+        back.set().locationToFront();
+        this.assertEquals(back.index(), 0, "Back item should move to front");
+        this.assertEquals(middle.index(), 2, "Middle item should shift back");
+        
+        middle.set().locationToFront();
+        this.assertEquals(middle.index(), 0, "Middle item should move to front");
+        this.assertEquals(back.index(), 1, "Previous front item should shift back");
+
+        // Test with layers
+        const newLayer = doc.layers().create();
+        newLayer.set().locationToFront();
+        this.assertEquals(newLayer.index(), 0, "New layer should move to front");
+        
+        // Cleanup
+        layer.pathItems().removeAll();
+        newLayer.remove();
+    }
+
+    testLocationToBack(): void {
+        var doc = api.activeDocument();
+        var layer = doc.activeLayer();
+
+        // Create several items in known positions
+        const items = [
+            layer.pathItems().create("Item 1"),
+            layer.pathItems().create("Item 2"),
+            layer.pathItems().create("Item 3"),
+            layer.pathItems().create("Item 4"),
+            layer.pathItems().create("Item 5")
+        ];
+
+        // Test moving front item to back
+        items[0].set().locationToBack();
+        this.assertEquals(items[0].index(), 4, "Front item should move to back");
+        
+        // Test moving middle item to back
+        items[2].set().locationToBack();
+        this.assertEquals(items[2].index(), 4, "Middle item should move to back");
+        this.assertEquals(items[0].index(), 3, "Previous back item should shift up");
+
+        // Test with layers
+        const newLayer = doc.layers().create();
+        const newLayer2 = doc.layers().create();
+        newLayer.set().locationToBack();
+        this.assertEquals(newLayer.index(), doc.layers().length() - 1, "Layer should move to back");
+
+        // Cleanup
+        layer.pathItems().removeAll();
+        newLayer.remove();
+        newLayer2.remove();
+    }
+
+    testLocationBefore(): void {
+        var doc = api.activeDocument();
+        var layer = doc.activeLayer();
+
+        // Create test items
+        const items = [
+            layer.pathItems().create("Item 1"),
+            layer.pathItems().create("Item 2"),
+            layer.pathItems().create("Item 3"),
+            layer.pathItems().create("Item 4")
+        ];
+
+        // Test moving to before first item
+        items[3].set().locationBefore(items[0]);
+        this.assertEquals(items[3].index(), 0, "Should move before first item");
+
+        // Test moving to middle
+        items[1].set().locationBefore(items[3]);
+        this.assertEquals(items[1].index(), items[3].index() - 1, "Should move before target item");
+
+        // Test with adjacent items
+        items[2].set().locationBefore(items[1]);
+        this.assertEquals(items[2].index(), items[1].index() - 1, "Should move before adjacent item");
+
+        // Test with layers
+        const newLayer = doc.layers().create();
+        const targetLayer = doc.layers().create();
+        newLayer.set().locationBefore(targetLayer);
+        this.assertEquals(newLayer.index(), targetLayer.index() - 1, "Layer should move before target");
+
+        // Cleanup
+        layer.pathItems().removeAll();
+        newLayer.remove();
+        targetLayer.remove();
+    }
+
+    testLocationAfter(): void {
+        var doc = api.activeDocument();
+        var layer = doc.activeLayer();
+
+        // Create test items
+        const items = [
+            layer.pathItems().create("First"),
+            layer.pathItems().create("Second"),
+            layer.pathItems().create("Third"),
+            layer.pathItems().create("Fourth")
+        ];
+
+        // Test moving to after last item
+        items[0].set().locationAfter(items[3]);
+        this.assertEquals(items[0].index(), 3, "Should move after last item");
+
+        // Test moving to middle
+        items[2].set().locationAfter(items[1]);
+        this.assertEquals(items[2].index(), items[1].index() + 1, "Should move after middle item");
+
+        // Test moving adjacent items
+        items[1].set().locationAfter(items[2]);
+        this.assertEquals(items[1].index(), items[2].index() + 1, "Should move after adjacent item");
+
+        // Test moving multiple times
+        items[3].set().locationAfter(items[0]);
+        items[3].set().locationAfter(items[2]);
+        this.assertEquals(items[3].index(), items[2].index() + 1, "Should handle multiple moves");
+
+        // Test with layers
+        const newLayer = doc.layers().create();
+        const referenceLayer = doc.layers().create();
+        newLayer.set().locationAfter(referenceLayer);
+        this.assertEquals(newLayer.index(), referenceLayer.index() + 1, "Layer should move after reference");
+
+        // Cleanup
+        layer.pathItems().removeAll();
+        newLayer.remove();
+        referenceLayer.remove();
+    }
+}

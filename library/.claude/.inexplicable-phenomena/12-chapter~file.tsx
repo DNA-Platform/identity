@@ -1,0 +1,198 @@
+import { Section } from '../../content/Section';
+import { Title } from '../../content/Title';
+import { Book } from './Book';
+import { Next } from '../../references/Next';
+import { Previous } from '../../references/Previous';
+import { Up } from '../../references/Up';
+import { Logo } from '../../../base/Logo';
+import Organization from '@/base/Organization';
+import { Writing } from '@/writing/Writing';
+
+export class Chapter extends Writing {
+  number?: number;
+  title?: Title;
+  book?: Book;
+  synopsis?: string;
+  next?: Next;
+  previous?: Previous;
+  up?: Up;
+  
+  setupNavigation(): void {
+    if (!this.book) return;
+    
+    const isFirst = this.number === 1;
+    const isLast = this.number === this.book.numberOfChapters;
+    
+    if (!isFirst) {
+      this.previous = new Previous();
+      this.previous.target = this.book.chapters[this.number! - 2];
+    }
+    
+    if (!isLast) {
+      this.next = new Next();
+      this.next.target = this.book.chapters[this.number!];
+    }
+    
+    this.up = new Up();
+    this.up.target = this.book.titlePage || this.book.cover || this.book;
+  }
+  
+  renderHeader(): React.ReactNode {
+    if (!this.book) return null;
+    
+    this.setupNavigation();
+    
+    const hasTableOfContents = !!this.book.tableOfContents;
+    
+    return (
+      <header style={this.headerStyles()}>
+        <div style={this.navBarStyles()}>
+          <div style={this.leftNavStyles()}>
+            {this.renderOrganizationLogo()}
+            {this.previous?.component()}
+            {hasTableOfContents && this.number! > 1 && this.renderTableOfContentsLink()}
+          </div>
+          
+          <div style={this.centerNavStyles()}>
+            {this.up?.component()}
+          </div>
+          
+          <div style={this.rightNavStyles()}>
+            {this.next?.component()}
+          </div>
+        </div>
+        
+        {this.renderChapterTitle()}
+      </header>
+    );
+  }
+  
+  renderOrganizationLogo(): React.ReactNode {
+    // Walk up: Chapter -> Book -> Library -> Organization
+    const library = this.book?.owner;
+    const organization = library?.owner;
+    
+    if (organization && organization instanceof Organization && 'logo' in organization) {
+      const logo = (organization as any).logo;
+      return <div style={{ marginRight: '20px' }}>{logo.component()}</div>;
+    }
+    return null;
+  }
+  
+  renderTableOfContentsLink(): React.ReactNode {
+    const toc = new Previous();
+    toc.target = this.book?.tableOfContents!;
+    return toc.component();
+  }
+  
+  renderChapterTitle(): React.ReactNode {
+    if (!this.title) return null;
+    
+    return (
+      <h1 style={this.chapterTitleStyles()}>
+        Chapter {this.number}: {this.title.text()}
+      </h1>
+    );
+  }
+  
+  // Fixed style methods - return React.CSSProperties objects
+  headerStyles(): React.CSSProperties {
+    return {
+      padding: '20px 40px',
+      borderBottom: '1px solid #e0e0e0',
+      background: '#f8f9fa'
+    };
+  }
+  
+  navBarStyles(): React.CSSProperties {
+    return {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: '20px'
+    };
+  }
+  
+  leftNavStyles(): React.CSSProperties {
+    return {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px'
+    };
+  }
+  
+  centerNavStyles(): React.CSSProperties {
+    return {
+      flex: 1,
+      textAlign: 'center'
+    };
+  }
+  
+  rightNavStyles(): React.CSSProperties {
+    return {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px'
+    };
+  }
+  
+  chapterTitleStyles(): React.CSSProperties {
+    return {
+      margin: '20px 0 0 0',
+      fontSize: '2em',
+      color: '#333'
+    };
+  }
+  
+  containerStyles(): React.CSSProperties {
+    return {
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column'
+    };
+  }
+  
+  contentStyles(): React.CSSProperties {
+    return {
+      flex: 1,
+      maxWidth: '860px',
+      margin: '0 auto',
+      padding: '40px 20px',
+      width: '100%'
+    };
+  }
+  
+  footerStyles(): React.CSSProperties {
+    return {
+      padding: '20px 40px',
+      borderTop: '1px solid #e0e0e0',
+      background: '#f8f9fa',
+      marginTop: 'auto'
+    };
+  }
+  
+  renderFooter(): React.ReactNode {
+    return null;
+  }
+  
+  component(): React.ReactNode {
+    return (
+      <article style={this.containerStyles()}>
+        {this.renderHeader()}
+        
+        <main style={this.contentStyles()}>
+          {this.sections.map(section => (
+            <>section</>
+          ))}
+        </main>
+        
+        <footer style={this.footerStyles()}>
+          {this.renderFooter()}
+        </footer>
+      </article>
+    );
+  }
+}
+
+const chapter = new Chapter();
+export default chapter.render();

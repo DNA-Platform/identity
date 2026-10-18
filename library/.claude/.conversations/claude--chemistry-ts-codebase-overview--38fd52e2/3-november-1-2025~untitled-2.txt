@@ -1,0 +1,139 @@
+export class $Chemical {
+    [$remove] = false;
+    [$destroyed] = false;
+    [$decorators]!: $Reflection;
+    [$cid]: number;
+    [$symbol]: string;
+    [$type]: typeof $Chemical;
+    [$molecule]: $Molecule;
+    [$reaction]: $Reaction;
+    [$$reaction]: $Reaction | undefined;
+    [$component]?: $Component<this>;
+    [$orchestrator]: $BondOrchestrator<this>;
+    [$children]: ReactNode;
+    [$lastProps]: any;
+    [$template]: this;
+
+    static [$$template]: $Chemical;
+    get [$isTemplate]() { return this == this[$type][$$template]; }
+    get [$isBound]() { return this == this?.[$component]?.$chemical; }
+
+    [$parent$]?: $Chemical;
+    get [$parent](): $Chemical | undefined { return this?.[$parent$]; }
+    set [$parent](parent: $Chemical) {
+        if (!$parent)
+            throw new Error(`The parent of ${this[$symbol]} was not specified`);
+        if (this[$parent$])
+            throw new Error(`The parent of ${this[$symbol]} has already been set`);
+        this[$parent$] = parent; 
+    }
+
+    get children() { return this[$children]; }
+
+    get Component(): $Component<this> {
+        if (!this[$component]) {
+            if (!this[$template][$component])
+                this[$template][$component] = this[$template][$createComponent]();
+        }
+        return this[$component] ?? this[$template][$component] as any;
+    }
+
+    get $Component(): $$Component<this> {
+        return this.Component as any;
+    }
+
+    constructor() {
+        this[$cid] = $Chemical[$$getNextCid]();
+        this[$type] = this.constructor as any;
+        if (!this[$type][$$template] || 
+           !(this[$type][$$template] instanceof this[$type]))
+            this[$type][$$template] = this;
+        this[$template] = this;
+        this[$symbol] = this.toString();
+        this[$molecule] = new $Molecule(this);
+        this[$reaction] = new $Reaction(this);
+        this[$orchestrator] = new $BondOrchestrator(this);
+        if (this[$isTemplate]) $set(this[$type], this);
+    }
+
+    view(): ReactNode {
+        return this.children;
+    }
+
+    toString() {
+        if (this[$symbol]) return this[$symbol];
+        return $Chemical[$$createSymbol](this);
+    }
+
+    async mount() { return this[$reaction].mount(); } 
+    async render() { return this[$reaction].render(); } 
+    async layout() { return this[$reaction].layout(); } 
+    async effect() { return this[$reaction].effect(); } 
+    async unmount() { return this[$reaction].unmount(); } 
+
+    [$render](props: any): ReactNode {
+        return this[$orchestrator].render(props);
+    }
+
+    [$props](): any {
+        this[$molecule].reactivate();
+        const props: Record<string, any> = this.children ? 
+            { key: this[$symbol], children: this.children } : 
+            { key: this[$symbol] };
+        for (const bond of this[$molecule].bonds.values())
+            if (bond.isProp && bond.lastValue) 
+                props[bond.property.slice(1)] = bond.lastValue;
+        return props;
+    }
+
+    [$destroy]() {
+        if (this[$isTemplate] || this[$isBound]) return;
+        this[$parent$] = undefined as any
+        this[$molecule]?.destroy();
+        this[$reaction]?.destroy();
+        this[$destroyed] = true;
+    }
+
+    protected [$createComponent](): $Component<this> {
+        if (this[$component]) 
+            throw new Error(`The Component for ${this} has already been created`);
+
+        this.assertViewConstructors();
+        this[$template][$molecule].reactivate();
+        return new $Component$(this[$template]) as any;
+    }
+
+    private assertViewConstructors(prototype?: any, childConstructor?: any) {
+        if (!prototype) prototype = Object.getPrototypeOf(this[$template]);
+        if (!prototype || prototype === $Chemical.prototype) return;
+        
+        const className = prototype.constructor.name;
+        const thisConstructor = prototype[className];
+        if (thisConstructor && typeof thisConstructor !== 'function')
+            throw new Error(`The ${className} class has property ${className} but it's not a function`);
+        if (childConstructor && !thisConstructor)
+            throw new Error(`The ${className} class must have a constructor method named ${className} because child class has one`);
+
+        this.assertViewConstructors(Object.getPrototypeOf(prototype), thisConstructor);
+    }
+
+    static [$$getNextCid](): number { return $Chemical.nextCid++; }
+    private static nextCid = 1;
+
+    static [$$createSymbol](chemical: $Chemical) {
+        return `$Chemistry.${chemical[$type].name}[${chemical[$cid]}]`;
+    }
+
+    static [$$isSymbol](symbol: string): boolean {
+        return symbol.startsWith('$Chemistry.');
+    }
+
+    static [$$parseCid](symbol: string): number | undefined {
+        if (!$Chemical[$$isSymbol](symbol)) return undefined;
+        const match = symbol.match($Chemical.symbolPattern);
+        if (!match) throw new Error(`Invalid chemical symbol: ${symbol}`);
+        return Number(match[1]);
+    }
+
+    private static symbolPattern = /\[(\d+)\]$/;
+}

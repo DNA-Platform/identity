@@ -14,7 +14,7 @@ import {
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
 import { conversationTitle, slugFromName, writtenConversation, type Referents } from './7-the-writing~writing.ts';
 import {
-    conversationBook, libraryEntry, orderRegisterTable, plainName, projectBook, projectEntry,
+    conversationBook, libraryEntry, orderRegisterTable, plainName, projectBook, projectBookName, projectEntry,
     registerBook, registerEntry, schemes, uniqueConversationName, wrappedLines, type BookName,
     type ConversationNaming, type LibraryFolders, type Scheme,
 } from './8-the-books~books.ts';
@@ -40,7 +40,12 @@ const noMappingWords = '  no mapping captured off the application; every convers
 
 export type Account = { name: string; folder: string; address: string; ledger: string };
 export type Configuration = { excluded: Exclusions; collections: Record<string, string[]> };
-export type Selection = { projectName: string | undefined; collectionName: string | undefined; onlyNames: string[] };
+export type Selection = {
+    all: boolean;
+    projectName: string | undefined;
+    collectionName: string | undefined;
+    onlyNames: string[];
+};
 type ConversationOf = (pairing: Pairing) => Conversation;
 
 export type Arguments = Selection & {
@@ -69,6 +74,7 @@ type Reading = {
 };
 
 export const parsedArguments = (argv: string[]): Arguments => ({
+    all: argv.includes('--all'),
     projectName: flagValue(argv, '--project'),
     collectionName: flagValue(argv, '--collection'),
     onlyNames: flagValues(argv, '--only'),
@@ -117,6 +123,7 @@ export const selectedPairings = (
         names.includes(pairing.title) || names.includes(pairing.conversationId);
     const narrowed = (candidates: Pairing[]): Pairing[] =>
         selection.onlyNames.length === 0 ? candidates : candidates.filter(named(selection.onlyNames));
+    if (selection.all) return narrowed(pairings);
     if (selection.projectName !== undefined)
         return narrowed(pairings.filter(pairing => pairing.projectName === selection.projectName));
     if (selection.collectionName !== undefined) {
@@ -159,7 +166,7 @@ export const run = async (args: Arguments): Promise<void> => {
     const selected = selectedPairings(pairings, args, configuration.collections);
     if (selected.length === 0) {
         listHeldConversations(reading, heldRecords, folders);
-        console.log('\nnothing selected — pass --project, --collection or --only');
+        console.log('\nnothing selected — pass --all, --project, --collection or --only');
         return;
     }
     listSelectedConversations(selectionWords(args), selected, conversationOfPairing, folders, heldRecords);
@@ -290,6 +297,7 @@ const archiveCheckReport = (
 };
 
 const selectionWords = (selection: Selection): string => {
+    if (selection.all) return 'every conversation of every account';
     if (selection.projectName !== undefined) return selection.projectName;
     if (selection.collectionName !== undefined) return `the collection ${selection.collectionName}`;
 
@@ -412,11 +420,11 @@ const writtenProject = (
     const schemeIndex = project === undefined ? 0 : namedProjects.findIndex(candidate => candidate.id === project.id) + 1;
     const scheme = schemes[schemeIndex % schemes.length];
     if (project === undefined) return { project, folder: undefined, scheme, files: [] };
-    const wholeProject = args.overwrite && args.projectName !== undefined && args.onlyNames.length === 0;
+    const wholeProject = args.overwrite && (args.all || args.projectName !== undefined) && args.onlyNames.length === 0;
     const drawing = drawingBeside('project');
     const book = projectBook(folders, project, scheme, drawing, args.overwrite, wholeProject);
     const entry = registerEntry(
-        folders, folders.claude, plainName(project.name), book.folder, project.updatedAt, projectCaption, '**',
+        folders, folders.claude, projectBookName(project.name), book.folder, project.updatedAt, projectCaption, '**',
     );
 
     return { project, folder: book.folder, scheme, files: [...book.files, ...entry.files] };
@@ -452,11 +460,18 @@ const writeBooks = (
     const reimportedWords: string[] = [];
     let writtenCount = 0;
     let keptCount = 0;
+    let emptyCount = 0;
     for (const projectName of [...new Set(included.map(pairing => pairing.projectName))]) {
         const written = writtenProject(args, folders, reading, projectName);
         filesTouched.push(...written.files);
         for (const pairing of included.filter(candidate => candidate.projectName === projectName)) {
             const conversation = conversationOfPairing(pairing);
+            // A conversation with no message to show is no book: there is nothing in it to read, and a
+            // conversation's type refuses a day that holds no message. Twenty of them, 2026-10-18.
+            if (shownPath(conversation).length === 0) {
+                emptyCount++;
+                continue;
+            }
             const heldRecord = heldRecords.get(conversation.id);
             const heldBookFolder = heldRecord === undefined || heldRecord.record.bookFolder === ''
                 ? undefined : join(folders.conversations, heldRecord.record.bookFolder);
@@ -523,6 +538,7 @@ const writeBooks = (
     }
     filesTouched.push(...orderRegisterTable(folders.conversations), ...orderRegisterTable(folders.claude));
     console.log(`\nwrote ${countedNoun(writtenCount, 'conversation')}, kept ${keptCount}, `
+        + `${countedNoun(emptyCount, 'conversation')} with no message not written, `
         + `${countedNoun(filesTouched.length, 'file')} touched under ${folders.claude}`);
     if (reimportedWords.length > 0) console.log(['re-imported:', ...reimportedWords].join('\n'));
 

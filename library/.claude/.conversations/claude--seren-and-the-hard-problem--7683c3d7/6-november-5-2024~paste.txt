@@ -1,0 +1,31 @@
+# What is Semantic Reference Theory?
+Semantic Reference Theory is a first-order mathematical theory in the domain of formal logic. It is an abstraction that attempts to provide a substrate for meaning. Therefore it aims to formalize the notion of a semantic structure devoid of form.
+The theory begins with the concept of referents and references. These names are chosen to reflect the fact that the two constructs have meaning only with respect to each other. A referent is the subject of refences. A reference is the subject of referents. You may permit yourself to see these constructs as dots an arrows, but do so in awareness of the facts that the terms alone express very little. Referents aren't symbolic of anything, and so the relational interpretation of a reference is in its most elemental form.
+Referents and references are collectively referred to as a Catalogue, which is a word intended to evoke a systematic structure for a collection of references, with no attachment to any particular system of organization. Imagine a library catalogue where the cards that represent books are replaced with referents and the index numbers are replaced with references. Were you to imagine subjects in your library catalogue, you might imagine them replaced with reference types in an abstract catalogue. Still, even with parts removed, the Catalogue represents an organizational structure that imposes a sense of meaning an referents through references.
+The semantic structure of a Catalogue is captured in the form of axioms that define types of referents and types of references, the canonical reference of a referent, the canonical referent of a type of reference, and the meaning of an interpretation. These are the elements of semantic structure.
+The theory makes no attempt to be complete, in a logical sense. Instead, one uses Semantic Reference Theory by extending it with additional axioms to constrain the structure of their Catalogue so as to provide it with a more specific meaning, while still preserving the core notion of semantics by choosing constraints that preserve the logical consistency of the semantic system defined by the set of axioms. The dots and arrows of Semantic Reference Theory, devoid of meaning on their own, can be made to represent something. For Semantic Reference Theory to provide maximal flexibility is expressing semantic structures, it must articulate the notion of an axiomatic semantic structure.
+First-order logic is also meant to capture the notion of a minimal semantic structure for truth. Therefore the two must be related to each other. Were I to give Semantic Reference Theory a tagline, it might be: "Semantic Reference Theory is the sort of theory you invent when you want to create a theory that can represent itself easily in its core object model." While not explicit in the abstraction, capturing the meaning of self-reference is at the very heart of Semantic Reference Theory.
+# The Canonical Referent
+Semantic Reference Theory (SRT) is a first-order theory, with constants, functions, relations and axioms. It makes use of a single constant called the *canonical referent* denoted as: o
+You might think of o as a node on a graph. It differs from the 0 of Peano Arithmetic or the {} of ZF set theory in that it is not semantically attached to a notion of nothingness, like in the two examples theories.
+# The Reference Relation
+SRT contains an unconstrained relation R(x,y).
+I use the following notational conventions:
+x => y: R(x,y)
+x <= y: R(y,x)
+x !=> y: ¬R(x,y)
+x <=! y: ¬R(y,x)
+x <=> y: R(x,y) ∧ R(y,x)
+x <!=!> y: ¬R(x,y) ∧ ¬R(y, x)
+Note that I am giving SRT the feel of a programming language. This is by design, as it is a theory that can and will need to express computation
+Binary relations are either symmetric or asymmetric, so having a lack of axiom to constrain R(x,y) declares it as asymmetric. An axiom like ¬(x, => y ⇔ y => y) means that there must exist at least one pair of referents with an directed reference. That's not what I am trying to say.
+I can get at this in another way, using the notion of an axiom schema. 
+
+Semantic Reference theory is built by extension, so one must be thoughtful about what it means for people to extend it. Here is an axiom schema for all extensions of Semantic Reference Theory with a deep semantic consequence..
+We define an extension of SRT as one that preserves all of its constants, functions relations and axioms. The following axiom schema holds for extensions of SRT:
+If B is a binary relation in an extension of SRT, there is an axiom:
+B(x,y) ⇔ B(y,x)  ⇒  x == y
+This states that equality is the only symmetric relationship in SRT. Note that I introduced the == operator. I introduce this because I want SRT to feel like a programing language so that one can use x = o as definitional and x == y as relational, even though they mean the same thing. One can consider this a notational convention, or that there is an additional relation that is equivalent to the equality operator in first-order logic
+# Subjects, Objects and Relationships
+
+# Reference Types

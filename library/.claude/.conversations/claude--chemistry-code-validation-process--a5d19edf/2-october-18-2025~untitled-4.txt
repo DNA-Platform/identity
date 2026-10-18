@@ -1,0 +1,1197 @@
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:29 $Book constructor called with 3 chapters with child: $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 35, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Introduction
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Main Content
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Conclusion
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:29 $Book constructor called with 3 chapters with child: $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 38, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Introduction
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Main Content
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Conclusion
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:29 $Book constructor called with 3 chapters with child: $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 41, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Introduction
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Main Content
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Conclusion
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:152 Chapter 1 is fancy!
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:152 Chapter 3 is fancy!
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:152 Chapter 1 is fancy!
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:152 Chapter 3 is fancy!
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:152 Chapter 1 is fancy!
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:152 Chapter 3 is fancy!
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:208 $Article constructor with 3 sections
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:181 Adding "Auto-added by Article at index 0" to section Introduction
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:208 $Article constructor with 3 sections
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:208 $Article constructor with 3 sections
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:262 $StrictContainer validating inputs...
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:262 $StrictContainer validating inputs...
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:262 $StrictContainer validating inputs...
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:262 $StrictContainer validating inputs...
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:273 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:273
+bond @ VM2906 chemistry.ts:755
+__render @ VM2906 chemistry.ts:144
+Component @ VM2906 chemistry.ts:319
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooks @ react-dom-client.development.js:6793
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+BasicTests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:499
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<BasicTests>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+Tests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\page.tsx:81
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<Tests>
+exports.jsx @ react-jsx-runtime.development.js:323
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Function.all @ VM2926 <anonymous>:1
+Function.all @ VM2926 <anonymous>:1
+Function.all @ VM2926 <anonymous>:1
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1343
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1760777155477:160
+options.factory @ webpack.js?v=1760777155477:704
+__webpack_require__ @ webpack.js?v=1760777155477:29
+fn @ webpack.js?v=1760777155477:361
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+loadScriptsInSequence @ app-bootstrap.js:24
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1760777155477:182
+options.factory @ webpack.js?v=1760777155477:704
+__webpack_require__ @ webpack.js?v=1760777155477:29
+__webpack_exec__ @ main-app.js?v=1760777155477:1878
+(anonymous) @ main-app.js?v=1760777155477:1879
+webpackJsonpCallback @ webpack.js?v=1760777155477:1380
+(anonymous) @ main-app.js?v=1760777155477:9
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:262 $StrictContainer validating inputs...
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:273 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:273
+bond @ VM2906 chemistry.ts:755
+__render @ VM2906 chemistry.ts:144
+Component @ VM2906 chemistry.ts:319
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6796
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+BasicTests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:499
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<BasicTests>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+Tests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\page.tsx:81
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<Tests>
+exports.jsx @ react-jsx-runtime.development.js:323
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Function.all @ VM2926 <anonymous>:1
+Function.all @ VM2926 <anonymous>:1
+Function.all @ VM2926 <anonymous>:1
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1343
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1760777155477:160
+options.factory @ webpack.js?v=1760777155477:704
+__webpack_require__ @ webpack.js?v=1760777155477:29
+fn @ webpack.js?v=1760777155477:361
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+loadScriptsInSequence @ app-bootstrap.js:24
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1760777155477:182
+options.factory @ webpack.js?v=1760777155477:704
+__webpack_require__ @ webpack.js?v=1760777155477:29
+__webpack_exec__ @ main-app.js?v=1760777155477:1878
+(anonymous) @ main-app.js?v=1760777155477:1879
+webpackJsonpCallback @ webpack.js?v=1760777155477:1380
+(anonymous) @ main-app.js?v=1760777155477:9
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:262 $StrictContainer validating inputs...
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:273 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:273
+bond @ VM2906 chemistry.ts:755
+__render @ VM2906 chemistry.ts:144
+Component @ VM2906 chemistry.ts:319
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+BasicTests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:499
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<BasicTests>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+Tests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\page.tsx:81
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<Tests>
+exports.jsx @ react-jsx-runtime.development.js:323
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Function.all @ VM2926 <anonymous>:1
+Function.all @ VM2926 <anonymous>:1
+Function.all @ VM2926 <anonymous>:1
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1343
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1760777155477:160
+options.factory @ webpack.js?v=1760777155477:704
+__webpack_require__ @ webpack.js?v=1760777155477:29
+fn @ webpack.js?v=1760777155477:361
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+loadScriptsInSequence @ app-bootstrap.js:24
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1760777155477:182
+options.factory @ webpack.js?v=1760777155477:704
+__webpack_require__ @ webpack.js?v=1760777155477:29
+__webpack_exec__ @ main-app.js?v=1760777155477:1878
+(anonymous) @ main-app.js?v=1760777155477:1879
+webpackJsonpCallback @ webpack.js?v=1760777155477:1380
+(anonymous) @ main-app.js?v=1760777155477:9
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:328 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:331 Filtered to 3 groups
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 1: (2) [$NestedChild, $NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 2: [$NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:328 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:331 Filtered to 3 groups
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 1: (2) [$NestedChild, $NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 2: [$NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:328 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:331 Filtered to 3 groups
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 1: (2) [$NestedChild, $NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 2: [$NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:29 $Book constructor called with 3 chapters with child: $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 132, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Introduction
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Main Content
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Conclusion
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:29 $Book constructor called with 3 chapters with child: $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 135, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Introduction
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Main Content
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:30 Chapter title: Conclusion
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:152 Chapter 1 is fancy!
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:152 Chapter 3 is fancy!
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:152 Chapter 1 is fancy!
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:152 Chapter 3 is fancy!
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:208 $Article constructor with 3 sections
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:208 $Article constructor with 3 sections
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:262 $StrictContainer validating inputs...
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:262 $StrictContainer validating inputs...
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:262 $StrictContainer validating inputs...
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:273 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:273
+bond @ VM2906 chemistry.ts:755
+__render @ VM2906 chemistry.ts:144
+Component @ VM2906 chemistry.ts:319
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooks @ react-dom-client.development.js:6793
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:14991
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+BasicTests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:499
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<BasicTests>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+Tests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\page.tsx:81
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<Tests>
+exports.jsx @ react-jsx-runtime.development.js:323
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Function.all @ VM2926 <anonymous>:1
+Function.all @ VM2926 <anonymous>:1
+Function.all @ VM2926 <anonymous>:1
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1343
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1760777155477:160
+options.factory @ webpack.js?v=1760777155477:704
+__webpack_require__ @ webpack.js?v=1760777155477:29
+fn @ webpack.js?v=1760777155477:361
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+loadScriptsInSequence @ app-bootstrap.js:24
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1760777155477:182
+options.factory @ webpack.js?v=1760777155477:704
+__webpack_require__ @ webpack.js?v=1760777155477:29
+__webpack_exec__ @ main-app.js?v=1760777155477:1878
+(anonymous) @ main-app.js?v=1760777155477:1879
+webpackJsonpCallback @ webpack.js?v=1760777155477:1380
+(anonymous) @ main-app.js?v=1760777155477:9
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:262 $StrictContainer validating inputs...
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:273 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:273
+bond @ VM2906 chemistry.ts:755
+__render @ VM2906 chemistry.ts:144
+Component @ VM2906 chemistry.ts:319
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:14991
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+BasicTests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:499
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<BasicTests>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+Tests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\page.tsx:81
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<Tests>
+exports.jsx @ react-jsx-runtime.development.js:323
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Function.all @ VM2926 <anonymous>:1
+Function.all @ VM2926 <anonymous>:1
+Function.all @ VM2926 <anonymous>:1
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1343
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1760777155477:160
+options.factory @ webpack.js?v=1760777155477:704
+__webpack_require__ @ webpack.js?v=1760777155477:29
+fn @ webpack.js?v=1760777155477:361
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+loadScriptsInSequence @ app-bootstrap.js:24
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1760777155477:182
+options.factory @ webpack.js?v=1760777155477:704
+__webpack_require__ @ webpack.js?v=1760777155477:29
+__webpack_exec__ @ main-app.js?v=1760777155477:1878
+(anonymous) @ main-app.js?v=1760777155477:1879
+webpackJsonpCallback @ webpack.js?v=1760777155477:1380
+(anonymous) @ main-app.js?v=1760777155477:9
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:328 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:331 Filtered to 3 groups
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 1: (2) [$NestedChild, $NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 2: [$NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:328 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:331 Filtered to 3 groups
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 1: (2) [$NestedChild, $NestedChild]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\basic-tests.tsx:335 Group 2: [$NestedChild]
+hot-reloader-app.js:197 [Fast Refresh] rebuilding
+hot-reloader-app.js:197 [Fast Refresh] rebuilding
+report-hmr-latency.js:14 [Fast Refresh] done in 300ms
+report-hmr-latency.js:14 [Fast Refresh] done in 419ms
+hot-reloader-app.js:197 [Fast Refresh] rebuilding
+hot-reloader-app.js:197 [Fast Refresh] rebuilding
+report-hmr-latency.js:14 [Fast Refresh] done in 212ms
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Book', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Book', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Book', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: '$Html', argElement: 'div', type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$$Function', argElement: undefined, type: 'div', typeType: 'string'}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: '$Html', argElement: 'div', type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$$Function', argElement: undefined, type: 'div', typeType: 'string'}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: '$Html', argElement: 'div', type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$$Function', argElement: undefined, type: 'div', typeType: 'string'}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'span', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'span', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'span', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: '$Label', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: '$Label', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: '$Label', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: 'div', typeType: 'string'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'undefined', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: 'div', typeType: 'string'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'undefined', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: 'div', typeType: 'string'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'undefined', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ [Fast Refresh] done in 375ms
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Book', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Book', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'span', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'span', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Book', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Book', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Book', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: '$Html', argElement: 'div', type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$$Function', argElement: undefined, type: 'div', typeType: 'string'}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: '$Html', argElement: 'div', type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$$Function', argElement: undefined, type: 'div', typeType: 'string'}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: '$Html', argElement: 'div', type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$$Function', argElement: undefined, type: 'div', typeType: 'string'}
+ validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+ validateArgument: {arg: 'undefined', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'span', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'span', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+ validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+ validateArgument: {arg: '$Html', argElement: 'span', type: 'div', typeType: 'string'}
+ validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Book', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Book', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'span', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'span', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Html', argElement: 'div', type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$$Function', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: '$Label', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Number', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'div', typeType: 'string'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, typeType: 'function', type: ƒ}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'undefined', argElement: undefined, type: 'undefined', typeType: 'undefined'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1305 validateArgument: {arg: 'Array', argElement: undefined, type: Array(1), typeType: 'object'}

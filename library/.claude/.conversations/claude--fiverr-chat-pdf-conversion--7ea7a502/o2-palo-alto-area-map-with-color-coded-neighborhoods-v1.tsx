@@ -1,0 +1,134 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ Palo Alto Area Map with Color-Coded Neighborhoods v1 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palo Alto Area Map</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .map-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .map-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        #map {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            background: white;
+        }
+        
+        .area {
+            stroke: #333;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        
+        .area:hover {
+            opacity: 0.8;
+            stroke-width: 3;
+        }
+        
+        .area-label {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            fill: #000;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            pointer-events: none;
+        }
+        
+        .legend {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        
+        .legend-color {
+            width: 30px;
+            height: 20px;
+            border: 1px solid #333;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+        
+        .download-btn {
+            background: #007cba;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px auto;
+            display: block;
+        }
+        
+        .download-btn:hover {
+            background: #005a87;
+        }
+        
+        .instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <div class="map-container">
+        <h1 class="map-title">Palo Alto Area Neighborhoods</h1>
+        
+        <div class="instructions">
+            <strong>Instructions:</strong> This is a recreated version based on your reference images. The areas shown match the visible regions from your base map. Click the download button below to get a high-resolution PNG with transparent background.
+        </div>
+        
+        <svg id="map" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+            <!-- Map areas based on the reference image -->
+            
+            <!-- `}
+        </CodeBox>
+    </Chapter>
+);

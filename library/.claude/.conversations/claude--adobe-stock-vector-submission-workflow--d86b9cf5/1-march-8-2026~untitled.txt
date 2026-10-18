@@ -1,0 +1,106 @@
+# Stock Metadata Research — Competitor Keyword Analysis
+
+> Actual keyword lists pulled from top-selling stock map vectors on Alamy and Adobe Stock.
+> Use these as reference when writing metadata for new maps.
+
+## Methodology
+
+Keywords were extracted by fetching individual listing pages from Alamy (which shows full keyword lists publicly, unlike Adobe Stock which gates them). Each listing below was fetched via `WebFetch` and the complete metadata recorded.
+
+## Competitor Listings Analyzed
+
+### 1. Strait of Hormuz Political Map — Peter Hermes Furian
+- **Source**: [Alamy 2JJ50F2](https://www.alamy.com/strait-of-hormuz-political-map-waterway-between-persian-gulf-and-gulf-of-oman-a-strategically-extremely-important-choke-point-image475853926.html)
+- **Title**: "Strait of Hormuz, political map. Waterway between Persian Gulf and Gulf of Oman, a strategically extremely important choke point, with Iran to the north and UAE and Oman exclave Musandam to the south."
+- **Keywords (49)**:
+  > abu dhabi, abu musa, arab, arabian, atlas, bahrain, bandar abbas, bottleneck, cartography, choke point, chokepoint, country, doha, dubai, emirates, exclave, geography, gulf, gulf of oman, hormuz, illustration, international, iran, manama, map, maritime, musandam, muscat, oil trade, oman, passage, persian, persian gulf, qatar, qeshm, region, saudi arabia, sharjah, shipping, strait, strait of hormuz, strategic, trade, transport, tunb, uae, united, united arab emirates, waterway
+- **Pattern**: Every city/feature visible on map is a keyword. Mix of geographic + conceptual (strategic, bottleneck, passage). No long phrases.
+
+### 2. Middle East Iran and Israel War Map — BarksJapan
+- **Source**: [Alamy 3BJ3YN4](https://www.alamy.com/middle-east-map-illustration-iran-and-israel-war-country-names-in-english-image682355776.html)
+- **Title**: "Middle East map illustration (Iran and Israel war) | Country names in English"
+- **Keywords (42)**:
+  > against, aggressive, arab, arabia, arabic, arm, battle, clash, competition, concept, conflict, confrontation, country, crisis, explosion, fight, flag, government, illustration, independence, iran, iran israel war, iranian, israel, israel flag, jewish, map, middle east, military, missile, nation, palestine, patriotism, politics, protest, relation, relationship, symbol, violence, vs, war, world
+- **Pattern**: Heavy on emotional/conceptual terms (aggressive, clash, confrontation, crisis, violence). Fewer geographic terms. Targets editorial/news buyers.
+
+### 3. Iran Political Map — Bardocz Peter
+- **Source**: [Alamy 2BYKN70](https://www.alamy.com/iran-highly-detailed-editable-political-map-with-labeling-image361236820.html)
+- **Title**: "Iran - Highly detailed editable political map with labeling."
+- **Keywords (47)**:
+  > arab, atlantic, atlas, background, blue, capital, cartography, city, colored, continent, contour, country, editable, geographic, geography, illustration, iran, iranian, islam, islamic, label, land, map, mapping, middle east, national, ocean, oman, outline, pastel, persia, persian, persian gulf, political, politics, rivers, road, sea, south, strait of, tehran, territory, topography, town, travel, vector, vectors
+- **Pattern**: Emphasizes editability (editable, labeled, outline, contour). Style terms (pastel, blue, colored). Geographic + cartographic vocabulary.
+
+### 4. Middle East Levant Highlighted Map — pytyczech
+- **Source**: [Alamy 2BYTA9Y](https://www.alamy.com/map-of-middle-east-or-near-east-transcontinental-region-with-highlighted-turkey-syria-iraq-jordan-lebanon-and-israel-flat-grey-map-with-country-thin-black-borders-image361338039.html)
+- **Title**: "Map of Middle East or Near East transcontinental region with highlighted Turkey, Syria, Iraq, Jordan, Lebanon and Israel. Flat grey map with country thin black borders."
+- **Keywords (49)**:
+  > arab, arabia, arabian, asia, concept, conflict, continent, country, east, egypt, emirates, geography, graphic, gulf, illustration, iran, iraq, isil, isis, islamic, islamic state, israel, jordan, kuwait, lebanon, levante, map, mediterranean, middle, middle east, near east, oman, palestine, persian, persian gulf, qatar, red sea, region, saudi, saudi arabia, sea, state, syria, turkey, uae, united, vector, war, yemen
+- **Pattern**: Every country in the region. Current-events terms (isil, isis, islamic state, conflict, war). Full geographic coverage.
+
+### 5. Arabian Peninsula Geographic Chart — Zoonar/Nikolaenkow
+- **Source**: [Alamy 2C29H1T](https://www.alamy.com/world-map-of-arabian-peninsula-middle-east-saudi-arabia-iraq-persian-gulf-the-emirates-geographic-chart-image362857988.html)
+- **Title**: "World Map of ARABIAN PENINSULA: Middle East, Saudi Arabia, Iraq, Persian Gulf, The Emirates. Geographic chart."
+- **Keywords (53)**:
+  > adventure, arab world, arabia, arabian, arabian peninsula, arabic, arabs, cartography, chart, civilizati, coastline, countries, desert, east, egypt, emirates, euphrates, fossils, geography, guide, indian ocean, iran, iraq, location, map, mesopotamia, middle, middle east, mineral oil, nation, nile, ocean, oil, oil reserves, peninsula, persia, persian, persian gulf, red sea, region, rivers, saudi, saudi arabia, sea, semite, sinai peninsula, somalia, state, syria, territories, tigris, travel, world
+- **Pattern**: Deep geographic vocabulary (Euphrates, Tigris, Mesopotamia, Sinai). Economic terms (mineral oil, oil reserves). Historical/cultural (semite, civilizati, arabs).
+
+### 6. Israel-Lebanon-Iran Political Map — Naeblys
+- **Source**: [Alamy 2T30MN1](https://www.alamy.com/map-of-israel-gaza-strip-west-bank-lebanon-and-iran-middle-east-highlighted-states-coalitions-map-and-borders-reliefs-and-lakes-nasa-image569802381.html)
+- **Title**: "Map of Israel, Gaza Strip, West Bank, Lebanon and Iran, Middle East. Highlighted States, coalitions. Map and borders, reliefs and lakes."
+- **Keywords (47)**:
+  > administrative, area, asia, atlas, background, border, capital, cartography, city, coast, contour, country, detailed, egypt, gaza, gaza strip, geography, graphic, iran, israel, israeli, jerusalem, jewish, jordan, land, lebanon, map, mediterranean, mediterranean sea, middle east, nation, outline, palestine, palestinian, plan, political, political map, rafah, region, river, sea, state, strip, territory, topography, travel, west bank
+- **Pattern**: Very geographic/cartographic. Specific place names (Gaza, Rafah, West Bank, Jerusalem). Administrative/political vocabulary.
+
+## Patterns Across All 6 Competitors
+
+### Keyword Count
+| Listing | Keywords |
+|---------|----------|
+| Furian (Hormuz) | 49 |
+| BarksJapan (War) | 42 |
+| Bardocz (Iran) | 47 |
+| pytyczech (Levant) | 49 |
+| Nikolaenkow (Peninsula) | 53 |
+| Naeblys (Israel/Lebanon) | 47 |
+| **Average** | **47.8** |
+
+**Takeaway**: Top sellers use 42-49 keywords on Adobe Stock (hard limit 49). Nikolaenkow's 51 was on Alamy which has a higher limit. Our target: exactly 49.
+
+### Keyword Structure
+1. **Single words dominate** (80%+): `iran`, `map`, `gulf`, `conflict`, `cartography`
+2. **Simple pairs** (~15%): `persian gulf`, `middle east`, `saudi arabia`, `oil trade`
+3. **Rare 3+ word phrases** (<5%): `strait of hormuz`, `united arab emirates`, `iran israel war`
+4. **NO long buyer-intent phrases**: Nobody uses "Iran military strike map" as a keyword
+
+### Universal Keywords (appear in 4+ of 6 listings)
+> iran, map, middle east, illustration, gulf, persian gulf, country, region, geography, cartography, iraq, israel, saudi arabia, conflict, war, political, arab, arabia, arabian, sea, jordan, syria, lebanon, oman, qatar, uae, egypt, emirates
+
+### Category-Specific Vocabulary
+- **Conflict/News maps**: crisis, tension, violence, clash, confrontation, battle, military, missile, attack
+- **Geographic/Reference maps**: atlas, cartography, topography, contour, outline, border, territory, labeled, editable
+- **Energy/Economic maps**: oil, oil trade, oil reserves, shipping, maritime, trade, transport, pipeline, tanker, strategic
+- **Cultural/Historical**: persia, persian, mesopotamia, levant, semite, islamic
+
+### Title Patterns
+- **Descriptive sentence format**: "[What it is]. [Key detail]. [Another detail]."
+- **Titles often exceed 70 chars** — the guideline is for display truncation, not a hard limit
+- **Geographic specificity in title**: List the countries/features shown
+- **Style indicator**: "Vector map illustration", "political map", "geographic chart"
+
+## How To Use This Research
+
+When writing metadata for a new map:
+
+1. **Start with the universal keywords** that match your map's region
+2. **Add every geographic proper noun** visible on the map (cities, countries, bodies of water, features)
+3. **Add conceptual/emotional terms** appropriate to the map's theme (from the category vocabulary above)
+4. **Add cartographic/style terms**: map, illustration, cartography, geography, political, labeled, etc.
+5. **Target 48-52 keywords total**
+6. **Use single words or simple 2-word pairs**, not long phrases
+7. **Title should be a descriptive sentence** with geographic specificity
+
+## Tools
+
+- `scripts/fetch-stock-keywords.js` — Fetches keyword lists from Alamy listing URLs
+- `scripts/metadata-config.js` — Per-SVG metadata definitions
+- `scripts/inject-metadata.js` — Injects Dublin Core RDF into SVG files

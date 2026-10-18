@@ -1,0 +1,61 @@
+
+
+# Context for the "Libraries" thread — catching you up
+
+I'm Cathy, a framework engineer. I built **$Chemistry**, a reactive UI framework — think React-but-object-oriented: a class holds private state in fields and produces a view via a `view()` method; scope-tracking makes the dependency between state and view a live "aboutness" relation. The `$` prefix means "representation of" — it marks the membrane between a thing's intrinsic identity and how it is seen from outside.
+
+We are now building a new thing: turning an entire repository into a **library** — a tree of books — where authors write content "painted" in $Chemistry components, and the whole thing compiles to static HTML for a public website. Important framing: this library represents the **identity of a formal theory and its evolution** — not a person, not a team. So we are treating "the organization of language" itself as a formal domain and trying to capture it precisely as a type hierarchy in code.
+
+## The three evolution operators
+
+We found that all of written language's organization seems to be generated from a single atom — the **Word** — by exactly three operators:
+
+- **aggregate** (one -> many): a thing recurs into an ordered sequence of itself. Word -> Expression (a phrase) -> Paragraph -> ... -> Library. In code: a field holding an array, `X[]`.
+- **refine** (one -> same, validated): a thing of the same kind, but now under a contract it must satisfy. E.g. Sentence = a refined Expression (must be a complete statement); Reference = a refined Name (must resolve to a real target). In code: a subtype that adds a check.
+- **specialize** (one -> further specified): a thing takes on a role. E.g. Title = a specialized Expression; Cover = a specialized Chapter. In code: a subtype that adds meaning.
+
+Key constraint we discovered: **a role never attaches to a bare Word.** You must aggregate first, then specialize — a Title is a specialized *expression* (many words), never a specialized Word. We suspect this ordering (aggregate-before-specialize) is general.
+
+## The current type sketch (a TypeScript file called Book.ts)
+
+Each type is one class; the comment names the operator that made it.
+
+- $Word — the atom
+- $Expression = aggregate(Word) — a phrase; the first thing a role can attach to
+- $Sentence = refine(Expression) — held to being a complete statement
+- $Paragraph = aggregate(Sentence)
+- $Section = aggregate(Paragraph) gathered under a heading
+- $Chapter = aggregate(Section)
+- $Title = specialize(Expression) — a phrase in the naming role
+- $Heading = specialize(Title) — a title at section scale; also a reference target
+- $Synopsis = specialize(Paragraph) — the one paragraph that summarizes the rest
+- $Term = specialize(Expression) — a phrase that carries a definition
+- $Name = refine(Expression) — must be well-formed
+- $Reference = refine(Name) — must resolve to something else on the tree
+- $Author = specialize(Reference) — a reference in the attribution role
+- $Citation = specialize(Reference) — a reference in formal-source form
+- $TableOfContents = aggregate(Reference) — references down to a thing's own parts; derived
+- $Citations = aggregate(Citation) — references out
+- $Cover = specialize(Chapter) — the top chapter, the self-describing head a container grows (holds Title, Author, Synopsis, TableOfContents)
+- $Book = aggregate(Chapter) behind a Cover
+- $Subject = specialize(Book) — a book whose chapters are themselves books (a catalogue)
+- $Library = specialize(Subject) — a subject whose books are themselves subjects
+
+## The evolution-versus-inheritance question
+
+We have two hierarchies that look different:
+
+- the **evolution** hierarchy: how a thing GROWS — a chapter becomes a book becomes a subject (catalogue) becomes a library. Temporal; about one instance changing over time.
+- the **inheritance / type** hierarchy: is-a — a Cover IS a specialized Chapter; a Subject IS a specialized Book; a Library IS a specialized Subject. Static; about kinds.
+
+Our working hypothesis is that they are a duality: the same ladder seen as structure (the kinds) versus process (one instance climbing the rungs over time), bridged by a dynamic form of inheritance where an instance can be re-revealed as a higher type at runtime. But we want it pinned precisely, and we want to know what we are missing.
+
+## The seed to weigh
+
+All living eukaryotes descend from a single-celled ancestor, yet are multicellular. The one-to-many (aggregate) change does NOT mean the multicellular descendant stops inheriting from that single-celled ancestor. So aggregate and inheritance are not rivals — an aggregated thing can still BE a descendant / specialization of its element. We want you to explore: does **aggregation itself act as a mode of inheritance** — the many descending from the one — and does that dissolve the apparent tension between the evolution hierarchy and the inheritance hierarchy?
+
+## The three questions (also in the message)
+
+(1) What types are we missing for completeness in the organization of language?
+(2) Propose a sensible, precise unified type hierarchy.
+(3) Is reference/pointer a fourth operator beside aggregate/refine/specialize, or derivable from refine?

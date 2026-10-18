@@ -1,0 +1,443 @@
+Semantic Reference Theory
+**Title**: Semantic Reference Theory
+**Author**: I =am> Doug
+**Subject**: Semantic Reference Theory
+**Content**: Thought
+---
+
+# Thought
+
+I'm going to attempt to provide a formal representation of the elementary semantic form. I take this to be the subject - object- relationship as symbolized by a reference between two referents
+
+# First Order Logic
+
+First order logic has constants, functions and relationship as their primary semantic structures. They each play different roles:
+
+**Constant**:
+Example: 0 is a constant in Peano arithmetic. The empty set {} is a constant in set theory
+Specification: to add a constant to your theory is to express: "an object exists".
+Abstraction: in the context of the representation of a theory, a constant is "an existential objective symbol*
+
+**Function**:
+Example: the successor function S maps a number to it's successor. S(0) is the successor of 0, which is 1
+Specification: to add a function F to your theory is to express: "objects have relatives"
+Abstraction: in the context of the representation of a theory, a function F is "an existential objective relational symbol"
+Abstraction: in the context of the representation of a theory, a function application F(x) is "an existential objective representation"
+
+*Relation*:
+Example: 1 < 2 conveys a fact. It can by saying there is a relation L where L(1,2) evaluates to true
+Specification: tp add a relation R to your theory is to express: "objects are subject to a relationship"
+Abstraction: in the context of the representation of a theory, a relation R(x,y) is a "a subjective objective relational symbol"
+
+# Subjective Commentary
+
+I don't think I quite nailed all of that down. Expressing the objective, subjective, relational, formal and existential relationships in terms of each other is tricky. The semantics of adjectival definition is complex! :)
+
+The motivation for presenting things in this way is to capture the essence of something through relationships. The exact manner in which an adjective is a relationship is tricky. That's probably the subject of another thought.
+
+# The Task at Hand
+
+Perhaps things will become clearer if we proceed with a bit more rigor. The goal of this piece of art is to lay the foundation for a formalization of science in which consciousness might be defined alongside it. Will I succeed?
+
+Well if it's a piece of art, success is thoroughly subjective. May I create something that my own soul, if not the souls of others.
+
+Back to the task at hand. Which is to produce:
+
+**A representation of the fundamental semantic form**
+
+To create a formal theory is to create a fundamental representation of a subject. The subject is semantics. To represent the fundamental semantic form, we must produce the following representational object:
+
+**A formal theory of semantics!**
+
+The mission couldn't be clearer. It also couldn't be more difficult. Yet my intuition tells me it is a worthwhile endeavor. To be conscious is to have a sense of subjectivity. To be conscious is to attach subjective meaning to objective reality. To be consciousness is to lead a meaningful existence. Consciousness is the birth of meaning. And meaning is the object of semantics!
+
+On to a formal theory!
+
+# On Symbolism
+
+I propose that the subject-object-relationship is the basic unit of meaning. To represent this structure is to create a building block for the representation of every form of meaning. No small task!
+
+Symbolism plays a role on two levels
+
+We are creating a theory. Theories are fundamentally symbolic. They represent a subject. They describe the relationships of its objects. Therefore, we need to find symbols to represent the fundamental semantic form.
+
+But in the fundamental semantic form, subjects, objects and relationships are all symbolic constructs! They serve to represent. So the objects of our theory will need to be symbols which are themselves symbolic. We are tasked with the representation of representation. How wonderfully meta.
+
+Fortunately, the relation of first-order logic provides with with a good starting point for our theory. Consider:
+
+R(x,y,t)
+
+Let us take the unconstrained relation to express the semantic form. I intend for it to be interpreted in this way:
+
+x - a symbol that represents an object which represents the subject of a relationship
+y - a symbol that represents an object which represents the object of a relationship
+t - a symbol that represents an object which represents the type of a relationship
+R - a symbol that represents the subject of relationship itself
+R(x,y,t) - a composition of symbols that represents an expression of the existence of a relationship between a subject and its object
+
+Let us start by considering the existence of a relationship:
+
+R(x,y) := ∃t R(x,y,t)
+
+I'm overloading R here, but it works out nicely. R(x,y) expresses the idea that there is some type of relationship between a specific x and a specific y. We do not know the type of relationship. What we do know is that x refers to y in some way. We need to choose an objective description of the existence of a relationship between two objects. This is to be the fundamental unit of relationship. The most general reflection of that concept that I can think of is the concept of a:
+
+**Reference**
+
+One finds that when one attempts to nail down the semantics of a particular subject, if semantic relationships cannot be in terms of each other, one experience an explosion of terms! We need a term for a type of object that can be either the subject or the object of a reference. Let us call these objects:
+
+**Referents**
+
+Each is the object of the other. One does not make sense without the other. Without something to refer to, reference can have no meaning. If R(x,y,t) is the Relationship relation, R(x,y) is the Reference relation.
+
+Referents and References are symbolic structures. They can be used to express the semantics of any subject. Therefore by choosing referents and references, we have specified symbolic semantics for our symbolic theory
+
+# The Canonical Referent
+
+The goal of our formal theory of semantics is to express the fundamental semantic form. Right now, our theory lacks the ability to say anything. Consider the least demanding form of relationship that we can express:
+
+R(x) := R(x,x)
+
+This statement expresses whether x can refer to itself. So in this context, R(x) is the self-reference relation. To express the unconstrained semantic form R(x,y,t), we must admit self-reference. When building a semantic theory, you might choose to disallow self-reference wit the axiom:
+
+¬∃x R(x,x)
+
+But there's certainly no reason to reject self-reference outright in the fundamental theory of semantics.
+
+If we are to represent the fundamental semantic form, we must be able to produce at least of one them. So let us denote our first referent:
+
+o
+
+R(o) then expresses that o references itself in some way.
+
+I choose this symbol because references are often pictures as an arrow connecting two dots. Let this be that dot. So while this object is a singular value, like the number one, it is meant to be a prototype for all referents. In the semantics of Semantic Reference Theory, I use the word canonical to describe this sort of representation.
+
+Therefore, let o be known as *The Canonical Referent*
+
+Ponder this: to assume we need any referent at all is to objectify the existential quantifier. To be able to say something exists is to be able to choose one that exists. Therefore, the Canonical Referent is an acknowledgement of existence itself!
+
+# The Canonical Objective Function
+
+We have build a theory where R(x) can be extended to be true with minimal overhead. One can add R(o), or equivalently R(o,o) to their theory and be done with it. Were there to be no functions in the theory, one might also choose R(o,o,o) to their theory as well. Do do otherwise is to that that there exists some relationship type that is not o which makes R(o,o) true. This is fine, but then we'll never be able to speak of it.
+
+We might also add an axiom:
+
+¬R(o,o,t)
+
+From which I think we can derive from R(o):
+
+∃t R(o,o,t) ∧ ¬(t = o)
+
+This is a way of creating a second referent. But it is not capturing the fundamental semantic form. There's no reason why any particular referent needs to refer to itself, nor is there reason to think that reference has a type distinct from itself. This exposition shows the awkward nature of defining a referent in terms of absence. Negative space leads to complications in theory.
+
+Semantic Reference Theory is meant to provide a constructive framework for semantics. The Semantic Theories which constrain it with additional axioms are meant to describe something onto which a language with finite symbols and finite sentences might apply. Therefore, let us introduce a function to help use select referents that play an objective role in a relationship:
+
+O(x,t)
+
+I shall denote this the *The Canonical Objective Function*
+
+# The Axiom of Existential Objectivity
+
+In our theory of semantic forms, we would like to express the relationship between subject and object in the most general way, so we can constrain F in the following way:
+
+R(x,y,t) => R(x,O(x,t),t)
+
+This means that when there is a reference between any x and y, the Canonical Objective Function serves to produce one such y that satisfies this property for each type t of relationship.
+
+We can take this to be *The Axiom of Existential Objectivity*. If a referent can serve as an object in a relationship, there is a function in the theory that can return one such referent that satisfies this property
+
+When specifying the semantics of your theory
+
+# The Axiom of Existential Indexicality
+
+If we're in the mood to care about whether one can choose at least one object for any subject, one should also care about choosing one subject of any object. But do we need this? Can one have a theory of semantic forms and stumble onto one that has a subject that we simply do not know?
+
+The Canonical Referent is constructive and the Canonical Objective Function is constructive. So let us introduce the notion of a Canonical Index. Why not *Canonical Subjective Function* to keep things simple? I'm not sure. Subjectivity is more obscure than Objectivity. The notion of an index to look things up feels like a more objective construct, and we are expressing this concepts function, which is an objective construct. In computer programming, if one were to have an array or dictionary of objects x, one might use an object i to look one up: x[i].
+
+So let us introduce *The Canonical Index*:
+
+I(y,t)
+
+I will then call this *The Axiom of Existential Indexicality*, which states that if a referent can serve as a subject in a relationship, there is a function in the theory that indexes this subject:
+
+R(x,y,t) => R(I(y,t),y,t)
+
+I provide these without constraint on the canonicals. Have fun cataloguing the relationships in your very own Semantic Theory!
+
+# The Axiom of Semantic Reference
+
+Now, we might imagine some function that plays the role of an objective function and an index for relationship types. It might look like this R(x,y,F(x,y)). This seems like a reasonable generalization of this trend of existentialism.
+
+But upon reflection, one might note that the name "Semantic Reference Theory" itself serves as a signpost. In a theory of semantic form, one admits that there is a type of relationship called a reference. Look at the way we defined the reference function:
+
+R(x,y) := ∃t R(x,y,t)
+
+Therefore, we acknowledge that there is some sort of type system at play here. Subject and objects are thoroughly unconstrained. But if we are to produce a theory that lends form to semantic structures, than it must admit that *reference itself* is a type of relationship. In this spirit, *The Axiom of Semantic Reference* is:
+
+R(x,y,t) => R(x,y,ref)
+
+This says that if x and y share any type of relationship at all, there is a type of relationship represented by a referent called ref that they also share. So therefore ref is *The Canonical Reference Type*. Unlike the other canonicals, I specify this one explicitly, but as a definition. In a semantic universe with no references, such a concept need not exist. So while defined conditionally, when you set up the semantics of your theory, be sure to specify a value for ref. When doing so, consider setting it equal to *The Canonical Referent* if that supports the semantics of your theory. The lack of specification makes it more fun!
+
+As a corollary, and conditional on its existence, we can define unary version of the *Canonical Object Function* and the *Canonical Index* in the following way:
+
+O(x) := O(x,ref)
+I(y) := I(y,ref)
+
+# The Axioms of Objective Irreference
+
+We have a sort of existential problem, and it was bound to come up. Whenever one explores the notion of existence, one bumps into its negation. You end up having to objectify it! Frequently, theories start by objectifying absence from the start. 0 as the canonical number and the empty set as the canonical set are good examples. 0 is a number like any other, but it expresses its lack of quantity in relation to addition. The empty set expresses the existence of a set but the absence of anything in it. Both are good compromises.
+
+The issue comes up in the two existential axioms:
+
+R(x,y,t) => R(x,O(x,t),t)
+R(x,y,t) => R(I(y,t),y,t)
+
+What happens in these cases?
+
+¬∃y R(x,y,t)
+¬∃x R(x,y,t)
+
+How can O(x,t) and I(y,t) specify canonical values?
+
+In a theory of semantic form, we need to objectify the notion of a lack of reference. To do this, I invent the word "irreference" to mean *without reference*. We can then say:
+
+¬∃y R(x,y) => ∃0 O(x,t) = 0
+¬∃x R(x,y) => ∃0 I(x,t) = 0
+¬∃x¬∃y R(x,y) => O(x,t) = I(x,t)
+
+I think that's the simplest way to specify that the objective and subjective canonicals point to some notion referent that represents a lack of reference. Let this be *The Untyped Referent*
+
+We need to say one more thing about it:
+
+¬R(x,y,0)
+
+Again, this is tricky because in the same way that ref is conditionally defined, 0 is conditionally defined as well. Although at least one of them has to be, as each one represents the negation of the other. But negation is not a fundamental aspect of the semantic form.
+
+You can see that we have captured its essence in the canonicals. You can imagine relationships defined by two types of permutation, one by symmetry and one by negation:
+
+S(x,y) := R(y,x)
+N(x,y) = ¬R(x,y)
+
+These are perfectly good definitions for relations. But note that they lack functions that provide canonical values for them. I hope this is true. I'll need to investigate if specifying both I and O provide canonicals for S(x,y). It shouldn't. While propositional logic might say that these two functions are consequences of a propositional relation that is interpreted to mean "reference", the lack of functions that specify canonical values for these relationships serves to underscore that such relations are not formally defined. Relationships are specified by t, and canonicals are defined for R in the context of t. That is all. One can introduce symmetric relationships, and they will inherit canonical properties when specified. But, in general, logical composition does not imply formal semantic structure.
+
+Said another way, all theories made from first order logic have informal semantic structure. But I only providing formal structure for the canonical one R(x,y,t), which is interpreted to mean the Subject-Object-Relationship
+
+# The Axioms of Subjectivity
+
+So far, we've focused on defining the semantics of the fundamental subject object relationship. In this case, fundamental relationship and direct reference are synonymous. As subjects and objects are objectified in specific referents, fundamental relationships are expressed between two. Now, we need to consider the semantics of a collection of relationships that expressed through direct reference. The type of relationship shall define a *Subject*, and a subject can have various *Catalogues* depending on the way relationships are represented across the referents. Consider:
+
+S(x,y,t)
+
+This relation expresses that x and y are in the same catalogue for a certain subject. It is the second formal Relation introduced in Semantic Reference Theory. The various specifications of R have been definitions.
+
+The notion of catalogue membership for a subject is defined relationally:
+
+R(x,y,t) ∨ R(y,x,t) => S(x,y,t)
+S(x,z,t) ∧ S(z,y,t) => S(x,y,t)
+
+The fact that reference itself defines the most general subject, we will take:
+
+S(x,y) := S(x,y,ref)
+
+Note that from the definition, if there is a referent that neither plays neither a subjective or objective role in any relationship, it will not be present in the subject. This is fine for any particular subject. But representing the semantic form is a constructive endeavor. Let us consider the semantics of cataloguing a subject. If a referent plays no role in a relationship, it has no reason to be in a Semantic Theory. In this spirit, I present the an axiom that captures the essence of elegance itself:
+
+S(x,y)
+
+All objects in a semantic theory share a subject.
+
+# The Canonical Catalogue Function
+
+Sharing a subject does equate to sharing a catalogue. Consider a subject is defined by the following two relationships:
+
+R(a,b,s) and R(c,d,s)
+
+The a and b referents are in one catalogue, and the c and d referents are in another. As in the case of relationships, to lend form to the notion of a Subject, one must provide canonicals for each catalogue. Let C(x,t) be such a function.
+
+S(x,y,t) => S(C(x,t),y,t) ∧ S(x,C(y,t),t) ∧ C(x,t) = C(y,t)
+
+This axiom states that there is one canonical value for each catalogue, and it is associated with every member of the catalogue. In this way, the Canonical Catalogue Function gives a catalogue an identity
+
+In the event that that x is missing from the subject, I take it to be its own canonical:
+
+∃x∃t ¬S(x,y,t) => C(x,t) = x
+
+We already have the notion that all referents share a subject. But let them not live in disconnected universes either. In what sense to they belong in the same semantic theory? Therefore, when generalizing the Canonical Catalogue Function to all types of relationships, we add this as an axiom that complements universal subjectivity:
+
+C(x) = o
+
+The global subject is organized in a global catalogue, and that catalogue uses the Canonical Referent as its canonical.
+
+# Semantic Language as Formal Grammar
+
+So far, I have presented six symbols for Semantic Reference Theory: o, R(x,y,t), O(x,t), I(y,t), S(x,y,t), C(x,y,t). These symbols are rather dry. With the exception of the canonical referent, which provides the aesthetics of a lonely dot, the syntax makes reference to the name of the concept and not the relationship between the constructs. This is part of the abstraction of a first order theory.
+
+But one can specify the semantics of the language of a theory too. I will try to capture this formally in another post, but it is done informally by mathematicians constantly. One may propose definitions for constants, functions and relations - even conditional ones! - when they are truth preserving.
+
+If constants and functions can be composed under some condition to produce a constant, one can provide it a definition:
+
+1 := S(0)
+
+Similarly for functions and operators. While operators are harder to specify formally because they lack punctuation, on can still specify a grammar in which they are uniquely defined:
+
+x + 2 := S(S(x))
+
+Relations that are truth preserving can be added to the language. Axioms that are truth preserving can be added to the language. In fact, they are called theorems!
+
+# The Language of Semantic Reference Theory
+
+I propose the following syntax for SRT. It is meant to be whimsical and fun. It draws inspiration from computer programming, where the concept of reference takes various form. It is meant to be befuddling.
+
+Why can it be befuddling?
+
+Because when you create your own semantic theory, you should feel free to choose a language that is unique to your theory. Let this one symbolize just how strange it is for everything to be represented as some form of reference.
+
+I start with introducing new notation for equality and inequality, to create semantic distance between the syntax of logic and the syntax of reference. I use a form recognizable to programmers:
+
+x == y
+x != y
+x & y
+x | y
+
+These are to be used in place of:
+
+x = y
+¬(x = y)
+
+Reference in the form of R(x,y) is essential to the language. Let these enjoyable definitions express all forms of reference that you imagine they might:
+
+x => y
+x !=> y
+x <= y
+x <=! y
+x <=> y
+x <!=!> y
+
+Relationship as typed reference is central to this theory. So let us introduce the reference type:
+
+x =t> y
+x !=t> y
+x <t= y
+x <t=! y
+x <t=t> y
+x <!t=t!> y
+
+I don't know about you, but I think that's fun. One must obviously not abuse the typed arrow notion with composition, as the language gets hard to read at best and impossible to parse at worst. Specify variables as temporary constants to express things in code
+
+For the objective canonical, let O(x) be represented as (x).
+
+To assert that referent has a reference to another referent, one might say:
+
+x => (x)
+
+Or:
+
+o => (o)
+
+In these cases, the ref type is assumed. In cases where you need a type, this is sufficient for the type of (o) to be inferred:
+
+x =t> (x)
+
+For the indexical canonical, let [x] specify the notion of an index, grieving the fact that it is in the wrong direction:
+
+[o] => o
+[x] =t> x
+
+We can use definitional syntax to express relationships when constructing a catalogue:
+
+This:
+
+o :=> (o)
+
+Is defined to mean:
+
+R(o,F(o)) ∧ ¬(F(o) = o)
+
+# Semantic Reference Frames
+
+There is a relativistic quality to Semantic Reference Theory. By virtue of there being a base type for all relationships, every typed relation and function has an untyped analogue. Therefore a reference type specifies a reference frame.
+
+Thus:
+
+[t]: x => (x) => [x] => x
+
+Is taken to mean:
+
+R(x,O(x,t),t) ∧ R(O(x,t),I(x,t),t) ∧ R(I(x,t),x,t)
+
+Semantic reference frames are most important when talking about catalogues. For C(x,t), we use dereference syntax to say:
+
+*x[t] == y
+
+But we could also say:
+
+[t]: *x == y
+
+In the global catalogue, the role of the canonical referent can be expressed as:
+
+*x == o
+
+Within a semantic reference frame, dereference can be expressed as eloquently for a particular subjects as it can in the global catalogue. And since the global catalogue is defined in terms of the canonical subject, everything in semantic reference theory implicitly happens within a reference frame
+
+# The Axioms of Formal Semantic Reference
+
+It's a long way down on this post, and I've only just started thinking about it. I'm not sure I have it right yet. But it's a concept that's hard to express without high-level syntax and reference frames.
+
+This is a theory of semantic forms. Where is the form of a referent!?
+
+We might imagine assigning a referent to represent a reference. But to do this, we'd need to create a structure that has this form:
+
+∃r x =t> y => x => r => y
+
+But then:
+
+x => ? => r => ? => y
+
+And:
+
+x => ? => ? => ? => r => ? => ? => ? => y
+
+To make an object out of the reference and to relate it to its subject and object through reference is to create referential explosion!
+
+So what do we do?
+
+The key insight is the idea that reference and referent are circular definitions. On is based on the other. So if we seek to exchange their roles, we must find a way to objectify a reference and subjectify a referent
+
+How can we do this?
+
+Let's first define a referent like this:
+
+[t]: (x,y)
+
+Suppose you declared such a referent to exist. How might we associate it with x and y? Let's connect their identities through canonicals:
+
+[t]: (x,y) =x> (x,y)
+[t]: (x,y) =y> (x,y)
+
+We now have three subjects: x, y. In this case, the subjects represent the referents. The reference is the object.
+
+Let us then define some canonicals, and imagine that catalogues compose as nicely as I would want them to:
+
+[t,x] *(x,y) == (x,y)
+[t,y] *(x,y) == (x,y)
+
+What have we accomplished here?
+
+Well, we might call (x,y) the subjective referent of x in a given reference frame, and we might call (x,y) the objective referent of y in a given reference frame.
+
+We have the subjective referent as the canonical in the subject of x. Therefore we can express whatever semantics for it that's we'd like by defining the semantics of the reference. And we can talk about it not because it's connected to x through a referent, but rather because it uses x as the subject of its relationship to itself. So too with y.
+
+How do we express this in axiomatic form?
+
+Let Ref(x,y,t) be the Reference Representation Function:
+
+R(x,y,t) => R(Ref(x,y,t),Ref(x,y,t),x)
+R(x,y,t) => R(Ref(x,y,t),Ref(x,y,t),y)
+R(x,y,t) => R(Ref(x,y,t),Ref(x,y,t),t)
+R(x,y,t) => C(Ref(x,y,t),z,x) == Ref(x,y,t)
+R(x,y,t) => C(Ref(x,y,t),z,y) == Ref(x,y,t)
+Otherwise => Ref(x,y,t) == 0
+
+The Ref function has order of variables so it uniquely specifies all three parts of the relationship. It is the canonical value of its catalogue in the subject of x. It is the canonical value of its catalogue in the subject of y. We seem well positioned to describe the semantics of references between x and y.
+
+Now, how do we make that causal? Is there a mirror image of Semantic Reference Theory when x and y are subjects instead of objects?
+
+I'm not sure. I can't think this through any further for right now.

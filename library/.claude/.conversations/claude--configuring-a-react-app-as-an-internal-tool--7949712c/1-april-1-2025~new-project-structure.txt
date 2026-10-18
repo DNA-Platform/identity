@@ -1,0 +1,13 @@
+
+src/
+├── components/
+│   ├── HomePage.tsx
+│   ├── InternalToolPage.tsx
+│   ├── ProtectedRoute.tsx
+│   └── Login.tsx
+├── services/
+│   └── auth.ts
+├── App.tsx
+├── index.tsx
+└── public/
+    └── robots.txt

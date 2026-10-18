@@ -1,0 +1,86 @@
+class $PageItem<TItem extends PageItem = PageItem> extends $ArtboardItem<TItem, $PageCatalogue> {
+    URL(newValue?: $Str) { return this.$get(o => o.URL, $str(newValue)); }
+    absoluteZOrderPosition() { return this.$get(o => o.absoluteZOrderPosition); }
+    artworkKnockout(newValue?: $Ref<KnockoutState>) { return this.$get(o => o.artworkKnockout, $ref(newValue)); }
+    blendingMode(newValue?: $Ref<BlendModes>) { return this.$get(o => o.blendingMode, $ref(newValue)); }
+    controlBounds() { return this.$get(o => o.controlBounds); }
+    editable() { return this.$get(o => o.editable); }
+    hidden(newValue?: $Bool) { return this.$get(o => o.hidden, $ref(newValue)); }
+    isIsolated(newValue?: $Bool) { return this.$get(o => o.isIsolated, $ref(newValue)); }
+    left(newValue?: $Num) { return this.$get(o => o.left, $ref(newValue)); }
+    locked(newValue?: $Bool) { return this.$get(o => o.locked, $ref(newValue)); }
+
+    note(newValue?: $Str) { return this.$get(o => o.note, $str(newValue)); }
+    opacity(newValue?: $Num) { return this.$get(o => o.opacity, $ref(newValue)); }
+    pixelAligned(newValue?: $Bool) { return this.$get(o => o.pixelAligned, $ref(newValue)); }
+    position(newValue?: $Ref<Point>) { return this.$get(o => o.position, $ref(newValue)); }
+    selected(newValue?: $Bool) { return this.$get(o => o.selected, $ref(newValue)); }
+    sliced(newValue?: $Bool) { return this.$get(o => o.sliced, $ref(newValue)); }
+    tags(): $Tags { return $docref(this.$get(o => o.tags), this.typename(), this.document()); }
+    top(newValue?: $Num) { return this.$get(o => o.top, $ref(newValue)); }
+    visibilityVariable(newValue?: $Any) { return this.$get(o => o.visibilityVariable, $ref(newValue)); }
+    visibleBounds() { return this.$get(o => o.visibleBounds); }
+    wrapInside(newValue?: $Bool) { return this.$get(o => o.wrapInside, $ref(newValue)); }
+    wrapOffset(newValue?: $Num) { return this.$get(o => o.wrapOffset, $ref(newValue)); }
+    wrapped(newValue?: $Bool) { return this.$get(o => o.wrapped, $ref(newValue)); }
+    zOrderPosition() { return this.$get(o => o.zOrderPosition); }
+
+    constructor(ref: $Reference<TItem> | string, document: $Document, typename: string = "PageItem") {
+        super(ref, typename, document);
+    }
+
+    applyEffect(liveEffectXML: $Str) { return this.$call(o => o.applyEffect, $str(liveEffectXML)); }
+    bringInPerspective(positionX: $Num, positionY: $Num, perspectiveGridPlane: $Ref<PerspectiveGridPlaneType>) { return this.$call(o => o.bringInPerspective, $ref(positionX), $ref(positionY), $ref(perspectiveGridPlane)); }
+    duplicate(relativeObject: $Any, insertionLocation: $Any) { return this.$call(o => o.duplicate, $ref(relativeObject), $ref(insertionLocation)); }
+    move(relativeObject: $Any, insertionLocation: $Any) { return this.$call(o => o.move, $ref(relativeObject), $ref(insertionLocation)); }
+    remove() { return super._remove(); }
+    resize(scaleX: $Num, scaleY: $Num, changePositions?: $Bool, changeFillPatterns?: $Bool, changeFillGradients?: $Bool, changeStrokePattern?: $Bool, changeLineWidths?: $Num, scaleAbout?: $Ref<Transformation>) { return this.$call(o => o.resize, $ref(scaleX), $ref(scaleY), $ref(changePositions), $ref(changeFillPatterns), $ref(changeFillGradients), $ref(changeStrokePattern), $ref(changeLineWidths), $ref(scaleAbout)); }
+    rotate(angle: $Num, changePositions?: $Bool, changeFillPatterns?: $Bool, changeFillGradients?: $Bool, changeStrokePattern?: $Bool, rotateAbout?: $Ref<Transformation>) { return this.$call(o => o.rotate, $ref(angle), $ref(changePositions), $ref(changeFillPatterns), $ref(changeFillGradients), $ref(changeStrokePattern), $ref(rotateAbout)); }
+    sendScriptMessage(pluginName: $Str, messageSelector: $Str, inputString: $Str) { return this.$call(o => o.sendScriptMessage, $str(pluginName), $str(messageSelector), $str(inputString)); }
+    transform(transformationMatrix: $Ref<Matrix>, changePositions?: $Bool, changeFillPatterns?: $Bool, changeFillGradients?: $Bool, changeStrokePattern?: $Bool, changeLineWidths?: $Num, transformAbout?: $Ref<Transformation>) { return this.$call(o => o.transform, $ref(transformationMatrix), $ref(changePositions), $ref(changeFillPatterns), $ref(changeFillGradients), $ref(changeStrokePattern), $ref(changeLineWidths), $ref(transformAbout)); }
+    translate(deltaX?: $Num, deltaY?: $Num, transformObjects?: $Bool, transformFillPatterns?: $Bool, transformFillGradients?: $Bool, transformStrokePattern?: $Bool) { return this.$call(o => o.translate, $ref(deltaX), $ref(deltaY), $ref(transformObjects), $ref(transformFillPatterns), $ref(transformFillGradients), $ref(transformStrokePattern)); }
+    zOrder(zOrderCmd: $Ref<ZOrderMethod>) { return this.$call(o => o.zOrder, $ref(zOrderCmd)); }
+}
+
+class $GroupItems extends $ApplicationCollection<GroupItems, $GroupItem, GroupItem, $PageCatalogue> {
+    constructor(ref: $Reference<GroupItems>, document: $Document) {
+        super(ref, "GroupItems", document);
+    }
+
+    getByName(name: $Str) { return super._getByName(name); }
+}
+
+class $GroupItem extends $PageItem<GroupItem> {
+    pageItems(): $PageItems { return $docref(this.$get(o => o.pageItems), this.typename(), this.document()); }
+    pathItems(): $PathItems { return $docref(this.$get(o => o.pathItems), this.typename(), this.document()); }
+    textFrames(): $TextFrames { return $docref(this.$get(o => o.textFrames), this.typename(), this.document()); }
+    groupItems(): $GroupItems { return $docref(this.$get(o => o.groupItems), this.typename(), this.document()); }
+    rasterItems(): $RasterItems { return $docref(this.$get(o => o.rasterItems), this.typename(), this.document()); }
+    compoundPathItems(): $CompoundPathItems { return $docref(this.$get(o => o.compoundPathItems), this.typename(), this.document()); }
+    legacyTextItems(): $LegacyTextItems { return $docref(this.$get(o => o.legacyTextItems), this.typename(), this.document()); }
+    nonNativeItems(): $NonNativeItems { return $docref(this.$get(o => o.nonNativeItems), this.typename(), this.document()); }
+    placedItems(): $PlacedItems { return $docref(this.$get(o => o.placedItems), this.typename(), this.document()); }
+    graphItems(): $GraphItems { return $docref(this.$get(o => o.graphItems), this.typename(), this.document()); }
+    meshItems(): $MeshItems { return $docref(this.$get(o => o.meshItems), this.typename(), this.document()); }
+
+    constructor(ref: $Reference<GroupItem> | string, document: $Document) {
+        super(ref, document, "GroupItem");
+    }
+}
+
+class $PathItems extends $ApplicationCollection<PathItems, $PathItem, PathItem, $PageCatalogue> {
+    constructor(ref: $Reference<PathItems>, document: $Document) {
+        super(ref, "PathItems", document);
+    }
+
+    getByName(name: $Str) { return super._getByName(name); }
+}
+
+class $PathItem extends $PageItem<PathItem> {
+    tags(): $Tags { return $docref(this.$get(o => o.tags), this.typename(), this.document()); }
+    pathPoints(): $PathPoints { return $docref(this.$get(o => o.pathPoints), this.typename(), this.document()); }
+
+    constructor(ref: $Reference<PathItem> | string, document: $Document) {
+        super(ref, document, "PathItem");
+    }
+}

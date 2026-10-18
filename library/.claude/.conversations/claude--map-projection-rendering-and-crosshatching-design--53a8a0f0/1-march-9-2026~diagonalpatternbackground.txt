@@ -1,0 +1,104 @@
+// src/components/map-backgrounds/DiagonalPatternBackground.tsx
+import React from 'react';
+import { useMapContext } from 'react-simple-maps';
+
+interface DiagonalPatternBackgroundProps {
+  backgroundColor?: string;
+  lineColor?: string;
+  lineWidth?: number;
+  lineSpacing?: number;
+  direction?: 'right' | 'left'; // Direction of diagonal: right = /, left = \
+}
+
+const DiagonalPatternBackground: React.FC<DiagonalPatternBackgroundProps> = ({
+  backgroundColor = '#f8f9fa',
+  lineColor = '#e9ecef',
+  lineWidth = 2,
+  lineSpacing = 12, // Controls distance between lines
+  direction = 'left'
+}) => {
+  const { width = 800, height = 600 } = useMapContext();
+  
+  // Create SVG for a diagonal line pattern that spans the entire map
+  // We'll calculate the number of lines needed based on the canvas size
+  
+  // Find the maximum dimension to ensure lines extend beyond the canvas
+  const maxDimension = Math.max(Number(width), Number(height)) * 2;
+  
+  // Calculate how many lines we need based on spacing
+  const numLines = Math.ceil(maxDimension / lineSpacing);
+  
+  // Generate the lines
+  const generateLines = () => {
+    const lines = [];
+    
+    for (let i = -numLines; i < numLines; i++) {
+      const offset = i * lineSpacing;
+      
+      // For right-diagonal lines (/)
+      if (direction === 'right') {
+        // Start from left side, offset vertically
+        const x1 = 0;
+        const y1 = offset;
+        // End at right side
+        const x2 = maxDimension;
+        const y2 = offset + maxDimension;
+        
+        lines.push(
+          <line 
+            key={`right-${i}`}
+            x1={x1} 
+            y1={y1} 
+            x2={x2} 
+            y2={y2}
+            stroke={lineColor}
+            strokeWidth={lineWidth}
+          />
+        );
+      } 
+      // For left-diagonal lines (\)
+      else {
+        // Start from right side, offset vertically
+        const x1 = maxDimension;
+        const y1 = offset;
+        // End at left side
+        const x2 = 0;
+        const y2 = offset + maxDimension;
+        
+        lines.push(
+          <line 
+            key={`left-${i}`}
+            x1={x1} 
+            y1={y1} 
+            x2={x2} 
+            y2={y2}
+            stroke={lineColor}
+            strokeWidth={lineWidth}
+          />
+        );
+      }
+    }
+    
+    return lines;
+  };
+  
+  return (
+    <>
+      {/* Background rectangle */}
+      <rect 
+        x="0" 
+        y="0" 
+        width={width} 
+        height={height} 
+        fill={backgroundColor} 
+      />
+      
+      {/* Diagonal lines */}
+      <g>
+        {generateLines()}
+      </g>
+    </>
+  );
+};
+
+export default DiagonalPatternBackground;

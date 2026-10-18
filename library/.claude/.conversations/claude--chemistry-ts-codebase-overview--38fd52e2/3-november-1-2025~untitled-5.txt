@@ -1,0 +1,450 @@
+import React, { ReactNode, useState, useEffect, JSX, useLayoutEffect, useRef } from 'react';
+import {// $Chemical
+    $cid, $symbol, $destroyed, $remove, $decorators, $type, $molecule, $reaction, $$reaction, $template, $isTemplate, $isBound, $parent$, $parent, $orchestrator, $component, $children, $props, $lastProps, $render, $apply, $bond, $createComponent, $destroy, $$template, $$getNextCid, $$createSymbol, $$isSymbol, $$parseCid 
+} from "./symbols";
+import {// $Atom
+    $formed, $formation, $remembered 
+} from "./symbols";
+import {// $Componment$
+    $transient 
+} from "./symbols";
+import {// $promise
+    $cancelled 
+} from "./symbols";
+
+export type $Type<T = any> = $Constructor<T>;
+export type $Constructor<T = {}> = new (...args: any[]) => T;
+type $SymbolFeature = 'fast' | 'slow' | 'self-contained' | 'referential';
+type $Phase = 'setup' | 'mount' | 'render' | 'layout' | 'effect' | 'unmount';
+type $Promise<T = any> = Promise<T> & { 
+    result: T, 
+    complete: boolean,
+    then: <U>(action: (value: T) => U) => $Promise<U>,  
+    cancel: (action?: () => any) => any 
+}
+
+export type $Props = {
+    [key: string]: any;
+    children?: ReactNode;
+}
+
+export type $Properties<T> = {
+    [K in keyof T as K extends `$${infer First}${infer Rest}` ? 
+        (K extends '$parent' ? never :  // Add this check
+        First extends Lowercase<First> ?
+            (First extends '_' | '$' ? never :
+            (K extends keyof $Chemical ? never : 
+            (T[K] extends Function ? never : `${First}${Rest}`))) : never) : never]: 
+        T[K]
+} & {
+    [K in keyof T as K extends `$${infer First}${infer Rest}` ? 
+        (K extends '$parent' ? never :  // Add this check
+        First extends Lowercase<First> ?
+            (First extends '_' | '$' ? never :
+            (K extends keyof $Chemical ? never : 
+            (T[K] extends Function ? `${First}${Rest}` : never))) : never) : never]?: 
+        T[K]
+} & {
+    children?: React.ReactNode;
+};
+
+export type $$Properties<T> = {
+    [K in keyof T as K extends `$${infer First}${infer Rest}` ? 
+        (K extends '$parent' ? never :  // Add this check
+        First extends Lowercase<First> ?
+            (First extends '_' | '$' ? never :
+            (K extends keyof $Chemical ? never : 
+            (T[K] extends Function ? never : `${First}${Rest}`))) : never) : never]?: 
+        T[K]
+} & {
+    [K in keyof T as K extends `$${infer First}${infer Rest}` ? 
+        (K extends '$parent' ? never :  // Add this check
+        First extends Lowercase<First> ?
+            (First extends '_' | '$' ? never :
+            (K extends keyof $Chemical ? never : 
+            (T[K] extends Function ? `${First}${Rest}` : never))) : never) : never]?: 
+        T[K]
+} & {
+    children?: React.ReactNode;
+};
+
+export type $Component<T extends $Chemical = $Chemical> = React.FC<$Properties<T>> & Component<T>;
+export type $$Component<T extends $Chemical = $Chemical> = React.FC<$$Properties<T>> & Component<T>;
+
+export interface Component<T extends $Chemical> {
+    get $bound(): boolean;
+    get $chemical(): T;
+    $?(): $$Component<T>;
+    $new(parent: $Chemical): $$Component<T>;
+    $bind(parent: $Chemical): $Component<T>;
+}
+
+export type $Function<T> = T extends React.FC<infer P> 
+    ? $Function$<P> & {
+        [K in keyof P as K extends 'children' ? never : `$${string & K}`]: P[K];
+      }
+    : never;
+
+export type $Html<T extends keyof JSX.IntrinsicElements = any> = 
+    $Html$<T> & {
+        [K in keyof JSX.IntrinsicElements[T] as K extends 'children' ? never : `$${string & K}`]?: JSX.IntrinsicElements[T][K];
+    }
+
+type $ParameterType = 
+    | $Constructor<$Particle>
+    | React.FC
+    | Function
+    | StringConstructor
+    | NumberConstructor
+    | BooleanConstructor
+    | FunctionConstructor
+    | ObjectConstructor
+    | null
+    | undefined
+    | keyof JSX.IntrinsicElements
+    | 'any'
+    | [$ParameterType]
+    | [[$ParameterType]]
+    | [[[$ParameterType]]];
+
+type $Parameter<T = $ParameterType> =
+  T extends readonly (infer U)[] ? $Parameter<U>[] :
+  T extends $Constructor<infer C> ? (C extends $Chemical ? C : never) :
+  T extends React.FC<any> ? $Function<T> :
+  T extends StringConstructor ? string :
+  T extends NumberConstructor ? number :
+  T extends BooleanConstructor ? boolean :
+  T extends FunctionConstructor ? Function :
+  T extends ObjectConstructor ? object :
+  T extends keyof JSX.IntrinsicElements ? $Html<T> :
+  T extends 'any' ? any :
+  T;
+
+class $Reflection {
+    chemical: $Chemical;
+    property: string;
+
+    get reactive(): boolean { 
+        if ($Reflection.isSpecial(this.property)) return true;
+        const reactiveGenerally = $Reflection.isReactive(this.property);
+        return reactiveGenerally ?
+            !$Reflection.inertSpecifically(this.chemical, this.property, reactiveGenerally) :
+            !!$Reflection.reactiveSpecifically(this.chemical, this.property, reactiveGenerally);
+    };
+
+    constructor(chemical: $Chemical, property: string) {
+        this.chemical = chemical;
+        this.property = property;
+    }
+
+    static inertDecorators: Map<$Chemical, Set<string>> = new Map();
+    static reactiveDecorators: Map<$Chemical, Set<string>> = new Map();
+
+    static inertSpecifically(chemical: $Chemical, property: string, reactiveGenerally: boolean): boolean | undefined {
+        if (!reactiveGenerally) return true;
+        if (chemical === $Chemical.prototype) return undefined;
+        const map = this.inertDecorators.get(chemical);
+        return !map ? 
+            this.inertSpecifically(Object.getPrototypeOf(chemical), property, reactiveGenerally) :
+            map.has(property);
+    }
+
+    static reactiveSpecifically(chemical: $Chemical, property: string, reactiveGenerally: boolean): boolean | undefined {
+        if (reactiveGenerally) return true;
+        if (chemical === $Chemical.prototype) return undefined;
+        const map = this.reactiveDecorators.get(chemical);
+        return !map ? 
+            this.reactiveSpecifically(Object.getPrototypeOf(chemical), property, reactiveGenerally) :
+            map.has(property);
+    }
+
+    static isReactive(property: string): boolean {
+        if (property === "constructor") return false;
+        if (property.startsWith('_')) return false;
+        if (!property.startsWith("$")) return true;
+        return this.isSpecial(property);
+    }
+
+    static isSpecial(property: string): boolean {
+        return property.length > 2 && 
+            property[0] === '$' && 
+            property[1] !== "$" && 
+            property[1] !== "_" &&
+            property[1] === property[1].toLowerCase();
+    }
+}
+
+// Decorator to mark a field as inert (non-reactive)
+export function inert() {
+    return function (prototype: $Chemical, property: string) {
+        let properties = $Reflection.inertDecorators.get(prototype)!;
+        if (!properties) {
+            properties = new Set();
+            $Reflection.inertDecorators.set(prototype, properties);
+        }
+        properties.add(property);
+    };
+}
+
+// Reactive decorator for methods
+export function reactive() {
+    return function (prototype: $Chemical, property: string) {
+        let properties = $Reflection.reactiveDecorators.get(prototype)!;
+        if (!properties) {
+            properties = new Set();
+            $Reflection.reactiveDecorators.set(prototype, properties);
+        }
+        properties.add(property);
+    };
+}
+
+export class $Particle {
+    [$cid]: number;
+    [$symbol]: string;
+    [$type]: typeof $Particle;
+    [$remove] = false;
+    [$destroyed] = false;
+    [$decorators]!: $Reflection;
+    [$children]: ReactNode;
+    [$lastProps]?: $Props;
+    [$component]?: $Component$<any>;
+
+    [$template]: this;
+    static [$$template]: $Particle;
+    get [$isTemplate]() { return this == this[$type][$$template]; }
+
+    constructor() {
+        this[$cid] = $Chemical[$$getNextCid]();
+        this[$type] = this.constructor as any;
+        if (!this[$type][$$template] || 
+           !(this[$type][$$template] instanceof this[$type]))
+            this[$type][$$template] = this;
+        this[$template] = this;
+        this[$symbol] = this.toString();
+        const descriptor = Object.getOwnPropertyDescriptor(this[$type].prototype, 'view');
+        const view = descriptor?.value;
+        const $view = function(props?: $Props) {
+            $view.$this[$apply](props);
+            $view.$this[$bond]();
+            return $view.$view.bind($view.$this)();
+        }
+        $view.$this = this;
+        $view.$view = view;
+        this.view = $view;
+    }
+
+    view(): ReactNode {
+        return undefined;
+    }
+
+    toString() {
+        if (this[$symbol]) return this[$symbol];
+        return $Chemical[$$createSymbol](this);
+    }
+
+    protected [$apply](props?: $Props) {
+        if (!props) return;
+        const $this = this as any;
+        $this[$children] = props.children;
+        for (const prop in props) {
+            if (typeof prop === 'symbol' || prop === 'children' || prop === 'key' || prop === 'ref') 
+                continue;
+            const value = props[prop];
+            $this['$' + prop] = value;
+        }
+    }
+
+    protected [$bond]() {}
+}
+
+export class $Chemical extends $Particle {
+    [$type]!: typeof $Chemical;
+    [$molecule]: $Molecule;
+    [$reaction]: $Reaction;
+    [$orchestrator]: $BondOrchestrator<this>;
+    [$$reaction]: $Reaction | undefined;
+    static [$$template]: $Chemical;
+
+    get [$isBound]() { return this == this?.[$component]?.$chemical; }
+
+    [$parent$]?: $Chemical;
+    get [$parent](): $Chemical | undefined { return this?.[$parent$]; }
+    set [$parent](parent: $Chemical) {
+        if (!$parent)
+            throw new Error(`The parent of ${this[$symbol]} was not specified`);
+        if (this[$parent$])
+            throw new Error(`The parent of ${this[$symbol]} has already been set`);
+        this[$parent$] = parent; 
+    }
+
+    get children() { return this[$children]; }
+
+    get Component(): $Component<this> {
+        if (!this[$component]) {
+            if (!this[$template][$component])
+                this[$template][$component] = this[$template][$createComponent]() as any;
+        }
+        return this[$component] ?? this[$template][$component] as any;
+    }
+
+    get $Component(): $$Component<this> {
+        return this.Component as any;
+    }
+
+    constructor() {
+        super();
+        this[$molecule] = new $Molecule(this);
+        this[$reaction] = new $Reaction(this);
+        this[$orchestrator] = new $BondOrchestrator(this);
+        if (this[$isTemplate]) $set(this[$type], this);
+    }
+
+    view(): ReactNode {
+        return this.children;
+    }
+
+    async mount() { return this[$reaction].mount(); } 
+    async render() { return this[$reaction].render(); } 
+    async layout() { return this[$reaction].layout(); } 
+    async effect() { return this[$reaction].effect(); } 
+    async unmount() { return this[$reaction].unmount(); } 
+
+    [$render](props: $Props): ReactNode {
+        return this[$orchestrator].render(props);
+    }
+
+    [$props](): any {
+        this[$molecule].reactivate();
+        const props: Record<string, any> = this.children ? 
+            { key: this[$symbol], children: this.children } : 
+            { key: this[$symbol] };
+        for (const bond of this[$molecule].bonds.values())
+            if (bond.isProp && bond.lastValue) 
+                props[bond.property.slice(1)] = bond.lastValue;
+        return props;
+    }
+
+    [$destroy]() {
+        if (this[$isTemplate] || this[$isBound]) return;
+        this[$parent$] = undefined as any
+        this[$molecule]?.destroy();
+        this[$reaction]?.destroy();
+        this[$destroyed] = true;
+    }
+
+    protected [$createComponent](): $Component<this> {
+        if (this[$component]) 
+            throw new Error(`The Component for ${this} has already been created`);
+
+        this.assertViewConstructors();
+        this[$template][$molecule].reactivate();
+        return new $Component$(this[$template]) as any;
+    }
+
+    private assertViewConstructors(prototype?: any, childConstructor?: any) {
+        if (!prototype) prototype = Object.getPrototypeOf(this[$template]);
+        if (!prototype || prototype === $Chemical.prototype) return;
+        
+        const className = prototype.constructor.name;
+        const thisConstructor = prototype[className];
+        if (thisConstructor && typeof thisConstructor !== 'function')
+            throw new Error(`The ${className} class has property ${className} but it's not a function`);
+        if (childConstructor && !thisConstructor)
+            throw new Error(`The ${className} class must have a constructor method named ${className} because child class has one`);
+
+        this.assertViewConstructors(Object.getPrototypeOf(prototype), thisConstructor);
+    }
+
+    static [$$getNextCid](): number { return $Chemical.nextCid++; }
+    private static nextCid = 1;
+
+    static [$$createSymbol](chemical: $Particle) {
+        return `$Chemistry.${chemical[$type].name}[${chemical[$cid]}]`;
+    }
+
+    static [$$isSymbol](symbol: string): boolean {
+        return symbol.startsWith('$Chemistry.');
+    }
+
+    static [$$parseCid](symbol: string): number | undefined {
+        if (!$Chemical[$$isSymbol](symbol)) return undefined;
+        const match = symbol.match($Chemical.symbolPattern);
+        if (!match) throw new Error(`Invalid chemical symbol: ${symbol}`);
+        return Number(match[1]);
+    }
+
+    private static symbolPattern = /\[(\d+)\]$/;
+}
+
+export class $Atom extends $Chemical {
+    override set [$parent](value: $Chemical) {
+        this[$parent$] = value || this[$parent$];
+    } 
+
+    constructor() {
+        super();
+        if (this == this[$type][$$template]) {
+            this[$parent$] = this;
+            this[$component] = new $Component$(this, this) as any;
+            this[$molecule].reactivate();
+        }
+        return this[$type][$$template] as this;
+    }
+
+    static particle<T extends $Atom = $Atom>(): T {
+        try {
+            if (!this[$$template]) 
+                new this();
+        } catch (error) { 
+            console.error(error); 
+        }
+        return this[$$template] as any;
+    }
+}
+
+export class $Function$<P = any> extends $Chemical {
+    private _component: React.FC<P>;
+
+    /** @internal */
+    get __$Function() { return this._component; }
+
+    /** @internal */
+    get __name() { return this.__$Function.name; }
+
+    constructor(component: React.FC<P>) {
+        super();
+        this._component = component;
+        this[$component] = new $Component$(this) as any;
+    }
+
+    view() { 
+        return React.createElement(this._component as any, this[$props]());
+    }
+}
+
+export class $Html$<T extends keyof JSX.IntrinsicElements = any> extends $Chemical { 
+    @inert()
+    get type() { return this._type; }
+    protected _type: T;
+    
+    constructor(type: T) {
+        super();
+        this._type = type;
+    }
+
+    view() {
+        return React.createElement(this._type, this[$props]());
+    }
+}
+
+export class $Include extends $Chemical {
+    view(): ReactNode {
+        return this.children;
+    }
+}
+
+export class $Exclude extends $Chemical {
+    view(): ReactNode {
+        return undefined;
+    }
+}

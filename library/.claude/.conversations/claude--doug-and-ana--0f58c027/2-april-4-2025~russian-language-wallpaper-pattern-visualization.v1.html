@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Russian Language Patterns</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+      background-color: #f9f7f1;
+      color: #333;
+    }
+    
+    #container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      max-width: 250px;
+    }
+    
+    .letter-connection {
+      fill: none;
+      stroke-width: 1;
+    }
+    
+    .letter-node {
+      cursor: pointer;
+    }
+    
+    .tooltip {
+      position: absolute;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      max-width: 200px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    select, button {
+      margin: 5px 0;
+      padding: 5px;
+      width: 100%;
+    }
+    
+    h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+    
+    .fade-text {
+      opacity: 0.4;
+    }
+    
+    input[type="range"] {
+      width: 100%;
+      margin: 10px 0;
+    }
+    
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <!-- The SVG will be appended here -->
+  </div>
+  
+  <div class="controls">
+    <h3>Linguistic Patterns</h3>
+    <label for="patternType">Pattern Type:</label>
+    <select id="patternType">
+      <option value="cyrillic-latin">Cyrillic-Latin Connections</option>
+      <option value="cyrillic-greek">Cyrillic-Greek Connections</option>
+      <option value="phonetic">Phonetic Relationships</option>
+      <option value="poetry">Russian Poetry Structure</option>
+    </select>
+    
+    <label for="density">Pattern Density:</label>
+    <input type="range" id="density" min="1" max="10" value="5">
+    
+    <label for="colorScheme">Color Scheme:</label>
+    <select id="colorScheme">
+      <option value="traditional">Traditional</option>
+      <option value="winter">Winter</option>
+      <option value="modern">Modern</option>
+      <option value="imperial">Imperial</option>
+    </select>
+    
+    <button id="regenerate">Regenerate Pattern</button>
+  </div>
+  
+  <div class="tooltip"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script>
+    // Define the Russian alphabet with connections to Latin and Greek
+    const russianAlphabet = [
+      { cyrillic: 'А', latin: 'A', greek: 'Alpha', name: 'ah', sound: 'a as in father', type: 'vowel', frequency: 0.062 },
+      { cyrillic: 'Б', latin: 'B', greek: 'Beta', name: 'beh', sound: 'b as in boy', type: 'consonant', frequency: 0.014 },
+      { cyrillic: 'В', latin: 'V', greek: 'Beta', name: 'veh', sound: 'v as in voice', type: 'consonant', frequency: 0.038 },
+      { cyrillic: 'Г', latin: 'G', greek: 'Gamma', name: 'ghe', sound: 'g as in go', type: 'consonant', frequency: 0.013 },
+      { cyrillic: 'Д', latin: 'D', greek: 'Delta', name: 'deh', sound: 'd as in day', type: 'consonant', frequency: 0.025 },
+      { cyrillic: 'Е', latin: 'E/Ye', greek: 'Epsilon', name: 'yeh', sound: 'ye as in yes', type: 'vowel', frequency: 0.072 },
+      { cyrillic: 'Ё', latin: 'Yo', greek: '', name: 'yo', sound: 'yo as in yolk', type: 'vowel', frequency: 0.004 },
+      { cyrillic: 'Ж', latin: 'Zh', greek: '', name: 'zheh', sound: 'zh as in measure', type: 'consonant', frequency: 0.007 },
+      { cyrillic: 'З', latin: 'Z', greek: 'Zeta', name: 'zeh', sound: 'z as in zoo', type: 'consonant', frequency: 0.016 },
+      { cyrillic: 'И', latin: 'I', greek: 'Iota', name: 'ee', sound: 'i as in machine', type: 'vowel', frequency: 0.062 },
+      { cyrillic: 'Й', latin: 'Y', greek: '', name: 'ee kratkoyeh', sound: 'y as in boy', type: 'semivowel', frequency: 0.010 },
+      { cyrillic: 'К', latin: 'K', greek: 'Kappa', name: 'kah', sound: 'k as in kite', type: 'consonant', frequency: 0.028 },
+      { cyrillic: 'Л', latin: 'L', greek: 'Lambda', name: 'el', sound: 'l as in lamp', type: 'consonant', frequency: 0.035 },
+      { cyrillic: 'М', latin: 'M', greek: 'Mu', name: 'em', sound: 'm as in moon', type: 'consonant', frequency: 0.026 },
+      { cyrillic: 'Н', latin: 'N', greek: 'Nu', name: 'en', sound: 'n as in no', type: 'consonant', frequency: 0.053 },
+      { cyrillic: 'О', latin: 'O', greek: 'Omicron', name: 'oh', sound: 'o as in more', type: 'vowel', frequency: 0.090 },
+      { cyrillic: 'П', latin: 'P', greek: 'Pi', name: 'peh', sound: 'p as in pet', type: 'consonant', frequency: 0.023 },
+      { cyrillic: 'Р', latin: 'R', greek: 'Rho', name: 'er', sound: 'rolled r', type: 'consonant', frequency: 0.040 },
+      { cyrillic: 'С', latin: 'S', greek: 'Sigma', name: 'es', sound: 's as in sun', type: 'consonant', frequency: 0.045 },
+      { cyrillic: 'Т', latin: 'T', greek: 'Tau', name: 'teh', sound: 't as in top', type: 'consonant', frequency: 0.053 },
+      { cyrillic: 'У', latin: 'U', greek: '', name: 'oo', sound: 'oo as in boot', type: 'vowel', frequency: 0.021 },
+      { cyrillic: 'Ф', latin: 'F', greek: 'Phi', name: 'ef', sound: 'f as in fun', type: 'consonant', frequency: 0.002 },
+      { cyrillic: 'Х', latin: 'Kh', greek: 'Chi', name: 'khah', sound: 'ch as in loch', type: 'consonant', frequency: 0.009 },
+      { cyrillic: 'Ц', latin: 'Ts', greek: '', name: 'tseh', sound: 'ts as in cats', type: 'consonant', frequency: 0.004 },
+      { cyrillic: 'Ч', latin: 'Ch', greek: '', name: 'cheh', sound: 'ch as in church', type: 'consonant', frequency: 0.012 },
+      { cyrillic: 'Ш', latin: 'Sh', greek: '', name: 'shah', sound: 'sh as in shell', type: 'consonant', frequency: 0.006 },
+      { cyrillic: 'Щ', latin: 'Shch', greek: '', name: 'schah', sound: 'shch as in fresh cheese', type: 'consonant', frequency: 0.003 },
+      { cyrillic: 'Ъ', latin: '', greek: '', name: 'tvyordiy znak', sound: 'hard sign (no sound)', type: 'modifier', frequency: 0.0004 },
+      { cyrillic: 'Ы', latin: 'Y', greek: '', name: 'yery', sound: 'i as in bit, but deeper', type: 'vowel', frequency: 0.016 },
+      { cyrillic: 'Ь', latin: '', greek: '', name: 'myahkiy znak', sound: 'soft sign (no sound)', type: 'modifier', frequency: 0.014 },
+      { cyrillic: 'Э', latin: 'E', greek: '', name: 'eh', sound: 'e as in end', type: 'vowel', frequency: 0.003 },
+      { cyrillic: 'Ю', latin: 'Yu', greek: '', name: 'yoo', sound: 'yu as in use', type: 'vowel', frequency: 0.006 },
+      { cyrillic: 'Я', latin: 'Ya', greek: '', name: 'yah', sound: 'ya as in yard', type: 'vowel', frequency: 0.018 }
+    ];
+
+    // Russian phrases with translations and pronunciations
+    const phrases = [
+      { russian: "Доброе утро", english: "Good morning", pronunciation: "DOH-bro-ye OOT-roh" },
+      { russian: "Спасибо", english: "Thank you", pronunciation: "spah-SEE-bah" },
+      { russian: "Как дела?", english: "How are you?", pronunciation: "kahk dee-LAH" },
+      { russian: "Меня зовут", english: "My name is", pronunciation: "mee-NYAH zah-VOOT" },
+      { russian: "Я тебя люблю", english: "I love you", pronunciation: "ya tee-BYAH lyoo-BLYOO" },
+      { russian: "Вот книга", english: "Here is a book", pronunciation: "voht KNEE-gah" },
+      { russian: "Это дом", english: "This is a house", pronunciation: "EH-tah dohm" },
+      { russian: "До свидания", english: "Goodbye", pronunciation: "dah svee-DAH-nee-ye" }
+    ];
+    
+    // Russian poetry for pattern inspiration
+    const poetryStructures = [
+      { name: "Pushkin's Eugene Onegin", pattern: "iambic tetrameter with alternating feminine and masculine rhymes" },
+      { name: "Mayakovsky's Staircase", pattern: "stepped arrangement with increasing line lengths" },
+      { name: "Akhmatova's Quatrains", pattern: "four-line stanzas with abab rhyme scheme" },
+      { name: "Blok's Symbolism", pattern: "heavily symbolic with alliterative patterns" }
+    ];
+
+    // Color schemes
+    const colorSchemes = {
+      traditional: {
+        background: "#f9f7f1",
+        primary: "#8b0000", // Dark red
+        secondary: "#003153", // Dark blue
+        highlight: "#ffd700", // Gold
+        connection: "#553939",
+        text: "#2d2d2d"
+      },
+      winter: {
+        background: "#f0f8ff",
+        primary: "#4682b4", // Steel blue
+        secondary: "#708090", // Slate gray
+        highlight: "#b0e0e6", // Powder blue
+        connection: "#778899",
+        text: "#2f4f4f"
+      },
+      modern: {
+        background: "#f5f5f5",
+        primary: "#444444", // Dark gray
+        secondary: "#666666", // Medium gray
+        highlight: "#cccccc", // Light gray
+        connection: "#999999",
+        text: "#333333"
+      },
+      imperial: {
+        background: "#f9f2e7",
+        primary: "#8b0000", // Dark red
+        secondary: "#000000", // Black
+        highlight: "#ffd700", // Gold
+        connection: "#3c1414",
+        text: "#1a1a1a"
+      }
+    };
+
+    // Initialize the visualization
+    let svg, width, height;
+    let currentPattern = "cyrillic-latin";
+    let currentDensity = 5;
+    let currentColorScheme = "traditional";
+    let tooltip;
+
+    function initializeVisualization() {
+      // Clear previous SVG if it exists
+      d3.select("#container svg").remove();
+      
+      // Get container dimensions
+      const container = document.getElementById("container");
+      width = container.clientWidth;
+      height = container.clientHeight;
+      
+      // Create SVG
+      svg = d3.select("#container")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+        
+      // Initialize tooltip
+      tooltip = d3.select(".tooltip");
+      
+      // Generate the pattern
+      generatePattern();
+    }
+
+    function generatePattern() {
+      // Get colors from the selected scheme
+      const colors = colorSchemes[currentColorScheme];
+      
+      // Clear previous pattern
+      svg.selectAll("*").remove();
+      
+      // Set background
+      svg.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", colors.background);
+      
+      // Different pattern types
+      switch(currentPattern) {
+        case "cyrillic-latin":
+          generateAlphabetConnectionPattern(colors);
+          break;
+        case "cyrillic-greek":
+          generateGreekConnectionPattern(colors);
+          break;
+        case "phonetic":
+          generatePhoneticPattern(colors);
+          break;
+        case "poetry":
+          generatePoetryPattern(colors);
+          break;
+      }
+    }
+
+    function generateAlphabetConnectionPattern(colors) {
+      // Create a seamless wallpaper pattern showing Cyrillic-Latin connections
+      const tileSize = 200;
+      const tilesX = Math.ceil(width / tileSize) + 1;
+      const tilesY = Math.ceil(height / tileSize) + 1;
+      
+      // Create a pattern definition
+      const defs = svg.append("defs");
+      const pattern = defs.append("pattern")
+        .attr("id", "alphabet-pattern")
+        .attr("width", tileSize)
+        .attr("height", tileSize)
+        .attr("patternUnits", "userSpaceOnUse");
+      
+      // Generate the base pattern
+      for (let i = 0; i < currentDensity * 2; i++) {
+        const letter = russianAlphabet[Math.floor(Math.random() * russianAlphabet.length)];
+        if (!letter.latin) continue;
+        
+        const x = Math.random() * tileSize;
+        const y = Math.random() * tileSize;
+        const size = 8 + Math.random() * 14;
+        
+        // Draw the Cyrillic letter
+        pattern.append("text")
+          .attr("x", x)
+          .attr("y", y)
+          .attr("font-size", size)
+          .attr("fill", colors.primary)
+          .attr("opacity", 0.3 + Math.random() * 0.4)
+          .text(letter.cyrillic);
+        
+        // Draw the Latin equivalent with connection
+        if (Math.random() > 0.5) {
+          pattern.append("text")
+            .attr("x", x + size)
+            .attr("y", y)
+            .attr("font-size", size * 0.8)
+            .attr("fill", colors.secondary)
+            .attr("opacity", 0.2 + Math.random() * 0.3)
+            .text(letter.latin);
+          
+          pattern.append("line")
+            .attr("x1", x + size/2)
+            .attr("y1", y - size/3)
+            .attr("x2", x + size + size/4)
+            .attr("y2", y - size/3)
+            .attr("stroke", colors.connection)
+            .attr("stroke-width", 0.5)
+            .attr("opacity", 0.3);
+        }
+      }
+      
+      // Add some phrases in random locations
+      for (let i = 0; i < currentDensity / 2; i++) {
+        const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+        pattern.append("text")
+          .attr("x", Math.random() * (tileSize - 100))
+          .attr("y", Math.random() * tileSize)
+          .attr("font-size", 7)
+          .attr("fill", colors.text)
+          .attr("opacity", 0.15)
+          .text(phrase.russian);
+      }
+      
+      // Apply pattern to background
+      svg.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", "url(#alphabet-pattern)");
+      
+      // Create interactive elements on top
+      const letterRadius = 20;
+      const letterSpacing = 70;
+      const startX = width / 2 - (letterSpacing * 3);
+      const startY = height / 2;
+      
+      // Select letters that have strong Latin/Greek connections
+      const featuredLetters = russianAlphabet.filter(l => l.latin && l.latin.length === 1).slice(0, 7);
+      
+      // Create nodes for each featured letter
+      featuredLetters.forEach((letter, i) => {
+        const angle = (i / featuredLetters.length) * Math.PI * 2;
+        const radius = 150;
+        const x = width/2 + Math.cos(angle) * radius;
+        const y = height/2 + Math.sin(angle) * radius;
+        
+        // Create connection lines
+        svg.append("path")
+          .attr("d", `M${width/2},${height/2} Q${width/2 + Math.cos(angle) * radius/2},${height/2 + Math.sin(angle) * radius/2} ${x},${y}`)
+          .attr("class", "letter-connection")
+          .attr("stroke", colors.connection)
+          .attr("opacity", 0.6)
+          .attr("stroke-dasharray", "3,3");
+        
+        // Create letter node
+        const letterGroup = svg.append("g")
+          .attr("class", "letter-node")
+          .attr("transform", `translate(${x},${y})`)
+          .on("mouseover", function(event) {
+            // Show tooltip
+            tooltip.html(`
+              <strong>${letter.cyrillic}</strong> (${letter.name})<br>
+              Latin: ${letter.latin}<br>
+              Greek: ${letter.greek || "N/A"}<br>
+              Sound: ${letter.sound}
+            `)
+            .style("left", (event.pageX + 15) + "px")
+            .style("top", (event.pageY - 20) + "px")
+            .style("opacity", 1);
+            
+            // Highlight connections
+            d3.select(this).select("circle")
+              .transition()
+              .attr("r", letterRadius * 1.2)
+              .attr("fill", colors.highlight);
+          })
+          .on("mouseout", function() {
+            // Hide tooltip
+            tooltip.style("opacity", 0);
+            
+            // Reset highlight
+            d3.select(this).select("circle")
+              .transition()
+              .attr("r", letterRadius)
+              .attr("fill", colors.primary);
+          });
+        
+        letterGroup.append("circle")
+          .attr("r", letterRadius)
+          .attr("fill", colors.primary)
+          .attr("opacity", 0.9);
+        
+        letterGroup.append("text")
+          .attr("text-anchor", "middle")
+          .attr("dy", "0.3em")
+          .attr("fill", "white")
+          .attr("font-size", letterRadius)
+          .text(letter.cyrillic);
+      });
+      
+      // Add a central node
+      svg.append("circle")
+        .attr("cx", width/2)
+        .attr("cy", height/2)
+        .attr("r", 30)
+        .attr("fill", colors.secondary)
+        .attr("opacity", 0.9);
+      
+      svg.append("text")
+        .attr("x", width/2)
+        .attr("y", height/2)
+        .attr("text-anchor", "middle")
+        .attr("dy", "0.3em")
+        .attr("fill", "white")
+        .attr("font-size", 18)
+        .text("Аа");
+    }
+    
+    function generateGreekConnectionPattern(colors) {
+      // Similar to alphabet pattern but focusing on Greek connections
+      const tileSize = 220;
+      const tilesX = Math.ceil(width / tileSize) + 1;
+      const tilesY = Math.ceil(height / tileSize) + 1;
+      
+      // Create a pattern definition
+      const defs = svg.append("defs");
+      const pattern = defs.append("pattern")
+        .attr("id", "greek-pattern")
+        .attr("width", tileSize)
+        .attr("height", tileSize)
+        .attr("patternUnits", "userSpaceOnUse");
+      
+      // Generate the base pattern with Greek connections
+      for (let i = 0; i < currentDensity * 2; i++) {
+        // Filter letters with Greek connections
+        const greekLetters = russianAlphabet.filter(l => l.greek);
+        const letter = greekLetters[Math.floor(Math.random() * greekLetters.length)];
+        
+        const x = Math.random() * tileSize;
+        const y = Math.random() * tileSize;
+        const size = 10 + Math.random() * 16;
+        
+        // Draw the Cyrillic letter
+        pattern.append("text")
+          .attr("x", x)
+          .attr("y", y)
+          .attr("font-size", size)
+          .attr("fill", colors.primary)
+          .attr("opacity", 0.3 + Math.random() * 0.4)
+          .text(letter.cyrillic);
+        
+        // Draw the Greek connection
+        if (Math.random() > 0.5 && letter.greek) {
+          pattern.append("text")
+            .attr("x", x + size * 0.8)
+            .attr("y", y)
+            .attr("font-size", size * 0.7)
+            .attr("fill", colors.secondary)
+            .attr("opacity", 0.2 + Math.random() * 0.3)
+            .attr("font-style", "italic")
+            .text(letter.greek.charAt(0));
+          
+          pattern.append("line")
+            .attr("x1", x + size/2)
+            .attr("y1", y - size/3)
+            .attr("x2", x + size + size/4)
+            .attr("y2", y - size/3)
+            .attr("stroke", colors.connection)
+            .attr("stroke-width", 0.5)
+            .attr("opacity", 0.3);
+        }
+      }
+      
+      // Apply pattern to background
+      svg.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", "url(#greek-pattern)");
+      
+      // Create feature visualization
+      // Mathematical pattern with Greek/Cyrillic letter relationships
+      svg.append("g")
+        .attr("transform", `translate(${width/2}, ${height/2})`)
+        .attr("opacity", 0.9)
+        .call(g => {
+          // Create a circular arrangement
+          const radius = 200;
+          const greekLetters = russianAlphabet.filter(l => l.greek);
+          
+          // Draw connective circles
+          g.append("circle")
+            .attr("r", radius)
+            .attr("fill", "none")
+            .attr("stroke", colors.connection)
+            .attr("stroke-width", 1)
+            .attr("stroke-dasharray", "3,3")
+            .attr("opacity", 0.5);
+          
+          greekLetters.slice(0, 12).forEach((letter, i) => {
+            const angle = (i / 12) * Math.PI * 2;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+            
+            // Letter node
+            g.append("circle")
+              .attr("cx", x)
+              .attr("cy", y)
+              .attr("r", 25)
+              .attr("fill", colors.primary)
+              .attr("opacity", 0.8)
+              .on("mouseover", function(event) {
+                tooltip.html(`
+                  <strong>${letter.cyrillic}</strong> (${letter.name})<br>
+                  Greek: ${letter.greek}<br>
+                  Sound: ${letter.sound}
+                `)
+                .style("left", (event.pageX + 15) + "px")
+                .style("top", (event.pageY - 20) + "px")
+                .style("opacity", 1);
+              })
+              .on("mouseout", function() {
+                tooltip.style("opacity", 0);
+              });
+            
+            // Cyrillic letter
+            g.append("text")
+              .attr("x", x)
+              .attr("y", y)
+              .attr("text-anchor", "middle")
+              .attr("dy", "0.3em")
+              .attr("fill", "white")
+              .attr("font-size", 18)
+              .text(letter.cyrillic);
+            
+            // Greek equivalent - smaller and to the side
+            g.append("text")
+              .attr("x", x + 20)
+              .attr("y", y - 20)
+              .attr("text-anchor", "middle")
+              .attr("fill", colors.highlight)
+              .attr("font-size", 12)
+              .attr("font-style", "italic")
+              .text(letter.greek.charAt(0));
+          });
+        });
+    }
+    
+    function generatePhoneticPattern(colors) {
+      // Create phonetic-based pattern
+      // Organize letters by sound types (vowels, consonants, etc)
+      
+      // Create background pattern
+      const tileSize = 240;
+      
+      // Create a pattern definition
+      const defs = svg.append("defs");
+      const pattern = defs.append("pattern")
+        .attr("id", "phonetic-pattern")
+        .attr("width", tileSize)
+        .attr("height", tileSize)
+        .attr("patternUnits", "userSpaceOnUse");
+      
+      // Group letters by type
+      const vowels = russianAlphabet.filter(l => l.type === 'vowel');
+      const consonants = russianAlphabet.filter(l => l.type === 'consonant');
+      
+      // Add vowels in one style
+      vowels.forEach((letter, i) => {
+        if (Math.random() > 0.5) return; // Skip some randomly
+        const x = Math.random() * tileSize;
+        const y = Math.random() * tileSize;
+        const size = 12 + Math.random() * 8;
+        
+        pattern.append("text")
+          .attr("x", x)
+          .attr("y", y)
+          .attr("font-size", size)
+          .attr("fill", colors.secondary)
+          .attr("opacity", 0.2 + Math.random() * 0.3)
+          .text(letter.cyrillic);
+      });
+      
+      // Add consonants in another style
+      for (let i = 0; i < currentDensity * 3; i++) {
+        const letter = consonants[Math.floor(Math.random() * consonants.length)];
+        const x = Math.random() * tileSize;
+        const y = Math.random() * tileSize;
+        const size = 8 + Math.random() * 10;
+        
+        pattern.append("text")
+          .attr("x", x)
+          .attr("y", y)
+          .attr("font-size", size)
+          .attr("fill", colors.primary)
+          .attr("opacity", 0.15 + Math.random() * 0.25)
+          .text(letter.cyrillic);
+      }
+      
+      // Apply pattern to background
+      svg.append("rect")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("fill", "url(#phonetic-pattern)");
+        
+      // Add feature visualization - phonetic clustering
+      const margin = { top: 100, right: 100, bottom: 100, left: 100 };
+      const innerWidth = width - margin.left - margin.right;
+      const innerHeight = height - margin.top - margin.bottom;
+      
+      // Create data structure for phonetic map
+      const phonetics = [
+        { group: "Vowels", letters: vowels },
+        { group: "Plosives", letters: consonants.filter(l => ["б", "п", "д", "т", "г", "к"].includes(l.cyrillic.toLowerCase())) },
+        { group: "Fricatives", letters: consonants.filter(l => ["в", "ф", "з", "с", "ж", "ш", "х"].includes(l.cyrillic.toLowerCase())) },
+        { group: "Affricates", letters: consonants.filter(l => ["ц", "ч", "щ"].includes(l.cyrillic.toLowerCase())) },
+        { group: "Nasals", letters: consonants.filter(l => ["м", "н"].includes(l.cyrillic.toLowerCase())) },
+        { group: "Liquids", letters: consonants.filter(l => ["л", "р"].includes(l.cyrillic.toLowerCase())) }
+      ];
+      

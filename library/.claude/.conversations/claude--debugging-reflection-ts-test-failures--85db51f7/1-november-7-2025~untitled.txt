@@ -1,0 +1,541 @@
+ ✓ tests/catalogue.test.ts (31 tests) 11ms
+ ✓ tests/particle.test.ts (17 tests) 11ms
+ ❯ tests/reflection.test.ts (140 tests | 23 failed) 70ms
+         ✓ should cache the same instances 2ms
+         ✓ should return the right metadata for undefined 1ms
+         ✓ should have the right metadata for null 1ms
+         ✓ should have the right metadata for string 2ms
+         ✓ should have the right metadata for number 1ms
+         ✓ should have the right metadata for bigint 0ms
+         ✓ should have the right metadata for boolean 0ms
+         ✓ should have the right metadata for symbol 0ms
+         ✓ should have the right metadata for function 1ms
+         ✓ should have the right metadata for object 1ms
+         ✓ should cache equivalent instances 0ms
+         ✓ should return the right metadata for undefined 0ms
+         ✓ should have the right metadata for null 1ms
+         ✓ should have the right metadata for a string 2ms
+         ✓ should have the right metadata for number 1ms
+         ✓ should have the right metadata for bigint 0ms
+         ✓ should have the right metadata for boolean 0ms
+         ✓ should have the right metadata for symbol 0ms
+         ✓ should have the right metadata for function 1ms
+         ✓ should have the right metadata for object 1ms
+           × should list own properties of plain objects 10ms
+           × should list all properties including inherited 3ms
+           × should handle arrays correctly 1ms
+           × should handle functions as objects 1ms
+           × should list prototype properties of built-in types 2ms
+           × should list class prototype properties 1ms
+           × should delegate to type for primitive strings 7ms
+           ✓ should return empty for null/undefined 0ms
+         ✓ should find specific properties by name 1ms
+         ✓ should return undefined rep for missing properties 0ms
+         × should find inherited properties with "all" 2ms
+         × should handle symbol properties 1ms
+         × should work with properties 0ms
+         ✓ should identify field descriptors 0ms
+         × should identify method descriptors 1ms
+         × should handle getter-only properties 1ms
+         × should handle setter-only properties 1ms
+         ✓ should transform property to field when appropriate 0ms
+         ✓ should transform property to method when appropriate 0ms
+         × should handle getter/setter role transformations 0ms
+         ✓ should maintain of relationship through transformations 0ms
+         × should filter only fields (non-function values) 2ms
+         × should correctly identify fields on class instances 1ms
+         ✓ should return field rep for valid field 0ms
+         ✓ should return undefined rep for non-field 0ms
+         × should filter only methods (function values) 1ms
+         × should find methods on class prototypes 1ms
+         × should return method rep for valid method 1ms
+         ✓ should handle bound methods 0ms
+         ✓ should handle parameter literals with rest property 1ms
+         ✓ should handle non-rest parameters 0ms
+         × should build parameters array from function info 1ms
+         × should detect hasRest on functions 1ms
+         ✓ should handle nested object properties 0ms
+         × should handle properties on prototype chain correctly 1ms
+         ✓ should handle property modifications through descriptors 0ms
+         × should handle objects with null prototype 0ms
+         ✓ should handle frozen objects 0ms
+         ✓ should handle property names that are numbers 0ms
+         ✓ should handle empty objects 1ms
+         ✓ async lambda 0ms
+         ✓ async lambda with params 0ms
+         ✓ async function 0ms
+         ✓ async function named 0ms
+         ✓ async method 0ms
+         ✓ async generator function 0ms
+         ✓ async generator method 0ms
+         ✓ generator function 0ms
+         ✓ generator function named 0ms
+         ✓ generator method 0ms
+         ✓ async generator function 0ms
+         ✓ async generator method 0ms
+         ✓ lambda no params 0ms
+         ✓ lambda single param no parens 0ms
+         ✓ lambda multiple params 0ms
+         ✓ async lambda 0ms
+         ✓ function anonymous 0ms
+         ✓ function named 0ms
+         ✓ async function 0ms
+         ✓ generator function 0ms
+         ✓ method 0ms
+         ✓ async method 0ms
+         ✓ generator method 0ms
+         ✓ getter 0ms
+         ✓ setter 0ms
+         ✓ class named 0ms
+         ✓ class anonymous 0ms
+           ✓ function 0ms
+           ✓ method 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+           ✓ getter 0ms
+           ✓ setter 0ms
+           ✓ lambda 0ms
+           ✓ function 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+         ✓ String constructor 0ms
+         ✓ Array constructor 0ms
+         ✓ Object constructor 0ms
+         ✓ Array.prototype.map 0ms
+         ✓ String.prototype.slice 0ms
+         ✓ Math.pow 0ms
+         ✓ bound function 0ms
+         ✓ custom toString - gibberish 0ms
+         ✓ custom toString - empty 0ms
+         ✓ custom toString - unicode 0ms
+         ✓ async lambda with rest params 0ms
+         ✓ async generator with params and rest 0ms
+         ✓ async generator method with rest 0ms
+         ✓ no params - lambda 0ms
+         ✓ no params - function 0ms
+         ✓ no params - method 0ms
+         ✓ single param - lambda 0ms
+         ✓ single param - function 0ms
+         ✓ single param - method 0ms
+         ✓ two params - lambda 0ms
+         ✓ two params - function 0ms
+         ✓ two params - method 0ms
+         ✓ three params - lambda 0ms
+         ✓ three params - function 0ms
+         ✓ three params - method 0ms
+         ✓ four params - lambda 0ms
+         ✓ four params - function 0ms
+         ✓ four params - method 0ms
+         ✓ rest only - lambda 0ms
+         ✓ rest only - function 0ms
+         ✓ rest only - method 0ms
+         ✓ single param + rest - lambda 0ms
+         ✓ single param + rest - function 0ms
+         ✓ single param + rest - method 0ms
+         ✓ two params + rest - lambda 0ms
+         ✓ two params + rest - function 0ms
+         ✓ two params + rest - method 0ms
+         ✓ three params + rest - lambda 0ms
+         ✓ three params + rest - function 0ms
+         ✓ three params + rest - method 0ms
+         ✓ four params + rest - lambda 0ms
+         ✓ four params + rest - function 0ms
+         ✓ four params + rest - method 0ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 23 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > on instances > should list own properties of plain objects
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/reflection.test.ts:246:80
+    244| 
+    245|                     expect(properties.length).toBe(3);
+    246|                     expect(properties.every(p => p.$role.$ref === 'property')).toBe(true);
+       |                                                                                ^
+    247|                     expect(properties.map(p => p.$key?.$name).sort()).toEqual(['x', 'y', 'z']);
+    248|                 });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > on instances > should list all properties including inherited
+AssertionError: expected [ '"field"', '"subField"' ] to include 'field'
+ ❯ tests/reflection.test.ts:260:38
+    258|                     // Should include both own and inherited
+    259|                     const ownNames = ownProps.map(p => p.$key?.$name);
+    260|                     expect(ownNames).toContain('field');
+       |                                      ^
+    261|                     expect(ownNames).toContain('subField');
+    262| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > on instances > should handle arrays correctly
+AssertionError: expected [ '"0"', '"1"', '"2"', '"length"' ] to include '0'
+ ❯ tests/reflection.test.ts:277:35
+    275|                     // Arrays have numeric indices as properties
+    276|                     const names = properties.map(p => p.$key?.$name);
+    277|                     expect(names).toContain('0');
+       |                                   ^
+    278|                     expect(names).toContain('1');
+    279|                     expect(names).toContain('2');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > on instances > should handle functions as objects
+AssertionError: expected [ '"length"', '"name"', …(2) ] to include 'version'
+ ❯ tests/reflection.test.ts:291:35
+    289| 
+    290|                     const names = properties.map(p => p.$key?.$name);
+    291|                     expect(names).toContain('version');
+       |                                   ^
+    292|                     expect(names).toContain('length'); // function length
+    293|                     expect(names).toContain('name');   // function name
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > on types > should list prototype properties of built-in types
+AssertionError: expected [ '"length"', '"constructor"', …(50) ] to include 'charAt'
+ ❯ tests/reflection.test.ts:303:39
+    301| 
+    302|                     const propNames = props.map(p => p.$key?.$name);
+    303|                     expect(propNames).toContain('charAt');
+       |                                       ^
+    304|                     expect(propNames).toContain('slice');
+    305|                     expect(propNames).toContain('length'); // String.prototype.length getter
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > on types > should list class prototype properties
+AssertionError: expected [ '"constructor"', '"property"', …(1) ] to include 'property'
+ ❯ tests/reflection.test.ts:313:39
+    311| 
+    312|                     const propNames = props.map(p => p.$key?.$name);
+    313|                     expect(propNames).toContain('property'); // getter/setter
+       |                                       ^
+    314|                     expect(propNames).toContain('method');
+    315|                     expect(propNames).toContain('constructor');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > on primitives > should delegate to type for primitive strings
+RangeError: Maximum call stack size exceeded
+ ❯ Module.get [as $literal$] src/symbols.ts:46:101
+     44| 
+     45| // $promise symbols
+     46| export const $cancelled$ = Symbol("$promise.cancelled");
+       |                                                                                                     ^
+     47| 
+     48| // $ObjectiveRep symbols
+ ❯ _$ObjectiveRep.isNullOfUndefined src/reflection.ts:395:21
+ ❯ _$ObjectiveRep.getPrototype src/reflection.ts:312:22
+ ❯ _$ObjectiveRep.get $prototype [as $prototype] src/reflection.ts:106:21
+ ❯ _$ObjectiveRep.getType src/reflection.ts:331:38
+ ❯ _$ObjectiveRep.get $type [as $type] src/reflection.ts:110:21
+ ❯ _$ObjectiveRep.getPrototype src/reflection.ts:315:43
+ ❯ _$ObjectiveRep.get $prototype [as $prototype] src/reflection.ts:106:21
+ ❯ _$ObjectiveRep.getType src/reflection.ts:331:38
+ ❯ _$ObjectiveRep.get $type [as $type] src/reflection.ts:110:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should find inherited properties with "all"
+TypeError: Cannot read properties of undefined (reading 'value')
+ ❯ _$ObjectiveRep.get $value [as $value] src/reflection.ts:116:73
+    114|         if (!this[$value$]) {
+    115|             const descriptor = this[$literal$] as PropertyDescriptor;
+    116|             this[$value$] = new $ObjectiveRep('value', this, descriptor.value, this[$canonical$].#lib);
+       |                                                                         ^
+    117|         }
+    118|         return this[$value$];
+ ❯ tests/reflection.test.ts:377:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should handle symbol properties
+TypeError: Cannot read properties of undefined (reading 'value')
+ ❯ _$ObjectiveRep.get $value [as $value] src/reflection.ts:116:73
+    114|         if (!this[$value$]) {
+    115|             const descriptor = this[$literal$] as PropertyDescriptor;
+    116|             this[$value$] = new $ObjectiveRep('value', this, descriptor.value, this[$canonical$].#lib);
+       |                                                                         ^
+    117|         }
+    118|         return this[$value$];
+ ❯ tests/reflection.test.ts:387:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should work with properties
+TypeError: _a2.$as is not a function
+ ❯ _$ObjectiveRep.$property src/reflection.ts:215:54
+    213|         this.getProperties(whos);
+    214|         if (whos === 'own')
+    215|             return this[$propertiesMap$]!.get(name)?.$as('property') || $instanceof(undefined).$as('property').$of(this);
+       |                                                      ^
+    216|         return this[$propertiesMap$]!.get(name)?.$as('property') || this.$type.$property(whos).$of(this) || $instanceof(undefined).$as('property').$of(this);
+    217|     }
+ ❯ tests/reflection.test.ts:391:43
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should identify method descriptors
+TypeError: _a2.$as is not a function
+ ❯ _$ObjectiveRep.$property src/reflection.ts:215:54
+    213|         this.getProperties(whos);
+    214|         if (whos === 'own')
+    215|             return this[$propertiesMap$]!.get(name)?.$as('property') || $instanceof(undefined).$as('property').$of(this);
+       |                                                      ^
+    216|         return this[$propertiesMap$]!.get(name)?.$as('property') || this.$type.$property(whos).$of(this) || $instanceof(undefined).$as('property').$of(this);
+    217|     }
+ ❯ _$ObjectiveRep.$method src/reflection.ts:233:31
+ ❯ tests/reflection.test.ts:412:43
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should handle getter-only properties
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/reflection.test.ts:424:40
+    422|                 expect(rep.isProperty).toBe(true);
+    423|                 expect(rep.isReadable).toBe(true);
+    424|                 expect(rep.isWritable).toBe(false);
+       |                                        ^
+    425|                 expect(rep.$getter.literal).toBeDefined();
+    426|                 expect(rep.$setter.literal).toBeUndefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should handle setter-only properties
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/reflection.test.ts:433:40
+    431|                 const rep = $instanceof(obj).$property("writeOnly");
+    432|                 expect(rep.isProperty).toBe(true);
+    433|                 expect(rep.isReadable).toBe(false);
+       |                                        ^
+    434|                 expect(rep.isWritable).toBe(true);
+    435|                 expect(rep.$getter.literal).toBeUndefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should handle getter/setter role transformations
+TypeError: _a2.$as is not a function
+ ❯ _$ObjectiveRep.$property src/reflection.ts:215:54
+    213|         this.getProperties(whos);
+    214|         if (whos === 'own')
+    215|             return this[$propertiesMap$]!.get(name)?.$as('property') || $instanceof(undefined).$as('property').$of(this);
+       |                                                      ^
+    216|         return this[$propertiesMap$]!.get(name)?.$as('property') || this.$type.$property(whos).$of(this) || $instanceof(undefined).$as('property').$of(this);
+    217|     }
+ ❯ tests/reflection.test.ts:462:48
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $fields > should filter only fields (non-function values)
+AssertionError: expected [ '"count"', '"field"' ] to deeply equal [ 'count', 'field' ]
+
+- Expected
++ Received
+
+  [
+-   "count",
+-   "field",
++   "\"count\"",
++   "\"field\"",
+  ]
+
+ ❯ tests/reflection.test.ts:494:31
+    492| 
+    493|                 const names = fields.map(f => f.$key?.$name).sort();
+    494|                 expect(names).toEqual(['count', 'field']);
+       |                               ^
+    495|             });
+    496| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $fields > should correctly identify fields on class instances
+AssertionError: expected [ '"field"' ] to include 'field'
+ ❯ tests/reflection.test.ts:502:36
+    500| 
+    501|                 const fieldNames = fields.map(f => f.$key?.$name);
+    502|                 expect(fieldNames).toContain('field');
+       |                                    ^
+    503|                 expect(fieldNames).not.toContain('method');
+    504|                 expect(fieldNames).not.toContain('property'); // getter/setter
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $methods > should filter only methods (function values)
+AssertionError: expected [ '"compute"', '"process"', …(1) ] to deeply equal [ 'compute', 'process', 'transform' ]
+
+- Expected
++ Received
+
+  [
+-   "compute",
+-   "process",
+-   "transform",
++   "\"compute\"",
++   "\"process\"",
++   "\"transform\"",
+  ]
+
+ ❯ tests/reflection.test.ts:542:31
+    540| 
+    541|                 const names = methods.map(m => m.$key?.$name).sort();
+    542|                 expect(names).toEqual(['compute', 'process', 'transform']);
+       |                               ^
+    543|             });
+    544| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $methods > should find methods on class prototypes
+AssertionError: expected [ '"constructor"', '"method"' ] to include 'method'
+ ❯ tests/reflection.test.ts:550:37
+    548| 
+    549|                 const methodNames = methods.map(m => m.$key?.$name);
+    550|                 expect(methodNames).toContain('method');
+       |                                     ^
+    551|                 expect(methodNames).toContain('constructor');
+    552|                 expect(methodNames).not.toContain('property'); // getter/setter
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $methods > should return method rep for valid method
+TypeError: Cannot use 'in' operator to search for 'value' in undefined
+ ❯ _$ObjectiveRep.get isMethod [as isMethod] src/reflection.ts:178:16
+    176|     get isMethod(): boolean {
+    177|         const descriptor = this[$literal$] as PropertyDescriptor;
+    178|         return 'value' in descriptor && typeof descriptor.value === 'function';
+       |                ^
+    179|     }
+    180| 
+ ❯ _$ObjectiveRep.$method src/reflection.ts:234:25
+ ❯ tests/reflection.test.ts:558:41
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $parameters > should build parameters array from function info
+AssertionError: expected +0 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 0
+
+ ❯ tests/reflection.test.ts:598:43
+    596|                 const parameters = func.$parameters;
+    597| 
+    598|                 expect(parameters.length).toBe(3);
+       |                                           ^
+    599|                 expect(parameters[0].isRest).toBe(false);
+    600|                 expect(parameters[1].isRest).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $parameters > should detect hasRest on functions
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/reflection.test.ts:611:42
+    609|                 const withoutRest = $typeof((x: number, y: number) => {});
+    610| 
+    611|                 expect(withRest.hasRest).toBe(true);
+       |                                          ^
+    612|                 expect(withoutRest.hasRest).toBe(false);
+    613|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $miscellaneous > should handle properties on prototype chain correctly
+AssertionError: expected [ '"baseField"', '"derivedField"' ] to include 'baseField'
+ ❯ tests/reflection.test.ts:655:34
+    653|                 const ownProps = instance.$properties('own');
+    654|                 const ownNames = ownProps.map(p => p.$key?.$name);
+    655|                 expect(ownNames).toContain('baseField');
+       |                                  ^
+    656|                 expect(ownNames).toContain('derivedField');
+    657| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/23]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $miscellaneous > should handle objects with null prototype
+TypeError: Cannot read properties of null (reading 'constructor')
+ ❯ $typeof src/reflection.ts:28:44
+ RERUN  src/reflection.ts x1 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/reflection.test.ts [ tests/reflection.test.ts ]
+TypeError: Cannot read properties of undefined (reading 'thisName')
+ ❯ src/reflection.ts:84:36
+     82|                     let $rep = this[$of$] === 'JavaScript' ? this.$name :
+     83|                         typeof this[$of$] === 'string' ? this[$of$] :
+     84|                         this[$of$].thisName();
+ RERUN  src/reflection.ts x2 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/reflection.test.ts [ tests/reflection.test.ts ]
+Error: Transform failed with 1 error:
+C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/reflection.ts:90:38: ERROR: Expected "}" but found ";"
+  Plugin: vite:esbuild
+  File: C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/reflection.ts:90:38
+  
+  Expected "}" but found ";"
+  88 |                  })();
+  89 |              },
+  90 |              toString: () => $role.$ref;
+     |                                        ^
+ RERUN  src/reflection.ts x3 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/reflection.test.ts [ tests/reflection.test.ts ]
+TypeError: Cannot read properties of undefined (reading 'thisName')
+ ❯ src/reflection.ts:84:36
+     82|                     let $rep = this[$of$] === 'JavaScript' ? this.$name :
+     83|                         typeof this[$of$] === 'string' ? this[$of$] :
+     84|                         this[$of$].thisName();
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> npm run tests
+
+> chemistry@0.1.0 tests
+> vitest
+
+
+ DEV  v4.0.6 C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry
+
+ ✓ tests/catalogue.test.ts (31 tests) 11ms
+ ✓ tests/particle.test.ts (17 tests) 12ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/reflection.test.ts [ tests/reflection.test.ts ]
+TypeError: Cannot read properties of undefined (reading 'thisName')
+ ❯ src/reflection.ts:84:36
+     82|                     let $rep = this[$of$] === 'JavaScript' ? this.$name :
+     83|                         typeof this[$of$] === 'string' ? this[$of$] :
+     84|                         this[$of$].thisName();
+       |                                    ^
+     85|                     if (this.$name && $rep !== this.$name)
+     86|                         $rep = `${$rep}:${this.$name}`;
+ ❯ Object.get $ref [as $ref] src/reflection.ts:88:17
+ ❯ new _$ObjectiveRep src/reflection.ts:251:46
+ ❯ $type src/reflection.ts:35:12
+ ❯ src/reflection.ts:417:27
+ ❯ tests/reflection.test.ts:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  48 passed (48)
+   Start at  22:35:47
+   Duration  981ms (transform 466ms, setup 0ms, collect 364ms, tests 24ms, environment 1.41s, prepare 56ms)
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit

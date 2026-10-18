@@ -1,0 +1,128 @@
+Cartographic Brief
+Roots, Roads & Convergence: The Gittens & Crittenden Family Lines
+Four maps for a family history book
+
+
+
+General notes for all maps
+These maps are intended for inclusion in a printed and web-distributed family history book. The following standards apply to all four maps.
+
+Style
+Clean minimalist style. Black and white throughout — no colour. Suitable for greyscale printing at full page width on US Letter paper (8.5 × 11 inches).
+
+Base map
+Real geographic outlines are required — coastlines, national borders, provincial or state borders as appropriate to the map scope. Schematic or hand-drawn outlines are not acceptable.
+
+Route lines
+Routes shown as lines with directional arrows indicating direction of travel. Sea crossings shown as dashed lines; overland and coastal legs shown as solid lines.
+
+Location markers
+Named locations marked with small filled dots. Location names and any dates to be set in a clean, legible serif or sans-serif font consistent across all maps.
+
+Titles
+Do not include map titles or numbers in the image. Leave a clean white margin of approximately half an inch at the top of each map image. Titles will be added in the book layout using the book’s own typography.
+
+File delivery
+Please deliver each map as a high-resolution PNG file (300 dpi minimum) and retain the original editable file (Adobe Illustrator .ai or equivalent) in case revisions are needed. Four files total, one per map.
+
+
+
+
+Map 1 — The Crittenden Journey to Montreal
+
+Geographic scope
+Eastern North America: Connecticut, Nova Scotia, and Quebec.
+
+Route
+A single continuous line with directional arrows, visiting four stops in the following sequence:
+
+1.  East Haddam, Connecticut
+2.  Halifax, Nova Scotia
+3.  Guysborough County / Port Mulgrave, Nova Scotia
+4.  Montréal, Quebec — terminus
+
+Labels
+All four stops to be identified by name and dot marker. Montréal may be marked distinctively as the terminus. No other locations need to be labelled.
+
+
+
+
+Map 2 — The Gittens Journey to Montreal
+
+Geographic scope
+The Caribbean and eastern North America: Barbados, the Lesser Antilles, the eastern United States, and eastern Canada.
+
+Route
+A single continuous line with directional arrows. Sea crossings to be shown as dashed lines; overland and coastal legs as solid lines. The route visits the following stops in sequence:
+
+1.  Barbados — origin
+2.  New York City, NY — first visit
+3.  Barbados — return
+4.  St. Lucia
+5.  Trinidad
+6.  New York City, NY — second passage
+7.  Halifax, Nova Scotia
+8.  Montréal, Quebec — terminus
+
+Note: New Brunswick is a geographic transit point between New York and Halifax but does not need to be labelled or marked.
+
+Labels
+The following six locations only are to be identified by name and dot marker: Barbados, St. Lucia, Trinidad, New York City, Halifax NS, Montréal QC. The two visits to New York City may be shown as a loop or as two separately numbered stops — cartographer’s discretion.
+
+
+
+
+Map 3 — Convergence: Montréal and Beyond
+
+Geographic scope
+Canada, coast to coast.
+
+Content
+Two lines arriving at Montréal from different directions, converging at a single point, then a single combined line heading west to British Columbia.
+
+The Crittenden arriving line: from the east (Nova Scotia direction)
+The Gittens arriving line: from the southeast (Halifax / eastern Canada direction)
+The combined family line: westward from Montréal to British Columbia
+
+Since the map is black and white, please use distinct line styles to distinguish the three lines: for example, a dashed line for the Crittenden route, a dotted line for the Gittens route, and a solid line for the combined westward journey. A small legend should explain the three line styles.
+
+Key locations
+Montréal, QC — convergence point. Mark prominently. Note in label: 1722 Coughtry Street, Ville Saint-Laurent. Marriage of Edgar Gittens and Audrey Crittenden, 25 January 1947.
+
+Vancouver, BC
+Nanoose Bay, BC
+Qualicum Beach, BC — final destination and burial of Edgar Gittens, 1987. Mark distinctively as terminus.
+
+
+
+
+Map 4 — Barbados: Parishes of the Gittens Family
+
+Geographic scope
+The island of Barbados, with a small inset map showing Barbados’s position within the Caribbean Sea.
+
+Parish boundaries
+All eleven parishes of Barbados to be shown with boundaries and parish name labels. Three parishes to be highlighted (shaded or hatched to distinguish them from the remaining eight):
+
+St. Michael — highlighted (Gittens family parish; contains Bridgetown)
+St. Philip — highlighted (Gittens family parish)
+Christ Church — highlighted (Gittens family parish)
+
+The remaining eight parishes (St. Lucy, St. Peter, St. Andrew, St. James, St. Thomas, St. Joseph, St. John, St. George) to be shown in neutral treatment without highlighting.
+
+Bridgetown
+Bridgetown to be marked with a dot and label. It lies within the parish of St. Michael on the southwestern coast of the island.
+
+Caribbean inset
+A small inset map in one corner showing the position of Barbados within the Caribbean Sea. Barbados should be clearly identifiable — it lies in the southeastern Caribbean, east of St. Lucia and Trinidad, near the South American coast. A small marker or label on the inset identifying Barbados is sufficient.
+
+Note on parish boundaries
+Accurate parish boundary data for Barbados is available from the Barbados Statistical Service and various open geographic data sources. Please use accurate boundary data rather than approximations.
+
+
+
+
+Questions and contact
+Please direct any questions about the geographic data, family history context, or specific route details to the author before beginning work. It is preferable to clarify any uncertainties at the outset rather than after maps are completed.
+
+Thank you for your work on this project.

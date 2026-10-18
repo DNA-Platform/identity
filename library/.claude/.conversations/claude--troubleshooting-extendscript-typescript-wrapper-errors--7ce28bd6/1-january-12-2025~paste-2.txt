@@ -1,0 +1,244 @@
+interface Item {
+    [key: string]: any;
+    name?: string;
+    hidden?: boolean;
+    readonly typename: string;
+    readonly parent: any;
+    readonly length?: number;
+    readonly geometricBounds?: Rect;
+    selected?: any;
+    remove?(): void;
+    removeAll?(): void;
+    getIndex?(): number;
+    getByName?(name: string): Item;
+    add?(...args: any[]): Item;
+    insert?(...args: any[]): void;
+    duplicate?(relativeObject: object, insertionLocation: ElementPlacement): Item;
+    move?(relativeObject: object, insertionLocation: ElementPlacement): Item;
+    q: Queryable<this, any>;
+    p: PositionableItem | undefined;
+    c: ContainerItem | undefined;
+}
+
+class EmptyItem implements Item {
+    name: string = "";
+    typename: string = "EMPTY";
+    parent: Application = app;
+    length: number = 0;
+    geometricBounds: Rect = [0, 0, 0, 0];
+    selected: any = false;
+    remove(): void { }
+    removeAll(): void { }
+    getIndex(): number { return -1; }
+    getByName(name: string): Item { return this; }
+    add(...args: any[]): Item { return this; }
+    insert(...args: any[]): void { }
+    duplicate(relativeObject: object, insertionLocation: ElementPlacement): Item { return this; }
+    move?(relativeObject: object, insertionLocation: ElementPlacement): Item { return this; }
+    q: Queryable<this, any> = undefined as any;
+    p: PositionableItem | undefined;
+    c: ContainerItem | undefined;
+
+    private constructor() { }
+
+    private static _empty: EmptyItem;
+    static empty(): EmptyItem {
+        if (EmptyItem._empty) return EmptyItem._empty;
+        EmptyItem._empty = new EmptyItem();
+        return EmptyItem._empty;
+    }
+}
+
+interface ItemCollection extends Array<any> {
+    readonly length: number
+    readonly parent: object
+    readonly typename: string
+    getByName(name: string): any
+}
+
+class QueryItem {
+    _item: any;
+    id: number;
+    itemType: string;
+    itemDefaults: any;
+    queryItemType: string;
+    queryItemDefaults: any;
+    queryType: string;
+    queryDefaults: any;
+    collectionType: CollectionType | undefined;
+    
+    p(): PositionableItem {
+        if (this._item.p === undefined)
+            this._item.p = new PositionableItem(this as any);
+        return this._item.p;
+    }
+
+    set(name?: string): SetProperties { return new SetProperties(this, name); }
+
+    name(value?: string): string {
+        if (value !== undefined) {
+            this._item.name = value;
+            return this._item.name;
+        }
+        return this._item?.name ? this._item.name.toString() : "";
+    }
+
+    api(): ApplicationQuery { return api; }
+    app(): Application { return _app(); }
+    empty(): boolean { return this._item.typename === "EMPTY"; }
+    activated(): boolean { return !!this._item?.selected; }
+    activate(): QueryItem { if (this._item) { this._item.selected = true; } return this; }
+    deactivate(): QueryItem { if (this._item) { this._item.selected = false; } return this; }
+    hide(): QueryItem { if (this._item.hidden !== undefined) { this._item.hidden = true; } return this; }
+    hidden(): boolean { return this._item.hidden === true; }
+    show(): QueryItem { if (this._item.hidden !== undefined) { this._item.hidden = false; } return this; }
+    visible(): boolean { return this._item.hidden !== true; }
+    length(): number { return 0; }
+    enumerable(): boolean { return this.collectionType !== undefined; }
+    positionable(): boolean { return (this._item as PageItem)?.position !== undefined; }
+    collection(): any | any[] { return this.collectionType !== undefined ? (this._item as any)[this.collectionType] : []; }
+
+    parent(): QueryItem { 
+        if (!this._item.parent) QueryItem.empty() as any; 
+        var parent = q(this._item.parent) as any;
+        var collection = this.itemType.charAt(0).toLowerCase() + this.itemType.slice(1) + "s";
+        if (parent[collection])
+            parent = parent[collection]();
+        return parent;
+    }
+
+    document(): DocumentQuery {
+        if (this.empty()) return this as any;
+        let currentItem = this._item;
+        while (currentItem) {
+            if (currentItem.typename === "Document")
+                return q(currentItem);
+            currentItem = currentItem.parent;
+        }
+        return QueryItem.empty() as DocumentQuery;
+    }
+
+    artboard(): ArtboardQuery {
+        if (this.empty()) return this as any;
+        return this.document().artboard();
+    }
+
+    layer(): LayerQuery {
+        if (this.empty()) return this as any;
+        return this.document().layer();
+    }
+
+    region(newRegion? : Region): Region {
+        if (newRegion !== undefined) {
+            if (this.positionable()) 
+                this.p().region(newRegion);
+            else 
+                throw new Error("Only positionalble objects can have custom regions");
+        }
+        return this.positionable() ? 
+            this.p().region() : 
+            this.artboard().region();
+    }
+
+    constructor(item: any = EmptyItem.empty(), collectionType?: CollectionType) {
+        this._item = item;
+        this._item.q = this;
+        this.id = QueryItem.nextId();
+        this.itemType = this._item?.typename ?? "EMPTY";
+        this.queryItemType = this.constructor.name;
+        this.queryType = `${this.queryItemType}<${this.itemType}>`;
+        this.collectionType = collectionType;
+
+        if (QueryItem._itemDefaults[this.itemType] === undefined)
+            QueryItem._itemDefaults[this.itemType] = {}
+        if (QueryItem._queryItemDefaults[this.queryItemType] === undefined)
+            QueryItem._queryItemDefaults[this.queryItemType] = {}
+        if (QueryItem._queryDefaults[this.queryType] === undefined)
+            QueryItem._queryDefaults[this.queryType] = {}
+
+        this.itemDefaults = QueryItem._itemDefaults[this.itemType];
+        this.queryItemDefaults = QueryItem._queryItemDefaults[this.queryItemType];
+        this.queryDefaults = QueryItem._queryDefaults[this.queryType];
+        this._configureDefaults();
+    }
+
+    cast<T extends QueryItem>() {
+        return this as any as T
+    }
+
+    equals(item: QueryItem): boolean {
+        if (item === undefined) return false;
+        return this._item == item._item;
+    }
+
+    remove() {
+        this._item?.remove?.();
+        this._item = QueryItem.empty();
+    }
+
+    removeIfEmpty(): boolean {
+        var empty = this.empty();
+        if (empty)
+            this.remove();
+        return empty;
+    }
+
+    duplicate(name: string, relativeObject?: QueryItem, insertionLocation: ElementPlacement = ElementPlacement.PLACEAFTER): Queryable<any, any> {
+        if (relativeObject === undefined) relativeObject = this;
+        var duplicate = this._item?.duplicate?.(relativeObject._item, insertionLocation);
+        duplicate.name = name;
+        return q(duplicate);
+    }
+
+    move(relativeObject: QueryItem, insertionLocation: ElementPlacement): void {
+        this._item?.move?.(relativeObject._item, insertionLocation);
+    }
+
+    moveTo(index: number): this { 
+        return this; 
+    }
+
+    locked(): boolean { return this._item.locked; }
+    lock(): this { this._item.locked = true; return this; }
+    unlock(): this { this._item.locked = false; return this; }
+
+    protected _create<TCollection extends ItemCollection, TQuery extends QueryItem>(
+        select: (item: this) => TCollection, 
+        create: (colletion: TCollection) => TQuery,
+        name?: string
+    ): TQuery {
+        var collection = select(this);
+        var queryItem = create(collection);
+        if (name !== undefined)
+            queryItem.set().name(name);
+        var item: Item = queryItem._item;
+        item?.move?.(queryItem.parent()._item, ElementPlacement.PLACEATEND);
+        return queryItem;
+    }
+
+    protected _configureDefaults() { }
+
+    static createAnonymousName(item: QueryItem): string {
+        if (!item) return `.Item[${item}]`;
+        return `.${item.itemType ? item.itemType : "Item"}[${item.id}]`;
+    }
+
+    private static _empty: QueryItem;
+    static empty(): QueryItem {
+        if (QueryItem._empty) return QueryItem._empty;
+        QueryItem._empty = new Queryable<any, any>(EmptyItem.empty(), undefined);
+        QueryItem._empty._item.q = QueryItem._empty;
+        return QueryItem._empty;
+    }
+
+    private static _nextId: number = 1;
+    private static nextId(): number {
+        var nextId = QueryItem._nextId;
+        QueryItem._nextId += 1;
+        return nextId;
+    }
+
+    private static _itemDefaults = dictionary();
+    private static _queryItemDefaults = dictionary();
+    private static _queryDefaults = dictionary();
+}

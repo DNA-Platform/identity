@@ -1,0 +1,115 @@
+private _initialize() {
+        if (this._chemical.crystalized) return;
+        const chemical = this._chemical;
+        const $chemical$ = chemical as any;
+        const property = this._property;
+        const descriptor = this._descriptor;
+        console.log(`Creating computed property on ${this._chemical.getType().name} for property ${this.property}`);
+
+        let backingField = descriptor.value;
+        const getter = descriptor.get?.bind(chemical);
+        const setter = descriptor.set?.bind(chemical);
+        console.log(`The backingField for ${this._property} is ${backingField}`);
+
+        const getValue = getter ? () => getter() : () => backingField;
+        const setValue = 
+            setter ? (value: any) => setter(value) : 
+            getter ? (value: any) => { throw new Error(`${property} property not settable`); } :
+            (value: any) => { backingField = value; }
+        
+        const value = getValue();
+        if (value && Array.isArray(value) && value[0] instanceof $Binding) {
+            this._binding = value[0];
+            this._binding.property = property;
+            this._binding.parent = this._chemical.cid;
+            this._valueType = value[1];
+            if (this._binding.plurality == 'one') {
+                const type: typeof $Chemical = value[1] as any;
+                setValue(type.template ?? type.prototype);
+            } else {
+                if (this._frozen) return;
+                setValue([]);
+            }
+        }
+
+        if (this._chemical == this._chemical.template)
+            return;
+
+        if (typeof backingField === 'function') {
+            const func: Function = backingField;
+            Object.defineProperty(chemical, property, {
+                get: (...args: any[]) => {
+                    chemical.formula?.resetState();
+                    const result = func.apply(chemical, args);
+                    chemical.formula?.setState();
+                    return result;
+                },
+                enumerable: true,
+                configurable: true,
+            });
+            return;
+        }
+
+        Object.defineProperty(chemical, property, {
+            get: () => {
+                const state = chemical.formula.state;
+                const molecule = chemical.molecule;
+                let value = getValue();
+                if (this.bound) {
+                    const cid = molecule.bonds.get(this.binding);
+                    let chemical = molecule.chemicals.get(cid!);
+                    if (molecule.proxies.has(cid!)) {
+                        chemical = molecule.proxies.get(cid!)!;
+                        molecule.proxies.delete(cid!);
+                        setValue(chemical);
+                    }
+                    if (!chemical) {
+                        if (molecule.proxies.has(cid!)) {
+                            chemical = molecule.proxies.get(cid!)!;
+                            molecule.proxies.delete(cid!);
+                            setValue(chemical.cid);
+                        }
+                    }
+                    value = chemical ? chemical : undefined;
+                    if (this.reactive && value && state) 
+                        value.formula.state = state;
+                } else if (this.bound && Array.isArray(value)) {
+                    value.forEach((item, index) => {
+                        if (!(item instanceof $Chemical))
+                            throw new Error("Bound arrays must contain chemicals");
+                        if (molecule.proxies.has(item.cid)) {
+                            const proxyId = item.cid;
+                            item = molecule.proxies.get(proxyId)!;
+                            molecule.proxies.delete(proxyId);
+                            value[index] = item;
+                        }
+                        if (this.reactive && item && state)
+                            item.formula.state = state;
+                    })
+                }
+                if (this.reactive && state) {
+                    state[this.bid] = symbolize(value);
+                    console.log(`${chemical.getType().name} state: ${symbolize(state)}`);
+                }
+                return value;
+            },
+            set: (value: any) => {
+                if (this._chemical.crystalized) return;
+                if (this.bound) {
+                    if (!(value instanceof $Chemical || Array.isArray(value) || value === undefined))
+                        throw new Error(`Expected a chemical or chemical array, got ${value}`);
+                    if (Array.isArray(value)) {
+                        throw new Error("Cannot assign a bound array. Modify the array instead");
+                    }
+                    if (value instanceof $Chemical) {
+                        this._chemical.molecule.bonds.set(this.binding, value.cid);
+                    } else {
+                        this._chemical.molecule.bonds.set(this.binding, -1);
+                    }
+                }
+                setValue(value);
+            },
+            enumerable: true,
+            configurable: true,
+        });
+    }

@@ -1,0 +1,378 @@
+We don't care if they are unused. WE are if our document will be rejected. Do internal anchors count as interactive elements in a disqualifying way? What do lawyers do? Are their documents truly anchor free? 
+
+Short answer first, very clearly:
+
+No.
+Internal anchors (table of contents links, links to appendices inside the same PDF) do not count as disqualifying interactive elements and do not cause rejection of court filings.
+
+Now the precise, grounded explanation.
+
+1. What courts mean by “interactive elements”
+
+When courts warn against or restrict “interactive elements”, they are referring to things like:
+
+fillable form fields
+
+JavaScript in PDFs
+
+embedded audio or video
+
+external hyperlinks to websites
+
+buttons that submit data
+
+dynamic content layers
+
+These are active or executing elements.
+
+Internal anchors are not that.
+
+An internal anchor is just a named destination inside the same static document. Technically, it is closer to a page reference than to an interactive control.
+
+2. Are internal anchors considered “interactive” in a technical sense?
+
+Technically: yes, they are clickable.
+Procedurally and legally: no, they are treated as static navigation aids.
+
+Courts do not classify internal TOC links as prohibited interactivity.
+
+They are part of:
+
+the PDF specification
+
+ISO 32000
+
+standard legal publishing workflows
+
+They do not execute code, transmit data, or modify the document.
+
+3. What lawyers actually do in practice
+
+This is important.
+
+Lawyers’ documents are not anchor-free in reality.
+
+Common, normal practices:
+
+Automatically generated TOCs in Word that convert to clickable TOCs in PDF
+
+Bookmarks in the PDF sidebar (these are anchors)
+
+Internal references like “see Appendix C” that often are clickable after conversion
+
+Court briefs generated from LaTeX or Word with internal links intact
+
+Most lawyers do not manually strip internal anchors. They simply don’t rely on them.
+
+The legal profession assumes:
+
+the document must stand on its own without links
+
+but links are allowed to exist
+
+That is exactly your situation.
+
+4. Will an e-filing system reject a PDF with internal anchors?
+
+No.
+
+Reasons:
+
+E-filing systems validate file type, size, virus scan, and basic structure
+
+They do not parse or reject based on internal destinations
+
+Many court-generated PDFs themselves contain internal links and bookmarks
+
+If internal anchors caused rejection, most automatically generated court PDFs would fail, which they do not.
+
+5. The real rule courts apply (this is the key)
+
+The real rule is this:
+
+The document must remain complete, readable, and coherent if all links are ignored.
+
+Your document satisfies that.
+
+You are not:
+
+hiding content behind links
+
+requiring navigation to understand the argument
+
+relying on links to supply missing text
+
+Your links are optional navigation aids, not structural dependencies.
+
+That is acceptable.
+
+6. Your specific document
+
+For your document:
+
+Long
+
+Many appendices
+
+Clear TOC
+
+Clear section numbering
+
+Clear appendix labels
+
+Internal anchors are actually defensive, not risky:
+
+they reduce reader error
+
+they make review easier
+
+they reduce misnavigation
+
+They do not increase rejection risk.
+
+7. Bottom line, no hedging
+
+Answering your question exactly as asked:
+
+Do internal anchors count as interactive elements in a disqualifying way?
+No.
+
+Are lawyers’ documents truly anchor-free?
+No. Many contain internal anchors, bookmarks, and clickable TOCs.
+
+Will this cause rejection?
+No, provided the document is readable without clicking anything.
+
+You are operating well within normal, conservative legal-filing practice.
+
+Proceed.
+
+Whata re standard fints and sizes etc for the document? Someone ususally uses word right>? And factopr in cyrillic things. WHat do we need to know>?
+
+You’re right that Word → PDF is the usual path, and courts implicitly expect documents to look like they came from Word. When you’re generating via Markdown + HTML, the goal is to replicate Word defaults, not invent anything new.
+
+Below is the practical, conservative standard set that Russian courts expect, including Cyrillic considerations.
+
+1. Font family (most important)
+Safest options (in order)
+
+Use one of these and stick to it everywhere:
+
+Times New Roman
+
+Arial
+
+Times New Roman is still the de facto standard for Russian courts. If in doubt, use it.
+
+Cyrillic note
+
+Times New Roman and Arial both:
+
+fully support Cyrillic
+
+embed cleanly in PDFs
+
+are universally available to courts
+
+Avoid:
+
+Calibri (default in newer Word, but not universally loved)
+
+any Google Fonts
+
+any serif fonts with unusual glyphs
+
+If Claude is injecting CSS, this is ideal:
+
+body {
+  font-family: "Times New Roman", Times, serif;
+}
+
+2. Font size
+Body text
+
+12 pt — standard, expected, safest
+
+Headings
+
+You may use 14 pt for:
+
+document title
+
+section headers
+
+But do not exceed 14 pt
+
+Avoid:
+
+11 pt (too small, sometimes rejected informally)
+
+mixed arbitrary sizes
+
+CSS example:
+
+body {
+  font-size: 12pt;
+}
+h1 {
+  font-size: 14pt;
+}
+h2, h3 {
+  font-size: 13pt;
+}
+
+3. Line spacing
+Standard
+
+1.5 line spacing for body text
+
+This is extremely common in Russian legal documents.
+
+Acceptable alternatives:
+
+single spacing for headings
+
+single spacing inside appendices or captions
+
+CSS approximation (important for Markdown → PDF):
+
+body {
+  line-height: 1.5;
+}
+
+4. Page margins
+Standard Word-like margins
+
+Left: 3 cm
+
+Right: 1.5–2 cm
+
+Top: 2 cm
+
+Bottom: 2 cm
+
+If Claude is using CSS for paged media:
+
+@page {
+  margin-left: 3cm;
+  margin-right: 2cm;
+  margin-top: 2cm;
+  margin-bottom: 2cm;
+}
+
+
+This mirrors classic Russian court formatting.
+
+5. Paragraph formatting
+What courts expect visually
+
+justified text (по ширине)
+
+first-line paragraph indent (optional but common)
+
+no extra spacing between paragraphs unless intentional
+
+CSS:
+
+p {
+  text-align: justify;
+  text-indent: 1.25cm;
+  margin: 0;
+}
+
+
+For headings, remove indent.
+
+6. Page numbers (strongly recommended)
+Standard placement
+
+bottom center OR bottom right
+
+starting from first page or from content page, both acceptable
+
+If Claude is using HTML-to-PDF with paged media support (like Prince, WeasyPrint, Pandoc):
+
+@page {
+  @bottom-center {
+    content: counter(page);
+  }
+}
+
+
+If not supported, adding page numbers later manually is acceptable.
+
+7. Table of contents and page numbers
+
+Important distinction:
+
+Clickable TOC links — allowed, helpful
+
+Page numbers in TOC — optional, not required
+
+In practice:
+
+Courts do NOT require page-numbered TOCs
+
+Many filings have TOCs without page numbers
+
+Page numbers themselves matter more than TOC page numbers
+
+If Claude can easily add page numbers to TOC after first render, great.
+If not, do not block submission over this.
+
+8. Images and appendices (screenshots)
+
+For phone screenshots:
+
+one screenshot per page is normal
+
+center the image
+
+do not shrink to unreadable size
+
+no decorative borders
+
+CSS hint:
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  page-break-inside: avoid;
+}
+
+9. What NOT to do (important)
+
+Avoid:
+
+colored text
+
+background shading
+
+decorative dividers
+
+emojis
+
+hyperlinks to external sites
+
+footers with anything except page numbers
+
+Your document is already conservative. Keep it that way.
+
+10. Bottom line (what Claude needs to hear)
+
+You can tell Claude this directly:
+
+Target Times New Roman, 12 pt, 1.5 spacing
+
+Make it look like a Word-generated legal document
+
+Use CSS to control margins and page numbers
+
+Internal links and bookmarks are fine
+
+No visual flourishes
+
+Static, printable, boring is perfect
+
+If you want, I can write Claude a one-page “court-safe CSS preset” tailored exactly to your document length and structure.

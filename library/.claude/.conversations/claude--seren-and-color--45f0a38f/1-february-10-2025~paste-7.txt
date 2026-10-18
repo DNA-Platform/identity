@@ -1,0 +1,137 @@
+class ColorSwap {
+    doc: DocumentQuery;
+    colors: A<DynamicColor> = f([]);
+    private strokePaths = dictionary<A<PathItemQuery>>();
+    private fillPaths = dictionary<A<PathItemQuery>>();
+
+    constructor() {
+        // Store the currently selected color
+        this.doc = new DocumentQuery(app.activeDocument);
+        this.sync();
+    }
+
+    selected() {
+        var selectedPaths: A<PathItemQuery> = api.selection().where(query => query.itemType == "PathItem") as A<PathItemQuery>;
+        var selectedSwatches: A<SwatchQuery> = this.doc.selectedSwatches();
+        if (selectedSwatches.length() == 0)
+            return;
+
+        if (selectedPaths.length() == 1) {
+            var pathFillColor = selectedPaths.at(0).fillColor();
+            selectedSwatches = selectedSwatches.where(s => !s.color().equals(pathFillColor));
+            if (selectedSwatches.length() == 0)
+                return;
+        }
+
+        var newFillColor: DynamicColor;
+        var newStrokeColor: DynamicColor;
+        if (selectedSwatches.length() == 1) {
+            newFillColor = selectedSwatches.at(0).color();
+            newStrokeColor = newFillColor;
+        } else {
+            newFillColor = selectedSwatches.at(0).color();
+            newStrokeColor = selectedSwatches.at(1).color();
+        }
+
+        selectedPaths.do(pathItem => this.path(pathItem, newFillColor, newStrokeColor));
+    }
+
+    path(pathItem: PathItemQuery, newFillColor: $Color, newStrokeColor: $Color) {
+        newFillColor = $color(newFillColor);
+        newStrokeColor = $color(newStrokeColor);
+        var oldFillColor = pathItem.fillColor();
+        var oldStrokeColor = pathItem.strokeColor();
+        if (oldFillColor.equals(newFillColor) && oldStrokeColor.equals(newStrokeColor))
+            return;
+
+        if (oldFillColor.equals(oldStrokeColor)) {
+            this.from(oldFillColor).to(newFillColor, "stroke & fill");
+        } else {
+            this.from(oldStrokeColor).to(newStrokeColor, "stroke");
+            this.from(oldFillColor).to(newFillColor, "fill");
+        }
+    }
+
+    at(index: number): ({ to: (newColor: $Color, type?: "fill" | "stroke" | "stroke & fill", announce?: boolean) => void }) {
+        if (typeof index !== "number" || index < 0 || index >= this.colors.length()) {
+            console.log("Swap color index out of bounds");
+            return { to: () => {} };
+        }
+        return {
+            to: (color, type, announce) => {
+                if (!type) type = "stroke & fill";
+                if (announce === undefined) announce = false;
+                var oldColor = this.colors.at(index);
+                var newColor = $color(color);
+
+                if (announce)
+                    alert("Swapping" + "\n" + oldColor + "\n" + newColor);
+
+                if (type == "fill" || type == "stroke & fill") {
+                    this.fillPaths[index].do((path, i) => {
+                        if (path.item().clipping || path.hidden()) return;
+                        path.fillColor(newColor)
+                    });
+                }
+
+                if (type == "stroke" || type == "stroke & fill") {
+                    this.strokePaths[index].do((path, i) => {
+                        if (path.item().clipping || path.hidden()) return;
+                        path.strokeColor(newColor);
+                    });
+                }
+
+                this.sync();
+            }
+        };
+    }
+
+    from(oldColor: $Color): ({ to: (newColor: $Color, type?: "fill" | "stroke" | "stroke & fill", announce?: boolean) => void }) {
+        return {
+            to: (newColor, type, announce) => {
+                var index = this.colors.firstIndex(c => c.equals(oldColor));
+                this.at(index).to(newColor, type, announce);
+            }
+        };
+    }
+
+    private sync() {
+        this.colors = f([]);
+        this.strokePaths = dictionary<A<PathItemQuery>>();
+        this.fillPaths = dictionary<A<PathItemQuery>>();
+        this.doc.pathItems().do(pathItem => {
+            var strokeColor = pathItem.strokeColor().withOpacity(1);
+            var fillColor = pathItem.fillColor().withOpacity(1);
+
+            var index = this.colors.firstIndex(c => c.equals(strokeColor));
+            if (index < 0) {
+                this.colors.add(strokeColor);
+                index = this.colors.length() - 1;
+                this.strokePaths[index] = f([]);
+                this.fillPaths[index] = f([]);
+            }
+            this.strokePaths[index].add(pathItem);
+
+            var index = this.colors.firstIndex(c => c.equals(fillColor));
+            if (index < 0) {
+                this.colors.add(fillColor);
+                index = this.colors.length() - 1;
+                this.strokePaths[index] = f([]);
+                this.fillPaths[index] = f([]);
+            }
+            this.fillPaths[index].add(pathItem);
+        });
+    }
+}
+
+// Base Palette class
+class Palette {
+    background: $Color = WebColor.White;
+    colors: A<DynamicColor> = f([]);
+    dynamicColors(): A<DynamicColor> { return this.colors.select(c => $color(c)); }
+
+    static pastelPalette(colorCount: number = 5 /* other properties that describe the transfor,ations */): Palette {
+        // Implementation goes here
+        // Let's make the default values Ana's original Palette
+    }
+}

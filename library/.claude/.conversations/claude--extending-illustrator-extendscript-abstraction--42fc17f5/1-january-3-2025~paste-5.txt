@@ -1,0 +1,175 @@
+class RegionTests extends TestClass {
+    testRegionInitialization() {
+        const region = new Region(50, 100, 150, 0); // left, top, right, bottom
+        this.assertEquals(region.boundsAbs(), [50, 100, 150, 0], "Region absolute bounds incorrect");
+    }
+
+    testToRelativeLocation() {
+        const region = new Region(50, 100, 150, 0); // Width = 100
+        this.assertEquals(region.toRelativeLocation(50, "x"), 0, "Left boundary should map to 0");
+        this.assertEquals(region.toRelativeLocation(150, "x"), 1, "Right boundary should map to 1");
+        this.assertEquals(region.toRelativeLocation(0, "y"), 0, "Bottom boundary should map to 0");
+        this.assertEquals(region.toRelativeLocation(100, "y"), 1, "Top boundary should map proportionally to 1");
+    }
+
+    testToRelativePosition() {
+        const region = new Region(50, 100, 150, 0); // left, top, right, bottom
+        this.assertEquals(region.toRelativePosition([50, 0]), [0, 0], "Relative position for bottom-left incorrect");
+        this.assertEquals(region.toRelativePosition([150, 100]), [1, 1], "Relative position for top-right incorrect");
+    }
+
+    testWidthAndHeight() {
+        const region = new Region(50, 100, 150, 0); // Width = 100, Height = 100
+        this.assertEquals(region.width(), 1, "Normalized width should be 1");
+        this.assertEquals(region.height(), 1, "Normalized height should be 1 (proportional to width)");
+    }
+
+    testToAbsoluteLocation() {
+        const region = new Region(50, 100, 150, 0); // Width = 100
+        this.assertEquals(region.toAbsoluteLocation(0, "x"), 50, "Relative x=0 should map to left boundary");
+        this.assertEquals(region.toAbsoluteLocation(1, "x"), 150, "Relative x=1 should map to right boundary");
+        this.assertEquals(region.toAbsoluteLocation(0, "y"), 0, "Relative y=0 should map to bottom boundary");
+        this.assertEquals(region.toAbsoluteLocation(1, "y"), 100, "Relative y=1 should map to top boundary");
+    }
+
+    testAngle() {
+        const region = new Region(50, 100, 150, 0); // Region in normalized coordinates
+        this.assertEquals(region.angle([0.5, 1]), 90, "Angle at top center should be 90 degrees");
+        this.assertEquals(region.angle([1, 0.5]), 0, "Angle at right center should be 0 degrees");
+        this.assertEquals(region.angle([0.5, 0]), 270, "Angle at bottom center should be 270 degrees");
+        this.assertEquals(region.angle([0, 0.5]), 180, "Angle at left center should be 180 degrees");
+
+        this.assertEquals(region.angle([0.5, 1], "radians"), Math.PI / 2, "Angle in radians at top center should be π/2");
+        this.assertEquals(region.angle([1, 0.5], "radians"), 0, "Angle in radians at right center should be 0");
+    }
+
+    testRadius() {
+        const region = new Region(50, 100, 150, 0);
+        this.assertEquals(region.radius([0.5, 1]), 0.5, "Radius at top center should be 0.5");
+        this.assertEquals(region.radius([1, 0.5]), 0.5, "Radius at right center should be 0.5");
+        this.assertEquals(region.radius([0.5, 0]), 0.5, "Radius at bottom center should be 0.5");
+        this.assertEquals(region.radius([0, 0.5]), 0.5, "Radius at left center should be 0.5");
+    }
+
+    testToRadians() {
+        this.assertEquals(Region.toRadians(0), 0, "0 degrees should be 0 radians", 0.0001);
+        this.assertEquals(Region.toRadians(180), Math.PI, "180 degrees should be π radians", 0.0001);
+        this.assertEquals(Region.toRadians(-180), Math.PI, "180 degrees should be π radians", 0.0001);
+        this.assertEquals(Region.toRadians(360), 0, "360 degrees should be 2π radians", 0.0001);
+    }
+
+    testToDegrees() {
+        this.assertEquals(Region.toDegrees(0), 0, "0 radians should be 0 degrees");
+        this.assertEquals(Region.toDegrees(Math.PI), 180, "π radians should be 180 degrees");
+        this.assertEquals(Region.toDegrees(2 * Math.PI), 0, "2π radians should be 360 degrees");
+    }
+
+    testTo2Pi() {
+        this.assertEquals(Region.to2Pi(-Math.PI), Math.PI, "Negative π radians should map to π radians", 0.0001);
+        this.assertEquals(Region.to2Pi(3 * Math.PI), Math.PI, "3π radians should map to π radians", 0.0001);
+        this.assertEquals(Region.to2Pi(0), 0, "0 radians should remain 0", 0.0001);
+    }
+
+    testTo360() {
+        this.assertEquals(Region.to360(-90), 270, "-90 degrees should map to 270 degrees");
+        this.assertEquals(Region.to360(450), 90, "450 degrees should map to 90 degrees");
+        this.assertEquals(Region.to360(0), 0, "0 degrees should remain 0");
+    }
+
+    testNestedRegions() {
+        // Create 100x100 base region
+        const base = new Region(0, 100, 100, 0);
+        this.assertEquals(base.boundsParent(), [0, 100, 100, 0], "Base bounds");
+        this.assertEquals(base.unit(), 100, "Base unit");
+        this.assertTrue(base.isBase(), "Base should be base");
+
+        // Create 50x50 parent region at (25,75)-(75,25)
+        const parent = new Region(0.25, 0.75, 0.75, 0.25, () => base);
+        this.assertEquals(parent.boundsParent(), [25, 75, 75, 25], "Parent in parent space");
+        this.assertEquals(parent.boundsAbs(), [25, 75, 75, 25], "Parent in absolute space");
+        this.assertEquals(parent.bounds(), [0, 1, 1, 0], "Parent normalized");
+        this.assertEquals(parent.unit(), 50, "Parent unit");
+
+        // Create 25x25 child region at (37.5,62.5)-(62.5,37.5)
+        const child = new Region(0.25, 0.75, 0.75, 0.25, () => parent);
+        this.assertEquals(child.boundsParent(), [12.5, 37.5, 37.5, 12.5], "Child in parent space");
+        this.assertEquals(child.boundsAbs(), [37.5, 62.5, 62.5, 37.5], "Child in absolute space");
+        this.assertEquals(child.bounds(), [0, 1, 1, 0], "Child normalized");
+        this.assertEquals(child.unit(), 25, "Child unit");
+    }
+
+    testCoordinateTransformations() {
+        const base = new Region(0, 100, 100, 0);
+        const parent = new Region(0.25, 0.75, 0.75, 0.25, () => base);
+        const child = new Region(0.25, 0.75, 0.75, 0.25, () => parent);
+
+        // Test unit conversions at each level
+        this.assertEquals(base.toParentUnits(1), 100, "Base parent units");
+        this.assertEquals(parent.toParentUnits(1), 50, "Parent parent units");
+        this.assertEquals(child.toParentUnits(1), 25, "Child parent units");
+
+        this.assertEquals(base.toAbsoluteUnits(1), 100, "Base absolute units");
+        this.assertEquals(parent.toAbsoluteUnits(1), 50, "Parent absolute units");
+        this.assertEquals(child.toAbsoluteUnits(1), 25, "Child absolute units");
+
+        this.assertEquals(base.toRelativeUnits(100), 1, "Base relative units");
+        this.assertEquals(parent.toRelativeUnits(50), 1, "Parent relative units");
+        this.assertEquals(child.toRelativeUnits(25), 1, "Child relative units");
+
+        // Test position conversions
+        // Center point conversions
+        const childCenter: Position = [0.5, 0.5];
+        this.assertEquals(child.toParentPosition(childCenter), [25, 25], "Child center to parent");
+        this.assertEquals(child.toAbsolutePosition(childCenter), [50, 50], "Child center to absolute");
+        
+        const parentCenter: Position = [0.5, 0.5];
+        this.assertEquals(parent.toParentPosition(parentCenter), [50, 50], "Parent center to parent");
+        this.assertEquals(parent.toAbsolutePosition(parentCenter), [50, 50], "Parent center to absolute");
+
+        // Test location conversions
+        this.assertEquals(child.toParentLocation(0.5, "x"), 25, "Child x=0.5 to parent");
+        this.assertEquals(child.toParentLocation(0.5, "y"), 25, "Child y=0.5 to parent");
+        this.assertEquals(child.toAbsoluteLocation(0.5, "x"), 50, "Child x=0.5 to absolute");
+        this.assertEquals(child.toAbsoluteLocation(0.5, "y"), 50, "Child y=0.5 to absolute");
+    }
+
+    testModifications() {
+        const base = new Region(0, 100, 100, 0);
+        const parent = new Region(0.25, 0.75, 0.75, 0.25, () => base);
+        const child = new Region(0.25, 0.75, 0.75, 0.25, () => parent);
+
+        // Test size modifications
+        child.size([2, 2]);  // Double size around center
+        this.assertEquals(child.boundsParent(), [0, 50, 50, 0], "Child doubled size");
+        this.assertEquals(child.boundsAbs(), [25, 75, 75, 25], "Child absolute bounds after resize");
+
+        // Test movement
+        child.moveTo([0.5, 0.5]); // Move to center
+        const centerParent = child.centerParent();
+        this.assertEquals(centerParent[0], 25, "Child centered x in parent");
+        this.assertEquals(centerParent[1], 25, "Child centered y in parent");
+
+        // Test floor abs (should only affect base coordinates)
+        child.floorAbs();
+        const bounds = child.boundsAbs();
+        this.assertEquals(bounds, f(bounds).select(x => Math.floor(x)).a, "Coordinates properly floored");
+    }
+
+    testRelativeConversions() {
+        const base = new Region(0, 100, 100, 0);
+        const parent = new Region(0.25, 0.75, 0.75, 0.25, () => base);
+        const child = new Region(0.25, 0.75, 0.75, 0.25, () => parent);
+
+        // Test relative to parent conversions
+        this.assertEquals(child.toRelativeLocation(25, "x", "parent"), 0.5, "25 in parent to relative x");
+        this.assertEquals(child.toRelativeLocation(25, "y", "parent"), 0.5, "25 in parent to relative y");
+
+        // Test relative to absolute conversions
+        this.assertEquals(child.toRelativeLocation(50, "x", "abs"), 0.5, "50 absolute to relative x");
+        this.assertEquals(child.toRelativeLocation(50, "y", "abs"), 0.5, "50 absolute to relative y");
+
+        // Test conversion through multiple levels
+        this.assertEquals(parent.toRelativeLocation(50, "x", "abs"), 0.5, "50 absolute to parent relative x");
+        this.assertEquals(child.toRelativeLocation(50, "x", "abs"), 0.5, "50 absolute to child relative x");
+    }
+}

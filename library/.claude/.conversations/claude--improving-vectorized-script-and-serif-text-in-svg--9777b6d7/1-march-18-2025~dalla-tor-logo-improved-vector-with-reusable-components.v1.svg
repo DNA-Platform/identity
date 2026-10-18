@@ -1,0 +1,168 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet">
+  <!-- Definitions for reusable components -->
+  <defs>
+    <!-- Script Font Components -->
+    <!-- D shape - primary curve structure -->
+    <path id="script-d-shape" d="M0,0 c3,-22 40,-50 70,-40 c30,10 45,40 40,70 c-5,30 -30,70 -70,70 c-40,0 -50,-30 -45,-60 c5,-30 5,-40 5,-40 z" />
+    
+    <!-- a bowl shape -->
+    <path id="script-a-bowl" d="M0,0 c20,-25 50,-25 60,-5 c10,20 0,45 -25,45 c-25,0 -40,-15 -35,-40 z" />
+    
+    <!-- vertical stem for l, t, etc. -->
+    <path id="script-stem" d="M0,0 c0,20 0,40 0,60 c0,20 0,30 0,40" />
+    
+    <!-- t crossbar -->
+    <path id="script-t-crossbar" d="M-40,0 c20,-10 50,-10 80,0 c30,10 40,15 50,20" />
+    
+    <!-- o shape -->
+    <path id="script-o-shape" d="M0,20 c0,-20 20,-30 40,-20 c20,10 30,30 20,50 c-10,20 -30,30 -50,20 c-20,-10 -20,-30 -10,-50 z" />
+    
+    <!-- r exit stroke -->
+    <path id="script-r-exit" d="M0,0 c0,10 0,20 0,30 c0,10 0,10 0,10 c10,-20 30,-30 50,-30" />
+    
+    <!-- Sans-Serif Font Components -->
+    <!-- Vertical stem for letters -->
+    <path id="sans-vertical-stem" d="M0,0 v70" stroke-width="12" stroke-linecap="square" />
+    
+    <!-- Horizontal bar for F, L, E, T -->
+    <path id="sans-horizontal-bar" d="M0,0 h45" stroke-width="12" stroke-linecap="square" />
+    
+    <!-- Diagonal stroke for A, V, Y -->
+    <path id="sans-diagonal" d="M0,70 L25,0" stroke-width="12" stroke-linecap="round" />
+    
+    <!-- Circle for O -->
+    <circle id="sans-circle" cx="30" cy="35" r="30" stroke-width="12" fill="none" />
+    
+    <!-- R bowl -->
+    <path id="sans-r-bowl" d="M0,0 C30,0 45,15 45,30 C45,45 30,50 0,50" stroke-width="12" fill="none" stroke-linecap="round" />
+  </defs>
+
+  <!-- Script "Dalla Tor" -->
+  <g transform="translate(30, 120)" fill="black">
+    <!-- D -->
+    <use href="#script-d-shape" transform="scale(1.1)" />
+    
+    <!-- a -->
+    <g transform="translate(140, 50)">
+      <use href="#script-a-bowl" transform="scale(0.9)" />
+    </g>
+    
+    <!-- l -->
+    <g transform="translate(210, 0)">
+      <use href="#script-stem" />
+    </g>
+    
+    <!-- l -->
+    <g transform="translate(240, 0)">
+      <use href="#script-stem" />
+    </g>
+    
+    <!-- a -->
+    <g transform="translate(290, 50)">
+      <use href="#script-a-bowl" transform="scale(0.9)" />
+    </g>
+    
+    <!-- T -->
+    <g transform="translate(410, 0)">
+      <use href="#script-t-crossbar" />
+      <g transform="translate(40, 15)">
+        <use href="#script-stem" />
+      </g>
+    </g>
+    
+    <!-- o -->
+    <g transform="translate(500, 50)">
+      <use href="#script-o-shape" transform="scale(1.1)" />
+    </g>
+    
+    <!-- r -->
+    <g transform="translate(570, 50)">
+      <use href="#script-r-exit" />
+    </g>
+  </g>
+
+  <!-- Sans-Serif "FLAVOR OF ITALY" -->
+  <g transform="translate(100, 240)" stroke="black" fill="none">
+    <!-- F -->
+    <g transform="translate(0, 0)">
+      <use href="#sans-vertical-stem" />
+      <use href="#sans-horizontal-bar" />
+      <use href="#sans-horizontal-bar" transform="translate(0, 30)" />
+    </g>
+    
+    <!-- L -->
+    <g transform="translate(60, 0)">
+      <use href="#sans-vertical-stem" />
+      <use href="#sans-horizontal-bar" transform="translate(0, 58)" />
+    </g>
+    
+    <!-- A -->
+    <g transform="translate(120, 0)">
+      <use href="#sans-diagonal" transform="translate(0, 0) scale(1, 1)" />
+      <use href="#sans-diagonal" transform="translate(50, 0) scale(-1, 1)" />
+      <path d="M10,40 h30" stroke-width="12" stroke-linecap="square" />
+    </g>
+    
+    <!-- V -->
+    <g transform="translate(180, 0)">
+      <use href="#sans-diagonal" transform="translate(0, 0) scale(1, -1)" />
+      <use href="#sans-diagonal" transform="translate(50, 0) scale(-1, -1)" />
+    </g>
+    
+    <!-- O -->
+    <g transform="translate(235, 0)">
+      <use href="#sans-circle" />
+    </g>
+    
+    <!-- R -->
+    <g transform="translate(305, 0)">
+      <use href="#sans-vertical-stem" />
+      <use href="#sans-r-bowl" />
+      <path d="M25,50 L45,70" stroke-width="12" stroke-linecap="round" />
+    </g>
+    
+    <!-- O -->
+    <g transform="translate(365, 0)">
+      <use href="#sans-circle" />
+    </g>
+    
+    <!-- F -->
+    <g transform="translate(430, 0)">
+      <use href="#sans-vertical-stem" />
+      <use href="#sans-horizontal-bar" />
+      <use href="#sans-horizontal-bar" transform="translate(0, 30)" />
+    </g>
+    
+    <!-- I -->
+    <g transform="translate(485, 0)">
+      <use href="#sans-vertical-stem" />
+    </g>
+    
+    <!-- T -->
+    <g transform="translate(515, 0)">
+      <use href="#sans-horizontal-bar" transform="translate(-15, 0)" width="60" />
+      <use href="#sans-vertical-stem" transform="translate(15, 0)" />
+    </g>
+    
+    <!-- A -->
+    <g transform="translate(565, 0)">
+      <use href="#sans-diagonal" transform="translate(0, 0) scale(1, 1)" />
+      <use href="#sans-diagonal" transform="translate(50, 0) scale(-1, 1)" />
+      <path d="M10,40 h30" stroke-width="12" stroke-linecap="square" />
+    </g>
+    
+    <!-- L -->
+    <g transform="translate(625, 0)">
+      <use href="#sans-vertical-stem" />
+      <use href="#sans-horizontal-bar" transform="translate(0, 58)" />
+    </g>
+    
+    <!-- Y -->
+    <g transform="translate(680, 0)">
+      <use href="#sans-diagonal" transform="translate(0, 0) scale(0.75, 0.5)" />
+      <use href="#sans-diagonal" transform="translate(50, 0) scale(-0.75, 0.5)" />
+      <use href="#sans-vertical-stem" transform="translate(25, 35) scale(1, 0.5)" />
+    </g>
+  </g>
+</svg>

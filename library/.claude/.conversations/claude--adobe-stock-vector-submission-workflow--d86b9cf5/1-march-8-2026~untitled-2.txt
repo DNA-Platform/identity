@@ -1,0 +1,116 @@
+# Rejection Playbook — Adobe Stock
+
+## TL;DR
+
+Adobe gives one rejection reason per file (there may be more). Fix the stated issue, check for related issues, and resubmit with a **modified filename**. This document maps common rejection reasons to specific fixes.
+
+## Important: Resubmission Rules
+
+- You **must** use a different filename when resubmitting a rejected file
+- Convention: append `-v2`, `-v3`, etc. (e.g., `serens-squares-v2.eps`)
+- Update the CATALOGUE.md entry with the new filename and resubmission date
+
+## Common Vector Rejections
+
+### 1. Open/Unclosed Paths
+
+**Rejection text**: "Open paths" or "Unclosed filled shape paths"
+
+**What it means**: Some filled shapes have gaps in their paths. This causes rendering issues for buyers.
+
+**How to fix**:
+- Open in Illustrator → View → Outline mode
+- Look for paths that don't fully close
+- Select open paths → Object → Path → Join
+- Verify all filled shapes are complete closed paths
+
+**Prevention**: Our compliance checker should detect unclosed paths before submission.
+
+### 2. Embedded Raster Images
+
+**Rejection text**: "Raster images" or "Pixel-based content"
+
+**What it means**: The vector file contains embedded JPEG/PNG images instead of pure vector paths.
+
+**How to fix**:
+- Remove all embedded raster images
+- Recreate the content as vector shapes
+- If raster textures are needed, they don't belong in vector submissions
+
+**Prevention**: Compliance checker should scan for embedded raster elements.
+
+### 3. Artboard Below Minimum
+
+**Rejection text**: "Technical quality" or "Below minimum resolution"
+
+**What it means**: Artboard is under 15 megapixels.
+
+**How to fix**:
+- Scale up the artboard to at least 15 MP (e.g., 3873x3873 px for square)
+- Ensure vector elements scale cleanly (they should, being vectors)
+- Re-export at the larger artboard size
+
+**Prevention**: Compliance checker should calculate artboard megapixels.
+
+### 4. Poor File Organization
+
+**Rejection text**: "File organization" or "Technical quality"
+
+**What it means**: Layers are unnamed, everything is on one layer, hidden/empty layers exist, or the file is hard for buyers to edit.
+
+**How to fix**:
+- Name all layers descriptively
+- Remove hidden and empty layers
+- Unlock all layers
+- Group related elements logically
+- Remove unused swatches, brushes, symbols
+
+### 5. Similar to Existing Content
+
+**Rejection text**: "Similar content" or "Not unique enough"
+
+**What it means**: The file is too similar to something already in your portfolio or in the broader Adobe Stock collection.
+
+**How to fix**:
+- Create meaningful differentiation (not just color swaps)
+- Add/remove elements, change composition, vary proportions
+- See `docs/portfolio/VARIATIONS.md` for our variation strategy
+
+### 6. Lack of Commercial Value
+
+**Rejection text**: "Commercial value" or "Market demand"
+
+**What it means**: Reviewers don't believe buyers will purchase this.
+
+**How to fix**:
+- Research what sells in the geometric/abstract category
+- Consider use cases: backgrounds, textile prints, packaging, web design
+- Ensure the piece has clear application potential
+- Improve metadata to help reviewers understand the value
+
+### 7. Autotraced Content
+
+**Rejection text**: "Autotraced" or "Complex paths"
+
+**What it means**: The vector was created by autotracing a raster image, resulting in overly complex, hard-to-edit paths.
+
+**How to fix**:
+- Don't autotrace. Our art is created as native vectors, so this shouldn't apply.
+- If it does: simplify paths, reduce anchor points, clean up the geometry.
+
+## Rejection Response Workflow
+
+```
+1. Receive rejection notification
+2. Log rejection reason in CATALOGUE.md
+3. Look up reason in this playbook
+4. Apply the fix
+5. Run compliance checker on fixed file
+6. Resubmit with modified filename (-v2, -v3, etc.)
+7. Update CATALOGUE.md with resubmission record
+```
+
+## Sources
+
+- [Quality and Technical Issues](https://helpx.adobe.com/stock/contributor/help/quality-and-technical-issues.html)
+- [Reasons for Content Rejection](https://helpx.adobe.com/stock/contributor/help/reasons-for-content-rejection.html)

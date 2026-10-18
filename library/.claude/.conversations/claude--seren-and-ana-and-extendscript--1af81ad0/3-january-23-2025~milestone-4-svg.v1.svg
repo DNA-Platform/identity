@@ -1,0 +1,69 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="600" fill="#0a0a2a"/>
+    
+    <!-- Title -->
+    <text x="400" y="60" fill="white" font-family="Arial" font-size="24" text-anchor="middle">Smart Variations</text>
+    <text x="400" y="90" fill="#8a9bb5" font-family="Arial" font-size="16" text-anchor="middle">Your style, intelligently evolved</text>
+
+    <!-- Original Pattern -->
+    <g transform="translate(100,200)">
+        <text x="60" y="-20" fill="white" font-family="Arial" font-size="16" text-anchor="middle">Your Grid</text>
+        <!-- Basic grid -->
+        <rect width="120" height="120" fill="none" stroke="#4a6a9a" stroke-width="2"/>
+        <g>
+            <line x1="30" y1="0" x2="30" y2="120" stroke="#4a6a9a"/>
+            <line x1="60" y1="0" x2="60" y2="120" stroke="#4a6a9a"/>
+            <line x1="90" y1="0" x2="90" y2="120" stroke="#4a6a9a"/>
+            <line x1="0" y1="30" x2="120" y2="30" stroke="#4a6a9a"/>
+            <line x1="0" y1="60" x2="120" y2="60" stroke="#4a6a9a"/>
+            <line x1="0" y1="90" x2="120" y2="90" stroke="#4a6a9a"/>
+        </g>
+    </g>
+
+    <!-- Thought Bubbles -->
+    <g transform="translate(250,220)">
+        <ellipse cx="0" cy="0" rx="15" ry="10" fill="#2a4a8a"/>
+        <ellipse cx="25" cy="-15" rx="20" ry="15" fill="#2a4a8a"/>
+        <ellipse cx="60" cy="-30" rx="30" ry="20" fill="#2a4a8a"/>
+        <text x="60" y="-25" fill="white" font-family="Arial" font-size="12" text-anchor="middle">more organic</text>
+    </g>
+
+    <!-- Smart Variations -->
+    <g transform="translate(400,150)">
+        <text x="150" y="-20" fill="white" font-family="Arial" font-size="16" text-anchor="middle">Intelligent Variations</text>
+        
+        <!-- Organic variation -->
+        <g transform="translate(0,0)">
+            <rect width="120" height="120" fill="none" stroke="#4a6a9a" stroke-width="2"/>
+            <path d="M 30,0 Q 35,60 30,120" stroke="#4a6a9a" fill="none"/>
+            <path d="M 60,0 Q 65,60 60,120" stroke="#4a6a9a" fill="none"/>
+            <path d="M 90,0 Q 95,60 90,120" stroke="#4a6a9a" fill="none"/>
+            <path d="M 0,30 Q 60,35 120,30" stroke="#4a6a9a" fill="none"/>
+            <path d="M 0,60 Q 60,65 120,60" stroke="#4a6a9a" fill="none"/>
+            <path d="M 0,90 Q 60,95 120,90" stroke="#4a6a9a" fill="none"/>
+        </g>
+
+        <!-- Minimal variation -->
+        <g transform="translate(150,0)">
+            <rect width="120" height="120" fill="none" stroke="#4a6a9a" stroke-width="2"/>
+            <line x1="60" y1="0" x2="60" y2="120" stroke="#4a6a9a"/>
+            <line x1="0" y1="60" x2="120" y2="60" stroke="#4a6a9a"/>
+        </g>
+
+        <!-- Bold variation -->
+        <g transform="translate(300,0)">
+            <rect width="120" height="120" fill="none" stroke="#4a6a9a" stroke-width="4"/>
+            <line x1="40" y1="0" x2="40" y2="120" stroke="#4a6a9a" stroke-width="4"/>
+            <line x1="80" y1="0" x2="80" y2="120" stroke="#4a6a9a" stroke-width="4"/>
+            <line x1="0" y1="40" x2="120" y2="40" stroke="#4a6a9a" stroke-width="4"/>
+            <line x1="0" y1="80" x2="120" y2="80" stroke="#4a6a9a" stroke-width="4"/>
+        </g>
+    </g>
+
+    <!-- Market Insight -->
+    <g transform="translate(400,300)">
+        <text x="150" y="20" fill="#4ecdc4" font-family="Arial" font-size="14" text-anchor="middle">✓ Organic styles trending up 25%</text>
+        <text x="150" y="45" fill="#4ecdc4" font-family="Arial" font-size="14" text-anchor="middle">✓ Perfect for current market demand</text>
+    </g>
+</svg>

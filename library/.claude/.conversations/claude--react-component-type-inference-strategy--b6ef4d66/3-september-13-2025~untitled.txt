@@ -1,0 +1,204 @@
+interface $BondType {
+    cid?: number;
+    property?: string;
+    type: $Type<$Chemical>;
+    plurality: 'one' | 'many';
+    source: 'view' | 'children';
+}
+
+interface Binding {
+    cid: number;
+    property: string;
+    index?: number;
+}
+
+type $ChemicalExclusions = // Have Claude write the final list when ready
+    | 'Component' 
+    | 'parent'
+    | 'children'
+    | 'formula'
+    | 'getType';
+
+// Global registry for Chemical instances by key
+const chemicalRegistry = new Map<number, $Chemical>();
+const decoratorsKey = Symbol('decoratorsField');
+class DecoratorCache {
+    $: Map<string, $Type<$Chemical> | $Type<$Chemical>[]> = new Map();
+    parent: Map<string, $Type<$Chemical>> = new Map();
+    inert: Map<string, boolean> = new Map();
+}
+
+// A decorator for expressing configurable binding
+// export function $(type: $Type<$Chemical> | $Type<$Chemical>[] | (() => $Type<$Chemical> | $Type<$Chemical>[])) {
+//     type = resolveType(type);
+//     const type$: any = type;
+//     return function (target: $Chemical, property: string) {
+//         const dynamicTarget: any = target;
+//         if (!dynamicTarget[decoratorsKey])
+//             dynamicTarget[decoratorsKey] = new DecoratorCache();
+//         const decorators: DecoratorCache = dynamicTarget[decoratorsKey];
+//         decorators.$.set(property, type);
+//     };
+// }
+
+export class $Chemical {
+    get cid() { return this._cid; }
+    private _cid: number;
+
+    get formula(): $Formula { return this._formula; }
+    private _formula: $Formula;
+
+    get template(): this { return this._template; }
+    private set template(chemical: this) {
+        this._template = chemical;
+    }
+    private _template: this;
+
+    get parent() { return this._parent; }
+    private _parent: $Chemical | undefined;
+
+    get Component(): $Component<this> {
+        if (!this._component)
+            this._component = this.__createComponent();
+        return this._component! as any;
+    }
+    private _component?: $Component<this>;
+
+    get reactive() { return this._reactive; }
+    get inactive() { return !this._reactive; }
+    reactivate() { this._reactive = true; }
+    deactivate() { this._reactive = false; }
+    private _reactive = false;
+
+    get children() { return this._children; }
+    private _children: ReactNode;
+
+    constructor() {
+        this._cid = $Chemical.getNextCid();
+        const type = this.getType();
+        if (!type._template) 
+            type._template = this;
+        this._template = this;
+        this._formula = new $Formula(this);
+    }
+
+    view(): ReactNode {
+        // Default implementation shows the existing children from the props
+        return this.children;
+    }
+
+    $Chemical(...children: $React<any>[]) {
+        // Bind the children
+    }
+
+    private getType<T extends $Type<$Chemical> = typeof $Chemical>(): T {
+        return this.constructor as any;
+    }
+
+    private __create(parent?: $Chemical): this {
+        const template = this.getType()._template;
+        const chemical = Object.create(template) as this;
+
+        chemical._parent = parent;
+        chemical._cid = $Chemical.getNextCid();
+        chemical._formula = new $Formula(chemical);
+        return chemical as this;
+    }
+
+    private __createMolecule() {
+        return React.createContext<{
+            root: $Chemical;
+            chemicals: Map<number, $Chemical>;
+            bonds: Map<Binding, number>
+        }>({
+            root: null as any,
+            chemicals: new Map(),
+            bonds: new Map()
+        });
+    }
+
+    private __createComponent(): $Component<this> {
+        if (this._component) 
+            throw new Error(`The Component for ${this.getType().name}[${this.cid}] has already been created`);
+        
+        const template = this.getType().template as this;
+        const isTemplate = this === template;
+        if (!template.__crystallized) {
+            template.__configureBindings();
+            template.__crystallize();
+        }
+
+        const Component: $Component<this> = props => {
+            const nullId = -1;
+            const [id, setId] = useState(nullId);
+            
+            let chemical = this;
+            if (id == nullId) {
+                chemical = this.__create();
+                chemical._component = Component;
+                chemical.reactivate();
+
+                setId(chemical.cid);
+                chemicalRegistry.set(chemical.cid, chemical);
+            } else {
+                chemical = chemicalRegistry.get(id) as any;
+            }
+
+            const chemical$: any = chemical;
+            const props$: $Properties<any> = props;
+            const binding = (props as any)['__binding'] as $BondType;
+
+            if (binding) {
+                const parent = chemicalRegistry.get(id);
+                const parent$ = parent as any;
+                chemical._parent = parent;
+                if (!parent)
+                    throw new Error(`Could not find parent $Chemical[${binding.cid} to bind to ${this.getType().name}[${this.cid}]`)
+
+                if (binding.plurality == 'one') {
+                    const value = parent$[binding.property!] as $Chemical;
+                    if (!(value instanceof $Chemical)) parent$[binding.property!] = chemical;
+                    else if (value.cid !== chemical.cid) {
+                        parent.__unbind(binding, value);
+                        parent?.__bind(binding, chemical);
+                        parent$[binding.property!] = chemical;
+                    }
+                } else {
+                    const value = parent$[binding.property!] as $Chemical[];
+                    if (!Array.isArray(value)) {
+                        parent?.__bind(binding, chemical);
+                        parent$[binding.property!] = [chemical];
+                    } else if (!value.find(c => c.cid === chemical.cid)) {
+                        parent?.__bind(binding, chemical);
+                        value.push(chemical);
+                    }
+                }
+            }
+
+            useEffect(() => {
+                setId(chemical.cid);
+                return () => {
+                    if (chemical._component)
+                        chemicalRegistry.delete(chemical.cid);
+                };
+            }, []);
+
+            // Bind the props to the associated fields that are prefixed with $
+            chemical.__bindProps(props$);
+
+            // Bind the child components passed in by the caller
+            // chemical.bindImplicit(props);
+
+            // Render the view
+            let view = chemical.view();
+
+            return view
+        }
+
+        if (isTemplate)
+            template._component = Component;
+        if (!this._component)
+            this._component = Component;
+
+        return Component;
+    }

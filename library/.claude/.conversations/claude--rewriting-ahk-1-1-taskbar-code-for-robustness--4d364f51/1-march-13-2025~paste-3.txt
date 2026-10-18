@@ -1,0 +1,210 @@
+/**
+ * Taskbar - Primary class for interacting with the Windows taskbar
+ * Provides access to taskbar items and taskbar properties
+ */
+class Taskbar {
+    ; Properties
+    items := []
+    taskbarHandle := 0
+    position := ""  ; "bottom", "top", "left", "right"
+    x := 0
+    y := 0
+    width := 0
+    height := 0
+    
+    ; Constructor
+    __New() {
+        ; Initialize taskbar properties
+        this._Initialize()
+    }
+    
+    ; Public Methods
+    
+    /**
+     * Gets all taskbar items, optionally refreshing the collection
+     * @param {Boolean} refresh - Whether to refresh the items list
+     * @return {Array} Array of TaskbarItem objects
+     */
+    GetItems(refresh = false) {
+        if (refresh || this.items.Length() = 0)
+            this._CollectItems()
+            
+        return this.items
+    }
+    
+    /**
+     * Finds a taskbar item by its name
+     * @param {String} name - Name to search for
+     * @param {Boolean} exactMatch - Whether to require an exact match
+     * @return {TaskbarItem} TaskbarItem object or empty string if not found
+     */
+    FindItem(name, exactMatch = false) {
+        if (this.items.Length() = 0)
+            this._CollectItems()
+            
+        for index, item in this.items {
+            if (exactMatch && item.name = name)
+                return item
+                
+            if (!exactMatch && InStr(item.name, name))
+                return item
+        }
+        
+        return ""
+    }
+    
+    /**
+     * Finds taskbar items by specified criteria
+     * @param {Object} criteria - Object with criteria to match
+     * @return {Array} Array of matching TaskbarItem objects
+     */
+    FindItems(criteria) {
+        if (this.items.Length() = 0)
+            this._CollectItems()
+            
+        matches := []
+        
+        for index, item in this.items {
+            isMatch := true
+            
+            for key, value in criteria {
+                if (!item.HasKey(key) || item[key] != value) {
+                    isMatch := false
+                    break
+                }
+            }
+            
+            if (isMatch)
+                matches.Push(item)
+        }
+        
+        return matches
+    }
+    
+    /**
+     * Gets only running applications from the taskbar
+     * @return {Array} Array of running TaskbarItem objects
+     */
+    GetRunningApps() {
+        return this.FindItems({isRunning: true})
+    }
+    
+    /**
+     * Gets only pinned applications from the taskbar
+     * @return {Array} Array of pinned TaskbarItem objects
+     */
+    GetPinnedApps() {
+        return this.FindItems({isRunning: false})
+    }
+    
+    ; Private Methods
+    
+    /**
+     * Initializes taskbar properties
+     * @private
+     */
+    _Initialize() {
+        ; Find the taskbar window
+        this.taskbarHandle := WinExist("ahk_class Shell_TrayWnd")
+        
+        ; Get taskbar position and dimensions
+        if (this.taskbarHandle) {
+            WinGetPos, tbX, tbY, tbWidth, tbHeight, ahk_id %this.taskbarHandle%
+            
+            this.x := tbX
+            this.y := tbY
+            this.width := tbWidth
+            this.height := tbHeight
+            
+            ; Determine taskbar position based on screen edges
+            if (tbHeight < tbWidth) {
+                ; Horizontal taskbar
+                this.position := (tbY = 0) ? "top" : "bottom"
+            } else {
+                ; Vertical taskbar
+                this.position := (tbX = 0) ? "left" : "right"
+            }
+        }
+    }
+    
+    /**
+     * Collects all taskbar items using UI Automation
+     * @private
+     */
+    _CollectItems() {
+        ; Clear current items
+        this.items := []
+        
+        try {
+            ; Use UI Automation to get taskbar buttons
+            taskbar := UIA.ElementFromHandle("Shell_TrayWnd")
+            
+            ; Find the taskbar button container (varies by Windows version)
+            buttonContainer := taskbar
+            
+            ; On some Windows versions, we need to find the taskbar buttons container
+            taskListContainer := taskbar.FindFirst(UIA.CreatePropertyCondition("ClassName", "MSTaskListWClass"))
+            if (taskListContainer)
+                buttonContainer := taskListContainer
+                
+            ; Find all buttons in the container
+            taskbarButtons := buttonContainer.FindAll(UIA.CreatePropertyCondition("ControlType", UIA.ControlType.Button))
+            
+            ; Use AutoHotkey's standard for loop to avoid compatibility issues
+            Loop % taskbarButtons.Length {
+                button := taskbarButtons[A_Index]
+                ; Skip buttons without names (system buttons)
+                if (button.CurrentName)
+                    this.items.Push(new TaskbarItem(button))
+            }
+        } catch e {
+            ; Log the error for debugging
+            OutputDebug, % "UIA taskbar collection failed: " . e.Message
+            
+            ; Fallback method if UIA fails
+            this._CollectItemsFallback()
+        }
+    }
+    
+    /**
+     * Fallback method to collect taskbar items when UI Automation fails
+     * @private
+     */
+    _CollectItemsFallback() {
+        ; Find the taskbar button list
+        ControlGet, hTaskbar, Hwnd, , MSTaskListWClass1, ahk_class Shell_TrayWnd
+        
+        if (!hTaskbar) {
+            OutputDebug, % "Fallback taskbar collection failed: could not find MSTaskListWClass1"
+            return
+        }
+            
+        ; Get the list of buttons
+        ControlGet, buttonList, List, , Button, ahk_id %hTaskbar%
+        
+        ; Process each button
+        Loop, Parse, buttonList, `n {
+            buttonID := A_LoopField
+            
+            ; Get button text and position
+            ControlGetText, buttonText, %buttonID%, ahk_id %hTaskbar%
+            ControlGetPos, btnX, btnY, btnWidth, btnHeight, %buttonID%, ahk_id %hTaskbar%
+            
+            ; Skip buttons without text
+            if (!buttonText)
+                continue
+            
+            ; Create a minimal UIA element substitute
+            buttonElement := {}
+            buttonElement.CurrentName := buttonText
+            buttonElement.CurrentBoundingRectangle := {x: btnX, y: btnY, width: btnWidth, height: btnHeight}
+            buttonElement.CurrentAutomationId := ""
+            buttonElement.CurrentClassName := buttonText ? "Running" : ""
+            buttonElement.Click := Func("_DummyClick")
+            buttonElement.RightClick := Func("_DummyRightClick")
+            
+            ; Create and add the taskbar item
+            this.items.Push(new TaskbarItem(buttonElement))
+        }
+    }
+}

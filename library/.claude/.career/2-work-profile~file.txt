@@ -1,0 +1,130 @@
+# Work Profile
+
+## Purpose
+Reference document for building context quickly in new chats. Contains factual profile data, stated constraints, and confirmed themes relevant to designing a bridge income strategy.
+
+---
+
+## The Problem (User's Own Framing)
+Three-layer structure:
+1. **Deep passion (lifetime):** Consciousness research, now through the lens of AI.
+2. **Long-term financial play (10-year):** Cryptocurrency investment thesis, reasoning-driven. Potential collaboration with Bayle.
+3. **Immediate (what we're solving for):** Bridge income to cover living expenses, replenish savings eroded by legal fees, and preserve capital for the crypto thesis.
+
+Bridge income must be efficient — high return on time — so cognitive resources remain available for layers 1 and 2.
+
+---
+
+## Identity & Background
+
+### Art (original native talent)
+- Accomplished oil painter. Best in class in NYC. Top AP art scores in the state.
+- Could have attended RISD. Art teacher assured parents he'd make a living.
+- Departure from art was not fully resolved on own terms — driven by both intellectual curiosity about consciousness AND mother's disapproval of art school.
+- Wife Ana is a digital artist. Art is present tense in the household.
+- Reintegrating art into life is actively desired, both for meaning and as a potential income source.
+
+### Neuroscience
+- University of Chicago. Biology degree, specialization in computational neuroscience.
+- Took significant graduate coursework as an undergraduate.
+- Deeply influenced by Gödel, Escher, Bach. Engineered education around it: CS, mathematical logic, computational neuroscience.
+- Worked in Nicho Hatsopoulos's brain-machine interface lab (UChicago). Published first-author in Nature Neuroscience as an undergraduate.
+- Entered Charles Stevens's lab at Salk for theoretical neuroscience graduate work.
+- ABD (all but dissertation). Did not complete PhD. This remains a source of grief and a potential future goal.
+- Stevens (towering theoretical neuroscientist, exacting standards) told Bayle: "neuroscience lost an important voice." This is a calibration signal about the user's ceiling for theoretical and analytical work from an authoritative source.
+
+### Core Compound Skill
+The ability to build novel mathematical/analytical frameworks AND visualize results so meaning is perceptually self-evident. Not pure theory, not pure art — the intersection. This is what made the Nature Neuroscience paper work: novel analysis of Utah array data, rendered so reviewers could see the significance without following the math. This skill has manifested in every domain since — beautiful code, graph-based communication with Bayle, data visualization as a primary tool.
+
+### Software Engineering (10+ years)
+- Entered through friend's father's company (Infragistics). Friend taught him; friend now at Google.
+- Theoretical skills led to language design (reusable parser generator in C#).
+- Art skills manifest as craftsmanship in code.
+- Software engineering is purely a means to an end. Cannot sustain motivation for it as its own goal. It must serve something — science, finance, a larger project.
+- Good at resumes and recruiter interfaces out of necessity.
+
+### Quant Hedge Fund (co-founder)
+- Started algorithmic trading as a hobby project during software career. Worked on it for years.
+- Co-founded fund with Bayle (friend from Stevens lab).
+- Bayle's background: wealthy (7-8 figures USD, built via crypto investment thesis). Father was in finance, gave him ~$100K seed.
+- User built entire fund infrastructure alone: trading platform architecture + strategy design.
+- Equities strategy showed returns in backtest. Traded live starting with ~$20K, scaled to low hundreds of thousands.
+- Capacity constraints at ~$1M range: misapproximated slippage, moved market more than expected. Strategy was net-positive on trading decisions over 4 years of hundreds of daily positions. Losses were to salary overhead, not to strategy.
+- Bayle paid $175K/year + co-ownership.
+- User left voluntarily when Bayle's wife got sick. Saw the strain and couldn't justify it while not making money. Bayle did not ask him to leave. Bayle doesn't fully understand the reasoning. This was selfless but possibly premature — could have pivoted strategy.
+- Fund is not currently operational. Relationship with Bayle is intact.
+- AI appeared at the tail end of the fund. User started trading with AI assistance. Regrets not continuing that path. Believes AI-augmented algo trading might have produced results if pursued.
+- Lost belief in the single-strategy solo-operator business model for algo trading. Shifted to reasoning-driven investment theses.
+
+### AI Sabbatical (current phase)
+- Sabbatical is fundamentally a return to consciousness work. AI is the new substrate for the lifelong question.
+- Computational neuroscience is native preparation for understanding AI as a computational object that must be probed to understand its design specification.
+- Has developed a theoretical framework for LLM computation:
+  - Identity-based programming in words. Programming language = English; fundamental unit = identity defined by memory context.
+  - LLMs as composed sub-interpreters differing from top-level only in memory context, constructible dynamically ("converse programming").
+  - This is a theoretical contribution, possibly novel. Appearing in agentic AI from engineering side, but theoretical articulation grounded in biological computation may be differentiated.
+- Sabbatical output includes: Semantic Reference Theory (formal theory of consciousness, most evolved project), algorithmic stock art tools/protocols, AI-based language translation (positive external feedback), $Chemistry UI framework (React wrapper, open source), conversational style guides achieving authentic non-AI-detectable voice (built for Ana), extensive identity creation experiments, many other prototypes across science/philosophy/finance scattered in repos and old conversations.
+- Selection, not capability, is the bottleneck: "1 million ideas, need to find one path."
+
+---
+
+## Functional Constraints for Career Design
+
+### Bipolar Disorder
+User is a neuroscientist and the medical expert in this conversation. The following are constraints he has stated. They are not interpretations or medical commentary.
+- Variable sleep schedule. Hard constraint.
+- Corporate work is ruled out. Pattern of 1-3 year tenures, destabilized by team changes, project cancellations, inability to choose own boss.
+- Works brilliantly with the right person (~1 in 10). Needs trust, freedom, and understanding that variability is illness not motivation.
+- Can be incredibly self-motivated given external validation and guidance.
+- Needs independence, but the specific structure of that independence is his to design.
+- Mental health days are a reality; workplaces that count them against you are incompatible.
+- Many life transitions were not fully deliberate.
+
+### Financial Parameters
+- Savings: ~$250K
+- Monthly overhead: ~$3K with room to spare
+- Wife Ana (digital artist, Russian) has large unexpected legal expenses related to exiting Russia. These are eroding savings.
+- Ana works and will bring in income soon, possibly enough to cover all monthly expenses.
+- Urgency: not survival, but real. Wants to replenish lawyer funds. Income should ideally start within a few months.
+- Crypto thesis needs savings to invest — every dollar spent on lawyers is a dollar not deployed into the long-term play.
+
+### Working Style
+- Self-sufficient when given trust and directional validation. Ran own project for Nature Neuroscience paper as an undergraduate. Did everything for the fund.
+- The 1-in-10 boss problem: thrives under specific leadership (Nicho, Stevens, good corporate bosses when they appeared). Most managers don't know how to use his brain.
+- Has cofounded a business and worked in the startup world.
+
+---
+
+## Key Relationships
+- **Bayle:** Friend from Stevens lab. Fund co-founder. Wealthy. Good friendship intact. Most likely re-entry point is through the crypto thesis, not a repeat of the equities fund.
+- **Ana:** Current wife. Digital artist. Russian, with ongoing legal process to exit Russia. Will bring in income. Art collaborator potential.
+- **Infragistics friend:** Taught him software engineering. Now at Google. Potential network contact.
+- **Nicho Hatsopoulos:** Former PI at UChicago. Runs the department now.
+- **Charles Stevens:** Former advisor at Salk. Deceased(?). Calibration signal source.
+
+---
+
+## Key Themes (confirmed through conversation)
+- **Consciousness is THE throughline.** Art → neuroscience → AI. Every domain entry was driven by this question.
+- **AI is a fundamental capability multiplier.** Things previously intractable for a solo operator (e.g., market microstructure research) are now feasible. AI + his skills = qualitatively different capacity than skills alone.
+- **The bottleneck is selection, not capability.**
+- **Software is a tool, never the goal.**
+- **Art is unresolved.** Departure was partly imposed. Reintegration is desired.
+- **The unfinished PhD carries weight.** Grief, but also potential future goal.
+- **Has original theoretical work on LLM computation.** May be a differentiator or monetizable asset.
+
+---
+
+## Key Tensions
+- Need to make money vs. deep intellectual/creative drives that have always been the real engine
+- Independence is necessary but the specific structure is his to design
+- Art as unresolved departure — active constraint on what "satisfying" means
+- Unfinished PhD as grief vs. potential future completion
+- AI-augmented algo trading was a regretted path not taken — possibly still viable to revisit
+
+---
+
+## Notes
+- User communicates via voice-to-text. Transcription errors do not reflect intellect.
+- Do not provide medical advice or commentary on bipolar disorder. User is the expert.
+- Do not romanticize or smooth the life narrative. Some transitions were chosen, some were imposed. Be precise about which.

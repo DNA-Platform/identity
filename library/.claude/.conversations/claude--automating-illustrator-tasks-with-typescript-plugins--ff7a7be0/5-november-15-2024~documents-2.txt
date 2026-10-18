@@ -1,0 +1,376 @@
+/// <reference path="./core.ts" />
+
+/**
+ * Activates a document from the resources folder.
+ * @param fileName - Name of the resource file to activate
+ * @returns Result of activating the document
+ */
+function activateResource(fileName: string) {
+    return activateDocument(combinePaths("resources", fileName), false);
+}
+
+/**
+ * Gets, activates, or creates an Illustrator document based on the provided parameters.
+ * Checks both open documents and the documents directory.
+ * 
+ * @param fileName - The name of the document to find/create
+ * @param activate - Whether to make the found/created document active
+ * @param create - Whether to create a new document if one with the specified name isn't found
+ * 
+ * @returns The requested Document object
+ * @throws Error if document isn't found and create=false
+ */
+function activateDocument(fileName?: string, create: boolean = false): void {
+    // Case 1: No arguments - return active document
+    if (!fileName) {
+        if (app.documents.length === 0) {
+            throw new Error("No documents are open.");
+        }
+
+        var documentName = app.activeDocument.name;
+        for (let i = 0; i < app.documents.length; i++) {
+            if (app.documents[i].name === documentName) {
+                var doc = app.documents[i];
+                doc.activate()
+                return;
+            }
+        }
+    }
+
+    // Case 2: Try to find in open documents
+    for (let i = 0; i < app.documents.length; i++) {
+        if (app.documents[i].name === fileName) {
+            app.documents[i].activate();
+            return
+        }
+    }
+
+    // Case 3: Try to find in documents directory
+    const file = new File(combinePaths(DOCUMENTS_PATH, fileName as string));
+    if (file.exists) {
+        var doc = loadDocument(fileName as string);
+        doc.activate();
+        return;
+    }
+
+    // Case 4: Document not found anywhere - create or throw error
+    if (create) {
+        const newDoc = app.documents.add();
+        newDoc.activate();
+        saveDocument(newDoc, fileName as string);
+        return;
+    }
+
+    throw new Error(`Document '${fileName}' not found in open documents or documents directory.`);
+}
+
+/**
+ * Loads a document from the documents directory
+ * @param fileName - The name of the document
+ * @returns The loaded Document object
+ * @throws Error if document cannot be found or loaded
+ */
+function loadDocument(fileName: string): Document {
+    const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+
+    if (!file.exists) {
+        throw new Error(`Document '${fileName}' not found in documents directory.`);
+    }
+
+    try {
+        return app.open(file);
+    } catch (error: any) {
+        throw new Error(`Failed to load document '${fileName}': ${error.message}`);
+    }
+}
+
+/**
+ * Saves a document to the documents directory
+ * @param doc - The document to save
+ * @param fileName - Name to save as
+ * @throws Error if save fails
+ */
+function saveDocument(doc: Document, fileName: string): void {
+    const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+
+    try {
+        doc.saveAs(file);
+    } catch (error: any) {
+        throw new Error(`Failed to save document '${fileName}': ${error.message}`);
+    }
+}
+
+/**
+ * Creates a new layer in the specified document.
+ * If name is specified, either renames an existing layer or creates a new named layer.
+ * 
+ * @param ref - Optional name for the layer
+ * @param index - Optional position for the new layer (supports Python-style negative indexing)
+ * @returns The created Layer object
+ * 
+ * @example
+ * // Create a new unnamed layer
+ * const layer = createLayer();
+ * 
+ * @example
+ * // Create a named layer
+ * const namedLayer = createLayer("MyLayer");
+ * 
+ * @example
+ * // Create a named layer at a specific position
+ * const positionedLayer = createLayer("MyLayer", -1); // At the end
+ */
+function createLayer(ref?: Reference, index?: number): Layer {
+    var doc = app.activeDocument;
+    // Fix this logic - if ref is a number, it's the index
+    if (typeof ref === "number") {
+        index = ref;
+        ref = undefined;
+    }
+    if (index === undefined) {
+        index = -1;
+    }
+
+    if (!ref) {
+        const layer = doc.layers.add();
+        moveLayer(layer.name, index);
+        return layer;
+    }
+
+    // Check if layer with name exists
+    for (let i = 0; i < doc.layers.length; i++) {
+        if (doc.layers[i].name === ref) {
+            throw "A layer named " + ref + " already exists";
+        }
+    }
+
+    // Create new named layer
+    const layer = doc.layers.add();
+    layer.name = ref as string;
+    moveLayer(layer.name, index);
+    return layer;
+}
+
+/**
+ * Selects and optionally activates a layer by name or index.
+ * If no id provided and no active layer exists, throws error.
+ * If no id provided, returns active layer.
+ * If id is number, processes negative index like Python (-1 is last layer).
+ * If id is string, searches for layer by name.
+ * 
+ * @param ref - Layer name or index (optional)
+ * @param activate - Whether to activate the layer (default true)
+ * @returns The selected Layer
+ * @throws Error if layer not found or no active layer when id not provided
+ */
+function selectLayer(ref?: Reference, activate: boolean = true): Layer {
+    var layers = selectLayers(ref)
+    if (layers.length < 1)
+        throw "No layer found";
+
+    if (activate)
+        app.activeDocument.activeLayer = layers[0];
+    
+    return layers[0];
+}
+
+/**
+ * Selects multiple layers using various selector types.
+ * 
+ * @param selector - How to select layers:
+ *   undefined - returns active layer
+ *   number - selects layer by index (supports negative)
+ *   string - layer name or slice notation ("start:end")
+ *   array - multiple layers by name or index
+ * @returns Array of selected layers
+ * 
+ * @example
+ * selectLayers()          // Active layer
+ * selectLayers("MyLayer") // Layer named "MyLayer"
+ * selectLayers("2:5")     // Layers 2 through 5 inclusive
+ * selectLayers("2:-1")    // Layers 2 through end
+ * selectLayers(["Layer1", "Layer2"]) // Specific named layers
+ * selectLayers([0, -1])   // First and last layers
+ */
+function selectLayers(selector?: Selector): Layer[] {
+    var doc = app.activeDocument;
+
+    // No selector: return active layer
+    if (selector === undefined) {
+        if (!doc.activeLayer) {
+            throw "No active layer";
+        }
+        return [doc.activeLayer];
+    }
+
+    // Use evaluateSelector to handle all cases
+    var result = evaluateSelector(selector, doc.layers.length);
+
+    if (result.length == 0)
+        return []
+
+    // Handle string array case (layer names)
+    var selectedLayers = [];
+    if (typeof result[0] === "string") {
+        for (var i = 0; i < result.length; i++) {
+            var layerName = result[i];
+            var layerFound = false;
+            
+            // Search for the layer by name
+            for (var j = 0; j < doc.layers.length; j++) {
+                if (doc.layers[j].name === layerName) {
+                    selectedLayers.push(doc.layers[j]);
+                    layerFound = true;
+                    break;
+                }
+            }
+
+            // If a layer with the specified name is not found, throw an error or handle it as needed
+            if (!layerFound) {
+                throw "Layer '" + layerName + "' not found.";
+            }
+        }
+        return selectedLayers;
+    }
+
+    // Handle array of indices
+    var selectedLayers = [];
+    for (var i = 0; i < result.length; i++) {
+        selectedLayers.push(doc.layers[result[i] as number]);
+    }
+    return selectedLayers;
+}
+
+// Renames a layer by reference
+function renameLayer(ref: Reference, newName: string) { 
+    var layer = selectLayer(ref);
+    if (!layer)
+        throw `${ref} is not a valid reference for a layer`;
+
+    layer.name = newName;
+}
+
+/**
+ * Moves a layer to specified index position.
+ * Supports both positive and negative indices for positioning:
+ * - Positive indices (0+): Places layer BEFORE the layer at that index
+ * - Negative indices (-1+): Places layer AFTER the layer at that index
+ * When id is a number, moves the active layer to that position.
+ * When id is a string, moves the named layer to the specified index position.
+ * 
+ * @param ref - Either the name of layer to move, or the target position for active layer
+ * @param index - Target position when id is a string
+ * @throws Error if id undefined or if string id provided without index
+ * 
+ * @example
+ * moveLayer("MyLayer", 0)    // Move named layer to top
+ * moveLayer("MyLayer", -1)   // Move named layer to end
+ * moveLayer(0)               // Move active layer to top
+ * moveLayer(-1)              // Move active layer to end
+ * moveLayer(-2)              // Move active layer to second-from-end
+ */
+function moveLayer(ref: Reference, index: number): void {
+    var doc = app.activeDocument;
+    if (ref === undefined) {
+        throw new Error("Layer id required");
+    }
+    if (typeof ref === "string" && index === undefined) {
+        throw new Error("Target index required when moving layer by name");
+    }
+
+    var layerToMove = doc.activeLayer;
+    if (typeof ref === "string") {
+        layerToMove = selectLayer(ref, true);
+    } else {
+        // id is number, use it as index
+        index = ref;
+        layerToMove = selectLayer(undefined, true);
+    }
+
+    var placeMethod = index < 0 ? ElementPlacement.PLACEAFTER : ElementPlacement.PLACEBEFORE;
+    var referenceLayer = selectLayer(index, false);
+    
+    layerToMove.move(referenceLayer, placeMethod);
+}
+
+/**
+ * Deletes a layer by name or index.
+ * If no id provided, deletes active layer.
+ * If id is number, processes negative index like Python (-1 is last layer).
+ * If id is string, deletes layer with that name.
+ * Optionally activates the next available layer after deletion.
+ * 
+ * @param ref - Layer name or index (optional)
+ * @param activate - Whether to activate next available layer after deletion (default true)
+ * @throws Error if layer not found or no active layer when id not provided
+ * 
+ * @example
+ * deleteLayer()           // Delete active layer
+ * deleteLayer("MyLayer")  // Delete named layer
+ * deleteLayer(-1)         // Delete last layer
+ * deleteLayer(0, false)   // Delete first layer without activating next
+ */
+function deleteLayer(ref?: Reference): void {
+    deleteLayers(ref);
+}
+
+/**
+ * Deletes multiple layers using various selector types.
+ * @param selector - Same options as selectLayers
+ */
+function deleteLayers(selector?: Selector): void {
+    var layers = selectLayers(selector);
+    for (let i = layers.length - 1; i >= 0; i--) {
+        layers[i].remove();
+    }
+}
+
+/**
+ * Nests selected layers under a parent layer.
+ * @param parentRef - Parent layer identifier
+ * @param childSelector - Selector for children (same options as selectLayers)
+ */
+function nestLayers(parentRef: Reference, childSelector?: Selector): void {
+    var parent = selectLayer(parentRef, false);
+    var children = selectLayers(childSelector);
+    for (let i = 0; i < children.length; i++) {
+        children[i].move(parent, ElementPlacement.PLACEATEND);
+    }
+}
+
+/**
+ * Locks or unlocks selected layers.
+ * @param selector - Layer selector (same options as selectLayers)
+ * @param lock - Whether to lock (true) or unlock (false)
+ */
+function lockLayers(selector: Selector, lock: boolean): void {
+    var layers = selectLayers(selector);
+    for (let i = 0; i < layers.length; i++) {
+        layers[i].locked = lock;
+    }
+}
+
+/**
+ * Shows or hides selected layers.
+ * @param selector - Layer selector (same options as selectLayers)
+ * @param hide - Whether to hide (true) or show (false)
+ */
+function hideLayers(selector: Selector, hide: boolean): void {
+    var layers = selectLayers(selector);
+    for (let i = 0; i < layers.length; i++) {
+        layers[i].visible = !hide;
+    }
+}
+
+/**
+ * Sets opacity for selected layers.
+ * @param selector - Layer selector (same options as selectLayers)
+ * @param opacity - Opacity value (0-100)
+ */
+function setOpacityForLayers(selector: Selector, opacity: number): void {
+    var layers = selectLayers(selector);
+    opacity = Math.max(0, Math.min(100, opacity));
+    for (let i = 0; i < layers.length; i++) {
+        layers[i].opacity = opacity;
+    }
+}

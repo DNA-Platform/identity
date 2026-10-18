@@ -1,0 +1,217 @@
+## GROUP A — THE ROAD AS FINGERPRINT
+
+---
+
+**001**
+NEW YORK | United States of America | *"The city that never sleeps"*
+CENTER: 40.7484°N, 73.9967°W — this is 34th Street and 8th Avenue. Not Midtown.
+Centering here puts the Empire State Building at center, the island tip at bottom of circle,
+72nd Street at top. Manhattan reads as a complete vertical object, not a crop.
+RADIUS: 5.5km — tight enough that Manhattan dominates but both rivers are visible voids.
+INCLUDE: OSM highway=motorway, trunk, primary, secondary, tertiary, residential.
+EXCLUDE: All features west of lon -74.020 (eliminates New Jersey road bleed).
+Exclude all features east of lon -73.900 (eliminates Queens/Brooklyn clutter beyond the rivers).
+OVERRIDES: Broadway (name=Broadway) → 1.4px / 0.85 — the 29° diagonal must read
+distinctly through the residential grid or the composition loses its signature.
+FDR Drive → 1.6px (not 2.2px — pen tier at standard weight fuses with adjacent roads).
+West Side Highway → 1.6px same reason.
+Avenues (5th, Park, Madison, Lexington) → 0.8px / 0.55 — the north-south spines.
+QUADRANTS: Top-left: Upper West Side grid + small Hudson void entering circle.
+Top-right: Upper East Side grid + East River void entering circle.
+Bottom-left: Hell's Kitchen + Midtown West. Bottom-right: Midtown East + Turtle Bay.
+Center horizontal band: the dense crosstown streets from 14th to 57th. Central Park void
+appears as a large rectangle breaking the grid in the upper 30% of circle.
+PALETTE: Latitude 40.7° → bg #F4EEE2, ink #1C1408 (warm parchment / brown-black)
+
+---
+
+**002**
+NEW YORK — THE ISLAND | United States of America | *"Thirteen miles long, two miles wide"*
+CENTER: 40.7282°N, 73.9942°W — this is lower Manhattan, Canal Street.
+Centering here puts the island tip (Battery Park) in the lower quarter,
+and cuts off above 96th Street. Central Park appears as a long rectangular
+silence in the top 25% of the circle. Below it: unbroken grid.
+RADIUS: 4.5km — shows the full island width with both rivers as frame voids.
+The island is 2.3km wide at its widest. At 4.5km radius, the island takes up
+exactly the middle 51% of circle width, with each river as a dark void on either side.
+INCLUDE: Same as 001.
+EXCLUDE: Same lon exclusions as 001. Also exclude all features north of lat 40.797°N
+(keeps the circle from showing Harlem, preserves the park-as-silence reading).
+OVERRIDES: Broadway → 1.3px / 0.9, continuous from tip to park edge.
+The diagonal is the ONLY non-grid element in lower Manhattan — it must be visible.
+Wall Street / Fulton / John Street cluster in Financial District → keep at pencil tier,
+their pre-grid organic layout is historically interesting texture at the bottom of the island.
+QUADRANTS: Top: Central Park rectangle, solid cream void, hard edges.
+Left: Hudson River — pure void, roads stop abruptly at waterline.
+Right: East River — pure void, roads stop abruptly, FDR Drive traces the shore.
+Bottom: island tip, roads converge and terminate. Financial District.
+Center: the Manhattan grid at maximum density, 155 crosstown streets.
+PALETTE: Same as 001 — this is a companion piece, same palette required.
+
+---
+
+**003**
+CHICAGO | United States of America | *"City of the big shoulders"*
+CENTER: 41.8827°N, 87.6233°W — the Loop, intersection of State and Madison.
+RADIUS: 9km — gets Lake Shore Drive, Lincoln Park, the river forks, and the lakefront void.
+INCLUDE: OSM highway=motorway, trunk, primary, secondary, tertiary, residential.
+EXCLUDE: All features east of lon -87.600 (eliminates lake — lake is a void, not a feature).
+Actually: do NOT exclude — let the lake be naturally absent. Roads stop at the shore.
+OVERRIDES: Lake Shore Drive (name=Lake Shore Drive) → 1.8px / 1.0 — this is the defining
+arc of Chicago, hugging the lakefront. Must read as a bold curve defining the void edge.
+Chicago River north branch + south branch → render as NHD Flowline at 1.5px / 0.28 opacity.
+The river fork is the other signature of Chicago and must be a different color.
+QUADRANTS: Right: Lake Michigan — complete void, right 30% of circle empty.
+Top: Lincoln Park void (park, then lake). Lake Shore Drive traces this edge.
+Center: the Loop grid, then the river fork cutting diagonally NW and N.
+Left: the residential grid extending west — regular, slightly angled (8° east of true north).
+Bottom: the South Side grid, regular and dense, extending to the circle edge.
+PALETTE: Latitude 41.9° → bg #F2EDE4, ink #1A1A1A (standard — Chicago is the reference)
+
+---
+
+**004**
+NEW ORLEANS | United States of America | *"The crescent city"*
+CENTER: 29.9638°N, 90.0574°W — French Quarter / CBD. NOT the geographic center of the city.
+This places the river bend at the bottom-left and the grid visible center to right.
+RADIUS: 6km — tight enough to see the grid curvature without losing it in sprawl.
+At 6km the bend of the river makes the bottom-left quadrant a pure cream void.
+INCLUDE: OSM highway=motorway, trunk, primary, secondary, tertiary, residential.
+EXCLUDE: All features south of lat 29.920°N (eliminates the West Bank across the river —
+the West Bank grid is oriented differently and will confuse the composition).
+OVERRIDES: St. Charles Avenue (streetcar route) → 1.2px / 0.8 — visible as a named arterial.
+The curve of Elysian Fields Avenue → keep at arterial weight, it echoes the river curve.
+QUADRANTS: Bottom-left: Mississippi River bend — wide cream void entering circle.
+Top-left: Uptown garden district streets, gentle NE curve following the river bend.
+Top-right: Mid-City, where the grid straightens to near-cardinal as it escapes the river.
+Bottom-right: Bywater / Marigny, dense residential grid on the river side.
+Center: The French Quarter grid (perfectly rectangular) vs. surrounding curved streets.
+The contrast between the Quarter's regularity and the curves around it is the composition.
+PALETTE: Latitude 30.0° → bg #F6EDD8 (warm golden parchment), ink #1C0E06 (near-sepia)
+
+---
+
+**005**
+WASHINGTON D.C. | United States of America | *"A city of magnificent distances"*
+CENTER: 38.8951°N, 77.0369°W — the Capitol Building. Not the White House. Not the Mall center.
+The Capitol as center puts the Mall running left across the circle with the Lincoln Memorial
+reaching the left edge, and the residential quadrants of SE and NE in the right half.
+RADIUS: 6km — keeps the composition tight around the planned city. At 6km,
+all of L'Enfant's original diagonal avenues are visible without the outer suburbs swamping them.
+INCLUDE: OSM highway=motorway, trunk, primary, secondary, tertiary, residential.
+EXCLUDE: All features south of lat 38.820°N (across the Potomac into Virginia — different grid,
+different political entity, compositional pollution).
+Features west of lon -77.120°W (Alexandria VA, different grid again).
+OVERRIDES: Pennsylvania Avenue → 2.0px / 1.0 — the axis of American power, must be the
+dominant diagonal in the composition. It runs from the Capitol center-left to the White House.
+Massachusetts, Connecticut, New Hampshire avenues → 1.4px / 0.8 — the radial spines.
+The Mall (bounded by Constitution Ave N and Independence Ave S) → render the two bounding
+avenues at 0.8px / 0.4 and let the Mall itself be a void between them. Width ~300m.
+Rock Creek → NHD Flowline at 1.2px at 0.30 opacity (same ink as roads, lighter weight), threading upper-left quadrant.
+QUADRANTS: Left: The Mall void + Lincoln Memorial. Potomac River void bottom-left.
+Top-left: Dupont Circle / Georgetown grid with diagonal avenues creating star patterns.
+Top-right: Residential NE DC, regular grid. The Capitol itself at dead center.
+Bottom: Capitol Hill neighborhood, then Anacostia River void bottom-right.
+PALETTE: Latitude 38.9° → bg #F3EDE1, ink #1A1A14 (slightly warm neutral)
+
+---
+
+**006**
+WASHINGTON D.C. — DIAGONALS ONLY | United States of America | *"Planned from above"*
+CENTER: Same as 005 — 38.8951°N, 77.0369°W
+RADIUS: Same — 6km
+INCLUDE: OSM highway=motorway + highway=trunk + highway=primary WHERE name CONTAINS
+"Avenue" (Pennsylvania Avenue, Massachusetts Avenue, Connecticut Avenue, etc.)
+AND OSM highway=motorway (the interstates and beltway approaches).
+NO tertiary. NO residential. NO secondary without a named-avenue qualifier.
+EXCLUDE: Same as 005 plus everything that isn't a named avenue or interstate.
+OVERRIDES: Pennsylvania Avenue → 2.2px. All other named avenues → 1.6px.
+QUADRANTS: The result should be sparse — just 12–15 diagonal lines radiating from two
+hubs (Capitol area and White House area). The composition reads as a geometric diagram,
+not a city map. Huge cream voids between the diagonals. The sparseness is the point.
+PALETTE: Same as 005 — these are companion pieces.
+
+---
+
+**007**
+SAVANNAH | United States of America | *"The city of squares"*
+CENTER: 32.0809°N, 81.0912°W — Johnson Square, the original center square.
+RADIUS: 2.5km — the small radius is critical. Savannah's plan is COMPACT.
+At 2.5km all 22 squares are visible and individually legible as voids.
+At 5km the squares become too small to read and the composition loses its subject.
+INCLUDE: OSM highway=primary, secondary, tertiary, residential WITHIN the radius.
+OSM leisure=park WHERE the park corresponds to a town square (these are the voids).
+EXCLUDE: All features north of lat 32.095°N (the river area) — they're industrial and break
+the residential texture. Features south of lat 32.065°N — suburban sprawl.
+OVERRIDES: Bull Street, Drayton Street, Abercorn Street, Barnard Street, Whitaker Street
+(the north-south park axes) → 0.9px / 0.6 — slightly heavier so the rhythm of square→street→square reads.
+The four trusts squares vs. the ward squares — no distinction needed, all rendered same.
+QUADRANTS: Every quadrant should contain roughly 5–6 square voids arranged in a grid.
+The Savannah River appears at the top edge of the circle as a wide void.
+Forsyth Park (2 blocks large) appears at the bottom as a larger void.
+The regularity is total. This is a product about mathematical planning.
+PALETTE: Age palette — Savannah founded 1733. bg #CEB98A (deep parchment), ink #261406 (sepia-dark)
+
+---
+
+**008**
+SALT LAKE CITY | United States of America | *"Wide enough for a wagon and a team of oxen"*
+CENTER: 40.7608°N, 111.8910°W — Temple Square.
+RADIUS: 5km — the unusually wide streets register at this scale. At 8km the blocks
+start to look normal-sized because context dissolves the scale cue. At 5km
+the 132-foot street width (vs. standard 66-foot) is palpable.
+INCLUDE: OSM highway=primary, secondary, tertiary, residential.
+EXCLUDE: The Great Salt Lake is outside the radius, no exclusion needed.
+Wasatch Mountains (east) are naturally void — roads stop at the foothills.
+OVERRIDES: Temple Square itself → render as a solid void (leisure=park or amenity=place_of_worship).
+The Temple block is the pivot point. North Temple, South Temple, East Temple (Main Street),
+West Temple → 1.2px / 0.7 — the four bounding streets of the Temple block.
+QUADRANTS: Center: the enormous block grid. Each block is ~660×660 feet — nearly twice
+standard. The streets between blocks are wide enough to register as wide even at scale.
+East quadrant: the grid ends abruptly at the Wasatch foothills. Mountains are void.
+The grid is purely orthogonal — perfect cardinal alignment. No diagonals. No curves.
+Top: the Capitol Hill area, slightly denser where roads climb the hill.
+PALETTE: Age palette — founded 1847. bg #E0D4B8 (warm parchment), ink #201408
+
+---
+
+**009**
+BOSTON | United States of America | *"The walking city"*
+CENTER: 42.3585°N, 71.0596°W — Faneuil Hall / Government Center. Not the geographic center.
+This center puts the oldest streets (North End, Financial District) in the right half,
+the Back Bay Victorian grid in the left half, and the Charles River void at top.
+RADIUS: 5km — tight enough to make the grid-vs-organic contrast legible.
+At 8km the suburbs dissolve the contrast. At 5km, two eras of urban planning fight each other.
+INCLUDE: OSM highway=primary, secondary, tertiary, residential.
+EXCLUDE: All features north of lat 42.400°N (Somerville/Cambridge — own grids, own story).
+OVERRIDES: Storrow Drive (highway=trunk, name=Storrow Drive) → 1.6px / 0.9.
+This road traces the Charles River and defines the void edge. It must read.
+Commonwealth Avenue → 1.0px / 0.6 — the Back Bay's main spine, a 200-foot wide boulevard.
+QUADRANTS: Top: Charles River void — wide and curving, roads stop at the Esplanade.
+Top-right: Cambridge across the river (minor context, will appear faint).
+Center-left: Back Bay — perfect Victorian grid running SW/NE at ~20° off cardinal.
+Center-right: Beacon Hill, the Financial District — medieval, no two blocks the same shape.
+Bottom: South End Victorian row house grid. Somewhat regular but not Back Bay regular.
+PALETTE: Age palette — founded 1630. bg #C8AA7A (aged parchment), ink #1E1006 (deep sepia-brown)
+
+---
+
+**010**
+SAN FRANCISCO | United States of America | *"Forty-nine miles scenic drive"*
+CENTER: 37.7694°N, 122.4469°W — Civic Center / City Hall. Slightly west of geographic center.
+This pulls Golden Gate Park into the left half as a large rectangular void,
+puts the bay shoreline in the right quarter, and puts Market Street's diagonal across center.
+RADIUS: 5km — Market Street's diagonal reads clearly, the grid contrast is legible.
+INCLUDE: OSM highway=motorway, trunk, primary, secondary, tertiary, residential.
+EXCLUDE: All features east of lon -122.370°W (Oakland/Bay Bridge — different city, breaks composition).
+OVERRIDES: Market Street (name=Market Street) → 1.6px / 1.0 — the diagonal spine.
+Market Street is the composition's axis. It must be the dominant mark.
+Twin Peaks (the hill itself) — the roads that ring it should read as a void. No exclusion
+needed — the hill naturally has no roads through it — but do not add any interpolated paths.
+QUADRANTS: Left: Golden Gate Park rectangle — a long horizontal cream void in the left half.
+The park's perfect rectangular edges contrast with the organic roads around it.
+Top: The Richmond District grid, running to the Panhandle.
+Right: The Mission, SoMa — dense grid, bay void at far right edge.
+Center: Market Street diagonal bisecting everything.
+Bottom: Noe Valley, Eureka Valley — grid slightly irregular, following valleys between hills.
+PALETTE: Latitude 37.8° → bg #F5EFE3, ink #1A1A14

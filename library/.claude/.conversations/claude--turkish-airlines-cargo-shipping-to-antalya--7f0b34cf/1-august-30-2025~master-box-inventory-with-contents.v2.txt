@@ -1,0 +1,153 @@
+MASTER BOX INVENTORY - 21 BOXES TOTAL (Boxes 2-22)
+
+BOX 2: Garbage Pail, Coasters, Pigeon, [?]
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 3: Glass Cups, Kitchen Table
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 4: Dyson, Pickle Ball Rackets
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 5: Kitchen Table
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 6: Computer, Tableware
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 7: Kitchen Table
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 8: Master Clothes
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 9: Shoes and Side Bag
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 10: Kitchen Table
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 11: Garbage Pail, Books, Tool Box
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 12: Kitchen Table
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 13: Kitchen Counter Stuff
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 14: Kitchen Counter Stuff
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 15: Box with Misc, Scale, Picture
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 16: Books
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 17: Skis, Ski Poles
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 18: Monitor
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 19: Cigar Box
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 20: Monitor and Misc
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 21: Monitor, Tennis
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOX 22: Art Stuff
+Contents:
+- 
+Declared Value: $
+
+---
+
+BOXES NEEDING CLARIFICATION:
+- Box 1: Not on movers' list
+- Box 7: "Bathroom stuff and jacket and helmet" written after?
+- Multiple "Kitchen Table" entries likely mean items FROM kitchen table area

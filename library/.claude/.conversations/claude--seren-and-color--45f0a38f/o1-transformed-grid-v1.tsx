@@ -1,0 +1,58 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ transformed-grid v1 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000">
+  <defs>
+    <style>
+      .st0, .st1, .st2, .st3, .st4, .st5, .st6, .st7, .st8, .st9, .st10, 
+      .st11, .st12, .st13, .st14, .st15, .st16, .st17, .st18, .st19, .st20, .st21 {
+        stroke-miterlimit: 10;
+        stroke-width: 3.8px;
+        transition: all 0.5s ease;
+      }
+      
+      /* Transformed palette using warmer, more intense colors */
+      .st0, .st1, .st6, .st9, .st12 { stroke: #FFD85C; }
+      .st0, .st14, .st20, .st21 { fill: #EEBB67; }
+      .st1, .st2, .st4, .st11, .st18 { fill: #FCB49B; }
+      .st2, .st3, .st5, .st19 { stroke: #7E9FA3; }
+      .st3, .st6, .st17 { fill: #A8DDE6; }
+      .st4, .st8, .st15, .st17, .st20 { stroke: #FCB49B; }
+      .st5, .st7, .st9, .st15, .st16 { fill: #FFD85C; }
+    </style>
+  </defs>
+
+  <!-- Transformed group with translation and slight rotation -->
+  <g id="Swap_Color_Layer_2" transform="translate(100, 50) rotate(5, 1000, 1000)">
+    <rect class="st9" x="1733" y="576" width="192" height="192"/>
+    <rect class="st12" x="5" width="192" height="192"/>
+    <rect class="st11" x="197" y="192" width="192" height="192"/>
+    <rect class="st14" x="197" width="192" height="192"/>
+    <rect class="st20" x="389" y="1536" width="192" height="192"/>
+    <rect class="st15" x="581" y="192" width="192" height="192"/>
+    <rect class="st16" x="773" y="576" width="192" height="192"/>
+    <rect class="st7" x="773" y="192" width="192" height="192"/>
+    <rect class="st20" x="965" y="576" width="192" height="192"/>
+    <rect class="st13" x="965" y="384" width="192" height="192"/>
+    <rect class="st7" x="1157" y="576" width="192" height="192"/>
+    <rect class="st18" x="1349" y="1536" width="192" height="192"/>
+    <rect class="st16" x="1349" y="384" width="192" height="192"/>
+    <rect class="st4" x="1349" y="192" width="192" height="192"/>
+    <rect class="st21" x="1349" width="192" height="192"/>
+    <rect class="st8" x="1541" y="1728" width="192" height="192"/>
+    <rect class="st7" x="1733" y="1536" width="192" height="192"/>
+  </g>
+</svg>
+`}
+        </CodeBox>
+    </Chapter>
+);

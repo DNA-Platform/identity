@@ -1,0 +1,233 @@
+// app/tests/async/loading-tests.tsx
+'use client'
+import { $Chemical, $lookup, $load, $use } from '@/chemistry';
+import React, { ReactNode } from 'react';
+
+// Base entry class
+// Base class
+export class $DictionaryEntry extends $Chemical {
+    title = '';
+    examples: string[] = [];
+    
+    get dictionary() { 
+        return this.parent as $Dictionary;
+    }
+    
+    set dictionary(value: $Dictionary) { 
+        this.parent = value;
+    }
+    
+    // Subclasses override this method
+    definition(): ReactNode {
+        return <p>No definition provided.</p>;
+    }
+    
+    view() {
+        return (
+            <div>
+                <h4>{this.title}</h4>
+                {this.definition()}
+            </div>
+        );
+    }
+}
+// Dictionary just takes entries - doesn't know how they were loaded
+export class $Dictionary extends $Chemical {
+    entries: $DictionaryEntry[] = [];
+    expanded: Record<string, boolean> = {};
+    
+    constructor(entries: $DictionaryEntry[] = []) {
+        super();
+        this.entries = entries.sort((a, b) => a.title.localeCompare(b.title));
+        this.entries.forEach((entry, i) => { 
+            entry.parent = this; 
+            this.expanded[`entry-${i}`] = true;
+        });
+    }
+    
+    $toggleEntry(index: number) {
+        const key = `entry-${index}`
+        this.expanded[key] = !this.expanded[key];
+    }
+    
+    view() {
+        return (
+            <div style={{ padding: '15px', border: '1px solid #4a5568', borderRadius: '8px' }}>
+                <h3>Dictionary</h3>
+                <div style={{ fontSize: '12px', color: '#666', marginBottom: '15px' }}>
+                    {this.entries.length} entries
+                </div>
+                <div style={{ display: 'grid', gap: '10px' }}>
+                    {this.entries.map((entry, i) => {
+                        const isExpanded = this.expanded[`entry-${i}`];
+                        return (
+                            <div key={i} style={{ 
+                                padding: '10px', 
+                                background: '#f7fafc', 
+                                borderRadius: '6px',
+                                border: '1px solid #e2e8f0'
+                            }}>
+                                <div 
+                                    onClick={() => this.$toggleEntry(i)}
+                                    style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between' }}
+                                >
+                                    <strong>{entry.title}</strong>
+                                    <span>{isExpanded ? '−' : '+'}</span>
+                                </div>
+                                {isExpanded && (
+                                    <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px solid #e2e8f0' }}>
+                                        <entry.Component />
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    }
+}
+
+// Test components that do the loading and injection
+export class $SyncLoadTest extends $Chemical {
+    dictionary: $Dictionary;
+    loadTime = 0;
+    error?: string;
+    
+    constructor() {
+        super();
+        try {
+            const start = Date.now();
+            // @ts-ignore
+            const ctx = require.context('./entries', false, /\.tsx$/);
+            const entries = $lookup<$DictionaryEntry>(ctx, '[]');
+            this.loadTime = Date.now() - start;
+            
+            // Inject entries into Dictionary
+            this.dictionary = new $Dictionary(entries);
+        } catch (e) {
+            this.error = (e as Error).message;
+            this.dictionary = new $Dictionary();
+        }
+    }
+    
+    view() {
+        if (this.error) {
+            return <div style={{ color: 'red' }}>Error: {this.error}</div>;
+        }
+        return (
+            <div>
+                <h4>Sync Load Test (Loaded in {this.loadTime}ms)</h4>
+                <this.dictionary.Component />
+            </div>
+        );
+    }
+}
+
+export class $AsyncLoadTest extends $Chemical {
+    dictionary?: $Dictionary;
+    loadTime = 0;
+    loading = true;
+    error?: string;
+    
+    constructor() {
+        super();
+        this.$load();
+    }
+    
+    async $load() {
+        try {
+            const start = Date.now();
+            // @ts-ignore
+            const ctx = require.context('./entries', false, /\.tsx$/);
+            
+            // Create async loaders
+            const loaders: Record<string, () => Promise<any>> = {};
+            ctx.keys().forEach((key: string) => {
+                loaders[key] = async () => {
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                    return ctx(key);
+                };
+            });
+            
+            const entries = await $load<$DictionaryEntry>(loaders, '[]');
+            this.loadTime = Date.now() - start;
+            
+            // Inject entries into Dictionary
+            this.dictionary = new $Dictionary(entries);
+            this.loading = false;
+        } catch (e) {
+            this.error = (e as Error).message;
+            this.dictionary = new $Dictionary();
+            this.loading = false;
+        }
+    }
+    
+    view() {
+        if (this.loading) {
+            return <div>Loading entries...</div>;
+        }
+        if (this.error) {
+            return <div style={{ color: 'red' }}>Error: {this.error}</div>;
+        }
+        const Dictionary = $use(this.dictionary);
+        return (
+            <div>
+                <h4>Async Load Test (Loaded in {this.loadTime}ms)</h4>
+                <Dictionary />
+            </div>
+        );
+    }
+}
+
+export class $SingleEntryTest extends $Chemical {
+    entry?: $DictionaryEntry;
+    error?: string;
+    
+    constructor() {
+        super();
+        try {
+            // @ts-ignore
+            const ctx = require.context('./entries', false, /Apple\.tsx$/);
+            this.entry = $lookup<$DictionaryEntry>(ctx, '{}');
+        } catch (e) {
+            this.error = (e as Error).message;
+        }
+    }
+    
+    view() {
+        if (this.error) {
+            return <div style={{ color: 'red' }}>Single entry error: {this.error}</div>;
+        }
+        if (!this.entry) {
+            return <div>No entry loaded</div>;
+        }
+        return (
+            <div style={{ padding: '15px', border: '1px solid #4a5568', borderRadius: '8px' }}>
+                <h4>Single Entry Test</h4>
+                <this.entry.Component />
+            </div>
+        );
+    }
+}
+
+const SyncLoadTest = new $SyncLoadTest().Component;
+const AsyncLoadTest = new $AsyncLoadTest().Component;
+const SingleEntryTest = new $SingleEntryTest().Component;
+
+export default function LoadingTests() {
+    return (
+        <div style={{ padding: '40px' }}>
+            <h1>Module Loading & DI Tests</h1>
+            <p style={{ color: '#666', marginBottom: '30px' }}>
+                Testing $lookup and $load with dependency injection into Dictionary
+            </p>
+            
+            <div style={{ display: 'grid', gap: '30px' }}>
+                <SyncLoadTest />
+                <AsyncLoadTest />
+                <SingleEntryTest />
+            </div>
+        </div>
+    );
+}

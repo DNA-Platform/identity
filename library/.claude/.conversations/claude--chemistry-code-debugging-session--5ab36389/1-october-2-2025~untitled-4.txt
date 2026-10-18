@@ -1,0 +1,840 @@
+chemistry.ts:491 Bond initialized: $Chapter.$title
+chemistry.ts:491 Bond initialized: $Chapter.$page
+chemistry.ts:491 Bond initialized: $Book.chapters
+chemistry.ts:491 Bond initialized: $Title.$text
+chemistry.ts:491 Bond initialized: $Footer.$copyright
+chemistry.ts:491 Bond initialized: $Document.chapters
+chemistry.ts:491 Bond initialized: $FancyChapter.$title
+chemistry.ts:491 Bond initialized: $FancyChapter.$page
+chemistry.ts:491 Bond initialized: $FancyChapter.$color
+chemistry.ts:491 Bond initialized: $PolyBook.chapters
+chemistry.ts:491 Bond initialized: $Section.$name
+chemistry.ts:491 Bond initialized: $Section.items
+chemistry.ts:591 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+chemistry.ts:491 Bond initialized: $Article.$addToAllSections
+chemistry.ts:491 Bond initialized: $Article.sections
+chemistry.ts:491 Bond initialized: $StrictContainer.content
+chemistry.ts:491 Bond initialized: $NestedChild.$value
+chemistry.ts:491 Bond initialized: $NestedContainer.groups
+page.tsx:29 $Book constructor called with 3 chapters
+page.tsx:30 Chapter title: Conclusion
+page.tsx:30 Chapter title: Conclusion
+page.tsx:30 Chapter title: Conclusion
+page.tsx:45 Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <div>. See https://react.dev/link/warning-keys for more information.
+error @ intercept-console-error.js:57
+eval @ react-dom-client.development.js:23715
+runWithFiberInDEV @ react-dom-client.development.js:873
+warnForMissingKey @ react-dom-client.development.js:23714
+warnOnInvalidKey @ react-dom-client.development.js:5693
+reconcileChildrenArray @ react-dom-client.development.js:5774
+reconcileChildFibersImpl @ react-dom-client.development.js:6095
+eval @ react-dom-client.development.js:6200
+reconcileChildren @ react-dom-client.development.js:8754
+beginWork @ react-dom-client.development.js:10951
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+eval @ page.tsx:45
+view @ page.tsx:43
+render @ chemistry.ts:822
+__render @ chemistry.ts:206
+Component @ chemistry.ts:348
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:428
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759425580923:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759425580923:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759425580923:1801
+(anonymous) @ main-app.js?v=1759425580923:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759425580923:9
+page.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+chemistry.ts:491 Bond initialized: $Document.title
+chemistry.ts:491 Bond initialized: $Document.footer
+page.tsx:115 Each child in a list should have a unique "key" prop.
+
+Check the render method of `div`. See https://react.dev/link/warning-keys for more information.
+error @ intercept-console-error.js:57
+eval @ react-dom-client.development.js:23715
+runWithFiberInDEV @ react-dom-client.development.js:873
+warnForMissingKey @ react-dom-client.development.js:23714
+warnOnInvalidKey @ react-dom-client.development.js:5693
+reconcileChildrenArray @ react-dom-client.development.js:5774
+reconcileChildFibersImpl @ react-dom-client.development.js:6095
+eval @ react-dom-client.development.js:6200
+reconcileChildren @ react-dom-client.development.js:8754
+beginWork @ react-dom-client.development.js:11028
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+eval @ page.tsx:115
+view @ page.tsx:113
+render @ chemistry.ts:822
+__render @ chemistry.ts:206
+Component @ chemistry.ts:348
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:446
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759425580923:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759425580923:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759425580923:1801
+(anonymous) @ main-app.js?v=1759425580923:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759425580923:9
+page.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+page.tsx:152 Chapter 1 is fancy!
+page.tsx:152 Chapter 3 is fancy!
+page.tsx:208 $Article constructor with 3 sections
+page.tsx:181 Adding "Auto-added by Article at index 0" to section Results
+page.tsx:262 $StrictContainer validating inputs...
+chemistry.ts:491 Bond initialized: $StrictContainer.header
+page.tsx:298 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:298 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:29 $Book constructor called with 3 chapters
+page.tsx:30 Chapter title: Conclusion
+page.tsx:30 Chapter title: Conclusion
+page.tsx:30 Chapter title: Conclusion
+page.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+page.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+page.tsx:152 Chapter 1 is fancy!
+page.tsx:152 Chapter 3 is fancy!
+page.tsx:208 $Article constructor with 3 sections
+page.tsx:262 $StrictContainer validating inputs...
+page.tsx:298 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:298 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:262 $StrictContainer validating inputs...
+page.tsx:273 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ page.tsx:273
+callConstructor @ chemistry.ts:917
+bond @ chemistry.ts:814
+__render @ chemistry.ts:205
+Component @ chemistry.ts:348
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooks @ react-dom-client.development.js:6764
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:520
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759425580923:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759425580923:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759425580923:1801
+(anonymous) @ main-app.js?v=1759425580923:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759425580923:9
+page.tsx:298 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:298 Chapter 1: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:298 Chapter 2: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:298 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:298 Chapter 1: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:298 Chapter 2: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:349 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+page.tsx:352 Filtered to 3 groups
+page.tsx:356 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+page.tsx:356 Group 1: (2) [$NestedChild, $NestedChild]
+page.tsx:356 Group 2: [$NestedChild]
+react-dom-client.development.js:4508 Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/tests/chi..." tree={[...]} cacheNode={{lazyData:null, ...}} segmentPath={[...]}>
+          <ClientPageRoot Component={function ChildBindingTest} searchParams={{}} params={{}}>
+            <ChildBindingTest params={Promise} searchParams={Promise}>
+              <div style={{padding:"40px", ...}}>
+                <h1>
+                <p>
+                <div>
+                <div>
+                <div>
+                <div>
+                <div style={{...}}>
+                  <h2>
+                  <div>
+                  <div style={{border:"2p...", ...}}>
+                    <div>
+                    <div>
+                    <div
+                      style={{
++                       padding: "8px"
++                       margin: "4px"
++                       background: "#f0f0f0"
++                       borderRadius: "4px"
+                      }}
+                    >
++                     {"Chapter: "}
+-                     Missing Component
+                      ...
+                  ...
+                ...
+          ...
+
+    at throwOnHydrationMismatch (react-dom-client.development.js:4508:11)
+    at completeWork (react-dom-client.development.js:11776:26)
+    at runWithFiberInDEV (react-dom-client.development.js:873:30)
+    at completeUnitOfWork (react-dom-client.development.js:15814:19)
+    at performUnitOfWork (react-dom-client.development.js:15695:11)
+    at workLoopConcurrentByScheduler (react-dom-client.development.js:15672:9)
+    at renderRootConcurrent (react-dom-client.development.js:15647:15)
+    at performWorkOnRoot (react-dom-client.development.js:14941:13)
+    at performWorkOnRootViaSchedulerTask (react-dom-client.development.js:16767:7)
+    at MessagePort.performWorkUntilDeadline (scheduler.development.js:45:48)
+throwOnHydrationMismatch @ react-dom-client.development.js:4508
+completeWork @ react-dom-client.development.js:11776
+runWithFiberInDEV @ react-dom-client.development.js:873
+completeUnitOfWork @ react-dom-client.development.js:15814
+performUnitOfWork @ react-dom-client.development.js:15695
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<div>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+view @ page.tsx:13
+render @ chemistry.ts:822
+__render @ chemistry.ts:206
+Component @ chemistry.ts:348
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+eval @ page.tsx:319
+view @ page.tsx:297
+render @ chemistry.ts:822
+__render @ chemistry.ts:206
+Component @ chemistry.ts:348
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:507
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759425580923:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759425580923:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759425580923:1801
+(anonymous) @ main-app.js?v=1759425580923:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759425580923:9
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":3}
+chemistry.ts:460 updateState: {"cid":4}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":5}
+chemistry.ts:460 updateState: {"cid":6}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":7}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":7}
+chemistry.ts:460 updateState: {"cid":8}
+chemistry.ts:460 updateState: {"cid":9}
+chemistry.ts:460 updateState: {"cid":9}
+chemistry.ts:460 updateState: {"cid":9}
+chemistry.ts:460 updateState: {"cid":10}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":11}
+chemistry.ts:460 updateState: {"cid":4}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":2}
+chemistry.ts:460 updateState: {"cid":11}
+chemistry.ts:460 updateState: {"cid":12}
+chemistry.ts:460 updateState: {"cid":12}
+chemistry.ts:460 updateState: {"cid":12}
+chemistry.ts:460 updateState: {"cid":12}
+chemistry.ts:460 updateState: {"cid":12}
+chemistry.ts:460 updateState: {"cid":12}
+chemistry.ts:460 updateState: {"cid":13}
+chemistry.ts:339 Uncaught TypeError: Cannot read properties of undefined (reading 'updateState')
+    at eval (chemistry.ts:339:36)
+    at Object.react_stack_bottom_frame (react-dom-client.development.js:23638:20)
+    at runWithFiberInDEV (react-dom-client.development.js:873:30)
+    at commitHookEffectListMount (react-dom-client.development.js:12296:29)
+    at commitHookPassiveMountEffects (react-dom-client.development.js:12417:11)
+    at reconnectPassiveEffects (react-dom-client.development.js:14514:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+eval @ chemistry.ts:339
+react_stack_bottom_frame @ react-dom-client.development.js:23638
+runWithFiberInDEV @ react-dom-client.development.js:873
+commitHookEffectListMount @ react-dom-client.development.js:12296
+commitHookPassiveMountEffects @ react-dom-client.development.js:12417
+reconnectPassiveEffects @ react-dom-client.development.js:14514
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+doubleInvokeEffectsOnFiber @ react-dom-client.development.js:16517
+runWithFiberInDEV @ react-dom-client.development.js:873
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:16481
+commitDoubleInvokeEffectsInDEV @ react-dom-client.development.js:16526
+flushPassiveEffects @ react-dom-client.development.js:16299
+eval @ react-dom-client.development.js:15925
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+eval @ page.tsx:45
+view @ page.tsx:43
+render @ chemistry.ts:822
+__render @ chemistry.ts:206
+Component @ chemistry.ts:348
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:428
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759425580923:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759425580923:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759425580923:1801
+(anonymous) @ main-app.js?v=1759425580923:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759425580923:9

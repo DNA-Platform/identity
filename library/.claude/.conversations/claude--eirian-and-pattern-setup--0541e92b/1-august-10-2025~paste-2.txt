@@ -1,0 +1,112 @@
+[{
+	"resource": "/C:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/next.config.ts",
+	"owner": "typescript",
+	"code": "2307",
+	"severity": 8,
+	"message": "Cannot find module 'next' or its corresponding type declarations.",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 33,
+	"endLineNumber": 1,
+	"endColumn": 39,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/tsconfig.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "Cannot find type definition file for 'estree'.\n  The file is in the program because:\n    Entry point for implicit type library 'estree'",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/tsconfig.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "Cannot find type definition file for 'hoist-non-react-statics'.\n  The file is in the program because:\n    Entry point for implicit type library 'hoist-non-react-statics'",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/tsconfig.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "Cannot find type definition file for 'json-schema'.\n  The file is in the program because:\n    Entry point for implicit type library 'json-schema'",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/tsconfig.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "Cannot find type definition file for 'json5'.\n  The file is in the program because:\n    Entry point for implicit type library 'json5'",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/tsconfig.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "Cannot find type definition file for 'node'.\n  The file is in the program because:\n    Entry point for implicit type library 'node'",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/tsconfig.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "Cannot find type definition file for 'react'.\n  The file is in the program because:\n    Entry point for implicit type library 'react'",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/tsconfig.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "Cannot find type definition file for 'react-dom'.\n  The file is in the program because:\n    Entry point for implicit type library 'react-dom'",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/tsconfig.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "Cannot find type definition file for 'styled-components'.\n  The file is in the program because:\n    Entry point for implicit type library 'styled-components'",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2,
+	"origin": "extHost1"
+},{
+	"resource": "/C:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/tsconfig.json",
+	"owner": "typescript",
+	"severity": 8,
+	"message": "Cannot find type definition file for 'stylis'.\n  The file is in the program because:\n    Entry point for implicit type library 'stylis'",
+	"source": "ts",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 2,
+	"origin": "extHost1"
+}]

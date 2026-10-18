@@ -1,0 +1,31 @@
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Index } from '../../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <TableOfContents />
+        <Index />
+        <Title>
+            <Parenthetical />
+            [[ Table of Contents ]]
+        </Title>
+        <Section>
+            <Heading>June 2026</Heading>
+            <Paragraph>
+                <Content>$[[ ./16 June 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ MCP vs A2A protocol differences ]]( claude--MCP vs A2A protocol differences--e9d3e004 )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+    </Chapter>
+);

@@ -1,0 +1,540 @@
+page.tsx:156  GET http://localhost:3000/tests/basics/ 500 (Internal Server Error)
+insertOrAppendPlacementNode @ react-dom-client.development.js:12769
+commitPlacement @ react-dom-client.development.js:12816
+runWithFiberInDEV @ react-dom-client.development.js:873
+commitReconciliationEffects @ react-dom-client.development.js:14052
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13792
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13791
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13791
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13776
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13776
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13849
+flushMutationEffects @ react-dom-client.development.js:15973
+commitRoot @ react-dom-client.development.js:15947
+commitRootWhenReady @ react-dom-client.development.js:15179
+performWorkOnRoot @ react-dom-client.development.js:15098
+performSyncWorkOnRoot @ react-dom-client.development.js:16782
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16628
+processRootScheduleInMicrotask @ react-dom-client.development.js:16666
+eval @ react-dom-client.development.js:16801
+<iframe>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+TestRunner @ page.tsx:156
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14942
+performSyncWorkOnRoot @ react-dom-client.development.js:16782
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16628
+processRootScheduleInMicrotask @ react-dom-client.development.js:16666
+eval @ react-dom-client.development.js:16801
+chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:529 Creating computed property on $Counter for property $increment
+chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:529 Creating computed property on $Counter for property $increment
+chemistry3.ts:482 Property: computedProp, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:482 Property: computedProp, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:529 Creating computed property on $Counter for property $increment
+chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:529 Creating computed property on $Counter for property $increment
+chemistry3.ts:482 Property: computedProp, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:482 Property: computedProp, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:482 Property: $text, isReactive: true
+chemistry3.ts:529 Creating computed property on $Display for property $text
+chemistry3.ts:482 Property: $text, isReactive: true
+chemistry3.ts:529 Creating computed property on $Display for property $text
+chemistry3.ts:529 Creating computed property on $Display for property _formula
+chemistry3.ts:529 Creating computed property on $Display for property _molecule
+chemistry3.ts:529 Creating computed property on $Display for property _parent
+chemistry3.ts:529 Creating computed property on $Display for property _cid
+chemistry3.ts:529 Creating computed property on $Display for property _children
+chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:529 Creating computed property on $Counter for property $increment
+chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:529 Creating computed property on $Counter for property $increment
+chemistry3.ts:482 Property: computedProp, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:482 Property: computedProp, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:529 Creating computed property on $Counter for property $increment
+chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:529 Creating computed property on $Counter for property $increment
+chemistry3.ts:482 Property: computedProp, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:482 Property: computedProp, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:529 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:482 Property: $text, isReactive: true
+chemistry3.ts:529 Creating computed property on $Display for property $text
+chemistry3.ts:482 Property: $text, isReactive: true
+chemistry3.ts:529 Creating computed property on $Display for property $text
+chemistry3.ts:529 Creating computed property on $Display for property _formula
+chemistry3.ts:529 Creating computed property on $Display for property _molecule
+chemistry3.ts:529 Creating computed property on $Display for property _parent
+chemistry3.ts:529 Creating computed property on $Display for property _cid
+chemistry3.ts:529 Creating computed property on $Display for property _children
+chemistry3.ts:587 Uncaught RangeError: Maximum call stack size exceeded
+    at $Display.get [as _formula] (chemistry3.ts:587:18)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:588:47)
+    at get formula (chemistry3.ts:97:43)
+get @ chemistry3.ts:587
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+get @ chemistry3.ts:588
+get formula @ chemistry3.ts:97
+<Component>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+BasicsTest @ page.tsx:193
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<BasicsTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+wakeChunk @ react-server-dom-webpack-client.browser.development.js:976
+fulfillReference @ react-server-dom-webpack-client.browser.development.js:1310
+wakeChunk @ react-server-dom-webpack-client.browser.development.js:977
+wakeChunkIfInitialized @ react-server-dom-webpack-client.browser.development.js:1012
+resolveModuleChunk @ react-server-dom-webpack-client.browser.development.js:1097
+eval @ react-server-dom-webpack-client.browser.development.js:1944
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js:1801
+(anonymous) @ main-app.js:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js:9
+basics/:1 The resource http://localhost:3000/_next/static/css/app/layout.css?v=1757909758249 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.

@@ -1,0 +1,620 @@
+; Taskbar.ahk - Windows taskbar automation library for AHK v1.1
+; Author: AHK Developer
+; Version: 1.1.0
+; 
+; This library provides a comprehensive interface to interact with the Windows
+; taskbar, taskbar items, and their underlying shortcuts.
+;
+; Dependencies:
+; - UIA-v2.ahk (for UI Automation)
+; - ahk-standard-lib.ahk (for utility functions)
+
+#Include %A_LineFile%\..\UIA-v2.ahk
+#Include %A_LineFile%\..\ahk-standard-lib.ahk
+
+/**
+ * Taskbar - Primary class for interacting with the Windows taskbar
+ * Provides access to taskbar items and taskbar properties
+ */
+class Taskbar {
+    ; Properties
+    items := []
+    taskbarHandle := 0
+    position := ""  ; "bottom", "top", "left", "right"
+    x := 0
+    y := 0
+    width := 0
+    height := 0
+    
+    ; Constructor
+    __New() {
+        ; Initialize taskbar properties
+        this._Initialize()
+    }
+    
+    ; Public Methods
+    
+    /**
+     * Gets all taskbar items, optionally refreshing the collection
+     * @param {Boolean} refresh - Whether to refresh the items list
+     * @return {Array} Array of TaskbarItem objects
+     */
+    GetItems(refresh = false) {
+        if (refresh || this.items.Length() = 0)
+            this._CollectItems()
+            
+        return this.items
+    }
+    
+    /**
+     * Finds a taskbar item by its name
+     * @param {String} name - Name to search for
+     * @param {Boolean} exactMatch - Whether to require an exact match
+     * @return {TaskbarItem} TaskbarItem object or empty string if not found
+     */
+    FindItem(name, exactMatch = false) {
+        if (this.items.Length() = 0)
+            this._CollectItems()
+            
+        for index, item in this.items {
+            if (exactMatch && item.name = name)
+                return item
+                
+            if (!exactMatch && InStr(item.name, name))
+                return item
+        }
+        
+        return ""
+    }
+    
+    /**
+     * Finds taskbar items by specified criteria
+     * @param {Object} criteria - Object with criteria to match
+     * @return {Array} Array of matching TaskbarItem objects
+     */
+    FindItems(criteria) {
+        if (this.items.Length() = 0)
+            this._CollectItems()
+            
+        matches := []
+        
+        for index, item in this.items {
+            isMatch := true
+            
+            for key, value in criteria {
+                if (!item.HasKey(key) || item[key] != value) {
+                    isMatch := false
+                    break
+                }
+            }
+            
+            if (isMatch)
+                matches.Push(item)
+        }
+        
+        return matches
+    }
+    
+    /**
+     * Gets only running applications from the taskbar
+     * @return {Array} Array of running TaskbarItem objects
+     */
+    GetRunningApps() {
+        return this.FindItems({isRunning: true})
+    }
+    
+    /**
+     * Gets only pinned applications from the taskbar
+     * @return {Array} Array of pinned TaskbarItem objects
+     */
+    GetPinnedApps() {
+        return this.FindItems({isRunning: false})
+    }
+    
+    ; Private Methods
+    
+    /**
+     * Initializes taskbar properties
+     * @private
+     */
+    _Initialize() {
+        ; Find the taskbar window
+        this.taskbarHandle := WinExist("ahk_class Shell_TrayWnd")
+        
+        ; Get taskbar position and dimensions
+        if (this.taskbarHandle) {
+            WinGetPos, tbX, tbY, tbWidth, tbHeight, ahk_id %this.taskbarHandle%
+            
+            this.x := tbX
+            this.y := tbY
+            this.width := tbWidth
+            this.height := tbHeight
+            
+            ; Determine taskbar position based on screen edges
+            if (tbHeight < tbWidth) {
+                ; Horizontal taskbar
+                this.position := (tbY = 0) ? "top" : "bottom"
+            } else {
+                ; Vertical taskbar
+                this.position := (tbX = 0) ? "left" : "right"
+            }
+        }
+    }
+    
+    /**
+     * Collects all taskbar items using UI Automation
+     * @private
+     */
+    _CollectItems() {
+        ; Clear current items
+        this.items := []
+        
+        try {
+            ; Use UI Automation to get taskbar buttons
+            taskbar := UIA.ElementFromHandle("Shell_TrayWnd")
+            
+            ; Find the taskbar button container (varies by Windows version)
+            buttonContainer := taskbar
+            
+            ; On some Windows versions, we need to find the taskbar buttons container
+            taskListContainer := taskbar.FindFirst(UIA.CreatePropertyCondition("ClassName", "MSTaskListWClass"))
+            if (taskListContainer)
+                buttonContainer := taskListContainer
+                
+            ; Find all buttons in the container
+            taskbarButtons := buttonContainer.FindAll(UIA.CreatePropertyCondition("ControlType", UIA.ControlType.Button))
+            
+            ; Use AutoHotkey's standard for loop to avoid compatibility issues
+            Loop % taskbarButtons.Length {
+                button := taskbarButtons[A_Index]
+                ; Skip buttons without names (system buttons)
+                if (button.CurrentName)
+                    this.items.Push(new TaskbarItem(button))
+            }
+        } catch e {
+            ; Log the error for debugging
+            OutputDebug, % "UIA taskbar collection failed: " . e.Message
+            
+            ; Fallback method if UIA fails
+            this._CollectItemsFallback()
+        }
+    }
+    
+    /**
+     * Fallback method to collect taskbar items when UI Automation fails
+     * @private
+     */
+    _CollectItemsFallback() {
+        ; Find the taskbar button list
+        ControlGet, hTaskbar, Hwnd, , MSTaskListWClass1, ahk_class Shell_TrayWnd
+        
+        if (!hTaskbar) {
+            OutputDebug, % "Fallback taskbar collection failed: could not find MSTaskListWClass1"
+            return
+        }
+            
+        ; Get the list of buttons
+        ControlGet, buttonList, List, , Button, ahk_id %hTaskbar%
+        
+        ; Process each button
+        Loop, Parse, buttonList, `n {
+            buttonID := A_LoopField
+            
+            ; Get button text and position
+            ControlGetText, buttonText, %buttonID%, ahk_id %hTaskbar%
+            ControlGetPos, btnX, btnY, btnWidth, btnHeight, %buttonID%, ahk_id %hTaskbar%
+            
+            ; Skip buttons without text
+            if (!buttonText)
+                continue
+            
+            ; Create a minimal UIA element substitute
+            buttonElement := {}
+            buttonElement.CurrentName := buttonText
+            buttonElement.CurrentBoundingRectangle := {x: btnX, y: btnY, width: btnWidth, height: btnHeight}
+            buttonElement.CurrentAutomationId := ""
+            buttonElement.CurrentClassName := buttonText ? "Running" : ""
+            buttonElement.Click := Func("_DummyClick")
+            buttonElement.RightClick := Func("_DummyRightClick")
+            
+            ; Create and add the taskbar item
+            this.items.Push(new TaskbarItem(buttonElement))
+        }
+    }
+}
+
+/**
+ * TaskbarItem - Represents an individual item on the Windows taskbar
+ * Provides methods to interact with and query a taskbar button
+ */
+class TaskbarItem {
+    ; Properties
+    uiaElement := {}
+    name := ""
+    automationId := ""
+    className := ""
+    isRunning := false
+    state := ""
+    position := {}
+    shortcut := ""
+    
+    ; Constructor
+    __New(uiaElement) {
+        ; Basic identification
+        this.uiaElement := uiaElement
+        this.name := uiaElement.CurrentName
+        this.automationId := uiaElement.CurrentAutomationId
+        this.className := uiaElement.CurrentClassName
+        
+        ; State properties
+        this.isRunning := InStr(this.className, "Running") > 0
+        this.state := this.isRunning ? "Running" : "Pinned"
+        
+        ; Position information (for fallback methods)
+        this._InitializePosition()
+        
+        ; Create and initialize shortcut information
+        this.shortcut := new TaskbarShortcut(this.name)
+        this._InitializeShortcutInfo()
+    }
+    
+    ; Public Methods
+    
+    /**
+     * Clicks the taskbar item to activate or launch it
+     * @return {Boolean} True if successful
+     */
+    Click() {
+        try {
+            this.uiaElement.Click()
+            return true
+        } catch e {
+            OutputDebug, % "UIA click failed: " . e.Message
+            
+            ; Fall back to mouse click if UIA fails
+            return this._PerformMouseClick("Left")
+        }
+    }
+    
+    /**
+     * Right-clicks the taskbar item to display its jump list
+     * @return {Boolean} True if successful
+     */
+    RightClick() {
+        try {
+            this.uiaElement.RightClick()
+            return true
+        } catch e {
+            OutputDebug, % "UIA right-click failed: " . e.Message
+            
+            ; Fall back to mouse right-click if UIA fails
+            return this._PerformMouseClick("Right")
+        }
+    }
+    
+    /**
+     * Launches the application associated with this taskbar item
+     * @param {String} additionalParams - Additional command line parameters
+     * @param {Boolean} hidden - Whether to launch hidden (background)
+     * @return {Boolean} True if successful
+     */
+    Launch(additionalParams = "", hidden = false) {
+        ; Handle already running applications
+        if (this.isRunning) {
+            return hidden ? this.InteractWithoutFocus() : this.Click()
+        }
+        
+        ; Prepare launch parameters
+        params := this.shortcut.arguments
+        if (additionalParams)
+            params .= " " . additionalParams
+            
+        runMode := hidden ? "Hide" : this.shortcut.runMode
+        
+        ; Launch the application if target path is available
+        if (this.shortcut.targetPath) {
+            Run, % this.shortcut.targetPath . (params ? " " . params : ""), % this.shortcut.workingDir, % runMode, launchedPID
+            if (launchedPID) {
+                return true
+            }
+        }
+        
+        ; Fallback to direct taskbar click as last resort
+        return !hidden ? this.Click() : false
+    }
+    
+    /**
+     * Interacts with the application without bringing its window to focus
+     * @return {Boolean} True if successful
+     */
+    InteractWithoutFocus() {
+        ; Store current window focus
+        WinGet, currentActive, ID, A
+        
+        ; Find windows associated with this taskbar item
+        appWindows := this._FindAssociatedWindows()
+        
+        if (appWindows.Length() > 0) {
+            ; We found a window we can interact with
+            hwnd := appWindows[1]
+            
+            ; Set up the ability to interact without focus
+            DetectHiddenWindows, On
+            SetControlDelay, -1
+            
+            ; Here you can perform interactions
+            ; Return result will be overridden by actual implementation
+            result := true
+            
+            ; Restore original settings and focus
+            DetectHiddenWindows, Off
+            WinActivate, ahk_id %currentActive%
+            return result
+        }
+        
+        return false
+    }
+    
+    /**
+     * Retrieves jump list items for this taskbar item
+     * @return {Array} Array of jump list items
+     */
+    GetJumpList() {
+        jumpListItems := []
+        
+        ; Store current window focus
+        WinGet, currentActive, ID, A
+        
+        ; Open the jump list
+        this.RightClick()
+        Sleep, 100
+        
+        ; Attempt to capture jump list items with UIA
+        try {
+            jumpList := UIA.ElementFromHandle("A")
+            if (jumpList) {
+                menuItems := jumpList.FindAll(UIA.CreatePropertyCondition("ControlType", UIA.ControlType.MenuItem))
+                
+                ; Use AHK's standard for loop
+                Loop % menuItems.Length {
+                    item := menuItems[A_Index]
+                    jumpListItems.Push({
+                        name: item.CurrentName,
+                        automationId: item.CurrentAutomationId,
+                        uiaElement: item
+                    })
+                }
+            }
+        } catch e {
+            OutputDebug, % "Jump list capture failed: " . e.Message
+        }
+        
+        ; Close the jump list
+        Send, {Escape}
+        
+        ; Restore original focus
+        WinActivate, ahk_id %currentActive%
+        
+        return jumpListItems
+    }
+    
+    ; Private Methods
+    
+    /**
+     * Initializes position information for this taskbar item
+     * @private
+     */
+    _InitializePosition() {
+        try {
+            rect := this.uiaElement.CurrentBoundingRectangle
+            this.position := {
+                x: rect.x,
+                y: rect.y,
+                width: rect.width,
+                height: rect.height,
+                centerX: rect.x + rect.width/2,
+                centerY: rect.y + rect.height/2
+            }
+        } catch e {
+            OutputDebug, % "Position initialization failed: " . e.Message
+            this.position := {x: 0, y: 0, width: 0, height: 0, centerX: 0, centerY: 0}
+        }
+    }
+    
+    /**
+     * Initializes shortcut information for this taskbar item
+     * @private
+     */
+    _InitializeShortcutInfo() {
+        ; First try to extract information from existing shortcuts
+        shortcutPath := this._FindShortcut()
+        if (shortcutPath && this.shortcut.LoadFromFile(shortcutPath))
+            return
+        
+        ; If no shortcut found, try to get info from running process
+        if (this.isRunning)
+            this._ExtractInfoFromRunningProcess()
+    }
+    
+    /**
+     * Performs a mouse click at the center of the taskbar item
+     * @param {String} button - Which mouse button to use (Left, Right)
+     * @return {Boolean} True if successful
+     * @private
+     */
+    _PerformMouseClick(button) {
+        if (!this.position.HasKey("centerX") || !this.position.HasKey("centerY"))
+            return false
+            
+        ; Store original mouse position
+        MouseGetPos, origX, origY
+        
+        ; Click at the center of the taskbar item
+        MouseClick, %button%, % this.position.centerX, % this.position.centerY, 1, 0
+        
+        ; Restore mouse position
+        MouseMove, %origX%, %origY%, 0
+        return true
+    }
+    
+    /**
+     * Finds the shortcut file that corresponds to this taskbar item
+     * @return {String} Path to the shortcut file or empty string if not found
+     * @private
+     */
+    _FindShortcut() {
+        ; Common locations for shortcuts and pinned taskbar items
+        locations := [
+            A_AppData . "\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar",
+            A_StartMenu, 
+            A_Programs, 
+            A_Desktop
+        ]
+        
+        name := this.name
+        
+        ; Use the standard library's string functions if available
+        if (IsFunc("StringClean")) {
+            ; Clean the name for file matching
+            name := StringClean(name)
+        }
+        
+        for locationIndex, location in locations {
+            ; Try exact match
+            exactPath := location . "\" . name . ".lnk"
+            if (FileExist(exactPath))
+                return exactPath
+                
+            ; Try partial match
+            Loop, Files, %location%\*.lnk, R
+            {
+                FileGetShortcut, %A_LoopFilePath%, , , , description
+                
+                ; Check for matching shortcut name or description
+                SplitPath, A_LoopFilePath, fileName, , , fileNameNoExt
+                if (fileNameNoExt = name || InStr(description, name))
+                    return A_LoopFilePath
+            }
+        }
+        
+        return ""
+    }
+    
+    /**
+     * Extracts information from a running process
+     * @private
+     */
+    _ExtractInfoFromRunningProcess() {
+        appWindows := this._FindAssociatedWindows()
+        if (appWindows.Length() > 0) {
+            hwnd := appWindows[1]
+            WinGet, processPath, ProcessPath, ahk_id %hwnd%
+            
+            if (processPath) {
+                this.shortcut.targetPath := processPath
+                this.shortcut.name := this.name
+                
+                ; For working directory, we'll use the process path's directory
+                SplitPath, processPath,, processDir
+                this.shortcut.workingDir := processDir
+            }
+        }
+    }
+    
+    /**
+     * Finds windows associated with this taskbar item
+     * @return {Array} Array of window handles
+     * @private
+     */
+    _FindAssociatedWindows() {
+        windows := []
+        appName := this.name
+        
+        ; Try to find windows matching this taskbar item
+        WinGet, ids, List, , , 
+        
+        Loop, %ids% {
+            id := ids%A_Index%
+            WinGetTitle, title, ahk_id %id%
+            WinGet, processName, ProcessName, ahk_id %id%
+            
+            ; Use the standard library's string functions if available
+            if (IsFunc("StringSimilarity")) {
+                ; Use string similarity to find matching windows
+                titleSimilarity := StringSimilarity(title, appName)
+                processSimilarity := StringSimilarity(processName, appName)
+                
+                if (titleSimilarity > 0.7 || processSimilarity > 0.7)
+                    windows.Push(id)
+            } else {
+                ; Check if this window matches our taskbar item
+                if (InStr(title, appName) || InStr(processName, appName))
+                    windows.Push(id)
+            }
+        }
+        
+        return windows
+    }
+}
+
+/**
+ * TaskbarShortcut - Represents the underlying shortcut properties of a taskbar item
+ * Provides access to target path, arguments, working directory, etc.
+ */
+class TaskbarShortcut {
+    ; Properties
+    name := ""
+    targetPath := ""
+    arguments := ""
+    workingDir := ""
+    iconLocation := ""
+    runMode := "Normal"
+    
+    ; Constructor
+    __New(name = "", targetPath = "", arguments = "", workingDir = "", iconLocation = "", runMode = "Normal") {
+        this.name := name
+        this.targetPath := targetPath
+        this.arguments := arguments
+        this.workingDir := workingDir
+        this.iconLocation := iconLocation
+        this.runMode := runMode
+    }
+    
+    ; Public Methods
+    
+    /**
+     * Loads shortcut information from a .lnk file
+     * @param {String} shortcutPath - Path to the shortcut file
+     * @return {Boolean} True if successful, false otherwise
+     */
+    LoadFromFile(shortcutPath) {
+        if (!FileExist(shortcutPath))
+            return false
+        
+        try {
+            FileGetShortcut, %shortcutPath%, targetPath, workingDir, args, description, iconFile, iconNum, runState
+            
+            this.targetPath := targetPath
+            this.arguments := args
+            this.workingDir := workingDir
+            this.iconLocation := iconFile . "," . iconNum
+            
+            ; Convert numeric run state to string
+            this.runMode := (runState = 3) ? "Maximized" : (runState = 7) ? "Minimized" : "Normal"
+                
+            return true
+        } catch e {
+            OutputDebug, % "Shortcut loading failed: " . e.Message
+            return false
+        }
+    }
+}
+
+; Helper functions for fallback mode
+_DummyClick() {
+    return false
+}
+
+_DummyRightClick() {
+    return false
+}

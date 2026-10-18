@@ -1,0 +1,108 @@
+; Create mock functions for testing
+CreateMockUIAElement(name, isRunning) {
+    element := {}
+    element.CurrentName := name
+    element.CurrentAutomationId := "mock-id-" . name
+    element.CurrentClassName := isRunning ? "Running" : ""
+    element.CurrentBoundingRectangle := {x: 100, y: 100, width: 40, height: 40}
+    element.Click := Func("MockClick")
+    element.RightClick := Func("MockRightClick")
+    return element
+}
+
+MockClick() {
+    return true
+}
+
+MockRightClick() {
+    return true
+}
+
+class TaskbarTest extends AutoHotUnitSuite {
+    ; Setup - runs before each test
+    beforeEach() {
+        this.taskbar := new Taskbar()
+    }
+    
+    ; Basic properties test
+    testTaskbarInitialization() {
+        ; Test that the taskbar properties are initialized
+        this.assert.notEqual(this.taskbar.taskbarHandle, 0, "Taskbar handle should be found")
+        this.assert.notEqual(this.taskbar.position, "", "Position should be detected")
+        this.assert.isTrue(this.taskbar.width > 0, "Width should be positive")
+        this.assert.isTrue(this.taskbar.height > 0, "Height should be positive")
+    }
+    
+    ; Test item filtering with mock items
+    testItemFiltering() {
+        ; Save original items
+        originalItems := this.taskbar.items
+        
+        ; Replace with mock items for testing
+        this.taskbar.items := []
+        this.taskbar.items.Push(new TaskbarItem(CreateMockUIAElement("Notepad", true)))
+        this.taskbar.items.Push(new TaskbarItem(CreateMockUIAElement("Chrome", true)))
+        this.taskbar.items.Push(new TaskbarItem(CreateMockUIAElement("Explorer", false)))
+        
+        ; Test FindItem
+        notepadItem := this.taskbar.FindItem("Notepad")
+        this.assert.notEqual(notepadItem, "", "Should find Notepad")
+        this.assert.equal(notepadItem.name, "Notepad", "Should have correct name")
+        
+        nonExistentItem := this.taskbar.FindItem("ThisAppDoesNotExist", true)
+        this.assert.equal(nonExistentItem, "", "Non-existent item should return empty string")
+        
+        ; Test partial matching
+        chromeItem := this.taskbar.FindItem("Chr", false)
+        this.assert.notEqual(chromeItem, "", "Should find Chrome with partial match")
+        
+        ; Test exact matching
+        noMatchItem := this.taskbar.FindItem("Chr", true)
+        this.assert.equal(noMatchItem, "", "Should not find with exact match")
+        
+        ; Test running vs pinned filtering
+        runningApps := this.taskbar.GetRunningApps()
+        this.assert.equal(runningApps.Length(), 2, "Should find 2 running apps")
+        
+        pinnedApps := this.taskbar.GetPinnedApps()
+        this.assert.equal(pinnedApps.Length(), 1, "Should find 1 pinned app")
+        
+        ; Restore original items
+        this.taskbar.items := originalItems
+    }
+    
+    ; Test collection behavior with mocks
+    testGetItems() {
+        ; Replace _CollectItems with a mock function
+        originalCollectItems := this.taskbar._CollectItems
+        collectItemsCalled := 0
+        
+        this.taskbar._CollectItems := Func("MockCollectItems").Bind(collectItemsCalled)
+        
+        ; Test with refresh = false
+        if (this.taskbar.items.Length() = 0) {
+            this.taskbar.GetItems(false)
+            this.assert.equal(collectItemsCalled, 1, "Should call _CollectItems when items is empty")
+        }
+        
+        ; Reset flag and items
+        collectItemsCalled := 0
+        this.taskbar.items := []
+        
+        ; Test with refresh = true
+        this.taskbar.GetItems(true)
+        this.assert.equal(collectItemsCalled, 1, "Should call _CollectItems when refresh is true")
+        
+        ; Restore original function
+        this.taskbar._CollectItems := originalCollectItems
+    }
+}
+
+; Helper function for mocking _CollectItems
+MockCollectItems(ByRef called) {
+    called += 1
+    return
+}
+
+; Register the test suite
+ahu.RegisterSuite(TaskbarTest)

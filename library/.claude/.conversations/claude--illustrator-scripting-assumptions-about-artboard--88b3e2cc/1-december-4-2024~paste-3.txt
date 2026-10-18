@@ -1,0 +1,90 @@
+class TransformssTest extends AppTestClass {
+    constructor() {
+        super();
+        this.decorateExceptions = false;
+    }
+
+    testRotateItemAround() {
+        const layer = api.activeDocument().layers().first();
+        const item = this.createTestItem(layer, "RotateItem", [100, 100], 50);
+
+        // Step 2: Get the artboard and its dimensions
+        const artboard = layer.document().activeArtboard();
+        const artboardRect = artboard.item().artboardRect;
+        const artboardWidth = artboardRect[2] - artboardRect[0];
+        const artboardHeight = artboardRect[1] - artboardRect[3];
+
+        // Step 3: Test rotation around the center of the artboard
+        const centerPivot = { x: 0, y: 0 };
+        const expectedCenterX = artboardRect[0] + artboardWidth / 2;
+        const expectedCenterY = artboardRect[1] - artboardHeight / 2;
+
+        item.transforms.rotateItemAround(90, centerPivot);
+        const boundsAfterCenterRotation = item.item().geometricBounds;
+        const itemCenterX = (boundsAfterCenterRotation[0] + boundsAfterCenterRotation[2]) / 2;
+        const itemCenterY = (boundsAfterCenterRotation[1] + boundsAfterCenterRotation[3]) / 2;
+
+        if (Math.round(itemCenterX) !== Math.round(expectedCenterX) || Math.round(itemCenterY) !== Math.round(expectedCenterY)) {
+            throw `Center rotation failed: Expected center (${expectedCenterX}, ${expectedCenterY}), got (${itemCenterX}, ${itemCenterY})`;
+        }
+
+        // Step 4: Test rotation around the top-left corner of the artboard
+        const topLeftPivot = { x: -1, y: 1 };
+        const expectedTopLeftX = artboardRect[0];
+        const expectedTopLeftY = artboardRect[1];
+
+        item.transforms.rotateItemAround(45, topLeftPivot);
+        const boundsAfterTopLeftRotation = item.item().geometricBounds;
+        const itemCenterXAfterTopLeft = (boundsAfterTopLeftRotation[0] + boundsAfterTopLeftRotation[2]) / 2;
+        const itemCenterYAfterTopLeft = (boundsAfterTopLeftRotation[1] + boundsAfterTopLeftRotation[3]) / 2;
+
+        // Calculate expected position using manual rotation
+        const radiusXTopLeft = itemCenterXAfterTopLeft - expectedTopLeftX;
+        const radiusYTopLeft = itemCenterYAfterTopLeft - expectedTopLeftY;
+        const radiansTopLeft = (45 * Math.PI) / 180;
+        const expectedCenterXTopLeft =
+            expectedTopLeftX + radiusXTopLeft * Math.cos(radiansTopLeft) - radiusYTopLeft * Math.sin(radiansTopLeft);
+        const expectedCenterYTopLeft =
+            expectedTopLeftY + radiusXTopLeft * Math.sin(radiansTopLeft) + radiusYTopLeft * Math.cos(radiansTopLeft);
+
+        if (
+            Math.round(itemCenterXAfterTopLeft) !== Math.round(expectedCenterXTopLeft) ||
+            Math.round(itemCenterYAfterTopLeft) !== Math.round(expectedCenterYTopLeft)
+        ) {
+            throw `Top-left corner rotation failed: Expected center (${expectedCenterXTopLeft}, ${expectedCenterYTopLeft}), got (${itemCenterXAfterTopLeft}, ${itemCenterYAfterTopLeft})`;
+        }
+
+        // Step 5: Test rotation around a custom pivot point (bottom-right corner of the artboard)
+        const bottomRightPivot = { x: 1, y: -1 };
+        const expectedBottomRightX = artboardRect[2];
+        const expectedBottomRightY = artboardRect[3];
+
+        item.transforms.rotateItemAround(180, bottomRightPivot);
+        const boundsAfterBottomRightRotation = item.item().geometricBounds;
+        const itemCenterXAfterBottomRight = (boundsAfterBottomRightRotation[0] + boundsAfterBottomRightRotation[2]) / 2;
+        const itemCenterYAfterBottomRight = (boundsAfterBottomRightRotation[1] + boundsAfterBottomRightRotation[3]) / 2;
+
+        if (
+            Math.round(itemCenterXAfterBottomRight) !== Math.round(expectedBottomRightX) ||
+            Math.round(itemCenterYAfterBottomRight) !== Math.round(expectedBottomRightY)
+        ) {
+            throw `Bottom-right corner rotation failed: Expected center (${expectedBottomRightX}, ${expectedBottomRightY}), got (${itemCenterXAfterBottomRight}, ${itemCenterYAfterBottomRight})`;
+        }
+
+        // Step 6: Test rotation at arbitrary pivot point (e.g., { x: 0.5, y: 0.5 })
+        const customPivot = { x: 0.5, y: 0.5 };
+        const customPivotX = artboardRect[0] + 0.75 * artboardWidth;
+        const customPivotY = artboardRect[1] - 0.75 * artboardHeight;
+
+        item.transforms.rotateItemAround(360, customPivot);
+        const boundsAfterCustomRotation = item.item().geometricBounds;
+        const itemCenterXAfterCustom = (boundsAfterCustomRotation[0] + boundsAfterCustomRotation[2]) / 2;
+        const itemCenterYAfterCustom = (boundsAfterCustomRotation[1] + boundsAfterCustomRotation[3]) / 2;
+
+        if (
+            Math.round(itemCenterXAfterCustom) !== Math.round(itemCenterX) ||
+            Math.round(itemCenterYAfterCustom) !== Math.round(itemCenterY)
+        ) {
+            throw `Custom pivot rotation failed: Expected center (${itemCenterX}, ${itemCenterY}), got (${itemCenterXAfterCustom}, ${itemCenterYAfterCustom})`;
+        }
+    }

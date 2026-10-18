@@ -1,0 +1,74 @@
+view() {
+        // Calculate statistics by accessing book properties
+        const totalChapters = this.books.reduce((sum, book) => sum + book.chapters.length, 0);
+        const totalPages = this.books.reduce((sum, book) => 
+            sum + book.chapters.reduce((chSum, ch) => chSum + ch.$pageCount, 0), 0
+        );
+        
+        // Check if we can access everything
+        const booksPass = this.books.length === 2;
+        const propsPass = this.books.every(b => b.$title && b.$author);
+        const chaptersPass = this.books.every(b => b.chapters.length > 0);
+        const chapterPropsPass = this.books.every(b => 
+            b.chapters.every(ch => ch.$title && ch.$pageCount)
+        );
+        const allPass = booksPass && propsPass && chaptersPass && chapterPropsPass;
+        console.log(this.books)
+        
+        return (
+            <div style={{ border: `2px solid ${allPass ? 'green' : 'red'}`, padding: '15px', borderRadius: '8px' }}>
+                <h4 style={{ color: allPass ? 'green' : 'red' }}>
+                    {allPass ? '✓ PASS' : '✗ FAIL'}: Child Property Access & Nested Children
+                </h4>
+                
+                <div style={{ marginBottom: '15px', background: '#f9f9f9', padding: '10px', borderRadius: '4px' }}>
+                    <div><strong>Test:</strong> Parent accesses properties and nested children of its children</div>
+                    <div><strong>Expected:</strong> Catalogue receives Books, reads their properties ($title, $author), AND accesses their chapters (nested children)</div>
+                    <div><strong>Received:</strong></div>
+                    <ul style={{ margin: '5px 0', paddingLeft: '20px' }}>
+                        <li>Books: {booksPass ? '✓' : '✗'} {this.books.length} books</li>
+                        <li>Book properties: {propsPass ? '✓' : '✗'} All have title & author</li>
+                        <li>Book children: {chaptersPass ? '✓' : '✗'} All have chapters</li>
+                        <li>Chapter properties: {chapterPropsPass ? '✓' : '✗'} All chapters have title & pageCount</li>
+                    </ul>
+                </div>
+                
+                <div style={{ marginBottom: '15px', padding: '10px', background: '#fff', border: '1px solid #ddd', borderRadius: '4px' }}>
+                    <div><strong>Proof - Catalogue Statistics (computed from child properties):</strong></div>
+                    <div style={{ marginTop: '10px', fontSize: '14px' }}>
+                        <div>📚 Total books: {this.books.length}</div>
+                        <div>📖 Total chapters: {totalChapters}</div>
+                        <div>📄 Total pages: {totalPages}</div>
+                    </div>
+                </div>
+                
+                <div style={{ marginBottom: '15px', padding: '10px', background: '#fff', border: '1px solid #ddd', borderRadius: '4px' }}>
+                    <div><strong>Proof - Detailed Book Info (accessed from properties):</strong></div>
+                    {this.books.map((book, i) => {
+                        const bookPages = book.chapters.reduce((sum, ch) => sum + ch.$pageCount, 0);
+                        return (
+                            <div key={i} style={{ marginTop: '10px', padding: '10px', background: '#f9f9f9', borderRadius: '4px' }}>
+                                <div><strong>{book.$title}</strong> by {book.$author}</div>
+                                <div style={{ fontSize: '12px', color: '#666', marginTop: '5px' }}>
+                                    {book.chapters.length} chapters, {bookPages} pages total
+                                </div>
+                                <div style={{ fontSize: '11px', marginTop: '5px' }}>
+                                    Chapters: {book.chapters.map(ch => ch.$title).join(', ')}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+                
+                <div style={{ padding: '10px', background: '#fff', border: '1px solid #ddd', borderRadius: '4px' }}>
+                    <div><strong>Proof - Books render themselves independently:</strong></div>
+                    <div style={{ display: 'flex', gap: '10px', marginTop: '10px', flexWrap: 'wrap' }}>
+                        {this.books.map(book => {
+                            const [Book, key] = $use(book, 'key');
+                            return <Book key={key} />;
+                        })}
+                    </div>
+                </div>
+            </div>
+        );
+    }

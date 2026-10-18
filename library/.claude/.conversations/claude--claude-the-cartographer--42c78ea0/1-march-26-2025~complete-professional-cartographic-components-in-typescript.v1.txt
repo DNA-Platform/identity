@@ -1,0 +1,357 @@
+// ============================================================================
+// 5. Hand-Drawn Effect Filters
+// Creates filters that give maps a vintage, hand-drawn feel
+// ============================================================================
+export const HandDrawnEffects: React.FC = () => {
+  return (
+    <defs>
+      {/* Subtle paper grain effect */}
+      <filter id="paper-grain" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" stitchTiles="stitch" result="noise" />
+        <feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.1 0" result="coloredNoise" />
+        <feComposite operator="in" in="SourceGraphic" in2="coloredNoise" result="noisyImage" />
+        <feBlend mode="multiply" in="noisyImage" in2="SourceGraphic" />
+      </filter>
+      
+      {/* Hand-drawn line effect */}
+      <filter id="hand-drawn" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence" seed="1" />
+        <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="1" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      
+      {/* Vintage color effect */}
+      <filter id="vintage-color">
+        <feColorMatrix type="matrix" 
+          values="0.9 0.1 0.1 0 0 
+                  0.1 0.8 0.1 0 0 
+                  0.1 0.1 0.7 0 0 
+                  0 0 0 1 0" />
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues="0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1" />
+          <feFuncG type="table" tableValues="0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 0.9" />
+          <feFuncB type="table" tableValues="0 0.05 0.1 0.15 0.2 0.3 0.4 0.5 0.6 0.7 0.8" />
+        </feComponentTransfer>
+      </filter>
+      
+      {/* Watercolor effect */}
+      <filter id="watercolor" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="5" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" result="displacedImage" />
+        <feGaussianBlur in="displacedImage" stdDeviation="1" result="blurredImage" />
+        <feBlend mode="multiply" in="blurredImage" in2="SourceGraphic" />
+      </filter>
+      
+      {/* Parchment effect */}
+      <filter id="parchment">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" stitchTiles="stitch" result="noise" />
+        <feDiffuseLighting in="noise" lighting-color="#f5e8c8" surfaceScale="2" result="diffLight">
+          <feDistantLight azimuth="45" elevation="60" />
+        </feDiffuseLighting>
+        <feComposite operator="arithmetic" k1="1" k2="0" k3="0" k4="0" in="SourceGraphic" in2="diffLight" />
+      </filter>
+    </defs>
+  );
+};
+
+// ============================================================================
+// 6. Topographic Contour Lines Generator
+// Creates professional contour lines based on elevation data
+// ============================================================================
+interface TopographicContoursProps {
+  geoData: GeoJSON.FeatureCollection;
+  elevationAccessor: (feature: GeoJSON.Feature) => number;
+  contourLevels: number[];
+  contourColors?: string[];
+  strokeWidth?: number;
+  projection: (coordinates: [number, number]) => [number, number];
+}
+
+export const TopographicContours: React.FC<TopographicContoursProps> = ({ 
+  geoData, 
+  elevationAccessor, 
+  contourLevels, 
+  contourColors = ['#94765A', '#A68564', '#B8946E', '#CAA278', '#DCB082'], 
+  strokeWidth = 0.5,
+  projection
+}) => {
+  // For a real implementation, you would use d3-contour to generate contour paths
+  // This is a simplified version that draws contour lines at specific elevations
+  
+  const createContourLines = (): React.ReactNode[] => {
+    const contours: React.ReactNode[] = [];
+    
+    contourLevels.forEach((level, index) => {
+      const color = contourColors[index % contourColors.length];
+      
+      // Filter features at this elevation level
+      const featuresAtLevel = geoData.features.filter(feature => {
+        const elevation = elevationAccessor(feature);
+        return Math.abs(elevation - level) < 10; // Tolerance for matching elevation
+      });
+      
+      if (featuresAtLevel.length > 0) {
+        // Create a path for this contour level
+        const contourPath = featuresAtLevel.map(feature => {
+          // This is a simplification - in reality you would use d3.geoPath()
+          // with the projection to generate the SVG path string
+          if (feature.geometry.type === 'LineString') {
+            const coordinates = (feature.geometry as GeoJSON.LineString).coordinates;
+            const pathData = coordinates
+              .map((coord, i) => {
+                const [x, y] = projection(coord as [number, number]);
+                return `${i === 0 ? 'M' : 'L'} ${x},${y}`;
+              })
+              .join(' ');
+            return pathData;
+          }
+          return '';
+        }).join(' ');
+        
+        contours.push(
+          <path
+            key={`contour-${level}`}
+            d={contourPath}
+            fill="none"
+            stroke={color}
+            strokeWidth={strokeWidth}
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          />
+        );
+      }
+    });
+    
+    return contours;
+  };
+  
+  return <g className="topographic-contours">{createContourLines()}</g>;
+};
+
+// ============================================================================
+// 7. Illuminated Relief Component
+// Creates shaded relief effect for topography
+// ============================================================================
+interface IlluminatedReliefProps {
+  width: number;
+  height: number;
+  elevationData: number[][];
+  azimuth?: number; // Light direction in degrees
+  altitude?: number; // Light angle in degrees
+  exaggeration?: number; // Height exaggeration factor
+}
+
+export const IlluminatedRelief: React.FC<IlluminatedReliefProps> = ({
+  width,
+  height,
+  elevationData,
+  azimuth = 315, // Light from northwest
+  altitude = 45,
+  exaggeration = 1.5
+}) => {
+  // Convert elevationData to an array of RGB values for the relief
+  const generateReliefImage = (): string => {
+    // Illuminated relief calculation would normally use the elevation data
+    // to calculate hillshading based on surface normals
+    // This is a simplified placeholder implementation
+    
+    // For a real implementation, you would:
+    // 1. Calculate surface normals from the elevation data
+    // 2. Calculate illumination based on light direction (azimuth & altitude)
+    // 3. Generate an SVG gradient or image that represents the shaded relief
+    
+    // For this placeholder, we'll return a linear gradient based on the parameters
+    const azimuthRad = (azimuth * Math.PI) / 180;
+    const x1 = 50 - 50 * Math.cos(azimuthRad);
+    const y1 = 50 - 50 * Math.sin(azimuthRad);
+    const x2 = 50 + 50 * Math.cos(azimuthRad);
+    const y2 = 50 + 50 * Math.sin(azimuthRad);
+    
+    return `url(#relief-gradient-${azimuth}-${altitude})`;
+  };
+  
+  const fill = generateReliefImage();
+  
+  return (
+    <g className="illuminated-relief">
+      <defs>
+        <linearGradient 
+          id={`relief-gradient-${azimuth}-${altitude}`} 
+          x1={`${50 - 50 * Math.cos((azimuth * Math.PI) / 180)}%`}
+          y1={`${50 - 50 * Math.sin((azimuth * Math.PI) / 180)}%`}
+          x2={`${50 + 50 * Math.cos((azimuth * Math.PI) / 180)}%`}
+          y2={`${50 + 50 * Math.sin((azimuth * Math.PI) / 180)}%`}
+        >
+          <stop offset="0%" stopColor="#ffffff" stopOpacity={0.7} />
+          <stop offset="50%" stopColor="#cccccc" stopOpacity={0.2} />
+          <stop offset="100%" stopColor="#555555" stopOpacity={0.5} />
+        </linearGradient>
+      </defs>
+      
+      <rect
+        x={0}
+        y={0}
+        width={width}
+        height={height}
+        fill={fill}
+        style={{ mixBlendMode: 'multiply' }}
+      />
+    </g>
+  );
+};
+
+// ============================================================================
+// 8. Historical Mapmaker Attribution
+// Creates an elegant attribution in historical map style
+// ============================================================================
+interface MapmakerAttributionProps {
+  x: number;
+  y: number;
+  width: number;
+  author: string;
+  year: string | number;
+}
+
+export const MapmakerAttribution: React.FC<MapmakerAttributionProps> = ({
+  x,
+  y,
+  width,
+  author,
+  year
+}) => {
+  return (
+    <g className="mapmaker-attribution" transform={`translate(${x}, ${y})`}>
+      <text
+        fontFamily="'Cormorant Garamond', serif"
+        fontSize={width * 0.03}
+        textAnchor="middle"
+        fontStyle="italic"
+      >
+        <tspan x={width / 2} dy="0">Cartography by</tspan>
+        <tspan x={width / 2} dy={width * 0.035} fontStyle="normal" fontWeight="bold">{author}</tspan>
+        <tspan x={width / 2} dy={width * 0.035}>{year}</tspan>
+      </text>
+      
+      {/* Decorative line beneath attribution */}
+      <path
+        d={`M${width * 0.3},${width * 0.12} L${width * 0.7},${width * 0.12}`}
+        stroke="#59260B"
+        strokeWidth="0.5"
+        fill="none"
+      />
+      
+      {/* Small flourish */}
+      <path
+        d={`M${width * 0.48},${width * 0.13} 
+            C${width * 0.5},${width * 0.14} ${width * 0.52},${width * 0.14} ${width * 0.54},${width * 0.13}
+            C${width * 0.52},${width * 0.15} ${width * 0.5},${width * 0.15} ${width * 0.48},${width * 0.13}`}
+        fill="#59260B"
+      />
+    </g>
+  );
+};
+
+// ============================================================================
+// 9. Ornate Scale Bar
+// Creates a decorative scale bar with period styling
+// ============================================================================
+interface ScaleBarProps {
+  x: number;
+  y: number;
+  width: number;
+  units: string;
+  divisions: number;
+  distance: number;
+}
+
+export const OrnateScaleBar: React.FC<ScaleBarProps> = ({
+  x,
+  y,
+  width,
+  units,
+  divisions,
+  distance
+}) => {
+  const height = width * 0.15;
+  const divisionWidth = width / divisions;
+  
+  // Generate scale bar divisions
+  const renderDivisions = (): React.ReactNode[] => {
+    const divs: React.ReactNode[] = [];
+    for (let i = 0; i <= divisions; i++) {
+      const xPos = i * divisionWidth;
+      
+      // Vertical tick mark
+      divs.push(
+        <line
+          key={`tick-${i}`}
+          x1={xPos}
+          y1={0}
+          x2={xPos}
+          y2={height * 0.6}
+          stroke="#59260B"
+          strokeWidth="1"
+        />
+      );
+      
+      // Label for each division
+      divs.push(
+        <text
+          key={`label-${i}`}
+          x={xPos}
+          y={height * 0.9}
+          textAnchor="middle"
+          fontFamily="'Cormorant Garamond', serif"
+          fontSize={height * 0.5}
+          fill="#59260B"
+        >
+          {(i * (distance / divisions)).toString()}
+        </text>
+      );
+    }
+    return divs;
+  };
+  
+  // Create alternating filled/unfilled segments
+  const renderSegments = (): React.ReactNode[] => {
+    const segments: React.ReactNode[] = [];
+    for (let i = 0; i < divisions; i++) {
+      const xPos = i * divisionWidth;
+      segments.push(
+        <rect
+          key={`segment-${i}`}
+          x={xPos}
+          y={0}
+          width={divisionWidth}
+          height={height * 0.6}
+          fill={i % 2 === 0 ? "#59260B" : "none"}
+          stroke="#59260B"
+          strokeWidth="1"
+        />
+      );
+    }
+    return segments;
+  };
+  
+  return (
+    <g className="ornate-scale-bar" transform={`translate(${x}, ${y})`}>
+      {/* Decorative flourish above scale */}
+      <path
+        d={`M0,${-height * 0.3} 
+            Q${width * 0.5},${-height * 0.6} ${width},${-height * 0.3}`}
+        fill="none"
+        stroke="#59260B"
+        strokeWidth="0.75"
+        strokeDasharray="3,2"
+      />
+      
+      {/* Scale bar segments */}
+      {renderSegments()}
+      
+      {/* Scale bar divisions */}
+      {renderDivisions()}
+      
+      {/* Units label */}
+      <text
+        x={width + 10}
+        y={height * 0.35}
+        fontFamily="'Cormorant Garamon

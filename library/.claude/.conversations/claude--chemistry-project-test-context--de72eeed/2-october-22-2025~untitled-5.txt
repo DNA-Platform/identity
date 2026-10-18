@@ -1,0 +1,126 @@
+VM7093 arg-tests.tsx:1560 $Catalogue.books (2) [$Book, $Book]
+VM7093 arg-tests.tsx:1561 $Catalogue.book[0] $Book {Symbol($Chemical.parent): $Catalogue, Symbol($Chemical.cid): 298, …}
+VM7093 arg-tests.tsx:1562 $Catalogue.book[0].chapters (3) [$Chapter, $Chapter, $Chapter]
+VM7093 arg-tests.tsx:1560 $Catalogue.books (2) [$Book, $Book]
+VM7093 arg-tests.tsx:1561 $Catalogue.book[0] $Book {Symbol($Chemical.parent): $Catalogue, Symbol($Chemical.cid): 306, …}
+VM7093 arg-tests.tsx:1562 $Catalogue.book[0].chapters (3) [$Chapter, $Chapter, $Chapter]
+VM7093 arg-tests.tsx:1560 $Catalogue.books (2) [$Book, $Book]
+VM7093 arg-tests.tsx:1561 $Catalogue.book[0] $Book {Symbol($Chemical.parent): $Catalogue, Symbol($Chemical.cid): 314, …}
+VM7093 arg-tests.tsx:1562 $Catalogue.book[0].chapters (3) [$Chapter, $Chapter, $Chapter]
+VM7093 arg-tests.tsx:1560 $Catalogue.books (2) [$Book, $Book]
+VM7093 arg-tests.tsx:1561 $Catalogue.book[0] $Book {Symbol($Chemical.parent): $Catalogue, Symbol($Chemical.cid): 408, …}
+VM7093 arg-tests.tsx:1562 $Catalogue.book[0].chapters (3) [$Chapter, $Chapter, $Chapter]
+VM7093 arg-tests.tsx:1560 $Catalogue.books (2) [$Book, $Book]
+VM7093 arg-tests.tsx:1561 $Catalogue.book[0] $Book {Symbol($Chemical.parent): $Catalogue, Symbol($Chemical.cid): 416, …}
+VM7093 arg-tests.tsx:1562 $Catalogue.book[0].chapters (3) [$Chapter, $Chapter, $Chapter]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:626 Uncaught TypeError: Cannot read properties of null (reading 'Symbol($Chemical.cid)')
+    at eval (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:626:38)
+    at Map.forEach (<anonymous>)
+    at $Formula.check (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:622:21)
+    at $Bond.bondCall (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:940:17)
+    at $AutoLoader.value [as $loadData] (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:858:33)
+    at $AutoLoader (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\async\basic-tests.tsx:50:14)
+    at $BondOrchestrator.bond (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1199:40)
+    at $AutoLoader.__render (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:254:16)
+    at Component (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:481:29)
+    at Object.react_stack_bottom_frame (react-dom-client.development.js:23584:20)
+    at renderWithHooks (react-dom-client.development.js:6793:22)
+    at updateFunctionComponent (react-dom-client.development.js:9247:19)
+    at beginWork (react-dom-client.development.js:10858:18)
+    at runWithFiberInDEV (react-dom-client.development.js:872:30)
+    at performUnitOfWork (react-dom-client.development.js:15727:22)
+    at workLoopSync (react-dom-client.development.js:15547:41)
+    at renderRootSync (react-dom-client.development.js:15527:11)
+    at performWorkOnRoot (react-dom-client.development.js:15034:44)
+    at performWorkOnRootViaSchedulerTask (react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (scheduler.development.js:45:48)
+eval @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:626
+check @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:622
+bondCall @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:940
+value @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:858
+$AutoLoader @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\async\basic-tests.tsx:50
+bond @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1199
+__render @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:254
+Component @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:481
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooks @ react-dom-client.development.js:6793
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:15034
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+BasicTests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\async\basic-tests.tsx:503
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:15034
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<BasicTests>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+Tests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\async\page.tsx:67
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:15034
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<Tests>
+exports.jsx @ react-jsx-runtime.development.js:323
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:15034
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Function.all @ <anonymous>:1
+Function.all @ <anonymous>:1
+Function.all @ <anonymous>:1
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1343
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1761129590419:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+loadScriptsInSequence @ app-bootstrap.js:24
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1761129590419:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1761129590419:1878
+(anonymous) @ main-app.js?v=1761129590419:1879
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1761129590419:9

@@ -1,0 +1,69 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ milestone-1-svg v1 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="600" fill="#0a0a2a"/>
+    
+    <!-- Title -->
+    <text x="400" y="60" fill="white" font-family="Arial" font-size="24" text-anchor="middle">Pattern Speedup</text>
+    <text x="400" y="90" fill="#8a9bb5" font-family="Arial" font-size="16" text-anchor="middle">From hours to minutes</text>
+
+    <!-- Original Pattern -->
+    <g transform="translate(100,200)">
+        <text x="0" y="-20" fill="white" font-family="Arial" font-size="16">Your Pattern</text>
+        <rect width="120" height="120" fill="none" stroke="#4a6a9a" stroke-width="2"/>
+        <g id="gridPattern">
+            <line x1="30" y1="0" x2="30" y2="120" stroke="#4a6a9a"/>
+            <line x1="60" y1="0" x2="60" y2="120" stroke="#4a6a9a"/>
+            <line x1="90" y1="0" x2="90" y2="120" stroke="#4a6a9a"/>
+            <line x1="0" y1="30" x2="120" y2="30" stroke="#4a6a9a"/>
+            <line x1="0" y1="60" x2="120" y2="60" stroke="#4a6a9a"/>
+            <line x1="0" y1="90" x2="120" y2="90" stroke="#4a6a9a"/>
+        </g>
+    </g>
+
+    <!-- Arrow -->
+    <path d="M 250,260 L 350,260" stroke="white" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="white"/>
+        </marker>
+    </defs>
+
+    <!-- Variations -->
+    <g transform="translate(400,150)">
+        <text x="0" y="-20" fill="white" font-family="Arial" font-size="16">Quick Variations</text>
+        <!-- Grid of smaller variations -->
+        <g transform="translate(0,0) scale(0.5)">
+            <use href="#gridPattern"/>
+        </g>
+        <g transform="translate(100,0) scale(0.5)">
+            <use href="#gridPattern" transform="rotate(45,60,60)"/>
+        </g>
+        <g transform="translate(0,100) scale(0.5)">
+            <use href="#gridPattern" transform="scale(0.8,1.2)"/>
+        </g>
+        <g transform="translate(100,100) scale(0.5)">
+            <use href="#gridPattern" transform="skewX(15)"/>
+        </g>
+    </g>
+
+    <!-- Time Comparison -->
+    <g transform="translate(650,200)">
+        <text x="0" y="0" fill="white" font-family="Arial" font-size="16">Time per variation:</text>
+        <text x="0" y="30" fill="#ff6b6b" font-family="Arial" font-size="14">Before: 20 min</text>
+        <text x="0" y="60" fill="#4ecdc4" font-family="Arial" font-size="14">After: 1 min</text>
+    </g>
+</svg>`}
+        </CodeBox>
+    </Chapter>
+);

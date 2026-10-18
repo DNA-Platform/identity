@@ -1,0 +1,172 @@
+class $Bond<T = any> {
+    get id() { return this._id; }
+    private _id: number;
+    get instance() { return this._instance; }
+    private _instance: T;
+    type?: Type;  // Only for Chemical types, undefined otherwise
+    property: string;
+    isInitialized: boolean;
+    
+    isParent = false;           // Represents a property which returns the parent of the chemical
+    isChemical = false;         // Property holds a chemical
+    isMutable = false;          // Object/array that can change without reference change
+    isValue = false;            // Has value semantics
+    isCollective = false;       // Is a collection of chemicals 
+    isSettable = true;          // Is a field, or a property with both a get and set method
+    isRequired = false;         // Must not be null or undefinmed
+    isInert = false;            // Never reactive
+    isProp = false;             // Non-chemical property that Starts with $
+    isDelayed = false           // Uses set-timeout to check if a value was changed after being accessed
+    isImplicitlyBound = false;  // Chemical without setter
+    isExplicitlyBound = false;  // Has $set setter
+    symbolizer: (value: any) => any = (value) => value;
+    
+    private _isReactive = true;
+    get isReactive() { return this.isInert ? false : this._isReactive; }
+    set isReactive(value: boolean) { this._isReactive = value; }
+    get isPolled() { return this.isMutable || !this.isSettable; }
+
+    constructor(property: string, instance: T, type?: Type) {
+        this._id = $Bond.getNextBondId();
+        this._instance = instance;
+        this.property = property;
+        this.type = type;
+        this.isInitialized = false;
+        this.isReactive = false;
+    }
+
+    deactivate(chemical: $Chemical) {
+        if (chemical === chemical.getType().example)
+            throw new Error('Formulas should not have activated properties');
+
+        this.isReactive = false;
+    }
+
+    reactivate(chemical: $Chemical): any {
+        if (chemical === chemical.getType().example)
+            throw new Error('Formulas should not have activated properties');
+
+        if (this.isInitialized) {
+            this.isReactive = true;
+            return;
+        }
+
+        if (this.isParent) {
+            console.log(`Creating ${chemical.getType().name}.${this.property} as parent`)
+            Object.defineProperty(chemical, this.property, {
+                get() { return chemical.parent; },
+                enumerable: true,
+                configurable: false,
+            });
+            this.isInitialized = true;
+            return;
+        }
+
+        // Create getters and setters
+        const thisBond = this;
+        const chemical$: any = chemical;
+        const backingField = Symbol(`_${this.property}${this.id}`);
+        const descriptor = Object.getOwnPropertyDescriptor(chemical$, this.property);
+        const getValue = descriptor?.get ? () => descriptor!.get!.call(chemical) : () => chemical$[backingField];
+        const setValue = descriptor?.set ? (value: any) => descriptor!.set!.call(chemical, value) : ((value: any) => { chemical$[backingField] = value; });
+        if (!descriptor?.get) setValue(chemical$[this.property]);
+
+        // Create reactive properties
+        console.log(`Creating ${chemical.getType().name}.${this.property}`)
+        Object.defineProperty(chemical$, this.property, {
+            get() {
+                const value = getValue();
+                console.log(`Getting value ${value} from property ${this.property}`)
+                if (!thisBond.isReactive || !thisBond.isPolled) return value;
+                
+                const symbol = thisBond.symbolizer(value);
+                setTimeout(() => {
+                    if (!thisBond.isReactive) return;
+                    const previousValue = getValue();
+                    const previousSymbol = thisBond.symbolizer(previousValue);
+                    if (previousSymbol !== symbol)
+                        chemical.update();
+                });
+                return value;
+            },
+            set(value: any) {
+                console.log(`Setting value ${value} from property ${this.property}`)
+                if (!thisBond.isSettable)
+                    throw new Error(`${thisBond.property} is not settable`);
+                if (thisBond.isRequired && value == null)
+                    throw new Error(`${thisBond.property} is required`);
+                
+                thisBond.merge(value);
+                if (thisBond.isChemical) thisBond.checkType(value);
+
+                const previous = getValue();
+                setValue(value);
+
+                if (previous != value) {
+                    if (previous instanceof $Chemical) previous.onUpdate.unbind(chemical);
+                    if (value instanceof $Chemical) value.onUpdate.bind(chemical);
+                }
+
+                if (!thisBond.isReactive) return;
+                if (thisBond.symbolizer(previous) !== thisBond.symbolizer(value)) {
+                    chemical.update();
+                }
+            },
+            enumerable: true,
+            configurable: false,
+        });
+
+        this.isInitialized = true;
+        this.isReactive = true;
+    }
+
+    merge(value: any): void {
+        if (value === null || value === undefined) return;
+        
+        if (value instanceof $Chemical) {
+            if (this.isMutable) 
+                throw new Error(`${this.property} was mutable, now Chemical`);
+            this.isChemical = true;
+            this.isValue = true;
+            this.isMutable = false;
+            this.symbolizer = (v) => v;
+            this.type = value.constructor as T;
+            return;
+        }
+        
+        const valueType = typeof value;
+        if (valueType === 'string' || valueType === 'number' || valueType === 'boolean') {
+            if (!this.isValue && !this.isMutable) {
+                this.isValue = true;
+                this.symbolizer = (v) => v;
+            }
+            return;
+        }
+        
+        if (valueType === 'object') {
+            if (this.isCollective && !Array.isArray(value))
+                throw new Error(`${this.property} is collective but got non-array`);
+            if (!this.isCollective && Array.isArray(value) && this.isRequired)
+                throw new Error(`${this.property} got unexpected array`);
+            
+            if (!this.isMutable) {
+                this.isMutable = true;
+                this.isValue = false;
+                this.symbolizer = symbolize;
+            }
+        }
+    }
+
+    equivalent(first: any, second: any) {
+        return this.symbolizer(first) === this.symbolizer(second);
+    }
+
+    private checkType(value: any): void {
+        if (!this.type || !this.isChemical || value === null || value === undefined) return;
+        if (!(value instanceof this.type))
+            throw new Error(`${this.property} must be an instance of ${this.type.name}`);
+    }
+
+    private static nextBondId = 1;
+    private static getNextBondId(): number { return $Bond.nextBondId++; }
+}

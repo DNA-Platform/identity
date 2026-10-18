@@ -1,0 +1,152 @@
+class CreativeItemTests extends AppTestClass {
+    constructor() {
+        super();
+        this.decorateExceptions = false;
+    }
+
+    createGroup(): GroupItemQuery {
+        return this.layer().createGroupItem("Group");
+    }
+
+    testRectangle() {
+        var layer = this.layer();
+
+        var rect = layer.c().rectangle();
+        this.assertEquals(rect.name()[0], ".", "1. rectangle anonymous name should start with period");
+        this.assertEquals(rect.p().position(), [0.5, 0.5], "1. rectangle should have region center");
+        this.assertEquals(rect.p().width(), 0.5, "1. rectangle should have half the width of the region");
+        this.assertEquals(rect.p().height(), 0.5, "1. rectangle should have height equal width");
+        this.assertEquals(rect.index(), 0, "1. rectangle should be the first element");
+
+        var rect = layer.c().rectangle("Rect", [0.3, 0.7], 0.2, 0.44);
+        this.assertEquals(rect.name(), "Rect", "2. rectangle name should be set");
+        this.assertEquals(rect.p().position(), [0.3, 0.7], "2. rectangle position should be its center");
+        this.assertEquals(rect.p().width(), 0.2, "2. rectangle width should be set");
+        this.assertEquals(rect.p().height(), 0.44, "2. rectangle height should be set");
+        this.assertEquals(rect.index(), 1, "2. rectangle should be the second element");
+
+        var group = this.createGroup();
+        var rect = group.c().rectangle();
+        this.assertEquals(rect.name()[0], ".", "3. rectangle anonymous name should start with period");
+        this.assertEquals(rect.p().position(), [0.5, 0.5], "3. rectangle should have region center");
+        this.assertEquals(rect.p().width(), 0.5, "3. rectangle should have half the width of the region");
+        this.assertEquals(rect.p().height(), 0.5, "3. rectangle should have height equal width");
+        this.assertEquals(rect.index(), 0, "3. rectangle should be the first group element");
+
+        var rect = group.c().rectangle();
+        this.assertEquals(rect.index(), 1, "4. rectangle should be the second group element");
+    }
+
+    testEllispe() {
+        var layer = this.layer();
+
+        var ellipse = layer.c().ellipse();
+        this.assertEquals(ellipse.name()[0], ".", "1. ellipse anonymous name should start with period");
+        this.assertEquals(ellipse.p().position(), [0.5, 0.5], "1. ellipse should have region center");
+        this.assertEquals(ellipse.p().width(), 0.5, "1. ellipse should have half the width of the region");
+        this.assertEquals(ellipse.p().height(), 0.5, "1. ellipse should have height equal width");
+        this.assertEquals(ellipse.index(), 0, "1. ellipse should be the first element");
+
+        var ellipse = layer.c().ellipse("Ellipse", [0.3, 0.7], 0.2, 0.44);
+        this.assertEquals(ellipse.name(), "Ellipse", "2. ellipse name should be set");
+        this.assertEquals(ellipse.p().position(), [0.3, 0.7], "2. ellipse position should be its center");
+        this.assertEquals(ellipse.p().width(), 0.2, "2. ellipse width should be set");
+        this.assertEquals(ellipse.p().height(), 0.44, "2. ellipse height should be set");
+        this.assertEquals(ellipse.index(), 1, "2. ellipse should be the second element");
+
+        var group = this.createGroup();
+        var ellipse = group.c().ellipse("Group Ellipse", [0.2, 0.2]);
+        this.assertEquals(ellipse.name(), "Group Ellipse", "3. ellipse should have the right name");
+        this.assertEquals(ellipse.p().position(), [0.2, 0.2], "3. ellipse should have region center");
+        this.assertEquals(ellipse.p().width(), 0.5, "3. ellipse should have half the width of the region");
+        this.assertEquals(ellipse.p().height(), 0.5, "3. ellipse should have height equal width");
+        this.assertEquals(ellipse.index(), 0, "3. ellipse should be the third element");
+
+        var rect = group.c().ellipse("Group Ellipse 2", [0.8, 0.8]);
+        this.assertEquals(rect.index(), 1, "4. ellipse should be the second group element");
+    }
+
+    testPolygon() {
+        var layer = this.layer();
+
+        var polygon = layer.c().polygon();
+        this.assertEquals(polygon.name()[0], ".", "1. polygon anonymous name should start with period");
+        this.assertEquals(polygon.p().position(), [0.5, 0.5], "1. polygon should have region center");
+        this.assertEquals(polygon.index(), 0, "1. polygon should be the first element");
+
+        var polygon = layer.c().polygon();
+        this.assertEquals(polygon.index(), 1, "2. polygon should be the second element");
+
+        var group = this.createGroup();
+        var polygon = group.c().polygon("Polygon", [0.2, 0.8], 0.1, 10);
+        this.assertEquals(polygon.name(), "Polygon", "3. polygon name should be set");
+        this.assertEquals(polygon.p().position(), [0.2, 0.8], "3. polygon should have region center");
+        this.assertEquals(polygon.index(), 0, "3. polygon should be the first element");
+    }
+
+    testStar() {
+        var layer = this.layer();
+
+        var star = layer.c().star();
+        this.assertEquals(star.name()[0], ".", "1. star anonymous name should start with period");
+        this.assertEquals(star.p().position(), [0.5, 0.5], "1. star should have region center");
+        this.assertEquals(star.index(), 0, "1. star should be the first element");
+
+        var star = layer.c().star("star", [0.4, 0.4]);
+        this.assertEquals(star.index(), 1, "2. star should be the second element");
+
+        var group = this.createGroup();
+        var star = group.c().star("star", [0.2, 0.8], 0.1, 0.08, 10);
+        this.assertEquals(star.name(), "star", "3. star name should be set");
+        this.assertEquals(star.p().position(), [0.2, 0.8], "3. star should have region center");
+        this.assertEquals(star.index(), 0, "3. star should be the first element");
+    }
+
+    testLine() {
+        var layer = this.layer();
+
+        var line = layer.c().line();
+        this.assertEquals(line.name()[0], ".", "1. line anonymous name should start with period");
+        this.assertEquals(line.p().position(), [0.5, 0.5], "1. line should have region center");
+        this.assertEquals(line.index(), 0, "1. line should be the first element");
+
+        var line = layer.c().line("Line", [0, 0], [1, 1]);
+        this.assertEquals(line.name(), "Line", "2. line name should be set");
+        this.assertEquals(line.p().position(), [0.5, 0.5], "2. line name should be set");
+        this.assertEquals(line.index(), 1, "1. line should be the second element");
+    }
+
+    testCurve() {
+        var layer = this.layer();
+
+        var line = layer.c().curve("Curve 1", [0.3, 0.3], [0.4, 0.6], [0.6, 0.7], [0.8, 0.8]);
+        this.assertEquals(line.name(), "Curve 1", "1. curve should have name set");
+        this.assertEquals(line.pathPoints().length(), 4, "1. there should be four path points");
+        this.assertEquals(line.index(), 0, "1. curve should be the first element");
+
+        line.angular(true);
+        line.smooth("cubicSpline");
+        line.smooth("catmullRom");
+        line.smooth("bezier");
+        line.smooth("bSpline");
+        line.smooth("tension");
+    }
+
+    testClosedCurve() {
+        var layer = this.layer();
+
+        var line = layer.c()
+            .curve("Curve 1", [0.3, 0.3], [0.4, 0.6], [0.6, 0.5], [0.8, 0.3], [0.6, 0.2], [0.4, 0.1], [0.3, 0.15])
+            .close();
+
+        this.assertEquals(line.name(), "Curve 1", "1. curve should have name set");
+        this.assertEquals(line.pathPoints().length(), 7, "1. there should be seven path points");
+        this.assertEquals(line.index(), 0, "1. curve should be the first element");
+        
+        line.smooth("cubicSpline");
+        line.smooth("catmullRom");
+        line.smooth("bezier");
+        line.smooth("bSpline");
+        line.smooth("tension");
+    }
+}

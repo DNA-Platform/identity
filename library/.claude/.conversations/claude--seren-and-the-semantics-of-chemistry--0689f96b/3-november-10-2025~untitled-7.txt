@@ -1,0 +1,134 @@
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $typeof function > should have the right metadata for function
+AssertionError: expected 'undefined' to be 'function' // Object.is equality
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/reflection.test.ts:220:36
+    218|                 const type = $typeof(function () {});
+    219|                 expect(type.literal).toBe(Function);
+    220|                 expect(type.$name).toBe('function');
+       |                                    ^
+    221|                 expect(type.$ref).toBe('type(function)');
+    222|                 expect(type.$role.$ref).toBe('typeof(())');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/21]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $typeof function > should have the right metadata for object
+AssertionError: expected 'undefined' to be 'object' // Object.is equality
+
+Expected: "object"
+Received: "undefined"
+
+ ❯ tests/reflection.test.ts:230:36
+    228|                 const type = $typeof({});
+    229|                 expect(type.literal).toBe(Object);
+    230|                 expect(type.$name).toBe('object');
+       |                                    ^
+    231|                 expect(type.$ref).toBe('type(object)');
+    232|                 expect(type.$role.$ref).toBe('typeof({})');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/21]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > on instances > should list all properties including inherited
+AssertionError: expected [ 'constructor', 'method', …(3) ] to include 'property'
+ ❯ tests/reflection.test.ts:267:38
+    265|                     expect(allNames).toContain('subField');
+    266|                     expect(allNames).toContain('method');
+    267|                     expect(allNames).toContain('property'); // getter/setter
+       |                                      ^
+    268|                 });
+    269| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/21]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should find inherited properties with "all"
+AssertionError: expected [Function $SubClass] to be [Function toString] // Object.is equality
+
+- Expected
++ Received
+
+- [Function toString]
++ [Function $SubClass]
+
+ ❯ tests/reflection.test.ts:367:53
+    365| 
+    366|                 expect(subField.$value.literal).toBe(2);
+    367|                 expect(inheritedAll.$value.literal).toBe(Object.prototype.toString);
+       |                                                     ^
+    368|             });
+    369| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/21]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should work with properties
+TypeError: Cannot read properties of undefined (reading 'toString')
+ ❯ parseFunctionInfo src/reflection.ts:934:22
+    932| 
+    933| export function parseFunctionInfo(func: Function): $FunctionInfo {
+    934|     const str = func.toString();
+       |                      ^
+    935|     let name = func.name || '';
+    936| 
+ ❯ _$ObjectiveRep.getFunctionInfo src/reflection.ts:882:36
+ ❯ _$ObjectiveRep.get form [as form] src/reflection.ts:644:21
+ ❯ _$ObjectiveRep.get isMethod [as isMethod] src/reflection.ts:635:66
+ ❯ tests/reflection.test.ts:384:28
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/21]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $methods > should find methods on class prototypes
+TypeError: Cannot read properties of undefined (reading 'toString')
+ ❯ parseFunctionInfo src/reflection.ts:934:22
+    932| 
+    933| export function parseFunctionInfo(func: Function): $FunctionInfo {
+    934|     const str = func.toString();
+       |                      ^
+    935|     let name = func.name || '';
+    936| 
+ ❯ _$ObjectiveRep.getFunctionInfo src/reflection.ts:882:36
+ ❯ _$ObjectiveRep.get form [as form] src/reflection.ts:644:21
+ ❯ _$ObjectiveRep.get isMethod [as isMethod] src/reflection.ts:635:66
+ ❯ src/reflection.ts:725:50
+ ❯ _$ObjectiveRep.$methods src/reflection.ts:725:36
+ ❯ tests/reflection.test.ts:533:41
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/21]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $constructor > should return the right constructors the primitives
+AssertionError: expected undefined to be [Function String] // Object.is equality
+
+- Expected:
+[Function String]
+
++ Received:
+undefined
+
+ ❯ tests/reflection.test.ts:572:52
+    570|                 expect($undefinedConstructor.literal).toBe(undefined);
+    571|                 expect($nullConstructor.literal).toBe(undefined);
+    572|                 expect($stringConstructor.literal).toBe(String);
+       |                                                    ^
+    573|                 expect($booleanConstructor.literal).toBe(Boolean);
+    574|                 expect($objectConstructor.literal).toBe(Object);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/21]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $constructor > should find methods on class prototypes
+TypeError: Cannot read properties of undefined (reading 'toString')
+ ❯ parseFunctionInfo src/reflection.ts:934:22
+    932| 
+    933| export function parseFunctionInfo(func: Function): $FunctionInfo {
+    934|     const str = func.toString();
+       |                      ^
+    935|     let name = func.name || '';
+    936| 
+ ❯ _$ObjectiveRep.getFunctionInfo src/reflection.ts:882:36
+ ❯ _$ObjectiveRep.get form [as form] src/reflection.ts:644:21
+ ❯ _$ObjectiveRep.get isMethod [as isMethod] src/reflection.ts:635:66
+ ❯ src/reflection.ts:725:50
+ ❯ _$ObjectiveRep.$methods src/reflection.ts:725:36
+ ❯ tests/reflection.test.ts:588:41
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/21]⎯
+
+ Test Files  1 failed (1)
+      Tests  21 failed | 123 passed (144)
+   Start at  01:58:57
+   Duration  150ms
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit

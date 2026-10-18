@@ -1,0 +1,135 @@
+/**
+ * Selects and optionally activates a layer by name or index.
+ * If no id provided and no active layer exists, throws error.
+ * If no id provided, returns active layer.
+ * If id is number, processes negative index like Python (-1 is last layer).
+ * If id is string, searches for layer by name.
+ * 
+ * @param ref - Layer name or index (optional)
+ * @param activate - Whether to activate the layer (default true)
+ * @returns The selected Layer
+ * @throws Error if layer not found or no active layer when id not provided
+ */
+function selectLayer(ref?: Reference, activate: boolean = true): Layer {
+    var doc = app.activeDocument;
+
+    // No id: return active layer or error
+    if (ref === undefined) {
+        if (!doc.activeLayer) {
+            throw new Error("No active layer");
+        }
+        return doc.activeLayer;
+    }
+
+    // Handle numeric index (Python-style negative indexing)
+    if (typeof ref === "number") {
+        var index = ref < 0 ? doc.layers.length + ref : ref;
+        if (index < 0 || index >= doc.layers.length) {
+            throw new Error("Layer index out of bounds");
+        }
+        var layer = doc.layers[index];
+        if (activate) {
+            doc.activeLayer = layer;
+        }
+        return layer;
+    }
+
+    // Handle string name
+    for (let i = 0; i < doc.layers.length; i++) {
+        if (doc.layers[i].name === ref) {
+            var layer = doc.layers[i];
+            if (activate) {
+                doc.activeLayer = layer;
+            }
+            return layer;
+        }
+    }
+    throw new Error(`Layer '${ref}' not found`);
+}
+
+/**
+ * Selects multiple layers using various selector types.
+ * 
+ * @param selector - How to select layers:
+ *   undefined - returns active layer
+ *   number - selects layer by index (supports negative)
+ *   string - layer name or slice notation ("start:end")
+ *   array - multiple layers by name or index
+ * @returns Array of selected layers
+ * 
+ * @example
+ * selectLayers()          // Active layer
+ * selectLayers("MyLayer") // Layer named "MyLayer"
+ * selectLayers("2:5")     // Layers 2 through 5 inclusive
+ * selectLayers("2:-1")    // Layers 2 through end
+ * selectLayers(["Layer1", "Layer2"]) // Specific named layers
+ * selectLayers([0, -1])   // First and last layers
+ */
+function selectLayers(selector?: Selector): Layer[] {
+    var doc = app.activeDocument;
+    var result: Layer[] = [];
+
+    // Case 1: No selector, return active layer
+    if (selector === undefined) {
+        result.push(doc.activeLayer);
+        return result;
+    }
+
+    // Case 2: Convert single number to array for consistent handling
+    if (typeof selector === "number") {
+        selector = [selector];
+    }
+
+    // Case 3: Array of indices or names
+    if (selector instanceof Array) {
+        for (let i = 0; i < selector.length; i++) {
+            result.push(selectLayer(selector[i], false));
+        }
+        return result;
+    }
+
+    // Case 4: String selector
+    if (typeof selector === "string") {
+        // Case 4a: Empty string check
+        if (selector.length === 0) {
+            throw "Empty selector";
+        }
+
+        // Case 4b: Layer name (doesn't start with number or :)
+        if (!/^[0-9:]/.test(selector)) {
+            return [selectLayer(selector, false)];
+        }
+
+        // Case 4c: Range selector
+        var parts = selector.split(":");
+        if (parts.length !== 2) {
+            throw "Invalid range format. Use 'start:end'";
+        }
+
+        // Parse start and end indices
+        var start = parts[0] === "" ? 0 : parseInt(parts[0]);
+        var end = parts[1] === "" ? doc.layers.length - 1 : parseInt(parts[1]);
+
+        // Handle negative indices
+        if (start < 0) start = doc.layers.length + start;
+        if (end < 0) end = doc.layers.length + end;
+
+        // Validate range
+        start = Math.max(0, Math.min(start, doc.layers.length - 1));
+        end = Math.max(0, Math.min(end, doc.layers.length - 1));
+
+        // Collect layers in range (ensuring proper order)
+        if (start <= end) {
+            for (let i = start; i <= end; i++) {
+                result.push(selectLayer(i, false));
+            }
+        } else {
+            for (let i = start; i >= end; i--) {
+                result.push(selectLayer(i, false));
+            }
+        }
+        return result;
+    }
+
+    throw "Invalid selector type";
+}

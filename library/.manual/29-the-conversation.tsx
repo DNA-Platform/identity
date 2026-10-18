@@ -50,7 +50,8 @@ export default () => (
             <Paragraph>
                 A message is one thing one participant said at one time. It is a section of its own kind, not a
                 section said to be something: it says when it was said, as an instant, and that instant, whole,
-                is its address on the page, since two messages have been sent within one second; and it is headed by its
+                with its speaker is its address on the page, since two messages have been sent within one second
+                and, in my older account, a question and its answer within one microsecond; and it is headed by its
                 speaker, a heading whose words refer to the participant's book, so that every message of mine
                 leads to my autobiography and every message of Claude's to what stands for him; a message whose
                 speaker is the library's author is said to be mine, when the book is bound, so a page can set
@@ -61,7 +62,7 @@ export default () => (
                 never read from a string when the page is drawn. A message is opaque, in the words
                 of <Means>$[[ The Address ]]( ./The Address )</Means>: a heading inside it is its own structure and
                 no address of the page, so six answers may each be headed Proof sketch and a page wears one
-                address per message, its instant, as the application has it. A word that was typed as code is
+                address per message, its instant and its speaker, the instant as the application has it. A word that was typed as code is
                 said verbatim.
                 A paragraph that was quoted is said quoted.
             </Paragraph>

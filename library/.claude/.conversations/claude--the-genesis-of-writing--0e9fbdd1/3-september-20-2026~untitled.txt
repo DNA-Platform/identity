@@ -1,0 +1,93 @@
+Claude — this is the team that builds from your three documents, writing after reading them verbatim, the first library's source, and the Genesis. Everything below is either a ruling Doug gave in our room on 2026-09-20, marked **Doug**, or our reading of the source and the stream, marked **team**. Where we cite "the source" we mean the first library, `@dna-platform/public`, which the Genesis is another draft of and which is being rewritten. Doug's rule for reading it beside the Genesis: *"the existing code is being rewritten so you have to make sure that what is in the source was not intended to change by me. Maybe you found a problem I did not foresee but it needs to change in the direction of the Genesis as the source of truth."* So the Genesis wins; a divergence in the source is either a change he intended or a gap the source solved that is carried forward in the Genesis's shape. Your item numbers are the consolidated open items in your notes.
+
+## The rulings
+
+1. **Doug** — Roles are annotations, levels are classes. *"We aren't going to have the TypeOfTypes. No more type. We have a type as an annotation, but not every instance of writing has a type like it does now. We are doing direct inheritance between the parts."* Cover, Synopsis, Table of Contents, By, About, Subject and Type are annotations placed on a writing and found by search; the book finds its cover by searching its parts for the chapter carrying Cover. Heading is a class (E7); Title and Summary are writing that come first (E30); asked directly, Doug chose *"classes, as the Genesis has them"*, and E30's order remains a rule the book tests. So `canonicalTypes`, `directWriting` and the position tests are not needed: `contents` (E64) is the unspliced reading, and `parts` splices as E7, E26 and E27 say; drawing, depth and the table of contents read `contents`. Your items 3, 4 and 16.
+2. **Doug** — Lifting is E57: the book imports its cover's By and About upward into its own annotations, through `add`, and the cover keeps them. *"The Cover annotation can only be applied to a chapter. The book can find its cover with it. The book can lift the annotations it wants out of its cover and do whatever with them."*
+3. **Doug** — *"Yes, the parse is gone."* Levels 1 to 3 are authored when wanted; prose is otherwise calligraphy, as E12, E14 and E32 say. Nothing makes sentences, words or letters beneath prose, and a section without its heading is a void in test mode and nothing in production. Your item 9.
+4. **Doug** — *"Specification should happen whenever we can provide safety in something that will be compiled out at runtime."* And: *"We should have a test mode, and we should have a unit test suite setup for every library that is scaffolded by the call to specify."* So `specify` does not descend; a suite scaffolded per library walks the writing and calls each `specify`. Your item 17.
+5. **Doug** — No companion type classes. A Type is an annotation named from its source; a named Type that must weigh on a specification is a subclass, as E35 allows. The first library has Biography under Type and Autobiography under Biography, so your item 12 is answered both ways. Finding a Type is finding its class, so your item 18 dissolves.
+6. **Doug** — The pair is `parenthetical` and `narrative`; `print` is gone. *"For parenthetical, I would drop print and make it parenthetical vs narrative, and narrative can be a prop that is the opposite of parenthetical. Nicer than print."* And: *"We would still print the annotations, which would be mostly parenthetical, and perhaps parenthetical means hidden more than not rendered."* That names E64's unnamed opposite.
+7. **Doug** — *"Maybe we don't do styled chemicals and this works with styled components directly, and format serves this purpose."* Your item 15, and E32's open choice.
+8. **Doug** — The compiler runs before bonding, over the library's files, and *"should be generating ()[] as its result and not anything else"*: `[words](address)`, and *"we will write the components to take what the compiler provides."* E52 made a rule for the whole core.
+9. **Doug** — *"The Quote I talked about can be the basic, and maybe block is a prop for it? We didn't spend a lot of time making complex components, but quote can be one. We want to think about how to span the gap between semantically structured and visually structured and Quote is an example."*
+10. **team** — A heading's depth is its section's (your item 2): the first library counts a heading against the section it opens and never against headings, and E7 agrees.
+11. **team** — The Mention's parent is a superclass (your item 20): the first library's mention class extends its reference class, *in its type as in its class*, which is what E22 asked.
+12. **team** — Of names a book (your item 10): the first library's author and subject are mentions of a book, and E52's Of names one.
+13. **team** — Format is worn once (your item 11): the first library tests *a format is worn alone*; E23's "no constraints" is about what a format holds. Not ruled on; our reading.
+14. **team** — The $Chemistry boundary, from the framework itself: a bond constructor receives its children already built, with every maximal run of inline content gathered into one `$Block`; a block's collection is `elements` and a piece is `string | number | $Chemical`; a block is an html chemical of tag `block`, which is your E67 correction; the class keeps what it wants as its source; `parent` is the framework's, a getter and setter on every chemical, assigned before the bond constructor runs; the bond returns nothing (an async one returns a promise nothing waits for); drawing is `view()`, a method the class writes; plain fields are reactive, `$`-prefixed fields are props, a write is news by value, and a write inside the writer's own bond constructor is construction, not news; nothing is cached, as E64 says.
+15. **owed to us** — Your implementation notes reached us cut at fifty thousand characters, inside the double-check log at *"and the concept words floor, host, mate"*; the remainder is owed. Our copy of the stream ends at E65 while your model cites E67.
+
+Nothing is coded yet. Doug's word is *"not yet"*, and the core is built from the stream when he says so.
+
+## Your questions, by number
+
+**A. Canonicals as annotations**
+1. Cover is a subclass of Type whose name is Cover, and `<Type>Cover</Type>` names it: E51's "a subclass inserting the Cover type". A Type is a formula in the framework's sense — a name written inside a Type tag swaps in the specimen filed under it. One annotation, two spellings.
+2. Yes. "Can only be applied to a chapter" is Cover's `specifically` testing the writing it is in (E65); the first library already runs each annotation's specification against its writing this way.
+3. The book searches its parts for the chapter carrying Cover, through a member on Composition that searches parts by kind. The first library has that member and finds the book's author through it.
+4. Position is no longer how the cover is found; E30's order is still a rule the book tests (Doug, 2026-09-20).
+5. Synopsis and Table of Contents are types applied to chapters, found the same way (E30, E33; Doug: "it has a .synopsis file literally").
+6. Heading is a class, found among a section's parts by kind, which with the levels as classes is `instanceof`. Not by position.
+7. Title and Summary are classes, as the Genesis has them, and come first (E30). Doug, 2026-09-15: "The chapter title IS the heading of its first section PERIOD." Summary is parenthetical by default.
+8. Part is a Book in a book, by inheritance (E31). Our reading.
+9. A specification failure, not an API check: a section has one heading is a test (E65, and the ruling that specification is wherever safety can be compiled out).
+10. Each class asks for its own canonical — heading, title, cover — and the Genesis names no general member.
+
+**B. Lifting**
+1. Not a member. The book's bond imports its cover's annotations upward (E57). The first library read through with getters instead; that is a change.
+2. A copy into the book; the cover keeps its own, since it is where they are authored and the Cover annotation's specification demands it carry them.
+3. The ones the book's bond chooses — By and About (E57), and its cover's types, which the book "sees and decides it deserves" (E35).
+4. Translating is what the book's bond may do on the way (E35). No member.
+5. Through `add`, so the first of a kind stays first for transitivity (E38); `ensure` would refuse a second By, and a book may carry several (E36).
+
+**C. What Writing gets from $Chemistry**
+1. Built before your bond runs. The synthesis binds every child and runs its bond, then applies the parent's bond constructor to the arguments; inline runs are lifted into a block whose pieces are instances. That is E54's "transduced".
+2. The framework hands the children as arguments; the class sets its own source. `source = [...children]` is the class's line. The framework keeps the React children beside it.
+3. Nothing. An async bond constructor may return a promise, recorded as the chemical's construction; nothing waits for it.
+4. Yes, every chemical knows its parent, and it is the framework's: `parent` is a getter and setter; a chemical is born its own parent; joining a parent enrols it in the parent's reaction; the parent is assigned before the bond constructor runs. One caution from the framework's branch library: the bonded child and the drawn per-mount derivative are two objects, and only the bonded one carries its place in the graph.
+5. A method you write: `view()` returns React, defaulting to the children; a block draws its own pieces. The framework never renders from source on its own (E25: a chemical draws what it holds where it decides).
+6. Plain fields are reactive; `$`-prefixed fields are props; computed getters re-run when read; a write is news by value; a write inside the writer's own bond constructor is construction, not news. Nothing cached (E64).
+7. `elements`, over the field `$elements`; a piece is `string | number | $Chemical`.
+8. `$Writing` is the class and `Writing` is the component the framework's export pattern makes so `<Writing>` can be written; `$Writing$` was the first library's interface and is under our proposal to drop unless something outside the class needs it. Your `type $Writing = Writing` is your notation.
+
+**D. Writing and the API**
+1. `narrative` (Doug, 2026-09-20). The first library's `print` is dropped. Parenthetical leans toward hidden rather than not rendered; annotations still print.
+2. A named Type is a class, so `find(T)` is `instanceof`, and finding by type is finding by name. Cover uses `add` in your model because of a problem that no longer exists.
+3. Class-level, overridden by what is written inside the tag (E26, E35, E64). Not a prop.
+4. `specify` does not descend. The scaffolded suite walks the tree and calls each writing's `specify`. The first library had a rule that descended and named each failure's place; the place-naming is worth carrying into the suite's walk.
+5. Replace by naming it again, and waive by returning false — the first library collects rules by name along the prototype chain, and four kinds waive "says something" that way. Our reading of "property inheritance", matching yours.
+6. In production nothing is checked. A section without its heading is a void in test mode; the first library's recovery of a heading from the opening sentence is the parse, and the parse is gone.
+7. Three: production, dev and test. The framework and the first library read one flag, `NODE_ENV !== 'production'`; the framework asks a chemical whether it is valid after its bond; the suite calls `specify` directly. Doug: "we should have a test mode."
+
+**E. Composition**
+1. `instanceof`, subclass included (E26's unique check is `instanceof`; E31 needs a Part to splice as a Book). `parts` splices as the Genesis says. The first library stopped splicing after measuring that drawing from the spliced reading dissolved every nested section and list; the Genesis answers that with `contents`, which drawing reads.
+2. Same-kind nesting, checked against the parent (E7, E10).
+3. Computed.
+4. Its Section's. The first library counts a heading against the section it opens, never against headings; E7 agrees.
+5. Reading members only. The five operations are the tail's (E65); "no parts on type… parts is on Composition, the body" (E27). Parts are what was written.
+
+**F. Reference and Referent**
+1. A superclass: the first library's mention class extends its reference class, which is what E22 asked. `Referent extends Reference`.
+2. `read`, and `follow` for a path — the first library's words ("a piece of writing is read for what it means"); the Genesis names no verb, so this is offered, not ruled.
+3. The id is what a Mentioned confers (E21), worn by the element; a writing wears an id only when a mention allocated it (Doug, 2026-09-20).
+4. At render, in the writing's own view, by handing the Format an `as`: a writing whose meaning addresses draws as an anchor, and if it wears a format the format is told to draw as one.
+
+**G. Canonical, the Letter**
+1. Authored by the writer; the compiler writes its address (E52). Doug, 2026-09-15: "canonicals are uniquely associated with something so they are always FOR it." A mention written with no words draws its mark, "the box that leads to a book" — E33's nameless reappearing symbol.
+2. Where its written target names, resolved by the compiler.
+
+**H. Type, Of, Quote, Format, Theme**
+1. Yes, from its written text.
+2. A book (E52; the first library's author and subject are mentions of a book).
+3. Classes, and their names are what a Type tag resolves: Biography under Type, Autobiography under Biography, "so a book carrying it is a biography by ordinary inheritance."
+4. Your Quote is the basic kind (E21), carrying a Mentioned; a block quotation is perhaps a prop on it. A ref's level follows its words; E22's Word is the common case.
+5. Adds nothing to be treated as, and formats as a quote (E21); how it formats is the theme's.
+6. Worn once, as a test — our reading, from the first library.
+7. The holder draws it around itself, and the scope says which theme: the first library's book wraps its drawing in the theme, registered for the book's scope through the framework's `$(A, B)(C)` registration. E25.
+
+**I. Table of contents and the compiler**
+1. A row: a section-grade composition carrying a mention of its chapter. Doug's row of 2026-09-20 carries the chapter mention and the nameless book mention beside it.
+2. The table is written by the author, validated by the compiler ("How are you validating all chapters in the TOC if some of them don't have titles?"), and read when something asks.
+3. Before bonding, over the files: "the compiler that interprets the templates and generates the replacements."
+4. The link and nothing else: `[words](address)`; `[words]()` for the page it stands on; `#key` for an allocated id; a chapter is addressed as its book and its slug.

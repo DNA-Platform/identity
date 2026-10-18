@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Ternary operator semantics and variable equality ]]( claude--Ternary operator semantics and variable equality--e9d7e99f )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Semantic Reference Theory ]]</Project>
+        <Project>***[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>e9d7e99f-5431-47e0-9c38-b39bc1fb4506</Origin>
         <Paragraph>

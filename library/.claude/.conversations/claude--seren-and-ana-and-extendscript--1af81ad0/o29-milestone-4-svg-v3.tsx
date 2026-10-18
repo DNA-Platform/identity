@@ -1,0 +1,88 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ milestone-4-svg v3 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="600" fill="#0a0a2a"/>
+    
+    <!-- Title -->
+    <text x="400" y="60" fill="white" font-family="Arial" font-size="24" text-anchor="middle">Automatic Pattern Uploads</text>
+    <text x="400" y="90" fill="#8a9bb5" font-family="Arial" font-size="16" text-anchor="middle">From Illustrator to StockSubmitter instantly</text>
+
+    <!-- Pattern Files Section -->
+    <g transform="translate(100,150)">
+        <rect width="150" height="200" rx="5" fill="#1e3c72"/>
+        <text x="75" y="-10" fill="white" font-family="Arial" font-size="14" text-anchor="middle">Your Patterns</text>
+        
+        <!-- Pattern Icons -->
+        <g transform="translate(25,20)">
+            <rect width="100" height="30" rx="3" fill="#2a4a8a"/>
+            <text x="50" y="20" fill="white" font-family="Arial" font-size="12" text-anchor="middle">pattern_1.ai</text>
+        </g>
+        
+        <g transform="translate(25,70)">
+            <rect width="100" height="30" rx="3" fill="#2a4a8a"/>
+            <text x="50" y="20" fill="white" font-family="Arial" font-size="12" text-anchor="middle">pattern_2.ai</text>
+        </g>
+        
+        <g transform="translate(25,120)">
+            <rect width="100" height="30" rx="3" fill="#2a4a8a"/>
+            <text x="50" y="20" fill="white" font-family="Arial" font-size="12" text-anchor="middle">pattern_3.ai</text>
+        </g>
+    </g>
+
+    <!-- Upload Process Arrows -->
+    <g transform="translate(300,250)">
+        <path d="M 0,0 L 100,0" stroke="white" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <text x="50" y="-10" fill="#8a9bb5" font-family="Arial" font-size="12" text-anchor="middle">automatic</text>
+    </g>
+
+    <!-- StockSubmitter Interface -->
+    <g transform="translate(450,150)">
+        <rect width="250" height="200" rx="5" fill="#1e3c72"/>
+        <text x="125" y="-10" fill="white" font-family="Arial" font-size="14" text-anchor="middle">StockSubmitter</text>
+        
+        <!-- Progress Bars -->
+        <g transform="translate(25,30)">
+            <rect width="200" height="20" rx="3" fill="#2a4a8a"/>
+            <rect width="180" height="20" rx="3" fill="#4ecdc4"/>
+            <text x="100" y="15" fill="white" font-family="Arial" font-size="12" text-anchor="middle">pattern_1.ai - Uploaded</text>
+        </g>
+        
+        <g transform="translate(25,70)">
+            <rect width="200" height="20" rx="3" fill="#2a4a8a"/>
+            <rect width="140" height="20" rx="3" fill="#4ecdc4"/>
+            <text x="100" y="15" fill="white" font-family="Arial" font-size="12" text-anchor="middle">pattern_2.ai - Uploading</text>
+        </g>
+        
+        <g transform="translate(25,110)">
+            <rect width="200" height="20" rx="3" fill="#2a4a8a"/>
+            <text x="100" y="15" fill="white" font-family="Arial" font-size="12" text-anchor="middle">pattern_3.ai - Queued</text>
+        </g>
+
+        <!-- Status Summary -->
+        <g transform="translate(25,150)">
+            <text x="0" y="0" fill="#4ecdc4" font-family="Arial" font-size="12">✓ 1 Uploaded</text>
+            <text x="0" y="20" fill="#8a9bb5" font-family="Arial" font-size="12">► 1 In Progress</text>
+            <text x="0" y="40" fill="#8a9bb5" font-family="Arial" font-size="12">• 1 Queued</text>
+        </g>
+    </g>
+
+    <!-- Definitions -->
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="white"/>
+        </marker>
+    </defs>
+</svg>`}
+        </CodeBox>
+    </Chapter>
+);

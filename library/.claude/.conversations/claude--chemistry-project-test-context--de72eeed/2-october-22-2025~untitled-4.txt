@@ -1,0 +1,261 @@
+class $BondOrchestrator<T extends $Chemical> {
+    private _chemical: T;
+    private _bondConstructor?: Function;
+    private _parameters: { isArray: boolean, isSpread: boolean }[] = [];
+    private _rendered: Map<Function, ReactElement> = new Map();
+    private _lastAguments?: $BondArguments;
+    private _actions: (() => void)[] = [];
+    private _executionContext: $BondExecutionContext;
+
+    mounting: 'Before' | 'After' = 'Before';
+    rendering: 'Before' | 'During' | 'After' = 'Before';
+
+    get actions() { return this._actions; }
+    get executionContext() { return this._executionContext; }
+
+    constructor(chemical: T) {
+        this._chemical = chemical;
+        const name = chemical[$type].name;
+        this._bondConstructor = (chemical as any)[name];
+        this.parseBondConstructor();
+        this._executionContext = new $BondExecutionContext(chemical);
+    }
+
+    bond(props: any, parentContext?: $BondOrchestrationContext): any {
+        $Bond.reactive = false;
+        this.rendering = 'During';
+
+        const chemical = this._chemical;
+        props = this.checkProps(props);
+        let children: ReactNode = props.children;
+        const context = new $BondOrchestrationContext(chemical, this._parameters);
+        parentContext?.childContexts.push(context);
+        
+        this._rendered = new Map();
+        this.bindProps(chemical, props);
+        
+        this.process(children, context);
+        if (context.isModified) {
+            children = context.build();
+            props = { ...props, children: children || [] };
+        }
+
+        chemical[$children] = props.children;
+
+        $Bond.context = this._executionContext;
+        if (this._bondConstructor && context.argsValid) {
+            if (!this._lastAguments || !$BondArguments.equals(this._lastAguments, context.arguments)) {
+                paramValidation.reset();
+                paramValidation.chemical = this._chemical;
+                paramValidation.paramCount = this._parameters.length;
+                this._bondConstructor!.apply(this._chemical, context.arguments.values);
+                this._lastAguments = context.arguments;
+                paramValidation.eval();
+            }
+        }
+
+        $Bond.context = undefined;
+        $Bond.reactive = true;
+        chemical[$formula].refresh();
+        return props;
+    }
+
+    render(): ReactNode {
+        const chemical = this._chemical;
+        const formula = chemical[$formula];
+        const executionContext = this._executionContext;
+
+        $Bond.context = executionContext;
+        let view = chemical.view();
+        view = this.augmentView(view);
+        $Bond.context = undefined;
+
+        this.rendering = 'After';
+        return view;
+    }
+
+    private parseBondConstructor() {
+        if (!this._bondConstructor) return;
+        
+        const match = this._bondConstructor.toString().match(/\(([^)]*)\)/);
+        if (!match) throw new Error(`Cannot parse constructor for ${this._chemical[$type].name}`);
+        
+        const paramString = match[1].trim();
+        if (!paramString) return;
+        
+        this._parameters = paramString.split(',')
+            .map(p => p.trim())
+            .map(p => ({ 
+                isSpread: p.startsWith('...'), 
+                isArray: false 
+            }));
+    }
+
+    private checkProps(props: any) {
+        props = props || {};
+        const isEmpty = Object.keys(props).length === 0;
+        if (isEmpty) props = this._chemical[$lastProps] || props;
+        if (!props.children && this._chemical[$lastProps].children) 
+            props.children = this._chemical[$lastProps].children || [];
+        return props;
+    }
+
+    private bindProps(chemical: $Chemical, props: any) {
+        const $chemical$: any = chemical;
+        for (const prop in props) {
+            if (typeof prop === 'symbol' || prop === 'children' || prop === 'key' || prop === 'ref') continue;
+            $chemical$['$' + prop] = props[prop];
+        }
+        chemical[$formula].refresh();
+    }
+
+    private process(children: ReactNode, context: $BondOrchestrationContext) {
+        const childArray = React.Children.toArray(children);
+        context.singleton = !Array.isArray(children) && childArray.length === 1;
+        console.log(this._chemical.toString(), 'process', childArray.length)
+        childArray.map(child => {
+            context = context.next(child);
+            if (context.isElement) {
+                console.log(this._chemical.toString(), 'process.isElement');
+                this.processElement(child as React.ReactElement<any>, context)
+            } else if (Array.isArray(child)) {
+                const arrayContext = context.array();
+                this.processArray(child, arrayContext);
+            } else if (typeof child === 'string') {
+                context = context.parent; 
+            } else {
+                context.args.push(child);
+                context.children.push(child);
+            }
+        });
+    }
+
+    private processElement(element: React.ReactElement<any>, context: $BondOrchestrationContext) {
+        console.log('processElement:context', `${context}`)
+        let type = element.type as any;
+        //console.log(this._chemical.toString(), 'processElement:type', type);
+        if (type === React.Fragment && element.key?.toString().startsWith('chem-')) {
+            //console.log(this._chemical.toString(), 'processElement:type', 'chem-fragment');
+            const cid = parseInt(element.key.toString().replace('chem-', ''));
+            const chemical = $chemicalRegistry.get(cid)!;
+            context.args.push(chemical);
+            context.children.push({ type: chemical.Component, props: {}, key: element.key })
+            this._rendered.set(chemical.Component, element);
+        } else if (type === List) {
+            //console.log(this._chemical.toString(), 'processElement:type', 'List');
+            context.isModified = true;
+            const arrayContext = context.array();
+            this.processArray(React.Children.toArray(element.props?.children || []), arrayContext);
+        } else if (type == Undefined) {
+            context.args.push(undefined);
+        } else if (typeof type === 'function') {
+            let component: $$Component = type; 
+            if (!component.$bind) {
+                let func = type as React.FC;
+                component = $wrap(func).$Component;
+            }
+            if (!component.$bound) {
+                component = component.$bind(this._chemical);
+            }
+            const chemical = component.$chemical;
+            if (!chemical[$parent])
+                chemical[$parent] = this._chemical;
+
+            const props = context.child(chemical, element.props);
+            const key = `${chemical[$cid]}`;
+            context.args.push(chemical);
+            if (props !== element.props || key !== element.key) {
+                context.children.push({ type: component, props: props, key: `${chemical[$cid]}` });
+                context.isModified = true;
+                console.log('component.$bound', component.$bound)
+            }
+        } else if (Array.isArray(element)) {
+            const arrayContext = context.array();
+            this.processArray(element, arrayContext);
+        } else if (typeof type === 'string') {
+            const intrinsicElement = new $Html(type as any, element.props);
+            context.args.push(intrinsicElement);
+            context.children.push(element);
+        } else {
+            const isFragment = type === React.Fragment && !element.key?.toString().startsWith('chem-');
+            const isPortal = (element as any).$$typeof === Symbol.for('react.portal');
+            const isLazy = type && type.$$typeof === Symbol.for('react.lazy');
+            const isIterable = element && typeof (element as any)[Symbol.iterator] === 'function';
+            
+            if (isFragment || isPortal || isLazy || isIterable) {
+                const invalidType = 
+                    isFragment ? 'React Fragment' : 
+                    isPortal ? 'React Portal' : 
+                    isLazy ? 'Lazy/Async Component' : 
+                    'Iterable (non-array)';
+
+                throw new Error(
+                    `Chemistry Error: ${invalidType} cannot be used as child in ${this._chemical[$type].name}. ` +
+                    `Only Chemistry components, function components, arrays, and primitives are supported.`
+                );
+            }
+
+            context.args.push(element.props);
+            context.children.push(element);
+        }
+    }
+
+    private processArray(elements: any[], context: $BondOrchestrationContext) {
+        elements.map(item => {
+            context.isModified = true;
+            context = context.next(item);
+            if (context.isElement) {
+                this.processElement(item as React.ReactElement<any>, context)
+            } else if (Array.isArray(item)) {
+                context = context.array();
+                this.processArray(item, context);
+            } else {
+                context.args.push(item);
+                context.children.push(item);
+            }
+        });
+    }
+
+    private augmentView(view: ReactNode): ReactNode {
+        const augmented = this.augmentNode(view);
+        return React.createElement(
+            React.Fragment,
+            { key: `chem-${this._chemical[$cid]}` },
+            augmented,
+        );
+    }
+
+    private augmentNode(node: ReactNode): ReactNode {
+        if (!node) return node;
+        
+        if (React.isValidElement(node)) {
+            // Check if we've already rendered this
+            const rendered = this._rendered.get(node.type as Function);
+            if (rendered) return rendered;
+            
+            const children = (node.props as any)?.children;
+            
+            // Only recurse if there are children
+            if (children) {
+                const augmented = React.Children.map(children, child => this.augmentNode(child));
+                if (augmented !== children) {
+                    return React.cloneElement(node, {}, augmented);
+                }
+            }
+            
+            return node;
+        }
+        
+        if (Array.isArray(node)) {
+            let changed = false;
+            const augmented = node.map(child => {
+                const aug = this.augmentNode(child);
+                changed ||= aug !== child;
+                return aug;
+            });
+            return changed ? augmented : node;
+        }
+        
+        return node;
+    }
+}

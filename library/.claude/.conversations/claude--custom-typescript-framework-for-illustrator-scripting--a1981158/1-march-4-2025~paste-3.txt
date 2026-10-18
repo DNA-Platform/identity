@@ -1,0 +1,1649 @@
+type SmoothingType = "bezier" | "catmullRom" | "tension" | "bSpline" | "cubicSpline";
+type PathPointData = { anchor: Position; leftDirection: Position; rightDirection: Position; pointType: PointType };
+type PointData = { a: Position, l: Position, r: Position, p: PointType };
+type $Color = DynamicColor | Color | WebColor | string;
+
+class ContainerItem {
+    private _q: LayerQuery;
+    private q(): LayerQuery { return this._q; }
+    private item(): Layer { return this.q().item(); }
+    private pathItems(): PathItems { return this.q().collection(); }
+    app(): ApplicationQuery { return this.q().api(); }
+    document(): DocumentQuery { return this.q().document(); }
+    artboard(): ArtboardQuery { return this.q().artboard(); }
+    region(): Region { return this.artboard().region(); }
+
+    constructor(queryItem: Queryable<Layer, any> | Queryable<GroupItem, any>) {
+        if (queryItem.queryItemType === "LayerQuery")
+            this._q = (queryItem as LayerQuery).pathItems();
+        else if (queryItem.queryItemType === "GroupItemQuery")
+            this._q = (queryItem as GroupItemQuery).pathItems() as any;
+        else
+            throw `queryType ${queryItem?.queryType} not supported`;
+    }
+
+    rectangle(name?: string, center?: Position, width?: number, height?: number): PathItemQuery {
+        var region = this.region();
+        if (center === undefined) center = region.center();
+        if (width === undefined) width = region.width();
+        if (height === undefined) height = region.height();
+
+        center = region.toParentPosition(center);
+        width = region.toParentUnits(width);
+        height = region.toParentUnits(height);
+        var top = center[1] + height / 2;
+        var left = center[0] - width / 2;
+
+        var newItem = q<PathItemQuery>(this.pathItems().rectangle(top, left, width, height));
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.p().bringToFront();
+        api.redraw();
+
+        return newItem;
+    }
+
+    ellipse(name?: string, center?: Position, width?: number, height?: number): PathItemQuery {
+        var region = this.region();
+        if (center === undefined) center = region.center();
+        if (width === undefined) width = Math.min(region.width(), region.height()) / 2;
+        if (height === undefined) height = width;
+    
+        center = region.toParentPosition(center);
+        width = region.toParentUnits(width);
+        height = region.toParentUnits(height);
+    
+        var top = center[1] + height / 2;
+        var left = center[0] - width / 2;
+    
+        var newItem = q<PathItemQuery>(this.pathItems().ellipse(top, left, width, height));
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.p().bringToFront();
+        api.redraw();
+
+        return newItem;
+    }
+
+    polygon(name?: string, center?: Position, radius?: number, sides: number = 6): PathItemQuery {
+        var region = this.region();
+        if (center === undefined) center = region.center();
+        if (radius === undefined) radius = Math.min(region.width(), region.height()) / 4;
+    
+        center = region.toParentPosition(center);
+        radius = region.toParentUnits(radius);
+    
+        var newItem = q<PathItemQuery>(this.pathItems().polygon(center[0], center[1], radius, sides));
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.p().bringToFront();
+        api.redraw();
+
+        return newItem;
+    }
+
+    star(name?: string, center?: Position, radius?: number, innerRadius?: number, points: number = 5, reversed = false): PathItemQuery {
+        var region = this.region();
+        if (center === undefined) center = region.center();
+        if (radius === undefined) radius = Math.min(region.width(), region.height()) / 4;
+        if (innerRadius === undefined) innerRadius = radius / 2;
+    
+        var centerAbs = region.toParentPosition(center);
+        var radiusAbs = region.toParentUnits(radius);
+        var innerRadiusAbs = region.toParentUnits(innerRadius);
+    
+        var newItem = q<PathItemQuery>(this.pathItems().star(centerAbs[0], centerAbs[1], radiusAbs, innerRadiusAbs, points, reversed));
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.p().position(center);
+        newItem.p().bringToFront();
+        api.redraw();
+
+        return newItem;
+    }
+
+    line(name?: string, start?: Position, end?: Position): PathItemQuery {
+        var region = this.region();
+    
+        // Default line: horizontally centered across the region
+        var center = region.center();
+        if (start === undefined) start = [(center[0] + region.left()) * 0.5, center[1]];
+        if (end === undefined) end = [(center[0] + region.right()) * 0.5, center[1]];
+    
+        // Convert start and end to absolute positions
+        start = region.toParentPosition(start);
+        end = region.toParentPosition(end);
+    
+        // Create a new path item
+        var newItem = this.q().createPathItem();
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.p().bringToFront();
+        api.redraw();
+
+        api.redraw();
+        newItem.item().setEntirePath([
+            [start[0], start[1]], // Start point
+            [end[0], end[1]]      // End point
+        ]);
+        api.redraw();
+
+        newItem.makeAngular();
+        newItem.set().closed(false)
+    
+        return newItem;
+    }
+
+    curve(name?: string, ...positions: Position[]): PathItemQuery {
+        // Create a new path item
+        var newItem = this.q().createPathItem();
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.p().bringToFront();
+        api.redraw();
+
+        f(positions).do(position => {
+            var point = newItem.pathPoints().createPathPoint();
+            point.set()
+                .pointType(PointType.SMOOTH)
+                .anchor(position)
+                .leftDirection(position)
+                .rightDirection(position);
+
+            api.redraw();
+        });
+
+        newItem.makeCurve();
+        return newItem;
+    }
+
+    angularPath(name?: string, ...positions: Position[]): PathItemQuery {
+        // Create a new path item
+        var newItem = this.q().createPathItem();
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.p().bringToFront();
+
+        f(positions).do(position => {
+            var point = newItem.pathPoints().createPathPoint();
+            point.set()
+                .pointType(PointType.CORNER)
+                .anchor(position)
+                .leftDirection(position)
+                .rightDirection(position);
+
+            api.redraw();
+        });
+
+        newItem.makeAngular();
+        return newItem;
+    }
+
+    pathFunction( 
+        config?: {
+            name?: string, 
+            length?: number, 
+            bounds?: RegionBounds | Range, 
+            axisType?: AxisType,
+        },
+        update?: (p: PathFunction) => void | any
+    ): PathItemQuery {
+        if (!config) config = {};
+        if (!config.length) config.length = 10;
+        if (!config.bounds) config.bounds = this.region().bounds();
+        if (config.bounds.length == 2) 
+            config.bounds = f(config.bounds).concat(config.bounds).a();
+        if (!config.axisType) config.axisType = AxisType.Unit;
+        var { name, length, axisType } = config;
+        var bounds: RegionBounds = config.bounds as any;
+
+        var pathFunction = new PathFunction(length, bounds, axisType);
+        if (update !== undefined)
+            pathFunction.apply(update);
+
+        var newItem = this.curve(name, ...pathFunction.path().a());
+
+        pathFunction.onChange().subscribe(p => {
+            if (newItem.closed() !== p.closed()) {
+                p.closed() ? newItem.close() : newItem.open();
+                api.redraw();
+            }
+            if (!this.curve) {
+                newItem.makeCurve();
+                api.redraw();
+            }
+            if (newItem.strokeWidth() != p.strokeWidth()) {
+                newItem.strokeWidth(p.strokeWidth());
+                api.redraw();
+            }
+            if (!newItem.strokeColor().equals(p.strokeColor())) {
+                newItem.strokeColor(p.strokeColor());
+                api.redraw();
+            }
+            if (p.closed() && !newItem.fillColor().equals(p.fillColor())) {
+                newItem.fillColor(p.fillColor());
+                api.redraw();
+            }
+            
+            var newPath = p.path();
+            if (!newItem.pathPositions().equals(newPath)) {
+                newItem.setPath(newPath);
+                newItem.makeCurve();
+                api.redraw()
+            }
+        });
+        
+        var state = newItem.item() as any;
+        state._pathFunction = pathFunction;
+        newItem.pathFunction().build();
+        return newItem;
+    }
+
+    vector(name: string, path: Vector, type?: SmoothingType): PathItemQuery {
+        var positions: Position[] = path.a();
+        var newPath = this.curve(name, ...positions);
+        newPath.smooth(type);
+        return newPath;
+    }
+}
+
+class PathItemQuery extends Queryable<PathItem, PathPointQuery> {
+    private _pathPoints: PathItemQuery | undefined
+    private state(): any {  return this.item(); }
+
+    set(name?: string): SetPathItemProperties { return new SetPathItemProperties(this as any, name); }
+    closed(): boolean { return this.item().closed; }
+    close(): this { this.item().closed = true; return this; }
+    open(): this { this.item().closed = false; return this; }
+
+    stroked(): boolean { return this.item().stroked; }
+    stroke(): this { this.item().stroked = true; this.api().redraw(); return this; }
+    resetStroke(): this { this.item().stroked = false; this.api().redraw(); return this; }
+
+    filled(): boolean { return this.item().filled; }
+    fill(): this { this.item().filled = true; this.api().redraw(); return this; }
+    resetFill(): this { this.item().filled = false; this.api().redraw(); return this; }
+
+    strokeWidthAbs(): number { return this.item().strokeWidth; }
+    strokeWidth(newStrokeWidth?: number) { 
+        var region = this.region();
+        if (newStrokeWidth !== undefined) {
+            this.item().strokeWidth = region.toParentUnits(newStrokeWidth);
+            this.stroke();
+        }
+        return region.toRelativeUnits(this.strokeWidthAbs());
+    }
+
+    opacityAbs(): number { return this.item().opacity; }
+    opacity(newOpacity?: number): number {
+        if (newOpacity !== undefined) {
+            this.item().opacity = 100 * newOpacity;
+            this.api().redraw();
+        }
+        return this.item().opacity / 100;
+    }
+
+    fillColor(newColor?: $Color): DynamicColor {
+        if (newColor) {
+            var color = new DynamicColor(newColor);
+            this.item().fillColor = color.flatten().rgb();
+            this.fill();
+        }
+        return new DynamicColor(this.item().fillColor, this.opacity());
+    }
+
+    fillColorComplex(newColor?: Color): Color {
+        if (newColor) {
+            this.item().fillColor = newColor;
+            this.fill();
+        }
+        return this.item().fillColor;
+    }
+
+    strokeColor(newColor?: $Color, newOpacity?: number) {
+        if (newColor) {
+            var color = new DynamicColor(newColor);
+            this.opacity(newOpacity === undefined ? color.opacity() : newOpacity);
+            this.item().strokeColor = color.rgb();
+        }
+        return new DynamicColor(this.item().strokeColor, this.opacity()); 
+    }
+
+    strokeColorComplex(newColor?: Color): Color {
+        if (newColor) {
+            this.item().strokeColor = newColor;
+            this.stroke();
+        }
+        return this.item().strokeColor;
+    }
+
+    defaultPointType(newType?: PointType): PointType {
+        if (newType !== undefined) 
+            this.state()._defaultPointType = newType;
+        return this.state()._defaultPointType;
+    }
+
+    defaultSmoothingType(newType?: SmoothingType): SmoothingType {
+        if (newType !== undefined) 
+            this.state()._defaultSmoothingType = newType;
+        return this.state()._defaultSmoothingType;
+    }
+
+    curve(): boolean {
+        const allSmooth = this.pathPoints().all(p => p.item().pointType === PointType.SMOOTH);
+        return allSmooth;
+    }
+
+    angular(): boolean {
+        const allCorner = this.pathPoints().all(p => p.item().pointType === PointType.CORNER);
+        return allCorner;
+    }
+
+    region(): Region {
+        return this.p().region();
+    }
+
+    pathPoints() {
+        if (this.collectionType === "pathPoints") return this;
+        if (this._pathPoints) return this._pathPoints;
+        this._pathPoints = new PathItemQuery(this._item());
+        return this._pathPoints;
+    }
+
+    pathPositions(): Vector {
+        return v(this.pathPoints().select(p => p.anchor() as Position));
+    }
+
+    pathFunction(): PathFunction {
+        return this.state()._pathFunction as PathFunction;
+    }
+
+    constructor(pathItem: PathItem) {
+        super(pathItem, "pathPoints");
+        this.defaultPointType(PointType.SMOOTH);
+        this.defaultSmoothingType("catmullRom");
+    }
+
+    makeAngular() {
+        this.pathPoints().do(p => {
+            const anchor = p.anchor();
+            p.set()
+                .pointType(PointType.CORNER)
+                .leftDirection(anchor)
+                .rightDirection(anchor);
+        });
+        this.defaultPointType(PointType.CORNER);
+    }
+
+    makeCurve(type?: SmoothingType) {
+        this.pathPoints().do(p => p.set().pointType(PointType.SMOOTH));
+        this.defaultPointType(PointType.SMOOTH);
+        this.smooth(type);
+    }
+
+    createPathPoint(): PathPointQuery {
+        var pathPoint = this._create(i => i.item().pathPoints, pathPoints => q(pathPoints.add()));
+        return pathPoint as PathPointQuery;
+    }
+
+    setPath(positions: Vector): A<PathPointQuery> {
+        var region = this.region();
+        var pathPoints = positions.select(p => region.toParentPosition(p));
+        this.item().setEntirePath(pathPoints.a());
+        return this.query();
+    }
+
+    addPathPoints(...positions: Position[]): A<PathPointQuery> {
+        var pathPoints: A<PathPointQuery> = f([]);
+        var originalPointCount = this.length();
+        var isCurve = this.curve();
+        f(positions).do(position => {
+            const newCornerPoint = this.createPathPoint();
+            newCornerPoint.set()
+                .anchor(position)
+                .leftDirection(position)
+                .rightDirection(position)
+                .pointType(this.defaultPointType());
+
+            pathPoints.push(newCornerPoint);
+        });
+
+        if (isCurve) {
+            this.makeCurve();
+            this.smooth();
+        }
+
+        return this.query().skip(originalPointCount);
+    }
+
+    extendPath(...delta: Delta): PathPointQuery {
+        const lastPoint = this.pathPoints().last();
+        if (!lastPoint) throw new Error("No existing path points to extend from.");
+    
+        const lastAnchor = lastPoint.anchor(); // Relative anchor
+        const newAnchor: Position = [lastAnchor[0] + delta[0], lastAnchor[1] + delta[1]];
+    
+        return this.addPathPoints(newAnchor).first();
+    }
+
+    extendPathRadially(length: number, angle: number, direction: Direction = "c", radians: boolean = false): PathPointQuery {
+        const lastPoint = this.pathPoints().last();
+        if (!lastPoint) throw new Error("No existing path points to extend from.");
+    
+        const lastAnchor = lastPoint.anchor(); // Relative anchor
+        const angleInRadians = radians ? angle : Region.toRadians(angle);
+    
+        // Calculate new position using polar coordinates
+        const deltaX = length * Math.cos(angleInRadians);
+        const deltaY = length * Math.sin(angleInRadians);
+    
+        const newAnchor = direction === "c" 
+            ? [lastAnchor[0] + deltaX, lastAnchor[1] + deltaY]
+            : [lastAnchor[0] - deltaX, lastAnchor[1] - deltaY];
+    
+        return this.addPathPoints(newAnchor as Position).first();
+    }
+
+    addPathPointVector(positionVector: Vector, replace: boolean = true): A<PathPointQuery> {
+        var positions = positionVector.pos().a();
+        if (!replace) {
+            return this.addPathPoints(...positions);
+        }
+
+        this.item().setEntirePath(positions);
+        this.stroke().fill().api().redraw();
+
+        return this.query();
+    }
+
+    smooth(type: SmoothingType = "catmullRom", tension: number = 0.16): PathItemQuery {
+        if (type === undefined) type = this.defaultSmoothingType();
+        var pathPoints = this.pathPoints().array().a();
+        var closed = this.closed();
+        switch (type) {
+            case "bezier":
+                Smoothing.bezier(pathPoints, closed);
+                break;
+            case "catmullRom":
+                Smoothing.catmullRom(pathPoints, closed);
+                break;
+            case "tension":
+                Smoothing.tension(pathPoints, closed, tension);
+                break;
+            case "bSpline":
+                Smoothing.bSpline(pathPoints, closed);
+                break;
+            case "cubicSpline":
+                Smoothing.cubicSpline(pathPoints, closed);
+                break;
+            default:
+                throw new Error(`Unknown smoothing type: ${type}`);
+        }
+        this.api().redraw()
+        return this;
+    }
+
+    split(index: number): SplitPathItemQuery {
+        // Validate index
+        index = evaluateNegativeIndex(index, this.length());
+        const len = this.pathPoints().length();
+    
+        // Duplicate the entire path
+        const rightPath = this.duplicate(this.name() + "[Split]", this, ElementPlacement.PLACEAFTER) as PathItemQuery;
+        
+        // Remove points from each path to create the split
+        // Remove points after index from left path (original)
+        for (let i = len - 1; i > index; i--) {
+            this.at(i).remove();
+        }
+        
+        // Remove points before index from right path
+        for (let i = index - 1; i >= 0; i--) {
+            rightPath.at(i).remove();
+        }
+    
+        return new SplitPathItemQuery(this, rightPath);
+    }
+}
+
+class SplitPathItemQuery {
+    constructor(
+        public left: PathItemQuery, 
+        public right: PathItemQuery) 
+    { }
+
+    merge(): PathItemQuery {
+        // Get positions for alignment
+        const leftEndPoint = this.left.pathPoints().last();
+        const rightStartPoint = this.right.pathPoints().first();
+        
+        // Calculate the translation needed
+        const leftEndPos = leftEndPoint.anchor();
+        const rightStartPos = rightStartPoint.anchor();
+        const dx = leftEndPos[0] - rightStartPos[0];
+        const dy = leftEndPos[1] - rightStartPos[1];
+        this.right.p().translate(dx, dy);
+    
+        // Add all points from right path (except first which matches left's last)
+        this.right.pathPoints().skip(1).forEach(point => {
+            const newPoint = this.left.addPathPoints(point.anchor()).first();
+            newPoint.set()
+                .leftDirection(point.leftDirection())
+                .rightDirection(point.rightDirection())
+                .pointType(point.item().pointType);
+        });
+    
+        // Remove the right path
+        this.right.remove();
+    
+        return this.left;
+    }
+
+    static split(path: PathItemQuery, index: number) {
+        // Validate index
+        index = evaluateNegativeIndex(index, path.length());
+        const len = path.pathPoints().length();
+    
+        // Duplicate the entire path
+        const rightPath = path.duplicate(path.name() + "[Split]", path, ElementPlacement.PLACEAFTER) as PathItemQuery;
+        
+        // Remove points from each path to create the split
+        // Remove points after index from left path (original)
+        for (let i = len - 1; i > index; i--) {
+            path.at(i).remove();
+        }
+        
+        // Remove points before index from right path
+        for (let i = index - 1; i >= 0; i--) {
+            rightPath.at(i).remove();
+        }
+    
+        return new SplitPathItemQuery(path, rightPath);
+    }
+}
+
+class PathPointQuery extends Queryable<PathPoint, QueryItem> {
+    set(name?: string): SetPathPointProperties { return new SetPathPointProperties(this as any, name); }
+
+    pointType(newPointType?: PointType): PointType {
+        if (newPointType !== undefined)
+            this.item().pointType = newPointType;
+        return this.item().pointType;
+    }
+
+    // Anchor in absolute units
+    anchorAbs(): Position {
+        return this.item().anchor as Position;
+    }
+
+    // Anchor in relative units (settable)
+    anchor(newAnchor?: Position): Position {
+        const region = this.region();
+        if (newAnchor) {
+            this.item().anchor = region.toParentPosition(newAnchor);
+        }
+        return region.toRelativePosition(this.item().anchor as Position);
+    }
+
+    // Left direction in absolute units
+    leftDirectionAbs(): Position {
+        return this.item().leftDirection as Position;
+    }
+
+    // Left direction in relative units (settable)
+    leftDirection(newLeftDirection?: Position): Position {
+        const region = this.region();
+        if (newLeftDirection) {
+            this.item().leftDirection = region.toParentPosition(newLeftDirection);
+        }
+        return region.toRelativePosition(this.item().leftDirection as Position);
+    }
+
+    // Right direction in absolute units
+    rightDirectionAbs(): Position {
+        return this.item().rightDirection as Position;
+    }
+
+    // Right direction in relative units (settable)
+    rightDirection(newRightDirection?: Position): Position {
+        const region = this.region();
+        if (newRightDirection) {
+            this.item().rightDirection = region.toParentPosition(newRightDirection);
+        }
+        return region.toRelativePosition(this.item().rightDirection as Position);
+    }
+    
+    constructor(pathPoint: PathPoint) {
+        super(pathPoint);
+    }
+}
+
+enum AxisType {
+    FirstQuadrant, //[0, 1, 0, 1],
+    UpperHalfPlans, //[-1, 1, 0, 1],
+    LowerHalfPlans, //[-1, 1, -1, 0],
+    RightHalfPlans, //[0, 1, -1, 1],
+    LeftHalfPlans, //[-1, 0, -1, 1],
+    Unit, //[-1, 1, -1, 1],
+    UnitCircle, //[-pi, pi, -pi, p],
+}
+
+class PathFunction {
+    private _bounds: RegionBounds;
+    private _axis: AxisType;
+    private _length: number;
+    private _xFuncs: A<(p: PathFunction, x: Vector) => Vector> = f([]);
+    private _yFuncs: A<(p: PathFunction, y: Vector) => Vector> = f([]);
+    private _pathFuncs: A<(p: PathFunction, x: Vector, y: Vector, v: Vector) => Vector | Position | number> = f([]);
+    private _onChange = new Subscribable<PathFunction>();
+    private _complex: boolean = false;
+    private _processing: boolean = false;
+    private _x: Vector = v();
+    private _y: Vector = v();
+    private _f: Vector = v();
+    private _closed: boolean = false;
+    private _fillColor: DynamicColor = new DynamicColor(WebColor.White, 0);
+    private _strokeColor: DynamicColor = new DynamicColor(WebColor.Black);
+    private _strokeWidth: number = 0.002;
+
+    private enable() {
+        this._processing = false;
+    }
+
+    private disable() {
+        this._processing = true;
+    }
+
+    processing() {
+        return this._processing;
+    }
+
+    length(newLength?: number): number {
+        if (newLength !== undefined) {
+            this._length = newLength;
+            this.build();
+        }
+        return this._length;
+    }
+
+    bounds(newBounds?: RegionBounds): RegionBounds {
+        if (newBounds !== undefined) {
+            this._bounds = clone(newBounds);
+            this.onChange().fire(this);
+        }
+        return clone(this._bounds);
+    }
+
+    range(axis: "x" | "y", newRange?: Range): Range {
+        var i = axis === "x" ? 0 : 2;
+        var j = axis === "x" ? 1 : 3;
+        if (newRange) {
+            this._bounds[i] = newRange[0];
+            this._bounds[j] = newRange[1];
+            this.onChange().fire(this);
+        }
+        return [this._bounds[i], this._bounds[j]];
+    }
+
+    axisType(newAxis?: AxisType): AxisType {
+        if (newAxis !== undefined) {
+            this._axis = newAxis;
+            this.build();
+        }
+        return this._axis;
+    }
+
+    closed(close?: boolean): boolean {
+        if (close !== undefined) {
+            this._closed = close;
+            this.onChange().fire(this);
+        }
+        return this._closed;
+    }
+
+    close(): this {
+        this.closed(true);
+        return this;
+    }
+
+    open(): this {
+        this.closed(false);
+        return this;
+    }
+
+    fillColor(newColor?: DynamicColor | WebColor | string | RGBColor, opacity: number = 1.0): DynamicColor {
+        if (newColor !== undefined) {
+            if (!(newColor instanceof DynamicColor))
+                newColor = new DynamicColor(newColor, opacity);
+            this._fillColor = newColor;
+            this.onChange().fire(this);
+        }
+        return this._fillColor;
+    }
+
+    strokeColor(newColor?: DynamicColor | WebColor | string | RGBColor, opacity: number = 1.0): DynamicColor {
+        if (newColor !== undefined) {
+            if (!(newColor instanceof DynamicColor))
+                newColor = new DynamicColor(newColor, opacity);
+            this._strokeColor = newColor;
+            this.onChange().fire(this);
+        }
+        return this._strokeColor
+    }
+
+    strokeWidth(newWidth?: number): number {
+        if (newWidth !== undefined) {
+            this._strokeWidth = newWidth;
+            this.onChange().fire(this);
+        }
+        return this._strokeWidth
+    }
+
+    x(transform?: (p: PathFunction, x: Vector) => Vector): Vector {
+        if (transform !== undefined) {
+            this._xFuncs.push(transform);
+            this.build();
+        }
+        return this._x;
+    }
+
+    y(transform?: (p: PathFunction, y: Vector) => Vector): Vector {
+        if (transform !== undefined) {
+            this._yFuncs.push(transform);
+            this.build();
+        }
+        return this._y;
+    }
+
+    f(transform?: (p: PathFunction, x: Vector, y: Vector, f: Vector) => Vector | Position | number): Vector {
+        if (transform !== undefined) {
+            this._pathFuncs.push(transform);
+            this.build();
+        }
+        return this._f;
+    }
+
+    fx(transform?: (p: PathFunction, x: Vector, fx: Vector) => Vector | Position | number): Vector {
+        if (transform !== undefined) {
+            this.f((p, x, y, f) => f.x().join(vc(transform(p, x, f.y()), f)));
+        }
+        return this._f.y();
+    }
+
+    fy(transform?: (p: PathFunction, y: Vector, fy: Vector) => Vector | Position | number): Vector {
+        if (transform !== undefined) {
+            this.f((p, x, y, f) => vc(transform(p, y, f.x()), f).join(f.y()));
+        }
+        return this._f.x();
+    }
+
+    fa(axis: "x" | "y" = "x", transform?: (p: PathFunction, x: Vector, fx: Vector) => Vector | Position | number): Vector {
+        return axis == "x" ? this.fx(transform) : this.fy(transform);
+    }
+
+    path(): Vector {
+        var b = this._bounds;
+        var fromRangeX = [this._x.gmin(), this._x.gmax()];
+        var fromRangeY = [this._y.gmin(), this._y.gmax()];
+        var toRangeX = [b[0], b[1]];
+        var toRangeY = [b[2], b[3]];
+        return this._f.x().mapLinear1(fromRangeX, toRangeX).join(
+            this._f.y().mapLinear1(fromRangeY, toRangeY));
+    }
+
+    onChange(): Subscribable<PathFunction> { 
+        return this._onChange;
+    }
+
+    isComplex(isComplex?: boolean): boolean {
+        if (isComplex !== undefined) {
+            this._complex = isComplex;
+        }
+        return this._complex;
+    }
+    
+    constructor(length: number = 10, bounds?: RegionBounds, axisType: AxisType = AxisType.Unit) {
+        this._bounds = bounds ?? [0, 1, 0, 1];
+        this._axis = axisType;
+        this._length = length;
+        this.build();
+    }
+
+    apply(update: (p: PathFunction) => void | any): this {
+        try {
+            this.disable();
+            update(this);
+        } finally {
+            this.enable();
+        }
+        this.build();
+        return this;
+    }
+
+    reset() {
+        this._xFuncs = f([]);
+        this._yFuncs = f([]);
+        this._pathFuncs = f([]);
+        this._closed = false;
+        this.build();
+    }
+
+    build() {
+        if (this.processing()) return;
+        try {
+            this.disable();
+            var { x, y } = this.createAxes();
+            this._x = x; this._y = y;
+            this._f = this._x.join(this._y);
+            if (this.isComplex()) 
+                this._f = this._f.complex()
+
+            var length = this.length();
+            this._xFuncs.do(func => { this._x = func(this, this._x); });
+            this._yFuncs.do(func => { this._y = func(this, this._y); });
+            this._pathFuncs.do(func => { this._f = vc(func(this, this._x, this._y, this._f), length); });
+
+            this.onChange().on();
+            this.onChange().fire(this);
+        } finally {
+            this.enable();
+        }
+    }
+
+    private createAxes(): { x: Vector, y: Vector } {
+        var type = this.axisType();
+        var axisBounds: RegionBounds = [-1, 1, -1, 1]; 
+        switch (type) {
+            case AxisType.Unit:
+                axisBounds = [-1, 1, -1, 1]; 
+                break;
+            case AxisType.UnitCircle:
+                axisBounds = [-Math.PI, Math.PI, -Math.PI, Math.PI]; 
+                break;
+            case AxisType.FirstQuadrant:
+                axisBounds = [0, 1, 0, 1]; 
+                break;
+            case AxisType.UpperHalfPlans:
+                axisBounds = [-1, 1, 0, 1]; 
+                break;
+            case AxisType.LowerHalfPlans:
+                axisBounds = [-1, 1, -1, 0]; 
+                break;
+            case AxisType.RightHalfPlans:
+                axisBounds = [0, 1, -1, 1]; 
+                break;
+            case AxisType.LeftHalfPlans:
+                axisBounds = [-1, 0, -1, 1]; 
+                break;
+            
+        }
+        return {
+            x: Vector.linspace([axisBounds[0], axisBounds[1]], this.length()),
+            y: Vector.linspace([axisBounds[2], axisBounds[3]], this.length()),
+        }
+    }
+}
+
+class Smoothing {
+    /**
+     * Standard Bézier smoothing places handles 1/3 of the way between points.
+     */
+    static bezier(points: PathPointQuery[], isClosed: boolean): void {
+        if (points.length < 2) return;
+
+        for (let i = 0; i < points.length; i++) {
+            const current = points[i].anchor();
+            const prev = points[(i - 1 + points.length) % points.length].anchor();
+            const next = points[(i + 1) % points.length].anchor();
+
+            const deltaXLeft = (prev[0] - current[0]) / 3;
+            const deltaYLeft = (prev[1] - current[1]) / 3;
+
+            const deltaXRight = (next[0] - current[0]) / 3;
+            const deltaYRight = (next[1] - current[1]) / 3;
+
+            points[i].set()
+                .leftDirection([current[0] + deltaXLeft, current[1] + deltaYLeft])
+                .rightDirection([current[0] + deltaXRight, current[1] + deltaYRight]);
+
+            if (!isClosed && (i === 0 || i === points.length - 1)) {
+                // Keep handles for open path endpoints flat
+                points[i].set()
+                    .leftDirection(current)
+                    .rightDirection(current);
+            }
+        }
+    }
+
+    /**
+     * Catmull-Rom smoothing creates curves that pass closer to control points.
+     */
+    static catmullRom(points: PathPointQuery[], isClosed: boolean): void {
+        if (points.length < 2) return;
+
+        for (let i = 0; i < points.length; i++) {
+            const current = points[i].anchor();
+            const prev = points[(i - 1 + points.length) % points.length].anchor();
+            const next = points[(i + 1) % points.length].anchor();
+
+            const deltaX = (next[0] - prev[0]) / 6;
+            const deltaY = (next[1] - prev[1]) / 6;
+
+            points[i].set()
+                .leftDirection([current[0] - deltaX, current[1] - deltaY])
+                .rightDirection([current[0] + deltaX, current[1] + deltaY]);
+
+            if (!isClosed && (i === 0 || i === points.length - 1)) {
+                points[i].set()
+                    .leftDirection(current)
+                    .rightDirection(current);
+            }
+        }
+    }
+
+    /**
+     * Tension-based smoothing allows adjustable curve tightness.
+     */
+    static tension(points: PathPointQuery[], isClosed: boolean, tension: number = 0.16): void {
+        if (points.length < 2) return;
+
+        for (let i = 0; i < points.length; i++) {
+            const current = points[i].anchor();
+            const prev = points[(i - 1 + points.length) % points.length].anchor();
+            const next = points[(i + 1) % points.length].anchor();
+
+            const deltaX = (next[0] - prev[0]) * tension;
+            const deltaY = (next[1] - prev[1]) * tension;
+
+            points[i].set()
+                .leftDirection([current[0] - deltaX, current[1] - deltaY])
+                .rightDirection([current[0] + deltaX, current[1] + deltaY]);
+
+            if (!isClosed && (i === 0 || i === points.length - 1)) {
+                points[i].set()
+                    .leftDirection(current)
+                    .rightDirection(current);
+            }
+        }
+    }
+
+    /**
+     * B-Spline smoothing ensures globally smooth curves.
+     */
+    static bSpline(points: PathPointQuery[], isClosed: boolean): void {
+        if (points.length < 4) return;
+
+        for (let i = 0; i < points.length; i++) {
+            const current = points[i].anchor();
+            const prev = points[(i - 1 + points.length) % points.length].anchor();
+            const next = points[(i + 1) % points.length].anchor();
+
+            const deltaXLeft = (prev[0] - current[0]) / 6;
+            const deltaYLeft = (prev[1] - current[1]) / 6;
+
+            const deltaXRight = (next[0] - current[0]) / 6;
+            const deltaYRight = (next[1] - current[1]) / 6;
+
+            points[i].set()
+                .leftDirection([current[0] + deltaXLeft, current[1] + deltaYLeft])
+                .rightDirection([current[0] + deltaXRight, current[1] + deltaYRight]);
+
+            if (!isClosed && (i === 0 || i === points.length - 1)) {
+                points[i].set()
+                    .leftDirection(current)
+                    .rightDirection(current);
+            }
+        }
+    }
+
+    /**
+     * Cubic spline smoothing approximates natural curves.
+     */
+    static cubicSpline(points: PathPointQuery[], isClosed: boolean): void {
+        if (points.length < 2) return;
+
+        for (let i = 0; i < points.length; i++) {
+            const current = points[i].anchor();
+            const prev = points[(i - 1 + points.length) % points.length].anchor();
+            const next = points[(i + 1) % points.length].anchor();
+
+            const deltaX = (next[0] - prev[0]) / 4;
+            const deltaY = (next[1] - prev[1]) / 4;
+
+            points[i].set()
+                .leftDirection([current[0] - deltaX, current[1] - deltaY])
+                .rightDirection([current[0] + deltaX, current[1] + deltaY]);
+
+            if (!isClosed && (i === 0 || i === points.length - 1)) {
+                points[i].set()
+                    .leftDirection(current)
+                    .rightDirection(current);
+            }
+        }
+    }
+}
+
+function mix(...colors: (DynamicColor | WebColor | string | number)[]): DynamicColor {
+    if (!colors || colors.length == 0) 
+        return new DynamicColor(WebColor.White);
+
+    colors = clone(colors);
+    f(colors).do((color, i) => {
+        if (typeof color === "number")
+            r(color).do(() => colors.push(colors[i+1]));
+    })
+
+    var dynamicColors = f(colors)
+        .where(c => typeof c !== "number")
+        .select(c => c instanceof DynamicColor ? 
+            c : new DynamicColor(c as any));
+
+    var length = dynamicColors.length();
+    var firstColor = dynamicColors.at(0);
+    if (length == 1)
+        return firstColor;
+
+    var finalColor = dynamicColors.skip(1)
+        .aggregate(firstColor, (color, currentColor, i) => 
+            color.overlay(currentColor, 1/(i + 2)));
+
+    return finalColor;
+}
+
+function $color(color: $Color): DynamicColor {
+    if (color instanceof DynamicColor) return color;
+    return new DynamicColor(color);
+}
+
+class DynamicColor {
+    private _color: RGBColor;
+    private _opacity: number = 1;
+
+    red() { return this._color.red; }
+    green() { return this._color.green; }
+    blue() { return this._color.blue; }
+
+    /** Return as Illustrator-compatible RGBColor */
+    rgb(): RGBColor {
+        var color = new RGBColor();
+        color.red = this._color.red;
+        color.green = this._color.green;
+        color.blue = this._color.blue;
+        return color;
+    }
+
+    // 1. Perceived Brightness (Luminance)
+    brightness(): number {
+        return 0.2126 * this.red() + 0.7152 * this.green() + 0.0722 * this.blue();
+    }
+
+    // 2. Chroma (Colorfulness)
+    chroma(): number {
+        const hsl = this.toHSL();
+        return hsl.s * hsl.l;
+    }
+
+    // 3. Hue Angle (0 to 360 degrees)
+    hue(): number {
+        return this.toHSL().h;
+    }
+
+    // 4. Saturation (0 to 100)
+    saturation(): number {
+        return this.toHSL().s;
+    }
+
+    // 5. Lightness (0 to 100) - Use this to find colors closest to white
+    lightness(): number {
+        return this.toHSL().l;
+    }
+
+    // 6. Luminance (linear brightness for contrast)
+    luminance(): number {
+        const r = this.linearize(this.red());
+        const g = this.linearize(this.green());
+        const b = this.linearize(this.blue());
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    }
+
+    // 7. Contrast Ratio (WCAG standard)
+    contrastRatio(other: DynamicColor): number {
+        const L1 = this.luminance() + 0.05;
+        const L2 = other.luminance() + 0.05;
+        return L1 > L2 ? L1 / L2 : L2 / L1;
+    }
+
+    // 8. Color Temperature (Warm, Cool, Neutral)
+    colorTemperature(): string {
+        const r = this.red(), g = this.green(), b = this.blue();
+        if (r > b && g > b) return 'Warm';
+        if (b > r && b > g) return 'Cool';
+        return 'Neutral';
+    }
+
+    // Helper to linearize sRGB components for luminance
+    linearize(value: number): number {
+        value = value / 255;
+        return value <= 0.04045 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
+    }
+
+    /** Accepts a ColorName, string (hex), or RGBColor with optional opacity */
+    constructor(color: $Color, opacity: number = 1.0) {
+        if (!color) throw new Error("No color specified to DynamicColor");
+        this._color = typeof color === "string" ? 
+            DynamicColor.hexToRGB(color) : 
+            DynamicColor.toRGB(color);
+
+        this._opacity = DynamicColor.clamp(opacity, 0, 1);
+    }
+
+    /** Get or set the opacity */
+    opacity(newOpacity?: number): number {
+        if (newOpacity !== undefined)
+            this._opacity = DynamicColor.clamp(newOpacity, 0, 1);
+        return this._opacity;
+    }
+
+    /** Returns a new instance with updated opacity */
+    withOpacity(opacity: number): DynamicColor {
+        return new DynamicColor(this._color, opacity);
+    }
+
+    /** Layer this color with another color on top, using alpha compositing.
+     * @param color The color to overlay on top of this one
+     * @param opacity Optional opacity override for the overlay color (0 to 1)
+     * When overlaying:
+     * - With full opacity (1), the overlay color completely replaces this color
+     * - With partial opacity (0.5), the overlay color blends 50/50 with this color
+     * - With zero opacity (0), this color shows through unchanged
+     * Both colors' existing opacities are factored into the final blend
+     */
+    overlay(color: DynamicColor | WebColor | string, opacity?: number): DynamicColor {
+        const overlayColor = color instanceof DynamicColor 
+            ? color 
+            : new DynamicColor(color, opacity || 1);
+
+        const overlayOpacity = DynamicColor.clamp(opacity ?? overlayColor._opacity, 0, 1);
+        const blendedAlpha = DynamicColor.compositeAlpha(this._opacity, overlayOpacity);
+        const blendedColor = DynamicColor.alphaBlend(this._color, overlayColor._color, this._opacity, overlayOpacity);
+        return new DynamicColor(blendedColor, blendedAlpha);
+    }
+
+    /** Mix this color with another using the given proportion.
+  * @param color The color to mix with
+  * @param proportion The proportion of the other color (0 to 1, defaults to 0.5)
+  * proportion = 0.5 gives 50/50 mix
+  * proportion = 0.1 gives 90/10 mix (90% this color)
+  * proportion = 0.9 gives 10/90 mix (90% other color)
+  */
+    mix(color: DynamicColor | WebColor | string, proportion: number = 0.5): DynamicColor {
+        const otherColor = color instanceof DynamicColor 
+            ? color 
+            : new DynamicColor(color);
+            
+        proportion = DynamicColor.clamp(proportion, 0, 1);
+        const thisOpacity = 1 - proportion;
+        
+        return otherColor.overlay(this, thisOpacity);
+    }
+
+    /** Returns the complementary color */
+    complement(): DynamicColor {
+        return new DynamicColor(DynamicColor.invertColor(this._color), this._opacity);
+    }
+
+    /** Lighten the color by a percentage */
+    lighten(percent: number): DynamicColor {
+        return this.adjustBrightness(percent);
+    }
+
+    /** Darken the color by a percentage */
+    darken(percent: number): DynamicColor {
+        return this.adjustBrightness(-percent);
+    }
+
+    /** Flatten the color's opacity against white */
+    flatten(): DynamicColor {
+        if (this.opacity() == 1) return this;
+        return new DynamicColor(WebColor.White).overlay(this);
+    }
+
+    /** Return as hex string */
+    hex(): string {
+        return DynamicColor.rgbToHex(this._color);
+    }
+
+    /** Compare equality with another DynamicColor */
+    equals(other: $Color): boolean {
+        if (!other) return false;
+        var otherColor = other instanceof DynamicColor ? other : new DynamicColor(other);
+        return this.red() === otherColor.red() && 
+            this.green() === otherColor.green() && 
+            this.blue() === otherColor.blue() && 
+            this._opacity === otherColor._opacity;
+    }
+
+    toString() {
+        return `{ red: ${this.red()}, green: ${this.green()}, blue: ${this.blue()}, opacity: ${this.opacity()} }`;
+    }
+
+    toHSL(): { h: number, s: number, l: number } {
+        const r = this.red() / 255;
+        const g = this.green() / 255;
+        const b = this.blue() / 255;
+        
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        let h = 0, s = 0;
+        const l = (max + min) / 2;
+
+        if (max !== min) {
+            const d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) {
+                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                case g: h = (b - r) / d + 2; break;
+                case b: h = (r - g) / d + 4; break;
+            }
+            h /= 6;
+        }
+
+        return { h: h * 360, s: s * 100, l: l * 100 };
+    }
+
+    /** Create from HSL values */
+    static fromHSL(h: number, s: number, l: number): DynamicColor {
+        h = h / 360;
+        s = s / 100;
+        l = l / 100;
+
+        let r, g, b;
+        if (s === 0) {
+            r = g = b = l;
+        } else {
+            const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            const p = 2 * l - q;
+            r = DynamicColor.hueToRGB(p, q, h + 1/3);
+            g = DynamicColor.hueToRGB(p, q, h);
+            b = DynamicColor.hueToRGB(p, q, h - 1/3);
+        }
+
+        var color = new RGBColor();
+        color.red = Math.round(r * 255);
+        color.green = Math.round(g * 255);
+        color.blue = Math.round(b * 255);
+
+        return new DynamicColor(color);
+    }
+
+    toLAB(): LabColor {
+        // Convert sRGB to linear RGB
+        const linearize = (c: number): number => {
+            c = c / 255;
+            return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+        };
+        
+        const r = linearize(this.red());
+        const g = linearize(this.green());
+        const b = linearize(this.blue());
+        
+        // Convert to XYZ using precise matrix
+        const x = r * 0.4124564 + g * 0.3575761 + b * 0.1804375;
+        const y = r * 0.2126729 + g * 0.7151522 + b * 0.0721750;
+        const z = r * 0.0193339 + g * 0.1191920 + b * 0.9503041;
+        
+        // Apply f(t) function for LAB conversion
+        const f = (t: number): number => 
+            t > 0.008856 ? Math.pow(t, 1/3) : 7.787 * t + 16/116;
+        
+        const lab = new LabColor();
+        lab.l = 116 * f(y) - 16;
+        lab.a = 500 * (f(x) - f(y));
+        lab.b = 200 * (f(y) - f(z));
+        
+        return lab;
+    }
+
+    static fromLAB(lab: LabColor): DynamicColor {
+        // Convert LAB to XYZ
+        const f_inv = (t: number): number => {
+            const t3 = Math.pow(t, 3);
+            return t3 > 0.008856 ? t3 : (t - 16/116) / 7.787;
+        };
+        
+        const y = (lab.l + 16) / 116;
+        const x = lab.a / 500 + y;
+        const z = y - lab.b / 200;
+        
+        // Convert XYZ to linear RGB using precise inverse matrix
+        const r = 3.2404542 * f_inv(x) - 1.5371385 * f_inv(y) - 0.4985314 * f_inv(z);
+        const g = -0.9692660 * f_inv(x) + 1.8760108 * f_inv(y) + 0.0415560 * f_inv(z);
+        const b = 0.0556434 * f_inv(x) - 0.2040259 * f_inv(y) + 1.0572252 * f_inv(z);
+        
+        // Convert linear RGB to sRGB
+        const compress = (c: number): number => {
+            return Math.round(255 * (c <= 0.0031308 ? 
+                12.92 * c : 
+                1.055 * Math.pow(c, 1/2.4) - 0.055));
+        };
+        
+        const rgb = new RGBColor();
+        rgb.red = Math.max(0, Math.min(255, compress(r)));
+        rgb.green = Math.max(0, Math.min(255, compress(g)));
+        rgb.blue = Math.max(0, Math.min(255, compress(b)));
+        
+        return new DynamicColor(rgb);
+    }
+
+    private labHelper(value: number): number {
+        return value > 0.008856 ? Math.pow(value, 1/3) : (7.787 * value) + 16/116;
+    }
+
+    static noColor(): DynamicColor {
+        return new DynamicColor(WebColor.White, 0);
+    }
+
+    static toRGB(color: Color | DynamicColor): RGBColor {
+        if (color instanceof DynamicColor) return color.flatten().rgb();
+    
+        // Default to white if no color or NoColor
+        if (!color || color === NoColor) {
+            const white = new RGBColor();
+            white.red = 255;
+            white.green = 255;
+            white.blue = 255;
+            return white;
+        }
+    
+        // Check if it's already RGB
+        if ('red' in color && 'green' in color && 'blue' in color) {
+            return color as RGBColor;
+        }
+    
+        // Check if it's CMYK
+        if ('cyan' in color && 'magenta' in color && 'yellow' in color && 'black' in color) {
+            const cmykColor = color as CMYKColor;
+            const rgb = new RGBColor();
+            const c = cmykColor.cyan / 100;
+            const m = cmykColor.magenta / 100;
+            const y = cmykColor.yellow / 100;
+            const k = cmykColor.black / 100;
+            
+            rgb.red = this.clamp(Math.round(255 * (1 - c) * (1 - k)), 0 , 255);
+            rgb.green = this.clamp(Math.round(255 * (1 - m) * (1 - k)), 0 , 255);
+            rgb.blue = this.clamp(Math.round(255 * (1 - y) * (1 - k)), 0 , 255);
+            
+            return rgb;
+        }
+    
+        // Check if it's Grayscale
+        if ('gray' in color) {
+            const grayColor = color as GrayColor;
+            const rgb = new RGBColor();
+            rgb.red = rgb.green = rgb.blue = Math.round((100 - grayColor.gray) * 2.55);
+            return rgb;
+        }
+    
+        // Check if it's Spot Color
+        if ('spot' in color) {
+            const spotColor = color as SpotColor;
+            return DynamicColor.toRGB(spotColor.spot.color);
+        }
+    
+        // Check if it's Lab Color
+        if ('l' in color && 'a' in color && 'b' in color) {
+            return DynamicColor.fromLAB(color as LabColor).rgb();
+        }
+    
+        // For Pattern, Gradient, or any other unhandled color types, return white
+        const white = new RGBColor();
+        white.red = 255;
+        white.green = 255;
+        white.blue = 255;
+        return white;
+    }
+
+    static random(): DynamicColor {
+        return new DynamicColor({
+            red: Math.floor(Math.random() * 256),
+            green: Math.floor(Math.random() * 256),
+            blue: Math.floor(Math.random() * 256)
+        });
+    }
+
+    // ====== PRIVATE UTILITIES ====== //
+
+    /** Adjust brightness */
+    private adjustBrightness(percent: number): DynamicColor {
+        const adjust = (channel: number) => {
+            if (percent >= 0) {
+                // Lightening: Add percentage of remaining brightness
+                return Math.round(channel + percent / 100 * (255 - channel));
+            } else {
+                // Darkening: Subtract percentage of current brightness
+                return Math.round(channel * (1 + percent / 100));
+            }
+        };
+        const newColor = DynamicColor.adjustChannels(this._color, adjust, adjust, adjust);
+        return new DynamicColor(newColor, this._opacity);
+    }
+
+    /** Alpha blend two RGBColors */
+    private static alphaBlend(base: RGBColor, overlay: RGBColor, baseAlpha: number, overlayAlpha: number): RGBColor {
+        const blend = (b: number, o: number) =>
+            Math.round((o * overlayAlpha + b * baseAlpha * (1 - overlayAlpha)) / (baseAlpha + overlayAlpha * (1 - baseAlpha)));
+
+        return DynamicColor.adjustChannels(base, 
+            r => blend(r, overlay.red), 
+            g => blend(g, overlay.green), 
+            b => blend(b, overlay.blue)
+        );
+    }
+
+    /** Composite two alpha values */
+    private static compositeAlpha(baseAlpha: number, overlayAlpha: number): number {
+        return baseAlpha + overlayAlpha * (1 - baseAlpha);
+    }
+
+    /** Invert RGBColor */
+    private static invertColor(color: RGBColor): RGBColor {
+        const invert = (c: number) => 255 - c;
+        return DynamicColor.adjustChannels(color, invert, invert, invert);
+    }
+
+    /** Adjust RGB channels */
+    private static adjustChannels(
+        color: RGBColor,
+        adjustR: (r: number) => number = r => r,
+        adjustG: (g: number) => number = g => g,
+        adjustB: (b: number) => number = b => b
+    ): RGBColor {
+        const newColor = new RGBColor();
+        newColor.red = DynamicColor.clamp(adjustR(color.red), 0, 255);
+        newColor.green = DynamicColor.clamp(adjustG(color.green), 0, 255);
+        newColor.blue = DynamicColor.clamp(adjustB(color.blue), 0, 255);
+        return newColor;
+    }
+
+    /** Convert hex to RGBColor */
+    private static hexToRGB(hex: string): RGBColor {
+        if (typeof hex !== "string") 
+            throw new Error("Hex must be a string");
+
+        hex = str(str(hex).replace(/^#/, '')).padEnd(6, '0').s();
+        const r = parseInt(hex.slice(0, 2), 16);
+        const g = parseInt(hex.slice(2, 4), 16);
+        const b = parseInt(hex.slice(4, 6), 16);
+
+        const color = new RGBColor();
+        color.red = r; color.green = g; color.blue = b;
+        return color;
+    }
+
+    private static hueToRGB(p: number, q: number, t: number): number {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1/6) return p + (q - p) * 6 * t;
+        if (t < 1/2) return q;
+        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+        return p;
+    }
+
+    /** Convert RGBColor to hex string */
+    private static rgbToHex(color: RGBColor): string {
+        return `#${f([color.red, color.green, color.blue]).select(c => DynamicColor.toHex(c)).stringJoin('')}`;
+    }
+
+    /** Convert number to 2-digit hex string */
+    private static toHex(component: number): string {
+        return str(component.toString(16)).padStart(2, '0').toUpperCase().s();
+    }
+
+    private static clamp(value: number, min: number, max: number): number {
+        return Math.min(Math.max(value, min), max);
+    }
+}
+
+/** A comprehensive list of named colors, combining X11 and CSS3 color standards */
+enum WebColor {
+    // Pink Colors
+    MediumVioletRed = "#C71585", // Strong pinkish violet
+    DeepPink = "#FF1493", // Vivid pink
+    PaleVioletRed = "#DB7093", // Light pinkish violet
+    HotPink = "#FF69B4", // Bright, warm pink
+    LightPink = "#FFB6C1", // Soft pink
+    Pink = "#FFC0CB", // Standard pink
+
+    // Red Colors
+    DarkRed = "#8B0000", // Very dark red
+    Red = "#FF0000", // Primary red
+    FireBrick = "#B22222", // Brick red
+    Crimson = "#DC143C", // Intense red with slight purple
+    IndianRed = "#CD5C5C", // Moderate red
+    LightCoral = "#F08080", // Soft coral red
+    Salmon = "#FA8072", // Light pinkish red
+    DarkSalmon = "#E9967A", // Muted salmon
+    LightSalmon = "#FFA07A", // Pale salmon
+
+    // Orange Colors
+    OrangeRed = "#FF4500", // Reddish orange
+    Tomato = "#FF6347", // Light orange-red
+    DarkOrange = "#FF8C00", // Deep orange
+    Coral = "#FF7F50", // Soft orange
+    Orange = "#FFA500", // Standard orange
+
+    // Yellow Colors
+    DarkKhaki = "#BDB76B", // Muted khaki
+    Gold = "#FFD700", // Shiny yellow gold
+    Khaki = "#F0E68C", // Pale yellowish tan
+    PeachPuff = "#FFDAB9", // Peach-toned yellow
+    Yellow = "#FFFF00", // Primary yellow
+    PaleGoldenrod = "#EEE8AA", // Light yellow-gold
+    Moccasin = "#FFE4B5", // Soft peachy yellow
+    PapayaWhip = "#FFEFD5", // Pale papaya color
+    LightGoldenrodYellow = "#FAFAD2", // Very light yellow
+    LemonChiffon = "#FFFACD", // Soft pale yellow
+    LightYellow = "#FFFFE0", // Almost white yellow
+
+    // Brown Colors
+    Maroon = "#800000", // Dark reddish-brown
+    Brown = "#A52A2A", // Standard brown
+    SaddleBrown = "#8B4513", // Rich brown
+    Sienna = "#A0522D", // Earthy brown
+    Chocolate = "#D2691E", // Warm brown
+    DarkGoldenrod = "#B8860B", // Dark yellow-brown
+    Peru = "#CD853F", // Light brown
+    RosyBrown = "#BC8F8F", // Brown with red tones
+    Goldenrod = "#DAA520", // Warm yellow-brown
+    SandyBrown = "#F4A460", // Pale yellow-brown
+    Tan = "#D2B48C", // Light brown
+    Burlywood = "#DEB887", // Light sandy brown
+    Wheat = "#F5DEB3", // Very light tan
+    NavajoWhite = "#FFDEAD", // Soft peach
+    Bisque = "#FFE4C4", // Light peachy beige
+    BlanchedAlmond = "#FFEBCD", // Pale almond
+    Cornsilk = "#FFF8DC", // Pale yellowish cream
+
+    // Purple, Violet, and Magenta Colors
+    Indigo = "#4B0082", // Deep purple-blue
+    Purple = "#800080", // Pure purple
+    DarkMagenta = "#8B008B", // Dark purplish pink
+    DarkViolet = "#9400D3", // Deep violet
+    DarkSlateBlue = "#483D8B", // Muted blue-violet
+    BlueViolet = "#8A2BE2", // Vivid blue-purple
+    DarkOrchid = "#9932CC", // Muted purple
+    Fuchsia = "#FF00FF", // Bright magenta (same as Magenta)
+    Magenta = "#FF00FF", // Common name for bright pink
+    SlateBlue = "#6A5ACD", // Muted blue-purple
+    MediumSlateBlue = "#7B68EE", // Light slate blue
+    MediumOrchid = "#BA55D3", // Medium pinkish purple
+    MediumPurple = "#9370DB", // Light purple
+    Orchid = "#DA70D6", // Light pink-purple
+    Violet = "#EE82EE", // Bright violet
+    Plum = "#DDA0DD", // Light purplish pink
+    Thistle = "#D8BFD8", // Pale lavender
+    Lavender = "#E6E6FA", // Light lavender
+
+    // Blue Colors
+    MidnightBlue = "#191970", // Deep dark blue
+    Navy = "#000080", // Dark navy blue
+    DarkBlue = "#00008B", // Dark pure blue
+    MediumBlue = "#0000CD", // Medium pure blue
+    Blue = "#0000FF", // Standard blue
+    RoyalBlue = "#4169E1", // Bright royal blue
+    SteelBlue = "#4682B4", // Muted blue
+    DodgerBlue = "#1E90FF", // Vivid blue
+    DeepSkyBlue = "#00BFFF", // Bright cyan-blue
+    CornflowerBlue = "#6495ED", // Light blue
+    SkyBlue = "#87CEEB", // Standard sky blue
+    LightSkyBlue = "#87CEFA", // Pale sky blue
+    LightSteelBlue = "#B0C4DE", // Light muted blue
+    LightBlue = "#ADD8E6", // Pale blue
+    PowderBlue = "#B0E0E6", // Very light blue
+
+    // Cyan Colors
+    Teal = "#008080", // Deep teal
+    DarkCyan = "#008B8B", // Dark cyan
+    LightSeaGreen = "#20B2AA", // Bright teal
+    CadetBlue = "#5F9EA0", // Muted blue-green
+    DarkTurquoise = "#00CED1", // Deep cyan-turquoise
+    MediumTurquoise = "#48D1CC", // Bright turquoise
+    Turquoise = "#40E0D0", // Bright blue-green
+    Aqua = "#00FFFF", // Bright cyan (same as Cyan)
+    Cyan = "#00FFFF", // Common cyan
+    Aquamarine = "#7FFFD4", // Light greenish blue
+    PaleTurquoise = "#AFEEEE", // Pale blue-green
+    LightCyan = "#E0FFFF", // Very pale cyan
+
+    // Green Colors
+    DarkGreen = "#006400", // Deep forest green
+    Green = "#008000", // Standard green
+    DarkOliveGreen = "#556B2F", // Dark gray-green
+    ForestGreen = "#228B22", // Rich forest green
+    SeaGreen = "#2E8B57", // Medium blue-green
+    OliveDrab = "#6B8E23", // Dull yellow-green
+    MediumSeaGreen = "#3CB371", // Medium blue-green
+    LimeGreen = "#32CD32", // Bright light green
+    Lime = "#00FF00", // Pure bright green
+    SpringGreen = "#00FF7F", // Bright mint green
+    MediumSpringGreen = "#00FA9A", // Light mint green
+    DarkSeaGreen = "#8FBC8F", // Muted green
+    MediumAquamarine = "#66CDAA", // Medium blue-green
+    YellowGreen = "#9ACD32", // Yellow-tinted green
+    LawnGreen = "#7CFC00", // Bright yellow-green
+    Chartreuse = "#7FFF00", // Bright yellow-green
+    LightGreen = "#90EE90", // Pale green
+    GreenYellow = "#ADFF2F", // Yellow-heavy green
+    PaleGreen = "#98FB98", // Very light green
+
+    // Gray and Black Colors
+    Black = "#000000", // Pure black
+    DarkSlateGray = "#2F4F4F", // Very dark gray-green
+    DimGray = "#696969", // Medium dark gray
+    SlateGray = "#708090", // Muted gray-blue
+    Gray = "#808080", // Standard gray
+    LightSlateGray = "#778899", // Light gray-blue
+    DarkGray = "#A9A9A9", // Dark gray
+    Silver = "#C0C0C0", // Light gray
+    LightGray = "#D3D3D3", // Very light gray
+    Gainsboro = "#DCDCDC", // Pale gray
+
+    // White Colors
+    White = "#FFFFFF", // Pure white
+    Snow = "#FFFAFA", // Very pale white
+    Ivory = "#FFFFF0", // Soft pale white
+    Honeydew = "#F0FFF0", // Greenish white
+}

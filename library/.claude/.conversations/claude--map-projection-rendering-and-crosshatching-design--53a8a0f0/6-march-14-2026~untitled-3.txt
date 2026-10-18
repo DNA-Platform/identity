@@ -1,0 +1,537 @@
+# Spotlight Spec Format — Expert Reference
+
+> **Audience**: The expert who designs spotlight city posters.
+> **No code knowledge required.** You write JSON, the system does the rest.
+
+## Overview
+
+Each spotlight city lives in its own folder under `places/`. The folder name IS the namespace — no city prefix on any file:
+
+```
+src/maps/spotlights/places/boston/
+  spec.json        ← you write this
+  data.json        ← fetched from your spec (editable after fetch)
+  config.ts        ← generated from your spec (do not edit)
+  Spotlight.tsx     ← generated from your spec (do not edit)
+```
+
+The spec has four sections:
+
+1. **City** — identity and title text
+2. **Geography** — where to look and how wide
+3. **Datasets** — what data to fetch (roads, rail, water, contours)
+4. **View** — how to render that data (classification rules, colors, mark weights)
+
+### Data is local
+
+**All data lives in the city folder as `data.json`.** Never use `public/` for spotlight data. The dataset is a curated, pre-fetched, editable GeoJSON file — it is an endogenous resource of the map, not a runtime dependency. The expert can hand-edit `data.json` after fetching.
+
+---
+
+## Quick Start
+
+Minimal spec that fetches OSM roads and renders with defaults:
+
+```json
+{
+  "city": {
+    "id": "my-city",
+    "label": "My City",
+    "cityName": "MY CITY",
+    "subtitle": "COUNTRY NAME",
+    "quote": "A famous quote"
+  },
+  "geography": {
+    "center": [-71.06, 42.36],
+    "radiusKm": 5
+  },
+  "datasets": [
+    {
+      "source": "overpass",
+      "layer": "road",
+      "highwayTags": ["motorway", "trunk", "primary", "secondary", "tertiary", "residential"]
+    }
+  ],
+  "view": {
+    "classifyRules": [
+      { "match": { "highway": { "oneOf": ["motorway", "trunk"] } }, "tier": "pen" },
+      { "match": { "highway": { "oneOf": ["primary", "secondary"] } }, "tier": "arterial" },
+      { "match": { "highway": { "oneOf": ["tertiary"] } }, "tier": "pencil" },
+      { "default": true, "tier": "ghost" }
+    ]
+  }
+}
+```
+
+---
+
+## Section 1: City
+
+```json
+{
+  "city": {
+    "id": "boston",
+    "label": "Boston",
+    "cityName": "BOSTON",
+    "subtitle": "UNITED STATES",
+    "quote": "The walking city"
+  }
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `id` | Yes | URL-safe slug. Must match the folder name. |
+| `label` | Yes | Display name in the city selector. |
+| `cityName` | Yes | Poster title (typically ALL CAPS). |
+| `subtitle` | Yes | Line below the city name (typically country). |
+| `quote` | Yes | Italic line below the subtitle. |
+
+---
+
+## Section 2: Geography
+
+```json
+{
+  "geography": {
+    "center": [-71.0596, 42.3585],
+    "radiusKm": 5,
+    "rotation": 0
+  }
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `center` | Yes | `[longitude, latitude]` — note: longitude first! |
+| `radiusKm` | Yes | Circle radius in kilometers. Controls both data fetch area and projection scale. |
+| `rotation` | No | Clockwise rotation in degrees applied inside the circle aperture (default: 0). |
+
+---
+
+## Section 3: Datasets
+
+An array of dataset objects. Each describes one layer of geographic data to fetch. All datasets are fetched in parallel and merged into a single `data.json`. Every feature is tagged with a `layer` property so the renderer knows its source.
+
+### Available Sources
+
+#### Overpass (OSM Roads)
+
+```json
+{
+  "source": "overpass",
+  "layer": "road",
+  "highwayTags": ["motorway", "trunk", "primary", "secondary", "tertiary", "residential"],
+  "extraTags": [{ "waterway": "river" }]
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `highwayTags` | Yes | OSM highway values to query. |
+| `extraTags` | No | Additional OSM tag queries (array of `{key: value}` objects). |
+
+Common highway tags (in descending importance):
+- `motorway`, `motorway_link` — Interstates, freeways
+- `trunk`, `trunk_link` — US/state routes with limited access
+- `primary`, `primary_link` — Major city streets
+- `secondary`, `secondary_link` — Collector streets
+- `tertiary`, `tertiary_link` — Connecting streets
+- `residential` — Neighborhood streets
+- `unclassified` — Minor roads
+- `service` — Alleys, parking lots, driveways
+
+#### TIGERweb (Census Bureau)
+
+```json
+{
+  "source": "tigerweb",
+  "layer": "rail",
+  "service": "tigerWMS_PhysicalFeatures",
+  "layerId": 8,
+  "where": "MTFCC IN ('R1011','R1051','R1052')",
+  "fields": ["LINEARID", "FULLNAME", "MTFCC"]
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `layer` | Yes | `"rail"` or `"water"` — determines how the renderer classifies it. |
+| `service` | Yes | TIGERweb service name. |
+| `layerId` | Yes | Layer number within the service. |
+| `where` | No | SQL WHERE clause (default: `"1=1"` = all features). |
+| `fields` | Yes | Array of field names to return. |
+| `extractBoundary` | No | If `true`, extract polygon outer ring as LineString (for areal hydro like lake boundaries). |
+
+**Common TIGERweb configurations:**
+
+| What | Service | Layer | Where | Fields |
+|------|---------|-------|-------|--------|
+| Railroads | `tigerWMS_PhysicalFeatures` | 8 | `MTFCC IN ('R1011','R1051','R1052')` | `LINEARID,FULLNAME,MTFCC` |
+| Rivers/Streams | `Hydro` | 0 | `1=1` | `LINEARID,FULLNAME,MTFCC` |
+| Lakes/Bays (boundary) | `Hydro` | 1 | `1=1` | `LINEARID,FULLNAME,MTFCC` + `extractBoundary: true` |
+| Primary Roads | `tigerWMS_PhysicalFeatures` | 1 | `1=1` | `LINEARID,FULLNAME,MTFCC` |
+| Secondary Roads | `tigerWMS_PhysicalFeatures` | 3 | `1=1` | `LINEARID,FULLNAME,MTFCC` |
+
+#### USGS Contours
+
+```json
+{
+  "source": "usgs-contours",
+  "layer": "contour",
+  "contourType": "index"
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `contourType` | Yes | `"index"` (every ~40ft, sparse) or `"intermediate"` (every ~8ft, dense). |
+
+Use `"index"` for city-scale maps. `"intermediate"` produces 50,000+ features at city scale — too dense.
+
+#### Natural Earth
+
+```json
+{
+  "source": "natural-earth",
+  "layer": "water",
+  "neLayers": ["rivers_lake_centerlines"],
+  "resolution": "10m"
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `neLayers` | Yes | Natural Earth layer names (without the `ne_{res}_` prefix). |
+| `resolution` | Yes | `"10m"`, `"50m"`, or `"110m"`. |
+
+Best for regional/continental maps. At city scale, TIGERweb hydro has better detail.
+
+#### CDN (Custom URL)
+
+```json
+{
+  "source": "cdn",
+  "layer": "boundary",
+  "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json"
+}
+```
+
+For any GeoJSON/TopoJSON available via URL.
+
+---
+
+## Section 4: View
+
+The view section controls how fetched data is rendered.
+
+### Ink Color
+
+```json
+{ "ink": "#1E1006" }
+```
+
+Base color for all marks. Every tier uses the same ink — the difference between features is weight and opacity, never color. Default: `"#1A1A1A"` (near-black).
+
+### Render Tiers
+
+The system has 8 standard tiers, painted back-to-front:
+
+| Tier | Default Width | Default Opacity | Purpose |
+|------|--------------|-----------------|---------|
+| `ghost` | 0.18 | 0.10 | Service roads, unclassified — barely visible |
+| `contour` | 0.38 | 0.18 | Elevation contours — faint background texture |
+| `pencil` | 0.32 | 0.22 | Tertiary roads, residential — light but legible |
+| `water` | 0.28 | 0.15 | Rivers, canals, shorelines — low opacity |
+| `rail` | 0.75 | 0.52 | Freight railroad — dashed stroke |
+| `arterial` | 0.65 | 0.45 | Primary/secondary roads, state routes |
+| `pen` | 1.4 | 0.82 | Metro/subway, named roads — bold |
+| `spine` | 2.0 | 0.95 | Interstates, freeways — the boldest marks |
+
+### Mark Style Overrides
+
+Override any tier's visual properties:
+
+```json
+{
+  "markStyles": {
+    "spine": { "width": 1.6, "opacity": 0.9 },
+    "pen": { "width": 1.6, "opacity": 1.0 },
+    "rail": { "width": 0.8, "opacity": 0.35, "dashArray": "4 3", "lineCap": "butt" }
+  }
+}
+```
+
+Available style properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `width` | number | Stroke width in SVG units |
+| `opacity` | number | Stroke opacity (0.0 – 1.0) |
+| `dashArray` | string | SVG stroke-dasharray (e.g., `"4 3"` for dashes) |
+| `lineCap` | string | `"round"`, `"butt"`, or `"square"` |
+| `lineJoin` | string | `"round"`, `"bevel"`, or `"miter"` |
+
+### Classification Rules
+
+**This is the heart of the spec.** Rules are evaluated top-to-bottom. First match wins.
+
+```json
+{
+  "classifyRules": [
+    { "match": { "name": { "contains": "storrow" } }, "tier": "spine", "_comment": "Storrow Drive" },
+    { "match": { "highway": { "oneOf": ["motorway", "trunk"] } }, "tier": "pen" },
+    { "match": { "layer": "water" }, "tier": "water" },
+    { "default": true, "tier": "ghost" }
+  ]
+}
+```
+
+#### Match Syntax
+
+Each match condition tests feature properties. All conditions in a single match must be true (AND logic).
+
+| Syntax | Meaning | Example |
+|--------|---------|---------|
+| `"value"` | Exact match | `{ "layer": "water" }` |
+| `{ "contains": "text" }` | Case-insensitive substring | `{ "name": { "contains": "broadway" } }` |
+| `{ "oneOf": ["a", "b"] }` | Value is one of the list | `{ "highway": { "oneOf": ["motorway", "trunk"] } }` |
+
+#### Available Feature Properties
+
+Properties depend on the data source:
+
+| Property | Source | Description |
+|----------|--------|-------------|
+| `layer` | All | Data source tag: `"road"`, `"rail"`, `"water"`, `"contour"` |
+| `name` | OSM, TIGERweb | Feature name (e.g., "Broadway", "Charles River") |
+| `highway` | OSM | OSM highway classification (e.g., "motorway", "residential") |
+| `ref` | OSM | Route reference (e.g., "I-90", "US-1") |
+| `FULLNAME` | TIGERweb | Full name from TIGERweb data |
+| `BASENAME` | TIGERweb | Base name (no directional prefix) |
+| `MTFCC` | TIGERweb | MAF/TIGER Feature Class Code |
+| `mtfcc` | TIGERweb | Lowercase alias for MTFCC |
+| `elev` | USGS | Contour elevation in feet |
+| `interval` | USGS | Contour interval (index vs. intermediate) |
+
+#### Rule Order Matters
+
+Place **specific name-based rules first**, then **general type-based rules**, then the **default**:
+
+```json
+[
+  { "match": { "name": { "contains": "lake shore" } }, "tier": "spine", "_comment": "Named override" },
+  { "match": { "highway": { "oneOf": ["motorway"] } }, "tier": "pen" },
+  { "match": { "highway": { "oneOf": ["primary"] } }, "tier": "arterial" },
+  { "match": { "layer": "water" }, "tier": "water" },
+  { "match": { "layer": "rail" }, "tier": "rail" },
+  { "match": { "layer": "contour" }, "tier": "contour" },
+  { "default": true, "tier": "ghost" }
+]
+```
+
+If a named road (like Lake Shore Drive) matches a general rule first, it gets the wrong tier. Put the specific override earlier.
+
+#### Comments
+
+Use `"_comment"` on any rule to explain the design intent. Comments are preserved in the generated config as code comments.
+
+### Spatial Exclusion Rules
+
+Remove features by geographic location before classification:
+
+```json
+{
+  "excludeRules": [
+    { "latAbove": 42.400, "_comment": "Exclude north of Charles River" },
+    { "lonBelow": -122.200, "_comment": "Exclude far east suburbs" }
+  ]
+}
+```
+
+| Field | Meaning |
+|-------|---------|
+| `latAbove` | Exclude features with average latitude above this value |
+| `latBelow` | Exclude features with average latitude below this value |
+| `lonAbove` | Exclude features with average longitude east of this value |
+| `lonBelow` | Exclude features with average longitude west of this value |
+
+Use these to remove cross-river context, suburban sprawl, or other geographic areas that dilute the composition.
+
+### Title Style
+
+Override the title colors and typography:
+
+```json
+{
+  "title": {
+    "cityNameFill": "#1E1006",
+    "subtitleFill": "#5C3A10",
+    "quoteFill": "#7A5530",
+    "cityNameFontSize": 46,
+    "subtitleFontSize": 13,
+    "quoteFontSize": 11,
+    "cityNameLetterSpacing": "0.30em",
+    "subtitleLetterSpacing": "0.40em"
+  }
+}
+```
+
+| Field | Default | Description |
+|-------|---------|-------------|
+| `cityNameFill` | ink color | Color of the city name |
+| `subtitleFill` | `#888888` | Color of the subtitle |
+| `quoteFill` | `#aaaaaa` | Color of the quote |
+| `cityNameFontSize` | 46 | City name font size |
+| `subtitleFontSize` | 13 | Subtitle font size |
+| `quoteFontSize` | 11 | Quote font size |
+| `cityNameLetterSpacing` | `0.30em` | City name letter spacing |
+| `subtitleLetterSpacing` | `0.40em` | Subtitle letter spacing |
+
+### Layout Overrides (Optional)
+
+Most cities use the defaults. Override only when needed:
+
+```json
+{
+  "circle": {
+    "cxPct": 50,
+    "cyPct": 41,
+    "radiusPct": 42,
+    "borderWidth": 1.0,
+    "borderColor": "#1A1A1A"
+  },
+  "canvas": { "width": 900, "height": 1200 },
+  "titleGaps": {
+    "gapCircleToName": 7.5,
+    "gapNameToSubtitle": 3,
+    "gapSubtitleToQuote": 2.5
+  }
+}
+```
+
+| Group | Field | Default | Description |
+|-------|-------|---------|-------------|
+| `circle` | `cxPct` | 50 | Circle center X as % of canvas width |
+| | `cyPct` | 41 | Circle center Y as % of canvas height |
+| | `radiusPct` | 42 | Circle radius as % of canvas width |
+| | `borderWidth` | 1.0 | Circle border stroke width |
+| | `borderColor` | ink color | Circle border color |
+| `canvas` | `width` | 900 | Canvas width in SVG units |
+| | `height` | 1200 | Canvas height in SVG units (3:4 portrait) |
+| `titleGaps` | `gapCircleToName` | 7.5 | Gap from circle bottom to city name, as % of canvas height |
+| | `gapNameToSubtitle` | 3 | Gap from city name to subtitle, as % of canvas height |
+| | `gapSubtitleToQuote` | 2.5 | Gap from subtitle to quote, as % of canvas height |
+
+---
+
+## Workflow
+
+### Creating a new city
+
+1. **Create the folder**: `src/maps/spotlights/places/my-city/`
+2. **Write `spec.json`**: Copy from an existing city and modify.
+3. **Run the pipeline**: `node scripts/build-spotlight.js src/maps/spotlights/places/my-city/spec.json`
+   - Fetches all datasets → `data.json`
+   - Generates config → `config.ts`
+   - Generates component → `Spotlight.tsx`
+   - Updates selector → `SpotlightsMap.tsx`
+4. **Verify**: Start the dev server and select your city in the spotlight viewer.
+
+### Rebuilding all cities
+
+```bash
+node scripts/build-spotlight.js --all          # fetch + codegen for all cities
+node scripts/build-spotlight.js --all --cache   # cache Overpass responses
+node scripts/build-spotlight.js --all --skip-fetch  # codegen only (no API calls)
+```
+
+### Iterating on a spec
+
+Edit `spec.json` → re-run the pipeline → refresh browser. Each run is idempotent — it overwrites the previous generated files.
+
+### Editing data
+
+After fetching, `data.json` is yours to edit. Remove noisy features, adjust properties, add hand-drawn features. The fetch script will overwrite it next time — save your edits under version control.
+
+### Important rules
+
+- **Never use `public/` for spotlight data.** Data lives in the city folder as `data.json`.
+- **`data.json` is editable.** After fetching, you can hand-edit features.
+- **`config.ts` and `Spotlight.tsx` are generated.** Re-run the build script to regenerate from the spec. Do not hand-edit.
+- **Folder IS the namespace.** All files are generic names (`spec.json`, `data.json`, `config.ts`, `Spotlight.tsx`).
+
+---
+
+## Feature Requests
+
+**This system is designed to evolve.** If a spec needs a capability that doesn't exist yet, the expert can request it directly in the spec using the `"_featureRequests"` field:
+
+```json
+{
+  "city": { ... },
+  "geography": { ... },
+  "datasets": [ ... ],
+  "view": { ... },
+  "_featureRequests": [
+    {
+      "name": "stroke-gradient",
+      "description": "Apply a gradient along a LineString so that opacity fades toward the endpoints.",
+      "motivation": "River estuaries transition from freshwater to tidal — the mark should reflect this.",
+      "proposedSpec": {
+        "classifyRules": [
+          {
+            "match": { "name": { "contains": "james river" } },
+            "tier": "water",
+            "strokeGradient": { "startOpacity": 0.4, "endOpacity": 0.05 }
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+### How feature requests work
+
+1. **The expert writes a `_featureRequests` entry** in any city's `spec.json`. The leading underscore signals that it is metadata — the build pipeline ignores it.
+
+2. **The request describes what, why, and a proposed JSON shape.** The proposed spec shows exactly how the expert would use the feature. This is the contract — the implementation must honor this shape or negotiate a revision with the expert.
+
+3. **The system implementer picks up the request** and builds it as an additive, non-breaking change:
+   - New fields are always optional with sensible defaults.
+   - Existing specs continue to work without modification.
+   - No existing field changes meaning.
+
+4. **Once implemented, the feature is documented here** in this spec-format.md — the expert checks this file for the canonical list of available features.
+
+5. **The `_featureRequests` entry is removed** from the spec once the feature ships.
+
+### Guidelines for feature requests
+
+- **Be specific about the JSON shape.** The implementer should be able to read your `proposedSpec` and know exactly what you mean.
+- **Explain the motivation.** Why does this city need this feature? What visual effect are you trying to achieve?
+- **One request per entry.** Multiple features get separate entries.
+- **Non-breaking only.** Requests that would change the meaning of existing fields will be discussed before implementation.
+
+### Currently available features (changelog)
+
+| Version | Feature | Spec field |
+|---------|---------|------------|
+| v1 | Multi-source data fetch | `datasets[]` with 5 source types |
+| v1 | 8-tier classification | `classifyRules[]` with match syntax |
+| v1 | Spatial exclusion | `excludeRules[]` with lat/lon bounds |
+| v1 | Mark style overrides | `markStyles` per tier |
+| v1 | Title typography | `title` fills, sizes, letter spacing |
+| v1 | Layout control | `circle`, `canvas`, `titleGaps` |
+| v1 | Map rotation | `geography.rotation` |
+
+---
+
+## Full Example
+
+See `src/maps/spotlights/places/boston/` for a complete working city:
+- `spec.json` — the spec (input)
+- `data.json` — the dataset (fetched, editable)
+- `config.ts` — the config (generated, do not edit)
+- `Spotlight.tsx` — the component (generated, do not edit)

@@ -1,0 +1,414 @@
+class Vector extends A<number> {
+    constructor(x?: Vector | number[] | A<number> | number, length?: number) {
+        if (typeof x == "number") x = r(`:${(length ?? 1) -1}`).select(i => x as number);
+        if (x instanceof A) x = x.a;
+        if (x === undefined) x = [];
+        super(x);
+    }
+
+    // Pointwise operations using pointwise
+    add(x: Vector | A<number> | number[] | number): Vector {
+        return this.pointwise(x, (a, b) => a + b);
+    }
+
+    subtract(x: Vector | A<number> | number[] | number): Vector {
+        return this.pointwise(x, (a, b) => a - b);
+    }
+
+    multiply(x: Vector | A<number> | number[] | number): Vector {
+        return this.pointwise(x, (a, b) => a * b);
+    }
+
+    divide(x: Vector | A<number> | number[] | number): Vector {
+        return this.pointwise(x, (a, b) => a / b);
+    }
+
+    pow(x: Vector | A<number> | number[] | number): Vector {
+        return this.pointwise(x, (a, b) => Math.pow(a, b));
+    }
+
+    max(x: Vector | A<number> | number[] | number): Vector {
+        return this.pointwise(x, (a, b) => Math.max(a, b));
+    }
+
+    min(x: Vector | A<number> | number[] | number): Vector {
+        return this.pointwise(x, (a, b) => Math.min(a, b));
+    }
+
+    atan2(x: Vector | A<number> | number[] | number): Vector {
+        return this.pointwise(x, (a, b) => Math.atan2(a, b));
+    }
+
+    pointwise(x: Vector | A<number> | number[] | number, f: (x: number, y: number) => number) {
+        x = new Vector(x, this.length());
+        if (x.length() !== this.length())
+            throw "The vectors must be the same length for pointwise operations";
+
+        return new Vector(this.zip(x).select(p => f(p[0], p[1])));
+    }
+
+    apply(f: (x: number) => number): Vector {
+        return new Vector(this.select(f));
+    }
+
+    mod(x: number): Vector {
+        return this.apply(v => v % x);
+    }
+
+    modRange(low: number, high: number): Vector {
+        const range = high - low;
+        return this.mod(range).add(low);
+    }
+
+    floor(): Vector {
+        return this.apply(Math.floor);
+    }
+
+    ceil(): Vector {
+        return this.apply(Math.ceil);
+    }
+
+    norm(low: number = 0, high: number = 1): Vector {
+        const minVal = Math.min(...this.a);
+        const maxVal = Math.max(...this.a);
+        if (maxVal === minVal) throw "Cannot normalize a vector with all identical values.";
+    
+        const range = maxVal - minVal;
+        const targetRange = high - low;
+    
+        return this.apply(v => ((v - minVal) / range) * targetRange + low);
+    }
+
+    complex(imag: Vector | number = 0): ComplexVector {
+        const imaginary = new Vector(imag, this.length());
+        return new ComplexVector(this.zip(imaginary).select(([re, im]) => [re, im]));
+    };
+
+    // Static helper to create a Vector
+    static from(x?: Vector | A<number> | number[] | number): Vector {
+        return new Vector(x, 1);
+    }
+
+    static const(x: number, length: number): Vector {
+        return new Vector(x, length);
+    }
+
+    // Static helper for linspace
+    static linspace(start: number, increment: number, end: number): Vector {
+        const result = [];
+        for (let value = start; value <= end; value += increment) {
+            result.push(value);
+        }
+        return new Vector(result);
+    }
+
+    // Static math functions
+    static sin(x: Vector): Vector {
+        return x.apply(Math.sin);
+    }
+
+    static cos(x: Vector): Vector {
+        return x.apply(Math.cos);
+    }
+
+    static tan(x: Vector): Vector {
+        return x.apply(Math.tan);
+    }
+
+    static abs(x: Vector): Vector {
+        return x.apply(Math.abs);
+    }
+
+    static sqrt(x: Vector): Vector {
+        return x.apply(Math.sqrt);
+    }
+
+    static log(x: Vector): Vector {
+        return x.apply(Math.log);
+    }
+
+    static exp(x: Vector): Vector {
+        return x.apply(Math.exp);
+    }
+
+    static round(x: Vector): Vector {
+        return x.apply(Math.round);
+    }
+
+    static atan(x: Vector): Vector {
+        return x.apply(Math.atan);
+    }
+
+    static acos(x: Vector): Vector {
+        return x.apply(Math.acos);
+    }
+
+    static asin(x: Vector): Vector {
+        return x.apply(Math.asin);
+    }
+
+    static log10(x: Vector): Vector {
+        return x.apply((v) => Math.log(v) / Math.LN10);
+    }
+
+    static log2(x: Vector): Vector {
+        return x.apply((v) => Math.log(v) / Math.LN2);
+    }
+
+    static sinh(x: Vector): Vector {
+        return x.apply((v) => (Math.exp(v) - Math.exp(-v)) / 2);
+    }
+
+    static cosh(x: Vector): Vector {
+        return x.apply((v) => (Math.exp(v) + Math.exp(-v)) / 2);
+    }
+
+    static tanh(x: Vector): Vector {
+        return x.apply((v) => (Math.exp(v) - Math.exp(-v)) / (Math.exp(v) + Math.exp(-v)));
+    }
+
+    static sign(x: Vector): Vector {
+        return x.apply((v) => (v > 0 ? 1 : v < 0 ? -1 : 0));
+    }
+
+    static recursive(n: number, f: (seq: number[], i: number) => number, initial: number[]): Vector {
+        const sequence = initial.slice();
+        for (let i = initial.length; i < n; i++) {
+            sequence.push(f(sequence, i));
+        }
+        return new Vector(sequence);
+    }   
+
+    // Primes
+    static primes(n: number): Vector {
+        const isPrime = (num: number): boolean => {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        };
+
+        const primes = [];
+        let current = 2;
+        while (primes.length < n) {
+            if (isPrime(current)) primes.push(current);
+            current++;
+        }
+        return new Vector(primes);
+    }
+
+    // Fibonacci
+    static fib(n: number, first: number = 0, second: number = 1): Vector {
+        const fibSeq = [first, second];
+        for (let i = 2; i < n; i++) {
+            fibSeq.push(fibSeq[i - 1] + fibSeq[i - 2]);
+        }
+        return new Vector(fibSeq.slice(0, n));
+    }
+
+    // Collatz Sequence
+    static collatz(start: number): Vector {
+        const sequence = [start];
+        while (start > 1) {
+            start = start % 2 === 0 ? start / 2 : 3 * start + 1;
+            sequence.push(start);
+        }
+        return new Vector(sequence);
+    }
+
+    // Triangular Numbers
+    static triangular(n: number): Vector {
+        const triangularSeq = [];
+        for (let i = 1; i <= n; i++) {
+            triangularSeq.push((i * (i + 1)) / 2);
+        }
+        return new Vector(triangularSeq);
+    }
+
+    // Factorials
+    static factorial(n: number): Vector {
+        const factorials = [1];
+        for (let i = 1; i <= n; i++) {
+            factorials.push(factorials[i - 1] * i);
+        }
+        return new Vector(factorials.slice(1));
+    }
+
+    // Pascal's Triangle Row
+    static pascalRow(n: number): Vector {
+        const row = [1];
+        for (let i = 1; i <= n; i++) {
+            row.push((row[i - 1] * (n - i + 1)) / i);
+        }
+        return new Vector(row);
+    }
+
+    // Golden Ratio Modulus
+    static goldenMod(n: number): Vector {
+        const phi = (1 + Math.sqrt(5)) / 2;
+        const sequence = [];
+        for (let i = 0; i < n; i++) {
+            sequence.push((i * phi) % 1); // Fractional part of i * phi
+        }
+        return new Vector(sequence);
+    }
+
+    // Logistic Map
+    static logisticMap(n: number, r: number = 3.9, x0: number = 0.5): Vector {
+        const sequence = [x0];
+        for (let i = 1; i < n; i++) {
+            sequence.push(r * sequence[i - 1] * (1 - sequence[i - 1]));
+        }
+        return new Vector(sequence);
+    }
+
+    // Cantor Dust
+    static cantorDust(n: number): Vector {
+        const sequence = [0.5];
+        for (let i = 0; i < n; i++) {
+            sequence.push(sequence[sequence.length - 1] / 3);
+        }
+        return new Vector(sequence);
+    }
+
+    // Halton Sequence
+    static haltonSequence(n: number, base: number = 2): Vector {
+        const sequence = [];
+        for (let i = 1; i <= n; i++) {
+            let f = 1;
+            let x = 0;
+            let k = i;
+            while (k > 0) {
+                f /= base;
+                x += f * (k % base);
+                k = Math.floor(k / base);
+            }
+            sequence.push(x);
+        }
+        return new Vector(sequence);
+    }
+    
+    static sierpinski(n: number): Vector {
+        const sequence = [];
+        for (let i = 0; i < Math.pow(2, n); i++) {
+            sequence.push((i & (i - 1)) === 0 ? 1 : 0); // Powers of 2
+        }
+        return new Vector(sequence);
+    } 
+}
+
+class ComplexVector extends A<Position> {
+    constructor(x?: ComplexVector | Position[] | A<Position> | Position, length?: number) {
+        if (ComplexVector.isComplex(x)) x = r(`:${(length ?? 1) - 1}`).select(() => x as Position);
+        if (x instanceof A) x = x.a;
+        if (x === undefined) x = [];
+        super(x as Position[]);
+    }
+
+    // Extract real part as a Vector
+    real(): Vector {
+        return new Vector(this.select(([re]) => re));
+    }
+
+    // Extract imaginary part as a Vector
+    imag(): Vector {
+        return new Vector(this.select(([, im]) => im));
+    }
+
+    // Add complex vectors
+    add(x: ComplexVector | Position[] | Position): ComplexVector {
+        x = new ComplexVector(x, this.length());
+        return this.pointwise(x, ([re1, im1], [re2, im2]) => [re1 + re2, im1 + im2]);
+    }
+
+    // Subtract complex vectors
+    subtract(x: ComplexVector | Position[] | Position): ComplexVector {
+        x = new ComplexVector(x, this.length());
+        return this.pointwise(x, ([re1, im1], [re2, im2]) => [re1 - re2, im1 - im2]);
+    }
+
+    // Multiply complex vectors
+    multiply(x: ComplexVector | Position[] | Position): ComplexVector {
+        x = new ComplexVector(x, this.length());
+        return this.pointwise(x, ([re1, im1], [re2, im2]) => [
+            re1 * re2 - im1 * im2, // Real part
+            re1 * im2 + im1 * re2, // Imaginary part
+        ]);
+    }
+
+    // Divide complex vectors
+    divide(x: ComplexVector | Position[] | Position): ComplexVector {
+        x = new ComplexVector(x, this.length());
+        return this.pointwise(x, ([re1, im1], [re2, im2]) => {
+            const denom = re2 * re2 + im2 * im2;
+            return [(re1 * re2 + im1 * im2) / denom, (im1 * re2 - re1 * im2) / denom];
+        });
+    }
+
+    // Conjugate
+    conjugate(): ComplexVector {
+        return this.apply(([re, im]) => [re, -im]);
+    }
+
+    // Magnitude
+    magnitude(): Vector {
+        return this.apply1(([re, im]) => Math.sqrt(re * re + im * im));
+    }
+
+    // Argument (angle)
+    argument(): Vector {
+        return this.apply1(([re, im]) => Math.atan2(re, im));
+    }
+
+    // Norm within a band
+    norm(low: number = 0, high: number = 1): ComplexVector {
+        const magnitudes = this.magnitude();
+        return magnitudes.norm(low, high).complex(this.argument());
+    }
+
+    pointwise(x: ComplexVector | A<Position> | Position[] | Position, f: (x: Position, y: Position) => Position): ComplexVector {
+        x = new ComplexVector(x, this.length());
+        if (x.length() !== this.length())
+            throw "The vectors must be the same length for pointwise operations";
+
+        return new ComplexVector(this.zip(x as ComplexVector).select(p => f(p[0], p[1])));
+    }
+
+    apply(f: (x: Position) => Position): ComplexVector {
+        return new ComplexVector(this.select(f));
+    }
+
+    apply1(f: (x: Position) => number): Vector {
+        return new Vector(this.select(f));
+    }
+
+    static isComplex(x: any): x is Position {
+        return x && typeof x === "object" && x.length === 2 && typeof x[0] === "number" && typeof x[1] === "number";
+    }
+
+    // Create a ComplexVector from polar coordinates
+    static fromPolar(magnitude: Vector, angle: Vector): ComplexVector {
+        return new ComplexVector(
+            magnitude.pointwise(angle, (mag, theta) => [mag * Math.cos(theta), mag * Math.sin(theta)])
+        );
+    }
+
+    // Create fractal-like patterns
+    static mandelbrot(iterations: number, escapeRadius: number = 2): (cx: number, cy: number) => number {
+        return (cx, cy) => {
+            let zx = 0;
+            let zy = 0;
+            let count = 0;
+
+            while (zx * zx + zy * zy < escapeRadius * escapeRadius && count < iterations) {
+                const tempX = zx * zx - zy * zy + cx;
+                zy = 2 * zx * zy + cy;
+                zx = tempX;
+                count++;
+            }
+
+            return count;
+        };
+    }
+}

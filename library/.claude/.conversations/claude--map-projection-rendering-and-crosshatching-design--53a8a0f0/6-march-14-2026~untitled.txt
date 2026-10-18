@@ -1,0 +1,1452 @@
+# Geographic Data Sources
+
+> Part of the [map techniques index](../index.md). See also: [Legibility Reference](legibility.md) | [Assets Reference](assets.md)
+>
+> **Existing utilities**: `src/utils/tigerweb.ts` (browser-side TigerWeb queries, winding order fix), `scripts/lib/` (Node-side fetch clients)
+> **Implemented in**: `src/components/maps/examples/` (Phase 35)
+
+## Overview
+
+DNA Atlas draws on three public-domain geographic data providers. Each covers a different scope and level of detail. All three are free to use in commercial stock art with no attribution requirement (see licensing notes per provider below).
+
+The core challenge when combining them is **coordinate system normalization** — every dataset uses WGS84 (EPSG:4326) lat/lon, but they arrive in different GeoJSON structures, with different property naming conventions, different geometry precision, and different scale assumptions. This document covers what each provider offers, how to fetch from each, how to bring them into a common normalized form that react-simple-maps and D3 can render from a single unified dataset, and what it takes to turn a data rendering into a professional-quality map.
+
+---
+
+## Provider 1: Natural Earth
+
+**Scope:** Whole world  
+**License:** Public domain. No attribution required. Fully commercial-safe.  
+**URL:** https://www.naturalearthdata.com  
+**GeoJSON CDN:** https://cdn.jsdelivr.net/npm/world-atlas@2  
+
+### What it Contains
+
+Natural Earth is the cleanest, most carefully curated free geodata for world maps. It was designed specifically for cartographic use — geometries are simplified cleanly at each scale, coastlines are accurate, and the data is topologically consistent (no overlapping polygons, no gaps at borders).
+
+**Cultural layers (political):**
+- Countries (sovereign states, with ISO codes, names in multiple languages)
+- Disputed territories and breakaway regions as separate features
+- States and provinces for major countries (USA, Canada, Australia, etc.)
+- Populated places (cities, towns, villages — with population and rank attributes)
+- Urban areas (built-up polygons)
+- Time zones
+
+**Physical layers:**
+- Coastlines (line)
+- Land polygons
+- Ocean polygons
+- Rivers and lake centerlines (single-line drainage)
+- Lakes and reservoirs (polygons)
+- Glaciers and ice sheets
+- Reefs
+- Geographic regions (continents, subcontinents as labeled polygons)
+- Bathymetry (ocean depth zones as polygons at 200m, 1000m, 2000m, 3000m, 4000m, 5000m, 6000m, 7000m, 8000m, 9000m, 10000m increments)
+
+**Graticule / reference lines:**
+- Equator, tropics, polar circles, international date line (all as lines)
+- 15°, 30°, and 5° graticule grids
+
+**Resolution tiers:**
+- **110m** (1:110,000,000) — continental scale, small file size, good for full world maps
+- **50m** (1:50,000,000) — regional scale, moderate detail
+- **10m** (1:10,000,000) — country/state level, most detailed
+
+### Fetching
+
+The simplest approach for web use is the `world-atlas` npm package, which pre-processes Natural Earth into TopoJSON:
+
+```bash
+npm install world-atlas topojson-client
+```
+
+```typescript
+import { feature } from 'topojson-client'
+import type { Topology } from 'topojson-specification'
+
+// world-atlas ships two files:
+// countries-110m.json — objects: { countries, land }
+// countries-50m.json  — objects: { countries, land }
+import countries110 from 'world-atlas/countries-110m.json' assert { type: 'json' }
+
+const topology = countries110 as unknown as Topology
+const countries = feature(topology, topology.objects.countries)
+const land = feature(topology, topology.objects.land)
+```
+
+For layers not in the npm package (rivers, bathymetry, cities, time zones), fetch directly from the Natural Earth GitHub mirror:
+
+```typescript
+const NE_BASE = 'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson'
+
+async function fetchNaturalEarth(
+  layer: string,
+  resolution: '10m' | '50m' | '110m'
+): Promise<GeoJSON.FeatureCollection> {
+  const url = `${NE_BASE}/ne_${resolution}_${layer}.geojson`
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`NE fetch failed: ${url}`)
+  return res.json()
+}
+
+// Layer name examples — must match Natural Earth filenames exactly:
+// 'rivers_lake_centerlines'
+// 'lakes'
+// 'populated_places'
+// 'bathymetry_L_200'      shallow shelf
+// 'bathymetry_L_1000'
+// 'bathymetry_L_2000'
+// 'bathymetry_L_3000'
+// 'bathymetry_L_4000'
+// 'bathymetry_L_5000'
+// 'bathymetry_L_6000'
+// 'bathymetry_L_7000'
+// 'bathymetry_L_8000'
+// 'bathymetry_L_9000'
+// 'bathymetry_L_10000'    deepest trenches
+// 'time_zones'
+// 'geography_regions_polys'
+// 'glaciated_areas'
+// 'admin_1_states_provinces'   10m only for most countries
+// 'ocean'
+// 'coastline'
+// 'graticules_30'
+// 'graticules_15'
+
+const rivers = await fetchNaturalEarth('rivers_lake_centerlines', '50m')
+const bathymetry200 = await fetchNaturalEarth('bathymetry_L_200', '10m')
+const cities = await fetchNaturalEarth('populated_places', '10m')
+```
+
+### Property Schema
+
+```typescript
+interface NaturalEarthCountry {
+  NAME: string           // "United States of America"
+  NAME_LONG: string      // Formal name
+  ISO_A2: string         // "US"
+  ISO_A3: string         // "USA"
+  CONTINENT: string      // "North America"
+  REGION_UN: string      // UN region
+  SUBREGION: string      // "Northern America"
+  POP_EST: number        // Estimated population
+  GDP_MD: number         // GDP in millions USD
+  SOVEREIGNT: string     // Sovereign state name
+  TYPE: string           // "Sovereign country", "Dependency", etc.
+}
+
+interface NaturalEarthPopulatedPlace {
+  NAME: string
+  POP_MAX: number        // Maximum population estimate
+  RANK_MAX: number       // 1=megacity, 10=small town (lower = larger)
+  FEATURECLA: string     // "Admin-0 capital", "Populated place", etc.
+  SOV0NAME: string       // Sovereign country name
+  ADM0NAME: string       // Country name
+}
+```
+
+---
+
+## Provider 2: TIGERweb (US Census Bureau)
+
+**Scope:** United States only (including territories)  
+**License:** US government work. Not subject to copyright under 17 U.S.C. §105. Fully commercial-safe. Do not use the registered trademark "TIGER/Line®" in product names.  
+**Root URL:** `https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/`  
+
+### Service Architecture
+
+TIGERweb is organized into **named services**, each covering a thematic group of layers. You do not query a single monolithic endpoint — you choose the correct service for the layer type you need, then query by layer ID within that service.
+
+| Service | What it contains |
+|---|---|
+| `State_County` | States (layer 0) and Counties (layer 1) — the cleanest endpoint for these two |
+| `tigerWMS_Current` | Full current-vintage WMS: ZIP codes, tribal areas, metro areas, congressional districts |
+| `tigerWMS_PhysicalFeatures` | Roads (layers 1,3,5), railroads (7), hydrography group (layers 10,12,14) |
+| `Hydro` | Dedicated hydrography service: linear rivers (0), areal water bodies (1), glaciers (2) |
+| `Legislative` | Congressional districts: 119th at layer 0 (BAS 2025) and layer 4 (ACS 2024) |
+| `AIANNHA` | American Indian, Alaska Native, and Native Hawaiian Areas (layer 47) |
+| `Places_CouSub_ConCity_SubMCD` | Incorporated places (layer 4), census designated places (layer 5) |
+| `Transportation` | Primary roads at multiple scale layers (0,1,2), secondary roads (3–6), local roads (7) |
+| `Tracts_Blocks` | Census tracts and blocks |
+| `Urban` | Urban area polygons |
+
+All services support GeoJSON output via `f=geojson`, and all support `outSR=4326` to return WGS84 coordinates. **Always include `outSR=4326`** — omitting it returns geometries in EPSG:3857 (Web Mercator), which will render incorrectly in react-simple-maps.
+
+### Verified Layer ID Reference
+
+**`TIGERweb/State_County`**
+
+| Layer | ID |
+|---|---|
+| States | 0 |
+| Counties | 1 |
+
+**`TIGERweb/Hydro`**
+
+| Layer | ID |
+|---|---|
+| Linear Hydrography (rivers, streams, canals) | 0 |
+| Areal Hydrography (lakes, ponds, bays, estuaries) | 1 |
+| Glaciers | 2 |
+
+**`TIGERweb/tigerWMS_PhysicalFeatures`** (2024 vintage)
+
+| Layer | ID |
+|---|---|
+| Primary Roads | 1 |
+| Secondary Roads | 3 |
+| Local Roads | 5 |
+| Railroads | 7 |
+| Linear Hydrography | 10 |
+| Areal Hydrography | 12 |
+| Glaciers | 14 |
+
+**`TIGERweb/Transportation`**
+
+| Layer | Description |
+|---|---|
+| 0 | Primary Roads Interstates — 5M scale (display only) |
+| 1 | Primary Roads — 2.1M scale (display only) |
+| 2 | Primary Roads — all, queryable |
+| 3 | Secondary Roads (interstates + US highways) — display only |
+| 7 | Local Roads |
+
+**`TIGERweb/Legislative`** (2025)
+
+| Layer | Description |
+|---|---|
+| 0 | 119th Congressional Districts (BAS 2025 vintage) |
+| 4 | 119th Congressional Districts (ACS 2024 vintage) |
+
+**`TIGERweb/AIANNHA`**
+
+| Layer | ID |
+|---|---|
+| AIANNH Areas (all types) | 47 |
+
+**`TIGERweb/tigerWMS_Current`** (2025 vintage)
+
+| Layer | ID |
+|---|---|
+| 2020 ZIP Code Tabulation Areas | 2 |
+| Tribal Census Tracts | 4 |
+| Tribal Block Groups | 6 |
+| 119th Congressional Districts | 54 |
+
+> **Layer IDs shift with annual vintage updates.** Before using any layer ID from this document, verify it at `https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/{ServiceName}/MapServer/layers` and search the response for the layer description that matches your target.
+
+### Query Pattern
+
+```typescript
+async function queryTigerWeb(
+  service: string,
+  layerId: number,
+  params: Record<string, string>
+): Promise<GeoJSON.FeatureCollection> {
+  const base = `https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/${service}/MapServer/${layerId}/query`
+  const defaults: Record<string, string> = {
+    f: 'geojson',
+    outFields: '*',
+    returnGeometry: 'true',
+    outSR: '4326',  // Always WGS84 — omitting this returns 3857 and breaks rendering
+  }
+  const url = new URL(base)
+  Object.entries({ ...defaults, ...params }).forEach(([k, v]) =>
+    url.searchParams.set(k, v)
+  )
+  const res = await fetch(url.toString())
+  if (!res.ok) throw new Error(`TIGERweb fetch failed: ${url}`)
+  return res.json()
+}
+
+// Usage examples:
+
+// All states
+const states = await queryTigerWeb('State_County', 0, {
+  where: '1=1',
+  outFields: 'STATE,NAME,STUSAB,AREALAND,AREAWATER',
+})
+
+// All counties
+const counties = await queryTigerWeb('State_County', 1, {
+  where: '1=1',
+  outFields: 'GEOID,NAME,STATE,COUNTY',
+})
+
+// Counties for a single state (FIPS: CA=06, TX=48, NY=36, FL=12, PA=42, CO=08)
+const caCounties = await queryTigerWeb('State_County', 1, {
+  where: "STATE='06'",
+  outFields: 'GEOID,NAME,STATE,COUNTY',
+})
+
+// Congressional districts (119th)
+const districts = await queryTigerWeb('Legislative', 0, {
+  where: '1=1',
+  outFields: 'GEOID,BASENAME,STATE,CD119FP',
+})
+
+// Congressional districts for a single state
+const paCDs = await queryTigerWeb('Legislative', 0, {
+  where: "STATE='42'",
+  outFields: 'GEOID,BASENAME,STATE,CD119FP',
+})
+
+// AIANNH areas — federal reservations and trust lands only
+const tribal = await queryTigerWeb('AIANNHA', 47, {
+  where: "AIANNHCC IN ('R','T','J')",
+  outFields: 'GEOID,NAME,AIANNHCC,AREALAND',
+})
+
+// Primary roads in a bounding box
+const highways = await queryTigerWeb('Transportation', 2, {
+  where: '1=1',
+  geometry: '-125,24,-66,50',
+  geometryType: 'esriGeometryEnvelope',
+  inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'FULLNAME,RTTYP,MTFCC',
+})
+
+// Rivers in a bounding box
+const rivers = await queryTigerWeb('Hydro', 0, {
+  where: "NAME <> ''",
+  geometry: '-125,24,-66,50',
+  geometryType: 'esriGeometryEnvelope',
+  inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'NAME,MTFCC',
+})
+
+// Large lakes and water bodies
+const lakes = await queryTigerWeb('Hydro', 1, {
+  where: 'AREAWATER > 5000000',  // >5 sq km
+  geometry: '-92,41,-76,48',
+  geometryType: 'esriGeometryEnvelope',
+  inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'NAME,MTFCC,AREAWATER',
+})
+```
+
+> **Pagination:** TIGERweb returns at most 100,000 features per request. For datasets that may exceed this, paginate using `resultOffset` and `resultRecordCount`, or query state by state using a `where: "STATE='XX'"` filter.
+
+### AIANNHCC Type Codes
+
+| Code | Type |
+|---|---|
+| R | Federal American Indian Reservation |
+| T | Off-Reservation Trust Land |
+| J | American Indian Joint-Use Area |
+| H | Hawaiian Home Land |
+| S | State-recognized American Indian Reservation |
+| V | Alaska Native Village Statistical Area |
+| O | Oklahoma Tribal Statistical Area |
+| D | Tribal Designated Statistical Area |
+| M | State Designated Tribal Statistical Area |
+
+### MTFCC Road Type Codes
+
+| Code | Type |
+|---|---|
+| S1100 | Primary roads (Interstates, freeways) |
+| S1200 | Secondary roads (US and state routes) |
+| S1400 | Local roads, streets |
+| S1500 | Vehicular trails |
+| S1630 | Ramps |
+
+### Property Schema
+
+```typescript
+interface TigerWebState {
+  STATE: string     // FIPS, e.g. "06"
+  NAME: string      // "California"
+  STUSAB: string    // "CA"
+  AREALAND: number  // square meters
+  AREAWATER: number
+}
+
+interface TigerWebCounty {
+  STATE: string     // State FIPS
+  COUNTY: string    // County FIPS within state
+  NAME: string      // "Los Angeles"
+  GEOID: string     // Full FIPS: "06037"
+}
+
+interface TigerWebRoad {
+  FULLNAME: string  // "Interstate 5", "US Hwy 101", "Main St"
+  RTTYP: string     // "I" interstate, "U" US, "S" state, "C" county
+  MTFCC: string     // Feature class code — see table above
+}
+
+interface TigerWebRiver {
+  NAME: string      // "Mississippi River", "" for unnamed
+  MTFCC: string     // "H3010" perennial, "H3013" intermittent
+}
+
+interface TigerWebAIANNH {
+  NAME: string
+  GEOID: string
+  AIANNHCC: string  // Type code — see table above
+  AREALAND: number  // square meters
+}
+```
+
+---
+
+## Provider 3: USGS National Map
+
+**Scope:** United States
+**License:** Public domain (USGS is a federal agency). Fully commercial-safe.
+**Feature Query Host:** `https://cartowfs.nationalmap.gov/arcgis/rest/services/`
+**Viewer:** https://apps.nationalmap.gov/viewer/
+
+> **Critical: Two separate hosts exist.**
+> - `carto.nationalmap.gov` — Display/tile-rendering service (36 nested layers). NOT for feature extraction. Querying it for geometry causes 500 errors on dense tiles.
+> - `cartowfs.nationalmap.gov` — Web Feature Service (6 clean layers). Designed for programmatic feature queries. **Use this one.**
+
+### What it Contains
+
+The USGS National Map is the primary source for physical terrain data in the US. Where TIGERweb covers political and administrative geography, USGS covers the physical landscape.
+
+**Contours (elevation lines) — `contours/MapServer` on cartowfs:**
+- Layer 1: 100ft contour lines (all types)
+- Layer 3: 50ft contour lines (all types) — use for regional/state maps
+- Layer 5: Large-scale contour lines (variable interval)
+- `ContourElevation` attribute: elevation in feet (double)
+- `IndexFlag` attribute: `1` = Index (heavier line, typically labeled), `0` = Intermediate
+- Note: the `carto` (display) host uses different field names (`Contour`, `for_raster`) — do not use those
+
+> **Fetch constraints for contours:**
+> - Tile at 0.5° max — 1° tiles cause HTTP 500 on dense mountain terrain.
+> - Always include `maxAllowableOffset=0.001` for server-side simplification.
+> - Paginate with `resultOffset` for tiles that return exactly MaxRecordCount features.
+
+**Watershed Boundaries (WBD) — `https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer`:**
+- Layer 2: HUC2 (major drainage regions, 21 in the US)
+- Layer 4: HUC4 (subregions)
+- Layer 6: HUC6 (basins)
+- Layer 8: HUC8 (subbasins)
+
+### Fetching
+
+```typescript
+// Use cartowfs (Web Feature Service), NOT carto (display service)
+const USGS_BASE = 'https://cartowfs.nationalmap.gov/arcgis/rest/services'
+
+async function queryUSGS(
+  service: string,
+  layerId: number,
+  params: Record<string, string>
+): Promise<GeoJSON.FeatureCollection> {
+  const base = `${USGS_BASE}/${service}/MapServer/${layerId}/query`
+  const url = new URL(base)
+  const defaults: Record<string, string> = {
+    f: 'geojson',
+    outFields: '*',
+    returnGeometry: 'true',
+    outSR: '4326',
+    maxAllowableOffset: '0.001',  // server-side simplification, prevents 500s
+  }
+  Object.entries({ ...defaults, ...params }).forEach(([k, v]) =>
+    url.searchParams.set(k, v)
+  )
+  const res = await fetch(url.toString())
+  if (!res.ok) throw new Error(`USGS fetch failed: ${url}`)
+  return res.json()
+}
+
+// 50ft contours (layer 3 on cartowfs) — use for regional/state maps
+// Tile at 0.5° max to avoid server 500 errors on dense terrain
+const contours = await queryUSGS('contours', 3, {
+  where: "ContourType='Index'",
+  geometry: '-120,36.5,-119.5,37',  // 0.5° tile
+  geometryType: 'esriGeometryEnvelope',
+  inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  resultRecordCount: '500',
+})
+
+// HUC8 watershed boundaries for the Colorado basin
+const HUC_BASE = 'https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer'
+
+async function queryHUC(
+  layerId: number,
+  whereClause: string
+): Promise<GeoJSON.FeatureCollection> {
+  const url = new URL(`${HUC_BASE}/${layerId}/query`)
+  url.searchParams.set('where', whereClause)
+  url.searchParams.set('f', 'geojson')
+  url.searchParams.set('outFields', '*')
+  url.searchParams.set('outSR', '4326')
+  url.searchParams.set('returnGeometry', 'true')
+  return fetch(url.toString()).then(r => r.json())
+}
+
+// Colorado River HUC4 subregions (HUC codes starting with 14 or 15)
+const coloradoWatershed = await queryHUC(4, "HUC4 LIKE '14%' OR HUC4 LIKE '15%'")
+```
+
+### Contour Property Schema
+
+```typescript
+// cartowfs.nationalmap.gov field names (layer 3 = 50ft contours)
+interface USGSContour {
+  ContourElevation: number           // Elevation in feet (double)
+  ContourUnits: number               // 1 = feet
+  ContourInterval: number            // Interval in feet (50, 100, etc.)
+  IndexFlag: 0 | 1                   // 1 = Index contour, 0 = Intermediate
+  Depression: 0 | 1                  // 1 = depression contour
+  OBJECTID: number
+  Shape_Length: number               // Length in map units
+}
+```
+
+> **Simplification is required.** USGS contour features have very high vertex counts even after server-side simplification via `maxAllowableOffset`. Always run them through `@turf/simplify` before storing. Tolerance of `0.05` degrees is appropriate for regional maps (~5km precision, keeps the shape); `0.005` for state-level detail.
+
+---
+
+## Normalizing to a Common Dataset
+
+The fundamental problem is that each provider returns GeoJSON with different property names and different implicit assumptions. Normalize all features to a shared schema before rendering.
+
+### The Normalized Feature Schema
+
+```typescript
+interface NormalizedFeature {
+  id: string
+  type: 'Feature'
+  geometry: GeoJSON.Geometry    // Always WGS84
+  properties: {
+    name: string
+    code?: string               // ISO, FIPS, GEOID, etc.
+    provider: 'natural-earth' | 'tigerweb' | 'usgs'
+    layer: string               // 'countries' | 'states' | 'rivers' | 'contours' | ...
+    featureType: 'polygon' | 'line' | 'point'
+    rank?: number               // Stream order proxy, road class, contour type, city size
+    value?: number              // Elevation, population, density — for choropleth
+    source: Record<string, unknown>  // Original properties preserved
+  }
+}
+
+interface MapDataset {
+  id: string
+  features: NormalizedFeature[]
+  bbox: [number, number, number, number]  // [minLon, minLat, maxLon, maxLat]
+  meta: {
+    providers: string[]
+    layers: string[]
+    fetchedAt: string
+  }
+}
+```
+
+### Normalization Functions
+
+```typescript
+function normalizeNaturalEarthCountry(f: GeoJSON.Feature): NormalizedFeature {
+  const p = f.properties as any
+  return { ...f, id: `ne-country-${p.ISO_A3}`,
+    properties: { name: p.NAME, code: p.ISO_A3,
+      provider: 'natural-earth', layer: 'countries', featureType: 'polygon', source: p }}
+}
+
+function normalizeTigerState(f: GeoJSON.Feature): NormalizedFeature {
+  const p = f.properties as any
+  return { ...f, id: `tiger-state-${p.STATE}`,
+    properties: { name: p.NAME, code: p.STUSAB,
+      provider: 'tigerweb', layer: 'states', featureType: 'polygon', source: p }}
+}
+
+function normalizeTigerCounty(f: GeoJSON.Feature): NormalizedFeature {
+  const p = f.properties as any
+  return { ...f, id: `tiger-county-${p.GEOID}`,
+    properties: { name: p.NAME, code: p.GEOID,
+      provider: 'tigerweb', layer: 'counties', featureType: 'polygon', source: p }}
+}
+
+function normalizeTigerRoad(f: GeoJSON.Feature): NormalizedFeature {
+  const p = f.properties as any
+  const rank = p.MTFCC === 'S1100' ? 1 : p.MTFCC === 'S1200' ? 2 : 3
+  return { ...f, id: `tiger-road-${p.LINEARID ?? Math.random()}`,
+    properties: { name: p.FULLNAME ?? '', rank,
+      provider: 'tigerweb', layer: 'roads', featureType: 'line', source: p }}
+}
+
+function normalizeTigerRiver(f: GeoJSON.Feature): NormalizedFeature {
+  const p = f.properties as any
+  return { ...f, id: `tiger-river-${p.LINEARID ?? Math.random()}`,
+    properties: { name: p.NAME ?? '', rank: 1,
+      provider: 'tigerweb', layer: 'rivers', featureType: 'line', source: p }}
+}
+
+function normalizeUSGSContour(f: GeoJSON.Feature): NormalizedFeature {
+  const p = f.properties as any
+  return { ...f, id: `usgs-contour-${p.OBJECTID}`,
+    properties: { name: `${p.ContourElevation}ft`,
+      provider: 'usgs', layer: 'contours', featureType: 'line',
+      value: p.ContourElevation,
+      rank: p.ContourType === 'Index' ? 1 : 2, source: p }}
+}
+```
+
+### Dataset Builder and Pre-Fetch Pattern
+
+All datasets are built **before the map renders** — as a build-time or one-time Node script that writes pre-fetched, pre-simplified GeoJSON to `src/data/`. The React component imports the file statically and renders synchronously on first paint with no network calls.
+
+```typescript
+// scripts/fetch-dataset.ts — run once; output committed to src/data/
+import { writeFileSync } from 'fs'
+import simplify from '@turf/simplify'
+
+async function buildAndWrite(
+  outPath: string,
+  bbox: [number, number, number, number],
+  layers: Array<{
+    fetch: (bbox: [number,number,number,number]) => Promise<GeoJSON.FeatureCollection>
+    normalize: (f: GeoJSON.Feature) => NormalizedFeature
+    simplifyTolerance?: number
+  }>
+) {
+  const allFeatures: NormalizedFeature[] = []
+
+  for (const layer of layers) {
+    const raw = await layer.fetch(bbox)
+    const normalized = raw.features.map(layer.normalize)
+
+    const simplified = layer.simplifyTolerance
+      ? normalized.map(f => ({
+          ...f,
+          geometry: simplify(f as any, {
+            tolerance: layer.simplifyTolerance,
+            highQuality: false
+          }).geometry
+        }))
+      : normalized
+
+    allFeatures.push(...simplified)
+  }
+
+  const dataset: MapDataset = {
+    id: crypto.randomUUID(),
+    features: allFeatures,
+    bbox,
+    meta: {
+      providers: [...new Set(allFeatures.map(f => f.properties.provider))],
+      layers: [...new Set(allFeatures.map(f => f.properties.layer))],
+      fetchedAt: new Date().toISOString(),
+    }
+  }
+
+  writeFileSync(outPath, JSON.stringify(dataset))
+  console.log(`Wrote ${allFeatures.length} features to ${outPath}`)
+}
+```
+
+```typescript
+// In your React component — zero runtime fetching
+import dataset from '../data/us-rivers.json'
+// dataset.features is immediately available; map renders on first paint
+```
+
+### Coordinate Precision Reduction
+
+After simplification, truncate coordinate precision to 5 decimal places (~1m at the equator) to reduce file size significantly. At a 1200px canvas covering the continental US (~4,500km), one pixel represents ~3.75km — 5 decimal places is three orders of magnitude more precise than any visible difference.
+
+```typescript
+function truncatePrecision(coords: number[][], decimals = 5): number[][] {
+  const f = Math.pow(10, decimals)
+  return coords.map(([x, y]) => [Math.round(x * f) / f, Math.round(y * f) / f])
+}
+```
+
+### Layer Rendering Order in react-simple-maps
+
+When combining multiple datasets, render in this order (back to front):
+
+1. Ocean / bathymetry polygons
+2. Land polygons
+3. Terrain contours — under political overlays
+4. Water polygons (lakes, reservoirs, bays)
+5. Rivers and streams (lines)
+6. Political fill polygons (countries, states, counties)
+7. Political boundary lines drawn on top of fills
+8. Roads
+9. Points (cities, structures)
+10. Labels and annotation
+
+---
+
+## Cross-Cutting Concerns for Professional Maps
+
+Before enumerating the twenty examples, several principles apply across all of them.
+
+### The Dataset Is Built Before the Map Renders
+
+Every map stores its data as a pre-fetched, pre-simplified JSON file in `src/data/`. The React component imports the file statically. There are no `useEffect` fetch calls in the renderer. This means the map renders synchronously on first paint. The fetch script is run manually when the source data needs to be refreshed (Census vintages update annually).
+
+### The Viewport Is Derived From the Data
+
+The projection viewport should be computed from the actual bounding box of the data, not from a round-number estimate. Compute the bbox of all features, expand by 4–6% on each side for visual breathing room, and set the projection's `center` and `scale` from that. In react-simple-maps:
+
+```typescript
+// Given bbox [minLon, minLat, maxLon, maxLat]:
+const cx = (minLon + maxLon) / 2
+const cy = (minLat + maxLat) / 2
+const lonSpan = maxLon - minLon
+// For Mercator at svgWidth=960: scale ≈ (svgWidth / lonSpan) * 50
+// Adjust empirically — this is a starting point, not an exact formula
+```
+
+For the continental US on Albers Equal Area, the standard parameters are:
+`rotate: [96, 0], parallels: [29.5, 45.5], center: [0, 37.5], scale: 900` at `svgWidth=960`.
+
+### Color as Signal, Not Decoration
+
+Each map uses color to communicate exactly one thing. For adjacency separation, the four colors are perceptually equidistant neutrals — they encode only "different," not "ranked." For choropleth, one sequential scale encodes one quantitative variable. The base palette for DNA Atlas is chromatic gray (the Perturbation palette). Map palettes live within this system: water is always at the cool end; land at the warm end. The contrast between them is the first visual hierarchy the viewer reads.
+
+### Context Layers Are Always Deemphasized
+
+Context layers — the background that helps the viewer orient — are rendered at lower opacity and lighter stroke than the subject layers. Subject layers should be the darkest, highest-contrast elements. Context at 60–70% opacity; secondary context at 30–40%.
+
+### Every Map Has a Title and a Legend
+
+A map without a title is raw output. Every map carries at minimum:
+
+- A **title** — the most specific possible description. Not "US Map" but "Drainage Network of the Colorado Basin."
+- A **scale bar** — for reference maps, showing approximate distance per fixed pixel count.
+- A **legend** — for any map using color or stroke weight to encode data, using exact graphic treatment (same stroke, fill, opacity as the map features).
+
+Labels for specific features are used sparingly — only when they add information the geometry cannot communicate alone.
+
+### Professional Finishing
+
+- **Bleed:** The canvas extends slightly past the viewable frame so lines touching the edge appear to continue off-screen naturally.
+- **Stroke hierarchy:** Features at smaller scale get lighter, thinner strokes. Encode the `rank` attribute as both opacity and stroke-width.
+- **Minimum stroke:** 0.3px. Anything thinner renders inconsistently across devices.
+- **Ocean color:** Never pure white. In this project, the ocean is the lightest stop in the current palette — approximately `#f3f6f7` at ΔE=1.5.
+
+---
+
+## 20 Example Maps
+
+---
+
+### 1. Continental United States — Four-Color Political
+
+**Provider:** TIGERweb `State_County` (states, layer 0)  
+**Dataset fetch:**
+```typescript
+const states = await queryTigerWeb('State_County', 0, {
+  where: '1=1',
+  outFields: 'STATE,NAME,STUSAB,AREALAND',
+})
+```
+
+**Description:** The foundational political map of the US. Welsh-Powell four-coloring assigns one of four colors to each state so no two adjacent states share a color.
+
+**Professional treatment:**
+
+*Projection:* Albers Equal Area Conic — the US standard. Parameters: `rotate: [96, 0], parallels: [29.5, 45.5], center: [0, 37.5], scale: 900` at 960px width. Alaska and Hawaii as insets, lower-left, scaled at 1/3. Equal-area is mandatory for any map where the viewer implicitly compares region sizes.
+
+*Color:* Four fills chosen from the Perturbation palette at maximally spaced lightness intervals: `#d1d3d7`, `#c8c8cc`, `#bfc0c6`, `#b7b9bf`. These are equidistant perceptually — they encode "different" with no implied ranking. State borders are `0.5px` at `rgba(60,60,70,0.6)`. Ocean: `#f3f6f7`.
+
+*Context and labeling:* No choropleth scale — the map encodes only adjacency. A legend shows the four fills labeled simply "State." State abbreviations labeled in `0.65rem` sans-serif at `rgba(30,30,40,0.75)`, placed at each state's visual centroid (not geometric centroid — Idaho's centroid falls in a narrow neck). Title: "United States." Alaska and Hawaii insets carry a notation: "Not to scale."
+
+*Dataset construction:* All 50 states plus DC in a single request. The Welsh-Powell coloring is computed once at build time and stored as a `color: 0|1|2|3` property on each feature in the pre-fetched JSON.
+
+---
+
+### 2. US County Choropleth — Population Density
+
+**Provider:** TIGERweb `State_County` (counties, layer 1) + Census Population Estimates API  
+**Dataset fetch:**
+```typescript
+const counties = await queryTigerWeb('State_County', 1, {
+  where: '1=1',
+  outFields: 'GEOID,NAME,STATE,AREALAND',
+})
+
+// Census API — 2023 population estimates by county
+const popRes = await fetch(
+  'https://api.census.gov/data/2023/pep/population?get=POP_2023,NAME&for=county:*'
+)
+const popData = await popRes.json()  // [[POP_2023, NAME, state, county], ...]
+
+const popByGeoid = new Map(
+  (popData as string[][]).slice(1).map(row => [`${row[2]}${row[3]}`, parseInt(row[0])])
+)
+
+const enriched = counties.features.map(f => {
+  const p = f.properties as any
+  const pop = popByGeoid.get(p.GEOID) ?? 0
+  const areaSqMiles = p.AREALAND / 2_589_988
+  return { ...f, properties: { ...p, population: pop,
+    density: areaSqMiles > 0 ? pop / areaSqMiles : 0 }}
+})
+```
+
+**Description:** 3,100+ county polygons colored by population density. Density spans six orders of magnitude — from <1 person per square mile in western counties to 70,000+ in Manhattan.
+
+**Professional treatment:**
+
+*Projection:* Albers Equal Area Conic — mandatory for a density map. A conformal projection like Mercator would make northern counties visually larger and systematically exaggerate their apparent density.
+
+*Color:* A sequential single-hue scale, log-transformed. Use `d3-scale`'s `scaleLog` with domain `[0.01, 70000]` and range `[#ebe9e4, #2a2a36]`. Log transformation prevents all rural counties from collapsing to a single near-white. The scale is stored as pre-computed hex values in the dataset — no D3 at render time.
+
+*Context:* County borders at `0.15px`, barely visible — the choropleth value does the visual work. State borders on top at `0.6px` in warm dark gray for regional orientation. Legend: a continuous gradient bar annotated at `1, 10, 100, 1000, 10000` persons/sq mi. Title: "Population Density — United States Counties, 2023 Estimate." A subtitle in smaller text: "Persons per square mile, log scale."
+
+*What this map reveals:* The radical concentration of population in coastal metros and the vast emptiness of the interior. The entire state of Wyoming has fewer people than a single Manhattan ZIP code. This is only visible at county level — state-level maps suppress it.
+
+---
+
+### 3. River Basin Map — Continental US
+
+**Provider:** TIGERweb `Hydro` (linear hydrography, layer 0) + `State_County` (states, layer 0)  
+**Dataset fetch:**
+```typescript
+const rivers = await queryTigerWeb('Hydro', 0, {
+  where: "NAME <> '' AND MTFCC='H3010'",  // Named perennial streams
+  geometry: '-125,24,-66,50',
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'NAME,MTFCC,LENGTHKM',
+})
+```
+
+Note: TIGERweb linear hydrography does not carry a Strahler stream order attribute. Visual rank must be derived from `LENGTHKM` (segment length as proxy for relative importance): under 50km → `rank: 3`; 50–200km → `rank: 2`; over 200km → `rank: 1`.
+
+**Description:** The named perennial river network across the continental US — rendered as a pure linear composition without any political overlay.
+
+**Professional treatment:**
+
+*Projection:* Albers Equal Area Conic. The equal-area property is less critical here than for a choropleth, but it preserves the natural shape of river basins which are often used as mental reference points.
+
+*Color and stroke:* Rivers in cool blue-gray (`#8eb4c8`). Rank 1 (major rivers): `1.0px`, `opacity: 0.9`. Rank 2: `0.5px`, `opacity: 0.75`. Rank 3: `0.25px`, `opacity: 0.5`. State fills in warm gray (`#e8e6e3`). State borders suppressed entirely — any political line would compete with the river structure, which is the subject. Ocean: `#f3f6f7`.
+
+*Context:* The viewport extends slightly past the coastline on all sides so river mouths don't clip. The Mississippi delta, Columbia mouth, and the Rio Grande entry into the Gulf are the key edge features — they must be visible. No legend needed: the visual encoding (blue lines = rivers) is self-evident. Scale bar: "500 km." Title: "River Network — Continental United States."
+
+*What this map reveals:* The drainage asymmetry between east and west. East of the Mississippi, hundreds of small rivers fan out to the Atlantic and Gulf. West of the Rockies, almost nothing reaches the Pacific — the Colorado is the only major river, and it barely makes it. This geographic fact shapes everything about the American West's water politics.
+
+---
+
+### 4. Watershed Map — Colorado River Basin
+
+**Provider:** USGS WBD (HUC4 boundaries) + TIGERweb `Hydro` (rivers) + USGS contours  
+**Dataset fetch:**
+```typescript
+const coloradoBasin = await queryHUC(4, "HUC4 LIKE '14%' OR HUC4 LIKE '15%'")
+
+const coloradoRivers = await queryTigerWeb('Hydro', 0, {
+  where: "NAME <> '' AND MTFCC='H3010'",
+  geometry: '-116,31,-105,42',
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'NAME,MTFCC',
+})
+
+const contours = await queryUSGS('contours', 0, {
+  where: "ContourType='Index'",
+  geometry: JSON.stringify({ xmin: -116, ymin: 31, xmax: -105, ymax: 42,
+    spatialReference: { wkid: 4326 } }),
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+})
+```
+
+**Description:** A single-basin portrait showing the Colorado River watershed as a bounded geographic unit, with terrain and drainage visible simultaneously.
+
+**Professional treatment:**
+
+*Viewport:* The viewport is fitted tightly to the HUC polygon's bounding box, expanded by 10% on each side. The surrounding landscape — southern Utah, Nevada, New Mexico — is shown in very light warm gray with no detail. The basin edge (the HUC polygon stroke, `1.5px`, warm dark) is the strongest line on the canvas. Everything inside is the subject; everything outside is context.
+
+*Color:* Background land outside basin: `#edeae5`. Land inside basin: `#e5e0d8`. Index contours inside basin: `#c4b39a` at `0.4px`. Rivers: cool blue (`#6fa8c4`) scaled by length proxy, `0.4–1.5px`. The Colorado River itself — the longest segment — at `1.5px`. A small inset map in the lower-left shows the basin's position within the western US as a red outline on a minimal country map.
+
+*Context:* No labels on tributaries — too many. Only the Colorado River itself is labeled, in small sans-serif. Scale bar: "200 km." Title: "Colorado River Drainage Basin." A subtitle: "HUC Regions 14–15, USGS Watershed Boundary Dataset."
+
+---
+
+### 5. Road Hierarchy Map — Chicago Metro Area
+
+**Provider:** TIGERweb `Transportation` (layers 2 and 7)  
+**Dataset fetch:**
+```typescript
+const chicagoBbox = '-88.5,41.4,-87.0,42.5'
+
+const interstates = await queryTigerWeb('Transportation', 2, {
+  where: "MTFCC='S1100'",
+  geometry: chicagoBbox, geometryType: 'esriGeometryEnvelope',
+  inSR: '4326', spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'FULLNAME,RTTYP,MTFCC',
+})
+
+const highways = await queryTigerWeb('Transportation', 2, {
+  where: "MTFCC='S1200'",
+  geometry: chicagoBbox, geometryType: 'esriGeometryEnvelope',
+  inSR: '4326', spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'FULLNAME,RTTYP,MTFCC',
+})
+
+const local = await queryTigerWeb('Transportation', 7, {
+  where: "MTFCC='S1400'",
+  geometry: chicagoBbox, geometryType: 'esriGeometryEnvelope',
+  inSR: '4326', spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'FULLNAME,RTTYP,MTFCC',
+})
+```
+
+**Description:** The road network of the Chicago metro area rendered as a pure monochrome linear structure, with visual weight encoding road class.
+
+**Professional treatment:**
+
+*Projection:* Mercator at a local scale is acceptable here — at this zoom level, projection distortion is negligible. The viewport is a square crop, approximately 100km × 100km, centered on the Loop at roughly `[-87.63, 41.88]`.
+
+*Color and stroke:* This map is intentionally monochrome. Background: warm cream (`#f0ede8`). Interstates: `1.2px`, `rgba(20,20,30,0.9)`. US/state highways: `0.7px`, `rgba(20,20,30,0.7)`. Local roads: `0.25px`, `rgba(20,20,30,0.35)`. No fills, no color, no building footprints. The road geometry alone communicates urban form.
+
+*What this map reveals:* Lake Michigan appears as a clean hard edge on the east — this absence of road data is itself the map's strongest compositional element. The city's grid breaks down at rivers, parks, and the older diagonal roads (Milwaukee Ave, Archer, Lincoln). The suburban grid east–west density gradient is immediately visible. No legend needed; the visual hierarchy of line weights is self-evident. Title: "Chicago — Road Structure."
+
+---
+
+### 6. Topographic Contour Map — Sierra Nevada
+
+**Provider:** USGS National Map (contours, layers 0 and 1) + TIGERweb `Hydro` (rivers) + `State_County` (state outline)  
+**Dataset fetch:**
+```typescript
+const sierraBbox = { xmin: -122, ymin: 35.5, xmax: -117, ymax: 41 }
+
+const indexContours = await queryUSGS('contours', 1, {
+  where: "ContourType='Index'",
+  geometry: JSON.stringify({ ...sierraBbox, spatialReference: { wkid: 4326 } }),
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+})
+
+const interContours = await queryUSGS('contours', 0, {
+  where: "ContourType='Intermediate'",
+  geometry: JSON.stringify({ ...sierraBbox, spatialReference: { wkid: 4326 } }),
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+})
+
+const sierraRivers = await queryTigerWeb('Hydro', 0, {
+  where: "NAME <> '' AND MTFCC='H3010'",
+  geometry: '-122,35.5,-117,41',
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'NAME,MTFCC',
+})
+```
+
+**Description:** A portrait of the Sierra Nevada as a terrain object — rendered in the style of a hand-drawn topographic survey, showing the near-vertical western escarpment and the gentler eastern slope.
+
+**Professional treatment:**
+
+*Background and color:* Warm cream (`#f5f1eb`). Index contours in warm brown-gray (`#8b7355`) at `0.5px`. Intermediate contours in pale warm tan (`#c4b49a`) at `0.2px`. Rivers in cool blue-gray (`#7a9bb5`) at `0.4–0.9px` by length. The California state boundary is a single `0.8px` warm dark line with no fill.
+
+*The cartographic insight:* The spacing of contour lines encodes steepness more powerfully than any color scale. The western escarpment from the Central Valley to the crest — a rise of 14,000 feet over 50 miles — appears as a zone of almost unreadable density. The gentler eastern slope shows widely spaced lines. This differential density is the map's entire content. No legend for the contours is necessary: the geometric fact speaks for itself. A scale bar "50 km" is sufficient context.
+
+*Viewport:* Portrait orientation (taller than wide) to emphasize the north–south extent of the range. The frame crops just east of the Nevada border, allowing the contrast between the Sierra terrain and the flat Great Basin to be visible. Title: "Sierra Nevada — Topographic Structure."
+
+---
+
+### 7. Congressional Districts — Pennsylvania
+
+**Provider:** TIGERweb `Legislative` (119th districts, layer 0, filtered to PA) + `State_County` (counties, PA only)  
+**Dataset fetch:**
+```typescript
+const paCDs = await queryTigerWeb('Legislative', 0, {
+  where: "STATE='42'",
+  outFields: 'GEOID,BASENAME,STATE,CD119FP',
+})
+
+const paCounties = await queryTigerWeb('State_County', 1, {
+  where: "STATE='42'",
+  outFields: 'GEOID,NAME',
+})
+```
+
+**Description:** Pennsylvania's 17 congressional districts rendered as abstract geometric forms — a record of redistricting decisions expressed purely as shape.
+
+**Professional treatment:**
+
+*Color:* Welsh-Powell four-coloring in the project's chromatic gray palette. The four colors are slightly more differentiated than the state-level map since district shapes are more complex and smaller: `#d2ceca`, `#c8c8cc`, `#c4cac8`, `#cec8c4`.
+
+*Layering:* County grid at `0.25px`, `rgba(100,100,110,0.35)` — barely visible, used only to let the viewer measure "how large is this district relative to a county." District borders at `0.8px`, `rgba(30,30,40,0.9)`. The contrast between these two stroke weights enforces the visual hierarchy: districts are the subject, counties are context.
+
+*What this map reveals:* Some districts hug county lines faithfully; others carve through them with unmistakably political geometry. The 7th District's irregular shape around Philadelphia suburbs is cartographically remarkable. No party labels, no incumbent names — this is a map of geometry, not politics. A legend shows "Congressional District" with a swatch and "County Boundary" as a thin ghost line. Title: "119th Congressional Districts — Pennsylvania."
+
+---
+
+### 8. Time Zone Map — North America
+
+**Provider:** Natural Earth (time zones 10m, countries 50m, admin_1 states/provinces 10m)  
+**Dataset fetch:**
+```typescript
+const timeZones = await fetchNaturalEarth('time_zones', '10m')
+const naZones = timeZones.features.filter(f => {
+  const offset = f.properties.UTCOFFSET as number
+  return offset >= -10 && offset <= -3.5
+})
+
+const countries = await fetchNaturalEarth('admin_0_countries', '50m')
+const states = await fetchNaturalEarth('admin_1_states_provinces', '10m')
+const naStates = states.features.filter(f =>
+  ['United States of America','Canada','Mexico'].includes(f.properties.admin as string)
+)
+```
+
+**Description:** North American time zones shown on a continental projection, using a warm-to-cool palette that encodes the intuitive "east is earlier, west is later" time direction.
+
+**Professional treatment:**
+
+*Projection:* Lambert Conformal Conic centered on North America — `center: [-96, 50], parallels: [33, 65], scale: 400` at 960px width. This gives Canada and Mexico correct relative shapes and makes the continent feel cohesive.
+
+*Color:* Seven stops (Eastern through Hawaii-Aleutian) in a warm-to-cool sequential scale. Eastern: `#d4cfc8`; Central: `#cdccc6`; Mountain: `#c6c8c8`; Pacific: `#bec5ca`; Alaska: `#b6c0cc`; Hawaii: `#aebace`. The warm-to-cool axis maps onto the temporal east-to-west direction intuitively. Country borders: `0.8px`. State/province borders: `0.3px` — fine grid for orientation, not a primary element. Graticule (15°) at `opacity: 0.10` — present but barely visible.
+
+*Legend:* A horizontal strip of seven gradient steps, labeled with zone names plus UTC offset (e.g., "Eastern UTC−5"). Title: "Time Zones — North America." A footnote: "Arizona does not observe daylight saving time; boundaries shift seasonally for other states."
+
+---
+
+### 9. ZIP Code Mosaic — Chicago
+
+**Provider:** TIGERweb `tigerWMS_Current` (ZCTAs, layer 2)  
+**Dataset fetch:**
+```typescript
+const chicagoZips = await queryTigerWeb('tigerWMS_Current', 2, {
+  where: '1=1',
+  geometry: '-88.0,41.6,-87.5,42.1',
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'GEOID,BASENAME,AREALAND,AREAWATER',
+})
+```
+
+**Description:** The ZIP code geography of Chicago rendered as an abstract mosaic — no base map, no context layers, just the interlocking postal polygon forms four-colored.
+
+**Professional treatment:**
+
+*Color:* Four fills with slightly more contrast than the state political map, since ZIP polygons are smaller and require more perceptual separation at fine scale: `#d8d5d0`, `#c9c8ce`, `#d0cfc8`, `#c2c3c8`. The fills are barely distinguishable at full zoom but the contrast is sufficient to prevent adjacent polygons from visually merging.
+
+*Viewport decision:* Crop tightly to the Chicago city limits (not the metro area). Outside the city limits, the surrounding suburban ZCTAs are shown in `#eae8e5` with no fill variation — they fade out at the edge, creating a natural vignette. The abrupt shift in ZIP polygon size and geometry at the city boundary — dense, irregular city ZCTAs vs. large rectangular suburban ones — is the map's visual punchline, and the vignette treatment makes it legible.
+
+*Context:* A small inset map in the corner shows the metro area with a box indicating the zoomed crop. This is the only spatial reference needed — the viewer needs to know "this is a piece of Chicago," nothing more. Title: "ZIP Code Tessellation — City of Chicago." No legend; the color encoding is adjacency only, self-evident in context.
+
+---
+
+### 10. World Bathymetry Map
+
+**Provider:** Natural Earth (bathymetry 10m layers, land 110m, graticules 110m)  
+**Dataset fetch:**
+```typescript
+const depths = [200, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
+const bathyLayers = await Promise.all(
+  depths.map(d => fetchNaturalEarth(`bathymetry_L_${d}`, '10m'))
+)
+const land = await fetchNaturalEarth('land', '110m')
+const graticule = await fetchNaturalEarth('graticules_30', '110m')
+```
+
+**Description:** The ocean floor rendered as eleven depth zones from the shallow continental shelf to the deepest trenches — a portrait of the world as a water planet.
+
+**Professional treatment:**
+
+*Projection:* Winkel Tripel, centered at `[0, 0]` — the National Geographic standard for world maps. Minimizes overall distortion. Fitted to a `960 × 540` canvas.
+
+*Color:* Sequential 11-stop scale, cool blue-gray from near-white to near-black: 200m shelf `#dde8ee`, 1000m `#c8d8e4`, 2000m `#afc3d2`, 3000m `#96afc0`, 4000m `#7d9bae`, 5000m `#647e95`, 6000m `#4e647a`, 7000m `#3b4f62`, 8000m `#2a3b4e`, 9000m `#1c2b3a`, 10000m trench `#111e28`. Land: warm light gray `#e8e3dc`. Coastlines: `0.5px` warm dark.
+
+*What this map reveals:* The continental shelves (the pale ring at 200m) show clearly that Australia and Siberia rest on enormous shallow platforms. The mid-ocean ridges rise to the 2000m–3000m zone and appear as pale bands bisecting the Atlantic and Indian Oceans. The Philippine and Mariana trenches appear as near-black slots in the Pacific. Title: "Ocean Floor Topography — Global Bathymetry." Graticule at `opacity: 0.15`. Legend: vertical gradient bar, six labeled stops.
+
+---
+
+### 11. Great Lakes Hydrography
+
+**Provider:** TIGERweb `Hydro` (areal layer 1 + linear layer 0) + `State_County` (Great Lakes states)  
+**Dataset fetch:**
+```typescript
+const bbox = '-92,41,-76,48'
+
+const waterBodies = await queryTigerWeb('Hydro', 1, {
+  where: 'AREAWATER > 10000000',  // >10 sq km
+  geometry: bbox,
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'NAME,MTFCC,AREAWATER',
+})
+
+const streams = await queryTigerWeb('Hydro', 0, {
+  where: "MTFCC='H3010'",
+  geometry: bbox,
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'NAME,MTFCC',
+})
+
+// Great Lakes states: MI, WI, IL, IN, OH, PA, NY
+const glStates = await queryTigerWeb('State_County', 0, {
+  where: "STATE IN ('26','55','17','18','39','42','36')",
+  outFields: 'STATE,NAME',
+})
+```
+
+**Description:** The Great Lakes as the dominant visual feature — with all feeding rivers, connecting channels, and outflow — showing the world's largest freshwater system as a single hydraulic structure.
+
+**Professional treatment:**
+
+*Color:* The lakes are the most chromatic element in this map. Fill: `#cce0ed` — distinctly cool blue, not gray — because at this scale, ambiguity between lake and land would be a cartographic failure. Rivers in the same cool blue at `0.4–0.9px`. State fills: warm neutral gray (`#e4e1dc`). State borders: `0.4px`.
+
+*Viewport:* An Albers projection fitted to the Great Lakes extent. The St. Lawrence River drains eastward off the frame — this intentional incompleteness implies the system is larger than the canvas, which is geographically true. The Lake Ontario outlet toward the Atlantic is clipped, suggesting the viewer should look further east for the full story.
+
+*What this map reveals:* Lakes Superior, Michigan, and Huron form a contiguous water surface — they are hydrologically one lake. The St. Clair River–Lake St. Clair connector between Huron and Erie is visible as a thin channel. Lake Erie's shallowness (average 62 feet vs. Superior's 483 feet) is not visible in the map, but could be encoded by fill opacity. Title: "Great Lakes Hydrological System." Scale bar: "200 km."
+
+---
+
+### 12. Federal Land Boundaries — Western United States
+
+**Provider:** US PAD-US (Protected Areas Database, USGS-hosted) + TIGERweb `State_County` (western states)  
+**Dataset fetch:**
+The PAD-US dataset is available through the USGS via ArcGIS Online:
+```typescript
+// National parks (NPS-managed lands)
+const parks = await fetch(
+  'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Protected_Areas/FeatureServer/0/query' +
+  '?where=Mang_Name+LIKE+%27NPS%25%27' +
+  '&outFields=Unit_Nm,Mang_Name,GIS_Acres' +
+  '&f=geojson&outSR=4326' +
+  '&geometry=-125,31,-100,49' +
+  '&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects'
+).then(r => r.json())
+
+// Western states (including AK and HI)
+const westernStates = await queryTigerWeb('State_County', 0, {
+  where: "STATE IN ('06','04','49','08','32','16','53','41','56','30','02','15')",
+  outFields: 'STATE,NAME',
+})
+```
+
+**Description:** Federal land in the West — parks, forests, wilderness — shown against state boundaries, illustrating the radical difference in public land coverage between western and eastern states.
+
+**Professional treatment:**
+
+*Color:* Three tiers of fill distinguish management type. National Parks: `#9aab96` (medium forest gray-green). National Forests: `#b8c4b2` (lighter sage). Wilderness areas within forests: shown as a repeating diagonal SVG `<pattern>` in the forest color, creating visual texture without adding a new color. State fills: warm neutral `#e4e0da`. State borders: `0.5px`.
+
+*Alaska inset:* Alaska at half-scale in the lower left. The scale difference makes clear that Alaska's federal land dwarfs everything in the lower 48. A bracket label notes "~2× the size of Texas."
+
+*Labels:* Only the five largest parks by area are labeled (Wrangell-St. Elias, Denali, Death Valley, Grand Canyon, Yellowstone) in `0.7rem`. Legend distinguishes three management types. Title: "Federal Land — Western United States." A footnote: "Includes National Parks, National Forests, and designated Wilderness Areas. Land under other federal management (BLM, DoD, etc.) not shown."
+
+---
+
+### 13. World Population Gravity
+
+**Provider:** Natural Earth (populated places 10m, land 110m, countries 110m)  
+**Dataset fetch:**
+```typescript
+const cities = await fetchNaturalEarth('populated_places', '10m')
+const majorCities = cities.features
+  .filter(f => (f.properties.POP_MAX as number) >= 100000)
+  .sort((a, b) => (b.properties.POP_MAX as number) - (a.properties.POP_MAX as number))
+
+const land = await fetchNaturalEarth('land', '110m')
+const countries = await fetchNaturalEarth('admin_0_countries', '110m')
+```
+
+**Description:** City points sized by log(population) on a minimal world map — a gravitational portrait of where humanity lives, without any political coloring.
+
+**Professional treatment:**
+
+*Projection:* Winkel Tripel. Land: `#e6e2db`. Ocean: `#f0eff0`. Country borders: `0.2px`, `rgba(100,100,100,0.4)` — barely present.
+
+*Point encoding:* Radius: `r = (Math.log10(pop) - 4) * 1.4`. This maps 100k-population cities to ~1px and 37M-population Tokyo to ~6px. Points are filled `rgba(30,30,40,0.72)`. Larger points render first (drawn beneath), smaller on top — so the small cities that cluster around major ones remain visible and don't disappear behind the large point.
+
+*Labels:* Top 20 cities by population, set in `0.6rem` light gray with a thin white text shadow. Placed programmatically offset to the right of the point center. No leader lines — the font is small enough that approximate placement is readable.
+
+*What this map reveals:* The Eurasian coastal rim (from Tokyo to Mumbai to Cairo to London) contains more of the population markers than all of the Americas. Sub-Saharan Africa's population, despite being large, appears as moderate-sized dots widely spaced. The emptiness of Canada, Australia, and the central Sahara is equally legible. Title: "Global Urban Gravity — Cities Above 100,000." Legend: three reference circles at 100k, 1M, 10M labeled.
+
+---
+
+### 14. Elevation Contour Portrait — Colorado
+
+**Provider:** USGS National Map (contours, layer 1 = 50ft intervals) + TIGERweb `State_County` (counties, CO)  
+**Dataset fetch:**
+```typescript
+const coBbox = { xmin: -109.05, ymin: 37.0, xmax: -102.05, ymax: 41.0 }
+
+const indexContours = await queryUSGS('contours', 1, {
+  where: "ContourType='Index'",
+  geometry: JSON.stringify({ ...coBbox, spatialReference: { wkid: 4326 } }),
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+})
+
+const interContours = await queryUSGS('contours', 1, {
+  where: "ContourType='Intermediate'",
+  geometry: JSON.stringify({ ...coBbox, spatialReference: { wkid: 4326 } }),
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+})
+
+const coCounties = await queryTigerWeb('State_County', 1, {
+  where: "STATE='08'",
+  outFields: 'GEOID,NAME',
+})
+```
+
+**Description:** Colorado's terrain shown through contour lines only — the Rockies in the western 40% of the frame vs. the flat eastern plains in the 60% — with county lines as a ghosted political overlay.
+
+**Professional treatment:**
+
+*Color:* Background: warm cream `#f2ede4`. Intermediate contours: `#c4b39a` at `0.2px`. Index contours: `#8b7355` at `0.45px`. County boundaries: `rgba(100,80,60,0.28)` at `0.3px` — ghost lines.
+
+*The cartographic insight:* In the plains, county lines are the most visible feature because the terrain has almost no contours. In the mountains, contour density overwhelms the county grid completely. The map encodes two different geographic regimes: one defined by human administration, one by geology. The transition line between them — roughly the 105th meridian — is visible as the gradient from dense contours (west) to bare county grid (east).
+
+*Simplification note:* At 50ft intervals, Colorado generates a very large number of contour features. Pre-fetch should run `@turf/simplify` with `tolerance: 0.0005` and filter intermediate contours to only those between 5000ft and 14000ft (the inhabited elevation range). This reduces file size from ~30MB to ~4MB with no visible quality loss. Title: "Colorado — Terrain and County Structure."
+
+---
+
+### 15. Tribal Lands — Western United States
+
+**Provider:** TIGERweb `AIANNHA` (layer 47) + `State_County` (western states)  
+**Dataset fetch:**
+```typescript
+const tribal = await queryTigerWeb('AIANNHA', 47, {
+  where: "AIANNHCC IN ('R','T','J')",  // Federal reservations, trust lands, joint-use
+  geometry: '-125,31,-102,49',
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'GEOID,NAME,AIANNHCC,AREALAND',
+})
+
+const westernStates = await queryTigerWeb('State_County', 0, {
+  where: "STATE IN ('06','04','49','08','32','16','53','41','56','30')",
+  outFields: 'STATE,NAME',
+})
+```
+
+**Description:** Federal Indian Reservations and Trust Lands in the western US — rendered with the same cartographic weight as state boundaries, showing the land-tenure record of indigenous sovereignty.
+
+**Professional treatment:**
+
+*Color and weight:* Reservation fills in warm ochre-adjacent palette (four-colored): `#d6cebc`, `#cec8b8`, `#c8c2b2`, `#d0cab4`. These are warmer than the state fills (`#eae7e2`), so reservations read as a distinct category, not just "more states." Reservation borders: `0.6px` — the same weight as state borders. This is a deliberate design decision: not making reservation borders thinner than state borders is a choice about what the map treats as politically equivalent.
+
+*Labels:* The Navajo Nation — the largest reservation by area — is labeled at `0.75rem`. No other reservation names in the main view; too many and too small to be readable. A legend distinguishes "Federal Reservation (R)", "Trust Land (T)", and "Joint-Use Area (J)" using the AIANNHCC codes. Title: "Federal Indian Reservations and Trust Lands — Western United States."
+
+*What this map reveals:* The concentration of reservation land in Arizona, New Mexico, South Dakota, and Montana. The near-absence of large reservations in California and Oregon reflects the historical specifics of land cession — many California rancherias are tiny and below the resolution of this map. That absence is itself geographic information.
+
+---
+
+### 16. School District Map — New York State
+
+**Provider:** TIGERweb `tigerWMS_Current` (unified school districts) + `State_County` (counties, NY)  
+
+Verify the current unified school district layer ID at the `tigerWMS_Current` service. As of the 2025 vintage, unified school districts are in the layer range 10–20. Search the layers endpoint for "Unified School Districts":
+```
+https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Current/MapServer/layers
+```
+
+```typescript
+// After verifying the layer ID — confirm before use
+const nySchoolDistricts = await queryTigerWeb('tigerWMS_Current', 14, {
+  where: "STATE='36'",
+  outFields: 'GEOID,NAME,STATE,UNSDLEA',
+})
+
+const nyCounties = await queryTigerWeb('State_County', 1, {
+  where: "STATE='36'",
+  outFields: 'GEOID,NAME',
+})
+```
+
+**Description:** New York State's ~700+ unified school districts rendered as a fine-grained mosaic — revealing how granular and irregular educational governance is relative to the county grid.
+
+**Professional treatment:**
+
+*Color:* Welsh-Powell four-coloring in four subdued tones. Since district polygons are small and numerous, the fills need slightly more contrast than the state-level map: `#d6d2cc`, `#c8c9d0`, `#ccc9c4`, `#c4c8cc`.
+
+*Layering:* County borders at `0.7px` drawn on top of district fills — the county grid is the primary orientation reference for this map. District borders at `0.3px`. This reversal of the usual hierarchy (context heavier than subject) is intentional: counties are what the viewer knows; districts are what the viewer is learning about. Placing county lines on top helps the viewer locate the district mosaic within familiar geography.
+
+*NYC inset:* New York City's five boroughs are each a separate school district, plus dozens of additional city school districts. A 3× zoom inset of the five boroughs shows this complexity that is invisible at state scale. Title: "Unified School Districts — New York State." A note: "Each polygon is an independent school district with its own elected board and tax levy."
+
+---
+
+### 17. World Physical Regions and Ocean Shelves
+
+**Provider:** Natural Earth (geography_regions_polys 10m, bathymetry_L_200 10m, ocean 50m, coastline 50m)  
+**Dataset fetch:**
+```typescript
+const regions = await fetchNaturalEarth('geography_regions_polys', '10m')
+const shelf = await fetchNaturalEarth('bathymetry_L_200', '10m')
+const ocean = await fetchNaturalEarth('ocean', '50m')
+const coastlines = await fetchNaturalEarth('coastline', '50m')
+```
+
+**Description:** The world divided into major physical regions (Sahara, Amazon, Himalayas, etc.) with the continental shelf zone visible as a pale ring around each landmass — a map of physical geography rather than political.
+
+**Professional treatment:**
+
+*Projection:* Mollweide — a pseudocylindrical equal-area projection that gives the map a distinctive oval shape signaling "world map, physical." The oval frame is itself a cartographic element, implying the spherical completeness of the data.
+
+*Color:* Physical regions receive a 5-step warm gray tint scale (`#e8e4df` through `#ccc5bc`), adjacent regions assigned different steps. The 200m shelf: `#dce8ee` — distinctly cool, distinguishing it from both land and open ocean. Deep ocean: `#e4ecf0`. This three-tone land/shelf/ocean structure is the map's entire visual architecture.
+
+*No political overlay:* No country borders, no labels on countries, no capital cities. The regions' labels (Sahara, Amazon Basin, South Asian Plain) are placed in `0.65rem` at `rgba(50,40,30,0.6)` — visible but clearly secondary to the geometry. The graticule (30°) at `opacity: 0.10`. Title: "Physical Regions of the World — Continental Shelves and Geographic Zones."
+
+---
+
+### 18. Metropolitan Statistical Area Map — United States
+
+**Provider:** TIGERweb `tigerWMS_Current` (metro areas, verify layer ID) + `State_County` (states) + Census Population Estimates API  
+
+Metropolitan and Micropolitan Statistical Areas (CBSAs) are in the `tigerWMS_Current` service. Verify the current layer ID before use — search for "Metropolitan Statistical" or "Core Based Statistical" at the layers endpoint. As of the 2025 vintage, metro areas are in the 80s layer range.
+
+```typescript
+// After verifying — confirm layer ID before use
+const metros = await queryTigerWeb('tigerWMS_Current', 88, {
+  where: "LSADC='M1'",  // Metropolitan only (M1), exclude micropolitan (M2)
+  outFields: 'GEOID,NAME,CBSAFP,LSADC',
+})
+
+// Census API — 2023 population for metro areas
+const metroPopRes = await fetch(
+  'https://api.census.gov/data/2023/pep/population' +
+  '?get=POP_2023,NAME&for=metropolitan+statistical+area/micropolitan+statistical+area:*'
+)
+const metroPopData = await metroPopRes.json()
+```
+
+**Description:** All US Metropolitan Statistical Areas colored by total population on a log scale — showing the hierarchy of American urban agglomerations against the undifferentiated rural remainder.
+
+**Professional treatment:**
+
+*Color:* Metro fills from `#d8d3cc` (smallest, ~100k) to `#4a4658` (New York, ~20M), log-transformed. Non-metro state fill: `#ece9e4`. State borders: `0.5px`. Metro borders: `0.6px` in a tone slightly darker than the fill, ensuring borders remain visible even on the darkest fills.
+
+*Visual structure:* The "undifferentiated remainder" treatment — areas of states outside any metro boundary shown at flat land color — makes the metros read as defined zones on an otherwise unclassified surface. This is geographically accurate (non-metro areas have no CBSA designation by definition) and visually clean.
+
+*What this map reveals:* The Boston–Washington megalopolis appears as a nearly continuous dark band on the East Coast. The Midwest has a dense cluster of medium-sized metros. The West has a few very large metros (LA, SF, Seattle, Phoenix) surrounded by vast empty spaces. Title: "Metropolitan Statistical Areas — Population, 2023 Estimates." Legend: log-scale gradient bar annotated at 100k, 500k, 1M, 5M, 20M.
+
+---
+
+### 19. Glacier and Ice Coverage — North America
+
+**Provider:** Natural Earth (glaciated_areas 10m, land 50m, coastline 50m, bathymetry_L_200 10m) + TIGERweb `Hydro` (glaciers, layer 2, for Alaska detail)  
+**Dataset fetch:**
+```typescript
+const glaciers = await fetchNaturalEarth('glaciated_areas', '10m')
+const naGlaciers = glaciers.features.filter(f => {
+  const [x1,,x2] = f.bbox ?? [-180,-90,180,90]
+  return x1 >= -170 && x2 <= -50
+})
+
+const alaskaGlaciers = await queryTigerWeb('Hydro', 2, {
+  where: '1=1',
+  geometry: '-170,55,-130,72',
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'NAME,MTFCC',
+})
+
+const land = await fetchNaturalEarth('land', '50m')
+const coastlines = await fetchNaturalEarth('coastline', '50m')
+const shelf = await fetchNaturalEarth('bathymetry_L_200', '10m')
+```
+
+**Description:** North American glacier and ice coverage — a study in three tones (ice, land, ocean) using an Orthographic globe projection to show the Arctic without Mercator's polar distortion.
+
+**Professional treatment:**
+
+*Projection:* Orthographic centered at `[-90, 55]` — looking down at the North American Arctic. This makes Canada, Greenland, and Alaska appear in their correct spatial relationship, and it visually communicates "we are looking at the top of the planet" without needing to say so. Greenland appears at natural size rather than inflated.
+
+*Color:* Glaciers: near-white `#f0f0f2`. Land: warm gray `#d8d4ce`. Continental shelf (200m zone): pale cool blue-gray `#d4dde4`. Deep ocean: `#c8d4dc`. The minimal contrast is intentional — ice should feel cold-adjacent to the cold land and cold ocean. The coastline at `0.8px` warm dark gray is the hardest line on the canvas.
+
+*What this map reveals:* Alaska's glacier concentration — the Kenai, Harding, and Bagley icefields — is the most visually striking feature of the lower-48/Alaska comparison. Greenland's ice sheet (1.7M km²) dominates the frame in a way that a Mercator map misrepresents. Title: "Ice Coverage — North American Glaciers and Ice Fields." A factual annotation: "Greenland ice sheet: ~1.7 million km²."
+
+---
+
+### 20. Combined Terrain and Hydrology — Pacific Northwest
+
+**Provider:** USGS National Map (contours) + TIGERweb `Hydro` (rivers and lakes) + `State_County` (WA, OR, ID) + Natural Earth (coastline)  
+**Dataset fetch:**
+```typescript
+const pnwBbox = { xmin: -124.8, ymin: 42.0, xmax: -111.0, ymax: 49.0 }
+const pnwBboxStr = '-124.8,42.0,-111.0,49.0'
+
+const contours = await queryUSGS('contours', 0, {
+  where: "ContourType='Index'",
+  geometry: JSON.stringify({ ...pnwBbox, spatialReference: { wkid: 4326 } }),
+  geometryType: 'esriGeometryEnvelope', inSR: '4326',
+  spatialRel: 'esriSpatialRelIntersects',
+})
+
+const rivers = await queryTigerWeb('Hydro', 0, {
+  where: "NAME <> '' AND MTFCC='H3010'",
+  geometry: pnwBboxStr, geometryType: 'esriGeometryEnvelope',
+  inSR: '4326', spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'NAME,MTFCC',
+})
+
+const lakes = await queryTigerWeb('Hydro', 1, {
+  where: 'AREAWATER > 5000000',
+  geometry: pnwBboxStr, geometryType: 'esriGeometryEnvelope',
+  inSR: '4326', spatialRel: 'esriSpatialRelIntersects',
+  outFields: 'NAME,MTFCC,AREAWATER',
+})
+
+const pnwStates = await queryTigerWeb('State_County', 0, {
+  where: "STATE IN ('53','41','16')",
+  outFields: 'STATE,NAME',
+})
+```
+
+**Description:** Washington, Oregon, and Idaho shown with their full physical complexity — the Coast Range, the Cascade spine, the Columbia River network, and the high desert plateau — using three data providers simultaneously.
+
+**Professional treatment:**
+
+*Color:* Background: warm light neutral `#ece8e2`. Index contours: warm tan `#c8b898` at `0.35px`. Rivers: cool blue `#6e9fbe` scaled by length, `0.4–1.0px`. Lakes: cool blue fill `#c0d8e8`. State borders: `0.6px`, medium gray. Coastline: `1.0px`, warm dark.
+
+*The visual structure:* The Cascade Range acts as a vertical spine bisecting the frame east to west. West of the Cascades: dense, tightly-packed contours; the Columbia and Willamette rivers as cool blue lines running south to north through the lowlands; Puget Sound as a large water body at upper left. East of the Cascades: widely-spaced contours on the plateau; the Snake River visible as the dominant drainage running west-northwest; almost no trees, almost no water.
+
+*The cartographic gem:* The Columbia River Gorge — where the Columbia punches through the Cascades at sea level — is visible as a narrow gap in the densest contour zone on the map. A thin blue line (the river) threads through a zone where the contour lines crowd on both sides. This one feature, visible at the right scale, communicates more about Pacific Northwest geology and water than any text could.
+
+*Legend:* Four swatches — Index Contour (every 100ft), River, Lake, State Border. Scale bar: 200km. North arrow as minimal typographic `N↑`. Title: "Pacific Northwest — Terrain, Hydrology, and State Boundaries."
+
+---
+
+## Appendix: Verified TIGERweb Service and Layer Reference
+
+Always verify layer IDs before use. TIGERweb updates annually; IDs can shift. Browse any service's layer list at:
+```
+https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/{ServiceName}/MapServer/layers
+```
+
+```
+Verified services and layers used in this document (2025 vintage):
+
+  State_County/MapServer/0          — States
+  State_County/MapServer/1          — Counties
+  Hydro/MapServer/0                 — Linear Hydrography (rivers, streams)
+  Hydro/MapServer/1                 — Areal Hydrography (lakes, bays)
+  Hydro/MapServer/2                 — Glaciers
+  tigerWMS_Current/MapServer/2      — ZCTAs (2020 vintage)
+  tigerWMS_Current/MapServer/4      — Tribal Census Tracts
+  tigerWMS_Current/MapServer/54     — 119th Congressional Districts
+  Legislative/MapServer/0           — 119th Congressional Districts (BAS 2025)
+  Legislative/MapServer/4           — 119th Congressional Districts (ACS 2024)
+  AIANNHA/MapServer/47              — AIANNH Areas (all types)
+  Places_CouSub_ConCity_SubMCD/4    — Incorporated Places
+  Places_CouSub_ConCity_SubMCD/5    — Census Designated Places
+  Transportation/MapServer/2        — Primary Roads (all, queryable)
+  Transportation/MapServer/7        — Local Roads
+  tigerWMS_PhysicalFeatures/1       — Primary Roads
+  tigerWMS_PhysicalFeatures/3       — Secondary Roads
+  tigerWMS_PhysicalFeatures/5       — Local Roads
+  tigerWMS_PhysicalFeatures/7       — Railroads
+  tigerWMS_PhysicalFeatures/10      — Linear Hydrography
+  tigerWMS_PhysicalFeatures/12      — Areal Hydrography
+
+  USGS National Map (cartowfs.nationalmap.gov — NOT carto):
+  contours/MapServer/1              — 100ft contour lines (all types)
+  contours/MapServer/3              — 50ft contour lines (regional maps)
+  contours/MapServer/5              — Large-scale contours (variable interval)
+
+  USGS Watershed Boundary Dataset (hydro.nationalmap.gov/wbd):
+  wbd/MapServer/2                   — HUC2 (major drainage regions)
+  wbd/MapServer/4                   — HUC4 (subregions)
+  wbd/MapServer/6                   — HUC6 (basins)
+  wbd/MapServer/8                   — HUC8 (subbasins)
+```

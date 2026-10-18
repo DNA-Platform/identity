@@ -1,0 +1,998 @@
+
+As a temporary workaround you can try to inline the package by updating your config:
+
+// vitest.config.js
+export default {
+  test: {
+    server: {
+      deps: {
+        inline: [
+          "C:"
+        ]
+      }
+ RERUN  src/chemistry/particle.tsx x16 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: Cannot find module '@chemistry/chemical.ts'
+Require stack:
+- C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry\particle.tsx
+ ❯ Function.get $Chemical [as $Chemical] src/chemistry/particle.tsx:84:35
+     82|     private static get $Chemical() {
+     83|         if (!this.$$Chemical) {
+     84|             const { $Chemical } = require('@chemistry/chemical.ts');
+       |                                   ^
+     85|             this.$$Chemical = $Chemical;
+ RERUN  src/chemistry/particle.tsx x17 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: Cannot find module '@chemistry/chemical.ts'
+Require stack:
+- C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry\particle.tsx
+ ❯ Function.get $Chemical [as $Chemical] src/chemistry/particle.tsx:84:35
+     82|     private static get $Chemical() {
+     83|         if (!this.$$Chemical) {
+     84|             const { $Chemical } = require('@chemistry/chemical.ts');
+       |                                   ^
+     85|             this.$$Chemical = $Chemical;
+ RERUN  src/chemistry/particle.tsx x18 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: Cannot find module '@chemistry/chemical'
+Require stack:
+- C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry\particle.tsx
+ ❯ Function.get $Chemical [as $Chemical] src/chemistry/particle.tsx:84:35
+     82|     private static get $Chemical() {
+     83|         if (!this.$$Chemical) {
+     84|             const { $Chemical } = require('@chemistry/chemical');
+       |                                   ^
+     85|             this.$$Chemical = $Chemical;
+ RERUN  src/chemistry/particle.tsx x19 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: Cannot find module '@src/chemistry/chemical'
+Require stack:
+- C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry\particle.tsx
+ ❯ Function.get $Chemical [as $Chemical] src/chemistry/particle.tsx:84:35
+     82|     private static get $Chemical() {
+     83|         if (!this.$$Chemical) {
+     84|             const { $Chemical } = require('@src/chemistry/chemical');
+       |                                   ^
+     85|             this.$$Chemical = $Chemical;
+ RERUN  src/chemistry/particle.tsx x20 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: Cannot find module '@chemistry/chemical'
+Require stack:
+- C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry\particle.tsx
+ ❯ Function.get $Chemical [as $Chemical] src/chemistry/particle.tsx:84:35
+     82|     private static get $Chemical() {
+     83|         if (!this.$$Chemical) {
+     84|             const { $Chemical } = require('@chemistry/chemical');
+       |                                   ^
+     85|             this.$$Chemical = $Chemical;
+ RERUN  src/chemistry/particle.tsx x21 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: Cannot find module '@/chemistry/chemical'
+Require stack:
+- C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry\particle.tsx
+ ❯ Function.get $Chemical [as $Chemical] src/chemistry/particle.tsx:84:35
+     82|     private static get $Chemical() {
+     83|         if (!this.$$Chemical) {
+     84|             const { $Chemical } = require('@/chemistry/chemical');
+       |                                   ^
+     85|             this.$$Chemical = $Chemical;
+ RERUN  src/chemistry/particle.tsx x22 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: Cannot find module '@/chemical'
+Require stack:
+- C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry\particle.tsx
+ ❯ Function.get $Chemical [as $Chemical] src/chemistry/particle.tsx:84:35
+     82|     private static get $Chemical() {
+     83|         if (!this.$$Chemical) {
+     84|             const { $Chemical } = require('@/chemical');
+       |                                   ^
+     85|             this.$$Chemical = $Chemical;
+ RERUN  src/chemistry/particle.tsx x23 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: Cannot find module '@/chemical'
+Require stack:
+- C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry\particle.tsx
+ ❯ Function.get $Chemical [as $Chemical] src/chemistry/particle.tsx:84:35
+     82|     private static get $Chemical() {
+     83|         if (!this.$$Chemical) {
+     84|             const { $Chemical } = require('@/chemical');
+       |                                   ^
+     85|             this.$$Chemical = $Chemical;
+ RERUN  src/chemistry/particle.tsx x24 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+SyntaxError: Cannot use import statement outside a module
+ ❯ Function.get $Chemical [as $Chemical] src/chemistry/particle.tsx:84:35
+     82|     private static get $Chemical() {
+     83|         if (!this.$$Chemical) {
+     84|             const { $Chemical } = require('./chemical.ts');
+       |                                   ^
+     85|             this.$$Chemical = $Chemical;
+     86|         }
+ ❯ new $Particle src/chemistry/particle.tsx:22:37
+ ❯ src/chemistry/particle.tsx:91:25
+
+Module C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/chemistry/chemical.ts:1 seems to be an ES Module but shipped in a CommonJS package. You might want to create an issue to the package "C:" asking 
+them to ship the file in .mjs extension or add "type": "module" in their package.json.
+
+As a temporary workaround you can try to inline the package by updating your config:
+
+// vitest.config.js
+export default {
+  test: {
+    server: {
+      deps: {
+        inline: [
+          "C:"
+        ]
+      }
+    }
+  }
+}
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  00:39:50
+   Duration  0ms
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit
+
+Restarting due to config changes...
+
+ DEV  v4.0.6 C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry
+
+
+ RERUN  src/chemistry/particle.tsx x1 
+
+
+ RERUN  src/chemistry/particle.tsx x2 
+
+
+ RERUN  src/chemistry/particle.tsx x3 
+
+
+ RERUN  src/chemistry/particle.tsx x4 
+
+
+ RERUN  package.json x5 
+
+
+ RERUN  src/chemistry/particle.tsx x6 
+
+
+ RERUN  package.json x7 
+
+
+ RERUN  src/chemistry/particle.tsx x8 
+
+
+ RERUN  src/chemistry/particle.tsx x9 
+
+
+ RERUN  src/chemistry/particle.tsx x10 
+
+
+ RERUN  src/chemistry/particle.tsx x11 
+
+
+ RERUN  src/chemistry/particle.tsx x12 
+
+
+ RERUN  src/chemistry/particle.tsx x13 
+
+
+ RERUN  src/chemistry/particle.tsx x14 
+
+
+ RERUN  src/chemistry/particle.tsx x15 
+
+
+ RERUN  src/chemistry/particle.tsx x16 
+
+
+ RERUN  src/chemistry/particle.tsx x17 
+
+
+ RERUN  src/chemistry/particle.tsx x18 
+
+
+ RERUN  src/chemistry/particle.tsx x19 
+
+
+ RERUN  src/chemistry/particle.tsx x20 
+
+
+ RERUN  src/chemistry/particle.tsx x21 
+
+
+ RERUN  src/symbols.ts x22 
+
+
+ RERUN  src/symbols.ts x23 
+
+
+ RERUN  src/chemistry/particle.tsx x24 
+
+
+ RERUN  src/chemistry/particle.tsx x25 
+
+
+ RERUN  src/chemistry/particle.tsx x26 
+
+
+ RERUN  src/chemistry/particle.tsx x27 
+
+
+ RERUN  src/chemistry/particle.tsx x28 
+
+
+ RERUN  src/chemistry/particle.tsx x29 
+
+
+ RERUN  src/chemistry/particle.tsx x30 
+
+
+ RERUN  src/chemistry/particle.tsx x31 
+
+
+ RERUN  src/chemistry/particle.tsx x32 
+
+
+ RERUN  tests/particle.test.ts x33 
+
+
+ RERUN  src/chemistry/particle.tsx x34 
+
+
+ RERUN  src/chemistry/particle.tsx x35 
+
+
+ RERUN  src/chemistry/particle.tsx x36 
+
+
+ RERUN  src/chemistry/particle.tsx x37 
+
+
+ RERUN  src/chemistry/particle.tsx x38 
+
+
+ RERUN  src/chemistry/particle.tsx x39 
+
+
+ RERUN  src/chemistry/particle.tsx x40 
+
+
+ RERUN  src/chemistry/particle.tsx x41 
+
+
+ RERUN  src/chemistry/particle.tsx x42 
+
+
+ RERUN  tests/particle.test.ts x43 
+
+
+ RERUN  package.json x44 
+
+
+ RERUN  package.json x45 
+
+
+ RERUN  src/chemistry/particle.tsx x46 
+
+
+ RERUN  src/chemistry/particle.tsx x47 
+
+
+ RERUN  src/chemistry/particle.tsx x48 
+
+
+ RERUN  src/chemistry/particle.tsx x49 
+
+
+ RERUN  src/chemistry/particle.tsx x50 
+
+
+ RERUN  src/chemistry/particle.tsx x51 
+
+
+ RERUN  src/chemistry/particle.tsx x52 
+
+
+ RERUN  src/chemistry/particle.tsx x53 
+
+
+ RERUN  src/chemistry/particle.tsx x54 
+
+
+ RERUN  src/chemistry/particle.tsx x55 
+
+
+ RERUN  src/chemistry/particle.tsx x56 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ RERUN  tests/particle.test.ts x57 
+
+
+ RERUN  package.json x58 
+
+
+ RERUN  package.json x59 
+
+
+ RERUN  package.json x60 
+
+
+ RERUN  package.json x61 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\dougl\AppData\Local\Temp\jwbn3nQhoyn2oo79U3J14\client\a9799c0c4948d6e3cb3947af5fbf687e74d2ce37'
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  19:02:39
+   Duration  0ms
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit
+
+Restarting due to config changes...
+
+ DEV  v4.0.6 C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry
+
+
+ RERUN  tests/particle.test.ts x1 
+
+
+ RERUN  tests/catalogue.test.ts x1 
+
+ ❯ tests/particle.test.ts (0 test) 
+
+ RERUN  src/catalogue.ts x2       
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x3       
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x4       
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x5       
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x6       
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x7       
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x8       
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x9       
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  package.json 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\dougl\AppData\Local\Temp\jwbn3nQhoyn2oo79U3J14\client\a9799c0c4948d6e3cb3947af5fbf687e74d2ce37'
+ RERUN  package.json 
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/particle.test.ts [ tests/particle.test.ts ]
+Error: ENOENT: no such file or directory, open 'C:\Users\dougl\AppData\Local\Temp\jwbn3nQhoyn2oo79U3J14\client\a9799c0c4948d6e3cb3947af5fbf687e74d2ce37'
+ RERUN  src/catalogue.ts x12      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x13      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x14      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x15      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x16      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x17      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  tests/catalogue.test.ts x18 
+
+ ❯ tests/particle.test.ts (0 test)  
+
+ RERUN  tests/catalogue.test.ts x19 
+
+ ❯ tests/particle.test.ts (0 test)  
+
+ RERUN  tests/catalogue.test.ts x20 
+
+ ❯ tests/particle.test.ts (0 test)  
+
+ RERUN  src/catalogue.ts x21      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x22      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x23      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x24      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x25      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x26      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x27      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  tests/catalogue.test.ts x28 
+
+ ❯ tests/particle.test.ts (0 test)  
+
+ RERUN  tests/catalogue.test.ts x29 
+
+ ❯ tests/particle.test.ts (0 test)  
+
+ RERUN  tests/catalogue.test.ts x30 
+
+ ❯ tests/particle.test.ts (0 test)  
+
+ RERUN  src/catalogue.ts x31      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x32      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  tests/catalogue.test.ts x33 
+
+ ❯ tests/particle.test.ts (0 test)  
+
+ RERUN  src/catalogue.ts x34      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x35      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  src/catalogue.ts x36      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  tests/catalogue.test.ts x37 
+
+ ❯ tests/particle.test.ts (0 test)  
+
+ RERUN  src/catalogue.ts x38      
+
+ ❯ tests/particle.test.ts (0 test)
+
+ RERUN  tests/reflection.test.ts x1 
+ RERUN  tests/reflection.test.ts x2 
+
+ ❯ tests/particle.test.ts (0 test)  
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> npm run tests
+
+> chemistry@0.1.0 tests
+> vitest
+
+
+ DEV  v4.0.6 C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry
+
+ ✓ tests/catalogue.test.ts (31 tests) 12ms
+ ✓ tests/particle.test.ts (17 tests) 14ms
+ ❯ tests/reflection.test.ts (66 tests | 47 failed) 58ms
+         × no parameters - lambda 13ms
+         × no parameters - function 2ms
+         × no parameters - method 1ms
+         × single parameter - lambda parens 1ms
+         × single parameter - lambda no parens 1ms
+         × single parameter - function 1ms
+         × single parameter - method 1ms
+         × multiple parameters - lambda 1ms
+         × multiple parameters - function 1ms
+         × multiple parameters - method 1ms
+         × rest only - lambda 1ms
+         × rest only - function 1ms
+         × rest only - method 1ms
+         × params + rest - lambda 1ms
+         × params + rest - function 1ms
+         × params + rest - method 1ms
+         × async lambda 1ms
+         × async lambda with params 1ms
+         × async function 1ms
+         ✓ async function named 0ms
+         × async method 1ms
+         ✓ async generator function 0ms
+         × async generator method 1ms
+         ✓ generator function 0ms
+         ✓ generator function named 0ms
+         × generator method 1ms
+         ✓ async generator function 0ms
+         × async generator method 0ms
+         × lambda no params 2ms
+         × lambda single param no parens 1ms
+         × lambda multiple params 1ms
+         × async lambda 1ms
+         × function anonymous 1ms
+         ✓ function named 0ms
+         × async function 0ms
+         ✓ generator function 0ms
+         × method 1ms
+         × async method 1ms
+         × generator method 1ms
+         ✓ getter 0ms
+         ✓ setter 0ms
+         ✓ class named 0ms
+         ✓ class anonymous 0ms
+           ✓ function 0ms
+           ✓ method 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+           × getter 1ms
+           × setter 1ms
+           × lambda 0ms
+           × function 0ms
+           × generator 0ms
+           × class 1ms
+         × String constructor 1ms
+         × Array constructor 1ms
+         × Object constructor 1ms
+         × Array.prototype.map 1ms
+         × String.prototype.slice 1ms
+         × Math.pow 1ms
+         × bound function 1ms
+         ✓ custom toString - gibberish 1ms
+         ✓ custom toString - empty 0ms
+         ✓ custom toString - unicode 0ms
+         × async lambda with rest params 1ms
+         ✓ async generator with params and rest 0ms
+         × async generator method with rest 1ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 47 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > no parameters - lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > no parameters - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > no parameters - method
+AssertionError: expected { count: undefined, rest: undefined } to deeply equal { count: +0, rest: false }
+
+- Expected
++ Received
+
+  {
+-   "count": 0,
+-   "rest": false,
++   "count": undefined,
++   "rest": undefined,
+  }
+
+ ❯ tests/reflection.test.ts:39:43
+     37|                 it(name, () => {
+     38|                     const result = parseFunctionInfo(func);
+     39|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     40|                 });
+     41|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - lambda parens
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - lambda no parens
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - method
+AssertionError: expected { count: undefined, rest: undefined } to deeply equal { count: 1, rest: false }
+
+- Expected
++ Received
+
+  {
+-   "count": 1,
+-   "rest": false,
++   "count": undefined,
++   "rest": undefined,
+  }
+
+ ❯ tests/reflection.test.ts:39:43
+     37|                 it(name, () => {
+     38|                     const result = parseFunctionInfo(func);
+     39|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     40|                 });
+     41|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > multiple parameters - lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > multiple parameters - function
+AssertionError: expected { count: undefined, rest: undefined } to deeply equal { count: 3, rest: false }
+
+- Expected
++ Received
+
+  {
+-   "count": 3,
+-   "rest": false,
++   "count": undefined,
++   "rest": undefined,
+  }
+
+ ❯ tests/reflection.test.ts:39:43
+     37|                 it(name, () => {
+     38|                     const result = parseFunctionInfo(func);
+     39|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     40|                 });
+     41|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > multiple parameters - method
+AssertionError: expected { count: undefined, rest: undefined } to deeply equal { count: 2, rest: false }
+
+- Expected
++ Received
+
+  {
+-   "count": 2,
+-   "rest": false,
++   "count": undefined,
++   "rest": undefined,
+  }
+
+ ❯ tests/reflection.test.ts:39:43
+     37|                 it(name, () => {
+     38|                     const result = parseFunctionInfo(func);
+     39|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     40|                 });
+     41|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > rest only - lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > rest only - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > rest only - method
+AssertionError: expected { count: undefined, rest: undefined } to deeply equal { count: +0, rest: true }
+
+- Expected
++ Received
+
+  {
+-   "count": 0,
+-   "rest": true,
++   "count": undefined,
++   "rest": undefined,
+  }
+
+ ❯ tests/reflection.test.ts:39:43
+     37|                 it(name, () => {
+     38|                     const result = parseFunctionInfo(func);
+     39|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     40|                 });
+     41|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > params + rest - lambda
+AssertionError: expected { count: undefined, rest: undefined } to deeply equal { count: 2, rest: true }
+
+- Expected
++ Received
+
+  {
+-   "count": 2,
+-   "rest": true,
++   "count": undefined,
++   "rest": undefined,
+  }
+
+ ❯ tests/reflection.test.ts:39:43
+     37|                 it(name, () => {
+     38|                     const result = parseFunctionInfo(func);
+     39|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     40|                 });
+     41|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > params + rest - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > params + rest - method
+AssertionError: expected { count: undefined, rest: undefined } to deeply equal { count: 1, rest: true }
+
+- Expected
++ Received
+
+  {
+-   "count": 1,
+-   "rest": true,
++   "count": undefined,
++   "rest": undefined,
+  }
+
+ ❯ tests/reflection.test.ts:39:43
+     37|                 it(name, () => {
+     38|                     const result = parseFunctionInfo(func);
+     39|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     40|                 });
+     41|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > async modifier > async lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > async modifier > async lambda with params
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > async modifier > async function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > async modifier > async method
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > async modifier > async generator method
+AssertionError: expected undefined to be true // Object.is equality
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ tests/reflection.test.ts:58:42
+     56|                 it(name, () => {
+     57|                     const result = parseFunctionInfo(func);
+     58|                     expect(result.async).toBe(true);
+       |                                          ^
+     59|                 });
+     60|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > generator modifier > generator method
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > generator modifier > async generator method
+AssertionError: expected undefined to be true // Object.is equality
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ tests/reflection.test.ts:75:46
+     73|                 it(name, () => {
+     74|                     const result = parseFunctionInfo(func);
+     75|                     expect(result.generator).toBe(true);
+       |                                              ^
+     76|                 });
+     77|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > function forms > lambda no params
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > function forms > lambda single param no parens
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > function forms > lambda multiple params
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > function forms > async lambda
+AssertionError: expected 'unknown' to be 'lambda' // Object.is equality
+
+Expected: "lambda"
+Received: "unknown"
+
+ ❯ tests/reflection.test.ts:106:41
+    104|                 it(name, () => {
+    105|                     const result = parseFunctionInfo(func);
+    106|                     expect(result.form).toBe(expectedForm);
+       |                                         ^
+    107|                 });
+    108|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > function forms > function anonymous
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > function forms > async function
+AssertionError: expected 'unknown' to be 'function' // Object.is equality
+
+Expected: "function"
+Received: "unknown"
+
+ ❯ tests/reflection.test.ts:106:41
+    104|                 it(name, () => {
+    105|                     const result = parseFunctionInfo(func);
+    106|                     expect(result.form).toBe(expectedForm);
+       |                                         ^
+    107|                 });
+    108|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > function forms > method
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > function forms > async method
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > function forms > generator method
+AssertionError: expected 'unknown' to be 'method' // Object.is equality
+
+Expected: "method"
+Received: "unknown"
+
+ ❯ tests/reflection.test.ts:106:41
+    104|                 it(name, () => {
+    105|                     const result = parseFunctionInfo(func);
+    106|                     expect(result.form).toBe(expectedForm);
+       |                                         ^
+    107|                 });
+    108|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > naming > named functions > getter
+AssertionError: expected 'get prop' to be 'prop' // Object.is equality
+
+Expected: "prop"
+Received: "get prop"
+
+ ❯ tests/reflection.test.ts:125:45
+    123|                     it(name, () => {
+    124|                         const result = parseFunctionInfo(func);
+    125|                         expect(result.name).toBe(expectedName);
+       |                                             ^
+    126|                     });
+    127|                 });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > naming > named functions > setter
+AssertionError: expected 'set prop' to be 'prop' // Object.is equality
+
+Expected: "prop"
+Received: "set prop"
+
+ ❯ tests/reflection.test.ts:125:45
+    123|                     it(name, () => {
+    124|                         const result = parseFunctionInfo(func);
+    125|                         expect(result.name).toBe(expectedName);
+       |                                             ^
+    126|                     });
+    127|                 });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > naming > anonymous functions > lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > naming > anonymous functions > function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > naming > anonymous functions > generator
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > naming > anonymous functions > class
+AssertionError: expected 'func' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ func
+
+ ❯ tests/reflection.test.ts:141:45
+    139|                     it(name, () => {
+    140|                         const result = parseFunctionInfo(func);
+    141|                         expect(result.name).toBe('');
+       |                                             ^
+    142|                     });
+    143|                 });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > native functions > String constructor
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > native functions > Array constructor
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > native functions > Object constructor
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > native functions > Array.prototype.map
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > native functions > String.prototype.slice
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > native functions > Math.pow
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > native functions > bound function
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/reflection.test.ts:161:43
+    159|                 it(name, () => {
+    160|                     const result = parseFunctionInfo(func);
+    161|                     expect(result.native).toBe(true);
+       |                                           ^
+    162|                 });
+    163|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > comprehensive combinations > async lambda with rest params
+AssertionError: expected 'unknown' to be 'lambda' // Object.is equality
+
+Expected: "lambda"
+Received: "unknown"
+
+ ❯ tests/reflection.test.ts:211:37
+    209|             it('async lambda with rest params', () => {
+    210|                 const result = parseFunctionInfo(async (...args: any[]) => {});
+    211|                 expect(result.form).toBe('lambda');
+       |                                     ^
+    212|                 expect(result.async).toBe(true);
+    213|                 expect(result.params).toEqual({ count: 0, rest: true });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/47]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > comprehensive combinations > async generator method with rest
+AssertionError: expected 'unknown' to be 'method' // Object.is equality
+
+Expected: "method"
+Received: "unknown"
+
+ ❯ tests/reflection.test.ts:226:37
+    224|             it('async generator method with rest', () => {
+    225|                 const result = parseFunctionInfo(({ async *method(...args: any[]) {} }).method);
+    226|                 expect(result.form).toBe('method');
+       |                                     ^
+    227|                 expect(result.async).toBe(true);
+    228|                 expect(result.generator).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/47]⎯
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  47 failed | 67 passed (114)
+   Start at  15:32:55
+   Duration  1.10s (transform 358ms, setup 0ms, collect 492ms, tests 84ms, environment 1.63s, prepare 65ms)
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit

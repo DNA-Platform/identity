@@ -1,0 +1,317 @@
+interface Item {
+    [key: string]: any;
+    name?: string;
+    readonly typename: string;
+    readonly parent: any;
+    readonly length?: number;
+    selected?: any;
+    remove?(): void;
+    removeAll?(): void;
+    getIndex?(): number;
+    getByName?(name: string): Item;
+    add?(...args: any[]): Item;
+    insert?(...args: any[]): void;
+    duplicate?(relativeObject: object, insertionLocation: any): Item;
+    move?(relativeObject: object, insertionLocation: any): Item;
+    q: Queryable<this>;
+}
+
+class QueryItem {
+
+ }
+
+class Queryable<T extends QueryableItem> {
+    private defaultCollection: CollectionProperty | undefined;
+
+    item: T;
+    code: number;
+    empty: boolean;
+    enumerable: boolean;
+    collection: Item[] = [];
+    query: A<Queryable<Item>> = A.empty();
+    activated() { return !!this.item.selected; }
+    activate() { this.item.selected = true; }
+    inactivate() { this.item.selected = false; }
+
+    name() { return this.item.name ? this.item.name.toString() : ""; }
+    parent() { return this.item.parent ? this.item.parent.q() : Queryable.empty(); }
+    parentApp() { return this.item.parent ? this.item.parent.q() : ApplicationQueryable.empty(); }
+    parentDocument() { return this.item.parent ? this.item.parent.q() : DocumentQueryable.empty(); }
+    parentLayer() { return this.item.parent ? this.item.parent.q() : LayerQueryable.empty(); }
+    parentGroup() { return this.item.parent ? this.item.parent.q() : GroupItemQueryable.empty(); }
+    parentStory() { return this.item.parent ? this.item.parent.q() : StoryQueryable.empty(); }
+
+    children() { return this.childQuery<Queryable<Item>>(this.defaultCollection); }
+    artboards() { return this.childQuery<ArtboardQueryable>(CollectionProperty.Artboards); }
+    brushes() { return this.childQuery<BrushQueryable>(CollectionProperty.Brushes); }
+    characters() { return this.childQuery<CharacterStyleQueryable>(CollectionProperty.Characters); }
+    compoundPathItems() { return this.childQuery<CompoundPathItemQueryable>(CollectionProperty.CompoundPathItems); }
+    documents() { return this.childQuery<DocumentQueryable>(CollectionProperty.Documents); }
+    gradientStops() { return this.childQuery<GradientQueryable>(CollectionProperty.GradientStops); }
+    gradients() { return this.childQuery<GradientQueryable>(CollectionProperty.Gradients); }
+    graphItems() { return this.childQuery<GraphItemQueryable>(CollectionProperty.GraphItems); }
+    groupItems() { return this.childQuery<GroupItemQueryable>(CollectionProperty.GroupItems); }
+    insertionPoints() { return this.childQuery<InsertionPointQueryable>(CollectionProperty.InsertionPoints); }
+    layers() { return this.childQuery<LayerQueryable>(CollectionProperty.Layers); }
+    legacyTextItems() { return this.childQuery<LegacyTextItemQueryable>(CollectionProperty.LegacyTextItems); }
+    lines() { return this.childQuery<TextRangeQueryable>(CollectionProperty.Lines); }
+    meshItems() { return this.childQuery<MeshItemQueryable>(CollectionProperty.MeshItems); }
+    nonNativeItems() { return this.childQuery<NonNativeItemQueryable>(CollectionProperty.NonNativeItems); }
+    pageItems() { return this.childQuery<PageItemQueryable>(CollectionProperty.PageItems); }
+    paragraphs() { return this.childQuery<ParagraphStyleQueryable>(CollectionProperty.Paragraphs); }
+    pathItems() { return this.childQuery<PathItemQueryable>(CollectionProperty.PathItems); }
+    pathPoints() { return this.childQuery<PathPointQueryable>(CollectionProperty.PathPoints); }
+    patterns() { return this.childQuery<PatternQueryable>(CollectionProperty.Patterns); }
+    placedItems() { return this.childQuery<PlacedItemQueryable>(CollectionProperty.PlacedItems); }
+    pluginItems() { return this.childQuery<PluginItemQueryable>(CollectionProperty.PluginItems); }
+    rasterItems() { return this.childQuery<RasterItemQueryable>(CollectionProperty.RasterItems); }
+    spots() { return this.childQuery<SpotQueryable>(CollectionProperty.Spots); }
+    stories() { return this.childQuery<StoryQueryable>(CollectionProperty.Stories); }
+    swatches() { return this.childQuery<SwatchQueryable>(CollectionProperty.Swatches); }
+    symbolItems() { return this.childQuery<SymbolItemQueryable>(CollectionProperty.SymbolItems); }
+    symbols() { return this.childQuery<SymbolQueryable>(CollectionProperty.Symbols); }
+    tags() { return this.childQuery<TagQueryable>(CollectionProperty.Tags); }
+    textFrames() { return this.childQuery<TextFrameQueryable>(CollectionProperty.TextFrames); }
+    textRanges() { return this.childQuery<TextRangeQueryable>(CollectionProperty.TextRanges); }
+    variables() { return this.childQuery<VariableQueryable>(CollectionProperty.Variables); }
+    words() { return this.childQuery<TextRangeQueryable>(CollectionProperty.Words); }
+
+    constructor(item: any, defaultCollection?: CollectionProperty, empty: boolean = false) {
+        this.code = Queryable._nextCode;
+        Queryable._nextCode += 1;
+
+        this.item = item;
+        this.defaultCollection = defaultCollection;
+        this.enumerable = this.defaultCollection !== undefined;
+        this.empty = empty;
+        this.queriable();
+    }
+
+    queriable(collectionProperty?: CollectionProperty): A<Queryable<Item>> {
+        if (!collectionProperty) collectionProperty = this.defaultCollection;
+        this.collection = collectionProperty && this.item ? 
+            this.item[collectionProperty] : [];
+
+        this.query = this._q(this.collection);
+        return this.queriable();
+    }
+
+    at(index: number): Queryable<Item> {
+        return this.query.at(index);
+    }
+
+    get(selector: string): A<Queryable<Item>> {
+        return this.query.get(selector);
+    }
+
+    length(): number { return this.query.length(); }
+
+    replace(index: number, item: Item): A<Queryable<Item>> {
+        var itemAtIndex = this.query.at(index).item;
+        item.move?.(itemAtIndex, ElementPlacement.PLACEBEFORE);
+        itemAtIndex.remove?.();
+        return this.queriable();
+    }
+
+    insertAt(index: number, item: Item): A<Queryable<Item>> {
+        var itemBeforeIndex = this.query.at(index-1).item;
+        item.move?.(itemBeforeIndex, ElementPlacement.PLACEAFTER);
+        return this.queriable();
+    }
+
+    insertManyAt(index: number, items: A<Item>): A<Queryable<Item>>  {
+        var len = items.length();
+        index = evaluateNegativeInsertIndex(index, this.collection.length);
+        for (var i = 0; i < len; i++) {
+            this.insertAt(index + i, items.at(i));
+        }
+        return this.queriable();
+    }
+
+    delete(item: Item): A<Queryable<Item>> {
+        this.query.doOnce(q => {
+            if (q.item == item) {
+                item.remove?.();
+                return true;
+            }
+            return false;
+        });
+        return this.queriable();
+    }
+
+    deleteMany(items: Item[]): A<Queryable<Item>> {
+        f(items).do(item => this.delete(item));
+        return this.queriable();
+    }
+
+    deleteAt(index: number, count: number = 1): A<Queryable<Item>> {
+        for (var i = 0; i < count; i++)
+            this.delete(this.query.at(index).item);
+        return this.queriable();
+    }
+
+    deleteAll(): A<Queryable<Item>> {
+        var items = this.collection as any as Item;
+        items.removeAll?.();
+        return this.queriable();
+    }
+
+    forEach(callback: (item: Item, index?: number) => any | void): any | void {
+        var result: any;
+        var len = this.query.length();
+        for (let i = 0; i < len; i++) {
+            result = callback(this.query.at(i).item, i);
+        }
+        this.queriable();
+        return result;
+    }
+
+    do(callback: (item: Item, index?: number) => any | void): A<Queryable<Item>> {
+        this.forEach(callback);
+        return this.query;
+    }
+
+    doOnce(callback: (item: Item, index?: number) => boolean): boolean {
+        var len = this.query.length();
+        for (let i = 0; i < len; i++) {
+            if (callback(this.query.at(i).item, i)) {
+                this.queriable();
+                return true;
+            }
+        }
+        this.queriable();
+        return false;
+    }
+
+    select<U>(selector: (item: Queryable<Item>) => U): A<U> {
+        return this.query.select<U>(selector);
+    }
+
+    where(predicate: (item: Queryable<Item>) => boolean): A<Queryable<Item>> {
+        return this.query.where(predicate);
+    }
+
+    first(predicate?: (item: Queryable<Item>) => boolean): Queryable<Item> | undefined {
+        if (!predicate) return this.query.length() > 0 ? this.query.at(0) : undefined;
+        var len = this.query.length();
+        for (let i = 0; i < len; i++) {
+            var item = this.query.at(i);
+            if (predicate(item)) return item;
+        }
+        return undefined;
+    }
+
+    firstIndex(predicate: (item: Queryable<Item>) => boolean): number {
+        var len = this.query.length();
+        for (let i = 0; i < len; i++) {
+            var item = this.query.at(i);
+            if (predicate(item)) return i;
+        }
+        return -1;
+    }
+
+    last(predicate?: (item: Queryable<Item>) => boolean): Queryable<Item> | undefined {
+        if (!predicate) return this.query.length() > 0 ? this.query.at(-1) : undefined;
+        var len = this.query.length();
+        for (let i = len-1; i >= 0; i--) {
+            var item = this.query.at(i);
+            if (predicate(item)) return item;
+        }
+        return undefined;
+    }
+
+    lastIndex(predicate: (item: Queryable<Item>) => boolean): number {
+        var len = this.query.length();
+        for (let i = len-1; i >= 0; i--) {
+            var item = this.query.at(i);
+            if (predicate(item)) return i;
+        }
+        return -1;
+    }
+
+    any(predicate?: (item: Queryable<Item>) => boolean): boolean {
+        var item = this.first(predicate);
+        return !!(item && item.item);
+    }
+
+    includes(item: Queryable<Item>): boolean {
+        return this.any(i => i.item == item.item);
+    }
+
+    childQuery<T>(collectionProperty?: CollectionProperty): A<Queryable<Item>> {
+        if (!this.item || !this.enumerable || !collectionProperty) return this.query;
+        return this._q(this.item[collectionProperty]);
+    }
+
+    visitWhere(predicate: (item: Queryable<Item>) => boolean): Queryable<Item>[] {
+        var result: Queryable<Item>[] = [];
+        this.visit(element => {
+            if (predicate(element)) result.push(element);
+        });
+        return result;
+    }
+
+    visit(command: (item: Queryable<Item>) => any | undefined): any | void {
+        return this._visit(command, {})
+    }
+
+    protected _visit(command: (item: Queryable<Item>) => any | undefined, visited: { [key: number]: boolean }): any | void {
+        if (visited[this.code]) return; // Prevent visiting the same element multiple times
+        visited[this.code] = true;
+
+        command(this);
+        this.artboards()?.do(item => item?._visit(command, visited));
+        this.brushes()?.do(item => item?._visit(command, visited));
+        this.characters()?.do(item => item?._visit(command, visited));
+        this.compoundPathItems()?.do(item => item?._visit(command, visited));
+        this.documents()?.do(item => item?._visit(command, visited));
+        this.gradientStops()?.do(item => item?._visit(command, visited));
+        this.gradients()?.do(item => item?._visit(command, visited));
+        this.graphItems()?.do(item => item?._visit(command, visited));
+        this.groupItems()?.do(item => item?._visit(command, visited));
+        this.insertionPoints()?.do(item => item?._visit(command, visited));
+        this.layers()?.do(item => item?._visit(command, visited));
+        this.legacyTextItems()?.do(item => item?._visit(command, visited));
+        this.lines()?.do(item => item?._visit(command, visited));
+        this.meshItems()?.do(item => item?._visit(command, visited));
+        this.nonNativeItems()?.do(item => item?._visit(command, visited));
+        this.pageItems()?.do(item => item?._visit(command, visited));
+        this.paragraphs()?.do(item => item?._visit(command, visited));
+        this.pathItems()?.do(item => item?._visit(command, visited));
+        this.pathPoints()?.do(item => item?._visit(command, visited));
+        this.patterns()?.do(item => item?._visit(command, visited));
+        this.placedItems()?.do(item => item?._visit(command, visited));
+        this.pluginItems()?.do(item => item?._visit(command, visited));
+        this.rasterItems()?.do(item => item?._visit(command, visited));
+        this.spots()?.do(item => item?._visit(command, visited));
+        this.stories()?.do(item => item?._visit(command, visited));
+        this.swatches()?.do(item => item?._visit(command, visited));
+        this.symbolItems()?.do(item => item?._visit(command, visited));
+        this.symbols()?.do(item => item?._visit(command, visited));
+        this.tags()?.do(item => item?._visit(command, visited));
+        this.textFrames()?.do(item => item?._visit(command, visited));
+        this.textRanges()?.do(item => item?._visit(command, visited));
+        this.variables()?.do(item => item?._visit(command, visited));
+        this.words()?.do(item => item?._visit(command, visited));
+    }
+
+    _q(items: any[]): A<Queryable<Item>> {
+        if (items instanceof A) return items;
+        var result = f<Queryable<Item>>();
+        if (!items || items.length == 0) return result;
+        for (var i = 0; i < items.length; i++) {
+            var query = q(items[i]);
+            if (query)
+                result.push(query);
+        }
+        return result;
+    }
+
+    static _nextCode: number = 1;
+    static _empty: Queryable<any>;
+    static empty(): Queryable<any> {
+        if (Queryable._empty) return Queryable._empty;
+        this._empty = new Queryable<Item>({}, undefined, true); 
+        return this._empty;
+    }
+}

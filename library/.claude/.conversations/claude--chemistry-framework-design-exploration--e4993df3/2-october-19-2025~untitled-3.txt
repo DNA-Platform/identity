@@ -1,0 +1,149 @@
+VM7714 chemistry.ts:302 {"cid":11} $Display {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 11, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true}
+VM7714 chemistry.ts:302 {"cid":11} $Display {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 11, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+VM7714 chemistry.ts:302 {"cid":11} $Display {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 11, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+VM7714 chemistry.ts:302 {"cid":12} $Counter {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 12, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true}
+VM7714 chemistry.ts:302 {"cid":12} $Counter {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 12, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+VM7714 chemistry.ts:302 {"cid":12} $Counter {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 12, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+VM7714 chemistry.ts:302 {"cid":13} $Counter {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 13, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true}
+VM7714 chemistry.ts:302 {"cid":13} $Counter {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 13, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+VM7714 chemistry.ts:302 {"cid":13} $Counter {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 13, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+VM7714 chemistry.ts:302 {"cid":14} $MultiProp {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 14, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true}
+VM7714 chemistry.ts:302 {"cid":14} $MultiProp {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 14, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+VM7714 chemistry.ts:302 {"cid":14} $MultiProp {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 14, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+VM7714 chemistry.ts:302 {"cid":15} $ComplexProps {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 15, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true}
+VM7714 chemistry.ts:302 {"cid":15} $ComplexProps {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 15, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+VM7714 chemistry.ts:302 {"cid":15} $ComplexProps {Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 15, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+hot-reloader-app.js:197 [Fast Refresh] rebuilding
+hot-reloader-app.js:197 [Fast Refresh] rebuilding
+report-hmr-latency.js:14 [Fast Refresh] done in 170ms
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":11} $Display[11]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":11} $Display[11]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":11} $Display[11]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":12} $Counter[12]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":12} $Counter[12]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":12} $Counter[12]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":13} $Counter[13]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":13} $Counter[13]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":13} $Counter[13]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":14} $MultiProp[14]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":14} $MultiProp[14]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":14} $MultiProp[14]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":15} $ComplexProps[15]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":15} $ComplexProps[15]
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:414 {"cid":15} $ComplexProps[15]
+report-hmr-latency.js:14 [Fast Refresh] done in 289ms
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:553 Uncaught Error: The setSetate function has not been bound
+    at $Formula.updateState (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:553:19)
+    at $Bond.bondCall (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:759:28)
+    at $Counter.value [as $increment] (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:681:33)
+    at onClick (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\basics\page.tsx:32:40)
+    at executeDispatch (react-dom-client.development.js:16971:9)
+    at runWithFiberInDEV (react-dom-client.development.js:872:30)
+    at processDispatchQueue (react-dom-client.development.js:17021:19)
+    at eval (react-dom-client.development.js:17622:9)
+    at batchedUpdates$1 (react-dom-client.development.js:3312:40)
+    at dispatchEventForPluginEventSystem (react-dom-client.development.js:17175:7)
+    at dispatchEvent (react-dom-client.development.js:21358:11)
+    at dispatchDiscreteEvent (react-dom-client.development.js:21326:11)
+updateState @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:553
+bondCall @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:759
+value @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:681
+onClick @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\basics\page.tsx:32
+executeDispatch @ react-dom-client.development.js:16971
+runWithFiberInDEV @ react-dom-client.development.js:872
+processDispatchQueue @ react-dom-client.development.js:17021
+eval @ react-dom-client.development.js:17622
+batchedUpdates$1 @ react-dom-client.development.js:3312
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:17175
+dispatchEvent @ react-dom-client.development.js:21358
+dispatchDiscreteEvent @ react-dom-client.development.js:21326
+<button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+view @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\basics\page.tsx:31
+render @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:960
+__render @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:247
+Component @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:429
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:14991
+performSyncWorkOnRoot @ react-dom-client.development.js:16831
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16677
+flushSyncWork$1 @ react-dom-client.development.js:15297
+scheduleRefresh @ react-dom-client.development.js:114
+eval @ react-refresh-runtime.development.js:265
+performReactRefresh @ react-refresh-runtime.development.js:254
+applyUpdate @ helpers.js:139
+statusHandler @ helpers.js:156
+setStatus @ webpack.js?v=1760895039943:498
+(anonymous) @ webpack.js?v=1760895039943:667
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+BasicsTest @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\basics\page.tsx:195
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:14991
+performSyncWorkOnRoot @ react-dom-client.development.js:16831
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16677
+flushSyncWork$1 @ react-dom-client.development.js:15297
+scheduleRefresh @ react-dom-client.development.js:114
+eval @ react-refresh-runtime.development.js:265
+performReactRefresh @ react-refresh-runtime.development.js:254
+applyUpdate @ helpers.js:139
+statusHandler @ helpers.js:156
+setStatus @ webpack.js?v=1760895039943:498
+(anonymous) @ webpack.js?v=1760895039943:667
+<BasicsTest>
+exports.jsx @ react-jsx-runtime.development.js:323
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Function.all @ VM7716 <anonymous>:1
+Function.all @ VM7716 <anonymous>:1
+Function.all @ VM7716 <anonymous>:1
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1343
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1760895039943:160
+options.factory @ webpack.js?v=1760895039943:704
+__webpack_require__ @ webpack.js?v=1760895039943:29
+fn @ webpack.js?v=1760895039943:361
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+loadScriptsInSequence @ app-bootstrap.js:24
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1760895039943:182
+options.factory @ webpack.js?v=1760895039943:704
+__webpack_require__ @ webpack.js?v=1760895039943:29
+__webpack_exec__ @ main-app.js?v=1760895039943:1878
+(anonymous) @ main-app.js?v=1760895039943:1879
+webpackJsonpCallback @ webpack.js?v=1760895039943:1380
+(anonymous) @ main-app.js?v=1760895039943:9

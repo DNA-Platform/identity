@@ -1,0 +1,155 @@
+class $BindingOrchestrator<T extends $Chemical> {
+    private _chemical: T;
+    private _bondConstructor?: Function;
+    private _paramCount = 0;
+    private _hasRest = false;
+    private _args: any[] = [];
+    
+    constructor(chemical: T) {
+        this._chemical = chemical;
+        const name = chemical.getType().name;
+        this._bondConstructor = (chemical as any)[name];
+        this.parseBondConstructor();
+    }
+    
+    configure(props: any): any {
+        const [children, args] = this.process(props.children);
+        this._args = args;
+        this.validateArgs();
+        return { ...props, children };
+    }
+    
+    bond(props: any): any {
+        // Also bind the props to the current instance
+        if (!this._bondConstructor) return;
+        if (this._hasRest) {
+            const regular = this._args.slice(0, this._paramCount);
+            const rest = this._args.slice(this._paramCount);
+            this._bondConstructor.apply(this._chemical, [...regular, ...rest]);
+        } else {
+            this._bondConstructor.apply(this._chemical, this._args);
+        }
+        // return the props
+    }
+
+    private bindProps(chemical: $Chemical, props: any) {
+        chemical.__children = props.children;
+        for (const key in props) {
+            if (typeof key === 'symbol' || key === 'children' || key === 'key' || key === 'ref') continue;
+            (chemical as any)['$' + key] = props[key];
+        }
+        chemical.formula.refresh();
+    }
+    
+    private validateArgs() {
+        if (!this._bondConstructor) return;
+        
+        const argCount = this._args.length;
+        if (this._hasRest) {
+            if (argCount < this._paramCount)
+                throw new Error(`${this._chemical.getType().name} expects at least ${this._paramCount} arguments, got ${argCount}`);
+        } else {
+            if (argCount !== this._paramCount)
+                throw new Error(`${this._chemical.getType().name} expects ${this._paramCount} arguments, got ${argCount}`);
+        }
+    }
+    
+    private parseBondConstructor() {
+        if (!this._bondConstructor) return;
+        
+        const match = this._bondConstructor.toString().match(/\(([^)]*)\)/);
+        if (!match) throw new Error(`Cannot parse constructor for ${this._chemical.getType().name}`);
+        
+        const params = match[1].split(',').map(p => p.trim()).filter(p => p);
+        this._hasRest = params.length > 0 && params[params.length - 1].startsWith('...');
+        this._paramCount = this._hasRest ? params.length - 1 : params.length;
+    }
+    
+    private process(children: ReactNode, depth = 0): [ReactNode, any[]] {
+        const args: any[] = [];
+        
+        const augmented = React.Children.map(children, child => {
+            if (!React.isValidElement(child)) {
+                if (depth === 0) args.push(child);
+                return child;
+            }
+            
+            const element = child as React.ReactElement<any>;
+            let type = element.type as any;
+            
+            // Check for Chemical boundary markers
+            if (element.props['data-chem-start']) {
+                const chem = $chemicalRegistry.get(element.props['data-chem-start']);
+                if (chem && depth === 0) args.push(chem);
+                return element;
+            }
+            if (element.props['data-chem-end']) return element;
+            
+            // Handle $ arrays - flatten in DOM, collect as array for constructor
+            if (type === $) {
+                const [inner, innerArgs] = this.process(element.props.children, depth + 1);
+                if (depth === 0) args.push(innerArgs);
+                return inner;
+            }
+            
+            // Convert React components to Chemistry
+            if (typeof type === 'function' && !type.$template) {
+                type = $(type);
+            }
+            
+            // Handle Chemical components
+            if (type.$template instanceof $Chemical) {
+                const [augChildren] = element.props.children ? 
+                    this.process(element.props.children, depth + 1) : [undefined];
+                
+                if (!type.$bound) {
+                    const bound = type.$bind();
+                    const chem = bound.$chemical;
+                    
+                    const binder = new $BindingOrchestrator(chem);
+                    const newProps = binder.configure({...element.props, children: augChildren});
+                    binder.bond();
+                    
+                    this.bindProps(chem, newProps);
+                    if (depth === 0) args.push(chem);
+                    
+                    return React.createElement(bound, {
+                        ...element.props,
+                        key: element.key,
+                        children: newProps.children
+                    });
+                }
+                
+                const chem = type.$chemical;
+                if (depth === 0) args.push(chem);
+                
+                if (augChildren !== element.props.children) {
+                    this.bindProps(chem, {...element.props, children: augChildren});
+                    return React.cloneElement(element, {
+                        ...element.props,
+                        children: augChildren
+                    });
+                }
+                
+                this.bindProps(chem, element.props);
+                return child;
+            }
+            
+            // DOM elements - recurse on children
+            if (element.props.children) {
+                const [augChildren] = this.process(element.props.children, depth + 1);
+                if (augChildren !== element.props.children) {
+                    return React.cloneElement(element, {
+                        ...element.props,
+                        children: augChildren
+                    });
+                }
+            }
+            
+            if (depth === 0) args.push(child);
+            return child;
+        });
+        
+        return [augmented, args];
+    }
+}

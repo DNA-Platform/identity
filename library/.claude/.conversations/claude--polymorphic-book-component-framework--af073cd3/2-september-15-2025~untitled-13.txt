@@ -1,0 +1,892 @@
+chemistry3.ts:497 Property: $increment, isReactive: true
+chemistry3.ts:549 Creating computed property on $Counter for property $increment
+chemistry3.ts:554 The backingField for $increment is $increment() {
+        console.log('Before increment:', this.count);
+        this.count = this.count + 1;
+        console.log('After increment:', this.count);
+    }
+ Property: computedProp, isReactive: true
+ Creating computed property on $ComplexProps for property computedProp
+ The backingField for computedProp is undefined
+ Getter called, returning: NaN
+ Property: $modifyRegularArray, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularArray
+ The backingField for $modifyRegularArray is $modifyRegularArray() {
+        console.log('Before push:', this.regularArray);
+        this.regularArrayCount++;
+        this.regularArray.push('added ' + this.regularArrayCount);
+        console.log('After push:', this.regularArray);
+    }
+ Property: $modifyRegularObject, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularObject
+ The backingField for $modifyRegularObject is $modifyRegularObject() {
+        console.log('Before modify:', this.regularObject);
+        this.regularObject.count++;
+        this.regularObject.status = 'modified';
+        this.regularObject['property' + this.regularObject.count] = 'value ' + this.regularObject.count;
+        console.log('After modify:', this.regularObject);
+    }
+ Property: $modifyComputed, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyComputed
+ The backingField for $modifyComputed is $modifyComputed() {
+        console.log('Before computed change:', this.computedProp);
+        this.computedProp = 300;
+        console.log('After computed change:', this.computedProp);
+    }
+ Property: $increment, isReactive: true
+ Creating computed property on $Counter for property $increment
+ The backingField for $increment is $increment() {
+        console.log('Before increment:', this.count);
+        this.count = this.count + 1;
+        console.log('After increment:', this.count);
+    }
+ Property: computedProp, isReactive: true
+ Creating computed property on $ComplexProps for property computedProp
+ The backingField for computedProp is undefined
+ Getter called, returning: NaN
+ Property: $modifyRegularArray, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularArray
+ The backingField for $modifyRegularArray is $modifyRegularArray() {
+        console.log('Before push:', this.regularArray);
+        this.regularArrayCount++;
+        this.regularArray.push('added ' + this.regularArrayCount);
+        console.log('After push:', this.regularArray);
+    }
+ Property: $modifyRegularObject, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularObject
+ The backingField for $modifyRegularObject is $modifyRegularObject() {
+        console.log('Before modify:', this.regularObject);
+        this.regularObject.count++;
+        this.regularObject.status = 'modified';
+        this.regularObject['property' + this.regularObject.count] = 'value ' + this.regularObject.count;
+        console.log('After modify:', this.regularObject);
+    }
+ Property: $modifyComputed, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyComputed
+ The backingField for $modifyComputed is $modifyComputed() {
+        console.log('Before computed change:', this.computedProp);
+        this.computedProp = 300;
+        console.log('After computed change:', this.computedProp);
+    }
+ Found property _reactive on $Display
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $Display
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Display
+ Immediate descriptor check: {value: 5, writable: true, enumerable: true, configurable: true}
+ Found property _template on $Display
+ Immediate descriptor check: {value: $Display, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $Display
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Display
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property $text on $Display
+ Immediate descriptor check: {value: 'initial', writable: true, enumerable: true, configurable: true}
+ Creating bond for: $text
+ Creating computed property on $Display for property $text
+ The backingField for $text is initial
+ Found property _component on $Display
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property constructor on $Display
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Found property view on $Display
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Property: $text, isReactive: true
+ Creating computed property on $Display for property $text
+ The backingField for $text is initial
+ Found property _formula on $Display
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Display
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $Display
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Display
+ Immediate descriptor check: {value: 9, writable: true, enumerable: true, configurable: true}
+ Found property $text on $Display
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _children on $Display
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _reactive on $Display
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $Display
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Display
+ Immediate descriptor check: {value: 9, writable: true, enumerable: true, configurable: true}
+ Found property _template on $Display
+ Immediate descriptor check: {value: $Display, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $Display
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Display
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property $text on $Display
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _component on $Display
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ $Display state: {"cid":"9","$Display[9].$text":"\"Hello World\""}
+ Display.view() - $text: Hello World
+ $Display state: {"cid":"9","$Display[9].$text":"\"Hello World\""}
+ Found property _formula on $Display
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Display
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $Display
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Display
+ Immediate descriptor check: {value: 9, writable: true, enumerable: true, configurable: true}
+ Found property $text on $Display
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _children on $Display
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _reactive on $Display
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $Display
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Display
+ Immediate descriptor check: {value: 9, writable: true, enumerable: true, configurable: true}
+ Found property _template on $Display
+ Immediate descriptor check: {value: $Display, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $Display
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Display
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property $text on $Display
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _component on $Display
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ $Display state: {"cid":"9","$Display[9].$text":"\"Hello World\""}
+ Display.view() - $text: Hello World
+ $Display state: {"cid":"9","$Display[9].$text":"\"Hello World\""}
+ Found property _formula on $Display
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Display
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $Display
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Display
+ Immediate descriptor check: {value: 9, writable: true, enumerable: true, configurable: true}
+ Found property $text on $Display
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _children on $Display
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _reactive on $Display
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $Display
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Display
+ Immediate descriptor check: {value: 9, writable: true, enumerable: true, configurable: true}
+ Found property _template on $Display
+ Immediate descriptor check: {value: $Display, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $Display
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Display
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property $text on $Display
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _component on $Display
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ $Display state: {"cid":"9","$Display[9].$text":"\"Hello World\""}
+ Display.view() - $text: Hello World
+ $Display state: {"cid":"9","$Display[9].$text":"\"Hello World\""}
+ Found property _reactive on $Counter
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $Counter
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Counter
+ Immediate descriptor check: {value: 6, writable: true, enumerable: true, configurable: true}
+ Found property _template on $Counter
+ Immediate descriptor check: {value: $Counter, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $Counter
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Counter
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property count on $Counter
+ Immediate descriptor check: {value: 0, writable: true, enumerable: true, configurable: true}
+ Creating bond for: count
+ Creating computed property on $Counter for property count
+ The backingField for count is 0
+ Found property _component on $Counter
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property constructor on $Counter
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Found property $increment on $Counter
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Found property view on $Counter
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Property: $increment, isReactive: true
+ Creating computed property on $Counter for property $increment
+ The backingField for $increment is $increment() {
+        console.log('Before increment:', this.count);
+        this.count = this.count + 1;
+        console.log('After increment:', this.count);
+    }
+ Property: count, isReactive: true
+ Creating computed property on $Counter for property count
+ The backingField for count is 0
+ Found property _formula on $Counter
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Counter
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $Counter
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Counter
+ Immediate descriptor check: {value: 10, writable: true, enumerable: true, configurable: true}
+ Found property $increment on $Counter
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property count on $Counter
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _children on $Counter
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _reactive on $Counter
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $Counter
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Counter
+ Immediate descriptor check: {value: 10, writable: true, enumerable: true, configurable: true}
+ Found property _template on $Counter
+ Immediate descriptor check: {value: $Counter, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $Counter
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Counter
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property count on $Counter
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _component on $Counter
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ $Counter state: {"cid":"10","$Counter[10].count":"0"}
+ Found property _formula on $Counter
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Counter
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $Counter
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Counter
+ Immediate descriptor check: {value: 10, writable: true, enumerable: true, configurable: true}
+ Found property $increment on $Counter
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property count on $Counter
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _children on $Counter
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _reactive on $Counter
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $Counter
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Counter
+ Immediate descriptor check: {value: 10, writable: true, enumerable: true, configurable: true}
+ Found property _template on $Counter
+ Immediate descriptor check: {value: $Counter, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $Counter
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Counter
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property count on $Counter
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _component on $Counter
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ $Counter state: {"cid":"10","$Counter[10].count":"0"}
+ Found property _formula on $Counter
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Counter
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $Counter
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Counter
+ Immediate descriptor check: {value: 10, writable: true, enumerable: true, configurable: true}
+ Found property $increment on $Counter
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property count on $Counter
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _children on $Counter
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _reactive on $Counter
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $Counter
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Counter
+ Immediate descriptor check: {value: 10, writable: true, enumerable: true, configurable: true}
+ Found property _template on $Counter
+ Immediate descriptor check: {value: $Counter, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $Counter
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Counter
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property count on $Counter
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _component on $Counter
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ $Counter state: {"cid":"10","$Counter[10].count":"0"}
+ Found property _reactive on $Counter
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $Counter
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $Counter
+ Immediate descriptor check: {value: 6, writable: true, enumerable: true, configurable: true}
+ Found property _template on $Counter
+ Immediate descriptor check: {value: $Counter, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $Counter
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $Counter
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property count on $Counter
+ Immediate descriptor check: {value: 0, writable: true, enumerable: true, configurable: true}
+ Found property _component on $Counter
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property constructor on $Counter
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Found property $increment on $Counter
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Found property view on $Counter
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+chemistry3.ts:497 Property: $increment, isReactive: true
+chemistry3.ts:549 Creating computed property on $Counter for property $increment
+chemistry3.ts:554 The backingField for $increment is $increment() {
+        console.log('Before increment:', this.count);
+        this.count = this.count + 1;
+        console.log('After increment:', this.count);
+    }
+chemistry3.ts:497 Property: count, isReactive: true
+chemistry3.ts:549 Creating computed property on $Counter for property count
+chemistry3.ts:554 The backingField for count is 0
+chemistry3.ts:466 Found property _formula on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _molecule on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _parent on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _cid on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: 11, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property $increment on $Counter
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:466 Found property count on $Counter
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property _children on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _reactive on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property __crystallized on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _cid on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: 11, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _template on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Counter, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _formula on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _molecule on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property count on $Counter
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property _component on $Counter
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:636 $Counter state: {"cid":"11","$Counter[11].count":"0"}
+chemistry3.ts:466 Found property _formula on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _molecule on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _parent on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _cid on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: 11, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property $increment on $Counter
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:466 Found property count on $Counter
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property _children on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _reactive on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property __crystallized on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _cid on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: 11, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _template on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Counter, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _formula on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _molecule on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property count on $Counter
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property _component on $Counter
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:636 $Counter state: {"cid":"11","$Counter[11].count":"0"}
+chemistry3.ts:466 Found property _formula on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _molecule on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _parent on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _cid on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: 11, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property $increment on $Counter
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:466 Found property count on $Counter
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property _children on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _reactive on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property __crystallized on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _cid on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: 11, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _template on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Counter, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _formula on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _molecule on $Counter
+chemistry3.ts:470 Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property count on $Counter
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property _component on $Counter
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:636 $Counter state: {"cid":"11","$Counter[11].count":"0"}
+chemistry3.ts:466 Found property _reactive on $MultiProp
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property __crystallized on $MultiProp
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _cid on $MultiProp
+chemistry3.ts:470 Immediate descriptor check: {value: 7, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _template on $MultiProp
+chemistry3.ts:470 Immediate descriptor check: {value: $MultiProp, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _formula on $MultiProp
+chemistry3.ts:470 Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $MultiProp
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property $first on $MultiProp
+ Immediate descriptor check: {value: 'default1', writable: true, enumerable: true, configurable: true}
+ Creating bond for: $first
+ Creating computed property on $MultiProp for property $first
+ The backingField for $first is default1
+ Found property $second on $MultiProp
+ Immediate descriptor check: {value: 'default2', writable: true, enumerable: true, configurable: true}
+ Creating bond for: $second
+ Creating computed property on $MultiProp for property $second
+ The backingField for $second is default2
+ Found property $third on $MultiProp
+ Immediate descriptor check: {value: 0, writable: true, enumerable: true, configurable: true}
+ Creating bond for: $third
+ Creating computed property on $MultiProp for property $third
+ The backingField for $third is 0
+ Found property _component on $MultiProp
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property constructor on $MultiProp
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Found property view on $MultiProp
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Property: $first, isReactive: true
+ Creating computed property on $MultiProp for property $first
+ The backingField for $first is default1
+ Property: $second, isReactive: true
+ Creating computed property on $MultiProp for property $second
+ The backingField for $second is default2
+ Property: $third, isReactive: true
+ Creating computed property on $MultiProp for property $third
+ The backingField for $third is 0
+ Found property _formula on $MultiProp
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $MultiProp
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $MultiProp
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $MultiProp
+ Immediate descriptor check: {value: 12, writable: true, enumerable: true, configurable: true}
+ Found property $first on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $second on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $third on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _children on $MultiProp
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _reactive on $MultiProp
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $MultiProp
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $MultiProp
+ Immediate descriptor check: {value: 12, writable: true, enumerable: true, configurable: true}
+ Found property _template on $MultiProp
+ Immediate descriptor check: {value: $MultiProp, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $MultiProp
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $MultiProp
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property $first on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $second on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $third on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _component on $MultiProp
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ $MultiProp state: {"cid":"12","$MultiProp[12].$first":"\"One\""}
+ $MultiProp state: {"cid":"12","$MultiProp[12].$first":"\"One\"","$MultiProp[12].$second":"\"Two\""}
+ $MultiProp state: {"cid":"12","$MultiProp[12].$first":"\"One\"","$MultiProp[12].$second":"\"Two\"","$MultiProp[12].$third":"99"}
+ Found property _formula on $MultiProp
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $MultiProp
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $MultiProp
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $MultiProp
+ Immediate descriptor check: {value: 12, writable: true, enumerable: true, configurable: true}
+ Found property $first on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $second on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $third on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _children on $MultiProp
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _reactive on $MultiProp
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $MultiProp
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $MultiProp
+ Immediate descriptor check: {value: 12, writable: true, enumerable: true, configurable: true}
+ Found property _template on $MultiProp
+ Immediate descriptor check: {value: $MultiProp, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $MultiProp
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $MultiProp
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property $first on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $second on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $third on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _component on $MultiProp
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ $MultiProp state: {"cid":"12","$MultiProp[12].$first":"\"One\"","$MultiProp[12].$second":"\"Two\"","$MultiProp[12].$third":"99"}
+ $MultiProp state: {"cid":"12","$MultiProp[12].$first":"\"One\"","$MultiProp[12].$second":"\"Two\"","$MultiProp[12].$third":"99"}
+ $MultiProp state: {"cid":"12","$MultiProp[12].$first":"\"One\"","$MultiProp[12].$second":"\"Two\"","$MultiProp[12].$third":"99"}
+ Found property _formula on $MultiProp
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $MultiProp
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $MultiProp
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $MultiProp
+ Immediate descriptor check: {value: 12, writable: true, enumerable: true, configurable: true}
+ Found property $first on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $second on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $third on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _children on $MultiProp
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _reactive on $MultiProp
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $MultiProp
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $MultiProp
+ Immediate descriptor check: {value: 12, writable: true, enumerable: true, configurable: true}
+ Found property _template on $MultiProp
+ Immediate descriptor check: {value: $MultiProp, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $MultiProp
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $MultiProp
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property $first on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $second on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $third on $MultiProp
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _component on $MultiProp
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ $MultiProp state: {"cid":"12","$MultiProp[12].$first":"\"One\"","$MultiProp[12].$second":"\"Two\"","$MultiProp[12].$third":"99"}
+ $MultiProp state: {"cid":"12","$MultiProp[12].$first":"\"One\"","$MultiProp[12].$second":"\"Two\"","$MultiProp[12].$third":"99"}
+ $MultiProp state: {"cid":"12","$MultiProp[12].$first":"\"One\"","$MultiProp[12].$second":"\"Two\"","$MultiProp[12].$third":"99"}
+ Found property _reactive on $ComplexProps
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $ComplexProps
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $ComplexProps
+ Immediate descriptor check: {value: 8, writable: true, enumerable: true, configurable: true}
+ Found property _template on $ComplexProps
+ Immediate descriptor check: {value: $ComplexProps, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $ComplexProps
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $ComplexProps
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property $arrayProp on $ComplexProps
+ Immediate descriptor check: {value: Array(2), writable: true, enumerable: true, configurable: true}
+ Creating bond for: $arrayProp
+ Creating computed property on $ComplexProps for property $arrayProp
+ The backingField for $arrayProp is default1,default2
+ Found property $objectProp on $ComplexProps
+ Immediate descriptor check: {value: {…}, writable: true, enumerable: true, configurable: true}
+ Creating bond for: $objectProp
+ Creating computed property on $ComplexProps for property $objectProp
+ The backingField for $objectProp is [object Object]
+ Found property regularArrayCount on $ComplexProps
+ Immediate descriptor check: {value: 0, writable: true, enumerable: true, configurable: true}
+ Creating bond for: regularArrayCount
+ Creating computed property on $ComplexProps for property regularArrayCount
+ The backingField for regularArrayCount is 0
+ Found property regularArray on $ComplexProps
+ Immediate descriptor check: {value: Array(3), writable: true, enumerable: true, configurable: true}
+ Creating bond for: regularArray
+ Creating computed property on $ComplexProps for property regularArray
+ The backingField for regularArray is initial1,initial2,initial3
+ Found property regularObject on $ComplexProps
+ Immediate descriptor check: {value: {…}, writable: true, enumerable: true, configurable: true}
+ Creating bond for: regularObject
+ Creating computed property on $ComplexProps for property regularObject
+ The backingField for regularObject is [object Object]
+ Found property _computedValue on $ComplexProps
+ Immediate descriptor check: {value: 100, writable: true, enumerable: true, configurable: true}
+ Found property _component on $ComplexProps
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property constructor on $ComplexProps
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Found property computedProp on $ComplexProps
+ Immediate descriptor check: {enumerable: false, configurable: true, get: ƒ, set: ƒ}
+ Found property $modifyRegularArray on $ComplexProps
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Found property $modifyRegularObject on $ComplexProps
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Found property $modifyComputed on $ComplexProps
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Found property view on $ComplexProps
+ Immediate descriptor check: {writable: true, enumerable: false, configurable: true, value: ƒ}
+ Property: computedProp, isReactive: true
+ Creating computed property on $ComplexProps for property computedProp
+ The backingField for computedProp is undefined
+ Getter called, returning: 200
+ Property: $modifyRegularArray, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularArray
+ The backingField for $modifyRegularArray is $modifyRegularArray() {
+        console.log('Before push:', this.regularArray);
+        this.regularArrayCount++;
+        this.regularArray.push('added ' + this.regularArrayCount);
+        console.log('After push:', this.regularArray);
+    }
+ Property: $modifyRegularObject, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularObject
+ The backingField for $modifyRegularObject is $modifyRegularObject() {
+        console.log('Before modify:', this.regularObject);
+        this.regularObject.count++;
+        this.regularObject.status = 'modified';
+        this.regularObject['property' + this.regularObject.count] = 'value ' + this.regularObject.count;
+        console.log('After modify:', this.regularObject);
+    }
+ Property: $modifyComputed, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyComputed
+ The backingField for $modifyComputed is $modifyComputed() {
+        console.log('Before computed change:', this.computedProp);
+        this.computedProp = 300;
+        console.log('After computed change:', this.computedProp);
+    }
+ Property: $arrayProp, isReactive: true
+ Creating computed property on $ComplexProps for property $arrayProp
+ The backingField for $arrayProp is default1,default2
+ Property: $objectProp, isReactive: true
+ Creating computed property on $ComplexProps for property $objectProp
+ The backingField for $objectProp is [object Object]
+ Property: regularArrayCount, isReactive: true
+ Creating computed property on $ComplexProps for property regularArrayCount
+ The backingField for regularArrayCount is 0
+ Property: regularArray, isReactive: true
+ Creating computed property on $ComplexProps for property regularArray
+ The backingField for regularArray is initial1,initial2,initial3
+ Property: regularObject, isReactive: true
+ Creating computed property on $ComplexProps for property regularObject
+ The backingField for regularObject is [object Object]
+ Found property _formula on $ComplexProps
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $ComplexProps
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $ComplexProps
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $ComplexProps
+ Immediate descriptor check: {value: 13, writable: true, enumerable: true, configurable: true}
+ Found property computedProp on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $modifyRegularArray on $ComplexProps
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property $modifyRegularObject on $ComplexProps
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property $modifyComputed on $ComplexProps
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ Found property $arrayProp on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $objectProp on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property regularArrayCount on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property regularArray on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property regularObject on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _children on $ComplexProps
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _reactive on $ComplexProps
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property __crystallized on $ComplexProps
+ Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $ComplexProps
+ Immediate descriptor check: {value: 13, writable: true, enumerable: true, configurable: true}
+ Found property _template on $ComplexProps
+ Immediate descriptor check: {value: $ComplexProps, writable: true, enumerable: true, configurable: true}
+ Found property _formula on $ComplexProps
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $ComplexProps
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property $arrayProp on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $objectProp on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property regularArrayCount on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property regularArray on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property regularObject on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property _computedValue on $ComplexProps
+ Immediate descriptor check: {value: 100, writable: true, enumerable: true, configurable: true}
+ Found property _component on $ComplexProps
+ Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+ $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]"}
+ $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}"}
+ $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]"}
+ $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}"}
+ Getter called, returning: 200
+ $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+ Found property _formula on $ComplexProps
+ Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+ Found property _molecule on $ComplexProps
+ Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+ Found property _parent on $ComplexProps
+ Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+ Found property _cid on $ComplexProps
+ Immediate descriptor check: {value: 13, writable: true, enumerable: true, configurable: true}
+ Found property computedProp on $ComplexProps
+ Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+ Found property $modifyRegularArray on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:466 Found property $modifyRegularObject on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:466 Found property $modifyComputed on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:466 Found property $arrayProp on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property $objectProp on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularArrayCount on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularArray on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularObject on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property _children on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _reactive on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property __crystallized on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _cid on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: 13, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _template on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: $ComplexProps, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _formula on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _molecule on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property $arrayProp on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property $objectProp on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularArrayCount on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularArray on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularObject on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property _computedValue on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: 100, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _component on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:636 $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+chemistry3.ts:636 $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+chemistry3.ts:636 $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+chemistry3.ts:636 $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+page.tsx:82 Getter called, returning: 200
+chemistry3.ts:636 $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+chemistry3.ts:466 Found property _formula on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _molecule on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _parent on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _cid on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: 13, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property computedProp on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property $modifyRegularArray on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:466 Found property $modifyRegularObject on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:466 Found property $modifyComputed on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:466 Found property $arrayProp on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property $objectProp on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularArrayCount on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularArray on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularObject on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property _children on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: undefined, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _reactive on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property __crystallized on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: false, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _cid on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: 13, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _template on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: $ComplexProps, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _formula on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: $Formula, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _molecule on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: $Molecule, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property $arrayProp on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property $objectProp on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularArrayCount on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularArray on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property regularObject on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {enumerable: true, configurable: true, get: ƒ, set: ƒ}
+chemistry3.ts:466 Found property _computedValue on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {value: 100, writable: true, enumerable: true, configurable: true}
+chemistry3.ts:466 Found property _component on $ComplexProps
+chemistry3.ts:470 Immediate descriptor check: {writable: true, enumerable: true, configurable: true, value: ƒ}
+chemistry3.ts:636 $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+chemistry3.ts:636 $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+chemistry3.ts:636 $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+chemistry3.ts:636 $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+page.tsx:82 Getter called, returning: 200
+chemistry3.ts:636 $ComplexProps state: {"cid":"13","$ComplexProps[13].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[13].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[13].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[13].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[13].computedProp":"200"}
+chemistry3.ts:636 $Counter state: {"cid":"10","$Counter[10].count":"0"}
+page.tsx:25 Before increment: 0
+chemistry3.ts:636 $Counter state: {"cid":"10","$Counter[10].count":"0"}
+chemistry3.ts:636 $Counter state: {"cid":"10","$Counter[10].count":"1"}
+page.tsx:27 After increment: 1
+chemistry3.ts:636 $Counter state: {"cid":"10","$Counter[10].count":"1"}
+page.tsx:25 Before increment: 1
+chemistry3.ts:636 $Counter state: {"cid":"10","$Counter[10].count":"1"}
+chemistry3.ts:636 $Counter state: {"cid":"10","$Counter[10].count":"2"}
+page.tsx:27 After increment: 2
+chemistry3.ts:636 $Counter state: {"cid":"10","$Counter[10].count":"2"}
+page.tsx:25 Before increment: 2
+chemistry3.ts:636 $Counter state: {"cid":"10","$Counter[10].count":"2"}
+chemistry3.ts:636 $Counter state: {"cid":"10","$Counter[10].count":"3"}
+page.tsx:27 After increment: 3

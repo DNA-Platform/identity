@@ -1,0 +1,161 @@
+import { $Rep, PrimitiveType, Type, Typeof, Constructor } from "./types";
+import { $lib, $Library } from './catalogue';
+import {// $ObjectiveRep
+    $lib$, $ref$, $rolesmap$, $roles$, $role$, $of$, $roleof$, $literal$, $typeof$, $type$, $prototype$, $canonical$, $members$, $membersOwn$, $membersMap$, $membersOwnMap$, $$primitives$$, $$$primitives$$$
+} from './symbols'
+
+export type $ObjectiveRole = 'object' | 'function' | 'primitive' | 'array' | 'parameter' | 'instance' | 'prototype' | 'type' | 'constructor' | 'class' | 'generic' | 'member' | 'field' | 'property' | 'method' | 'getter' | 'setter' | 'JavaScript';
+
+export function $instanceof(literal: any): $ObjectiveRep {
+    return new $ObjectiveRep('instance', $type(literal), literal);
+}
+
+export function $typeof(literal: any): $ObjectiveRep {
+    if (literal === null || literal === undefined) return $type(literal)
+    if ($ObjectiveRep[$$$primitives$$$].has(typeof literal))
+        return $type($ObjectiveRep[$$$primitives$$$].get(typeof literal)!).$of($instanceof(literal));
+    return undefined as any; //Finish!!
+}
+
+export function $type(type: Type | PrimitiveType | Object | Function | null | undefined): $ObjectiveRep {
+    return new $ObjectiveRep('type', 'JavaScript', type, $lib);
+}
+
+export class $ObjectiveRep {
+    [$lib$]?: $Library;
+    [$ref$]?: string;
+    [$rolesmap$] = new Map<string, $ObjectiveRep>;
+    [$roles$] = new Set<string>();
+    [$role$]: $ObjectiveRole;
+    [$of$]: $ObjectiveRep | $ObjectiveRole
+    [$roleof$]?: string;
+    [$literal$]: any;
+    [$type$]?: $ObjectiveRep;
+    [$typeof$]: Typeof;
+    [$prototype$]?: $ObjectiveRep;
+    [$canonical$]!: $ObjectiveRep;
+    [$members$]?: $ObjectiveRep[];
+    [$membersOwn$]?: $ObjectiveRep[];
+    [$membersMap$]?: Map<string, $ObjectiveRep>;
+    [$membersOwnMap$]?: Map<string, $ObjectiveRep>;
+
+    get literal() { return this[$literal$]; }
+
+    get $name(): string {
+        const literal = this[$literal$];
+        if (literal === null || literal === undefined) return `${literal}`;
+        const name: string = (this[$literal$] as Function)?.name || '';
+        return $ObjectiveRep[$$primitives$$].has(this[$literal$]) ? name.toLowerCase() : name;
+    }
+
+    get $role(): string {
+        const $rep = 
+             this[$of$] === 'JavaScript' ? this.$name : 
+            typeof this[$of$] === 'string' ? this[$of$] : 
+            this.describe(this[$of$][$literal$]);
+        return `${this[$role$]}of(${$rep})`;
+    }
+
+    get $ref(): string { 
+        if (this[$ref$]) return this[$ref$];
+        if (this[$canonical$] !== this) return this[$canonical$].$ref;
+        this[$ref$] = this.roleref(this[$role$], this.$name);
+        return this[$ref$]
+    }
+
+    get $type(): $ObjectiveRep { 
+        if (this[$type$]) return this[$type$];
+        this[$type$] = $type(this[$literal$]);
+        return this[$type$];
+     }
+
+    get $prototype(): $ObjectiveRep {
+        if (this[$prototype$]) return this[$prototype$];
+        if (this[$literal$] === undefined)
+            this[$prototype$] = new $ObjectiveRep('primitive', 'JavaScript', undefined, this[$lib$]).$as('prototype').$of(this);
+        else if ($ObjectiveRep[$$$primitives$$$].has(this[$typeof$]))
+            this[$prototype$] = new $ObjectiveRep('type', 'JavaScript', $ObjectiveRep[$$$primitives$$$].get(this[$typeof$]), this[$lib$]).$prototype.$of(this);
+        else
+            this[$prototype$] = new $ObjectiveRep('prototype', this, Object.getPrototypeOf(this[$literal$]), this[$lib$]);
+        return this[$prototype$];
+    }
+
+    constructor(role: $ObjectiveRole, of: $ObjectiveRep | $ObjectiveRole, literal: any, lib?: $Library) {
+        this[$lib$] = lib;
+        this[$role$] = role;
+        this[$literal$] = literal;
+        this[$typeof$] = typeof this;
+        this[$of$] = of;
+        if (this[$of$] === 'JavaScript') 
+            this[$canonical$] = this;
+        if (lib && this[$canonical$]) {
+            let $this = $lib.$find(this[$canonical$]) as $ObjectiveRep;
+            if ($this) return $this.$as(role).$of(of as any);
+            lib.$index(this);
+        } else {
+            this[$of$] = of instanceof $ObjectiveRep ? of : this;
+            this[$canonical$] = this;
+        } 
+    }
+
+    protected is(type: Typeof): boolean { return typeof this[$typeof$] === type; }
+    $is(role: $ObjectiveRole) { 
+        return this[$rolesmap$].has(this.roleref(role));
+    }
+
+    $as(role: $ObjectiveRole): $ObjectiveRep { 
+        const ref = this.roleref(role);
+        if (this[$rolesmap$].has(ref))
+            return this[$rolesmap$].get(ref)!;
+        const $this = Object.create(this) as $ObjectiveRep;
+        $this[$role$] = role;
+        $this[$roles$].add(role);
+        if (role === 'type') 
+            $this[$of$] = $this;
+        this[$rolesmap$].set(ref, $this);
+        return $this;
+    }
+
+    $of(of: $ObjectiveRep | $ObjectiveRole): $ObjectiveRep {
+        const ofrole = of instanceof $ObjectiveRep ? of[$role$] : of;
+        const roleref = this.roleref(this[$role$], ofrole);
+        let $this = this[$rolesmap$].get(roleref)!;
+        if ($this) return $this;
+        $this = Object.create(this) as $ObjectiveRep;
+        $this[$of$] = of;
+        if (this[$lib$] && of === 'JavaScript')
+            this[$lib$].$index($this);
+        if ($this[$roles$].has('JavaScript'))
+            $this[$rolesmap$].set(roleref, $this);
+        return $this;
+    }
+
+    $equals(other: $ObjectiveRep): boolean {
+        return this[$canonical$].$ref == other[$canonical$].$ref;
+    }
+
+    protected roleref(role: $ObjectiveRole, of?: string) {
+        return of ? `${role}(${of})` : role;
+    }
+
+    protected describe(value: any) {
+        if (value === null || value === undefined) return typeof value;
+        if (typeof value === "string") return `"${value}"`;
+        if (typeof value === "symbol") return `$${value.description}$`;
+        return value.toString();
+    }
+
+    static [$$primitives$$]: Set<PrimitiveType> = new Set([String, Number, Boolean, BigInt, Symbol])
+    static [$$$primitives$$$] = new Map<Typeof, PrimitiveType>([['string', String as Function], ['number', Number], ['boolean', Boolean], ['bigint', BigInt], ['symbol', Symbol]] as any)
+}
+
+export const $undefined = $type(undefined).$of('primitive');
+export const $null = $type(null).$of('primitive');
+export const $string = $type(String).$of('primitive');
+export const $number = $type(Number).$of('primitive');
+export const $boolean = $type(Boolean).$of('primitive');
+export const $bigint = $type(BigInt).$of('primitive');
+export const $symbol = $type(Symbol).$of('primitive');
+export const $object = $type(Object);
+export const $function = $type(Function);
+export const $prototype = $object.$prototype;

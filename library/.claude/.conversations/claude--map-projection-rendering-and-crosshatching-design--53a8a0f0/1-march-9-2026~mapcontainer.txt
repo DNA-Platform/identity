@@ -1,0 +1,106 @@
+// src/components/shared/MapContainer.tsx
+import React, { useRef, useEffect, useState } from 'react';
+import styled from 'styled-components';
+import DownloadButton from './DownloadButton';
+
+// Full viewport container with fixed positioning
+const Container = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+`;
+
+// Map container that takes most of the space
+const MapContent = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  & > svg, & > div > svg {
+    max-width: 95%;
+    max-height: 90vh; // Leave room for the button
+    display: block;
+    object-fit: contain; // This preserves aspect ratio
+  }
+`;
+
+// Button container with centered alignment at bottom
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const ButtonWrapper = styled.div`
+  white-space: nowrap;
+  background: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+`;
+
+interface MapContainerProps {
+  children: React.ReactNode;
+  filename?: string;
+}
+
+const MapContainer: React.FC<MapContainerProps> = ({ 
+  children, 
+  filename = 'map.svg',
+}) => {
+  const mapRef = useRef<HTMLDivElement>(null);
+  const [svgElement, setSvgElement] = useState<SVGSVGElement | null>(null);
+  
+  useEffect(() => {
+    if (mapRef.current) {
+      const svg = mapRef.current.querySelector('svg');
+      if (svg instanceof SVGSVGElement) {
+        setSvgElement(svg);
+        
+        // Ensure SVG has a viewBox if it doesn't already
+        if (!svg.getAttribute('viewBox') && svg.width.baseVal.value && svg.height.baseVal.value) {
+          const width = svg.width.baseVal.value;
+          const height = svg.height.baseVal.value;
+          svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        }
+        
+        // Make SVG responsive while preserving aspect ratio
+        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      }
+    }
+  }, [children]);
+  
+  const svgRef = React.useMemo(() => {
+    if (!svgElement) return null;
+    return { current: svgElement } as React.RefObject<SVGSVGElement>;
+  }, [svgElement]);
+  
+  return (
+    <Container>
+      <MapContent ref={mapRef}>
+        {children}
+      </MapContent>
+      
+      {svgRef && (
+        <ButtonContainer>
+          <ButtonWrapper>
+            <DownloadButton 
+              svgRef={svgRef} 
+              filename={filename}
+            />
+          </ButtonWrapper>
+        </ButtonContainer>
+      )}
+    </Container>
+  );
+};
+
+export default MapContainer;

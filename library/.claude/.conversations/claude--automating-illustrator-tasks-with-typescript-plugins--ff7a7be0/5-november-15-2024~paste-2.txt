@@ -1,0 +1,124 @@
+/**
+ * Selects and optionally activates a layer by name or index.
+ * If no id provided and no active layer exists, throws error.
+ * If no id provided, returns active layer.
+ * If id is number, processes negative index like Python (-1 is last layer).
+ * If id is string, searches for layer by name.
+ * 
+ * @param ref - Layer name or index (optional)
+ * @param activate - Whether to activate the layer (default true)
+ * @returns The selected Layer
+ * @throws Error if layer not found or no active layer when id not provided
+ */
+function selectLayer(ref?: Reference, activate: boolean = true): Layer {
+    var doc = app.activeDocument;
+
+    // No id: return active layer or error
+    if (ref === undefined) {
+        if (!doc.activeLayer) {
+            throw new Error("No active layer");
+        }
+        return doc.activeLayer;
+    }
+
+    // Handle numeric index (Python-style negative indexing)
+    if (typeof ref === "number") {
+        var index = ref < 0 ? doc.layers.length + ref : ref;
+        if (index < 0 || index >= doc.layers.length) {
+            throw new Error("Layer index out of bounds");
+        }
+        var layer = doc.layers[index];
+        if (activate) {
+            doc.activeLayer = layer;
+        }
+        return layer;
+    }
+
+    // Handle string name
+    for (let i = 0; i < doc.layers.length; i++) {
+        if (doc.layers[i].name === ref) {
+            var layer = doc.layers[i];
+            if (activate) {
+                doc.activeLayer = layer;
+            }
+            return layer;
+        }
+    }
+    throw new Error(`Layer '${ref}' not found`);
+}
+
+/**
+ * Selects multiple layers using various selector types.
+ * Selector can be:
+ * - undefined/":" - all layers
+ * - string name - single layer by name
+ * - "start:end" - layers from start to end (inclusive)
+ * - array of names or indices - specific layers
+ * 
+ * @param selector - How to select layers
+ * @returns Array of selected layers
+ * 
+ * @example
+ * selectLayers()          // Active layer
+ * selectLayers("MyLayer") // Layer named "MyLayer"
+ * selectLayers("2:5")     // Layers 2 through 5 inclusive
+ * selectLayers("2:-1")    // Layers 2 through end
+ * selectLayers(["Layer1", "Layer2"]) // Specific named layers
+ * selectLayers([0, -1])   // First and last layers
+ */
+function selectLayers(selector?: Selector): Layer[] {
+    var doc = app.activeDocument;
+    var result: Layer[] = [];
+
+    if (!selector) {
+        result.push(doc.activeLayer)
+        return result;
+    }
+
+    // Handle string selector
+    if (typeof selector === "number") {
+        selector = [selector];
+    }
+
+    // Handle array selectors
+    if (selector instanceof Array) {
+        for (let i = 0; i < selector.length; i++) {
+            result.push(selectLayer(selector[i], false));
+        }
+        return result;
+    }
+
+    // Handle string selector
+    if (typeof selector === "string") {
+        // Check if it's a name (doesn't start with number or :)
+        if (!/^[0-9:]/.test(selector)) {
+            return [selectLayer(selector, false)];
+        }
+
+        if (selector.length == 0) {
+            throw new Error("The selector is empty");
+        }
+
+        // Parse Python-style slice
+        var parts = selector.split(":");
+        if (parts.length !== 2) {
+            throw new Error("Invalid slice format. Use 'start:end'");
+        }
+
+        // Handle empty parts and convert to numbers
+        var start = parts[0] === "" ? 0 : parseInt(parts[0]);
+        var end = parts[1] === "" ? doc.layers.length - 1 : parseInt(parts[1]);
+
+        // Handle negative indices
+        start = start < 0 ? doc.layers.length + start : start;
+        end = end < 0 ? doc.layers.length + end : end;
+
+        // Collect layers in range
+        for (let i = start; i <= end; i++) {
+            result.push(selectLayer(i, false));
+        }
+        return result;
+    }
+
+    throw new Error("Invalid selector type");
+}

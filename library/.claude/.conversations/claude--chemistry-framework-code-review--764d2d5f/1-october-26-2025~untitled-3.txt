@@ -1,0 +1,170 @@
+class $Reaction {
+    // Add state management to this
+    private _chemical: $Chemical;
+    private _update?: React.Dispatch<React.SetStateAction<{}>>;
+    private _updateScheduled = false;
+    private _mount: (() => void)[] = [];
+    private _render: (() => void)[] = [];
+    private _layout: (() => void)[] = [];
+    private _effect: (() => void)[] = [];
+    private _unmount: (() => void)[] = [];
+    private _renderCount = 0;
+
+    get active() { return this._activeCount > 0; }
+    private _activeCount = 0;
+
+    get phase() { return this._phase; }
+    private _phase: $Phase = 'setup';
+
+    get state() { return this._state; }
+    private _state: $State;
+
+    get tracking() { return this._state.tracking; }
+
+    constructor(chemical: $Chemical) {
+        this._chemical = chemical;
+        this._state = new $State(chemical);
+        $Reaction._system.set(chemical, this);
+        $Reaction._chemicals.set(chemical[$cid], chemical);
+    }
+
+    bind(update: React.Dispatch<React.SetStateAction<{}>>) {
+        this._update = update;
+    }
+
+    activate(type?: 'existing') {
+        this._activeCount++;
+        this.state.track(type);
+    }
+
+    deactivate() {
+        this._activeCount--;
+        if (!this.active) {
+            this.state.clear();
+            $Reaction._parents.forEach(parent => parent[$$reaction] = undefined);
+            $Reaction._parents = new Set();
+        }
+    }
+
+    updateIf(): boolean {
+        const changed = this.state.changed(); 
+        if (changed) this.update();
+        return changed;
+    }
+
+    update() {
+        if (this._updateScheduled) return;
+        if (this._phase === 'setup') return;
+        if (this._phase === 'unmount') return;
+        if (this.phase == 'effect') {
+            this._updateScheduled = true;
+            this._update!({});
+        }
+
+        // During construction/formation, defer updates
+        if (this._phase === 'render') {
+            queueMicrotask(() => {
+                if (this._updateScheduled) return;
+                this._update!({});
+                this._updateScheduled = true;
+            });
+            return;
+        }
+        
+        this._updateScheduled = true;
+        this._update!({});
+    }
+
+    resolve(phase: $Phase) {
+        if (phase === 'setup') return;
+        if (phase === 'render') 
+            this._renderCount++;
+        if (phase === 'effect')
+            this._updateScheduled = false;
+
+        const actions = 
+            phase === 'mount' ? this._mount :
+            phase === 'render' ? this._render :
+            phase === 'layout' ? this._layout :
+            phase === 'effect' ? this._effect :
+            phase === 'unmount' ? this._unmount : [];
+
+        this._phase = phase;
+        if (this._phase === 'mount') 
+            this._phase = 'effect';
+
+        console.log('resolve', phase)
+        console.log('- actions', actions)
+        while (actions.length > 0) 
+            actions.shift()!();
+    }
+
+    async mount() {
+        if (this.phase === 'unmount') 
+            return Promise.reject();
+        if (this._renderCount == 1 && this._phase === 'effect') 
+            return Promise.resolve();
+        if (this._renderCount < 1)
+            return this.effect();
+        return Promise.reject();
+    }
+
+    async render() {
+        if (this.phase === 'unmount') 
+            return Promise.reject();
+        if (this.phase === 'render')
+            return Promise.resolve();
+        if (this.phase !== 'setup')
+            this.update();
+        return new Promise<void>(resolve => {
+            this._render.push(resolve);
+        });
+    }
+
+    async layout() {
+        if (this.phase === 'unmount') 
+            return Promise.reject();
+        if (this._phase === 'layout') 
+            return Promise.resolve();
+        if (this.phase === 'effect')
+            this.effect().then(() => this.update());
+        return new Promise<void>(resolve => {
+            this._layout.push(resolve);
+        });
+    }
+
+    async effect() {
+        if (this.phase === 'unmount') 
+            return Promise.reject();
+        if (this._phase === 'effect') 
+            return Promise.resolve();
+        return new Promise<void>(resolve => {
+            this._effect.push(resolve)
+        });
+    }
+
+    async unmount() {
+        if (this._phase === 'unmount') 
+            return Promise.resolve();
+        return new Promise<void>(resolve => {
+            this._unmount.push(resolve)
+        });
+    }
+
+    destroy() {
+        $Reaction._system.delete(this._chemical);
+        $Reaction._chemicals.delete(this._chemical[$cid]);
+    }
+
+    private static _chemicals = new Map<number, $Chemical>();
+    private static _system = new Map<$Chemical, $Reaction>();
+    private static _parents = new Set<$Chemical>();
+
+    static find(cid: number): $Chemical | undefined {
+        return this._chemicals.get(cid);
+    }
+
+    static track(parent: $Chemical) {
+        this._parents.add(parent);
+    }
+}

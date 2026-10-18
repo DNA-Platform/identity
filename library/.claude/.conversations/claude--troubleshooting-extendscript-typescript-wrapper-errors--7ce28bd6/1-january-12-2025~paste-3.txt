@@ -1,0 +1,489 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var EmptyItem = /** @class */ (function () {
+    function EmptyItem() {
+        this.name = "";
+        this.typename = "EMPTY";
+        this.parent = app;
+        this.length = 0;
+        this.geometricBounds = [0, 0, 0, 0];
+        this.selected = false;
+        this.q = undefined;
+    }
+    EmptyItem.prototype.remove = function () { };
+    EmptyItem.prototype.removeAll = function () { };
+    EmptyItem.prototype.getIndex = function () { return -1; };
+    EmptyItem.prototype.getByName = function (name) { return this; };
+    EmptyItem.prototype.add = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return this;
+    };
+    EmptyItem.prototype.insert = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+    };
+    EmptyItem.prototype.duplicate = function (relativeObject, insertionLocation) { return this; };
+    EmptyItem.prototype.move = function (relativeObject, insertionLocation) { return this; };
+    EmptyItem.empty = function () {
+        if (EmptyItem._empty)
+            return EmptyItem._empty;
+        EmptyItem._empty = new EmptyItem();
+        return EmptyItem._empty;
+    };
+    return EmptyItem;
+}());
+var QueryItem = /** @class */ (function () {
+    function QueryItem(item, collectionType) {
+        if (item === void 0) { item = EmptyItem.empty(); }
+        var _a, _b;
+        this._item = item;
+        this._item.q = this;
+        this.id = QueryItem.nextId();
+        this.itemType = (_b = (_a = this._item) === null || _a === void 0 ? void 0 : _a.typename) !== null && _b !== void 0 ? _b : "EMPTY";
+        this.queryItemType = this.constructor.name;
+        this.queryType = "".concat(this.queryItemType, "<").concat(this.itemType, ">");
+        this.collectionType = collectionType;
+        if (QueryItem._itemDefaults[this.itemType] === undefined)
+            QueryItem._itemDefaults[this.itemType] = {};
+        if (QueryItem._queryItemDefaults[this.queryItemType] === undefined)
+            QueryItem._queryItemDefaults[this.queryItemType] = {};
+        if (QueryItem._queryDefaults[this.queryType] === undefined)
+            QueryItem._queryDefaults[this.queryType] = {};
+        this.itemDefaults = QueryItem._itemDefaults[this.itemType];
+        this.queryItemDefaults = QueryItem._queryItemDefaults[this.queryItemType];
+        this.queryDefaults = QueryItem._queryDefaults[this.queryType];
+        this._configureDefaults();
+    }
+    QueryItem.prototype.p = function () {
+        if (this._item.p === undefined)
+            this._item.p = new PositionableItem(this);
+        return this._item.p;
+    };
+    QueryItem.prototype.set = function (name) { return new SetProperties(this, name); };
+    QueryItem.prototype.name = function (value) {
+        var _a;
+        if (value !== undefined) {
+            this._item.name = value;
+            return this._item.name;
+        }
+        return ((_a = this._item) === null || _a === void 0 ? void 0 : _a.name) ? this._item.name.toString() : "";
+    };
+    QueryItem.prototype.api = function () { return api; };
+    QueryItem.prototype.app = function () { return _app(); };
+    QueryItem.prototype.empty = function () { return this._item.typename === "EMPTY"; };
+    QueryItem.prototype.activated = function () { var _a; return !!((_a = this._item) === null || _a === void 0 ? void 0 : _a.selected); };
+    QueryItem.prototype.activate = function () { if (this._item) {
+        this._item.selected = true;
+    } return this; };
+    QueryItem.prototype.deactivate = function () { if (this._item) {
+        this._item.selected = false;
+    } return this; };
+    QueryItem.prototype.hide = function () { if (this._item.hidden !== undefined) {
+        this._item.hidden = true;
+    } return this; };
+    QueryItem.prototype.hidden = function () { return this._item.hidden === true; };
+    QueryItem.prototype.show = function () { if (this._item.hidden !== undefined) {
+        this._item.hidden = false;
+    } return this; };
+    QueryItem.prototype.visible = function () { return this._item.hidden !== true; };
+    QueryItem.prototype.length = function () { return 0; };
+    QueryItem.prototype.enumerable = function () { return this.collectionType !== undefined; };
+    QueryItem.prototype.positionable = function () { var _a; return ((_a = this._item) === null || _a === void 0 ? void 0 : _a.position) !== undefined; };
+    QueryItem.prototype.collection = function () { return this.collectionType !== undefined ? this._item[this.collectionType] : []; };
+    QueryItem.prototype.parent = function () {
+        if (!this._item.parent)
+            return QueryItem.empty();
+        var parent = q(this._item.parent);
+        var collection = this.itemType.charAt(0).toLowerCase() + this.itemType.slice(1) + "s";
+        if (parent[collection])
+            parent = parent[collection]();
+        return parent;
+    };
+    QueryItem.prototype.document = function () {
+        if (this.empty())
+            return this;
+        var currentItem = this._item;
+        while (currentItem) {
+            if (currentItem.typename === "Document")
+                return q(currentItem);
+            currentItem = currentItem.parent;
+        }
+        return QueryItem.empty();
+    };
+    QueryItem.prototype.artboard = function () {
+        if (this.empty())
+            return this;
+        return this.document().artboard();
+    };
+    QueryItem.prototype.layer = function () {
+        if (this.empty())
+            return this;
+        return this.document().layer();
+    };
+    QueryItem.prototype.region = function (newRegion) {
+        if (newRegion !== undefined) {
+            if (this.positionable())
+                this.p().region(newRegion);
+            else
+                throw new Error("Only positionalble objects can have custom regions");
+        }
+        return this.positionable() ?
+            this.p().region() :
+            this.artboard().region();
+    };
+    QueryItem.prototype.cast = function () {
+        return this;
+    };
+    QueryItem.prototype.equals = function (item) {
+        if (item === undefined)
+            return false;
+        return this._item == item._item;
+    };
+    QueryItem.prototype.remove = function () {
+        var _a, _b;
+        (_b = (_a = this._item) === null || _a === void 0 ? void 0 : _a.remove) === null || _b === void 0 ? void 0 : _b.call(_a);
+        this._item = QueryItem.empty();
+    };
+    QueryItem.prototype.removeIfEmpty = function () {
+        var empty = this.empty();
+        if (empty)
+            this.remove();
+        return empty;
+    };
+    QueryItem.prototype.duplicate = function (name, relativeObject, insertionLocation) {
+        var _a, _b;
+        if (insertionLocation === void 0) { insertionLocation = ElementPlacement.PLACEAFTER; }
+        if (relativeObject === undefined)
+            relativeObject = this;
+        var duplicate = (_b = (_a = this._item) === null || _a === void 0 ? void 0 : _a.duplicate) === null || _b === void 0 ? void 0 : _b.call(_a, relativeObject._item, insertionLocation);
+        duplicate.name = name;
+        return q(duplicate);
+    };
+    QueryItem.prototype.move = function (relativeObject, insertionLocation) {
+        var _a, _b;
+        (_b = (_a = this._item) === null || _a === void 0 ? void 0 : _a.move) === null || _b === void 0 ? void 0 : _b.call(_a, relativeObject._item, insertionLocation);
+    };
+    QueryItem.prototype.moveTo = function (index) {
+        return this;
+    };
+    QueryItem.prototype.locked = function () { return this._item.locked; };
+    QueryItem.prototype.lock = function () { this._item.locked = true; return this; };
+    QueryItem.prototype.unlock = function () { this._item.locked = false; return this; };
+    QueryItem.prototype._create = function (select, create, name) {
+        var _a;
+        var collection = select(this);
+        var queryItem = create(collection);
+        if (name !== undefined)
+            queryItem.set().name(name);
+        var item = queryItem._item;
+        (_a = item === null || item === void 0 ? void 0 : item.move) === null || _a === void 0 ? void 0 : _a.call(item, queryItem.parent()._item, ElementPlacement.PLACEATEND);
+        return queryItem;
+    };
+    QueryItem.prototype._configureDefaults = function () { };
+    QueryItem.createAnonymousName = function (item) {
+        if (!item)
+            return ".Item[".concat(item, "]");
+        return ".".concat(item.itemType ? item.itemType : "Item", "[").concat(item.id, "]");
+    };
+    QueryItem.empty = function () {
+        if (QueryItem._empty)
+            return QueryItem._empty;
+        QueryItem._empty = new Queryable(EmptyItem.empty(), undefined);
+        QueryItem._empty._item.q = QueryItem._empty;
+        return QueryItem._empty;
+    };
+    QueryItem.nextId = function () {
+        var nextId = QueryItem._nextId;
+        QueryItem._nextId += 1;
+        return nextId;
+    };
+    QueryItem._nextId = 1;
+    QueryItem._itemDefaults = dictionary();
+    QueryItem._queryItemDefaults = dictionary();
+    QueryItem._queryDefaults = dictionary();
+    return QueryItem;
+}());
+var Queryable = /** @class */ (function (_super) {
+    __extends(Queryable, _super);
+    function Queryable(item, collectionType) {
+        var _this = _super.call(this, item, collectionType) || this;
+        _this._item = item;
+        return _this;
+    }
+    Queryable.prototype.item = function () { return this._item; };
+    Queryable.prototype.active = function () { return !!this._item.selected; };
+    Queryable.prototype.inactive = function () { return !this.active(); };
+    Queryable.prototype.activate = function () { this._item.selected = true; return this; };
+    Queryable.prototype.deactivate = function () { this._item.selected = false; return this; };
+    Queryable.prototype.query = function (selector) {
+        if (selector === void 0) { selector = ":"; }
+        var collection = this.collection();
+        if (collection.length == 0)
+            return f();
+        var indexes = evaluateRangeSelector(selector, collection.length);
+        var len = indexes.length;
+        var result = f();
+        for (var i = 0; i < len; i++) {
+            var item = collection[indexes[i]];
+            if (item)
+                result.push(q(item));
+        }
+        return result;
+    };
+    Queryable.prototype.index = function (newIndex) {
+        var _this = this;
+        if (newIndex !== undefined) {
+            var index = this.index();
+            var parent = this.parent();
+            newIndex = evaluateNegativeIndex(newIndex, parent.length());
+            if (index == newIndex)
+                return index;
+            if (index < newIndex)
+                this.move(parent.at(newIndex), ElementPlacement.PLACEAFTER);
+            if (index > newIndex)
+                this.move(parent.at(newIndex), ElementPlacement.PLACEBEFORE);
+        }
+        return this.parent().firstIndex(function (i) { return i._item == _this._item; });
+    };
+    Queryable.prototype.create = function (name) {
+        var collection = this.collection();
+        var newItem = q(collection.add());
+        if (name !== undefined)
+            newItem.name(name);
+        if (this.length() > 1)
+            newItem.move(this.last(), ElementPlacement.PLACEAFTER);
+        return newItem;
+    };
+    Queryable.prototype.moveTo = function (index) {
+        if (index == undefined)
+            throw "Index not specified";
+        this.index(index);
+        return this;
+    };
+    Queryable.prototype.reverse = function (selector) {
+        if (selector === void 0) { selector = ":"; }
+        return this.query(selector).reverse();
+    };
+    Queryable.prototype.at = function (index) {
+        return this.query("".concat(index)).at(0);
+    };
+    Queryable.prototype.get = function (selector) {
+        return this.query(selector);
+    };
+    Queryable.prototype.getByName = function (name) {
+        var _a;
+        var collection = this.collection();
+        return q((_a = collection === null || collection === void 0 ? void 0 : collection.getByName) === null || _a === void 0 ? void 0 : _a.call(collection, name));
+    };
+    Queryable.prototype.length = function () { return this.collection().length; };
+    Queryable.prototype.replace = function (index, item) {
+        var _a;
+        var itemAtIndex = this.at(index);
+        item.move(itemAtIndex, ElementPlacement.PLACEBEFORE);
+        (_a = itemAtIndex.remove) === null || _a === void 0 ? void 0 : _a.call(itemAtIndex);
+    };
+    Queryable.prototype.insert = function (item) {
+        this.insertAt(-1, item);
+    };
+    Queryable.prototype.insertAt = function (index, item) {
+        var len = this.length();
+        index = evaluateNegativeInsertIndex(index, len);
+        if (index == 0) {
+            item._item.move(this.item(), ElementPlacement.PLACEATBEGINNING);
+            return;
+        }
+        if (index == len) {
+            item._item.move(this.item(), ElementPlacement.PLACEATEND);
+            return;
+        }
+        var itemBeforeIndex = this.at(index - 1);
+        item.move(itemBeforeIndex, ElementPlacement.PLACEAFTER);
+    };
+    Queryable.prototype.insertMany = function (items) {
+        var _this = this;
+        f(items).do(function (item) { return _this.insert(item); });
+    };
+    Queryable.prototype.insertManyAt = function (index, items) {
+        var len = items.length();
+        index = evaluateNegativeInsertIndex(index, this.collection.length);
+        for (var i = 0; i < len; i++) {
+            this.insertAt(index + i, items.at(i));
+        }
+    };
+    Queryable.prototype.delete = function (item) {
+        item.remove();
+    };
+    Queryable.prototype.deleteMany = function (items) {
+        items.do(function (item) { return item.remove(); });
+    };
+    Queryable.prototype.deleteAt = function (index, count) {
+        if (count === void 0) { count = 1; }
+        for (var i = 0; i < count; i++)
+            this.delete(this.at(index)._item);
+    };
+    Queryable.prototype.removeAll = function () {
+        this.query().do(function (item) { item.remove(); });
+    };
+    Queryable.prototype.forEach = function (callback) {
+        return this.query().forEach(callback);
+    };
+    Queryable.prototype.do = function (callback) {
+        return this.query().forEach(callback);
+    };
+    Queryable.prototype.doOnce = function (callback) {
+        var collection = this.collection();
+        for (var i = 0; i < collection.length; i++) {
+            if (callback(q(collection[i]), i)) {
+                return true;
+            }
+        }
+        return false;
+    };
+    Queryable.prototype.select = function (selector) {
+        return this.query().select(selector);
+    };
+    Queryable.prototype.where = function (predicate) {
+        return this.query().where(predicate);
+    };
+    Queryable.prototype.whereNameMatches = function (pattern) {
+        return this.where(function (item) { return pattern.test(item.name()); });
+    };
+    // Simple string pattern matchers that use whereNameMatches
+    Queryable.prototype.whereNameStartsWith = function (prefix) {
+        return this.whereNameMatches(new RegExp("^".concat(this._escapeRegExp(prefix))));
+    };
+    Queryable.prototype.whereNameEndsWith = function (suffix) {
+        return this.whereNameMatches(new RegExp("".concat(this._escapeRegExp(suffix), "$")));
+    };
+    Queryable.prototype.whereNameContains = function (substring) {
+        return this.whereNameMatches(new RegExp(this._escapeRegExp(substring)));
+    };
+    // Helper to escape special regex characters in string literals
+    Queryable.prototype._escapeRegExp = function (string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    };
+    Queryable.prototype.first = function (predicate) {
+        var len = this.length();
+        if (!predicate)
+            return len > 0 ? this.at(0) : undefined;
+        for (var i = 0; i < len; i++) {
+            var item = this.at(i);
+            if (predicate(item))
+                return item;
+        }
+        return undefined;
+    };
+    Queryable.prototype.firstIndex = function (predicate) {
+        var len = this.length();
+        for (var i = 0; i < len; i++) {
+            var item = this.at(i);
+            if (predicate(item))
+                return i;
+        }
+        return -1;
+    };
+    Queryable.prototype.last = function (predicate) {
+        var len = this.length();
+        if (!predicate)
+            return len > 0 ? this.at(-1) : undefined;
+        for (var i = len - 1; i >= 0; i--) {
+            var item = this.at(i);
+            if (predicate(item))
+                return item;
+        }
+        return undefined;
+    };
+    Queryable.prototype.lastIndex = function (predicate) {
+        var len = this.length();
+        for (var i = len - 1; i >= 0; i--) {
+            var item = this.at(i);
+            if (predicate(item))
+                return i;
+        }
+        return -1;
+    };
+    Queryable.prototype.skip = function (count) {
+        var len = this.length();
+        if (count >= len)
+            return f();
+        count = Math.min(count, len);
+        return this.query("".concat(count, ":"));
+    };
+    Queryable.prototype.take = function (count) {
+        if (count == 0)
+            return f();
+        count = Math.min(count, this.length());
+        return this.query(":".concat(count - 1));
+    };
+    Queryable.prototype.any = function (predicate) {
+        if (predicate === undefined)
+            return this.length() > 0;
+        return this.where(predicate).length() > 0;
+    };
+    Queryable.prototype.all = function (predicate) {
+        return this.where(predicate).length() == this.length();
+    };
+    Queryable.prototype.array = function () {
+        var result = f([]);
+        this.do(function (item) { return result.push(item); });
+        return result;
+    };
+    Queryable.prototype.includes = function (item) {
+        return this.any(function (i) { return i._item == item._item; });
+    };
+    Queryable.prototype.hideAll = function (predicate) {
+        if (predicate === undefined) {
+            this.do(function (item) { return item.hide(); });
+        }
+        else {
+            this.where(predicate).do(function (item) { return item.hide(); });
+        }
+        return this;
+    };
+    Queryable.prototype.showAll = function (predicate) {
+        if (predicate === undefined) {
+            this.do(function (item) { return item.show(); });
+        }
+        else {
+            this.where(predicate).do(function (item) { return item.show(); });
+        }
+        return this;
+    };
+    Queryable.prototype.activateAll = function (predicate) {
+        if (predicate === undefined) {
+            this.do(function (item) { return item.activate(); });
+        }
+        else {
+            this.where(predicate).do(function (item) { return item.activate(); });
+        }
+        return this;
+    };
+    Queryable.prototype.inactivateAll = function (predicate) {
+        if (predicate === undefined) {
+            this.do(function (item) { return item.deactivate(); });
+        }
+        else {
+            this.where(predicate).do(function (item) { return item.deactivate(); });
+        }
+        return this;
+    };
+    return Queryable;
+}(QueryItem));

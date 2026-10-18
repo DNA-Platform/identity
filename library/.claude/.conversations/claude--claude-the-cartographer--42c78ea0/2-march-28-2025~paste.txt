@@ -1,0 +1,172 @@
+// src/components/map-backgrounds/AnasPlayfulWaterBackground.tsx
+import React from 'react';
+import { useMapContext } from 'react-simple-maps';
+
+// Define types of squiggles available
+type SquiggleType = 'gentle-wave' | 'undulating-hills' | 'curved-arc';
+
+interface AnasPlayfulWaterBackgroundProps {
+  backgroundColor?: string;
+  squiggleColor?: string;
+  squiggleDensity?: number; // Number of squiggles per 10000 square pixels
+  seed?: number;            // Random seed for deterministic patterns
+  // Maintaining backward compatibility with DiagonalPatternBackground props
+  lineColor?: string;       // Not used but needed for compatibility
+  lineWidth?: number;       // Not used but needed for compatibility
+  lineSpacing?: number;     // Not used but needed for compatibility
+  direction?: string;       // Not used but needed for compatibility
+  solid?: boolean;          // Not used but needed for compatibility
+}
+
+// Simple seeded random number generator
+class SeededRandom {
+  private seed: number;
+
+  constructor(seed: number = 12345) {
+    this.seed = seed;
+  }
+
+  // Returns a random number between 0 and 1
+  random(): number {
+    const x = Math.sin(this.seed++) * 10000;
+    return x - Math.floor(x);
+  }
+  
+  // Returns a random integer between min and max (inclusive)
+  randInt(min: number, max: number): number {
+    return Math.floor(this.random() * (max - min + 1)) + min;
+  }
+  
+  // Returns a random float between min and max
+  randFloat(min: number, max: number): number {
+    return this.random() * (max - min) + min;
+  }
+}
+
+const AnasPlayfulWaterBackground: React.FC<AnasPlayfulWaterBackgroundProps> = ({
+  backgroundColor = '#6DCFF6', // Extracted from Ana's Manhattan map
+  squiggleColor = '#56ACBA',   // Extracted from Ana's Manhattan map
+  squiggleDensity = 0.6,       // Set to match Ana's density
+  seed = 12345,                // Default seed for deterministic output
+  // Unused props included for backward compatibility
+  lineColor,
+  lineWidth,
+  lineSpacing,
+  direction,
+  solid
+}) => {
+  const { width = 800, height = 600 } = useMapContext();
+  
+  // Create seeded random number generator
+  const random = new SeededRandom(seed);
+  
+  // Define squiggle paths and their original dimensions
+  const squiggleDefinitions = {
+    'gentle-wave': {
+      path: 'M49.63,5.71c-2.72,1.06-5.15-1-7.24-2.55-2.37-1.7-5-3.42-8-3.13a10.63,10.63,0,0,0-7.76,5.34,18.66,18.66,0,0,0-2.08,5.77,13.27,13.27,0,0,0-11.83-7.5C5.91,3.78.13,9.85,0,16.59a1.06,1.06,0,0,0,2.11,0c.1-5.59,5-10.72,10.61-10.84A11.31,11.31,0,0,1,23.81,16.11a1.05,1.05,0,0,0,2.1,0c.43-3.47.87-7.2,2.86-10.17,1.76-2.64,5-4.58,8.19-3.52C41.35,3.87,45,9.75,50.19,7.74,51.44,7.26,50.9,5.22,49.63,5.71Z',
+      viewBox: '0 0 50.9 17.6'
+    },
+    'undulating-hills': {
+      path: 'M67.71,10.44A13.89,13.89,0,0,0,55,1.14,13.76,13.76,0,0,0,43.39,7.76,12,12,0,0,0,32.4,0,12,12,0,0,0,21.79,7.34,12,12,0,0,0,9.89.89,11.92,11.92,0,0,0,.07,13.7c.15,1.26,2.15,1.27,2,0-.58-5,3-10.12,8.08-10.84S20.1,6.11,20.92,11c.19,1.19,1.85.76,2-.27A10,10,0,0,1,32.4,2a10,10,0,0,1,9.71,8.57,1,1,0,0,0,2,.26,11.46,11.46,0,0,1,21.7.15C66.2,12.18,68.14,11.66,67.71,10.44Z',
+      viewBox: '0 0 67.77 14.65'
+    },
+    'curved-arc': {
+      path: 'M54.37,4.34A15.37,15.37,0,0,0,38,1.11a15.32,15.32,0,0,0-8.78,10.34A16.61,16.61,0,0,0,15,3.83,16.78,16.78,0,0,0,.06,14.91c-.43,1.21,1.5,1.73,1.93.53A14.72,14.72,0,0,1,15,5.83a14.71,14.71,0,0,1,13.79,9,1,1,0,0,0,2-.26A13.39,13.39,0,0,1,38.85,2.9,13.37,13.37,0,0,1,53,5.76C53.88,6.65,55.29,5.24,54.37,4.34Z',
+      viewBox: '0 0 54.67 16.12'
+    }
+  };
+  
+  // Calculate number of squiggles based on density and area
+  const totalArea = width * height;
+  const squiggleCount = Math.floor(totalArea / 10000 * squiggleDensity);
+  
+  // Generate squiggles with deliberate placement
+  const generateSquiggles = () => {
+    const squiggles = [];
+    const types: SquiggleType[] = ['gentle-wave', 'undulating-hills', 'curved-arc'];
+    
+    // Create a grid system to ensure more even distribution
+    const gridCols = Math.ceil(Math.sqrt(squiggleCount) * width / height);
+    const gridRows = Math.ceil(squiggleCount / gridCols);
+    
+    const cellWidth = width / gridCols;
+    const cellHeight = height / gridRows;
+    
+    for (let row = 0; row < gridRows; row++) {
+      for (let col = 0; col < gridCols; col++) {
+        // Skip some cells randomly for natural appearance
+        if (random.random() > 0.7) continue;
+        
+        // Determine the position with some jitter inside the cell
+        const xOffset = cellWidth * 0.2 + random.random() * cellWidth * 0.6;
+        const yOffset = cellHeight * 0.2 + random.random() * cellHeight * 0.6;
+        
+        const x = col * cellWidth + xOffset;
+        const y = row * cellHeight + yOffset;
+        
+        // Choose squiggle type - with some preference for 'gentle-wave'
+        let typeIndex;
+        if (random.random() < 0.5) {
+          typeIndex = 0; // gentle-wave
+        } else {
+          typeIndex = 1 + Math.floor(random.random() * 2); // other types
+        }
+        
+        const type = types[typeIndex];
+        
+        // Scale size based on position - squiggles appear smaller in distance
+        // Looking at Ana's map, the squiggles are quite small and consistent
+        const baseSize = 25; // Base size in pixels
+        const sizeFactor = 0.7 + random.random() * 0.4; // Slight variation in size
+        const squiggleSize = baseSize * sizeFactor;
+        
+        // Rotation - primarily horizontal with slight variation
+        const rotation = random.random() * 20 - 10; // -10 to +10 degrees
+        
+        // Get the squiggle definition
+        const squiggle = squiggleDefinitions[type];
+        
+        // Parse viewBox dimensions
+        const [vbWidth, vbHeight] = squiggle.viewBox.split(' ').slice(2).map(Number);
+        
+        // Calculate scale factor 
+        const scaleFactor = squiggleSize / vbWidth;
+        
+        squiggles.push(
+          <g 
+            key={`squiggle-${row}-${col}`} 
+            transform={`translate(${x}, ${y}) rotate(${rotation}) scale(${scaleFactor})`}
+          >
+            <path d={squiggle.path} fill={squiggleColor} />
+          </g>
+        );
+        
+        // If we've reached our target count, stop adding squiggles
+        if (squiggles.length >= squiggleCount) break;
+      }
+      
+      // If we've reached our target count, stop adding squiggles
+      if (squiggles.length >= squiggleCount) break;
+    }
+    
+    return squiggles;
+  };
+  
+  return (
+    <>
+      {/* Blue background */}
+      <rect 
+        x="0" 
+        y="0" 
+        width={width} 
+        height={height} 
+        fill={backgroundColor} 
+      />
+      
+      {/* Water squiggles */}
+      {generateSquiggles()}
+    </>
+  );
+};
+
+export default AnasPlayfulWaterBackground;

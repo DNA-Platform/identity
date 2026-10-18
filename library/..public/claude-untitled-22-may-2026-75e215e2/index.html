@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dougs Library</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 28 28%22%3E%3Cstyle%3E.pd-illustration%7Bfill%3Anone%3Bstroke%3A%231f5a60%3Bstroke-width%3A1.7%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.pd-illustration .fill%7Bfill%3A%238db9bd%3Bstroke%3A%231f5a60%7D.pd-illustration .light%7Bfill%3A%23ffffff%3Bstroke%3Anone%7D%3C%2Fstyle%3E%3CclipPath id%3D%22window%22%3E%3Crect width%3D%2228%22 height%3D%2228%22%2F%3E%3C%2FclipPath%3E%3Crect width%3D%2228%22 height%3D%2228%22 fill%3D%22%23c3e3e6%22%2F%3E%3Cg clip-path%3D%22url(%23window)%22%3E%3Csvg x%3D%22-43.361%22 y%3D%22-10.361%22 width%3D%2299.36%22 height%3D%2299.36%22 viewBox%3D%220 0 64 64%22 class%3D%22pd-illustration%22%3E%3Cpath class%3D%22light%22 d%3D%22M9 7h46v50H9z%22%2F%3E%3Cpath d%3D%22M9 7h46v50H9zM9 24h46M9 41h46%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 11h5v13h-5zM20 9h4v15h-4zM26 13h6v11h-6zM34 10h4v14h-4zM40 14h6v10h-6z%22%2F%3E%3Cpath d%3D%22M48 24l4-12 3 1-4 11z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 28h4v13h-4zM19 30h7v11h-7zM28 27h4v14h-4zM34 31h5v10h-5zM41 28h6v13h-6zM49 29h3v12h-3z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 46h6v11h-6zM21 44h4v13h-4zM27 47h8v10h-8zM37 45h4v12h-4zM43 48h6v9h-6z%22%2F%3E%3Cpath d%3D%22M50 57l3-11 3 1-3 10z%22%2F%3E%3C%2Fsvg%3E%3C%2Fg%3E%3Crect x%3D%221.319%22 y%3D%221.319%22 width%3D%2225.361%22 height%3D%2225.361%22 fill%3D%22none%22 stroke%3D%22%231f5a60%22 stroke-width%3D%222.639%22%2F%3E%3C%2Fsvg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@500;600;700&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="/assets/index-B5oAFc8f.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BgQkainO.css">
+  <link rel="stylesheet" href="/sheets/19d07a9f65b5.css" />
+  <script>(function(){var k=[];function on(e){var r=document.getElementById('root');if(!r||!r.contains(e.target)||e.__replayed)return;k.push({t:e.target,type:e.type});}document.addEventListener('click',on,true);window.__replayKept=function(){document.removeEventListener('click',on,true);var q=k;k=[];q.forEach(function(one){if(!document.contains(one.t))return;var ev=new MouseEvent(one.type,{bubbles:true,cancelable:true});ev.__replayed=true;one.t.dispatchEvent(ev);});};})();</script>
+  <style>.pa-arriving .pd-pages{visibility:hidden}</style><script>((document, hash) => {
+  const root = document.documentElement;
+  const fragment = decodeURIComponent(hash.replace(/^#/u, ""));
+  if (fragment === "") return void 0;
+  root.classList.add("pa-arriving");
+  const open = () => {
+    root.classList.remove("pa-arriving");
+    const target = document.getElementById(fragment);
+    const chapter = target === null ? null : target.closest(".pd-pages .pa-page");
+    if (chapter === null || chapter.classList.contains("pa-open")) return void 0;
+    const layersOf = (page) => {
+      const layers = [];
+      for (let above = page.parentElement; above !== null && !above.classList.contains("pd-pages"); above = above.parentElement)
+        if (above.classList.contains("pd-container")) layers.push(above);
+      return layers;
+    };
+    for (const was of Array.from(document.querySelectorAll(".pd-pages .pa-page.pa-open"))) {
+      was.classList.remove("pa-open");
+      for (const layer of layersOf(was)) layer.classList.remove("pa-open");
+    };
+    chapter.classList.add("pa-open");
+    for (const layer of layersOf(chapter)) layer.classList.add("pa-open");
+    const title = chapter.querySelector(".pd-title");
+    const place = title === null || title.id === "" ? fragment : title.id;
+    for (const row2 of Array.from(document.querySelectorAll(".pd-holds .pa-entry.pa-open"))) row2.classList.remove("pa-open");
+    const anchor = document.querySelector(`.pd-holds a[href$="#${place}"]`);
+    const row = anchor === null ? null : anchor.querySelector(".pa-entry") ?? anchor.closest(".pa-entry");
+    row?.classList.add("pa-open");
+    const turned = () => {
+      if (typeof chapter.scrollIntoView === "function") chapter.scrollIntoView();
+    };
+    turned();
+    if (document.readyState !== "complete") document.defaultView?.addEventListener("load", turned, { once: true });
+    return place;
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      open();
+    });
+    return void 0;
+  };
+  return open();
+})(document,location.hash);</script>
+  </head>
+  <body>
+    <div id="root"><!--$--><div class="sc-gSYDHb gdMFJN pd-container"><div class="sc-bYwwMP kQYeWV pd-container"><div class="pd-book pa-paginated pa-layout pa-turned pa-tone pa-light"><div class="pd-library"><div class="pd-paragraph pd-logo"><div class="sc-iJCTZA cRVkBD pd-scheme"><span class="pd-filed"><a href="/our-conversations/" class="sc-eCAoTo pa-reference pd-container"><span class="sc-giAsBR epdjWO pd-container"><span class="pd-word pd-mark pa-reference"><span class="pd-drawing"><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M11 15h24M11 21h16"/><path class="fill" d="M24 31h34v20H52v6l-6-6H24z"/><path d="M24 31h34v20H52v6l-6-6H24z"/><path class="light" d="M29 37h24M29 43h16"/></svg></span></span></span></a></span></div><div class="sc-iJCTZA dNEoJA pd-scheme"><span class="pd-own"><a href="/claude-untitled-22-may-2026-75e215e2/" class="sc-eCAoTo pa-reference pd-container"><span class="sc-giAsBR fhreub pd-container"><span class="pd-word pd-mark pa-reference"><span class="pd-drawing"><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M11 15h24M11 21h16"/><path class="fill" d="M24 31h34v20H52v6l-6-6H24z"/><path d="M24 31h34v20H52v6l-6-6H24z"/><path class="light" d="M29 37h24M29 43h16"/></svg></span></span></span></a></span></div><span class="pd-names"><div class="sc-iJCTZA dNEoJA pd-scheme"><span class="pd-name"><a href="/claude-untitled-22-may-2026-75e215e2/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Untitled, 22 May 2026</span></a></span></div><div class="sc-iJCTZA cRVkBD pd-scheme"><span class="pd-name pd-under"><a href="/our-conversations/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Our Conversations</span></a></span></div></span></div></div><div class="pd-me"><div class="pd-paragraph pd-byline"><span class="pd-word pa-label">by</span><a href="/dougs-story/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Doug</span></a></div><div class="sc-iJCTZA jLFJTJ pd-scheme"><a href="/dougs-story/" class="sc-eCAoTo pa-reference pd-container"><span class="sc-giAsBR zHScS pd-container"><span class="pd-word pd-mark pa-reference"><span class="pd-drawing"><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M8 13h23v38H8zM33 13h23v38H33z"/><path d="M8 13h23v38H8zM33 13h23v38H33z"/><path d="M13 21h13M13 27h13M13 33h9M38 21h13M38 27h13M38 33h13M38 39h8"/><path class="fill" d="M15 55 45 25l4 4-30 30-6 2z"/><path d="M15 55 45 25l4 4-30 30-6 2zM43 27l4 4M17 53l2 2"/></svg></span></span></span></a></div><div class="pd-paragraph pd-account-line"><span class="pd-word pa-label">account</span><a href="/dougs-claude/#dna" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">DNA</span></a></div></div><div class="pd-holds"><nav class="sc-crzogQ pd-container"><div class="pd-chapter pa-table-of-contents"><a href="/claude-untitled-22-may-2026-75e215e2/#table-of-contents" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><span id="table-of-contents" class="pd-sentence pd-title pa-parenthetical pa-reference pa-self-reference pa-referent" hidden=""></span></a><div class="pd-section"><a href="#may-2026" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="may-2026" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">May 2026</div></a><a href="/claude-untitled-22-may-2026-75e215e2/#22-may-2026" class="sc-dIrNh pa-reference pd-container"><div class="sc-fKgHSI hcfsAk pd-container"><div class="pd-paragraph pa-entry pa-open pa-reference"><span class="pd-word pd-day-count">2</span><span class="sc-bqGEVu pa-content">22 May 2026</span></div></div></a><span class="pd-paragraph pa-parenthetical" hidden=""></span></div><div class="pd-paragraph pd-tree-root"><a href="/claude-untitled-22-may-2026-75e215e2/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference"><span class="pd-drawing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5 10.5 8 6 12.5"/></svg></span>Untitled, 22 May 2026</span></a></div></div></nav></div><div class="pd-head"><header class="sc-lmgQQD pd-container"><div class="sc-iJCTZA dNEoJA pd-scheme pd-container"><div class="pd-chapter pa-messages pa-period pa-scheme pa-volume pa-cover"><div class="pd-paragraph pd-participants"><a href="/dougs-story/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pd-participant pa-reference">Doug</span></a> and <a href="/dougs-claude/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pd-participant pa-reference">Claude</span></a></div><a href="/claude-untitled-22-may-2026-75e215e2/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="untitled-22-may-2026" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">Untitled, 22 May 2026</div></a><div class="pd-paragraph pa-illustration"><span class="pd-letter pd-figure pd-svg"><span><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M11 15h24M11 21h16"/><path class="fill" d="M24 31h34v20H52v6l-6-6H24z"/><path d="M24 31h34v20H52v6l-6-6H24z"/><path class="light" d="M29 37h24M29 43h16"/></svg>
+</span></span></div></div></div></header><div class="pd-switches"></div><div class="pd-paragraph pd-tally"><span class="pd-tally-count"><b>2</b> messages in <b>1</b> day</span><span class="pd-tally-period">22 May 2026</span></div></div><div class="pd-pages"><div class="pd-chapter pd-canonical pa-open pa-page pa-dated"><a href="/claude-untitled-22-may-2026-75e215e2/#22-may-2026" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="22-may-2026" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">22 May 2026</div></a><div id="2026-05-22t11-29-13-770318-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2026-05-22T11:29:13.770318Z" class="pd-word pd-date pd-time">11:29 UTC, 22 May 2026</time><div class="pd-said"><div class="pd-paragraph">Nothing was written in this message</div></div></div><div id="2026-05-22t11-29-28-623389-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2026-05-22T11:29:28.623389Z" class="pd-word pd-date pd-time">11:29 UTC, 22 May 2026</time><div class="pd-said"><div class="pd-paragraph">Nothing was written in this message</div></div></div><div class="pd-paragraph pd-turn"><a href="/claude-untitled-22-may-2026-75e215e2/#22-may-2026" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><span class="pd-word pa-reference pa-self-reference pa-before">← <!-- -->22 May 2026</span></a><span class="pd-word pd-count">1 of 1</span><a href="/claude-untitled-22-may-2026-75e215e2/#22-may-2026" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><span class="pd-word pa-reference pa-self-reference pa-after">22 May 2026<!-- --> →</span></a></div><time dateTime="2026-05-22" class="pd-word pd-date">22 May 2026</time></div></div><div class="sc-laZLKQ kGoCqU pd-paragraph pd-pane"></div></div></div></div><!--/$--></div>
+  </body>
+</html>

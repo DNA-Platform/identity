@@ -1,0 +1,145 @@
+import { $lib } from '@/catalogue';
+import { parseFunctionInfo, $FunctionInfo, $type, $typeof } from '@/reflection';
+import { describe, it, expect, beforeEach } from 'vitest';
+
+class Test {
+    get prop() { return 0; }
+    set prop(value: number) { }
+}
+
+describe('$Reflection', () => {
+     beforeEach(() => {
+        $lib.$reset();
+    });
+    
+    describe('$ObjectiveRep', () => {
+        describe('$type function', () => {
+            it('should return the right metadata for undefined', () => {
+                const type = $type(undefined);
+                expect(type.literal).toBeUndefined();
+                expect(type.$name).toBe('undefined');
+                expect(type.$ref).toBe('type(undefined)');
+                expect(type.$role).toBe('typeof(undefined)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for null', () => {
+                const type = $type(null);
+                expect(type.literal).toBeNull();
+                expect(type.$name).toBe('null');
+                expect(type.$ref).toBe('type(null)');
+                expect(type.$role).toBe('typeof(null)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for string', () => {
+                const type = $type(String);
+                expect(type.literal).toBe(String);
+                expect(type.$name).toBe('string');
+                expect(type.$ref).toBe('type(string)');
+                expect(type.$role).toBe('typeof(string)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for number', () => {
+                const type = $type(Number);
+                expect(type.literal).toBe(Number);
+                expect(type.$name).toBe('number');
+                expect(type.$ref).toBe('type(number)');
+                expect(type.$role).toBe('typeof(number)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for bigint', () => {
+                const type = $type(BigInt);
+                expect(type.literal).toBe(BigInt);
+                expect(type.$name).toBe('bigint');
+                expect(type.$ref).toBe('type(bigint)');
+                expect(type.$role).toBe('typeof(bigint)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for boolean', () => {
+                const type = $type(Boolean);
+                expect(type.literal).toBe(Boolean);
+                expect(type.$name).toBe('boolean');
+                expect(type.$ref).toBe('type(boolean)');
+                expect(type.$role).toBe('typeof(boolean)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for symbol', () => {
+                const type = $type(Symbol);
+                expect(type.literal).toBe(Symbol);
+                expect(type.$name).toBe('symbol');
+                expect(type.$ref).toBe('type(symbol)');
+                expect(type.$role).toBe('typeof(symbol)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+        });
+
+        describe('$typeof function', () => {
+            it('should return the right metadata for undefined', () => {
+                const type = $typeof(undefined);
+                expect(type.literal).toBeUndefined();
+                expect(type.$name).toBe('undefined');
+                expect(type.$ref).toBe('type(undefined)');
+                expect(type.$role).toBe('typeof(undefined)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for null', () => {
+                const type = $typeof(null);
+                expect(type.literal).toBeNull();
+                expect(type.$name).toBe('null');
+                expect(type.$ref).toBe('type(null)');
+                expect(type.$role).toBe('typeof(null)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for a string', () => {
+                const type = $typeof("test");
+                expect(type.literal).toBe(String);
+                expect(type.$name).toBe('string');
+                expect(type.$ref).toBe('type(string)');
+                expect(type.$role).toBe('typeof("test")');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for number', () => {
+                const type = $typeof(0);
+                expect(type.literal).toBe(Number);
+                expect(type.$name).toBe('number');
+                expect(type.$ref).toBe('type(number)');
+                expect(type.$role).toBe('typeof(0)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for bigint', () => {
+                const type = $typeof(BigInt(1000));
+                expect(type.literal).toBe(BigInt);
+                expect(type.$name).toBe('bigint');
+                expect(type.$ref).toBe('type(bigint)');
+                expect(type.$role).toBe('typeof(1000)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+
+            it('should have the right metadata for boolean', () => {
+                const type = $typeof(true);
+                expect(type.literal).toBe(Boolean);
+                expect(type.$name).toBe('boolean');
+                expect(type.$ref).toBe('type(boolean)');
+                expect(type.$role).toBe('typeof(true)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+            
+            it('should have the right metadata for symbol', () => {
+                const type = $typeof(Symbol("test"));
+                expect(type.literal).toBe(Symbol);
+                expect(type.$name).toBe('symbol');
+                expect(type.$ref).toBe('type(symbol)');
+                expect(type.$role).toBe('typeof($test$)');
+                expect(type.$equals(type.$type)).toBe(true);
+            });
+        }); 
+    });

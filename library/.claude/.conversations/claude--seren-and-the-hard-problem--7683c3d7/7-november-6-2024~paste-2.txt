@@ -1,0 +1,59 @@
+# The Canonical Referent
+Semantic Reference Theory (SRT) is a first-order theory, with constants, functions, relations and axioms. It makes use of a single constant called the *canonical referent* denoted as:
+o
+You might think of o as a node on a graph. It differs from the 0 of Peano Arithmetic or the {} of ZF set theory in that it is not semantically attached to a notion of nothingness, like in the two examples theories.
+# The Reference Relation
+SRT contains an unconstrained relation:
+R(x,y)
+I use the following notational conventions:
+x => y: R(x,y)
+x <= y: R(y,x)
+x !=> y: ¬R(x,y)
+x <=! y: ¬R(y,x)
+x <=> y: R(x,y) ∧ R(y,x)
+x <!=!> y: ¬R(x,y) ∧ ¬R(y, x)
+Note that I am giving SRT the feel of a programming language. This is by design, as it is a theory that can and will need to express computation
+Binary relations are either symmetric or asymmetric, so having a lack of axiom to constrain R(x,y) declares it as asymmetric. The negation of a symmetry axiom:
+¬(x, => y ⇔ y => y)
+doesn't capture the meaning. That axiom supposes that there must exist at least one pair of referents with a one-directional relationship. That's not what I am trying to say.
+I can get at this in another way, using the notion of an axiom schema.
+Semantic Reference theory is built by extension, so one must be thoughtful about what it means for people to extend it. Here is an axiom schema for all extensions of Semantic Reference Theory with a deep semantic consequence..
+We define an extension of SRT as one that preserves all of its constants, functions relations and axioms. The following axiom schema holds for extensions of SRT:
+If B is a binary relation in an extension of SRT, there is an axiom:
+B(x,y) ⇔ B(y,x)  ⇒  x == y
+This states that equality is the only symmetric relationship in SRT. Note that I introduced the == operator. I introduce this because I want SRT to feel like a programing language so that one can use x = o as definitional and x == y as relational, even though they mean the same thing. One can consider this a notational convention, or that there is an additional relation that is equivalent to the equality operator in first-order logic
+# Subjects, Objects and Relationships
+SRT introduces three fundamental functions that operate on referents:
+>x - The objective function, which returns the canonical object of x
+x> - The subjective function, which returns the canonical subject of x
+x>y - The relationship function, which returns the canonical relationship between x and y
+The behavior of these functions is constrained by axioms that establish their relationship to the reference structure. First, we define when these functions produce referents:
+∃y x=>y ⇒ x=>>x
+∃y y=>x ⇒ x>=>x
+These axioms ensure that canonical objects and subjects exist when there are outgoing or incoming references respectively. The notion of emptiness emerges through additional axioms:
+∀z x!=>z ∧ y!=>z ⇒ >x == >y
+∀x x!=>y ∧ x!=>z ⇒ y> == z>
+∀y x!=>y ∧ y!=>z ⇒ x> == y>
+Together, these axioms establish that referents without connections share the same canonical forms, creating an emergent concept of emptiness without explicitly defining a zero or null state.
+# Reference Types
+Reference types in SRT are implemented through a ternary relation:
+R(x,r,y)
+I use the following notational convention:
+x=r=>y: R(x,r,y)
+This typed reference system is constrained by axioms that relate it to the basic reference relation:
+x=r=>y ⇒ x=>y
+∃r x=r=>y ⇒ x=x>y=>y
+The relationship between typed references and canonical forms is established through additional emptiness axioms:
+∀z x!=>z ∧ y!=>z ⇒ x>z == y>z
+∀y x!=>y ⇒ x>y == x>
+∀x x!=>y ⇒ x>y == >x
+This type system emerges naturally from the reference structure rather than being imposed externally. It allows SRT to express semantic relationships while maintaining its character as a root semantic system where all meaning emerges from patterns of reference rather than primitive definitions.
+The use of types in SRT demonstrates how complex semantic structures can be built from simple referential relationships. This approach maintains the theory's fundamental nature while providing the expressive power needed to capture sophisticated semantic relationships.
+# Canonical Relations
+The canonical functions (objective, subjective, and relationship) introduced previously can be expressed through a set of canonical relations. These provide an alternative notation that makes the canonical relationships more explicit.
+For objective relation O(x,y): x->y: O(x,y)
+For subjective relation S(x,y): x<-y: S(x,y)
+For type relation T(x,r,y): x-r->y: T(x,r,y)
+Each of these relations corresponds to a canonical function: O(x,y) ⇔ y == >x S(x,y) ⇔ x == y> T(x,r,y) ⇔ r == x>y
+Each relation assumes the existence of underlying references: x<-y ⇒ ∃z(z=>y) x->y ⇒ ∃z(x=>z) x-r->y ⇒ ∃z(x=>y)
+Without additional axioms that extend and structure a catalogue, these canonical relations provide the minimal semantic framework for understanding how referents relate to each other. The canonical nature of these relations is fundamental to how meaning emerges in SRT - they establish the essential patterns of reference that allow more complex semantic structures to develop.

@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Coinbase BTC withdrawal hold period ]]( claude--Coinbase BTC withdrawal hold period--db3a873c )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>db3a873c-28a5-4b39-8f37-f8294ac5d166</Origin>
         <Paragraph>

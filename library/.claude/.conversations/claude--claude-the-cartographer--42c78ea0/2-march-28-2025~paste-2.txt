@@ -1,0 +1,113 @@
+// src/components/maps/EuropeMap.tsx
+import React from 'react';
+import {
+  ComposableMap,
+  Geographies,
+  Geography
+} from 'react-simple-maps';
+import MapContainer from './MapContainer';
+import AnasPlayfulWaterBackground from './AnasPlayfulWaterBackground';
+import FourColorMapColoring from './FourColorMapColoring';
+
+// Use world atlas data
+const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json";
+
+// List of European countries to include in the four-color map
+const europeanCountries = [
+  "Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia and Herzegovina", 
+  "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Czechia", // Redundancy
+  "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", 
+  "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", 
+  "Lithuania", "Luxembourg", "Malta", "Moldova", "Monaco", "Montenegro", 
+  "Netherlands", "North Macedonia", "Macedonia", // Redundancy
+  "Norway", "Poland", "Portugal", "Romania", "San Marino", 
+  "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", 
+  "Switzerland", "Ukraine", "United Kingdom", "UK", // Redundancy
+  "Vatican", "Vatican City", // Redundancy
+  "Kosovo" // Not present in all datasets but include for logic
+];
+
+// Neighboring countries to show in white with borders
+const neighboringCountries = [
+  "Russia", "Turkey", "Morocco", "Algeria", "Tunisia", "Libya", "Egypt", 
+  "Syria", "Lebanon", "Israel", "Jordan"
+];
+
+const TestMap: React.FC = () => {
+  return (
+    <MapContainer filename="europe-map.svg">
+      <ComposableMap
+        projection="geoMercator"
+        projectionConfig={{
+          center: [10, 50],
+          scale: 800
+        }}
+        width={900}
+        height={900}
+      >
+        <Geographies geography={geoUrl}>
+          {({ geographies }) => {
+            // Get all land geographies
+            const allLandGeographies = geographies.filter(geo => 
+              (geo.properties.name && europeanCountries.includes(geo.properties.name)) ||
+              (geo.properties.name && neighboringCountries.includes(geo.properties.name))
+            );
+            
+            return (
+              <>
+              {/* <AnasPlayfulWaterBackground 
+                  landGeographies={allLandGeographies}
+                  backgroundColor = '#6DCFF6'
+                  squiggleColor = '#56ACBA'
+                  squiggleDensity = {1.5}
+                  squiggleThickness = {1.0}
+                  squiggleSize = {25}
+                  edgeBias = {0.6}
+                  landBuffer = {12}
+                  seed = {0}
+                /> */}
+                <AnasPlayfulWaterBackground 
+                  // landGeographies={allLandGeographies}
+                  // landBuffer={15}
+                />
+                
+                {/* First render neighboring countries with white fill */}
+                {geographies
+                  .filter(geo => 
+                    geo.properties.name && neighboringCountries.includes(geo.properties.name)
+                  )
+                  .map(geo => (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      fill="#FFFFFF"
+                      stroke="#DDDDDD"
+                      strokeWidth={0.5}
+                    />
+                  ))
+                }
+                
+                {/* Then apply single color to European countries */}
+                <FourColorMapColoring 
+                  color1="#F7E9D7" 
+                  color2="#F7E9D7" 
+                  color3="#F7E9D7" 
+                  color4="#F7E9D7"
+                  borderColor="#FFFFFF"
+                  borderWidth={0.7}
+                  hoverColor="#F0E0C8"
+                  pressedColor="#F0E0C8"
+                  geographies={geographies.filter(
+                    geo => geo.properties.name && europeanCountries.includes(geo.properties.name)
+                  )}
+                />
+              </>
+            );
+          }}
+        </Geographies>
+      </ComposableMap>
+    </MapContainer>
+  );
+};
+
+export default TestMap;

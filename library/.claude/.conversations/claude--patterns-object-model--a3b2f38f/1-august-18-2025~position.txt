@@ -1,0 +1,326 @@
+class PositionableItem {
+    private _q: Queryable<PageItem, any>;
+    private q(): Queryable<PageItem, any> { return this._q; }
+    private item(): PageItem { return this.q().item(); }
+    private state(): any { return this.q().item(); }
+    app(): ApplicationQuery { return this.q().api(); }
+    document(): DocumentQuery { return this.q().document(); }
+    artboard(): ArtboardQuery { return this.q().artboard(); }
+    positionable() { return this.q().positionable(); }
+    unpositionable() { return !this.q().positionable(); }
+
+    region(newRegion? : Region, config?: {resize?: boolean, proportional?: boolean}): Region { 
+        if (newRegion) {
+            if (newRegion !== this.region()) {
+                this.state()._region = newRegion;
+                if (!config) config = {};
+                if (config && config.resize === undefined) config.resize = true;
+                if (config && config.proportional === undefined) config.proportional = true;
+                if (config && config.resize && config.proportional) {
+                    this.fitToRegion(config.proportional);
+                } else {
+                    this.bounds(newRegion.bounds());
+                }
+            }
+        }
+        return this.state()._region ? 
+            this.state()._region : 
+            this.artboard().region();
+    }
+
+    positionTopLeftAbs(): Position { return this.positionable() ? this.item().position as Position : [0, 0]; }
+    geometricBoundsAbs(): Rect { return this.positionable() ? this.item().geometricBounds : [0, 0, 0, 0]; }
+    visibleBoundsAbs(): Rect { return this.positionable() ? this.item().visibleBounds : [0, 0, 0, 0]; }
+    controlBoundsAbs(): Rect { return this.positionable() ? this.item().controlBounds : [0, 0, 0, 0]; }
+
+    left(newLeft?: number): number { 
+        if (newLeft !== undefined) 
+            this.translate(newLeft - this.left(), 0);
+        return this.bounds()[0]; 
+    }
+
+    right(newRight?: number): number { 
+        if (newRight !== undefined)
+            this.translate(newRight - this.right(), 0);
+        return this.bounds()[1];
+    }
+
+    bottom(newBottom?: number): number { 
+        if (newBottom !== undefined)
+            this.translate(0, newBottom - this.bottom());
+        return this.bounds()[2];
+    }
+    
+    top(newTop?: number): number { 
+        if (newTop !== undefined)
+            this.translate(0, newTop - this.top());
+        return this.bounds()[3];
+    }
+    
+    positionAbs(): Position { 
+        if (this.unpositionable()) return [0, 0];
+        var [left, right, bottom, top] = Region.rectToBounds(this.geometricBoundsAbs());
+        return [(left + right) * 0.5, (bottom + top) * 0.5];
+    }
+
+    position(newPosition?: Position): Position { 
+        if (this.unpositionable()) return [0, 0];
+        if (newPosition) {
+            var region = this.region();
+            var newTop = newPosition[1] + this.height() * 0.5
+            var newLeft = newPosition[0] - this.width() * 0.5
+            var absPosition: [number, number] = [
+                region.toAbsLocation(newLeft, "x"), 
+                region.toAbsLocation(newTop, "y")
+            ];
+
+            api.redraw();
+            this.item().position = absPosition;
+            api.redraw();
+        }
+
+        var bounds = this.bounds();
+        return [(bounds[0] + bounds[1]) * 0.5, (bounds[2] + bounds[3]) * 0.5];
+    }
+
+    width(newWidth?: number, proportional = true): number {
+        if (this.unpositionable()) return 0;
+    
+        if (newWidth !== undefined) {
+            const newWidthScale = newWidth / this.width();
+            const newHeightScale = proportional ? newWidthScale : 1;
+            this.scale([newWidthScale, newHeightScale]);
+        }
+    
+        const bounds = this.geometricBounds();
+        return Math.abs(bounds[1] - bounds[0]); // Right - Left
+    }
+    
+    height(newHeight?: number, proportional = true): number {
+        if (this.unpositionable()) return 0;
+        if (newHeight !== undefined) {
+            const newHeightScale = newHeight / this.height(); 
+            const newWidthScale = proportional ? newHeightScale : 1;
+            this.scale([newWidthScale, newHeightScale]);
+        }
+    
+        const bounds = this.geometricBounds();
+        return Math.abs(bounds[3] - bounds[2]); // Top - Bottom
+    }
+
+    size(newSize?: Size): Size {
+        if (this.unpositionable()) return [0, 0];
+        if (newSize) {
+            const newWidthScale = newSize[0] / this.width(); 
+            const newHeightScale = newSize[1] / this.height(); 
+            this.scale([newWidthScale, newHeightScale]);
+        }
+
+        return [this.width(), this.height()];
+    }
+
+    center(newCenter?: Position): Position {
+        if (newCenter !== undefined)
+            this.position(newCenter);
+        return this.position();
+    }
+
+    bounds(newBounds?: RegionBounds): RegionBounds {
+        if (newBounds !== undefined) {
+            var [left, right, bottom, top] = newBounds;
+            this.size([right - left, top - bottom]);
+            this.center([(left + right) * 0.5, (bottom + top) * 0.5]);
+        }
+        return this.geometricBounds(); 
+    }
+
+    geometricBounds(): RegionBounds {
+        if (this.unpositionable()) return [0, 0, 0, 0];
+        const bounds = Region.rectToBounds(this.geometricBoundsAbs());
+        return [
+            this.region().toRelativeLocation(bounds[0], "x"),
+            this.region().toRelativeLocation(bounds[1], "x"),
+            this.region().toRelativeLocation(bounds[2], "y"),
+            this.region().toRelativeLocation(bounds[3], "y")
+        ] as RegionBounds;
+    }
+
+    visibleBounds(): RegionBounds {
+        if (this.unpositionable()) return [0, 0, 0, 0];
+        const bounds = Region.rectToBounds(this.visibleBoundsAbs());
+        return [
+            this.region().toRelativeLocation(bounds[0], "x"),
+            this.region().toRelativeLocation(bounds[1], "x"),
+            this.region().toRelativeLocation(bounds[2], "y"),
+            this.region().toRelativeLocation(bounds[3], "y")
+        ];
+    }
+
+    controlBounds(): RegionBounds {
+        if (this.unpositionable()) return [0, 0, 0, 0];
+        const bounds = Region.rectToBounds(this.controlBoundsAbs());
+        return [
+            this.region().toRelativeLocation(bounds[0], "x"),
+            this.region().toRelativeLocation(bounds[1], "x"),
+            this.region().toRelativeLocation(bounds[2], "y"),
+            this.region().toRelativeLocation(bounds[3], "y")
+        ];
+    }
+
+    constructor(queryItem: Queryable<PageItem, any>) {
+        this._q = queryItem;
+    }
+
+    fitToRegion(proportional: boolean = true) {
+        var size = [1, 1];
+        if (proportional) {
+            var width = this.width();
+            var height = this.height();
+            if (width > height) {
+                size[1] = height / width;
+            } else if (height > width) {
+                size[0] = width / height;
+            }
+        }
+        
+        this.size(size);
+        this.center([0.5, 0.5]);
+    }
+
+    bringToFront() {
+        this.item()?.zOrder(ZOrderMethod.BRINGTOFRONT);
+    }
+
+    bringForward(count: number = 1) {
+        r(count).do(() => this.item()?.zOrder(ZOrderMethod.BRINGFORWARD));
+    }
+
+    sendToBack() {
+        this.item()?.zOrder(ZOrderMethod.SENDTOBACK);
+    }
+
+    sendBackwards(count: number = 1) {
+        r(count).do(() => this.item()?.zOrder(ZOrderMethod.SENDBACKWARD));
+    }
+
+    rotate(degrees: number, direction: Direction = "c", transformation: Transformation = Transformation.CENTER): this {
+        if (this.unpositionable()) return this;
+        if (direction == "c") degrees = -degrees;
+        api.redraw();
+        this.item().rotate(degrees, true, true, true, true, transformation);
+        api.redraw();
+        return this;
+    }
+
+    rrotate(radians: number, direction: Direction = "c", transformation: Transformation = Transformation.CENTER): this {
+        return this.rotate(Region.toDegrees(radians), direction, transformation);
+    }
+
+    rotateAround(pivot: Position, degrees: number, direction: Direction = "c"): this {
+        if (this.unpositionable()) return this;
+        if (direction === "cc") degrees = -degrees;
+
+        // 1. Get current position in relative coordinates (center)
+        const position = this.position();
+        const deltaX = position[0] - pivot[0];
+        const deltaY = position[1] - pivot[1];
+
+        // 2. Calculate radius and current angle relative to pivot
+        const radius = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+        const currentAngle = Region.to2Pi(Math.atan2(deltaY, deltaX)); // Radians normalized to [0, 2Ï€)
+
+        // 3. Compute new angle after rotation
+        const radians = Region.to2Pi(degrees * (Math.PI / 180));
+        const newAngle = Region.to2Pi(currentAngle + radians);
+
+        // 4. Compute new relative position
+        const newX = pivot[0] + radius * Math.cos(newAngle);
+        const newY = pivot[1] + radius * Math.sin(newAngle);
+
+        // 5. Translate to the new relative position
+        api.redraw();
+        this.translate(newX - position[0], newY - position[1]);
+        api.redraw();
+        this.rotate(degrees, direction);
+        api.redraw();
+
+        return this;
+    }
+
+    rrotateAround(pivot: Position, radians: number, direction: Direction = "c"): this {
+        return this.rotateAround(pivot, Region.toDegrees(radians), direction);
+    }
+
+    rotateAroundCenter(degrees: number, direction: Direction = "c"): this {
+        this.rotateAround(this.region().center(), degrees, direction);
+        return this;
+    }
+
+    rrotateAroundCenter(radians: number, direction: Direction = "c"): this {
+        return this.rrotateAroundCenter(radians, direction);
+    }
+
+    translate(deltaX: number, deltaY: number): this {
+        if (this.unpositionable()) return this;
+        var region = this.region();
+        deltaX = region.toAbsUnits(deltaX);
+        deltaY = region.toAbsUnits(deltaY);
+        api.redraw();
+        this.item().translate(deltaX, deltaY);
+        api.redraw();
+        return this;
+    }
+
+    scale(scale: Scale): this {
+        if (this.unpositionable()) return this;
+        if (scale instanceof Array) var [ scaleX, scaleY ] = scale; 
+        else var [ scaleX, scaleY ] = [scale, scale]; 
+
+        const position = this.position();
+        this.item().resize(100 * scaleX, 100 * scaleY);
+        this.position(position);
+        return this;
+    }
+
+    // Moves the item proportionally so its left edge aligns with the region's left edge
+    pushLeft(proportion: number = 1): this {
+        if (this.unpositionable()) return this;
+        const targetLeft = this.region().left() * proportion + this.left() * (1 - proportion);
+        this.left(targetLeft);
+        return this;
+    }
+
+    // Moves the item proportionally so its right edge aligns with the region's right edge
+    pushRight(proportion: number = 1): this {
+        if (this.unpositionable()) return this;
+        const targetRight = this.region().right() * proportion + this.right() * (1 - proportion);
+        this.right(targetRight);
+        return this;
+    }
+
+    // Moves the item proportionally so its top edge aligns with the region's top edge
+    pushUp(proportion: number = 1): this {
+        if (this.unpositionable()) return this;
+        const targetTop = this.region().top() * proportion + this.top() * (1 - proportion);
+        this.top(targetTop);
+        return this;
+    }
+
+    // Moves the item proportionally so its bottom edge aligns with the region's bottom edge
+    pushDown(proportion: number = 1): this {
+        if (this.unpositionable()) return this;
+        const targetBottom = this.region().bottom() * proportion + this.bottom() * (1 - proportion);
+        this.bottom(targetBottom);
+        return this;
+    }
+
+    // Moves the item proportionally towards the center of the region
+    pushCenter(proportion: number = 1): this {
+        if (this.unpositionable()) return this;
+        const regionCenter = this.region().center();
+        const targetX = regionCenter[0] * proportion + this.position()[0] * (1 - proportion);
+        const targetY = regionCenter[1] * proportion + this.position()[1] * (1 - proportion);
+        this.position([targetX, targetY]);
+        return this;
+    }
+}

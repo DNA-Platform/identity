@@ -1,0 +1,133 @@
+  private _initialize() {
+        if (this._chemical.crystalized) return;
+        let $prototype$ = this._chemical;
+        const property = this.property;
+        let foundDescriptor: PropertyDescriptor | undefined;
+        while (true) {
+            const type = $prototype$.constructor;
+            if (type.name == '$Chemical') break;
+            foundDescriptor = Object.getOwnPropertyDescriptor($prototype$, property);
+            $prototype$ = Object.getPrototypeOf($prototype$);
+        }
+
+        const $chemical$ = this._chemical as any;
+        let descriptor: PropertyDescriptor = foundDescriptor!;
+        if (!foundDescriptor) {
+            Object.defineProperty($chemical$, property, {
+                value: undefined,
+                writable: true,
+                enumerable: true,
+                configurable: true
+            });
+            descriptor = Object.getOwnPropertyDescriptor($chemical$, property)!;
+        }
+
+        let backingField: any = descriptor.value;
+        const getter = descriptor.get;
+        const setter = descriptor.set;
+
+        const getValue = getter ? () => getter.call($chemical$) : () => backingField;
+        const setValue = 
+            setter ? (value: any) => setter.call($chemical$, value) : 
+            getter ? (value: any) => { throw new Error(`${property} property not settable`); } :
+            (value: any) => { backingField = value; }
+
+        const isFunction = !descriptor.get ? typeof backingField === 'function' : typeof descriptor.get() === 'function';
+        if (isFunction) {
+            if (typeof backingField === 'function') {
+                const func: Function = backingField;
+                backingField = (...args: any[]) => {
+                    this._chemical.formula.resetState();
+                    const result = func.apply(this._chemical, args);
+                    this._chemical.formula.setState();
+                    return result;
+                };
+            } else if (descriptor.get && typeof descriptor.get() === 'function') {
+                const funcGetter: () => Function = descriptor.get;
+                descriptor.get = () => {
+                    const func = funcGetter();
+                    return (...args: any[]) => {
+                        this._chemical.formula.resetState();
+                        const result = func.apply(this._chemical, args);
+                        this._chemical.formula.setState();
+                        return result;
+                    }
+                }
+            }
+         }
+        
+        const value = getValue();
+        if (value && Array.isArray(value) && value[0] instanceof $Binding) {
+            this._binding = value[0];
+            this._binding.property = property;
+            this._binding.parent = this._chemical.cid;
+            this._valueType = value[1];
+            if (this._binding.plurality == 'one') {
+                const type: typeof $Chemical = value[1] as any;
+                setValue(type.template ?? type.prototype);
+            } else {
+                if (this._frozen) return;
+                setValue([]);
+            }
+        }
+
+        Object.defineProperty($chemical$, property, {
+            get: () => {
+                const state = this._chemical?.formula?.state;
+                const molecule = this._chemical.molecule;
+                let value = getValue();
+                if (this.bound) {
+                    const cid = molecule.bonds.get(this.binding);
+                    let chemical = molecule.chemicals.get(cid!);
+                    if (molecule.proxies.has(cid!)) {
+                        chemical = molecule.proxies.get(cid!)!;
+                        molecule.proxies.delete(cid!);
+                        setValue(chemical);
+                    }
+                    if (!chemical) {
+                        if (molecule.proxies.has(cid!)) {
+                            chemical = molecule.proxies.get(cid!)!;
+                            molecule.proxies.delete(cid!);
+                            setValue(chemical.cid);
+                        }
+                    }
+                    value = chemical ? chemical : undefined;
+                    if (this.reactive && value && state) value.formula.state = state;
+                } else if (this.bound && Array.isArray(value)) {
+                    value.forEach((item, index) => {
+                        if (!(item instanceof $Chemical))
+                            throw new Error("Bound arrays must contain chemicals");
+                        if (molecule.proxies.has(item.cid)) {
+                            const proxyId = item.cid;
+                            item = molecule.proxies.get(proxyId)!;
+                            molecule.proxies.delete(proxyId);
+                            value[index] = item;
+                        }
+                        if (this.reactive && item && state)
+                            item.formula.state = state;
+                    })
+                }
+                if (this.reactive && state)
+                    state[this.bid] = symbolize(value);
+                return value;
+            },
+            set: (value: any) => {
+                if (this._chemical.crystalized) return;
+                if (this.bound) {
+                    if (!(value instanceof $Chemical || Array.isArray(value) || value === undefined))
+                        throw new Error(`Expected a chemical or chemical array, got ${value}`);
+                    if (Array.isArray(value)) {
+                        throw new Error("Cannot assign a bound array. Modify the array instead");
+                    }
+                    if (value instanceof $Chemical) {
+                        this._chemical.molecule.bonds.set(this.binding, value.cid);
+                    } else {
+                        this._chemical.molecule.bonds.set(this.binding, -1);
+                    }
+                }
+                setValue(value);
+            },
+            enumerable: true,
+            configurable: true,
+        });
+    }

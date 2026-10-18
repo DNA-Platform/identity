@@ -1,0 +1,748 @@
+No I think a chapter should be controlling pagination because it cares where they are placed, The cover should have the button. I think you just forgot to implement a method on your fiurst versioinEditYou're right - I was trying to implement componentDidMount which doesn't exist in Chemical. Let me fix it properly with each component managing its own concerns:
+tsx'use client'
+import { Chemical, bind } from '@/chemistry';
+import { ReactNode } from 'react';
+
+// Book component with navigation methods
+class $Book extends Chemical {
+  @bind($Cover)
+  cover!: $Cover;
+  
+  @bind($Chapter)
+  chapters: $Chapter[] = [];
+  
+  currentView: 'cover' | number = 'cover';
+  
+  goToFirstChapter = () => {
+    if (this.chapters.length > 0) {
+      this.currentView = 0;
+    }
+  };
+  
+  goToCover = () => {
+    this.currentView = 'cover';
+  };
+  
+  goToChapter = (index: number) => {
+    if (index >= 0 && index < this.chapters.length) {
+      this.currentView = index;
+    }
+  };
+  
+  view(): ReactNode {
+    // Wire up navigation and set chapter numbers
+    if (this.cover) {
+      this.cover.book = this;
+    }
+    
+    this.chapters.forEach((ch, i) => {
+      ch.book = this;
+      ch.chapterNumber = i + 1;
+      ch.totalChapters = this.chapters.length;
+      ch.chapterIndex = i;
+    });
+    
+    // Determine what to show
+    const currentComponent = this.currentView === 'cover' 
+      ? this.cover 
+      : this.chapters[this.currentView as number];
+    
+    if (currentComponent) {
+      currentComponent.visitCount++;
+    }
+    
+    return (
+      <div>
+        {currentComponent?.view()}
+        
+        {/* Visit counter metadata */}
+        <div style={{ 
+          marginTop: '40px', 
+          padding: '20px', 
+          background: '#333', 
+          color: 'white',
+          fontSize: '12px'
+        }}>
+          <strong>Visit Counts:</strong>
+          <div>Cover: {this.cover?.visitCount || 0} visits</div>
+          {this.chapters.map((ch, i) => (
+            <div key={i}>Chapter {i + 1}: {ch.visitCount || 0} visits</div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+
+// Cover with its own button
+class $Cover extends Chemical {
+  $title: string = "The Chemistry Book";
+  $author: string = "Unknown Author";
+  visitCount: number = 0;
+  book?: $Book;
+  
+  view() {
+    return (
+      <div style={{ padding: '40px', textAlign: 'center', background: '#f0f0f0' }}>
+        <h1>{this.$title}</h1>
+        <p>by {this.$author}</p>
+        <button onClick={() => this.book?.goToFirstChapter()}>
+          Start Reading →
+        </button>
+      </div>
+    );
+  }
+}
+
+// Chapter manages its own navigation
+class $Chapter extends Chemical {
+  $title: string = "Chapter";
+  $content: string = "Chapter content here...";
+  chapterNumber: number = 0;
+  chapterIndex: number = 0;
+  totalChapters: number = 0;
+  visitCount: number = 0;
+  book?: $Book;
+  
+  view() {
+    const hasPrevious = this.chapterIndex > 0;
+    const hasNext = this.chapterIndex < this.totalChapters - 1;
+    
+    return (
+      <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
+        <h2>Chapter {this.chapterNumber}: {this.$title}</h2>
+        <p>{this.$content}</p>
+        <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between' }}>
+          <button 
+            onClick={() => this.book?.goToChapter(this.chapterIndex - 1)}
+            disabled={!hasPrevious}
+          >
+            ← Previous
+          </button>
+          <button onClick={() => this.book?.goToCover()}>
+            Cover
+          </button>
+          <button 
+            onClick={() => this.book?.goToChapter(this.chapterIndex + 1)}
+            disabled={!hasNext}
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
+
+// Create components
+const Cover = new $Cover().component();
+const Chapter = new $Chapter().component();
+const Book = new $Book().component();
+
+export default function Page() {
+  return (
+    <div style={{ padding: '20px' }}>
+      <Book>
+        <Cover title="Chemistry Adventures" author="Dr. React" />
+        <Chapter title="Getting Started" content="This is where our journey begins..." />
+        <Chapter title="Props and State" content="Understanding the flow of data..." />
+        <Chapter title="Advanced Patterns" content="Diving deeper into Chemical reactions..." />
+      </Book>
+    </div>
+  );
+}
+Now each component manages its own concerns:
+
+Cover has the "Start Reading" button and calls book.goToFirstChapter()
+Chapter manages its navigation buttons and knows its position
+Book wires up the references in its view() method before rendering
+RetryD[{
+    "resource": "/home/doug/repos/dna-platform/eirians-library/inexplicable-phenomena/app/page.tsx",
+    "owner": "typescript",
+    "code": "2449",
+    "severity": 8,
+    "message": "Class '$Cover' used before its declaration.",
+    "source": "ts",
+    "startLineNumber": 7,
+    "startColumn": 9,
+    "endLineNumber": 7,
+    "endColumn": 15,
+    "relatedInformation": [
+        {
+            "startLineNumber": 77,
+            "startColumn": 7,
+            "endLineNumber": 77,
+            "endColumn": 13,
+            "message": "'$Cover' is declared here.",
+            "resource": "/home/doug/repos/dna-platform/eirians-library/inexplicable-phenomena/app/page.tsx"
+        }
+    ],
+    "origin": "extHost2"
+},{
+    "resource": "/home/doug/repos/dna-platform/eirians-library/inexplicable-phenomena/app/page.tsx",
+    "owner": "typescript",
+    "code": "2449",
+    "severity": 8,
+    "message": "Class '$Chapter' used before its declaration.",
+    "source": "ts",
+    "startLineNumber": 10,
+    "startColumn": 9,
+    "endLineNumber": 10,
+    "endColumn": 17,
+    "relatedInformation": [
+        {
+            "startLineNumber": 97,
+            "startColumn": 7,
+            "endLineNumber": 97,
+            "endColumn": 15,
+            "message": "'$Chapter' is declared here.",
+            "resource": "/home/doug/repos/dna-platform/eirians-library/inexplicable-phenomena/app/page.tsx"
+        }
+    ],
+    "origin": "extHost2"
+}]EditThe TypeScript error is about declaration order - you're using $Cover and $Chapter in the @bind decorators before they're declared. Move the class declarations above $Book:
+tsx'use client'
+import { Chemical, bind } from '@/chemistry';
+import { ReactNode } from 'react';
+
+// Cover with its own button
+class $Cover extends Chemical {
+  $title: string = "The Chemistry Book";
+  $author: string = "Unknown Author";
+  visitCount: number = 0;
+  book?: $Book;
+  
+  view() {
+    return (
+      <div style={{ padding: '40px', textAlign: 'center', background: '#f0f0f0' }}>
+        <h1>{this.$title}</h1>
+        <p>by {this.$author}</p>
+        <button onClick={() => this.book?.goToFirstChapter()}>
+          Start Reading →
+        </button>
+      </div>
+    );
+  }
+}
+
+// Chapter manages its own navigation
+class $Chapter extends Chemical {
+  $title: string = "Chapter";
+  $content: string = "Chapter content here...";
+  chapterNumber: number = 0;
+  chapterIndex: number = 0;
+  totalChapters: number = 0;
+  visitCount: number = 0;
+  book?: $Book;
+  
+  view() {
+    const hasPrevious = this.chapterIndex > 0;
+    const hasNext = this.chapterIndex < this.totalChapters - 1;
+    
+    return (
+      <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
+        <h2>Chapter {this.chapterNumber}: {this.$title}</h2>
+        <p>{this.$content}</p>
+        <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between' }}>
+          <button 
+            onClick={() => this.book?.goToChapter(this.chapterIndex - 1)}
+            disabled={!hasPrevious}
+          >
+            ← Previous
+          </button>
+          <button onClick={() => this.book?.goToCover()}>
+            Cover
+          </button>
+          <button 
+            onClick={() => this.book?.goToChapter(this.chapterIndex + 1)}
+            disabled={!hasNext}
+          >
+            Next →
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
+
+// Book component with navigation methods - NOW AFTER Cover and Chapter
+class $Book extends Chemical {
+  @bind($Cover)
+  cover!: $Cover;
+  
+  @bind($Chapter)
+  chapters: $Chapter[] = [];
+  
+  currentView: 'cover' | number = 'cover';
+  
+  goToFirstChapter = () => {
+    if (this.chapters.length > 0) {
+      this.currentView = 0;
+    }
+  };
+  
+  goToCover = () => {
+    this.currentView = 'cover';
+  };
+  
+  goToChapter = (index: number) => {
+    if (index >= 0 && index < this.chapters.length) {
+      this.currentView = index;
+    }
+  };
+  
+  view(): ReactNode {
+    // Wire up navigation and set chapter numbers
+    if (this.cover) {
+      this.cover.book = this;
+    }
+    
+    this.chapters.forEach((ch, i) => {
+      ch.book = this;
+      ch.chapterNumber = i + 1;
+      ch.totalChapters = this.chapters.length;
+      ch.chapterIndex = i;
+    });
+    
+    // Determine what to show
+    const currentComponent = this.currentView === 'cover' 
+      ? this.cover 
+      : this.chapters[this.currentView as number];
+    
+    if (currentComponent) {
+      currentComponent.visitCount++;
+    }
+    
+    return (
+      <div>
+        {currentComponent?.view()}
+        
+        {/* Visit counter metadata */}
+        <div style={{ 
+          marginTop: '40px', 
+          padding: '20px', 
+          background: '#333', 
+          color: 'white',
+          fontSize: '12px'
+        }}>
+          <strong>Visit Counts:</strong>
+          <div>Cover: {this.cover?.visitCount || 0} visits</div>
+          {this.chapters.map((ch, i) => (
+            <div key={i}>Chapter {i + 1}: {ch.visitCount || 0} visits</div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+
+// Create components
+const Cover = new $Cover().component();
+const Chapter = new $Chapter().component();
+const Book = new $Book().component();
+
+export default function Page() {
+  return (
+    <div style={{ padding: '20px' }}>
+      <Book>
+        <Cover title="Chemistry Adventures" author="Dr. React" />
+        <Chapter title="Getting Started" content="This is where our journey begins..." />
+        <Chapter title="Props and State" content="Understanding the flow of data..." />
+        <Chapter title="Advanced Patterns" content="Diving deeper into Chemical reactions..." />
+      </Book>
+    </div>
+  );
+}
+The order matters because decorators execute at class definition time, so the classes they reference must already exist.RetryDI don't think the book reference is binding. Hence I can't click the coverEditThe book reference isn't being set because the binding system runs in applyBindings() before the view() method where you're trying to set this.cover.book = this. The bound children don't have a reference back to their parent.
+The issue is that applyBindings() assigns the Chemical instances to properties but doesn't set up bidirectional references. When view() runs, this.cover is the original $Cover instance created at module level, not a fresh instance with access to the current Book.
+To fix this, you need to set the book reference when the binding is applied. In your applyBindings() method in chemistry.ts, after line 350 where you assign the binding, add:
+tsxif (isArray) {
+    prop.push(child);
+} else {
+    (this as any)[binding.property] = child;
+    satisfiedSingletons.add(binding.property);
+}
+// Add parent reference
+(child as any).book = this;  // Or use a more generic 'parent' property
+Alternatively, since the binding system might not know about the book property specifically, you could add a generic parent property to Chemical and set it during binding, then cast it in your components:
+tsx// In Chemical class
+parent?: Chemical;
+
+// In applyBindings after binding assignment
+child.parent = this;
+
+// In Cover's view()
+onClick={() => (this.parent as $Book)?.goToFirstChapter()}RetryDThere has to be a better way. I don't get what is going on. Does Cover have the book reference? You can try to print something from it to find outEditLet's debug this. Add console logging to see what's happening:
+tsxclass $Cover extends Chemical {
+  $title: string = "The Chemistry Book";
+  $author: string = "Unknown Author";
+  visitCount: number = 0;
+  book?: $Book;
+  
+  view() {
+    console.log('Cover.view() - book is:', this.book);
+    console.log('Cover instance:', this);
+    
+    return (
+      <div style={{ padding: '40px', textAlign: 'center', background: '#f0f0f0' }}>
+        <h1>{this.$title}</h1>
+        <p>by {this.$author}</p>
+        <p>Book ref: {this.book ? 'EXISTS' : 'MISSING'}</p>
+        <button onClick={() => {
+          console.log('Button clicked, book is:', this.book);
+          this.book?.goToFirstChapter();
+        }}>
+          Start Reading →
+        </button>
+      </div>
+    );
+  }
+}
+And in Book's view:
+tsxview(): ReactNode {
+  console.log('Book.view() - this.cover is:', this.cover);
+  
+  if (this.cover) {
+    this.cover.book = this;
+    console.log('Set cover.book to:', this);
+  }
+  // ... rest of the method
+}
+This will show us:
+
+Whether this.cover exists in Book
+Whether the assignment this.cover.book = this is happening
+What the Cover instance looks like when rendering
+What happens when the button is clicked
+
+The issue is likely that the Cover instance being rendered isn't the same one you're setting book on, or the reactivity system isn't preserving the reference across renders.RetryDWe get this. But no click on the cover. Try to explain it againEditThe "Book ref: EXISTS" message shows the book reference is set, but the button click isn't working. This is likely because the state change (this.currentView = 0) in goToFirstChapter isn't triggering a re-render.
+In your Chemistry framework, property changes should trigger updates through the reactivity system, but currentView is just a plain property on the Book class. When it changes, React doesn't know to re-render.
+The reactivity system (the reactivate function) is supposed to handle this, but it might not be working for this property. Check if:
+
+currentView is being made reactive when the Book instance is created
+The change to currentView is triggering the update function stored in componentUpdaters
+
+Try adding logging to goToFirstChapter:
+tsxgoToFirstChapter = () => {
+  console.log('goToFirstChapter called, chapters:', this.chapters.length);
+  console.log('currentView before:', this.currentView);
+  if (this.chapters.length > 0) {
+    this.currentView = 0;
+    console.log('currentView after:', this.currentView);
+  }
+};
+If the logs show the value changing but the UI doesn't update, then the reactivity system isn't triggering a re-render. The issue is that currentView needs to be reactive, but it might be getting skipped by the reactivity system because it's not initialized or because it starts with a non-object value ('cover').RetryDI read your code. I see what it is trying do. Read the framework and try to figure out why your book property that you are changing - or the button - is not causing Chemistry to trigger a react update. What is going wrong?EditLooking at the Chemistry framework, the issue is that currentView on the Book instance isn't triggering updates because of how the reactivity system works.
+When component() creates the React component, it creates a componentInstance using Object.create(self). This componentInstance gets reactivated in the useEffect hook, which wraps its properties with getters/setters that trigger updates.
+But here's the problem: the Book instance that owns goToFirstChapter is the original self (the prototype), not the reactive componentInstance. When Cover calls this.book?.goToFirstChapter(), it's calling the method on the original Book instance, which changes currentView on the non-reactive prototype.
+The reactive componentInstance inherits from this prototype, but changing currentView on the prototype doesn't trigger the reactive setter on componentInstance.
+To verify this, the goToFirstChapter method is operating on the wrong instance. The method belongs to the prototype (self), but it needs to update the reactive instance (componentInstance).
+One fix would be to bind methods to the componentInstance, but that's not happening in the current code. The reactivity system only wraps properties, not methods, and the methods remain on the prototype where they can't trigger updates on the reactive instance.
+This is why the button click changes the value (you see "Book ref: EXISTS") but doesn't trigger a re-render - the change happens on the non-reactive prototype, not the reactive instance that would trigger forceUpdate.RetryDWhy are thre two instances? I thought the reactive system modifies the instance?EditLooking at the code, there are two instances because Object.create(self) creates a new object with self as its prototype. This is JavaScript's prototypal inheritance.
+When the component renders:
+
+self is the original Book instance with the methods and initial property values
+componentInstance is created via Object.create(self) - a new object that inherits from self
+Chemical.reactivate(componentInstance) wraps componentInstance's properties with reactive getters/setters
+
+The issue is that currentView doesn't exist on componentInstance initially - it only exists on the prototype (self). When reactivate runs, it only wraps properties that exist directly on the instance, not inherited properties.
+When Cover calls this.book.goToFirstChapter():
+
+goToFirstChapter is a method on the prototype (self)
+Inside that method, this refers to the prototype, not the reactive instance
+Changing this.currentView modifies the prototype's property
+This doesn't trigger the reactive system because the reactive wrapper was never created for this property
+
+The fix would be to ensure currentView exists on the componentInstance before reactivation. You could initialize it in the component function:
+tsx// In component() method, after creating componentInstance:
+componentInstance.currentView = self.currentView;  // Copy the value
+Or declare currentView with an initial value that ensures it's an "own property":
+tsxcurrentView: 'cover' | number = 'cover' as 'cover' | number;
+The reactivity system needs the property to exist on the instance itself, not just inherited from the prototype.RetryDWhy is that instance created? Why isn't the actual current instance used?EditThe Object.create(self) pattern creates a new instance for each render because React functional components need fresh instances for each component usage. If you reused the same instance:
+
+Multiple usages would conflict: If you rendered <Book /> twice on the same page, they'd share the same instance and interfere with each other
+Props wouldn't work correctly: Each render needs its own instance to receive its own props
+State isolation would break: Every <Book /> component needs its own state
+
+The problem is that the Chemical framework is trying to have it both ways:
+
+It wants object-oriented classes with methods and state
+It wants React's functional component model with isolated instances
+
+The Object.create(self) approach tries to solve this by creating a new instance per render that inherits methods from the prototype. But this breaks the reactivity because:
+
+Methods like goToFirstChapter exist on the prototype (self)
+When called, this inside those methods refers to the prototype
+Changing this.currentView in the method changes the prototype's property
+But only the componentInstance (not the prototype) has reactive wrappers
+
+A simpler approach would be to create a completely new instance for each component:
+tsxconst ChemicalComponent: React.FC<Properties<this>> = (props) => {
+    const componentInstance = new (this.constructor as any)();
+    // Copy over any needed state from self
+    Object.assign(componentInstance, self);
+    // Now reactivate this fresh instance
+    Chemical.reactivate(componentInstance);
+But then you lose the connection between the instance created outside (new $Book()) and what's rendered. The framework is caught between two different models of component instantiation.RetryDAh I see. Hmm okay what are our options here. We need to make sure when data is bound, it is the reactive instance right?EditThe core issue is that bindings happen in applyBindings() which is called on componentInstance (the reactive one), but the bound children are the original non-reactive instances created at module level.
+Here are the options:
+Option 1: Make bound children reactive
+In applyBindings(), after binding a child, make it reactive:
+tsx// In applyBindings() after line 350
+if (isArray) {
+    prop.push(child);
+} else {
+    (this as any)[binding.property] = child;
+    satisfiedSingletons.add(binding.property);
+}
+// Make the child reactive if it isn't already
+Chemical.reactivate(child);
+// Set parent reference
+(child as any).parent = this;
+Option 2: Create new instances during binding
+Instead of binding the shared module-level instances, create fresh ones:
+tsx// In applyBindings()
+if (!(child instanceof binding.class!)) continue;
+
+// Create a new instance of the same class
+const freshChild = Object.create(Object.getPrototypeOf(child));
+Object.assign(freshChild, child);
+Chemical.reactivate(freshChild);
+freshChild.parent = this;
+
+// Bind the fresh instance
+if (isArray) {
+    prop.push(freshChild);
+} else {
+    (this as any)[binding.property] = freshChild;
+}
+Option 3: Use method binding
+Ensure methods operate on the reactive instance by binding them:
+tsx// In component() after reactivating
+for (const key of Object.getOwnPropertyNames(Object.getPrototypeOf(componentInstance))) {
+    const value = componentInstance[key];
+    if (typeof value === 'function' && key !== 'constructor') {
+        componentInstance[key] = value.bind(componentInstance);
+    }
+}
+Option 1 is simplest but makes the module-level instances reactive. Option 2 is cleaner but more complex. Option 3 only fixes methods, not the binding issue.
+Which approach fits better with Chemistry's design philosophy?RetryDWell when we make new instances, the methods should have a new this pointer. If we get our instances right, we should be fine no?Yes of course applying the bindings MUST be factored in. Those new properties need to be activated and we forgot that. But where is the logical place to do that? Are we calling apply bindings wrong? Does it need to happen elsewhere? Or do we just need to activate the instance again after binding?EditYou're right - the issue is that properties added by applyBindings() aren't reactive because reactivate() has already run before the bindings are applied.
+Looking at the order in component():
+
+Line 142: Chemical.reactivate(componentInstance) - makes existing properties reactive
+Line 181: componentInstance.applyBindings() - adds new properties (cover, chapters)
+These new properties aren't reactive!
+
+The logical fix is to reactivate after bindings. Change lines 180-181:
+tsx// Assign bound properties
+componentInstance.applyBindings();
+
+// Reactivate the newly bound properties
+Chemical.reactivate(componentInstance);
+Or move applyBindings() before the first reactivate():
+tsx// Apply bindings first
+componentInstance.applyBindings();
+
+// Then reactivate everything including bound properties
+Chemical.reactivate(componentInstance);
+But there's another issue: the bound children (cover, chapters) are still the non-reactive module-level instances. They need their own reactivity. In applyBindings() after binding:
+tsx// Apply binding
+if (isArray) {
+    prop.push(child);
+} else {
+    (this as any)[binding.property] = child;
+    satisfiedSingletons.add(binding.property);
+}
+// Make the bound child reactive too
+Chemical.reactivate(child);
+This ensures both the binding properties AND the bound instances themselves are reactive, so changes to currentView in the Book instance will trigger updates.RetryDSure but doesn't reactivate handle replacing Chemicals with active versions? I am not sure but that's how I imagine fixing it would work. The Chemistry system is aware if properties being activated are Chemicals and not themselves reactive yetEditLooking at the reactivate function, it doesn't handle Chemical instances specially. When it encounters a property that's a Chemical instance, it skips it:
+tsx// Line 422 in reactivateData
+if (!obj || typeof obj !== 'object' || (obj as any)[reactivated] || obj instanceof Chemical) {
+    return;
+}
+So reactivate explicitly avoids reactivating Chemical instances. This makes sense to avoid infinite recursion, but it means bound Chemical children stay non-reactive.
+The real issue is architectural: the binding system assigns the original shared instances (created at module level) to properties. These instances were created with new $Cover() outside any component context, so they're not reactive and their methods operate on themselves, not on any reactive instance.
+When you call this.cover.book = this in Book's view(), you're setting a reference on the non-reactive Cover instance. When that Cover's button calls this.book?.goToFirstChapter(), it's calling a method that modifies currentView on a non-reactive Book instance.
+The simplest fix is probably to reactivate after bindings AND ensure bound children get reactivated:
+tsx// In component(), move reactivate after applyBindings
+componentInstance.applyBindings();
+Chemical.reactivate(componentInstance);
+
+// In applyBindings, after binding
+if (isArray) {
+    prop.push(child);
+} else {
+    (this as any)[binding.property] = child;
+}
+// Force reactivation of the bound child
+if (child instanceof Chemical && !(child as any)[reactivated]) {
+    Chemical.reactivate(child);
+}
+But this still leaves the problem that all component instances share the same bound children. You might need to clone the children during binding to give each component instance its own reactive children.RetryDLet's try to fix this in reactivate. Can we have a private flag to determine if an instance is reactive and if it is not, reactivate swaps it out with one that it? And can't apply binding be a part of the reactivate process? Bind everything before reactivatinbg but make it part of the flowEditYou could integrate binding into the reactivation flow. Here's a potential approach:
+tsxfunction reactivate<T extends object>(instance: T, owner?: any): T {
+    // Skip if already reactivated
+    if ((instance as any)[reactivated] && !(instance as any)[deactivated]) {
+        return instance;
+    }
+    
+    // If this is a Chemical, apply bindings first
+    if (instance instanceof Chemical) {
+        instance.applyBindings();
+    }
+    
+    // Remove deactivated flag if present
+    if ((instance as any)[deactivated]) {
+        delete (instance as any)[deactivated];
+    }
+    
+    // ... rest of reactivation logic
+    
+    // Handle properties that are non-reactive Chemical instances
+    for (const key in instance) {
+        if (key !== 'constructor' && !key.startsWith('_')) {
+            const value = (instance as any)[key];
+            
+            // If it's a non-reactive Chemical, create a reactive clone
+            if (value instanceof Chemical && !(value as any)[reactivated]) {
+                const reactiveClone = Object.create(Object.getPrototypeOf(value));
+                Object.assign(reactiveClone, value);
+                (instance as any)[key] = reactiveClone;
+                reactivate(reactiveClone, instance);
+            } else if (value && typeof value === 'object' && !Array.isArray(value) && !(value instanceof Date)) {
+                reactivateData(value, owner || instance);
+            }
+        }
+    }
+    
+    // Mark as reactivated
+    (instance as any)[reactivated] = true;
+    return instance;
+}
+Then in component(), remove the separate applyBindings() call since reactivate() handles it:
+tsx// Just reactivate - it will apply bindings internally
+Chemical.reactivate(componentInstance);
+The issue with this approach is that bound children are still shared module-level instances. You'd need to clone them during binding to give each component instance its own reactive children. Otherwise all Book instances would share the same Cover and Chapter instances.RetryDSo I think you're saying to put appluy bidnings into reactivate:/
+ * Reactivates an object, making its properties reactive
+ * This is exported for advanced usage but generally should be used via Chemical.reactivate
+ */
+/
+ * Reactivates an object, making its properties reactive
+ * This is exported for advanced usage but generally should be used via Chemical.reactivate
+ */
+function reactivate<T extends object>(instance: T, owner?: any): T {
+    // Skip if already reactivated and not deactivated
+    if ((instance as any)[reactivated] && !(instance as any)[deactivated]) {
+        return instance;
+    }    // Remove deactivated flag if present
+    if ((instance as any)[deactivated]) {
+        delete (instance as any)[deactivated];
+    }    // The update function that will be called when properties change
+    const triggerUpdate = owner ?
+        () => {
+            const updateFn = componentUpdaters.get(owner);
+            if (updateFn) updateFn();
+        } :
+        () => {
+            const updateFn = componentUpdaters.get(instance);
+            if (updateFn) updateFn();
+        };    decorate(instance, {
+        after: (
+            className: string,
+            memberName: string,
+            memberType: MemberType,
+            method: Function,
+            args: any[],
+            result: any
+        ) => {
+            // Only trigger updates for field changes
+            if (memberType === 'field') {
+                triggerUpdate();
+            }
+            return result;
+        }
+    });    // Deep reactify all object properties (not just ones in backingFields)
+    for (const key in instance) {
+        if (key !== 'constructor' && !key.startsWith('_')) {
+            const value = (instance as any)[key];
+            if (value && typeof value === 'object' && !Array.isArray(value) && !(value instanceof Date)) {
+                reactivateData(value, owner || instance);
+            }
+        }
+    }    // Also reactify any in backingFields that might not be enumerable on the instance
+    if ((instance as any)[backingFields]) {
+        for (const key in (instance as any)[backingFields]) {
+            const value = (instance as any)[backingFields][key];
+            if (value && typeof value === 'object' && !Array.isArray(value) && !(value instanceof Date)) {
+                reactivateData(value, owner || instance);
+            }
+        }
+    }    return instance;
+}---How about we pull the bin ding logic off of the instance so it is more like reactivate - in functions that are off the instance. And let's see if we can make it a natural part of reactivate so that only reactivate needs to be updated, and we remove applyBindings from the component methodEditYes, moving binding logic out of the instance makes sense. Here's how to integrate it into reactivate:
+tsx/**
+ * Apply bindings to a Chemical instance
+ */
+function applyBindings(instance: Chemical): void {
+    const bindings = getMergedBindings(instance);
+    if (bindings.length === 0) return;
+    
+    const childMap = instance.children;
+    if (!childMap || childMap.size === 0) return;
+    
+    // ... rest of existing applyBindings logic
+    // But now it's a standalone function
+}
+
+/**
+ * Get merged bindings for a Chemical class
+ */
+function getMergedBindings(instance: Chemical): Binding[] {
+    const constructor = instance.constructor as any;
+    
+    if (constructor._mergedBindings) {
+        return constructor._mergedBindings;
+    }
+    
+    // ... existing getMergedBindings logic
+    return bindings;
+}
+
+/**
+ * Reactivates an object, making its properties reactive
+ */
+function reactivate<T extends object>(instance: T, owner?: any): T {
+    // Skip if already reactivated
+    if ((instance as any)[reactivated] && !(instance as any)[deactivated]) {
+        return instance;
+    }
+    
+    // Apply bindings BEFORE decorating if this is a Chemical
+    if (instance instanceof Chemical) {
+        applyBindings(instance);
+    }
+    
+    // Remove deactivated flag if present
+    if ((instance as any)[deactivated]) {
+        delete (instance as any)[deactivated];
+    }
+    
+    // ... existing decoration logic ...
+    
+    // After decorating, handle Chemical instances in properties
+    for (const key in instance) {
+        if (key !== 'constructor' && !key.startsWith('_')) {
+            const value = (instance as any)[key];
+            
+            // If it's a Chemical, create a reactive clone
+            if (value instanceof Chemical && !(value as any)[reactivated]) {
+                const clone = Object.create(Object.getPrototypeOf(value));
+                Object.assign(clone, value);
+                (instance as any)[key] = clone;
+                reactivate(clone, instance);
+            } else if (value && typeof value === 'object' && !Array.isArray(value) && !(value instanceof Date)) {
+                reactivateData(value, owner || instance);
+            }
+        }
+    }
+    
+    return instance;
+}
+Then in component(), remove line 181 (componentInstance.applyBindings()). The reactivation will handle bindings automatically.
+The key addition is cloning non-reactive Chemical instances when they're found as properties, so each component instance gets its own reactive children instead of sharing the module-level instances.

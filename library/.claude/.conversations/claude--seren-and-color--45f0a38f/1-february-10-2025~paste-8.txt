@@ -1,0 +1,335 @@
+class DynamicColor {
+    private _color: RGBColor;
+    private _opacity: number = 1;
+
+    red() { return this._color.red; }
+    green() { return this._color.green; }
+    blue() { return this._color.blue; }
+
+    /** Return as Illustrator-compatible RGBColor */
+    rgb(): RGBColor {
+        var color = new RGBColor();
+        color.red = this._color.red;
+        color.green = this._color.green;
+        color.blue = this._color.blue;
+        return color;
+    }
+
+    /** Accepts a ColorName, string (hex), or RGBColor with optional opacity */
+    constructor(color: $Color, opacity: number = 1.0) {
+        if (!color) throw new Error("No color specified to DynamicColor");
+        this._color = typeof color === "string" ? 
+            DynamicColor.hexToRGB(color) : 
+            DynamicColor.convertToRGB(color);
+
+        this._opacity = DynamicColor.clamp(opacity, 0, 1);
+    }
+
+    /** Get or set the opacity */
+    opacity(newOpacity?: number): number {
+        if (newOpacity !== undefined)
+            this._opacity = DynamicColor.clamp(newOpacity, 0, 1);
+        return this._opacity;
+    }
+
+    /** Returns a new instance with updated opacity */
+    withOpacity(opacity: number): DynamicColor {
+        return new DynamicColor(this._color, opacity);
+    }
+
+    /** Layer this color with another color on top, using alpha compositing.
+     * @param color The color to overlay on top of this one
+     * @param opacity Optional opacity override for the overlay color (0 to 1)
+     * When overlaying:
+     * - With full opacity (1), the overlay color completely replaces this color
+     * - With partial opacity (0.5), the overlay color blends 50/50 with this color
+     * - With zero opacity (0), this color shows through unchanged
+     * Both colors' existing opacities are factored into the final blend
+     */
+    overlay(color: DynamicColor | WebColor | string, opacity?: number): DynamicColor {
+        const overlayColor = color instanceof DynamicColor 
+            ? color 
+            : new DynamicColor(color, opacity || 1);
+
+        const overlayOpacity = DynamicColor.clamp(opacity ?? overlayColor._opacity, 0, 1);
+        const blendedAlpha = DynamicColor.compositeAlpha(this._opacity, overlayOpacity);
+        const blendedColor = DynamicColor.alphaBlend(this._color, overlayColor._color, this._opacity, overlayOpacity);
+        return new DynamicColor(blendedColor, blendedAlpha);
+    }
+
+    /** Mix this color with another using the given proportion.
+  * @param color The color to mix with
+  * @param proportion The proportion of the other color (0 to 1, defaults to 0.5)
+  * proportion = 0.5 gives 50/50 mix
+  * proportion = 0.1 gives 90/10 mix (90% this color)
+  * proportion = 0.9 gives 10/90 mix (90% other color)
+  */
+    mix(color: DynamicColor | WebColor | string, proportion: number = 0.5): DynamicColor {
+        const otherColor = color instanceof DynamicColor 
+            ? color 
+            : new DynamicColor(color);
+            
+        proportion = DynamicColor.clamp(proportion, 0, 1);
+        const thisOpacity = 1 - proportion;
+        
+        return otherColor.overlay(this, thisOpacity);
+    }
+
+    /** Returns the complementary color */
+    complement(): DynamicColor {
+        return new DynamicColor(DynamicColor.invertColor(this._color), this._opacity);
+    }
+
+    /** Lighten the color by a percentage */
+    lighten(percent: number): DynamicColor {
+        return this.adjustBrightness(percent);
+    }
+
+    /** Darken the color by a percentage */
+    darken(percent: number): DynamicColor {
+        return this.adjustBrightness(-percent);
+    }
+
+    /** Flatten the color's opacity against white */
+    flatten(): DynamicColor {
+        if (this.opacity() == 1) return this;
+        return new DynamicColor(WebColor.White).overlay(this);
+    }
+
+    /** Return as hex string */
+    hex(): string {
+        return DynamicColor.rgbToHex(this._color);
+    }
+
+    toHSL(): { h: number, s: number, l: number } {
+        const r = this.red() / 255;
+        const g = this.green() / 255;
+        const b = this.blue() / 255;
+        
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        let h = 0, s = 0;
+        const l = (max + min) / 2;
+
+        if (max !== min) {
+            const d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) {
+                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                case g: h = (b - r) / d + 2; break;
+                case b: h = (r - g) / d + 4; break;
+            }
+            h /= 6;
+        }
+
+        return { h: h * 360, s: s * 100, l: l * 100 };
+    }
+
+    /** Create from HSL values */
+    static fromHSL(h: number, s: number, l: number): DynamicColor {
+        h = h / 360;
+        s = s / 100;
+        l = l / 100;
+
+        let r, g, b;
+        if (s === 0) {
+            r = g = b = l;
+        } else {
+            const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            const p = 2 * l - q;
+            r = DynamicColor.hueToRGB(p, q, h + 1/3);
+            g = DynamicColor.hueToRGB(p, q, h);
+            b = DynamicColor.hueToRGB(p, q, h - 1/3);
+        }
+
+        var color = new RGBColor();
+        color.red = Math.round(r * 255);
+        color.green = Math.round(g * 255);
+        color.blue = Math.round(b * 255);
+
+        return new DynamicColor(color);
+    }
+
+    /** Compare equality with another DynamicColor */
+    equals(other: $Color): boolean {
+        if (!other) return false;
+        var otherColor = other instanceof DynamicColor ? other : new DynamicColor(other);
+        return this.red() === otherColor.red() && 
+            this.green() === otherColor.green() && 
+            this.blue() === otherColor.blue() && 
+            this._opacity === otherColor._opacity;
+    }
+
+    toString() {
+        return `{ red: ${this.red()}, green: ${this.green()}, blue: ${this.blue()}, opacity: ${this.opacity()} }`;
+    }
+
+    static noColor(): DynamicColor {
+        return new DynamicColor(WebColor.White, 0);
+    }
+
+    static convertToRGB(color: Color | DynamicColor): RGBColor {
+        if (color instanceof DynamicColor) return color.flatten().rgb();
+    
+        // Default to white if no color or NoColor
+        if (!color || color === NoColor) {
+            const white = new RGBColor();
+            white.red = 255;
+            white.green = 255;
+            white.blue = 255;
+            return white;
+        }
+    
+        // Check if it's already RGB
+        if ('red' in color && 'green' in color && 'blue' in color) {
+            return color as RGBColor;
+        }
+    
+        // Check if it's CMYK
+        if ('cyan' in color && 'magenta' in color && 'yellow' in color && 'black' in color) {
+            const cmykColor = color as CMYKColor;
+            const rgb = new RGBColor();
+            const c = cmykColor.cyan / 100;
+            const m = cmykColor.magenta / 100;
+            const y = cmykColor.yellow / 100;
+            const k = cmykColor.black / 100;
+            
+            rgb.red = this.clamp(Math.round(255 * (1 - c) * (1 - k)), 0 , 255);
+            rgb.green = this.clamp(Math.round(255 * (1 - m) * (1 - k)), 0 , 255);
+            rgb.blue = this.clamp(Math.round(255 * (1 - y) * (1 - k)), 0 , 255);
+            
+            return rgb;
+        }
+    
+        // Check if it's Grayscale
+        if ('gray' in color) {
+            const grayColor = color as GrayColor;
+            const rgb = new RGBColor();
+            rgb.red = rgb.green = rgb.blue = Math.round((100 - grayColor.gray) * 2.55);
+            return rgb;
+        }
+    
+        // Check if it's Spot Color
+        if ('spot' in color) {
+            const spotColor = color as SpotColor;
+            return DynamicColor.convertToRGB(spotColor.spot.color);
+        }
+    
+        // Check if it's Lab Color
+        if ('l' in color && 'a' in color && 'b' in color) {
+            const labColor = color as LabColor;
+            const rgb = new RGBColor();
+            
+            // Lab to XYZ conversion
+            const y = (labColor.l + 16) / 116;
+            const x = labColor.a / 500 + y;
+            const z = y - labColor.b / 200;
+    
+            // XYZ to RGB conversion
+            rgb.red = this.clamp(Math.round(Math.max(0, Math.min(255, 3.2406 * x - 1.5372 * y - 0.4986 * z)) * 255), 0, 255);
+            rgb.green = this.clamp(Math.round(Math.max(0, Math.min(255, -0.9689 * x + 1.8758 * y + 0.0415 * z)) * 255), 0, 255);
+            rgb.blue = this.clamp(Math.round(Math.max(0, Math.min(255, 0.0557 * x - 0.2040 * y + 1.0570 * z)) * 255), 0, 255);
+            
+            return rgb;
+        }
+    
+        // For Pattern, Gradient, or any other unhandled color types, return white
+        const white = new RGBColor();
+        white.red = 255;
+        white.green = 255;
+        white.blue = 255;
+        return white;
+    }
+
+    // ====== PRIVATE UTILITIES ====== //
+
+    /** Adjust brightness */
+    private adjustBrightness(percent: number): DynamicColor {
+        const adjust = (channel: number) => {
+            if (percent >= 0) {
+                // Lightening: Add percentage of remaining brightness
+                return Math.round(channel + percent / 100 * (255 - channel));
+            } else {
+                // Darkening: Subtract percentage of current brightness
+                return Math.round(channel * (1 + percent / 100));
+            }
+        };
+        const newColor = DynamicColor.adjustChannels(this._color, adjust, adjust, adjust);
+        return new DynamicColor(newColor, this._opacity);
+    }
+
+    /** Alpha blend two RGBColors */
+    private static alphaBlend(base: RGBColor, overlay: RGBColor, baseAlpha: number, overlayAlpha: number): RGBColor {
+        const blend = (b: number, o: number) =>
+            Math.round((o * overlayAlpha + b * baseAlpha * (1 - overlayAlpha)) / (baseAlpha + overlayAlpha * (1 - baseAlpha)));
+
+        return DynamicColor.adjustChannels(base, 
+            r => blend(r, overlay.red), 
+            g => blend(g, overlay.green), 
+            b => blend(b, overlay.blue)
+        );
+    }
+
+    /** Composite two alpha values */
+    private static compositeAlpha(baseAlpha: number, overlayAlpha: number): number {
+        return baseAlpha + overlayAlpha * (1 - baseAlpha);
+    }
+
+    /** Invert RGBColor */
+    private static invertColor(color: RGBColor): RGBColor {
+        const invert = (c: number) => 255 - c;
+        return DynamicColor.adjustChannels(color, invert, invert, invert);
+    }
+
+    /** Adjust RGB channels */
+    private static adjustChannels(
+        color: RGBColor,
+        adjustR: (r: number) => number = r => r,
+        adjustG: (g: number) => number = g => g,
+        adjustB: (b: number) => number = b => b
+    ): RGBColor {
+        const newColor = new RGBColor();
+        newColor.red = DynamicColor.clamp(adjustR(color.red), 0, 255);
+        newColor.green = DynamicColor.clamp(adjustG(color.green), 0, 255);
+        newColor.blue = DynamicColor.clamp(adjustB(color.blue), 0, 255);
+        return newColor;
+    }
+
+    /** Convert hex to RGBColor */
+    private static hexToRGB(hex: string): RGBColor {
+        if (typeof hex !== "string") 
+            throw new Error("Hex must be a string");
+
+        hex = str(str(hex).replace(/^#/, '')).padEnd(6, '0').s();
+        const r = parseInt(hex.slice(0, 2), 16);
+        const g = parseInt(hex.slice(2, 4), 16);
+        const b = parseInt(hex.slice(4, 6), 16);
+
+        const color = new RGBColor();
+        color.red = r; color.green = g; color.blue = b;
+        return color;
+    }
+
+    private static hueToRGB(p: number, q: number, t: number): number {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1/6) return p + (q - p) * 6 * t;
+        if (t < 1/2) return q;
+        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+        return p;
+    }
+
+    /** Convert RGBColor to hex string */
+    private static rgbToHex(color: RGBColor): string {
+        return `#${f([color.red, color.green, color.blue]).select(c => DynamicColor.toHex(c)).stringJoin('')}`;
+    }
+
+    /** Convert number to 2-digit hex string */
+    private static toHex(component: number): string {
+        return str(component.toString(16)).padStart(2, '0').toUpperCase().s();
+    }
+
+    private static clamp(value: number, min: number, max: number): number {
+        return Math.min(Math.max(value, min), max);
+    }
+}

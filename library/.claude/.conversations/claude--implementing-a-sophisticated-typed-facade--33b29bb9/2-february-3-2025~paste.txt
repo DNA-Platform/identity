@@ -1,0 +1,142 @@
+class $Document extends $ApplicationItem<Document, $Application> {
+    layers(): $Layers { return $docref(this.$get(o => o.layers), this.typename(), this); }
+    artboards(): $Artboards { return $docref(this.$get(o => o.artboards), this.typename(), this); }
+    views(): $Views { return $docref(this.$get(o => o.views), this.typename(), this); }
+    brushes(): $Brushes { return $docref(this.$get(o => o.brushes), this.typename(), this); }
+    swatches(): $Swatches { return $docref(this.$get(o => o.swatches), this.typename(), this); }
+    symbols(): $Symbols { return $docref(this.$get(o => o.symbols), this.typename(), this); }
+    stories(): $Stories { return $docref(this.$get(o => o.stories), this.typename(), this); }
+    pluginItems(): $PluginItems { return $docref(this.$get(o => o.pluginItems), this.typename(), this); }
+    pageItems(): $PageItems { return $docref(this.$get(o => o.pageItems), this.typename(), this); }
+    pathItems(): $PathItems { return $docref(this.$get(o => o.pathItems), this.typename(), this); }
+    textFrames(): $TextFrames { return $docref(this.$get(o => o.textFrames), this.typename(), this); }
+    groupItems(): $GroupItems { return $docref(this.$get(o => o.groupItems), this.typename(), this); }
+    rasterItems(): $RasterItems { return $docref(this.$get(o => o.rasterItems), this.typename(), this); }
+    compoundPathItems(): $CompoundPathItems { return $docref(this.$get(o => o.compoundPathItems), this.typename(), this); }
+    legacyTextItems(): $LegacyTextItems { return $docref(this.$get(o => o.legacyTextItems), this.typename(), this); }
+    nonNativeItems(): $NonNativeItems { return $docref(this.$get(o => o.nonNativeItems), this.typename(), this); }
+    gradients(): $Gradients { return $docref(this.$get(o => o.gradients), this.typename(), this); }
+    variables(): $Variables { return $docref(this.$get(o => o.variables), this.typename(), this); }
+    patterns(): $Patterns { return $docref(this.$get(o => o.patterns), this.typename(), this); }
+    paragraphStyles(): $ParagraphStyles { return $docref(this.$get(o => o.paragraphStyles), this.typename(), this); }
+    characterStyles(): $CharacterStyles { return $docref(this.$get(o => o.characterStyles), this.typename(), this); }
+    spots(): $Spots { return $docref(this.$get(o => o.spots), this.typename(), this); }
+    datasets(): $DataSets { return $docref(this.$get(o => o.dataSets), this.typename(), this); }
+    tags(): $Tags { return $docref(this.$get(o => o.tags), this.typename(), this); }
+    graphicStyles(): $ArtStyles { return $docref(this.$get(o => o.graphicStyles), this.typename(), this); }
+    placedItems(): $PlacedItems { return $docref(this.$get(o => o.placedItems), this.typename(), this); }
+    embeddedItems(): $EmbeddedItems { return $docref(this.$get(o => o.embeddedItems), this.typename(), this); }
+    graphItems(): $GraphItems { return $docref(this.$get(o => o.graphItems), this.typename(), this); }
+    meshItems(): $MeshItems { return $docref(this.$get(o => o.meshItems), this.typename(), this); }
+
+    XMPString(newValue?: $Str) { return this.$get<string>(o => o.XMPString, $str(newValue)); }
+    activeDataSet(newValue?: $Ref<DataSet>) { return this.$get<DataSet>(o => o.activeDataSet, $ref(newValue)); }
+    activeLayer(newValue?: $Ref<Layer>) { return this.$get<Layer>(o => o.activeLayer, $ref(newValue)); }
+    colorProfileName() { return this.$get<string>(o => o.colorProfileName); }
+    cropBox(newValue?: $Ref<Rect>) { return this.$get<Rect>(o => o.cropBox, $ref(newValue)); }
+    cropStyle(newValue?: $Ref<CropOptions>) { return this.$get<CropOptions>(o => o.cropStyle, $ref(newValue)); }
+    defaultFillColor(newValue?: $Ref<Color>) { return this.$get<Color>(o => o.defaultFillColor, $ref(newValue)); }
+    defaultFillOverprint(newValue?: $Bool) { return this.$get<boolean>(o => o.defaultFillOverprint, $ref(newValue)); }
+    defaultFilled(newValue?: $Bool) { return this.$get<boolean>(o => o.defaultFilled, $ref(newValue)); }
+    defaultStrokeCap(newValue?: $Ref<StrokeCap>) { return this.$get<StrokeCap>(o => o.defaultStrokeCap, $ref(newValue)); }
+    defaultStrokeColor(newValue?: $Ref<Color>) { return this.$get<Color>(o => o.defaultStrokeColor, $ref(newValue)); }
+    defaultStrokeDashOffset(newValue?: $Num) { return this.$get<number>(o => o.defaultStrokeDashOffset, $ref(newValue)); }
+    defaultStrokeDashes(newValue?: $Arr<number>) { return this.$get<number[]>(o => o.defaultStrokeDashes, $ref(newValue)); }
+    defaultStrokeJoin(newValue?: $Ref<StrokeJoin>) { return this.$get<StrokeJoin>(o => o.defaultStrokeJoin, $ref(newValue)); }
+    defaultStrokeMiterLimit(newValue?: $Num) { return this.$get<number>(o => o.defaultStrokeMiterLimit, $ref(newValue)); }
+    defaultStrokeOverprint(newValue?: $Bool) { return this.$get<boolean>(o => o.defaultStrokeOverprint, $ref(newValue)); }
+    defaultStrokeWidth(newValue?: $Num) { return this.$get<number>(o => o.defaultStrokeWidth, $ref(newValue)); }
+    defaultStroked(newValue?: $Bool) { return this.$get<boolean>(o => o.defaultStroked, $ref(newValue)); }
+    documentColorSpace() { return this.$get<DocumentColorSpace>(o => o.documentColorSpace); }
+    fullName() { return this.$get<File>(o => o.fullName); }
+    geometricBounds() { return this.$get<Rect>(o => o.geometricBounds); }
+    height() { return this.$get<number>(o => o.height); }
+    inkList() { return this.$get<Ink[]>(o => o.inkList); }
+    kinsokuSet() { return this.$get<string[]>(o => o.kinsokuSet); }
+    mojikumiSet() { return this.$get<string[]>(o => o.mojikumiSet); }
+    outputResolution() { return this.$get<number>(o => o.outputResolution); }
+    pageOrigin(newValue?: $Ref<Point>) { return this.$get(o => o.pageOrigin, $ref(newValue)); }
+    path() { return this.$get<File>(o => o.path); }
+    printTiles() { return this.$get<boolean>(o => o.printTiles); }
+    rasterEffectSettings(newValue?: $Ref<RasterEffectOptions>) { return this.$get<RasterEffectOptions>(o => o.rasterEffectSettings, $ref(newValue)); }
+    rulerOrigin(newValue?: $Ref<Point>) { return this.$get(o => o.rulerOrigin, $ref(newValue)); }
+    rulerUnits() { return this.$get<RulerUnits>(o => o.rulerUnits); }
+    saved(newValue?: $Bool) { return this.$get<boolean>(o => o.saved, $ref(newValue)); }
+    selection(newValue?: $Any) { return this.$get<any>(o => o.selection, $ref(newValue)); }
+    showPlacedImages() { return this.$get<boolean>(o => o.showPlacedImages); }
+    splitLongPaths() { return this.$get<boolean>(o => o.splitLongPaths); }
+    stationery() { return this.$get<boolean>(o => o.stationery); }
+    tileFullPages() { return this.$get<boolean>(o => o.tileFullPages); }
+    useDefaultScreen() { return this.$get<boolean>(o => o.useDefaultScreen); }
+    variablesLocked(newValue?: $Bool) { return this.$get<boolean>(o => o.variablesLocked, $ref(newValue)); }
+    visibleBounds() { return this.$get<Rect>(o => o.visibleBounds); }
+    width() { return this.$get<number>(o => o.width); }
+
+    constructor(ref: $Reference<Document> | string) {
+        super(ref, "Document", undefined as any);
+        this._document = this;
+    }
+
+    activate() { return this.$call(o => o.activate); }
+    close(saving?: $Ref<SaveOptions>) { return this.$call(o => o.close, $ref(saving)); }
+    convertCoordinate(coordinate: $Ref<Point>, source: $Ref<CoordinateSystem>, destination: $Ref<CoordinateSystem>) { return this.$call(o => o.convertCoordinate, $ref(coordinate), $ref(source), $ref(destination)); }
+    exportFile(exportFile: $Ref<File>, exportFormat: $Ref<ExportType>, options?: $Any) { return this.$call(o => o.exportFile, $ref(exportFile), $ref(exportFormat), $ref(options)); }
+    exportPDFPreset(file: $Ref<File>) { return this.$call(o => o.exportPDFPreset, $ref(file)); }
+    exportPerspectiveGridPreset(file: $Ref<File>) { return this.$call(o => o.exportPerspectiveGridPreset, $ref(file)); }
+    exportPrintPreset(file: $Ref<File>) { return this.$call(o => o.exportPrintPreset, $ref(file)); }
+    exportSelectionAsAi(exportFile: $Ref<File>) { return this.$call(o => o.exportSelectionAsAi, $ref(exportFile)); }
+    exportSelectionAsPNG(exportFile: $Ref<File>, options?: $Any) { return this.$call(o => o.exportSelectionAsPNG, $ref(exportFile), $ref(options)); }
+    exportVariables(file: $Ref<File>) { return this.$call(o => o.exportVariables, $ref(file)); }
+    fitArtboardToSelectedArt(index?: $Num) { return this.$call(o => o.fitArtboardToSelectedArt, $ref(index)); }
+    getPerspectiveActivePlane() { return this.$call(o => o.getPerspectiveActivePlane); }
+    hidePerspectiveGrid() { return this.$call(o => o.hidePerspectiveGrid); }
+    imageCapture(imageFile: $Ref<File>, clipBounds?: $Ref<Rect>, options?: $Ref<ImageCaptureOptions>) { return this.$call(o => o.imageCapture, $ref(imageFile), $ref(clipBounds), $ref(options)); }
+    importCharacterStyles(fileSpec: $Ref<File>) { return this.$call(o => o.importCharacterStyles, $ref(fileSpec)); }
+    importFile(importFile: $Ref<File>, isLinked: $Bool, libraryName?: $Str, itemName?: $Str, elementRef?: $Str, modifiedTime?: $Num, creationTime?: $Num, adobeStockId?: $Str, adobeStockLicense?: $Str) { return this.$call(o => o.importFile, $ref(importFile), $ref(isLinked), $str(libraryName), $str(itemName), $str(elementRef), $ref(modifiedTime), $ref(creationTime), $str(adobeStockId), $str(adobeStockLicense)); }
+    importPDFPreset(fileSpec: $Ref<File>, replacingPreset?: $Bool) { return this.$call(o => o.importPDFPreset, $ref(fileSpec), $ref(replacingPreset)); }
+    importParagraphStyles(fileSpec: $Ref<File>) { return this.$call(o => o.importParagraphStyles, $ref(fileSpec)); }
+    importPerspectiveGridPreset(fileSpec: $Ref<File>, perspectivePreset?: $Str) { return this.$call(o => o.importPerspectiveGridPreset, $ref(fileSpec), $str(perspectivePreset)); }
+    importPrintPreset(printPreset: $Str, fileSpec: $Ref<File>) { return this.$call(o => o.importPrintPreset, $str(printPreset), $ref(fileSpec)); }
+    importVariables(fileSpec: $Ref<File>) { return this.$call(o => o.importVariables, $ref(fileSpec)); }
+    print(options?: $Ref<PrintOptions>) { return this.$call(o => o.print, $ref(options)); }
+    processGesture(gesturePointsFile: $Str) { return this.$call(o => o.processGesture, $str(gesturePointsFile)); }
+    rasterize(sourceArt: $Any, clipBounds?: $Ref<Rect>, options?: $Ref<RasterizeOptions>) { return this.$call(o => o.rasterize, $ref(sourceArt), $ref(clipBounds), $ref(options)); }
+    rearrangeArtboards(artboardLayout?: $Ref<DocumentArtboardLayout>, artboardRowsOrCols?: $Num, artboardSpacing?: $Num, artboardMoveArtwork?: $Bool) { return this.$call(o => o.rearrangeArtboards, $ref(artboardLayout), $ref(artboardRowsOrCols), $ref(artboardSpacing), $ref(artboardMoveArtwork)); }
+    save() { return this.$call(o => o.save); }
+    saveAs(saveIn: $Ref<File>, options?: $Any) { return this.$call(o => o.saveAs, $ref(saveIn), $ref(options)); }
+    selectObjectsOnActiveArtboard() { return this.$call(o => o.selectObjectsOnActiveArtboard); }
+    selectPerspectivePreset(perspectivePreset: $Str) { return this.$call(o => o.selectPerspectivePreset, $str(perspectivePreset)); }
+    setPerspectiveActivePlane(perspectiveGridPlane: $Ref<PerspectiveGridPlaneType>) { return this.$call(o => o.setPerspectiveActivePlane, $ref(perspectiveGridPlane)); }
+    showPerspectiveGrid() { return this.$call(o => o.showPerspectiveGrid); }
+    windowCapture(imageFile: $Ref<File>, windowSize: $Ref<Point>) { return this.$call(o => o.windowCapture, $ref(imageFile), $ref(windowSize)); }
+}
+
+class $Layers extends $ApplicationCollection<Layers, $Layer, Layer, $Document> {
+    constructor(ref: $Reference<Layers>, document: $Document) {
+        super(ref, "Layers", document);
+    }
+
+    add(): $Layer { return super._add(); }
+    getByName(name: $Str) { return super._getByName(name); }
+    removeAll() { return super._removeAll(); }
+}
+
+class $Layer extends $DocumentItem<Layer, $Document> {
+    pageItems(): $PageItems { return $docref(this.$get(o => o.pageItems), this.typename(), this.document()); }
+    pathItems(): $PathItems { return $docref(this.$get(o => o.pathItems), this.typename(), this.document()); }
+    textFrames(): $TextFrames { return $docref(this.$get(o => o.textFrames), this.typename(), this.document()); }
+    groupItems(): $GroupItems { return $docref(this.$get(o => o.groupItems), this.typename(), this.document()); }
+    rasterItems(): $RasterItems { return $docref(this.$get(o => o.rasterItems), this.typename(), this.document()); }
+    compoundPathItems(): $CompoundPathItems { return $docref(this.$get(o => o.compoundPathItems), this.typename(), this.document()); }
+    legacyTextItems(): $LegacyTextItems { return $docref(this.$get(o => o.legacyTextItems), this.typename(), this.document()); }
+    nonNativeItems(): $NonNativeItems { return $docref(this.$get(o => o.nonNativeItems), this.typename(), this.document()); }
+    placedItems(): $PlacedItems { return $docref(this.$get(o => o.placedItems), this.typename(), this.document()); }
+    graphItems(): $GraphItems { return $docref(this.$get(o => o.graphItems), this.typename(), this.document()); }
+    meshItems(): $MeshItems { return $docref(this.$get(o => o.meshItems), this.typename(), this.document()); }
+
+    name(newValue?: string | $Reference<string>) { return super._name(newValue); }
+
+    constructor(ref: $Reference<Layer> | string, document: $Document) {
+        super(ref, "Layer", document);
+    }
+}

@@ -53,6 +53,23 @@ describe('the writing', () => {
         expect(conversationTitle(sampleConversation('v', 'Given', [opening]))).toBe('Given');
     });
 
+    // Found 2026-10-18 importing every conversation: a message of "Cathy > Libraries" held a row of a table with
+    // no rule under it, and the writing wrote an empty paragraph at that line until the heap ran out.
+    it('writes a line no form takes as prose, so a row of a table with no rule under it is a paragraph', () => {
+        expect(blockLines('| a | b |\nand then words\n\n| c |', 0))
+            .toEqual(['<Paragraph>| a | b | and then words</Paragraph>', '<Paragraph>| c |</Paragraph>']);
+        expect(blockLines('| x | y |\n|---|---|\n| 1 | 2 |', 0).join('\n')).toContain('<Table />');
+    });
+
+    // Found 2026-10-18: display math in a list's item was an Equation in a Line, which the specification refuses.
+    it('writes display math as an Equation in a paragraph and as inline Math in a list\'s line or a heading', () => {
+        expect(blockLines('Then $$E = mc^2$$ holds.', 0).join('\n')).toContain('<Equation>{"E = mc^2"}</Equation>');
+        const listed = blockLines('1. energy $$E = mc^2$$ here', 0).join('\n');
+        expect(listed).toContain('<Math>{"E = mc^2"}</Math>');
+        expect(listed).not.toContain('<Equation>');
+        expect(blockLines('## The law \\[F = ma\\]', 0).join('\n')).toContain('<Math>{"F = ma"}</Math>');
+    });
+
     it('escapes what the notation and TSX would read, so a bracket in a message stays a bracket', () => {
         const lines = blockLines(`${titleForm('x')} {y} <z> & w`, 0);
         expect(lines.join('\n')).toContain('&#91;&#91; x &#93;&#93; &#123;y&#125; &lt;z&gt; &amp; w');

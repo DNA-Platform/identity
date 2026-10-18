@@ -1,0 +1,211 @@
+/**
+ * WASM-compatible Array wrapper with LINQ-style operations
+ * Extends native Array for maximum compatibility
+ */
+export class A<T> extends Array<T> {
+  constructor(items?: T[] | ArrayLike<T>) {
+    super();
+    if (items) {
+      if (Array.isArray(items)) {
+        // Can't use spread in AssemblyScript, must iterate
+        for (let i = 0; i < items.length; i++) {
+          this.push(items[i]);
+        }
+      } else {
+        // Handle typed arrays from WASM
+        for (let i = 0; i < items.length; i++) {
+          this.push(items[i]);
+        }
+      }
+    }
+  }
+
+  // Core access methods from your framework
+  a(): T[] { return this; }
+  at(index: i32): T {
+    // Handle negative indexing
+    const idx = index < 0 ? this.length + index : index;
+    return this[idx];
+  }
+
+  // LINQ-style operations
+  select<U>(selector: (item: T, index: i32) => U): A<U> {
+    const result = new A<U>();
+    for (let i = 0; i < this.length; i++) {
+      result.push(selector(this[i], i));
+    }
+    return result;
+  }
+
+  where(predicate: (item: T, index: i32) => boolean): A<T> {
+    const result = new A<T>();
+    for (let i = 0; i < this.length; i++) {
+      if (predicate(this[i], i)) {
+        result.push(this[i]);
+      }
+    }
+    return result;
+  }
+
+  selectMany<U>(selector: (item: T, index: i32) => U[]): A<U> {
+    const result = new A<U>();
+    for (let i = 0; i < this.length; i++) {
+      const selected = selector(this[i], i);
+      for (let j = 0; j < selected.length; j++) {
+        result.push(selected[j]);
+      }
+    }
+    return result;
+  }
+
+  // Your specialized methods
+  first(predicate?: (item: T, index: i32) => boolean): T {
+    if (!predicate) return this[0];
+    for (let i = 0; i < this.length; i++) {
+      if (predicate(this[i], i)) return this[i];
+    }
+    return this[0]; // AssemblyScript doesn't have undefined
+  }
+
+  last(predicate?: (item: T, index: i32) => boolean): T {
+    if (!predicate) return this[this.length - 1];
+    for (let i = this.length - 1; i >= 0; i--) {
+      if (predicate(this[i], i)) return this[i];
+    }
+    return this[this.length - 1];
+  }
+
+  any(predicate?: (item: T, index: i32) => boolean): boolean {
+    if (!predicate) return this.length > 0;
+    for (let i = 0; i < this.length; i++) {
+      if (predicate(this[i], i)) return true;
+    }
+    return false;
+  }
+
+  all(predicate: (item: T, index: i32) => boolean): boolean {
+    for (let i = 0; i < this.length; i++) {
+      if (!predicate(this[i], i)) return false;
+    }
+    return true;
+  }
+
+  distinct(comparer?: (a: T, b: T) => boolean): A<T> {
+    const equal = comparer || ((a: T, b: T) => a === b);
+    const result = new A<T>();
+    for (let i = 0; i < this.length; i++) {
+      let found = false;
+      for (let j = 0; j < result.length; j++) {
+        if (equal(this[i], result[j])) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) result.push(this[i]);
+    }
+    return result;
+  }
+
+  aggregate<U>(seed: U, func: (acc: U, current: T, index: i32) => U): U {
+    let result = seed;
+    for (let i = 0; i < this.length; i++) {
+      result = func(result, this[i], i);
+    }
+    return result;
+  }
+
+  // Array manipulation from your framework
+  skip(count: i32): A<T> {
+    const result = new A<T>();
+    for (let i = count; i < this.length; i++) {
+      result.push(this[i]);
+    }
+    return result;
+  }
+
+  take(count: i32): A<T> {
+    const result = new A<T>();
+    const limit = Math.min(count, this.length) as i32;
+    for (let i = 0; i < limit; i++) {
+      result.push(this[i]);
+    }
+    return result;
+  }
+
+  // Your zip implementation
+  zip<U>(other: A<U> | U[]): A<[T, U]> {
+    const result = new A<[T, U]>();
+    const otherArray = other instanceof A ? other : new A(other);
+    const len = Math.min(this.length, otherArray.length) as i32;
+    for (let i = 0; i < len; i++) {
+      result.push([this[i], otherArray[i]]);
+    }
+    return result;
+  }
+
+  // Ordering operations
+  orderBy(selector?: (item: T) => f32): A<T> {
+    const copy = new A<T>();
+    for (let i = 0; i < this.length; i++) {
+      copy.push(this[i]);
+    }
+    
+    // Simple bubble sort for WASM (can optimize later)
+    if (selector) {
+      for (let i = 0; i < copy.length - 1; i++) {
+        for (let j = 0; j < copy.length - i - 1; j++) {
+          if (selector(copy[j]) > selector(copy[j + 1])) {
+            const temp = copy[j];
+            copy[j] = copy[j + 1];
+            copy[j + 1] = temp;
+          }
+        }
+      }
+    }
+    return copy;
+  }
+
+  // Your do/forEach pattern
+  do(callback: (item: T, index: i32) => void): A<T> {
+    for (let i = 0; i < this.length; i++) {
+      callback(this[i], i);
+    }
+    return this;
+  }
+
+  // WASM-specific conversions
+  toFloat32Array(): Float32Array {
+    const result = new Float32Array(this.length);
+    for (let i = 0; i < this.length; i++) {
+      result[i] = this[i] as f32;
+    }
+    return result;
+  }
+
+  toUint32Array(): Uint32Array {
+    const result = new Uint32Array(this.length);
+    for (let i = 0; i < this.length; i++) {
+      result[i] = this[i] as u32;
+    }
+    return result;
+  }
+
+  // Range operations from your framework
+  static range(start: i32, count: i32): A<i32> {
+    const result = new A<i32>();
+    for (let i = 0; i < count; i++) {
+      result.push(start + i);
+    }
+    return result;
+  }
+}
+
+// Helper functions
+export function f<T>(array: T[] | A<T> = []): A<T> {
+  return array instanceof A ? array : new A(array);
+}
+
+// Range helper from your framework
+export function r(start: i32, end: i32): A<i32> {
+  return A.range(start, end - start);
+}

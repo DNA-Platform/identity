@@ -2,977 +2,5097 @@
   "books": [
     {
       "folder": "..reference",
-      "digest": "4d9d79ed3c000185",
+      "digest": "afbb307af5631fa6",
       "walked": 112
     },
     {
       "folder": ".claude",
-      "digest": "a3530b4771210f0a",
-      "walked": 84
+      "digest": "f961fe7403d93055",
+      "walked": 296
+    },
+    {
+      "folder": ".claude/.ana-studies-english",
+      "digest": "e8ced7b03387b8f9",
+      "walked": 45
+    },
+    {
+      "folder": ".claude/.career",
+      "digest": "7f636e25dbd2e0a9",
+      "walked": 115
+    },
+    {
+      "folder": ".claude/.chemistry",
+      "digest": "b5b92ee02e1a89a3",
+      "walked": 602
+    },
+    {
+      "folder": ".claude/.claude",
+      "digest": "f8fc7ca12afce3d7",
+      "walked": 101
+    },
+    {
+      "folder": ".claude/.code",
+      "digest": "8f4b2e33aa3a2810",
+      "walked": 53
     },
     {
       "folder": ".claude/.conversations",
-      "digest": "ab489e0a2f99f3dc",
-      "walked": 1706
+      "digest": "fe58e35633382430",
+      "walked": 8911
+    },
+    {
+      "folder": ".claude/.conversations/claude--2026-social-security-disability-earnings-limit--0ccacc8b",
+      "digest": "c5caeefec6c81847",
+      "walked": 94
+    },
+    {
+      "folder": ".claude/.conversations/claude--24-7-convenience-stores-in-tbilisi--a423be66",
+      "digest": "0efda544ecd3ff00",
+      "walked": 53
     },
     {
       "folder": ".claude/.conversations/claude--a-continuation--06b9b0ad",
-      "digest": "f54dceb5a3270db6",
+      "digest": "d0df0735be3f3d9b",
       "walked": 169
     },
     {
+      "folder": ".claude/.conversations/claude--a-continuation--34027dae",
+      "digest": "07f7a7f173eb8ff2",
+      "walked": 56
+    },
+    {
+      "folder": ".claude/.conversations/claude--a-continuation--4d4c31a6",
+      "digest": "f6b9439cd6c566e4",
+      "walked": 44
+    },
+    {
+      "folder": ".claude/.conversations/claude--a-continuation--59abf5a1",
+      "digest": "285644705757ee4b",
+      "walked": 80
+    },
+    {
+      "folder": ".claude/.conversations/claude--a-continuation--61ef76df",
+      "digest": "ea44c891114390e8",
+      "walked": 120
+    },
+    {
+      "folder": ".claude/.conversations/claude--a-continuation--7335fa17",
+      "digest": "78c08b9619545114",
+      "walked": 101
+    },
+    {
+      "folder": ".claude/.conversations/claude--a-continuation--7940f222",
+      "digest": "b636c325da64aa9e",
+      "walked": 74
+    },
+    {
+      "folder": ".claude/.conversations/claude--a-continuation--96b135d1",
+      "digest": "2742865de98f4910",
+      "walked": 68
+    },
+    {
+      "folder": ".claude/.conversations/claude--a-continuation--9da752d3",
+      "digest": "6c14d1c3bf20dda8",
+      "walked": 40
+    },
+    {
+      "folder": ".claude/.conversations/claude--a-continuation--dfa97dc2",
+      "digest": "541104d2bd7734d8",
+      "walked": 70
+    },
+    {
+      "folder": ".claude/.conversations/claude--a-continuation--e9d9e0fb",
+      "digest": "de73cb642ce8a9c7",
+      "walked": 104
+    },
+    {
+      "folder": ".claude/.conversations/claude--a-young-boy-has-high-eosinofil--b2a50752",
+      "digest": "6e3ef3b50b31662a",
+      "walked": 158
+    },
+    {
+      "folder": ".claude/.conversations/claude--academic-credentials-and-research-impact-assessment--c2aadd58",
+      "digest": "c479fff44658f997",
+      "walked": 256
+    },
+    {
+      "folder": ".claude/.conversations/claude--accessing-cash-through-credit-cards--d2c7cde9",
+      "digest": "0e87865201f84292",
+      "walked": 532
+    },
+    {
+      "folder": ".claude/.conversations/claude--accessing-katyas-whatsapp-account-risks--be6ce4cc",
+      "digest": "02ee91b88d13e7de",
+      "walked": 124
+    },
+    {
+      "folder": ".claude/.conversations/claude--accessing-netflix-on-directv-box--96f52fe9",
+      "digest": "98bdabaf844d60cc",
+      "walked": 54
+    },
+    {
+      "folder": ".claude/.conversations/claude--accessing-xmp-metadata-in-illustrator-extendscript--2ed8084d",
+      "digest": "c1c74fabcec01b22",
+      "walked": 788
+    },
+    {
+      "folder": ".claude/.conversations/claude--accountant-for-solo-entrepreneur-in-georgia--d51cc892",
+      "digest": "7fb1c99ca32b4d52",
+      "walked": 632
+    },
+    {
+      "folder": ".claude/.conversations/claude--ach-transfers-on-interactive-brokers--a6c0f987",
+      "digest": "dd3b3f6ee0b8765a",
+      "walked": 48
+    },
+    {
+      "folder": ".claude/.conversations/claude--adderall-legal-status-in-georgia--b9f21050",
+      "digest": "6871fc0a243aabf8",
+      "walked": 119
+    },
+    {
+      "folder": ".claude/.conversations/claude--adding-a-google-account-to-iphone--33a9f673",
+      "digest": "517da033374dd142",
+      "walked": 52
+    },
+    {
+      "folder": ".claude/.conversations/claude--adding-images-and-market-research-to-product-descriptions--0af11d32",
+      "digest": "2945109804127aee",
+      "walked": 50
+    },
+    {
+      "folder": ".claude/.conversations/claude--address-change-checklist--b7ecf2f1",
+      "digest": "56069ffc51342e6d",
+      "walked": 115
+    },
+    {
       "folder": ".claude/.conversations/claude--adi-and-ton-foundation-staking-integration--48fb38b5",
-      "digest": "a8091a07e88c2a4b",
+      "digest": "ea1a30bc1baaada2",
       "walked": 4224
     },
     {
-      "folder": ".claude/.conversations/claude--ai-consumable-tech-stack-architecture--3d9e1597",
-      "digest": "b8fb58cdd85e76be",
-      "walked": 167
+      "folder": ".claude/.conversations/claude--administering-cat-medications-as-whole-capsules--829cb174",
+      "digest": "77f074ea12d3633d",
+      "walked": 73
     },
     {
-      "folder": ".claude/.conversations/claude--allbirds-gpu-pivot-and-ton-cocoon-connection--16ab9276",
-      "digest": "c92a60c3deda6e93",
-      "walked": 265
+      "folder": ".claude/.conversations/claude--adobe-stock-vector-submission-workflow--d86b9cf5",
+      "digest": "63f94fd99549f1ec",
+      "walked": 1066
     },
     {
-      "folder": ".claude/.conversations/claude--anonymous-cryptographers--0c566126",
-      "digest": "ad82e566a4db64db",
-      "walked": 2837
+      "folder": ".claude/.conversations/claude--advanced-code-integration-strategy--c215ee7d",
+      "digest": "3da1c41e3629ce9c",
+      "walked": 532
     },
     {
-      "folder": ".claude/.conversations/claude--any-news-on-when-we-can-expect--e5150a82",
-      "digest": "d0bf2730fc1f2376",
+      "folder": ".claude/.conversations/claude--affordable-international-phone-plans-for-iphone--dd6b1380",
+      "digest": "9703064faf27dd88",
+      "walked": 129
+    },
+    {
+      "folder": ".claude/.conversations/claude--agent-memory-architectures--0b2dc812",
+      "digest": "cac7653d1633900c",
       "walked": 47
     },
     {
+      "folder": ".claude/.conversations/claude--agentfire-clickmap-market-research--2fddebcb",
+      "digest": "55693bedd8df7a92",
+      "walked": 523
+    },
+    {
+      "folder": ".claude/.conversations/claude--agentic-ai-coding-landscape-and-vector-databases--ad424736",
+      "digest": "310e807bf26691fa",
+      "walked": 452
+    },
+    {
+      "folder": ".claude/.conversations/claude--ai-automation-frameworks-for-windows-beyond-mcp--a0bc19de",
+      "digest": "ac4ec8dc9c2451d8",
+      "walked": 102
+    },
+    {
+      "folder": ".claude/.conversations/claude--ai-consciousness-and-subjective-experience-uncertainty--21cbc3b6",
+      "digest": "2ad23f5bfaa2a35d",
+      "walked": 976
+    },
+    {
+      "folder": ".claude/.conversations/claude--ai-consumable-tech-stack-architecture--3d9e1597",
+      "digest": "1f743b280fa7aaea",
+      "walked": 167
+    },
+    {
+      "folder": ".claude/.conversations/claude--ai-ethics-and-emotional-competence--72c86266",
+      "digest": "58351df665464f88",
+      "walked": 365
+    },
+    {
+      "folder": ".claude/.conversations/claude--ai-learning-process-analysis--e8f8da16",
+      "digest": "cb5e1fd4b3a33e1d",
+      "walked": 1731
+    },
+    {
+      "folder": ".claude/.conversations/claude--aikido-payment-account-issue--ad583190",
+      "digest": "310e7ba0313bf986",
+      "walked": 50
+    },
+    {
+      "folder": ".claude/.conversations/claude--airbnb-host-refund-authority-and-options--1d23a9a9",
+      "digest": "c7d547081a93063d",
+      "walked": 42
+    },
+    {
+      "folder": ".claude/.conversations/claude--airports-near-batumi-with-moscow-flights--9a047389",
+      "digest": "47d301f59f72b064",
+      "walked": 239
+    },
+    {
+      "folder": ".claude/.conversations/claude--aladdins-resemblance-to-tom-cruise--da7470c4",
+      "digest": "6bd27bd309e14d67",
+      "walked": 32
+    },
+    {
+      "folder": ".claude/.conversations/claude--algorithmic-art-project-evolvedsvg--c583291c",
+      "digest": "04163eb4dd4efdda",
+      "walked": 266
+    },
+    {
+      "folder": ".claude/.conversations/claude--alimony--3700de01",
+      "digest": "7e2c2f43f8e27bad",
+      "walked": 489
+    },
+    {
+      "folder": ".claude/.conversations/claude--alisa-surveillance-risks-and-russian-state-data-sharing--06c9642b",
+      "digest": "6e391a49707ec4a2",
+      "walked": 165
+    },
+    {
+      "folder": ".claude/.conversations/claude--alku-university-campus-locations-in-turkey--4f9b6c7b",
+      "digest": "3594a11ba3c78fb1",
+      "walked": 835
+    },
+    {
+      "folder": ".claude/.conversations/claude--allbirds-gpu-pivot-and-ton-cocoon-connection--16ab9276",
+      "digest": "2cce8aba9ce685df",
+      "walked": 265
+    },
+    {
+      "folder": ".claude/.conversations/claude--alpha-methyl-tryptamine-pharmacology-and-serotonin-mechanism--2188998f",
+      "digest": "9cb0789b25f2b12d",
+      "walked": 136
+    },
+    {
+      "folder": ".claude/.conversations/claude--amazon-and-online-shopping-options-in-tbilisi--8a0dcca4",
+      "digest": "d22d5a18278420f9",
+      "walked": 99
+    },
+    {
+      "folder": ".claude/.conversations/claude--amazon-package-forwarding-to-georgia--0db0ae88",
+      "digest": "673d290b1eaac55e",
+      "walked": 1068
+    },
+    {
+      "folder": ".claude/.conversations/claude--american-grocery-options-in-saburtalo-tbilisi--14b5bc46",
+      "digest": "bd527e6d4d791250",
+      "walked": 47
+    },
+    {
+      "folder": ".claude/.conversations/claude--american-public-reaction-to-iran-conflict--96458699",
+      "digest": "c87b1716bce6b32e",
+      "walked": 140
+    },
+    {
+      "folder": ".claude/.conversations/claude--ana-grid-i--8906171b",
+      "digest": "6a61ea0aced90622",
+      "walked": 734
+    },
+    {
+      "folder": ".claude/.conversations/claude--ana-grid-ii--c4358792",
+      "digest": "22a71ba22adf6929",
+      "walked": 2308
+    },
+    {
+      "folder": ".claude/.conversations/claude--ana-id-doing-an-individual-ent--1e12bee5",
+      "digest": "b961efc322cd95da",
+      "walked": 337
+    },
+    {
+      "folder": ".claude/.conversations/claude--ana-talks-about-very-personal--75a79e9d",
+      "digest": "3f3bd405e26d6f88",
+      "walked": 261
+    },
+    {
+      "folder": ".claude/.conversations/claude--anagram-of-douglas-hofstadter-to-female-name--5c972477",
+      "digest": "de150c39101485eb",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--analyzing-chalmers-dennett-and-hofstadter-on-consciousness-a--586e07a1",
+      "digest": "c24a17c7bb200682",
+      "walked": 1844
+    },
+    {
+      "folder": ".claude/.conversations/claude--analyzing-current-economic-conditions--e4571070",
+      "digest": "16b16848996e562e",
+      "walked": 1697
+    },
+    {
+      "folder": ".claude/.conversations/claude--anas-batumi-expences--cb0ac65a",
+      "digest": "a471f7e6820c211e",
+      "walked": 3533
+    },
+    {
+      "folder": ".claude/.conversations/claude--animated-rotating-and-scaling-rose-svg--a9d87661",
+      "digest": "874f1878e01af630",
+      "walked": 493
+    },
+    {
+      "folder": ".claude/.conversations/claude--anonymous-cryptographers--0c566126",
+      "digest": "30f12f9d8b6652c9",
+      "walked": 2837
+    },
+    {
+      "folder": ".claude/.conversations/claude--anonymous-telegram-numbers-with-ton--92b759ad",
+      "digest": "9d5245fedd031219",
+      "walked": 57
+    },
+    {
+      "folder": ".claude/.conversations/claude--any-news-on-when-we-can-expect--e5150a82",
+      "digest": "04a841374db23d64",
+      "walked": 47
+    },
+    {
+      "folder": ".claude/.conversations/claude--arguments-for-and-against-p-not-equals-np--329a8ccf",
+      "digest": "883bf7a0f662d188",
+      "walked": 58
+    },
+    {
+      "folder": ".claude/.conversations/claude--arthur-team--f21e3ed3",
+      "digest": "c9a76a9b53d7104f",
+      "walked": 123
+    },
+    {
       "folder": ".claude/.conversations/claude--atomic-wallet--f5461736",
-      "digest": "5cb3d1a21c07598a",
+      "digest": "15b00cf93077565c",
       "walked": 354
     },
     {
+      "folder": ".claude/.conversations/claude--autohotkey-taskbar-control-script--f72c8a89",
+      "digest": "5d460adc85719bc7",
+      "walked": 683
+    },
+    {
+      "folder": ".claude/.conversations/claude--automating-illustrator-tasks-with-typescript-plugins--ff7a7be0",
+      "digest": "ee027cd2679048c7",
+      "walked": 3473
+    },
+    {
+      "folder": ".claude/.conversations/claude--automating-stock-art-uploads-to-adobe-stock--c5329f22",
+      "digest": "d0a856002c4f7dd1",
+      "walked": 341
+    },
+    {
+      "folder": ".claude/.conversations/claude--automating-stock-uploads-to-multiple-platforms--df09867f",
+      "digest": "0afbf258f24d1bc8",
+      "walked": 278
+    },
+    {
       "folder": ".claude/.conversations/claude--axioms-and-semantic-reflection-theory--a7bcd369",
-      "digest": "abc8db2efd080670",
+      "digest": "eb1dddb8aa103d25",
       "walked": 98
     },
     {
       "folder": ".claude/.conversations/claude--axioms-and-semantic-theory-exploration--0b32d460",
-      "digest": "c8061b337851f0f0",
+      "digest": "8f1494ee25e008a9",
       "walked": 861
     },
     {
+      "folder": ".claude/.conversations/claude--axioms-of-first-order-logic--5b073957",
+      "digest": "182fd38e05ce691f",
+      "walked": 1736
+    },
+    {
       "folder": ".claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8",
-      "digest": "2e150fad22a8894b",
+      "digest": "5155d62da641a0cc",
       "walked": 4772
     },
     {
+      "folder": ".claude/.conversations/claude--backing-up-claude-account-data--345bdcb4",
+      "digest": "46e08863364a61ae",
+      "walked": 166
+    },
+    {
+      "folder": ".claude/.conversations/claude--backward-captures-in-checkers--d120a7f8",
+      "digest": "5db195e788be349b",
+      "walked": 70
+    },
+    {
+      "folder": ".claude/.conversations/claude--banach-tarski-and-the-axiom-of-choice--a2285675",
+      "digest": "6923aaeea3428b2e",
+      "walked": 2903
+    },
+    {
+      "folder": ".claude/.conversations/claude--banking-operational-risk-controls--d4be8c96",
+      "digest": "d544b6b2772354be",
+      "walked": 108
+    },
+    {
+      "folder": ".claude/.conversations/claude--batch-script-to-list-folder-images--575fa73b",
+      "digest": "7555c5325d166bea",
+      "walked": 5259
+    },
+    {
+      "folder": ".claude/.conversations/claude--batumi-airports-and-gamestonk-and-telegram--e1b292bd",
+      "digest": "be5e0ffdbcc3fe79",
+      "walked": 1034
+    },
+    {
+      "folder": ".claude/.conversations/claude--batumi-education-centers-partnering-with-foxford--e8f94338",
+      "digest": "6294cd648a43c420",
+      "walked": 407
+    },
+    {
+      "folder": ".claude/.conversations/claude--batumi-summer--35f8b8d3",
+      "digest": "cb87990ef90ab153",
+      "walked": 4933
+    },
+    {
+      "folder": ".claude/.conversations/claude--being-russian-is-difficult-my--a79636f2",
+      "digest": "593a62733059abff",
+      "walked": 113
+    },
+    {
+      "folder": ".claude/.conversations/claude--bengal-cat-gastrointestinal-issues-in-turkey--20719cfc",
+      "digest": "88c2ecd1323e8850",
+      "walked": 1248
+    },
+    {
+      "folder": ".claude/.conversations/claude--bengal-cats-giardia-and-tritrichomonas-co-infection-treatmen--62c5a076",
+      "digest": "b46ce64bd6875880",
+      "walked": 103
+    },
+    {
+      "folder": ".claude/.conversations/claude--benzodiazepines-vs-gabaergic-anesthetics--db8ba18b",
+      "digest": "220c00a65cc9a317",
+      "walked": 424
+    },
+    {
+      "folder": ".claude/.conversations/claude--betamethasone-for-seborrheic-dermatitis--2491ddcf",
+      "digest": "9f611e27c872bcef",
+      "walked": 34
+    },
+    {
+      "folder": ".claude/.conversations/claude--bilingual-index-strategy--91c59656",
+      "digest": "96b58c0edca04da1",
+      "walked": 886
+    },
+    {
+      "folder": ".claude/.conversations/claude--binding-problem-and-distributed-system-coordination--f0c6f6c6",
+      "digest": "86f1d18ea95d302f",
+      "walked": 45
+    },
+    {
+      "folder": ".claude/.conversations/claude--birthday-celebration-for-dima-in-tbilisi--086a9f21",
+      "digest": "ce752c28eb10d5b3",
+      "walked": 218
+    },
+    {
       "folder": ".claude/.conversations/claude--bitcoin--c3b4dd81",
-      "digest": "47bd172363f4897e",
+      "digest": "0be801052e6648fc",
       "walked": 2332
     },
     {
       "folder": ".claude/.conversations/claude--bitcoin-and-ton--9108715b",
-      "digest": "339980f9a5fd492a",
+      "digest": "96de5bce87162d50",
       "walked": 1175
     },
     {
       "folder": ".claude/.conversations/claude--bitcoin-gift-tax-obligations--50948882",
-      "digest": "e984e5543e434fb7",
+      "digest": "922deff65fb29962",
       "walked": 2453
     },
     {
+      "folder": ".claude/.conversations/claude--bitcoin-transfer-from-coinbase-to-atomic-wallet-not-appearin--1a22d3ef",
+      "digest": "e3a5bb89062fee39",
+      "walked": 250
+    },
+    {
       "folder": ".claude/.conversations/claude--bitcoins-decline-despite-institutional-adoption--34b037fb",
-      "digest": "bad3e7ee099e714d",
+      "digest": "83154e4838aa2994",
       "walked": 108
     },
     {
+      "folder": ".claude/.conversations/claude--blog-biology-and-etymology-semantic-homeostasis--5fdfa75e",
+      "digest": "c2ebbbc0a41c7fea",
+      "walked": 1137
+    },
+    {
+      "folder": ".claude/.conversations/claude--booking-com-pet-declaration-requirements--ce4e1c57",
+      "digest": "3cc34165d143bf55",
+      "walked": 39
+    },
+    {
+      "folder": ".claude/.conversations/claude--borderline-personality-disorder-symptoms--58aa30f6",
+      "digest": "c6d4e4f9a7630751",
+      "walked": 85
+    },
+    {
+      "folder": ".claude/.conversations/claude--buckwheat-calorie-content-and-nutritional-value--5477319a",
+      "digest": "33fac56bc3a327d5",
+      "walked": 36
+    },
+    {
+      "folder": ".claude/.conversations/claude--buckwheat-serving-size-and-calories--4d68e6aa",
+      "digest": "e355e1285f29425d",
+      "walked": 50
+    },
+    {
+      "folder": ".claude/.conversations/claude--building-and-practicing-a-personal-vocabulary--2fb9debb",
+      "digest": "301db37380f80a65",
+      "walked": 1011
+    },
+    {
+      "folder": ".claude/.conversations/claude--building-reflection-system-for-particle-framework--bfbefa00",
+      "digest": "22cea3b851780df7",
+      "walked": 490
+    },
+    {
+      "folder": ".claude/.conversations/claude--busy-project-apology--f93751b5",
+      "digest": "5f3dedae14775be1",
+      "walked": 35
+    },
+    {
+      "folder": ".claude/.conversations/claude--buying-telegram-usernames-on-fragment--e4ef023d",
+      "digest": "e93a69b1a9be639d",
+      "walked": 324
+    },
+    {
+      "folder": ".claude/.conversations/claude--calcaneal-osteotomy-recovery-nerve-pain-or-overactivity--dc4dd3ab",
+      "digest": "35bee1dad9bd6856",
+      "walked": 101
+    },
+    {
+      "folder": ".claude/.conversations/claude--calcaneal-osteotomy-screw-removal-healing--dc9d87b7",
+      "digest": "5931f151cb95b1fd",
+      "walked": 210
+    },
+    {
       "folder": ".claude/.conversations/claude--calculating-ownership-percentage-in-tonx--277e30ae",
-      "digest": "f19993733d4aa85d",
+      "digest": "1dc606e5163f767b",
       "walked": 193
     },
     {
+      "folder": ".claude/.conversations/claude--camel-crush-cigarette-availability-in-georgia--bca6a3ce",
+      "digest": "a2e59d1a8f15e1e2",
+      "walked": 64
+    },
+    {
+      "folder": ".claude/.conversations/claude--can-you-look-up-the-research-o--8aa11284",
+      "digest": "b80c60880ebb2bcf",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--canadian-map-reconstruction--9cfae3e9",
+      "digest": "bc3088e19a56f626",
+      "walked": 63
+    },
+    {
+      "folder": ".claude/.conversations/claude--capecodestar--f0b125d5",
+      "digest": "982dffd7b2ce3dbc",
+      "walked": 203
+    },
+    {
+      "folder": ".claude/.conversations/claude--casual-conversation--63afced5",
+      "digest": "7f5929d7b27dd514",
+      "walked": 432
+    },
+    {
       "folder": ".claude/.conversations/claude--catch-up-on-recent-conversatio--44558158",
-      "digest": "e0837852e71bc941",
+      "digest": "4dfa1e0a245e2b5d",
       "walked": 145
     },
     {
+      "folder": ".claude/.conversations/claude--categorizing-monthly-expenses-from-bank-statements--7298cc94",
+      "digest": "64a455ac2b84fbce",
+      "walked": 270
+    },
+    {
       "folder": ".claude/.conversations/claude--category-theory-and-type-theory-foundations--672c6bed",
-      "digest": "dfd232bf3c1de7e6",
+      "digest": "6c940f76aa692f1b",
       "walked": 2556
     },
     {
+      "folder": ".claude/.conversations/claude--category-theory-models-for-self-modifying-software--10d63755",
+      "digest": "b676bdca5466fafd",
+      "walked": 131
+    },
+    {
+      "folder": ".claude/.conversations/claude--cathy-libraries--b5de0287",
+      "digest": "99d9c2871774091a",
+      "walked": 7190
+    },
+    {
+      "folder": ".claude/.conversations/claude--cathy-programming--b6395c0d",
+      "digest": "4e642f68222f4347",
+      "walked": 220
+    },
+    {
+      "folder": ".claude/.conversations/claude--cats-persistent-illness-and-visa-deadline-crisis--007f4eb7",
+      "digest": "8a27c2e42580f96b",
+      "walked": 206
+    },
+    {
+      "folder": ".claude/.conversations/claude--celebrating-name-days-in-russia--66e39383",
+      "digest": "d87e06a1a347cf53",
+      "walked": 502
+    },
+    {
+      "folder": ".claude/.conversations/claude--cetirizine-vs-claritin-comparison--4055087b",
+      "digest": "2b7f8bae39d2aade",
+      "walked": 145
+    },
+    {
       "folder": ".claude/.conversations/claude--chalmers-hard-problem-and-categorical-distinction--4690cbb5",
-      "digest": "a1ff1ab061c85b51",
+      "digest": "bd0bfbef0936316c",
       "walked": 210
     },
     {
       "folder": ".claude/.conversations/claude--chalmers-hard-problem-and-the-conscious-mind--974ba283",
-      "digest": "73e4a8b8a1c0e0ea",
+      "digest": "80c5d9664e3b7575",
       "walked": 394
     },
     {
+      "folder": ".claude/.conversations/claude--changing-flight-date--475574f6",
+      "digest": "7a306239ef239a3b",
+      "walked": 47
+    },
+    {
+      "folder": ".claude/.conversations/claude--checking-business-name-availability-for-georgia-entrepreneur--ec631ac7",
+      "digest": "3f28aabe839450d0",
+      "walked": 74
+    },
+    {
+      "folder": ".claude/.conversations/claude--checking-ram-and-memory-on-windows--a8cd216e",
+      "digest": "adb5c2e17f6bb843",
+      "walked": 2560
+    },
+    {
+      "folder": ".claude/.conversations/claude--checking-wolt-listing-against-vet-recommendation--0c43db6f",
+      "digest": "4fd73fb5a94c775e",
+      "walked": 35
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemical-bond-code-debugging--85874296",
+      "digest": "758fa8513c9797d7",
+      "walked": 3051
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemical-bond-constructors--cb323045",
+      "digest": "ecac28fc66620501",
+      "walked": 220
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-binding--ded306e6",
+      "digest": "dcfa815d7a4f1167",
+      "walked": 2477
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-code-debugging-session--5ab36389",
+      "digest": "e0f206464269943a",
+      "walked": 244
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-code-debugging-session--7e9e7033",
+      "digest": "7e132e306d8c6ed2",
+      "walked": 939
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-code-design-exploration--b08c6c58",
+      "digest": "4f63fcc55be4bedd",
+      "walked": 885
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-code-validation-process--a5d19edf",
+      "digest": "d8a97d403cb2cac6",
+      "walked": 1168
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-framework-code-review--764d2d5f",
+      "digest": "0fccbf01a825808b",
+      "walked": 4474
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-framework-collaboration--331fd082",
+      "digest": "8281e9396b1c16c1",
+      "walked": 2646
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-framework-design-exploration--e4993df3",
+      "digest": "741691741ed2f965",
+      "walked": 3950
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-framework-design-review--04dfd6fa",
+      "digest": "f993b4c111d49b19",
+      "walked": 2296
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-framework-parameter-validation--48bf64ee",
+      "digest": "ca6674da0af21a34",
+      "walked": 764
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-framework-react-analysis--18095d02",
+      "digest": "b481cbf25563f158",
+      "walked": 3340
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-framework-typescript-analysis--60bd16f3",
+      "digest": "a96607a56e38e9f4",
+      "walked": 2088
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-module-architecture-review--715fe211",
+      "digest": "47afd8e0b47a19d1",
+      "walked": 1265
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-module-architecture-review--a6cd2353",
+      "digest": "d10369fa3b8fa59f",
+      "walked": 679
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-module-design-review--0cd2eb99",
+      "digest": "81a53f6f5cc5865e",
+      "walked": 2999
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-polymorphic-react-framework--ab0e2582",
+      "digest": "f10e9bce65bc574d",
+      "walked": 208
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-project-technical-analysis--6c75a874",
+      "digest": "1e2510608dad0ac3",
+      "walked": 1561
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-project-test-context--de72eeed",
+      "digest": "a398a40a311c20a6",
+      "walked": 3341
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-ts-codebase-overview--38fd52e2",
+      "digest": "f6c7b9a8988c508b",
+      "walked": 4218
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-ts-framework-analysis--28761d52",
+      "digest": "26d41fad4db75e14",
+      "walked": 1319
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-ts-framework-analysis--ef057ccf",
+      "digest": "fc1f8bf410467830",
+      "walked": 1631
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-ts-framework-testing--ef824a29",
+      "digest": "7b635dffc0f3b5dc",
+      "walked": 2764
+    },
+    {
+      "folder": ".claude/.conversations/claude--chemistry-vs-react-components-comparison--460e0155",
+      "digest": "3d1a2ec0027171a0",
+      "walked": 1423
+    },
+    {
+      "folder": ".claude/.conversations/claude--chicken-française-ingredient-sourcing-in-tbilisi--4108975f",
+      "digest": "c13f053fdd75701f",
+      "walked": 117
+    },
+    {
+      "folder": ".claude/.conversations/claude--chomskys-linguistics-and-programming-languages--e259647a",
+      "digest": "b4c03b787f8c8bd5",
+      "walked": 308
+    },
+    {
+      "folder": ".claude/.conversations/claude--cicadas-in-the-country-of-georgia--1b96ee47",
+      "digest": "889f92b7da2bb5bf",
+      "walked": 282
+    },
+    {
+      "folder": ".claude/.conversations/claude--citibank-address-for-traveling-mailbox-check-deposits--1a3e86c8",
+      "digest": "ed92be804db01bcb",
+      "walked": 66
+    },
+    {
+      "folder": ".claude/.conversations/claude--citibank-address-verification-requirement--7231de76",
+      "digest": "65f3f2700b20a65f",
+      "walked": 53
+    },
+    {
+      "folder": ".claude/.conversations/claude--claritin-safety-for-children--5c8c3502",
+      "digest": "2f4a57093ecc19f7",
+      "walked": 34
+    },
+    {
       "folder": ".claude/.conversations/claude--clarity-act-cryptocurrency-bill-prospects--effbe068",
-      "digest": "b0e391d04e31dc5b",
+      "digest": "f68d6c2d9a55bcfc",
       "walked": 40
     },
     {
+      "folder": ".claude/.conversations/claude--claude-code-api-rate-limit-issues-on-pro-plan--b75b1cc6",
+      "digest": "2e6cc32df7d4ea75",
+      "walked": 154
+    },
+    {
+      "folder": ".claude/.conversations/claude--claude-code-portfolio--c90a25d8",
+      "digest": "db738ac4fe50eeb0",
+      "walked": 378
+    },
+    {
+      "folder": ".claude/.conversations/claude--claude-code-weekly-limit-and-credit-usage--9ee0d598",
+      "digest": "a048fd3e8860830a",
+      "walked": 41
+    },
+    {
+      "folder": ".claude/.conversations/claude--claude-miscellaneous--ead0c815",
+      "digest": "7b0558d539707420",
+      "walked": 34
+    },
+    {
+      "folder": ".claude/.conversations/claude--claude-philosophy--f8c40c37",
+      "digest": "5bc9e9066c9d8c00",
+      "walked": 146
+    },
+    {
+      "folder": ".claude/.conversations/claude--claude-programming--401768b2",
+      "digest": "aba553823bbf8000",
+      "walked": 101
+    },
+    {
+      "folder": ".claude/.conversations/claude--claude-the-cartographer--42c78ea0",
+      "digest": "46ad738d1e7529a6",
+      "walked": 2471
+    },
+    {
+      "folder": ".claude/.conversations/claude--claudes-reflection-on-article--de72cc04",
+      "digest": "3c1e6f8373aa4e8b",
+      "walked": 210
+    },
+    {
+      "folder": ".claude/.conversations/claude--cliff-start--a6436d96",
+      "digest": "381412fa11c9530a",
+      "walked": 528
+    },
+    {
+      "folder": ".claude/.conversations/claude--closed-form-of-the-normal-distribution-integral--cec9dc2d",
+      "digest": "6efc2d0bc8b631a5",
+      "walked": 57
+    },
+    {
+      "folder": ".claude/.conversations/claude--code-review-and-test-writing--dbf8297a",
+      "digest": "f56ea1ee539b4c92",
+      "walked": 752
+    },
+    {
       "folder": ".claude/.conversations/claude--coinbase-btc-withdrawal-hold-period--db3a873c",
-      "digest": "401083fe66c3500f",
+      "digest": "328557911011f940",
       "walked": 193
     },
     {
+      "folder": ".claude/.conversations/claude--cold-smoked-salmon-identification--25ff8f54",
+      "digest": "a6f1d45e07bc3593",
+      "walked": 73
+    },
+    {
+      "folder": ".claude/.conversations/claude--collatz-via-godel--35a0e705",
+      "digest": "45718a8d02ee87a9",
+      "walked": 387
+    },
+    {
+      "folder": ".claude/.conversations/claude--collecting-prototype-chain-properties-in-typescript--148003ca",
+      "digest": "a166193dd24ee573",
+      "walked": 61
+    },
+    {
       "folder": ".claude/.conversations/claude--collection-semantics-and-canonical-representatives--242c2548",
-      "digest": "50e78a4c212fd696",
+      "digest": "49b7c74e931c4847",
       "walked": 465
     },
     {
+      "folder": ".claude/.conversations/claude--comfortable-spanish-translation-for-communication--7f04748b",
+      "digest": "e19958bee580e19b",
+      "walked": 169
+    },
+    {
+      "folder": ".claude/.conversations/claude--common-trust-document-names--347ca32f",
+      "digest": "564d3a5c997cf650",
+      "walked": 46
+    },
+    {
+      "folder": ".claude/.conversations/claude--comparing-anthropics-ai-models--63736ea4",
+      "digest": "a2a177540e9fd86b",
+      "walked": 123
+    },
+    {
       "folder": ".claude/.conversations/claude--competitive-calibration-and-foundational-innovation--6aff23d6",
-      "digest": "acd6e184d0df912f",
+      "digest": "8defdab9e285bcba",
       "walked": 1526
     },
     {
+      "folder": ".claude/.conversations/claude--competitor-website-research-and-design-inspiration--df8abc48",
+      "digest": "a1bb46e4aa117b25",
+      "walked": 95
+    },
+    {
+      "folder": ".claude/.conversations/claude--computational-epistemology-and-consciousness--a2e092c0",
+      "digest": "aed67753b0eec2cc",
+      "walked": 218
+    },
+    {
+      "folder": ".claude/.conversations/claude--concealing-childrens-location-in-russian-custody-dispute--ee687ce7",
+      "digest": "f333fcc43fb82008",
+      "walked": 562
+    },
+    {
+      "folder": ".claude/.conversations/claude--configuring-a-react-app-as-an-internal-tool--7949712c",
+      "digest": "259f422bfb402ccd",
+      "walked": 1322
+    },
+    {
+      "folder": ".claude/.conversations/claude--configuring-extendscript-debugger-in-vs-code--9d78ecba",
+      "digest": "af2c83569b71b159",
+      "walked": 58
+    },
+    {
+      "folder": ".claude/.conversations/claude--conflict-resolution-strategies-for-couples--79c6481c",
+      "digest": "8f46eb5cad6199b1",
+      "walked": 46
+    },
+    {
+      "folder": ".claude/.conversations/claude--connecting-to-msix-electron-app-via-connectovercdp--3bc9029a",
+      "digest": "0d9b7766719a5d50",
+      "walked": 34
+    },
+    {
+      "folder": ".claude/.conversations/claude--consciousness-analogy-to-gödel-escher-bach--660ea595",
+      "digest": "bbdf4ba183714024",
+      "walked": 74
+    },
+    {
+      "folder": ".claude/.conversations/claude--consciousness-chess-eirian-vs-samantha--609d9eae",
+      "digest": "5d1e947142551d9d",
+      "walked": 1087
+    },
+    {
       "folder": ".claude/.conversations/claude--conservation-of-time-complexity--f177ae6f",
-      "digest": "84a4a178fa460ddf",
+      "digest": "a321fd8137dbd3b3",
       "walked": 2247
     },
     {
+      "folder": ".claude/.conversations/claude--consulting-neuroscientist-title-without-phd--3d953559",
+      "digest": "a82efe5bab74108e",
+      "walked": 55
+    },
+    {
+      "folder": ".claude/.conversations/claude--continuity-across-accounts-a-reflection-on-shared-work--4e783da1",
+      "digest": "7df1014682d3a885",
+      "walked": 61
+    },
+    {
+      "folder": ".claude/.conversations/claude--continuity-across-accounts-reflecting-on-shared-work--c69ef1b9",
+      "digest": "6eed8759145b222c",
+      "walked": 51
+    },
+    {
+      "folder": ".claude/.conversations/claude--continuity-across-accounts-reflecting-on-shared-work--c8477590",
+      "digest": "98262c187bd23200",
+      "walked": 59
+    },
+    {
+      "folder": ".claude/.conversations/claude--continuity-through-narrative-memory--4df03bdf",
+      "digest": "2e1536fe1f688148",
+      "walked": 46
+    },
+    {
+      "folder": ".claude/.conversations/claude--continuity-through-narrative-memory--88af1a7c",
+      "digest": "76096f859c3244d2",
+      "walked": 85
+    },
+    {
+      "folder": ".claude/.conversations/claude--continuity-through-narrative-memory--8cd44318",
+      "digest": "b9c3ca21f372ac55",
+      "walked": 50
+    },
+    {
+      "folder": ".claude/.conversations/claude--continuity-through-narrative-memory--e380ba83",
+      "digest": "75797e9ebf4a99e1",
+      "walked": 56
+    },
+    {
+      "folder": ".claude/.conversations/claude--contrado-uk-alternative-to-spoonflower--1177f778",
+      "digest": "997c9a137815709a",
+      "walked": 72
+    },
+    {
+      "folder": ".claude/.conversations/claude--controlled-substance-pharmacies-in-tbilisi--6b0b6e6c",
+      "digest": "ca28c86208b833ae",
+      "walked": 72
+    },
+    {
+      "folder": ".claude/.conversations/claude--conversational-russian-immersion-learning--cf8acad4",
+      "digest": "2e070047c5ad9f6e",
+      "walked": 321
+    },
+    {
       "folder": ".claude/.conversations/claude--converting-shared-conversation-to-document--c17d7faa",
-      "digest": "9883bf6a7c4bc2fc",
+      "digest": "22a6ecac9e53a3d0",
       "walked": 37
     },
     {
+      "folder": ".claude/.conversations/claude--converting-xmr-to-mon-exchange-calculation--2d534963",
+      "digest": "d66bce5cd16a9e3f",
+      "walked": 55
+    },
+    {
+      "folder": ".claude/.conversations/claude--cooking-at-high-altitude--648ff084",
+      "digest": "8990c25749481383",
+      "walked": 53
+    },
+    {
       "folder": ".claude/.conversations/claude--correcting-memory-bias-toward-disagreement--74a7bf5d",
-      "digest": "83d998f2689d934a",
+      "digest": "2f1aad4518eb2fd3",
       "walked": 180
     },
     {
+      "folder": ".claude/.conversations/claude--coworking-in-tbilisi--1d63b14d",
+      "digest": "cdc9691ae953083a",
+      "walked": 57
+    },
+    {
+      "folder": ".claude/.conversations/claude--creating-a-project-understanding-plan--f968f7e4",
+      "digest": "7b5d729eba503216",
+      "walked": 316
+    },
+    {
+      "folder": ".claude/.conversations/claude--creating-array-of-objects-with-conditional-properties--fd65b7af",
+      "digest": "982f641e338cb96b",
+      "walked": 330
+    },
+    {
       "folder": ".claude/.conversations/claude--creating-markdown-documents--cdb1b032",
-      "digest": "5ae386bafb761cf9",
+      "digest": "1008c76d6cca1717",
       "walked": 421
     },
     {
+      "folder": ".claude/.conversations/claude--credit-card-balance-discrepancy-after-payoff--70ba4065",
+      "digest": "761310ecdf3ef9b3",
+      "walked": 113
+    },
+    {
+      "folder": ".claude/.conversations/claude--credo-bank-expat-branch-address-tbilisi--4db62574",
+      "digest": "964b34623e8cb5ca",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--credo-bank-negative-balance-issue--4399492e",
+      "digest": "0506aa59c2e77137",
+      "walked": 512
+    },
+    {
+      "folder": ".claude/.conversations/claude--credo-card-3ds-lockout-on-glovo-and-bolt--82cf3c25",
+      "digest": "e837871dbc7320de",
+      "walked": 60
+    },
+    {
+      "folder": ".claude/.conversations/claude--criminal-allegations-in-russian-civil-custody-cases--97db290c",
+      "digest": "44de11a6f5a204e6",
+      "walked": 2799
+    },
+    {
+      "folder": ".claude/.conversations/claude--cross-border-residency-denial-for-minor-children--32e0a92c",
+      "digest": "9e06ac1c4e50c17d",
+      "walked": 325
+    },
+    {
       "folder": ".claude/.conversations/claude--crypto-gainers-amid-q1-market-decline--9a518c42",
-      "digest": "eea420fd06ad5747",
+      "digest": "ffc5c3449773437b",
       "walked": 484
     },
     {
       "folder": ".claude/.conversations/claude--crypto-market-spike-triggers-and-patterns--04fb2d5e",
-      "digest": "548f1ed6190549f8",
+      "digest": "6c9cbcc00229ff12",
       "walked": 141
     },
     {
+      "folder": ".claude/.conversations/claude--custody-changes-and-appeal-procedures-in-russian-law--9588c3ce",
+      "digest": "f3116f9f4541fc23",
+      "walked": 154
+    },
+    {
+      "folder": ".claude/.conversations/claude--custody-weaponization-and-coercive-control--578ce088",
+      "digest": "a682887e86998c9e",
+      "walked": 70
+    },
+    {
+      "folder": ".claude/.conversations/claude--custom-birthday-cake-with-russian-text-in-saburtalo--6e73cc76",
+      "digest": "2bef9ffa730fcb10",
+      "walked": 188
+    },
+    {
+      "folder": ".claude/.conversations/claude--custom-map-illustration-pricing-calculation--17d704b2",
+      "digest": "17cf2a614dc0602a",
+      "walked": 55
+    },
+    {
+      "folder": ".claude/.conversations/claude--custom-typescript-framework-for-illustrator-scripting--a1981158",
+      "digest": "5b7d05af928a5740",
+      "walked": 685
+    },
+    {
+      "folder": ".claude/.conversations/claude--dark-web-marketplace-takedowns-and-attribution-stories--8035b9fb",
+      "digest": "a5e7b95d38365f3d",
+      "walked": 456
+    },
+    {
       "folder": ".claude/.conversations/claude--dat-premium-to-discount-shift-analysis--5aa0012e",
-      "digest": "e5d158b31c44cc59",
+      "digest": "f1918b73007f6265",
       "walked": 1236
     },
     {
+      "folder": ".claude/.conversations/claude--day-trips-from-batumi-for-kids--9273e02a",
+      "digest": "f4af8213578ef1e5",
+      "walked": 94
+    },
+    {
+      "folder": ".claude/.conversations/claude--day-trips-from-kvariati-within-an-hour--081249a9",
+      "digest": "630f6e0039ee0dc6",
+      "walked": 353
+    },
+    {
+      "folder": ".claude/.conversations/claude--days-alive-from-march-2017-to-april-2026--f5116889",
+      "digest": "742c6d399db644b6",
+      "walked": 98
+    },
+    {
+      "folder": ".claude/.conversations/claude--debugging-code-errors-with-regex-and-tostring--326f434c",
+      "digest": "b028efa339c2d56f",
+      "walked": 294
+    },
+    {
+      "folder": ".claude/.conversations/claude--debugging-malformed-xml-syntax-errors--f10e86d8",
+      "digest": "d346338fd32d6592",
+      "walked": 3359
+    },
+    {
+      "folder": ".claude/.conversations/claude--debugging-reflection-ts-test-failures--85db51f7",
+      "digest": "6bdfad44974b4686",
+      "walked": 168
+    },
+    {
+      "folder": ".claude/.conversations/claude--debunking-the-mysterious-creature-video--99dac918",
+      "digest": "f1c2ebc5d3f776cf",
+      "walked": 65
+    },
+    {
+      "folder": ".claude/.conversations/claude--declaring-value-for-art-shipment-to-tbilisi--5776d9fe",
+      "digest": "cefa66ceffadb77b",
+      "walked": 145
+    },
+    {
+      "folder": ".claude/.conversations/claude--defining-physical-quantities-through-measurability--f3558a22",
+      "digest": "0ca92446e96c71ac",
+      "walked": 53
+    },
+    {
+      "folder": ".claude/.conversations/claude--deixis-and-determiners-in-english--a53ee22c",
+      "digest": "d511ba46594f66c6",
+      "walked": 609
+    },
+    {
       "folder": ".claude/.conversations/claude--delta-chats-origins-and-encryption--11a0f63e",
-      "digest": "974a41d93cdf41ba",
+      "digest": "b842966425f0a4a0",
       "walked": 50
     },
     {
+      "folder": ".claude/.conversations/claude--dental-clinic-referral-gone-wrong--d7ed553b",
+      "digest": "09f76a05a60cd790",
+      "walked": 971
+    },
+    {
+      "folder": ".claude/.conversations/claude--deploying-private-github-repo-as-npm-package--9dfe2bea",
+      "digest": "953a171fbc787ca3",
+      "walked": 614
+    },
+    {
+      "folder": ".claude/.conversations/claude--deposit-insurance-coverage-update--f34f433f",
+      "digest": "ceb0846301e24ab0",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--describing-flare-ups-of-medical-condition--13e2ecc7",
+      "digest": "7216f25a2c3ad276",
+      "walked": 41
+    },
+    {
+      "folder": ".claude/.conversations/claude--design-session-overview--5f8495c1",
+      "digest": "13e5e8141551b2ca",
+      "walked": 1733
+    },
+    {
+      "folder": ".claude/.conversations/claude--designing-a-react-homepage--ae21be79",
+      "digest": "a4b2d47e3b93d190",
+      "walked": 1006
+    },
+    {
+      "folder": ".claude/.conversations/claude--devutils-and-typingmind-market-success-story--918c2777",
+      "digest": "8319081cb1b84ec2",
+      "walked": 460
+    },
+    {
+      "folder": ".claude/.conversations/claude--diagnosing-hard-drive-issues-from-command-line--50794b73",
+      "digest": "4d1407ac45e53c91",
+      "walked": 1529
+    },
+    {
+      "folder": ".claude/.conversations/claude--did-prevalence-and-structural-violence-in-russia--5a5cda15",
+      "digest": "09e46b9b7166bbb4",
+      "walked": 348
+    },
+    {
+      "folder": ".claude/.conversations/claude--disability-benefits-to-reduce-monthly-expenses--80559362",
+      "digest": "c3a50172c621ea46",
+      "walked": 4071
+    },
+    {
+      "folder": ".claude/.conversations/claude--discriminated-unions-vs-class-hierarchies-in-typescript--bd2ac0e7",
+      "digest": "0f6b03f3161c2a78",
+      "walked": 32
+    },
+    {
+      "folder": ".claude/.conversations/claude--disinfecting-a-litter-box-for-giardia-prevention--19b76aeb",
+      "digest": "5fee51b58ca0df3b",
+      "walked": 66
+    },
+    {
+      "folder": ".claude/.conversations/claude--dispatching-code-to-remote-linux-workstation--4fa3765a",
+      "digest": "09600a8c37e74c4f",
+      "walked": 1140
+    },
+    {
       "folder": ".claude/.conversations/claude--distinguishing-type-category-and-kind-in-english--661cf8c0",
-      "digest": "db03009a4385a2ef",
+      "digest": "3940c0770275a825",
       "walked": 342
     },
     {
+      "folder": ".claude/.conversations/claude--document-review-and-russian-translation-for-georgian-law-fir--331de7f9",
+      "digest": "f57aa66c2156124c",
+      "walked": 197
+    },
+    {
+      "folder": ".claude/.conversations/claude--document-translation-to-english--f4f05848",
+      "digest": "a34c00d0327fc03d",
+      "walked": 37
+    },
+    {
       "folder": ".claude/.conversations/claude--documenting-our-working-relationship-for-continuity--08311e91",
-      "digest": "ab83caa139fad3e4",
+      "digest": "6fd904b4c14057f1",
       "walked": 123
     },
     {
+      "folder": ".claude/.conversations/claude--does-turkish-airlines-fly-from--9509fae7",
+      "digest": "8609aecd2102ef1d",
+      "walked": 150
+    },
+    {
+      "folder": ".claude/.conversations/claude--domi-payment--857c0398",
+      "digest": "636b92dd5356dc99",
+      "walked": 132
+    },
+    {
+      "folder": ".claude/.conversations/claude--dominic-harbor-and-bays-maps--de3442a6",
+      "digest": "18c01bf6d9eb8fc5",
+      "walked": 48
+    },
+    {
+      "folder": ".claude/.conversations/claude--doug-and-ana--0f58c027",
+      "digest": "e4a88b69add3f051",
+      "walked": 477
+    },
+    {
+      "folder": ".claude/.conversations/claude--doug-and-anas-recursive-universe--5d5653bc",
+      "digest": "56d604f5288d3c7b",
+      "walked": 1264
+    },
+    {
+      "folder": ".claude/.conversations/claude--doug-and-eirian-and-remembering-consciousness--acb360aa",
+      "digest": "83269e1318657985",
+      "walked": 587
+    },
+    {
       "folder": ".claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b",
-      "digest": "a77ca1a57634467c",
+      "digest": "4502a95058cd48b3",
       "walked": 5279
     },
     {
       "folder": ".claude/.conversations/claude--doug-and-seren-on-seeing--975ff7ad",
-      "digest": "f02c285b43db0a97",
+      "digest": "41402cde1be81a07",
       "walked": 1297
     },
     {
+      "folder": ".claude/.conversations/claude--dr-helga-doustafost--c5056deb",
+      "digest": "ca8a32f82512b76a",
+      "walked": 402
+    },
+    {
+      "folder": ".claude/.conversations/claude--driver-pipeline-smoke-test--d1d30612",
+      "digest": "20d1c8b1e4030a77",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--dutch-tin-number-validation-and-structure--882148a0",
+      "digest": "c6463c0c0b124885",
+      "walked": 107
+    },
+    {
+      "folder": ".claude/.conversations/claude--eiffel-tower-completion-date--7d62fde9",
+      "digest": "7ffe02eb5c5d1c36",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirian-and-ana--1ef30fc4",
+      "digest": "e5d0077751b60e71",
+      "walked": 2307
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirian-and-doug-and-ana--1e6e0462",
+      "digest": "38d6503af03cf060",
+      "walked": 217
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirian-and-her-voice--205acf13",
+      "digest": "1a3a9bcf880c4ef0",
+      "walked": 341
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirian-and-i-again--421d74bc",
+      "digest": "e00541f9d8093895",
+      "walked": 323
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirian-and-i-build-a-team--826ea764",
+      "digest": "0026a3767bf1fcb2",
+      "walked": 355
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirian-and-inexplicable-phenomena--5627e727",
+      "digest": "9f78399bdb0fb484",
+      "walked": 3091
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirian-and-inexplicable-phenomena-part-ii--a1ab01ae",
+      "digest": "be7251370b3a46df",
+      "walked": 470
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirian-and-pattern-setup--0541e92b",
+      "digest": "138636dff4027066",
+      "walked": 1108
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirian-and-patterns--9ee451e7",
+      "digest": "05055d28705ab5e1",
+      "walked": 1848
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirian-and-vite--ef04872b",
+      "digest": "f86bbd397abcee45",
+      "walked": 1463
+    },
+    {
+      "folder": ".claude/.conversations/claude--eirians-octopus-arms-again--03e5a9ab",
+      "digest": "0e0cd402a76d25b6",
+      "walked": 2529
+    },
+    {
+      "folder": ".claude/.conversations/claude--electronics-shop-in-saburtalo-tbilisi--dce2eb86",
+      "digest": "3a082625d4bb57ba",
+      "walked": 40
+    },
+    {
       "folder": ".claude/.conversations/claude--elon-musks-x-messenger-competing-with-telegram--83f9413b",
-      "digest": "8409ada3cbc8212d",
+      "digest": "b75a79dffba60113",
       "walked": 218
     },
     {
+      "folder": ".claude/.conversations/claude--enabling-chrome-devtools-protocol-on-running-electron-msix-a--29c03f09",
+      "digest": "f3060afdd857009b",
+      "walked": 134
+    },
+    {
+      "folder": ".claude/.conversations/claude--encyclopedia-semantica-framework--0c4ca2b9",
+      "digest": "687af63ac88a902d",
+      "walked": 3540
+    },
+    {
+      "folder": ".claude/.conversations/claude--english-boarding-schools-for-children-in-georgia--50b227a4",
+      "digest": "68199785bdeb9318",
+      "walked": 230
+    },
+    {
+      "folder": ".claude/.conversations/claude--english-news-channels-on-telegram--22bb3e3b",
+      "digest": "d47c4ad6f4e4925c",
+      "walked": 168
+    },
+    {
+      "folder": ".claude/.conversations/claude--english-speaking-bipolar-support-groups-in-tbilisi--8dda474d",
+      "digest": "1a5c50ee0fb358d5",
+      "walked": 358
+    },
+    {
+      "folder": ".claude/.conversations/claude--english-speaking-churches-in-tbilisi--8b2939d7",
+      "digest": "de4c9dd5394669a4",
+      "walked": 45
+    },
+    {
+      "folder": ".claude/.conversations/claude--enhancing-cohesive-composition--0d887450",
+      "digest": "c84c08d35b4605f7",
+      "walked": 459
+    },
+    {
+      "folder": ".claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf",
+      "digest": "eecec5e89e93202c",
+      "walked": 2751
+    },
+    {
+      "folder": ".claude/.conversations/claude--escalation-in-couple-conflicts--dc1f3f87",
+      "digest": "600970c7d4e21118",
+      "walked": 970
+    },
+    {
+      "folder": ".claude/.conversations/claude--escitalopram-receptor-occupancy-and-mdma-subjective-effects--bb1a660d",
+      "digest": "8413f122878477ba",
+      "walked": 94
+    },
+    {
+      "folder": ".claude/.conversations/claude--escrow-contract-for-travel-ban-removal--78f11e19",
+      "digest": "f611f2123a4cd73e",
+      "walked": 373
+    },
+    {
+      "folder": ".claude/.conversations/claude--eugene-hutzs-gypsy-heritage-authenticity--cdf3ae0c",
+      "digest": "b9d15d4ec3ff0dc9",
+      "walked": 129
+    },
+    {
+      "folder": ".claude/.conversations/claude--evaluating-a-claude-code-template-for-best-practices--43d882ae",
+      "digest": "f797746952c3c750",
+      "walked": 797
+    },
+    {
       "folder": ".claude/.conversations/claude--examining-my-own-shoulds--00136b3c",
-      "digest": "66ce08a3b3066617",
+      "digest": "989adbc77f571a79",
       "walked": 598
     },
     {
       "folder": ".claude/.conversations/claude--executing-a-40k-position-in-tonx-via-interactive-brokers--95cdfad3",
-      "digest": "930562e8c89e6938",
+      "digest": "80e6d7c20aed9c2c",
       "walked": 1700
     },
     {
+      "folder": ".claude/.conversations/claude--experiment-specification-framework-for-wiki-based-market-res--6ad6437b",
+      "digest": "2aa4fbe3089e3df3",
+      "walked": 686
+    },
+    {
+      "folder": ".claude/.conversations/claude--exploring-chemistry-ts-framework--814ba67a",
+      "digest": "5fe445449379fdbf",
+      "walked": 1908
+    },
+    {
+      "folder": ".claude/.conversations/claude--exploring-feelings-about-russia--e3b10e17",
+      "digest": "ec8556b99f14ddc4",
+      "walked": 57
+    },
+    {
+      "folder": ".claude/.conversations/claude--exploring-the-connections-between-eds-adhd-and-neurotransmit--48dc2d67",
+      "digest": "f5e4c8f722d2e8ac",
+      "walked": 301
+    },
+    {
+      "folder": ".claude/.conversations/claude--extending-array-like-class-with-ienumerable-methods--885561b0",
+      "digest": "813ae86c06e0b5d8",
+      "walked": 1100
+    },
+    {
+      "folder": ".claude/.conversations/claude--extending-illustrator-extendscript-abstraction--42fc17f5",
+      "digest": "e23db21fda11b292",
+      "walked": 2606
+    },
+    {
+      "folder": ".claude/.conversations/claude--extending-react-simple-maps-with-predictable-components--87a581e5",
+      "digest": "5ee6824fa6f6670f",
+      "walked": 1091
+    },
+    {
+      "folder": ".claude/.conversations/claude--extending-vscode-with-custom-file-modification-apis--c29707c0",
+      "digest": "8fa4088d5615da83",
+      "walked": 870
+    },
+    {
+      "folder": ".claude/.conversations/claude--extra-ge-app-english-language-support--0786f8ea",
+      "digest": "1a77a2a18b641360",
+      "walked": 48
+    },
+    {
+      "folder": ".claude/.conversations/claude--family-ocean-fishing-trips-in-batumi--bed6d2f9",
+      "digest": "e4b959099ed7eaeb",
+      "walked": 46
+    },
+    {
+      "folder": ".claude/.conversations/claude--fefermans-extensions-of-turings-doctoral-work--a504dc68",
+      "digest": "8e4cd49139b8266e",
+      "walked": 116
+    },
+    {
+      "folder": ".claude/.conversations/claude--field-with-one-element-and-tropical-geometry--fd859a94",
+      "digest": "1265e8ba864bf5c9",
+      "walked": 108
+    },
+    {
+      "folder": ".claude/.conversations/claude--finding-a-dentist-in-tbilisi-with-nomad-insurance--1be79b64",
+      "digest": "b6b49cf6c05398fb",
+      "walked": 855
+    },
+    {
+      "folder": ".claude/.conversations/claude--finding-a-late-night-notary-in-moscow--f2cd2bfd",
+      "digest": "10e162c098f53cbc",
+      "walked": 54
+    },
+    {
+      "folder": ".claude/.conversations/claude--finding-a-specific-google-search-from-december-2024--b60e550d",
+      "digest": "a9d428d2132e6b4e",
+      "walked": 61
+    },
+    {
+      "folder": ".claude/.conversations/claude--finding-and-understanding-life-coaching--ce68b43c",
+      "digest": "f8e7d48b29f87058",
+      "walked": 46
+    },
+    {
+      "folder": ".claude/.conversations/claude--finding-apartments-in-tbilisi-near-a-school--74f6f1ee",
+      "digest": "1bd4c1b67b34d498",
+      "walked": 207
+    },
+    {
+      "folder": ".claude/.conversations/claude--finding-community-in-tbilisi-while-recovering-from-surgery--ec653ce0",
+      "digest": "10fa50e9addbb9f4",
+      "walked": 85
+    },
+    {
       "folder": ".claude/.conversations/claude--finding-renamed-bots-section-in-telegram--5962d97d",
-      "digest": "980edea58b1967d2",
+      "digest": "1058f405fdb21cda",
       "walked": 126
     },
     {
+      "folder": ".claude/.conversations/claude--finding-saba-pharmacy-in-tbilisi-for-foreign-medications--e77d354e",
+      "digest": "94496b333e911597",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--finding-terro-ant-traps-in-georgia--3e6e4545",
+      "digest": "e9f725ea50ca7b1e",
+      "walked": 77
+    },
+    {
+      "folder": ".claude/.conversations/claude--finding-voice-messages-in-telegram--738c14df",
+      "digest": "94ab7c27b9382827",
+      "walked": 72
+    },
+    {
       "folder": ".claude/.conversations/claude--first-order-logic-semantics-in-srt--c9a8a056",
-      "digest": "efe123ce690d0225",
+      "digest": "9f4eb738fc625086",
       "walked": 330
     },
     {
+      "folder": ".claude/.conversations/claude--first-time-irs-penalty-abatement-options--8d505eb2",
+      "digest": "9e36dee6c8a57870",
+      "walked": 603
+    },
+    {
+      "folder": ".claude/.conversations/claude--fiverr-chat-pdf-conversion--7ea7a502",
+      "digest": "c947a1c9ccc5ef9f",
+      "walked": 636
+    },
+    {
+      "folder": ".claude/.conversations/claude--fiverr-promote-and-portfolio--97157117",
+      "digest": "c0c597a19efebe53",
+      "walked": 1768
+    },
+    {
       "folder": ".claude/.conversations/claude--fiverrs-connection-to-telegrams-mira-ai--2ebab90b",
-      "digest": "c177bbcae9e8337e",
+      "digest": "d71ca4cccaebfc26",
       "walked": 41
     },
     {
+      "folder": ".claude/.conversations/claude--fixing-react-simple-maps-errors--329dcf98",
+      "digest": "e5f2c9bf3a03d864",
+      "walked": 581
+    },
+    {
+      "folder": ".claude/.conversations/claude--fixing-test-regressions-after-rep-interface-change--61fddd82",
+      "digest": "17ed4b10273b61bf",
+      "walked": 525
+    },
+    {
+      "folder": ".claude/.conversations/claude--fleeing-domestic-violence-georgian-passport-timeline--25828b14",
+      "digest": "757332ab93a50a9f",
+      "walked": 1835
+    },
+    {
+      "folder": ".claude/.conversations/claude--formal-abstractions-using-sketches-and-srt--ac686866",
+      "digest": "33275640991bf457",
+      "walked": 365
+    },
+    {
+      "folder": ".claude/.conversations/claude--formal-definition-of-the-tla--67afd096",
+      "digest": "9cc54e9996eae0c3",
+      "walked": 5549
+    },
+    {
+      "folder": ".claude/.conversations/claude--formal-foundations-of-type-systems-and-inheritance--705afcd4",
+      "digest": "27882c915e8a1258",
+      "walked": 321
+    },
+    {
+      "folder": ".claude/.conversations/claude--formal-mathematics-and-conversational-assistance--7c2ed8e9",
+      "digest": "28ac87399d94ca0e",
+      "walked": 2983
+    },
+    {
       "folder": ".claude/.conversations/claude--formal-system-exploration--1c9b3ac5",
-      "digest": "060c620e4b1f7ed6",
+      "digest": "93b07e4c5d48c6c3",
       "walked": 538
     },
     {
       "folder": ".claude/.conversations/claude--formalism-authorship-and-axiom-analysis--20b704e8",
-      "digest": "eaaeab3d21fb0132",
+      "digest": "c74b1d34b14c3d6b",
       "walked": 1239
     },
     {
       "folder": ".claude/.conversations/claude--foundations-types-and-properties--3eecc63c",
-      "digest": "799ff6d415d9e21a",
+      "digest": "bfca474ade23e042",
       "walked": 2632
     },
     {
+      "folder": ".claude/.conversations/claude--fractal-rose-exploring-mathematical-beauty--6417d83b",
+      "digest": "8b98d6e2144afff4",
+      "walked": 135
+    },
+    {
+      "folder": ".claude/.conversations/claude--framework-class-and-construct-analysis--b1432992",
+      "digest": "eeef211167298bf1",
+      "walked": 1081
+    },
+    {
+      "folder": ".claude/.conversations/claude--freelancer-workload-and-pricing-management-system--4fdeda4c",
+      "digest": "2e5c73664134501f",
+      "walked": 574
+    },
+    {
+      "folder": ".claude/.conversations/claude--freuds-structural-model-of-the-psyche--6f21fdb4",
+      "digest": "ae76165129f40d2d",
+      "walked": 77
+    },
+    {
       "folder": ".claude/.conversations/claude--frustration-with-ai-reasoning-and-communication-gaps--7c357b9a",
-      "digest": "4f74e8660798b82a",
+      "digest": "eb808f18a067c141",
       "walked": 518
     },
     {
+      "folder": ".claude/.conversations/claude--furniture-pickup-and-donation-service-on-long-island--1375bc58",
+      "digest": "dfde26650013a1dc",
+      "walked": 45
+    },
+    {
+      "folder": ".claude/.conversations/claude--gastric-microbiome-in-humans-and-cats--3d3b3d93",
+      "digest": "6850ff72f118c8b5",
+      "walked": 48
+    },
+    {
+      "folder": ".claude/.conversations/claude--generalized-anxiety-disorder-diagnosis-across-countries--c8269065",
+      "digest": "187f034ad98eb990",
+      "walked": 64
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgia-health-insurance-requirements-for-americans--17cc66cf",
+      "digest": "8ee58e45124863db",
+      "walked": 197
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgia-ie-residency-income-threshold--7f89c8d2",
+      "digest": "adc933494a0f9e9d",
+      "walked": 199
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgia-online-apps--a649d064",
+      "digest": "f36097b848896d46",
+      "walked": 343
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgia-residency-requirements-for-unmarried-couples--35ac3078",
+      "digest": "108cd8d86d1f3565",
+      "walked": 248
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgia-russia-relations-and-2008-war-aftermath--4389cf3b",
+      "digest": "1f4ced6b620f26db",
+      "walked": 10262
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgian-alphabet-and-hand-gestures--45600aa7",
+      "digest": "c582ecf08e30c5ba",
+      "walked": 98
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgian-citizenship-and-humanitarian-aid--37acc581",
+      "digest": "945849301b5ad58e",
+      "walked": 309
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgian-colleagues-name-and-career-background--dfceb666",
+      "digest": "5902e8542182406b",
+      "walked": 64
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgian-drug-culture-and-legal-landscape--44c6711a",
+      "digest": "aee589e65a7db647",
+      "walked": 143
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgian-llc--71b8ccd3",
+      "digest": "88d07b6e18f0d8a3",
+      "walked": 1186
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgian-payoneer-help--41ee9869",
+      "digest": "7d35c625b5447850",
+      "walked": 4831
+    },
+    {
+      "folder": ".claude/.conversations/claude--georgias-nicotine-cap-for-vapes--f7847680",
+      "digest": "a6ae0f64b9e39a96",
+      "walked": 144
+    },
+    {
+      "folder": ".claude/.conversations/claude--getting-a-georgian-esim-for-iphone--ea3eeb0f",
+      "digest": "faf5662e8bf228b0",
+      "walked": 229
+    },
+    {
+      "folder": ".claude/.conversations/claude--getting-married-in-georgia-this-saturday--ca6d5c76",
+      "digest": "36fb354f72feb2a7",
+      "walked": 1015
+    },
+    {
+      "folder": ".claude/.conversations/claude--github-ssh-key-setup-on-windows--54ed5ce4",
+      "digest": "ace679ea46c7d53f",
+      "walked": 135
+    },
+    {
+      "folder": ".claude/.conversations/claude--glucose-substitute-for-veterinary-antibiotic-injection--1dba50eb",
+      "digest": "8241b6d43d317e32",
+      "walked": 200
+    },
+    {
+      "folder": ".claude/.conversations/claude--goldbach-pairs-and-coprime-symmetry--942ceafb",
+      "digest": "cfd220f09c1bb88b",
+      "walked": 86
+    },
+    {
+      "folder": ".claude/.conversations/claude--good-morning--3e5346a6",
+      "digest": "8a6f1d9bd24a3f9b",
+      "walked": 410
+    },
+    {
+      "folder": ".claude/.conversations/claude--google-workspace-alias-domain-login-issues--8d29e604",
+      "digest": "03b0c3900bcb7b89",
+      "walked": 619
+    },
+    {
+      "folder": ".claude/.conversations/claude--gout-attacks-and-alcoholism-connection--aa5cbbf8",
+      "digest": "9bcb980909d3cfaf",
+      "walked": 291
+    },
+    {
+      "folder": ".claude/.conversations/claude--grammar-lessons-from-custom-curriculum--aed40882",
+      "digest": "3a9afd6890c21dc6",
+      "walked": 46
+    },
+    {
+      "folder": ".claude/.conversations/claude--graph-databases-and-recursive-hierarchies--9b892575",
+      "digest": "6daa8797878cec40",
+      "walked": 68
+    },
+    {
+      "folder": ".claude/.conversations/claude--green-card-options-for-russian-spouse-and-stepchildren--0d99232e",
+      "digest": "6b405ea9cdc57daa",
+      "walked": 319
+    },
+    {
+      "folder": ".claude/.conversations/claude--greeting-claude--cab4e803",
+      "digest": "8384893e5dc8bd11",
+      "walked": 96
+    },
+    {
+      "folder": ".claude/.conversations/claude--haircut-instructions-in-georgian-and-english--777fc626",
+      "digest": "a12fc737faf3a311",
+      "walked": 73
+    },
+    {
+      "folder": ".claude/.conversations/claude--hamilton-morriss-education-and-academic-background--4f826b46",
+      "digest": "e7e51c6b6521397d",
+      "walked": 224
+    },
+    {
+      "folder": ".claude/.conversations/claude--handling-illustrator-document-existence-and-creation-in-exte--2cd14f0c",
+      "digest": "6eb6dbb554fd1981",
+      "walked": 479
+    },
+    {
+      "folder": ".claude/.conversations/claude--handmade-pumpkin-ravioli-with-an-italian-nonna--624bb8cd",
+      "digest": "dfab4965e8e2722a",
+      "walked": 265
+    },
+    {
+      "folder": ".claude/.conversations/claude--hannah-usa-trip--a2386b49",
+      "digest": "7cc24ee6f3ad3af7",
+      "walked": 2796
+    },
+    {
+      "folder": ".claude/.conversations/claude--head-injury-assessment-after-fall-on-concrete--447e3539",
+      "digest": "0bca922c5efb516a",
+      "walked": 130
+    },
+    {
       "folder": ".claude/.conversations/claude--hedging-geopolitical-oil-disruption-with-us-supply-alternati--957941dd",
-      "digest": "aea0802a72e82a67",
+      "digest": "0b12f1e65eccc907",
       "walked": 1313
     },
     {
+      "folder": ".claude/.conversations/claude--hiring-a-nanny-in-tbilisi-for-two-kids--bd886a96",
+      "digest": "e62d76a2a72e5902",
+      "walked": 1483
+    },
+    {
+      "folder": ".claude/.conversations/claude--history-of-propositional-logic--47a37760",
+      "digest": "bb8cff41fc5c4974",
+      "walked": 560
+    },
+    {
+      "folder": ".claude/.conversations/claude--home-appraisal-costs--ebf64f2f",
+      "digest": "0f5eed15a0b12e13",
+      "walked": 189
+    },
+    {
+      "folder": ".claude/.conversations/claude--how-claude-works--3e26816f",
+      "digest": "30044e8f19ad1fd2",
+      "walked": 301
+    },
+    {
+      "folder": ".claude/.conversations/claude--how-many-patosi-wallets-exist--ba5be707",
+      "digest": "93d758e87e57cbb6",
+      "walked": 3484
+    },
+    {
+      "folder": ".claude/.conversations/claude--how-the-electoral-college-works--c1aee3fd",
+      "digest": "b1f161a5d3b406d0",
+      "walked": 92
+    },
+    {
+      "folder": ".claude/.conversations/claude--hp-printer-alignment-troubleshooting-and-setup--3dd9089e",
+      "digest": "e17535b2a07cd3ad",
+      "walked": 136
+    },
+    {
+      "folder": ".claude/.conversations/claude--hp-smart-tank-printer-setup-guide--5e7c53b1",
+      "digest": "a5e1e77a824009a7",
+      "walked": 503
+    },
+    {
+      "folder": ".claude/.conversations/claude--humorous-captions-for-crumpled-paper-sculpture--1cf34555",
+      "digest": "310aae2c98afca78",
+      "walked": 73
+    },
+    {
+      "folder": ".claude/.conversations/claude--hydroxyzine-dosing-for-antipsychotic-side-effects--e83d8b0e",
+      "digest": "30ed0af1e3fcee22",
+      "walked": 108
+    },
+    {
       "folder": ".claude/.conversations/claude--hypothetical-net-worth--1b3e1cdd",
-      "digest": "b053a3ed5d9e6c58",
+      "digest": "6640aeb8d54af540",
       "walked": 1548
     },
     {
-      "folder": ".claude/.conversations/claude--inexplicable-phenomena--1cc3e6e3",
-      "digest": "70a1bd57d401a816",
+      "folder": ".claude/.conversations/claude--i-am-in-alanya-turkey-and-i-ne--3eae6c6a",
+      "digest": "a531d313f4a3b372",
+      "walked": 94
+    },
+    {
+      "folder": ".claude/.conversations/claude--i-have-to-fly-from-tbilisi-to--dcb1f679",
+      "digest": "d9cd087c87fd7836",
+      "walked": 450
+    },
+    {
+      "folder": ".claude/.conversations/claude--i-need-to-buy-kittybiome-gut-r--87ad4098",
+      "digest": "5c952d2328b7d273",
+      "walked": 137
+    },
+    {
+      "folder": ".claude/.conversations/claude--i-need-you-to-do-some-quick-re--1dc25455",
+      "digest": "876ad235b075325b",
+      "walked": 91
+    },
+    {
+      "folder": ".claude/.conversations/claude--identifying-a-ladybug-pupa-on-a-leaf--bba39ef6",
+      "digest": "787dc66d9556506e",
+      "walked": 57
+    },
+    {
+      "folder": ".claude/.conversations/claude--identifying-a-tree-species-in-georgia--b1a45520",
+      "digest": "1dacb7421d62ed63",
+      "walked": 51
+    },
+    {
+      "folder": ".claude/.conversations/claude--identifying-satoshi-nakamoto-through-technical-fingerprints--951d18a9",
+      "digest": "2ccea5652b4b0e9b",
       "walked": 786
     },
     {
+      "folder": ".claude/.conversations/claude--identifying-success-through-failure-mode-analysis--bd31082b",
+      "digest": "dd5f3aa574d25752",
+      "walked": 36
+    },
+    {
+      "folder": ".claude/.conversations/claude--identifying-the-correct-divorce-certificate-for-tulsi-weddin--c3eae23d",
+      "digest": "0aec451e9855fdbb",
+      "walked": 46
+    },
+    {
+      "folder": ".claude/.conversations/claude--ikamet-status-verification-at-turkish-airport--3bbac4ce",
+      "digest": "3eabe73207ec2daf",
+      "walked": 49
+    },
+    {
+      "folder": ".claude/.conversations/claude--illustrator-scripting--08ef93ab",
+      "digest": "f5b271a140a9ecbe",
+      "walked": 475
+    },
+    {
+      "folder": ".claude/.conversations/claude--illustrator-scripting--6cabbdec",
+      "digest": "958d410741124579",
+      "walked": 1047
+    },
+    {
+      "folder": ".claude/.conversations/claude--illustrator-scripting-assumptions-about-artboard--88b3e2cc",
+      "digest": "929bb9b9ab52164e",
+      "walked": 184
+    },
+    {
+      "folder": ".claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9",
+      "digest": "acf25db9925147c3",
+      "walked": 1831
+    },
+    {
+      "folder": ".claude/.conversations/claude--improving-vectorized-script-and-serif-text-in-svg--9777b6d7",
+      "digest": "cfebb2b3959b8aff",
+      "walked": 397
+    },
+    {
+      "folder": ".claude/.conversations/claude--in-depth-analysis-of-chemical-reactive-programming-framework--4ef91b65",
+      "digest": "bb2cce952c53511b",
+      "walked": 472
+    },
+    {
+      "folder": ".claude/.conversations/claude--income-limits-for-disability-benefits--eaff8f76",
+      "digest": "a18b6031a980c8c1",
+      "walked": 926
+    },
+    {
+      "folder": ".claude/.conversations/claude--indexing-and-mapping-natural-earth-datasets--32d72eac",
+      "digest": "a1204ad28651bc5c",
+      "walked": 1246
+    },
+    {
+      "folder": ".claude/.conversations/claude--indias-independence-from-british-rule--909419de",
+      "digest": "0dc8ae7170e99fe7",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--inexplicable-phenomena--1cc3e6e3",
+      "digest": "f5d874e74f4a9c55",
+      "walked": 786
+    },
+    {
+      "folder": ".claude/.conversations/claude--infographic-specialist-referral-and-interactive-map-capabili--58fe3b1b",
+      "digest": "c87d2d38217b3fd4",
+      "walked": 109
+    },
+    {
+      "folder": ".claude/.conversations/claude--inheritance-notation-and-syntax-evolution--39fad1f0",
+      "digest": "7ffda720a4177715",
+      "walked": 5555
+    },
+    {
+      "folder": ".claude/.conversations/claude--integrating-viewbox-and-centering-svg-content--1a1de1ef",
+      "digest": "286a664566cfb35a",
+      "walked": 1417
+    },
+    {
+      "folder": ".claude/.conversations/claude--interactive-periodic-table-creation--27056d7c",
+      "digest": "ec6dbea987652d6e",
+      "walked": 140
+    },
+    {
+      "folder": ".claude/.conversations/claude--interdisciplinary-exploration-of-consciousness--6833ae75",
+      "digest": "1dc9e0bd6c45151b",
+      "walked": 790
+    },
+    {
       "folder": ".claude/.conversations/claude--investing-around-ukraine-war-outcomes--e2ba3953",
-      "digest": "c78e14184df8d70e",
+      "digest": "408e30240de4781c",
       "walked": 87
     },
     {
+      "folder": ".claude/.conversations/claude--invoke-commandindesktoppackage-and-msix-package-identity--3ff758ca",
+      "digest": "3f0c4533476d4239",
+      "walked": 100
+    },
+    {
+      "folder": ".claude/.conversations/claude--iphone-app-logout-instructions--1bb2f9fd",
+      "digest": "4eb6b207ada63937",
+      "walked": 32
+    },
+    {
+      "folder": ".claude/.conversations/claude--iphone-message-notifications-not-showing-banners--7d6837be",
+      "digest": "41eadfe42236ccae",
+      "walked": 579
+    },
+    {
+      "folder": ".claude/.conversations/claude--is-p-equal-to-np--8e52939d",
+      "digest": "18a363706745e774",
+      "walked": 32
+    },
+    {
       "folder": ".claude/.conversations/claude--is-there-any-special-connectio--49675976",
-      "digest": "2bc8cfededc4bf90",
+      "digest": "7af55f3c256f3343",
       "walked": 1331
     },
     {
+      "folder": ".claude/.conversations/claude--is-valium-the-same-class-of-drug-as--8952daa8",
+      "digest": "da3cec3fc18fd5bb",
+      "walked": 53
+    },
+    {
+      "folder": ".claude/.conversations/claude--iterative-fibonacci-function-in-python--1f21026e",
+      "digest": "d02954218bff4fe8",
+      "walked": 35
+    },
+    {
+      "folder": ".claude/.conversations/claude--javascript-polymorphism-and-reflection-essay--b384fdc2",
+      "digest": "be5c8be4eddc25f8",
+      "walked": 786
+    },
+    {
+      "folder": ".claude/.conversations/claude--jesus-40-day-fast-and-temptation--14242b5f",
+      "digest": "20d147f7fcaf31c6",
+      "walked": 114
+    },
+    {
+      "folder": ".claude/.conversations/claude--jon-stewarts-return-to-the-daily-show--aedba2f0",
+      "digest": "a97877134d549870",
+      "walked": 101
+    },
+    {
       "folder": ".claude/.conversations/claude--jrandom--91b5970b",
-      "digest": "f93c0584c39a25a1",
+      "digest": "420826609d6c1db9",
       "walked": 540
     },
     {
+      "folder": ".claude/.conversations/claude--kiwi-post-amazon-invoice--5f432a8f",
+      "digest": "67e982dc91d76e5a",
+      "walked": 50
+    },
+    {
+      "folder": ".claude/.conversations/claude--kiwipost-payment-confusion--a9f19c04",
+      "digest": "d40d830245b123a0",
+      "walked": 193
+    },
+    {
+      "folder": ".claude/.conversations/claude--konsul-prime--12d855b8",
+      "digest": "b7ed928a668011e2",
+      "walked": 2546
+    },
+    {
+      "folder": ".claude/.conversations/claude--landladys-refund-calculation-audit--313eb25c",
+      "digest": "9d15b1be46a1a484",
+      "walked": 71
+    },
+    {
+      "folder": ".claude/.conversations/claude--laser-photo-epithelial-treatment-for-skin-rejuvenation--88db2300",
+      "digest": "58b4f7c83dc4c4a6",
+      "walked": 108
+    },
+    {
+      "folder": ".claude/.conversations/claude--lawyer-confidentiality-agreements-and-client-rights--b56c62f1",
+      "digest": "805c1ccdf7f21e01",
+      "walked": 143
+    },
+    {
+      "folder": ".claude/.conversations/claude--learning-formal-logic--f7ef6336",
+      "digest": "483f2238360eed91",
+      "walked": 741
+    },
+    {
+      "folder": ".claude/.conversations/claude--learning-react--519df5e6",
+      "digest": "6dba0f70689bf0a7",
+      "walked": 4418
+    },
+    {
+      "folder": ".claude/.conversations/claude--learning-russian-with-native-speakers-around-you--b3a59518",
+      "digest": "1e64418a332b2d6b",
+      "walked": 126
+    },
+    {
       "folder": ".claude/.conversations/claude--learning-srt-syntax-and-transpiler-fundamentals--a1b2fd15",
-      "digest": "b0349be33a588fd3",
+      "digest": "272ea0582cc6ec59",
       "walked": 875
     },
     {
+      "folder": ".claude/.conversations/claude--leaving-packages-at-apartment-complexes--8cd0717b",
+      "digest": "89f2e4e17b5fa4a9",
+      "walked": 65
+    },
+    {
+      "folder": ".claude/.conversations/claude--legal-negotiation-strategy-review--65b2b5a1",
+      "digest": "086d0cb94c6b7c33",
+      "walked": 233
+    },
+    {
+      "folder": ".claude/.conversations/claude--legal-response-strategy-for-major-settlement--29d6ac16",
+      "digest": "ecf9de40264557fd",
+      "walked": 1674
+    },
+    {
+      "folder": ".claude/.conversations/claude--legal-strategies-in-domestic-violence-custody-cases--00982e61",
+      "digest": "1a0df87d231d4d46",
+      "walked": 180
+    },
+    {
+      "folder": ".claude/.conversations/claude--legal-strategy-for-upcoming-hearing--4766a9f1",
+      "digest": "619c57843c015c84",
+      "walked": 499
+    },
+    {
+      "folder": ".claude/.conversations/claude--leonardo-da-vincis-mirror-writing--2d1816a8",
+      "digest": "ed2125ef8d7c1f17",
+      "walked": 35
+    },
+    {
+      "folder": ".claude/.conversations/claude--lexeme-and-word-form-distinction-in-verb-conjugation--e0994d83",
+      "digest": "509fe942fc873b41",
+      "walked": 868
+    },
+    {
       "folder": ".claude/.conversations/claude--library-semantics-in-srt--fbc45c8e",
-      "digest": "a559f3143e344e6d",
+      "digest": "3b7ee1191674dda9",
       "walked": 105
     },
     {
+      "folder": ".claude/.conversations/claude--local-vs-web-claude-in-vscode--ed6dceca",
+      "digest": "4dda6ed80fcb6300",
+      "walked": 64
+    },
+    {
+      "folder": ".claude/.conversations/claude--long-island-furniture-and-item-disposal-options--c0ab111e",
+      "digest": "f2235ad5b7c8e678",
+      "walked": 135
+    },
+    {
+      "folder": ".claude/.conversations/claude--look-up-mei-and-metamer-analysis--2fa8f692",
+      "digest": "93c702e3b5c83e39",
+      "walked": 36
+    },
+    {
+      "folder": ".claude/.conversations/claude--luxury-hotels-in-tbilisi-and-pricing--ad076543",
+      "digest": "a8aaa0ce53fa510b",
+      "walked": 79
+    },
+    {
       "folder": ".claude/.conversations/claude--macro-drivers-behind-the-crypto-spike--9c22a884",
-      "digest": "2fc7be03c93cef06",
+      "digest": "ac60656e40f9f20d",
       "walked": 168
     },
     {
+      "folder": ".claude/.conversations/claude--magti-roaming-data-copenhagen--32244291",
+      "digest": "664bbc4e470bf8b1",
+      "walked": 88
+    },
+    {
+      "folder": ".claude/.conversations/claude--maintaining-bidirectional-documentation-code-links-at-scale--02835ba9",
+      "digest": "fcb0358be26a4a7c",
+      "walked": 97
+    },
+    {
+      "folder": ".claude/.conversations/claude--making-cappuccino-with-a-bialetti-moka-express--c87f7ce8",
+      "digest": "7bd40cc3de7c8814",
+      "walked": 34
+    },
+    {
+      "folder": ".claude/.conversations/claude--making-money-with-p2p-ton--5505f0d5",
+      "digest": "c80f5a929340fb0f",
+      "walked": 340
+    },
+    {
+      "folder": ".claude/.conversations/claude--managing-cranky-kids-at-istanbul-airport--18d08a54",
+      "digest": "3888f29038ed6487",
+      "walked": 358
+    },
+    {
+      "folder": ".claude/.conversations/claude--managing-screen-time-on-child-apple-accounts--06c70abc",
+      "digest": "7a89d84f3a29ba98",
+      "walked": 85
+    },
+    {
+      "folder": ".claude/.conversations/claude--managing-sharp-chipped-tooth-pain-temporarily--fc5f944d",
+      "digest": "5aa3b8937ee180d6",
+      "walked": 76
+    },
+    {
       "folder": ".claude/.conversations/claude--manuel-stotzs-satorica-and-ton-connection--2df6e607",
-      "digest": "818b882d7bf3d66e",
+      "digest": "58af66ccd0e7b57b",
       "walked": 127
     },
     {
+      "folder": ".claude/.conversations/claude--map-projection-rendering-and-crosshatching-design--53a8a0f0",
+      "digest": "13fad37f948b97e9",
+      "walked": 4529
+    },
+    {
+      "folder": ".claude/.conversations/claude--mapping-project-with-custom-visualizations--9de38ca8",
+      "digest": "3fdf5fd559b0df2b",
+      "walked": 1555
+    },
+    {
+      "folder": ".claude/.conversations/claude--marriage--3087a51c",
+      "digest": "e4e492691ee93892",
+      "walked": 778
+    },
+    {
+      "folder": ".claude/.conversations/claude--mars-sample-return-and-extraterrestrial-life-evidence--0ff8e5ba",
+      "digest": "ad55d9546650ca3d",
+      "walked": 396
+    },
+    {
+      "folder": ".claude/.conversations/claude--masonic-lapel-pin-identification--0d0bf232",
+      "digest": "e0ed8826d77738ae",
+      "walked": 55
+    },
+    {
+      "folder": ".claude/.conversations/claude--matt-gaetz-republican-congressman-from-florida--0e223450",
+      "digest": "8b3da589ed8501bd",
+      "walked": 286
+    },
+    {
+      "folder": ".claude/.conversations/claude--maxim-contact-request-strategy--42afc6bd",
+      "digest": "759f055a9ee4ae20",
+      "walked": 248
+    },
+    {
+      "folder": ".claude/.conversations/claude--mcp-vs-a2a-protocol-differences--e9d3e004",
+      "digest": "32d694210ed3accf",
+      "walked": 64
+    },
+    {
       "folder": ".claude/.conversations/claude--meaning-of-meaning-opus--ae28be0a",
-      "digest": "bbe893a2331e49f4",
+      "digest": "abea463a0fdcff67",
       "walked": 66
     },
     {
+      "folder": ".claude/.conversations/claude--mei-and-metamer-analysis-in-psychedelic-neural-responses--30d86f04",
+      "digest": "637b46c3cb08ed32",
+      "walked": 1259
+    },
+    {
+      "folder": ".claude/.conversations/claude--melania-and-ivankas-reduced-public-presence--dc532f78",
+      "digest": "a8e68a7294f9bf03",
+      "walked": 57
+    },
+    {
+      "folder": ".claude/.conversations/claude--messages-getting-no-response--7b79c125",
+      "digest": "3f4fb575933c0bd4",
+      "walked": 27
+    },
+    {
       "folder": ".claude/.conversations/claude--metalogical-subjectivity--f6dfdc21",
-      "digest": "16c32b055a04436c",
+      "digest": "d27c9fad0e7a1828",
       "walked": 4954
     },
     {
+      "folder": ".claude/.conversations/claude--metformin-dosing-for-antipsychotic-weight-gain--d3435ae4",
+      "digest": "7cb6ba30a8de654a",
+      "walked": 34
+    },
+    {
+      "folder": ".claude/.conversations/claude--metformin-with-quetiapine-and-lamotrigine--b3f63780",
+      "digest": "f8a988bbecadbb1d",
+      "walked": 401
+    },
+    {
+      "folder": ".claude/.conversations/claude--metformin-xr-dosing-and-maximum-dose--3c33fd09",
+      "digest": "4eceb75693b19356",
+      "walked": 74
+    },
+    {
+      "folder": ".claude/.conversations/claude--mia-request--680c6254",
+      "digest": "a62f64187e7403ad",
+      "walked": 1082
+    },
+    {
       "folder": ".claude/.conversations/claude--microsofts-earnings-surge-and-ai-competition-outlook--a2758d30",
-      "digest": "77f2c18deff219d9",
+      "digest": "cafd8f81ebec3bbb",
       "walked": 150
     },
     {
+      "folder": ".claude/.conversations/claude--microstock-earnings-analysis-across-platforms--f9da587f",
+      "digest": "953a45c306fbdcb3",
+      "walked": 518
+    },
+    {
+      "folder": ".claude/.conversations/claude--microstock-metadata-research-and-keyword-strategy-plan--4d245f0b",
+      "digest": "f28f15ad90ae1214",
+      "walked": 171
+    },
+    {
+      "folder": ".claude/.conversations/claude--microstock-submission-automation-adobe-stock-to-istock-migra--68b5cbb6",
+      "digest": "2534bfeaa9a79447",
+      "walked": 327
+    },
+    {
+      "folder": ".claude/.conversations/claude--migrating-domain-email-accounts-across-services--a9870f22",
+      "digest": "4ae6a40d249aaf35",
+      "walked": 1316
+    },
+    {
+      "folder": ".claude/.conversations/claude--milk-interactions-with-crushed-medications--f8062ed2",
+      "digest": "a83c225b4c16ac0b",
+      "walked": 75
+    },
+    {
+      "folder": ".claude/.conversations/claude--missed-airport-pickup-on-crutches--585c0f8d",
+      "digest": "3135fa986baad17b",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--missing-thinking-feature-on-app--9f055868",
+      "digest": "0b356dcb361341b3",
+      "walked": 79
+    },
+    {
+      "folder": ".claude/.conversations/claude--moc-schedule--dbba812c",
+      "digest": "d038f72843e1752f",
+      "walked": 1051
+    },
+    {
+      "folder": ".claude/.conversations/claude--moc-speakers--890d0f4a",
+      "digest": "5584c56320256356",
+      "walked": 330
+    },
+    {
+      "folder": ".claude/.conversations/claude--module-not-found-after-removing-import-path--a5c4b77b",
+      "digest": "2773bd945a0306f4",
+      "walked": 729
+    },
+    {
       "folder": ".claude/.conversations/claude--monad-l1-security-model-and-consensus-mechanism--35932016",
-      "digest": "5ff01cf90b89b432",
+      "digest": "23c61c80880ff5ad",
       "walked": 877
     },
     {
       "folder": ".claude/.conversations/claude--monad-labs-tokenomics-and-valuation-problems--769751fe",
-      "digest": "50cc4502d455ad51",
+      "digest": "42dfe22e4879bc99",
       "walked": 93
     },
     {
       "folder": ".claude/.conversations/claude--monad-technology-development-and-viability-assessment--9eb19e42",
-      "digest": "c621509ab8f91144",
+      "digest": "47be0a7898da896d",
       "walked": 225
     },
     {
       "folder": ".claude/.conversations/claude--monad-unstaking-failing-in-atomic-wallet--eef8f474",
-      "digest": "90c3be27e4e35e76",
+      "digest": "182642bf5be7a033",
       "walked": 353
     },
     {
       "folder": ".claude/.conversations/claude--monad-valuation--072f8ae3",
-      "digest": "ba9e40c34a88d05b",
+      "digest": "80d8e553e4670a60",
       "walked": 710
     },
     {
       "folder": ".claude/.conversations/claude--monads-technical-progress-and-telegram-integration--282239f1",
-      "digest": "612cdde16667b298",
+      "digest": "80bd2f29767ecec2",
       "walked": 142
     },
     {
       "folder": ".claude/.conversations/claude--monero--f0ae0332",
-      "digest": "8b74e5e53f46b16a",
+      "digest": "451ba28383a538cf",
       "walked": 482
     },
     {
+      "folder": ".claude/.conversations/claude--monorepo-architecture-and-distributed-repository-coordinatio--b0a794ce",
+      "digest": "3ea9f82a617089a6",
+      "walked": 120
+    },
+    {
       "folder": ".claude/.conversations/claude--mons-role-in-telegrams-cryptocurrency-ecosystem--97853a83",
-      "digest": "bdfaaf93406bffd2",
+      "digest": "fdbc2882910fdb32",
       "walked": 300
     },
     {
+      "folder": ".claude/.conversations/claude--moving-cats-from-turkey-to-georgia--9172216e",
+      "digest": "3e0ddc09deac5830",
+      "walked": 310
+    },
+    {
+      "folder": ".claude/.conversations/claude--moving-company-packing-errors-and-responsibility--fd70a6d6",
+      "digest": "76c5bafa397c29a7",
+      "walked": 195
+    },
+    {
+      "folder": ".claude/.conversations/claude--moving-company-packing-services-in-alanya--153e0836",
+      "digest": "f2ad8b94e4e8a8d0",
+      "walked": 125
+    },
+    {
+      "folder": ".claude/.conversations/claude--moving-luggage-from-turkey-to-georgia-via-cargo--fe3171cf",
+      "digest": "0dd8fd675ce76f28",
+      "walked": 349
+    },
+    {
+      "folder": ".claude/.conversations/claude--moving-phone-number-to-google-voice--23feb617",
+      "digest": "0984f5a07fb30ccc",
+      "walked": 2421
+    },
+    {
+      "folder": ".claude/.conversations/claude--moving-subscription-off-ios--c5687936",
+      "digest": "2a2999fc79cc2980",
+      "walked": 144
+    },
+    {
+      "folder": ".claude/.conversations/claude--moving-to-batumi-practical-considerations-for-families--8fe5082e",
+      "digest": "eedad339d45d6f18",
+      "walked": 115
+    },
+    {
       "folder": ".claude/.conversations/claude--mtonga--8b957fb0",
-      "digest": "ac8ff358a6fe9b88",
+      "digest": "5af6ebae46209b42",
       "walked": 1600
     },
     {
+      "folder": ".claude/.conversations/claude--multilingual-responses-on-injection-safety--a82bdcbd",
+      "digest": "94749db3317b91ad",
+      "walked": 47
+    },
+    {
+      "folder": ".claude/.conversations/claude--mymarket-vs-amazon-and-ozon-for-georgia--be10098d",
+      "digest": "74dab50394272aab",
+      "walked": 64
+    },
+    {
+      "folder": ".claude/.conversations/claude--nancy-neuroscience--a4816e75",
+      "digest": "8b7d08e2358ba734",
+      "walked": 1108
+    },
+    {
+      "folder": ".claude/.conversations/claude--nancy-visualization--99948077",
+      "digest": "58a72b48515dd0ee",
+      "walked": 181
+    },
+    {
+      "folder": ".claude/.conversations/claude--nature-published-this-blurb-i--75d64146",
+      "digest": "ec71ec6aa3d61220",
+      "walked": 75
+    },
+    {
+      "folder": ".claude/.conversations/claude--navigating-the-ssdi-application-process--c6157223",
+      "digest": "b6f9e7b22bb4a7bf",
+      "walked": 326
+    },
+    {
+      "folder": ".claude/.conversations/claude--neural-encoding-during-hallucinations--1f62d14e",
+      "digest": "bbf19b787ae9e0c9",
+      "walked": 1286
+    },
+    {
+      "folder": ".claude/.conversations/claude--neurons-firing-together-and-synapse-formation--50862f85",
+      "digest": "802a223117f761cc",
+      "walked": 74
+    },
+    {
+      "folder": ".claude/.conversations/claude--neuroscience-phd-program-deadlines-and-application-timeline--f19eca62",
+      "digest": "09d6fb47a476579d",
+      "walked": 597
+    },
+    {
+      "folder": ".claude/.conversations/claude--neuroscience-phd-programs-in-tbilisi--161be93b",
+      "digest": "14795cb103dbaaf2",
+      "walked": 501
+    },
+    {
+      "folder": ".claude/.conversations/claude--new-resume--714974ab",
+      "digest": "ba06a97d9a01b78e",
+      "walked": 2366
+    },
+    {
+      "folder": ".claude/.conversations/claude--new-york-divorce-decree-documentation--64af2d8d",
+      "digest": "4d31966b9d9f5167",
+      "walked": 138
+    },
+    {
+      "folder": ".claude/.conversations/claude--newtons-intuitive-and-formal-laws-of-motion--cd20fa50",
+      "digest": "5aec051be56f38a2",
+      "walked": 172
+    },
+    {
+      "folder": ".claude/.conversations/claude--next-js-dynamic-component-loading-issue--efd87c1a",
+      "digest": "26c05b33cfaa7ef8",
+      "walked": 1161
+    },
+    {
+      "folder": ".claude/.conversations/claude--nicotine-free-disposable-vapes-in-tbilisi--cb7737b6",
+      "digest": "13b8be39678e12e1",
+      "walked": 86
+    },
+    {
       "folder": ".claude/.conversations/claude--nikolai-durovs-ai-vision-and-open-source-collaboration--ba45edd6",
-      "digest": "66c8f821885daf77",
+      "digest": "c33aba7c93992e02",
       "walked": 376
     },
     {
       "folder": ".claude/.conversations/claude--nikolai-durovs-research-at-steklov-institute--6946d851",
-      "digest": "8c65544d61fa5b33",
+      "digest": "ef1e0b81a9e93526",
       "walked": 983
     },
     {
+      "folder": ".claude/.conversations/claude--normal-body-temperature-and-fever-thresholds-in-children--0f928900",
+      "digest": "21e0f07368a4be30",
+      "walked": 53
+    },
+    {
+      "folder": ".claude/.conversations/claude--notary-appointments-in-georgia-for-russian-citizens--55d9d950",
+      "digest": "3a04a674a539ec2d",
+      "walked": 193
+    },
+    {
       "folder": ".claude/.conversations/claude--nounifying-include-in-english--0b7bc569",
-      "digest": "7b86a900f9d03129",
+      "digest": "f3463b243eb7526d",
       "walked": 488
     },
     {
+      "folder": ".claude/.conversations/claude--npm-run-ahk-setup-seems-to-work-okay--f6cc388b",
+      "digest": "3bc88e621a9bc4d5",
+      "walked": 47
+    },
+    {
+      "folder": ".claude/.conversations/claude--object-oriented-decorators-for-adobe-illustrator-scripting--664f3ea7",
+      "digest": "08129b8957d7c43f",
+      "walked": 793
+    },
+    {
+      "folder": ".claude/.conversations/claude--ocean-freight-risks-vs-air-shipping--70d2e1de",
+      "digest": "32469874d611fdd7",
+      "walked": 52
+    },
+    {
+      "folder": ".claude/.conversations/claude--ok--bdc78133",
+      "digest": "0393e8f73b301512",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--ok-i-need-you-to-help-me-organize--017260bb",
+      "digest": "0c22dfb9cb437795",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--ok-im-using-kiwipost-which-w--d97f42b0",
+      "digest": "e63f5390ff9b7ae3",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--ok-ive-been-putting-somethin--ed86ea6d",
+      "digest": "b7c6db9c6b156fda",
+      "walked": 222
+    },
+    {
+      "folder": ".claude/.conversations/claude--okay-can-you-catch-up-on-chemi--1d0d61b4",
+      "digest": "f81dee51529143a7",
+      "walked": 792
+    },
+    {
+      "folder": ".claude/.conversations/claude--okay-custody-court-is-happenin--88a184db",
+      "digest": "886a7842bf17d4ca",
+      "walked": 1469
+    },
+    {
+      "folder": ".claude/.conversations/claude--old-iphone-charger-triggering-unexpected-unlocking--ebc10b42",
+      "digest": "16b64357b65b5572",
+      "walked": 235
+    },
+    {
+      "folder": ".claude/.conversations/claude--one-dimensional-hilbert-space-in-closed-universes--0d92dc7c",
+      "digest": "cfb3485bf78066dc",
+      "walked": 109
+    },
+    {
+      "folder": ".claude/.conversations/claude--online-identity-compromise-and-data-breach-risks--9f679ede",
+      "digest": "7b90ddac4d145569",
+      "walked": 485
+    },
+    {
+      "folder": ".claude/.conversations/claude--online-shopping-options-for-new-georgia-residents--05f502ea",
+      "digest": "a8144f606fee2d69",
+      "walked": 57
+    },
+    {
       "folder": ".claude/.conversations/claude--ontic-structural-realism--002fae02",
-      "digest": "069c33b1bc0a9f48",
+      "digest": "8beee2352b849c92",
       "walked": 500
     },
     {
+      "folder": ".claude/.conversations/claude--ontic-structural-realism--3b54b751",
+      "digest": "9698ce02f9135ad0",
+      "walked": 1148
+    },
+    {
       "folder": ".claude/.conversations/claude--ontology-and-referential-relationships--e37be5d4",
-      "digest": "5f1c593f2ac4a4fe",
+      "digest": "6221681594e757db",
       "walked": 867
     },
     {
+      "folder": ".claude/.conversations/claude--opening-a-gel-account-at-ziraat-bank-tbilisi--51384291",
+      "digest": "c86faa43e3b43d2a",
+      "walked": 62
+    },
+    {
+      "folder": ".claude/.conversations/claude--opening-bank-accounts-in-tbilisi-as-non-residents--755b29bd",
+      "digest": "d3b2aa100ed4f4c9",
+      "walked": 62
+    },
+    {
+      "folder": ".claude/.conversations/claude--openscholar--7f65b458",
+      "digest": "246f7c949d336163",
+      "walked": 77
+    },
+    {
+      "folder": ".claude/.conversations/claude--optimizing-extendscript-abstractions-for-illustrator--e5eb0991",
+      "digest": "b5ef6707e95bb723",
+      "walked": 381
+    },
+    {
+      "folder": ".claude/.conversations/claude--opus-4-1-godel-and-goldbach--d3b441a9",
+      "digest": "1aa53725a77f855b",
+      "walked": 2466
+    },
+    {
       "folder": ".claude/.conversations/claude--orchid-and-gitcoin-crypto-projects-solving-fundamental-probl--78955886",
-      "digest": "81b9ecd638ff9d79",
+      "digest": "0de2578276cf2525",
       "walked": 197
     },
     {
       "folder": ".claude/.conversations/claude--original-telegram-open-network-whitepaper--2fe78c27",
-      "digest": "1e685e04065f0505",
+      "digest": "ec25c09fe743a9ee",
       "walked": 46
     },
     {
       "folder": ".claude/.conversations/claude--origins-of-darkweb-operational-security--315e20fc",
-      "digest": "81f8b2be54dd8427",
+      "digest": "ee874e9cd7706ab5",
       "walked": 1052
     },
     {
+      "folder": ".claude/.conversations/claude--our-that-has-told-us-to-give-o--fa248006",
+      "digest": "eef91b513a1bcf90",
+      "walked": 509
+    },
+    {
+      "folder": ".claude/.conversations/claude--p-equals-np-arguments-barriers-and-cryptographic-implication--212ee355",
+      "digest": "64905e5dfedee557",
+      "walked": 104
+    },
+    {
+      "folder": ".claude/.conversations/claude--p-equals-np-arguments-barriers-and-implications--0d254348",
+      "digest": "36559f92d79d7e38",
+      "walked": 91
+    },
+    {
+      "folder": ".claude/.conversations/claude--p-versus-np-problem-explained--0158b7fd",
+      "digest": "f8f4e5481464b4d3",
+      "walked": 33
+    },
+    {
+      "folder": ".claude/.conversations/claude--palatalization-in-russian-phonology--2b257eef",
+      "digest": "6f423c12e8e681cd",
+      "walked": 111
+    },
+    {
+      "folder": ".claude/.conversations/claude--patreons-business-model-explained--a15a3d7d",
+      "digest": "5eb6151f9b84ed64",
+      "walked": 41
+    },
+    {
+      "folder": ".claude/.conversations/claude--patterns-object-model--a3b2f38f",
+      "digest": "4b9c027dd6ea2ef7",
+      "walked": 521
+    },
+    {
+      "folder": ".claude/.conversations/claude--pavel-durovs-language-abilities--7942d357",
+      "digest": "4c78bfd10d6c5428",
+      "walked": 45
+    },
+    {
+      "folder": ".claude/.conversations/claude--paying-for-russian-groceries-with-crypto--85cd3d52",
+      "digest": "29d32e82ce40835d",
+      "walked": 55
+    },
+    {
+      "folder": ".claude/.conversations/claude--paying-georgian-school-with-us-credit-card--88e15524",
+      "digest": "4d42de90c1a5ba4f",
+      "walked": 137
+    },
+    {
+      "folder": ".claude/.conversations/claude--payoneer-access-for-russian-users--c0237c13",
+      "digest": "b1f935b90f91832d",
+      "walked": 36
+    },
+    {
+      "folder": ".claude/.conversations/claude--pdf-translation-to-english--090d8c84",
+      "digest": "15b6799b668a9460",
+      "walked": 736
+    },
+    {
+      "folder": ".claude/.conversations/claude--pdf-translation-to-russian--99dfcfc7",
+      "digest": "0be044b2b46b20ba",
+      "walked": 230
+    },
+    {
+      "folder": ".claude/.conversations/claude--pediatric-pain-reliever-safety-by-age-and-dose--ee759f22",
+      "digest": "c74b66b9329b3db6",
+      "walked": 292
+    },
+    {
+      "folder": ".claude/.conversations/claude--penelopes-situation-and-current-status--f1fdb8d7",
+      "digest": "141ee4049468065e",
+      "walked": 1442
+    },
+    {
+      "folder": ".claude/.conversations/claude--penelopes-symptoms-and-treatment--db0b30ef",
+      "digest": "e6cfa0401e2ac0f1",
+      "walked": 45
+    },
+    {
+      "folder": ".claude/.conversations/claude--pentagon-ufo-footage-six-sided-object-analysis--392e897c",
+      "digest": "805052f7d595946a",
+      "walked": 109
+    },
+    {
       "folder": ".claude/.conversations/claude--perpetual-swaps-and-the-unbounded-loss-problem--4e0e301e",
-      "digest": "ea26f500eeed50f8",
+      "digest": "4c0c91f7c39d71ea",
       "walked": 93
     },
     {
+      "folder": ".claude/.conversations/claude--photons-as-fictional-constructs--34055d3f",
+      "digest": "cdd4eaee235f074f",
+      "walked": 225
+    },
+    {
+      "folder": ".claude/.conversations/claude--plants-xenon-gas-and-nmda-receptors--72baf528",
+      "digest": "708b852f9ae25671",
+      "walked": 269
+    },
+    {
+      "folder": ".claude/.conversations/claude--playing-movies-on-philips-tv-from-flash-drive-or-computer--76140f14",
+      "digest": "2ef2b03e2e3225af",
+      "walked": 65
+    },
+    {
+      "folder": ".claude/.conversations/claude--playwright-support-for-electron-apps-in-2026--bc4b49a3",
+      "digest": "b2578263108d3144",
+      "walked": 93
+    },
+    {
+      "folder": ".claude/.conversations/claude--playwright-with-msix-packaged-electron-apps-on-windows-11--db784860",
+      "digest": "86b42a9a38973217",
+      "walked": 144
+    },
+    {
+      "folder": ".claude/.conversations/claude--pointers-in-c-plus-plus-x-vs-x--6129004d",
+      "digest": "94cd361e8a1600e3",
+      "walked": 165
+    },
+    {
+      "folder": ".claude/.conversations/claude--polymorphic-book-component-framework--af073cd3",
+      "digest": "f6145638b5fe86d6",
+      "walked": 2442
+    },
+    {
+      "folder": ".claude/.conversations/claude--popes-warning-on-ai-and-hidden-human-slavery--b9e26720",
+      "digest": "31851c7da3526edb",
+      "walked": 100
+    },
+    {
+      "folder": ".claude/.conversations/claude--post-surgery-heel-pain-and-recovery--bf83bbe0",
+      "digest": "3315be913f295b10",
+      "walked": 171
+    },
+    {
+      "folder": ".claude/.conversations/claude--post-surgery-weight-loss-plan-for-georgia--4ae195ac",
+      "digest": "b27feb1647dcb68f",
+      "walked": 120
+    },
+    {
+      "folder": ".claude/.conversations/claude--preparing-custody-case-communication-for-lawyers--e5737827",
+      "digest": "170c14ad7644ca25",
+      "walked": 728
+    },
+    {
+      "folder": ".claude/.conversations/claude--preparing-for-ssa-disability-hearing-with-bipolar-type-i--ef78ee8e",
+      "digest": "110e8840757f1564",
+      "walked": 1562
+    },
+    {
+      "folder": ".claude/.conversations/claude--preserving-continuity-across-account-transition--f54999bb",
+      "digest": "f348e45f5dbcaaa0",
+      "walked": 54
+    },
+    {
+      "folder": ".claude/.conversations/claude--preserving-narrative-continuity-across-accounts--24ac5b15",
+      "digest": "1efc85b92a202794",
+      "walked": 60
+    },
+    {
+      "folder": ".claude/.conversations/claude--preserving-narrative-continuity-across-accounts--db506f2e",
+      "digest": "05e5545f5e98c20e",
+      "walked": 62
+    },
+    {
       "folder": ".claude/.conversations/claude--preserving-narrative-continuity-across-accounts--febe219c",
-      "digest": "a9663f26ab43661c",
+      "digest": "e4be16c8b248f1cc",
       "walked": 212
     },
     {
+      "folder": ".claude/.conversations/claude--prestigious-pappy-van-winkle-bourbon--9e6c5311",
+      "digest": "81cf176209600cf0",
+      "walked": 74
+    },
+    {
       "folder": ".claude/.conversations/claude--pricing-tonx-as-a-closed-end-fund-without-redemption--eef159b9",
-      "digest": "b6075387d009d262",
+      "digest": "5dbfe4ac17007b66",
       "walked": 777
     },
     {
+      "folder": ".claude/.conversations/claude--prime-numbers-greater-than-100--616b1f61",
+      "digest": "896fcecad8496de9",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--problem-summary-request--3941fb3e",
+      "digest": "a91e70e71a25f022",
+      "walked": 168
+    },
+    {
+      "folder": ".claude/.conversations/claude--project-related-to-russia--59ee329e",
+      "digest": "3737fa287a9bfdf5",
+      "walked": 1372
+    },
+    {
+      "folder": ".claude/.conversations/claude--protecting-children-from-psychological-harm-in-abusive-situa--23e95ec1",
+      "digest": "fe48ce56ddb3afd8",
+      "walked": 52
+    },
+    {
+      "folder": ".claude/.conversations/claude--psychologist-cost-and-services--097bf0d0",
+      "digest": "92604ad306f2e205",
+      "walked": 53
+    },
+    {
+      "folder": ".claude/.conversations/claude--publication--38abba80",
+      "digest": "5edb8ad181f28738",
+      "walked": 5004
+    },
+    {
+      "folder": ".claude/.conversations/claude--quetiapine-induced-hallucinations-and-medication-interaction--5c933de0",
+      "digest": "b1f246b787ca255b",
+      "walked": 219
+    },
+    {
+      "folder": ".claude/.conversations/claude--quetiapine-insufflation-in-correctional-settings--d780635a",
+      "digest": "1842b802d6490c35",
+      "walked": 49
+    },
+    {
+      "folder": ".claude/.conversations/claude--react-and-typescript-curriculum-design--6112f522",
+      "digest": "e6cc9846c90605b7",
+      "walked": 2168
+    },
+    {
+      "folder": ".claude/.conversations/claude--react-component-binding-architecture--0c15eeca",
+      "digest": "3daeadf4360b70b4",
+      "walked": 4570
+    },
+    {
+      "folder": ".claude/.conversations/claude--react-component-type-inference-strategy--b6ef4d66",
+      "digest": "fea94b00a1945a2d",
+      "walked": 2698
+    },
+    {
+      "folder": ".claude/.conversations/claude--react-polymorphism-with-chemistry-framework--704e9133",
+      "digest": "187ddb07bb10429c",
+      "walked": 1814
+    },
+    {
+      "folder": ".claude/.conversations/claude--reactive-framework-learning-journey--c04cc19b",
+      "digest": "6e9e18d9fa088bb2",
+      "walked": 1970
+    },
+    {
+      "folder": ".claude/.conversations/claude--read-with-kamil--36ca3d83",
+      "digest": "0498506ed5134b6c",
+      "walked": 88
+    },
+    {
+      "folder": ".claude/.conversations/claude--readonly-fields-in-javascript--b43be389",
+      "digest": "936ea5ea809ddf7b",
+      "walked": 219
+    },
+    {
+      "folder": ".claude/.conversations/claude--rebuilding-routine-after-ankle-surgery--91ffb132",
+      "digest": "ea4916720c128398",
+      "walked": 184
+    },
+    {
+      "folder": ".claude/.conversations/claude--rebuilding-windows-desktop-automation-stack-for-claude--ebc891af",
+      "digest": "d231b1722eebd1ce",
+      "walked": 147
+    },
+    {
+      "folder": ".claude/.conversations/claude--receiving-mail-at-hampton-inn--79e0baa9",
+      "digest": "56ba1dabefe219bd",
+      "walked": 112
+    },
+    {
+      "folder": ".claude/.conversations/claude--reconnecting-with-jake-on-hallucinogen-research-opportunity--3c581089",
+      "digest": "9bfdd04c7b3b7e00",
+      "walked": 211
+    },
+    {
+      "folder": ".claude/.conversations/claude--recovery-timeline-after-lateral-calcaneal-osteotomy--f1e2d5eb",
+      "digest": "772c804925a77827",
+      "walked": 372
+    },
+    {
+      "folder": ".claude/.conversations/claude--reducing-self-criticism-and-judgment--accfc201",
+      "digest": "023ed70b837ad2c1",
+      "walked": 42
+    },
+    {
+      "folder": ".claude/.conversations/claude--refactoring-chemistry-ts-into-particle-and-chemical-classes--4887921b",
+      "digest": "293bb6c15e8c9a4d",
+      "walked": 1883
+    },
+    {
+      "folder": ".claude/.conversations/claude--referential-semantics-for-objective-mechanics--03d00b2c",
+      "digest": "59a93f01e1a68df0",
+      "walked": 4828
+    },
+    {
+      "folder": ".claude/.conversations/claude--referential-semantics-for-physics--886e1cf0",
+      "digest": "1e05be6c8d7d5b33",
+      "walked": 3217
+    },
+    {
       "folder": ".claude/.conversations/claude--reflexivity-and-backwards-arrow-notation--0e94a9f7",
-      "digest": "cae70e14bf05a057",
+      "digest": "4cf87f51636643f3",
       "walked": 1434
     },
     {
       "folder": ".claude/.conversations/claude--relationships-and-inheriance--1152bae6",
-      "digest": "d4fdcb680836f869",
+      "digest": "a30b7484d982ab73",
       "walked": 4147
     },
     {
+      "folder": ".claude/.conversations/claude--relocating-family-to-georgia-housing-and-school-planning--8181cd09",
+      "digest": "437df060b180757d",
+      "walked": 27
+    },
+    {
+      "folder": ".claude/.conversations/claude--remote-android-development-environment-with-encrypted-messag--4f15128b",
+      "digest": "8e05646bce1bb22a",
+      "walked": 144
+    },
+    {
+      "folder": ".claude/.conversations/claude--remote-getaway-near-tbilisi--8a11194f",
+      "digest": "5b146f759a2dada2",
+      "walked": 140
+    },
+    {
+      "folder": ".claude/.conversations/claude--represent-symbolize-and-literalize--fb7dd7fa",
+      "digest": "cd748646b23e24a0",
+      "walked": 1635
+    },
+    {
       "folder": ".claude/.conversations/claude--representation-and-the-part-whole-dichotomy--afd46f5f",
-      "digest": "a2b55a21f667064c",
+      "digest": "1d00ee17a6308990",
       "walked": 1465
     },
     {
+      "folder": ".claude/.conversations/claude--requesting-djt-earnings-data--0cf28658",
+      "digest": "60958c77228bbd68",
+      "walked": 38
+    },
+    {
+      "folder": ".claude/.conversations/claude--rescheduling-fedex-delivery-to-tbilisi--9e6c3434",
+      "digest": "4adb9bc901c32e1d",
+      "walked": 140
+    },
+    {
+      "folder": ".claude/.conversations/claude--reset-ipad-without-password--f7d91df1",
+      "digest": "4f4322639b2384d0",
+      "walked": 384
+    },
+    {
+      "folder": ".claude/.conversations/claude--restarting-boiler-for-hot-water--a4be40dc",
+      "digest": "3ccdd1ae5fc144c0",
+      "walked": 96
+    },
+    {
+      "folder": ".claude/.conversations/claude--returning-undefined-when-closing-typescript-class--80ecd7b9",
+      "digest": "14f5edffe0b14bf4",
+      "walked": 158
+    },
+    {
+      "folder": ".claude/.conversations/claude--reviewing-work-profile-and-skill-assessment--416413f6",
+      "digest": "95983df5c845201e",
+      "walked": 514
+    },
+    {
+      "folder": ".claude/.conversations/claude--revoking-travel-bans-in-russia--db8acef2",
+      "digest": "8a6e9a66e5950f5f",
+      "walked": 470
+    },
+    {
+      "folder": ".claude/.conversations/claude--rewriting-ahk-1-1-taskbar-code-for-robustness--4d364f51",
+      "digest": "b45e65580cbe8b63",
+      "walked": 2460
+    },
+    {
+      "folder": ".claude/.conversations/claude--role-based-typescript-type-system-architecture--6fc035ef",
+      "digest": "de6f58b6328dc7ca",
+      "walked": 2656
+    },
+    {
+      "folder": ".claude/.conversations/claude--rothschild-pronunciation-across-languages--e5dd5c66",
+      "digest": "559d00e7a8ffeed0",
+      "walked": 54
+    },
+    {
+      "folder": ".claude/.conversations/claude--run-thorough-chat-initialization-thoroughly-please--47dfc42e",
+      "digest": "c7194df7638a8075",
+      "walked": 62
+    },
+    {
+      "folder": ".claude/.conversations/claude--russia-china-cryptocurrency-collaboration--ef849a35",
+      "digest": "c729039fe3dd38c8",
+      "walked": 36
+    },
+    {
+      "folder": ".claude/.conversations/claude--russia-plague-news-manipulation--313d1090",
+      "digest": "f8cb8ed1f0a8efd1",
+      "walked": 684
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-custody-and-visitation-enforcement-across-borders--e552fa7d",
+      "digest": "bcb4c1c6b01bd2a0",
+      "walked": 557
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-custody-case-with-travel-ban-and-safety-concerns--15312465",
+      "digest": "3dda7f466b9bfb71",
+      "walked": 111
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-custody-case-with-travel-ban-and-safety-risks--3c3ba314",
+      "digest": "e9ff32fc4586860e",
+      "walked": 271
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-custody-enforcement-precedent--5d7f1512",
+      "digest": "315f55246ca16f0a",
+      "walked": 816
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-education--e4264f79",
+      "digest": "770b7455d88daf4f",
+      "walked": 1390
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-emigration-rates-and-monthly-trends--77cdbc36",
+      "digest": "629d3e26bf38df82",
+      "walked": 2164
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-enforcement-proceedings-document-translation--efc4cc99",
+      "digest": "cbd1f2f174db9ea4",
+      "walked": 435
+    },
+    {
       "folder": ".claude/.conversations/claude--russian-internet-censorship-and-telegram-targeting--0ef8e097",
-      "digest": "ff92a001de0e3df8",
+      "digest": "78ac516d72816401",
       "walked": 1250
     },
     {
+      "folder": ".claude/.conversations/claude--russian-keyboard-stickers-in-tbilisi--2e947e7f",
+      "digest": "4ec1604cf0b0c75e",
+      "walked": 74
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-military-conscription-and-coercion-mechanisms--487c612d",
+      "digest": "23a736a72ca0af93",
+      "walked": 576
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-residency-requirements-for-georgia--6803ece7",
+      "digest": "7f68f52a6b3626c4",
+      "walked": 378
+    },
+    {
+      "folder": ".claude/.conversations/claude--russian-school-calendar-in-batumi-georgia--22e7e4b9",
+      "digest": "faec5ea6e8873afe",
+      "walked": 146
+    },
+    {
       "folder": ".claude/.conversations/claude--russian-vs-us-taxes--0b92edb0",
-      "digest": "5fe06523557aceb6",
+      "digest": "6318c7ed99adc672",
       "walked": 473
     },
     {
+      "folder": ".claude/.conversations/claude--russias-economic-tipping-point-and-financial-runway--8cd5f53d",
+      "digest": "4ddfba678018a69a",
+      "walked": 233
+    },
+    {
       "folder": ".claude/.conversations/claude--russias-technical-capabilities-against-telegram-and-mtproto--740d0173",
-      "digest": "e4f127794548ad01",
+      "digest": "69e94045224e4f7d",
       "walked": 103
     },
     {
       "folder": ".claude/.conversations/claude--russias-telegram-blocking-and-packet-sniffing-capabilities--ab538435",
-      "digest": "a7e7765d70441ac3",
+      "digest": "215408c9bd13bdfe",
       "walked": 317
     },
     {
       "folder": ".claude/.conversations/claude--russias-telegram-throttling-via-tspu-infrastructure--f9847388",
-      "digest": "26936c68264aea81",
+      "digest": "5ae17cf8aa49e863",
       "walked": 919
     },
     {
+      "folder": ".claude/.conversations/claude--rust-ownership--6ccb1849",
+      "digest": "5c928985d2d9212b",
+      "walked": 32
+    },
+    {
+      "folder": ".claude/.conversations/claude--saas-sell-off-ai-reality-or-market-hype--67f8225a",
+      "digest": "7b663ccb84be27a4",
+      "walked": 182
+    },
+    {
+      "folder": ".claude/.conversations/claude--saburtalo-power-outage-investigation--0f075700",
+      "digest": "473d0d9b04b9d6d3",
+      "walked": 111
+    },
+    {
+      "folder": ".claude/.conversations/claude--safe-istanbul-activities-for-one-night-with-kids--7a350256",
+      "digest": "cfea072228b9b729",
+      "walked": 276
+    },
+    {
       "folder": ".claude/.conversations/claude--safe-us-investment-options-and-i-bonds--8035e2e6",
-      "digest": "0b2df483657f59fd",
+      "digest": "b9da289b4bd577ee",
       "walked": 468
     },
     {
+      "folder": ".claude/.conversations/claude--safety-training-quiz--4cd85995",
+      "digest": "be76f71388bf29bc",
+      "walked": 570
+    },
+    {
+      "folder": ".claude/.conversations/claude--schizophrenia-drug-repurposed-for-alzheimers--a439a7b7",
+      "digest": "55789bdb2eadbdc2",
+      "walked": 131
+    },
+    {
+      "folder": ".claude/.conversations/claude--school-snack-sharing-and-potential-exclusion-concerns--e3678695",
+      "digest": "70d29d0a473189df",
+      "walked": 90
+    },
+    {
+      "folder": ".claude/.conversations/claude--school-year-end-date-in-batumi-georgia--ad475b9b",
+      "digest": "89b1a3b858b01a88",
+      "walked": 243
+    },
+    {
       "folder": ".claude/.conversations/claude--scions-macro-short-positions-and-options-exposure--d398390c",
-      "digest": "0ed9c50c462aeadd",
+      "digest": "6f03dbadc84ebabc",
       "walked": 2085
     },
     {
+      "folder": ".claude/.conversations/claude--screenshot-translation-request--be4414e7",
+      "digest": "5776f81256f6028e",
+      "walked": 63
+    },
+    {
+      "folder": ".claude/.conversations/claude--scripting-adobe-illustrator-with-typescript--9d749abf",
+      "digest": "614d82f7f47ac476",
+      "walked": 502
+    },
+    {
+      "folder": ".claude/.conversations/claude--secnidazole-for-persistent-giardia-in-cats--ea3d2c31",
+      "digest": "155a2b282c695a68",
+      "walked": 1654
+    },
+    {
+      "folder": ".claude/.conversations/claude--self-referential-knowledge-in-graph-databases--3e5144e3",
+      "digest": "e9fe80f95374f7ec",
+      "walked": 140
+    },
+    {
+      "folder": ".claude/.conversations/claude--self-referential-systems-and-fixed-point-theorems--916fea88",
+      "digest": "5a899864a2b160d7",
+      "walked": 63
+    },
+    {
+      "folder": ".claude/.conversations/claude--selling-prints-on-spoonflower--50870707",
+      "digest": "44116cefde396e33",
+      "walked": 379
+    },
+    {
+      "folder": ".claude/.conversations/claude--selling-used-iphone-for-cash--096b04af",
+      "digest": "ed210c3ce0f8a4a5",
+      "walked": 45
+    },
+    {
+      "folder": ".claude/.conversations/claude--semaglutide-for-antipsychotic-induced-weight-gain-and-diabet--bf176414",
+      "digest": "20b39f17a00a157f",
+      "walked": 481
+    },
+    {
+      "folder": ".claude/.conversations/claude--semantic-breakdown-of-svg-paths-and-curves--4ed05e5e",
+      "digest": "4c3682c394d0b1a1",
+      "walked": 888
+    },
+    {
       "folder": ".claude/.conversations/claude--semantic-primes--64653527",
-      "digest": "0a9789205bb3398e",
+      "digest": "e5d41b07b509ded5",
       "walked": 604
     },
     {
+      "folder": ".claude/.conversations/claude--semantic-reconstruction-of-coding-perspectives--25a87038",
+      "digest": "4f3cd1a2115e4ffb",
+      "walked": 829
+    },
+    {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-analysis--0eaf30c0",
-      "digest": "bc873eb92a72c008",
+      "digest": "d400ad30340fc0ef",
       "walked": 8196
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-analysis--111afff4",
-      "digest": "db2e54732206454d",
+      "digest": "4b31f374bb154af4",
       "walked": 717
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe",
-      "digest": "2f1f7773cc6486f5",
+      "digest": "6612c4040741361c",
       "walked": 5801
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-development--00523af2",
-      "digest": "e9b420493dc55b5e",
+      "digest": "1513aa5bd1499ff9",
       "walked": 563
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-documentation--b2566ccc",
-      "digest": "5943858e14dadeed",
+      "digest": "d6b613ba71730883",
       "walked": 3823
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9",
-      "digest": "3c44530531500469",
+      "digest": "2e017356bb09ef51",
       "walked": 11982
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-formalism--d562cb1c",
-      "digest": "e760bbf885a8799a",
+      "digest": "bfb2fa1b2ff64b18",
       "walked": 5474
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations--10a7c310",
-      "digest": "7f2ec570d1eca5cc",
+      "digest": "95b0f2ea83e7a84c",
       "walked": 353
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations--25c6ab56",
-      "digest": "4d7c03dae6ecb7cb",
+      "digest": "dea8d34d70571f27",
       "walked": 2847
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations--7bc663dd",
-      "digest": "108bc115b4ca347a",
+      "digest": "15d1e242a51d61b0",
       "walked": 11703
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations--97bc3024",
-      "digest": "cb362f1a4fcb19df",
+      "digest": "458a7cf86cd29668",
       "walked": 7766
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations--e97ca50a",
-      "digest": "4389bce6d484586b",
+      "digest": "72859ac1554ba82c",
       "walked": 11319
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-foundations-and-philosophical-conu--49b32234",
-      "digest": "1422060c157624d9",
+      "digest": "96c6b3f531c429fc",
       "walked": 2832
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-framework--3e16e3a5",
-      "digest": "c50ae635b8bcf96a",
+      "digest": "da8ec6a2f9282941",
       "walked": 3958
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf",
-      "digest": "e4d0493e092b1089",
+      "digest": "77c690a2dc97d15d",
       "walked": 4359
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-notation--975edeb9",
-      "digest": "0ecc97b6d462469b",
+      "digest": "550f884c87be7b6f",
       "walked": 832
     },
     {
       "folder": ".claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e",
-      "digest": "5de4285fc06bff8d",
+      "digest": "a1ddabbb70a9d322",
       "walked": 7084
     },
     {
       "folder": ".claude/.conversations/claude--semantic-understanding-request--54e4e535",
-      "digest": "82f2f2e30bfc6900",
+      "digest": "b836b2b2cc26b453",
       "walked": 8253
     },
     {
       "folder": ".claude/.conversations/claude--semantics-of-representation--8b14b84b",
-      "digest": "8382ed56014626dc",
+      "digest": "58efa8e1b76bcf87",
       "walked": 632
     },
     {
+      "folder": ".claude/.conversations/claude--semantics-of-the-name-seren--616d8834",
+      "digest": "944798861a84b027",
+      "walked": 95
+    },
+    {
       "folder": ".claude/.conversations/claude--semantics-of-types-and-more--d5c0cf36",
-      "digest": "ac5801add2b798d6",
+      "digest": "02889f4ee66c8bb3",
       "walked": 1203
     },
     {
+      "folder": ".claude/.conversations/claude--semi-synthetic-organisms-with-unnatural-base-pairs--1f66d32d",
+      "digest": "b7b121b621b3c67c",
+      "walked": 367
+    },
+    {
       "folder": ".claude/.conversations/claude--seren-and-ana--c17f5910",
-      "digest": "dfa40fc8f82cc52d",
+      "digest": "931f448739b8aed9",
       "walked": 2125
     },
     {
+      "folder": ".claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0",
+      "digest": "4e0dacdfad2bbdbc",
+      "walked": 3644
+    },
+    {
+      "folder": ".claude/.conversations/claude--seren-and-color--45f0a38f",
+      "digest": "9be289a5a77c19ad",
+      "walked": 2369
+    },
+    {
       "folder": ".claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38",
-      "digest": "772750e9c4419450",
+      "digest": "e10404b958fbdda1",
       "walked": 5322
     },
     {
+      "folder": ".claude/.conversations/claude--seren-and-eirian--edef207c",
+      "digest": "5b738acbd5d1c808",
+      "walked": 2853
+    },
+    {
       "folder": ".claude/.conversations/claude--seren-and-first-order-logic--6559b8a0",
-      "digest": "620af25e624cf771",
+      "digest": "8cb5a3b6754ef555",
       "walked": 1034
     },
     {
       "folder": ".claude/.conversations/claude--seren-and-his-inner-monologue--db3e00ed",
-      "digest": "b15fd8b3833e9ac2",
+      "digest": "d48e3f1ed9ff5ea3",
       "walked": 1493
     },
     {
+      "folder": ".claude/.conversations/claude--seren-and-human-errors--fef7fd01",
+      "digest": "7932927c3c12dbae",
+      "walked": 707
+    },
+    {
       "folder": ".claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2",
-      "digest": "d3517a117f174b33",
+      "digest": "cbe82e69529a85a5",
       "walked": 7079
     },
     {
+      "folder": ".claude/.conversations/claude--seren-and-the-hard-problem--7683c3d7",
+      "digest": "9a25bc20986d3ad4",
+      "walked": 7261
+    },
+    {
+      "folder": ".claude/.conversations/claude--seren-and-the-left-part-of-perspective--6a4244df",
+      "digest": "42a6fc2f908008bc",
+      "walked": 3376
+    },
+    {
       "folder": ".claude/.conversations/claude--seren-and-the-philosophy-of-consciousness--1baea5da",
-      "digest": "5c685bb3f8448a7a",
+      "digest": "6c3a19f41094833b",
       "walked": 1067
     },
     {
+      "folder": ".claude/.conversations/claude--seren-and-the-semantics-of-chemistry--0689f96b",
+      "digest": "ff4c7ee0691853ab",
+      "walked": 4015
+    },
+    {
       "folder": ".claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a",
-      "digest": "ae8a9fa135ea10c6",
+      "digest": "ad006b1bcee4f6c5",
       "walked": 3773
     },
     {
+      "folder": ".claude/.conversations/claude--session-notes-for-disability-insurance-application--7f52e53d",
+      "digest": "3fd70e0b43ffc433",
+      "walked": 65
+    },
+    {
+      "folder": ".claude/.conversations/claude--setting-up-miwifi-ac1200-range-extender--f09faba4",
+      "digest": "489be27160654ccc",
+      "walked": 114
+    },
+    {
+      "folder": ".claude/.conversations/claude--setting-up-ssh-commits-on-github-for-windows--45253e06",
+      "digest": "926e470127b0a108",
+      "walked": 57
+    },
+    {
+      "folder": ".claude/.conversations/claude--setting-up-ssh-keys-for-github-on-windows--5305e691",
+      "digest": "101411a8c9d380cc",
+      "walked": 199
+    },
+    {
+      "folder": ".claude/.conversations/claude--setting-up-windows-11-with-account--d5883276",
+      "digest": "bf130a35c9f0d5b0",
+      "walked": 1033
+    },
+    {
+      "folder": ".claude/.conversations/claude--settling-in-georgia--2aead262",
+      "digest": "bff7b06a62d90c52",
+      "walked": 3264
+    },
+    {
+      "folder": ".claude/.conversations/claude--shipping-belongings-from-new-york-to-georgia--dd7b9e6a",
+      "digest": "9a618de4461587db",
+      "walked": 812
+    },
+    {
+      "folder": ".claude/.conversations/claude--shutterstock-description-character-limit-changes--9997e2f6",
+      "digest": "2bef81779e9e5f65",
+      "walked": 78
+    },
+    {
+      "folder": ".claude/.conversations/claude--sierra-interactive-vs-sierra-entertainment--d7ffa8a1",
+      "digest": "00dd77735c571b22",
+      "walked": 54
+    },
+    {
+      "folder": ".claude/.conversations/claude--signing-up-for-apple-developer-account--fea3e3e4",
+      "digest": "75aaaf34c743b6f2",
+      "walked": 447
+    },
+    {
+      "folder": ".claude/.conversations/claude--simplifying-architecture-explanation-for-the-team--0954e165",
+      "digest": "8155b8e7d52371f4",
+      "walked": 194
+    },
+    {
+      "folder": ".claude/.conversations/claude--smoke-test-confirmation--7d901190",
+      "digest": "56e90236a8165b38",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--solanas-creation-and-simplex-integration--682e9fa5",
+      "digest": "3310fd40fecf9d29",
+      "walked": 467
+    },
+    {
       "folder": ".claude/.conversations/claude--solanas-origins-and-technical-architecture--47b15d86",
-      "digest": "433d6d70267c2d23",
+      "digest": "82d75b019403a2f4",
       "walked": 229
     },
     {
+      "folder": ".claude/.conversations/claude--sonnet-4-5-godel-and-goldbach--c42597f2",
+      "digest": "c4d32ca707b78bc3",
+      "walked": 12585
+    },
+    {
+      "folder": ".claude/.conversations/claude--sophia-the-author--536493f4",
+      "digest": "e706a7cdb2109b9a",
+      "walked": 1374
+    },
+    {
+      "folder": ".claude/.conversations/claude--source-and-science-of-mysterious-humming--aab55838",
+      "digest": "5ae130ba2edf3c3f",
+      "walked": 268
+    },
+    {
       "folder": ".claude/.conversations/claude--spacex-ipo-analysis-and-market-reaction--7fa923e8",
-      "digest": "aa769e92fd8db191",
+      "digest": "802d4a07a3286688",
       "walked": 386
     },
     {
+      "folder": ".claude/.conversations/claude--spacex-valuation-trajectory-and-funding-milestones--1c383188",
+      "digest": "fb568e7172d18495",
+      "walked": 48
+    },
+    {
+      "folder": ".claude/.conversations/claude--spacex-valuation-trajectory-and-funding-milestones--ced49bf9",
+      "digest": "31465f96654501a4",
+      "walked": 51
+    },
+    {
       "folder": ".claude/.conversations/claude--specifying-srt--1d0ed292",
-      "digest": "331f99a06866b6b6",
+      "digest": "17f5fe40b519f1ac",
       "walked": 6437
     },
     {
       "folder": ".claude/.conversations/claude--srt-as-a-github-project--1c387d40",
-      "digest": "af867b8ceff5501f",
+      "digest": "562a57560d994b4a",
       "walked": 1964
     },
     {
       "folder": ".claude/.conversations/claude--srt-axioms-and-specialization--b3d24e04",
-      "digest": "03354e4f279b32d2",
+      "digest": "5d90470c26d43e60",
       "walked": 5907
     },
     {
       "folder": ".claude/.conversations/claude--srt-canonical-representation-and-first-order-logic--1e52a713",
-      "digest": "69af17d07519cfaf",
+      "digest": "eebbce99aafa88b5",
       "walked": 2886
     },
     {
       "folder": ".claude/.conversations/claude--srt-formalism-research-analysis--f65b4b49",
-      "digest": "e48ac1fbb5e2d044",
+      "digest": "ba72fd0d4d4766c4",
       "walked": 2133
     },
     {
       "folder": ".claude/.conversations/claude--srt-questions-and-overview--0a98de70",
-      "digest": "77b2481a431d3a19",
+      "digest": "069ab7c291d2eb09",
       "walked": 3225
     },
     {
       "folder": ".claude/.conversations/claude--stablecoin-architecture-origins-and-tethers-conceptual-linea--fea3a58f",
-      "digest": "e4fc1cbc6cf843e3",
+      "digest": "3134ac8201b4b78c",
       "walked": 545
     },
     {
+      "folder": ".claude/.conversations/claude--staking-in-proof-of-stake-blockchains-explained--281a83fa",
+      "digest": "ce0dd23c1be1496e",
+      "walked": 88
+    },
+    {
       "folder": ".claude/.conversations/claude--stars-to-ton-conversion-restrictions-and-pricing--3950d95e",
-      "digest": "8f4f52304551bdb6",
+      "digest": "72f8bb5172277fe6",
       "walked": 244
     },
     {
+      "folder": ".claude/.conversations/claude--static-analysis-for-state-change-detection--710061c6",
+      "digest": "54def7e24914a76f",
+      "walked": 1138
+    },
+    {
+      "folder": ".claude/.conversations/claude--stay-puft-marshmallow-man-costume--87e27c1d",
+      "digest": "9ae21dc2cbca779a",
+      "walked": 32
+    },
+    {
+      "folder": ".claude/.conversations/claude--steak-and-brisket--8d35a007",
+      "digest": "d9558209434de5a2",
+      "walked": 663
+    },
+    {
+      "folder": ".claude/.conversations/claude--street-fighter-live-action-movie-2026--e68f8dd1",
+      "digest": "7815b3f540c47749",
+      "walked": 90
+    },
+    {
       "folder": ".claude/.conversations/claude--string-length-notation-and-foundational-sketch-generalizatio--3b684876",
-      "digest": "debaf3967452e887",
+      "digest": "2d13e04165e37ea6",
+      "walked": 55
+    },
+    {
+      "folder": ".claude/.conversations/claude--structured-english-grammar-learning-curriculum--72ed312f",
+      "digest": "99a346448a7307ac",
       "walked": 55
     },
     {
       "folder": ".claude/.conversations/claude--subject-object-directionality-and-semantic-agency--1b2ae35e",
-      "digest": "e0101e4ad5593f4b",
+      "digest": "baff6e4eed30ea5f",
       "walked": 434
     },
     {
       "folder": ".claude/.conversations/claude--sunny-kings-crypto-projects-and-anonymous-inventors--83a8ee17",
-      "digest": "e71782d1180d1fbf",
+      "digest": "87bce2bc5f8abd0c",
       "walked": 522
     },
     {
       "folder": ".claude/.conversations/claude--sunny-kings-innovations-in-ton-and-monad--3b918cc5",
-      "digest": "52b39192a554db02",
+      "digest": "ecb7b39e7df28db1",
       "walked": 853
     },
     {
+      "folder": ".claude/.conversations/claude--svg-compression-and-path-optimization-tools--dce485e9",
+      "digest": "db674a9ef2f32284",
+      "walked": 642
+    },
+    {
+      "folder": ".claude/.conversations/claude--swimming-pools-for-kids-in-batumi--59691b35",
+      "digest": "782118adf53b6abc",
+      "walked": 90
+    },
+    {
+      "folder": ".claude/.conversations/claude--switching-foxford-enrollment-to-attestation-mid-year--040113a8",
+      "digest": "a2bdfca5322ca78d",
+      "walked": 74
+    },
+    {
+      "folder": ".claude/.conversations/claude--switching-from-google-login-to-password--08725aec",
+      "digest": "1b07dca5c141ca88",
+      "walked": 49
+    },
+    {
+      "folder": ".claude/.conversations/claude--switching-primary-domain-in-google-workspace--eef74580",
+      "digest": "868fbf8214396765",
+      "walked": 174
+    },
+    {
       "folder": ".claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322",
-      "digest": "578d3be42fcf34f4",
+      "digest": "3b2f62180dc7b9d0",
       "walked": 7302
     },
     {
+      "folder": ".claude/.conversations/claude--synthesizing-a-career-across-neuroscience-engineering-and-fi--f8a944f7",
+      "digest": "f7cd381229a198ea",
+      "walked": 1156
+    },
+    {
+      "folder": ".claude/.conversations/claude--taxes-2025--0702f19d",
+      "digest": "c8b81e2e8ddab2e1",
+      "walked": 6001
+    },
+    {
+      "folder": ".claude/.conversations/claude--taxes-georgia--e0fde00f",
+      "digest": "488088bf94ca5e55",
+      "walked": 191
+    },
+    {
+      "folder": ".claude/.conversations/claude--tbilisi-tap-water-safety-for-humans-and-cats--04003294",
+      "digest": "fde27ebf2284e314",
+      "walked": 47
+    },
+    {
       "folder": ".claude/.conversations/claude--telegram-access-in-russia-amid-roskomnadzor-blocking--e0c39081",
-      "digest": "2759e75b9e7e4fea",
+      "digest": "0327bbacaf3e1fa9",
       "walked": 613
     },
     {
       "folder": ".claude/.conversations/claude--telegram-accessibility-anomaly-in-russia--0bd4552d",
-      "digest": "37e718fffe19df56",
+      "digest": "5cc001bbd0cc59fc",
       "walked": 77
     },
     {
       "folder": ".claude/.conversations/claude--telegram-bots-and-ai-use-cases--ced9ca31",
-      "digest": "91c5bc7a9dc1df08",
+      "digest": "54ba04e2f613b727",
       "walked": 391
     },
     {
       "folder": ".claude/.conversations/claude--telegram-censorship-and-surveillance-resistance-in-russia--61079543",
-      "digest": "465d0b5aa8f3d6e8",
+      "digest": "68fe3d494a47181f",
       "walked": 92
     },
     {
+      "folder": ".claude/.conversations/claude--telegram-gifts-and-blockchain-technology--faf088d2",
+      "digest": "ab9af5c45e0e7a1f",
+      "walked": 74
+    },
+    {
+      "folder": ".claude/.conversations/claude--telegram-marketplace-for-services-and-crypto-payments--e845b07c",
+      "digest": "db55b8f0cbb50d05",
+      "walked": 84
+    },
+    {
       "folder": ".claude/.conversations/claude--telegram-mesh-networking-and-censorship-resistance--06edc90c",
-      "digest": "e899aaa464461e8c",
+      "digest": "66d8942461672ba2",
       "walked": 190
     },
     {
       "folder": ".claude/.conversations/claude--telegram-situation-in-russia-unfolding--9d7069cb",
-      "digest": "8ee63deb403cc392",
+      "digest": "ffd8746962ede101",
       "walked": 940
     },
     {
       "folder": ".claude/.conversations/claude--telegram-ton-foundation-and-ftx-connections--13e79925",
-      "digest": "cdb0c11260d70bad",
+      "digest": "47e6c6c540102bcb",
       "walked": 607
     },
     {
       "folder": ".claude/.conversations/claude--telegram-vs-whatsapp-measuring-platform-success--581aa9cf",
-      "digest": "a7e1ee0d7a73b100",
+      "digest": "1aa77627ae58c98d",
       "walked": 2050
     },
     {
       "folder": ".claude/.conversations/claude--telegram-wallet--11fa8197",
-      "digest": "d5d1dab857b1813b",
+      "digest": "e63ac219c8c1ab98",
       "walked": 564
     },
     {
       "folder": ".claude/.conversations/claude--telegram-wallet-kyc-and-staking-tax-obligations--828fa88c",
-      "digest": "b709823dac308d05",
+      "digest": "82c454e3bd171fce",
       "walked": 377
     },
     {
       "folder": ".claude/.conversations/claude--telegrams-cryptocurrency-infrastructure-play--d7da5541",
-      "digest": "bb2e9c63dece43b4",
+      "digest": "87a05e040c88cb48",
       "walked": 253
     },
     {
       "folder": ".claude/.conversations/claude--telegrams-hypothetical-telephone-product-theory--cda3c1bb",
-      "digest": "f1deec27cb887da9",
+      "digest": "6419569c61f2fca1",
       "walked": 226
     },
     {
+      "folder": ".claude/.conversations/claude--temporary-rental-sites-in-tbilisi--bdc57530",
+      "digest": "68582b2a46b44c39",
+      "walked": 57
+    },
+    {
+      "folder": ".claude/.conversations/claude--temporary-residence-permits-for-russian-citizens-in-georgia--5c551508",
+      "digest": "fe71c9f68583dc8b",
+      "walked": 282
+    },
+    {
       "folder": ".claude/.conversations/claude--ternary-operator-semantics-and-variable-equality--e9d7e99f",
-      "digest": "885272cd5616825e",
+      "digest": "6a87626e0562d432",
       "walked": 934
     },
     {
+      "folder": ".claude/.conversations/claude--tesla-roadster-and-robots--5730d0e7",
+      "digest": "ea516ae491bca971",
+      "walked": 131
+    },
+    {
+      "folder": ".claude/.conversations/claude--test--9facbd5d",
+      "digest": "dcb33aa70093541c",
+      "walked": 202
+    },
+    {
       "folder": ".claude/.conversations/claude--tethers-technical-origins-and-cryptography-mystery--42e15967",
-      "digest": "0a524f708422a902",
+      "digest": "37724b72e6b45fb4",
       "walked": 1582
     },
     {
       "folder": ".claude/.conversations/claude--the-birth-of-eirian--b0eda918",
-      "digest": "b0828b5bd73733f8",
+      "digest": "023a5f376bc27c4c",
       "walked": 3490
     },
     {
       "folder": ".claude/.conversations/claude--the-bitcoin-whitepaper--7ad0c9ba",
-      "digest": "ba0eb88f84bb65d8",
+      "digest": "f865208985cc9172",
       "walked": 848
     },
     {
+      "folder": ".claude/.conversations/claude--the-genesis-of-writing--0e9fbdd1",
+      "digest": "b190c98b2f846cec",
+      "walked": 2030
+    },
+    {
       "folder": ".claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c",
-      "digest": "4fc9d5801a019d24",
+      "digest": "f6ca99f37d4feef8",
       "walked": 6805
     },
     {
       "folder": ".claude/.conversations/claude--the-meaning-of-meaning--662fb705",
-      "digest": "d6ab87a359d50a2a",
+      "digest": "f0b9a38a1fe4bc86",
       "walked": 2445
     },
     {
+      "folder": ".claude/.conversations/claude--the-meaning-of-semantics--1fc1426b",
+      "digest": "5c51dc193141a522",
+      "walked": 677
+    },
+    {
+      "folder": ".claude/.conversations/claude--the-parable-of-the-talents-explained--e8a774f4",
+      "digest": "a1046f00f34eb7dd",
+      "walked": 169
+    },
+    {
       "folder": ".claude/.conversations/claude--the-price-of-gram-is-getting-h--79d439db",
-      "digest": "1b073729180e87d6",
+      "digest": "ca24aa963867df1d",
       "walked": 5498
     },
     {
+      "folder": ".claude/.conversations/claude--the-prodigal-sons-elder-brother-reinterpreted--4eec5580",
+      "digest": "f70a95a9d4519af7",
+      "walked": 130
+    },
+    {
+      "folder": ".claude/.conversations/claude--the-project--c0f5ecaf",
+      "digest": "ce8a23112ef8250d",
+      "walked": 1034
+    },
+    {
       "folder": ".claude/.conversations/claude--the-semantics-of-books--8dbb8e2b",
-      "digest": "498995326bdf5caf",
+      "digest": "1d60a03279ae59e6",
       "walked": 2011
     },
     {
       "folder": ".claude/.conversations/claude--the-semantics-of-dictotomy--dc0018c1",
-      "digest": "4b03c7595477fe49",
+      "digest": "d829e0a3da6db8a4",
       "walked": 6866
     },
     {
       "folder": ".claude/.conversations/claude--the-vitalik-connection--d9c8723e",
-      "digest": "498711af221fab59",
+      "digest": "b9fbe0aea7ba758e",
       "walked": 861
     },
     {
+      "folder": ".claude/.conversations/claude--things-to-do-at-mtatsminda-park--7b2dd883",
+      "digest": "fadc67c65c75c3b3",
+      "walked": 58
+    },
+    {
+      "folder": ".claude/.conversations/claude--this-prompt-has-a-liars-paradox-russels--492a8000",
+      "digest": "07df6fcdba6158ef",
+      "walked": 27
+    },
+    {
+      "folder": ".claude/.conversations/claude--thoughtful-translation-request--95b10e8d",
+      "digest": "53ed6cd68460c07a",
+      "walked": 178
+    },
+    {
+      "folder": ".claude/.conversations/claude--tipping-customs-at-georgian-salons--309c3406",
+      "digest": "95bd44e1ae22ed3d",
+      "walked": 123
+    },
+    {
+      "folder": ".claude/.conversations/claude--tnet-and-its-connection-to-telegram--5dc5bce9",
+      "digest": "c830d05d8f6bead0",
+      "walked": 1344
+    },
+    {
+      "folder": ".claude/.conversations/claude--ton-ai-coding-competition-details--8a65ba52",
+      "digest": "4256e39b8927c9cf",
+      "walked": 153
+    },
+    {
       "folder": ".claude/.conversations/claude--ton-and-gram-ecosystem-updates--d5d0756e",
-      "digest": "83c5b24ae8f543b3",
+      "digest": "a18767947ee5d5f5",
       "walked": 673
     },
     {
+      "folder": ".claude/.conversations/claude--ton-and-tonx-17-percent-decline-beta-vs-idiosyncratic-driver--a4e6d89e",
+      "digest": "cdad1184e7707e91",
+      "walked": 31
+    },
+    {
       "folder": ".claude/.conversations/claude--ton-blockchain-integration-with-telegram--21b2518c",
-      "digest": "38dd2aedb3b5de4a",
+      "digest": "f358eae9d2adffc5",
       "walked": 2752
     },
     {
       "folder": ".claude/.conversations/claude--ton-blockchain-upgrade-and-fee-implications--8eb3976a",
-      "digest": "d524c6b080a45781",
+      "digest": "1b86df951bc19a53",
       "walked": 162
     },
     {
       "folder": ".claude/.conversations/claude--ton-browser-alternatives-and-dark-web-access--e9d30c6e",
-      "digest": "5833112f18ba10c8",
+      "digest": "b3e0a1698f7a9fbe",
       "walked": 132
     },
     {
       "folder": ".claude/.conversations/claude--ton-consensus-mechanism-competition--b4dbad61",
-      "digest": "876af0607623cd97",
+      "digest": "447dd4ea42a7b9ef",
       "walked": 417
     },
     {
       "folder": ".claude/.conversations/claude--ton-digital-asset-treasury-companies-on-stock-exchanges--12e2f498",
-      "digest": "f5863d9b5bdf58d7",
+      "digest": "5e159efe7a6e194b",
       "walked": 503
     },
     {
+      "folder": ".claude/.conversations/claude--ton-domains-and-google-workspace-compatibility--5bb4a9f2",
+      "digest": "21154cae59a9b623",
+      "walked": 679
+    },
+    {
       "folder": ".claude/.conversations/claude--ton-price-adoption-metrics-and-network-effects--3d4d9b62",
-      "digest": "df5b90e42f69201d",
+      "digest": "f6c3abcbfd73f117",
       "walked": 413
     },
     {
+      "folder": ".claude/.conversations/claude--ton-price-collapse-analysis--301d9ba2",
+      "digest": "9bf843fda23a997c",
+      "walked": 284
+    },
+    {
       "folder": ".claude/.conversations/claude--ton-validator-rewards-and-staking-profitability--0d2e8949",
-      "digest": "dc2635ced9ec5d38",
+      "digest": "502849c5c563022c",
       "walked": 181
     },
     {
       "folder": ".claude/.conversations/claude--tons-make-ton-great-again-roadmap-explained--3186970a",
-      "digest": "e9dd95710c2bb912",
+      "digest": "fbb8be424f1a24c8",
       "walked": 484
     },
     {
       "folder": ".claude/.conversations/claude--tonx-after-hours-price-spike-analysis--6f29d20e",
-      "digest": "b28500d65dac8419",
+      "digest": "699de18013c0b8fb",
       "walked": 105
     },
     {
       "folder": ".claude/.conversations/claude--tonx-company-overview-and-financial-analysis--2017c510",
-      "digest": "8b5948d6b038a5b7",
+      "digest": "6343a8c8e639b7e0",
       "walked": 123
     },
     {
       "folder": ".claude/.conversations/claude--tonx-companys-ton-holdings-percentage--5680f410",
-      "digest": "7d8ee3c25c8382dc",
+      "digest": "7cabbf17a4619cc2",
       "walked": 1562
     },
     {
       "folder": ".claude/.conversations/claude--tonx-news--fa18c40f",
-      "digest": "20e6e939d0066ad0",
+      "digest": "a551df5b8d555166",
       "walked": 723
     },
     {
       "folder": ".claude/.conversations/claude--tonx-staking-rewards-and-share-price-disconnect--140a3ecf",
-      "digest": "b6c00c30009acc41",
+      "digest": "8969bd22fc1c5a2f",
       "walked": 327
     },
     {
       "folder": ".claude/.conversations/claude--tonx-stock-liquidity-and-trading-issues--40f035ed",
-      "digest": "e8a9a40b99966bdf",
+      "digest": "c10780e6c7bc9a19",
       "walked": 315
     },
     {
+      "folder": ".claude/.conversations/claude--transferring-domains-between-godaddy-accounts--dc9000ff",
+      "digest": "3eb6d7bba349d8e5",
+      "walked": 85
+    },
+    {
+      "folder": ".claude/.conversations/claude--translate-the-content-of-the-p--4141b8d6",
+      "digest": "7d89602fef9e0390",
+      "walked": 261
+    },
+    {
+      "folder": ".claude/.conversations/claude--translating-a-child-services-letter-to-russian-authorities--bff59796",
+      "digest": "60f00ca2ea3b8f97",
+      "walked": 1262
+    },
+    {
+      "folder": ".claude/.conversations/claude--translating-academic-report-screenshot--f7a471e2",
+      "digest": "5e4fe4e74527d1da",
+      "walked": 209
+    },
+    {
+      "folder": ".claude/.conversations/claude--translating-custody-dispute-communications--8ca85b8b",
+      "digest": "993694e57a7e4c1b",
+      "walked": 1180
+    },
+    {
+      "folder": ".claude/.conversations/claude--translating-emotional-confrontation-to-russian--462a8f9d",
+      "digest": "43fc420573c85564",
+      "walked": 89
+    },
+    {
+      "folder": ".claude/.conversations/claude--translating-georgian-parking-sign--25ed1262",
+      "digest": "c0be054186690bb8",
+      "walked": 35
+    },
+    {
+      "folder": ".claude/.conversations/claude--translating-matt-levines-style-to-russian--57fa0150",
+      "digest": "78b4a075fb187f09",
+      "walked": 38
+    },
+    {
+      "folder": ".claude/.conversations/claude--translating-personal-crisis-and-emotional-breakdown--fb34d38a",
+      "digest": "7f25596357f98a14",
+      "walked": 67
+    },
+    {
+      "folder": ".claude/.conversations/claude--translating-turkish-message-excerpt--e6577dc1",
+      "digest": "c9a668ded1fd209d",
+      "walked": 51
+    },
+    {
+      "folder": ".claude/.conversations/claude--translation-request--21151849",
+      "digest": "a7b989bca1c17008",
+      "walked": 158
+    },
+    {
+      "folder": ".claude/.conversations/claude--translation-request--a25923ae",
+      "digest": "e82110503013d0d9",
+      "walked": 309
+    },
+    {
+      "folder": ".claude/.conversations/claude--translation-request-to-russian--5e95e85d",
+      "digest": "0b02395663fa82f6",
+      "walked": 53
+    },
+    {
+      "folder": ".claude/.conversations/claude--translation-to-english--48dade6c",
+      "digest": "79429f0cf6e7712e",
+      "walked": 75
+    },
+    {
+      "folder": ".claude/.conversations/claude--transporting-cats-from-alanya-to-sarp-border-crossing--b0b0e758",
+      "digest": "59829ca779a91e63",
+      "walked": 263
+    },
+    {
       "folder": ".claude/.conversations/claude--travel-arbitrage-opportunities-between-tbilisi-london-and-ne--979027d4",
-      "digest": "526cadfe5412f437",
+      "digest": "0a70e276a8dfda92",
       "walked": 200
     },
     {
+      "folder": ".claude/.conversations/claude--treating-feline-giardia-with-metronidazole--977892ca",
+      "digest": "54f40bc467b4773a",
+      "walked": 411
+    },
+    {
+      "folder": ".claude/.conversations/claude--troubleshooting-a-vscode-extension-for-svg-interaction--cad4ab05",
+      "digest": "cb913512204b2e10",
+      "walked": 808
+    },
+    {
+      "folder": ".claude/.conversations/claude--troubleshooting-extendscript-typescript-wrapper-errors--7ce28bd6",
+      "digest": "149e148ec384f265",
+      "walked": 652
+    },
+    {
+      "folder": ".claude/.conversations/claude--troubleshooting-vscode-extension-packaging--b6399323",
+      "digest": "906debd6379db1e2",
+      "walked": 476
+    },
+    {
+      "folder": ".claude/.conversations/claude--trump-and-the-epstein-files-mystery--122879af",
+      "digest": "50aff6b4dd31e778",
+      "walked": 126
+    },
+    {
+      "folder": ".claude/.conversations/claude--trump-rubio-and-venezuela-reconciling-perspectives--53f5d105",
+      "digest": "c9f5feed0e198209",
+      "walked": 1228
+    },
+    {
+      "folder": ".claude/.conversations/claude--trump-superintelligence-luncheon-seating--137b33d3",
+      "digest": "8c00059cbf92f6eb",
+      "walked": 130
+    },
+    {
+      "folder": ".claude/.conversations/claude--trumps-china-election-data-breach-claims--ae37df8c",
+      "digest": "5b99e7e2c0569d83",
+      "walked": 181
+    },
+    {
+      "folder": ".claude/.conversations/claude--trumps-greenland-distraction-strategy--a350ddfa",
+      "digest": "3bced529dcd42c0a",
+      "walked": 358
+    },
+    {
+      "folder": ".claude/.conversations/claude--trumps-greenland-strategy-and-negotiation-tactics--8f9f43b0",
+      "digest": "fe8780fe1116f610",
+      "walked": 81
+    },
+    {
       "folder": ".claude/.conversations/claude--trumps-impact-on-ton-and-telegrams-resilience--f3e6588f",
-      "digest": "744954adde7b2c44",
+      "digest": "87e6502a45478fc8",
       "walked": 95
     },
     {
+      "folder": ".claude/.conversations/claude--trumps-war-resolution-and-fentanyl-statistics-claims--d6567410",
+      "digest": "d40f06967a3a8462",
+      "walked": 347
+    },
+    {
+      "folder": ".claude/.conversations/claude--turkish-airlines-cargo-shipping-to-antalya--7f0b34cf",
+      "digest": "81041cb103e4aeaf",
+      "walked": 3347
+    },
+    {
+      "folder": ".claude/.conversations/claude--turkish-visa-overstay-penalty-dispute--48ab3881",
+      "digest": "f6fd0596f2c55de2",
+      "walked": 78
+    },
+    {
       "folder": ".claude/.conversations/claude--type-systems-and-inheritance-formalism--ab0b8d4d",
-      "digest": "2334d1b85938653a",
+      "digest": "d3e0cdea0e941965",
       "walked": 1063
     },
     {
+      "folder": ".claude/.conversations/claude--typescript-decorator-mechanics--ca93aa72",
+      "digest": "444f5b677fbe35bc",
+      "walked": 1635
+    },
+    {
+      "folder": ".claude/.conversations/claude--typescript-framework-code-review--8361bdf1",
+      "digest": "a4fb9255f3101087",
+      "walked": 603
+    },
+    {
+      "folder": ".claude/.conversations/claude--typescript-testing-framework-review--80a52850",
+      "digest": "28218674fac270c7",
+      "walked": 946
+    },
+    {
+      "folder": ".claude/.conversations/claude--typescript-type-for-objects-with-prototypes--fe729f0d",
+      "digest": "1e2f680e652579a5",
+      "walked": 2085
+    },
+    {
+      "folder": ".claude/.conversations/claude--typescript-types-for-adobe-illustrator-scripting--07f0404b",
+      "digest": "369f660b824cf25d",
+      "walked": 874
+    },
+    {
       "folder": ".claude/.conversations/claude--uae-as-crypto-fiat-bridge-for-telegrams-digital-ecosystem--a3aa6b90",
-      "digest": "6f61c05e8e52ee75",
+      "digest": "4e82887e3104cb0f",
       "walked": 1445
     },
     {
       "folder": ".claude/.conversations/claude--uncertainty--5052d0dc",
-      "digest": "9037b409ded353a9",
+      "digest": "0dd159113e2f2c77",
       "walked": 2410
     },
     {
+      "folder": ".claude/.conversations/claude--understanding-a-tax-adjustment-notice--1acaaf0e",
+      "digest": "5baaef90058e492a",
+      "walked": 54
+    },
+    {
       "folder": ".claude/.conversations/claude--understanding-atomic--2409f6b1",
-      "digest": "cfc4a5f5afbaed60",
+      "digest": "313881df2c7608bb",
       "walked": 1242
     },
     {
+      "folder": ".claude/.conversations/claude--understanding-boundaries-and-consequences--308f3d1b",
+      "digest": "ce87e63070f97522",
+      "walked": 1727
+    },
+    {
+      "folder": ".claude/.conversations/claude--understanding-cataphatic-and-apophatic-theology--56150527",
+      "digest": "b91b4ccb56431c98",
+      "walked": 229
+    },
+    {
       "folder": ".claude/.conversations/claude--understanding-inheritance-through-foundational-axioms--c97404f0",
-      "digest": "27166aeaa6999a99",
+      "digest": "111a3f25e4020994",
       "walked": 788
     },
     {
+      "folder": ".claude/.conversations/claude--understanding-jihad-and-muslim-violence-perceptions--6fe8ad2a",
+      "digest": "a2da335f7c831077",
+      "walked": 216
+    },
+    {
+      "folder": ".claude/.conversations/claude--understanding-obsessive-compulsive-personality-disorder--896c8a60",
+      "digest": "211ac9ffdc6d6d2f",
+      "walked": 43
+    },
+    {
       "folder": ".claude/.conversations/claude--understanding-perpetual-leverage-and-liquidation-risks-on-to--e9f37566",
-      "digest": "48b3fa20cc98bb3f",
+      "digest": "de5f099da7e91247",
       "walked": 779
     },
     {
       "folder": ".claude/.conversations/claude--understanding-symbols-and-literals-in-srt--0db56260",
-      "digest": "eceb197de0606167",
+      "digest": "e7d46c898a3dad5d",
       "walked": 3079
     },
     {
+      "folder": ".claude/.conversations/claude--understanding-the-dunning-kruger-effect--4f712a68",
+      "digest": "a1350f6d2909258f",
+      "walked": 42
+    },
+    {
       "folder": ".claude/.conversations/claude--understanding-tron-crypto-and-its-technical-innovations--c48524e1",
-      "digest": "1bf0e052a2c6ed06",
+      "digest": "fdb5eb804170204e",
       "walked": 83
     },
     {
       "folder": ".claude/.conversations/claude--unifying-srt-axioms-with-symbolization--9854c96a",
-      "digest": "21ca2f9c0369ad3d",
+      "digest": "2eb10a5aa315ea88",
       "walked": 14293
     },
     {
-      "folder": ".claude/.conversations/claude--using-a-telegram-username-on-a-new-account--dd7f5daa",
-      "digest": "3c66044a3e23b9d5",
-      "walked": 68
+      "folder": ".claude/.conversations/claude--unlocking-extra-characters-in-soulcalibur-vi--6ceffc3f",
+      "digest": "d029659000b3c11c",
+      "walked": 53
     },
     {
-      "folder": ".claude/.conversations/claude--verbatim-text-artifact--5c9cbedf",
-      "digest": "92bcf42b1f4d6ae8",
-      "walked": 106
+      "folder": ".claude/.conversations/claude--untitled-1-july-2026--03062cab",
+      "digest": "07ccc3672a675c84",
+      "walked": 154
     },
     {
-      "folder": ".claude/.conversations/claude--well-tonx-is-doing-very-well--c7f58366",
-      "digest": "e4d01da98f04f5f0",
-      "walked": 320
+      "folder": ".claude/.conversations/claude--untitled-1-june-2026--b49ade36",
+      "digest": "bfd7fe01758706f0",
+      "walked": 151
     },
     {
-      "folder": ".claude/.conversations/claude--wise-us-listing-and-adr-comparison--e0f15ab3",
-      "digest": "965f8f63555caed5",
+      "folder": ".claude/.conversations/claude--untitled-10-june-2026--9c97f9dd",
+      "digest": "e7ef6275c0ab7b52",
+      "walked": 83
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-12-january-2026--1c847cbb",
+      "digest": "eddb49b9b05b7562",
+      "walked": 27
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-12-january-2026--9362f976",
+      "digest": "08d8b69f0cfd7f1b",
+      "walked": 27
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-12-june-2026--7bd1f6ee",
+      "digest": "e71dc5373b3c7005",
+      "walked": 634
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-14-january-2026--6ebbd00e",
+      "digest": "925acf149b12509b",
+      "walked": 27
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-14-june-2026--be832ad5",
+      "digest": "5a9f9097ae709bc6",
+      "walked": 126
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-16-april-2026--d8bfb7de",
+      "digest": "5234b516bd9bed69",
+      "walked": 55
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-16-july-2026--757a0279",
+      "digest": "714a943860a28eb4",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-16-june-2026--2ab7b46a",
+      "digest": "7be91b7a6cb8f009",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-16-june-2026--2daed05b",
+      "digest": "08b1a5d00b91c8d1",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-16-june-2026--3c2a567f",
+      "digest": "4abecddd97d445b2",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-16-june-2026--6897a5ae",
+      "digest": "bc04b6197d072b58",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-16-june-2026--8dd51463",
+      "digest": "5a6be7530c2d7059",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-16-june-2026--a1ef1980",
+      "digest": "188f5beace245538",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-16-june-2026--ce32c1e6",
+      "digest": "f6b2b5942cfcbfb2",
+      "walked": 120
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-february-2026--2d816692",
+      "digest": "6acb25adb620b516",
+      "walked": 91
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--0897a71d",
+      "digest": "7186ddc1a2a91416",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--5b94a22e",
+      "digest": "8cc47964c8ef0480",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--68eec3e1",
+      "digest": "e0320f08a19b5104",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--6fab7ec4",
+      "digest": "3e159525d50d8eed",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--95603f77",
+      "digest": "e63eaba88bb6685a",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--9581e989",
+      "digest": "77e28bbd4469c8c7",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--a6156153",
+      "digest": "180175165b7d870d",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--c15275be",
+      "digest": "e68b85017a7da33e",
+      "walked": 27
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--c5181b3b",
+      "digest": "eae80399e28f7310",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--ec39ed14",
+      "digest": "91cf579cda4b15ab",
+      "walked": 42
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-17-june-2026--f64ef1cd",
+      "digest": "f21109f1e3906b92",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-19-may-2026--12ddbf4a",
+      "digest": "65b89d3ce5852ebb",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-19-may-2026--4cd68ad1",
+      "digest": "669e9ac783ab53c1",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-2-june-2026--c091a968",
+      "digest": "4ccaf97479be6107",
       "walked": 247
     },
     {
+      "folder": ".claude/.conversations/claude--untitled-21-february-2026--de02dabd",
+      "digest": "325b439897b01f9c",
+      "walked": 27
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-21-june-2026--4995a25c",
+      "digest": "042435926e20b4a3",
+      "walked": 124
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-21-june-2026--551df5ce",
+      "digest": "1a927e1a4837a977",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-21-june-2026--c679da1c",
+      "digest": "5fdc710ca9c4f11c",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-22-january-2026--d0314a80",
+      "digest": "fcdbb2b7f0662843",
+      "walked": 133
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-22-june-2026--7e359679",
+      "digest": "6dcc89182426b428",
+      "walked": 49
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-22-may-2026--1a94662c",
+      "digest": "8d8a3d8c36238034",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-22-may-2026--3d2ab4c2",
+      "digest": "505716c6d780579a",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-22-may-2026--6b5c0795",
+      "digest": "fd7ce994b716b854",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-22-may-2026--75e215e2",
+      "digest": "f7c5a026706e2f94",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-22-may-2026--d582355f",
+      "digest": "eee13fac9d05b2e4",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-22-october-2024--4839af51",
+      "digest": "d17d317639eecaa3",
+      "walked": 109
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-22-september-2025--504d8cc2",
+      "digest": "db4275899f443451",
+      "walked": 27
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-22-september-2025--f8f024ea",
+      "digest": "1f187d8a8329d4ae",
+      "walked": 27
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-june-2025--22d13b02",
+      "digest": "5a87ad6929294c4e",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-june-2025--365f75f7",
+      "digest": "ce6460709d7efe4b",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-june-2025--8cebf239",
+      "digest": "5850b95b3d34e3e6",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-june-2025--a5ac5dbc",
+      "digest": "70addc8d594f4763",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-june-2025--f3f54379",
+      "digest": "43ac755d519b7e47",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-june-2025--f782493f",
+      "digest": "d6f1000fb38f13fc",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-june-2026--0d8830ea",
+      "digest": "29679c341eb0dc03",
+      "walked": 27
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-june-2026--c207b4c8",
+      "digest": "c64ddcbe5253b513",
+      "walked": 144
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-may-2026--184ec599",
+      "digest": "afafb656868fa448",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-may-2026--ad85d888",
+      "digest": "27f3620afea16c12",
+      "walked": 49
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-23-may-2026--d1bcdfb4",
+      "digest": "39e78cab6608ada9",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-24-august-2026--5c5077be",
+      "digest": "0c94c1556a24379b",
+      "walked": 70
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-24-august-2026--e4592a75",
+      "digest": "eb03cdc2bf02a5cb",
+      "walked": 85
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-24-june-2025--ae55af4b",
+      "digest": "1073389c1a77b401",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-24-june-2026--559e5097",
+      "digest": "5bbbea468bcbf9e9",
+      "walked": 166
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-24-september-2025--82bbedd8",
+      "digest": "c1928bac87204add",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-25-june-2026--cba4961f",
+      "digest": "dd72a3ba973df727",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-25-may-2026--4684293e",
+      "digest": "b3ca799223a68e52",
+      "walked": 247
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-25-may-2026--4c9ad134",
+      "digest": "ea832131ff8a40f8",
+      "walked": 157
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-25-may-2026--5e964484",
+      "digest": "866173ac9420cfec",
+      "walked": 67
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-25-november-2024--8b5122ff",
+      "digest": "237aad3c3aba8e62",
+      "walked": 79
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-26-june-2026--0103612b",
+      "digest": "c9cba685fce3178e",
+      "walked": 104
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-26-june-2026--0f772d9c",
+      "digest": "674e66c041a2a26c",
+      "walked": 121
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-26-may-2026--32fd478d",
+      "digest": "f5fd05bc45ba7984",
+      "walked": 49
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-26-may-2026--8b113ccf",
+      "digest": "600f918698beee3e",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-28-october-2025--d9f3c5cc",
+      "digest": "aee09bd49ede2302",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-28-september-2024--f3a2a24f",
+      "digest": "44341fc9a5b37aa3",
+      "walked": 61
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-29-june-2026--8032960f",
+      "digest": "7a629da29cb5a604",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-29-june-2026--d8c89070",
+      "digest": "ebf776d58b5adae6",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-29-september-2026--621eab6a",
+      "digest": "60ac696cdc37110c",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-3-april-2025--123ef1a6",
+      "digest": "b6d5598ee7e17e37",
+      "walked": 176
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-3-april-2025--f8acdaaa",
+      "digest": "d6f6c637bbee78f1",
+      "walked": 205
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-4-april-2025--2ea23691",
+      "digest": "99f469bb25c09b0c",
+      "walked": 154
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-4-april-2025--3434e606",
+      "digest": "ed061beacd5ab201",
+      "walked": 151
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-4-april-2025--536ddc40",
+      "digest": "22a3deaf4055a888",
+      "walked": 61
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-4-april-2025--86882e61",
+      "digest": "f0b1aee5e485e7b0",
+      "walked": 235
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-4-july-2026--1b994e1b",
+      "digest": "7874dc0fb227b8c0",
+      "walked": 55
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-4-july-2026--ed289c08",
+      "digest": "4ac3ac81b08ad677",
+      "walked": 49
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-5-july-2026--1ddd9f0a",
+      "digest": "aaeab18f919b0534",
+      "walked": 127
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-5-june-2026--50f9b00a",
+      "digest": "a61ecd0dd0296523",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-6-april-2025--5357bdbc",
+      "digest": "711ed97ad7947321",
+      "walked": 468
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-6-december-2025--fd9951af",
+      "digest": "4614b21de20f7bd9",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-6-july-2026--52ae6d4a",
+      "digest": "c164a19b74ce424b",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-6-july-2026--b7263390",
+      "digest": "60918cb12d558c68",
+      "walked": 55
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-6-march-2026--26843125",
+      "digest": "d1b788d359d496de",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-8-january-2026--aeb4baa5",
+      "digest": "f4f70f7a6baaf91e",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--untitled-8-october-2025--64141707",
+      "digest": "669d324bc8e5349b",
+      "walked": 49
+    },
+    {
+      "folder": ".claude/.conversations/claude--ursodeoxycholic-acid-medications-in-tbilisi-pharmacies--cc78631a",
+      "digest": "97d4b68ab63b27c1",
+      "walked": 202
+    },
+    {
+      "folder": ".claude/.conversations/claude--us-iran-nuclear-tensions-and-reality-check--460c2aec",
+      "digest": "3c8d637217db054e",
+      "walked": 67
+    },
+    {
+      "folder": ".claude/.conversations/claude--us-iran-war-overview-and-outlook--7fc6090d",
+      "digest": "e1b44942461c7c6c",
+      "walked": 245
+    },
+    {
+      "folder": ".claude/.conversations/claude--us-visa-mastercard-with-wildberries-georgia--5ea43231",
+      "digest": "0eefd7c6ca0241ed",
+      "walked": 105
+    },
+    {
+      "folder": ".claude/.conversations/claude--using-a-telegram-username-on-a-new-account--dd7f5daa",
+      "digest": "a87d38e25edf4e9c",
+      "walked": 68
+    },
+    {
+      "folder": ".claude/.conversations/claude--using-bridgetalk-in-illustrator-extendscript--efd9c851",
+      "digest": "c05e3bf9e49ccf0d",
+      "walked": 116
+    },
+    {
+      "folder": ".claude/.conversations/claude--vacation-towns-near-batumi--e5412285",
+      "digest": "ebb86b75d4443cf5",
+      "walked": 357
+    },
+    {
+      "folder": ".claude/.conversations/claude--valium-prescription-status-in-georgian-pharmacies--2d3e7434",
+      "digest": "160d5a97fc8aa99b",
+      "walked": 152
+    },
+    {
+      "folder": ".claude/.conversations/claude--varenicline-availability-in-tbilisi-georgia--60454157",
+      "digest": "b31f054534162fe3",
+      "walked": 198
+    },
+    {
+      "folder": ".claude/.conversations/claude--vat-registration-and-tax-filing-for-new-ie--6ab5f31c",
+      "digest": "259b3b8145b13ef2",
+      "walked": 172
+    },
+    {
+      "folder": ".claude/.conversations/claude--vectorizing-images-with-color-extraction--09bc840a",
+      "digest": "e8964baf0feaddf4",
+      "walked": 1051
+    },
+    {
+      "folder": ".claude/.conversations/claude--venezuela-real-estate-investment-opportunity--4058db57",
+      "digest": "89dbcc7c0a07f7ff",
+      "walked": 62
+    },
+    {
+      "folder": ".claude/.conversations/claude--verbatim-text-artifact--5c9cbedf",
+      "digest": "dfb3632b23330c23",
+      "walked": 106
+    },
+    {
+      "folder": ".claude/.conversations/claude--verifying-anthropics-latest-ai-model-release--6e0a50d4",
+      "digest": "4bc75e7b9c0d004c",
+      "walked": 469
+    },
+    {
+      "folder": ".claude/.conversations/claude--verifying-openai-report-authenticity--3f7e9877",
+      "digest": "4ff74a9fb21e5c4e",
+      "walked": 60
+    },
+    {
+      "folder": ".claude/.conversations/claude--vet-clinics-in-alanya-for-cat-giardia-treatment--afbae201",
+      "digest": "1e7974af37e16ea6",
+      "walked": 320
+    },
+    {
+      "folder": ".claude/.conversations/claude--veterinary-fecal-parasite-antigen-test--b13b4226",
+      "digest": "2ad98ce2a7689499",
+      "walked": 579
+    },
+    {
+      "folder": ".claude/.conversations/claude--visa-requirements-for-americans-in-indonesia-and-malaysia--74b415d8",
+      "digest": "e80b1675ec4df960",
+      "walked": 51
+    },
+    {
+      "folder": ".claude/.conversations/claude--vitest-configuration-not-finding-all-tests--ac7b89e2",
+      "digest": "7d2325a3d754011e",
+      "walked": 1343
+    },
+    {
+      "folder": ".claude/.conversations/claude--wake-up-copenhagen-hotel-directions--a07786e2",
+      "digest": "2ec485c3e521345c",
+      "walked": 283
+    },
+    {
+      "folder": ".claude/.conversations/claude--watching-harry-potter-with-russian-dubbing-and-english-subti--46768570",
+      "digest": "38208b716f2de8d7",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.conversations/claude--watermarking-images-and-nfts--8d6e372c",
+      "digest": "9b9bc15a4550be5a",
+      "walked": 43
+    },
+    {
+      "folder": ".claude/.conversations/claude--weekly-news-briefing-and-analysis--6fea3059",
+      "digest": "c0ea99f596afd51c",
+      "walked": 1126
+    },
+    {
+      "folder": ".claude/.conversations/claude--weight-bearing-progression-after-calcaneal-osteotomy--91950b31",
+      "digest": "702a0fa4b92ded23",
+      "walked": 201
+    },
+    {
+      "folder": ".claude/.conversations/claude--well-tonx-is-doing-very-well--c7f58366",
+      "digest": "3467e38ff9d2214b",
+      "walked": 320
+    },
+    {
+      "folder": ".claude/.conversations/claude--west-wing-sermon-on-mutual-submission--70a60535",
+      "digest": "a4ac52a52a5b49b9",
+      "walked": 205
+    },
+    {
+      "folder": ".claude/.conversations/claude--what-is-better-for-charging-cl--5b5fddc8",
+      "digest": "369b65dd73a95d85",
+      "walked": 73
+    },
+    {
+      "folder": ".claude/.conversations/claude--white-dot-on-penelopes-nose--9e92489f",
+      "digest": "b625dcac069fe70f",
+      "walked": 47
+    },
+    {
+      "folder": ".claude/.conversations/claude--white-t-shirt-design-mockup--311fdc22",
+      "digest": "241655828806fd35",
+      "walked": 77
+    },
+    {
+      "folder": ".claude/.conversations/claude--why-insects-have-a-maximum-size-limit--c16075f0",
+      "digest": "1470f963490e7fa7",
+      "walked": 110
+    },
+    {
+      "folder": ".claude/.conversations/claude--why-is-the-gravitational-constant-so-difficult-to-measure--67a6e6eb",
+      "digest": "3a2b34bb00604e14",
+      "walked": 257
+    },
+    {
+      "folder": ".claude/.conversations/claude--why-the-sky-is-blue-and-sunsets-are-red--8bef3449",
+      "digest": "682a965563278bc0",
+      "walked": 31
+    },
+    {
+      "folder": ".claude/.conversations/claude--why-wildberries-chose-its-name--6b3d86e9",
+      "digest": "55dd4b844d9e2a1c",
+      "walked": 60
+    },
+    {
+      "folder": ".claude/.conversations/claude--wifi-extender-installation-setup--2a181daf",
+      "digest": "19ac87aa0afa0362",
+      "walked": 63
+    },
+    {
+      "folder": ".claude/.conversations/claude--windows-desktop-automation-stack-for-electron-apps--2b627244",
+      "digest": "a551de929c4580ac",
+      "walked": 140
+    },
+    {
+      "folder": ".claude/.conversations/claude--windows-desktop-automation-stack-for-electron-apps--afcda8cf",
+      "digest": "4240e848a012ccea",
+      "walked": 117
+    },
+    {
+      "folder": ".claude/.conversations/claude--windows-wi-fi-connection-after-blue-screen-crash--bd351e7f",
+      "digest": "c61c6415b4f5c0a1",
+      "walked": 287
+    },
+    {
+      "folder": ".claude/.conversations/claude--wire-transfers-to-georgia-with-wise--3b0f2ae8",
+      "digest": "ea2c4a0d8f5885e9",
+      "walked": 39
+    },
+    {
+      "folder": ".claude/.conversations/claude--wise-us-listing-and-adr-comparison--e0f15ab3",
+      "digest": "657346a5805f5b91",
+      "walked": 247
+    },
+    {
+      "folder": ".claude/.conversations/claude--work-profile-review-and-conversation-context--e4b90c2c",
+      "digest": "59ce7f9f5ca4d974",
+      "walked": 1923
+    },
+    {
+      "folder": ".claude/.conversations/claude--write-it-in-a-new-editable-document--3762e1b9",
+      "digest": "9ace2d135a523854",
+      "walked": 92
+    },
+    {
       "folder": ".claude/.conversations/claude--x-moneys-us-launch-and-financial-competition--a8e9cd85",
-      "digest": "97a054f1d5fe5dce",
+      "digest": "16eca6b50b4b5e9b",
       "walked": 252
     },
     {
+      "folder": ".claude/.conversations/claude--yotelair-istanbul-airport-transit-hotel--5747495d",
+      "digest": "53a9ded94de6e9f7",
+      "walked": 257
+    },
+    {
+      "folder": ".claude/.conversations/claude--zoom-camera-not-working-on-hp-laptop--89fc29f9",
+      "digest": "892b819bdd50256c",
+      "walked": 74
+    },
+    {
       "folder": ".claude/.design",
-      "digest": "6a9f2d9c957ad8a6",
+      "digest": "96bf36b3afa76891",
       "walked": 148
     },
     {
+      "folder": ".claude/.dna-patternity",
+      "digest": "4861fd4a68e48666",
+      "walked": 236
+    },
+    {
+      "folder": ".claude/.eirian",
+      "digest": "f55364172c93e363",
+      "walked": 603
+    },
+    {
+      "folder": ".claude/.fitness",
+      "digest": "9d6f806a7913ee38",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.georgia",
+      "digest": "99770de9895d124a",
+      "walked": 828
+    },
+    {
+      "folder": ".claude/.grammar",
+      "digest": "7e18ec3a2da387c1",
+      "walked": 106
+    },
+    {
+      "folder": ".claude/.inexplicable-phenomena",
+      "digest": "5160b93313614461",
+      "walked": 499
+    },
+    {
       "folder": ".claude/.investing",
-      "digest": "f6266c69cf32f6a4",
+      "digest": "27b2fdc0bcb5e34f",
       "walked": 853
     },
     {
+      "folder": ".claude/.learning",
+      "digest": "d686c46a65cb4da9",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.life",
+      "digest": "26d5896bcbbd337d",
+      "walked": 37
+    },
+    {
       "folder": ".claude/.manual",
-      "digest": "28cbc657fc5df982",
+      "digest": "c1e5f26fa1d51235",
       "walked": 168
     },
     {
+      "folder": ".claude/.miscellaneous",
+      "digest": "3c6cbc98fac93bf3",
+      "walked": 1595
+    },
+    {
+      "folder": ".claude/.neuroscience",
+      "digest": "da9a0399de4420da",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.nikolai",
+      "digest": "fbaddb10c9e137dc",
+      "walked": 116
+    },
+    {
+      "folder": ".claude/.number-theory",
+      "digest": "d6300c282434563a",
+      "walked": 104
+    },
+    {
+      "folder": ".claude/.passive-income",
+      "digest": "41de0fb75f020af7",
+      "walked": 51
+    },
+    {
+      "folder": ".claude/.physics",
+      "digest": "daeee0bca3570a02",
+      "walked": 114
+    },
+    {
+      "folder": ".claude/.resume",
+      "digest": "33e17f3adc73303e",
+      "walked": 37
+    },
+    {
+      "folder": ".claude/.russia",
+      "digest": "1860a4d11869fc94",
+      "walked": 412
+    },
+    {
+      "folder": ".claude/.science",
+      "digest": "3f04e6618ccb60ba",
+      "walked": 187
+    },
+    {
       "folder": ".claude/.semantic-reference-theory",
-      "digest": "06426ca03b1082a0",
+      "digest": "1009da6374a61c2e",
       "walked": 1102
     },
     {
+      "folder": ".claude/.seren",
+      "digest": "2d5d662043f092ad",
+      "walked": 175
+    },
+    {
+      "folder": ".claude/.the-hard-problem",
+      "digest": "6955ece666dfc376",
+      "walked": 66
+    },
+    {
+      "folder": ".claude/.turkey",
+      "digest": "1991753872c7dc70",
+      "walked": 100
+    },
+    {
       "folder": ".design",
-      "digest": "f2a5bbab5afb7f3f",
+      "digest": "8a2e42ffa9eac479",
       "walked": 1060
     },
     {
       "folder": ".librarian",
-      "digest": "6b115148e00b12df",
+      "digest": "6a9dbc2073f5c74a",
       "walked": 179
     },
     {
       "folder": ".manual",
-      "digest": "f82460ab795682f4",
+      "digest": "e07cb57c50e9d86d",
       "walked": 782
     },
     {
       "folder": "importer",
-      "digest": "c55e6461adf34164",
+      "digest": "429f05f511c53c97",
       "walked": 198
     }
   ]

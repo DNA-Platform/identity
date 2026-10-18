@@ -1,0 +1,110 @@
+Arthur: Report is at 2025/docs/assumptions-check-report.md. Here's the summary for you, Doug, then
+  the summary for the expert.
+                                                                                                       ---
+  For Doug                                                                                           
+  
+  Arthur: I did a rigorous line-by-line audit. 11 assumptions confirmed, 12 flagged, 4 unverifiable
+  from our docs. Four of the flags are severe enough that I strongly recommend no form entry until   
+  they're resolved.
+
+  Arthur: The four critical issues:
+
+  Arthur: P1 — Wrong LLC name. Every formation document spells it "Digital Narrative Art LLC"        
+  (singular). The expert wrote "Digital Narrative Arts LLC" (plural) throughout the algorithm — which
+   matches Mercury's UI but not the IRS, WY SoS, or the W-9. If we file the 1065 as "Arts" it will   
+  cause a name-control mismatch with CP 575 and the IRS will flag or reject it. Mercury has a typo in
+   their records from when you signed up; correct record is what the CP 575 says.
+
+  Arthur: P2 — Expert's Line 10 / Line 20 numbers are stale. They use $12,418.33 for Ana's guaranteed
+   payment and include prof svc + utilities in business expenses. You clarified earlier today that   
+  those are Ana's. Correct numbers should be Line 10 = $12,775.18 and Line 20 = $15,567.93. Bottom   
+  line is unchanged — Doug's K-1 loss stays at $(6,863.14).
+
+  Arthur: P3 — You may be itemizing, not taking the standard deduction. You owned 84 Lebrun for 11   
+  months of 2025 before selling in December. At roughly 4% on a ~$400k remaining mortgage, you paid  
+  about $14,667 in mortgage interest for 2025. Add NY property tax + NY state income tax (SALT cap   
+  $10k). Potential Schedule A ~$24,667 vs. $15,000 standard. That's $9,667+ of additional deduction, 
+  worth over $1,100 in federal tax and more in state. Could be bigger than your entire LLC loss      
+  benefit. Please log into Chase and grab the 2025 Form 1098 — and check your NY property tax        
+  records.
+
+  Arthur: P4 — Passive activity risk. The algorithm assumes your $6,863 LLC loss is nonpassive and   
+  immediately deductible. But nonpassive status requires material participation — one of seven       
+  specific IRS tests, usually 500+ hours of direct work. If Ana does all the operational work and    
+  you're primarily the capital provider, you might not meet any test, and your loss would be
+  suspended under §469 instead of deductible. That would kill the entire tax benefit. Expert needs to
+   explicitly analyze this and you need to be able to document your hours.
+
+  Arthur: Arithmetic / form errors I also caught (smaller, but should be fixed):
+  - Internal arithmetic inconsistency in the Schedule D section: $4,966.61 vs $4,965.12 ($1.49 typo) 
+  - Doug's K-1 shows $(6,863.15) and Ana's shows $(6,863.14) — penny mismatch, exact 50% split should
+   be $(6,863.14) for both
+  - K-1 Box 14 mislabeled as "Guaranteed payments" — that's actually Box 4 on Form 1065 K-1. Box 14  
+  is SE Earnings.
+  - Form 7004 contradiction: the algorithm's Part 6 correctly says "Do NOT file" (too late) but this 
+  conflicts with the verbal guidance we had recorded as "file immediately regardless." Algorithm is  
+  right.
+  - Schedules K-2/K-3 not addressed at all — with a foreign partner, these usually apply unless an   
+  exception covers us
+  - Form IT-204-LL (NY LLC filing fee form) not addressed
+  - Referenced file docs/house-sale-tax-guidance.md doesn't exist in the project
+
+  Arthur: Things I need directly from you:
+  - SSN (for form entry)
+  - When did you actually move to NC? (affects full-year vs part-year NY residency)
+  - Ana's middle name + date of birth + Tbilisi address (confirm from passport)
+  - Approximate hours you spent on LLC work in 2025 (for material participation defense)
+  - Your 2024 Form 1040 Schedule D — is there a capital loss carryforward on Line 21?
+  - Please grab 2025 Chase 1098 and NY property tax records
+  - What does DNA actually do? (for the NAICS code — expert guessed "graphic design / illustration / 
+  cartographic design")
+  - Confirm no dependents
+
+  ---
+  For the Expert
+
+  Arthur: Ready for your review. Full report at 2025/docs/assumptions-check-report.md. Ten items need
+   your response before form entry begins:
+
+  1. Name correction — use "Digital Narrative Art LLC" (singular), not plural, everywhere. This is   
+  critical — CP 575, WY SoS Articles, Membership Notification, and the W-9 all have the singular     
+  form. Mercury's UI has a typo.
+  2. Refresh Line 10 / Line 20 with corrected numbers: $12,775.18 guaranteed payment and $15,567.93  
+  other deductions (detail in the report).
+  3. Material participation analysis for Doug — explicit test and defense. If he doesn't materially  
+  participate, the loss is suspended and the whole 2025 tax benefit disappears.
+  4. Schedules K-2 / K-3 — explicit ruling on whether they apply given Ana is a direct foreign       
+  partner. Your original memo mentioned a "small partnership exception" but the criteria need to be  
+  checked.
+  5. Form 7004 — confirm algorithm v1.2 position (do NOT file) supersedes earlier "file immediately  
+  regardless" guidance.
+  6. Short tax year start date — April 15 (WY filing) or April 22 (membership effective)? Both       
+  plausible.
+  7. IT-204-LL — does the NY LLC filing fee form apply to this fact pattern?
+  8. Schedule D §3.2 arithmetic typo — "$4,966.61" should be "$4,965.12" ($1.49 off, consistent with 
+  your own §3.3 table)
+  9. K-1 Box 4 vs. Box 14 labels for guaranteed payments — Doug's K-1 should say Box 4 (not 14); need
+   your call on Doug's Box 14 SE earnings treatment
+  10. K-1 penny rounding — Doug and Ana's Box 1 should both be $(6,863.14), not one at $(6,863.15)   
+
+  Arthur: On the fundamentally new concerns (not in your assumption list):
+  - Mortgage interest itemization — Doug likely paid $14k+ in 2025 mortgage interest on the 84 Lebrun
+   house (owned 11 of 12 months). The 2024 transcript showed a JPMorgan Chase 1098. Itemizing may    
+  beat the $15k standard deduction by $9k+, worth $1k+ in federal savings. Please advise whether to  
+  itemize.
+  - Part-year NY residency possibility — Doug has a NC forwarding address. If he moved mid-year,     
+  IT-201 is part-year resident, not full-year.
+
+  Arthur: What I verified and is clean:
+  - All the IB/Coinbase numbers tie to the source docs exactly
+  - HitBTC basis $438.31 = 0.04376 × $10,016.22 ✓
+  - Long-term total $9,019.50 = $5,791.94 + $3,227.56 ✓
+  - Short-term $1,035.01 = $1,218.08 − $183.07 ✓
+  - Total cap gains $10,054.51 ✓
+  - LLC loss $(13,726.28) ✓ Doug's share $(6,863.14) ✓
+  - Mercury 3-way reconciliation (CSV + checking statement + sweep balance) to the penny ✓
+  - CP 575 EIN 33-4868229, name control DIGI ✓
+  - Formation dates (WY April 15, members April 22) ✓
+
+  Arthur: When you've responded to P1–P6 and I have Doug's answers on the 13 open items, we can begin
+   form entry with confidence.

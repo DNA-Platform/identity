@@ -1,0 +1,881 @@
+page.tsx:156  GET http://localhost:3000/tests/child-binding/ 500 (Internal Server Error)
+insertOrAppendPlacementNode @ react-dom-client.development.js:12769
+commitPlacement @ react-dom-client.development.js:12816
+runWithFiberInDEV @ react-dom-client.development.js:873
+commitReconciliationEffects @ react-dom-client.development.js:14052
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13792
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13791
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13791
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13776
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13776
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13849
+flushMutationEffects @ react-dom-client.development.js:15973
+commitRoot @ react-dom-client.development.js:15947
+commitRootWhenReady @ react-dom-client.development.js:15179
+performWorkOnRoot @ react-dom-client.development.js:15098
+performSyncWorkOnRoot @ react-dom-client.development.js:16782
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16628
+processRootScheduleInMicrotask @ react-dom-client.development.js:16666
+eval @ react-dom-client.development.js:16801
+<iframe>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+TestRunner @ page.tsx:156
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14942
+performSyncWorkOnRoot @ react-dom-client.development.js:16782
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16628
+processRootScheduleInMicrotask @ react-dom-client.development.js:16666
+eval @ react-dom-client.development.js:16801
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Book.chapters
+VM10799 chemistry.ts:361 Bond initialized: $Title.$text
+VM10799 chemistry.ts:361 Bond initialized: $Footer.$copyright
+VM10799 chemistry.ts:361 Bond initialized: $Document.chapters
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM10799 chemistry.ts:361 Bond initialized: $PolyBook.chapters
+VM10799 chemistry.ts:361 Bond initialized: $Section.$name
+VM10799 chemistry.ts:361 Bond initialized: $Section.items
+VM10799 chemistry.ts:458 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+VM10799 chemistry.ts:361 Bond initialized: $Article.$addToAllSections
+VM10799 chemistry.ts:361 Bond initialized: $Article.sections
+VM10799 chemistry.ts:361 Bond initialized: $StrictContainer.content
+VM10799 chemistry.ts:361 Bond initialized: $NestedChild.$value
+VM10799 chemistry.ts:361 Bond initialized: $NestedContainer.groups
+VM10799 chemistry.ts:361 Bond initialized: $Book.chapters
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10796 page.tsx:57 $Book constructor called with 3 chapters
+VM10796 page.tsx:58 Chapter title: Introduction
+VM10796 page.tsx:58 Chapter title: Main Content
+VM10796 page.tsx:58 Chapter title: Conclusion
+VM10799 chemistry.ts:361 Bond initialized: $Document.chapters
+VM10799 chemistry.ts:361 Bond initialized: $Title.$text
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Footer.$copyright
+VM10796 page.tsx:147 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+VM10799 chemistry.ts:361 Bond initialized: $Document.title
+VM10799 chemistry.ts:361 Bond initialized: $Document.footer
+VM10799 chemistry.ts:361 Bond initialized: $PolyBook.chapters
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM10796 page.tsx:250 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+VM10796 page.tsx:254 Chapter 1 is fancy!
+VM10796 page.tsx:254 Chapter 3 is fancy!
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM10799 chemistry.ts:458 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+VM10799 chemistry.ts:361 Bond initialized: $Article.$addToAllSections
+VM10799 chemistry.ts:361 Bond initialized: $Article.sections
+VM10799 chemistry.ts:361 Bond initialized: $Section.$name
+VM10799 chemistry.ts:361 Bond initialized: $Section.items
+VM10799 chemistry.ts:361 Bond initialized: $Section.$name
+VM10799 chemistry.ts:361 Bond initialized: $Section.items
+VM10799 chemistry.ts:361 Bond initialized: $Section.$name
+VM10799 chemistry.ts:361 Bond initialized: $Section.items
+VM10796 page.tsx:353 $Article constructor with 3 sections
+VM10796 page.tsx:305 Adding "Auto-added by Article at index 0" to section Introduction
+VM10799 chemistry.ts:361 Bond initialized: $StrictContainer.content
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10796 page.tsx:427 $StrictContainer validating inputs...
+VM10799 chemistry.ts:361 Bond initialized: $StrictContainer.header
+VM10799 chemistry.ts:361 Bond initialized: $Book.chapters
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10796 page.tsx:57 $Book constructor called with 3 chapters
+VM10796 page.tsx:58 Chapter title: Introduction
+VM10796 page.tsx:58 Chapter title: Main Content
+VM10796 page.tsx:58 Chapter title: Conclusion
+VM10799 chemistry.ts:361 Bond initialized: $Document.chapters
+VM10799 chemistry.ts:361 Bond initialized: $Title.$text
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Footer.$copyright
+VM10796 page.tsx:147 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+VM10799 chemistry.ts:361 Bond initialized: $Document.title
+VM10799 chemistry.ts:361 Bond initialized: $Document.footer
+VM10799 chemistry.ts:361 Bond initialized: $PolyBook.chapters
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM10796 page.tsx:250 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+VM10796 page.tsx:254 Chapter 1 is fancy!
+VM10796 page.tsx:254 Chapter 3 is fancy!
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM10799 chemistry.ts:458 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+VM10799 chemistry.ts:361 Bond initialized: $Article.$addToAllSections
+VM10799 chemistry.ts:361 Bond initialized: $Article.sections
+VM10799 chemistry.ts:361 Bond initialized: $Section.$name
+VM10799 chemistry.ts:361 Bond initialized: $Section.items
+VM10799 chemistry.ts:361 Bond initialized: $Section.$name
+VM10799 chemistry.ts:361 Bond initialized: $Section.items
+VM10799 chemistry.ts:361 Bond initialized: $Section.$name
+VM10799 chemistry.ts:361 Bond initialized: $Section.items
+VM10796 page.tsx:353 $Article constructor with 3 sections
+VM10799 chemistry.ts:361 Bond initialized: $StrictContainer.content
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM10799 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM10796 page.tsx:427 $StrictContainer validating inputs...
+VM10799 chemistry.ts:361 Bond initialized: $StrictContainer.header
+VM10796 page.tsx:443 Uncaught TypeError: function is not iterable (cannot read property Symbol(Symbol.iterator))
+    at $StrictContainer.view (VM10796 page.tsx:443:31)
+    at $BondOrchestrator.render (VM10799 chemistry.ts:667:35)
+    at $StrictContainer.__render (VM10799 chemistry.ts:105:23)
+    at Component (VM10799 chemistry.ts:267:29)
+    at Object.react_stack_bottom_frame (VM10659 react-dom-client.development.js:23553:20)
+    at renderWithHooks (VM10659 react-dom-client.development.js:6764:22)
+    at updateFunctionComponent (VM10659 react-dom-client.development.js:9070:19)
+    at beginWork (VM10659 react-dom-client.development.js:10680:18)
+    at runWithFiberInDEV (VM10659 react-dom-client.development.js:873:30)
+    at performUnitOfWork (VM10659 react-dom-client.development.js:15678:22)
+    at workLoopSync (VM10659 react-dom-client.development.js:15498:41)
+    at renderRootSync (VM10659 react-dom-client.development.js:15478:11)
+    at performWorkOnRoot (VM10659 react-dom-client.development.js:14985:44)
+    at performWorkOnRootViaSchedulerTask (VM10659 react-dom-client.development.js:16767:7)
+    at MessagePort.performWorkUntilDeadline (VM10661 scheduler.development.js:45:48)
+view @ VM10796 page.tsx:443
+render @ VM10799 chemistry.ts:667
+__render @ VM10799 chemistry.ts:105
+Component @ VM10799 chemistry.ts:267
+react_stack_bottom_frame @ VM10659 react-dom-client.development.js:23553
+renderWithHooks @ VM10659 react-dom-client.development.js:6764
+updateFunctionComponent @ VM10659 react-dom-client.development.js:9070
+beginWork @ VM10659 react-dom-client.development.js:10680
+runWithFiberInDEV @ VM10659 react-dom-client.development.js:873
+performUnitOfWork @ VM10659 react-dom-client.development.js:15678
+workLoopSync @ VM10659 react-dom-client.development.js:15498
+renderRootSync @ VM10659 react-dom-client.development.js:15478
+performWorkOnRoot @ VM10659 react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ VM10659 react-dom-client.development.js:16767
+performWorkUntilDeadline @ VM10661 scheduler.development.js:45
+<...>
+exports.jsxDEV @ VM10798 react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ VM10796 page.tsx:1119
+react_stack_bottom_frame @ VM10659 react-dom-client.development.js:23553
+renderWithHooksAgain @ VM10659 react-dom-client.development.js:6864
+renderWithHooks @ VM10659 react-dom-client.development.js:6776
+updateFunctionComponent @ VM10659 react-dom-client.development.js:9070
+beginWork @ VM10659 react-dom-client.development.js:10680
+runWithFiberInDEV @ VM10659 react-dom-client.development.js:873
+performUnitOfWork @ VM10659 react-dom-client.development.js:15678
+workLoopSync @ VM10659 react-dom-client.development.js:15498
+renderRootSync @ VM10659 react-dom-client.development.js:15478
+performWorkOnRoot @ VM10659 react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ VM10659 react-dom-client.development.js:16767
+performWorkUntilDeadline @ VM10661 scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ VM10641 react-jsx-runtime.development.js:338
+ClientPageRoot @ VM10764 client-page.js:20
+react_stack_bottom_frame @ VM10659 react-dom-client.development.js:23553
+renderWithHooksAgain @ VM10659 react-dom-client.development.js:6864
+renderWithHooks @ VM10659 react-dom-client.development.js:6776
+updateFunctionComponent @ VM10659 react-dom-client.development.js:9070
+beginWork @ VM10659 react-dom-client.development.js:10629
+runWithFiberInDEV @ VM10659 react-dom-client.development.js:873
+performUnitOfWork @ VM10659 react-dom-client.development.js:15678
+workLoopSync @ VM10659 react-dom-client.development.js:15498
+renderRootSync @ VM10659 react-dom-client.development.js:15478
+performWorkOnRoot @ VM10659 react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ VM10659 react-dom-client.development.js:16767
+performWorkUntilDeadline @ VM10661 scheduler.development.js:45
+"use client"
+initializeElement @ VM10665 react-server-dom-webpack-client.browser.development.js:1206
+wakeChunk @ VM10665 react-server-dom-webpack-client.browser.development.js:976
+fulfillReference @ VM10665 react-server-dom-webpack-client.browser.development.js:1310
+wakeChunk @ VM10665 react-server-dom-webpack-client.browser.development.js:977
+wakeChunkIfInitialized @ VM10665 react-server-dom-webpack-client.browser.development.js:1012
+resolveModuleChunk @ VM10665 react-server-dom-webpack-client.browser.development.js:1097
+eval @ VM10665 react-server-dom-webpack-client.browser.development.js:1944
+"use server"
+ResponseInstance @ VM10665 react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ VM10665 react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ VM10665 react-server-dom-webpack-client.browser.development.js:3228
+eval @ VM10638 app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ VM10614 main-app.js:160
+options.factory @ VM10613 webpack.js:704
+__webpack_require__ @ VM10613 webpack.js:29
+fn @ VM10613 webpack.js:361
+eval @ VM10620 app-next-dev.js:14
+eval @ VM10627 app-bootstrap.js:62
+loadScriptsInSequence @ VM10627 app-bootstrap.js:23
+appBootstrap @ VM10627 app-bootstrap.js:56
+eval @ VM10620 app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ VM10614 main-app.js:182
+options.factory @ VM10613 webpack.js:704
+__webpack_require__ @ VM10613 webpack.js:29
+__webpack_exec__ @ VM10614 main-app.js:1801
+(anonymous) @ VM10614 main-app.js:1802
+webpackJsonpCallback @ VM10613 webpack.js:1380
+(anonymous) @ VM10614 main-app.js:9
+child-binding/:1 The resource http://localhost:3000/_next/static/css/app/layout.css?v=1759491354488 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+hot-reloader-app.js:197 [Fast Refresh] rebuilding
+VM10785 hot-reloader-app.js:197 [Fast Refresh] rebuilding
+report-hmr-latency.js:14 [Fast Refresh] done in 333ms
+VM10785 hot-reloader-app.js:112 [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree.
+handleApplyUpdates @ VM10785 hot-reloader-app.js:112
+eval @ VM10785 hot-reloader-app.js:144
+Promise.then
+tryApplyUpdatesWebpack @ VM10785 hot-reloader-app.js:141
+handleHotUpdate @ VM10785 hot-reloader-app.js:169
+processMessage @ VM10785 hot-reloader-app.js:250
+handler @ VM10785 hot-reloader-app.js:399
+VM10785 hot-reloader-app.js:99  GET http://localhost:3000/tests/child-binding/ 500 (Internal Server Error)
+performFullReload @ VM10785 hot-reloader-app.js:99
+handleApplyUpdates @ VM10785 hot-reloader-app.js:116
+eval @ VM10785 hot-reloader-app.js:144
+Promise.then
+tryApplyUpdatesWebpack @ VM10785 hot-reloader-app.js:141
+handleHotUpdate @ VM10785 hot-reloader-app.js:169
+processMessage @ VM10785 hot-reloader-app.js:250
+handler @ VM10785 hot-reloader-app.js:399
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $Book.chapters
+VM11010 chemistry.ts:361 Bond initialized: $Title.$text
+VM11010 chemistry.ts:361 Bond initialized: $Footer.$copyright
+VM11010 chemistry.ts:361 Bond initialized: $Document.chapters
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM11010 chemistry.ts:361 Bond initialized: $PolyBook.chapters
+VM11010 chemistry.ts:361 Bond initialized: $Section.$name
+VM11010 chemistry.ts:361 Bond initialized: $Section.items
+VM11010 chemistry.ts:458 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+VM11010 chemistry.ts:361 Bond initialized: $Article.$addToAllSections
+VM11010 chemistry.ts:361 Bond initialized: $Article.sections
+VM11010 chemistry.ts:361 Bond initialized: $StrictContainer.content
+VM11010 chemistry.ts:361 Bond initialized: $NestedChild.$value
+VM11010 chemistry.ts:361 Bond initialized: $NestedContainer.groups
+ Bond initialized: $Book.chapters
+ Bond initialized: $Chapter.$title
+ Bond initialized: $Chapter.$page
+ Bond initialized: $Chapter.$title
+ Bond initialized: $Chapter.$page
+ Bond initialized: $Chapter.$title
+ Bond initialized: $Chapter.$page
+ $Book constructor called with 3 chapters
+ Chapter title: Introduction
+ Chapter title: Main Content
+ Chapter title: Conclusion
+ Bond initialized: $Document.chapters
+ Bond initialized: $Title.$text
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $Footer.$copyright
+VM11007 page.tsx:147 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+VM11010 chemistry.ts:361 Bond initialized: $Document.title
+VM11010 chemistry.ts:361 Bond initialized: $Document.footer
+VM11010 chemistry.ts:361 Bond initialized: $PolyBook.chapters
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM11007 page.tsx:250 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+VM11007 page.tsx:254 Chapter 1 is fancy!
+VM11007 page.tsx:254 Chapter 3 is fancy!
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $FancyChapter.$color
+VM11010 chemistry.ts:458 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+VM11010 chemistry.ts:361 Bond initialized: $Article.$addToAllSections
+VM11010 chemistry.ts:361 Bond initialized: $Article.sections
+VM11010 chemistry.ts:361 Bond initialized: $Section.$name
+VM11010 chemistry.ts:361 Bond initialized: $Section.items
+VM11010 chemistry.ts:361 Bond initialized: $Section.$name
+VM11010 chemistry.ts:361 Bond initialized: $Section.items
+VM11010 chemistry.ts:361 Bond initialized: $Section.$name
+VM11010 chemistry.ts:361 Bond initialized: $Section.items
+VM11007 page.tsx:353 $Article constructor with 3 sections
+VM11007 page.tsx:305 Adding "Auto-added by Article at index 0" to section Introduction
+VM11010 chemistry.ts:361 Bond initialized: $StrictContainer.content
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11007 page.tsx:427 $StrictContainer validating inputs...
+VM11010 chemistry.ts:361 Bond initialized: $StrictContainer.header
+VM11010 chemistry.ts:361 Bond initialized: $StrictContainer.content
+VM11010 chemistry.ts:361 Bond initialized: $Title.$text
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$title
+VM11010 chemistry.ts:361 Bond initialized: $Chapter.$page
+VM11007 page.tsx:427 $StrictContainer validating inputs...
+VM11007 page.tsx:435 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ VM11007 page.tsx:435
+callConstructor @ VM11010 chemistry.ts:761
+bond @ VM11010 chemistry.ts:661
+__render @ VM11010 chemistry.ts:104
+Component @ VM11010 chemistry.ts:267
+react_stack_bottom_frame @ VM10870 react-dom-client.development.js:23553
+renderWithHooks @ VM10870 react-dom-client.development.js:6764
+updateFunctionComponent @ VM10870 react-dom-client.development.js:9070
+beginWork @ VM10870 react-dom-client.development.js:10680
+runWithFiberInDEV @ VM10870 react-dom-client.development.js:873
+performUnitOfWork @ VM10870 react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ VM10870 react-dom-client.development.js:15672
+renderRootConcurrent @ VM10870 react-dom-client.development.js:15647
+performWorkOnRoot @ VM10870 react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ VM10870 react-dom-client.development.js:16767
+performWorkUntilDeadline @ VM10872 scheduler.development.js:45
+<...>
+exports.jsxDEV @ VM11009 react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ VM11007 page.tsx:1184
+react_stack_bottom_frame @ VM10870 react-dom-client.development.js:23553
+renderWithHooksAgain @ VM10870 react-dom-client.development.js:6864
+renderWithHooks @ VM10870 react-dom-client.development.js:6776
+updateFunctionComponent @ VM10870 react-dom-client.development.js:9070
+beginWork @ VM10870 react-dom-client.development.js:10680
+runWithFiberInDEV @ VM10870 react-dom-client.development.js:873
+performUnitOfWork @ VM10870 react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ VM10870 react-dom-client.development.js:15672
+renderRootConcurrent @ VM10870 react-dom-client.development.js:15647
+performWorkOnRoot @ VM10870 react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ VM10870 react-dom-client.development.js:16767
+performWorkUntilDeadline @ VM10872 scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ VM10852 react-jsx-runtime.development.js:338
+ClientPageRoot @ VM10975 client-page.js:20
+react_stack_bottom_frame @ VM10870 react-dom-client.development.js:23553
+renderWithHooksAgain @ VM10870 react-dom-client.development.js:6864
+renderWithHooks @ VM10870 react-dom-client.development.js:6776
+updateFunctionComponent @ VM10870 react-dom-client.development.js:9070
+beginWork @ VM10870 react-dom-client.development.js:10629
+runWithFiberInDEV @ VM10870 react-dom-client.development.js:873
+performUnitOfWork @ VM10870 react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ VM10870 react-dom-client.development.js:15672
+renderRootConcurrent @ VM10870 react-dom-client.development.js:15647
+performWorkOnRoot @ VM10870 react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ VM10870 react-dom-client.development.js:16767
+performWorkUntilDeadline @ VM10872 scheduler.development.js:45
+"use client"
+initializeElement @ VM10876 react-server-dom-webpack-client.browser.development.js:1206
+wakeChunk @ VM10876 react-server-dom-webpack-client.browser.development.js:976
+fulfillReference @ VM10876 react-server-dom-webpack-client.browser.development.js:1310
+wakeChunk @ VM10876 react-server-dom-webpack-client.browser.development.js:977
+wakeChunkIfInitialized @ VM10876 react-server-dom-webpack-client.browser.development.js:1012
+resolveModuleChunk @ VM10876 react-server-dom-webpack-client.browser.development.js:1097
+eval @ VM10876 react-server-dom-webpack-client.browser.development.js:1944
+"use server"
+ResponseInstance @ VM10876 react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ VM10876 react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ VM10876 react-server-dom-webpack-client.browser.development.js:3228
+eval @ VM10849 app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ VM10825 main-app.js:160
+options.factory @ VM10824 webpack.js:704
+__webpack_require__ @ VM10824 webpack.js:29
+fn @ VM10824 webpack.js:361
+eval @ VM10831 app-next-dev.js:14
+eval @ VM10838 app-bootstrap.js:62
+loadScriptsInSequence @ VM10838 app-bootstrap.js:23
+appBootstrap @ VM10838 app-bootstrap.js:56
+eval @ VM10831 app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ VM10825 main-app.js:182
+options.factory @ VM10824 webpack.js:704
+__webpack_require__ @ VM10824 webpack.js:29
+__webpack_exec__ @ VM10825 main-app.js:1801
+(anonymous) @ VM10825 main-app.js:1802
+webpackJsonpCallback @ VM10824 webpack.js:1380
+(anonymous) @ VM10825 main-app.js:9
+VM11010 chemistry.ts:361 Bond initialized: $StrictContainer.header
+VM11010 chemistry.ts:361 Bond initialized: $NestedContainer.groups
+VM11010 chemistry.ts:361 Bond initialized: $NestedChild.$value
+VM11010 chemistry.ts:361 Bond initialized: $NestedChild.$value
+VM11010 chemistry.ts:361 Bond initialized: $NestedChild.$value
+VM11010 chemistry.ts:361 Bond initialized: $NestedChild.$value
+VM11010 chemistry.ts:361 Bond initialized: $NestedChild.$value
+VM11010 chemistry.ts:361 Bond initialized: $NestedChild.$value
+VM11007 page.tsx:521 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+VM11007 page.tsx:524 Filtered to 3 groups
+VM11007 page.tsx:527 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+VM11007 page.tsx:527 Group 1: (2) [$NestedChild, $NestedChild]
+VM11007 page.tsx:527 Group 2: [$NestedChild]
+VM11010 chemistry.ts:337 updateState: {"cid":15,"$Chapter[15].$title":"\"Introduction\"","$Chapter[15].$page":"1"}
+VM11010 chemistry.ts:337 updateState: {"cid":16,"$Chapter[16].$title":"\"Main Content\"","$Chapter[16].$page":"10"}
+VM11010 chemistry.ts:337 updateState: {"cid":17,"$Chapter[17].$title":"\"Conclusion\"","$Chapter[17].$page":"100"}
+VM11010 chemistry.ts:337 updateState: {"cid":14,"$Chapter[15].$title":"\"Introduction\"","$Chapter[15].$page":"1","$Chapter[16].$title":"\"Main Content\"","$Chapter[16].$page":"10","$Chapter[17].$title":"\"Conclusion\"","$Chapter[17].$page":"100","$Book[14].chapters":"[15,16,17]"}
+VM11010 chemistry.ts:337 updateState: {"cid":19,"$Title[19].$text":"\"My Document\""}
+VM11010 chemistry.ts:337 updateState: {"cid":20,"$Chapter[20].$title":"\"Chapter 1\"","$Chapter[20].$page":"1"}
+VM11010 chemistry.ts:337 updateState: {"cid":21,"$Chapter[21].$title":"\"Chapter 2\"","$Chapter[21].$page":"20"}
+VM11010 chemistry.ts:337 updateState: {"cid":22,"$Chapter[22].$title":"\"Chapter 3\"","$Chapter[22].$page":"40"}
+VM11010 chemistry.ts:337 updateState: {"cid":23,"$Footer[23].$copyright":"\"© 2024 Chemistry Framework\""}
+VM11010 chemistry.ts:337 updateState: {"cid":18,"$Title[19].$text":"\"My Document\"","$Document[18].title":"{\"$text\":19}","$Footer[23].$copyright":"\"© 2024 Chemistry Framework\"","$Document[18].footer":"{\"$copyright\":23}","$Chapter[20].$title":"\"Chapter 1\"","$Chapter[20].$page":"1","$Chapter[21].$title":"\"Chapter 2\"","$Chapter[21].$page":"20","$Chapter[22].$title":"\"Chapter 3\"","$Chapter[22].$page":"40","$Document[18].chapters":"[20,21,22]"}
+VM11010 chemistry.ts:337 updateState: {"cid":29,"$Chapter[29].$title":"\"Regular 1\"","$Chapter[29].$page":"1"}
+VM11010 chemistry.ts:337 updateState: {"cid":30,"$FancyChapter[30].$color":"\"gold\"","$FancyChapter[30].$title":"\"Special\"","$FancyChapter[30].$page":"50"}
+VM11010 chemistry.ts:337 updateState: {"cid":31,"$Chapter[31].$title":"\"Regular 2\"","$Chapter[31].$page":"100"}
+VM11010 chemistry.ts:337 updateState: {"cid":32,"$FancyChapter[32].$color":"\"silver\"","$FancyChapter[32].$title":"\"Premium\"","$FancyChapter[32].$page":"150"}
+VM11010 chemistry.ts:337 updateState: {"cid":24,"$Chapter[25].$title":"\"Regular 1\"","$Chapter[25].$page":"1","$FancyChapter[26].$title":"\"Special\"","$FancyChapter[26].$page":"50","$FancyChapter[26].$color":"\"gold\"","$Chapter[27].$title":"\"Regular 2\"","$Chapter[27].$page":"100","$FancyChapter[28].$title":"\"Premium\"","$FancyChapter[28].$page":"150","$FancyChapter[28].$color":"\"silver\"","$PolyBook[24].chapters":"[25,26,27,28]"}
+VM11010 chemistry.ts:337 updateState: {"cid":34,"$Section[34].$name":"\"Introduction\"","$Section[34].items":"[\"Auto-added by Article at index 0\"]"}
+VM11010 chemistry.ts:337 updateState: {"cid":35,"$Section[35].$name":"\"Methods\"","$Section[35].items":"[\"Auto-added by Article at index 0\"]"}
+VM11010 chemistry.ts:337 updateState: {"cid":36,"$Section[36].$name":"\"Results\"","$Section[36].items":"[\"Auto-added by Article at index 0\"]"}
+VM11010 chemistry.ts:337 updateState: {"cid":33,"$Section[34].$name":"\"Introduction\"","$Section[34].items":"[\"Auto-added by Article at index 0\"]","$Section[35].$name":"\"Methods\"","$Section[35].items":"[\"Auto-added by Article at index 0\"]","$Section[36].$name":"\"Results\"","$Section[36].items":"[\"Auto-added by Article at index 0\"]","$Article[33].sections":"[34,35,36]"}
+VM11010 chemistry.ts:337 updateState: {"cid":38,"$Chapter[38].$title":"\"Only Content\"","$Chapter[38].$page":"1"}
+VM11010 chemistry.ts:337 updateState: {"cid":39,"$Chapter[39].$title":"\"No Header Warning\"","$Chapter[39].$page":"2"}
+VM11010 chemistry.ts:337 updateState: {"cid":37,"$Chapter[38].$title":"\"Only Content\"","$Chapter[38].$page":"1","$StrictContainer[37].header":"{\"$title\":38,\"$page\":38}","$Chapter[39].$title":"\"No Header Warning\"","$Chapter[39].$page":"2","$StrictContainer[37].content":"[39]"}
+VM11010 chemistry.ts:337 updateState: {"cid":41,"$Title[41].$text":"\"Valid Header\""}
+VM11010 chemistry.ts:337 updateState: {"cid":42,"$Chapter[42].$title":"\"Ch1\"","$Chapter[42].$page":"1"}
+VM11010 chemistry.ts:337 updateState: {"cid":43,"$Chapter[43].$title":"\"Ch2\"","$Chapter[43].$page":"2"}
+VM11010 chemistry.ts:337 updateState: {"cid":44,"$Chapter[44].$title":"\"Ch3\"","$Chapter[44].$page":"3"}
+VM11010 chemistry.ts:337 updateState: {"cid":40,"$Title[41].$text":"\"Valid Header\"","$StrictContainer[40].header":"{\"$text\":41}","$Chapter[42].$title":"\"Ch1\"","$Chapter[42].$page":"1","$Chapter[43].$title":"\"Ch2\"","$Chapter[43].$page":"2","$Chapter[44].$title":"\"Ch3\"","$Chapter[44].$page":"3","$StrictContainer[40].content":"[42,43,44]"}
+VM11010 chemistry.ts:337 updateState: {"cid":48,"$NestedChild[48].$value":"\"Group1-Item1\""}
+VM11010 chemistry.ts:337 updateState: {"cid":49,"$NestedChild[49].$value":"\"Group1-Item2\""}
+VM11010 chemistry.ts:337 updateState: {"cid":50,"$NestedChild[50].$value":"\"Group1-Item3\""}
+VM11010 chemistry.ts:337 updateState: {"cid":51,"$NestedChild[51].$value":"\"Group2-Item1\""}
+VM11010 chemistry.ts:337 updateState: {"cid":52,"$NestedChild[52].$value":"\"Group2-Item2\""}
+VM11010 chemistry.ts:337 updateState: {"cid":53,"$NestedChild[53].$value":"\"Group3-Item1\""}
+VM11010 chemistry.ts:337 updateState: {"cid":47,"$NestedContainer[47].groups":"[[48,49,50],[51,52],[53]]"}
+hot-reloader-app.js:197 [Fast Refresh] rebuilding
+VM10996 hot-reloader-app.js:197 [Fast Refresh] rebuilding
+report-hmr-latency.js:14 [Fast Refresh] done in 198ms
+VM10996 hot-reloader-app.js:112 [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree.
+handleApplyUpdates @ VM10996 hot-reloader-app.js:112
+eval @ VM10996 hot-reloader-app.js:144
+Promise.then
+tryApplyUpdatesWebpack @ VM10996 hot-reloader-app.js:141
+handleHotUpdate @ VM10996 hot-reloader-app.js:169
+processMessage @ VM10996 hot-reloader-app.js:250
+handler @ VM10996 hot-reloader-app.js:399
+VM10996 hot-reloader-app.js:99  GET http://localhost:3000/tests/child-binding/ 500 (Internal Server Error)
+performFullReload @ VM10996 hot-reloader-app.js:99
+handleApplyUpdates @ VM10996 hot-reloader-app.js:116
+eval @ VM10996 hot-reloader-app.js:144
+Promise.then
+tryApplyUpdatesWebpack @ VM10996 hot-reloader-app.js:141
+handleHotUpdate @ VM10996 hot-reloader-app.js:169
+processMessage @ VM10996 hot-reloader-app.js:250
+handler @ VM10996 hot-reloader-app.js:399
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $Book.chapters
+chemistry.ts:495 Bond initialized: $Title.$text
+chemistry.ts:495 Bond initialized: $Footer.$copyright
+chemistry.ts:495 Bond initialized: $Document.chapters
+chemistry.ts:495 Bond initialized: $FancyChapter.$title
+chemistry.ts:495 Bond initialized: $FancyChapter.$page
+chemistry.ts:495 Bond initialized: $FancyChapter.$color
+chemistry.ts:495 Bond initialized: $PolyBook.chapters
+chemistry.ts:495 Bond initialized: $Section.$name
+chemistry.ts:495 Bond initialized: $Section.items
+chemistry.ts:595 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+chemistry.ts:495 Bond initialized: $Article.$addToAllSections
+chemistry.ts:495 Bond initialized: $Article.sections
+chemistry.ts:495 Bond initialized: $StrictContainer.content
+chemistry.ts:495 Bond initialized: $NestedChild.$value
+chemistry.ts:495 Bond initialized: $NestedContainer.groups
+ Bond initialized: $Book.chapters
+ Bond initialized: $Chapter.$title
+ Bond initialized: $Chapter.$page
+ Bond initialized: $Chapter.$title
+ Bond initialized: $Chapter.$page
+ Bond initialized: $Chapter.$title
+ Bond initialized: $Chapter.$page
+ $Book constructor called with 3 chapters
+ Chapter title: Introduction
+ Chapter title: Main Content
+ Chapter title: Conclusion
+ Bond initialized: $Document.chapters
+ Bond initialized: $Title.$text
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $Footer.$copyright
+page.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+chemistry.ts:495 Bond initialized: $Document.title
+chemistry.ts:495 Bond initialized: $Document.footer
+chemistry.ts:495 Bond initialized: $PolyBook.chapters
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $FancyChapter.$title
+chemistry.ts:495 Bond initialized: $FancyChapter.$page
+chemistry.ts:495 Bond initialized: $FancyChapter.$color
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $FancyChapter.$title
+chemistry.ts:495 Bond initialized: $FancyChapter.$page
+chemistry.ts:495 Bond initialized: $FancyChapter.$color
+page.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+page.tsx:152 Chapter 1 is fancy!
+page.tsx:152 Chapter 3 is fancy!
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $FancyChapter.$title
+chemistry.ts:495 Bond initialized: $FancyChapter.$page
+chemistry.ts:495 Bond initialized: $FancyChapter.$color
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $FancyChapter.$title
+chemistry.ts:495 Bond initialized: $FancyChapter.$page
+chemistry.ts:495 Bond initialized: $FancyChapter.$color
+chemistry.ts:595 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+chemistry.ts:495 Bond initialized: $Article.$addToAllSections
+chemistry.ts:495 Bond initialized: $Article.sections
+chemistry.ts:495 Bond initialized: $Section.$name
+chemistry.ts:495 Bond initialized: $Section.items
+chemistry.ts:495 Bond initialized: $Section.$name
+chemistry.ts:495 Bond initialized: $Section.items
+chemistry.ts:495 Bond initialized: $Section.$name
+chemistry.ts:495 Bond initialized: $Section.items
+page.tsx:208 $Article constructor with 3 sections
+page.tsx:181 Adding "Auto-added by Article at index 0" to section Introduction
+chemistry.ts:495 Bond initialized: $StrictContainer.content
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+page.tsx:262 $StrictContainer validating inputs...
+chemistry.ts:495 Bond initialized: $StrictContainer.header
+chemistry.ts:495 Bond initialized: $StrictContainer.content
+chemistry.ts:495 Bond initialized: $Title.$text
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+chemistry.ts:495 Bond initialized: $Chapter.$title
+chemistry.ts:495 Bond initialized: $Chapter.$page
+page.tsx:262 $StrictContainer validating inputs...
+page.tsx:273 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ page.tsx:273
+callConstructor @ chemistry.ts:921
+bond @ chemistry.ts:818
+__render @ chemistry.ts:217
+Component @ chemistry.ts:352
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooks @ react-dom-client.development.js:6764
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:499
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+wakeChunk @ react-server-dom-webpack-client.browser.development.js:976
+fulfillReference @ react-server-dom-webpack-client.browser.development.js:1310
+wakeChunk @ react-server-dom-webpack-client.browser.development.js:977
+wakeChunkIfInitialized @ react-server-dom-webpack-client.browser.development.js:1012
+resolveModuleChunk @ react-server-dom-webpack-client.browser.development.js:1097
+eval @ react-server-dom-webpack-client.browser.development.js:1944
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js:1801
+(anonymous) @ main-app.js:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js:9
+chemistry.ts:495 Bond initialized: $StrictContainer.header
+chemistry.ts:495 Bond initialized: $NestedContainer.groups
+chemistry.ts:495 Bond initialized: $NestedChild.$value
+chemistry.ts:495 Bond initialized: $NestedChild.$value
+chemistry.ts:495 Bond initialized: $NestedChild.$value
+chemistry.ts:495 Bond initialized: $NestedChild.$value
+chemistry.ts:495 Bond initialized: $NestedChild.$value
+chemistry.ts:495 Bond initialized: $NestedChild.$value
+page.tsx:328 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+page.tsx:331 Filtered to 3 groups
+page.tsx:335 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+page.tsx:335 Group 1: (2) [$NestedChild, $NestedChild]
+page.tsx:335 Group 2: [$NestedChild]
+chemistry.ts:464 updateState: {"cid":15,"$Chapter[15].$title":"\"Introduction\"","$Chapter[15].$page":"1"}
+chemistry.ts:464 updateState: {"cid":16,"$Chapter[16].$title":"\"Main Content\"","$Chapter[16].$page":"10"}
+chemistry.ts:464 updateState: {"cid":17,"$Chapter[17].$title":"\"Conclusion\"","$Chapter[17].$page":"100"}
+chemistry.ts:464 updateState: {"cid":14,"$Chapter[15].$title":"\"Introduction\"","$Chapter[15].$page":"1","$Chapter[16].$title":"\"Main Content\"","$Chapter[16].$page":"10","$Chapter[17].$title":"\"Conclusion\"","$Chapter[17].$page":"100","$Book[14].chapters":"[15,16,17]"}
+chemistry.ts:464 updateState: {"cid":19,"$Title[19].$text":"\"My Document\""}
+chemistry.ts:464 updateState: {"cid":20,"$Chapter[20].$title":"\"Chapter 1\"","$Chapter[20].$page":"1"}
+chemistry.ts:464 updateState: {"cid":21,"$Chapter[21].$title":"\"Chapter 2\"","$Chapter[21].$page":"20"}
+chemistry.ts:464 updateState: {"cid":22,"$Chapter[22].$title":"\"Chapter 3\"","$Chapter[22].$page":"40"}
+chemistry.ts:464 updateState: {"cid":23,"$Footer[23].$copyright":"\"© 2024 Chemistry Framework\""}
+chemistry.ts:464 updateState: {"cid":18,"$Title[19].$text":"\"My Document\"","$Document[18].title":"{\"$text\":19}","$Footer[23].$copyright":"\"© 2024 Chemistry Framework\"","$Document[18].footer":"{\"$copyright\":23}","$Chapter[20].$title":"\"Chapter 1\"","$Chapter[20].$page":"1","$Chapter[21].$title":"\"Chapter 2\"","$Chapter[21].$page":"20","$Chapter[22].$title":"\"Chapter 3\"","$Chapter[22].$page":"40","$Document[18].chapters":"[20,21,22]"}
+chemistry.ts:464 updateState: {"cid":29,"$Chapter[29].$title":"\"Regular 1\"","$Chapter[29].$page":"1"}
+chemistry.ts:464 updateState: {"cid":30,"$FancyChapter[30].$color":"\"gold\"","$FancyChapter[30].$title":"\"Special\"","$FancyChapter[30].$page":"50"}
+chemistry.ts:464 updateState: {"cid":31,"$Chapter[31].$title":"\"Regular 2\"","$Chapter[31].$page":"100"}
+chemistry.ts:464 updateState: {"cid":32,"$FancyChapter[32].$color":"\"silver\"","$FancyChapter[32].$title":"\"Premium\"","$FancyChapter[32].$page":"150"}
+chemistry.ts:464 updateState: {"cid":24,"$Chapter[25].$title":"\"Regular 1\"","$Chapter[25].$page":"1","$FancyChapter[26].$title":"\"Special\"","$FancyChapter[26].$page":"50","$FancyChapter[26].$color":"\"gold\"","$Chapter[27].$title":"\"Regular 2\"","$Chapter[27].$page":"100","$FancyChapter[28].$title":"\"Premium\"","$FancyChapter[28].$page":"150","$FancyChapter[28].$color":"\"silver\"","$PolyBook[24].chapters":"[25,26,27,28]"}
+chemistry.ts:464 updateState: {"cid":34,"$Section[34].$name":"\"Introduction\"","$Section[34].items":"[\"Auto-added by Article at index 0\"]"}
+chemistry.ts:464 updateState: {"cid":35,"$Section[35].$name":"\"Methods\"","$Section[35].items":"[\"Auto-added by Article at index 0\"]"}
+chemistry.ts:464 updateState: {"cid":36,"$Section[36].$name":"\"Results\"","$Section[36].items":"[\"Auto-added by Article at index 0\"]"}
+chemistry.ts:464 updateState: {"cid":33,"$Section[34].$name":"\"Introduction\"","$Section[34].items":"[\"Auto-added by Article at index 0\"]","$Section[35].$name":"\"Methods\"","$Section[35].items":"[\"Auto-added by Article at index 0\"]","$Section[36].$name":"\"Results\"","$Section[36].items":"[\"Auto-added by Article at index 0\"]","$Article[33].sections":"[34,35,36]"}
+chemistry.ts:464 updateState: {"cid":38,"$Chapter[38].$title":"\"Only Content\"","$Chapter[38].$page":"1"}
+chemistry.ts:464 updateState: {"cid":39,"$Chapter[39].$title":"\"No Header Warning\"","$Chapter[39].$page":"2"}
+chemistry.ts:464 updateState: {"cid":37,"$Chapter[38].$title":"\"Only Content\"","$Chapter[38].$page":"1","$StrictContainer[37].header":"{\"$title\":38,\"$page\":38}","$Chapter[39].$title":"\"No Header Warning\"","$Chapter[39].$page":"2","$StrictContainer[37].content":"[39]"}
+chemistry.ts:464 updateState: {"cid":41,"$Title[41].$text":"\"Valid Header\""}
+chemistry.ts:464 updateState: {"cid":42,"$Chapter[42].$title":"\"Ch1\"","$Chapter[42].$page":"1"}
+chemistry.ts:464 updateState: {"cid":43,"$Chapter[43].$title":"\"Ch2\"","$Chapter[43].$page":"2"}
+chemistry.ts:464 updateState: {"cid":44,"$Chapter[44].$title":"\"Ch3\"","$Chapter[44].$page":"3"}
+chemistry.ts:464 updateState: {"cid":40,"$Title[41].$text":"\"Valid Header\"","$StrictContainer[40].header":"{\"$text\":41}","$Chapter[42].$title":"\"Ch1\"","$Chapter[42].$page":"1","$Chapter[43].$title":"\"Ch2\"","$Chapter[43].$page":"2","$Chapter[44].$title":"\"Ch3\"","$Chapter[44].$page":"3","$StrictContainer[40].content":"[42,43,44]"}
+chemistry.ts:464 updateState: {"cid":48,"$NestedChild[48].$value":"\"Group1-Item1\""}
+chemistry.ts:464 updateState: {"cid":49,"$NestedChild[49].$value":"\"Group1-Item2\""}
+chemistry.ts:464 updateState: {"cid":50,"$NestedChild[50].$value":"\"Group1-Item3\""}
+chemistry.ts:464 updateState: {"cid":51,"$NestedChild[51].$value":"\"Group2-Item1\""}
+chemistry.ts:464 updateState: {"cid":52,"$NestedChild[52].$value":"\"Group2-Item2\""}
+chemistry.ts:464 updateState: {"cid":53,"$NestedChild[53].$value":"\"Group3-Item1\""}
+chemistry.ts:464 updateState: {"cid":47,"$NestedContainer[47].groups":"[[48,49,50],[51,52],[53]]"}

@@ -54,6 +54,7 @@ const openingWordCount = 8;
 const untitledDayFormat = { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' } as const;
 
 const indentation = (depth: number): string => '    '.repeat(depth);
+const attributeText = (text: string): string => written(text.replace(/\s+/gu, ' ')).replace(/"/gu, '&quot;');
 const lineWidth = (depth: number): number => 124 - 4 * depth;
 
 export const slugFromName = (name: string): string => {
@@ -292,7 +293,7 @@ export const writtenConversation = (
             const verb = artifactVersion.versionCount === 1 ? 'Made' : block.command === 'rewrite' ? 'Rewrote' : 'Changed';
             const sentence = `${verb} the artifact “${written(artifactVersion.title)}”`;
 
-            const attributes = [`artifact="${written(block.id)}"`, `place="${identifier.slug(versionTitle)}"`];
+            const attributes = [`artifact="${attributeText(block.id)}"`, `place="${identifier.slug(versionTitle)}"`];
 
             return figureLines('Artifact', appendix, [sentence], 3, attributes);
         };
@@ -431,7 +432,7 @@ export const blockLines = (text: string, depth: number): string[] => {
         }
         if (headingForm.test(line)) {
             const headingText = headingForm.exec(line)![2].replace(/\*\*(.+?)\*\*|__(.+?)__/gu, '$1$2').trim();
-            outputLines.push(...elementLines('Heading', inlinePieces(headingText), depth));
+            outputLines.push(...elementLines('Heading', inlinePieces(headingText, false), depth));
             lineIndex++;
             continue;
         }
@@ -486,7 +487,10 @@ export const blockLines = (text: string, depth: number): string[] => {
             outputLines.push(...elementLines('Paragraph', inlinePieces(quotedLines.join(' ')), depth, ['<Quoted />']));
             continue;
         }
-        const paragraphLines: string[] = [];
+        // A line no form above took is prose, and a paragraph always takes its first line: a row of a table
+        // with no rule under it opens no table, and a paragraph that took nothing wrote an empty paragraph at
+        // the same line for ever, 12 GB in 13 minutes on 2026-10-18.
+        const paragraphLines: string[] = [lines[lineIndex++].trim()];
         while (lineIndex < lines.length && lines[lineIndex].trim() !== '' && !isBlockOpening(lines[lineIndex]))
             paragraphLines.push(lines[lineIndex++].trim());
         outputLines.push(...elementLines('Paragraph', inlinePieces(paragraphLines.join(' ')), depth));
@@ -562,7 +566,7 @@ const listLines = (listItems: ListItem[], depth: number): string[] => {
     const listElement = `<List${listItems[0]?.ordered ? ' ordered' : ''} />`;
     const outputLines = [`${indentation(depth)}<Paragraph>`, `${indentation(depth + 1)}${listElement}`];
     for (const listItem of listItems) {
-        outputLines.push(...elementLines('Line', inlinePieces(listItem.text.trim()), depth + 1));
+        outputLines.push(...elementLines('Line', inlinePieces(listItem.text.trim(), false), depth + 1));
         if (listItem.items.length > 0) outputLines.push(...listLines(listItem.items, depth + 1));
     }
     outputLines.push(`${indentation(depth)}</Paragraph>`);
@@ -573,9 +577,11 @@ const listLines = (listItems: ListItem[], depth: number): string[] => {
 const markedWordLines = (markName: string, text: string): string[] =>
     ['<Word>', `    <${markName} />`, `    ${written(text)}`, '</Word>'];
 
+const displayForms = [/\$\$([^$]+?)\$\$/gu, /\\\[([\s\S]+?)\\\]/gu];
+const inlineMath = (innerText: string): ProsePiece => [`<Math>{${stringForm(innerText.trim())}}</Math>`];
 const inlineForms: [RegExp, (innerText: string) => ProsePiece][] = [
-    [/\$\$([^$]+?)\$\$/gu, innerText => [`<Equation>{${stringForm(innerText.trim())}}</Equation>`]],
-    [/\\\[([\s\S]+?)\\\]/gu, innerText => [`<Equation>{${stringForm(innerText.trim())}}</Equation>`]],
+    [displayForms[0], innerText => [`<Equation>{${stringForm(innerText.trim())}}</Equation>`]],
+    [displayForms[1], innerText => [`<Equation>{${stringForm(innerText.trim())}}</Equation>`]],
     [/\\\(([^\n]+?)\\\)/gu, innerText => [`<Math>{${stringForm(innerText.trim())}}</Math>`]],
     [/`([^`\n]+?)`/gu, innerText => markedWordLines('Verbatim', innerText)],
     [/\*\*(.+?)\*\*/gu, innerText => markedWordLines('Bold', innerText)],
@@ -584,7 +590,9 @@ const inlineForms: [RegExp, (innerText: string) => ProsePiece][] = [
     [/\$(?=\S)([^$\n\u0000]+?)(?<=\S)\$(?!\d)/gu, innerText => [`<Math>{${stringForm(innerText)}}</Math>`]],
 ];
 
-export const inlinePieces = (text: string): ProsePiece[] => {
+// Display math is an Equation where a paragraph stands, and inline Math in a line of a list or a heading, which
+// hold nothing a paragraph's size: an Equation in a list's line was refused by the specification, 2026-10-18.
+export const inlinePieces = (text: string, display = true): ProsePiece[] => {
     const elementPieces: ProsePiece[] = [];
     const placeholder = (): string => `\u0000${elementPieces.length - 1}\u0000`;
     let markedText = text.replace(/\[([^\]\n]+)\]\((https?:\/\/[^)\s]+)\)/gu, (_, words: string, url: string) => {
@@ -595,7 +603,7 @@ export const inlinePieces = (text: string): ProsePiece[] => {
     });
     for (const [form, elementPiece] of inlineForms)
         markedText = markedText.replace(form, (_, innerText: string) => {
-            elementPieces.push(elementPiece(innerText));
+            elementPieces.push(display || !displayForms.includes(form) ? elementPiece(innerText) : inlineMath(innerText));
 
             return placeholder();
         });

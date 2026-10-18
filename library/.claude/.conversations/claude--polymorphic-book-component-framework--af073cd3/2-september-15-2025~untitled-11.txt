@@ -1,0 +1,195 @@
+
+    refresh() {
+        if (this._chemical.crystalized) return;
+        const chemicalPrototype = Object.getPrototypeOf(this._chemical);
+        const propertyNames = [
+            ...Object.getOwnPropertyNames(this._chemical), 
+            ...Object.getOwnPropertyNames(chemicalPrototype)
+        ];
+        for (const property of propertyNames) {
+            console.log(`Found property ${property} on ${this._chemical.getType().name}`);
+            const descriptor = 
+                Object.getOwnPropertyDescriptor(this._chemical, property) || 
+                Object.getOwnPropertyDescriptor(chemicalPrototype, property);
+            console.log(`Immediate descriptor check:`, descriptor);
+            if (this.bonds.has(property)) continue;
+            if (!isReactiveProperty(property, descriptor?.value)) continue;
+            console.log(`Creating bond for: ${property}`);
+            const bond = new $Bond(this._chemical, property, descriptor!);
+            this.bonds.set(property, bond);
+        }
+    }
+
+    private _createBonds() {
+        if (this._chemical.crystalized) return;
+        let $chemical$ = this._chemical as any;
+        const prototypes: any[] = [];
+        while ($chemical$) {
+            if ($chemical$ === $Chemical.prototype) break;
+            prototypes.unshift($chemical$);
+            $chemical$ = Object.getPrototypeOf($chemical$);
+        }
+
+        for (const prototype of prototypes) {
+            // Use Object.getOwnPropertyNames to get ALL properties including getters/setters
+            const propertyNames = Object.getOwnPropertyNames(prototype);
+            for (const property of propertyNames) {
+                if (this.bonds.has(property)) continue;
+                const descriptor = Object.getOwnPropertyDescriptor(prototype, property)
+                //console.log(`${property} has value: ${descriptor?.value}`);
+                if (!isReactiveProperty(property, descriptor?.value)) continue;
+                console.log(`Property: ${property}, isReactive: ${isReactiveProperty(property, descriptor?.value)}`);
+                const bond = new $Bond(this._chemical, property, descriptor!);
+                this.bonds.set(property, bond);
+            }
+        }
+    }
+}
+
+class $Bond<T extends $Chemical = any, P = any> {
+    private _bid?: string;
+    get bid() { 
+        if (!this._bid) 
+            this._bid = `${this._chemical.getType().name}[${this.chemical.cid}].${this._property}`; 
+        return this._bid 
+    }
+    get chemical() { return this._chemical; }
+    private _chemical: T;
+    get property() { return this._property; }
+    private _property: string;
+    get descriptor() { return this._descriptor; }
+    private _descriptor: PropertyDescriptor;
+    get binding() { return this._binding; }
+    private _binding!: $Binding;
+    get bound() { return !!this._binding; }
+    get value(): P { return (this._chemical as any)[this._property]; }
+    set value(value: P) { (this._chemical as any)[this._property] = value; }
+    get valueType() { return this._valueType; }
+    private _valueType: $Type = Object;
+
+    get reactive() { return this._reactive; }
+    get inactive() { return !this._reactive; }
+    private _reactive = true;
+    reactivate() { this._reactive = true && !this._frozen; }
+    deactivate() { this._reactive = false; }
+
+    get frozen() { return this._frozen; }
+    crystallize() { this.deactivate(); this._frozen = true;  }
+    private _frozen = false;
+
+    constructor(chemical: T, property: string, descriptor: PropertyDescriptor) {
+        this._chemical = chemical;
+        this._property = property;
+        this._descriptor = descriptor;
+        this._initialize();
+    }
+
+    private _initialize() {
+        if (this._chemical.crystalized) return;
+        const chemical = this._chemical;
+        const $chemical$ = chemical as any;
+        const property = this._property;
+        const descriptor = this._descriptor;
+        console.log(`Creating computed property on ${this._chemical.getType().name} for property ${this.property}`);
+
+        let backingField = descriptor.value;
+        const getter = descriptor.get?.bind(chemical);
+        const setter = descriptor.set?.bind(chemical);
+        console.log(`The backingField for ${this._property} is ${backingField}`);
+
+        const getValue = getter ? () => getter() : () => backingField;
+        const setValue = 
+            setter ? (value: any) => setter(value) : 
+            getter ? (value: any) => { throw new Error(`${property} property not settable`); } :
+            (value: any) => { backingField = value; }
+
+        if (typeof backingField === 'function') {
+            const chemical = this._chemical;
+            const func: Function = backingField;
+            backingField = (...args: any[]) => {
+                chemical.formula?.resetState();
+                const result = func.apply(chemical, args);
+                chemical.formula?.setState();
+                return result;
+            };
+        }
+        
+        const value = getValue();
+        if (value && Array.isArray(value) && value[0] instanceof $Binding) {
+            this._binding = value[0];
+            this._binding.property = property;
+            this._binding.parent = this._chemical.cid;
+            this._valueType = value[1];
+            if (this._binding.plurality == 'one') {
+                const type: typeof $Chemical = value[1] as any;
+                setValue(type.template ?? type.prototype);
+            } else {
+                if (this._frozen) return;
+                setValue([]);
+            }
+        }
+
+        if (this._chemical == this._chemical.template)
+            return;
+
+        Object.defineProperty($chemical$, property, {
+            get: () => {
+                const state = this._chemical?.formula?.state;
+                const molecule = this._chemical.molecule;
+                let value = getValue();
+                if (this.bound) {
+                    const cid = molecule.bonds.get(this.binding);
+                    let chemical = molecule.chemicals.get(cid!);
+                    if (molecule.proxies.has(cid!)) {
+                        chemical = molecule.proxies.get(cid!)!;
+                        molecule.proxies.delete(cid!);
+                        setValue(chemical);
+                    }
+                    if (!chemical) {
+                        if (molecule.proxies.has(cid!)) {
+                            chemical = molecule.proxies.get(cid!)!;
+                            molecule.proxies.delete(cid!);
+                            setValue(chemical.cid);
+                        }
+                    }
+                    value = chemical ? chemical : undefined;
+                    if (this.reactive && value && state) value.formula.state = state;
+                } else if (this.bound && Array.isArray(value)) {
+                    value.forEach((item, index) => {
+                        if (!(item instanceof $Chemical))
+                            throw new Error("Bound arrays must contain chemicals");
+                        if (molecule.proxies.has(item.cid)) {
+                            const proxyId = item.cid;
+                            item = molecule.proxies.get(proxyId)!;
+                            molecule.proxies.delete(proxyId);
+                            value[index] = item;
+                        }
+                        if (this.reactive && item && state)
+                            item.formula.state = state;
+                    })
+                }
+                if (this.reactive && state)
+                    state[this.bid] = symbolize(value);
+                return value;
+            },
+            set: (value: any) => {
+                if (this._chemical.crystalized) return;
+                if (this.bound) {
+                    if (!(value instanceof $Chemical || Array.isArray(value) || value === undefined))
+                        throw new Error(`Expected a chemical or chemical array, got ${value}`);
+                    if (Array.isArray(value)) {
+                        throw new Error("Cannot assign a bound array. Modify the array instead");
+                    }
+                    if (value instanceof $Chemical) {
+                        this._chemical.molecule.bonds.set(this.binding, value.cid);
+                    } else {
+                        this._chemical.molecule.bonds.set(this.binding, -1);
+                    }
+                }
+                setValue(value);
+            },
+            enumerable: true,
+            configurable: true,
+        });
+    }
+}

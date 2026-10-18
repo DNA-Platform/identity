@@ -1,0 +1,103 @@
+HIPAA and PHI
+by Ashley Tohill
+Ashley Tohill
+
+What is Protected Health Information (PHI)?
+
+PHI is information, including demographic information, which relates to: 
+
+the individual’s past, present, or future physical/mental health condition;
+the provision of healthcare to the individual; or,
+the past, present, or future payment for the provision of healthcare to the individual, that identifies the individual or there is a reasonable basis to believe can be used to identify the individual
+Any of the individually identifiable information to the below would be considered PHI:
+
+Patient names
+Social Security number
+Telephone/Fax number
+Addresses (including email address)
+Medical Record/plan beneficiary/account numbers
+Biometric identifiers
+Dates (birth, death, admission, etc.)
+VIN/License plate/License and certificate numbers
+Device identifiers/serial numbers
+URL/IP address
+Photos/Images
+Any other characteristic that could uniquely identify the individual
+Electronic PHI (ePHI)
+
+BCM must address and meet the following six categories in order to comply with the Federal HIPAA security standards for electronic protected health information (ePHI). 
+
+The HIPAA Security Standards General Rules - provide the objective and scope for the HIPAA Security Standards Rule as a whole.
+Administrative Safeguards - documented formal practices to manage security measures to protect ePHI and manage the conduct of personnel who handle such information.
+Physical Safeguards - include the physical protection of computing assets from natural and environmental hazards and intrusion. This includes having appropriate access controls in place, data backup procedures, and disaster recovery plans.  
+Technical Safeguards - include those mechanisms to guard ePHI integrity, confidentiality, and availability. Technical safeguards also include processes to prevent unauthorized access to ePHI that is transmitted over external networks (such as the Internet).
+Organizational Requirements - address business associates and requirements for group health plans.
+Policies and Procedures and Documentation Requirements - call for the implementation of reasonable and appropriate policies and procedures to comply with the standards, implementation specifications, and other requirements of the HIPAA Security Standards Rule
+stock-image.jpg
+PHI Disclosures for Research
+
+Individuals who conduct human subject research, animal research, sponsored research or who are members of the Institutional Review Board (IRB), must complete the Office of Research’s required privacy and security trainings, available at the CITI Training website.
+
+To learn more about questions researchers need to ask before accessing a patient's medical record, click below:
+
+
+Obtain appropriate documentation
++
+
+Track disclosures of PHI
++
+De-Identified and Limited Data Sets (LDS)
+
+HIPAA allows the use and disclosure of information that does not identify or provide a reasonable basis to identify a person.
+
+
+De-Identified
+
+Limited Data Sets (LDS)
+Information can be de-identified through 
+
+a formal determination by a qualified expert; or
+the removal of all 18 identifiable elements that represent PHI.
+T5xj6Pdqqd1Er17U-stock_image.jpg
+Patient Rights According to HIPAA
+
+Flip each card below to see which rights patients have under HIPAA:
+
+
+
+
+
+
+
+
+
+1 of 8
+
+Protecting Confidential Information
+
+There is a saying when dealing with confidential information:
+
+"Treat it like it’s an infant; You are responsible for securing and keeping it in your possession at ALL TIMES"
+
+Below is further guidance regarding the protection of confidential information
+
+Keep Confidential Information Secure at All Times
+Never remove confidential information from the worksite unless you have your supervisor’s permission:
+Never leave confidential information unattended in your bag, briefcase or your car (even if it’s locked in the trunk)
+Always keep confidential information in your sight and in your possession
+If your job requires you to work from home or transport Confidential Information between sites, always follow best practices:
+If you need to access confidential information remotely, it must be through the Virtual Private Network (VPN) or the Citrix MyApps portal
+Ensure all devices used to access confidential information or e-mail are encrypted and have a SECURE access code  (including your personal laptop, tablets, smartphones, etc.)
+All devices used should be for BCM business purposes only
+Know where you left your paperwork
+Double Check!! When mailing or handing documents to individuals requesting confidential information, slow down and verify that each document belongs to the individual
+Check printers, faxes, and copiers when you finish using them
+Always secure and lock confidential information when you are away from your desk
+This applies to all forms of Confidential Information – paper, films, photos, cameras
+Verbal Exchanges
+Be aware of your surroundings when talking
+Ask yourself, “What if my information was being discussed like this?”
+Use a lower voice tone and speak softly
+Electronic devices in high traffic areas
+Make sure that any laptop, PC or other device that may display confidential information cannot be viewed by those walking by.
+Make sure devices are placed so the display cannot be seen or use a privacy screen.

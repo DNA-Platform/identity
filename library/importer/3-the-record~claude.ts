@@ -22,6 +22,10 @@ const resultsText = (content: unknown): string => {
     }).join('\n');
 };
 
+// An artifact's id is an identifier. One call of the older account leaked its own parameters into it, newlines,
+// tags and quotes, and the identifier it began with is the one it meant.
+export const artifactId = (given: string): string => given.split(/[\s<"]/u)[0];
+
 const blockFromRaw = (rawBlock: RawRecord): Block => {
     if (rawBlock.type === 'text') return { type: 'text', text: rawBlock.text ?? '' };
     if (rawBlock.type === 'thinking') return { type: 'thinking', text: rawBlock.thinking ?? '' };
@@ -31,7 +35,7 @@ const blockFromRaw = (rawBlock: RawRecord): Block => {
 
         return {
             type: 'artifact',
-            id: artifactInput.id ?? '',
+            id: artifactId(artifactInput.id ?? ''),
             title: artifactInput.title ?? '',
             contentType: artifactInput.type ?? '',
             language: artifactInput.language ?? '',

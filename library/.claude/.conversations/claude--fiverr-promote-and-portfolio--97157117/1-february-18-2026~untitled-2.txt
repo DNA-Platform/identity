@@ -1,0 +1,102 @@
+Success score
+The Success score metric evaluates each of your Gigs in key areas related to the order process and your relationship with clients. It evaluates your Gigs in six key areas, ensuring you maintain a consistent track record of quality service. These individual Gig scores are then used to determine your overall Success score.
+
+What is the Success score?
+What it does: It provides a comprehensive evaluation of your Gig performance based on client satisfaction, communication, and other key order metrics.
+Why it’s useful: The score is designed to be stable and provides a more accurate reflection of your long-term performance, preventing a single order from having too much impact. 
+Who it’s for: All freelancers.
+How is the success score calculated?
+The overall Success core is determined by considering the individual scores of all your Gigs.
+
+Evaluation timeframe: The calculation considers a longer time period which provides a more accurate reflection of your performance over time. This stable approach allows you more time to learn from mistakes without immediate consequences.
+Gig weighting: Gigs with a higher number of orders carry more weight in the overall score. Additionally, higher-value and more recent orders may have a greater impact on the Gig score.
+Transparency: Only you, the freelancer, can see your Success core. Clients only see your overall Level.
+What are the Key areas in evaluation?
+The individual Gig scores are determined by examining the order history in six key areas. Each key area includes various related data points, both quantitative (numerical data like statistics and scores) and qualitative (descriptive data like feedback and reviews).
+
+Client satisfaction
+Examines data points from reviews and other statistics reflecting client happiness with the overall order experience.
+
+Best practices:
+
+Understand needs: Ask questions to ensure a clear understanding of client requirements. Learn more on enhancing order requirements.
+Maintain communication: Regularly update clients on progress and address any concerns.
+Exceed expectations: Deliver more value than expected to leave a lasting positive impression.
+Effective communication
+Determined by your responsiveness, helpfulness, and ability to set clear expectations.
+
+Best practices:
+
+Be professional: Use clear, respectful language and avoid jargon.
+Prompt responses: Answer client inquiries quickly to show you value their time.
+Set expectations: Outline your workflow and timelines to manage client expectations.
+Provide updates: Keep clients informed about project status and any issues.
+Conflict-free orders
+Tracks how often disputes and issues arise during the order process.
+
+Best practices:
+
+Set clear expectations: Clearly define your services and limitations on your Gig page.
+Respect client concerns: Approach client concerns with empathy and offer solutions.
+Maintain positive and polite communication: Keep interactions with clients polite and professional, ensuring a positive experience.
+Learn more on understanding conflict free orders.
+
+Order cancellations
+Examines the effect of cancellations on the overall order process.
+
+Best practices:
+
+Proactive communication: Address potential issues early to prevent cancellations.
+Understand needs: Clarify client requirements to avoid misunderstandings.
+Offer alternative solutions: When issues or concerns arise, provide alternative options to help resolve the situation and avoid cancellations.
+Still, there are moments when completing the order isn’t the best path forward. Knowing when to cancel, and how to do it thoughtfully, can protect your reputation and your client’s experience.
+
+Learn how to decide when walking away from an order is the right move by reading “To cancel or not to cancel” in the community forum.
+
+Delivery time
+Reflects how often you deliver on time or ahead of time, factoring in the frequency of late deliveries.
+
+Best practices:
+
+Meet deadlines: Stick to agreed timelines or deliver early if possible.
+Manage expectations: Set realistic deadlines and keep clients informed of any changes.
+Value for Money
+Shows if clients feel they received the value they paid for.
+
+Best practices:
+
+Clear pricing: Ensure clients understand your pricing and what it includes.
+Deliver quality: Provide high-quality work that meets or exceeds expectations.
+See more tips for best practices here.
+
+What if my score drops or is not increasing?
+Success scores can drop due to various factors, including:
+
+Negative Reviews: Receiving lower ratings or negative feedback from clients can impact your score.
+Late Deliveries: Consistently delivering orders late can reduce your score.
+Order Cancellations: High rates of order cancellations, especially if initiated by you, can negatively affect your score.
+Poor Communication: Ineffective or slow communication with clients can lead to a lower score.
+Conflicts: Frequent disputes or conflicts with clients during the order process can also contribute to a drop in your Success score.
+Decreased Client Satisfaction: If clients feel that the value of your service does not meet their expectations, it can result in a lower score.
+If your score is not increasing, focus on continuous improvement and delivering quality service.
+
+We understand that there are edge cases and exceptions. The following actions will not impact your score:
+
+Unresponsive Clients: Unresponsive clients do not negatively impact your Success score. The leveling system accounts for these scenarios.
+Enhancing the client experience: Actions such as revisions, delivery extensions, or partial refunds are evaluated based on their impact on overall client satisfaction. They are viewed as tools to enhance the client's experience.
+If your Success score falls critically low, your account may be labeled low performance, which will affect your visibility. Focus on the best practices above to improve.
+
+FAQs
+How can I view the details of my Success score?
+You can view the details of your Success score on your level overview page. Expand each Gig score under Scores by Gig to see which key areas have the strongest impact, both positively and negatively.
+Why is my Success score not 10 even though all my metrics are at 100%?
+The Success score is based on your performance relative to other freelancers in your price range. A score of 10 is not required for success. Interested in learning strategic tips from CSMs, don’t overlook this key factor in your Success score.
+If I don’t have any active orders, will my Success score decrease?
+No, your Success score does not decrease simply due to inactivity or lack of new orders.
+What minimum Success score do I need to reach a higher level (e.g., Level 2, Top Rated)
+Meeting a certain Success score alone isn’t enough to reach a higher level, you must meet all other criteria (ratings, orders, unique clients, earnings). You can learn more about Fiverr’s Level System.
+ 
+
+ 
+
+Previous article

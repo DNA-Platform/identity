@@ -1,0 +1,123 @@
+class $ObjectRep implements $Rep {
+    get ref(): string { throw ''; }
+    get $literal(): object { throw ''; }
+    get $prototype(): $PrototypeRep { throw ''; }
+    get asPrototype(): $PrototypeRep { throw ''; }
+    get $type(): $TypeRep { throw ''; }
+    $members(own: boolean = true): $MemberRep[] { throw ''; }
+    $fields(own: boolean = true): $FieldRep[] { throw ''; }
+    $properties(own: boolean = true): $PropertyRep[] { throw ''; }
+    $methods(own: boolean = true): $MethodRep[] { throw ''; }
+    $getField(name: string, own: boolean = true): $FieldRep | undefined { throw ''; }
+    $getProperty(name: string, own: boolean = true): $PropertyRep | undefined { throw ''; }
+    $getMethod(name: string, own: boolean = true): $MethodRep | undefined { throw ''; }
+    
+}
+class $PrototypeRep implements $Rep {
+    get ref(): string { throw ''; }
+    get $literal(): object { throw ''; }
+    get asObject(): $ObjectRep { throw ''; }
+    $members(own: boolean = true): $MemberRep[] { throw ''; }
+    $fields(own: boolean = true): $FieldRep[] { throw ''; }
+    $properties(own: boolean = true): $PropertyRep[] { throw ''; }
+    $methods(own: boolean = true): $MethodRep[] { throw ''; }
+    $getField(name: string, own: boolean = true): $FieldRep | undefined { throw ''; }
+    $getProperty(name: string, own: boolean = true): $PropertyRep | undefined { throw ''; }
+    $getMethod(name: string, own: boolean = true): $MethodRep | undefined { throw ''; }
+}
+class $PrimitiveRep implements $Rep {
+    get ref(): string { throw ''; }
+    get $literal(): any { throw ''; }
+    get asObject(): $ObjectRep { throw ''; }
+}
+class $FunctionRep implements $Rep {
+    get ref(): string { throw ''; }
+    get $literal(): (...args: any[]) => any { throw ''; }
+    get $asConstructor(): $ConstructorRep { throw ''; }
+    get $asObject(): $ObjectRep { throw ''; }
+    get $isGeneric(): boolean { return this.$typeParameters.length == 0; }
+    get $asGeneric(): $GenericFunctionRep { throw ''; }
+    get $typeParameters(): $TypeParameterRep[] { throw ''; }
+    get form(): 'lambda' | 'function' | 'method' | 'getter' | 'setter' | 'class' | 'unknown' { throw ''; }
+    get name(): string { throw ''; }
+    get async(): boolean { throw ''; }
+    get generator(): boolean { throw ''; }
+    get native(): boolean { throw ''; }
+    get parameters(): $FunctionParameterRep[] { throw ''; }
+}
+class $GenericFunctionRep implements $Rep {
+    get ref(): string { throw ''; }
+    get asFunction(): $FunctionRep { throw ''; }
+    get arguments(): $TypeRep { throw ''; }
+    get $asConstructor(): $ConstructorRep { throw ''; }
+}
+class $FunctionParameterRep implements $Rep {
+    get ref(): string { throw ''; }
+    get name(): string { throw ''; }
+    get type(): $TypeParameterRep { throw ''; }
+    get isRest(): boolean { throw ''; }
+}
+class $ConstructorRep implements $Rep {
+    get ref(): string { throw ''; }
+    get $asFunction(): $FunctionRep { throw ''; }
+}
+class $TypeRep implements $Rep {
+    get ref(): string { throw ''; }
+    get $literal(): $Type { throw ''; }
+    get $baseType(): $TypeRep { throw ''; }
+    get $prototype(): $PrototypeRep { throw ''; }
+    get $asConstructor(): $ConstructorRep { throw ''; }
+    get $isGeneric(): boolean { return this.$parameters.length == 0; }
+    get $asGeneric(): $GenericTypeRep { throw ''; }
+    get $parameters(): $TypeParameterRep[] { throw ''; }
+    asGenericType(...types: $GenericTypeRep[]) { throw ''; }
+    $members(own: boolean = false): $MemberRep[] { throw ''; }
+    $fields(own: boolean = false): $FieldRep[] { throw ''; }
+    $properties(own: boolean = false): $PropertyRep[] { throw ''; }
+    $methods(own: boolean = false): $MethodRep[] { throw ''; }
+    $getMember(name: string, own: boolean = false): $MemberRep | undefined { throw ''; }
+    $getField(name: string, own: boolean = false): $FieldRep | undefined { throw ''; }
+    $getProperty(name: string, own: boolean = false): $PropertyRep | undefined { throw ''; }
+    $getMethod(name: string, own: boolean = false): $MethodRep | undefined { throw ''; }
+}
+class $GenericTypeRep implements $Rep {
+    get ref(): string { throw ''; }
+    get asType(): $TypeRep { throw ''; }
+    get arguments(): $TypeRep { throw ''; }
+    get $asConstructor(): $ConstructorRep { throw ''; }
+}
+class $MemberRep implements $Rep {
+    get ref(): string { throw ''; }
+    get $literal(): PropertyDescriptor { throw ''; }
+    get $isField(): boolean { return false; } // Add asserts if possible
+    get $asField(): $FieldRep | undefined { return undefined; }
+    get $isProperty(): boolean { return false; }
+    get $asProperty(): $PropertyRep | undefined { return undefined; }
+    get $isMethod(): boolean { return false; }
+    get $asMethod(): $MethodRep | undefined { return undefined; }
+    get isReadable(): boolean { throw ''; }
+    get isWritable(): boolean { throw ''; }
+    get isConfigurable(): boolean { throw ''; }
+    get isEnumerable(): boolean { throw ''; }
+}
+class $FieldRep extends $MemberRep { 
+    get ref(): string { throw ''; }
+    get $isField() { return true; }
+    get $asField() { return this; }
+}
+class $PropertyRep extends $MemberRep { 
+    get ref(): string { throw ''; }
+    get $isProperty() { return true; }
+    get $asProperty() { return this; }
+}
+class $MethodRep extends $MemberRep { 
+    get ref(): string { throw ''; }
+    get $isMethod() { return true; }
+    get $asMethod() { return this; }
+    get $asFunction(): $FunctionRep { throw ''; }
+}
+class $TypeParameterRep implements $Rep {
+    get ref(): string { throw ''; }
+    get constraint(): $TypeRep { throw ''; }
+    get default(): $TypeRep { throw ''; }
+}

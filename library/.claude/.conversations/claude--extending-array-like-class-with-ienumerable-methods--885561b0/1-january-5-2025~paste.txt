@@ -1,0 +1,242 @@
+class A<T> {
+    a: T[];
+
+    constructor(array?: T[]) {
+        if (array === undefined) array = [];
+        this.a = array;
+    }
+
+    equals(other: T[] | A<T>): boolean {
+        if (!other) return false;
+        var that = other instanceof Array ? other : other.a
+        return arrayEquals(this.a, that);
+    }
+
+    doesntEqual(other: T[] | A<T>): boolean {
+        return !this.equals(other);
+    }
+
+    at(index: number): T {
+        index = evaluateNegativeIndex(index, this.a.length);
+        return this.a[index];
+    }
+
+    get(selector: string): A<T> {
+        var indexes = evaluateRangeSelector(selector, this.a.length);
+        var result = new A<T>();
+        for (var i = 0; i < indexes.length; i++) {
+            result.push(this.a[indexes[i]]);
+        }
+        return result;
+    }
+
+    set(index: number, item: T): A<T> {
+        index = evaluateNegativeIndex(index, this.a.length);
+        this.a[index] = item;
+        return this;
+    }
+
+    length(): number { return this.a.length; }
+
+    insertAt(index: number, item: T): A<T> {
+        const insertAt = evaluateNegativeInsertIndex(index, this.a.length);
+        this.a.splice(insertAt, 0, item);
+        return this;
+    }
+
+    insertManyAt(index: number, items: T[]): A<T> {
+        const insertAt = evaluateNegativeInsertIndex(index, this.a.length);
+        this.a.splice(insertAt, 0, ...items);
+        return this;
+    }
+
+    delete(item: T): A<T> {
+        for (let i = 0; i < this.a.length; i++) {
+            if (this.a[i] === item) {
+                this.a.splice(i, 1);
+                break;
+            }
+        }
+        return this;
+    }
+
+    deleteMany(items: T[]): A<T> {
+        f(items).forEach(item => this.delete(item));
+        return this;
+    }
+
+    deleteAt(index: number, count: number = 1): A<T> {
+        const removeFrom = evaluateNegativeIndex(index, this.a.length);
+        this.a.splice(removeFrom, count);
+        return this;
+    }
+
+    deleteAll(): A<T> {
+        this.a.length = 0;
+        return this;
+    }
+
+    forEach(callback: (item: T, index?: number) => any | void): any | void {
+        let result: any;
+        for (let i = 0; i < this.a.length; i++) {
+            result = callback(this.a[i], i);
+        }
+        return result;
+    }
+
+    do(callback: (item: T, index?: number) => any | void): A<T> {
+        this.forEach(callback);
+        return this;
+    }
+
+    doOnce(callback: (item: T, index?: number) => boolean): boolean {
+        for (let i = 0; i < this.a.length; i++) {
+            if (callback(this.a[i], i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    select<U>(selector: (element: T) => U): A<U> {
+        const result = new A<U>();
+        for (let i = 0; i < this.a.length; i++) {
+            result.push(selector(this.a[i]));
+        }
+        return result;
+    }
+
+    where(predicate: (element: T) => boolean): A<T> {
+        const result = new A<T>();
+        for (let i = 0; i < this.a.length; i++) {
+            if (predicate(this.a[i])) {
+                result.push(this.a[i]);
+            }
+        }
+        return result;
+    }
+
+    first(predicate?: (element: T) => boolean): T {
+        if (!predicate) return this.a.length > 0 ? this.a[0] : undefined as any as T;
+        for (let i = 0; i < this.a.length; i++) {
+            if (predicate(this.a[i])) return this.a[i];
+        }
+        return undefined as any as T;
+    }
+
+    firstIndex(predicate?: (element: T) => boolean): number {
+        if (!predicate) return this.a.length > 0 ? 0 : -1;
+        for (let i = 0; i < this.a.length; i++) {
+            if (predicate(this.a[i])) return i;
+        }
+        return -1;
+    }
+
+    last(predicate?: (element: T) => boolean): T | undefined {
+        if (!predicate) return this.a.length > 0 ? this.a[this.a.length - 1] : undefined;
+        for (let i = this.a.length - 1; i >= 0; i--) {
+            if (predicate(this.a[i])) return this.a[i];
+        }
+        return undefined;
+    }
+
+    lastIndex(predicate?: (element: T) => boolean): number {
+        if (!predicate) return this.a.length > 0 ? this.a.length - 1 : -1;
+        for (let i = this.a.length - 1; i >= 0; i--) {
+            if (predicate(this.a[i])) return i;
+        }
+        return -1;
+    }
+
+    any(predicate?: (element: T) => boolean): boolean {
+        if (!predicate) return this.a.length > 0;
+        for (let i = 0; i < this.a.length; i++) {
+            if (predicate(this.a[i])) return true;
+        }
+        return false;
+    }
+
+    all(predicate: (element: T) => boolean): boolean {
+        return this.length() == this.where(predicate).length();
+    }
+
+    includes(item: T): boolean {
+        return this.any(i => i == item);
+    }
+
+    // Array methods
+    push(...items: T[]): A<T> {
+        this.a.push(...items);
+        return this;
+    }
+
+    pop(): T | undefined {
+        return this.a.pop();
+    }
+
+    splice(start: number, deleteCount?: number, ...items: T[]): A<T> {
+        this.a.splice(start, deleteCount, ...items);
+        return this;
+    }
+
+    slice(start?: number, end?: number): A<T> {
+        return new A(this.a.slice(start, end));
+    }
+
+    shift(): T | undefined {
+        return this.a.shift();
+    }
+
+    unshift(...items: T[]): A<T> {
+        this.a.unshift(...items);
+        return this;
+    }
+
+    reverse(): A<T> {
+        this.a.reverse();
+        return this;
+    }
+
+    sort(compareFunction?: (a: T, b: T) => number): A<T> {
+        this.a.sort(compareFunction);
+        return this;
+    }
+
+    skip(count: number): A<T> {
+        if (count >= this.length()) return f([]);
+        return this.get(`${count}:`)
+    }
+
+    take(count: number): A<T> {
+        count = Math.min(count, this.length());
+        return this.get(`:${count - 1}`);
+    }
+
+    zip<U>(items: A<U>): A<[T, U]> {
+        var len = this.length();
+        if (len !== items.length())
+            throw "Arrays must be the same length to be zipped";
+
+        var result: A<[T, U]> = f([]);
+        for (var i = 0; i < len; i++) {
+            result.push([this.at(i), items.at(i)]);
+        }
+
+        return result;
+    }
+
+    stringJoin(separator: string): string {
+        return stringJoin(this.select(x => x + "").a, separator);
+    }
+
+    toString(): string {
+        if (this.length() == 0) return "A[]";
+        try {
+            return `A<${typeof this.at(0)}>[${this.select(x => `${x}`).a}]`;
+        } catch {
+           return `A<${typeof this.at(0)}>[${this.a}]`;
+        }
+    }
+
+    static empty(): A<any> { return new A<any>([]) };
+}

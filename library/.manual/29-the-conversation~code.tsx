@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import {
     $Annotation, $Chapter, $Cover, $Date, $Heading, $Means, $Paragraph, $Referent, $Section, $Word, $Writing,
-    AnnotationSpecification, Referent as referent, SectionSpecification, identifier, specify,
+    AnnotationSpecification, Referent as referent, SectionSpecification, binder, html, identifier, specify,
 } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { $Dated } from './4-the-date~code.tsx';
@@ -111,9 +111,11 @@ export class $Message extends $Section {
             <Opaque />
         );
         if (this.when === '') return;
+        const speaker = this.speaker;
+        const said = speaker === undefined ? '' : binder.reference(html.copy(speaker.text))?.name ?? html.copy(speaker.text);
         const Referent = $(referent);
         this.annotations.add(this,
-            <Referent>{identifier.slug(this.when.replace(/Z$/u, ''))}</Referent>
+            <Referent>{identifier.slug(`${this.when.replace(/Z$/u, '')} ${said}`)}</Referent>
         );
     }
 

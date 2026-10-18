@@ -1,0 +1,218 @@
+schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+react-dom-client.development.js:6878 Uncaught Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
+    at renderWithHooksAgain (react-dom-client.development.js:6878:17)
+    at renderWithHooks (react-dom-client.development.js:6796:21)
+    at updateFunctionComponent (react-dom-client.development.js:9247:19)
+    at beginWork (react-dom-client.development.js:10858:18)
+    at runWithFiberInDEV (react-dom-client.development.js:872:30)
+    at performUnitOfWork (react-dom-client.development.js:15727:22)
+    at workLoopSync (react-dom-client.development.js:15547:41)
+    at renderRootSync (react-dom-client.development.js:15527:11)
+    at performWorkOnRoot (react-dom-client.development.js:15034:44)
+    at performWorkOnRootViaSchedulerTask (react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (scheduler.development.js:45:48)
+renderWithHooksAgain @ react-dom-client.development.js:6878
+renderWithHooks @ react-dom-client.development.js:6796
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:15034
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+BasicTests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\async\basic-tests.tsx:502
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<BasicTests>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+Tests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\async\page.tsx:67
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<Tests>
+exports.jsx @ react-jsx-runtime.development.js:323
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Function.all @ VM3101 <anonymous>:1
+Function.all @ VM3101 <anonymous>:1
+Function.all @ VM3101 <anonymous>:1
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1343
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1761061215829:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+loadScriptsInSequence @ app-bootstrap.js:24
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1761061215829:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1761061215829:1878
+(anonymous) @ main-app.js?v=1761061215829:1879
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1761061215829:9Understand this error
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:900 bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:921 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:926 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }

@@ -1,0 +1,115 @@
+export interface Is {
+    <T = any>(constructor: Constructor<T> | any, orThrow?: { orThrow: boolean | string }): boolean;
+}
+
+export class Is<T = any> extends Function {
+    constructor(private value: T) {
+        super();
+        return new Proxy(this, {
+            apply: (target, thisArg, args) => (instanceIs as Function)(this, ...args),
+            get: (target, prop) => {
+                return (this as any)[prop];
+            },
+        });
+    }
+
+    undefined(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.undefined(this.value, orThrow);
+    }
+
+    null(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.null(this.value, orThrow);
+    }
+
+    equal(second: any, orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.equal(this.value, second, orThrow);
+    }
+
+    string(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.string(this.value, orThrow);
+    }
+
+    number(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.number(this.value, orThrow);
+    }
+
+    boolean(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.boolean(this.value, orThrow);
+    }
+
+    bigint(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.bigint(this.value, orThrow);
+    }
+
+    symbol(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.symbol(this.value, orThrow);
+    }
+
+    object(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.object(this.value, orThrow);
+    }
+
+    function(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.function(this.value, orThrow);
+    }
+
+    type(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.type(this.value, orThrow);
+    }
+
+    parentType(parentType: Constructor, orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.parentType(this.value, parentType, orThrow);
+    }
+
+    childType(childType: Constructor, orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.childType(this.value, childType, orThrow);
+    }
+
+    instanceOf<T=any>(type: Constructor<T> | any, orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.instanceOf(this.value, type, orThrow);
+    }
+
+    emptyObject<T>(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.emptyObject(this.value, orThrow);
+    }
+
+    populatedObject<T>(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.populatedObject(this.value, orThrow);
+    }
+
+    array(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.array(this.value as any, orThrow);
+    }
+
+    emptyArray(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.emptyArray(this.value, orThrow);
+    }
+
+    populatedArray<T = any>(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.populatedArray(this.value, orThrow);
+    }
+
+    specified<T>(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.specified(this.value, orThrow);
+    }
+
+    unspecified<T>(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.unspecified(this.value, orThrow);
+    }
+
+    positiveInfinity(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.positiveInfinity(this.value, orThrow);
+    }
+
+    negativeInfinity(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.negativeInfinity(this.value, orThrow);
+    }
+
+    nan(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.nan(this.value as number, orThrow);
+    }
+
+    notNan(orThrow?: { orThrow: boolean | string }): boolean {
+        return instanceIs.notNan(this.value as number, orThrow);
+    }
+}

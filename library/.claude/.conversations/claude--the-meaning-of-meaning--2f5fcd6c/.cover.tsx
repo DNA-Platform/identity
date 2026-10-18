@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ The Meaning of Meaning? ]]( claude--The Meaning of Meaning?--2f5fcd6c )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Semantic Reference Theory ]]</Project>
+        <Project>***[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>2f5fcd6c-5048-40f9-8d0a-7fae3fb81586</Origin>
         <Paragraph>

@@ -1,0 +1,150 @@
+export class $Representation<T = any> {
+    ref = '';
+    constructor(ref: string) {
+        this.ref = ref;
+    }
+}
+
+type $Rep<T = any> = $Representation<T>;
+export const $rep = (ref: string) => new $Representation(ref);
+
+export type $Subject = $Catalogue;
+export interface $Catalogue {
+    $ref: $Subject;
+    $new(): $Representation;
+    $next(): $Representation;
+    $from(...subjects: $Subject[]): $Catalogue;
+    $find<T = any>(ref: $Representation<T>): T | undefined;
+    $index<T = any>(ref: $Representation, literal: T): void;
+    $deref(): void;
+    $deref(subject: $Ref): void;
+    $deref(ref: $Representation, subject?: $Ref): void;
+}
+
+type $Ref = $Catalogue & {
+    (): $Catalogue;
+    (subject: 'new'): $Catalogue;
+    (subject: 'this'): $Catalogue;
+    (...subjects: $Subject[]): $Catalogue;
+    <T>(ref: $Representation<T>, subject?: $Ref): T | undefined;
+    <T>(ref: $Representation<T>, literal: T, subject?: $Ref): void;
+    (kind: 'deref'): void;
+    (kind: 'deref', subject: $Ref): void;
+    (kind: 'deref', ref: $Representation, subject?: $Ref): void;
+}
+
+class $Library {
+    private catalogue = new Map<$Rep, any>();
+    private references = new Map<string, $Rep>();
+    private subjects = new Map<$Ref, $Ref>();
+    private ref: $Ref;
+    private deref = false;
+
+    constructor(ref?: $Ref) {
+        this.$ref = this.$ref.bind(this);
+        this.$deref = this.$deref.bind(this);
+        this.ref = ref || this.$ref as any;
+        this.subjects.set(this.ref, this.$ref as any);
+
+        const $ref: $Ref = this.ref as any;
+        $ref.$ref = $ref;
+        $ref.$new = () => $ref('new') as any;
+        $ref.$next = () => $ref('this') as any;
+        $ref.$from = $ref as any;
+        $ref.$index = $ref as any;
+        $ref.$deref = this.$deref;
+    }
+
+    $ref(): $Ref;
+    $ref(subject?: 'new'): $Ref;
+    $ref(subject?: 'this'): $Ref;
+    $ref(...subjects: $Ref[]): $Ref;
+    $ref<T>(ref: $Rep<T>, subject?: $Ref): T;
+    $ref<T>(ref: $Rep<T>, literal: T, subject?: $Ref): void;
+    $ref(kind: 'deref'): void;
+    $ref(kind: 'deref', subject: $Ref): void;
+    $ref(kind: 'deref', ref: $Representation, subject?: $Ref): void;
+    $ref(...args: any[]): any {
+        const $this: $Ref = this.ref as any;
+        const len = args.length;
+        let subject1 = args.length >= 1 ? this.$subject(args[1]) : undefined;
+        let subject2 = args.length >= 2 ? this.$subject(args[2]) : undefined;
+        if (len == 0 || (len == 1 && args[0] == 'this')) {
+            return this.$make();
+        } else if (len == 1 && args[0] == 'new') {
+            return this.$make($$lib.ref);
+        } else if (args.every(ref => ref.$new && typeof ref === "function")) {
+            return this.$make(...args);
+        } else if (args[0] == 'deref') {
+            return this.$deref(args?.[1], args?.[2]);
+        } else if (len <= 3 && args[0] instanceof $Representation) {
+            let ref = args[0];
+            const kind: 'find' | 'index' | undefined = 
+                len == 1 || (len == 2 && subject1) ? 'find' :
+                len == 2 || (len == 3 && subject2) ? 'index' :
+                undefined;
+            if (kind == 'find') {
+                if (subject1 && subject1 !== $this) return $this(ref, subject1)
+                ref = this.references.get(ref.ref)!;
+                return this.catalogue.get(ref);
+            } else if (kind === 'index') {
+                const literal = args[1];
+                if (subject2 && subject2 !== $this) return $this(ref, literal, subject2);
+                const $ref = this.references.get(ref.ref);
+                if (!$ref) this.references.set(ref.ref, ref);
+                this.catalogue.set(ref, literal);
+            } else {
+                throw Error(`$ref(${args.map(arg => arg?.toString())}) ${this.error}`);
+            }
+        }
+    }
+
+    $deref(): void;
+    $deref(subject: $Ref): void;
+    $deref(ref: $Representation, subject?: $Ref): void;
+    $deref(ref?: $Ref | $Representation, subject?: $Ref) {
+        const $this: $Ref = this.ref as any;
+        const $ref: $Ref | undefined = ref as any;
+        if (!ref || ref == $this) {
+            this.deref = true;
+            this.catalogue.clear();
+            this.references.clear();
+            return this.subjects.clear();
+        }
+        if ($ref?.$new && typeof ref === 'function') {
+            this.subjects.delete($ref);
+        }
+        if (ref instanceof $Representation) {
+            if (subject === $this)
+                return this.subjects.delete(subject);
+            if (subject)
+                return $this('deref', ref, subject);
+            ref = this.references.get(ref.ref);
+            if (ref) this.references.delete(ref.ref);
+            return this.catalogue.delete(ref!);
+        }
+    }
+
+    private $make(...refs: $Ref[]): $Ref {
+        refs =  refs.length > 0 ? refs : [this.ref];
+        const $$ref: $Ref = ((...args: any[]) => {
+            if (this.deref) return;
+            for (const ref of refs) {
+                const result = ref(...args) as any;
+                if (result) return result; 
+            };
+        }) as any;
+        return new $Library($$ref).$ref as any;
+    }
+
+    private $subject(ref: any): $Ref | undefined {
+        if (typeof ref === "undefined") return this.ref;
+        if (ref?.$new && typeof ref === 'function') return ref;
+        return undefined;
+    }
+
+    private error = 'is not a valid way to create and make use of the $catalogue reference system!';
+}
+
+const $$lib = new $Library();
+export const $lib = $$lib.$ref;

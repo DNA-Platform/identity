@@ -1,0 +1,161 @@
+MALPRACTICE & LIABILITY CONCERNS FOR US THERAPIST PROVIDING COURT DOCUMENT IN RUSSIAN CUSTODY CASE
+
+1. JURISDICTIONAL LIABILITY: CAN RUSSIA SUE A US THERAPIST?
+Short answer: Highly unlikely to succeed, but not impossible to attempt.
+Russian courts can claim jurisdiction over foreign professionals only if:
+The professional has assets located in Russia, OR
+The professional is "directing activities" at Russian consumers (e.g., Russian-language website with prices in rubles)
+Source: https://academic.oup.com/grurint/article-abstract/71/11/1118/6614250
+However, because Ana is physically located in Russia (Leningrad region), Russian law technically applies to where the client receives services. This creates a gray area.
+Source: https://www.katlove.com/can-an-american-therapist-do-therapy-with-american-expats-living-abroad-or-citizens-of-other-countries
+Critical point: Even if a Russian court issued a judgment against a US-based therapist, US courts would almost certainly not enforce it. There is no treaty between the US and Russia for mutual enforcement of civil judgments.
+
+2. US MALPRACTICE INSURANCE COVERAGE
+Most US malpractice policies cover work if a client sues in a US jurisdiction. They typically do NOT cover if a client sues from a foreign jurisdiction.
+Source: https://ethicsdemystified.com/can-i-provide-telemental-health-in-other-countries/
+Action item: The therapist should contact her malpractice carrier directly and confirm whether international telehealth practice is covered, and specifically whether submitting a document to a foreign court is covered.
+
+3. THE "COACHING" VS. "CLINICAL" CAPACITY DISTINCTION
+When she mentioned submitting in a "coaching capacity," she is likely referring to the distinction between:
+FACT WITNESS (Treating Therapist):
+Can testify about what the client reported
+Can describe clinical observations from sessions
+Can state diagnosis and treatment provided
+Can describe client's response to treatment
+CANNOT offer forensic opinions about custody, parenting fitness, or the other party
+EXPERT WITNESS (Forensic Evaluator):
+Hired specifically to evaluate and opine on legal questions
+Can offer opinions on custody, fitness, etc.
+Requires comprehensive assessment of ALL parties
+Source: https://memphisdivorce.com/dual-roles-in-custody-litigation-ethical-conflicts-with-therapeutic-and-forensic-roles/
+Source: https://www.psychologytoday.com/us/blog/progress-notes/202011/9-tips-for-psychotherapists-providing-court-testimony
+The ethical problem: A treating therapist CANNOT ethically serve as both therapist AND forensic expert in the same case. This creates a "dual role" conflict.
+Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC7683260/
+
+4. WHAT A TREATING THERAPIST CAN AND CANNOT SAY
+CAN SAY (as fact witness):
+Patient's history as reported by the patient directly, without interpretation
+Clinical diagnosis following study of patient's symptoms, signs, and findings
+Care and type of treatment provided
+Patient's response or reaction to care and treatment
+Dates and duration of treatment
+Clinical observations made during sessions
+Source: https://memphisdivorce.com/dual-roles-in-custody-litigation-ethical-conflicts-with-therapeutic-and-forensic-roles/
+CANNOT SAY (without becoming expert witness):
+Opinions about the other parent's fitness
+Recommendations about custody or placement
+Conclusions about what happened outside of sessions (can only report what client reported)
+Forensic conclusions about the "best interests of the child"
+Clinical speculation about what may have happened or could happen in the future
+Source: https://www.myfamilylawyer.net/blog/2014/03/tips-for-testifying-lesson-5-lay-testimony-expert-testimony-and-the-mental-health-professional/
+Key guidance from Ohio Administrative Code (representative of US standards): "Licensees asked by a judge to make a recommendation in a custody, visitation and/or guardianship hearing, not hired by the court to do so, shall cite their role as a client's therapist and note that any testimony would be an ethics violation of their license and they can only testify to facts that they know."
+Source: https://codes.ohio.gov/ohio-administrative-code/rule-4757-6-01
+
+5. ALLEGATIONS ABOUT THE DEFENDANT (MAXIM)
+This is where the therapist's concern is most valid.
+The issue: Ana confided allegations of rape and violence. The therapist can report that Ana disclosed these allegations. The therapist CANNOT assert that these events occurred as fact, because she did not witness them and has not evaluated the accused.
+Defamation risk: In the US, statements made in judicial proceedings generally receive "absolute privilege" or "qualified privilege" - meaning they cannot be the basis for a defamation lawsuit, even if false.
+Source: https://www.law.cornell.edu/wex/absolute_privilege
+Source: https://www.nolo.com/legal-encyclopedia/privileges-defenses-defamation-cases.html
+However: This privilege typically applies to parties, witnesses, and attorneys in the proceeding. Whether it extends to a US therapist submitting a document to a Russian court is legally untested territory.
+Safe language approach:
+"Client reported that..." ✓
+"Client disclosed experiencing..." ✓
+"Client presented with symptoms consistent with trauma, including..." ✓
+"[Defendant] raped [client]" ✗ (asserts fact therapist did not witness)
+"[Defendant] is violent" ✗ (asserts fact about person therapist has not evaluated)
+Source: https://www.psychiatrictimes.com/view/legal-duty-therapists-third-parties
+
+6. NASW CODE OF ETHICS CONSIDERATIONS
+The NASW Code of Ethics (which governs LCSWs) states:
+Social workers should comply with laws of both the jurisdiction where the client is located AND where the social worker is located
+All ethical standards apply to interactions via technology
+Social workers should base conclusions on appropriate data and avoid inaccuracies
+Social workers' primary responsibility is to promote the well-being of clients
+Source: https://www.socialworkers.org/About/Ethics/Code-of-Ethics/Code-of-Ethics-English
+Source: https://socialwork.sdsu.edu/~resources/files/nasw-code-of-ethics2017.pdf
+
+7. RECOMMENDED APPROACH FOR THE DOCUMENT
+The therapist should frame the document as a clinical treatment summary rather than a forensic evaluation. Structure:
+Therapist credentials and relationship to client
+Period of treatment
+Reason client sought treatment / presenting concerns
+Client's reported history (using "client reported..." language)
+Clinical observations and diagnosis
+Treatment provided
+Client's progress and current clinical status
+Avoid:
+Conclusions about the defendant's character or fitness
+Recommendations about custody
+Assertions of fact about events the therapist did not witness
+Forensic opinions
+
+8. ADDITIONAL RESOURCES
+American Counseling Association guidance on dual roles: https://www.counseling.org/docs/default-source/risk-management/ct-risk-management-november-2017.pdf
+APA guidance on fact vs. expert witness: https://www.apaservices.org/practice/business/legal/professional/qa
+Ethical considerations for court-involved therapists: https://drlarryfriedberg.net/the-court-involved-therapist-ethical-dilemmas-and-pitfalls/
+Psychology Today tips for therapist testimony: https://www.psychologytoday.com/us/blog/progress-notes/202011/9-tips-for-psychotherapists-providing-court-testimony
+
+Bottom line: The therapist's concerns are reasonable. Her safest path is to provide a factual treatment summary documenting what Ana reported and the clinical treatment provided, while avoiding forensic conclusions about the defendant or custody recommendations. She should contact her malpractice insurer to confirm coverage and may want to consult with a healthcare attorney familiar with international practice.
+Okay answer this briefly, because I want to send to the therapist without writing a book. In your recommended write-up, can she still express, through what Ana disclosed to her, the allegations of violence? The point of this is to have her provide corroborating evidence that this was reported to a professional. That's the point. Our lawyers don't expect her to convict anyone. They used these questions as a guide:
+· What prompted the client to seek therapy? · How did the therapist assess the client’s emotional and psychological state at the beginning of treatment? · Were any specific symptoms identified (e.g., stress, anxiety, sleep disturbances, behavioral changes)? · How does the therapist evaluate the client’s current psychological and emotional state? · Has any progress or change been observed? If so, in which areas? · Are there any ongoing concerns or recommendations for further support? · A brief explanation of how the family situation has affected the client’s condition.
+Show more
+1:12 PM
+Reconciled ethical disclosure with legal documentation needs.
+The user wants a brief answer: Can the therapist still include Ana's disclosures of violence in her document? The answer is yes - she just needs to frame it as "client reported" rather than asserting it as fact. The lawyers' questions are actually perfectly aligned with what a treating therapist CAN ethically say.
+Let me give a brief, direct answer.
+Yes, absolutely.
+She can write exactly what Ana disclosed to her - that's the entire point of a fact witness. She just uses "client reported" language:
+"Client reported experiencing physical violence from her partner"
+"Client disclosed incidents of [specific allegations] during sessions"
+"Client presented with symptoms consistent with trauma following reported domestic violence"
+This is not the therapist asserting these things happened - it's the therapist documenting what the client disclosed during treatment. That's completely within her scope and is exactly what your lawyers are asking for.
+The questions your lawyers provided are perfect - they're asking for a treatment summary, not a forensic evaluation. Every single question is something she can answer as a treating therapist:
+Why client sought therapy ✓
+Initial assessment ✓
+Symptoms identified ✓
+Current state ✓
+Progress observed ✓
+Ongoing concerns ✓
+How family situation affected client ✓
+None of these require her to make claims about Maxim that she can't support. She's documenting Ana's treatment, not evaluating him.
+And why exactly is this the safest option? From a legal perspective, with citations, briefly give your argument for that please
+1:13 PM
+Marshaled legal citations supporting therapist's safest documentation approach.
+The user wants a brief, legally-cited argument for why the "fact witness" / "client reported" approach is the safest option for the therapist. I need to be concise but provide citations.
+Why "client reported" language is safest:
+It's within her ethical scope. A treating therapist can testify about "patient's history as reported by the patient directly and without interpretation" - this is explicitly permitted for fact witnesses. Source: https://memphisdivorce.com/dual-roles-in-custody-litigation-ethical-conflicts-with-therapeutic-and-forensic-roles/
+It's not defamation. Reporting what someone told you is not asserting it as fact. The therapist isn't claiming Maxim did anything - she's documenting what her client disclosed during clinical treatment. Truth is an absolute defense, and it IS true that Ana reported these things. Source: https://www.nolo.com/legal-encyclopedia/privileges-defenses-defamation-cases.html
+It avoids the dual-role violation. Therapists who make forensic conclusions about parties they haven't evaluated risk ethics complaints and malpractice claims. Staying in the "fact witness" lane avoids this entirely. Source: https://pmc.ncbi.nlm.nih.gov/articles/PMC7683260/
+Judicial privilege likely applies. Statements made by witnesses in judicial proceedings are generally absolutely privileged against defamation claims - even if false, even if malicious. Source: https://www.law.cornell.edu/wex/absolute_privilege
+In short: She's not saying "Maxim is a rapist." She's saying "My client reported experiencing rape." One is a factual claim she can't prove. The other is documentation of clinical disclosure - which is literally her job.
+Briefly, what is the likelihood that she gets sued for malpractice, and what are the different cases that she can submit as? Do you have precedent for legal issues? Give citations. Rule out expert witness. Can she submit as a coach and still provide a fact-based report?
+1:16 PM
+2 / 2
+Synthesized malpractice liability, alternative roles, and legal precedents comprehensively.
+The user wants me to briefly address:
+Likelihood of malpractice suit
+Different capacities she can submit as (ruling out expert witness)
+Precedent for legal issues with citations
+Can she submit as a "coach" and still provide a fact-based report?
+Let me think through this carefully and cite what I found.
+Likelihood of malpractice:
+Extremely low. For malpractice to succeed, someone would need to:
+Sue her in a US court (Maxim would need US jurisdiction over her)
+Prove she breached the standard of care
+Prove damages resulted from that breach
+A Russian party suing a US therapist with no Russian assets or business presence faces near-impossible jurisdictional hurdles. US courts won't enforce Russian judgments. Her real risk is a licensing board complaint, which is mitigated by staying within fact witness scope.
+Source: https://www.gilmanbedigian.com/can-i-sue-for-international-medical-malpractice/
+
+Capacities she can submit as:
+Fact Witness / Treating Therapist - Documents what client reported, clinical observations, diagnosis, treatment. This is the standard and safest option.
+Coach - No. "Coaching" is a legally distinct practice that explicitly excludes diagnosis, treatment, and clinical assessment. If she's been providing therapy, she cannot retroactively reframe it as coaching to avoid liability - that actually creates MORE risk.
+Source: https://theinsurancemaze.com/coaching/ Source: https://www.psychotherapynotes.com/therapy-and-coaching-differences/
+"You can't just keep doing therapy with a client and rebrand it as coaching in an attempt to bypass state licensing laws."
+
+Precedent:
+Successful defamation suits against therapists for statements in court documents are "exceptionally rare" because of judicial privilege protections.
+Source: https://www.psychologytoday.com/us/blog/agens-scientiam/202412/can-clients-upset-with-evaluations-sue-for-defamation
+
+Bottom line: She submits as treating therapist / fact witness. Not coach. Not expert. That's the lane.
+

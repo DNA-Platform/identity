@@ -1,0 +1,80 @@
+Jacob Reimer  [9:40 AM]
+Hey! I actually meant to invite you as a single channel guest, but you're welcome to look around
+Doug  [1:45 PM]
+Hey Jake!
+[1:45 PM]I'm happy to be a spectator
+Doug  [7:58 PM]
+For journal club, are we meeting on zoom or in the neurolounge?
+Jacob Reimer  [7:59 PM]
+unless you are flying to stanford on zoom lol
+Doug  [7:59 PM]
+Hahaha hey man, neurolounge could be the telegram channel, I dunno
+[8:00 PM]Okay, I'm on zoom. It was an interesting paper!
+Jacob Reimer  [8:01 PM]
+oh, 11am pst
+[8:02 PM]in two hours
+Doug  [8:02 PM]
+Ah okay
+Jacob Reimer  [8:08 PM]
+I just got called into another meeting so it looks like I will miss it.
+Doug  [8:09 PM]
+I assume no one will mind if I listen quietly
+Jacob Reimer  [8:09 PM]
+no, should be fine - I will let Katrin know that I forwarded it to you so she is not confused
+Doug  [8:09 PM]
+Thank you
+Doug  [4:13 PM]
+I enjoyed the journal club. Is that a regular event?
+Jacob Reimer  [12:31 AM]
+Great! No I don't think so.
+Doug  [3:15 PM]
+The article helps inform how we might interpret spontaneous V1 activity in hallucinating mice right?
+[3:17 PM]Does your data restrict recording to the feed-forward excitatory neurons in V1?
+Jacob Reimer  [11:30 PM]
+it doesn't right now, but we easily could
+Doug  [11:54 PM]
+Would it be hard to just capture the movie of what they are seeing, or to do controlled movie presentation?
+[11:55 PM]We can probably use the RNN modeling trick to predict neuronal response to a stimulus, and then compare the prediction to what we observe in the same neurons when the mouse is on DOI
+[11:56 PM]But I imagine you have a reason for collecting the datasets that you have. All of the experiments you show me seem really hard to do (edited) 
+Jacob Reimer  [11:57 PM]
+the mice are head-fixed and we present stimuli, that's already the stiuation
+Doug  [11:57 PM]
+I thought you told me that the visual stimulus was unknown
+[11:58 PM]I've been pondering the wrong problem if that's not the case
+Jacob Reimer  [11:59 PM]
+the idea with the drug is to decode from their brain in the absence of stimuli (i.e. gray screen), maybe that's the issue
+Doug  [12:01 AM]
+So one builds up some model of what is being represented in the neural activity, and then tries to reconstruct what the mouse might be seeing in the absence of specific stimuli?
+Jacob Reimer  [12:02 AM]
+right
+[12:02 AM]Windows Media Video Media1.wmvWindows Media VideoDoug  [12:03 AM]
+It sounds reasonable. I'm just not sure it fits my intuition of how hallucinogens work. They often have an object distorting affect. But I'm having a serious hallucinogenic event if I am seeing something coherent in the absence of something to hallucinate with (edited) 
+Jacob Reimer  [12:03 AM]
+sure, we can also present stimuli and look for distortions
+Doug  [12:04 AM]
+Both are interesting. I am just trying to think about how to proceed. Do you give the mice heroic doses of DOI? (edited) 
+Jacob Reimer  [12:05 AM]
+substantial, but it's up to us
+Doug  [12:06 AM]
+What's the result you want to see? What would the figure look like that demonstrates it?
+Jacob Reimer  [12:08 AM]
+develop some validated metric of natural scene statistics. Apply it to image reconstructions from spontaneous activity with and without drug. It is higher with drugs
+Doug  [12:09 AM]
+You don't think the drug would produce unnatural scene statistics?
+[12:09 AM]I was imagining it as the unnatural thing superimposed on nature (edited) 
+[12:10 AM]But I can imagine what you are saying
+[12:11 AM]I had what I think is an interesting thought related to the sparsity that you seem to see in your V1 recordings in response to natural scenes
+[12:11 AM]Is that something you also observe? I learned that from reading the paper we reviewed yesterday
+[12:12 AM]Don't want to take up too much of your time. I know you're a busy guy. It's fun to think about
+Jacob Reimer  [12:15 AM]
+You don't think the drug would produce unnatural scene statistics? - probably in some ways, but maybe not others.
+Jacob Reimer  [3:23 AM]
+Hey Doug, I am still looking into what I can propose to you for consulting - I think there are definitely possibilities! 
+[3:23 AM]In the meantime we can also share the data we have if you are interested in playing around with it
+[3:24 AM]Definitely no pressure just wanted to offer if that sounds fun
+Doug  [3:36 AM]
+Hey Jake, I was just going to let you know that I have a bank account and small business set up over here. If we move forward with the project, hopefully we can go though that channel
+
+Yeah! Send me some data. I'd love to see what these datasets look like
+Doug  [9:59 PM]
+Let me know when you're ready to discuss the work situation. I can play with the data in the meantime

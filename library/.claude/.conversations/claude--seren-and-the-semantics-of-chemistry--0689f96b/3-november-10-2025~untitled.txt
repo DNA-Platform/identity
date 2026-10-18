@@ -1,0 +1,492 @@
+export class $SubjectiveRep<$RepType extends $SubjectiveRep<$RepType> = any>  {
+    #lib?: $Library;
+    [$ref$]: string;
+    [$role$]: string;
+    [$roles$] = new Map<string, $RepType>;
+    [$of$]: $RepType | string;
+    [$type$$]?: $RepType;
+    [$prototype$$]?: $RepType;
+    [$canonical$]!: $RepType;
+    [$name$]?: string;
+    [$key$]?: $RepType;
+    [$members$]?: $RepType[];
+    [$membersOwn$]?: $RepType[];
+    [$membersMap$]?: Map<string | symbol, $RepType>;
+    [$value$]?: $RepType;
+    [$getter$]?: $ObjectiveRep;
+    [$setter$]?: $ObjectiveRep;
+    [$parameters$]?: $ObjectiveRep[];
+    [$constructor$]?: $ObjectiveRep;
+
+    get $ref(): string {
+        return this[$canonical$][$ref$];
+    }
+
+    get $role(): { role: string, of: $SubjectiveRep | string, $ref: string } {
+        const $this: $RepType = this as any;
+        const $role = {
+            role: this[$role$],
+            of: this[$of$],
+            get $ref() {
+                return `${$this[$role$]}of(${$role.of[$role$]})`;
+            },
+            toString: () => $role.$ref
+        } as any;
+        return $role;
+    }
+    
+    constructor(role: string, of: $RepType | string, ref: string, lib?: $Library) {
+        this.#lib = lib;
+        this[$role$] = role;
+        this[$of$] = of;
+        this[$ref$] = ref;
+        const $this: $RepType = this as any; 
+        if (typeof this[$of$] === 'string')
+            this[$canonical$] = this as any;
+        if (this.#lib && this[$canonical$]) {
+            const $this = $lib.$find(this[$canonical$]) as $RepType;
+            if ($this) return $this.$as(role).$of(of as any) as any;
+            this.#lib.$index(this[$canonical$]);
+        } else {
+            this[$canonical$] = $this;
+        }
+        this[$roles$].set(role, $this);
+        if (typeof of === 'string')
+            this[$roles$].set($this.$role.$ref, $this);
+    }
+
+    $as(role: string): $RepType {
+        if (this[$role$] == role) return this as any;
+        if (this[$roles$].has(role))
+            return this[$roles$].get(role)!;
+        const $this = this.$create(this[$canonical$]);
+        $this[$role$] = role;
+        $this[$roles$].set(role, $this);
+        if (typeof this[$of$] === 'string')
+            this[$roles$].set($this.$role.$ref, $this);
+        return $this;
+    }
+
+    $of(of: $RepType | string): $RepType {
+        if (this[$of$] == of) return this as any;
+        const $this = this.$create();
+        $this[$of$] = of;
+        const $$this = this[$roles$].get($this.$role.$ref);
+        return $$this ? $$this : $this;
+    }
+
+    protected getDescription(): string {
+        return this[$ref$];
+    }
+
+    protected $create(version?: $RepType): $RepType {
+        version = version || this as any;
+        const $this = Object.create(version!) as $RepType;
+        return $this;
+    }
+}
+
+export class $ObjectiveRep<$RepType extends $ObjectiveRep<$RepType> = any> extends $SubjectiveRep<$ObjectiveRep<$RepType>> {
+    #$lib?: $Library;
+    [$literal$]: any;
+    [$typeof$]: Typeof;
+    [$method$]?: $ObjectiveRep;
+    [$functionInfo$]?: $FunctionInfo;
+
+    get literal() { return this[$literal$]; }
+
+    get $name(): string {
+        if (!this[$name$])
+            this[$name$] = this.getName();
+        return this[$name$]!;
+    }
+
+    get $key(): $ObjectiveRep | undefined {
+        if (this[$key$]) return this[$key$];
+        this[$key$] = new $ObjectiveRep('identifier', this, this[$literal$].property, this[$canonical$].#$lib);
+        return this[$key$];
+    }
+
+    get $role(): { role: string, of: $ObjectiveRep | string, $ref: string } {
+        const $this = this;
+        const $role = {
+            role: this[$role$],
+            of: this[$of$],
+            get $ref() {
+                let $rep = $this[$of$] === 'JavaScript' || this[$of$] === 'TypeScript' ? $this.$name :
+                    typeof $this[$of$] === 'string' ? $this[$of$] :
+                        $this[$of$].getDescription();
+                return `${$this[$role$]}of(${$rep})`;
+            },
+            toString: () => $role.$ref
+        } as any;
+        return $role;
+    }
+
+    get $ref(): string {
+        if (this[$canonical$][$ref$]) return this[$canonical$][$ref$];
+        this[$canonical$][$ref$] = `${this[$canonical$][$role$]}(${this[$canonical$].$name})`;
+        return this[$canonical$][$ref$];
+    }
+
+    get $prototype(): $ObjectiveRep {
+        return this.getPrototype();
+    }
+
+    get $type(): $ObjectiveRep {
+        return this.getType();
+    }
+
+    get $constructor(): $ObjectiveRep {
+        if (!this[$constructor$]) {
+            this[$constructor$] =
+                this[$literal$] === Object.prototype || this[$literal$] === null ? $$typeof(undefined).$as('constructor').$of(this) :
+                    this[$roles$].has('type') ? this.$as('constructor') :
+                        this.$type.$as('constructor');
+        }
+        return this[$constructor$];
+    }
+
+    get $value(): $ObjectiveRep { 
+        const descriptor = this[$literal$] as PropertyDescriptor;
+        const $of = this[$of$] as $ObjectiveRep;
+        if (!descriptor || !this.isReadable) return $$typeof(undefined).$as('value').$of(this);
+        return 'value' in descriptor ? 
+            new $ObjectiveRep('value', this, descriptor!.value, this[$canonical$].#$lib) :
+            new $ObjectiveRep('value', this, descriptor!.get!.bind($of[$literal$])(), this[$canonical$].#$lib);
+    }
+
+    get $getter(): $ObjectiveRep {
+        if (!this[$getter$]) {
+            const descriptor = this[$literal$] as PropertyDescriptor;
+            this[$getter$] = new $ObjectiveRep('getter', this, descriptor?.get, this[$canonical$].#$lib);
+        }
+        return this[$getter$];
+    }
+
+    get $setter(): $ObjectiveRep {
+        if (!this[$setter$]) {
+            const descriptor = this[$literal$] as PropertyDescriptor;
+            this[$setter$] = new $ObjectiveRep('setter', this, descriptor?.set, this[$canonical$].#$lib);
+        }
+        return this[$setter$];
+    }
+
+    get $parameters(): $ObjectiveRep[] {
+        if (!this[$parameters$]) {
+            const info = this.getFunctionInfo();
+            if (!info.params) {
+                this[$parameters$] = [];
+            } else {
+                this[$parameters$] = info.params.map(param =>
+                    new $ObjectiveRep('parameter', this, param, this[$canonical$].#$lib)
+                );
+            }
+        }
+        return this[$parameters$];
+    }
+
+    get isConfigurable(): boolean {
+        const descriptor = this[$literal$] as PropertyDescriptor;
+        return descriptor.configurable!;
+    }
+
+    get isEnumerable(): boolean {
+        const descriptor = this[$literal$] as PropertyDescriptor;
+        return descriptor.enumerable!;
+    }
+
+    get isReadable(): boolean {
+        const descriptor = this[$literal$] as PropertyDescriptor;
+        return 'value' in descriptor || !!descriptor.get;
+    }
+
+    get isWritable(): boolean {
+        const descriptor = this[$literal$] as PropertyDescriptor;
+        return !!descriptor.writable || !!descriptor.set;
+    }
+
+    get isField(): boolean {
+        const descriptor = this[$literal$] as PropertyDescriptor;
+        return 'value' in descriptor && !this.isMethod;
+    }
+
+    get isMethod(): boolean {
+        return this.$value.$type.$is('function') && (this.$value.form === 'method' || this.$value.form === 'function');
+    }
+
+    get isProperty(): boolean {
+        const descriptor = this[$literal$] as PropertyDescriptor;
+        return !!(descriptor.get || descriptor.set);
+    }
+
+    get form(): 'lambda' | 'function' | 'method' | 'getter' | 'setter' | 'class' | 'unknown' {
+        return this.getFunctionInfo().form;
+    }
+
+    get isAsync(): boolean | undefined {
+        return this.getFunctionInfo().async;
+    }
+
+    get isGenerator(): boolean | undefined {
+        return this.getFunctionInfo().generator;
+    }
+
+    get isNative(): boolean | undefined {
+        return this.getFunctionInfo().native;
+    }
+
+    get isRest(): boolean {
+        const literal = this[$literal$] as { rest: boolean };
+        return literal.rest;
+    }
+
+    get hasRest(): boolean {
+        const params = this.$parameters;
+        return params?.length > 0 && params[params.length - 1].isRest;
+    }
+
+    $call<T = any>(...args: any[]): T {
+        const $of = this[$of$] as $ObjectiveRep;
+        const desc = this[$literal$] as PropertyDescriptor;
+        return this[$role$] === 'constructor' ? this.$new(...args) :
+            this[$role$] === 'method' ? desc.value.call($of[$literal$], ...args) :
+            this[$literal$](...args);
+    }
+
+    $new<T = any>(...args: any[]): T {
+        return new this[$literal$](...args);
+    }
+
+    $member(name: string | symbol, whos: 'own' | 'all' = 'all'): $ObjectiveRep {
+        this.getMembers(whos);
+        const $undefined = $$instanceof(undefined).$as('property').$of(this);
+        const member = this[$membersMap$]!.get(name);
+        if (member) return member;
+        if (whos === 'own') return member || $undefined;
+        if (this.$equals(this.$type)) return $undefined;
+        return this.$type.literal ? this.$type.$member(name, whos).$of(this) : $undefined;
+    }
+
+    $members(whos: 'own' | 'all' = 'own') {
+        return this.getMembers(whos);
+    }
+
+    $property(name: string | symbol, whos: 'own' | 'all' = 'all'): $ObjectiveRep {
+        this.getMembers(whos);
+        const $undefined = $$instanceof(undefined).$as('property').$of(this);
+        const member = this.$member(name, whos);
+        return member.isField ? member.$as('property') : $undefined;
+    }
+
+    $properties(whos: 'own' | 'all' = 'own'): $ObjectiveRep[] {
+        return this.$members(whos).filter(p => p.isField).map(p => p.$as('field'));
+    }
+
+    $field(name: string | symbol, whos: 'own' | 'all' = 'all'): $ObjectiveRep {
+        this.getMembers(whos);
+        const $undefined = $$instanceof(undefined).$as('field').$of(this);
+        const member = this.$member(name, whos);
+        return member.isField ? member.$as('field') : $undefined;
+    }
+
+    $fields(whos: 'own' | 'all' = 'own'): $ObjectiveRep[] {
+        return this.$members(whos).filter(p => p.isField).map(p => p.$as('field'));
+    }
+
+    $method(name: string | symbol, whos: 'own' | 'all' = 'all'): $ObjectiveRep {
+        this.getMembers(whos);
+        const $undefined = $$instanceof(undefined).$as('method').$of(this);
+        const $member = this.$member(name, whos);
+        return $member.isMethod ? $member.$as('method') : $undefined;
+    }
+
+    $methods(whos: 'own' | 'all' = 'own'): $ObjectiveRep[] {
+        return this.$members(whos).filter(p => p.isMethod).map(p => p.$as('method'));
+    }
+
+    constructor(role: $ObjectiveRole, of: $ObjectiveRep | $ObjectiveRole, literal: any, lib?: $Library) {
+        super(role, of, '', lib)
+        this.#$lib = lib;
+        this[$role$] = role;
+        this[$literal$] = literal;
+        this[$typeof$] = typeof literal;
+        this[$of$] = of;
+        if (this[$of$] === 'JavaScript' || this[$of$] === 'TypeScript')
+            this[$canonical$] = this;
+        if (lib && this[$canonical$]) {
+            let $this = $lib.$find(this[$canonical$]) as $ObjectiveRep;
+            if ($this) return $this.$as(role).$of(of as any);
+            lib.$index(this[$canonical$]);
+        } else {
+            this[$canonical$] = this;
+        }
+        this[$roles$].set(role, this);
+        if (typeof of === 'string')
+            this[$roles$].set(this.$role.$ref, this);
+    }
+
+    $is(type: Type): boolean;
+    $is(type: TypeofType): boolean;
+    $is(role: $ObjectiveRole): boolean;
+    $is(role: $ObjectiveRole | Type | TypeofType): boolean {
+        if (role === undefined)
+            return this[$literal$] === undefined;
+        if (typeof role === 'string')
+            return this[$typeof$] === role || this[$roles$].has(role);
+        return this.$equals($$type(role));
+    }
+
+    $equals(other: $ObjectiveRep): boolean {
+        return this.$ref === other.$ref;
+    }
+
+    toString() {
+        return `$${this.$role.toString()}`;
+    }
+
+    protected getName(): string {
+        const literal = this[$literal$];
+        if (literal === null) return 'null';
+        if (literal === undefined) return typeof literal;
+        if (literal === Object.prototype) return 'Object.prototype';
+        if (this[$canonical$][$of$] === 'TypeScript') return this.literal.description;
+        if (this[$roles$].has('type')) return literal.name;
+        if (this[$roles$].has('member')) return this.$key!.getName();
+        if (this[$roles$].has('identifier')) return this.getSymbol(literal);
+        if (typeof literal === "string") return this.getSymbol(literal);
+        if (typeof literal === "symbol") return this.getSymbol(literal);
+        if (typeofTypes.has(literal)) return literal.name.toLowerCase();
+        if (typeof literal === 'function') return literal.name || 'function';
+        return this[$role$];
+    }
+
+    protected getDescription(): string {
+        const literal = this[$literal$];
+        if (literal === null) return this.getName();
+        if (literal === undefined) return this.getName();
+        if (literal === Object.prototype) return '{}.prototype';
+        if (this[$canonical$][$of$] === 'TypeScript') return this.literal.description;
+        if (this[$roles$].has('type')) return this.getName();
+        if (this[$roles$].has('memeber')) return this.getName();
+        if (typeof literal === "string") return `"${literal}"`;
+        if (typeof literal === "symbol") return `${'${'}${literal.description}}`;
+        if (typeofTypes.has(literal)) return literal.name.toLowerCase();
+        if (typeof literal === 'function') return literal.name ? `${literal.name}()` : `()`;
+        if (typeof literal === 'object') return `{}`;
+        return literal.toString();
+    }
+
+    protected getSymbol(literal: string | symbol) {
+        if (typeof literal === "string") return literal;
+        if (typeof literal === "symbol") return `${'${'}${literal.description}}`;
+        return '';
+    }
+
+    protected getPrototype(): $ObjectiveRep {
+        if (!this[$prototype$$]) {
+            if (this.isNullOfUndefined())
+                this[$prototype$$] = $$type(undefined).$as('prototype').$of(this);
+            else if (this.isPrimitive())
+                this[$prototype$$] = this.$type.$as('prototype').$of(this);
+            else if (this.isType())
+                this[$prototype$$] = new $ObjectiveRep('prototype', this, this[$literal$].prototype, this[$canonical$].#$lib);
+            else
+                this[$prototype$$] = new $ObjectiveRep('prototype', this, Object.getPrototypeOf(this[$literal$]), this[$canonical$].#$lib);
+        }
+        return this[$prototype$$];
+    }
+
+    protected getType(of?: $ObjectiveRep): $ObjectiveRep {
+        if (!this[$type$$]) {
+            if (this.isNullOfUndefined()) {
+                this[$type$$] = $$type(undefined).$of(this);
+                return this[$type$$];
+            }
+            if (this.isPrimitive()) {
+                this[$type$$] = $$type(primitives.get(this[$typeof$])).$of(this)
+            } else if (this.isType()) {
+                this[$type$$] = this.$prototype.$type.$of(this);
+            } else {
+                this[$type$$] = $$typeof(this[$literal$]).$of(this);
+            }
+        }
+        return of ? this[$type$$].$of(of) : this[$type$$];
+    }
+
+    protected getMembers(whos: 'own' | 'all' = 'own', of?: $ObjectiveRep): $ObjectiveRep[] {
+        if (!this[$membersOwn$]) {
+            if (this.isNullOfUndefined()) {
+                this[$membersOwn$] = [];
+                return this[$membersOwn$];
+            }
+            let $this = this as $ObjectiveRep;
+            if (this.isPrimitive()) {
+                this[$membersOwn$] = this.$type.getMembers('own', this);
+                this[$membersMap$] = new Map();
+                this[$membersOwn$].forEach($descriptor =>
+                    this[$membersMap$]!.set($descriptor.$key!.literal, $descriptor));
+            } else if (this.isType()) {
+                this[$membersOwn$] = this.$prototype.getMembers('own', this);
+                this[$membersMap$] = new Map();
+                this[$membersOwn$].forEach($descriptor =>
+                    this[$membersMap$]!.set($descriptor.$key!.literal, $descriptor));
+            } else {
+                this[$membersOwn$] = [];
+                this[$membersMap$] = new Map();
+                const descriptors = Object.getOwnPropertyDescriptors(this[$literal$]);
+                const keys = Reflect.ownKeys(descriptors);  // Gets both strings AND symbols
+                for (const property of keys) {
+                    const descriptor = descriptors[property as any] as any;
+                    descriptor.property = property;
+                    const $property = new $ObjectiveRep('member', $this, descriptor, this[$canonical$].#$lib);
+                    this[$membersOwn$].push($property);
+                    this[$membersMap$].set(property, $property);
+                }
+            }
+        }
+        if (whos === 'all' && !this[$members$]) {
+            if (this.isNullOfUndefined()) {
+                this[$members$] = [];
+                return this[$members$];
+            }
+            let $this = this as $ObjectiveRep;
+            if (this.$equals(this.$type) || this.$type.isNullOfUndefined()) {
+                this[$members$] = this[$membersOwn$];
+            } else if (this.isPrimitive()) {
+                this[$members$] = this.$type.getMembers('all', this);
+            } else {
+                this[$members$] = this.$type.getMembers('all', this).concat(this.getMembers('own', this));
+            }
+        }
+        const $properties = whos === 'own' ? this[$membersOwn$]! : this[$members$]!;
+        return !of ? $properties : $properties.map(p => p.$of(of));
+    }
+
+    protected getFunctionInfo(): $FunctionInfo {
+        if (!this[$functionInfo$]) {
+            this[$functionInfo$] = parseFunctionInfo(this[$literal$] as Function);
+        }
+        return this[$functionInfo$];
+    }
+
+    protected isNullOfUndefined() {
+        return this[$literal$] === null || this[$literal$] === undefined;
+    }
+
+    protected ofNullOfUndefined() {
+        return this[$of$] instanceof $ObjectiveRep ? this[$of$].isNullOfUndefined() : false;
+    }
+
+    protected isType() {
+        return this[$role$] === 'type';
+    }
+
+    protected isPrimitive() {
+        return primitives.has(this[$typeof$]);
+    }
+
+    protected ofPrimitive() {
+        return this[$of$] instanceof $ObjectiveRep ? this[$of$].isPrimitive() : false;
+    }
+}

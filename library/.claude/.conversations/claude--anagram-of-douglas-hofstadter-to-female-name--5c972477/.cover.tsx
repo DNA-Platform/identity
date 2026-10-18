@@ -1,0 +1,47 @@
+import { Author, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
+import { BookshelfCover as Cover, Illustration, Messages, Participant, Participants, Period, Scheme, Volume, Window } from '../../../.manual/.book';
+import { Account, Origin, Project } from '../../.manual/.book';
+import SubjectCover from '../.cover.tsx';
+import StoryCover from '../../../.librarian/.cover.tsx';
+
+export default () => (
+    <Chapter>
+        <Cover />
+        <Volume>{SubjectCover()}</Volume>
+        <Volume>{StoryCover()}</Volume>
+        <Scheme
+            ground="#efefef"
+            band="#c8c8c8"
+            bandInk="#333333"
+            foot="#9a9a9a"
+            footInk="#262626"
+            ink="#333333"
+        />
+        <Window
+            x="-32"
+            y="-26"
+        />
+        <Participants>
+            <Participant>$[[ Doug ]]( Dougs Story )</Participant>
+            <Participant>$[[ Claude ]]( Dougs Claude )</Participant>
+        </Participants>
+        <Period
+            from="2026-02-05T19:11:31.036909Z"
+            to="2026-02-05T19:16:15.485306Z"
+        />
+        <Messages
+            shown="2"
+            all="2"
+        />
+        <Title>[[ Anagram of Douglas Hofstadter to female name ]]( claude--Anagram of Douglas Hofstadter to female name--5c972477 )</Title>
+        <Author>*[[ Doug ]]( The Librarian )</Author>
+        <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
+        <Project>***[[ Nikolai ]]( claude--Nikolai )</Project>
+        <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
+        <Origin>5c972477-bd15-434d-98ca-54246b849f52</Origin>
+        <Paragraph>
+            <Illustration />
+            <Svg>![[ illustration.svg ]]</Svg>
+        </Paragraph>
+    </Chapter>
+);

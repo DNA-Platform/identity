@@ -1,0 +1,1266 @@
+// Use this to execute all scripts
+function run(script: () => void | any) {
+    script();
+}
+
+// Sends a command to be evaluated in another context
+function send(cmd: string,  onComplete?: OnCompleteHandler, onError?: OnErrorHandler, index: number = 0): void {
+    var message = $BridgeTalkMessage();
+    message.target = BridgeTalkApps.illustrator;
+    message.body = `${cmd}; app.redraw();`;
+    
+    if (onComplete) message.onResult = () => onComplete(cmd, index);
+    if (onError) message.onError = e => onError(cmd, index, e);
+    
+    message.send();
+}
+
+// Sends a script to be evaluated in another context
+function sendScript(scriptPath: string, onComplete?: OnCompleteHandler, onError?: OnErrorHandler, index: number = 0) {
+    scriptPath = combinePaths(SCRIPTS_PATH, scriptPath);
+    send(`$.evalFile("${scriptPath}");`, onComplete, onError, index);
+}
+
+class Console {
+    private _on: boolean = false;
+    private _alert: boolean = true;
+    on(type: "alert" | "terminal" = "alert"): this {
+        this._on = true;
+        this._alert = type == "alert";
+        return this;
+    }
+    off(): this { this._on = false; return this; }
+    alert(): this { this._alert = true; return this; }
+    terminal(): this { this._alert = false; return this; }
+
+    active(): boolean { return this._on; }
+    alertType(): "alert" | "terminal" { return this._alert ? "alert" : "terminal"; }
+    state(newState?: { active: boolean, type: "alert" | "terminal" }): { active: boolean, type: "alert" | "terminal" } {
+        if (newState !== undefined) {
+            this._on = newState.active;
+            this._alert = newState.type === "alert" ? true : false;
+        }
+        return { active: this.active(), type: this.alertType() };
+    }
+
+    log(...args: any[]) {
+        args = args ? args : [];
+        this.show(false, ...args);
+    }
+
+    break(...args: any[]) {
+        args = args ? args : [];
+        this.show(true, ...args);
+    }
+
+    private show(halt: boolean, ...args: any[]) {
+        if (!this._on) return;
+        args = args ? args : [];
+        args = f(args).select(a => typeof a === "string" ? `"${a}"` : a).a();
+        var result = "";
+        var arr = f(args).select(s => `${s}`);
+        arr.do((s, i) => {
+            i = i as number;
+            result += `${s}\n`;
+        })
+        if (halt) {
+            throw result;
+        } else {
+            this._alert ? alert(result) : $.write(result);
+        }
+    }
+}
+
+var console = new Console();
+console.on("terminal");
+
+/**
+ * Utility function to join an array of strings with a specified separator
+ * @param array - The array of strings to join
+ * @param separator - The separator to use between strings
+ * @returns A single string formed by joining the array elements
+ */
+function stringJoin(array: string[] | A<string>, separator: string): Str {
+    if (array instanceof Str) return array;
+    if (array instanceof A) return stringJoin(array.a(), separator);
+    var result = "";
+    for (var i = 0; i < array.length; i++) {
+        result += array[i];
+        if (i < array.length - 1) {
+            result += separator; // Add separator only between elements
+        }
+    }
+    return new Str(result);
+}
+
+/**
+ * Utility function to convert a string into an array of characters
+ * @param str - The string to convert
+ * @returns An array of characters from the string
+ */
+function stringToArray(str: string): A<string> {
+    return f(_stringToArray(str));
+}
+/**
+ * Utility function to convert a string into an array of characters
+ * @param str - The string to convert
+ * @returns An array of characters from the string
+ */
+function _stringToArray(str: string): string[] {
+    var result = [];
+    for (var i = 0; i < str.length; i++) {
+        result.push(str.charAt(i));
+    }
+    return result;
+}
+
+/**
+ * Utility function to compare two arrays for equality
+ * @param first - The first array to compare
+ * @param second - The second array to compare
+ * @returns True if the arrays are equal (same length and elements), otherwise false
+ */
+function arrayEquals(first: any[], second: any[]): boolean {
+    if (!first && !second) return true;
+    if (!first || !second) return false;
+    if (first.length !== second.length) return false;
+
+    for (var i = 0; i < first.length; i++) {
+        var currentFirst = first[i];
+        var currentSecond = second[i];
+        var areEqual = (currentFirst instanceof Array && currentSecond instanceof Array) ?
+            arrayEquals(currentFirst, currentSecond) :
+            currentFirst === currentSecond;
+        if (!areEqual) 
+            return false;
+    }
+
+    return true;
+}
+
+function notImplemented(): any {
+    throw new Error("Not implemented");
+}
+
+interface Dictionary<T = any> {
+    [key: string | number]: T
+}
+
+function dictionary<T>(): Dictionary<T> {
+    return {};
+}
+
+/**
+ * Deep clones an object in ExtendScript, handling arrays, objects, and common edge cases.
+ * @param source - The object to clone.
+ * @param seen - A record of already-seen objects to handle circular references.
+ * @returns The deep-cloned object.
+ */
+function clone<T>(obj: T, primitivesOnly: boolean = false, seen?: A<[any, any]>): T {
+    var source: any = obj;
+    if (!seen) seen = f([]);
+
+    // Check if the value is a primitive
+    function isPrimitive(value: any): boolean {
+        return value === null ||
+            value === undefined ||
+            Object.prototype.toString.call(value) === "[object Boolean]" ||
+            Object.prototype.toString.call(value) === "[object Number]" ||
+            Object.prototype.toString.call(value) === "[object String]" ||
+            Object.prototype.toString.call(value) === "[object Function]";
+    }
+
+    // Handle primitives and primitive-only mode
+    if (isPrimitive(source)) {
+        return source;
+    }
+    if (primitivesOnly) {
+        return undefined as T;
+    }
+
+    // Detect arrays
+    if (Object.prototype.toString.call(source) === "[object Array]") {
+        const copy: any[] = [];
+        for (var i = 0; i < source.length; i++) {
+            var currentSource = source[i];
+            if (seen.any(v => v[0] == currentSource)) {
+                copy[i] = seen.first(v => v[0] == currentSource)[1];
+            } else {
+                seen.push([currentSource, currentSource]);
+                var clonedValue = clone(currentSource, primitivesOnly, seen)
+                seen.at(-1)[1] = clonedValue;
+                copy[i] = clonedValue;
+            }
+        }
+        return copy as T;
+    }
+
+    // Handle objects (functions are included as properties)
+    const copy: any = {};
+    for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key) && key !== "parent") {
+            var value = source[key];
+
+            if (typeof value === "function") {
+                // Rebind function to the cloned object
+                copy[key] = function (...args: any[]) {
+                    return value.apply(copy, args); // Bind `this` to the cloned object
+                };
+            } else {
+                // Recursively clone other properties
+                if (seen.any(v => v[0] == value)) {
+                    copy[key] = seen.first(v => v[0] == value)[1];
+                } else {
+                    seen.push([value, value]);
+                    var clonedValue = clone(value, primitivesOnly, seen)
+                    seen.at(-1)[1] = clonedValue;
+                    copy[key] = clonedValue;
+                }
+            }
+        }
+    }
+
+    return copy as T;
+}
+
+/**
+ * Rounds a number to a specific number of decimals
+ * @param value - The number to round
+ * @param decimals - The number of decimals of precision
+ * @returns The rounded value
+ */
+function roundPrecisely(value: number, decimals: number = 6): number {
+    var factor = Math.pow(10, decimals);
+    return Math.round(value * factor) / factor;
+}
+
+/**
+ * Normalizes file path separators to Windows style (backslashes)
+ * and ensures no double separators
+ * @param path - The file path to normalize
+ * @returns Normalized path with proper separators
+ */
+function normalizePath(path: string): string {
+    return str(path).replaceAll(/[\/\\]+/g, '\\').s();
+}
+
+/**
+ * Combines two paths, ensuring proper separator handling
+ * @param path1 - First path
+ * @param path2 - Second path
+ * @returns Combined path with proper separators
+ *
+ * @example
+ * // Returns "C:\\Scripts\\documents\\test.ai"
+ * combinePaths("C:\\Scripts", "documents/test.ai")
+ *
+ * @example
+ * // Returns "C:\\Scripts\\documents\\test.ai"
+ * combinePaths("C:\\Scripts\\", "\\documents\\test.ai")
+ */
+function combinePaths(path1: string, path2: string): string {
+    var normalized1 = normalizePath(path1);
+    var normalized2 = normalizePath(path2);
+
+    // Remove trailing slash from first path and leading slash from second path
+    var clean1 = str(normalized1).endsWith('\\') ? normalized1.slice(0, -1) : normalized1;
+    var clean2 = str(normalized2).startsWith('\\') ? normalized2.slice(1) : normalized2;
+
+    return clean1 + '\\' + clean2;
+}
+
+/**
+ * Converts a negative index to a positive index within the bounds of the collection length.
+ *
+ * @param index - The index to evaluate (can be negative)
+ * @param collectionLength - The length of the collection
+ * @returns A valid positive index within the collection bounds
+ * @throws Error if the evaluated index is out of bounds
+ */
+function evaluateNegativeIndex(index: number, collectionLength: number): number {
+    var evaluatedIndex = index < 0 ? collectionLength + index : index;
+    if (evaluatedIndex < 0 || evaluatedIndex >= collectionLength) {
+        throw "Index " + index + " out of bounds for collection of length " + collectionLength;
+    }
+    return evaluatedIndex;
+}
+
+/**
+ * Converts a negative index to a positive index within the bounds of the collection length but maps -1 to the length of the array so the item gets inserted at the end.
+ *
+ * @param index - The index to evaluate (can be negative)
+ * @param collectionLength - The length of the collection
+ * @returns A valid positive index within the collection bounds
+ * @throws Error if the evaluated index is out of bounds
+ */
+function evaluateNegativeInsertIndex(index: number, collectionLength: number): number {
+    var evaluatedIndex = index < 0 ? collectionLength + index + 1 : index;
+    if (evaluatedIndex < 0 || evaluatedIndex > collectionLength) {
+        throw "Index " + index + " out of insert bounds for collection of length " + collectionLength;
+    }
+    return evaluatedIndex;
+}
+
+function evaluateRangeSelector(selector?: string, collectionLength?: number): number[] {
+    if (!selector) return []; // Empty selector
+    selector = selector.replace(/\s+/g, "");
+
+    if (collectionLength === undefined && selector === ":")
+        return [];
+
+    var start: number, step: number | undefined, end: number;
+
+    if (selector === ":") {
+        start = 0;
+        end = -1;
+        step = undefined;
+    }
+    // Single number (e.g., "5")
+    else if (/^-?\d+$/.test(selector)) {
+        start = end = parseInt(selector, 10);
+        step = undefined;
+    }
+    // Start:end (e.g., "1:5")
+    else if (/^-?\d+:-?\d+$/.test(selector)) {
+        var parts = selector.split(":");
+        start = parseInt(parts[0], 10);
+        end = parseInt(parts[1], 10);
+        step = undefined;
+    }
+    // Start:step:end (e.g., "1:2:5")
+    else if (/^-?\d+:-?\d+:-?\d+$/.test(selector)) {
+        var parts = selector.split(":");
+        start = parseInt(parts[0], 10);
+        step = parseInt(parts[1], 10);
+        end = parseInt(parts[2], 10);
+    }
+    // :end (e.g., ":5")
+    else if (/^:-?\d+$/.test(selector)) {
+        start = 0;
+        end = parseInt(selector.slice(1), 10);
+        step = undefined;
+    }
+    // start: (e.g., "5:")
+    else if (/^-?\d+:$/.test(selector)) {
+        if (collectionLength === undefined)
+            throw new Error(`Invalid range selector: "${selector}"`);
+        var parts = selector.split(":");
+        start = parseInt(parts[0], 10);
+        end = collectionLength !== undefined ? collectionLength - 1 : -1;
+        step = undefined;
+    }
+    // :step:end (e.g., ":2:5")
+    else if (/^:-?\d+:-?\d+$/.test(selector)) {
+        var parts = selector.slice(1).split(":");
+        start = 0;
+        step = parseInt(parts[0], 10);
+        end = parseInt(parts[1], 10);
+    }
+    // Invalid cases
+    else {
+        throw new Error(`Invalid range selector: "${selector}"`);
+    }
+
+    // Adjust for negative indices if collection length is defined
+    if (collectionLength !== undefined) {
+        start = evaluateNegativeIndex(start, collectionLength);
+        end = evaluateNegativeIndex(end, collectionLength);
+    }
+
+    // Validate step direction
+    step = step ?? 1;
+    if (step <= 0) {
+        throw new Error(`Invalid step value in the range: selector: "${selector}", start: "${start}", step: "${step}", end: "${end}"`);
+    }
+
+    // Generate the range
+    var range: number[] = [];
+    if (start < end) {
+        for (var i = start; i <= end; i += step) range.push(i);
+    } else {
+        for (var i = start; i >= end; i -= step) range.push(i);
+    }
+
+    return range;
+}
+
+class A<T> {
+    protected _a: T[];
+    a(): T[] { return this._a; }
+
+    s(): string {
+        if (typeof this._a === "string") 
+            return this._a;
+        return this.str().s();
+    }
+
+    str(): Str {
+        if (typeof this._a === "string") 
+            return new Str(this._a);
+        return stringJoin(this._a as any, "");
+    }
+
+    constructor(array?: T[]) {
+        if (array === undefined) array = [];
+        this._a = array;
+    }
+
+    equals(other: T[] | A<T>): boolean {
+        if (!other) return false;
+        var that = other instanceof Array ? other : other.a()
+        return arrayEquals(this.a(), that);
+    }
+
+    doesntEqual(other: T[] | A<T>): boolean {
+        return !this.equals(other);
+    }
+
+    at(index: number): T {
+        index = evaluateNegativeIndex(index, this._a.length);
+        return this._a[index];
+    }
+
+    get(selector: string): A<T> {
+        var indexes = evaluateRangeSelector(selector, this.a().length);
+        var result = new A<T>();
+        for (var i = 0; i < indexes.length; i++) {
+            result.push(this.a()[indexes[i]]);
+        }
+        return result;
+    }
+
+    set(index: number, item: T): A<T> {
+        index = evaluateNegativeIndex(index, this.a().length);
+        this.a()[index] = item;
+        return this;
+    }
+
+    length(): number { return this.a().length; }
+
+    concat(other: T[] | A<T>): A<T> {
+        var otherArray = other instanceof Array ? other : other.a();
+        return new A<T>([...this.a(), ...otherArray]);
+    }
+
+    copy(): A<T> {
+        return new A<T>(this.a().slice());
+    }
+
+    insertAt(index: number, item: T): A<T> {
+        var insertAt = evaluateNegativeInsertIndex(index, this.a().length);
+        this.a().splice(insertAt, 0, item);
+        return this;
+    }
+
+    insertManyAt(index: number, items: T[]): A<T> {
+        var insertAt = evaluateNegativeInsertIndex(index, this.a().length);
+        this.a().splice(insertAt, 0, ...items);
+        return this;
+    }
+
+    delete(item: T): A<T> {
+        var a = this.a();
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] === item) {
+                a.splice(i, 1);
+                i--;
+            }
+        }
+        return this;
+    }
+
+    deleteMany(items: T[]): A<T> {
+        f(items).forEach(item => this.delete(item));
+        return this;
+    }
+
+    deleteAt(index: number, count: number = 1): A<T> {
+        var removeFrom = evaluateNegativeIndex(index, this.a().length);
+        this.a().splice(removeFrom, count);
+        return this;
+    }
+
+    deleteAll(): A<T> {
+        this.a().length = 0;
+        return this;
+    }
+
+    forEach(callback: (item: T, i: number) => any | void): any | void {
+        var result: any;
+        for (var i = 0; i < this.a().length; i++) {
+            result = callback(this.a()[i], i);
+        }
+        return result;
+    }
+
+    do(callback: (item: T, i: number) => any | void): A<T> {
+        this.forEach(callback);
+        return this;
+    }
+
+    doOnce(callback: (item: T, i: number) => boolean): boolean {
+        for (var i = 0; i < this.a().length; i++) {
+            if (callback(this.a()[i], i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    select<U>(selector: (element: T, i: number) => U): A<U> {
+        var result = new A<U>();
+        for (var i = 0; i < this.a().length; i++) {
+            result.push(selector(this.a()[i], i));
+        }
+        return result;
+    }
+
+    map<U>(selector: (element: T, i: number) => U): A<U> {
+        return this.select(selector);
+    }
+
+    selectMany<U>(selector: (element: T, i: number) => U[]): A<U> {
+        var result = new A<U>();
+        for (var i = 0; i < this.a().length; i++) {
+            var selectedArray = selector(this.a()[i], i);
+            result.insertManyAt(result.length(), selectedArray);
+        }
+        return result;
+    }
+
+    where(predicate: (element: T, i: number) => boolean): A<T> {
+        var result = new A<T>();
+        for (var i = 0; i < this.a().length; i++) {
+            if (predicate(this.a()[i], i)) {
+                result.push(this.a()[i]);
+            }
+        }
+        return result
+    }
+
+    aggregate<U>(seed: U, func: (acc: U, current: T, i: number) => U): U {
+        var result = seed;
+        for (var i = 0; i < this.a().length; i++) {
+            result = func(result, this.a()[i], i);
+        }
+        return result;
+    }
+
+    distinct(equal?: (first: T, second: T) => boolean): A<T> {
+        if (!equal) equal = (x, y) => x === y;
+        var result: T[] = [];
+        for (var i = 0; i < this.length(); i++) {
+            var current = this.at(i);
+            var alreadySeen = false;
+            
+            for (var j = 0; j < result.length; j++) {
+                if (equal(current, result[j])) {
+                    alreadySeen = true;
+                    break;
+                }
+            }
+            
+            if (!alreadySeen) {
+                result.push(current);
+            }
+        }
+        return new A(result);
+    }
+
+    order(): A<T> {
+        return this.orderBy(item => item);
+    }
+
+    orderBy(selector: (item: T) => any): A<T> {
+        if (this.length() === 0) return f([]);
+        var copy = this.copy();
+        copy.a().sort(A.getTypedComparer<T>(this.a(), selector, false));
+        return copy;
+    }
+
+    orderByAscending(): A<T> {
+        return this.orderBy(item => item);
+    }
+
+    orderByDescending(selector?: (item: T) => any): A<T> {
+        if (this.length() === 0) return f([]);
+        var copy = this.copy();
+        copy.a().sort(A.getTypedComparer<T>(this.a(), selector, true));
+        return copy;
+    }
+
+    first(predicate?: (element: T, i: number) => boolean): T {
+        if (!predicate) return this.a().length > 0 ? this.a()[0] : undefined as any as T;
+        for (var i = 0; i < this.a().length; i++) {
+            if (predicate(this.a()[i], i)) return this.a()[i];
+        }
+        return undefined as any as T;
+    }
+
+    firstIndex(predicate?: (element: T, i: number) => boolean): number {
+        if (!predicate) return this.a().length > 0 ? 0 : -1;
+        for (var i = 0; i < this.a().length; i++) {
+            if (predicate(this.a()[i], i)) return i;
+        }
+        return -1;
+    }
+
+    last(): T
+    last(predicate?: (element: T, i: number) => boolean): T | undefined
+    last(predicate?: (element: T, i: number) => boolean): T | undefined {
+        if (!predicate) return this.a().length > 0 ? this.a()[this.a().length - 1] : undefined;
+        for (var i = this.a().length - 1; i >= 0; i--) {
+            if (predicate(this.a()[i], i))
+                return this.a()[i];
+        }
+        return undefined;
+    }
+
+    lastIndex(predicate?: (element: T, i: number) => boolean): number {
+        if (!predicate) return this.a().length > 0 ? this.a().length - 1 : -1;
+        for (var i = this.a().length - 1; i >= 0; i--) {
+            if (predicate(this.a()[i], i)) return i;
+        }
+        return -1;
+    }
+
+    any(predicate?: (element: T) => boolean): boolean {
+        if (!predicate) return this.a().length > 0;
+        for (var i = 0; i < this.a().length; i++) {
+            if (predicate(this.a()[i])) return true;
+        }
+        return false;
+    }
+
+    all(predicate: (element: T) => boolean): boolean {
+        return this.length() == this.where(predicate).length();
+    }
+
+    includes(item: T): boolean {
+        return this.any(i => i == item);
+    }
+
+    // Array methods
+    push(...items: T[]): A<T> {
+        this.a().push(...items);
+        return this;
+    }
+
+    add(...items: T[]): A<T> {
+        this.push(...items);
+        return this;
+    }
+
+    pop(): T | undefined {
+        return this.a().pop();
+    }
+
+    splice(start: number, deleteCount?: number, ...items: T[]): A<T> {
+        this.a().splice(start, deleteCount, ...items);
+        return this;
+    }
+
+    slice(start?: number, end?: number): A<T> {
+        return new A(this.a().slice(start, end));
+    }
+
+    shift(): T | undefined {
+        return this.a().shift();
+    }
+
+    unshift(...items: T[]): A<T> {
+        this.a().unshift(...items);
+        return this;
+    }
+
+    reverse(): A<T> {
+        var arr = this.a();
+        var reversed: T[] = [];
+        for (var i = arr.length - 1; i >= 0; i--) {
+            reversed.push(arr[i]);
+        }
+        return new A<T>(reversed);
+    }
+
+    skip(count: number): A<T> {
+        if (count >= this.length()) return f([]);
+        return this.get(`${count}:`)
+    }
+
+    take(count: number): A<T> {
+        if (this.length() == 0) return f([]);
+        count = Math.min(count, this.length());
+        return this.get(`:${count - 1}`);
+    }
+
+    zip<U>(items: A<U>): A<[T, U]> {
+        var len = this.length();
+        if (len !== items.length())
+            throw "Arrays must be the same length to be zipped";
+
+        var result: A<[T, U]> = f([]);
+        for (var i = 0; i < len; i++) {
+            result.push([this.at(i), items.at(i)]);
+        }
+
+        return result;
+    }
+
+    pairs(): A<[T, T]> {
+        var self = this._a;
+        var items: [T, T][] = [];
+        for (var i = 0; i < self.length; i++) {
+            for (var j = 0; j <= i; j++) {
+                items.push([self[i], self[j]]);
+            }
+        }
+        return new A(items);
+    }
+
+    shuffle(): A<T> {
+        var array = this.copy().a();
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1)); // Random index from 0 to i
+            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+        }
+        return new A<T>(array);
+    }
+
+    vector(): Vector {
+        if (this.length() === 0) return v();
+        if (VectorTypes.isNumberArrayExtension(this)) return v(this);
+        if (VectorTypes.isPositionArrayExtension(this)) return v(this);
+        throw new Error("The vector function only works on number and position arrays");
+    }
+
+    stringJoin(separator: string = ""): Str {
+        return stringJoin(this.select(x => x + "").a(), separator);
+    }
+
+    toString(): string {
+        if (this.length() == 0) return "A[]";
+        try {
+            return `A<${typeof this.at(0)}>[${this.select(x => `${x}`).a()}]`;
+        } catch {
+            return `A<${typeof this.at(0)}>[${this.a()}]`;
+        }
+    }
+
+    static empty(): A<any> { return new A<any>([]) };
+
+    private static getTypedComparer<T>(arr: T[], selector?: (item: T) => any, desc: boolean = false): (a: T, b: T) => number {
+        if (arr.length === 0) return () => 0;
+        var getValue = selector || ((x: T) => x);
+        var first = getValue(arr[0]);
+        var type = typeof first;
+
+        if (type === 'number' || type === 'boolean')
+            return desc
+                ? (a, b) => getValue(b) - getValue(a)
+                : (a, b) => getValue(a) - getValue(b);
+
+        if (type === 'string')
+            return desc
+                ? (a, b) => getValue(b).toString().localeCompare(getValue(a))
+                : (a, b) => getValue(a).toString().localeCompare(getValue(b));
+
+        if (first instanceof Date)
+            return desc
+                ? (a, b) => getValue(b).getTime() - getValue(a).getTime()
+                : (a, b) => getValue(a).getTime() - getValue(b).getTime();
+
+        return desc
+            ? (a, b) => getValue(a) < getValue(b) ? 1 : getValue(a) > getValue(b) ? -1 : 0
+            : (a, b) => getValue(a) < getValue(b) ? -1 : getValue(a) > getValue(b) ? 1 : 0;
+    }
+}
+
+class Str extends A<string> {
+    a(): string[] {
+        this.makeMutable();
+        return this._a;
+    }
+
+    constructor(str: string) {
+        super(str as any)
+    }
+
+    anchor(name: string): Str {
+        return new Str(this.s().anchor(name));
+    }
+
+    big(): Str {
+        return new Str(this.s().big());
+    }
+
+    blink(): Str {
+        return new Str(this.s().blink());
+    }
+
+    bold(): Str {
+        return new Str(this.s().bold());
+    }
+
+    charAt(index: number): Str {
+        return new Str(this.s().charAt(index));
+    }
+
+    charCodeAt(index: number): number {
+        return this.s().charCodeAt(index);
+    }
+
+    concat(other: string[] | Str): Str {
+        if (other instanceof Str) 
+            return new Str(this.s().concat(other.s()));
+        else if (other instanceof A)
+            return this.concat(other.stringJoin(""));
+        else if (other instanceof Array)
+            return this.concat(stringJoin(other as string[], ""));
+        throw new Error("Concat input not recognized");
+    }
+
+    fixed(): Str {
+        return new Str(this.s().fixed());
+    }
+
+    fontcolor(color: string): Str {
+        return new Str(this.s().fontcolor(color));
+    }
+
+    fontsize(size: number): Str {
+        return new Str(this.s().fontsize(size));
+    }
+
+    indexOf(searchValue: string, offset?: number): number {
+        return this.s().indexOf(searchValue, offset);
+    }
+
+    italics(): Str {
+        return new Str(this.s().italics());
+    }
+
+    lastIndexOf(searchValue: string, offset?: number): number {
+        return this.s().lastIndexOf(searchValue, offset);
+    }
+
+    link(href: string): Str {
+        return new Str(this.s().link(href));
+    }
+
+    localeCompare(what: string): number {
+        return this.s().localeCompare(what);
+    }
+
+    match(regexp: RegExp | string): A<string> | null {
+        const result = this.s().match(regexp);
+        return result ? new A<string>(result) : null;
+    }
+
+    replace(what: string | RegExp, with_: string): Str {
+        return new Str(this.s().replace(what, with_));
+    }
+
+    replaceAll(what: string | RegExp, with_: string): Str {
+        var result = this.s();
+        while (true) {
+            var newResult = result.replace(what, with_);
+            if (newResult === result) return new Str(result);
+            result = newResult;
+        }
+    }
+
+    search(search: RegExp): number {
+        return this.s().search(search);
+    }
+
+    slice(startSlice: number, endSlice?: number): Str {
+        return new Str(this.s().slice(startSlice, endSlice));
+    }
+
+    small(): Str {
+        return new Str(this.s().small());
+    }
+
+    split(delimiter: string, limit?: number): A<string> {
+        return new A<string>(this.s().split(delimiter, limit));
+    }
+
+    strike(): Str {
+        return new Str(this.s().strike());
+    }
+
+    sub(): Str {
+        return new Str(this.s().sub());
+    }
+
+    substr(start: number, length?: number): Str {
+        return new Str(this.s().substr(start, length));
+    }
+
+    substring(indexA: number, indexB?: number): Str {
+        return new Str(this.s().substring(indexA, indexB));
+    }
+
+    sup(): Str {
+        return new Str(this.s().sup());
+    }
+
+    toLocaleLowerCase(): Str {
+        return new Str(this.s().toLocaleLowerCase());
+    }
+
+    toLocaleUpperCase(): Str {
+        return new Str(this.s().toLocaleUpperCase());
+    }
+
+    toLowerCase(): Str {
+        return new Str(this.s().toLowerCase());
+    }
+
+    toUpperCase(): Str {
+        return new Str(this.s().toUpperCase());
+    }
+
+    startsWith(prefix: string): boolean {
+        return Str.stringStartsWith(this.s(), prefix);
+    }
+
+    endsWith(suffix: string): boolean {
+        return Str.stringEndsWith(this.s(), suffix);
+    }
+
+    includes(search: string): boolean {
+        return Str.stringIncludes(this.s(), search);
+    }
+
+    contains(search: string): boolean {
+        return Str.stringContains(this.s(), search);
+    }
+
+    padStart(targetLength: number, padChar: string = " "): Str {
+        return new Str(Str.stringPadStart(this.s(), targetLength, padChar));
+    }
+
+    padEnd(targetLength: number, padChar: string = " "): Str {
+        return new Str(Str.stringPadEnd(this.s(), targetLength, padChar));
+    }
+
+    trim(): Str {
+        return new Str(this.s().replace(/^[\s\n]+|[\s\n]+$/g, ''));
+     }
+
+    toString(): string {
+        return this.s();
+    }
+
+    private makeMutable(): void {
+        if (typeof this._a === "string")
+            this._a = _stringToArray(this._a);
+    }
+
+    /**
+     * Utility function to check if a string starts with a specific prefix
+     * @param str - The main string to check
+     * @param prefix - The prefix to look for
+     * @returns True if the string starts with the prefix, otherwise false
+     */
+    static stringStartsWith(str: string, prefix: string): boolean {
+        return str.slice(0, prefix.length) === prefix;
+    }
+
+    /**
+     * Utility function to check if a string ends with a specific suffix
+     * @param str - The main string to check
+     * @param suffix - The suffix to look for
+     * @returns True if the string ends with the suffix, otherwise false
+     */
+    static stringEndsWith(str: string, suffix: string): boolean {
+        return str.slice(-suffix.length) === suffix;
+    }
+
+    /**
+     * Utility function to replace parts of a string using a pattern or substring
+     * @param str - The original string
+     * @param pattern - The pattern (string or RegExp) to replace
+     * @param replacement - The string to replace the pattern with
+     * @returns The resulting string after the replacement
+     */
+    static stringReplace(str: string, pattern: string | RegExp, replacement: string): string {
+        if (typeof pattern === "string") {
+            // Replace all occurrences of the string pattern
+            while (str.indexOf(pattern) !== -1) {
+                var index = str.indexOf(pattern);
+                str = str.slice(0, index) + replacement + str.slice(index + pattern.length);
+            }
+            return str;
+        } else if (pattern instanceof RegExp) {
+            // Replace all occurrences of the regex pattern
+            var result = "";
+            var match;
+            while ((match = pattern.exec(str)) !== null) {
+                result += str.slice(0, match.index) + replacement;
+                str = str.slice(match.index + match[0].length);
+            }
+            return result + str;
+        }
+        throw "Invalid pattern type. Must be a string or RegExp.";
+    }
+
+    /**
+     * Utility function to check if a string contains a specific substring
+     * @param str - The main string to check
+     * @param search - The substring to look for
+     * @returns True if the string contains the substring, otherwise false
+     */
+    static stringIncludes(str: string, search: string): boolean { return Str.stringContains(str, search) }
+    static stringContains(str: string, search: string): boolean {
+        if (str === undefined || str === null) return false;
+        if (search === "") return true;
+
+        var index = 0;
+        var len = str.length;
+        var searchLen = search.length;
+
+        while (index + searchLen <= len) {
+            if (str.slice(index, index + searchLen) === search) {
+                return true;
+            }
+            index++;
+        }
+        return false;
+    }
+
+    /**
+     * Utility function to pad the start of a string with a specific character
+     * @param str - The main string to pad
+     * @param targetLength - The desired total length of the output string
+     * @param padChar - The character to use for padding (default is ' ')
+     * @returns The padded string
+     */
+    static stringPadStart(str: string, targetLength: number, padChar: string = " "): string {
+        str = String(str);
+        if (padChar.length === 0) padChar = " ";
+        var padding = "";
+        var padLength = Math.max(targetLength - str.length, 0);
+
+        while (padding.length < padLength) {
+            padding += padChar;
+        }
+
+        return padding.slice(0, padLength) + str;
+    }
+
+    /**
+     * Utility function to pad the end of a string with a specific character
+     * @param str - The main string to pad
+     * @param targetLength - The desired total length of the output string
+     * @param padChar - The character to use for padding (default is ' ')
+     * @returns The padded string
+     */
+    static stringPadEnd(str: string, targetLength: number, padChar: string = " "): string {
+        str = String(str);
+        if (padChar.length === 0) padChar = " ";
+        var padding = "";
+        var padLength = Math.max(targetLength - str.length, 0);
+
+        while (padding.length < padLength) {
+            padding += padChar;
+        }
+
+        return str + padding.slice(0, padLength);
+    }
+}
+
+function f<T>(array: T[] | A<T> = A.empty()): A<T> {
+    if (array instanceof A) return array as A<T>;
+    return new A(array);
+}
+
+function r(selector: string | number, length?: number): A<number> {
+    if (typeof selector === "number") selector = `0:${selector}`;
+    return f(evaluateRangeSelector(selector, length));
+}
+
+function str(s: Str | string | A<string> = ""): Str {
+    if (s instanceof Str) return s;
+    else if (typeof s === "string") return new Str(s);
+    else if (s instanceof A) return s.stringJoin();
+    return (s as any || "").toString();
+}
+
+class Subscribable<TSender, TContext = undefined> {
+    private _handlers: A<(sender: TSender, context?: TContext) => void> = f([]);
+    private _off: boolean = false;
+
+    active(): boolean { return !this.off; }
+    on(): this { this._off = false; return this; }
+    off(): this { this._off = true; return this; }
+
+    handlers() { return this._handlers; }
+
+    constructor() {
+        this.reset();
+    }
+
+    subscribe(handler: (sender: TSender, context?: TContext) => void): void {
+        this._handlers.push(handler);
+    }
+
+    unsubscribe(handler: (sender: TSender, context?: TContext) => void): void {
+        this._handlers.delete(handler);
+    }
+
+    fire(sender: TSender, context?: TContext): void {
+        if (this._off) return;
+        this._handlers.do((handler) => handler(sender, context));
+    }
+
+    reset() {
+        this._handlers = new A<(sender: TSender, context?: TContext) => void>();
+    }
+}
+
+class TestClass {
+    tolerance: number = 0.0001
+
+    init() { }
+
+    runTests(): void {
+        trace(this);
+        var self = this as any;
+        for (var key in self) {
+            if (str(key).startsWith("test") && typeof self[key] === "function") {
+                this.init();
+                self[key]();
+            }
+        }
+    }
+
+    assertEquals<T>(actual: T, expected: T, message: string = "", shouldThrow: boolean = true): string | undefined {
+        if (typeof actual === "number" && typeof expected === "number") {
+            // Compare numbers within tolerance
+            if (Math.abs(actual - expected) > this.tolerance) {
+                var message = this.formatError(message, actual, expected, "==");
+                if (shouldThrow) throw message;
+                return message; 
+            }
+        } else if (actual instanceof Array && expected instanceof Array) {
+            // Compare arrays deeply
+            if (!this.arrayEquals(actual, expected)) {
+                var message = this.formatError(message, actual, expected, "==");
+                if (shouldThrow) throw message;
+                return message; 
+            }
+        } else if (actual instanceof A && expected instanceof A) {
+            // Compare wrapped arrays deeply
+            if (!this.arrayEquals(actual.a(), expected.a())) {
+                var message = this.formatError(message, actual, expected, "!=");
+                if (shouldThrow) throw message;
+                return message; 
+            }
+        } else if (actual !== expected) { // Use '!=' for type coercion if necessary
+            var message = this.formatError(message, actual, expected, "==");
+            if (shouldThrow) throw message;
+                return message; 
+        }
+    }
+
+    assertNotEqual<T>(actual: T, expected: T, message: string = "", shouldThrow: boolean = true): string | undefined {
+        if (typeof actual === "number" && typeof expected === "number") {
+            // Compare numbers within tolerance
+            if (Math.abs(actual - expected) <= this.tolerance) {
+                var message = this.formatError(message, actual, expected, "!=");
+                if (shouldThrow) throw message;
+                return message; 
+            }
+        } else if (actual instanceof Array && expected instanceof Array) {
+            // Compare arrays deeply
+            if (this.arrayEquals(actual, expected)) {
+                var message = this.formatError(message, actual, expected, "!=");
+                if (shouldThrow) throw message;
+                return message; 
+            }
+        } else if (actual instanceof A && expected instanceof A) {
+            // Compare wrapped arrays deeply
+            if (this.arrayEquals(actual.a(), expected.a())) {
+                var message = this.formatError(message, actual, expected, "!=");
+                if (shouldThrow) throw message;
+                return message; 
+            }
+        } else if (actual === expected) { // Use '!=' for type coercion if necessary
+            var message = this.formatError(message, actual, expected, "!=");
+            if (shouldThrow) throw message;
+                return message; 
+        }
+    }
+
+    assertTrue(actual: boolean, message: string = "", shouldThrow: boolean = true): string | undefined {
+        return this.assertEquals(actual, true, message, shouldThrow);
+    }
+
+    assertFalse(actual: boolean, message: string = "", shouldThrow: boolean = true): string | undefined {
+        return this.assertEquals(actual, false, message, shouldThrow);
+    }
+
+    assertDefined(value: any, message: string = "", shouldThrow: boolean = true): string | undefined {
+        return this.assertTrue(value != null && value != undefined, message, shouldThrow);
+    }
+
+    assertNullOrUndefined(value: any, message: string = "", shouldThrow: boolean = true): string | undefined {
+        return this.assertTrue(value == null || value == undefined, message, shouldThrow);
+    }
+
+    assertThrows(test: () => void, message: string, shouldThrow: boolean = true): string | undefined {
+        try {
+            test()
+        } catch {
+            return;
+        }
+        if (shouldThrow) throw new Error(message);
+        return message;
+    }
+
+    formatError(message: string, actual: any, expected: any, equals: "==" | "!="): string {
+        var formattedMessage = message ? `${message}  :  ` : "";
+        return equals === "==" ? 
+            `${formattedMessage}[Expected: ${this.toString(expected)}, but got: ${this.toString(actual)}]` : 
+            `${formattedMessage}[Expected: ${this.toString(expected)} and ${this.toString(actual)} to be different]`
+    }
+
+    toString(value: any): string {
+        if (value instanceof Array) {
+            return "[" + f(value).select(x => x?.toString()).stringJoin(", ") + "]";
+        } else if (typeof value === "object" && value !== null) {
+            var result = [];
+            for (var key in value) {
+                if (value.hasOwnProperty(key)) {
+                    result.push(key + ": " + value[key]?.toString());
+                }
+            }
+            return "{" + result.join(", ") + "}";
+        } else {
+            return value !== undefined ? value.toString() : "undefined";
+        }
+    }
+
+    private arrayEquals(first: any[], second: any[]): boolean {
+        if (!first && !second) return true;
+        if (!first || !second) return false;
+        if (first.length !== second.length) return false;
+    
+        for (var i = 0; i < first.length; i++) {
+            var currentFirst = first[i];
+            var currentSecond = second[i];
+            var areEqual = 
+                (typeof currentFirst === "number" && typeof currentSecond === "number") ? 
+                    Math.abs(currentFirst - currentSecond) < this.tolerance :
+                (currentFirst instanceof Array && currentSecond instanceof Array) ?
+                    this.arrayEquals(currentFirst, currentSecond) :
+                    currentFirst === currentSecond;
+            if (!areEqual) 
+                return false;
+        }
+    
+        return true;
+    }
+}

@@ -1,0 +1,215 @@
+Below is a **technical note you can paste directly to Claude**.
+It’s written as an execution checklist, marked by **importance**, and focused on **speed + safety**, not aesthetics.
+
+---
+
+## Technical Notes for PDF Conversion (Court-Safe)
+
+### CONTEXT
+
+This is a **Russian district court electronic filing**.
+The PDF must remain valid if:
+
+* links break,
+* pages are printed,
+* the document is flattened or re-rendered by the court system.
+
+Do not optimize for cleverness. Optimize for **boring robustness**.
+
+---
+
+## 🔴 CRITICAL (must do)
+
+### 1. Encoding and font handling (Russian text)
+
+* Ensure **UTF-8 throughout**.
+* Use a **Unicode font with full Cyrillic coverage**.
+* Strongly preferred:
+
+  * Times New Roman
+  * Liberation Serif
+  * DejaVu Serif
+
+Avoid:
+
+* system fallback fonts,
+* fonts that embed partially,
+* web fonts.
+
+**Why:** Courts often re-render PDFs. Broken Cyrillic is catastrophic.
+
+---
+
+### 2. Page size and margins
+
+* Page size: **A4**
+* Orientation: Portrait
+* Margins: standard (2–2.5 cm)
+
+Do not use:
+
+* US Letter
+* custom margins
+* CSS page tricks
+
+---
+
+### 3. One section = one anchor, but no dependence on links
+
+* Internal anchors are fine.
+* Document must remain fully readable **linearly**.
+* Do not rely on links for meaning (“see above” is bad, “см. Приложение D.1” is good).
+
+Your current structure already satisfies this.
+
+---
+
+### 4. Page breaks before appendices
+
+Insert **hard page breaks** before:
+
+* `## Приложения`
+* each Appendix block (A, B, C, etc.)
+
+In Markdown, do this explicitly (e.g. `\newpage` or converter-specific syntax).
+
+**Why:** Prevents appendices starting mid-page. Courts expect clean separation.
+
+---
+
+## 🟠 IMPORTANT (strongly recommended)
+
+### 5. Table of Contents and page numbers
+
+* **Clickable TOC is optional.**
+* **Page numbers are helpful but not required.**
+
+If adding page numbers:
+
+1. First render to PDF.
+2. Note actual page numbers.
+3. Either:
+
+   * add them manually to the TOC, or
+   * let the converter auto-generate a static TOC.
+
+Do **not** let TOC correctness depend on link resolution.
+
+If rushed:
+→ leave TOC **without page numbers**. That is acceptable.
+
+---
+
+### 6. Header hierarchy
+
+Keep hierarchy strict:
+
+* `#` — document title
+* `###` — subtitle
+* `##` — major sections
+* `###` — subsections
+
+Do not skip levels.
+
+---
+
+### 7. Filename and metadata
+
+Filename:
+
+```
+Pismennye_poyasneniya_02-9021-2025.pdf
+```
+
+PDF metadata:
+
+* Title: “Письменные пояснения”
+* Author: Красавина Анастасия Юрьевна
+
+Not required, but clean.
+
+---
+
+## 🟡 NICE TO HAVE (only if time allows)
+
+### 8. Footer with page numbers
+
+Simple centered page number footer:
+
+```
+— 12 —
+```
+
+No running headers, no logos.
+
+---
+
+### 9. Line spacing
+
+* 1.15 or 1.2 line spacing is ideal.
+* Avoid double spacing unless court explicitly requests.
+
+---
+
+## 🚫 DO NOT DO
+
+* No HTML/CSS tricks
+* No JavaScript
+* No external links
+* No embedded media
+* No color emphasis
+* No unusual typography
+
+---
+
+## CONVERTER RECOMMENDATION
+
+If using Pandoc or similar:
+
+* Explicitly set:
+
+  * A4
+  * font
+  * margins
+* Prefer **DOCX intermediate** if unsure, then Word → PDF.
+
+Browser “Print to PDF” is **not recommended**.
+
+---
+
+## FINAL SANITY CHECK (30 seconds)
+
+Before upload:
+
+* Open PDF.
+* Scroll through randomly.
+* Confirm:
+
+  * Cyrillic renders everywhere.
+  * Appendices start on new pages.
+  * No missing images.
+  * Signature line visible.
+
+---
+
+## SUMMARY FOR CLAUDE
+
+**Priority order:**
+
+1. Cyrillic-safe font + UTF-8
+2. A4 layout
+3. Hard page breaks before appendices
+4. Linear readability without links
+5. TOC correctness (links optional, page numbers optional)
+
+If something must be dropped due to time:
+→ drop TOC page numbers, **not** structure.
+
+---
+
+If you want, I can also give Claude:
+
+* a **Pandoc command template**, or
+* a **Word export checklist**.
+
+Just say which.

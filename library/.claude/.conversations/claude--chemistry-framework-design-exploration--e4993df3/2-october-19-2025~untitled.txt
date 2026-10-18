@@ -1,0 +1,201 @@
+// Symbols to support shared state
+const $state = Symbol("$Chemical.state");
+const $lastState = Symbol("$Chemical.lastState");
+const $lastProps = Symbol("$Chemical.lastProps");
+const $destroyed = Symbol("$Chemical.destroyed");
+const $remove = Symbol("$Chemical.remove");
+const $decorators = Symbol("$Chemical.decorators");
+const $cid = Symbol("$Chemical.cid");
+const $type = Symbol("$Chemical.type");
+const $formula = Symbol("$Chemical.formula");
+const $template = Symbol("$Chemical.template");
+const $parent = Symbol("$Chemical.parent");
+const $binder = Symbol("$Chemical.binder");
+const $component = Symbol("$Chemical.component");
+const $reactive = Symbol("$Chemical.reactive");
+const $children = Symbol("$Chemical.children");
+
+export class $Chemical {
+    /** @internal */
+    [$state]: $State = { cid: -1 };
+
+    /** @internal */
+    [$lastState]: $State = { cid: -1 };
+
+    /** @internal */
+    [$lastProps]: any = {};
+
+    /** @internal */
+    [$remove] = false;
+
+    /** @internal */
+    [$destroyed] = false;
+
+    /** @internal */
+    [$decorators]!: $Decorators;
+
+    /** @internal */
+    [$cid]: number;
+
+    /** @internal */
+    [$type]: typeof $Chemical = $Chemical;
+
+    /** @internal */
+    [$formula]: $Formula;
+
+    /** @internal */
+    [$parent]: $Chemical | undefined;
+
+    /** @internal */
+    [$component]?: $Component<this>;
+
+    /** @internal */
+    [$binder]: $BondOrchestrator<this>;
+
+    /** @internal */
+    [$reactive] = true;
+
+    /** @internal */
+    [$children]: ReactNode;
+
+    /** @internal */
+    static [$template]: $Chemical;
+
+    /** @internal */
+    get __template(): this {
+        return this[$type][$template] as any;
+    }
+
+    /** @internal */
+    get __isTemplate() { 
+        return this == this.__template; 
+    }
+
+    get parent(): $Chemical | undefined { return this[$parent]; }
+    set parent(chemical: $Chemical) { this[$parent] = chemical; }
+
+    get children() { return this[$children]; }
+
+    /** @internal */
+    get Component(): $Component<this> {
+        if (!this[$component]) {
+            if (!this.__template[$component])
+                this.__template[$component] = this.__template.createComponent();
+        }
+        return this[$component] ?? this.__template[$component]!;
+    }
+
+    /** @internal */
+    get $Component(): $$Component<this> {
+        return this.Component as any;
+    }
+
+    $key?: string;
+    get key() { return this[$cid]; }
+
+    constructor() {
+        this[$cid] = $Chemical.getNextCid();
+        if (!this[$type][$template]) 
+            this[$type][$template] = this;
+        this[$formula] = new $Formula(this);
+        this[$binder] = new $BondOrchestrator(this);
+    }
+
+    view(): ReactNode {
+        return this.children;
+    }
+
+    toString() {
+        return `${this[$type].name}[${this[$cid]}]`;
+    }
+
+    /** @internal */
+    __render(props: any): ReactNode | Promise<ReactNode> {
+        const binder = this[$binder];
+        binder.bond(props);
+        return binder.render();
+    }
+
+    /** @internal */
+    __destroy() {
+        const component = this[$component];
+        if (component && component.$bound && component.$chemical == this) return;
+        this[$state] = { cid: this[$cid]};
+        this[$lastState] = this[$state];
+        this[$parent] = undefined as any
+        this[$formula]?.cleanup();
+        this[$destroyed] = true;
+        $chemicalRegistry.delete(this[$cid]); // Consider replacing with a cleanup phase
+    }
+
+    private createComponent(): $Component<this> {
+        if (this[$component]) 
+            throw new Error(`The Component for ${this} has already been created`);
+
+        this.assertViewConstructors();
+        this.__template[$formula].init();
+        return new $ComponentFunction(this.__template) as any;
+    }
+
+    private assertViewConstructors(prototype?: any, childConstructor?: any) {
+        if (!prototype) prototype = Object.getPrototypeOf(this.__template);
+        if (!prototype || prototype === $Chemical.prototype) return;
+        
+        const className = prototype.constructor.name;
+        const thisConstructor = prototype[className];
+        if (thisConstructor && typeof thisConstructor !== 'function')
+            throw new Error(`The ${className} class has property ${className} but it's not a function`);
+        if (childConstructor && !thisConstructor)
+            throw new Error(`The ${className} class must have a constructor method named ${className} because child class has one`);
+
+        this.assertViewConstructors(Object.getPrototypeOf(prototype), thisConstructor);
+    }
+
+    /** @internal */
+    static getNextCid(): number { return $Chemical.nextCid++; }
+    private static nextCid = 1;
+}
+
+const $formed = Symbol("$Arom.formed");
+const $formation = Symbol("$Arom.formation");
+
+export class $Atom extends $Chemical {
+
+    /** @internal */
+    [$formed] = false;
+
+    /** @internal */
+    [$formation]!: Promise<void>;
+
+    protected get formed() { return this[$formed]; }
+    async formation() {
+        if (!this[$formed])
+            await this[$formation];
+    }
+
+    protected constructor() {
+        super();
+        if (this.__isTemplate) {
+            this[$formation] = this.reform().then(async (formed) => {
+                this[$formed] = formed;
+                if (!this[$formed])
+                    await this.form();
+                    await this.remember();
+                    this[$formula] = new $Formula(this);
+                    this[$formula].init();
+                    this[$formed] = true;
+            })
+        }
+        return this.__template;
+    }
+
+    protected async form() { }
+    protected async reform(): Promise<boolean> { return true; }
+    protected async remember(): Promise<void> { }
+
+    static particle<T extends $Atom = $Atom>(): T {
+        if (!this[$template]) new this();
+        return this[$template] as any;
+    }
+
+}

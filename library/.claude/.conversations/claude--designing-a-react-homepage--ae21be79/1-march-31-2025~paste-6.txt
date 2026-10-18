@@ -1,0 +1,338 @@
+<!-- @css-disable -->
+<!-- css-lint-disable -->
+<!-- stylelint-disable -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="css-lint" content="disabled">
+    <title>new-page</title>
+    
+    <!-- GitHub Markdown CSS for general markdown styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown.min.css">
+    
+    <!-- highlight.js GitHub stylesheet for code blocks -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.min.css">
+    
+    <!-- KaTeX CSS and JS for LaTeX rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <!-- Custom styles for academic elements -->
+    <style>/*! css-lint-disable */
+      /* Definition list styling */
+      dl {
+        margin: 1em 0;
+      }
+      dt {
+        font-weight: bold;
+        margin-top: 1em;
+      }
+      dd {
+        margin-left: 2em;
+      }
+      
+      /* LaTeX environment styling */
+      .latex-env {
+        margin: 1.5em 0;
+        padding: 0.8em 1em;
+        border-left: 4px solid #4a4a4a;
+        background-color: #f8f8f8;
+      }
+      
+      .env-title {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.5em;
+      }
+      
+      .env-content {
+        display: block;
+      }
+      
+      /* Specific environment styling */
+      .theorem { border-left-color: #4a4a4a; }
+      .lemma { border-left-color: #5a6268; }
+      .proof { border-left-color: #6c757d; }
+      .definition { border-left-color: #28a745; }
+      .example { border-left-color: #007bff; }
+      .remark { border-left-color: #fd7e14; }
+      .note { border-left-color: #17a2b8; }
+      .corollary { border-left-color: #6f42c1; }
+      
+      /* KaTeX rendering support */
+      .katex-display {
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 1em 0;
+      }
+      
+      .math-display {
+        margin: 1em 0;
+      }
+      
+      .math-inline {
+        display: inline-block;
+      }
+      
+      .math-error {
+        color: red;
+        font-weight: bold;
+      }
+      
+      /* Bibliography and citation styling */
+      .bibliography {
+        margin-top: 2em;
+        padding-top: 1em;
+      }
+      
+      .citation-ref {
+        font-size: 0.8em;
+        position: relative;
+        top: -0.5em;
+        text-decoration: none;
+      }
+      
+      .citation-backref {
+        font-size: 0.8em;
+        text-decoration: none;
+        margin-left: 0.5em;
+      }
+      
+      .citation-entry {
+        margin-bottom: 1em;
+      }
+      
+      .bibliography ol {
+        padding-left: 1.5em;
+      }
+    </style>
+    
+    <!-- Script to initialize KaTeX rendering -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+          ],
+          throwOnError: false,
+          errorColor: "#cc0000",
+          strict: false
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- The .markdown-body class is necessary for github-markdown-css -->
+    <article class="markdown-body" style="
+      max-width: 860px; 
+      margin: 2rem auto;
+      padding: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.05);
+    ">
+      <!-- @css-disable -->
+<!-- css-lint-disable -->
+<!-- stylelint-disable -->
+<h1 id="academic-paper-with-markdown-and-latex">Academic Paper with Markdown and LaTeX</h1>
+<h2 id="abstract">Abstract</h2>
+<p>This paper demonstrates the integration of Markdown formatting with LaTeX mathematical notation for academic writing. It showcases proper citation practices, theorem formatting, and mathematical expressions.<sup><a href="#citation-preface" id="citation-ref-preface" class="citation-ref">[3]</a></sup></p>
+<h2 id="introduction">Introduction</h2>
+<p>Academic writing requires clear organization, precise mathematical notation, and proper citations. This document demonstrates how to leverage Markdown&#39;s simplicity with LaTeX&#39;s mathematical power for scholarly documents.</p>
+<h2 id="mathematical-foundations">Mathematical Foundations</h2>
+<h3 id="definitions-and-theorems">Definitions and Theorems</h3>
+<h4 id="definition-1-sets">Definition 1: Sets</h4>
+<blockquote>
+<p><strong>Definition (Set):</strong> A set <span class="math math-inline">$S$</span> is a collection of distinct objects, considered as an object in its own right.</p>
+</blockquote>
+<h4 id="theorem-1-pythagorean-theorem">Theorem 1: Pythagorean Theorem</h4>
+<blockquote>
+<p><strong>Theorem:</strong> In a right triangle with sides <span class="math math-inline">$a$</span>, <span class="math math-inline">$b$</span> and hypotenuse <span class="math math-inline">$c$</span>, the following relation holds:<br><span class="math math-inline">$a^2 + b^2 = c^2$</span></p>
+</blockquote>
+<h4 id="proof-of-theorem-1">Proof of Theorem 1</h4>
+<blockquote>
+<p><strong>Proof:</strong> Consider a right triangle with sides <span class="math math-inline">$a$</span> and <span class="math math-inline">$b$</span> and hypotenuse <span class="math math-inline">$c$</span>. By constructing squares on each side and examining the areas:</p>
+<p>Case 1: When <span class="math math-inline">$a = b$</span>, we have <span class="math math-inline">$c = a\sqrt{2}$</span></p>
+<p>Case 2: When <span class="math math-inline">$a = 3$</span>, <span class="math math-inline">$b = 4$</span>, we have <span class="math math-inline">$c = 5$</span></p>
+<p>Therefore, <span class="math math-inline">$a^2 + b^2 = c^2$</span>. <span class="math math-inline">$\square$</span></p>
+</blockquote>
+<h4 id="lemma-1-cauchy-schwarz-inequality">Lemma 1: Cauchy-Schwarz Inequality</h4>
+<blockquote>
+<p><strong>Lemma:</strong> For all vectors <span class="math math-inline">$\mathbf{u}$</span> and <span class="math math-inline">$\mathbf{v}$</span> in an inner product space:<br><div class="math math-display">$$|\langle\mathbf{u},\mathbf{v}\rangle|^2 \leq \langle\mathbf{u},\mathbf{u}\rangle \cdot \langle\mathbf{v},\mathbf{v}\rangle$$</div></p>
+</blockquote>
+<h4 id="corollary-1-triangle-inequality">Corollary 1: Triangle Inequality</h4>
+<blockquote>
+<p><strong>Corollary:</strong> For any two vectors <span class="math math-inline">$\mathbf{u}$</span> and <span class="math math-inline">$\mathbf{v}$</span> in an inner product space:<br><div class="math math-display">$$\|\mathbf{u} + \mathbf{v}\| \leq \|\mathbf{u}\| + \|\mathbf{v}\|$$</div></p>
+</blockquote>
+<h3 id="key-mathematical-concepts">Key Mathematical Concepts</h3>
+<h4 id="properties-of-real-numbers">Properties of Real Numbers</h4>
+<p>The commutativity of addition states that <span class="math math-inline">$a + b = b + a$</span> for all <span class="math math-inline">$a, b \in \mathbb{R}$</span>.</p>
+<h4 id="complex-analysis">Complex Analysis</h4>
+<p>For a holomorphic function <span class="math math-inline">$f$</span> on a simply connected domain <span class="math math-inline">$D$</span>, we have:<br><div class="math math-display">$$\oint_C f(z)\,dz = 0$$</div><br>for any closed curve <span class="math math-inline">$C \subset D$</span>.</p>
+<h4 id="statistical-distributions">Statistical Distributions</h4>
+<p>The standard normal cumulative distribution function is defined as:<br><div class="math math-display">$$\Phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}e^{-t^2/2}\,dt$$</div></p>
+<h2 id="computational-methods">Computational Methods</h2>
+<h3 id="algorithms">Algorithms</h3>
+<h4 id="algorithm-1-euclidean-gcd">Algorithm 1: Euclidean GCD</h4>
+<p>function GCD(a, b)<br>while b ≠ 0<br>t ← b<br>b ← a mod b<br>a ← t<br>return a<br>Copy</p>
+<h3 id="visualizations">Visualizations</h3>
+<h4 id="figure-1-maxwells-equations">Figure 1: Maxwell&#39;s Equations</h4>
+<p><div class="math math-display">$$
+\begin{align}
+\nabla \cdot \mathbf{E} &= \frac{\rho}{\varepsilon_0} \tag{Gauss's law} \\
+\nabla \cdot \mathbf{B} &= 0 \tag{Gauss's law for magnetism} \\
+\nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \tag{Faraday's law} \\
+\nabla \times \mathbf{B} &= \mu_0\mathbf{J} + \mu_0\varepsilon_0\frac{\partial \mathbf{E}}{\partial t} \tag{Ampère's law}
+\end{align}
+$$</div></p>
+<h3 id="experimental-results">Experimental Results</h3>
+<h4 id="table-1-comparison-of-methods">Table 1: Comparison of Methods</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Method</th>
+<th align="center">Sample Size</th>
+<th align="center">Mean Error</th>
+<th align="center">Standard Deviation</th>
+<th align="center"><span class="math math-inline">$p$</span>-value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Baseline</td>
+<td align="center">30</td>
+<td align="center">45.2</td>
+<td align="center">3.8</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="left">Method A</td>
+<td align="center">28</td>
+<td align="center">52.7</td>
+<td align="center">4.2</td>
+<td align="center">0.023</td>
+</tr>
+<tr>
+<td align="left">Method B</td>
+<td align="center">29</td>
+<td align="center">58.1</td>
+<td align="center">3.9</td>
+<td align="center">&lt; 0.001</td>
+</tr>
+</tbody></table>
+<h2 id="literature-review">Literature Review</h2>
+<p>Recent advances in quantum computing have shown promising results <sup><a href="#citation-Smith2020" id="citation-ref-Smith2020" class="citation-ref">[1]</a></sup>. The relationship between algorithmic complexity and distributed systems has been extensively studied <sup><a href="#citation-Johnson2019" id="citation-ref-Johnson2019" class="citation-ref">[2]</a></sup>.</p>
+<p>Smith et al. demonstrated that quantum algorithms can significantly outperform classical approaches in specific domains <sup><a href="#citation-Smith2020" id="citation-ref-Smith2020" class="citation-ref">[1]</a></sup>.</p>
+<h2 id="advanced-mathematical-notation">Advanced Mathematical Notation</h2>
+<h3 id="matrix-equations">Matrix Equations</h3>
+<p>The linear system <span class="math math-inline">$A\mathbf{x} = \mathbf{b}$</span> can be written as:</p>
+<p><div class="math math-display">$$
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}
+\begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix} =
+\begin{pmatrix}
+b_1 \\
+b_2 \\
+\vdots \\
+b_m
+\end{pmatrix}
+$$</div></p>
+<h3 id="multi-line-equations">Multi-line Equations</h3>
+<p><div class="math math-display">$$
+\begin{align}
+\frac{\partial f}{\partial x} &= 2x + y \tag{1} \\
+\frac{\partial f}{\partial y} &= x + 2y \tag{2} \\
+\nabla f(x,y) &= (2x + y, x + 2y) \tag{3}
+\end{align}
+$$</div></p>
+<h3 id="commutative-diagrams">Commutative Diagrams</h3>
+<p><div class="math math-display">$$
+\begin{CD}
+K(X) @>{\alpha}>> K(Y) \\
+@V{\beta}VV @VV{\gamma}V \\
+L(X) @>>{\delta}> L(Y)
+\end{CD}
+$$</div></p>
+<h2 id="theoretical-applications">Theoretical Applications</h2>
+<h3 id="example-harmonic-oscillator">Example: Harmonic Oscillator</h3>
+<p><div class="latex-env example">
+                      <div class="env-title">Example</div>
+                      <div class="env-content">Consider a particle moving in a potential well described by LATEX-INLINE-26-Vih4KSA9IGt4XjIvMg==. The equation of motion is:
+LATEX-DISPLAY-8-bVxkZG90e3h9ICsga3ggPSAw
+This is a simple harmonic oscillator with angular frequency LATEX-INLINE-27-XG9tZWdhID0gXHNxcnR7ay9tfQ==.</div>
+                    </div></p>
+<h3 id="remark-damped-oscillators">Remark: Damped Oscillators</h3>
+<p><div class="latex-env remark">
+                      <div class="env-title">Remark</div>
+                      <div class="env-content">The solution technique applies equally well to damped oscillators by including a term proportional to LATEX-INLINE-28-XGRvdHt4fQ==.</div>
+                    </div></p>
+<h3 id="note-boundary-conditions">Note: Boundary Conditions</h3>
+<p><div class="latex-env note">
+                      <div class="env-title">Note</div>
+                      <div class="env-content">Boundary conditions must be specified to obtain a unique solution to the differential equation.</div>
+                    </div></p>
+<h2 id="terminology">Terminology</h2>
+<h3 id="glossary">Glossary</h3>
+<p>Term 1<br>: Definition of term 1, which may span multiple lines and include mathematics like <span class="math math-inline">$f(x) = x^2$</span> or citations <sup><a href="#citation-Smith2020" id="citation-ref-Smith2020" class="citation-ref">[1]</a></sup>.</p>
+<p>Term 2<br>: Definition of term 2, with references to <a href="#fig:maxwell">Figure 1</a>.</p>
+<h3 id="index-of-notation">Index of Notation</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Symbol</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><span class="math math-inline">$\mathbb{R}$</span></td>
+<td align="left">Set of real numbers</td>
+</tr>
+<tr>
+<td align="left"><span class="math math-inline">$\mathbb{C}$</span></td>
+<td align="left">Set of complex numbers</td>
+</tr>
+<tr>
+<td align="left"><span class="math math-inline">$\nabla$</span></td>
+<td align="left">Gradient operator</td>
+</tr>
+<tr>
+<td align="left"><span class="math math-inline">$\partial$</span></td>
+<td align="left">Partial derivative</td>
+</tr>
+<tr>
+<td align="left"><span class="math math-inline">$\oint$</span></td>
+<td align="left">Contour integral</td>
+</tr>
+</tbody></table>
+<h2 id="derivations">Derivations</h2>
+<h3 id="appendix-a-key-mathematical-identities">Appendix A: Key Mathematical Identities</h3>
+<p>Starting with the basic identity:</p>
+<p><div class="math math-display">$$e^{i\theta} = \cos\theta + i\sin\theta$$</div></p>
+<p>We can derive Euler&#39;s identity by substituting <span class="math math-inline">$\theta = \pi$</span>:</p>
+<p><div class="math math-display">$$e^{i\pi} + 1 = 0$$</div></p>
+<h3 id="appendix-b-supporting-proofs">Appendix B: Supporting Proofs</h3>
+<h4 id="proof-of-lemma-1">Proof of Lemma 1</h4>
+<p>By the Cauchy-Schwarz inequality and properties of inner products...</p>
+<h2 id="bibliography">Bibliography</h2>
+<div class="bibliography">
+<ol>
+<li id="citation-Smith2020" class="citation-entry">Smith, J., Johnson, A., & Davis, B. (2020). Novel approaches to quantum computing. *Journal of Quantum Information*, 15(3), 123-145. https://doi.org/10.1234/jqi.2020.123 <a href="#citation-ref-Smith2020" class="citation-backref" title="Back to reference">↩</a></li>
+<li id="citation-Johnson2019" class="citation-entry">Johnson, M., & Williams, P. (2019). Algorithmic complexity in distributed systems. In *Proceedings of the International Conference on Computer Science* (pp. 234-248). IEEE Press. <a href="#citation-ref-Johnson2019" class="citation-backref" title="Back to reference">↩</a></li>
+<li id="citation-preface" class="citation-entry">This is a comprehensive footnote that includes an equation: $E = mc^2$ <a href="#citation-ref-preface" class="citation-backref" title="Back to reference">↩</a></li>
+</ol>
+</div>
+    </article>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+const DataSource = new $DataSource().Component;
+const DataViewer = new $DataViewer().Component;
+const RebindingContainer = new $RebindingContainer().Component;
+const ChemicalOrchestrator = new $ChemicalOrchestrator().Component;
+const ChemicalFactory = new $ChemicalFactory().Component;
+const DynamicMember = new $DynamicMember().Component;
+
+// ============================================
+// MAIN TEST COMPONENT
+// ============================================
+
+export default function MemberTests() {
+    // Create JSX-based tests using bond constructors
+    const RebindingTest = (() => {
+        return (
+            <RebindingContainer>
+                <DataViewer>
+                    <DataSource value="Nested Source" />
+                </DataViewer>
+                <DataSource value="Second Source" />
+            </RebindingContainer>
+        );
+    })();
+    
+    const OrchestratorTest = (() => {
+        return (
+            <ChemicalOrchestrator>
+                <DataSource value="Orchestrated 1" />
+                <DataSource value="Orchestrated 2" />
+                <DataSource value="Orchestrated 3" />
+                <DataViewer>
+                    <DataSource value="Viewer's Source" />
+                </DataViewer>
+            </ChemicalOrchestrator>
+        );
+    })();
+    
+    const FactoryTest = (() => {
+        return (
+            <ChemicalFactory>
+                <DataSource value="Template Source" />
+            </ChemicalFactory>
+        );
+    })();
+    
+    const DynamicTest = (() => {
+        return (
+            <DynamicMember>
+                <DataSource value="Initial Member" />
+            </DynamicMember>
+        );
+    })();
+    
+    return (
+        <div style={{ padding: '40px', fontFamily: 'system-ui' }}>
+            <h1>Member Tests - Dependencies & Catalysts</h1>
+            <p style={{ color: '#666', marginBottom: '30px' }}>
+                Testing how chemicals handle dependencies with different catalysts and parent reassignment
+            </p>
+            
+            {/* Test 1: Rebinding */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Test 1: Rebinding & Catalyst Creation</h2>
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Expected:</strong> 
+                    <ul>
+                        <li>Rebinding source creates independent catalyst (no parent)</li>
+                        <li>Rebinding viewer with parent maintains reaction boundary</li>
+                        <li>Modifications to original don't affect rebound</li>
+                    </ul>
+                </div>
+                {RebindingTest}
+            </div>
+            
+            {/* Test 2: Multiple Dependencies */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Test 2: Multiple Chemical Dependencies</h2>
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Expected:</strong>
+                    <ul>
+                        <li>Array of chemicals validated with $check</li>
+                        <li>Optional viewer as last argument</li>
+                        <li>Added sources properly bound to parent</li>
+                    </ul>
+                </div>
+                {OrchestratorTest}
+            </div>
+            
+            {/* Test 3: Factory Pattern */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Test 3: Chemical Factory - Methods Returning Chemicals</h2>
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Expected:</strong>
+                    <ul>
+                        <li>Methods can return chemicals created with $bind()</li>
+                        <li>Factory creates independent instances</li>
+                        <li>All instances tracked in array</li>
+                    </ul>
+                </div>
+                {FactoryTest}
+            </div>
+            
+            {/* Test 4: Dynamic Member Swapping */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Test 4: Dynamic Member Assignment</h2>
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Expected:</strong>
+                    <ul>
+                        <li>Chemical members can be swapped at runtime</li>
+                        <li>Swapped member inherits parent's reaction</li>
+                        <li>Original remains unchanged</li>
+                    </ul>
+                </div>
+                {DynamicTest}
+            </div>
+            
+            {/* Test 5: Direct Creation */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Test 5: Direct Chemical Creation</h2>
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Expected:</strong> 
+                    Components created directly work with List for arrays
+                </div>
+                <div style={{ padding: '15px', background: '#f0f0f0', borderRadius: '8px' }}>
+                    <List>
+                        <DataSource value="Direct 1" />
+                        <DataSource value="Direct 2" />
+                        <DataViewer>
+                            <DataSource value="Nested Source" />
+                        </DataViewer>
+                    </List>
+                </div>
+            </div>
+        </div>
+    );
+}

@@ -1,0 +1,252 @@
+<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Enhanced gradient definitions with more complexity -->
+    <linearGradient id="salmonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCB49B" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#FCA28A" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#FC9176" stop-opacity="0.3" />
+    </linearGradient>
+    
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A8DDE6" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#8ECADC" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#76BED2" stop-opacity="0.3" />
+    </linearGradient>
+    
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD85C" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#FFD046" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#FFC827" stop-opacity="0.3" />
+    </linearGradient>
+    
+    <!-- New gradients to expand the palette -->
+    <linearGradient id="mintGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#98D8C8" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#7ACBBA" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#5BBFAD" stop-opacity="0.3" />
+    </linearGradient>
+    
+    <linearGradient id="lilacGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C8A4D4" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#B990C7" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#A57CBA" stop-opacity="0.3" />
+    </linearGradient>
+    
+    <linearGradient id="peachGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFCBA4" stop-opacity="0.9" />
+      <stop offset="40%" stop-color="#FFB989" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#FFA76F" stop-opacity="0.3" />
+    </linearGradient>
+    
+    <!-- Enhanced cell definitions with deeper nesting -->
+    <!-- Base cell unit with nested elements -->
+    <g id="base-cell">
+      <path d="M 0,10 
+               C 0,4.477 4.477,0 10,0 
+               H 50
+               C 55.523,0 60,4.477 60,10
+               V 50
+               C 60,55.523 55.523,60 50,60
+               H 10
+               C 4.477,60 0,55.523 0,50
+               Z" 
+            fill="white" stroke="#7E9FA3" stroke-width="1" stroke-opacity="0.6" />
+      
+      <!-- Outer color squares -->
+      <rect x="8" y="8" width="20" height="20" rx="3" ry="3" fill="url(#salmonGradient)" />
+      <rect x="32" y="8" width="20" height="20" rx="3" ry="3" fill="url(#blueGradient)" />
+      <rect x="20" y="32" width="20" height="20" rx="3" ry="3" fill="url(#goldGradient)" />
+      
+      <!-- Nested inner squares -->
+      <rect x="11" y="11" width="14" height="14" rx="2" ry="2" fill="url(#mintGradient)" opacity="0.5" />
+      <rect x="35" y="11" width="14" height="14" rx="2" ry="2" fill="url(#lilacGradient)" opacity="0.5" />
+      <rect x="23" y="35" width="14" height="14" rx="2" ry="2" fill="url(#peachGradient)" opacity="0.5" />
+      
+      <!-- Deeply nested elements -->
+      <rect x="14" y="14" width="8" height="8" rx="1" ry="1" fill="url(#blueGradient)" opacity="0.4" />
+      <rect x="38" y="14" width="8" height="8" rx="1" ry="1" fill="url(#goldGradient)" opacity="0.4" />
+      <rect x="26" y="38" width="8" height="8" rx="1" ry="1" fill="url(#salmonGradient)" opacity="0.4" />
+      
+      <!-- Final level of nesting -->
+      <rect x="16" y="16" width="4" height="4" rx="0.5" ry="0.5" fill="white" opacity="0.7" />
+      <rect x="40" y="16" width="4" height="4" rx="0.5" ry="0.5" fill="white" opacity="0.7" />
+      <rect x="28" y="40" width="4" height="4" rx="0.5" ry="0.5" fill="white" opacity="0.7" />
+    </g>
+    
+    <!-- Small variation with different color arrangement -->
+    <g id="small-cell">
+      <path d="M 0,6 
+               C 0,2.686 2.686,0 6,0 
+               H 30
+               C 33.314,0 36,2.686 36,6
+               V 30
+               C 36,33.314 33.314,36 30,36
+               H 6
+               C 2.686,36 0,33.314 0,30
+               Z" 
+            fill="white" stroke="#7E9FA3" stroke-width="0.8" stroke-opacity="0.6" />
+      
+      <!-- Outer color squares with different arrangement -->
+      <rect x="5" y="5" width="10" height="10" rx="2" ry="2" fill="url(#lilacGradient)" />
+      <rect x="21" y="5" width="10" height="10" rx="2" ry="2" fill="url(#mintGradient)" />
+      <rect x="13" y="21" width="10" height="10" rx="2" ry="2" fill="url(#peachGradient)" />
+      
+      <!-- Nested inner squares -->
+      <rect x="6.5" y="6.5" width="7" height="7" rx="1.5" ry="1.5" fill="url(#goldGradient)" opacity="0.5" />
+      <rect x="22.5" y="6.5" width="7" height="7" rx="1.5" ry="1.5" fill="url(#salmonGradient)" opacity="0.5" />
+      <rect x="14.5" y="22.5" width="7" height="7" rx="1.5" ry="1.5" fill="url(#blueGradient)" opacity="0.5" />
+      
+      <!-- Deep nesting -->
+      <rect x="8" y="8" width="4" height="4" rx="0.8" ry="0.8" fill="url(#blueGradient)" opacity="0.4" />
+      <rect x="24" y="8" width="4" height="4" rx="0.8" ry="0.8" fill="url(#goldGradient)" opacity="0.4" />
+      <rect x="16" y="24" width="4" height="4" rx="0.8" ry="0.8" fill="url(#mintGradient)" opacity="0.4" />
+    </g>
+    
+    <!-- Connective element with graduated color -->
+    <g id="connector">
+      <path d="M 0,5 
+               C 0,2.239 2.239,0 5,0 
+               H 80
+               C 82.761,0 85,2.239 85,5
+               V 15
+               C 85,17.761 82.761,20 80,20
+               H 5
+               C 2.239,20 0,17.761 0,15
+               Z" 
+            fill="white" stroke="#7E9FA3" stroke-width="0.7" stroke-opacity="0.5" filter="url(#shadow)" />
+      
+      <!-- Gradient band -->
+      <rect x="7" y="5" width="71" height="10" rx="2" ry="2" fill="url(#salmonGradient)" opacity="0.5" />
+      
+      <!-- Nested color squares -->
+      <rect x="10" y="6" width="8" height="8" rx="1" ry="1" fill="url(#blueGradient)" />
+      <rect x="25" y="6" width="8" height="8" rx="1" ry="1" fill="url(#goldGradient)" />
+      <rect x="40" y="6" width="8" height="8" rx="1" ry="1" fill="url(#lilacGradient)" />
+      <rect x="55" y="6" width="8" height="8" rx="1" ry="1" fill="url(#mintGradient)" />
+      <rect x="70" y="6" width="8" height="8" rx="1" ry="1" fill="url(#peachGradient)" />
+    </g>
+    
+    <!-- Filter for shadows -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.1" />
+    </filter>
+    
+    <!-- Sparkle element -->
+    <g id="sparkle">
+      <circle r="1.5" fill="#FFD85C" fill-opacity="0.8" />
+    </g>
+    
+    <!-- Macro unit for the lattice -->
+    <g id="lattice-unit">
+      <use href="#base-cell" x="0" y="0" transform="scale(1)" />
+      <use href="#connector" x="60" y="20" transform="rotate(0)" />
+      <use href="#small-cell" x="145" y="12" transform="scale(1)" />
+      <use href="#connector" x="145" y="50" transform="rotate(90)" />
+      <use href="#small-cell" x="137" y="137" transform="scale(1)" />
+      <use href="#connector" x="80" y="145" transform="rotate(180)" />
+      <use href="#small-cell" x="12" y="137" transform="scale(1)" />
+      <use href="#connector" x="20" y="80" transform="rotate(270)" />
+      
+      <!-- Nested inner elements at crossing points -->
+      <g transform="translate(85, 85) scale(0.7)">
+        <use href="#base-cell" x="0" y="0" />
+      </g>
+    </g>
+  </defs>
+  
+  <!-- Pure white background -->
+  <rect width="800" height="800" fill="white" />
+  
+  <!-- Lattice structure using macro units -->
+  <g id="composition">
+    <!-- Main lattice grid - more sparse and uniform -->
+    <use href="#lattice-unit" x="100" y="100" transform="scale(1)" />
+    <use href="#lattice-unit" x="400" y="100" transform="scale(1)" />
+    <use href="#lattice-unit" x="100" y="400" transform="scale(1)" />
+    <use href="#lattice-unit" x="400" y="400" transform="scale(1)" />
+    
+    <!-- Variant lattice units with rotation for interest -->
+    <use href="#lattice-unit" x="250" y="250" transform="scale(0.8) rotate(45)" />
+    <use href="#lattice-unit" x="550" y="250" transform="scale(0.8) rotate(-45)" />
+    <use href="#lattice-unit" x="250" y="550" transform="scale(0.8) rotate(-45)" />
+    <use href="#lattice-unit" x="550" y="550" transform="scale(0.8) rotate(45)" />
+    
+    <!-- Additional connectors to extend the lattice -->
+    <use href="#connector" x="300" y="120" transform="rotate(0) scale(1.2)" />
+    <use href="#connector" x="600" y="120" transform="rotate(0) scale(1.2)" />
+    <use href="#connector" x="300" y="420" transform="rotate(0) scale(1.2)" />
+    <use href="#connector" x="600" y="420" transform="rotate(0) scale(1.2)" />
+    
+    <use href="#connector" x="120" y="300" transform="rotate(90) scale(1.2)" />
+    <use href="#connector" x="420" y="300" transform="rotate(90) scale(1.2)" />
+    <use href="#connector" x="120" y="600" transform="rotate(90) scale(1.2)" />
+    <use href="#connector" x="420" y="600" transform="rotate(90) scale(1.2)" />
+    
+    <!-- Additional cells at connector joints -->
+    <use href="#small-cell" x="382" y="300" transform="scale(0.9)" />
+    <use href="#small-cell" x="300" y="382" transform="scale(0.9)" />
+    <use href="#small-cell" x="682" y="300" transform="scale(0.9)" />
+    <use href="#small-cell" x="300" y="682" transform="scale(0.9)" />
+    
+    <!-- Special focal points with layered elements -->
+    <g transform="translate(400, 400)">
+      <use href="#base-cell" x="-30" y="-30" transform="scale(1.2)" />
+      
+      <!-- Nested layers with variant colors -->
+      <g transform="translate(-20, -20) scale(0.9)">
+        <use href="#small-cell" x="0" y="0" />
+      </g>
+      
+      <g transform="translate(-10, -10) scale(0.6)">
+        <use href="#base-cell" x="0" y="0" />
+      </g>
+      
+      <g transform="translate(-5, -5) scale(0.3)">
+        <use href="#small-cell" x="0" y="0" />
+      </g>
+    </g>
+    
+    <!-- Edge elements to balance composition -->
+    <use href="#base-cell" x="100" y="680" transform="scale(0.8)" />
+    <use href="#base-cell" x="680" y="100" transform="scale(0.8)" />
+    <use href="#base-cell" x="680" y="680" transform="scale(0.8)" />
+    
+    <use href="#small-cell" x="50" y="50" transform="scale(1.1)" />
+    <use href="#small-cell" x="700" y="50" transform="scale(1.1)" />
+    <use href="#small-cell" x="50" y="700" transform="scale(1.1)" />
+    <use href="#small-cell" x="700" y="700" transform="scale(1.1)" />
+  </g>
+  
+  <!-- Sparkles to highlight lattice intersection points -->
+  <g>
+    <use href="#sparkle" x="100" y="100" />
+    <use href="#sparkle" x="250" y="100" />
+    <use href="#sparkle" x="400" y="100" />
+    <use href="#sparkle" x="550" y="100" />
+    <use href="#sparkle" x="700" y="100" />
+    
+    <use href="#sparkle" x="100" y="250" />
+    <use href="#sparkle" x="250" y="250" />
+    <use href="#sparkle" x="400" y="250" />
+    <use href="#sparkle" x="550" y="250" />
+    <use href="#sparkle" x="700" y="250" />
+    
+    <use href="#sparkle" x="100" y="400" />
+    <use href="#sparkle" x="250" y="400" />
+    <use href="#sparkle" x="400" y="400" />
+    <use href="#sparkle" x="550" y="400" />
+    <use href="#sparkle" x="700" y="400" />
+    
+    <use href="#sparkle" x="100" y="550" />
+    <use href="#sparkle" x="250" y="550" />
+    <use href="#sparkle" x="400" y="550" />
+    <use href="#sparkle" x="550" y="550" />
+    <use href="#sparkle" x="700" y="550" />
+    
+    <use href="#sparkle" x="100" y="700" />
+    <use href="#sparkle" x="250" y="700" />
+    <use href="#sparkle" x="400" y="700" />
+    <use href="#sparkle" x="550" y="700" />
+    <use href="#sparkle" x="700" y="700" />
+  </g>
+</svg>

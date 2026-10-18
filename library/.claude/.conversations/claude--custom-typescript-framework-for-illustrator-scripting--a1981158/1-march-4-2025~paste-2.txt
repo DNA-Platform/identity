@@ -1,0 +1,2096 @@
+interface Item {
+    [key: string]: any;
+    name?: string;
+    hidden?: boolean;
+    readonly typename: string;
+    readonly parent: any;
+    readonly length?: number;
+    readonly geometricBounds?: Rect;
+    selected?: any;
+    remove?(): void;
+    removeAll?(): void;
+    getIndex?(): number;
+    getByName?(name: string): Item;
+    add?(...args: any[]): Item;
+    insert?(...args: any[]): void;
+    duplicate?(relativeObject: object, insertionLocation: ElementPlacement): Item;
+    move?(relativeObject: object, insertionLocation: ElementPlacement): Item;
+    q: Queryable<this, any>;
+    p: PositionableItem | undefined;
+    c: ContainerItem | undefined;
+}
+
+class EmptyItem implements Item {
+    name: string = "";
+    typename: string = "EMPTY";
+    parent: Application = app;
+    length: number = 0;
+    geometricBounds: Rect = [0, 0, 0, 0];
+    selected: any = false;
+    remove(): void { }
+    removeAll(): void { }
+    getIndex(): number { return -1; }
+    getByName(name: string): Item { return this; }
+    add(...args: any[]): Item { return this; }
+    insert(...args: any[]): void { }
+    duplicate(relativeObject: object, insertionLocation: ElementPlacement): Item { return this; }
+    move?(relativeObject: object, insertionLocation: ElementPlacement): Item { return this; }
+    q: Queryable<this, any> = undefined as any;
+    p: PositionableItem | undefined;
+    c: ContainerItem | undefined;
+
+    private constructor() { }
+
+    private static _empty: EmptyItem;
+    static empty(): EmptyItem {
+        if (EmptyItem._empty) return EmptyItem._empty;
+        EmptyItem._empty = new EmptyItem();
+        return EmptyItem._empty;
+    }
+}
+
+interface ItemCollection extends Array<any> {
+    readonly length: number
+    readonly parent: object
+    readonly typename: string
+    getByName(name: string): any
+}
+
+class QueryItem {
+    _item: any;
+    id: number;
+    itemType: string;
+    itemDefaults: any;
+    queryItemType: string;
+    queryItemDefaults: any;
+    queryType: string;
+    queryDefaults: any;
+    collectionType: CollectionType | undefined;
+    
+    p(): PositionableItem {
+        if (this._item.p === undefined)
+            this._item.p = new PositionableItem(this as any);
+        return this._item.p;
+    }
+
+    set(name?: string): SetProperties { return new SetProperties(this, name); }
+
+    name(value?: string): string {
+        if (value !== undefined) {
+            this._item.name = value;
+            return this._item.name;
+        }
+        return this._item?.name ? this._item.name.toString() : "";
+    }
+
+    api(): ApplicationQuery { return api; }
+    app(): Application { return _app(); }
+    empty(): boolean { return this._item.typename === "EMPTY"; }
+    activated(): boolean { return !!this._item?.selected; }
+    activate(): QueryItem { if (this._item) { this._item.selected = true; } return this; }
+    deactivate(): QueryItem { if (this._item) { this._item.selected = false; } return this; }
+    //hide(): QueryItem { if (this._item.hidden !== undefined) { this._item.hidden = true; } return this; }
+    hidden(): boolean { return this._hidden(this._item); }
+    //show(): QueryItem { if (this._item.hidden !== undefined) { this._item.hidden = false; } return this; }
+    visible(): boolean { return !this.hidden(); }
+    length(): number { return 0; }
+    enumerable(): boolean { return this.collectionType !== undefined; }
+    positionable(): boolean { return (this._item as PageItem)?.position !== undefined; }
+    collection(): any | any[] { return this.collectionType !== undefined ? (this._item as any)[this.collectionType] : []; }
+
+    private _hidden(item: any): boolean {
+        if (!item) return false;
+        if ('visible' in item && !item.visible) return true;
+        if ('hidden' in item && item.hidden) return true;
+        if (item.parent) return this._hidden(item.parent);
+        return false;
+    }
+
+    parent(): QueryItem { 
+        if (!this._item.parent) QueryItem.empty() as any; 
+        let parent = q(this._item.parent) as any;
+        const collection = this.itemType.charAt(0).toLowerCase() + this.itemType.slice(1) + "s";
+        if (parent[collection])
+            parent = parent[collection]();
+        return parent;
+    }
+
+    document(): DocumentQuery {
+        if (this.empty()) return this as any;
+        let currentItem = this._item;
+        while (currentItem) {
+            if (currentItem.typename === "Document")
+                return q(currentItem);
+            currentItem = currentItem.parent;
+        }
+        return QueryItem.empty() as DocumentQuery;
+    }
+
+    artboard(): ArtboardQuery {
+        if (this.empty()) return this as any;
+        return this.document().artboard();
+    }
+
+    layer(): LayerQuery {
+        if (this.empty()) return this as any;
+        return this.document().layer();
+    }
+
+    region(newRegion? : Region): Region {
+        if (newRegion !== undefined) {
+            if (this.positionable()) 
+                this.p().region(newRegion);
+            else 
+                throw new Error("Only positionalble objects can have custom regions");
+        }
+        return this.positionable() ? 
+            this.p().region() : 
+            this.artboard().region();
+    }
+
+    clipped(newValue?: boolean): boolean {
+        if (!("clipped" in this._item)) return false;
+        if (newValue !== undefined) this._item.clipped = newValue;
+        return this._item.clipped;
+    }
+
+    constructor(item: any = EmptyItem.empty(), collectionType?: CollectionType) {
+        this._item = item;
+        this._item.q = this;
+        this.id = QueryItem.nextId();
+        this.itemType = this._item?.typename ?? "EMPTY";
+        this.queryItemType = this.constructor.name;
+        this.queryType = `${this.queryItemType}<${this.itemType}>`;
+        this.collectionType = collectionType;
+
+        if (QueryItem._itemDefaults[this.itemType] === undefined)
+            QueryItem._itemDefaults[this.itemType] = {}
+        if (QueryItem._queryItemDefaults[this.queryItemType] === undefined)
+            QueryItem._queryItemDefaults[this.queryItemType] = {}
+        if (QueryItem._queryDefaults[this.queryType] === undefined)
+            QueryItem._queryDefaults[this.queryType] = {}
+
+        this.itemDefaults = QueryItem._itemDefaults[this.itemType];
+        this.queryItemDefaults = QueryItem._queryItemDefaults[this.queryItemType];
+        this.queryDefaults = QueryItem._queryDefaults[this.queryType];
+        this._configureDefaults();
+    }
+
+    cast<T extends QueryItem>() {
+        return this as any as T
+    }
+
+    equals(item: QueryItem): boolean {
+        if (item === undefined) return false;
+        return this._item == item._item;
+    }
+
+    remove() {
+        this._item?.remove?.();
+        this._item = QueryItem.empty();
+    }
+
+    removeIfEmpty(): boolean {
+        const empty = this.empty();
+        if (empty)
+            this.remove();
+        return empty;
+    }
+
+    duplicate(name: string, relativeObject?: QueryItem, insertionLocation: ElementPlacement = ElementPlacement.PLACEAFTER): Queryable<any, any> {
+        if (relativeObject === undefined) relativeObject = this;
+        const duplicate = this._item?.duplicate?.(relativeObject._item, insertionLocation);
+        duplicate.name = name;
+        return q(duplicate);
+    }
+
+    move(relativeObject: QueryItem, insertionLocation: ElementPlacement): void {
+        this._item?.move?.(relativeObject._item, insertionLocation);
+    }
+
+    moveTo(index: number): this { 
+        return this; 
+    }
+
+    locked(): boolean { return this._item.locked; }
+    lock(): this { this._item.locked = true; return this; }
+    unlock(): this { this._item.locked = false; return this; }
+
+    toString() {
+        return `type: ${this.queryItemType}\n  name: ${this._item?.name || "undefined"}\n  id: ${this.id || "undefined"}`;
+    }
+
+    protected _create<TCollection extends ItemCollection, TQuery extends QueryItem>(
+        select: (item: this) => TCollection, 
+        create: (colletion: TCollection) => TQuery,
+        name?: string
+    ): TQuery {
+        const collection = select(this);
+        const queryItem = create(collection);
+        if (name !== undefined)
+            queryItem.set().name(name);
+        const item: Item = queryItem._item;
+        item?.move?.(queryItem.parent()._item, ElementPlacement.PLACEATEND);
+        return queryItem;
+    }
+
+    protected _configureDefaults() { }
+
+    static createAnonymousName(item: QueryItem): string {
+        if (!item) return `.Item[${item}]`;
+        return `.${item.itemType ? item.itemType : "Item"}[${item.id}]`;
+    }
+
+    private static _empty: QueryItem;
+    static empty(): QueryItem {
+        if (QueryItem._empty) return QueryItem._empty;
+        QueryItem._empty = new Queryable<any, any>(EmptyItem.empty(), undefined);
+        QueryItem._empty._item.q = QueryItem._empty;
+        return QueryItem._empty;
+    }
+
+    private static _nextId: number = 1;
+    private static nextId(): number {
+        const nextId = QueryItem._nextId;
+        QueryItem._nextId += 1;
+        return nextId;
+    }
+
+    private static _itemDefaults = dictionary();
+    private static _queryItemDefaults = dictionary();
+    private static _queryDefaults = dictionary();
+}
+
+class Queryable<I extends Item = any, T extends QueryItem = any> extends QueryItem {
+    item(): I { return this._item; }
+    active(): boolean { return !!this._item.selected; }
+    inactive(): boolean { return !this.active(); }
+    activate() { this._item.selected = true; return this; }
+    deactivate() { this._item.selected = false; return this; }
+
+    constructor(item: I, collectionType?: CollectionType) {
+        super(item, collectionType);
+        this._item = item;
+    }
+
+    query(selector: string = ":"): A<T> {
+        const collection = this.collection();
+        if (collection.length == 0) return f();
+        const indexes = evaluateRangeSelector(selector, collection.length)
+        const len = indexes.length;
+        const result: A<T> = f();
+        for (var i = 0; i < len; i++) {
+            const item = collection[indexes[i]];
+            if (item)
+                result.push(q(item));
+        }
+
+        return result;
+    }
+
+    index(newIndex?: number): number {
+        if (newIndex !== undefined) {
+            const index = this.index();
+            const parent = this.parent() as Queryable<any, any>;
+
+            newIndex = evaluateNegativeIndex(newIndex, parent.length());
+            if (index == newIndex) 
+                return index;
+            if (index < newIndex)
+                this.move(parent.at(newIndex), ElementPlacement.PLACEAFTER);
+            if (index > newIndex)
+                this.move(parent.at(newIndex), ElementPlacement.PLACEBEFORE);
+        }
+        return (this.parent() as Queryable<any, any>).firstIndex(i => i._item == this._item);
+    }
+
+    create(name?: string): T {
+        const collection = this.collection() as any;
+        const newItem = q(collection.add()) as T;
+        if (name !== undefined)
+            newItem.name(name);
+
+        if (this.length() > 1)
+            newItem.move(this.last() as T, ElementPlacement.PLACEAFTER);
+
+        return newItem;
+    }
+
+    moveTo(index: number): this {
+        if (index == undefined) throw "Index not specified";
+        this.index(index);
+        return this;
+    }
+
+    reverse(selector: string = ":"): A<T> {
+        return this.query(selector).reverse();
+    }
+
+    at(index: number): T {
+        return this.query(`${index}`).at(0);
+    }
+
+    get(selector: string): A<T> {
+        return this.query(selector);
+    }
+
+    getByName(name: string): Queryable<any, any> {
+        const collection = this.collection() as any;
+        return q(collection?.getByName?.(name));
+    }
+
+    length(): number { return this.collection().length; }
+
+    replace(index: number, item: T): void {
+        const itemAtIndex = this.at(index);
+        item.move(itemAtIndex, ElementPlacement.PLACEBEFORE);
+        itemAtIndex.remove?.();
+    }
+
+    insert(item: T) {
+        this.insertAt(-1, item);
+    }
+
+    insertAt(index: number, item: T): void {
+        const len = this.length();
+        index = evaluateNegativeInsertIndex(index, len);
+        if (index == 0) {
+            item._item.move(this.item(), ElementPlacement.PLACEATBEGINNING);
+            return;
+        }
+        if (index == len) {
+            item._item.move(this.item(), ElementPlacement.PLACEATEND);
+            return;
+        }
+        const itemBeforeIndex = this.at(index - 1);
+        item.move(itemBeforeIndex, ElementPlacement.PLACEAFTER);
+    }
+
+    insertMany(items: T[] | A<T>) {
+        f(items).do(item => this.insert(item));
+    }
+
+    insertManyAt(index: number, items: A<T>) {
+        const len = items.length();
+        index = evaluateNegativeInsertIndex(index, this.collection.length);
+        for (var i = 0; i < len; i++) {
+            this.insertAt(index + i, items.at(i));
+        }
+    }
+
+    delete(item: T) {
+        item.remove();
+    }
+
+    deleteMany(items: A<T>) {
+        items.do(item => item.remove());
+    }
+
+    deleteAt(index: number, count: number = 1) {
+        for (var i = 0; i < count; i++)
+            this.delete(this.at(index)._item);
+    }
+
+    removeAll() {
+        this.query().do(item => { item.remove() });
+    }
+
+    forEach(callback: (item: T, index: number) => any | void): any | void {
+        return this.query().forEach(callback);
+    }
+
+    do(callback: (item: T, index: number) => any | void): any | void {
+        return this.query().forEach(callback);
+    }
+
+    doOnce(callback: (item: T, index: number) => boolean): boolean {
+        const collection = this.collection();
+        for (var i = 0; i < collection.length; i++) {
+            if (callback(q(collection[i]), i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    select<U>(selector: (item: T) => U): A<U> {
+        return this.query().select(selector);
+    }
+
+    where(predicate: (item: T, i: number) => boolean): A<T> {
+        return this.query().where(predicate);
+    }
+
+    whereNameMatches(pattern: RegExp): A<T> {
+        return this.where(item => pattern.test(item.name()));
+    }
+
+    // Simple string pattern matchers that use whereNameMatches
+    whereNameStartsWith(prefix: string): A<T> {
+        return this.whereNameMatches(new RegExp(`^${this._escapeRegExp(prefix)}`));
+    }
+
+    whereNameEndsWith(suffix: string): A<T> {
+        return this.whereNameMatches(new RegExp(`${this._escapeRegExp(suffix)}$`));
+    }
+
+    whereNameContains(substring: string): A<T> {
+        return this.whereNameMatches(new RegExp(this._escapeRegExp(substring)));
+    }
+
+    // Helper to escape special regex characters in string literals
+    private _escapeRegExp(string: string): string {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    first(predicate?: (item: T) => boolean): T {
+        const len = this.length();
+        if (!predicate) return len > 0 ? this.at(0) : undefined as any as T;
+        for (var i = 0; i < len; i++) {
+            const item = this.at(i);
+            if (predicate(item)) return item;
+        }
+        return undefined as any as T;
+    }
+
+    firstIndex(predicate: (item: T) => boolean): number {
+        const len = this.length();
+        for (var i = 0; i < len; i++) {
+            const item = this.at(i);
+            if (predicate(item)) return i;
+        }
+        return -1;
+    }
+
+    last(predicate?: (item: T) => boolean): T {
+        const len = this.length();
+        if (!predicate) return len > 0 ? this.at(-1) : undefined as any as T;
+        for (var i = len - 1; i >= 0; i--) {
+            const item = this.at(i);
+            if (predicate(item)) return item;
+        }
+        return undefined as any as T;
+    }
+
+    lastIndex(predicate: (item: T) => boolean): number {
+        const len = this.length();
+        for (var i = len - 1; i >= 0; i--) {
+            const item = this.at(i);
+            if (predicate(item)) return i;
+        }
+        return -1;
+    }
+
+    skip(count: number): A<T> {
+        const len = this.length();
+        if (count >= len) return f() as A<T>;
+        count = Math.min(count, len);
+        return this.query(`${count}:`);
+    }
+
+    take(count: number): A<T> {
+        if (count == 0) return f() as A<T>;
+        count = Math.min(count, this.length());
+        return this.query(`:${count - 1}`);
+    }
+
+    any(predicate?: (item: T) => boolean): boolean {
+        if (predicate === undefined) return this.length() > 0;
+        return this.where(predicate).length() > 0;
+    }
+
+    all(predicate: (item: T) => boolean): boolean {
+        return this.where(predicate).length() == this.length();
+    }
+
+    array(): A<T> {
+        const result: A<T> = f([]);
+        this.do(item => result.push(item));
+        return result;
+    }
+
+    includes(item: T): boolean {
+        return this.any(i => i._item == item._item);
+    }
+
+    // hideAll(predicate?: (item: T) => boolean): this {
+    //     if (predicate === undefined) {
+    //         this.do(item => item.hide());
+    //     } else {
+    //         this.where(predicate).do(item => item.hide());
+    //     }
+    //     return this;
+    // }
+
+    // showAll(predicate?: (item: T) => boolean): this {
+    //     if (predicate === undefined) {
+    //         this.do(item => item.show());
+    //     } else {
+    //         this.where(predicate).do(item => item.show());
+    //     }
+    //     return this;
+    // }
+
+    activateAll(predicate?: (item: T) => boolean): this {
+        if (predicate === undefined) {
+            this.do(item => item.activate());
+        } else {
+            this.where(predicate).do(item => item.activate());
+        }
+        return this;
+    }
+
+    inactivateAll(predicate?: (item: T) => boolean): this {
+        if (predicate === undefined) {
+            this.do(item => item.deactivate());
+        } else {
+            this.where(predicate).do(item => item.deactivate());
+        }
+        return this;
+    }
+
+    static createQuery<TQuery extends QueryItem = QueryItem>(collection: any, selector: string = ":"): A<TQuery> {
+        if (collection.length == 0) return f();
+        const indexes = evaluateRangeSelector(selector, collection.length)
+        const len = indexes.length;
+        const result: A<TQuery> = f();
+        for (var i = 0; i < len; i++) {
+            const item = collection[indexes[i]];
+            if (item)
+                result.push(q<TQuery>(item));
+        }
+
+        return result;
+    }
+}
+
+class ApplicationQuery extends Queryable<Application, DocumentQuery<LayerQuery<PageItemQuery>>> {
+    set(name?: string): SetApplicationProperties { return new SetApplicationProperties(this, name); }
+    documents(): ApplicationQuery { return this; }
+    document(): DocumentQuery { return this.activeDocument(); }
+    defaults() { return clone<ApplicationDefaults>(this.queryDefaults); }
+    dpi(): number { return RasterEffectOptions.resolution; }
+    activeDocument(): DocumentQuery<LayerQuery<PageItemQuery>> { return q(this.item().activeDocument); }
+    selection(): A<Queryable> { return Queryable.createQuery(this.item().selection); }
+
+    constructor() {
+        if (api !== undefined)
+            throw "Application cannot be defined twice";
+
+        const app = _app();
+        if (!app)
+            throw "App is undefined";
+
+        super(_app(), "documents");
+        this.init();
+    }
+
+    init() {
+        // Make sure all coordinates in all new documents are in points
+        DocumentPreset.units = RulerUnits.Points;
+
+        // Set the ruler origin to bottom-left
+        this.app().preferences.setBooleanPreference("isRulerOriginTopLeft", false);
+
+        // Set the Y-axis to increase upward (1st quadrant behavior)
+        this.app().preferences.setBooleanPreference("isRulerIn4thQuad", false);
+
+        // Sets ruleUnits to points for all new documents
+        this.app().preferences.setIntegerPreference("rulerUnits", 0); // 0 = Points
+    }
+
+    isOpen(fileName: string): boolean {
+        // Check if the document exists in the currently open documents
+        let isOpen = false;
+        this.documents().forEach(doc => {
+            if (doc.name() === fileName) {
+                isOpen = true;
+            }
+        });
+        return isOpen;
+    }
+
+    exists(fileName: string): boolean {
+        // Check if the document exists in the currently open documents
+        if (this.isOpen(fileName))
+            return true;
+
+        // Check if the document exists in the file system
+        const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+        return file.exists;
+    }
+
+    createDocument(fileName: string, width: number, height: number, activate: boolean = true): DocumentQuery {
+        const doc: DocumentQuery = q(app.documents.add(DocumentColorSpace.RGB, width, height, 1));
+        doc.save(fileName);
+
+        if (activate) doc.activate();
+        return doc;
+    }
+
+    openDocument(fileName: string, create: boolean = false): DocumentQuery {
+        const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+        let openDoc: DocumentQuery | undefined;
+        if (this.exists(fileName)) {
+            this.documents().doOnce(doc => {
+                if (doc.name() === fileName) {
+                    openDoc = doc;
+                    openDoc.activate();
+                    return true;
+                }
+                return false;
+            });
+
+            if (openDoc) {
+                openDoc.activate();
+                openDoc.activeArtboard().fullScreen();
+                return openDoc;
+            } else {
+                return q<DocumentQuery>(this.api().item().open(file));
+            }
+        }
+
+        if (create) {
+            const size = this.defaults().documentSize;
+            const newDoc = this.createDocument(fileName, size, size, true);
+            newDoc.activate();
+            return newDoc;
+        }
+
+        throw `Failed to open document: ${fileName}`;
+    }
+
+    openResource(fileName: string): DocumentQuery {
+        return this.openDocument(combinePaths("resources", fileName), false);
+    }
+
+    closeDocument(doc: DocumentQuery | string) {
+        this.api().item().userInteractionLevel = UserInteractionLevel.DONTDISPLAYALERTS;
+        if (typeof doc == "string") {
+            api.documents().do(d => { if (d.name() == doc) d.item().close(SaveOptions.DONOTSAVECHANGES); });
+            return;
+        }
+
+        doc?.item().close(SaveOptions.DONOTSAVECHANGES);
+        app.userInteractionLevel = UserInteractionLevel.DISPLAYALERTS;
+    }
+
+    closeResource(doc: DocumentQuery | string) {
+        this.closeDocument(doc);
+    }
+
+    deleteDocument(fileName: string) {
+        if (api.exists(fileName)) {
+            // Try to delete through Illustrator first if it's open
+            api.documents().doOnce(doc => {
+                if (doc.name() === fileName) {
+                    doc.remove();
+                    return true;
+                }
+                return false;
+            });
+
+            // Also try to delete the file directly
+            const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+            if (file.exists) {
+                file.remove();
+            }
+        }
+    }
+
+    redraw(count: number = 1) {
+        if (!api.documents().any())
+            return;
+
+        // Force Illustrator to redraw the canvas
+        for (var i = 0; i < count; i++)
+            app?.redraw();
+    }
+
+    reset(count: number = 1) {
+        this.api().item().selection = [];
+        this.redraw(count);
+    };
+
+    protected _configureDefaults(): void {
+        const defaults = this.queryDefaults as ApplicationDefaults;
+        defaults.documentSize = 5 * 12 * this.dpi();
+        defaults.layerName = "Layer 1";
+        defaults.artboardRect = [0, 1199, 1198, 0];
+    }
+}
+
+interface ApplicationDefaults {
+    documentSize: number;
+    layerName: string;
+    artboardRect: Rect;
+}
+
+class DocumentQuery<T extends QueryItem = LayerQuery<PageItemQuery>> extends Queryable<Document, T> {
+    private _layers: DocumentQuery<LayerQuery<PageItemQuery>> | undefined;
+    private _artboards: DocumentQuery<ArtboardQuery> | undefined;
+    private _views: DocumentQuery<ViewQuery> | undefined;
+    private _stories: DocumentQuery<StoryQuery<TextRangeQuery>> | undefined;
+    private _variables: DocumentQuery<VariableQuery> | undefined;
+    private _swatches: DocumentQuery<SwatchQuery> | undefined;
+    private _brushes: DocumentQuery<BrushQuery> | undefined;
+    private _symbols: DocumentQuery<SymbolQuery> | undefined;
+    private _patterns: DocumentQuery<PatternQuery> | undefined;
+    private _spots: DocumentQuery<SpotQuery> | undefined;
+    private _gradients: DocumentQuery<GradientQuery> | undefined;
+    private _tags: DocumentQuery<TagQuery> | undefined;
+    private _pageItems: LayerQuery<PageItemQuery> | undefined;
+    private _compoundPathItems: LayerQuery<CompoundPathItemQuery> | undefined;
+    private _pathItems: DocumentQuery<PathItemQuery> | undefined;
+    private _rasterItems: DocumentQuery<RasterItemQuery> | undefined;
+    private _placedItems: DocumentQuery<PlacedItemQuery> | undefined;
+    private _meshItems: DocumentQuery<MeshItemQuery> | undefined;
+    private _pluginItems: DocumentQuery<PluginItemQuery> | undefined;
+    private _textFrames: DocumentQuery<TextFrameQuery> | undefined;
+    private _groupItems: DocumentQuery<GroupItemQuery> | undefined;
+    private _symbolItems: DocumentQuery<SymbolItemQuery> | undefined;
+    private _graphItems: DocumentQuery<GraphItemQuery> | undefined;
+
+    set(name?: string): SetDocumentProperties { return new SetDocumentProperties(this as any, name); }
+    active(): boolean { return this.api().item().activeDocument == this._item; }
+    activate() { this.api().item().activeDocument = this._item; return this; }
+    deactivate() { this.api().item().activeDocument = f(this.api().item().documents).at(-1); return this; }
+    remove() { this._item?.close?.(); this._item = QueryItem.empty(); }
+    activeArtboard(): ArtboardQuery { return this.artboards().at(this.getActiveArtboardIndex()); }
+    activeLayer(): LayerQuery { return q(this.item().activeLayer); }
+    activeView(): ViewQuery { return q(this.item().activeView); }
+    defaults(): ApplicationDefaults { return this.api().defaults(); }
+
+    rulerUnits(): RulerUnits { return this.item().rulerUnits; }
+    dpi(): number { return this.api().dpi(); }
+
+    // QueryItem overrides
+    document(): DocumentQuery { return this as any; }
+    artboard(): ArtboardQuery { return this.activeArtboard(); }
+    layer(): LayerQuery { return this.activeLayer(); }
+    region(): Region { return this.activeArtboard().region(); }
+
+    isNew(): boolean {
+        const layers = this.layers();
+        const layer = layers.first();
+        return layers.length() == 1 && 
+            layer.name() == "Layer 1" && 
+            layer.pageItems().length() == 0;  
+    }
+
+    constructor(doc: Document, collectionType: CollectionType = "layers") {
+        super(doc, collectionType);
+
+        // Ensures Cartesian coordinates
+        this.item().rulerOrigin = [0, 0];
+    }
+
+    save(fileName?: string): this {
+        try {
+            if (fileName === undefined) {
+                this._item.save();
+                return this;
+            }
+            const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+            this._item.saveAs(file);
+            return api.documents().first(d => d.name() == fileName) as any;
+        } catch (error: any) {
+            throw new Error(`Failed to save document '${fileName}': ${error.message}`);
+        }
+    }
+
+    close() {
+        this.remove();
+    }
+
+    reset() {
+        if (this.artboards().any()) {
+            this.layers().removeAll();
+            this.artboards().removeAll();
+        }
+    }
+
+    fullscreen() {
+        if (this.artboards().any())
+            this.activeArtboard().fullScreen();
+    }
+
+    create(name?: string): T {
+        if (this.collectionType !== "artboards")
+            return super.create(name);
+
+        throw "Cannot create an artbaord because it is treated as a singleston";
+    }
+
+    removeAll(): void {
+        if (this.collectionType == "artboards") {
+            const activeArtboard = this.activeArtboard();
+            this.where(a => a._item !== activeArtboard._item).do(a => a.remove());
+            this.activeArtboard().reset();
+        } else if (this.collectionType == "layers") {
+            const defaultLayer = this.layers().length() > 0 ? this.layers().at(0) : this.layers().create();
+            defaultLayer.name(this.defaults().layerName);
+            defaultLayer.pageItems().removeAll();
+            defaultLayer.activate();
+            this.layers().skip(1).do(layer => layer.remove());
+            this.layers().first().removeAll();
+        } else {
+            super.removeAll();
+        }
+        api.redraw();
+    }
+
+    copyLayer(layer: LayerQuery, index: number = -1): LayerQuery {
+        const differentDocuments = this.item() !== layer.document().item();
+        if (differentDocuments) {
+            // Match the aspect ratio of the source artboard
+            layer.document().activate();
+            const sourceAspectRatio = layer.document().activeArtboard().aspectRatio();
+
+            this.activate();
+            this.activeArtboard().reset();
+            this.activeArtboard().aspectRatio(sourceAspectRatio);
+            this.rearrangeArtboards();
+        }
+
+        // Activate the source document and get its artboard rect
+        layer.document().activate();
+        const sourceRect = layer.document().activeArtboard().rect();
+
+        // Pre-calculate relative centers for all items in the source layer
+        const itemCenters = layer.pageItems().select(p => p.p().position());
+
+        // Activate the target document and get its artboard rect
+        this.activate();
+        const targetRect = this.activeArtboard().rect();
+
+        // Create the new layer in the target document
+        const layers = this.layers();
+        const newLayer = layers.create(layer.name());
+        newLayer.replaceWith(layer);
+        newLayer.moveTo(index);
+
+        if (differentDocuments) {
+            const sourceWidth = Math.abs(sourceRect[2] - sourceRect[0]);
+            const sourceHeight = Math.abs(sourceRect[1] - sourceRect[3]);
+            const targetWidth = Math.abs(targetRect[2] - targetRect[0]);
+            const targetHeight = Math.abs(targetRect[1] - targetRect[3]);
+            const scaleFactors = { scaleX: targetWidth / sourceWidth, scaleY: targetHeight / sourceHeight }
+
+            // Apply scaling and translation using the pre-stored relative centers
+            newLayer.pageItems().forEach((item, i) => {
+                i = i as number;
+                item.p().scale([scaleFactors.scaleX, scaleFactors.scaleY]);
+                this.p().position(itemCenters.at(i));
+            });
+        }
+
+        return newLayer;
+    }
+
+    copyArtboard(artboard: ArtboardQuery) {
+        artboard.document().activate();
+        this.activeArtboard().aspectRatio(artboard.aspectRatio());
+        this.activate();
+    }
+
+    getActiveArtboardIndex(): number {
+        const artboards: Artboards = this.artboards().collection() as Artboards;
+        const activeIndex = artboards.getActiveArtboardIndex();
+        if (activeIndex === undefined || activeIndex === null || activeIndex < 0) {
+            artboards.setActiveArtboardIndex(0);
+            return 0;
+        }
+        return activeIndex;
+    }
+
+    rearrangeArtboards(artboardLayout?: DocumentArtboardLayout, artboardRowsOrCols?: number, artboardSpacing?: number, artboardMoveArtwork?: boolean): boolean {
+        return this.item().rearrangeArtboards(artboardLayout, artboardRowsOrCols, artboardSpacing, artboardMoveArtwork);
+    }
+
+    layers() {
+        if (this.collectionType === "layers") return this;
+        if (this._layers) return this._layers;
+        this._layers = new DocumentQuery<LayerQuery<PageItemQuery>>(this._item, "layers");
+        return this._layers;
+    }
+
+    artboards() {
+        if (this.collectionType === "artboards") return this;
+        if (this._artboards) return this._artboards;
+        this._artboards = new DocumentQuery<ArtboardQuery>(this._item, "artboards");
+        return this._artboards;
+    }
+
+    views() {
+        if (this.collectionType === "views") return this;
+        if (this._views) return this._views;
+        this._views = new DocumentQuery<ViewQuery>(this._item, "views");
+        return this._views;
+    }
+
+    stories() {
+        if (this.collectionType === "stories") return this;
+        if (this._stories) return this._stories;
+        this._stories = new DocumentQuery<StoryQuery<TextRangeQuery>>(this._item, "stories");
+        return this._stories;
+    }
+
+    variables() {
+        if (this.collectionType === "variables") return this;
+        if (this._variables) return this._variables;
+        this._variables = new DocumentQuery<VariableQuery>(this._item, "variables");
+        return this._variables;
+    }
+
+    swatches() {
+        if (this.collectionType === "swatches") return this;
+        if (this._swatches) return this._swatches;
+        this._swatches = new DocumentQuery<SwatchQuery>(this._item, "swatches");
+        return this._swatches;
+    }
+
+    selectedSwatches(): A<SwatchQuery> {
+        if (!this.item().swatches) return f([]);
+        return Queryable.createQuery(this.item().swatches.getSelected(true));
+    }
+
+    brushes() {
+        if (this.collectionType === "brushes") return this;
+        if (this._brushes) return this._brushes;
+        this._brushes = new DocumentQuery<BrushQuery>(this._item, "brushes");
+        return this._brushes;
+    }
+
+    symbols() {
+        if (this.collectionType === "symbols") return this;
+        if (this._symbols) return this._symbols;
+        this._symbols = new DocumentQuery<SymbolQuery>(this._item, "symbols");
+        return this._symbols;
+    }
+
+    patterns() {
+        if (this.collectionType === "patterns") return this;
+        if (this._patterns) return this._patterns;
+        this._patterns = new DocumentQuery<PatternQuery>(this._item, "patterns");
+        return this._patterns;
+    }
+
+    spots() {
+        if (this.collectionType === "spots") return this;
+        if (this._spots) return this._spots;
+        this._spots = new DocumentQuery<SpotQuery>(this._item, "spots");
+        return this._spots;
+    }
+
+    gradients() {
+        if (this.collectionType === "gradients") return this;
+        if (this._gradients) return this._gradients;
+        this._gradients = new DocumentQuery<GradientQuery>(this._item, "gradients");
+        return this._gradients;
+    }
+
+    tags() {
+        if (this.collectionType === "tags") return this;
+        if (this._tags) return this._tags;
+        this._tags = new DocumentQuery<TagQuery>(this._item, "tags");
+        return this._tags;
+    }
+
+    pageItems() {
+        if (this.collectionType === "pageItems") return this;
+        if (this._pageItems) return this._pageItems;
+        this._pageItems = new LayerQuery<PageItemQuery>(this._item, "pageItems");
+        return this._pageItems;
+    }
+
+    compoundPathItems() {
+        if (this.collectionType === "compoundPathItems") return this;
+        if (this._compoundPathItems) return this._compoundPathItems;
+        this._compoundPathItems = new LayerQuery<CompoundPathItemQuery>(this._item, "compoundPathItems");
+        return this._compoundPathItems;
+    }
+
+    pathItems() {
+        if (this.collectionType === "pathItems") return this;
+        if (this._pathItems) return this._pathItems;
+        this._pathItems = new DocumentQuery<PathItemQuery>(this._item, "pathItems");
+        return this._pathItems;
+    }
+
+    rasterItems() {
+        if (this.collectionType === "rasterItems") return this;
+        if (this._rasterItems) return this._rasterItems;
+        this._rasterItems = new DocumentQuery<RasterItemQuery>(this._item, "rasterItems");
+        return this._rasterItems;
+    }
+
+    placedItems() {
+        if (this.collectionType === "placedItems") return this;
+        if (this._placedItems) return this._placedItems;
+        this._placedItems = new DocumentQuery<PlacedItemQuery>(this._item, "placedItems");
+        return this._placedItems;
+    }
+
+    meshItems() {
+        if (this.collectionType === "meshItems") return this;
+        if (this._meshItems) return this._meshItems;
+        this._meshItems = new DocumentQuery<MeshItemQuery>(this._item, "meshItems");
+        return this._meshItems;
+    }
+
+    pluginItems() {
+        if (this.collectionType === "pluginItems") return this;
+        if (this._pluginItems) return this._pluginItems;
+        this._pluginItems = new DocumentQuery<PluginItemQuery>(this._item, "pluginItems");
+        return this._pluginItems;
+    }
+
+    textFrames() {
+        if (this.collectionType === "textFrames") return this;
+        if (this._textFrames) return this._textFrames;
+        this._textFrames = new DocumentQuery<TextFrameQuery>(this._item, "textFrames");
+        return this._textFrames;
+    }
+
+    groupItems() {
+        if (this.collectionType === "groupItems") return this;
+        if (this._groupItems) return this._groupItems;
+        this._groupItems = new DocumentQuery<GroupItemQuery>(this._item, "groupItems");
+        return this._groupItems;
+    }
+
+    symbolItems() {
+        if (this.collectionType === "symbolItems") return this;
+        if (this._symbolItems) return this._symbolItems;
+        this._symbolItems = new DocumentQuery<SymbolItemQuery>(this._item, "symbolItems");
+        return this._symbolItems;
+    }
+
+    graphItems() {
+        if (this.collectionType === "graphItems") return this;
+        if (this._graphItems) return this._graphItems;
+        this._graphItems = new DocumentQuery<GraphItemQuery>(this._item, "graphItems");
+        return this._graphItems;
+    }
+
+    createLayer(name?: string): LayerQuery {
+        return this._create(i => i.item().layers, layers => q(layers.add()), name);
+    }
+    
+    createArtboard(artboardRect: Rect, name?: string): ArtboardQuery {
+        return this._create(i => i.item().artboards, items => q(items.add(artboardRect)), name);
+    }
+    
+    createStory(): StoryQuery {
+        // Stories collection doesn't have an add method, so we can't create directly
+        throw new Error("Stories cannot be created directly");
+    }
+    
+    createVariable(name?: string): VariableQuery {
+        return this._create(i => i.item().variables, variables => q(variables.add()), name);
+    }
+    
+    createSwatch(name?: string): SwatchQuery {
+        return this._create(i => i.item().swatches, swatches => q(swatches.add()), name);
+    }
+    
+    createBrush(brushDefinition: File, brushName?: string, itemName?: string): BrushQuery {
+        return this._create(i => i.item().brushes, items => q(items.add(brushDefinition, brushName)), itemName);
+    }
+    
+    createSymbol(sourceArt: PageItem, registrationPoint?: SymbolRegistrationPoint, name?: string): SymbolQuery {
+        return this._create(i => i.item().symbols, items => q(items.add(sourceArt, registrationPoint)), name);
+    }
+    
+    createPattern(name?: string): PatternQuery {
+        return this._create(i => i.item().patterns, patterns => q(patterns.add()), name);
+    }
+    
+    createSpot(name?: string): SpotQuery {
+        return this._create(i => i.item().spots, spots => q(spots.add()), name);
+    }
+    
+    createGradient(name?: string): GradientQuery {
+        return this._create(i => i.item().gradients, gradients => q(gradients.add()), name);
+    }
+    
+    createTag(name?: string): TagQuery {
+        return this._create(i => i.item().tags, tags => q(tags.add()), name);
+    }
+}
+
+class ArtboardQuery extends Queryable<Artboard, QueryItem> {
+    set(name?: string): SetArtboardProperties { return new SetArtboardProperties(this as any, name); }
+    document(): DocumentQuery { return (this.parent() as DocumentQuery).artboards() as any; }
+    index(): number { return this.document().artboards().firstIndex(i => i._item == this._item); }
+    activate() { this.document().item().artboards.setActiveArtboardIndex(this.index()); return this; }
+    activated(): boolean { return this.document().activeArtboard().item() === this.item(); }
+    deactivate() { ((this.parent() as DocumentQuery).item()).artboards.setActiveArtboardIndex(0); return this; }
+
+    // How to change the absoluie coordinate of the Artboard
+    region(region?: Region): Region {
+        if (region !== undefined) {
+            const newArtboardRect = region.base().rect();
+            this.item().artboardRect = newArtboardRect;
+        }
+        return Region.fromRect(this.item().artboardRect);
+    }
+
+    // Absolute bounds in document coordinates
+    rect(): Rect { return this.item().artboardRect; }
+
+    center(newCenter?: Position): Position {
+        if (newCenter) {
+            const region = this.region();
+            region.center(newCenter);
+            this.region(region);
+        }
+        return this.region().center();
+    }
+
+    width(newWidth?: number, proportional?: boolean): number {
+        if (newWidth !== undefined) {
+            const region = this.region();
+            region.width(newWidth, proportional);
+            this.region(region);
+        }
+        return this.region().width();
+    }
+
+    height(newHeight?: number, proportional?: boolean): number {
+        if (newHeight !== undefined) {
+            const region = this.region();
+            region.height(newHeight, proportional);
+            this.region(region);
+        }
+        return this.region().height();
+    }
+
+    size(newSize?: Size): Size {
+        if (newSize) {
+            const region = this.region();
+            region.size(newSize);
+            this.region(region);
+        }
+        return this.region().size();
+    }
+
+    aspectRatio(widthToHeight?: number): number {
+        if (widthToHeight !== undefined) {
+            const width = this.width(); // Current width in relative units
+            const height = this.height(); // Current height in relative units
+
+            // Calculate the new dimensions while maintaining the specified aspect ratio
+            const newWidth = Math.min(width, height * widthToHeight);
+            const newHeight = Math.min(height, width / widthToHeight);
+
+            // Set the new size centered on the current position
+            this.size([newWidth, newHeight]);
+        }
+        return this.width() / this.height();
+    }
+
+    constructor(artboard: Artboard) {
+        super(artboard);
+    }
+
+    reset() {
+        const rect = this.document().defaults().artboardRect;
+        if (f(rect).doesntEqual(f(this.item().artboardRect))) {
+            const region = Region.fromRect(rect);
+            this.region(region);
+        }
+        this.fullScreen();
+    }
+
+    fullScreen(padding: number = 0.05): ArtboardQuery {
+        if (this.isFullScreen(padding)) return this;
+
+        const view = this.document().item().activeView;
+
+        // Step 1: Reset to a known zoom level (100%)
+        view.zoom = 1;
+
+        // Step 2: Calculate viewable area at this zoom
+        const viewBounds = view.bounds; // [left, top, right, bottom]
+        const viewWidth = viewBounds[2] - viewBounds[0];
+        const viewHeight = viewBounds[1] - viewBounds[3];
+
+        // Step 3: Adjust artboard dimensions with padding
+        const region = this.region();
+        const paddedWidth = region.widthAbs() * (1 + padding);
+        const paddedHeight = region.heightAbs() * (1 + padding);
+
+        // Step 4: Determine the scale to fit the padded artboard into the view
+        const scale = Math.min(viewWidth / paddedWidth, viewHeight / paddedHeight);
+        const centerPoint = region.centerAbs() as [number, number];
+
+        // Step 5: Apply the calculated zoom and center the view
+        view.centerPoint = centerPoint;
+        view.zoom = scale;
+
+        return this;
+    }
+
+    isFullScreen(padding: number = 0.05): boolean {
+        const view = this.document().item().activeView;
+
+        // Get current view bounds [left, top, right, bottom]
+        const viewBounds = view.bounds;
+        const viewWidth = viewBounds[2] - viewBounds[0];
+        const viewHeight = viewBounds[1] - viewBounds[3];
+
+        // Get artboard region and padded dimensions
+        const region = this.region();
+        const paddedWidth = region.widthAbs() * (1 + padding);
+        const paddedHeight = region.heightAbs() * (1 + padding);
+
+        // Define a tolerance for comparison
+        const tolerance = 2; // Allow a difference of points
+
+        // Check if view dimensions approximately match the padded artboard dimensions
+        const widthMatch = Math.abs(viewWidth - paddedWidth) <= tolerance;
+        const heightMatch = Math.abs(viewHeight - paddedHeight) <= tolerance;
+
+        // Check if center points approximately align
+        const viewCenter = view.centerPoint;
+        const regionCenter = region.centerAbs();
+        const centerXMatch = Math.abs(viewCenter[0] - regionCenter[0]) <= tolerance;
+        const centerYMatch = Math.abs(viewCenter[1] - regionCenter[1]) <= tolerance;
+
+        // Only one dimension will be full-sized because the screen and the board have different shapes
+        return (widthMatch || heightMatch) && centerXMatch && centerYMatch;
+    }
+
+    square(): ArtboardQuery {
+        this.aspectRatio(1);
+        return this;
+    }
+}
+
+class LayerQuery<T extends QueryItem = PageItemQuery> extends Queryable<Layer, T> {
+    private _pageItems: LayerQuery<PageItemQuery> | undefined;
+    private _compoundPathItems: LayerQuery<CompoundPathItemQuery> | undefined;
+    private _pathItems: LayerQuery<PathItemQuery> | undefined;
+    private _rasterItems: LayerQuery<RasterItemQuery> | undefined;
+    private _placedItems: LayerQuery<PlacedItemQuery> | undefined;
+    private _meshItems: LayerQuery<MeshItemQuery> | undefined;
+    private _pluginItems: LayerQuery<PluginItemQuery> | undefined;
+    private _textFrames: LayerQuery<TextFrameQuery> | undefined;
+    private _groupItems: LayerQuery<GroupItemQuery> | undefined;
+    private _symbolItems: LayerQuery<SymbolItemQuery> | undefined;
+    private _graphItems: LayerQuery<GraphItemQuery> | undefined;
+
+    set(name?: string): SetLayerProperties { return new SetLayerProperties(this as any, name); }
+    document(): DocumentQuery { return (this.parent() as DocumentQuery).layers(); }
+    hide(): QueryItem { this.item().visible = false; return this; }
+    hidden(): boolean { return this.item().visible === false; }
+    show(): QueryItem { this.item().visible = true; return this; }
+    visible(): boolean { return this.item().visible === true; }
+
+    private _c: ContainerItem | undefined;
+    c(): ContainerItem {
+        if (this._c === undefined)
+            this._c = new ContainerItem(this);
+        return this._c;
+    }
+
+    constructor(layer: Layer, collectionType: CollectionType = "pageItems") {
+        super(layer, collectionType);
+    }
+
+    group(groupName?: string, predicate?: (item: T) => boolean): GroupItemQuery {
+        const items = predicate ? this.where(predicate as any) : this.query();
+        const group = this.groupItems().create(groupName);
+        items.do(item => item.move(group, ElementPlacement.PLACEATEND));
+        return group;
+    }
+
+    clip() {
+        var mask = this.c().rectangle("Mask");
+        mask.opacity(0.05);
+        mask.fillColor(WebColor.Aquamarine);
+        mask.moveTo(0);
+        mask.p().bringToFront();
+
+        var group = this.group("Clipping Group");
+        group.clipped(true);
+    }
+
+    replaceWith(layer: LayerQuery<T>): void {
+        this.name(layer.name());
+        this.pageItems().removeAll();
+        layer.pageItems().do(item => {
+            item.duplicate(item.name(), this, ElementPlacement.PLACEATEND);
+        });
+    }
+
+    pageItems() {
+        if (this.collectionType === "pageItems") return this;
+        if (this._pageItems) return this._pageItems;
+        this._pageItems = new LayerQuery<PageItemQuery>(this._item, "pageItems");
+        return this._pageItems;
+    }
+
+    compoundPathItems() {
+        if (this.collectionType === "compoundPathItems") return this;
+        if (this._compoundPathItems) return this._compoundPathItems;
+        this._compoundPathItems = new LayerQuery<CompoundPathItemQuery>(this._item, "compoundPathItems");
+        return this._compoundPathItems;
+    }
+
+    pathItems() {
+        if (this.collectionType === "pathItems") return this;
+        if (this._pathItems) return this._pathItems;
+        this._pathItems = new LayerQuery<PathItemQuery>(this._item, "pathItems");
+        return this._pathItems;
+    }
+
+    rasterItems() {
+        if (this.collectionType === "rasterItems") return this;
+        if (this._rasterItems) return this._rasterItems;
+        this._rasterItems = new LayerQuery<RasterItemQuery>(this._item, "rasterItems");
+        return this._rasterItems;
+    }
+
+    placedItems() {
+        if (this.collectionType === "placedItems") return this;
+        if (this._placedItems) return this._placedItems;
+        this._placedItems = new LayerQuery<PlacedItemQuery>(this._item, "placedItems");
+        return this._placedItems;
+    }
+
+    meshItems() {
+        if (this.collectionType === "meshItems") return this;
+        if (this._meshItems) return this._meshItems;
+        this._meshItems = new LayerQuery<MeshItemQuery>(this._item, "meshItems");
+        return this._meshItems;
+    }
+
+    pluginItems() {
+        if (this.collectionType === "pluginItems") return this;
+        if (this._pluginItems) return this._pluginItems;
+        this._pluginItems = new LayerQuery<PluginItemQuery>(this._item, "pluginItems");
+        return this._pluginItems;
+    }
+
+    textFrames() {
+        if (this.collectionType === "textFrames") return this;
+        if (this._textFrames) return this._textFrames;
+        this._textFrames = new LayerQuery<TextFrameQuery>(this._item, "textFrames");
+        return this._textFrames;
+    }
+
+    groupItems() {
+        if (this.collectionType === "groupItems") return this;
+        if (this._groupItems) return this._groupItems;
+        this._groupItems = new LayerQuery<GroupItemQuery>(this._item, "groupItems");
+        return this._groupItems;
+    }
+
+    symbolItems() {
+        if (this.collectionType === "symbolItems") return this;
+        if (this._symbolItems) return this._symbolItems;
+        this._symbolItems = new LayerQuery<SymbolItemQuery>(this._item, "symbolItems");
+        return this._symbolItems;
+    }
+
+    graphItems() {
+        if (this.collectionType === "graphItems") return this;
+        if (this._graphItems) return this._graphItems;
+        this._graphItems = new LayerQuery<GraphItemQuery>(this._item, "graphItems");
+        return this._graphItems;
+    }
+    
+    createCompoundPathItem(name?: string): CompoundPathItemQuery {
+        return this._create(i => i.item().compoundPathItems, items => q(items.add()), name);
+    }
+    
+    createPathItem(name?: string): PathItemQuery {
+        return this._create(i => i.item().pathItems, items => q(items.add()), name);
+    }
+    
+    createPlacedItem(name?: string): PlacedItemQuery {
+        return this._create(i => i.item().placedItems, items => q(items.add()), name);
+    }
+    
+    createTextFrame(name?: string): TextFrameQuery {
+        return this._create(i => i.item().textFrames, items => q(items.add()), name);
+    }
+    
+    createGroupItem(name?: string): GroupItemQuery {
+        return this._create(i => i.item().groupItems, items => q(items.add()), name);
+    }
+    
+    createSymbolItem(symbol: Symbol, name?: string): SymbolItemQuery {
+        return this._create(i => i.item().symbolItems, items => q(items.add(symbol)), name);
+    }
+}
+
+class GroupItemQuery<T extends QueryItem = PageItemQuery> extends Queryable<GroupItem, T> {
+    private _pageItems: GroupItemQuery<PageItemQuery> | undefined;
+    private _compoundPathItems: GroupItemQuery<CompoundPathItemQuery> | undefined;
+    private _pathItems: GroupItemQuery<PathItemQuery> | undefined;
+    private _rasterItems: GroupItemQuery<RasterItemQuery> | undefined;
+    private _placedItems: GroupItemQuery<PlacedItemQuery> | undefined;
+    private _meshItems: GroupItemQuery<MeshItemQuery> | undefined;
+    private _pluginItems: GroupItemQuery<PluginItemQuery> | undefined;
+    private _textFrames: GroupItemQuery<TextFrameQuery> | undefined;
+    private _groupItems: GroupItemQuery<GroupItemQuery> | undefined;
+    private _symbolItems: GroupItemQuery<SymbolItemQuery> | undefined;
+    private _graphItems: GroupItemQuery<GraphItemQuery> | undefined
+
+    set(name?: string): SetGroupItemProperties { return new SetGroupItemProperties(this as any, name); }
+
+    c(): ContainerItem {
+        if (this._item.c === undefined)
+            this._item.c = new ContainerItem(this);
+        return this._item.c;
+    }
+
+    constructor(groupItem: GroupItem, collectionType: CollectionType = "pageItems") {
+        super(groupItem, collectionType);
+    }
+
+    group(groupName?: string, predicate?: (item: T) => boolean): GroupItemQuery {
+        const items = predicate ? this.where(predicate as any) : this.query();
+        const group = this.groupItems().create(groupName);
+        items.do(item => item.move(group, ElementPlacement.PLACEATEND));
+        return group;
+    }
+
+    ungroup() {
+        this.reverse().do(item => item.move(this, ElementPlacement.PLACEAFTER));
+        this.remove();
+    }
+
+    pageItems() {
+        if (this.collectionType === "pageItems") return this;
+        if (this._pageItems) return this._pageItems;
+        this._pageItems = new GroupItemQuery<PageItemQuery>(this._item, "pageItems");
+        return this._pageItems;
+    }
+
+    compoundPathItems() {
+        if (this.collectionType === "compoundPathItems") return this;
+        if (this._compoundPathItems) return this._compoundPathItems;
+        this._compoundPathItems = new GroupItemQuery<CompoundPathItemQuery>(this._item, "compoundPathItems");
+        return this._compoundPathItems;
+    }
+
+    pathItems() {
+        if (this.collectionType === "pathItems") return this;
+        if (this._pathItems) return this._pathItems;
+        this._pathItems = new GroupItemQuery<PathItemQuery>(this._item, "pathItems");
+        return this._pathItems;
+    }
+
+    rasterItems() {
+        if (this.collectionType === "rasterItems") return this;
+        if (this._rasterItems) return this._rasterItems;
+        this._rasterItems = new GroupItemQuery<RasterItemQuery>(this._item, "rasterItems");
+        return this._rasterItems;
+    }
+
+    placedItems() {
+        if (this.collectionType === "placedItems") return this;
+        if (this._placedItems) return this._placedItems;
+        this._placedItems = new GroupItemQuery<PlacedItemQuery>(this._item, "placedItems");
+        return this._placedItems;
+    }
+
+    meshItems() {
+        if (this.collectionType === "meshItems") return this;
+        if (this._meshItems) return this._meshItems;
+        this._meshItems = new GroupItemQuery<MeshItemQuery>(this._item, "meshItems");
+        return this._meshItems;
+    }
+
+    pluginItems() {
+        if (this.collectionType === "pluginItems") return this;
+        if (this._pluginItems) return this._pluginItems;
+        this._pluginItems = new GroupItemQuery<PluginItemQuery>(this._item, "pluginItems");
+        return this._pluginItems;
+    }
+
+    textFrames() {
+        if (this.collectionType === "textFrames") return this;
+        if (this._textFrames) return this._textFrames;
+        this._textFrames = new GroupItemQuery<TextFrameQuery>(this._item, "textFrames");
+        return this._textFrames;
+    }
+
+    groupItems() {
+        if (this.collectionType === "groupItems") return this;
+        if (this._groupItems) return this._groupItems;
+        this._groupItems = new GroupItemQuery<GroupItemQuery>(this._item, "groupItems");
+        return this._groupItems;
+    }
+
+    symbolItems() {
+        if (this.collectionType === "symbolItems") return this;
+        if (this._symbolItems) return this._symbolItems;
+        this._symbolItems = new GroupItemQuery<SymbolItemQuery>(this._item, "symbolItems");
+        return this._symbolItems;
+    }
+
+    graphItems() {
+        if (this.collectionType === "graphItems") return this;
+        if (this._graphItems) return this._graphItems;
+        this._graphItems = new GroupItemQuery<GraphItemQuery>(this._item, "graphItems");
+        return this._graphItems;
+    }
+    
+    createCompoundPathItem(name?: string): CompoundPathItemQuery {
+        return this._create(i => i.item().compoundPathItems, items => q(items.add()), name);
+    }
+    
+    createPathItem(name?: string): PathItemQuery {
+        return this._create(i => i.item().pathItems, items => q(items.add()), name);
+    }
+    
+    createPlacedItem(name?: string): PlacedItemQuery {
+        return this._create(i => i.item().placedItems, items => q(items.add()), name);
+    }
+    
+    createTextFrame(name?: string): TextFrameQuery {
+        return this._create(i => i.item().textFrames, items => q(items.add()), name);
+    }
+    
+    createGroupItem(name?: string): GroupItemQuery {
+        return this._create(i => i.item().groupItems, items => q(items.add()), name);
+    }
+    
+    createSymbolItem(symbol: Symbol, name?: string): SymbolItemQuery {
+        return this._create(i => i.item().symbolItems, items => q(items.add(symbol)), name);
+    }
+}
+
+class StoryQuery<T extends QueryItem = TextRangeQuery> extends Queryable<Story, T> {
+    private _textRanges: StoryQuery<TextRangeQuery> | undefined;
+    private _characters: StoryQuery<TextRangeQuery> | undefined;
+    private _words: StoryQuery<TextRangeQuery> | undefined;
+    private _lines: StoryQuery<TextRangeQuery> | undefined;
+    private _paragraphs: StoryQuery<TextRangeQuery> | undefined;
+    private _insertionPoints: StoryQuery<InsertionPointQuery> | undefined;
+    set(name?: string): SetStoryProperties { return new SetStoryProperties(this as any, name); }
+
+    constructor(story: Story, collectionType: CollectionType = "textRanges") {
+        super(story, collectionType);
+    }
+
+    textRanges() {
+        if (this.collectionType === "textRanges") return this;
+        if (this._textRanges) return this._textRanges;
+        this._textRanges = new StoryQuery<TextRangeQuery>(this._item, "textRanges");
+        return this._textRanges;
+    }
+
+    characters() {
+        if (this.collectionType === "characters") return this;
+        if (this._characters) return this._characters;
+        this._characters = new StoryQuery<TextRangeQuery>(this._item, "characters");
+        return this._characters;
+    }
+
+    words() {
+        if (this.collectionType === "words") return this;
+        if (this._words) return this._words;
+        this._words = new StoryQuery<TextRangeQuery>(this._item, "words");
+        return this._words;
+    }
+
+    lines() {
+        if (this.collectionType === "lines") return this;
+        if (this._lines) return this._lines;
+        this._lines = new StoryQuery<TextRangeQuery>(this._item, "lines");
+        return this._lines;
+    }
+
+    paragraphs() {
+        if (this.collectionType === "paragraphs") return this;
+        if (this._paragraphs) return this._paragraphs;
+        this._paragraphs = new StoryQuery<TextRangeQuery>(this._item, "paragraphs");
+        return this._paragraphs;
+    }
+
+    insertionPoints() {
+        if (this.collectionType === "insertionPoints") return this;
+        if (this._insertionPoints) return this._insertionPoints;
+        this._insertionPoints = new StoryQuery<InsertionPointQuery>(this._item, "insertionPoints");
+        return this._insertionPoints;
+    }
+
+    createCharacter(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().characters, items => q(items.add(contents)), name);
+    }
+    
+    createWord(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().words, items => q(items.add(contents)), name);
+    }
+    
+    createParagraph(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().paragraphs, items => q(items.add(contents)), name);
+    }
+}
+
+
+class TextFrameQuery<T extends QueryItem = TextRangeQuery> extends Queryable<TextFrame, T> {
+    private _characters: TextFrameQuery<TextRangeQuery> | undefined;
+    private _words: TextFrameQuery<TextRangeQuery> | undefined;
+    private _lines: TextFrameQuery<TextRangeQuery> | undefined;
+    private _paragraphs: TextFrameQuery<TextRangeQuery> | undefined;
+    set(name?: string): SetTextFrameProperties { return new SetTextFrameProperties(this as any, name); }
+
+    constructor(textFrame: TextFrame, collectionType: CollectionType = "characters") {
+        super(textFrame, collectionType);
+    }
+
+    characters() {
+        if (this.collectionType === "characters") return this;
+        if (this._characters) return this._characters;
+        this._characters = new TextFrameQuery<TextRangeQuery>(this._item, "characters");
+        return this._characters;
+    }
+
+    words() {
+        if (this.collectionType === "words") return this;
+        if (this._words) return this._words;
+        this._words = new TextFrameQuery<TextRangeQuery>(this._item, "words");
+        return this._words;
+    }
+
+    lines() {
+        if (this.collectionType === "lines") return this;
+        if (this._lines) return this._lines;
+        this._lines = new TextFrameQuery<TextRangeQuery>(this._item, "lines");
+        return this._lines;
+    }
+
+    paragraphs() {
+        if (this.collectionType === "paragraphs") return this;
+        if (this._paragraphs) return this._paragraphs;
+        this._paragraphs = new TextFrameQuery<TextRangeQuery>(this._item, "paragraphs");
+        return this._paragraphs;
+    }
+
+    createCharacter(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().characters, items => q(items.add(contents)), name);
+    }
+    
+    createWord(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().words, items => q(items.add(contents)), name);
+    }
+    
+    createParagraph(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().paragraphs, items => q(items.add(contents)), name);
+    }
+}
+
+class GradientQuery extends Queryable<Gradient, GradientStopQuery> {
+    private _gradientStops: GradientQuery | undefined;
+    set(name?: string): SetGradientProperties { return new SetGradientProperties(this as any, name); }
+
+    constructor(gradient: Gradient) {
+        super(gradient, "gradientStops");
+    }
+
+    gradientStops() {
+        if (this.collectionType === "gradientStops") return this;
+        if (this._gradientStops) return this._gradientStops;
+        this._gradientStops = new GradientQuery(this._item);
+        return this._gradientStops;
+    }
+
+    createGradientStops(name?: string): GradientStopQuery {
+        return this._create(i => i.item().gradientStops, gradientStops => q(gradientStops.add()), name);
+    }
+}
+
+class PageItemQuery extends Queryable<PageItem, QueryItem> {
+    set(name?: string): SetPageItemProperties { return new SetPageItemProperties(this as any, name); }
+    constructor(pageItem: PageItem) {
+        super(pageItem);
+    }
+}
+
+class CompoundPathItemQuery extends Queryable<CompoundPathItem, QueryItem> {
+    set(name?: string): SetCompoundPathItemProperties { return new SetCompoundPathItemProperties(this as any, name); }
+    constructor(compoundPathItem: CompoundPathItem) {
+        super(compoundPathItem);
+    }
+}
+
+class RasterItemQuery extends Queryable<RasterItem, QueryItem> {
+    set(name?: string): SetRasterItemProperties { return new SetRasterItemProperties(this as any, name); }
+    constructor(rasterItem: RasterItem) {
+        super(rasterItem);
+    }
+}
+
+class PlacedItemQuery extends Queryable<PlacedItem, QueryItem> {
+    set(name?: string): SetPlacedItemProperties { return new SetPlacedItemProperties(this as any, name); }
+    constructor(placedItem: PlacedItem) {
+        super(placedItem);
+    }
+}
+
+class SymbolItemQuery extends Queryable<SymbolItem, QueryItem> {
+    set(name?: string): SetSymbolItemProperties { return new SetSymbolItemProperties(this as any, name); }
+    constructor(symbolItem: SymbolItem) {
+        super(symbolItem);
+    }
+}
+
+class MeshItemQuery extends Queryable<MeshItem, QueryItem> {
+    set(name?: string): SetMeshItemProperties { return new SetMeshItemProperties(this as any, name); }
+    constructor(meshItem: MeshItem) {
+        super(meshItem);
+    }
+}
+
+class PluginItemQuery extends Queryable<PluginItem, QueryItem> {
+    set(name?: string): SetPluginItemProperties { return new SetPluginItemProperties(this as any, name); }
+    constructor(pluginItem: PluginItem) {
+        super(pluginItem);
+    }
+}
+
+class GraphItemQuery extends Queryable<GraphItem, QueryItem> {
+    set(name?: string): SetGraphItemProperties { return new SetGraphItemProperties(this as any, name); }
+    constructor(graphItem: GraphItem) {
+        super(graphItem);
+    }
+}
+
+class LegacyTextItemQuery extends Queryable<LegacyTextItem, QueryItem> {
+    set(name?: string): SetLegacyTextItemProperties { return new SetLegacyTextItemProperties(this as any, name); }
+    constructor(legacyTextItem: LegacyTextItem) {
+        super(legacyTextItem);
+    }
+}
+
+class NonNativeItemQuery extends Queryable<NonNativeItem, QueryItem> {
+    set(name?: string): SetNonNativeItemProperties { return new SetNonNativeItemProperties(this as any, name); }
+    constructor(nonNativeItem: NonNativeItem) {
+        super(nonNativeItem);
+    }
+}
+
+class SwatchQuery extends Queryable<Swatch, QueryItem> {
+    color(newColor?: $Color): DynamicColor {
+        if (newColor) {
+            var color = new DynamicColor(newColor);
+            this.item().color = color.rgb();
+        }
+        return new DynamicColor(this.item().color);
+    }
+
+    set(name?: string): SetSwatchProperties { return new SetSwatchProperties(this as any, name); }
+    constructor(swatch: Swatch) {
+        super(swatch);
+    }
+}
+
+class BrushQuery extends Queryable<Brush, QueryItem> {
+    set(name?: string): SetBrushProperties { return new SetBrushProperties(this as any, name); }
+    constructor(brush: Brush) {
+        super(brush);
+    }
+}
+
+class TagQuery extends Queryable<Tag, QueryItem> {
+    set(name?: string): SetTagProperties { return new SetTagProperties(this as any, name); }
+    constructor(tag: Tag) {
+        super(tag);
+    }
+}
+
+class SymbolQuery extends Queryable<Symbol, QueryItem> {
+    set(name?: string): SetSymbolProperties { return new SetSymbolProperties(this as any, name); }
+    constructor(symbol: Symbol) {
+        super(symbol);
+    }
+}
+
+class TextRangeQuery extends Queryable<TextRange, QueryItem> {
+    set(name?: string): SetTextRangeProperties { return new SetTextRangeProperties(this as any, name); }
+    constructor(textRange: TextRange) {
+        super(textRange);
+    }
+}
+
+class InsertionPointQuery extends Queryable<InsertionPoint, QueryItem> {
+    set(name?: string): SetInsertionPointProperties { return new SetInsertionPointProperties(this as any, name); }
+    constructor(insertionPoint: InsertionPoint) {
+        super(insertionPoint);
+    }
+}
+
+class ParagraphStyleQuery extends Queryable<ParagraphStyle, QueryItem> {
+    set(name?: string): SetParagraphStyleProperties { return new SetParagraphStyleProperties(this as any, name); }
+    constructor(paragraphStyle: ParagraphStyle) {
+        super(paragraphStyle);
+    }
+}
+
+class PatternQuery extends Queryable<Pattern, QueryItem> {
+    set(name?: string): SetPatternProperties { return new SetPatternProperties(this as any, name); }
+    constructor(pattern: Pattern) {
+        super(pattern);
+    }
+}
+
+class SpotQuery extends Queryable<Spot, QueryItem> {
+    set(name?: string): SetSpotProperties { return new SetSpotProperties(this as any, name); }
+    constructor(spot: Spot) {
+        super(spot);
+    }
+}
+
+class CharacterStyleQuery extends Queryable<CharacterStyle, QueryItem> {
+    set(name?: string): SetCharacterStyleProperties { return new SetCharacterStyleProperties(this as any, name); }
+    constructor(characterStyle: CharacterStyle) {
+        super(characterStyle);
+    }
+}
+
+class ArtStyleQuery extends Queryable<ArtStyle, QueryItem> {
+    set(name?: string): SetArtStyleProperties { return new SetArtStyleProperties(this as any, name); }
+    constructor(artStyle: ArtStyle) {
+        super(artStyle);
+    }
+}
+
+class VariableQuery extends Queryable<Variable, QueryItem> {
+    set(name?: string): SetVariableProperties { return new SetVariableProperties(this as any, name); }
+    constructor(variable: Variable) {
+        super(variable);
+    }
+}
+
+class DataSetQuery extends Queryable<DataSet, QueryItem> {
+    set(name?: string): SetDataSetProperties { return new SetDataSetProperties(this as any, name); }
+    constructor(dataSet: DataSet) {
+        super(dataSet);
+    }
+}
+
+class ViewQuery extends Queryable<View, QueryItem> {
+    set(name?: string): SetViewProperties { return new SetViewProperties(this as any, name); }
+    constructor(view: View) {
+        super(view);
+    }
+}
+
+class GradientStopQuery extends Queryable<GradientStop, QueryItem> {
+    set(name?: string): SetGradientStopProperties { return new SetGradientStopProperties(this as any, name); }
+    constructor(gradientStop: GradientStop) {
+        super(gradientStop);
+    }
+}
+
+// Declare Interfaces
+declare interface Application { q: ApplicationQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Document { q: DocumentQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Layer { q: LayerQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface PathItem { q: PathItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface TextFrame { q: TextFrameQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Story { q: StoryQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Gradient { q: GradientQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Artboard { q: ArtboardQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface PageItem { q: PageItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface CompoundPathItem { q: CompoundPathItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface RasterItem { q: RasterItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface PlacedItem { q: PlacedItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface GroupItem { q: GroupItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface SymbolItem { q: SymbolItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface MeshItem { q: MeshItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface PluginItem { q: PluginItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface GraphItem { q: GraphItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Swatch { q: SwatchQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Brush { q: BrushQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Tag { q: TagQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Symbol { q: SymbolQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface TextRange { q: TextRangeQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface InsertionPoint { q: InsertionPointQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface ParagraphStyle { q: ParagraphStyleQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Pattern { q: PatternQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Spot { q: SpotQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface CharacterStyle { q: CharacterStyleQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface ArtStyle { q: ArtStyleQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface LegacyTextItem { q: LegacyTextItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface Variable { q: VariableQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface DataSet { q: DataSetQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface View { q: ViewQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface NonNativeItem { q: NonNativeItemQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface PathPoint { q: PathPointQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+declare interface GradientStop { q: GradientStopQuery; p: PositionableItem | undefined; c: ContainerItem | undefined; }
+
+function _app(): Application {
+    if ("app" in $.global)
+        return app;
+    throw "The app is not defined. Modify your script to open a document first";
+}
+if (!_app().q) {
+    _app().q = new ApplicationQuery();
+}
+
+let api = _app().q;
+
+function q<TQuery extends QueryItem = QueryItem>(obj: any): TQuery {
+    if (obj && obj.q) return obj.q;
+    if (!obj || !("typename" in obj)) return QueryItem.empty() as any;
+
+    // Switch based on the typename and create the appropriate query instance
+    let q: any = undefined;;
+    switch (obj.typename) {
+        case "Application":
+            return api as any;
+        case "Document":
+            q = new DocumentQuery(obj as Document);
+            break;
+        case "Layer":
+            q = new LayerQuery(obj as Layer);
+            break;
+        case "PathItem":
+            q = new PathItemQuery(obj as PathItem);
+            break;
+        case "TextFrame":
+            q = new TextFrameQuery(obj as TextFrame);
+            break;
+        case "Story":
+            q = new StoryQuery(obj as Story);
+            break;
+        case "Gradient":
+            q = new GradientQuery(obj as Gradient);
+            break;
+        case "Artboard":
+            q = new ArtboardQuery(obj as Artboard);
+            break;
+        case "PageItem":
+            q = new PageItemQuery(obj as PageItem);
+            break;
+        case "PathItem":
+            q = new PathItemQuery(obj as PathItem);
+            break;
+        case "CompoundPathItem":
+            q = new CompoundPathItemQuery(obj as CompoundPathItem);
+            break;
+        case "RasterItem":
+            q = new RasterItemQuery(obj as RasterItem);
+            break;
+        case "PlacedItem":
+            q = new PlacedItemQuery(obj as PlacedItem);
+            break;
+        case "GroupItem":
+            q = new GroupItemQuery(obj as GroupItem);
+            break;
+        case "SymbolItem":
+            q = new SymbolItemQuery(obj as SymbolItem);
+            break;
+        case "MeshItem":
+            q = new MeshItemQuery(obj as MeshItem);
+            break;
+        case "PluginItem":
+            q = new PluginItemQuery(obj as PluginItem);
+            break;
+        case "GraphItem":
+            q = new GraphItemQuery(obj as GraphItem);
+            break;
+        case "Swatch":
+            q = new SwatchQuery(obj as Swatch);
+            break;
+        case "Brush":
+            q = new BrushQuery(obj as Brush);
+            break;
+        case "Tag":
+            q = new TagQuery(obj as Tag);
+            break;
+        case "Symbol":
+            q = new SymbolQuery(obj as Symbol);
+            break;
+        case "TextRange":
+            q = new TextRangeQuery(obj as TextRange);
+            break;
+        case "InsertionPoint":
+            q = new InsertionPointQuery(obj as InsertionPoint);
+            break;
+        case "CharacterStyle":
+            q = new CharacterStyleQuery(obj as CharacterStyle);
+            break;
+        case "ParagraphStyle":
+            q = new ParagraphStyleQuery(obj as ParagraphStyle);
+            break;
+        case "Pattern":
+            q = new PatternQuery(obj as Pattern);
+            break;
+        case "Spot":
+            q = new SpotQuery(obj as Spot);
+            break;
+        case "ArtStyle":
+            q = new ArtStyleQuery(obj as ArtStyle);
+            break;
+        case "LegacyTextItem":
+            q = new LegacyTextItemQuery(obj as LegacyTextItem);
+            break;
+        case "Vari":
+            q = new VariableQuery(obj as Variable);
+            break;
+        case "DataSet":
+            q = new DataSetQuery(obj as DataSet);
+            break;
+        case "View":
+            q = new ViewQuery(obj as View);
+            break;
+        case "NonNativeItem":
+            q = new NonNativeItemQuery(obj as NonNativeItem);
+            break;
+        case "PathPoint":
+            q = new PathPointQuery(obj as PathPoint);
+            break;
+        default:
+            // Handle unsupported or unknown typenames
+            obj.q = Queryable.empty;
+            q = obj.q;
+            break;
+    }
+    return q;
+};
+
+type CollectionType =
+    | "artboards"
+    | "brushes"
+    | "characters"
+    | "compoundPathItems"
+    | "documents"
+    | "gradientStops"
+    | "gradients"
+    | "graphItems"
+    | "groupItems"
+    | "insertionPoints"
+    | "layers"
+    | "legacyTextItems"
+    | "lines"
+    | "meshItems"
+    | "nonNativeItems"
+    | "pageItems"
+    | "paragraphs"
+    | "pathItems"
+    | "pathPoints"
+    | "patterns"
+    | "placedItems"
+    | "pluginItems"
+    | "rasterItems"
+    | "spots"
+    | "stories"
+    | "swatches"
+    | "symbolItems"
+    | "symbols"
+    | "tags"
+    | "textFrames"
+    | "textRanges"
+    | "variables"
+    | "views"
+    | "words";

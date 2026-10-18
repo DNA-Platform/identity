@@ -1,0 +1,217 @@
+class PathItemQuery extends Queryable<PathItem, PathPointQuery> {
+    private _pathPoints: PathItemQuery | undefined;
+    private _defaultPointType: PointType;
+    private _defaultSmoothingFunction: SmoothingType;
+
+    set(name?: string): SetPathItemProperties { return new SetPathItemProperties(this as any, name); }
+
+    closed(): boolean { return this.item().closed; }
+    close(): this { this.item().closed = true; return this; }
+    open(): this { this.item().closed = false; return this; }
+
+    stroked(): boolean { return this.item().stroked; }
+    stroke(): this { this.item().stroked = true; this.app().redraw(); return this; }
+    resetStroke(): this { this.item().stroked = false; this.app().redraw(); return this; }
+
+    filled(): boolean { return this.item().filled; }
+    fill(): this { this.item().filled = true; this.app().redraw(); return this; }
+    resetFill(): this { this.item().filled = false; this.app().redraw(); return this; }
+
+    strokeWidthAbs(): number { return this.item().strokeWidth; }
+    strokeWidth(newStrokeWidth?: number) { 
+        var region = this.region();
+        if (newStrokeWidth !== undefined) {
+            this.item().strokeWidth = region.toAbsoluteUnits(newStrokeWidth);
+            this.stroke();
+        }
+        return region.toRelativeUnits(this.strokeWidthAbs());
+    }
+
+    opacityAbs(): number { return this.item().opacity; }
+    opacity(newOpacity?: number): number {
+        if (newOpacity !== undefined) {
+            this.item().opacity = 100 * newOpacity;
+            this.app().redraw();
+        }
+        return this.item().opacity / 100;
+    }
+
+    fillColor(newColor?: DynamicColor | WebColor | string, newOpacity?: number): DynamicColor {
+        if (newColor) {
+            if (!(newColor instanceof DynamicColor)) 
+                newColor = new DynamicColor(newColor, 1);
+            this.opacity(newOpacity === undefined ? newColor.opacity() : newOpacity);
+            this.item().fillColor = newColor.rgb();
+        }
+        if (!(this.item().fillColor instanceof RGBColor))
+            throw "The color is not an RGBColor";
+
+        return new DynamicColor(this.item().fillColor as RGBColor, this.opacity()); 
+    }
+
+    fillColorComplex(newColor?: Color): Color {
+        if (newColor) {
+            this.item().fillColor = newColor;
+            this.fill();
+        }
+        return this.item().fillColor;
+    }
+
+    strokeColor(newColor?: DynamicColor | WebColor | string, newOpacity?: number) {
+        if (newColor) {
+            if (!(newColor instanceof DynamicColor)) 
+                newColor = new DynamicColor(newColor, 1);
+            this.opacity(newOpacity === undefined ? newColor.opacity() : newOpacity);
+            this.item().strokeColor = newColor.rgb();
+        }
+        if (!(this.item().strokeColor instanceof RGBColor))
+            throw "The color is not an RGBColor";
+
+        return new DynamicColor(this.item().strokeColor as RGBColor, this.opacity()); 
+    }
+
+    strokeColorComplex(newColor?: Color): Color {
+        if (newColor) {
+            this.item().strokeColor = newColor;
+            this.stroke();
+        }
+        return this.item().strokeColor;
+    }
+
+    defaultPointType(newType?: PointType): PointType {
+        if (newType !== undefined) this._defaultPointType = newType;
+        return this._defaultPointType;
+    }
+
+    defaultSmoothingType(newType?: SmoothingType): SmoothingType {
+        if (newType !== undefined) this._defaultSmoothingFunction = newType;
+        return this._defaultSmoothingFunction;
+    }
+
+    curve(makeCurve?: boolean): boolean {
+        if (makeCurve !== undefined) {
+            this.pathPoints().do(p => p.set().pointType(PointType.SMOOTH));
+            this._defaultPointType = PointType.SMOOTH;
+            this.app().redraw()
+        }
+        const allSmooth = this.pathPoints().all(p => p.item().pointType === PointType.SMOOTH);
+        return allSmooth;
+    }
+
+    angular(makeAngular?: boolean): boolean {
+        if (makeAngular) {
+            this.pathPoints().do(p => {
+                const anchor = p.anchor();
+                p.set()
+                    .pointType(PointType.CORNER)
+                    .leftDirection(anchor)
+                    .rightDirection(anchor);
+            });
+            this._defaultPointType = PointType.CORNER;
+            this.app().redraw()
+        }
+        const allCorner = this.pathPoints().all(p => p.item().pointType === PointType.CORNER);
+        return allCorner;
+    }
+
+    constructor(pathItem: PathItem) {
+        super(pathItem, "pathPoints");
+        this._defaultPointType = PointType.SMOOTH;
+        this._defaultSmoothingFunction = "catmullRom";
+    }
+
+    pathPoints() {
+        if (this.collectionType === "pathPoints") return this;
+        if (this._pathPoints) return this._pathPoints;
+        this._pathPoints = new PathItemQuery(this._item);
+        return this._pathPoints;
+    }
+
+    reversePathPoints() {
+        (this.collection() as PathPoints).reverse();
+    }
+
+    createPathPoint(): PathPointQuery {
+        var pathPoint = this._create(i => i.item().pathPoints, pathPoints => q(pathPoints.add()));
+        return pathPoint as PathPointQuery;
+    }
+
+    addPathPoints(...positions: Position[]): A<PathPointQuery> {
+        var pathPoints: A<PathPointQuery> = f([]);
+        var originalPointCount = this.length();
+        var isCurve = this.curve();
+        f(positions).do(position => {
+            const newCornerPoint = this.createPathPoint();
+            newCornerPoint.set()
+                .anchor(position)
+                .leftDirection(position)
+                .rightDirection(position)
+                .pointType(this.defaultPointType());
+
+            pathPoints.push(newCornerPoint);
+        });
+
+        if (isCurve) {
+            this.curve(true);
+            this.smooth();
+        }
+
+        return this.query().skip(originalPointCount);
+    }
+
+    extendPath(...delta: Delta): PathPointQuery {
+        const lastPoint = this.pathPoints().last();
+        if (!lastPoint) throw new Error("No existing path points to extend from.");
+    
+        const lastAnchor = lastPoint.anchor(); // Relative anchor
+        const newAnchor = [lastAnchor[0] + delta[0], lastAnchor[1] + delta[1]];
+    
+        return this.addPathPoints(newAnchor).first();
+    }
+
+    extendPathRadially(length: number, angle: number, direction: Direction = "c", radians: boolean = false): PathPointQuery {
+        const lastPoint = this.pathPoints().last();
+        if (!lastPoint) throw new Error("No existing path points to extend from.");
+    
+        const lastAnchor = lastPoint.anchor(); // Relative anchor
+        const angleInRadians = radians ? angle : Region.toRadians(angle);
+    
+        // Calculate new position using polar coordinates
+        const deltaX = length * Math.cos(angleInRadians);
+        const deltaY = length * Math.sin(angleInRadians);
+    
+        const newAnchor = direction === "c" 
+            ? [lastAnchor[0] + deltaX, lastAnchor[1] + deltaY]
+            : [lastAnchor[0] - deltaX, lastAnchor[1] - deltaY];
+    
+        return this.addPathPoints(newAnchor).first();
+    }
+
+    smooth(type: SmoothingType = "catmullRom", completely: boolean = true, tension: number = 0.16): PathItemQuery {
+        if (type === undefined) type = this.defaultSmoothingType();
+        if (completely) this.curve(true);
+        var pathPoints = this.pathPoints().array().a;
+        var closed = this.closed();
+        switch (type) {
+            case "bezier":
+                Smoothing.bezier(pathPoints, closed);
+                break;
+            case "catmullRom":
+                Smoothing.catmullRom(pathPoints, closed);
+                break;
+            case "tension":
+                Smoothing.tension(pathPoints, closed, tension);
+                break;
+            case "bSpline":
+                Smoothing.bSpline(pathPoints, closed);
+                break;
+            case "cubicSpline":
+                Smoothing.cubicSpline(pathPoints, closed);
+                break;
+            default:
+                throw new Error(`Unknown smoothing type: ${type}`);
+        }
+        this.app().redraw()
+        return this;
+    }    
+}

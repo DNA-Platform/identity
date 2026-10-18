@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ TON digital asset treasury companies on stock exchanges ]]( claude--TON digital asset treasury companies on stock exchanges--12e2f498 )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>12e2f498-d867-45e3-917f-ac4d7367da84</Origin>
         <Paragraph>

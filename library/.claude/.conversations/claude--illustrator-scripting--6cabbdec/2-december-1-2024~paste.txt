@@ -1,0 +1,185 @@
+class Queryable<I extends Item, T extends QueryItem> extends QueryItem {
+    collectionProperty: CollectionProperty | undefined;
+    active() { return !!this.item.selected; }
+    activate() { this.item.selected = true; }
+    inactivate() { this.item.selected = false; }
+
+    constructor(item: I, collectionProperty?: CollectionProperty) {
+        super(item);
+        this.collectionProperty = collectionProperty;
+        this.enumerable = this.collectionProperty !== undefined;
+    }
+
+    collection(): any[] {
+        if (!this.item || !this.enumerable || !this.collectionProperty) return [];
+        var collection = this.item[this.collectionProperty] as any[];
+        if (!collection) return [];
+        return collection;
+    }
+
+    query(selector: string = ":"): A<T> {
+        var collection = this.collection();
+        if (collection.length == 0) return f();
+        var indexes = evaluateRangeSelector(selector, collection.length)
+        var len = indexes.length;
+        var result: A<T> = f();
+        for (var i = 0; i < len; i++) {
+            var item = collection[indexes[i]];
+            if (item)
+                result.push(q(item));
+        }
+
+        return result;
+    }
+
+    at(index: number): T {
+        return this.query(`${index}`).at(0);
+    }
+
+    get(selector: string): A<T> {
+        return this.query(selector);
+    }
+
+    length(): number { return this.collection().length; }
+
+    create(name?: string): T {
+        var collection = this.collection() as any;
+        var newItem = q(collection.add()) as T;
+        if (name !== undefined) 
+            newItem.name(name);
+
+        if (this.length() > 1)
+            newItem.move(this.last() as T, ElementPlacement.PLACEAFTER);
+
+        return newItem;
+    }
+
+    replace(index: number, item: T): void {
+        var itemAtIndex = this.at(index);
+        item.move(itemAtIndex, ElementPlacement.PLACEBEFORE);
+        itemAtIndex.remove?.();
+    }
+
+    insertAt(index: number, item: T): void {
+        var itemBeforeIndex = this.at(index-1);
+        item.move(itemBeforeIndex, ElementPlacement.PLACEAFTER);
+    }
+
+    insertManyAt(index: number, items: A<T>) {
+        var len = items.length();
+        index = evaluateNegativeInsertIndex(index, this.collection.length);
+        for (var i = 0; i < len; i++) {
+            this.insertAt(index + i, items.at(i));
+        }
+    }
+
+    delete(item: T) {
+        item.remove();
+    }
+
+    deleteMany(items: A<T>) {
+        items.do(item => item.remove());
+    }
+
+    deleteAt(index: number, count: number = 1) {
+        for (var i = 0; i < count; i++)
+            this.delete(this.at(index).item);
+    }
+
+    deleteAll() {
+        this.query().do(item =>{ item.remove() });
+    }
+
+    forEach(callback: (item: T, index?: number) => any | void): any | void {
+        return this.query().forEach(callback);
+    }
+
+    do(callback: (item: T, index?: number) => any | void): any | void {
+        return this.query().forEach(callback);
+    }
+
+    doOnce(callback: (item: T, index?: number) => boolean): boolean {
+        var collection = this.collection();
+        for (let i = 0; i < collection.length; i++) {
+            if (callback(q(collection[i]), i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    select<U>(selector: (item: T) => U): A<U> {
+        return this.query().select(selector);
+    }
+
+    where(predicate: (item: T) => boolean): A<T> {
+        return this.query().where(predicate);
+    }
+
+    first(predicate?: (item: T) => boolean): T | undefined {
+        var len = this.length();
+        if (!predicate) return len > 0 ? this.at(0) : undefined;
+        for (let i = 0; i < len; i++) {
+            var item = this.at(i);
+            if (predicate(item)) return item;
+        }
+        return undefined;
+    }
+
+    firstIndex(predicate: (item: T) => boolean): number {
+        var len = this.length();
+        for (let i = 0; i < len; i++) {
+            var item = this.at(i);
+            if (predicate(item)) return i;
+        }
+        return -1;
+    }
+
+    last(predicate?: (item: T) => boolean): T | undefined {
+        var len = this.length();
+        if (!predicate) return len > 0 ? this.at(-1) : undefined;
+        for (let i = len-1; i >= 0; i--) {
+            var item = this.at(i);
+            if (predicate(item)) return item;
+        }
+        return undefined;
+    }
+
+    lastIndex(predicate: (item: T) => boolean): number {
+        var len = this.length();
+        for (let i = len-1; i >= 0; i--) {
+            var item = this.at(i);
+            if (predicate(item)) return i;
+        }
+        return -1;
+    }
+
+    skip(count: number) {
+        var collection = this.collection();
+        var len = collection.length;
+        var result: A<T> = f();
+        for (var i = count; i < len; i++) {
+            result.push(q(collection[i]));
+        }
+        return result;
+    }
+
+    take(count: number) {
+        var collection = this.collection();
+        var len = Math.min(collection.length, count);
+        var result: A<T> = f();
+        for (var i = 0; i < len; i++) {
+            result.push(q(collection[i]));
+        }
+        return result;
+    }
+
+    any(predicate?: (item: T) => boolean): boolean {
+        var item = this.first(predicate);
+        return !!item;
+    }
+
+    includes(item: T): boolean {
+        return this.any(i => i.item == item.item);
+    }
+}

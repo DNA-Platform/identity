@@ -1,0 +1,180 @@
+const fs = require('fs');
+const path = require('path');
+const { exec } = require('child_process');
+const chokidar = require('chokidar');
+const rimraf = require('rimraf');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const srcDir = path.join(__dirname, 'src');
+const buildDir = path.join(__dirname, 'build');
+const pluginDir = process.env.ILLUSTRATOR_SCRIPTS_PATH;
+
+if (!pluginDir) {
+    console.error("Error: ILLUSTRATOR_SCRIPTS_PATH is not defined in the .env file.");
+    process.exit(1);
+}
+
+// Copy entire src structure to build, excluding .ts files
+function copySrcToBuild() {
+    console.log('Copying src structure to build...');
+    
+    function copyRecursive(source, target) {
+        if (!fs.existsSync(target)) {
+            fs.mkdirSync(target, { recursive: true });
+        }
+
+        const files = fs.readdirSync(source);
+        files.forEach(file => {
+            const sourcePath = path.join(source, file);
+            const targetPath = path.join(target, file);
+            
+            if (fs.lstatSync(sourcePath).isDirectory()) {
+                copyRecursive(sourcePath, targetPath);
+            } else if (!file.endsWith('.ts')) {
+                fs.copyFileSync(sourcePath, targetPath);
+            }
+        });
+    }
+
+    copyRecursive(srcDir, buildDir);
+}
+
+// Process imports in a JS file and convert to ExtendScript includes
+function processImports(filePath) {
+    let content = fs.readFileSync(filePath, 'utf8');
+    
+    // Replace TypeScript imports with ExtendScript includes, handling relative paths
+    content = content.replace(
+        /^import\s+?(?:{[\s\w,]+}\s+?from\s+?)?['"]([\w\d\-_\/@\.]+)['"];?\s*$/gm,
+        (match, importPath) => {
+            // Handle relative paths properly
+            const resolvedPath = importPath.startsWith('.')
+                ? path.relative(
+                    path.dirname(filePath),
+                    path.resolve(path.dirname(filePath), importPath)
+                  ).replace(/\\/g, '/')
+                : importPath;
+
+            const jsxPath = resolvedPath.endsWith('.ts') 
+                ? resolvedPath.replace('.ts', '.jsx')
+                : `${resolvedPath}.jsx`;
+                
+            return `//@ts-ignore\n#include "${jsxPath}"`;
+        }
+    );
+    
+    return content;
+}
+
+// Process all JS files in build directory recursively
+function processJSFiles() {
+    console.log('Processing JS files...');
+    
+    function processRecursive(dir) {
+        const files = fs.readdirSync(dir);
+        files.forEach(file => {
+            const filePath = path.join(dir, file);
+            
+            if (fs.lstatSync(filePath).isDirectory()) {
+                processRecursive(filePath);
+            } else if (file.endsWith('.js')) {
+                const jsxPath = filePath.replace('.js', '.jsx');
+                const content = processImports(filePath);
+                fs.writeFileSync(jsxPath, content);
+                fs.unlinkSync(filePath); // Remove the .js file
+            }
+        });
+    }
+
+    processRecursive(buildDir);
+}
+
+// Sync build to plugin directory
+function syncToPlugin() {
+    console.log('Syncing to plugin directory...');
+    
+    function syncRecursive(source, target) {
+        if (!fs.existsSync(target)) {
+            fs.mkdirSync(target, { recursive: true });
+        }
+
+        const files = fs.readdirSync(source);
+        files.forEach(file => {
+            const sourcePath = path.join(source, file);
+            const targetPath = path.join(target, file);
+            
+            if (fs.lstatSync(sourcePath).isDirectory()) {
+                syncRecursive(sourcePath, targetPath);
+            } else {
+                fs.copyFileSync(sourcePath, targetPath);
+            }
+        });
+    }
+
+    syncRecursive(buildDir, pluginDir);
+}
+
+// Watch mode handler
+function watchFiles() {
+    console.log('Starting watch mode...');
+
+    // Watch for non-TS file changes in src
+    chokidar.watch(srcDir, {
+        ignored: /.ts$/,
+        persistent: true
+    }).on('all', (event, filePath) => {
+        if (event === 'add' || event === 'change') {
+            const relativePath = path.relative(srcDir, filePath);
+            const buildPath = path.join(buildDir, relativePath);
+            
+            fs.mkdirSync(path.dirname(buildPath), { recursive: true });
+            fs.copyFileSync(filePath, buildPath);
+            
+            // Sync to plugin
+            const pluginPath = path.join(pluginDir, relativePath);
+            fs.mkdirSync(path.dirname(pluginPath), { recursive: true });
+            fs.copyFileSync(filePath, pluginPath);
+        }
+    });
+
+    // Run TypeScript compiler in watch mode
+    exec("tsc -w", { cwd: __dirname });
+}
+
+// Main build process
+async function main() {
+    try {
+        // Clean build directory
+        rimraf.sync(buildDir);
+        fs.mkdirSync(buildDir, { recursive: true });
+
+        // Copy src structure to build (excluding .ts)
+        copySrcToBuild();
+
+        // Run TypeScript compiler
+        await new Promise((resolve, reject) => {
+            exec("tsc", { cwd: __dirname }, (error) => {
+                if (error) reject(error);
+                else resolve();
+            });
+        });
+
+        // Process JS files (convert imports and rename to .jsx)
+        processJSFiles();
+
+        // Sync to plugin directory
+        syncToPlugin();
+
+        // Watch mode if requested
+        if (process.argv.includes('-w')) {
+            watchFiles();
+        }
+    } catch (error) {
+        console.error(`Error in build process: ${error.message}`);
+        process.exit(1);
+    }
+}
+
+main();

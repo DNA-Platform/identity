@@ -1,0 +1,240 @@
+class $ComponentFunction<T extends $Chemical> {
+    private Component: $Component<T>;
+    private _parent?: $Chemical;
+
+    get $template() { return this._template; };
+    private _template: T;
+
+    get $chemical() { return this._chemical; }
+    private _chemical?: T;
+
+    get $ref() { return this._ref; }
+    private _ref?: $Component<$Chemical>;
+
+    get $bound() { return !!this._chemical; }
+    get $referenced() { return !!this._ref; }
+    
+    constructor(template: T, chemical?: T, parent?: $Chemical) {
+        this._template = template;
+        this._chemical = chemical;
+        this._parent = parent;
+        const isArray = this._template.getType().name === $Collection.name;
+
+        this.Component = ((props: any) => {
+            if (isArray && typeof props === 'function') return new $$Function(props);
+            const [cid, setChemicalId] = useState<number>(-1);
+            let chemical: T;
+            if (!this.$bound) {
+                let newChemical = cid === -1;
+                chemical = newChemical ? this.createChemical() : $chemicalRegistry.get(cid)! as T;
+                if (newChemical) {
+                    $chemicalRegistry.set(chemical.cid, chemical);
+                    setChemicalId(chemical.cid);
+                }
+            } else {
+                chemical = this._chemical!;
+            }
+
+            chemical.formula.clearState();
+            const [_, setState] = useState<string>(chemical.formula.state);
+            chemical.formula.bindUpdate(setState);
+
+            useEffect(() => {
+                chemical.formula.updateState();
+                return () => {
+                    //You have a memory leak problem, so deal with it later!!
+                    $chemicalRegistry.delete(cid);
+                };
+            }, [chemical]);
+
+            this.bindProps(chemical, props);
+
+            let view = chemical.view();
+            view = this.augmentView(view, chemical, this.Component);
+
+            return view;
+        }) as any;
+
+        if (this._chemical) {
+            this._chemical.__parent = parent;
+            this._chemical.__component = this.Component;
+        }
+        
+        Object.setPrototypeOf(this.Component, this);
+        return this.Component as any;
+    }
+
+    $?(): $$Component<T> { return this.Component as any; }
+    
+    $bind(chemical?: T, parent?: $Chemical): $$Component<T> {
+        if (chemical && chemical === this._chemical) return this.Component as any;
+        if (!chemical) chemical = this.createChemical(parent ?? this._parent);
+        return new $ComponentFunction(chemical, parent ?? this._parent) as any;
+    }
+
+    $reference(component: $Component<$Chemical>) {
+        let referent = this.Component.bind(Object.create(this)) as any as this;
+        referent._ref = component;
+        return referent;
+    }
+
+    private createChemical(parent?: $Chemical): T {
+        this.$template.formula.refresh();
+        const chemical = Object.create(this.$template) as T;
+        chemical.__parent = parent;
+        chemical.__cid = $Chemical.getNextCid();
+        chemical.__formula = new $Formula(chemical);
+        chemical.__bondConstructor = new $BondConstructor(chemical);
+        chemical.__formula.init();
+        console.log(`${chemical.getType().name}[${chemical.cid}].isTemplate = ${chemical.isTemplate}`)
+        return chemical;
+    }
+
+    private bindProps(chemical: T, props: any) {
+        const $chemical$ = chemical as any;
+
+        chemical.__children = props.children;  
+        for (const key in props) {
+            if (typeof key === 'symbol' || key === 'children' || key === 'key' || key === 'ref')
+                continue;
+            
+            const property = '$' + key;
+            $chemical$[property] = props[key];
+        }
+
+        chemical.formula.refresh();
+    }
+
+    private augmentChildren(chemical: T, children: ReactNode): [ReactNode, boolean] {
+        let changed = false;
+        
+        const augmented = React.Children.map(children, child => {
+            if (!React.isValidElement(child)) {
+                return child; // Return primitives as-is
+            }
+            
+            const element = child as React.ReactElement<any, any>;
+            let type = element.type as any;
+            
+            // Check if it's $Collection - unwrap but recurse
+            if (type === $) {
+                const [augmentedCollection, collectionChanged] = this.augmentChildren(
+                    chemical, 
+                    element.props.children
+                );
+                changed = changed || collectionChanged;
+                return augmentedCollection;
+            }
+            
+            // Convert regular React component to Chemistry
+            if (typeof type === 'function' && !type.$template) {
+                type = $(type);  // Now it's a Chemistry component!
+                changed = true;
+            }
+            
+            // Handle Chemical components (including newly converted ones)
+            if (type.$template && type.$template instanceof $Chemical) {
+                // Process children first if present
+                let augmentedChildren = element.props.children;
+                if (element.props.children) {
+                    const [newChildren, childrenChanged] = this.augmentChildren(
+                        chemical, 
+                        element.props.children
+                    );
+                    if (childrenChanged) {
+                        augmentedChildren = newChildren;
+                        changed = true;
+                    }
+                }
+                
+                // Bind if needed
+                if (!type.$bound) {
+                    const component = type.$bind();
+                    const boundChemical = component.$chemical;
+                    
+                    // Bind props with augmented children
+                    this.bindProps(boundChemical, {
+                        ...element.props,
+                        children: augmentedChildren
+                    });
+                    
+                    changed = true;
+                    return React.createElement(component, {
+                        ...element.props,
+                        key: element.key,
+                        children: augmentedChildren
+                    });
+                }
+                
+                // Already bound - just update props if children changed
+                if (augmentedChildren !== element.props.children) {
+                    this.bindProps(type.$chemical, {
+                        ...element.props,
+                        children: augmentedChildren
+                    });
+                    
+                    return React.cloneElement(element, {
+                        ...element.props,
+                        children: augmentedChildren
+                    });
+                }
+                
+                // Already bound, no changes - return as-is
+                this.bindProps(type.$chemical, element.props);
+                return child;
+            }
+            
+            // For DOM elements, recurse on children
+            if (element.props.children) {
+                const [augmentedChildren, childrenChanged] = this.augmentChildren(
+                    chemical, 
+                    element.props.children
+                );
+                if (childrenChanged) {
+                    changed = true;
+                    return React.cloneElement(element, {
+                        ...element.props,
+                        children: augmentedChildren
+                    });
+                }
+            }
+            
+            return child;
+        });
+        
+        return [augmented, changed];
+    }
+    
+    private bindChildren(chemical: T, children: ReactNode) {
+    }
+
+    private augmentView(view: ReactNode | Promise<ReactNode>, chemical: T, component: $Component<T>): ReactNode | Promise<ReactNode> {
+        if (view instanceof Promise) {
+            view = view.then(view => this.augmentView(view, chemical, component));
+            (view as any).$Component = component;
+            return view;
+        }
+        
+        return [this.createMark('start', chemical), view, this.createMark('end', chemical)];
+    }
+
+    private createMark(position: 'start' | 'end', chemical: T): React.ReactElement {
+        const isStart = position === 'start';
+        const commentText = isStart 
+            ? `chem-start:${chemical.cid}:${chemical.getType().name}`
+            : `chem-end:${chemical.cid}`;
+        
+        return React.createElement('span', {
+            key: `chem-${position}-${chemical.cid}`,
+            [`data-chem-${position}`]: chemical.cid,
+            ...(isStart && { 'data-chem-type': chemical.getType().name }),
+            style: { display: 'none' },
+            ref: (el: HTMLElement | null) => {
+                if (el?.parentNode) {
+                    const comment = document.createComment(commentText);
+                    el.parentNode.replaceChild(comment, el);
+                }
+            }
+        });
+    }
+}

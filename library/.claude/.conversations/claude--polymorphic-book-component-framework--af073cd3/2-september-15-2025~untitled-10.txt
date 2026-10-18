@@ -1,0 +1,139 @@
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+ Getter called, returning: NaN
+ Property: $modifyRegularArray, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularArray
+ Property: $modifyRegularObject, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularObject
+ Property: $modifyComputed, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyComputed
+ Property: computedProp, isReactive: true
+ Creating computed property on $ComplexProps for property computedProp
+ Getter called, returning: NaN
+ Property: $modifyRegularArray, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularArray
+ Property: $modifyRegularObject, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularObject
+ Property: $modifyComputed, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyComputed
+ Property: $increment, isReactive: true
+ Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:485 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:485 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:485 Property: $modifyComputed, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:485 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:485 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:485 Property: $modifyComputed, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:485 Property: $text, isReactive: true
+chemistry3.ts:532 Creating computed property on $Display for property $text
+chemistry3.ts:485 Property: $text, isReactive: true
+chemistry3.ts:532 Creating computed property on $Display for property $text
+page.tsx:11 Display.view() - $text: Hello World
+page.tsx:11 Display.view() - $text: Hello World
+page.tsx:11 Display.view() - $text: Hello World
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: count, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property count
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: count, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property count
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: count, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property count
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: count, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property count
+chemistry3.ts:485 Property: $first, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $first
+chemistry3.ts:485 Property: $second, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $second
+chemistry3.ts:485 Property: $third, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $third
+chemistry3.ts:485 Property: $first, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $first
+chemistry3.ts:485 Property: $second, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $second
+chemistry3.ts:485 Property: $third, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $third
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: 200
+chemistry3.ts:485 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:485 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:485 Property: $modifyComputed, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: 200
+chemistry3.ts:485 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:485 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:485 Property: $modifyComputed, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:485 Property: $arrayProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $arrayProp
+chemistry3.ts:485 Property: $objectProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $objectProp
+chemistry3.ts:485 Property: regularArrayCount, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularArrayCount
+chemistry3.ts:485 Property: regularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularArray
+chemistry3.ts:485 Property: regularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularObject
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: 200
+chemistry3.ts:485 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:485 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:485 Property: $modifyComputed, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:485 Property: $arrayProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $arrayProp
+chemistry3.ts:485 Property: $objectProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $objectProp
+chemistry3.ts:485 Property: regularArrayCount, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularArrayCount
+chemistry3.ts:485 Property: regularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularArray
+chemistry3.ts:485 Property: regularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularObject
+page.tsx:82 Getter called, returning: 200
+page.tsx:82 Getter called, returning: 200
+page.tsx:82 Getter called, returning: 200
+page.tsx:25 Before increment: undefined
+page.tsx:27 After increment: NaN
+page.tsx:25 Before increment: NaN
+page.tsx:27 After increment: NaN
+page.tsx:25 Before increment: NaN
+page.tsx:27 After increment: NaN

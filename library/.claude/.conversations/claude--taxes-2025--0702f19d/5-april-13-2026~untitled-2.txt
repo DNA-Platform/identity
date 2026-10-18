@@ -1,0 +1,300 @@
+# Extracted Numbers from 2025 Source Documents
+
+**Prepared:** 2026-04-13
+**Audience:** Tax expert review — raw figures from 5 source documents
+**Status:** Verified against PDF source text
+
+---
+
+## 1. Form 1099-R — IRA Distribution (Interactive Brokers U2257053)
+
+**Source:** `2025/docs/U2257053.2025.F1099R.pdf`
+**Payer:** Interactive Brokers LLC (TIN 13-3863700)
+**Recipient:** Douglas Rubino, 84 Lebrun Avenue, Amityville NY 11701
+
+| Box | Field | Value |
+|-----|-------|-------|
+| 1 | Gross distribution | **$46,500.00** |
+| 2a | Taxable amount | **$46,500.00** |
+| 2b | Taxable amount not determined | ☒ checked |
+| 2b | Total distribution | ☒ checked |
+| 3 | Capital gain (included in 2a) | $0 |
+| 4 | Federal income tax withheld | **$4,650.00** (exactly 10%) |
+| 5 | Employee / Roth contributions | $0 |
+| 6 | Net unrealized appreciation | $0 |
+| 7 | Distribution code | **1** (early distribution, no known exception) |
+| 7 | IRA/SEP/SIMPLE | ☒ checked |
+| 14 | State tax withheld | $0 |
+| 15 | State/Payer's state no. | NY |
+| 16 | State distribution | $46,500.00 |
+
+**Interpretation notes:**
+- Code 1 = early distribution (taxpayer under 59½, no known exception). **10% additional tax under §72(t) applies to the full $46,500** = $4,650 additional tax on top of ordinary income tax.
+- Only federal withholding was taken ($4,650, exactly 10% — this is the default mandatory withholding on IRA distributions, **not** the §72(t) penalty. Those are coincidentally the same amount here).
+- **No state withholding.** NY state tax on the distribution is fully owed at filing.
+- Age 42 per expert memo confirms §72(t) applicability.
+
+---
+
+## 2. Consolidated 1099 (Interactive Brokers U1934913)
+
+**Source:** `2025/docs/U1934913.2025.1099.pdf` (8 pages)
+**Payer:** Interactive Brokers LLC (TIN 13-3863700)
+
+### 1099-INT — Interest Income
+
+| Box | Field | Value |
+|-----|-------|-------|
+| 1 | Interest income | **$19.93** |
+| 2 | Early withdrawal penalty | $0 |
+| 3 | Interest on U.S. savings bonds / Treasury | $0 |
+| 4 | Federal income tax withheld | $0 |
+| 6 | Foreign tax paid | $0 |
+| 8 | Tax-exempt interest | $0 |
+
+Detail: all $19.93 is "BROKER INTEREST" credit interest for Mar–Jun 2025.
+
+### 1099-DIV — Dividends and Distributions
+
+| Box | Field | Value |
+|-----|-------|-------|
+| 1a | **Total ordinary dividends** | **$562.86** |
+| 1b | **Qualified dividends** | **$562.86** |
+| 2a | Total capital gain distributions | $0 |
+| 2b | Unrecaptured §1250 gain | $0 |
+| 3 | Non-dividend distributions | $0 |
+| 4 | Federal income tax withheld | $0 |
+| 5 | §199A dividends | $0 |
+| 7 | **Foreign tax paid** | **$78.37** |
+| 8 | Foreign country | OTHER COUNTRIES |
+| 12 | Exempt-interest dividends | $0 |
+
+### 1099-OID, 1099-MISC, 1099-NEC
+
+All zero. No OID income, no miscellaneous income, no nonemployee compensation reported by IB.
+
+### 1099-B — Proceeds from Broker and Barter Exchange
+
+**Short-term, covered (Box A — basis reported to IRS):**
+
+| Field | Value |
+|-------|-------|
+| 1d Proceeds | **$12,878.99** |
+| 1e Cost or other basis | **$11,660.91** |
+| 1f Accrued market discount | $0 |
+| 1g Wash sale loss disallowed | $0 |
+| **Net gain** | **$1,218.08** |
+
+**Long-term, covered (Box D):** $0 — no long-term transactions.
+**Noncovered (Box C/F):** $0.
+**Section 1256 contracts (futures/options):** $0.
+
+### Other useful info
+
+- Margin interest paid: $0
+- Advisory fees: $0
+- Other fees: $10.00
+
+---
+
+## 3. IB Worksheet for Form 8949 (U1934913)
+
+**Source:** `2025/docs/U1934913.2025.8949.pdf` (6 pages)
+
+### Part I, Box A — Short-term, basis reported to IRS
+
+| Description | Acquired | Sold | Proceeds | Cost basis | Gain/(loss) |
+|-------------|----------|------|----------|-----------|-------------|
+| 22 sh APPLE INC | 09/30/2024 | 03/13/2025 | $4,704.65 | $5,060.39 | **($355.74)** |
+| 30 sh NVIDIA CORP | 09/30/2024 | 03/13/2025 | $3,484.64 | $3,550.60 | **($65.96)** |
+| 31 sh REDDIT INC-CL A | 09/30/2024 | 03/13/2025 | $3,774.40 | $2,077.21 | **$1,697.19** |
+| 300 sh WIPRO LTD-ADR | 09/30/2024 | 03/13/2025 | $915.30 | $972.71 | **($57.41)** |
+| **Total** | | | **$12,878.99** | **$11,660.91** | **$1,218.08** |
+
+All four positions acquired same day (9/30/2024), sold same day (3/13/2025). All short-term. All covered (Box A). Matches the consolidated 1099-B exactly.
+
+### Part I, Box B & C — other short-term
+
+All zero.
+
+### Part II, Boxes D, E, F — long-term
+
+All zero. No long-term sales at all from IB.
+
+---
+
+## 4. IB Dividend Report (U1934913)
+
+**Source:** `2025/docs/U1934913.2025.dividend-report-2025.txt`
+
+### Revenue summary
+
+| Field | Value |
+|-------|-------|
+| Total ordinary dividends | **$562.86** |
+| Total qualified dividends | **$562.86** |
+| Qualified meeting holding period | $562.86 |
+| Total non-US ordinary dividends | $366.66 |
+| Non-US qualified dividends | $366.66 |
+| US tax paid | $0 |
+| Non-US tax paid | **$78.37** |
+| Long-term cap gain distributions | $0 |
+| §1250 unrecaptured | $0 |
+| Return of capital distributions | $0 |
+| Exempt interest dividends | $0 |
+
+### By country
+
+| Country | Dividends | Withholding |
+|---------|-----------|-------------|
+| India | $20.69 | $2.26 |
+| South Korea | $345.97 | $76.11 |
+| United States | $196.20 | $0 |
+| **Total** | **$562.86** | **$78.37** |
+
+### By payer (selected)
+
+- AAPL (US): $5.50
+- MSFT (US): $190.40 (four quarterly payments)
+- NVDA (US): $0.30
+- KT (South Korea, Korea Telecom): $345.97 across four payments
+- WIT (India, Wipro): $20.69
+
+**Reconciles with 1099-DIV box 1a = $562.86 and box 7 = $78.37.** No discrepancy.
+
+**Foreign tax credit opportunity:** $78.37 foreign tax may be claimable as credit on Form 1040 (Schedule 3 line 1 if under $300 de minimis, no Form 1116 required).
+
+---
+
+## 5. Coinbase Form 1099-DA (new form for tax year 2025)
+
+**Source:** `2025/docs/coinbase-form-1099-da-2025.pdf` (6 pages)
+**Payer:** Coinbase Inc. (TIN 45-5293997)
+**Recipient:** Douglas M Rubino, 84 Lebrun Avenue, Amityville NY 11701
+
+### Summary of Activity
+
+| Bucket | Term | Proceeds | Cost basis | Gain/(loss) |
+|--------|------|----------|-----------|-------------|
+| Coinbase-known basis | Short | $1,056.43 | $1,239.50 | **($183.07)** |
+| Unknown basis | Short | $1,644.75 | Unknown | Unknown |
+| Coinbase-known basis | Long | $10,318.75 | $4,526.81 | **$5,791.94** |
+| Unknown basis | Long | $3,665.87 | Unknown | Unknown |
+| **Total** | | **$16,685.80** | **$5,766.31** (partial) | **$5,608.87** (partial) |
+
+⚠️ **Cost basis is NOT reported to IRS for 2025 crypto.** Per the form: "The IRS copy will ONLY show you gross proceeds." This is the first year of 1099-DA; basis reporting starts in future years. Per Coinbase instructions, report on **Form 8949 with Box H checked** (short-term, basis not reported) or **Box K checked** (long-term, basis not reported — standard 8949 labels these as Box B/E historically but the new 1099-DA uses H/K).
+
+### Transaction detail
+
+**Short-term, Coinbase-known basis:**
+
+| Asset | Proceeds | Cost basis | Gain/(loss) |
+|-------|----------|-----------|-------------|
+| BTC (5 small lots) | $43.27 | $40.57 | $2.70 |
+| ETH (0.4853 units, acquired 08/05/24, sold 03/03/25) | $1,013.16 | $1,198.93 | ($185.77) |
+| **Subtotal** | **$1,056.43** | **$1,239.50** | **($183.07)** |
+
+**Long-term, Coinbase-known basis:**
+
+| Asset | Proceeds | Cost basis | Gain/(loss) |
+|-------|----------|-----------|-------------|
+| BTC (0.06018 units, acquired VARIOUS, sold 03/03/25) | $5,041.37 | $1,739.50 | **$3,301.87** |
+| ETH (2.5278 units, acquired VARIOUS, sold 03/03/25) | $5,277.38 | $2,787.31 | **$2,490.07** |
+| **Subtotal** | **$10,318.75** | **$4,526.81** | **$5,791.94** |
+
+**Unknown basis — short-term (Doug must locate acquisition records):**
+
+| Asset | Date sold | Proceeds | Notes |
+|-------|-----------|----------|-------|
+| BTC (0.01858 units) | 11/30/25 | $1,644.75 | Acquired 11/30/25 — same day, presumably transferred in from another wallet/exchange |
+
+**Unknown basis — long-term (Doug must locate acquisition records):**
+
+| Asset | Date sold | Proceeds | Notes |
+|-------|-----------|----------|-------|
+| BTC (0.04376 units) | 03/03/25 | $3,665.87 | Acquired 08/14/2019 — very old, transferred in from another source |
+
+---
+
+## Aggregate picture — what we know about 2025 taxable events
+
+### Ordinary income
+
+| Source | Amount |
+|--------|--------|
+| IRA distribution (1099-R box 2a, IB) | $46,500.00 |
+| Interest income (1099-INT, IB) | $19.93 |
+| Ordinary dividends (1099-DIV box 1a, IB) | $562.86 |
+| **Total ordinary / non-cap-gain investment income** | **$47,082.79** |
+
+Of which qualified dividends: $562.86 (taxed at capital gains rates).
+
+### Capital gains / losses (aggregated)
+
+| Bucket | Proceeds | Cost basis | Gain/(loss) |
+|--------|----------|-----------|-------------|
+| IB short-term (stocks, Box A) | $12,878.99 | $11,660.91 | **$1,218.08** |
+| Coinbase short-term known | $1,056.43 | $1,239.50 | **($183.07)** |
+| Coinbase long-term known | $10,318.75 | $4,526.81 | **$5,791.94** |
+| Coinbase unknown basis (short + long) | $5,310.62 | Unknown | Unknown |
+| **Sum of known gains/losses** | **$24,254.17** | **$17,427.22** | **$6,826.95** |
+
+**Known net capital gain (before resolving unknown basis): $6,826.95**
+
+Breakdown:
+- Net short-term gain/loss: $1,218.08 − $183.07 = **$1,035.01** (short-term, taxed as ordinary)
+- Net long-term gain: **$5,791.94** (long-term, taxed at capital gains rates)
+- Plus unknown $5,310.62 proceeds with unknown basis → must resolve before filing
+
+### Federal tax withheld (from all 1099s we've seen)
+
+| Source | Amount |
+|--------|--------|
+| 1099-R box 4 (IRA distribution) | $4,650.00 |
+| 1099-INT box 4 | $0 |
+| 1099-DIV box 4 | $0 |
+| 1099-B box 4 (IB) | $0 |
+| 1099-DA (Coinbase) | $0 |
+| **Total federal withheld (IB/Coinbase 2025)** | **$4,650.00** |
+
+### Foreign tax paid
+
+- $78.37 on dividends (box 7 of 1099-DIV)
+- Foreign-sourced dividends: $366.66 (India $20.69 + S. Korea $345.97)
+- Under $300 de minimis → eligible for direct credit on Schedule 3 without Form 1116
+
+---
+
+## Key observations for the expert
+
+1. **Schedule D and Form 8949 likely come back for 2025.** The house sale is out per the §121 guidance, but the IB stock sales and Coinbase crypto sales are material capital gain activity — net known gain of ~$6,827 before resolving the unknown crypto basis. This wasn't in the original filing set discussion.
+
+2. **Unknown-basis Coinbase transactions ($5,310.62 proceeds) require Doug to find records.** The 08/14/2019 BTC acquisition especially — that's a 6+ year old buy, likely from another exchange or wallet. Without cost basis, the conservative default is zero basis (full proceeds taxable as gain), but Doug should try to recover the actual basis first.
+
+3. **§72(t) 10% penalty on the full IRA distribution applies.** Distribution code 1, age 42, no exception indicated. That's $4,650 additional tax via Form 5329. Coincidentally equal to the federal withholding, but they are NOT the same thing — the withholding goes on 1040 line 25b, the penalty goes on Schedule 2 line 8.
+
+4. **NO state tax was withheld on the IRA distribution.** NY will tax the $46,500 distribution as ordinary income on IT-201. This is an owed-at-filing item.
+
+5. **Foreign tax credit: $78.37.** Under the $300 single-filer de minimis — can claim directly on Schedule 3 line 1 without filing Form 1116.
+
+6. **No 1099-NEC from Interactive Brokers.** The SE income that showed on the 2024 transcript ($102,448) is not coming through IB for 2025. It's coming through Mercury (the LLC's business checking) and must be reconstructed from the Mercury CSV. We have not yet fetched Mercury.
+
+7. **No 1099-MISC.** No rents, royalties, staking rewards, or miscellaneous income reported via IB for 2025. Coinbase 1099-DA does NOT include staking/rewards — those are on a separate 1099-MISC per Coinbase's explanatory text. **We don't yet have a Coinbase 1099-MISC.** If Doug received any Coinbase staking or reward income, that's a missing document.
+
+8. **The total sale activity** ($12,878.99 IB + $16,685.80 Coinbase = ~$29.5K in securities/crypto dispositions) is nowhere near large enough to require estimated tax payments to have been made during 2025. But with $46,500 IRA distribution + these gains + the LLC picture, Doug's total taxable 2025 income is likely substantial.
+
+---
+
+## Open questions the expert should answer before we touch any forms
+
+1. **Schedule D and Form 8949 — put them back?** Given the confirmed capital gain activity from IB and Coinbase, should we restore `f1040sd.pdf` and `f8949.pdf` to the filing set?
+
+2. **Coinbase unknown basis** — what's the acceptable approach? Zero-basis default, or does Doug need to provide actual basis from his records before we can file?
+
+3. **Coinbase staking/rewards (1099-MISC)** — is there one we should be hunting for? Doug should check his Coinbase tax center to confirm whether any 1099-MISC exists.
+
+4. **§72(t) — any possible exception?** Substantially equal periodic payments, first-time homebuyer, medical expenses, higher education, etc.? Code 1 says "no known exception" but we should confirm Doug wasn't in any exception category.
+
+5. **Foreign tax credit** — take the $78.37 as a direct credit (Schedule 3 line 1), or deduct on Schedule A? Direct credit is usually better.
+
+6. **Form 7004** — still urgent, still not filed. What's the current best path given the March 15 deadline has now passed by almost a month?

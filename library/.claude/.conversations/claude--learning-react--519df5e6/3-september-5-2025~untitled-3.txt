@@ -1,0 +1,112 @@
+export class $Formula {
+    get $$chemical() { return this._$$chemical; }
+    private _$$chemical: $Chemical;
+
+    get $$bonds() { return this._$$bonds; }
+    private _$$bonds: Map<string, $Bond> = new Map();
+
+    get $$initialized() { return this._$$initialized; }
+    private _$$initialized: boolean = false;
+    
+    get props() { return this.$$bonds.values().filter(b => b.isProp); }
+    get chemicals() { return this.$$bonds.values().filter(b => b.isChemical); }
+
+    constructor(chemical: $Chemical) {
+        this._$$chemical = chemical;
+        this.configureBonds()
+    }
+
+    configureBonds() {
+        console.log(`Diagram.configureBonds: ${this.$$chemical.getType().name}`)
+        if (this._$$initialized) return;
+        this._$$initialized = true;
+        this._$$bonds = new Map();
+
+        let chemical = this.$$chemical;
+        const prototypes: any[] = [];
+        while (chemical) {
+            prototypes.unshift(chemical);
+            if (chemical === $Chemical.prototype) break;
+            chemical = Object.getPrototypeOf(chemical);
+        }
+
+        for (const prototype of prototypes) {
+            // Use Object.getOwnPropertyNames to get ALL properties including getters/setters
+            const propertyNames = Object.getOwnPropertyNames(prototype);
+            for (const property of propertyNames) {
+                const descriptor = Object.getOwnPropertyDescriptor(prototype, property);
+                const value = descriptor?.get ? undefined : prototype[property];
+                if (!isReactiveProperty(prototype, property, value)) continue;
+                this.configureBond(property, value, !this._$$initialized ? prototype[decoratorsKey] : undefined);
+            }
+        }
+    }
+
+    configureBond(property: string, value: any, decorators?: DecoratorCache): $Bond {
+        console.log(`Diagram.configureBond[1]: ${this.$$chemical.getType().name}.${property} = ${value}`);
+        let bond = this.$$bonds.get(property);
+        if (bond) {
+            bond.merge(value);
+            return bond;
+        }
+
+        bond = new $Bond(property);
+        this.$$bonds.set(property, bond);
+
+        const parentType = decorators?.parent.get(property);
+        if (parentType) {
+            bond.type = parentType || $Chemical;
+            bond.isParent = true;
+            bond.isChemical = true;  // Parent is always Chemical
+            bond.isInert = true;
+            bond.isSettable = false;
+            return bond;
+        }
+
+        const descriptor = Object.getOwnPropertyDescriptor(this.$$chemical, property);
+        if (descriptor?.get && !descriptor.set) {
+            bond.isSettable = false;
+            bond.isMutable = true;
+            bond.symbolizer = symbolize;
+        }
+
+        const representer = decorators?.dynamic.get(property);
+        if (representer !== undefined) {
+            bond.symbolizer = representer || symbolize;
+            bond.isMutable = true;
+        }
+
+        const $config = decorators?.$.get(property);
+        if ($config) {
+            bond.type = $config.type;
+            bond.isProp = property.startsWith('$');
+            bond.isChemical = true;  // $ decorator only accepts Chemical types
+            if (bond.isProp && (this.$$chemical as any)[property.substring(1)] === $Chemical.$set)
+                bond.isExplicitlyBound = true;
+            else
+                bond.isImplicitlyBound = true;
+            this.initializeBondValue(bond, $config.expecting, property, value);
+        }
+
+        bond.merge(value);
+        return bond;
+    }
+
+    private initializeBondValue(bond: $Bond, expecting: '?' | '!' | '[]', property: string, value: any) {
+        const chemical = this.$$chemical as any;
+        if (expecting === '[]') {
+            bond.isCollective = true;
+            bond.isRequired = true;
+            if (value && !Array.isArray(value)) throw new Error(`${property} marked array but isn't`);
+            if (!value) chemical[property] = [];
+            return;
+        }
+        bond.isRequired = expecting === '!';
+        if (expecting === '?' && Array.isArray(value)) throw new Error(`${property} optional but is array`);
+        if (bond.isRequired && bond.isChemical && !value) {
+            const formula = (bond.type as any).formula || bond.type!.prototype;
+            chemical[property] = Object.create(formula);
+            chemical[property]._reactive = false;
+        }
+    }
+}

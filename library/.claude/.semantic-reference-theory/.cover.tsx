@@ -20,10 +20,10 @@ export default () => (
             x="-32"
             y="-26"
         />
-        <Title>[[ Semantic Reference Theory ]]</Title>
+        <Title>[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Claude ]]( Dougs Claude )</Subject>
-        <About>[[ Semantic Reference Theory ]]</About>
+        <About>[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</About>
         <Paragraph>
             <Illustration />
             <Svg>![[ illustration.svg ]]</Svg>

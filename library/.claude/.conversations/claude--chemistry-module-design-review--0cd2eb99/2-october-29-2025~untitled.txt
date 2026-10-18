@@ -1,0 +1,367 @@
+class $Bond<T extends $Chemical = $Chemical, P = any> {
+    protected _parent?: $Bond;
+    protected _children = new Set<$Bond>();
+
+    get formed() { return this._formed; }
+    protected _formed = false;
+
+    get reactive() { return this._reactive; }
+    protected _reactive = false;
+
+    get getter() { return this._getter; }
+    protected _getter?: () => any;
+
+    get setter() { return this._setter; }
+    protected _setter?: (value: any) => void;
+
+    get action() { return this._action; }
+    protected _action?: Function;
+
+    get backingField() { return this._backingField; }
+    set backingField(value: P) { this.backingField = value; }
+    protected _backingField!: P;
+    
+    protected _bid?: string;
+    get bid() { 
+        if (!this._bid) 
+            this._bid = `${this._chemical[$type].name}[${this.chemical[$cid]}].${this._property}`; 
+        return this._bid 
+    }
+    
+    get chemical() { return this._chemical; }
+    protected _chemical: T;
+
+    get template() { return this._template; }
+    protected _template?: $Chemical;
+
+    get possesses() { return this._possesses; }
+    protected _possesses = false;
+    
+    get property() { return this._property; }
+    protected _property: string;
+    
+    get descriptor() { return this._descriptor; }
+    protected _descriptor: PropertyDescriptor;
+
+    get bondDescriptor() { return this._bondDescriptor; }
+    protected _bondDescriptor!: PropertyDescriptor;
+
+    get value(): P { return (this._chemical as any)[this._property]; }
+    set value(value: P) { (this._chemical as any)[this._property] = value; }
+    
+    _lastSeenArgs?: string = undefined;
+    get lastSeenArgs() { return this._lastSeenArgs; }
+    set lastSeenArgs(value: string | undefined) { this._lastSeenArgs = value; }
+    
+    _lastSeenValue?: P;
+    get lastSeenValue() { return this._lastSeenArgs; }
+    set lastSeenValue(value: any) { 
+        this._lastSeenValue = value;
+        if (!this.reactive) return;
+        const reaction = this.reaction;
+        if (reaction && reaction.tracking)
+            reaction!.state.add(this, value);
+    }
+
+    get isProp() { return this._isProp; }
+    protected _isProp: boolean;
+
+    get isMethod() { return this._isMethod; }
+    protected _isMethod = false;
+
+    get isPure() { return this._isPure; }
+    protected _isPure = false;
+
+    get isAsync() { return this._isAsync; }
+    protected _isAsync = false;
+
+    get isField() { return !this.isProperty && !this.isMethod; }
+    get isProperty() { return this.getter !== undefined || this.setter !== undefined; }
+    get isReadable() { return this.isField || this.getter !== undefined; }
+    get isWritable() { return this.isField || this.setter !== undefined; }
+    get isReadOnly() { return this.property && this.getter !== undefined && this.setter === undefined; }
+    get isWriteOnly() { return this.property && this.getter === undefined && this.setter !== undefined; }
+    get isEditable() { return this.isReadable && this.isWritable; }
+
+    get reaction(): $Reaction | undefined { 
+        if (!this._reactive) return undefined;
+        return this._chemical[$reaction].active;
+    }
+
+    protected constructor(chemical: T, property: string, descriptor: PropertyDescriptor, reactive: boolean) {
+        this._property = property;
+        this._descriptor = descriptor;
+        this._isProp = $Bond.isSpecial(property);
+        this._chemical = chemical;
+        this._template = undefined;
+        this._possesses = true;
+        this._reactive = reactive;
+    }
+
+    form() {
+        if (this.formed) return;
+        this._formed = true;
+        
+        const chemical = this._chemical;
+        const descriptor = this._descriptor;        
+        this._getter = descriptor.get;
+        this._setter = descriptor.set;
+        this._backingField = descriptor.value;
+        if (this.isField) {
+            const $chemical$ = this.chemical as any;
+            this._backingField = $chemical$[this.property];
+            this._lastSeenValue = this.backingField;
+        } else if (this.isReadable) {
+            this._lastSeenValue = this.getter!.apply(chemical);
+        }
+        if (this._lastSeenValue instanceof $Chemical)
+            this._lastSeenValue = this.replaceIf(this._lastSeenValue, true) as any;
+
+        this.describe();
+    }
+
+    double(chemical: $Chemical, reactive: boolean) {
+        const bond = Object.create(this) as $Bond;
+        this._children.add(bond);
+        bond._parent = this;
+        bond._template = this._chemical;
+        bond._chemical = chemical;
+        bond._children = new Set();
+        bond._bid = undefined;
+        bond._possesses = bond.isMethod;
+        bond._reactive = reactive;
+        bond.describe();
+        return bond;
+    }
+
+    destroy() {
+        this._lastSeenValue = undefined;
+        this._lastSeenArgs = undefined;
+        this._backingField = undefined as any;
+        this.setter?.(undefined);
+    }
+
+    protected bondGet() {
+        let value: any = 
+            !this._possesses && this._parent ? this._parent.bondGet() :
+            this.isProperty && this.isReadable ? this._getter!.apply(this._chemical) :
+            this._backingField;
+        
+        if (value instanceof $Chemical)
+            value = this.replaceIf(value, true);
+        if (Array.isArray(value)) {
+            for (let i = 0; i < value.length; i++) {
+                const item = value[i];
+                if (item instanceof $Chemical) {
+                    const $item = this.replaceIf(item, true);
+                    if (item !== $item) value[i] = $item;
+                }
+            }
+        }
+        if (!this._isMethod) {
+            if (this.reactive) this.lastSeenValue = value;
+            else this._lastSeenValue = value;
+        }
+        return value;
+    }
+
+    protected bondSet(value: any) {
+        const dependent = !this._possesses;
+        this._possesses = true;
+        if (dependent)
+            this._parent?._children.delete(this);
+        
+        const chemical = this.chemical;
+        if (value instanceof $Chemical) 
+            value = this.replaceIf(value);
+        if (this.isField)
+            this._backingField = value;
+        else if (this.isWritable)
+            this.setter!.apply(chemical, [value]);
+        else
+            throw new Error(`${this._property} property not settable`);
+
+        this.bondGet();
+        for (const child of this._children)
+            child.bondSet(value);
+    }
+
+    protected describe() {
+        this._bondDescriptor = {
+            get: () => this.bondGet(),
+            set: (value: any) => this.bondSet(value),
+            enumerable: true,
+            configurable: true,
+        };
+        Object.defineProperty(this._chemical, this._property, this._bondDescriptor);
+    }
+
+    protected replaceIf(dependency: $Chemical, update: boolean = false) {
+        const chemical = this._chemical;
+        let $dependency = dependency[$destroyed] ? undefined : 
+            dependency[$catalyst] !== chemical[$catalyst] ?
+            dependency.Component.$bind(chemical[$parent] || chemical).$chemical :
+            dependency;
+        
+        if (update && dependency !== $dependency) {
+            if (this.isField) this._backingField = $dependency as any;
+            else if (this.isWritable) this._setter?.apply(chemical, [$dependency]);
+        }
+
+        return $dependency;
+    }
+
+    static isReactiveProperty(property: string): boolean {
+        if (property.startsWith('_')) return false;
+        if ($Bond.isSpecial(property)) return true;
+        if ($Chemical.prototype.hasOwnProperty(property)) return false;
+        return true;
+    }
+
+    static isSpecial(property: string): boolean {
+        return property.length > 2 && 
+            property[0] === '$' && 
+            property[1] === property[1].toLowerCase() && 
+            property[1] !== "$" && 
+            property[1] !== "_";
+    }
+
+    static isMethod(descriptor: PropertyDescriptor) {
+        return typeof descriptor.value === 'function' && !descriptor.get && !descriptor.set;
+    }
+
+    static create<T extends $Chemical>(chemical: T, property: string, descriptor: PropertyDescriptor, reactive: boolean): $Bond<T> {
+        return $Bond.isMethod(descriptor) ? 
+            new $BondFormation(chemical, property, descriptor, reactive) : 
+            new $Bond(chemical, property, descriptor, reactive);
+    }
+}
+
+class $BondFormation<T extends $Chemical = any, P = any> extends $Bond<T, P> {
+    get lastSeenActive() { return this._lastSeenActive; }
+    protected _lastSeenActive?: $Promise<any>;
+    protected _lastSeenRender?: $Promise<any>;
+
+    constructor(chemical: T, method: string, descriptor: PropertyDescriptor, reactive: boolean) {
+        super(chemical, method, descriptor, reactive);
+        this._isProp = false;
+        this._isMethod = true;
+        this._isPure = $Bond.isSpecial(method);
+    }
+
+    form() {
+        if (this.formed) return;
+        this._formed = true;
+        this._action = this._descriptor.value;
+        this.describe();
+    }
+
+    describe() {
+        this._bondDescriptor = {
+            get: () => {
+                return (...args: any[]) => {
+                    return this.bondCall(...args);
+                };
+            },
+            set: (value: any) => {
+                this.bondSet(value);
+            },
+            enumerable: true,
+            configurable: true,
+        };
+        Object.defineProperty(this._chemical, this._property, this._bondDescriptor);
+    }
+
+    protected bondCall(...args: any[]) {
+        if (this.isPure) {
+            const argSymbol = $symbolize(args || []);
+            if (this.lastSeenArgs == argSymbol)
+                return this._isAsync ? 
+                    this._lastSeenActive :
+                    this.lastSeenValue;
+            this._lastSeenArgs = argSymbol;
+        }
+
+        const chemical = this._chemical;
+        let actualArgs = args.filter(arg => !$Represent.isEvent(arg));
+
+        if (this._isAsync) {
+            console.log("bondCall: async", this._chemical.toString(), this.property, $symbolize(actualArgs));
+            const chemical = this._chemical;
+            return this.handleAsync(
+                $promise(resolve => { resolve(); })
+                .then(async () => {
+                    console.log("bondCall:thsn", 'this', this)
+                    return this.action!.apply(chemical, actualArgs)
+                })
+            );
+        }
+        
+        let reaction = this.reaction;
+        const updateRequired = this.reactive &&
+            (reaction === undefined ||
+             reaction.phase !== 'render'); 
+            
+        if (updateRequired) {
+            reaction = chemical[$reaction];
+            reaction.activate('existing');
+        }
+
+        console.log("bondCall", this._chemical.toString(), this.property, $symbolize(args), 'updateRequired', updateRequired, 'reaction', reaction);
+
+        try {
+            let result = this.action!.apply(chemical, actualArgs);
+            if (!(result instanceof Promise)) {
+                if (result instanceof $Chemical) 
+                    result = this.replaceIf(result);
+                this.lastSeenValue = result;
+                return result;
+            }
+            return this.handleAsync(result);
+        } finally {
+            if (updateRequired) {
+                reaction!.deactivate();
+                reaction!.updateIf();
+            }
+        }
+    }
+
+    protected handleAsync(action: Promise<any>): $Promise<any> {
+        console.log("handleAsync", this._chemical.toString(), this.property);
+        this._isAsync = true;
+        const $action = action.then(async result => {
+            if (result instanceof $Chemical) 
+                result = this.replaceIf(result);
+            console.log("handleAsync:result", this._chemical.toString(), this.property, 'result', result);
+            $action.result = result;
+            if (this._lastSeenActive !== $action) 
+                return result;
+
+            this._lastSeenRender = this.chemical.render() as any;
+            await this._lastSeenRender;
+
+            console.log("handleAsync:afterRender", this._chemical.toString(), this.property, 'result', result);
+            if (this._lastSeenValue !== result)
+                this.lastSeenValue = result;
+            return this.lastSeenValue;
+        }) as $Promise<any>;
+
+        const assign = () => $action.then(result => { 
+            if (result instanceof $Chemical) 
+                result = this.replaceIf(result);
+            if (this._lastSeenValue !== result)
+                this.lastSeenValue = result;
+        });
+        if (this._lastSeenActive) {
+            this._lastSeenActive.cancel?.(assign);
+            this._lastSeenActive = undefined;
+        }
+        if (this._lastSeenRender) { 
+            this._lastSeenRender.cancel?.(assign);
+            this._lastSeenRender = undefined
+        }
+
+        this._lastSeenActive = $action;
+        return $action;
+    }
+}

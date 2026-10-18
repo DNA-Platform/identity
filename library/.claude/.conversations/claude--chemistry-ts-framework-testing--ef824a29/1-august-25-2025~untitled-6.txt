@@ -1,0 +1,125 @@
+/**
+* Decorator for binding a child to a property
+*/
+export function child(ChildClass: any) {
+    return function (target: any, propertyKey: string) {
+        // Set up binding metadata
+        const constructor = target.constructor as any;
+        if (!constructor.__bindingsMap) {
+            constructor.__bindingsMap = new Map<string, Binding>();
+        }
+
+        let binding = constructor.__bindingsMap.get(propertyKey);
+        if (!binding) {
+            binding = { property: propertyKey };
+            constructor.__bindingsMap.set(propertyKey, binding);
+        }
+
+        binding.class = ChildClass;
+        if (binding.optional === undefined) {
+            binding.optional = false;
+        }
+
+        // Wrap the view method only once for the entire class
+        if (!constructor.__viewWrapped) {
+            constructor.__viewWrapped = true;
+            const originalView = target.view;
+
+            target.view = function () {
+                const originalResult = originalView.call(this);
+
+                // Only render hidden children if not all bindings are satisfied
+                const allBindingsSatisfied = checkAllBindingsSatisfied(this);
+
+                if (!allBindingsSatisfied && this.elements) {
+                    return React.createElement(
+                        React.Fragment,
+                        null,
+                        originalResult,
+                        React.createElement(
+                            'div',
+                            {
+                                style: { display: 'none' },
+                                'aria-hidden': 'true',
+                                'data-chemistry-hidden': 'true'
+                            },
+                            this.elements
+                        )
+                    );
+                }
+
+                return originalResult;
+            };
+        }
+
+        // Initialize property with placeholder
+        if (!target.hasOwnProperty(propertyKey)) {
+            const descriptor = Object.getOwnPropertyDescriptor(target, propertyKey);
+            const isArray = descriptor?.value instanceof Array;
+            target[propertyKey] = 
+                isArray ? [] : 
+                !binding.optional ? createPlaceholderChemical(ChildClass) : 
+                undefined;
+        }
+        dynamic()(target, propertyKey);
+    };
+}
+
+/**
+ * Decorator for positional child property binding
+ */
+export function optional() {
+    return function (target: any, propertyKey: string) {
+        const constructor = target.constructor as any;
+        if (!constructor.__bindingsMap) constructor.__bindingsMap = new Map<string, Binding>();
+
+        let binding = constructor.__bindingsMap.get(propertyKey);
+        if (!binding) {
+            binding = { property: propertyKey };
+            constructor.__bindingsMap.set(propertyKey, binding);
+        }
+
+        binding.optional = true;
+        if (target[propertyKey] )
+            target[propertyKey] = undefined;
+    };
+}
+
+/**
+ * Decorator for conditional child property binding
+ */
+export function where(predicate: (instance: $Chemical) => boolean) {
+    return function (target: any, propertyKey: string) {
+        const constructor = target.constructor as any;
+        if (!constructor.__bindingsMap) constructor.__bindingsMap = new Map<string, Binding>();
+
+        let binding = constructor.__bindingsMap.get(propertyKey);
+        if (!binding) {
+            binding = { property: propertyKey };
+            constructor.__bindingsMap.set(propertyKey, binding);
+        }
+
+        binding.where = predicate;
+        binding.optional = true;
+        if (target[propertyKey] )
+            target[propertyKey] = undefined;
+    };
+}
+
+/**
+ * Decorator for positional child property binding
+ */
+export function position(n: number) {
+    return function (target: any, propertyKey: string) {
+        const constructor = target.constructor as any;
+        if (!constructor.__bindingsMap) constructor.__bindingsMap = new Map<string, Binding>();
+
+        let binding = constructor.__bindingsMap.get(propertyKey);
+        if (!binding) {
+            binding = { property: propertyKey };
+            constructor.__bindingsMap.set(propertyKey, binding);
+        }
+
+        binding.position = n - 1;  // 0-based
+    };
+}

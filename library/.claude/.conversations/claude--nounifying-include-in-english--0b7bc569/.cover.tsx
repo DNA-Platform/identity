@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Nounifying "include" in English ]]( claude--Nounifying "include" in English--0b7bc569 )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Semantic Reference Theory ]]</Project>
+        <Project>***[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>0b7bc569-702a-4651-846b-5f4573b77905</Origin>
         <Paragraph>

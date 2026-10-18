@@ -1,0 +1,183 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ Chemistry Framework - Advanced Example App v1 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Framework - Task Manager Example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .app-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .app-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .app-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .task-manager {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .add-task-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .add-task-form input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .add-task-form input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .add-task-form button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .add-task-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .filter-tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .filter-tab.active {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .filter-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #667eea;
+        }
+        
+        .task-list {
+            min-height: 200px;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            margin-bottom: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .task-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .task-item.completed {
+            opacity: 0.6;
+        }
+        
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .task-checkbox {
+            width: 24px;
+            height: 24px;
+            margin-right: 16px;
+            cursor: pointer;
+        }
+        
+        .task-text {
+            flex: 1;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .task-priority {
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+        
+        .priority-high {`}
+        </CodeBox>
+    </Chapter>
+);

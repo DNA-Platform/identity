@@ -1,0 +1,104 @@
+import React, { useCallback } from 'react';
+import styled from 'styled-components';
+
+// Explicit interface definition with optional props
+interface DownloadButtonProps {
+  svgRef: React.RefObject<SVGSVGElement>;
+  filename?: string;
+}
+
+// Simple button styling
+const StyledButton = styled.button`
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background-color: #f0f0f0;
+  }
+`;
+
+const IconWrapper = styled.span`
+  margin-right: 6px;
+  display: flex;
+`;
+
+const DownloadButton: React.FC<DownloadButtonProps> = ({ 
+  svgRef, 
+  filename = 'map.svg',
+}) => {
+  
+  const handleDownload = useCallback(() => {
+    if (!svgRef || !svgRef.current) {
+      console.warn('SVG reference is not available');
+      return;
+    }
+    
+    try {
+      // Clone the SVG to avoid modifying the displayed one
+      const svgElement = svgRef.current.cloneNode(true) as SVGSVGElement;
+      
+      // Add XML declaration and namespaces for Illustrator compatibility
+      svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      svgElement.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+      
+      // Add explicit viewBox if missing
+      if (!svgElement.hasAttribute('viewBox')) {
+        const width = svgElement.getAttribute('width') || '800';
+        const height = svgElement.getAttribute('height') || '600';
+        svgElement.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      }
+      
+      // Serialize to SVG string
+      const svgData = new XMLSerializer().serializeToString(svgElement);
+      
+      // Add XML declaration
+      const xmlDeclaration = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n';
+      const svgWithHeader = xmlDeclaration + svgData;
+      
+      // Create a blob with the SVG data
+      const svgBlob = new Blob([svgWithHeader], { type: 'image/svg+xml;charset=utf-8' });
+      const svgUrl = URL.createObjectURL(svgBlob);
+      
+      // Create and trigger download
+      const downloadLink = document.createElement('a');
+      downloadLink.href = svgUrl;
+      downloadLink.download = filename;
+      downloadLink.style.display = 'none';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      
+      // Clean up
+      setTimeout(() => {
+        document.body.removeChild(downloadLink);
+        URL.revokeObjectURL(svgUrl);
+      }, 100);
+    } catch (error: unknown) {
+      console.error('Error downloading SVG:', 
+        error instanceof Error ? error.message : 'Unknown error');
+    }
+  }, [svgRef, filename]);
+
+  return (
+    <StyledButton 
+      onClick={handleDownload} 
+      aria-label="Download SVG"
+    >
+      <IconWrapper>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+      </IconWrapper>
+      <span>Download SVG</span>
+    </StyledButton>
+  );
+};
+
+export default DownloadButton;

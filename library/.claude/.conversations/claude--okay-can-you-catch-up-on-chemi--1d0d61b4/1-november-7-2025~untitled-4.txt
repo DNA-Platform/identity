@@ -1,0 +1,145 @@
+// export interface $Object extends $Rep {
+//     literal: any;
+//     isPrimitive: boolean;
+//     isPrototype: boolean;
+//     isFunction: boolean;
+//     isArray: boolean;
+//     $as(kind: 'primitive'): $Primitive;
+//     $as(kind: 'function'): $Function;
+//     $as(kind: 'prototype'): $Prototype;
+//     $prototype: $Prototype;
+//     $type: $Type;
+//     $members(own?: boolean): $Member[];
+//     $fields(own?: boolean): $Field[];
+//     $properties(own?: boolean): $Property[];
+//     $methods(own?: boolean): $Method[];
+//     $getField(name: string, own?: boolean): $Field | undefined;
+//     $getProperty(name: string, own?: boolean): $Property | undefined;
+//     $getMethod(name: string, own?: boolean): $Method | undefined;
+// }
+
+// export interface $Primitive extends $Rep {
+//     literal: any;
+//     $as(kind: 'object'): $Object;
+// }
+
+// export interface $Prototype extends $Rep {
+//     literal: object;
+//     $as(kind: 'object'): $Object;
+//     $members(own?: boolean): $Member[];
+//     $fields(own?: boolean): $Field[];
+//     $properties(own?: boolean): $Property[];
+//     $methods(own?: boolean): $Method[];
+//     $getField(name: string, own?: boolean): $Field | undefined;
+//     $getProperty(name: string, own?: boolean): $Property | undefined;
+//     $getMethod(name: string, own?: boolean): $Method | undefined;
+// }
+
+// export interface $Function extends $Object {
+//     literal: (...args: any[]) => any;
+//     form: 'lambda' | 'function' | 'method' | 'getter' | 'setter' | 'class' | 'unknown';
+//     name: string;
+//     async: boolean;
+//     generator: boolean;
+//     native: boolean;
+//     isConstructor: boolean;
+//     isType: boolean;
+//     isMethod: boolean;
+//     isGeneric: boolean;
+//     $as(kind: 'primitive'): $Primitive;
+//     $as(kind: 'function'): $Function;
+//     $as(kind: 'prototype'): $Prototype;
+//     $as(kind: 'constructor'): $Constructor;
+//     $as(kind: 'generic'): $GenericFunction;
+//     $typeParameters: $TypeParameter[];
+//     $parameters: $FunctionParameter[];
+// }
+
+// export interface $Constructor extends $Rep {
+//     $as(kind: 'function'): $Function;
+// }
+
+// export interface $Type extends $Rep {
+//     literal: Type;
+//     isGeneric: boolean;
+//     $as(kind: 'class'): $Class;
+//     $as(kind: 'constructor'): $Constructor;
+//     $as(kind: 'generic'): $GenericType;
+//     $baseType: $Type;
+//     $prototype: $Prototype;
+//     $parameters: $TypeParameter[];
+//     asGenericType(...types: $GenericType[]): any;
+//     $members(own?: boolean): $Member[];
+//     $fields(own?: boolean): $Field[];
+//     $properties(own?: boolean): $Property[];
+//     $methods(own?: boolean): $Method[];
+//     $getMember(name: string, own?: boolean): $Member | undefined;
+//     $getField(name: string, own?: boolean): $Field | undefined;
+//     $getProperty(name: string, own?: boolean): $Property | undefined;
+//     $getMethod(name: string, own?: boolean): $Method | undefined;
+// }
+
+// export interface $Class extends $Rep {
+//     literal: Type;
+//     $members(): $Member[];
+//     $fields(): $Field[];
+//     $methods(): $Method[];
+//     $getField(name: string): $Field | undefined;
+//     $getMethod(name: string): $Method | undefined;
+// }
+
+// export interface $Member extends $Rep {
+//     name: string;
+//     isReadable: boolean;
+//     isWritable: boolean;
+//     isConfigurable: boolean;
+//     isEnumerable: boolean;
+//     $owner: $Object;
+//     $as(kind: 'field'): $Field;
+//     $as(kind: 'property'): $Property;
+//     $as(kind: 'method'): $Method;
+// }
+
+// export interface $Field extends $Rep {
+//     $value: $Object;
+//     isConfigurable: boolean;
+//     isEnumerable: boolean;
+// }
+
+// export interface $Property extends $Rep {
+//     $get?: $Function;
+//     $set?: $Function;
+//     isReadable: boolean;
+//     isWritable: boolean;
+//     isConfigurable: boolean;
+//     isEnumerable: boolean;
+// }
+
+// export interface $Method extends $Function {
+//     isConfigurable: boolean;
+//     isEnumerable: boolean;
+// }
+
+// export interface $FunctionParameter extends $Rep {
+//     name: string;
+//     isRest: boolean;
+//     $type?: $TypeParameter;
+// }
+
+// export interface $TypeParameter extends $Rep {
+//     name: string;
+//     $constraint?: $Type;
+//     $default?: $Type;
+// }
+
+// export interface $GenericFunction extends $Rep {
+//     $as(kind: 'function'): $Function;
+//     $as(kind: 'constructor'): $Constructor;
+//     $arguments: $Type;
+// }
+
+// export interface $GenericType extends $Rep {
+//     $as(kind: 'type'): $Type;
+//     $as(kind: 'constructor'): $Constructor;
+//     arguments: $Type;
+// }

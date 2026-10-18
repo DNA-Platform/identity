@@ -1,0 +1,245 @@
+class DocumentQuery<T extends QueryItem = LayerQuery<PageItemQuery>> extends Queryable<Document, T> {
+    private _layers: DocumentQuery<LayerQuery<PageItemQuery>> | undefined;
+    private _artboards: DocumentQuery<ArtboardQuery> | undefined;
+    private _views: DocumentQuery<ViewQuery> | undefined;
+    private _stories: DocumentQuery<StoryQuery<TextRangeQuery>> | undefined;
+    private _variables: DocumentQuery<VariableQuery> | undefined;
+    private _swatches: DocumentQuery<SwatchQuery> | undefined;
+    private _brushes: DocumentQuery<BrushQuery> | undefined;
+    private _symbols: DocumentQuery<SymbolQuery> | undefined;
+    private _patterns: DocumentQuery<PatternQuery> | undefined;
+    private _spots: DocumentQuery<SpotQuery> | undefined;
+    private _gradients: DocumentQuery<GradientQuery> | undefined;
+    private _tags: DocumentQuery<TagQuery> | undefined;
+
+    active(): boolean { return this.app().item().activeDocument == this._item; }
+    activate() { this.app().item().activeDocument = this._item; return this; }
+    deactivate() { this.app().item().activeDocument = f(this.app().item().documents).at(-1); return this; }
+    remove() { this._item?.close?.(); this._item = QueryItem.empty(); }
+    activeArtboard(): ArtboardQuery { return this.artboards().at(this.getActiveArtboardIndex()); }
+    activeLayer(): LayerQuery { return q(this.item().activeLayer); }
+    activeView(): ViewQuery { return q(this.item().activeView); }
+    defaults(): ApplicationDefaults { return this.app().defaults(); }
+    dpi(): number { return this.app().dpi(); }
+
+    // QueryItem overrides
+    document(): DocumentQuery { return this as any; }
+    artboard(): ArtboardQuery { return this.activeArtboard(); }
+    layer(): LayerQuery { return this.activeLayer(); }
+    region(): Region { return this.activeArtboard().region(); }
+
+    constructor(doc: Document, collectionType: CollectionType = "layers") {
+        super(doc, collectionType);
+
+        // Ensures Cartesian coordinates
+        this.item().rulerOrigin = [0, 0];
+    }
+
+    save(fileName?: string): this {
+        try {
+            if (fileName === undefined) {
+                this._item.save();
+                return this;
+            }
+            const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+            this._item.saveAs(file);
+            return api.documents().first(d => d.name() == fileName) as any;
+        } catch (error: any) {
+            throw new Error(`Failed to save document '${fileName}': ${error.message}`);
+        }
+    }
+
+    close() {
+        this.remove();
+    }
+
+    reset() {
+        if (this.artboards().any()) {
+            this.layers().removeAll();
+            this.artboards().removeAll();
+        }
+    }
+
+    create(name?: string): T {
+        if (this.collectionType !== "artboards")
+            return super.create(name);
+
+        throw "Cannot create an artbaord because it is treated as a singleston";
+    }
+
+    removeAll(): void {
+        if (this.collectionType == "artboards") {
+            var activeArtboard = this.activeArtboard();
+            this.where(a => a._item !== activeArtboard._item).do(a => a.remove());
+            this.activeArtboard().reset();
+        } else if (this.collectionType == "layers") {
+            var defaultLayer = this.layers().length() > 0 ? this.layers().at(0) : this.layers().create();
+            defaultLayer.name(this.defaults().layerName);
+            defaultLayer.pageItems().removeAll();
+            defaultLayer.activate();
+            this.layers().skip(1).do(layer => layer.remove());
+        } else {
+            super.removeAll();
+        }
+    }
+
+    copyLayer(layer: LayerQuery, index: number = -1): LayerQuery {
+        var differentDocuments = this.item() !== layer.document().item();
+        if (differentDocuments) {
+            // Match the aspect ratio of the source artboard
+            layer.document().activate();
+            const sourceAspectRatio = layer.document().activeArtboard().aspectRatio();
+
+            this.activate();
+            this.activeArtboard().reset();
+            this.activeArtboard().aspectRatio(sourceAspectRatio);
+            this.rearrangeArtboards();
+        }
+
+        // Activate the source document and get its artboard rect
+        layer.document().activate();
+        const sourceRect = layer.document().activeArtboard().rect();
+
+        // Pre-calculate relative centers for all items in the source layer
+        const itemCenters = layer.pageItems().select(p => p.p().position());
+
+        // Activate the target document and get its artboard rect
+        this.activate();
+        const targetRect = this.activeArtboard().rect();
+
+        // Create the new layer in the target document
+        const layers = this.layers();
+        const newLayer = layers.create(layer.name());
+        newLayer.replaceWith(layer);
+        newLayer.moveTo(index);
+
+        if (differentDocuments) {
+            const sourceWidth = Math.abs(sourceRect[2] - sourceRect[0]);
+            const sourceHeight = Math.abs(sourceRect[1] - sourceRect[3]);
+            const targetWidth = Math.abs(targetRect[2] - targetRect[0]);
+            const targetHeight = Math.abs(targetRect[1] - targetRect[3]);
+            const scaleFactors = { scaleX: targetWidth / sourceWidth, scaleY: targetHeight / sourceHeight }
+
+            // Apply scaling and translation using the pre-stored relative centers
+            newLayer.pageItems().forEach((item, i) => {
+                i = i as number;
+                item.p().scale([scaleFactors.scaleX, scaleFactors.scaleY]);
+                this.p().position(itemCenters.at(i));
+            });
+        }
+
+        return newLayer;
+    }
+
+    copyArtboard(artboard: ArtboardQuery) {
+        artboard.document().activate();
+        this.activeArtboard().aspectRatio(artboard.aspectRatio());
+        this.activate();
+    }
+
+    getActiveArtboardIndex(): number {
+        var artboards: Artboards = this.artboards().collection() as Artboards;
+        var activeIndex = artboards.getActiveArtboardIndex();
+        if (activeIndex === undefined || activeIndex === null || activeIndex < 0) {
+            artboards.setActiveArtboardIndex(0);
+            return 0;
+        }
+        return activeIndex;
+    }
+
+    rearrangeArtboards(artboardLayout?: DocumentArtboardLayout, artboardRowsOrCols?: number, artboardSpacing?: number, artboardMoveArtwork?: boolean): boolean {
+        return this.item().rearrangeArtboards(artboardLayout, artboardRowsOrCols, artboardSpacing, artboardMoveArtwork);
+    }
+
+    layers() {
+        if (this.collectionType === "layers") return this;
+        if (this._layers) return this._layers;
+        this._layers = new DocumentQuery<LayerQuery<PageItemQuery>>(this._item, "layers");
+        return this._layers;
+    }
+
+    artboards() {
+        if (this.collectionType === "artboards") return this;
+        if (this._artboards) return this._artboards;
+        this._artboards = new DocumentQuery<ArtboardQuery>(this._item, "artboards");
+        return this._artboards;
+    }
+
+    createArtboard(): ArtboardQuery {
+        return this._create("artboards");
+    }
+
+    views() {
+        if (this.collectionType === "views") return this;
+        if (this._views) return this._views;
+        this._views = new DocumentQuery<ViewQuery>(this._item, "views");
+        return this._views;
+    }
+
+    stories() {
+        if (this.collectionType === "stories") return this;
+        if (this._stories) return this._stories;
+        this._stories = new DocumentQuery<StoryQuery<TextRangeQuery>>(this._item, "stories");
+        return this._stories;
+    }
+
+    variables() {
+        if (this.collectionType === "variables") return this;
+        if (this._variables) return this._variables;
+        this._variables = new DocumentQuery<VariableQuery>(this._item, "variables");
+        return this._variables;
+    }
+
+    swatches() {
+        if (this.collectionType === "swatches") return this;
+        if (this._swatches) return this._swatches;
+        this._swatches = new DocumentQuery<SwatchQuery>(this._item, "swatches");
+        return this._swatches;
+    }
+
+    brushes() {
+        if (this.collectionType === "brushes") return this;
+        if (this._brushes) return this._brushes;
+        this._brushes = new DocumentQuery<BrushQuery>(this._item, "brushes");
+        return this._brushes;
+    }
+
+    symbols() {
+        if (this.collectionType === "symbols") return this;
+        if (this._symbols) return this._symbols;
+        this._symbols = new DocumentQuery<SymbolQuery>(this._item, "symbols");
+        return this._symbols;
+    }
+
+    patterns() {
+        if (this.collectionType === "patterns") return this;
+        if (this._patterns) return this._patterns;
+        this._patterns = new DocumentQuery<PatternQuery>(this._item, "patterns");
+        return this._patterns;
+    }
+
+    spots() {
+        if (this.collectionType === "spots") return this;
+        if (this._spots) return this._spots;
+        this._spots = new DocumentQuery<SpotQuery>(this._item, "spots");
+        return this._spots;
+    }
+
+    gradients() {
+        if (this.collectionType === "gradients") return this;
+        if (this._gradients) return this._gradients;
+        this._gradients = new DocumentQuery<GradientQuery>(this._item, "gradients");
+        return this._gradients;
+    }
+
+    tags() {
+        if (this.collectionType === "tags") return this;
+        if (this._tags) return this._tags;
+        this._tags = new DocumentQuery<TagQuery>(this._item, "tags");
+        return this._tags;
+    }
+
+    createLayer(): LayerQuery {
+        return this._create(i => i.item().layers, layers => q(layers.add()));
+    }
+}

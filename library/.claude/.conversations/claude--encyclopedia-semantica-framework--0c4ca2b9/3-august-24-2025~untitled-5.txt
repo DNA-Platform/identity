@@ -1,0 +1,126 @@
+private static _bindings?: any[];
+    private static _bindingsInitialized?: boolean;
+
+    private static initializeClassBindings(constructor: any): void {
+        if (constructor._bindingsInitialized) return;
+
+        const parent = Object.getPrototypeOf(constructor);
+        if (parent && parent !== Chemical) {
+            this.initializeClassBindings(parent);
+            if (parent._bindings) {
+                constructor._bindings = [...parent._bindings, ...(constructor._bindings || [])];
+            }
+        }
+        constructor._bindingsInitialized = true;
+    }
+
+    private initializeBindings(): void {
+        Chemical.initializeClassBindings(this.constructor);
+    }
+
+    // applyBindings method
+    private static _mergedBindingsCache = new WeakMap<any, Binding[]>();
+
+    private applyBindings(): void {
+        const constructor = this.constructor as any;
+
+        // Get or build merged bindings
+        let bindings = Chemical._mergedBindingsCache.get(constructor);
+
+        if (!bindings) {
+            const bindingsMap = new Map<string, Binding>();
+
+            // Walk prototype chain to merge bindings
+            let proto = constructor;
+            while (proto && proto !== Chemical) {
+                if (proto._bindingsMap) {
+                    // Add parent bindings that aren't already in map
+                    proto._bindingsMap.forEach((binding: Binding, key: string) => {
+                        if (!bindingsMap.has(key)) {
+                            bindingsMap.set(key, { ...binding });  // Copy to avoid mutations
+                        }
+                    });
+                }
+                proto = Object.getPrototypeOf(proto);
+            }
+
+            // Convert to array and validate
+            bindings = [];
+            bindingsMap.forEach((binding, propertyName) => {
+                if (!binding.class) {
+                    console.warn(`Binding for '${propertyName}' missing @bind decorator`);
+                    return;
+                }
+                binding.property = propertyName;
+                bindings!.push(binding);
+            });
+
+            // Sort by priority (indexed first, then singletons, then arrays)
+            bindings.sort((a, b) => {
+                if (a.index !== undefined && b.index === undefined) return -1;
+                if (b.index !== undefined && a.index === undefined) return 1;
+                if (a.index !== undefined && b.index !== undefined) {
+                    return a.index - b.index;
+                }
+                return 0;
+            });
+
+            Chemical._mergedBindingsCache.set(constructor, bindings);
+        }
+
+        if (bindings.length === 0) return;
+
+        // Get children
+        const childMap = this.children;
+        if (!childMap || childMap.size === 0) return;
+
+        // Track state
+        const instanceCounts = new Map<any, number>();
+        const satisfiedSingletons = new Set<string>();
+
+        // Process children
+        for (const child of childMap.values()) {
+            for (const binding of bindings) {
+                // Type check
+                if (!(child instanceof binding.class!)) continue;
+
+                // Check if singleton already satisfied
+                const prop = (this as any)[binding.property];
+                const isArray = Array.isArray(prop);
+                if (!isArray && satisfiedSingletons.has(binding.property!)) continue;
+
+                // Check predicate
+                if (binding.predicate && !binding.predicate(child)) continue;
+
+                // Check index
+                if (binding.index !== undefined) {
+                    const count = instanceCounts.get(binding.class) || 0;
+                    if (binding.index !== count) {
+                        instanceCounts.set(binding.class!, count + 1);
+                        continue;
+                    }
+                    instanceCounts.set(binding.class!, count + 1);
+                }
+
+                // Apply binding
+                if (isArray) {
+                    prop.push(child);
+                } else {
+                    (this as any)[binding.property] = child;
+                    satisfiedSingletons.add(binding.property!);
+                }
+
+                break;  // Child bound, next child
+            }
+        }
+
+        // Validate required bindings
+        for (const binding of bindings) {
+            if (binding.optional) continue;
+            const prop = (this as any)[binding.property];
+            const isEmpty = Array.isArray(prop) ? prop.length === 0 : !prop;
+            if (isEmpty) {
+                throw new Error(`Required binding '${binding.property}' not satisfied in ${constructor.name}`);
+            }
+        }
+    }

@@ -1,0 +1,653 @@
+class Region {
+    private _leftParent: number;
+    private _topParent: number;
+    private _rightParent: number;
+    private _bottomParent: number;
+    protected _parent: (() => Region) | undefined;
+    private _onChange: Subscribable<Region> = new Subscribable<Region>();
+
+    unit(): number { return this._rightParent - this._leftParent; }
+    unitAbs(): number { return this.base().unit(); }
+    parent(): Region { return this._parent(); }
+    base(): Region { return this.isBase() ? this : this.parent().base(); }
+    isBase(): boolean { return this.parent() === this; }
+    onChange(): Subscribable<Region> { return this._onChange; }
+
+    topAbs(): number { return this.isBase() ? this._topParent : this.parent().topAbs(); }
+    leftAbs(): number { return this.isBase() ? this._leftParent : this.parent().leftAbs(); }
+    rightAbs(): number { return this.isBase() ? this._rightParent : this.parent().rightAbs(); }
+    bottomAbs(): number { return this.isBase() ? this._bottomParent : this.parent().bottomAbs(); }
+
+    topParent(): number { return this._topParent; }
+    leftParent(): number { return this._leftParent; }
+    rightParent(): number { return this._rightParent; }
+    bottomParent(): number { return this._bottomParent; }
+
+    left() { return this.toRelativeLocation(this.leftAbs(), "x"); }
+    right() { return this.toRelativeLocation(this.rightAbs(), "x"); }
+    top() { return this.toRelativeLocation(this.topAbs(), "y"); }
+    bottom() { return this.toRelativeLocation(this.bottomAbs(), "y"); }
+
+    boundsParent(): [number, number, number, number] {
+        return [this._leftParent, this._topParent, this._rightParent, this._bottomParent];
+    }
+
+    rectParent(): Rect {
+        return this.boundsParent();
+    }
+
+    centerParent(): Position {
+        var bounds = this.boundsParent();
+        return [
+            (bounds[2] + bounds[0]) / 2,  // (right + left) / 2
+            (bounds[1] + bounds[3]) / 2   // (top + bottom) / 2
+        ];
+    }
+
+    widthParent() {
+        var bounds = this.boundsParent();
+        return bounds[2] - bounds[0];  // right - left
+    }
+
+    heightParent() {
+        var bounds = this.boundsParent();
+        return bounds[1] - bounds[3];  // top - bottom
+    }
+
+    boundsAbs(): [number, number, number, number] {
+        return this.base().boundsParent();
+    }
+
+    rectAbs(): Rect {
+        return this.base().rectParent();
+    }
+
+    centerAbs(): Position {
+        return this.base().centerParent();
+    }
+
+    widthAbs(): number {
+        return this.base().widthParent();
+    }
+
+    heightAbs(): number {
+        return this.base().heightParent();
+    }
+
+    // Relative positions
+    bounds(): [number, number, number, number] {
+        return [this.left(), this.top(), this.right(), this.bottom()];
+    }
+
+    rect(): Rect { return this.bounds(); }
+
+    center(newCenter?: Position): Position {
+        if (newCenter) {
+            this.moveTo(newCenter);
+            this.onChange().fire(this);
+        }
+        return [
+            (this.right() + this.left()) * 0.5,
+            (this.top() + this.bottom()) * 0.5
+        ];
+    }
+
+    // Width and height with optional resizing
+    width(newWidth?: number, proportional = true) {
+        if (newWidth) {
+            const scaleFactor = newWidth / this.width();
+            this.size([newWidth, proportional ? this.height() * scaleFactor : this.height()]);
+            this.onChange().fire(this);
+        }
+        return Math.abs(this.left() - this.right());
+    }
+
+    height(newHeight?: number, proportional = true) {
+        if (newHeight) {
+            const scaleFactor = newHeight / this.height();
+            this.size([proportional ? this.width() * scaleFactor : this.width(), newHeight]);
+            this.onChange().fire(this);
+        }
+        return Math.abs(this.top() - this.bottom());
+    }
+
+    size(newSize?: Size) {
+        if (newSize) {
+            const center = this.centerParent();
+            const newWidth = this.toParentUnits(newSize[0]);
+            const newHeight = this.toParentUnits(newSize[1]);
+
+            this._leftParent = center[0] - newWidth / 2;
+            this._rightParent = center[0] + newWidth / 2;
+            this._topParent = center[1] + newHeight / 2;
+            this._bottomParent = center[1] - newHeight / 2;
+            this.onChange().fire(this);
+        }
+        return [this.width(), this.height()];
+    }
+
+    constructor(left: number, right: number, bottom: number, top: number, parent?: () => Region) {
+        if (left > right || bottom > top)
+            throw `Invalid Region: ${[left, top, right, bottom]}`;
+
+        this._leftParent = left;
+        this._rightParent = right;
+        this._bottomParent = bottom;
+        this._topParent = top;
+        this._parent = parent;
+    }
+
+    floorAbs(): Region {
+        var base = this.base();
+        base._leftParent = Math.floor(base._leftParent);
+        base._topParent = Math.floor(base._topParent);
+        base._rightParent = Math.floor(base._rightParent);
+        base._bottomParent = Math.floor(base._bottomParent);
+        this.onChange().fire(this);
+        return this;
+    }
+
+    moveTo(newCenter: Position): Region {
+        const newCenterParent = this.toParentPosition(newCenter);
+        const deltaX = newCenterParent[0] - this.centerParent()[0];
+        const deltaY = newCenterParent[1] - this.centerParent()[1];
+        this._leftParent += deltaX;
+        this._rightParent += deltaX;
+        this._topParent += deltaY;
+        this._bottomParent += deltaY;
+        this.onChange().fire(this);
+        return this;
+    }
+
+    toRelativeUnits(length: number): number {
+        return roundPrecisely(Region.round(length / this.widthParent()));
+    }
+
+    toRelativeLocation(location: number, axis: "x" | "y"): number {
+        return Region.round(
+            axis === "x"
+                ? (location - this._leftParent) / this.unit()
+                : (location - this._bottomParent) / this.unit()
+        );
+    }
+
+    toRelativePosition(position: Position): Position {
+        const x = this.toRelativeLocation(position[0], "x");
+        const y = this.toRelativeLocation(position[1], "y");
+        return [Region.round(x), Region.round(y)];
+    }
+
+    toParentUnits(length: number): number {
+        var units = length * this.widthParent();
+        if (this.parent().isBase())
+            units = Math.round(units);
+        return units;
+    }
+
+    toParentLocation(location: number, axis: "x" | "y"): number {
+        var loc = axis === "x"
+            ? this._leftParent + location * this.unit()
+            : this._bottomParent + location * this.unit()
+
+        if (this.parent().isBase())
+            loc = Math.round(loc);
+
+        return loc;
+    }
+
+    toParentPosition(position: Position): Position {
+        const x = this.toParentLocation(position[0], "x");
+        const y = this.toParentLocation(position[1], "y");
+        return [x, y];
+    }
+
+    toAbsolutePosition(position: Position): Position {
+        var newPosition = this.toParentPosition(position);
+        console.log("toAbsolutePosition", position, newPosition)
+        return this != this.parent() ? 
+            this.parent().toAbsolutePosition(newPosition) : 
+            newPosition;
+    }
+
+    toAbsoluteUnits(length: number): number {
+        var newLength = this.toParentUnits(length);
+        return this != this.parent() ? 
+            this.parent().toAbsoluteUnits(newLength) : 
+            newLength;
+    }
+
+    toAbsoluteLocation(location: number, axis: "x" | "y"): number {
+        var newLocation = this.toParentLocation(location, axis);
+        return this != this.parent() ? 
+            this.parent().toAbsoluteLocation(newLocation, axis) : 
+            newLocation;
+    }
+
+    angle(position: Position, units: "degrees" | "radians" = "degrees"): number {
+        const center = this.center();
+        const deltaX = position[0] - center[0];
+        const deltaY = position[1] - center[1];
+        const radians = Math.atan2(deltaY, deltaX); // Returns angle in radians
+
+        // Normalize and convert based on units
+        if (units === "degrees") return Region.to360(Region.toDegrees(radians));
+        return roundPrecisely(Region.to2Pi(radians));
+    }
+
+    // Returns the radius (distance from the center) in relative units
+    radius(position: Position): number {
+        const center = this.center();
+        const deltaX = position[0] - center[0];
+        const deltaY = position[1] - center[1];
+        return Math.sqrt(deltaX ** 2 + deltaY ** 2);
+    }
+
+    toString() {
+        return this.isBase() || this.parent().isBase() ?
+            `[${this.bounds()}], [${this.boundsAbs()}]` :
+            `[${this.bounds()}], [${this.boundsParent()}], [${this.boundsAbs()}]`
+    }
+
+    static fromRect(rect: Rect): Region {
+        return new Region(rect[0], rect[1], rect[2], rect[3]);
+    }
+
+    static fromArray(rect: [number, number, number, number]): Region {
+        return Region.fromRect(rect);
+    }
+
+    static toRadians(degrees: number): number {
+        return Region.to2Pi((degrees * Math.PI) / 180);
+    }
+
+    // Converts radians to degrees
+    static toDegrees(radians: number): number {
+        return Region.to360((radians * 180) / Math.PI);
+    }
+
+    static to2Pi(radians: number): number {
+        const twoPi = 2 * Math.PI;
+        return ((radians % twoPi) + twoPi) % twoPi;
+    }
+
+    // Normalizes degrees to the range [0, 360)
+    static to360(degrees: number): number {
+        const fullCircle = 360;
+        return ((degrees % fullCircle) + fullCircle) % fullCircle;
+    }
+
+    private static round(value: number) {
+        return roundPrecisely(value, 3);
+    }
+}
+
+class Regions {
+    constructor() {
+        throw new Error("Regions is a static class");
+    }
+
+    static union(first: Region, second: Region): Region
+    static union(...regions: Region[]): Region
+    static union(...regions: Region[]): Region {
+        if (regions.length === 0) throw "No regions to union";
+        const parent = regions[0].parent();
+        if (!f(regions).all(r => r.parent() === parent))
+            throw "All regions must share the same parent";
+
+        const left = f(regions).select(r => r.leftParent()).orderBy().first();
+        const right = f(regions).select(r => r.rightParent()).orderByDescending().first();
+        const top = f(regions).select(r => r.topParent()).orderByDescending().first();
+        const bottom = f(regions).select(r => r.bottomParent()).orderBy().first();
+
+        return new Region(left, top, right, bottom, () => parent);
+    }
+
+    static intersection(first: Region, second: Region): Region
+    static intersection(...regions: Region[]): Region
+    static intersection(...regions: Region[]): Region {
+        if (regions.length === 0) throw "No regions to intersect";
+        const parent = regions[0].parent();
+        if (!f(regions).all(r => r.parent() === parent))
+            throw "All regions must share the same parent";
+
+        const left = f(regions).select(r => r.leftParent()).orderByDescending().first();
+        const right = f(regions).select(r => r.rightParent()).orderBy().first();
+        const top = f(regions).select(r => r.topParent()).orderBy().first();
+        const bottom = f(regions).select(r => r.bottomParent()).orderByDescending().first();
+
+        if (left >= right || bottom >= top)
+            throw "Regions do not intersect";
+
+        return new Region(left, top, right, bottom, () => parent);
+    }
+
+    static lines(region: Region, axis: "x" | "y", count: number): Region[]
+    static lines(region: Region, axis: "x" | "y", sequence: Vector, norm?: boolean): Region[]
+    static lines(region: Region, axis: "x" | "y", sequence: Vector | number, norm: boolean = true): Region[] {
+        var rng: Range = [0, axis === "x" ? region.width() : region.height()];
+        if (typeof sequence === 'number')
+            sequence = Vector.linspace(rng, sequence + 1);
+
+        if (sequence.dim() !== 1) throw "Vector must be 1-dimensional";
+        if (norm) sequence = sequence.norm(rng);
+
+        const regions = new A<Region>();
+        sequence.xa().do((x2, i) => {
+            if (i === 0) return;
+            const x1 = sequence.att(i - 1);
+            const [start, end] = [Math.min(x1, x2), Math.max(x1, x2)];
+            regions.push(axis === "x"
+                ? new Region(start, region.top(), end, region.bottom(), () => region)
+                : new Region(region.left(), end, region.right(), start, () => region));
+        });
+        return regions.a();
+    }
+
+    static grid(region: Region, xCount: number, yCount?: number): Region[][]
+    static grid(region: Region, xSequence: Vector, ySequence?: Vector, norm?: boolean): Region[][]
+    static grid(region: Region, xCount: number, ySequence: Vector, norm?: boolean): Region[][]
+    static grid(region: Region, xSequence: Vector, yCount: number, norm?: boolean): Region[][]
+    static grid(region: Region, xSequence: Vector | number, ySequence?: Vector | number, norm: boolean = true): Region[][] {
+        if (ySequence === undefined) ySequence = xSequence;
+
+        const xRows = f(Regions.lines(region, "x", xSequence as Vector, norm));
+        const yColumns = f(Regions.lines(region, "y", ySequence as Vector, norm));
+
+        var result = xRows.select(xStrip =>
+            yColumns.select(yStrip =>
+                Regions.intersection(xStrip, yStrip)
+            )
+        );
+
+        return result.select(r => r.a()).a();
+    }
+}
+
+class RegionTests extends TestClass {
+    init(): void {
+        this.tolerance = 0.0001;
+        this.statusUpdates = true;
+        console.on("terminal");
+    }
+
+    testRegionInitialization() {
+        const region = new Region(50, 100, 150, 0); // left, top, right, bottom
+        this.assertEquals(region.boundsAbs(), [50, 100, 150, 0], "Region absolute bounds incorrect");
+    }
+
+    testToRelativeLocation() {
+        const region = new Region(50, 100, 150, 0); // Width = 100
+        this.assertEquals(region.toRelativeLocation(50, "x"), 0, "Left boundary should map to 0");
+        this.assertEquals(region.toRelativeLocation(150, "x"), 1, "Right boundary should map to 1");
+        this.assertEquals(region.toRelativeLocation(0, "y"), 0, "Bottom boundary should map to 0");
+        this.assertEquals(region.toRelativeLocation(100, "y"), 1, "Top boundary should map proportionally to 1");
+    }
+
+    testToRelativePosition() {
+        const region = new Region(50, 100, 150, 0); // left, top, right, bottom
+        this.assertEquals(region.toRelativePosition([50, 0]), [0, 0], "Relative position for bottom-left incorrect");
+        this.assertEquals(region.toRelativePosition([150, 100]), [1, 1], "Relative position for top-right incorrect");
+    }
+
+    testToParentPosition() {
+        const region = new Region(0, 100, 100, 0); // left, top, right, bottom
+        const middleRegion = new Region(0, 0.5, 0.5, 0, () => region);
+        const childRegion = new Region(0, 0.5, 0.5, 0, () => middleRegion);
+        this.assertEquals(region.toParentPosition([0.25, 0.75]), [25, 75], "Parent position maps from [0,1] to the parent");
+        this.assertEquals(region.toAbsolutePosition([0.25, 0.75]), [25, 75], "Returns the same result for abs");
+        console.log(childRegion.toAbsolutePosition([0, 1]))
+        this.assertEquals(childRegion.toAbsolutePosition([0, 1]), [0, 12.5], "Converts from abs positions correctly too");
+    }
+
+    testWidthAndHeight() {
+        const region = new Region(50, 100, 150, 0); // Width = 100, Height = 100
+        this.assertEquals(region.width(), 1, "Normalized width should be 1");
+        this.assertEquals(region.height(), 1, "Normalized height should be 1 (proportional to width)");
+    }
+
+    testAngle() {
+        const region = new Region(50, 100, 150, 0); // Region in normalized coordinates
+        this.assertEquals(region.angle([0.5, 1]), 90, "Angle at top center should be 90 degrees");
+        this.assertEquals(region.angle([1, 0.5]), 0, "Angle at right center should be 0 degrees");
+        this.assertEquals(region.angle([0.5, 0]), 270, "Angle at bottom center should be 270 degrees");
+        this.assertEquals(region.angle([0, 0.5]), 180, "Angle at left center should be 180 degrees");
+
+        this.assertEquals(region.angle([0.5, 1], "radians"), Math.PI / 2, "Angle in radians at top center should be π/2");
+        this.assertEquals(region.angle([1, 0.5], "radians"), 0, "Angle in radians at right center should be 0");
+    }
+
+    testRadius() {
+        const region = new Region(50, 100, 150, 0);
+        this.assertEquals(region.radius([0.5, 1]), 0.5, "Radius at top center should be 0.5");
+        this.assertEquals(region.radius([1, 0.5]), 0.5, "Radius at right center should be 0.5");
+        this.assertEquals(region.radius([0.5, 0]), 0.5, "Radius at bottom center should be 0.5");
+        this.assertEquals(region.radius([0, 0.5]), 0.5, "Radius at left center should be 0.5");
+    }
+
+    testToRadians() {
+        this.assertEquals(Region.toRadians(0), 0, "0 degrees should be 0 radians");
+        this.assertEquals(Region.toRadians(180), Math.PI, "180 degrees should be π radians");
+        this.assertEquals(Region.toRadians(-180), Math.PI, "180 degrees should be π radians");
+        this.assertEquals(Region.toRadians(360), 0, "360 degrees should be 2π radians");
+    }
+
+    testToDegrees() {
+        this.assertEquals(Region.toDegrees(0), 0, "0 radians should be 0 degrees");
+        this.assertEquals(Region.toDegrees(Math.PI), 180, "π radians should be 180 degrees");
+        this.assertEquals(Region.toDegrees(2 * Math.PI), 0, "2π radians should be 360 degrees");
+    }
+
+    testTo2Pi() {
+        this.assertEquals(Region.to2Pi(-Math.PI), Math.PI, "Negative π radians should map to π radians");
+        this.assertEquals(Region.to2Pi(3 * Math.PI), Math.PI, "3π radians should map to π radians");
+        this.assertEquals(Region.to2Pi(0), 0, "0 radians should remain 0");
+    }
+
+    testTo360() {
+        this.assertEquals(Region.to360(-90), 270, "-90 degrees should map to 270 degrees");
+        this.assertEquals(Region.to360(450), 90, "450 degrees should map to 90 degrees");
+        this.assertEquals(Region.to360(0), 0, "0 degrees should remain 0");
+    }
+
+    testNestedRegions() {
+        const base = new Region(0, 100, 100, 0); // Base region in absolute space
+        const parent = new Region(0.25, 0.75, 0.75, 0.25, () => base); // Nested region
+        const child = new Region(0.25, 0.75, 0.75, 0.25, () => parent);
+
+        this.assertEquals(parent.boundsParent(), [0.25, 0.75, 0.75, 0.25], "Parent in parent space");
+        this.assertEquals(child.boundsAbs(), [0, 100, 100, 0], "Child in absolute space");
+    }
+
+    testCoordinateTransformations() {
+        const base = new Region(0, 100, 100, 0); // Base region: [0, 100]
+        const child = new Region(0, 0.5, 0.5, 0, () => base);
+
+        // Test unit conversions
+        this.assertEquals(base.toParentUnits(1), 100, "Base parent units");
+        this.assertEquals(child.toParentUnits(1), 0.5, "Parent parent units");
+
+        this.assertEquals(base.toRelativeUnits(100), 1, "Base relative units");
+        this.assertEquals(child.toRelativeUnits(0.5), 1, "Parent relative units");
+
+        // Test position conversions
+        const childCenter: Position = [0.5, 0.5];
+        this.assertEquals(child.toParentPosition(childCenter), [0.25, 0.25], "Child center to parent");
+
+        // Test location conversions
+        this.assertEquals(child.toParentLocation(0.5, "x"), 0.25, "Child x=0.5 to parent");
+        this.assertEquals(child.toParentLocation(0.5, "y"), 0.25, "Child y=0.5 to parent");
+    }
+
+    testModifications() {
+        var base = new Region(0, 100, 100, 0);
+        var child = new Region(0, 0.5, 0.5, 0, () => base);
+
+        // Test size modifications
+        child.size([2, 2]);
+        this.assertEquals(child.boundsParent(), [-0.25, 0.75, 0.75, -0.25], "5ubled size");
+        this.assertEquals(child.boundsAbs(), [0, 100, 100, 0], "Child absolute bounds after resize");
+
+        var base = new Region(0, 100, 100, 0);
+        var child = new Region(0, 0.5, 0.5, 0, () => base);
+
+        // Test movement
+        child.moveTo([1, 1]);
+        const centerParent = child.centerParent();
+        this.assertEquals(centerParent[0], 0.5, "Child centered x in parent");
+        this.assertEquals(centerParent[1], 0.5, "Child centered y in parent");
+
+        // Test floor abs (should only affect base coordinates)
+        child.floorAbs();
+        const bounds = child.boundsAbs();
+        this.assertEquals(bounds, f(bounds).select(x => Math.floor(x)).a(), "Coordinates properly floored");
+    }
+
+    testRelativeConversions() {
+        const base = new Region(0, 100, 100, 0);
+        const child = new Region(0, 0.5, 0.5, 0, () => base);
+
+        // Test relative to parent conversions
+        this.assertEquals(child.toRelativeLocation(0.5, "x"), 1.0, "parent to relative x");
+        this.assertEquals(child.toRelativeLocation(0.1, "y"), 0.2, "parent to relative y");
+    }
+
+    testRecursiveAbsoluteProperties() {
+        const base = new Region(0, 100, 100, 0);
+        const parent = new Region(0.25, 0.75, 0.75, 0.25, () => base);
+        const child = new Region(0.25, 0.75, 0.75, 0.25, () => parent);
+        const grandchild = new Region(0.25, 0.75, 0.75, 0.25, () => child);
+
+        // Verify base chain
+        this.assertEquals(grandchild.base(), base, "Grandchild base should be base");
+        this.assertEquals(child.base(), base, "Child base should be base");
+        this.assertEquals(parent.base(), base, "Parent base should be base");
+        this.assertEquals(base.base(), base, "Base base should be self");
+
+        // Verify parent chain
+        this.assertEquals(grandchild.parent(), child, "Grandchild parent should be child");
+        this.assertEquals(child.parent(), parent, "Child parent should be parent");
+        this.assertEquals(parent.parent(), base, "Parent parent should be base");
+        this.assertEquals(base.parent(), base, "Base parent should be self");
+    }
+
+    testRecursiveCoordinateChain() {
+        const base = new Region(0, 100, 100, 0);
+        const child = new Region(0, 0.5, 0.5, 0, () => base);
+
+        // Test that abs values traverse up to base
+        this.assertEquals(child.leftAbs(), 0, "Child leftAbs recursion");
+        this.assertEquals(base.leftAbs(), 0, "Base leftAbs recursion");
+    }
+
+    testRecursiveUnitPropagation() {
+        const base = new Region(0, 100, 100, 0);
+        const child = new Region(0, 0.5, 0.5, 0, () => base);
+
+        // Test unit propagation
+        this.assertEquals(child.unitAbs(), base.unit(), "Child absolute unit");
+        this.assertEquals(base.unitAbs(), base.unit(), "Base absolute unit");
+        this.assertEquals(child.unit(), 0.5, "Child unit");
+        this.assertEquals(base.unit(), 100, "Base unit");
+    }
+
+    testUnion() {
+        // Base region
+        const base = new Region(0, 10, 10, 0);
+        const region1 = new Region(2, 9, 6, 3, () => base);
+        const region2 = new Region(4, 10, 8, 2, () => base);
+
+        // Single union
+        const result = Regions.union(region1, region2);
+        this.assertEquals(result.boundsParent(), [2, 10, 8, 2], "Union should encompass both regions");
+
+        // Union with multiple regions
+        const region3 = new Region(1, 9, 5, 4, () => base);
+        const multiResult = Regions.union(region1, region2, region3);
+        this.assertEquals(multiResult.boundsParent(), [1, 10, 8, 2], "Union of three regions should encompass all");
+    }
+
+    // Test the intersection method
+    testIntersection() {
+        // Base region
+        const base = new Region(0, 10, 10, 0);
+        const region1 = new Region(2, 9, 6, 3, () => base);
+        const region2 = new Region(4, 8, 8, 2, () => base);
+
+        // Valid intersection
+        const result = Regions.intersection(region1, region2);
+        this.assertEquals(result.boundsParent(), [4, 8, 6, 3], "Intersection should return the overlapping region");
+
+        // Non-overlapping regions
+        const region3 = new Region(7, 10, 9, 8, () => base);
+        this.assertThrows(() => Regions.intersection(region1, region3), "Non-overlapping regions should throw");
+    }
+
+    // Test the lines method
+    testLines() {
+        // Base region
+        const base = new Region(0, 10, 10, 0);
+
+        // Horizontal lines (2 divisions)
+        var lines = Regions.lines(base, "y", 2);
+        this.assertEquals(lines.length, 2, "Should create 2 horizontal strips");
+        this.assertEquals(lines[0].leftParent(), 0, "Bottom horizontal strip: left");
+        this.assertEquals(lines[0].rightParent(), 1, "Bottom horizontal strip: right");
+        this.assertEquals(lines[0].bottomParent(), 0, "Bottom horizontal strip: bottom");
+        this.assertEquals(lines[0].topParent(), 0.5, "Bottom horizontal strip: top");
+        this.assertEquals(lines[1].leftParent(), 0, "Top horizontal strip: left");
+        this.assertEquals(lines[1].rightParent(), 1, "Top horizontal strip: right");
+        this.assertEquals(lines[1].bottomParent(), 0.5, "Top horizontal strip: bottom");
+        this.assertEquals(lines[1].topParent(), 1, "Top horizontal strip: top");
+
+        // Vertical lines (2 divisions)
+        var lines = Regions.lines(base, "x", 2);
+        this.assertEquals(lines.length, 2, "Should create 2 vertical strips");
+        this.assertEquals(lines[0].leftParent(), 0, "Bottom vertical strip: left");
+        this.assertEquals(lines[0].rightParent(), 0.5, "Bottom vertical strip: right");
+        this.assertEquals(lines[0].bottomParent(), 0, "Bottom vertical strip: bottom");
+        this.assertEquals(lines[0].topParent(), 1, "Bottom vertical strip: top");
+        this.assertEquals(lines[1].leftParent(), 0.5, "Top vertical strip: left");
+        this.assertEquals(lines[1].rightParent(), 1, "Top vertical strip: right");
+        this.assertEquals(lines[1].bottomParent(), 0, "Top vertical strip: bottom");
+        this.assertEquals(lines[1].topParent(), 1, "Top vertical strip: top");
+
+        // Overloaded lines method with a sequence
+        const customSequence = v([0, 7, 10]);
+        var lines = Regions.lines(base, "y", customSequence);
+        this.assertEquals(lines.length, 2, "Should create 2 horizontal strips: sequence");
+        this.assertEquals(lines[0].leftParent(), 0, "Bottom horizontal strip: left sequence");
+        this.assertEquals(lines[0].rightParent(), 1, "Bottom horizontal strip: right sequence");
+        this.assertEquals(lines[0].bottomParent(), 0, "Bottom horizontal strip: bottom sequence");
+        this.assertEquals(lines[0].topParent(), 0.7, "Bottom horizontal strip: top sequence");
+        this.assertEquals(lines[1].leftParent(), 0, "Top horizontal strip: left sequence");
+        this.assertEquals(lines[1].rightParent(), 1, "Top horizontal strip: right sequence");
+        this.assertEquals(lines[1].bottomParent(), 0.7, "Top horizontal strip: bottom sequence");
+        this.assertEquals(lines[1].topParent(), 1, "Top horizontal strip: top sequence");
+    }
+
+    // Test the grid method
+    testGrid() {
+        // Base region
+        const base = new Region(0, 10, 10, 0);
+
+        // 2x2 grid
+        const grid = Regions.grid(base, 2, 2);
+        this.assertEquals(grid.length, 2, "Grid should have 2 rows");
+        this.assertEquals(grid[0].length, 2, "Each row should have 2 columns");
+        this.assertEquals(grid[0][0].boundsParent(), [0, 0.5, 0.5, 0], "Bottom-left cell");
+        this.assertEquals(grid[0][1].boundsParent(), [0, 1, 0.5, 0.5], "Bottom-right cell");
+        this.assertEquals(grid[1][0].boundsParent(), [0.5, 0.5, 1, 0], "Top-left cell");
+        this.assertEquals(grid[1][1].boundsParent(), [0.5, 1, 1, 0.5], "Top-right cell");
+
+        // Overloaded grid method with custom sequences
+        const xSequence = v([0, 4, 10]);
+        const ySequence = v([0, 6, 10]);
+        const customGrid = Regions.grid(base, xSequence, ySequence);
+        this.assertEquals(customGrid.length, 2, "Custom grid should have 2 rows");
+        this.assertEquals(customGrid[0].length, 2, "Each custom row should have 2 columns");
+        this.assertEquals(customGrid[0][0].boundsParent(), [0, 0.6, 0.4, 0], "Bottom-left cell");
+        this.assertEquals(customGrid[0][1].boundsParent(), [0, 1, 0.4, 0.6], "Bottom-right cell");
+        this.assertEquals(customGrid[1][0].boundsParent(), [0.4, 0.6, 1, 0], "Top-left cell");
+        this.assertEquals(customGrid[1][1].boundsParent(), [0.4, 1, 1, 0.6], "Top-right cell");
+    }
+}

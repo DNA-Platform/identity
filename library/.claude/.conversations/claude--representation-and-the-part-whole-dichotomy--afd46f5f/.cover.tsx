@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Representation &amp; the Part - Whole Dichotomy ]]( claude--Representation &amp; the Part - Whole Dichotomy--afd46f5f )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Semantic Reference Theory ]]</Project>
+        <Project>***[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Project>
         <Account>$[[ DNA ]]( Dougs Claude / DNA )</Account>
         <Origin>afd46f5f-0a89-4ab6-98c8-98aebfff0e90</Origin>
         <Paragraph>

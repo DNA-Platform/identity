@@ -1,0 +1,112 @@
+class $Component$<T extends $Chemical> {
+    private Component: $Component<T>;
+    private _parent?: $Chemical;
+
+    get $template() { return this._template; };
+    private _template: T;
+
+    get $chemical() { return this._chemical; }
+    private _chemical?: T;
+
+    get $bound() { return !!this._chemical; }
+    
+    constructor(template: T, chemical?: T, parent?: $Chemical) {
+        this._template = template;
+        this._chemical = chemical;
+        this._parent = parent;
+        
+        let renderCount = 0;
+        this.Component = ((props: any) => {
+            const [cid, setChemicalId] = useState(-1);
+            const initialCid = -1;
+
+            let chemical: T;
+            let newChemical = false;
+            if (!this.$bound) {
+                newChemical = cid === initialCid;
+                chemical = newChemical ? this.createChemical() : $chemicalRegistry.get(cid) as T;
+                if (!chemical) throw new Error(`$Chemical[${cid}] not found`);
+                if (newChemical) {
+                    $chemicalRegistry.set(chemical[$cid], chemical);
+                }
+            } else {
+                chemical = this._chemical!;
+            }
+
+            console.log('Component:refresh')
+            chemical[$formula].refresh();
+            if (newChemical)
+                setChemicalId(chemical[$cid]);
+
+            const [_, update] = useState({});
+            chemical[$formula].bindUpdate(update);
+
+            useEffect(() => {
+                chemical[$orchestrator].mounting = 'After';
+                return () => {
+                    if (!this.$bound) {
+                        // Two checks to handle strict mode render after unmount
+                        if (!chemical[$remove]) chemical[$remove] = true;
+                        else if (!chemical[$destroyed]) chemical.__destroy();
+                    }
+                };
+            }, [chemical]);
+
+            useEffect(() => {
+                $BondOrchestrator.rendering = 'After';
+                const orchestrator = chemical[$orchestrator];
+                while (orchestrator.actions.length > 0) {
+                    const action = orchestrator.actions.shift()!;
+                    action();
+                }
+
+                const formula = chemical[$formula];
+                if (formula.update())
+                    $BondOrchestrator.rendering = 'Before';
+            }, [chemical, renderCount++]);
+
+            console.log('Component:render', props)
+            return chemical.__render(props);
+        }) as any;
+
+        if (this._chemical) {
+            this._chemical[$parent] = parent;
+            this._chemical[$component] = this.Component;
+        }
+        
+        Object.setPrototypeOf(this.Component, this);
+        return this.Component as any;
+    }
+
+    $?(): $$Component<T> { return this.Component as any; }
+    
+    $bind(parent?: $Chemical, chemical?: T): $$Component<T> {
+        if (chemical && chemical === this._chemical) return this.Component as any;
+        if (chemical && parent && !chemical.parent) chemical[$parent] = parent; 
+        if (chemical && chemical.parent && !parent) parent = chemical[$parent]; 
+        chemical = !chemical ? this.createChemical(parent ?? this._parent) : this.ensureChemical(chemical);
+        return new $Component$(chemical.__template, chemical, parent ?? this._parent) as any;
+    }
+
+    private createChemical(parent?: $Chemical): T {
+        this.$template[$formula].refresh();
+        const chemical = Object.create(this.$template) as T;
+        chemical[$parent] = parent;
+        chemical[$cid] = $Chemical.getNextCid();
+        chemical[$formula] = new $Formula(chemical);
+        chemical[$reaction] = new $Reaction(chemical);
+        chemical[$orchestrator] = new $BondOrchestrator(chemical);
+        chemical[$formula].init();
+        return chemical;
+    }
+
+    private ensureChemical(chemical: T): T {
+        if (!chemical[$formula]) {
+            chemical[$formula] = new $Formula(chemical);
+            chemical[$reaction] = new $Reaction(chemical);
+            chemical[$orchestrator] = new $BondOrchestrator(chemical);
+            chemical[$formula].init();
+        }
+        return chemical as any;
+    }
+}

@@ -1,0 +1,95 @@
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+page.tsx:82 Getter called, returning: 200
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+page.tsx:82 Getter called, returning: 200
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+page.tsx:11 Display.view() - $text: Hello World
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+page.tsx:11 Display.view() - $text: Hello World
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+page.tsx:11 Display.view() - $text: Hello World
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+chemistry.ts:508 Clearing the state
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+page.tsx:82 Getter called, returning: 200
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+page.tsx:82 Getter called, returning: 200
+chemistry.ts:508 Clearing the state
+chemistry.ts:502 Reveived react update function: function () { [native code] }
+chemistry.ts:497 Pushing state to chemical
+page.tsx:82 Getter called, returning: 200
+chemistry.ts:515 Updating react with: {"cid":9}
+chemistry.ts:515 Updating react with: {"cid":10}
+chemistry.ts:515 Updating react with: {"cid":11}
+chemistry.ts:515 Updating react with: {"cid":12}
+chemistry.ts:515 Updating react with: {"cid":13}
+chemistry.ts:497 Pushing state to chemical
+page.tsx:25 Before increment: 0
+page.tsx:27 After increment: 1
+chemistry.ts:515 Updating react with: {"cid":6,"$Counter[6].count":"1"}
+chemistry.ts:497 Pushing state to chemical
+page.tsx:25 Before increment: 1
+page.tsx:27 After increment: 2
+chemistry.ts:515 Updating react with: {"cid":6,"$Counter[6].count":"2"}
+chemistry.ts:497 Pushing state to chemical
+page.tsx:25 Before increment: 2
+page.tsx:27 After increment: 3
+chemistry.ts:515 Updating react with: {"cid":6,"$Counter[6].count":"3"}
+chemistry.ts:497 Pushing state to chemical
+page.tsx:25 Before increment: 3
+page.tsx:27 After increment: 4
+chemistry.ts:515 Updating react with: {"cid":6,"$Counter[6].count":"4"}
+chemistry.ts:497 Pushing state to chemical
+page.tsx:25 Before increment: 4
+page.tsx:27 After increment: 5
+chemistry.ts:515 Updating react with: {"cid":6,"$Counter[6].count":"5"}
+chemistry.ts:497 Pushing state to chemical
+page.tsx:25 Before increment: 5
+page.tsx:27 After increment: 6
+chemistry.ts:515 Updating react with: {"cid":6,"$Counter[6].count":"6"}

@@ -1,0 +1,165 @@
+// The main issue is in how $Component is accessed on chemicals that are passed as children
+// When a chemical is created as a child, it needs proper initialization
+
+// In chemistry.ts, update the $Component getter in $Chemical class:
+
+get Component(): $Component<this> {
+    if (!this[$component]) {
+        // Ensure formula is initialized before creating component
+        if (!this[$formula]) {
+            this[$formula] = new $Formula(this);
+        }
+        this[$template][$component] = this[$template].createComponent();
+        // For instances, bind to self
+        if (this !== this[$template]) {
+            this[$component] = this[$template][$component].$bind(this.parent, this);
+        } else {
+            this[$component] = this[$template][$component];
+        }
+    }
+    return this[$component];
+}
+
+// Also add this getter for compatibility:
+get $Component(): $$Component<this> {
+    return this.Component as any;
+}
+
+// In $BondOrchestrator.processElement, when handling function components:
+
+private processElement(element: React.ReactElement<any>, context: $BondOrchestrationContext) {
+    let type = element.type as any;
+    
+    if (type === React.Fragment && element.key?.toString().startsWith('chem-')) {
+        const cid = parseInt(element.key.toString().replace('chem-', ''));
+        const chemical = $chemicalRegistry.get(cid)!;
+        context.args.push(chemical);
+        context.children.push({ type: chemical.Component, props: {}, key: element.key });
+        this._rendered.set(chemical.Component, element);
+        
+    } else if (type === $) {
+        // Handle $Array structural component
+        context = context.array();
+        React.Children.map(element.props?.children || [], item => {
+            context.isModified = true;
+            context = context.next(item);
+            if (context.isElement) {
+                this.processElement(item as React.ReactElement<any>, context);
+            } else {
+                context.args.push(item);
+                context.children.push(item);
+            }
+        });
+        
+    } else if (typeof type === 'function') {
+        // Check if it's already a bound component or needs binding
+        let component: $$Component = type.$bind ? type : $(type);
+        
+        if (!component.$bound) {
+            component = component.$bind(this._chemical);
+        }
+        
+        const chemical = component.$chemical;
+        
+        // Process the child's props through its binder
+        const processedProps = context.child(chemical, element.props);
+        const key = `${chemical[$cid]}`;
+        
+        // Push the chemical instance to args for constructor
+        context.args.push(chemical);
+        
+        // Update children if modified
+        if (processedProps !== element.props || key !== element.key) {
+            // Use the bound component for rendering
+            context.children.push(React.createElement(component, 
+                { ...processedProps, key: key }
+            ));
+            context.isModified = true;
+        } else {
+            context.children.push(element);
+        }
+    } else {
+        // Regular HTML elements
+        context.args.push(element);
+        context.children.push(element);
+    }
+}
+
+// In $ComponentFunction constructor, ensure proper initialization:
+
+constructor(template: T, chemical?: T, parent?: $Chemical) {
+    this._template = template;
+    this._chemical = chemical;
+    this._parent = parent;
+    
+    const isArray = this._template.__getType().name === $Collection.name;
+
+    this.Component = ((props: any) => {
+        if (isArray && typeof props === 'function') return new $$Function(props);
+
+        const [cid, setChemicalId] = useState<number>(-1);
+        let chemical: T;
+        
+        if (!this.$bound) {
+            let newChemical = cid === -1;
+            chemical = newChemical ? this.createChemical() : $chemicalRegistry.get(cid)! as T;
+            if (newChemical) {
+                $chemicalRegistry.set(chemical[$cid], chemical);
+                setChemicalId(chemical[$cid]);
+            }
+        } else {
+            chemical = this._chemical!;
+        }
+
+        const [_, update] = useState({});
+        const [__, setState] = useState(chemical[$formula].state);
+        
+        // Bind update functions
+        chemical[$formula].bindUpdate(setState, () => update({}));
+
+        useEffect(() => {
+            chemical[$formula].updateState();
+            return () => {
+                if (!chemical[$destroyed]) {
+                    chemical.__destroy();
+                }
+            };
+        }, [chemical]);
+
+        return chemical.__render(props);
+    }) as any;
+
+    // Set up prototype chain for component
+    if (this._chemical) {
+        this._chemical[$parent] = parent;
+        this._chemical[$component] = this.Component;
+    }
+    
+    Object.setPrototypeOf(this.Component, this);
+    return this.Component as any;
+}
+
+// In the view() method of chemicals that render children, ensure proper access:
+
+// For $Book, $Document, etc:
+view() {
+    return (
+        <div>
+            {this.chapters.map((chapter, i) => {
+                // Ensure we get the Component properly
+                const ChapterComponent = chapter.Component || chapter.$Component;
+                if (!ChapterComponent) {
+                    console.error('No component found for chapter:', chapter);
+                    return null;
+                }
+                // Use the chemical's cid as key
+                return <ChapterComponent key={chapter[$cid] || chapter.key || i} />;
+            })}
+        </div>
+    );
+}
+
+// Additional helper for debugging - add to $Chemical class:
+get debugInfo() {
+    return {
+        class

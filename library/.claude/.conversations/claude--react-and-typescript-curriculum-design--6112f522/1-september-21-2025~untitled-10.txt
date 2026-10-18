@@ -1,0 +1,174 @@
+chemistry.ts:427 Bond initialized: $Display.$text
+chemistry.ts:526 $increment: $increment() {
+        console.log('Before increment:', this.count);
+        this.count = this.count + 1;
+        console.log('After increment:', this.count);
+    }
+chemistry.ts:427 Bond initialized: $Counter.$increment
+chemistry.ts:427 Bond initialized: $Counter.count
+chemistry.ts:427 Bond initialized: $MultiProp.$first
+chemistry.ts:427 Bond initialized: $MultiProp.$second
+chemistry.ts:427 Bond initialized: $MultiProp.$third
+chemistry.ts:427 Bond initialized: $ComplexProps.computedProp
+chemistry.ts:526 $modifyRegularArray: $modifyRegularArray() {
+        console.log('Before push:', this.regularArray);
+        this.regularArrayCount++;
+        this.regularArray.push('added ' + this.regularArrayCount);
+        console.log('After push:', this.regularArray);
+    }
+chemistry.ts:427 Bond initialized: $ComplexProps.$modifyRegularArray
+chemistry.ts:526 $modifyRegularObject: $modifyRegularObject() {
+        console.log('Before modify:', this.regularObject);
+        this.regularObject.count++;
+        this.regularObject.status = 'modified';
+        this.regularObject['property' + this.regularObject.count] = 'value ' + this.regularObject.count;
+        console.log('After modify:', this.regularObject);
+    }
+chemistry.ts:427 Bond initialized: $ComplexProps.$modifyRegularObject
+chemistry.ts:526 $modifyComputed: $modifyComputed() {
+        console.log('Before computed change:', this.computedProp);
+        this.computedProp = 300;
+        console.log('After computed change:', this.computedProp);
+    }
+chemistry.ts:427 Bond initialized: $ComplexProps.$modifyComputed
+chemistry.ts:427 Bond initialized: $ComplexProps.$arrayProp
+chemistry.ts:427 Bond initialized: $ComplexProps.$objectProp
+chemistry.ts:427 Bond initialized: $ComplexProps.regularArrayCount
+chemistry.ts:427 Bond initialized: $ComplexProps.regularArray
+chemistry.ts:427 Bond initialized: $ComplexProps.regularObject
+chemistry.ts:427 Bond initialized: $Display.$text
+chemistry.ts:526 $increment: $increment() {
+        console.log('Before increment:', this.count);
+        this.count = this.count + 1;
+        console.log('After increment:', this.count);
+    }
+chemistry.ts:427 Bond initialized: $Counter.$increment
+chemistry.ts:427 Bond initialized: $Counter.count
+chemistry.ts:427 Bond initialized: $MultiProp.$first
+chemistry.ts:427 Bond initialized: $MultiProp.$second
+chemistry.ts:427 Bond initialized: $MultiProp.$third
+chemistry.ts:427 Bond initialized: $ComplexProps.computedProp
+chemistry.ts:526 $modifyRegularArray: $modifyRegularArray() {
+        console.log('Before push:', this.regularArray);
+        this.regularArrayCount++;
+        this.regularArray.push('added ' + this.regularArrayCount);
+        console.log('After push:', this.regularArray);
+    }
+chemistry.ts:427 Bond initialized: $ComplexProps.$modifyRegularArray
+chemistry.ts:526 $modifyRegularObject: $modifyRegularObject() {
+        console.log('Before modify:', this.regularObject);
+        this.regularObject.count++;
+        this.regularObject.status = 'modified';
+        this.regularObject['property' + this.regularObject.count] = 'value ' + this.regularObject.count;
+        console.log('After modify:', this.regularObject);
+    }
+chemistry.ts:427 Bond initialized: $ComplexProps.$modifyRegularObject
+chemistry.ts:526 $modifyComputed: $modifyComputed() {
+        console.log('Before computed change:', this.computedProp);
+        this.computedProp = 300;
+        console.log('After computed change:', this.computedProp);
+    }
+chemistry.ts:427 Bond initialized: $ComplexProps.$modifyComputed
+chemistry.ts:427 Bond initialized: $ComplexProps.$arrayProp
+chemistry.ts:427 Bond initialized: $ComplexProps.$objectProp
+chemistry.ts:427 Bond initialized: $ComplexProps.regularArrayCount
+chemistry.ts:427 Bond initialized: $ComplexProps.regularArray
+chemistry.ts:427 Bond initialized: $ComplexProps.regularObject
+chemistry.ts:427 Bond initialized: $Display.$text
+chemistry.ts:346 $Display[10].isTemplate = false
+page.tsx:11 Display.view() - $text: Hello World
+page.tsx:11 Display.view() - $text: Hello World
+page.tsx:11 Display.view() - $text: Hello World
+chemistry.ts:526 $increment: $increment() {
+        console.log('Before increment:', this.count);
+        this.count = this.count + 1;
+        console.log('After increment:', this.count);
+    }
+chemistry.ts:427 Bond initialized: $Counter.$increment
+chemistry.ts:427 Bond initialized: $Counter.count
+chemistry.ts:346 $Counter[11].isTemplate = false
+chemistry.ts:526 $increment: $increment() {
+        console.log('Before increment:', this.count);
+        this.count = this.count + 1;
+        console.log('After increment:', this.count);
+    }
+chemistry.ts:427 Bond initialized: $Counter.$increment
+chemistry.ts:427 Bond initialized: $Counter.count
+chemistry.ts:346 $Counter[12].isTemplate = false
+chemistry.ts:427 Bond initialized: $MultiProp.$first
+chemistry.ts:427 Bond initialized: $MultiProp.$second
+chemistry.ts:427 Bond initialized: $MultiProp.$third
+chemistry.ts:346 $MultiProp[13].isTemplate = false
+chemistry.ts:427 Bond initialized: $ComplexProps.computedProp
+chemistry.ts:526 $modifyRegularArray: $modifyRegularArray() {
+        console.log('Before push:', this.regularArray);
+        this.regularArrayCount++;
+        this.regularArray.push('added ' + this.regularArrayCount);
+        console.log('After push:', this.regularArray);
+    }
+chemistry.ts:427 Bond initialized: $ComplexProps.$modifyRegularArray
+chemistry.ts:526 $modifyRegularObject: $modifyRegularObject() {
+        console.log('Before modify:', this.regularObject);
+        this.regularObject.count++;
+        this.regularObject.status = 'modified';
+        this.regularObject['property' + this.regularObject.count] = 'value ' + this.regularObject.count;
+        console.log('After modify:', this.regularObject);
+    }
+chemistry.ts:427 Bond initialized: $ComplexProps.$modifyRegularObject
+chemistry.ts:526 $modifyComputed: $modifyComputed() {
+        console.log('Before computed change:', this.computedProp);
+        this.computedProp = 300;
+        console.log('After computed change:', this.computedProp);
+    }
+chemistry.ts:427 Bond initialized: $ComplexProps.$modifyComputed
+chemistry.ts:427 Bond initialized: $ComplexProps.$arrayProp
+chemistry.ts:427 Bond initialized: $ComplexProps.$objectProp
+chemistry.ts:427 Bond initialized: $ComplexProps.regularArrayCount
+chemistry.ts:427 Bond initialized: $ComplexProps.regularArray
+chemistry.ts:427 Bond initialized: $ComplexProps.regularObject
+chemistry.ts:346 $ComplexProps[14].isTemplate = false
+page.tsx:82 Getter called, returning: 200
+page.tsx:82 Getter called, returning: 200
+page.tsx:82 Getter called, returning: 200
+chemistry.ts:415 updateState: {"cid":10,"render":0,"$Display[10].$text":"\"Hello World\""}
+chemistry.ts:415 updateState: {"cid":11,"render":0,"$Counter[11].count":"0"}
+chemistry.ts:415 updateState: {"cid":12,"render":0,"$Counter[12].count":"0"}
+chemistry.ts:415 updateState: {"cid":13,"render":0,"$MultiProp[13].$first":"\"One\"","$MultiProp[13].$second":"\"Two\"","$MultiProp[13].$third":"99"}
+chemistry.ts:415 updateState: {"cid":14,"render":0,"$ComplexProps[14].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[14].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[14].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[14].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[14].computedProp":"200"}
+page.tsx:11 Display.view() - $text: Hello World
+page.tsx:11 Display.view() - $text: Hello World
+page.tsx:82 Getter called, returning: 200
+page.tsx:82 Getter called, returning: 200
+page.tsx:25 Before increment: 0
+page.tsx:27 After increment: 1
+chemistry.ts:415 updateState: {"cid":11,"render":0,"$Counter[11].count":"1"}
+page.tsx:25 Before increment: 1
+page.tsx:27 After increment: 2
+chemistry.ts:415 updateState: {"cid":11,"render":0,"$Counter[11].count":"2"}
+page.tsx:25 Before increment: 0
+page.tsx:27 After increment: 1
+chemistry.ts:415 updateState: {"cid":12,"render":0,"$Counter[12].count":"1"}
+page.tsx:25 Before increment: 2
+page.tsx:27 After increment: 3
+chemistry.ts:415 updateState: {"cid":11,"render":0,"$Counter[11].count":"3"}
+page.tsx:25 Before increment: 1
+page.tsx:27 After increment: 2
+chemistry.ts:415 updateState: {"cid":12,"render":0,"$Counter[12].count":"2"}
+page.tsx:25 Before increment: 2
+page.tsx:27 After increment: 3
+chemistry.ts:415 updateState: {"cid":12,"render":0,"$Counter[12].count":"3"}
+page.tsx:25 Before increment: 3
+page.tsx:27 After increment: 4
+chemistry.ts:415 updateState: {"cid":12,"render":0,"$Counter[12].count":"4"}
+page.tsx:25 Before increment: 3
+page.tsx:27 After increment: 4
+chemistry.ts:415 updateState: {"cid":11,"render":0,"$Counter[11].count":"4"}
+page.tsx:25 Before increment: 4
+page.tsx:27 After increment: 5
+chemistry.ts:415 updateState: {"cid":11,"render":0,"$Counter[11].count":"5"}
+page.tsx:25 Before increment: 5
+page.tsx:27 After increment: 6
+chemistry.ts:415 updateState: {"cid":11,"render":0,"$Counter[11].count":"6"}
+page.tsx:25 Before increment: 6
+page.tsx:27 After increment: 7
+chemistry.ts:415 updateState: {"cid":11,"render":0,"$Counter[11].count":"7"}

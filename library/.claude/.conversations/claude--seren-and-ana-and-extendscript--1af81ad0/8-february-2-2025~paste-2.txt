@@ -1,0 +1,892 @@
+declare class Artboards {
+    number
+    object
+    string
+    add(artboardRect: Rect): Artboard;
+    getActiveArtboardIndex(): number;
+    getByName(name: string): Artboard;
+    getByName(artboardName: string): Artboard;
+    insert(artboardRect: Rect, index: number): void;
+    remove(index: number): void;
+    removeAll(): void;
+    setActiveArtboardIndex(index: number): void;
+}
+declare class Documents {
+    number
+    object
+    string
+    add(documentColorSpace?: DocumentColorSpace, width?: number, height?: number, numArtboards?: number, artboardLayout?: DocumentArtboardLayout, artboardSpacing?: number, artboardRowsOrCols?: number): Document;
+    static addDocument(startupPreset: string, presetSettings?: DocumentPreset, showOptionsDialog?: boolean): Document;
+    static addDocumentWithDialogOption(startupPreset: string, showOptionsDialog?: boolean): Document;
+    arrange(layoutStyle: DocumentLayoutStyle): boolean;
+    getByName(name: string): Document;
+}
+declare class Layers {
+    number
+    object
+    string
+    add(): Layer;
+    getByName(name: string): Layer;
+    removeAll(): void;
+}
+declare class GroupItems {
+    number
+    object
+    string
+    add(): GroupItem;
+    static createFromFile(imageFile: File): GroupItem;
+    getByName(name: string): GroupItem;
+    removeAll(): void;
+}
+declare class PageItems {
+    number
+    object
+    string
+    getByName(name: string): PageItem;
+}
+declare class PathItems {
+    number
+    object
+    string
+    add(): PathItem;
+    ellipse(top?: number, left?: number, width?: number, height?: number, reversed?: boolean, inscribed?: boolean): PathItem;
+    getByName(name: string): PathItem;
+    polygon(centerX?: number, centerY?: number, radius?: number, sides?: number, reversed?: boolean): PathItem;
+    rectangle(top: number, left: number, width: number, height: number, reversed?: boolean): PathItem;
+    removeAll(): void;
+    roundedRectangle(top: number, left: number, width: number, height: number, horizontalRadius?: number, verticalRadius?: number, reversed?: boolean): PathItem;
+    star(centerX?: number, centerY?: number, radius?: number, innerRadius?: number, points?: number, reversed?: boolean): PathItem;
+}
+declare class PathPoints {
+    number
+    object
+    string
+    add(): PathPoint;
+    getByName(name: string): PathPoint;
+    removeAll(): void;
+}
+declare class CompoundPathItems {
+    number
+    object
+    string
+    add(): CompoundPathItem;
+    getByName(name: string): CompoundPathItem;
+    removeAll(): void;
+}
+declare class Stories {
+    number
+    object
+    string
+    getByName(name: string): Story;
+}
+declare class LegacyTextItems {
+    number
+    object
+    string
+    convertToNative(): boolean;
+    getByName(name: string): LegacyTextItem;
+}
+declare class TextRanges {
+    number
+    object
+    string
+    getByName(name: string): TextRange;
+}
+declare class InsertionPoints {
+    number
+    object
+    string
+    getByName(name: string): InsertionPoint;
+}
+declare class CharacterStyles {
+    number
+    object
+    string
+    add(name: string): CharacterStyle;
+    getByName(name: string): CharacterStyle;
+    removeAll(): void;
+}
+declare class ParagraphStyles {
+    number
+    object
+    string
+    add(name: string): ParagraphStyle;
+    getByName(name: string): ParagraphStyle;
+    removeAll(): void;
+}
+declare class Spots {
+    number
+    object
+    string
+    add(): Spot;
+    getByName(name: string): Spot;
+    removeAll(): void;
+}
+declare class Swatches {
+    number
+    object
+    string
+    add(): Swatch;
+    getByName(name: string): Swatch;
+    getSelected(includeSwatchInGroup?: boolean): Swatch[];
+    removeAll(): void;
+}
+declare class Gradients {
+    number
+    object
+    string
+    add(): Gradient;
+    getByName(name: string): Gradient;
+    removeAll(): void;
+}
+declare class GradientStops {
+    number
+    object
+    string
+    add(): GradientStop;
+    getByName(name: string): GradientStop;
+    removeAll(): void;
+}
+declare class Patterns {
+    number
+    object
+    string
+    add(): Pattern;
+    getByName(name: string): Pattern;
+    removeAll(): void;
+}
+declare class Symbols {
+    number
+    object
+    string
+    add(sourceArt: PageItem, registrationPoint?: SymbolRegistrationPoint): Symbol;
+    getByName(name: string): Symbol;
+    removeAll(): void;
+}
+declare class SymbolItems {
+    number
+    object
+    string
+    add(symbol: Symbol): SymbolItem;
+    getByName(name: string): SymbolItem;
+    removeAll(): void;
+}
+declare class Brushes {
+    number
+    object
+    string
+    add(brushDefinition: File, brushName?: string): Brush;
+    static addAndLoad(brushDefinition: File): Brush;
+    getByName(name: string): Brush;
+}
+declare class ArtStyles {
+    number
+    object
+    string
+    getByName(name: string): ArtStyle;
+    removeAll(): void;
+}
+declare class Tags {
+    number
+    object
+    string
+    add(): Tag;
+    getByName(name: string): Tag;
+    removeAll(): void;
+}
+declare class RasterItems {
+    number
+    object
+    string
+    getByName(name: string): RasterItem;
+    removeAll(): void;
+}
+declare class PluginItems {
+    number
+    object
+    string
+    getByName(name: string): PluginItem;
+    removeAll(): void;
+}
+declare class NonNativeItems {
+    number
+    object
+    string
+    getByName(name: string): NonNativeItem;
+}
+declare class Views {
+    number
+    object
+    string
+    getByName(name: string): View;
+}
+declare class Variables {
+    number
+    object
+    string
+    add(): Variable;
+    getByName(name: string): Variable;
+    removeAll(): void;
+}
+declare class DataSets {
+    number
+    object
+    string
+    add(): DataSet;
+    getByName(name: string): DataSet;
+    removeAll(): void;
+}
+declare class Application {
+    string[]
+    PPDFile[]
+    activeDocument: Document;
+    boolean
+    string
+    File[]
+    coordinateSystem: CoordinateSystem;
+    File
+    Documents
+    string[]
+    number
+    string
+    string
+    object
+    pasteRemembersLayers: boolean;
+    File
+    Preferences
+    string[]
+    Printer[]
+    string
+    selection: any;
+    string[]
+    TextFonts
+    string[]
+    string
+    string
+    string
+    userInteractionLevel: UserInteractionLevel;
+    string
+    boolean
+    aATAddItem(sessionIndex: number, destinationSequenceID: number, destinationIndex: number, srcItemIDData: string, type: string): string;
+    aATClear(): string;
+    aATDuplicateItem(sessionIndex: number, item: string): string;
+    aATEditItem(sessionIndex: number, item: string): string;
+    aATErrorsExist(): boolean;
+    aATExecuteSession(): void;
+    aATExecuteSessionFromFile(file: File): void;
+    aATFileRelativeChanged(path: string, relative: string, newRelative: string): string;
+    aATFileSaveDialog(path: string, relative: string, type: string): string;
+    aATGetEditorDialogFile(): File;
+    aATGetErrorDialogFile(): File;
+    aATGetListOfRelativePaths(): string;
+    aATGetSession(): string;
+    aATLoadLibExtension(): string;
+    aATLoadModel(): string;
+    aATLoadSessionFile(): string;
+    aATLoadUIExtension(): string;
+    aATMoveItem(sessionIndex: number, moveThisID: string, newSessionIndex: number, destinationSequenceID: string, destinationIndex: number): string;
+    aATRemoveItem(sessionIndex: number, item: string): string;
+    aATReplaceItem(sessionIndex: number, replaceThisID: number, srcItemIDData: string, type: string): string;
+    aATSaveAsSession(): string;
+    aATSaveSession(): string;
+    applyDataToItem(sessionIndex: number, item: string, data: string): string;
+    applySingleDataPointToItem(sessionIndex: number, item: string, dataID: string, data: string): boolean;
+    beep(): void;
+    beginSyncSettingsAutomationTest(): boolean;
+    beginTypekitFontAutomationTest(): boolean;
+    concatenateMatrix(matrix: Matrix, secondMatrix: Matrix): Matrix;
+    concatenateRotationMatrix(matrix: Matrix, angle: number): Matrix;
+    concatenateScaleMatrix(matrix: Matrix, scaleX?: number, scaleY?: number): Matrix;
+    concatenateTranslationMatrix(matrix: Matrix, deltaX?: number, deltaY?: number): Matrix;
+    convertSampleColor(sourceColorSpace: ImageColorSpace, sourceColor: number[], destColorSpace: ImageColorSpace, colorConvertPurpose: ColorConvertPurpose, sourceHasAlpha?: boolean, destHasAlpha?: boolean): number[];
+    copy(): void;
+    cut(): void;
+    deleteWorkspace(workspaceName: string): boolean;
+    doScript(action: string, from: string, dialogs?: boolean): void;
+    dumpPGFFile(file: File, documentColorSpace?: DocumentColorSpace, pGFFile?: File): boolean;
+    executeMenuCommand(menuCommandString: string): void;
+    getCCXUserJSONData(mode?: string): string;
+    getExecutionOutput(): string;
+    getHelloJSONData(): string;
+    getIdentityMatrix(): Matrix;
+    getPPDFileInfo(name: string): PPDFileInfo;
+    getPresetFileOfType(presetType: DocumentPresetType): File;
+    getPresetSettings(preset: string): DocumentPreset;
+    getRotationMatrix(angle?: number): Matrix;
+    getScaleMatrix(scaleX?: number, scaleY?: number): Matrix;
+    getScriptableHelpGroup(): any;
+    getTranslationMatrix(deltaX?: number, deltaY?: number): Matrix;
+    getVersionString(): string;
+    invertMatrix(matrix: Matrix): Matrix;
+    isEqualMatrix(matrix: Matrix, secondMatrix: Matrix): boolean;
+    isFillActive(): boolean;
+    isSingularMatrix(matrix: Matrix): boolean;
+    isStrokeActive(): boolean;
+    isTouchWorkspace(): boolean;
+    isUserSharingAppUsageData(): boolean;
+    launchExtension(extensionID: string): number;
+    loadAction(actionFilePath: File): void;
+    loadColorSettings(fileSpec: File): void;
+    open(file: File, documentColorSpace?: DocumentColorSpace, options?: any): Document;
+    openCloudLibraryAssetForEditing(assetURL: File, thumbnailURL: File, options?: any): Document;
+    paste(): void;
+    quit(): void;
+    redo(): void;
+    redraw(): void;
+    reflectCSAW(outputFolder: File): void;
+    resetWorkspace(): boolean;
+    runAPITest(testName: string): void;
+    saveWorkspace(workspaceName: string): boolean;
+    sendScriptMessage(pluginName: string, messageSelector: string, inputString: string): string;
+    setThumbnailOptionsForCloudLibrary(options: any): void;
+    showColorPicker(color: Color): Color;
+    showPresets(fileSpec: File): string[];
+    switchWorkspace(workspaceName: string): boolean;
+    translatePlaceholderText(text: string): string;
+    translateString(key: string, source: string): string;
+    undo(): void;
+    unloadAction(setName: string, actionName: string): void;
+}
+declare class Document {
+    XMPString: string;
+    activeDataSet: DataSet;
+    activeLayer: Layer;
+    View
+    Artboards
+    Brushes
+    CharacterStyles
+    string
+    CompoundPathItems
+    cropBox: Rect;
+    cropStyle: CropOptions;
+    DataSets
+    defaultFillColor: Color;
+    defaultFillOverprint: boolean;
+    defaultFilled: boolean;
+    defaultStrokeCap: StrokeCap;
+    defaultStrokeColor: Color;
+    defaultStrokeDashOffset: number;
+    defaultStrokeDashes: number[];
+    defaultStrokeJoin: StrokeJoin;
+    defaultStrokeMiterLimit: number;
+    defaultStrokeOverprint: boolean;
+    defaultStrokeWidth: number;
+    defaultStroked: boolean;
+    DocumentColorSpace
+    EmbeddedItems
+    File
+    Rect
+    Gradients
+    GraphItems
+    ArtStyles
+    GroupItems
+    number
+    Ink[]
+    string[]
+    Layers
+    LegacyTextItems
+    MeshItems
+    string[]
+    string
+    NonNativeItems
+    number
+    PageItems
+    pageOrigin: Point | [
+        number,
+        number
+    ];
+    ParagraphStyles
+    object
+    File
+    PathItems
+    Patterns
+    PlacedItems
+    PluginItems
+    boolean
+    rasterEffectSettings: RasterEffectOptions;
+    RasterItems
+    rulerOrigin: Point | [
+        number,
+        number
+    ];
+    RulerUnits
+    saved: boolean;
+    selection: any;
+    boolean
+    boolean
+    Spots
+    boolean
+    Stories
+    SwatchGroups
+    Swatches
+    SymbolItems
+    Symbols
+    Tags
+    TextFrameItems
+    boolean
+    string
+    boolean
+    Variables
+    variablesLocked: boolean;
+    Views
+    Rect
+    number
+    activate(): void;
+    close(saving?: SaveOptions): void;
+    convertCoordinate(coordinate: Point | [
+        number,
+        number
+    ], source: CoordinateSystem, destination: CoordinateSystem): Point | [
+        number,
+        number
+    ];
+    exportFile(exportFile: File, exportFormat: ExportType, options?: any): void;
+    exportPDFPreset(file: File): void;
+    exportPerspectiveGridPreset(file: File): void;
+    exportPrintPreset(file: File): void;
+    exportSelectionAsAi(exportFile: File): void;
+    exportSelectionAsPNG(exportFile: File, options?: any): void;
+    exportVariables(file: File): void;
+    fitArtboardToSelectedArt(index?: number): boolean;
+    getPerspectiveActivePlane(): PerspectiveGridPlaneType;
+    hidePerspectiveGrid(): boolean;
+    imageCapture(imageFile: File, clipBounds?: Rect, options?: ImageCaptureOptions): void;
+    importCharacterStyles(fileSpec: File): void;
+    importFile(importFile: File, isLinked: boolean, libraryName?: string, itemName?: string, elementRef?: string, modifiedTime?: number, creationTime?: number, adobeStockId?: string, adobeStockLicense?: string): void;
+    importPDFPreset(fileSpec: File, replacingPreset?: boolean): void;
+    importParagraphStyles(fileSpec: File): void;
+    importPerspectiveGridPreset(fileSpec: File, perspectivePreset?: string): void;
+    importPrintPreset(printPreset: string, fileSpec: File): void;
+    importVariables(fileSpec: File): void;
+    print(options?: PrintOptions): void;
+    processGesture(gesturePointsFile: string): void;
+    rasterize(sourceArt: any, clipBounds?: Rect, options?: RasterizeOptions): RasterItem;
+    rearrangeArtboards(artboardLayout?: DocumentArtboardLayout, artboardRowsOrCols?: number, artboardSpacing?: number, artboardMoveArtwork?: boolean): boolean;
+    save(): void;
+    saveAs(saveIn: File, options?: any): void;
+    selectObjectsOnActiveArtboard(): boolean;
+    selectPerspectivePreset(perspectivePreset: string): boolean;
+    setPerspectiveActivePlane(perspectiveGridPlane: PerspectiveGridPlaneType): boolean;
+    showPerspectiveGrid(): boolean;
+    windowCapture(imageFile: File, windowSize: Point | [
+        number,
+        number
+    ]): void;
+}
+declare class Layer {
+    number
+    artworkKnockout: KnockoutState;
+    blendingMode: BlendModes;
+    color: RGBColor;
+    CompoundPathItems
+    dimPlacedImages: boolean;
+    GraphItems
+    GroupItems
+    hasSelectedArtwork: boolean;
+    isIsolated: boolean;
+    Layers
+    LegacyTextItems
+    locked: boolean;
+    MeshItems
+    name: string;
+    NonNativeItems
+    opacity: number;
+    PageItems
+    object
+    PathItems
+    PlacedItems
+    PluginItems
+    preview: boolean;
+    printable: boolean;
+    RasterItems
+    sliced: boolean;
+    SymbolItems
+    TextFrameItems
+    string
+    visible: boolean;
+    number
+    move(relativeObject: object, insertionLocation: any): Layer;
+    remove(): void;
+    removeAll(): void;
+    zOrder(zOrderCmd: ZOrderMethod): void;
+}
+declare class View {
+    Rect
+    centerPoint: Point | [
+        number,
+        number
+    ];
+    object
+    screenMode: ScreenMode;
+    string
+    zoom: number;
+}
+declare class Gradient {
+    GradientStops
+    name: string;
+    object
+    type: GradientType;
+    string
+    remove(): void;
+    removeAll(): void;
+}
+declare class GradientStop {
+    color: Color;
+    midPoint: number;
+    opacity: number;
+    object
+    rampPoint: number;
+    string
+    remove(): void;
+    removeAll(): void;
+}
+declare class Spot {
+    color: Color;
+    colorType: ColorModel;
+    name: string;
+    object
+    SpotColorKind
+    string
+    getInternalColor(): number[];
+    remove(): void;
+    removeAll(): void;
+}
+declare class Variable {
+    kind: VariableKind;
+    name: string;
+    PageItems
+    object
+    string
+    remove(): void;
+    removeAll(): void;
+}
+declare class DataSet {
+    name: string;
+    object
+    string
+    display(): void;
+    remove(): void;
+    removeAll(): void;
+    update(): void;
+}
+declare class Swatch {
+    color: Color;
+    name: string;
+    object
+    string
+    remove(): void;
+    removeAll(): void;
+}
+declare class Pattern {
+    name: string;
+    object
+    string
+    remove(): void;
+    removeAll(): void;
+}
+declare class Symbol {
+    name: string;
+    object
+    string
+    duplicate(relativeObject: object, insertionLocation: any): Symbol;
+    remove(): void;
+    removeAll(): void;
+}
+declare class Brush {
+    name: string;
+    object
+    string
+    applyTo(artItem: any): void;
+}
+declare class ArtStyle {
+    name: string;
+    object
+    string
+    applyTo(artItem: any): void;
+    mergeTo(artItem: any): void;
+    remove(): void;
+    removeAll(): void;
+}
+declare class PageItem {
+    URL: string;
+    number
+    artworkKnockout: KnockoutState;
+    blendingMode: BlendModes;
+    Rect
+    boolean
+    Rect
+    height: number;
+    hidden: boolean;
+    isIsolated: boolean;
+    Layer
+    left: number;
+    locked: boolean;
+    name: string;
+    note: string;
+    opacity: number;
+    object
+    pixelAligned: boolean;
+    position: Point | [
+        number,
+        number
+    ];
+    selected: boolean;
+    sliced: boolean;
+    Tags
+    top: number;
+    string
+    visibilityVariable: any;
+    Rect
+    width: number;
+    wrapInside: boolean;
+    wrapOffset: number;
+    wrapped: boolean;
+    number
+    applyEffect(liveEffectXML: string): void;
+    bringInPerspective(positionX: number, positionY: number, perspectiveGridPlane: PerspectiveGridPlaneType): void;
+    duplicate(relativeObject: object, insertionLocation: any): PageItem;
+    move(relativeObject: object, insertionLocation: any): PageItem;
+    remove(): void;
+    removeAll(): void;
+    resize(scaleX: number, scaleY: number, changePositions?: boolean, changeFillPatterns?: boolean, changeFillGradients?: boolean, changeStrokePattern?: boolean, changeLineWidths?: number, scaleAbout?: Transformation): void;
+    rotate(angle: number, changePositions?: boolean, changeFillPatterns?: boolean, changeFillGradients?: boolean, changeStrokePattern?: boolean, rotateAbout?: Transformation): void;
+    sendScriptMessage(pluginName: string, messageSelector: string, inputString: string): string;
+    transform(transformationMatrix: Matrix, changePositions?: boolean, changeFillPatterns?: boolean, changeFillGradients?: boolean, changeStrokePattern?: boolean, changeLineWidths?: number, transformAbout?: Transformation): void;
+    translate(deltaX?: number, deltaY?: number, transformObjects?: boolean, transformFillPatterns?: boolean, transformFillGradients?: boolean, transformStrokePattern?: boolean): void;
+    zOrder(zOrderCmd: ZOrderMethod): void;
+}
+declare class CompoundPathItem {
+    PathItems
+}
+declare class Tag {
+    name: string;
+    object
+    string
+    value: string;
+    remove(): void;
+    removeAll(): void;
+}
+declare class PathItem {
+    number
+    clipping: boolean;
+    closed: boolean;
+    evenodd: boolean;
+    fillColor: Color;
+    fillOverprint: boolean;
+    filled: boolean;
+    guides: boolean;
+    number
+    PathPoints
+    polarity: PolarityValues;
+    resolution: number;
+    PathPoints
+    strokeCap: StrokeCap;
+    strokeColor: Color;
+    strokeDashOffset: number;
+    strokeDashes: number[];
+    strokeJoin: StrokeJoin;
+    strokeMiterLimit: number;
+    strokeOverprint: boolean;
+    strokeWidth: number;
+    stroked: boolean;
+    setEntirePath(pathPoints: [
+        number,
+        number
+    ][]): void;
+}
+declare class PathPoint {
+    anchor: Point | [
+        number,
+        number
+    ];
+    leftDirection: Point | [
+        number,
+        number
+    ];
+    object
+    pointType: PointType;
+    rightDirection: Point | [
+        number,
+        number
+    ];
+    selected: PathPointSelection;
+    string
+    remove(): void;
+    removeAll(): void;
+}
+declare class RasterItem {
+    number
+    boundingBox: Rect;
+    number
+    string[]
+    boolean
+    contentVariable: any;
+    embedded: boolean;
+    File
+    ImageColorSpace
+    matrix: Matrix;
+    overprint: boolean;
+    RasterLinkState
+    boolean
+    colorize(rasterColor: Color): void;
+    trace(): PluginItem;
+}
+declare class NonNativeItem {
+}
+declare class PluginItem {
+    boolean
+    TracingObject
+}
+declare class GroupItem {
+    clipped: boolean;
+    CompoundPathItems
+    GraphItems
+    GroupItems
+    LegacyTextItems
+    MeshItems
+    NonNativeItems
+    PageItems
+    PathItems
+    PlacedItems
+    PluginItems
+    RasterItems
+    SymbolItems
+    TextFrameItems
+}
+declare class SymbolItem {
+    symbol: Symbol;
+    breakLink(): void;
+}
+declare class Story {
+    Characters
+    InsertionPoints
+    number
+    Lines
+    Paragraphs
+    object
+    TextFrameItems
+    TextRange
+    TextRanges
+    TextRange[]
+    string
+    Words
+}
+declare class TextFrame {
+    anchor: Point | [
+        number,
+        number
+    ];
+    antialias: TextAntialias;
+    Characters
+    columnCount: number;
+    columnGutter: number;
+    contentVariable: any;
+    contents: string;
+    endTValue: number;
+    firstBaseline: FirstBaselineType;
+    firstBaselineMin: number;
+    flowLinksHorizontally: boolean;
+    InsertionPoints
+    TextType
+    Lines
+    Matrix
+    nextFrame: TextFrame;
+    opticalAlignment: boolean;
+    orientation: TextOrientation;
+    Paragraphs
+    previousFrame: TextFrame;
+    rowCount: number;
+    rowGutter: number;
+    spacing: number;
+    startTValue: number;
+    Story
+    TextPath
+    TextRange
+    TextRanges
+    TextRange[]
+    Words
+    convertAreaObjectToPointObject(): TextFrame;
+    convertPointObjectToAreaObject(): TextFrame;
+    createOutline(): GroupItem;
+    generateThumbnailWithTextFrameProperties(textString: string, fontSize: number, textColor: Color, destinationPath: File): void;
+}
+declare class LegacyTextItem {
+    boolean
+    convertToNative(): GroupItem;
+}
+declare class TextRange {
+    CharacterAttributes
+    characterOffset: number;
+    CharacterStyles
+    Characters
+    contents: string;
+    InsertionPoints
+    kerning: number;
+    length: number;
+    Lines
+    ParagraphAttributes
+    ParagraphStyles
+    Paragraphs
+    object
+    Story
+    TextRanges
+    TextRange[]
+    string
+    Words
+    changeCaseTo(type: CaseChangeType): void;
+    deSelect(): void;
+    duplicate(relativeObject: object, insertionLocation: any): TextRange;
+    move(relativeObject: object, insertionLocation: any): TextRange;
+    remove(): void;
+    removeAll(): void;
+    select(addToDocument?: boolean): void;
+}
+declare class InsertionPoint {
+    Characters
+    Lines
+    Paragraphs
+    object
+    Story
+    TextRanges
+    string
+    Words
+}
+declare class CharacterStyle {
+    CharacterAttributes
+    name: string;
+    object
+    string
+    add(): CharacterStyle;
+    applyTo(textItem: any, clearingOverrides?: boolean): void;
+    clear(): void;
+    remove(): void;
+    removeAll(): void;
+}
+declare class ParagraphStyle {
+    CharacterAttributes
+    name: string;
+    ParagraphAttributes
+    object
+    string
+    add(): ParagraphStyle;
+    applyTo(textItem: any, clearingOverrides?: boolean): void;
+    clear(): void;
+    remove(): void;
+    removeAll(): void;
+}
+declare class Artboard {
+    artboardRect: Rect;
+    name: string;
+    object
+    rulerOrigin: Point | [
+        number,
+        number
+    ];
+    rulerPAR: number;
+    showCenter: boolean;
+    showCrossHairs: boolean;
+    showSafeAreas: boolean;
+    string
+    remove(): void;
+    removeAll(): void;
+}

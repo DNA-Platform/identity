@@ -1,0 +1,37 @@
+import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
+import { Index } from '../../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <TableOfContents />
+        <Index />
+        <Title>
+            <Parenthetical />
+            [[ Table of Contents ]]
+        </Title>
+        <Section>
+            <Heading>July 2026</Heading>
+            <Paragraph>
+                <Content>$[[ ./4 July 2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Domi payment ]]( claude--Domi payment--857c0398 )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>October 2026</Heading>
+            <Paragraph>
+                <Content>$[[ ./15 October 2026 ]]</Content>
+            </Paragraph>
+        </Section>
+    </Chapter>
+);

@@ -1,0 +1,503 @@
+class PositionedItem {
+    private _q: Queryable<PageItem, any>;
+    private q(): Queryable<PageItem, any> { return this._q; }
+    private item(): PageItem { return this.q().item(); }
+    app(): ApplicationQuery { return this.q().app(); }
+    document(): DocumentQuery { return this.q().document(); }
+    artboard(): ArtboardQuery { return this.q().artboard(); }
+    region(): Region { return this.artboard().region(); }
+    positionable() { return this.q().positionable(); }
+    unpositionable() { return !this.q().positionable(); }
+
+    positionTopLeftAbs(): Position { return this.positionable() ? this.item().position : [0, 0]; }
+    geometricBoundsAbs(): Rect { return this.positionable() ? this.item().geometricBounds : [0, 0, 0, 0]; }
+    visibleBoundsAbs(): Rect { return this.positionable() ? this.item().visibleBounds : [0, 0, 0, 0]; }
+    controlBoundsAbs(): Rect { return this.positionable() ? this.item().controlBounds : [0, 0, 0, 0]; }
+
+    left(newLeft?: number): number { 
+        if (newLeft !== undefined) 
+            this.translate(newLeft - this.left(), 0);
+        return this.bounds()[0]; 
+    }
+    
+    top(newTop?: number): number { 
+        if (newTop !== undefined)
+            this.translate(0, newTop - this.top());
+        return this.bounds()[1];
+    }
+    
+    right(newRight?: number): number { 
+        if (newRight !== undefined)
+            this.translate(newRight - this.right(), 0);
+        return this.bounds()[2];
+    }
+    
+    bottom(newBottom?: number): number { 
+        if (newBottom !== undefined)
+            this.translate(0, newBottom - this.bottom());
+        return this.bounds()[3];
+    }
+
+    positionAbs(): Position { 
+        if (this.unpositionable()) return [0, 0];
+        var bounds = this.geometricBoundsAbs();
+        return [Math.round((bounds[0] + bounds[2]) / 2), Math.round((bounds[1] + bounds[3]) / 2)];
+    }
+
+    position(newPosition?: Position): Position { 
+        if (this.unpositionable()) return [0, 0];
+        if (newPosition) {
+            var newTop = newPosition[1] + this.height() / 2
+            var newLeft = newPosition[0] - this.width() / 2
+            api.redraw();
+            this.item().position = this.region().toAbsolutePosition([newLeft, newTop]) as Point;
+            api.redraw();
+        }
+
+        var bounds = this.bounds();
+        return [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2];
+    }
+
+    width(newWidth?: number, proportional = true): number {
+        if (this.unpositionable()) return 0;
+    
+        if (newWidth !== undefined) {
+            const newWidthScale = newWidth / this.width();
+            const newHeightScale = proportional ? newWidthScale : 1;
+            this.scale([newWidthScale, newHeightScale]);
+        }
+    
+        const bounds = this.geometricBounds();
+        return Math.abs(bounds[2] - bounds[0]); // Right - Left
+    }
+    
+    height(newHeight?: number, proportional = true): number {
+        if (this.unpositionable()) return 0;
+        if (newHeight !== undefined) {
+            const newHeightScale = newHeight / this.height(); 
+            const newWidthScale = proportional ? newHeightScale : 1;
+            this.scale([newWidthScale, newHeightScale]);
+        }
+    
+        const bounds = this.geometricBounds();
+        return Math.abs(bounds[1] - bounds[3]); // Top - Bottom
+    }
+
+    size(newSize?: Size): Size {
+        if (this.unpositionable()) return [0, 0];
+        if (newSize) {
+            const newWidthScale = newSize[0] / this.width(); 
+            const newHeightScale = newSize[1] / this.height(); 
+            this.scale([newWidthScale, newHeightScale]);
+        }
+
+        return [this.width(), this.height()];
+    }
+
+    bounds(): Rect { return this.geometricBounds(); }
+
+    geometricBounds(): Rect {
+        if (this.unpositionable()) return [0, 0, 0, 0];
+        const bounds = this.geometricBoundsAbs();
+        return [
+            this.region().toRelativeLocation(bounds[0], "x"),
+            this.region().toRelativeLocation(bounds[1], "y"),
+            this.region().toRelativeLocation(bounds[2], "x"),
+            this.region().toRelativeLocation(bounds[3], "y")
+        ];
+    }
+
+    visibleBounds(): Rect {
+        if (this.unpositionable()) return [0, 0, 0, 0];
+        const bounds = this.visibleBoundsAbs();
+        return [
+            this.region().toRelativeLocation(bounds[0], "x"),
+            this.region().toRelativeLocation(bounds[1], "y"),
+            this.region().toRelativeLocation(bounds[2], "x"),
+            this.region().toRelativeLocation(bounds[3], "y")
+        ];
+    }
+
+    controlBounds(): Rect {
+        if (this.unpositionable()) return [0, 0, 0, 0];
+        const bounds = this.controlBoundsAbs();
+        return [
+            this.region().toRelativeLocation(bounds[0], "x"),
+            this.region().toRelativeLocation(bounds[1], "y"),
+            this.region().toRelativeLocation(bounds[2], "x"),
+            this.region().toRelativeLocation(bounds[3], "y")
+        ];
+    }
+
+    constructor(queryItem: Queryable<PageItem, any>) {
+        this._q = queryItem;
+    }
+
+    center(newCenter?: Position): Position {
+        if (newCenter !== undefined)
+            this.position(newCenter);
+        return this.position();
+    }
+
+    rotate(degrees: number, direction: Direction = "c", transformation: Transformation = Transformation.CENTER): this {
+        if (this.unpositionable()) return this;
+        if (direction == "c") degrees = -degrees;
+        api.redraw();
+        this.item().rotate(degrees, true, true, true, true, transformation);
+        api.redraw();
+        return this;
+    }
+
+    rrotate(radians: number, direction: Direction = "c", transformation: Transformation = Transformation.CENTER): this {
+        return this.rotate(Region.toDegrees(radians), direction, transformation);
+    }
+
+    rotateAround(pivot: Position, degrees: number, direction: Direction = "c"): this {
+        if (this.unpositionable()) return this;
+        if (direction === "cc") degrees = -degrees;
+
+        // 1. Get current position in relative coordinates (center)
+        const position = this.position();
+        const deltaX = position[0] - pivot[0];
+        const deltaY = position[1] - pivot[1];
+
+        // 2. Calculate radius and current angle relative to pivot
+        const radius = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+        const currentAngle = Region.to2Pi(Math.atan2(deltaY, deltaX)); // Radians normalized to [0, 2π)
+
+        // 3. Compute new angle after rotation
+        const radians = Region.to2Pi(degrees * (Math.PI / 180));
+        const newAngle = Region.to2Pi(currentAngle + radians);
+
+        // 4. Compute new relative position
+        const newX = pivot[0] + radius * Math.cos(newAngle);
+        const newY = pivot[1] + radius * Math.sin(newAngle);
+
+        // 5. Translate to the new relative position
+        api.redraw();
+        this.translate(newX - position[0], newY - position[1]);
+        api.redraw();
+        this.rotate(degrees, direction);
+        api.redraw();
+
+        return this;
+    }
+
+    rrotateAround(pivot: Position, radians: number, direction: Direction = "c"): this {
+        return this.rotateAround(pivot, Region.toDegrees(radians), direction);
+    }
+
+    rotateAroundCenter(degrees: number, direction: Direction = "c"): this {
+        this.rotateAround(this.region().center(), degrees, direction);
+        return this;
+    }
+
+    rrotateAroundCenter(radians: number, direction: Direction = "c"): this {
+        return this.rrotateAroundCenter(radians, direction);
+    }
+
+    translate(deltaX: number, deltaY: number): this {
+        if (this.unpositionable()) return this;
+        var artboard = this.artboard();
+        var region = artboard.region();
+        deltaX = region.toAbsoluteUnits(deltaX);
+        deltaY = region.toAbsoluteUnits(deltaY);
+        api.redraw();
+        this.item().translate(deltaX, deltaY);
+        api.redraw();
+        return this;
+    }
+
+    scale(scale: Scale): this {
+        if (this.unpositionable()) return this;
+        if (scale instanceof Array) var [ scaleX, scaleY ] = scale; 
+        else var [ scaleX, scaleY ] = [scale, scale]; 
+
+        const position = this.position();
+        this.item().resize(100* scaleX, 100 * scaleY);
+        this.position(position);
+        return this;
+    }
+
+    // Moves the item proportionally so its left edge aligns with the region's left edge
+    pushLeft(proportion: number = 1): this {
+        if (this.unpositionable()) return this;
+        const targetLeft = this.region().left() * proportion + this.left() * (1 - proportion);
+        this.left(targetLeft);
+        return this;
+    }
+
+    // Moves the item proportionally so its right edge aligns with the region's right edge
+    pushRight(proportion: number = 1): this {
+        if (this.unpositionable()) return this;
+        const targetRight = this.region().right() * proportion + this.right() * (1 - proportion);
+        this.right(targetRight);
+        return this;
+    }
+
+    // Moves the item proportionally so its top edge aligns with the region's top edge
+    pushUp(proportion: number = 1): this {
+        if (this.unpositionable()) return this;
+        const targetTop = this.region().top() * proportion + this.top() * (1 - proportion);
+        this.top(targetTop);
+        return this;
+    }
+
+    // Moves the item proportionally so its bottom edge aligns with the region's bottom edge
+    pushDown(proportion: number = 1): this {
+        if (this.unpositionable()) return this;
+        const targetBottom = this.region().bottom() * proportion + this.bottom() * (1 - proportion);
+        this.bottom(targetBottom);
+        return this;
+    }
+
+    // Moves the item proportionally towards the center of the region
+    pushCenter(proportion: number = 1): this {
+        if (this.unpositionable()) return this;
+        const regionCenter = this.region().center();
+        const targetX = regionCenter[0] * proportion + this.position()[0] * (1 - proportion);
+        const targetY = regionCenter[1] * proportion + this.position()[1] * (1 - proportion);
+        this.position([targetX, targetY]);
+        return this;
+    }
+}
+
+class PositionedItemTests extends AppTestClass {
+    constructor() {
+        super();
+        this.decorateExceptions = false;
+    }
+
+    init(): void {
+        super.init();
+        api.activeDocument().activeArtboard().square();
+    }
+
+    createItem(position: Position = [0.5, 0.5], width: number = 0.05, height?: number): PathItemQuery {
+        if (height === undefined) height = width;
+        var layer = api.activeDocument().activeLayer();
+        var region = layer.artboard().region();
+        var [x, y] = region.toAbsolutePosition(position);
+        var widthAbs = region.toAbsoluteUnits(width);
+        var heightAbs = region.toAbsoluteUnits(height);
+        var item = (layer.pathItems().collection() as PathItems).rectangle(
+            y + heightAbs/2,
+            x - widthAbs/2,
+            widthAbs,
+            heightAbs
+        );
+        return q(item);
+    }
+
+    testPosition() {
+        var item = this.createItem([0.5, 0.5]);
+        this.assertEquals(item.p().position(), [0.5, 0.5], "1. Unexpected position");
+
+        item.p().position([0.75, 0.25]);
+        this.assertEquals(item.p().position(), [0.75, 0.25], "2. Unexpected position change");
+    }
+
+    testWidth() {
+        var item = this.createItem([0.5, 0.5], 0.1);
+        this.assertEquals(item.p().width(), 0.1, "3. Unexpected width");
+
+        item.p().width(0.2);
+        this.assertEquals(item.p().width(), 0.2, "4. Unexpected width change");
+        this.assertEquals(item.p().position(), [0.5, 0.5], "4. Unexpected position change after width");
+
+        var existingHeight = item.p().height();
+
+        item.p().width(0.3, false);
+        this.assertEquals(item.p().width(), 0.3, "5. Unexpected width change");
+        this.assertEquals(item.p().height(), existingHeight, "6. Unexpected width change");
+        this.assertEquals(item.p().position(), [0.5, 0.5], "6. Unexpected position change after width");
+    }
+
+    testHeight() {
+        var item = this.createItem([0.5, 0.5], 0.1, 0.05);
+        this.assertEquals(item.p().height(), 0.05, "7. Unexpected height");
+
+        item.p().height(0.2);
+        this.assertEquals(item.p().height(), 0.2, "8. Unexpected height change");
+        this.assertEquals(item.p().position(), [0.5, 0.5], "8. Unexpected position change after height");
+
+        var existingWidth = item.p().width();
+
+        item.p().height(0.3, false);
+        this.assertEquals(item.p().height(), 0.3, "9. Unexpected height change");
+        this.assertEquals(item.p().width(), existingWidth, "10. Unexpected height change");
+        this.assertEquals(item.p().position(), [0.5, 0.5], "10. Unexpected position change after height");
+    }
+
+    testSize() {
+        var item = this.createItem([0.5, 0.5], 0.1, 0.05);
+        this.assertEquals(item.p().height(), 0.05, "7. Unexpected height");
+
+        item.p().height(0.2);
+        this.assertEquals(item.p().height(), 0.2, "8. Unexpected height change");
+        this.assertEquals(item.p().position(), [0.5, 0.5], "8. Unexpected position change after height");
+
+        var existingWidth = item.p().width();
+
+        item.p().height(0.3, false);
+        this.assertEquals(item.p().height(), 0.3, "9. Unexpected height change");
+        this.assertEquals(item.p().width(), existingWidth, "10. Unexpected height change");
+        this.assertEquals(item.p().position(), [0.5, 0.5], "10. Unexpected position change after height");
+    }
+
+    testTranslate() {
+        var item = this.createItem([0.5, 0.5], 0.1, 0.05);
+
+        item.p().translate(0.1, -0.1);
+        this.assertEquals(item.p().position(), [0.6, 0.4], "11. Unexpected position after translation");
+    }
+
+    testEdges() {
+        var item = this.createItem([0.5, 0.5], 0.2, 0.2);
+
+        this.assertEquals(item.p().position(), [0.5, 0.5], "12. Unexpected center");
+        this.assertEquals(item.p().left(), 0.4, "12. Unexpected left");
+        this.assertEquals(item.p().right(), 0.6, "12. Unexpected right");
+        this.assertEquals(item.p().top(), 0.6, "12. Unexpected top");
+        this.assertEquals(item.p().bottom(), 0.4, "12. Unexpected bottom");
+
+        item.p().left(0.7)
+        this.assertEquals(item.p().left(), 0.7, "13. Unexpected left after setting");
+
+        item.p().right(0.8)
+        this.assertEquals(item.p().right(), 0.8, "13. Unexpected right after setting");
+
+        item.p().top(0.2)
+        this.assertEquals(item.p().top(), 0.2, "13. Unexpected top after setting");
+
+        item.p().bottom(0.1)
+        this.assertEquals(item.p().bottom(), 0.1, "13. Unexpected bottom after setting");
+    }
+
+    testScale() {
+        var item = this.createItem([0.4, 0.4], 0.1, 0.1);
+
+        item.p().scale([2, 0.5]);
+        this.assertEquals(item.p().size(), [0.2, 0.05], "14. Unexpected position after translation");
+        this.assertEquals(item.p().position(), [0.4, 0.4], "14. Unexpected position after translation");
+    }
+
+    testRotate() {
+        // Create item with unequal width and height
+        var item = this.createItem([0.5, 0.5], 0.2, 0.1);
+
+        // Clockwise rotation by 90 degrees
+        item.p().rotate(90);
+        this.assertEquals(item.p().width(), 0.1, "1. Width and height should swap after 90-degree clockwise rotation");
+        this.assertEquals(item.p().height(), 0.2, "2. Height and width should swap after 90-degree clockwise rotation");
+
+        // Counterclockwise rotation by -90 degrees
+        item.p().rotate(-90);
+        this.assertEquals(item.p().width(), 0.2, "3. Width should revert after -90-degree counterclockwise rotation");
+        this.assertEquals(item.p().height(), 0.1, "4. Height should revert after -90-degree counterclockwise rotation");
+    }
+
+    testRRotate() {
+        // Create item with unequal width and height
+        var item = this.createItem([0.5, 0.5], 0.2, 0.1);
+
+        // Clockwise rotation by 90 degrees in radians
+        item.p().rrotate(Region.toRadians(90));
+        this.assertEquals(item.p().width(), 0.1, "5. Width and height should swap after 90-degree clockwise rrotate");
+        this.assertEquals(item.p().height(), 0.2, "6. Height and width should swap after 90-degree clockwise rrotate");
+
+        // Counterclockwise rotation by -90 degrees in radians
+        item.p().rrotate(Region.toRadians(-90));
+        this.assertEquals(item.p().width(), 0.2, "7. Width should revert after -90-degree counterclockwise rrotate");
+        this.assertEquals(item.p().height(), 0.1, "8. Height should revert after -90-degree counterclockwise rrotate");
+    }
+
+    testRotateAround() {
+        // Create item centered at [0.5, 0.5] with unequal width and height
+        var item = this.createItem([0.5, 0.5], 0.2, 0.1);
+        var region = item.p().region();
+    
+        // Rotate 90 degrees clockwise around [0.5, 0.5] (center)
+        item.p().rotateAround([0.5, 0.5], 90);
+        this.assertEquals(item.p().position(), [0.5, 0.5], "9. Position should remain at center after rotation around itself");
+    
+        // Translate item for off-center test
+        item.p().translate(-0.25, 0);
+        region = item.p().region();
+        var originalPosition = item.p().position();
+    
+        // Rotate 90 counter-clockwise around [0.5, 0.5]
+        item.p().rotateAround([0.5, 0.5], 90, "cc");
+        this.assertEquals(region.angle(item.p().position()), 90, "10. Angle from pivot should be 90 after rotation", 0.0001);
+        this.assertEquals(region.radius(item.p().position()), 0.25, "11. Radius should remain constant after rotation around pivot", 0.0001);
+    
+        // Rotate 90 clockwise back around [0.5, 0.5]
+        item.p().rotateAround([0.5, 0.5], 90, "c");
+        this.assertEquals(item.p().position(), originalPosition, "12. Position should return to original position after inverse rotation", 0.0001);
+    
+        // Additional test: Rotate 180 degrees clockwise
+        item.p().position([0.5, 0.5]);
+        item.p().rotateAround([0.6, 0.5], 180, "c");
+        this.assertEquals(item.p().position(), [0.7, 0.5], "13. The position should have flipped horizontally", 0.0001);
+
+        item.p().rotateAround([0.6, 0.5], 180, "cc");
+        this.assertEquals(item.p().position(), [0.5, 0.5], "14. The position should have returned to center", 0.0001);
+    }
+    
+    testRRotateAround() {
+        // Create item centered at [0.5, 0.5] with unequal width and height
+        var item = this.createItem([0.5, 0.5], 0.2, 0.1);
+        var region = item.p().region();
+    
+        // Rotate 90 degrees clockwise around [0.5, 0.5] (center)
+        item.p().rrotateAround([0.5, 0.5], Region.toRadians(90));
+        this.assertEquals(item.p().position(), [0.5, 0.5], "9. Position should remain at center after rotation around itself");
+    
+        // Translate item for off-center test
+        item.p().translate(-0.25, 0);
+        region = item.p().region();
+    
+        // Rotate 90 counter-clockwise around [0.5, 0.5]
+        item.p().rrotateAround([0.5, 0.5], Region.toRadians(90), "cc");
+        this.assertEquals(region.angle(item.p().position()), 90, "10. Angle from pivot should be 90 after rotation", 0.0001);
+        this.assertEquals(region.radius(item.p().position()), 0.25, "11. Radius should remain constant after rotation around pivot", 0.0001);
+    }
+
+    testPushEdges() {
+        var item = this.createItem([0.5, 0.5], 0.2, 0.2);
+
+        item.p().pushRight(0.5);
+        this.assertEquals(item.p().right(), 0.8, "12. Unexpected right after pushing 0.5");
+
+        item.p().pushRight();
+        this.assertEquals(item.p().right(), 1, "12. Unexpected right after pushing 1.0");
+
+        item.p().pushCenter();
+
+        item.p().pushLeft(0.5);
+        this.assertEquals(item.p().left(), 0.2, "13. Unexpected left after pushing 0.5");
+
+        item.p().pushLeft();
+        this.assertEquals(item.p().left(), 0, "13. Unexpected left after pushing 1.0");
+
+        item.p().pushCenter();
+
+        item.p().pushUp(0.5);
+        this.assertEquals(item.p().top(), 0.8, "14. Unexpected top after pushing 0.5");
+
+        item.p().pushUp();
+        this.assertEquals(item.p().top(), 1, "14. Unexpected top after pushing 1.0");
+
+        item.p().pushCenter();
+
+        item.p().pushDown(0.5);
+        this.assertEquals(item.p().bottom(), 0.2, "15. Unexpected bottom after pushing 0.5");
+
+        item.p().pushDown();
+        this.assertEquals(item.p().bottom(), 0, "15. Unexpected bottom after pushing 1.0");
+
+        item.p().position([0.7, 0.5])
+        item.p().pushCenter(0.5);
+        this.assertEquals(item.p().position(), [0.6, 0.5], "16. Unexpected position after pushing 0.5");
+    }
+}

@@ -206,7 +206,7 @@ export default () => (
             <Paragraph>
                 <Parenthetical />
                 <Word>
-                    <Content>$[[ Semantic Reference Theory ]]</Content>
+                    <Content>$[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Content>
                 </Word>
                 <Word>
                     <Content>$[[ ./Synopsis ]]</Content>

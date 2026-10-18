@@ -1,0 +1,329 @@
+chemistry3.ts:485 Property: $increment, isReactive: true
+ Creating computed property on $Counter for property $increment
+ Property: $increment, isReactive: true
+ Creating computed property on $Counter for property $increment
+ Property: computedProp, isReactive: true
+ Creating computed property on $ComplexProps for property computedProp
+ Getter called, returning: NaN
+ Property: $modifyRegularArray, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularArray
+ Property: $modifyRegularObject, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularObject
+ Property: $modifyComputed, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyComputed
+ Property: computedProp, isReactive: true
+ Creating computed property on $ComplexProps for property computedProp
+ Getter called, returning: NaN
+ Property: $modifyRegularArray, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularArray
+ Property: $modifyRegularObject, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyRegularObject
+ Property: $modifyComputed, isReactive: true
+ Creating computed property on $ComplexProps for property $modifyComputed
+ Property: $increment, isReactive: true
+ Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:485 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:485 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:485 Property: $modifyComputed, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:485 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:485 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:485 Property: $modifyComputed, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:485 Property: $text, isReactive: true
+chemistry3.ts:532 Creating computed property on $Display for property $text
+chemistry3.ts:485 Property: $text, isReactive: true
+chemistry3.ts:532 Creating computed property on $Display for property $text
+page.tsx:11 Display.view() - $text: Hello World
+page.tsx:11 Display.view() - $text: Hello World
+page.tsx:11 Display.view() - $text: Hello World
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: count, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property count
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: count, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property count
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: count, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property count
+chemistry3.ts:485 Property: $increment, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property $increment
+chemistry3.ts:485 Property: count, isReactive: true
+chemistry3.ts:532 Creating computed property on $Counter for property count
+chemistry3.ts:485 Property: $first, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $first
+chemistry3.ts:485 Property: $second, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $second
+chemistry3.ts:485 Property: $third, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $third
+chemistry3.ts:485 Property: $first, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $first
+chemistry3.ts:485 Property: $second, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $second
+chemistry3.ts:485 Property: $third, isReactive: true
+chemistry3.ts:532 Creating computed property on $MultiProp for property $third
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: 200
+chemistry3.ts:485 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:485 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:485 Property: $modifyComputed, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: 200
+chemistry3.ts:485 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:485 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:485 Property: $modifyComputed, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:485 Property: $arrayProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $arrayProp
+chemistry3.ts:485 Property: $objectProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $objectProp
+chemistry3.ts:485 Property: regularArrayCount, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularArrayCount
+chemistry3.ts:485 Property: regularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularArray
+chemistry3.ts:485 Property: regularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularObject
+chemistry3.ts:485 Property: computedProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property computedProp
+page.tsx:82 Getter called, returning: 200
+chemistry3.ts:485 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularArray
+chemistry3.ts:485 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyRegularObject
+chemistry3.ts:485 Property: $modifyComputed, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $modifyComputed
+chemistry3.ts:485 Property: $arrayProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $arrayProp
+chemistry3.ts:485 Property: $objectProp, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property $objectProp
+chemistry3.ts:485 Property: regularArrayCount, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularArrayCount
+chemistry3.ts:485 Property: regularArray, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularArray
+chemistry3.ts:485 Property: regularObject, isReactive: true
+chemistry3.ts:532 Creating computed property on $ComplexProps for property regularObject
+page.tsx:82 Getter called, returning: 200
+page.tsx:82 Getter called, returning: 200
+page.tsx:82 Getter called, returning: 200
+chemistry3.ts:567 Uncaught TypeError: Cannot read properties of undefined (reading 'resetState')
+    at $Counter.backingField (chemistry3.ts:567:25)
+    at onClick (page.tsx:35:40)
+    at executeDispatch (react-dom-client.development.js:16922:9)
+    at runWithFiberInDEV (react-dom-client.development.js:873:30)
+    at processDispatchQueue (react-dom-client.development.js:16972:19)
+    at eval (react-dom-client.development.js:17573:9)
+    at batchedUpdates$1 (react-dom-client.development.js:3313:40)
+    at dispatchEventForPluginEventSystem (react-dom-client.development.js:17126:7)
+    at dispatchEvent (react-dom-client.development.js:21309:11)
+    at dispatchDiscreteEvent (react-dom-client.development.js:21277:11)
+backingField @ chemistry3.ts:567
+onClick @ page.tsx:35
+executeDispatch @ react-dom-client.development.js:16922
+runWithFiberInDEV @ react-dom-client.development.js:873
+processDispatchQueue @ react-dom-client.development.js:16972
+eval @ react-dom-client.development.js:17573
+batchedUpdates$1 @ react-dom-client.development.js:3313
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:17126
+dispatchEvent @ react-dom-client.development.js:21309
+dispatchDiscreteEvent @ react-dom-client.development.js:21277
+<button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+view @ page.tsx:34
+Component @ chemistry3.ts:239
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<Component>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+BasicsTest @ page.tsx:206
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<BasicsTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1757909897499:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1757909897499:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1757909897499:1801
+(anonymous) @ main-app.js?v=1757909897499:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1757909897499:9
+chemistry3.ts:567 Uncaught TypeError: Cannot read properties of undefined (reading 'resetState')
+    at $ComplexProps.backingField (chemistry3.ts:567:25)
+    at onClick (page.tsx:127:44)
+    at executeDispatch (react-dom-client.development.js:16922:9)
+    at runWithFiberInDEV (react-dom-client.development.js:873:30)
+    at processDispatchQueue (react-dom-client.development.js:16972:19)
+    at eval (react-dom-client.development.js:17573:9)
+    at batchedUpdates$1 (react-dom-client.development.js:3313:40)
+    at dispatchEventForPluginEventSystem (react-dom-client.development.js:17126:7)
+    at dispatchEvent (react-dom-client.development.js:21309:11)
+    at dispatchDiscreteEvent (react-dom-client.development.js:21277:11)
+backingField @ chemistry3.ts:567
+onClick @ page.tsx:127
+executeDispatch @ react-dom-client.development.js:16922
+runWithFiberInDEV @ react-dom-client.development.js:873
+processDispatchQueue @ react-dom-client.development.js:16972
+eval @ react-dom-client.development.js:17573
+batchedUpdates$1 @ react-dom-client.development.js:3313
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:17126
+dispatchEvent @ react-dom-client.development.js:21309
+dispatchDiscreteEvent @ react-dom-client.development.js:21277
+<button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+view @ page.tsx:126
+Component @ chemistry3.ts:239
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<Component>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+BasicsTest @ page.tsx:233
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<BasicsTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1757909897499:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1757909897499:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1757909897499:1801
+(anonymous) @ main-app.js?v=1757909897499:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1757909897499:9

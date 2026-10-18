@@ -1,0 +1,91 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ selection-examples-viz v1 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="600" fill="#1a1a2a"/>
+    
+    <!-- Title -->
+    <text x="400" y="40" fill="white" font-family="Arial" font-size="20" text-anchor="middle">Примеры выделения для сохранения</text>
+    <text x="400" y="70" fill="#8a9bb5" font-family="Arial" font-size="14" text-anchor="middle">(Это только примеры - работает с любыми элементами!)</text>
+    
+    <!-- Layers Panel -->
+    <g transform="translate(50,100)">
+        <rect width="250" height="400" fill="#2a4a8a" rx="5"/>
+        <text x="20" y="30" fill="white" font-family="Arial" font-size="14">Слои</text>
+        
+        <!-- Layer 1 -->
+        <g transform="translate(10,50)">
+            <rect width="230" height="60" fill="#1a1a2a" rx="3"/>
+            <!-- Highlighted selection -->
+            <rect width="230" height="60" fill="#ff6b6b" rx="3" opacity="0.2"/>
+            <text x="30" y="25" fill="white" font-family="Arial" font-size="12">Круги</text>
+            <text x="30" y="45" fill="#8a9bb5" font-family="Arial" font-size="10">3 объекта</text>
+        </g>
+        
+        <!-- Layer 2 -->
+        <g transform="translate(10,120)">
+            <rect width="230" height="60" fill="#1a1a2a" rx="3"/>
+            <text x="30" y="25" fill="white" font-family="Arial" font-size="12">Линии</text>
+            <text x="30" y="45" fill="#8a9bb5" font-family="Arial" font-size="10">8 объектов</text>
+        </g>
+        
+        <!-- Layer 3 -->
+        <g transform="translate(10,190)">
+            <rect width="230" height="60" fill="#1a1a2a" rx="3"/>
+            <text x="30" y="25" fill="white" font-family="Arial" font-size="12">Фон</text>
+            <text x="30" y="45" fill="#8a9bb5" font-family="Arial" font-size="10">1 объект</text>
+        </g>
+    </g>
+    
+    <!-- Document View -->
+    <g transform="translate(350,100)">
+        <rect width="400" height="400" fill="#FFD700"/>
+        
+        <!-- Background Pattern -->
+        <g stroke="#fff8e0" stroke-width="2" opacity="0.3">
+            <path d="M 0,0 L 400,0 M 0,100 L 400,100 M 0,200 L 400,200 M 0,300 L 400,300 M 0,400 L 400,400"/>
+            <path d="M 0,0 L 0,400 M 100,0 L 100,400 M 200,0 L 200,400 M 300,0 L 300,400 M 400,0 L 400,400"/>
+        </g>
+        
+        <!-- Selected Objects -->
+        <g stroke="#ff6b6b" stroke-width="4" fill="none">
+            <circle cx="100" cy="100" r="30"/>
+            <circle cx="300" cy="300" r="30"/>
+            <!-- Selection highlight -->
+            <circle cx="100" cy="100" r="35" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="5,5"/>
+            <circle cx="300" cy="300" r="35" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="5,5"/>
+        </g>
+        
+        <!-- Other Objects -->
+        <g stroke="#fff8e0" stroke-width="4" fill="none">
+            <circle cx="200" cy="200" r="30"/>
+        </g>
+    </g>
+    
+    <!-- Save State Button -->
+    <g transform="translate(50,520)">
+        <rect width="200" height="40" fill="#2a8a4a" rx="5"/>
+        <text x="100" y="25" fill="white" font-family="Arial" font-size="14" text-anchor="middle">Сохранить состояние ⤵</text>
+    </g>
+    
+    <!-- Legend -->
+    <g transform="translate(350,520)">
+        <text x="0" y="15" fill="#ff6b6b" font-family="Arial" font-size="12">🔍 Красным показаны выделенные элементы</text>
+        <text x="0" y="35" fill="#4ecdc4" font-family="Arial" font-size="12">✓ Можно выделять слои, группы или отдельные объекты</text>
+    </g>
+
+    <!-- Signature -->
+    <text x="20" y="580" fill="white" font-family="Arial" font-size="12" opacity="0.6">Seren</text>
+</svg>`}
+        </CodeBox>
+    </Chapter>
+);

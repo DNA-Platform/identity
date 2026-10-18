@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "npm run asbuild && next dev",
+    "clean": "npx rimraf build .next",
+    "build": "npm run asbuild:release && next build",
+    "build:single": "npm run clean && npm run build && node scripts/bundle.js",
+    "preview": "npx serve . -l 3001",
+    "start": "next start",
+    "lint": "next lint",
+    "asbuild": "asc assembly/index.ts --target release",
+    "asbuild:release": "asc assembly/index.ts --target release --optimize",
+    "asbuild:debug": "asc assembly/index.ts --target debug"
+  }
+}

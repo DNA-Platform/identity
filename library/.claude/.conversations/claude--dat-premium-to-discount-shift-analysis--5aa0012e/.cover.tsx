@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ DAT premium to discount shift analysis ]]( claude--DAT premium to discount shift analysis--5aa0012e )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>5aa0012e-e4fd-41cd-b1fa-f93201ccccbb</Origin>
         <Paragraph>

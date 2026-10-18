@@ -1,0 +1,126 @@
+class Smoothing {
+    // Bézier handle averaging
+    static bezier(path: PathItemQuery): void {
+        const points = path.pathPoints();
+        if (points.length() < 2) return;
+
+        for (let i = 1; i < points.length() - 1; i++) {
+            const prev = points.at(i - 1).anchor();
+            const current = points.at(i);
+            const next = points.at(i + 1).anchor();
+
+            const deltaX = (next[0] - prev[0]) / 3;
+            const deltaY = (next[1] - prev[1]) / 3;
+
+            current.set()
+                .pointType(PointType.SMOOTH)
+                .leftDirection([current.anchor()[0] - deltaX, current.anchor()[1] - deltaY])
+                .rightDirection([current.anchor()[0] + deltaX, current.anchor()[1] + deltaY]);
+        }
+    }
+
+    // Catmull-Rom Spline smoothing
+    static catmullRomSmooth(path: PathItemQuery): void {
+        const points = path.pathPoints();
+        if (points.length() < 2) return;
+
+        for (let i = 1; i < points.length() - 1; i++) {
+            const prev = points.at(i - 1).anchor();
+            const current = points.at(i);
+            const next = points.at(i + 1).anchor();
+
+            const deltaX = (next[0] - prev[0]) / 6;
+            const deltaY = (next[1] - prev[1]) / 6;
+
+            current.set()
+                .pointType(PointType.SMOOTH)
+                .leftDirection([current.anchor()[0] - deltaX, current.anchor()[1] - deltaY])
+                .rightDirection([current.anchor()[0] + deltaX, current.anchor()[1] + deltaY]);
+        }
+    }
+
+    // Tension-Based Smoothing
+    static tensionSmooth(path: PathItemQuery, tension: number = 0.16): void {
+        const points = path.pathPoints();
+        if (points.length() < 2) return;
+
+        for (let i = 1; i < points.length() - 1; i++) {
+            const prev = points.at(i - 1).anchor();
+            const current = points.at(i);
+            const next = points.at(i + 1).anchor();
+
+            const deltaX = (next[0] - prev[0]) * tension;
+            const deltaY = (next[1] - prev[1]) * tension;
+
+            current.set()
+                .pointType(PointType.SMOOTH)
+                .leftDirection([current.anchor()[0] - deltaX, current.anchor()[1] - deltaY])
+                .rightDirection([current.anchor()[0] + deltaX, current.anchor()[1] + deltaY]);
+        }
+    }
+
+    // B-Spline Smoothing
+    static bSplineSmooth(path: PathItemQuery): void {
+        const points = path.pathPoints();
+        if (points.length() < 4) return; // B-splines require at least 4 control points
+
+        const smoothedAnchors: Position[] = [];
+
+        for (let i = 1; i < points.length() - 2; i++) {
+            const p0 = points.at(i - 1).anchor();
+            const p1 = points.at(i).anchor();
+            const p2 = points.at(i + 1).anchor();
+            const p3 = points.at(i + 2).anchor();
+
+            // Calculate smooth anchor position (weighted average)
+            const smoothX = (p0[0] + 4 * p1[0] + p2[0]) / 6;
+            const smoothY = (p0[1] + 4 * p1[1] + p2[1]) / 6;
+
+            // Influence outgoing direction using p3
+            const deltaX = (p3[0] - p0[0]) / 6;
+            const deltaY = (p3[1] - p0[1]) / 6;
+
+            const adjustedX = smoothX + deltaX;
+            const adjustedY = smoothY + deltaY;
+
+            smoothedAnchors.push([adjustedX, adjustedY]);
+        }
+
+        // Update path points with the smoothed anchors
+        for (let i = 1; i < points.length() - 2; i++) {
+            points.at(i).set()
+                .pointType(PointType.SMOOTH)
+                .anchor(smoothedAnchors[i - 1]);
+        }
+    }
+
+    // Cubic Spline Smoothing
+    static cubicSplineSmooth(path: PathItemQuery): void {
+        const points = path.pathPoints();
+        if (points.length() < 2) return;
+
+        const n = points.length();
+        const h = Array(n - 1);
+        const a = Array(n);
+
+        for (let i = 0; i < n - 1; i++) {
+            const p1 = points.at(i).anchor();
+            const p2 = points.at(i + 1).anchor();
+            h[i] = Math.sqrt((p2[0] - p1[0]) ** 2 + (p2[1] - p1[1]) ** 2);
+            a[i] = p1;
+        }
+
+        for (let i = 1; i < n - 1; i++) {
+            points.at(i).set()
+                .pointType(PointType.SMOOTH)
+                .leftDirection([
+                    a[i][0] - h[i - 1] / 3,
+                    a[i][1] - h[i - 1] / 3
+                ])
+                .rightDirection([
+                    a[i][0] + h[i] / 3,
+                    a[i][1] + h[i] / 3
+                ]);
+        }
+    }
+}

@@ -1,0 +1,109 @@
+ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> npm run tests
+
+> chemistry@0.1.0 tests
+> vitest
+
+
+ DEV  v4.0.6 C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry
+
+ ❯ tests/particle.test.ts (17 tests | 1 failed) 21ms
+     × should establish template singleton correctly 12ms
+     ✓ should carry instance and implementation on view function 1ms
+     ✓ should have unique symbols for different instances 0ms
+     ✓ should store constructor as type 0ms
+     ✓ should allow swapping view implementation 0ms
+     ✓ should allow swapping view instance 0ms
+     ✓ should preserve vessel symbol during render 0ms
+     ✓ should apply props as $ prefixed properties 0ms
+     ✓ should handle children separately 1ms
+     ✓ should ignore React reserved props 0ms
+     ✓ should use frame owner symbol as key 0ms
+     ✓ should render passed particle view 0ms
+     ✓ should handle frame with swapped view 0ms
+     ✓ should export a universal Particle component 1ms
+     ✓ should allow using exported Particle as component 1ms
+     ✓ should handle complex view and instance swapping 0ms
+     ✓ should maintain separate view wrappers per instance 0ms
+ ❯ .rollup.cache/C/Users/dougl/OneDrive/Source/DNA Platform/chemistry/tests/particle.test.js (17 tests | 2 failed) 24ms
+     × should establish template singleton correctly 13ms
+     ✓ should carry instance and implementation on view function 1ms
+     ✓ should have unique symbols for different instances 0ms
+     ✓ should store constructor as type 0ms
+     ✓ should allow swapping view implementation 1ms
+     × should allow swapping view instance 2ms
+     ✓ should preserve vessel symbol during render 0ms
+     ✓ should apply props as $ prefixed properties 0ms
+     ✓ should handle children separately 1ms
+     ✓ should ignore React reserved props 0ms
+     ✓ should use frame owner symbol as key 0ms
+     ✓ should render passed particle view 0ms
+     ✓ should handle frame with swapped view 0ms
+     ✓ should export a universal Particle component 1ms
+     ✓ should allow using exported Particle as component 1ms
+     ✓ should handle complex view and instance swapping 0ms
+     ✓ should maintain separate view wrappers per instance 0ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/particle.test.ts > $Particle Core Structure > should establish template singleton correctly
+AssertionError: expected _$Particle{ …(2), …(4) } to be _$Particle{ …(2), …(4) } // Object.is equality
+
+- Expected
++ Received
+
+  _$Particle {
+    "$view": [Function $view],
+    "view": [Function $view],
+-   Symbol($Particle.cid): 1,
++   Symbol($Particle.cid): 2,
+    Symbol($Particle.type): [Function _$Particle],
+    Symbol($Particle.template): [Circular],
+-   Symbol($Particle.symbol): "$Chemistry._$Particle[1]",
++   Symbol($Particle.symbol): "$Chemistry._$Particle[2]",
+  }
+
+ ❯ tests/particle.test.ts:27:31
+     25| 
+     26|         // All instances reference the template
+     27|         expect(p1[$template]).toBe(template);
+       |                               ^
+     28|         expect(p2[$template]).toBe(template);
+     29|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+ FAIL  .rollup.cache/C/Users/dougl/OneDrive/Source/DNA Platform/chemistry/tests/particle.test.js > $Particle Core Structure > should establish template singleton correctly
+AssertionError: expected _$Particle{ …(2), …(4) } to be _$Particle{ …(2), …(4) } // Object.is equality
+
+- Expected
++ Received
+
+  _$Particle {
+    "$view": [Function $view],
+    "view": [Function $view],
+-   Symbol($Particle.cid): 2,
++   Symbol($Particle.cid): 1,
+    Symbol($Particle.type): [Function _$Particle],
+    Symbol($Particle.template): [Circular],
+-   Symbol($Particle.symbol): "$Chemistry._$Particle[2]",
++   Symbol($Particle.symbol): "$Chemistry._$Particle[1]",
+  }
+
+ ❯ .rollup.cache/C/Users/dougl/OneDrive/Source/DNA Platform/chemistry/tests/particle.test.ts:15:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+ FAIL  .rollup.cache/C/Users/dougl/OneDrive/Source/DNA Platform/chemistry/tests/particle.test.js > $Particle View Swapping > should allow swapping view instance
+AssertionError: expected '$Chemistry._$Particle[9]' to be '$Chemistry._$Particle[10]' // Object.is equality
+
+Expected: "$Chemistry._$Particle[10]"
+Received: "$Chemistry._$Particle[9]"
+
+ ❯ .rollup.cache/C/Users/dougl/OneDrive/Source/DNA Platform/chemistry/tests/particle.test.ts:71:24
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+ Test Files  2 failed (2)
+      Tests  3 failed | 31 passed (34)
+   Start at  03:52:31
+   Duration  966ms (transform 152ms, setup 0ms, collect 240ms, tests 44ms, environment 991ms, prepare 40ms)
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit

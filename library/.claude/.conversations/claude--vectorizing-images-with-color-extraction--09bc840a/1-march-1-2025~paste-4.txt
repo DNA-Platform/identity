@@ -1,0 +1,69 @@
+
+> dna-rose@1.0.0 py:repl
+> node scripts/repl-python.js
+
+Using Python: Python 3.12.3
+Starting Python REPL...
+Python REPL started with src/lib/py in sys.path
+>>> import utils
+>>> import image
+>>> image.trace_image(utils.img('grid.jpg'))
+Color image detected - using color-preserving tracing
+Auto-detected 12 colors in image
+Quantized image saved to: C:\Users\dougl\OneDrive\Source\DNA Platform\dna-rose\docs\resources\grid-quantized.png
+Processing color 1/12: #f9d115
+  Area: 636867 pixels (64.33% of image)
+Processing image: C:\Users\dougl\AppData\Local\Temp\tmp4etf4nqf.png
+  Error processing color: OpenCV(4.11.0) d:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.simd_helpers.hpp:92: error: (-15:Bad number of channels) in function '__cdecl cv::impl::`anonymous-namespace'::CvtHelper<struct cv::impl::`anonymous namespace'::Set<3,4,-1>,struct cv::impl::A0x6a3ea619::Set<1,-1,-1>,struct cv::impl::A0x6a3ea619::Set<0,2,5>,4>::CvtHelper(const class cv::_InputArray &,const class cv::_OutputArray &,int)'    
+> Invalid number of channels in input image:
+>     'VScn::contains(scn)'
+> where
+>     'scn' is 1
+
+Processing color 2/12: #fcf8d2
+  Area: 22204 pixels (2.24% of image)
+Processing image: C:\Users\dougl\AppData\Local\Temp\tmp63wj82aw.png
+  Error processing color: OpenCV(4.11.0) d:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.simd_helpers.hpp:92: error: (-15:Bad number of channels) in function '__cdecl cv::impl::`anonymous-namespace'::CvtHelper<struct cv::impl::`anonymous namespace'::Set<3,4,-1>,struct cv::impl::A0x6a3ea619::Set<1,-1,-1>,struct cv::impl::A0x6a3ea619::Set<0,2,5>,4>::CvtHelper(const class cv::_InputArray &,const class cv::_OutputArray &,int)'    
+> Invalid number of channels in input image:
+>     'VScn::contains(scn)'
+> where
+>     'scn' is 1
+
+Processing color 3/12: #f6e06c
+  Skipping color (area: 6 pixels, below threshold of 4950)
+Processing color 4/12: #fdf2a4
+  Skipping color (area: 0 pixels, below threshold of 4950)
+Processing color 5/12: #59490d
+  Skipping color (area: 915 pixels, below threshold of 4950)
+Processing color 6/12: #f2d74e
+  Skipping color (area: 32 pixels, below threshold of 4950)
+Processing color 7/12: #f1d133
+  Skipping color (area: 486 pixels, below threshold of 4950)
+Processing color 8/12: #faea88
+  Skipping color (area: 0 pixels, below threshold of 4950)
+Processing color 9/12: #fef7bd
+  Skipping color (area: 84 pixels, below threshold of 4950)
+Processing color 10/12: #faf7de
+  Area: 54839 pixels (5.54% of image)
+Processing image: C:\Users\dougl\AppData\Local\Temp\tmpzbrpycpr.png
+  Error processing color: OpenCV(4.11.0) d:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.simd_helpers.hpp:92: error: (-15:Bad number of channels) in function '__cdecl cv::impl::`anonymous-namespace'::CvtHelper<struct cv::impl::`anonymous namespace'::Set<3,4,-1>,struct cv::impl::A0x6a3ea619::Set<1,-1,-1>,struct cv::impl::A0x6a3ea619::Set<0,2,5>,4>::CvtHelper(const class cv::_InputArray &,const class cv::_OutputArray &,int)'    
+> Invalid number of channels in input image:
+>     'VScn::contains(scn)'
+> where
+>     'scn' is 1
+
+Processing color 11/12: #f7d21f
+  Area: 70969 pixels (7.17% of image)
+Processing image: C:\Users\dougl\AppData\Local\Temp\tmp_i5isseo.png
+  Error processing color: OpenCV(4.11.0) d:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.simd_helpers.hpp:92: error: (-15:Bad number of channels) in function '__cdecl cv::impl::`anonymous-namespace'::CvtHelper<struct cv::impl::`anonymous namespace'::Set<3,4,-1>,struct cv::impl::A0x6a3ea619::Set<1,-1,-1>,struct cv::impl::A0x6a3ea619::Set<0,2,5>,4>::CvtHelper(const class cv::_InputArray &,const class cv::_OutputArray &,int)'    
+> Invalid number of channels in input image:
+>     'VScn::contains(scn)'
+> where
+>     'scn' is 1
+
+Processing color 12/12: #a39038
+  Skipping color (area: 4 pixels, below threshold of 4950)
+Merging 0 color layers...
+No valid color layers found. Falling back to black and white tracing.
+Processing image: C:\Users\dougl\OneDrive\Source\DNA Platform\dna-rose\docs\resources\grid.jpg
+Preprocessed image saved to: C:\Users\dougl\OneDrive\Source\DNA Platform\dna-rose\docs\resources\grid.png

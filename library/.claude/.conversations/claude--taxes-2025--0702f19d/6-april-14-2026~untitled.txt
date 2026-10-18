@@ -1,0 +1,263 @@
+# Field-by-Field Guide vs. Actual PDFs — Comparison Report
+
+**Prepared:** 2026-04-14 by Arthur (accounting review) and Patrick (PDF inspection)
+**Reviewing:** `2025/docs/field-completion-guide-2025.md` v1.0
+**Method:** Patrick enumerated every AcroForm field on every PDF in the filing set and extracted visible label text via pdfjs. Arthur compared the visible structure to what the guide covers.
+
+## TL;DR
+
+The guide is well-organized and accurate where it covers a field, but **incomplete in coverage** for several forms — most severely **IT-204 (151 numbered lines, ~10 covered)**, **IT-204-IP (55 lines, ~5 covered)**, and **the back end of Form 1065 (Schedule B questions and Page 1 lines 24–32)**. The guide also has a **line-numbering error on Form 1065 Page 1** (off by one) and a **conceptual error on Schedule D Line 6**. Patrick can fill the forms today using the data we have, but will need expert clarification on the gaps below before producing the final filings.
+
+---
+
+## Field count summary (every PDF in the filing set)
+
+| Form | Pages | Total fields | Text | Checkbox |
+|------|------:|------:|------:|------:|
+| f7004.pdf (extension — DO NOT FILE per algorithm) | 1 | 26 | 18 | 8 |
+| **f1065.pdf** | **6** | **440** | **350** | **90** |
+| k1_doug.pdf | 1 | 111 | 93 | 18 |
+| k1_ana.pdf | 1 | 111 | 93 | 18 |
+| **it204.pdf** | **9** | **409** | **374** | **35** |
+| **it204ip.pdf** | **5** | **255** | **236** | **19** |
+| f8822b.pdf (DONE) | 2 | 22 | 18 | 4 |
+| fw7.pdf | 1 | 69 | 48 | 21 |
+| f1040.pdf | 2 | 199 | 126 | 73 |
+| f1040sd.pdf | 2 | 55 | 47 | 8 |
+| f1040se.pdf | 2 | 185 | 164 | 21 |
+| f8949.pdf | 2 | 202 | 190 | 12 |
+| f5329.pdf (downloaded today) | 3 | 75 | 73 | 2 |
+| **it201.pdf** | **4** | **214** | **198** | **16** |
+
+**Total: 14 forms, 47 pages, 2,373 AcroForm fields.**
+
+The bolded forms are where the guide's coverage is most incomplete relative to the form's actual size.
+
+---
+
+## CRITICAL FINDINGS (must resolve before filing)
+
+### 🔴 1. Form 1065 Page 1 line numbers are off by one
+
+The 2025 Form 1065 has **23 numbered lines on Page 1**, not 22 as the guide implies. The guide says "Line 21 = Total deductions" and "Line 22 = Ordinary business income (loss)." The actual form is:
+
+| Actual Line | Label |
+|---:|---|
+| 21 | (does not exist as "Total deductions" — line 21 is "Energy efficient commercial buildings deduction" wait, that's Line 20 — Line 21 is missing in the extracted text, likely "Reserved" or removed) |
+| **22** | **Total deductions. Add the amounts shown in the far right column for lines 9 through 21** |
+| **23** | **Ordinary business income (loss). Subtract line 22 from line 8** |
+| 24 | Interest due under the look-back method—completed long-term contracts (Form 8697) |
+| 25 | Interest due under the look-back method—income forecast method (Form 8866) |
+| 26 | BBA AAR imputed underpayment |
+| 27 | Other taxes |
+| 28 | Total balance due. Add lines 24 through 27 |
+| 29 | Elective payment election amount from Form 3800 |
+| 30 | Payment |
+| 31 | Amount owed |
+| 32a | Overpayment |
+
+**Fix needed:** Update guide. "Total deductions" goes on Line 22, "Ordinary business loss" on Line 23. All values for Lines 24–32 are $0/blank for our filing — please confirm.
+
+### 🔴 2. Form 1065 Schedule B has 33 questions, guide covers ~16
+
+Actual questions on Schedule B (pages 2–4) that the guide does NOT cover:
+
+| # | Question | Likely answer |
+|---|---|---|
+| 11 | Did the partnership distribute any property received in a like-kind exchange or contribute such property? | No |
+| 12 | Did the partnership distribute to any partner a tenancy-in-common or other undivided interest? | No |
+| 13a | Required to file Form 8858 (Information Return of US Persons re Foreign Disregarded Entities)? | No |
+| 14 | Foreign partners — enter number of Forms 8805 (Foreign Partner's Information Statement of Section 1446 Withholding Tax) | **0** — but please confirm. We have one foreign partner (Ana) but her income is not ECI per your earlier guidance, so no §1446 withholding and no Form 8805. |
+| 15 | Number of Forms 8865 (US Persons w.r.t. Certain Foreign Partnerships) | 0 |
+| 16a | Did partnership make any payments in 2025 that would require it to file Form(s) 1099? | No (we received PayPal/Skrill, didn't pay contractors requiring 1099) |
+| 17 | Number of Forms 5471 (Foreign Corporations) | 0 |
+| 18 | Number of foreign government partners under §892 | 0 |
+| 19 | Did partnership pay or accrue any payments allocable to a foreign person (Form 1042/1042-S)? | **The guide says "YES — guaranteed payment to Ana"** but per your guidance the GP is foreign-sourced services performed outside the US (not US-source FDAP), so no Form 1042-S withholding. Please confirm whether Q19 is YES or NO under that fact pattern. |
+| 20 | Was the partnership a specified domestic entity required to file Form 8938? | No |
+| 21 | Is the partnership a §721(c) partnership? | No |
+| 22 | Did the partnership pay or accrue any interest or royalty for which a partner is denied a deduction under §267A? | No |
+| 23 | Did the partnership have a §163(j) election for any real property trade/business or any farming business? | No |
+| 24 | Does the partnership satisfy one or more conditions (related to §163(j) gross receipts test, etc.)? | No |
+| 25 | Self-certify as a Qualified Opportunity Fund? | No |
+| 26 | Number of foreign partners subject to §864(c)(8) on transferring an interest | 0 |
+| 27 | Were there any transfers between the partnership and its partners subject to §707(a)(2)(B)? | No |
+| 28 | Since 12/22/2017, did a foreign corporation acquire substantially all of the partnership's assets? | No |
+| 29 | Required to file Form 7208 (Excise Tax on Repurchase of Corporate Stock)? | No |
+| **30** | **Digital asset question — at any time during the tax year did the partnership receive (as reward, award, payment for property/services), sell, exchange, or otherwise dispose of a digital asset?** | **NO** — the LLC itself did not transact in crypto. Doug's personal Coinbase activity is on his 1040, not the 1065. **Please confirm.** |
+| 31 | Reserved for future use | Skip |
+| 32 | Election out of subchapter K under §761 | No |
+| 33 | Electing out of centralized partnership audit regime under §6221(b)? | **NO — cannot elect out without Ana having an ITIN, per your earlier guidance** |
+
+**Fix needed:** Either expand the guide to address all 33 questions explicitly (preferred), or give Patrick a "leave at default for everything else" rule so he doesn't have to guess.
+
+### 🔴 3. Schedule D — "Line 6 = Box H" is wrong
+
+The guide says Schedule D Line 6 is "Short-term gain from Form 8949 Box H (Coinbase)." That's incorrect.
+
+Actual Schedule D 2025 Part I:
+| Line | Label |
+|---|---|
+| 1a | Totals for all short-term transactions reported on 1099-B for which basis was reported AND no adjustments needed |
+| 1b | Totals from Form(s) 8949 with Box A checked |
+| 2 | Totals from Form(s) 8949 with Box B checked |
+| 3 | Totals from Form(s) 8949 with Box C checked |
+| 4 | Short-term gain from Form 6252 and Forms 4684, 6781, 8824 |
+| 5 | Net short-term gain (loss) from partnerships, S corps, estates, trusts (K-1) |
+| 6 | **Short-term capital loss carryover** |
+| 7 | Net short-term gain (loss). Combine lines 1a through 6 |
+
+There is **no Schedule D line specifically for Box H**. The 1099-DA / Form 8949 Box H (digital assets, basis not reported) is a Form 8949 designation. Its totals flow into the Schedule D existing "basis not reported" line — which is **Schedule D Line 3** (Box C). Same story for Box K → Schedule D Line 10 (Box F).
+
+**Confirmation request:** Should Coinbase short-term Box H totals be entered on Schedule D Line 3 (treating Box H as the digital-asset analog of Box C), or does the IRS expect a separate line that we haven't seen on this form?
+
+### 🔴 4. IT-204 coverage is severely incomplete
+
+IT-204 has **151 numbered lines across 11 sections** spanning 9 pages. The guide covers **maybe 10 lines**.
+
+Sections the guide does not address at all:
+- **Section 2 detail (Lines 1–26)** — federal income/deductions per Form 1065 Page 1, line by line. The guide says "copy ordinary income and guaranteed payments from federal" but the form actually requires every income/deduction line individually.
+- **Section 3 (Lines 27–39)** — Cost of Goods Sold from Form 1125-A. All $0 for our service business but the lines exist.
+- **Section 4 (Lines 40–65)** — Balance sheets per books. Should be skipped under small partnership exception, but please confirm whether IT-204 honors that exception (the form has the balance sheet section regardless).
+- **Section 5 (Lines 66–84)** — Reconciliation of income per books with income per return (M-1 and M-2 equivalents). Same exception question.
+- **Section 6 (Lines 75–84)** — Capital accounts analysis (M-2 equivalent).
+- **Section 7 (Lines 86–106)** — Partners' share of income, deductions, etc. **This is the NY analog of federal Schedule K and DOES need to be filled.** Lines 86 (ordinary income), 90 (guaranteed payments), and 100 (intentionally left blank) are the relevant ones for us.
+- **Section 8 (Lines 107–115)** — NY modifications. Lines 107, 109, 115 are "intentionally left blank." Lines 111a–111f are NY additions to itemized deductions; 113a–113f are subtractions. All $0 for us but the lines exist.
+- **Section 9 (Lines 116–117)** — NY-specific other info. Line 116a is "New York source gross income" — must be $0. Line 117c asks if the partnership is a partner in another partnership — No.
+- **Section 10 (Lines 118–126)** — NY allocation schedule. Line 118 is the books-and-records question (Yes/No). Lines 119–126 only apply if No to 118. We say Yes (we use books and records, no NY source).
+- **Section 11 (Lines 127–151)** — Partners' credit information. All $0 for us (no NY tax credits).
+
+**Fix needed:** The guide says "Federal income/loss section: Copy from federal" but the IT-204 form actually requires line-by-line entry. Please either give Patrick a per-line table (preferred) or confirm a "leave non-essential lines blank" rule.
+
+### 🔴 5. IT-204-IP coverage is also incomplete
+
+IT-204-IP (Doug's NY K-1 schedule) has 55 numbered lines across 5 pages. The guide says "all NY income lines = $0." This is half-right.
+
+Each income line on IT-204-IP has **two columns**: federal amount (column A) and NY-source amount (column B). For Doug:
+- **Column A (federal)** must be filled with his K-1 numbers ($(6,863.14) ordinary loss on Line 1, $0 guaranteed payment on Line 4 since Doug got none, etc.)
+- **Column B (NY-source)** is $0 because there is no NY source income
+
+The guide saying "all = 0" implies column A is also zero, which would be wrong. Please confirm the column treatment.
+
+Lines the guide doesn't address:
+- Lines 20–28 (NY mods, additions, subtractions, itemized deduction adjustments)
+- Lines 29a–29e (NY source gross income, MCTD allocations, manufacturing) — all $0 for us
+- Lines 30–55 (credits, START-UP NY, etc.) — all $0 for us
+
+### 🔴 6. IT-201 is missing several critical lines
+
+The guide covers most of the major IT-201 lines but **misses some that are mandatory or that affect our numbers**:
+
+| Line | What it is | Why it matters for us |
+|---|---|---|
+| **9** | Taxable amount of IRA distributions | NY has a SEPARATE line for IRA distributions. The guide treats this as "all rolls into Federal AGI" but NY may apply different treatment. **$46,500.** |
+| **20** | Interest income on state/local bonds (NOT NYS) | $0 for us |
+| 21 | Public employee 414(h) retirement contributions | $0 |
+| 22 | NY 529 distributions | $0 |
+| 23 | Other (from IT-225 Line 9) | $0 |
+| **28** | Interest income on U.S. government bonds | If any of Doug's IB interest is from US Treasuries, this is a NY subtraction. Look at the IB 1099-INT detail. |
+| **29** | Pension and annuity income exclusion | NY allows up to $20,000 of qualifying pension income to be excluded. **The IRA distribution may qualify** if Doug is over 59½, but Doug is 42 — **this exclusion does NOT apply**. Confirm? |
+| 30 | NY 529 program deduction | $0 |
+| 31 | Other subtractions (IT-225 Line 18) | $0 |
+| 36 | Dependent exemption ($1,000 × dependents) | $0 (no dependents) |
+| **59** | Sales or use tax — **"do not leave blank"** | Must enter 0 if no use tax owed. The form explicitly says "do not leave blank." The guide doesn't address this. |
+| 60 | Voluntary contributions | $0 |
+| 78a/78b | Refund details (NYS 529 deposit) | N/A |
+| 79 | Amount applied to 2026 estimated tax | $0 |
+| 81 | Estimated tax penalty | Possibly applies — Doug had no NY withholding and may owe a NY underpayment penalty |
+| 82 | Other penalties and interest | $0 |
+| 83a–83c | Direct deposit info | If refund expected |
+
+**Most critical:** Line 59 must not be blank, and Line 28 (US gov bond interest subtraction) needs verification against the IB 1099-INT detail.
+
+---
+
+## ITEMS IN THE GUIDE THAT MAY NOT NEED TO BE FILLED
+
+### Form 1065 Q19 "Payments allocable to a foreign person"
+The guide says **YES** with the rationale "guaranteed payment to Ana." But Question 19 specifically refers to payments that would require Form 1042/1042-S withholding — i.e., US-source FDAP payments to a non-US person. Per your earlier guidance, Ana's guaranteed payment is **foreign-sourced services performed outside the US** and is NOT subject to §1446 or §1441 withholding. If that's right, Question 19 should be **No**, not Yes.
+
+**Please confirm.** This affects whether we need to file Form 1042/1042-S.
+
+### Form 1065 Schedule B Question 16a
+The guide labels this as "Question 13" with the note "PayPal and Skrill payments received — but we received them, didn't pay them. Answer: No if we made no payments requiring 1099." Correct answer (No), but the question number is **16a**, not 13.
+
+### K-1 Box "16 Schedule K-3 attached"
+The guide says "Leave unchecked." The form actually has a checkbox for "Schedule K-3 is attached if required" — leaving it unchecked is the right action since we're claiming the small-partnership-exception domestic filing exception. But we also need to attach the **K-3 Notice** to each K-1, which the guide correctly mentions as a required attachment.
+
+---
+
+## ITEMS IN THE GUIDE THAT DO NOT EXIST AS STAND-ALONE FIELDS
+
+### Form 8822-B "Daytime phone" (signature section)
+The guide lists "Daytime phone | Doug's phone number." The actual form has a "Daytime telephone number of person to contact (optional)" field next to Line 10 — that's the only phone field. There's no separate phone field in the signature section. Patrick already mapped this correctly as f1_17.
+
+### Form 1040 Page 2 "Identity protection PIN"
+The guide says "Leave blank unless Doug has one." There IS such a field on the actual form, on Page 2 in the signature area, so this is fine.
+
+### IT-204 "Daytime phone number" in signature
+Exists on Page 1 at the bottom. Correct.
+
+---
+
+## SIGNATURE / DATE / INITIAL SUMMARY (every form)
+
+Per Doug's instruction to track every signature/date/initial requirement separately:
+
+| Form | Signature(s) needed | Date | Title | Initials | Other |
+|---|---|---|---|---|---|
+| f8822b | Doug, Line 10 area | 04/14/2026 | "Member" (in Title field) | None | Daytime phone (optional) |
+| f1065 | Doug, Page 1 bottom | 04/14/2026 | "Member" | None | Print name, daytime phone, paid-preparer-blank |
+| k1_doug | **None** — partner copy, no separate signature | None | None | None | — |
+| k1_ana | **None** — partner copy, no separate signature | None | None | None | — |
+| it204 | Doug, Page 1 bottom signature block | 04/14/2026 | (signer field) | None | Print name, daytime phone, address, EIN |
+| it204ip | **None** — attachment to IT-204, not separately signed | None | None | None | — |
+| fw7 | **Ana herself** (cannot be Doug) | Date Ana signs | None | None | Phone, name+title of delegate (if applicable) |
+| f1040 | Doug | 04/14/2026 | None | None | Occupation, identity protection PIN, daytime phone, email |
+| f1040sd | None — attachment | None | None | None | — |
+| f8949 | None — attachment | None | None | None | — |
+| f1040se | None — attachment | None | None | None | — |
+| f5329 | **None unless filed standalone** — we attach to 1040 so no separate signature | None | None | None | — |
+| it201 | Doug | 04/14/2026 | None | None | Occupation, daytime phone, EIN/employer ID, direct deposit info |
+
+**Date typo in guide:** The guide's HOW TO USE section says "Date next to every signature: 04/13/2026". Doug specified **04/14/2026** as the actual filing date.
+
+---
+
+## PATRICK'S READINESS NOTE
+
+Patrick: All the AcroForm tooling works on every form. I can fill any of these PDFs end-to-end given:
+1. The expert's per-line value table (resolving the gaps above)
+2. Doug's SSN, DOB, phone number, occupation
+3. Ana's passport number, expiration, birth city, gender (for W-7)
+4. The remaining Doug answers from the prior assumptions check (Chase 1098, NY residency, hours, carryforward)
+
+Form 8822-B is already filled and verified. The other 12 forms can be filled in roughly the same order of magnitude of effort each, once the data is in.
+
+---
+
+## QUESTIONS BACK TO THE EXPERT (SUMMARY)
+
+1. **Form 1065 line numbering** — Total deductions on Line 22 not 21? Confirm Lines 24–32 are all $0.
+2. **Schedule B Q19** — Is this Yes (because we paid Ana) or No (because no §1441/1446 withholding obligation)?
+3. **Schedule B Q30** — Digital asset question: confirm No (LLC didn't transact in crypto, Doug personally did).
+4. **Schedule B all unaddressed questions** — confirm a "default to No" rule for Q11–13a, 14, 17, 18, 20–29, 32?
+5. **Schedule D Box H location** — Box H Coinbase short-term goes on Schedule D Line 3 (Box C totals)? Same for Box K → Line 10?
+6. **IT-204 Section 7 (Lines 86–106)** — please give us the per-line federal numbers for Doug's NY K-1.
+7. **IT-204 Section 4/5 (balance sheets, M-1/M-2)** — does the small partnership exception apply on the NY return, or do we have to fill these?
+8. **IT-204-IP column A vs column B** — confirm column A gets federal numbers, column B gets $0 NY-source.
+9. **IT-201 Line 9 (NY IRA distributions)** — is this filled separately from the federal AGI flow?
+10. **IT-201 Line 28 (US gov bond interest subtraction)** — any of Doug's $19.93 IB interest from US Treasuries?
+11. **IT-201 Line 81 (NY estimated tax penalty)** — does Doug owe a NY underpayment penalty given $0 withholding on the IRA distribution?
+12. **K-1 attachments** — confirm the K-3 Notice text from the guide is the right wording.
+13. **W-7 missing fields** — Ana's passport number, expiration date, country of birth city, gender. We don't have these yet.
+14. **Date typo** — the guide says 04/13/2026 in the HOW TO USE section but Doug confirmed 04/14/2026 (today).
+
+---
+
+## INVENTORY ARTIFACTS
+
+- `.claude/perspectives/arthur/all-form-labels.md` — full pdfjs label extraction for every form (1,126 lines, 71KB)
+- `tools/enumerate-fields.js` — per-PDF AcroForm field name dump
+- `tools/enumerate-all.js` — field-count summary for every PDF in the filing set
+- `tools/extract-form-labels.mjs` — pdfjs label extractor for a single PDF
+- `tools/inventory-all-forms.mjs` — runs the extractor on all forms and writes the inventory file

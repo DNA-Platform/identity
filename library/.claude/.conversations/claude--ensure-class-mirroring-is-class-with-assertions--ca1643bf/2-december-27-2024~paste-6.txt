@@ -1,0 +1,152 @@
+export class MustBe extends Function {
+    undefined(value: any, reason?: string): asserts value is undefined {
+        instanceIs.undefined(value, { orThrow: reason || true });
+    }
+
+    null(value: any, reason?: string): asserts value is null {
+        instanceIs.null(value, { orThrow: reason || true });
+    }
+
+    equal<T = any>(first: T | any, second: any, reason?: string): asserts first is T {
+        instanceIs.equal(first, second, { orThrow: reason || true });
+    }
+
+    string(value: any, reason?: string): asserts value is string {
+        instanceIs.string(value, { orThrow: reason || true });
+    }
+
+    number(value: any, reason?: string): asserts value is number {
+        instanceIs.number(value, { orThrow: reason || true });
+    }
+
+    boolean(value: any, reason?: string): asserts value is boolean {
+        instanceIs.boolean(value, { orThrow: reason || true });
+    }
+
+    true(value: any, reason?: string): asserts value is true {
+        instanceIs.true(value, { orThrow: reason || true });
+    }
+
+    false(value: any, reason?: string): asserts value is false {
+        instanceIs.false(value, { orThrow: reason || true });
+    }
+
+    bigint(value: any, reason?: string): asserts value is BigInt {
+        instanceIs.bigint(value, { orThrow: reason || true });
+    }
+
+    symbol(value: any, reason?: string): asserts value is Symbol {
+        instanceIs.symbol(value, { orThrow: reason || true });
+    }
+
+    object(value: any, reason?: string): asserts value is object {
+        instanceIs.object(value, { orThrow: reason || true });
+    }
+
+    function(value: any, reason?: string): asserts value is Function {
+        instanceIs.function(value, { orThrow: reason || true });
+    }
+
+    type(value: any, reason?: string): asserts value is Constructor {
+        instanceIs.type(value, { orThrow: reason || true });
+    }
+
+    parentType(value: any, parentType: Constructor, reason?: string): void {
+        instanceIs.parentType(value, parentType, { orThrow: reason || true });
+    }
+
+    childType(value: any, childType: Constructor, reason?: string): void {
+        instanceIs.childType(value, childType, { orThrow: reason || true });
+    }
+
+    instanceOf<T = any>(value: any, type: Constructor<T> | any, reason?: string): asserts value is T {
+        instanceIs.instanceOf(value, type, { orThrow: reason || true });
+    }
+
+    emptyObject<T>(value: T | object, reason?: string): asserts value is T {
+        instanceIs.emptyObject(value, { orThrow: reason || true });
+    }
+
+    populatedObject<T>(value: T | object, reason?: string): asserts value is T {
+        instanceIs.populatedObject(value, { orThrow: reason || true });
+    }
+
+    array<T = any>(value: T[] | any[] | any, reason?: string): asserts value is T[] {
+        instanceIs.array(value, { orThrow: reason || true });
+    }
+
+    emptyArray<T = any>(value: T[] | any[] | any, reason?: string): asserts value is T[] {
+        instanceIs.emptyArray(value, { orThrow: reason || true });
+    }
+
+    populatedArray<T = any>(value: any | T[], reason?: string): asserts value is T[] {
+        instanceIs.populatedArray(value, { orThrow: reason || true });
+    }
+
+    specified<T>(value: T | null | undefined, reason?: string): asserts value is T {
+        instanceIs.specified(value, { orThrow: reason || true });
+    }
+
+    unspecified(value: any, reason?: string): asserts value is null | undefined {
+        instanceIs.unspecified(value, { orThrow: reason || true });
+    }
+
+    defined<T>(value: T | null | undefined, reason?: string): asserts value is T {
+        instanceIs.defined(value, { orThrow: reason || true });
+    }
+
+    notDefined(value: any, reason?: string): asserts value is null | undefined {
+        instanceIs.notDefined(value, { orThrow: reason || true });
+    }
+
+    positiveInfinity(value: any, reason?: string): asserts value is number {
+        instanceIs.positiveInfinity(value, { orThrow: reason || true });
+    }
+
+    negativeInfinity(value: any, reason?: string): asserts value is number {
+        instanceIs.negativeInfinity(value, { orThrow: reason || true });
+    }
+
+    infinite(value: any, reason?: string): asserts value is number {
+        instanceIs.infinite(value, { orThrow: reason || true });
+    }
+
+    finite(value: any, reason?: string): asserts value is number {
+        instanceIs.finite(value, { orThrow: reason || true });
+    }
+
+    nan(value: number | null | undefined, reason?: string): asserts value is number {
+        instanceIs.nan(value, { orThrow: reason || true });
+    }
+
+    notNan(value: number | null | undefined, reason?: string): asserts value is number {
+        instanceIs.notNan(value, { orThrow: reason || true });
+    }
+
+    notImplemented() {
+        throw Error("The property methopd has not been implemented yet");
+    }
+
+    staticClass() {
+        throw Error("A static class cannot be instantiated");
+    }
+}
+
+export const mustBe: MustBe = new MustBe();
+
+export class Lazy<T> {
+    private _initializer: () => T;
+    private _uninitialized: boolean = true;
+    private _value: T | undefined;
+    public get value(): T {
+        if (this._uninitialized) {
+            this._uninitialized = false;
+            this._value = this._initializer();
+        }
+        return this._value!;
+    }
+
+    constructor(initializer: () => T) {
+        this._initializer = initializer;
+    }
+}

@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import ts from 'typescript';
 import type { Conversation } from './3-the-record~record.ts';
@@ -146,7 +146,8 @@ export const binderCheck = async (library: string, bindingFolder: string, writte
     const found = walk(library, chosen);
     const held = catalogue(found, chosen);
     const faults = [...misaccounted(found, chosen), ...holds(found, held)].map(fault => String(problem(fault)));
-    const unparsed = written.filter(file => file.endsWith('.tsx') && existsSync(file)).flatMap(file => {
+    const chapters = written.filter(file => file.endsWith('.tsx') && !basename(file).includes('~') && existsSync(file));
+    const unparsed = chapters.flatMap(file => {
         const book = found.books.find((one: { path: string }) => resolve(dirname(file)) === resolve(one.path));
         const made = transforming(readFileSync(file, 'utf8'), file, held, book);
         const missed: string[] = made.missing.map((one: unknown) => missing(one, held.keys()));

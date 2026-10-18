@@ -16,7 +16,7 @@ const pairings = [
 ];
 const collections = { foundations: ['Semantic Primes', 's1'] };
 const selection = (names: string[] = [], projectName?: string, collectionName?: string) =>
-    ({ projectName, collectionName, onlyNames: names });
+    ({ all: false, projectName, collectionName, onlyNames: names });
 
 describe('the importer', () => {
     // Doug, 2026-10-14: "We should probably have an abstraction where we can configure the import in certain ways…
@@ -50,6 +50,9 @@ describe('the importer', () => {
         expect(ids(selectedPairings(pairings, selection([], undefined, 'foundations'), collections))).toEqual(['p1', 's1']);
         expect(ids(selectedPairings(pairings, selection(['u1', 'Seren & Color']), collections))).toEqual(['s1', 'u1']);
         expect(selectedPairings(pairings, selection(), collections)).toEqual([]);
+        expect(selectedPairings(pairings, { ...selection(), all: true }, collections)).toEqual(pairings);
+        expect(parsedArguments(['--all', '--write']).all).toBe(true);
+        expect(parsedArguments(['--write']).all).toBe(false);
         expect(() => selectedPairings(pairings, selection([], undefined, 'nowhere'), collections))
             .toThrow('the configuration names no collection called nowhere');
     });

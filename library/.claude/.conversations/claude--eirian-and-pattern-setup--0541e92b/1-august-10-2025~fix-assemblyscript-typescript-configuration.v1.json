@@ -1,0 +1,11 @@
+// assembly/tsconfig.json
+// This should be INSIDE the assembly folder, not at root
+{
+  "extends": "assemblyscript/std/assembly.json",
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,75 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ Fixed layout..tsx with StyledComponentsRegistry v1 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed layout.tsx</title>
+    <style>
+        body {
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            margin: 0;
+        }
+        pre {
+            background: #2d2d2d;
+            border: 1px solid #3e3e3e;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .function { color: #dcdcaa; }
+        .component { color: #4ec9b0; }
+    </style>
+</head>
+<body>
+    <h2>app/layout.tsx</h2>
+    <pre><code><span class="keyword">import</span> <span class="string">'./globals.css'</span>;
+<span class="keyword">import</span> <span class="component">StyledComponentsRegistry</span> <span class="keyword">from</span> <span class="string">'./registry'</span>;
+
+<span class="keyword">export default function</span> <span class="function">RootLayout</span>({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  <span class="keyword">return</span> (
+    &lt;<span class="component">html</span> lang=<span class="string">"en"</span>&gt;
+      &lt;<span class="component">body</span>&gt;
+        &lt;<span class="component">StyledComponentsRegistry</span>&gt;
+          {children}
+        &lt;/<span class="component">StyledComponentsRegistry</span>&gt;
+      &lt;/<span class="component">body</span>&gt;
+    &lt;/<span class="component">html</span>&gt;
+  );
+}</code></pre>
+
+    <h2>File Structure Required:</h2>
+    <pre>
+app/
+  ├── layout.tsx
+  ├── registry.tsx   &lt;-- This file must be here
+  ├── page.tsx
+  └── globals.css
+    </pre>
+
+    <h2>Note:</h2>
+    <p>Make sure the <code>registry.tsx</code> file is in the same <code>app</code> directory as <code>layout.tsx</code>. The import path <code>'./registry'</code> expects it to be a sibling file.</p>
+</body>
+</html>`}
+        </CodeBox>
+    </Chapter>
+);

@@ -1,0 +1,367 @@
+# Keyword Science for Microstock Contributors
+
+> Related:
+> - [titles.md](titles.md) — title structure that ranks
+> - [banned-terms.md](banned-terms.md) — terms that trigger rejection or suppress ranking
+> - [adobe-stock/keywords.md](../adobe-stock/keywords.md) — Adobe-specific keyword rules
+> - [istock/keywords.md](../istock/keywords.md) — Getty controlled vocabulary deep dive
+
+---
+
+## What this article covers
+
+This is the foundation article on keyword science. It documents what is known — and what
+is contested — about how microstock search engines use keywords, backed by primary sources
+and clearly labeled where evidence is weak. Platform-specific articles build on this.
+
+---
+
+## Keyword limits by platform {#limits}
+
+| Platform | Minimum | Maximum | Notes |
+|----------|---------|---------|-------|
+| Adobe Stock | 5 | 49 | Portal UI labels it 50 but official guideline page caps at 49 [source 1] |
+| iStock / Getty Images | 5 | 50 | ESP enforces hard error below 5 [source 2] |
+| Shutterstock | 7 | 50 | Must be in English (exceptions: Latin names, well-known foreign terms) [source 3] |
+| Alamy | 5 | 50 | Supertags system: first 10 receive elevated weight [source 4] |
+| Dreamstime | unspecified | 70 | Highest cap among major platforms [source 5] |
+
+**Source 1:** [Create titles and keywords to help content sell](https://helpx.adobe.com/stock/contributor/help/titles-and-keyword.html) — Adobe Stock official help (verified 2026-03-17)
+
+**Source 2:** [istock.md pipeline reference](../../stocks/istock.md) — confirmed against ESP portal behavior, batch #62312496 (verified 2026-03-15)
+
+**Source 3:** [Description and Keyword Best Practices](https://submit.shutterstock.com/help/en/articles/10594702-description-and-keyword-best-practices) — Shutterstock Contributor (verified 2026-03-17)
+
+**Source 4:** [SuperTags — Alamy discussion forum](https://discussion.alamy.com/topic/7481-supertags/) — "You can choose to make 10 of your tags supertags out of your total tags" (verified 2026-03-17)
+
+**Source 5:** [New keyword limit? — Professional Microstock Forum](https://www.microstockgroup.com/dreamstime-com/new-keyword-limit/) — contributor-reported, unconfirmed by official docs (verified 2026-03-17)
+
+### The Adobe 49 vs 50 discrepancy
+
+The Contributor portal UI has historically shown 50 as the label; older blog posts and third-party
+guides repeat "50". The official help page [titles-and-keyword.html](https://helpx.adobe.com/stock/contributor/help/titles-and-keyword.html)
+states "maximum 49 keywords". Our pipeline validation enforces 49. Do not rely on the UI label —
+rely on the official help page. The metadata guide in this project (`docs/stocks/metadata.md`)
+already uses 49 as the enforced maximum.
+
+---
+
+## Positional weighting — does keyword order matter? {#positional-weighting}
+
+This is the most debated question in microstock keywording. Here is what the evidence actually shows.
+
+### Adobe Stock: official claim, no independent confirmation
+
+Adobe's official help page states directly:
+
+> "The first 10 keywords will have the most weight in search placement."
+> — [How to organize and add keywords](https://helpx.adobe.com/stock/contributor/help/how-to-organize-and-add-keywords-.html) (verified 2026-03-17)
+
+Adobe's own blog reinforces this:
+
+> "List keywords in order of relevance from most important to least. Include individual words
+> from your title in the top 10 keywords for an extra bump in search relevance."
+> — [Adobe Stock keywording cheat sheet](https://blog.adobe.com/en/publish/2019/06/18/stock-keywording-tips) (verified 2026-03-17)
+
+The portal UI exposes a drag-to-reorder interface, which Adobe would not build if position
+were meaningless. However, no controlled experiment by an independent researcher has
+confirmed that moving a keyword from position 15 to position 3 measurably changes search
+rank. Anecdotal contributor reports of sales increases after reordering exist
+([Adobe Stock keyword order — BackyardSilver](https://backyardsilver.com/adobe-stock-keyword-order/)),
+but confounding variables (timing, algorithm updates, market demand) prevent causal conclusions.
+
+**Practical ruling:** Treat the first 10 positions as your highest-value slots. The official
+guidance is explicit and the risk of ignoring it is asymmetric — ordering costs nothing.
+
+### Shutterstock: no confirmed positional weighting
+
+The Xpiks analysis of 10,000 top-performing Shutterstock images found "no direct connection
+between the position of certain high-competition keywords inside the keywords of top-ranking
+images."
+[Analyzing keywording of 10,000 most popular stock images](https://xpiksapp.com/blog/microstock-keywording-analysis/) (verified 2026-03-17)
+
+### Alamy: explicit supertags system
+
+Alamy uses a formal two-tier system. Contributors designate up to 10 tags as "supertags",
+which receive algorithmic elevation in Alamy's search ranking. This is documented behavior,
+not inferred. The remaining tags are still indexed but carry less weight.
+[SuperTags — Alamy discussion](https://discussion.alamy.com/topic/7481-supertags/) (verified 2026-03-17)
+
+### iStock / Getty: controlled vocabulary overrides position
+
+Getty's controlled vocabulary (CV) system translates keywords into multilingual equivalents.
+A keyword mapped to the CV is indexed in all supported languages regardless of its position.
+An unmapped term (marked with * in the ESP portal) is indexed only as exact-match in the
+submission language. The practical effect is that vocabulary coverage matters more than
+position on this platform.
+[Keywording Changes at Getty/iStock — Selling-Stock](https://www.selling-stock.com/Article/keywording-changes-at-gettyistock) (verified 2026-03-17)
+
+### Summary table
+
+| Platform | Positional weighting? | Source type |
+|----------|----------------------|-------------|
+| Adobe Stock | Yes — first 10 highest weight | Official documentation |
+| Alamy | Yes — supertags (first 10 designated) | Official documentation |
+| Shutterstock | Not confirmed | Independent data analysis |
+| iStock / Getty | CV coverage > position | Platform architecture |
+
+---
+
+## Single-word vs multi-word keywords {#single-vs-phrase}
+
+### The Xpiks research finding
+
+Xpiks analyzed 10,472 top-ranked Shutterstock images. The key finding:
+
+> "Low-competition keywords mostly have 2 words while high-competition keywords mostly have 1 word."
+
+This suggests a layered strategy: single words cover high-competition broad searches;
+two-word phrases reach lower-competition niches where the asset can rank higher.
+[Analyzing keywording of 10,000 most popular stock images](https://xpiksapp.com/blog/microstock-keywording-analysis/) (verified 2026-03-17)
+
+### Adobe's guidance
+
+Adobe's blog explicitly endorses two-word phrases as keywords:
+
+> "Include two-word phrases, like 'Asian baby' and 'Burmese village.'"
+> — [Adobe Stock keywording cheat sheet](https://blog.adobe.com/en/publish/2019/06/18/stock-keywording-tips) (verified 2026-03-17)
+
+### The double-indexing advantage
+
+A two-word phrase like "seamless pattern" may be indexed as both the phrase and the
+individual words, depending on the platform's tokenization. This is not guaranteed behavior
+and is not officially documented by any platform. The practical approach is to include both
+the phrase AND the individual words as separate keywords when both are independently useful.
+
+### Platform-specific guidance
+
+On iStock/Getty, controlled vocabulary terms are often multi-word by nature (e.g.,
+"Abstract Backgrounds", "Computer Graphics"). Matching the CV term exactly — including
+spacing and capitalization — ensures the controlled translation. Do not decompose CV terms
+into single words and lose the translation benefit.
+[istock/keywords.md](../istock/keywords.md) — Getty vocabulary deep dive
+
+### Recommended composition for vector art
+
+Based on the Xpiks research and Adobe's official guidance, the following composition is
+well-supported:
+
+- Roughly 80% single words: cover the high-competition broad terms
+- Roughly 15% two-word phrases: reach niche combinations with lower competition
+- No more than 5% three-word phrases: only when the exact phrase has clear buyer intent
+
+This is the composition already established in this project's workflow
+(`docs/stocks/metadata.md`). The research supports it.
+
+---
+
+## Optimal keyword count {#optimal-count}
+
+### What the data shows
+
+The Xpiks study of 10,000 top-ranked Shutterstock images:
+
+- 47% of top-ranked images used exactly 50 keywords (the maximum)
+- 19% used 49 keywords
+- 8% used 48 keywords
+- Nearly 25% of highly-ranked work contained fewer than 30 keywords
+
+[Analyzing keywording of 10,000 most popular stock images](https://xpiksapp.com/blog/microstock-keywording-analysis/) (verified 2026-03-17)
+
+### What Adobe officially recommends
+
+Adobe's keyword tutorial states "a good rule of thumb is to include 15-25 keywords" and
+that "it's more important to be accurate and relevant than to fill up all 50 slots."
+[Optimize your content for search](https://helpx.adobe.com/stock/contributor/help/keyword-tutorial.html) (verified 2026-03-17)
+
+### Reconciling the contradiction
+
+The contradiction between the data (top images cluster at 48-50) and Adobe's official
+recommendation (15-25) may reflect selection bias in the data: images that have been
+optimized by experienced contributors who know the maximum-fill strategy may simply
+dominate the top-ranked positions. It does not prove that 50 keywords causes ranking —
+it shows correlation.
+
+There is also a quality argument: 50 irrelevant keywords will suppress ranking. 50 precise,
+relevant keywords for a complex composition covering many specific concepts will not.
+
+**Our ruling:** Use 42-49 keywords for assets where that many genuinely relevant terms exist.
+For simpler assets, 25-35 well-chosen keywords is preferable to padding with marginal terms.
+Never exceed 49 on Adobe Stock. The floor of meaningful quality is more important than the
+ceiling of quantity.
+
+---
+
+## How microstock search engines use keywords {#search-algorithm}
+
+No platform publishes its full ranking algorithm. What is documented or reliably inferred:
+
+### The buyer-intent match model
+
+All major platforms describe their search goal as matching buyer search intent to contributor
+metadata. The fundamental mechanism: the buyer types a query, the engine scans indexed
+keywords (and titles) for matches, then ranks by relevance signals.
+
+> "Adobe's algorithm doesn't instantly 'see' the pixels in millions of images to find a match.
+> Instead, it scans the text associated with those images: titles and keywords."
+> — [Adobe Stock Contributor Keywords Strategy](https://cyberstock.lol/blog/adobe-stock-contributor-keywords-best-strategy-for-2026) (third-party analysis, verified 2026-03-17)
+
+### Relevance signals beyond keywords
+
+Download rate (click-through and purchase) is widely cited as a secondary ranking signal,
+though no platform confirms this officially. An asset that is found but not purchased may
+be deprioritized over time. This creates a feedback loop: accurate keywords drive relevant
+buyers, relevant buyers purchase, purchases boost rank.
+
+### The keyword spam penalty
+
+Adobe explicitly warns that irrelevant keywords reduce ranking:
+
+> "Irrelevant keywords have a negative impact on your search placement and diminish your
+> opportunity for sales."
+> — [How to organize and add keywords](https://helpx.adobe.com/stock/contributor/help/how-to-organize-and-add-keywords-.html) (verified 2026-03-17)
+
+Shutterstock's guidelines prohibit "unrelated terms or concepts":
+[Description and Keyword Best Practices](https://submit.shutterstock.com/help/en/articles/10594702-description-and-keyword-best-practices) (verified 2026-03-17)
+
+The mechanism is likely that assets surfaced by a keyword but not purchased by the buyer
+who used that keyword lower the asset's relevance score for that keyword over time.
+Keyword spam thus actively hurts ranking for legitimate keywords.
+
+### Adobe Sensei auto-keywording
+
+If a file is submitted without embedded keywords, Adobe Stock's AI (Adobe Sensei) will
+auto-suggest up to 25 keywords. These are suggestions — the contributor reviews and reorders
+before finalizing.
+[Optimize your content for search](https://helpx.adobe.com/stock/contributor/help/keyword-tutorial.html) (verified 2026-03-17)
+
+Our pipeline embeds keywords via ExifTool before upload, so Sensei suggestions are bypassed.
+This is intentional: human-curated keywords ordered by relevance outperform auto-suggestions
+for niche vector art.
+
+### Getty's controlled vocabulary multiplier
+
+Getty's CV transforms a single English keyword into multilingual equivalents indexed across
+all Getty-supported locales. A CV-mapped keyword effectively multiplies discoverability
+without requiring separate per-language metadata. Unmapped terms (asterisk-marked in ESP)
+are indexed only in the submission language.
+[istock/keywords.md](../istock/keywords.md) — full vocabulary coverage details
+
+---
+
+## Keyword ordering: practical rules {#ordering}
+
+Given the evidence and official guidance, apply this ordering discipline on all platforms
+where position matters (Adobe Stock, Alamy):
+
+1. **Positions 1-3**: The exact primary subject of the asset (e.g., "wireframe", "map", "geometric")
+2. **Positions 4-10**: Secondary subjects and dominant style descriptors (e.g., "abstract", "pattern", "cartography")
+3. **Positions 11-20**: Use case and format keywords (e.g., "background", "template", "printable")
+4. **Positions 21-35**: Color, mood, and context (e.g., "monochrome", "minimal", "modern")
+5. **Positions 36-49**: Long-tail phrases and niche-specific terms
+
+The title's primary words should appear within the top 10 keywords. Adobe's guidance
+explicitly states this provides "an extra bump in search relevance."
+[Create titles and keywords](https://helpx.adobe.com/stock/contributor/help/titles-and-keyword.html) (verified 2026-03-17)
+
+---
+
+## Platform-specific auto-added terms {#auto-added}
+
+### Does Adobe automatically add "vector"?
+
+Adobe's metadata guidelines prohibit contributors from using "vector" or "illustration" as
+keywords because they are redundant — Adobe indexes the content type from the file format.
+The guideline states contributors "should not use types of content (e.g., vector or
+illustration) in their titles or keywords."
+[Adobe Stock vector requirements](https://helpx.adobe.com/stock/contributor/help/vector-requirements.html) (verified 2026-03-17)
+
+Whether Adobe appends "vector" as an indexing term automatically (invisible to the contributor)
+has not been confirmed in official documentation. The safe practice: omit "vector",
+"illustration", "EPS", "AI", and "SVG" from keywords. They consume a slot and may be
+stripped or ignored. Our validator already rejects them.
+
+### Sensei-generated keywords
+
+Adobe Sensei auto-suggests keywords when none are embedded. These suggestions are visible
+and editable in the portal. They are not silently appended. Contributors who embed keywords
+via XMP before upload do not see or interact with Sensei suggestions.
+
+---
+
+## Practical rules summary {#practical-rules}
+
+These rules synthesize official guidelines and research into actionable directives for
+all assets in this project.
+
+**Structure:**
+- Lead with the primary subject noun in position 1
+- Fill positions 2-10 with the strongest, most specific descriptors
+- Mirror your title's key words in the first 10 positions
+- Use both the phrase ("seamless pattern") and its components ("seamless", "pattern") as separate entries
+- Stop at the point where adding another keyword would be marginally relevant, not just filling the slot
+
+**Avoid:**
+- File-type words: "vector", "EPS", "AI", "SVG", "illustration"
+- Generic filler that applies to millions of assets: "image", "design", "art", "creative"
+- Repeated concepts: "pattern" and "patterns" as separate keywords
+- Brand names, trademarked terms
+- Subjective quality descriptors: "beautiful", "amazing", "high quality"
+- Foreign-language terms on Adobe Stock (single language only)
+
+**Target count by asset type:**
+
+| Asset type | Target count | Rationale |
+|------------|-------------|-----------|
+| Complex multi-element composition | 42-49 | Many legitimate descriptors exist |
+| Single-concept pattern | 25-40 | Fewer genuine concepts; avoid padding |
+| Map / cartographic art | 38-49 | Geography, projection, region, style — many real terms |
+| Icon or simple symbol | 15-30 | Simple assets have fewer meaningful descriptors |
+
+---
+
+## Quick-reference summary table {#summary}
+
+| Concern | Adobe Stock | iStock/Getty | Shutterstock | Alamy |
+|---------|-------------|--------------|--------------|-------|
+| Minimum keywords | 5 | 5 | 7 | 5 |
+| Maximum keywords | 49 | 50 | 50 | 50 |
+| Positional weighting | Yes — first 10 | CV coverage > position | Not confirmed | Yes — 10 supertags |
+| Single-word recommended? | Yes (primary) | Yes (CV terms often multi-word) | Yes | Yes |
+| Phrases allowed? | Yes | Yes (use CV phrases) | Yes | Yes |
+| Keyword language | Single language only | English (CV translates) | English primary | English only |
+| Auto-added file-type terms | Not confirmed | No | No | No |
+| Penalty for irrelevant terms | Yes — official warning | Yes — dilutes CV mapping | Yes — policy violation | Yes — relevance demoted |
+| Optimal count (our target) | 42-49 complex / 25-40 simple | 42-49 complex / 25-40 simple | 42-49 complex / 25-40 simple | 42-49 complex / 25-40 simple |
+
+---
+
+## Sources cited
+
+1. [Create titles and keywords to help content sell](https://helpx.adobe.com/stock/contributor/help/titles-and-keyword.html) — Adobe Stock official help (verified 2026-03-17)
+2. [How to organize and add keywords](https://helpx.adobe.com/stock/contributor/help/how-to-organize-and-add-keywords-.html) — Adobe Stock official help (verified 2026-03-17)
+3. [Optimize your content for search with effective keywords](https://helpx.adobe.com/stock/contributor/help/keyword-tutorial.html) — Adobe Stock official help (verified 2026-03-17)
+4. [Adobe Stock keywording cheat sheet](https://blog.adobe.com/en/publish/2019/06/18/stock-keywording-tips) — Adobe Blog (verified 2026-03-17)
+5. [Requirements for contributing vector art to Adobe Stock](https://helpx.adobe.com/stock/contributor/help/vector-requirements.html) — Adobe Stock official help (verified 2026-03-17)
+6. [Description and Keyword Best Practices](https://submit.shutterstock.com/help/en/articles/10594702-description-and-keyword-best-practices) — Shutterstock Contributor (verified 2026-03-17)
+7. [Analyzing keywording of 10,000 most popular stock images](https://xpiksapp.com/blog/microstock-keywording-analysis/) — Xpiks Blog (verified 2026-03-17)
+8. [Mastering keywording for microstock agencies](https://xpiksapp.com/blog/keywording-files-for-microstock/) — Xpiks Blog (verified 2026-03-17)
+9. [SuperTags — Alamy discussion forum](https://discussion.alamy.com/topic/7481-supertags/) (verified 2026-03-17)
+10. [Image Management: Alamy contributor FAQs](https://www.alamy.com/contributor/faqs/captioning-and-keywording/) (verified 2026-03-17)
+11. [Keywording Changes at Getty/iStock](https://www.selling-stock.com/Article/keywording-changes-at-gettyistock) — Selling-Stock (verified 2026-03-17)
+12. [Preparing Your Content — Getty Images Contributor](https://contributors.gettyimages.com/article/9146) (verified 2026-03-17)
+13. [Adobe Stock keyword order](https://backyardsilver.com/adobe-stock-keyword-order/) — BackyardSilver (verified 2026-03-17)
+14. [Keywording tips for major stock agencies Part II](https://www.hive5.app/post/top-keywording-tips-in-2021-for-the-major-stock-agencies-featuring-a-keywording-expert-part-ii) — Hive5 (verified 2026-03-17)
+15. [Keywording tips for major stock agencies Part I](https://www.hive5.app/post/top-keywording-tips-in-2021-for-the-major-microstock-agencies-part-i) — Hive5 (verified 2026-03-17)
+16. [New keyword limit? — Professional Microstock Forum](https://www.microstockgroup.com/dreamstime-com/new-keyword-limit/) (verified 2026-03-17)
+
+---
+
+## Updating this article
+
+When platform guidelines change:
+1. Update the limits table in [#limits](#limits) with the new value and source URL
+2. Update the quick-reference summary table at [#summary](#summary)
+3. Note the date of the change and the previous value in a comment
+4. Update the platform-specific article (e.g., `adobe-stock/keywords.md`) for full detail
+5. If our pipeline validator enforces a limit, update it in `scripts/pipeline/tools/validate-metadata.js`

@@ -1,0 +1,1360 @@
+// Defines the places where we save and load documents from as specified in .env and added by the build
+var SCRIPTS_PATH = "";
+var DOCUMENTS_PATH: string = "";
+
+type Reference = string | number;
+type Selector = Reference | string[] | number[];
+type Position = [number, number] | number[];
+type Scale = number | [number, number] | number[];
+type Delta = [number, number] | number[];
+type Size = [number, number] | number[];
+type Direction = "c" | "cc"; 
+
+declare enum ElementPlacement {
+  PLACEATBEGINNING = 1,
+  PLACEATEND = 2,
+  PLACEAFTER = 3,
+  PLACEBEFORE = 4
+}
+
+class Console {
+    private _on: boolean = false;
+    on(): this { this._on = true; return this; }
+    off(): this {  this._on = false; return this; }
+    active(): boolean { return this._on; }
+
+    log(...args: any[]) {
+        var turnOff = false;
+        if (args && args.length > 0 && args[0] == "on") {
+            this.on();
+            args = f(args).skip(1).a;
+        }
+        if (args && args.length > 0 && args[0] == "off") {
+            turnOff = true;
+            args = f(args).skip(1).a;
+        }
+        args = args ? args : [];
+        args.unshift("debug:");
+        this.show(false, ...args);
+        if (turnOff) this.off();
+    }
+
+    break(...args: any[]) {
+        var turnOff = false;
+        if (args && args.length > 0 && args[0] == "on") {
+            this.on();
+            args = f(args).skip(1).a;
+        }
+        if (args && args.length > 0 && args[0] == "off") {
+            turnOff = true;
+            args = f(args).skip(1).a;
+        }
+        args = args ? args : [];
+        args.unshift("debug:");
+        this.show(true, ...args);
+        if (turnOff) this.off();
+    }
+
+    private show(halt: boolean, ...args: any[]) {
+        if (!this._on) return;
+        app.redraw();
+        args = args ? args : [];
+        var result = "";
+        var arr = f(args).select(s => `${s}`).where(s => s.length > 0)
+        arr.do((s, i) => {
+            i = i as number;
+            result += (i < arr.length()-1 ? `${s}\n ` : s);
+        })
+        if (halt) throw result;
+        else alert(result);
+    }
+}
+
+var console = new Console();
+
+/**
+ * Utility function to check if a string starts with a specific prefix
+ * @param str - The main string to check
+ * @param prefix - The prefix to look for
+ * @returns True if the string starts with the prefix, otherwise false
+ */
+function stringStartsWith(str: string, prefix: string): boolean {
+    return str.slice(0, prefix.length) === prefix;
+}
+
+/**
+ * Utility function to check if a string ends with a specific suffix
+ * @param str - The main string to check
+ * @param suffix - The suffix to look for
+ * @returns True if the string ends with the suffix, otherwise false
+ */
+function stringEndsWith(str: string, suffix: string): boolean {
+    return str.slice(-suffix.length) === suffix;
+}
+
+/**
+ * Utility function to join an array of strings with a specified separator
+ * @param array - The array of strings to join
+ * @param separator - The separator to use between strings
+ * @returns A single string formed by joining the array elements
+ */
+function stringJoin(array: string[], separator: string): string {
+    var result = "";
+    for (var i = 0; i < array.length; i++) {
+        result += array[i];
+        if (i < array.length - 1) {
+            result += separator; // Add separator only between elements
+        }
+    }
+    return result;
+}
+
+/**
+ * Utility function to check if a string contains a specific substring
+ * @param str - The main string to check
+ * @param search - The substring to look for
+ * @returns True if the string contains the substring, otherwise false
+ */
+function stringIncludes(str: string, search: string): boolean { return stringContains(str, search) }
+function stringContains(str: string, search: string): boolean {
+    if (str === undefined || str === null) return false;
+    if (search === "") return true;
+    
+    var index = 0;
+    var len = str.length;
+    var searchLen = search.length;
+    
+    while (index + searchLen <= len) {
+        if (str.slice(index, index + searchLen) === search) {
+            return true;
+        }
+        index++;
+    }
+    return false;
+}
+
+/**
+ * Utility function to compare two arrays for equality
+ * @param first - The first array to compare
+ * @param second - The second array to compare
+ * @returns True if the arrays are equal (same length and elements), otherwise false
+ */
+function arrayEquals(first: any[], second: any[]): boolean {
+    if (!first && !second) return true;
+    if (!first || !second) return false;
+    if (first.length !== second.length) return false;
+
+    for (let i = 0; i < first.length; i++) {
+        if (first[i] !== second[i]) return false;
+    }
+
+    return true; 
+}
+
+interface Dictionary {
+    [key: string]: any
+}
+
+function dictionary(): Dictionary {
+    return {};
+}
+
+/**
+ * Deep clones an object in ExtendScript, handling arrays, objects, and common edge cases.
+ * @param source - The object to clone.
+ * @param seen - A record of already-seen objects to handle circular references.
+ * @returns The deep-cloned object.
+ */
+function clone<T>(obj: T): T {
+    // Handle null, undefined, or primitive types directly
+    var source: any = obj;
+    function isPrimitive(value: any): boolean {
+        return value === null || 
+            value === undefined || 
+            Object.prototype.toString.call(value) === "[object Boolean]" || 
+            Object.prototype.toString.call(value) === "[object Number]" || 
+            Object.prototype.toString.call(value) === "[object String]" || 
+            Object.prototype.toString.call(value) === "[object Function]" || 
+            Object.prototype.toString.call(value) === "[object Date]" || 
+            Object.prototype.toString.call(value) === "[object RegExp]";
+    }
+
+    if (isPrimitive(source))
+        return obj;
+
+    // Detect arrays (primitive approach for ES3/ES5)
+    if (Object.prototype.toString.call(source) === "[object Array]") {
+        var copy: any = [];
+        for (var i = 0; i < (source as any[]).length; i++) {
+            copy[i] = clone((source as any[])[i]);
+        }
+    }
+    // Handle objects with no prototype (created via Object.create(null))
+    else {
+        var copy: any = {};
+        for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key) && key != "parent") {
+                try {
+                    copy[key] = clone(source[key]);
+                } catch (e) {
+                    throw "key " + key + ", source " + source;
+                }
+            }
+        }
+    }
+
+    return copy as T;
+}
+
+/**
+ * Rounds a number to a specific number of decimals
+ * @param value - The number to round
+ * @param decimals - The number of decimals of precision
+ * @returns The rounded value
+ */
+function roundPrecisely(value: number, decimals: number = 6): number {
+    const factor = Math.pow(10, decimals);
+    return Math.round(value * factor) / factor;
+}
+
+/**
+ * Normalizes file path separators to Windows style (backslashes)
+ * and ensures no double separators
+ * @param path - The file path to normalize
+ * @returns Normalized path with proper separators
+ */
+function normalizePath(path: string): string {
+    return path.replace(/[\/\\]+/g, '\\');
+}
+
+/**
+ * Combines two paths, ensuring proper separator handling
+ * @param path1 - First path
+ * @param path2 - Second path
+ * @returns Combined path with proper separators
+ * 
+ * @example
+ * // Returns "C:\\Scripts\\documents\\test.ai"
+ * combinePaths("C:\\Scripts", "documents/test.ai")
+ * 
+ * @example
+ * // Returns "C:\\Scripts\\documents\\test.ai"
+ * combinePaths("C:\\Scripts\\", "\\documents\\test.ai")
+ */
+function combinePaths(path1: string, path2: string): string {
+    const normalized1 = normalizePath(path1);
+    const normalized2 = normalizePath(path2);
+
+    // Remove trailing slash from first path and leading slash from second path
+    const clean1 = stringEndsWith(normalized1, '\\') ? normalized1.slice(0, -1) : normalized1;
+    const clean2 = stringStartsWith(normalized2, '\\') ? normalized2.slice(1) : normalized2;
+
+    return clean1 + '\\' + clean2;
+}
+
+/**
+ * Converts a negative index to a positive index within the bounds of the collection length.
+ *
+ * @param index - The index to evaluate (can be negative)
+ * @param collectionLength - The length of the collection
+ * @returns A valid positive index within the collection bounds
+ * @throws Error if the evaluated index is out of bounds
+ */
+function evaluateNegativeIndex(index: number, collectionLength: number): number {
+    var evaluatedIndex = index < 0 ? collectionLength + index : index;
+    if (evaluatedIndex < 0 || evaluatedIndex >= collectionLength) {
+        throw "Index " + index + " out of bounds for collection of length " + collectionLength;
+    }
+    return evaluatedIndex;
+}
+
+/**
+ * Converts a negative index to a positive index within the bounds of the collection length but maps -1 to the length of the array so the item gets inserted at the end.
+ *
+ * @param index - The index to evaluate (can be negative)
+ * @param collectionLength - The length of the collection
+ * @returns A valid positive index within the collection bounds
+ * @throws Error if the evaluated index is out of bounds
+ */
+function evaluateNegativeInsertIndex(index: number, collectionLength: number): number {
+    var evaluatedIndex = index < 0 ? collectionLength + index + 1 : index;
+    if (evaluatedIndex < 0 || evaluatedIndex > collectionLength) {
+        throw "Index " + index + " out of insert bounds for collection of length " + collectionLength;
+    }
+    return evaluatedIndex;
+}
+
+/**
+ * Evaluates a selector against a collection length and returns either:
+ * - A string (when selector is a name)
+ * - An array of indices (for all other valid selectors)
+ * All indices are guaranteed to be within bounds [0, collectionLength-1]
+ * 
+ * @param selector - The selector to evaluate
+ * @param collectionLength - Length of the collection being indexed
+ * @returns String name or array of valid indices
+ * @throws Error for invalid selectors or out of bounds indices
+ * 
+ * @example
+ * evaluateSelector("MyName", 5)      // returns "MyName"
+ * evaluateSelector(1, 5)             // returns [1]
+ * evaluateSelector(-1, 5)            // returns [4]
+ * evaluateSelector("1:3", 5)         // returns [1, 2, 3]
+ * evaluateSelector("-2:", 5)         // returns [3, 4]
+ * evaluateSelector([0, -1], 5)       // returns [0, 4]
+ * evaluateSelector(["a", "b"], 5)    // returns ["a", "b"]
+ */
+function evaluateSelector(selector: Selector, collectionLength: number): string[] | number[] {
+    // Handle undefined case
+    if (selector === undefined) {
+        return [0];  // Default to first item
+    }
+
+    // Handle single number
+    if (typeof selector === "number") {
+        return [evaluateNegativeIndex(selector, collectionLength)];
+    }
+
+    // Handle arrays
+    if (selector instanceof Array) {
+        // If it's a string array, return as is
+        if (typeof selector[0] === "string") {
+            return selector as string[];
+        }
+
+        // Convert number array with negative index handling
+        var resolvedIndices = [];
+        for (var i = 0; i < selector.length; i++) {
+            resolvedIndices.push(evaluateNegativeIndex(selector[i] as number, collectionLength));
+        }
+        return resolvedIndices;
+    }
+
+    // Handle string
+    if (typeof selector === "string") {
+        // If doesn't start with number or :, it's a name
+        if (!/^[0-9:-]/.test(selector)) {
+            return [selector];
+        }
+
+        // Handle empty string
+        if (selector.length === 0) {
+            throw "Empty selector";
+        }
+
+        return evaluateRangeSelector(selector, collectionLength);
+    }
+
+    throw "Invalid selector type";
+}
+
+function evaluateRangeSelector(selector: string, collectionLength?: number): number[] {
+    if (!selector) return []; // Empty selector returns an empty array
+    if (collectionLength === 0 && selector == ":") return [];
+
+    // Split the selector by ":" and parse parts into numbers
+    var parts: any[] = selector.split(":");
+    if (parts.length == 0 || parts.length > 3) {
+        "Selector has the wrong number of parts"
+    }
+    if (collectionLength !== undefined) {
+        if (parts.length >= 1 && parts[0] == "")
+            parts[0] = "0";
+        if (parts.length == 2 && parts[1] == "")
+            parts[1] = `${collectionLength-1}`;
+        if (parts.length == 3 && parts[1] == "")
+            parts[1] = "1";
+        if (parts.length == 3 && parts[2] == "")
+            parts[2] = `${collectionLength-1}`;
+    }
+    for (var i = 0; i < parts.length; i++) {
+        parts[i] = parseInt(parts[i], 10);
+        if (isNaN(parts[i])) {
+            throw "Selector contains invalid numbers";
+        }
+    }
+
+    var len = parts.length;
+    if (len === 1) {
+        // Single number, return it as an array
+        return [
+            collectionLength !== undefined ? 
+            evaluateNegativeIndex(parts[0], collectionLength) : 
+            parts[0]
+        ];
+    } else if (len === 2) {
+        // Range with a single step (inclusive range)
+        var start: number = parts[0];
+        var end: number = parts[1];
+        if (collectionLength !== undefined) {
+            start = evaluateNegativeIndex(start, collectionLength);
+            end = evaluateNegativeIndex(end, collectionLength);
+        }
+        var range = [];
+        if (start <= end) {
+            for (var i = start; i <= end; i++) {
+                range.push(i);
+            }
+        } else {
+            // Decreasing range
+            for (var i = start; i >= end; i--) {
+                range.push(i);
+            }
+        }
+        return range;
+    } else if (len === 3) {
+        // Range with custom step
+        var start: number = parts[0];
+        var step: number = parts[1];
+        var end: number = parts[2];
+
+        if (collectionLength !== undefined) {
+            start = evaluateNegativeIndex(start, collectionLength);
+            end = evaluateNegativeIndex(end, collectionLength);
+        }
+        if (step === 0 || (start < end && step < 0) || (start > end && step > 0)) {
+            throw new Error("Invalid step value in the range!");
+        }
+
+        var range = [];
+        if (start < end) {
+            for (var i = start; i <= end; i += step) {
+                range.push(i);
+            }
+        } else {
+            for (var i = start; i >= end; i += step) {
+                range.push(i);
+            }
+        }
+        return range;
+    } else {
+        throw new Error("Invalid range selector format!");
+    }
+}
+
+class A<T> {
+    a: T[];
+
+    constructor(array?: T[]) {
+        if (array === undefined) array = []; 
+        this.a = array;
+    }
+
+    equals(other: T[] | A<T>): boolean {
+        if (!other) return false;
+        var that = other instanceof Array ? other : other.a
+        return arrayEquals(this.a, that);
+    }
+
+    doesntEqual(other: T[] | A<T>): boolean {
+        return !this.equals(other);
+    }
+
+    at(index: number): T {
+        index = evaluateNegativeIndex(index, this.a.length);
+        return this.a[index];
+    }
+
+    get(selector: string): A<T> {
+        var indexes = evaluateRangeSelector(selector, this.a.length);
+        var result = new A<T>();
+        for (var i = 0; i < indexes.length; i++) {
+            result.push(this.a[indexes[i]]);
+        }
+        return result;
+    }
+
+    set(index: number, item: T): A<T> {
+        index = evaluateNegativeIndex(index, this.a.length);
+        this.a[index] = item;
+        return this;
+    }
+
+    length(): number { return this.a.length; }
+
+    insertAt(index: number, item: T): A<T> {
+        const insertAt = evaluateNegativeInsertIndex(index, this.a.length);
+        this.a.splice(insertAt, 0, item);
+        return this;
+    }
+
+    insertManyAt(index: number, items: T[]): A<T> {
+        const insertAt = evaluateNegativeInsertIndex(index, this.a.length);
+        this.a.splice(insertAt, 0, ...items);
+        return this;
+    }
+
+    delete(item: T): A<T> {
+        for (let i = 0; i < this.a.length; i++) {
+            if (this.a[i] === item) {
+                this.a.splice(i, 1);
+                break;
+            }
+        }
+        return this;
+    }
+
+    deleteMany(items: T[]): A<T> {
+        f(items).forEach(item => this.delete(item));
+        return this;
+    }
+
+    deleteAt(index: number, count: number = 1): A<T> {
+        const removeFrom = evaluateNegativeIndex(index, this.a.length);
+        this.a.splice(removeFrom, count);
+        return this;
+    }
+
+    deleteAll(): A<T> {
+        this.a.length = 0;
+        return this;
+    }
+
+    forEach(callback: (item: T, index?: number) => any | void): any | void {
+        let result: any;
+        for (let i = 0; i < this.a.length; i++) {
+            result = callback(this.a[i], i);
+        }
+        return result;
+    }
+
+    do(callback: (item: T, index?: number) => any | void): A<T> {
+        this.forEach(callback);
+        return this;
+    }
+
+    doOnce(callback: (item: T, index?: number) => boolean): boolean {
+        for (let i = 0; i < this.a.length; i++) {
+            if (callback(this.a[i], i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    select<U>(selector: (element: T) => U): A<U> {
+        const result = new A<U>();
+        for (let i = 0; i < this.a.length; i++) {
+            result.push(selector(this.a[i]));
+        }
+        return result;
+    }
+
+    where(predicate: (element: T) => boolean): A<T> {
+        const result = new A<T>();
+        for (let i = 0; i < this.a.length; i++) {
+            if (predicate(this.a[i])) {
+                result.push(this.a[i]);
+            }
+        }
+        return result;
+    }
+
+    first(predicate?: (element: T) => boolean): T {
+        if (!predicate) return this.a.length > 0 ? this.a[0] : undefined as any as T;
+        for (let i = 0; i < this.a.length; i++) {
+            if (predicate(this.a[i])) return this.a[i];
+        }
+        return undefined as any as T;
+    }
+
+    firstIndex(predicate?: (element: T) => boolean): number {
+        if (!predicate) return this.a.length > 0 ? 0 : -1;
+        for (let i = 0; i < this.a.length; i++) {
+            if (predicate(this.a[i])) return i;
+        }
+        return -1;
+    }
+
+    last(predicate?: (element: T) => boolean): T | undefined {
+        if (!predicate) return this.a.length > 0 ? this.a[this.a.length - 1] : undefined;
+        for (let i = this.a.length - 1; i >= 0; i--) {
+            if (predicate(this.a[i])) return this.a[i];
+        }
+        return undefined;
+    }
+
+    lastIndex(predicate?: (element: T) => boolean): number {
+        if (!predicate) return this.a.length > 0 ? this.a.length - 1 : -1;
+        for (let i = this.a.length - 1; i >= 0; i--) {
+            if (predicate(this.a[i])) return i;
+        }
+        return -1;
+    }
+
+    any(predicate?: (element: T) => boolean): boolean {
+        if (!predicate) return this.a.length > 0;
+        for (let i = 0; i < this.a.length; i++) {
+            if (predicate(this.a[i])) return true;
+        }
+        return false;
+    }
+
+    all(predicate: (element: T) => boolean): boolean {
+        return this.length() == this.where(predicate).length();
+    }
+
+    includes(item: T): boolean {
+        return this.any(i => i == item);
+    }
+
+    // Array methods
+    push(...items: T[]): A<T> {
+        this.a.push(...items);
+        return this;
+    }
+
+    pop(): T | undefined {
+        return this.a.pop();
+    }
+
+    splice(start: number, deleteCount?: number, ...items: T[]): A<T> {
+        this.a.splice(start, deleteCount, ...items);
+        return this;
+    }
+
+    slice(start?: number, end?: number): A<T> {
+        return new A(this.a.slice(start, end));
+    }
+
+    shift(): T | undefined {
+        return this.a.shift();
+    }
+
+    unshift(...items: T[]): A<T> {
+        this.a.unshift(...items);
+        return this;
+    }
+
+    reverse(): A<T> {
+        this.a.reverse();
+        return this;
+    }
+
+    sort(compareFunction?: (a: T, b: T) => number): A<T> {
+        this.a.sort(compareFunction);
+        return this;
+    }
+
+    join(separator: string): string {
+        return stringJoin(this.select(x => x + "").a, separator);
+    }
+
+    skip(count: number): A<T> {
+        if (count >= this.length()) return f([]);
+        return this.get(`${count}:`)
+    }
+
+    take(count: number): A<T> {
+        count = Math.min(count, this.length());
+        return this.get(`0:${count-1}`);
+    }
+
+    toString() {
+        if (this.a === undefined) return "[undefined]";
+        return this.a.toString();
+    }
+
+    static empty(): A<any> { return new A<any>([]) };
+}
+
+function f<T>(array: T[] | A<T> = A.empty()): A<T> {
+    if (array instanceof A) return array as A<T>;
+    return new A(array);
+}
+
+function r(selector: string, length?: number): A<number> {
+    return f(evaluateRangeSelector(selector, length));
+}
+
+class Region {
+    private _leftAbs: number;
+    private _topAbs: number;
+    private _rightAbs: number;
+    private _bottomAbs: number;
+
+    // Measure
+    unit(): number { return this._rightAbs - this._leftAbs; }
+
+    // Absolute positions
+    boundsAbs(): [number, number, number, number] { return [this.leftAbs(), this.topAbs(), this.rightAbs(), this.bottomAbs()]; }
+    rectAbs(): Rect { return this.boundsAbs(); }
+    topAbs() { return this._topAbs; }
+    leftAbs() { return this._leftAbs; }
+    rightAbs() { return this._rightAbs; }
+    bottomAbs() { return this._bottomAbs; }
+    centerAbs(): Position { return [(this._rightAbs + this._leftAbs) / 2, (this._topAbs + this._bottomAbs) / 2]; }
+    widthAbs() { return this.rightAbs() - this.leftAbs(); }
+    heightAbs() { return this.topAbs() - this.bottomAbs(); }
+
+    // Relative positions
+    bounds(): [number, number, number, number] { return [this.left(), this.top(), this.right(), this.bottom()]; }
+    rect(): Rect { return this.bounds(); }
+    left() { return this.toRelativeLocation(this.leftAbs(), "x"); }
+    right() { return this.toRelativeLocation(this.rightAbs(), "x"); }
+    top() { return this.toRelativeLocation(this.topAbs(), "y"); }
+    bottom() { return this.toRelativeLocation(this.bottomAbs(), "y"); }
+    center(newCenter?: Position) {
+        if (newCenter) this.moveTo(this.toAbsolutePosition(newCenter));
+        return this.toRelativePosition(this.centerAbs());
+    }
+
+    // Width and height with optional resizing
+    width(newWidth?: number, proportional = true) {
+        if (newWidth) {
+            const scaleFactor = newWidth / this.width();
+            this.size([newWidth, proportional ? this.height() * scaleFactor : this.height()]);
+        }
+        return Math.abs(this.left() - this.right());
+    }
+
+    height(newHeight?: number, proportional = true) {
+        if (newHeight) {
+            const scaleFactor = newHeight / this.height();
+            this.size([proportional ? this.width() * scaleFactor : this.width(), newHeight]);
+        }
+        return Math.abs(this.top() - this.bottom());
+    }
+
+    // Set new size
+    size(newSize?: Size) {
+        if (newSize) {
+            const center = this.centerAbs();
+            const newWidth = this.toAbsoluteUnits(newSize[0]);
+            const newHeight = this.toAbsoluteUnits(newSize[1]);
+
+            this._leftAbs = center[0] - newWidth / 2;
+            this._rightAbs = center[0] + newWidth / 2;
+            this._topAbs = center[1] + newHeight / 2;
+            this._bottomAbs = center[1] - newHeight / 2;
+        }
+        return [this.width(), this.height()];
+    }
+
+    constructor(left: number, top: number, right: number, bottom: number) {
+        if (left > right || bottom > top) 
+            throw `Invalid Region: ${[left, top, right, bottom]}`;
+        this._leftAbs = left;
+        this._topAbs = top;
+        this._bottomAbs = bottom;
+        this._rightAbs = right;
+    }
+
+    floor(): Region {
+        this._leftAbs = Math.floor(this._leftAbs);
+        this._topAbs = Math.floor(this._topAbs);
+        this._rightAbs = Math.floor(this._rightAbs);
+        this._bottomAbs = Math.floor(this._bottomAbs);
+        return this;
+    }
+
+    moveTo(newCenter: Position) {
+        const deltaX = newCenter[0] - this.centerAbs()[0];
+        const deltaY = newCenter[1] - this.centerAbs()[1];
+        this._leftAbs += deltaX;
+        this._rightAbs += deltaX;
+        this._topAbs += deltaY;
+        this._bottomAbs += deltaY;
+    }
+
+    toRelativeUnits(length: number): number {
+        // Normalize length based on width (unit becomes total width for scaling)
+        return this.round(length / this.widthAbs());
+    }
+    
+    toRelativeLocation(location: number, axis: "x" | "y"): number {
+        const left = this.leftAbs();
+        const bottom = this.bottomAbs();
+        const unit = this.unit();
+    
+        return this.round
+        (
+            axis === "x"
+                ? (location - left) / unit // Normalize x-axis [0, 1]
+                : (location - bottom) / unit // Normalize y-axis proportional to width
+        );
+    }
+    
+    toRelativePosition(position: Position): Position {
+        const x = this.toRelativeLocation(position[0], "x");
+        const y = this.toRelativeLocation(position[1], "y");
+        return [
+            this.round(x), 
+            this.round(y)
+        ];
+    }
+    
+    toAbsoluteUnits(length: number): number {
+        // Scale relative length back to absolute based on width
+        return roundPrecisely(length * this.widthAbs());
+    }
+    
+    toAbsoluteLocation(location: number, axis: "x" | "y"): number {
+        const left = this.leftAbs();
+        const bottom = this.bottomAbs();
+        const unit = this.unit();
+    
+        return this.round(
+            axis === "x"
+                ? left + location * unit // Convert back to absolute x
+                : bottom + location * unit // Convert back to absolute y (proportional to width)
+        );
+    }
+    
+    toAbsolutePosition(position: Position): Position {
+        const x = this.toAbsoluteLocation(position[0], "x");
+        const y = this.toAbsoluteLocation(position[1], "y");
+        return [this.round(x), this.round(y)];
+    }
+
+    angle(position: Position, units: "degrees" | "radians" = "degrees"): number {
+        const center = this.center();
+        const deltaX = position[0] - center[0];
+        const deltaY = position[1] - center[1];
+        const radians = Math.atan2(deltaY, deltaX); // Returns angle in radians
+    
+        // Normalize and convert based on units
+        if (units === "degrees") return Region.to360(Region.toDegrees(radians));
+        return Region.to2Pi(radians);
+    }
+    
+    // Returns the radius (distance from the center) in relative units
+    radius(position: Position): number {
+        const center = this.center();
+        const deltaX = position[0] - center[0];
+        const deltaY = position[1] - center[1];
+        return Math.sqrt(deltaX ** 2 + deltaY ** 2);
+    }
+
+    round(value: number) {
+        return roundPrecisely(value, 3);
+    }
+
+    toString() {
+        return `[${this.bounds()}], [${this.boundsAbs()}]`;
+    }
+
+    static fromRect(rect: Rect): Region {
+        return new Region(rect[0], rect[1], rect[2], rect[3]);
+    }
+
+    static fromArray(rect: [number, number, number, number]): Region {
+        return Region.fromRect(rect);
+    }
+
+    static toRadians(degrees: number): number {
+        return Region.to2Pi((degrees * Math.PI) / 180);
+    }
+    
+    // Converts radians to degrees
+    static toDegrees(radians: number): number {
+        return Region.to360((radians * 180) / Math.PI);
+    }
+
+    static to2Pi(radians: number): number {
+        const twoPi = 2 * Math.PI;
+        return ((radians % twoPi) + twoPi) % twoPi;
+    }
+    
+    // Normalizes degrees to the range [0, 360)
+    static to360(degrees: number): number {
+        const fullCircle = 360;
+        return ((degrees % fullCircle) + fullCircle) % fullCircle;
+    }
+}
+
+class TestClass {
+    decorateExceptions: boolean = true;
+    init() {}
+
+    runTests(): void {
+        var self = this as any;
+        const className = this.constructor.name;
+
+        for (var key in self) {
+            if (stringStartsWith(key, "test") && typeof self[key] === "function") {
+                if (this.decorateExceptions) {
+                    try {
+                        this.init();
+                        self[key]();
+                    } catch (e) {
+                        throw `${className}.${key}: ${e}`;
+                    }
+                } else {
+                    this.init();
+                    self[key]();
+                }
+            }
+        }
+    }
+
+    assertEquals(actual: any, expected: any, message: string = "", tolerance: number = 0.0001): void {
+        const areNumbers = typeof actual === "number" && typeof expected === "number";
+        const areArrays = actual instanceof Array && expected instanceof Array;
+
+        if (areNumbers) {
+            // Compare numbers within tolerance
+            if (Math.abs(actual - expected) > tolerance) {
+                throw this.formatError(message, actual, expected);
+            }
+        } else if (areArrays) {
+            // Compare arrays deeply
+            if (actual.length !== expected.length) {
+                throw this.formatError(message, actual, expected);
+            }
+            for (let i = 0; i < actual.length; i++) {
+                this.assertEquals(actual[i], expected[i], `${message} (index ${i})`, tolerance);
+            }
+        } else if (actual != expected) { // Use '!=' for type coercion if necessary
+            throw this.formatError(message, actual, expected);
+        }
+    }
+
+    assertThrows(test: () => void, error: string) {
+        try {
+            test()
+        } catch {
+            return;
+        }
+        throw error;
+    }
+
+    formatError(message: string, actual: any, expected: any): string {
+        const formattedMessage = message ? `${message} - ` : "";
+        return `${formattedMessage}Expected: ${this.toString(expected)}, but got: ${this.toString(actual)}`;
+    }
+
+    toString(value: any): string {
+        if (value instanceof Array) {
+            return "[" + f(value).select(x => x?.toString()).join(", ") + "]";
+        } else if (typeof value === "object" && value !== null) {
+            const result = [];
+            for (var key in value) {
+                if (value.hasOwnProperty(key)) {
+                    result.push(key + ": " + value[key]?.toString());
+                }
+            }
+            return "{" + result.join(", ") + "}";
+        } else {
+            return value !== undefined ? value.toString() : "undefined";
+        }
+    }
+}
+
+class UtilTests extends TestClass {
+    testEvaluateNegativeIndex() {
+        // Standard positive indices
+        if (evaluateNegativeIndex(0, 5) !== 0) throw "1: Expected 0 for index 0";
+        if (evaluateNegativeIndex(3, 5) !== 3) throw "2: Expected 3 for index 3";
+
+        // Negative indices
+        if (evaluateNegativeIndex(-1, 5) !== 4) throw "3: Expected 4 for index -1";
+        if (evaluateNegativeIndex(-5, 5) !== 0) throw "4: Expected 0 for index -5";
+
+        // Out-of-bounds indices
+        this.assertThrows(() => evaluateNegativeIndex(5, 5), "5: Expected out-of-bounds index to throw");
+        this.assertThrows(() => evaluateNegativeIndex(-6, 5), "6: Expected out-of-bounds index to throw");
+    }
+
+    testEvaluateNegativeInsertIndex() {
+        // Standard positive indices
+        if (evaluateNegativeInsertIndex(0, 5) !== 0) throw "7: Expected 0 for insert index 0";
+        if (evaluateNegativeInsertIndex(5, 5) !== 5) throw "8: Expected 5 for insert index 5";
+
+        // Negative indices
+        if (evaluateNegativeInsertIndex(-1, 5) !== 5) throw "9: Expected 5 for insert index -1";
+        if (evaluateNegativeInsertIndex(-5, 5) !== 1) throw "10: Expected 1 for insert index -5";
+
+        // Out-of-bounds indices
+        this.assertThrows(() => evaluateNegativeInsertIndex(-7, 5), "11: Expected out-of-bounds index to throw");
+        this.assertThrows(() => evaluateNegativeInsertIndex(6, 5), "12: Expected out-of-bounds index to throw");
+    }
+
+    testEvaluateSelector() {
+        // Single number
+        if (evaluateSelector(1, 5).toString() !== [1].toString())
+            throw "13: Expected [1] for selector 1";
+        if (evaluateSelector(-1, 5).toString() !== [4].toString())
+            throw "14: Expected [4] for selector -1";
+
+        // Array of numbers
+        if (evaluateSelector([0, -1], 5).toString() !== [0, 4].toString())
+            throw "15: Expected [0, 4] for selector [0, -1]";
+
+        // Array of strings
+        const stringSelector = ["a", "b"];
+        if (evaluateSelector(stringSelector, 5).toString() !== stringSelector.toString())
+            throw "16: Expected [\"a\", \"b\"] for string selector";
+
+        // Range selectors
+        if (evaluateSelector("1:3", 5).toString() !== [1, 2, 3].toString())
+            throw "17: Expected [1, 2, 3] for selector '1:3'";
+        if (evaluateSelector("-2:", 5).toString() !== [3, 4].toString())
+            throw "18: Expected [3, 4] for selector '-2:'";
+
+        // Invalid selectors
+        if (evaluateSelector("test", 5)[0] != "test")
+            throw "19: Expected a non-reange selector to be ['test']";
+
+    }
+
+    testEvaluateRangeSelector() {
+        // Single number
+        if (evaluateRangeSelector("1").toString() !== [1].toString())
+            throw "20: Expected [1] for selector '1'";
+        if (evaluateRangeSelector("-1", 5).toString() !== [4].toString())
+            throw "21: Expected [4] for selector '-1'";
+
+        // Inclusive range
+        if (evaluateRangeSelector("1:3", 5).toString() !== [1, 2, 3].toString())
+            throw "22: Expected [1, 2, 3] for selector '1:3'";
+
+        // Custom step
+        if (evaluateRangeSelector("1:2:5", 6).toString() !== [1, 3, 5].toString())
+            throw "23: Expected [1, 3, 5] for selector '1:2:5'";
+
+        // Decreasing range
+        if (evaluateRangeSelector("3:1", 5).toString() !== [3, 2, 1].toString())
+            throw "24: Expected [3, 2, 1] for selector '3:1'";
+
+        // Invalid selectors
+        this.assertThrows(() => evaluateRangeSelector("1:-1:3", 5), "25: Expected invalid step to throw");
+        this.assertThrows(() => evaluateRangeSelector("invalid", 5), "26: Expected invalid selector to throw");
+    }
+}
+
+class ArrayTests extends TestClass {
+    testAt() {
+        const arr = f([10, 20, 30, 40]);
+
+        if (arr.at(0) !== 10) throw "1: Expected 10 at index 0";
+        if (arr.at(2) !== 30) throw "2: Expected 30 at index 2";
+        if (arr.at(3) !== 40) throw "3: Expected 40 at index 3";
+        if (arr.at(-1) !== 40) throw "4: Expected 40 at negative index -1";
+        if (arr.at(-4) !== 10) throw "5: Expected 10 at negative index -4";
+
+        this.assertThrows(() => arr.at(10), "6: Expected out-of-bounds index to throw");
+        this.assertThrows(() => arr.at(-10), "7: Expected out-of-bounds negative index to throw");
+    }
+
+    testGet() {
+        const arr = f([10, 20, 30, 40, 50]);
+
+        const result = arr.get("1:3");
+        if (result.a.length !== 3 || result.a[0] !== 20 || result.a[1] !== 30 || result.a[2] !== 40)
+            throw "8: Expected to get elements at indices 1, 2, and 3";
+
+        const single = arr.get("2");
+        if (single.a.length !== 1 || single.a[0] !== 30)
+            throw "9: Expected to get a single element at index 2";
+
+        const emptyResult = arr.get("");
+        if (emptyResult.a.length !== 0)
+            throw "10: Expected empty result for empty selector";
+
+        const weird = arr.get("3:-1");
+        if (weird.length() != 2 || weird.at(0) != 40 || weird.at(1) != 50)
+            throw "11: Expected -1 to map to 4";
+
+        this.assertThrows(() => arr.get("3:5"), "12: Expected 5 out of bounds");
+    }
+
+    testInsertAt() {
+        var arr = f([1, 2, 3]);
+
+        arr.insertAt(1, 10);
+        if (arr.a[0] !== 1 || arr.a[1] !== 10 || arr.a[2] !== 2) 
+            throw "13: Expected 10 to be inserted at index 1";
+
+        arr = f([1, 2, 3]);
+
+        arr.insertAt(-1, 20);
+        if (arr.a.length != 4 || arr.a[3] != 20)
+            throw "14: Expected 20 to be inserted as the last element";
+
+        arr = f([1, 2, 3]);
+
+        this.assertThrows(() => arr.insertAt(4, 20), "15: Expected 4 to be out of bounds");
+
+        arr = f([1, 2, 3]);
+
+        arr.insertAt(0, 100);
+        if (arr.length() !== 4 || arr.at(0) !== 100 || arr.at(1) !== 1)
+            throw "16: Expected 100 to be inserted at the start of the array";
+    }
+
+    testInsertManyAt() {
+        var arr = f([1, 2, 3]);
+
+        arr.insertManyAt(1, [10, 20]);
+        if (arr.a[0] !== 1 || arr.a[1] !== 10 || arr.a[2] !== 20 || arr.a[3] !== 2)
+            throw "17: Expected 10 and 20 to be inserted at index 1";
+
+        var arr = f([1, 2, 3]);
+
+        arr.insertManyAt(-1, [30, 40]);
+        if (arr.at(3) !== 30 || arr.at(4) !== 40)
+            throw "18: Expected 30 and 40 to be inserted before the last element";
+
+        var arr = f([1, 2, 3]);
+
+        arr.insertManyAt(3, [50, 60]);
+        if (arr.at(3) !== 50 || arr.at(4) !== 60)
+            throw "19: Expected 50 and 60 to be inserted at the end of the array";
+
+        var arr = f([1, 2, 3]);
+
+        arr.insertManyAt(1, []);
+        if (arr.a.length !== 3)
+            throw "20: Expected no change when inserting an empty array";
+    }
+
+    testDelete() {
+        const arr = f([1, 2, 3]);
+
+        arr.delete(2);
+        if (arr.a.length !== 2) throw "21: Expected length to be 2 after delete";
+        if (arr.includes(2)) throw "22: Expected element 2 to be deleted";
+
+        arr.delete(4);
+        if (arr.a.length !== 2) throw "23: Expected no change when deleting non-existent element";
+    }
+
+    testDeleteMany() {
+        const arr = f([1, 2, 3, 4]);
+
+        arr.deleteMany([2, 4]);
+        if (arr.a.length !== 2 || arr.includes(2) || arr.includes(4))
+            throw "24: Expected elements 2 and 4 to be deleted";
+
+        arr.deleteMany([]);
+        if (arr.a.length !== 2)
+            throw "25: Expected no change when deleting an empty list of items";
+
+        arr.deleteMany([5]);
+        if (arr.a.length !== 2)
+            throw "26: Expected no change when deleting a non-existent element";
+    }
+
+    testDeleteAt() {
+        var arr = f([1, 2, 3, 4]);
+
+        arr.deleteAt(1, 2);
+        if (arr.a.length !== 2 || arr.a[0] !== 1 || arr.a[1] !== 4)
+            throw "27: Expected elements at indices 1 and 2 to be deleted";
+
+        arr.deleteAt(-1);
+        if (arr.length() !== 1 || arr.a[0] !== 1)
+            throw "28: Expected last element to be deleted for negative index";
+
+        this.assertThrows(() => arr.deleteAt(1), "29: Expected 1 to be out of bounds");
+    }
+
+    testSelect() {
+        const arr = f([1, 2, 3]);
+
+        const doubled = arr.select(num => num * 2);
+        if (doubled.a.length !== 3 || doubled.a[0] !== 2 || doubled.a[1] !== 4 || doubled.a[2] !== 6)
+            throw "30: Expected elements to be doubled";
+
+        const emptyArr = f<number>([]);
+        const emptyResult = emptyArr.select(num => num * 2);
+        if (emptyResult.a.length !== 0) throw "31: Expected select to return empty array for empty input";
+    }
+
+    testDoOnce() {
+        const arr = f([1, 2, 3]);
+
+        const foundEven = arr.doOnce(num => num % 2 === 0);
+        if (!foundEven) throw "32: Expected doOnce to find the first even number";
+
+        const noMatch = arr.doOnce(num => num > 10);
+        if (noMatch) throw "33: Expected doOnce to return false when no elements match";
+
+        const emptyArr = f<number>([]);
+        const emptyDoOnce = emptyArr.doOnce(() => true);
+        if (emptyDoOnce) throw "34: Expected doOnce to return false for an empty array";
+    }
+
+    testFirst() {
+        const arr = f([1, 2, 3]);
+
+        const first = arr.first();
+        if (first !== 1) throw "35: Expected first element to be 1";
+
+        const firstEven = arr.first(num => num % 2 === 0);
+        if (firstEven !== 2) throw "36: Expected first even element to be 2";
+
+        const noMatch = arr.first(num => num > 10);
+        if (noMatch !== undefined)
+            throw "37: Expected undefined when no element matches the predicate";
+
+        const emptyArr = f<number>([]);
+        const firstFromEmpty = emptyArr.first();
+        if (firstFromEmpty !== undefined)
+            throw "38: Expected undefined when calling first on an empty array";
+    }
+
+    testLast() {
+        const arr = f([1, 2, 3]);
+
+        const last = arr.last();
+        if (last !== 3) throw "39: Expected last element to be 3";
+
+        const lastEven = arr.last(num => num % 2 === 0);
+        if (lastEven !== 2) throw "40: Expected last even element to be 2";
+
+        const noMatch = arr.last(num => num > 10);
+        if (noMatch !== undefined)
+            throw "41: Expected undefined when no element matches the predicate";
+
+        const emptyArr = f<number>([]);
+        const lastFromEmpty = emptyArr.last();
+        if (lastFromEmpty !== undefined)
+            throw "42: Expected undefined when calling last on an empty array";
+    }
+
+    testFirstIndex() {
+        const arr = f([1, 2, 3]);
+
+        const firstEvenIndex = arr.firstIndex(num => num % 2 === 0);
+        if (firstEvenIndex !== 1) throw "43: Expected first even index to be 1";
+
+        const noMatch = arr.firstIndex(num => num > 10);
+        if (noMatch !== -1)
+            throw "44: Expected firstIndex to return -1 for no match";
+
+        const emptyArr = f<number>([]);
+        const fromEmpty = emptyArr.firstIndex(num => true);
+        if (fromEmpty !== -1)
+            throw "45: Expected firstIndex to return -1 for empty array";
+    }
+
+    testLastIndex() {
+        const arr = f([1, 2, 3]);
+
+        const lastEvenIndex = arr.lastIndex(num => num % 2 === 0);
+        if (lastEvenIndex !== 1) throw "46: Expected last even index to be 1";
+
+        const noMatch = arr.lastIndex(num => num > 10);
+        if (noMatch !== -1)
+            throw "47: Expected lastIndex to return -1 for no match";
+
+        const emptyArr = f<number>([]);
+        const fromEmpty = emptyArr.lastIndex(num => true);
+        if (fromEmpty !== -1)
+            throw "48: Expected lastIndex to return -1 for empty array";
+    }
+
+    testWhere() {
+        const arr = f([1, 2, 3, 4]);
+
+        const evens = arr.where(num => num % 2 === 0);
+        if (evens.a.length !== 2 || evens.a[0] !== 2 || evens.a[1] !== 4)
+            throw "49: Expected where to filter even numbers";
+
+        const noMatch = arr.where(num => num > 10);
+        if (noMatch.a.length !== 0)
+            throw "50: Expected where to return empty array for no matches";
+
+        const emptyArr = f<number>([]);
+        const fromEmpty = emptyArr.where(num => num % 2 === 0);
+        if (fromEmpty.a.length !== 0)
+            throw "51: Expected where to return empty array for empty input";
+    }
+
+    testAny() {
+        const arr = f([1, 2, 3]);
+
+        const hasEven = arr.any(num => num % 2 === 0);
+        if (!hasEven) throw "52: Expected any to return true for even numbers";
+
+        const noMatch = arr.any(num => num > 10);
+        if (noMatch)
+            throw "53: Expected any to return false for no matching elements";
+
+        const emptyArr = f<number>([]);
+        const anyFromEmpty = emptyArr.any();
+        if (anyFromEmpty)
+            throw "54: Expected any to return false for empty array";
+    }
+}
+
+class RegionTests extends TestClass {
+    testRegionInitialization() {
+        const region = new Region(50, 100, 150, 0); // left, top, right, bottom
+        this.assertEquals(region.boundsAbs(), [50, 100, 150, 0], "Region absolute bounds incorrect");
+    }
+
+    testToRelativeLocation() {
+        const region = new Region(50, 100, 150, 0); // Width = 100
+        this.assertEquals(region.toRelativeLocation(50, "x"), 0, "Left boundary should map to 0");
+        this.assertEquals(region.toRelativeLocation(150, "x"), 1, "Right boundary should map to 1");
+        this.assertEquals(region.toRelativeLocation(0, "y"), 0, "Bottom boundary should map to 0");
+        this.assertEquals(region.toRelativeLocation(100, "y"), 1, "Top boundary should map proportionally to 1");
+    }
+
+    testToRelativePosition() {
+        const region = new Region(50, 100, 150, 0); // left, top, right, bottom
+        this.assertEquals(region.toRelativePosition([50, 0]), [0, 0], "Relative position for bottom-left incorrect");
+        this.assertEquals(region.toRelativePosition([150, 100]), [1, 1], "Relative position for top-right incorrect");
+    }
+
+    testWidthAndHeight() {
+        const region = new Region(50, 100, 150, 0); // Width = 100, Height = 100
+        this.assertEquals(region.width(), 1, "Normalized width should be 1");
+        this.assertEquals(region.height(), 1, "Normalized height should be 1 (proportional to width)");
+    }
+
+    testToAbsoluteLocation() {
+        const region = new Region(50, 100, 150, 0); // Width = 100
+        this.assertEquals(region.toAbsoluteLocation(0, "x"), 50, "Relative x=0 should map to left boundary");
+        this.assertEquals(region.toAbsoluteLocation(1, "x"), 150, "Relative x=1 should map to right boundary");
+        this.assertEquals(region.toAbsoluteLocation(0, "y"), 0, "Relative y=0 should map to bottom boundary");
+        this.assertEquals(region.toAbsoluteLocation(1, "y"), 100, "Relative y=1 should map to top boundary");
+    }
+
+    testAngle() {
+        const region = new Region(50, 100, 150, 0); // Region in normalized coordinates
+        this.assertEquals(region.angle([0.5, 1]), 90, "Angle at top center should be 90 degrees");
+        this.assertEquals(region.angle([1, 0.5]), 0, "Angle at right center should be 0 degrees");
+        this.assertEquals(region.angle([0.5, 0]), 270, "Angle at bottom center should be 270 degrees");
+        this.assertEquals(region.angle([0, 0.5]), 180, "Angle at left center should be 180 degrees");
+
+        this.assertEquals(region.angle([0.5, 1], "radians"), Math.PI / 2, "Angle in radians at top center should be π/2");
+        this.assertEquals(region.angle([1, 0.5], "radians"), 0, "Angle in radians at right center should be 0");
+    }
+
+    testRadius() {
+        const region = new Region(50, 100, 150, 0);
+        this.assertEquals(region.radius([0.5, 1]), 0.5, "Radius at top center should be 0.5");
+        this.assertEquals(region.radius([1, 0.5]), 0.5, "Radius at right center should be 0.5");
+        this.assertEquals(region.radius([0.5, 0]), 0.5, "Radius at bottom center should be 0.5");
+        this.assertEquals(region.radius([0, 0.5]), 0.5, "Radius at left center should be 0.5");
+    }
+
+    testToRadians() {
+        this.assertEquals(Region.toRadians(0), 0, "0 degrees should be 0 radians", 0.0001);
+        this.assertEquals(Region.toRadians(180), Math.PI, "180 degrees should be π radians", 0.0001);
+        this.assertEquals(Region.toRadians(-180), Math.PI, "180 degrees should be π radians", 0.0001);
+        this.assertEquals(Region.toRadians(360), 0, "360 degrees should be 2π radians", 0.0001);
+    }
+
+    testToDegrees() {
+        this.assertEquals(Region.toDegrees(0), 0, "0 radians should be 0 degrees");
+        this.assertEquals(Region.toDegrees(Math.PI), 180, "π radians should be 180 degrees");
+        this.assertEquals(Region.toDegrees(2 * Math.PI), 0, "2π radians should be 360 degrees");
+    }
+
+    testTo2Pi() {
+        this.assertEquals(Region.to2Pi(-Math.PI), Math.PI, "Negative π radians should map to π radians", 0.0001);
+        this.assertEquals(Region.to2Pi(3 * Math.PI), Math.PI, "3π radians should map to π radians", 0.0001);
+        this.assertEquals(Region.to2Pi(0), 0, "0 radians should remain 0", 0.0001);
+    }
+
+    testTo360() {
+        this.assertEquals(Region.to360(-90), 270, "-90 degrees should map to 270 degrees");
+        this.assertEquals(Region.to360(450), 90, "450 degrees should map to 90 degrees");
+        this.assertEquals(Region.to360(0), 0, "0 degrees should remain 0");
+    }
+}

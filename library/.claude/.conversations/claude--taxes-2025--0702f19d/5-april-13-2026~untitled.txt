@@ -1,0 +1,141 @@
+# Report: IRS Search for 2025 1099-S — Findings and Open Questions
+
+**Prepared:** 2026-04-13
+**Subject:** Whether a 1099-S was filed for the December 2025 house sale, based on direct inspection of Doug's IRS Online Account.
+**Audience:** Tax expert review.
+
+---
+
+## TL;DR
+
+We logged into Doug's IRS Online Account (ID.me authenticated) and checked **two independent IRS data sources** for any 2025 information returns. **Neither shows any 2025 data of any kind for Doug — no 1099-S, no 1099-R, no anything.** The IRS literally has zero information returns on file for tax year 2025 under Doug's TIN as of today.
+
+Research suggests the most likely explanation is **not** a propagation delay. The most likely explanation is that the title company filed nothing, because Doug provided a §121 principal residence certification at closing that exempted them from 1099-S filing.
+
+We need the expert to (a) confirm this interpretation and (b) decide what to do next.
+
+---
+
+## What we checked
+
+### Source 1: Wage & Income Transcript (2025)
+
+- Pulled directly from `sa.www4.irs.gov/ola/tax_records/transcripts`
+- File: 1 page, 7,795 bytes
+- Full text content:
+
+> Wage and Income Transcript
+> Request Date: 04-13-2026
+> Form Number: All Forms
+> Report for Tax Period Ending: 12-31-2025
+> Taxpayer Identification Number: XXX-XX-0033
+> **Requested data not found.**
+
+That's the entire substantive content. The transcript request succeeded — we are authenticated as Doug, the IRS confirms his TIN, and the response is "no data."
+
+### Source 2: Information Return Documents (real-time view)
+
+- Pulled directly from `sa.www4.irs.gov/ola/information_return`
+- This is the IRS's newer, weekly-updated view that shows individual information returns as payers file them — generally faster than the Wage & Income Transcript
+- The page header text states: *"Information returns for the current tax year will be made available in your online account as the IRS receives them … Information on this page is updated on a weekly basis."*
+
+What the page actually shows for Doug:
+- **2024 accordion** — open, contains 8 documents (1095-A, 1098, 1099-DIV, 1099-G, two 1099-INTs, 1099-NEC, 5498)
+- **2023 accordion** — present, expandable
+- **No 2025 accordion exists at all**
+
+We searched the rendered HTML for any occurrence of "2025" — **zero matches**. We also tried forcing year=2025 via URL query parameter, path segment, and hash fragment. None of them surfaced any 2025 data. The page does not even know about 2025 yet for Doug's account.
+
+### Cross-check via Wage & Income Transcript 2024
+
+To confirm that our download mechanism and the IRS systems work correctly, we also pulled the 2024 Wage & Income Transcript:
+- 19 pages, 43,842 bytes
+- Contains full payer detail: Form 5498, 1099-NEC, 1099-B, 1099-DIV, 1099-INT, 1099-G, 1098 — all matching the Information Return Documents page
+
+So the mechanism works, the account works, the year just genuinely has no data.
+
+### Cross-check via Account Transcript 2024
+
+We also pulled the most recent Account Transcript (2025 doesn't exist yet on the IRS side):
+- 2024 filing: Single, AGI $93,082, taxable income $51,371, tax $22,027, $7,123 refund issued May 2025
+- $102,448 SE income, $15,675 SE tax
+- Three estimated payments totaling $29,150
+- **Account balance: $0.00** — clean, no penalties, no liens, no carry-forward issues
+
+---
+
+## Why this matters
+
+The original plan assumed the wage & income transcript would tell us whether a 1099-S existed. It can't, because the entire 2025 information return dataset for Doug is empty.
+
+## Why we believe this is NOT a propagation delay
+
+We researched IRS timing for 1099-S forms appearing in taxpayer accounts:
+
+- Recipient copies due: **February 17, 2026**
+- Electronic filing deadline to IRS: **March 31, 2026**
+- IRS guidance: Information return documents are added "as the IRS receives them," weekly updates
+- General expectation by mid-April 2026: 1099s filed by the March 31 deadline should be visible
+
+Mid-April is **two weeks past** the e-file deadline. If the title company had filed a 1099-S, it should be on the page by now. The complete absence of any 2025 accordion (not just an empty one — no accordion at all) is consistent with no 2025 information returns having been filed for Doug, by anyone, for any reason.
+
+## The most likely explanation: §121 principal residence exemption
+
+Per IRS Form 1099-S instructions, **a title company is NOT required to file a 1099-S** when:
+
+1. The sale price is ≤$250,000 (or ≤$500,000 if married filing jointly), AND
+2. The seller provides a written certification, signed under penalties of perjury, that:
+   - The property was the seller's principal residence
+   - The full gain is excludable under IRC §121
+
+If Doug signed such a certification at the December 2025 closing — which is **standard practice** for residential closings on a principal residence within the exclusion limits — the title company would not have filed a 1099-S, and the absence in the IRS system is exactly what we should expect to see.
+
+This is consistent with:
+- The expert's earlier observation that the gain "is close to or possibly at $250k before improvement adjustments"
+- The clean, exclusion-eligible nature of the sale (NY primary residence, owned since 2019)
+
+---
+
+## Questions for the expert
+
+1. **Is our interpretation correct?** Given that no 1099-S appears in either of the IRS data sources two weeks after the e-file deadline, is it reasonable to conclude that no 1099-S was filed?
+
+2. **Did Doug likely sign a §121 certification at the December 2025 closing?** Is this standard enough that we should assume yes unless evidence emerges otherwise? What does the certification actually look like, and where in closing paperwork would it appear?
+
+3. **If no 1099-S was filed and the gain is under $250k**, the conventional wisdom is that the sale does not need to appear on the 1040 at all (no Schedule D, no Form 8949). Is this still your guidance?
+
+4. **What if the gain is OVER $250k** (after improvement adjustments)? The §121 exemption from 1099-S filing only applies when the seller certifies the full gain is excludable. If the actual computed gain ends up over $250k:
+   - Was Doug's certification at closing potentially incorrect?
+   - Does he need to amend anything with the title company?
+   - Does he need to file Schedule D + 8949 anyway because the actual gain exceeds the exclusion?
+
+5. **Action items for Doug to confirm:**
+   - Should he look through his closing paperwork for the §121 certification?
+   - Should he contact the title company / closing attorney to confirm whether a 1099-S was filed?
+   - Should he gather the actual purchase price (2019), closing docs, improvement records, and sale price now so we can compute the real gain and answer #4 ourselves?
+
+6. **Other 2025 income — do we still chase the same way?** The same "no 2025 data" finding applies to the IRA withdrawal. The IRS Information Return Documents page also shows no 2025 1099-R from Interactive Brokers. We expect to get the 1099-R directly from IB's portal in a future session — does that match your expectation?
+
+7. **Form 7004 deadline (already passed):** This is unrelated to the 1099-S question but urgent. We have not yet filed Form 7004 for the partnership extension. The March 15 deadline passed almost a month ago. What is the current best path — file 7004 anyway with a late explanation, or just file the 1065 directly and accept any late-filing penalty?
+
+---
+
+## Files referenced
+
+All in `2025/docs/`:
+- `irs_wage_income_2025.pdf` — empty transcript, the "data not found" file
+- `irs_wage_income_2024.pdf` — full 2024 baseline (19 pages)
+- `irs_account_2024.pdf` — 2024 filing snapshot
+- `jpmorgan_1098_2024.pdf` — sample document downloaded from the Information Return Documents page to confirm the mechanism works (this is 2024 reference data only)
+- `tax-preparation-scope-2025.html` — the original scope document
+
+---
+
+## What we cannot do from the IRS without more data
+
+Until the IRS receives 2025 information returns (if any are coming), we cannot:
+- Confirm whether a 1099-S exists via IRS records
+- Get the 1099-R amounts and withholding from IB via IRS records
+- See any other 2025 third-party reporting
+
+We can re-check the Information Return Documents page weekly. If anything appears, we'll see it.

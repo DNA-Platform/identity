@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Allbirds GPU pivot and TON∕Cocoon connection ]]( claude--Allbirds GPU pivot and TON∕Cocoon connection--16ab9276 )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>16ab9276-44aa-4050-aea0-b4d1b25b82a2</Origin>
         <Paragraph>

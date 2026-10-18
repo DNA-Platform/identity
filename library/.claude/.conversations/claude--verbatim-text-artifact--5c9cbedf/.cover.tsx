@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Verbatim text artifact ]]( claude--Verbatim text artifact--5c9cbedf )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Semantic Reference Theory ]]</Project>
+        <Project>***[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>5c9cbedf-9b51-41c4-bcc1-a4b3b2f80e05</Origin>
         <Paragraph>

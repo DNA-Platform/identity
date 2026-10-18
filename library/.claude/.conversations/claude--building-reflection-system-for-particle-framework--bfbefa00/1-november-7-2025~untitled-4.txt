@@ -1,0 +1,64 @@
+
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $typeof function and its basic properties > should have the right metadata for function
+TypeError: Cannot write to private field
+ ❯ __typeError src/reflection.ts:17:9
+     17| }
+     18| 
+     19| export function $typeof(literal: any): $ObjectiveRep {
+       |    ^
+     20|     if (literal === null || literal === undefined)
+     21|         return $type(undefined);
+ ❯ __accessCheck src/reflection.ts:19:62
+ ❯ __privateSet src/reflection.ts:22:53
+ ❯ _$ObjectiveRep.set $lib src/reflection.ts:64:9
+ ❯ _$ObjectiveRep.$new src/reflection.ts:413:15
+ ❯ _$ObjectiveRep.$of src/reflection.ts:275:28
+ ❯ $typeof src/reflection.ts:31:19
+ ❯ tests/reflection.test.ts:215:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/20]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $typeof function and its basic properties > should have the right metadata for object
+TypeError: Cannot write to private field
+ ❯ __typeError src/reflection.ts:17:9
+     17| }
+     18| 
+     19| export function $typeof(literal: any): $ObjectiveRep {
+       |    ^
+     20|     if (literal === null || literal === undefined)
+     21|         return $type(undefined);
+ ❯ __accessCheck src/reflection.ts:19:62
+ ❯ __privateSet src/reflection.ts:22:53
+ ❯ _$ObjectiveRep.set $lib src/reflection.ts:64:9
+ ❯ _$ObjectiveRep.$new src/reflection.ts:413:15
+ ❯ _$ObjectiveRep.$of src/reflection.ts:275:28
+ ❯ $typeof src/reflection.ts:31:19
+ ❯ tests/reflection.test.ts:225:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/20]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties and related functionality > should return the specific properties on an object
+TypeError: Cannot write to private field
+ ❯ __typeError src/reflection.ts:17:9
+     17| }
+     18| 
+     19| export function $typeof(literal: any): $ObjectiveRep {
+       |    ^
+     20|     if (literal === null || literal === undefined)
+     21|         return $type(undefined);
+ ❯ __accessCheck src/reflection.ts:19:62
+ ❯ __privateSet src/reflection.ts:22:53
+ ❯ _$ObjectiveRep.set $lib src/reflection.ts:64:9
+ ❯ _$ObjectiveRep.$new src/reflection.ts:413:15
+ ❯ _$ObjectiveRep.$of src/reflection.ts:275:28
+ ❯ $typeof src/reflection.ts:31:19
+ ❯ $instanceof src/reflection.ts:14:18
+ ❯ tests/reflection.test.ts:237:34
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/20]⎯
+
+ Test Files  1 failed (1)
+      Tests  20 failed | 81 passed (101)
+   Start at  21:44:04
+   Duration  91ms
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit

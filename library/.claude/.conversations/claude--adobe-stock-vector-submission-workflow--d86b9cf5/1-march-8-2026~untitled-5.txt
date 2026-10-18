@@ -1,0 +1,204 @@
+/**
+ * convert-ai.js
+ * Opens a prepared SVG (or EPS) in Illustrator and saves as native .ai.
+ *
+ * What this script does:
+ *   1. Opens the input file in Illustrator
+ *   2. Saves as .ai with PDF compatibility + embedded sRGB profile
+ *
+ * Illustrator handles artboard sizing from the SVG's width/height attributes.
+ * The art's margins and composition are preserved exactly as designed.
+ * Metadata is injected AFTER this step by inject-metadata.js.
+ *
+ * Dispatch methods:
+ *   macOS:   osascript AppleScript bridge (Illustrator need not be open)
+ *   Windows: Illustrator.exe /script <jsx>
+ *
+ * Run standalone: node src/tools/convert-ai.js <input.svg> [output.ai]
+ * Import: import { convertAi, dispatchJsx } from './src/tools/convert-ai.js'
+ */
+
+import { writeFileSync, existsSync, unlinkSync, mkdirSync } from 'fs';
+import { resolve, dirname, basename, join } from 'path';
+import { execSync } from 'child_process';
+import { platform } from 'os';
+
+// ── Illustrator finder ───────────────────────────────────────────
+
+const ILLUSTRATOR_PATHS = {
+  win32: [
+    'C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Support Files\\Contents\\Windows\\Illustrator.exe',
+    'C:\\Program Files\\Adobe\\Adobe Illustrator 2025\\Support Files\\Contents\\Windows\\Illustrator.exe',
+    'C:\\Program Files\\Adobe\\Adobe Illustrator 2024\\Support Files\\Contents\\Windows\\Illustrator.exe',
+    'C:\\Program Files\\Adobe\\Adobe Illustrator 2023\\Support Files\\Contents\\Windows\\Illustrator.exe',
+    'C:\\Program Files\\Adobe\\Adobe Illustrator 2022\\Support Files\\Contents\\Windows\\Illustrator.exe',
+  ],
+  darwin: [
+    '/Applications/Adobe Illustrator 2025/Adobe Illustrator.app/Contents/MacOS/Adobe Illustrator',
+    '/Applications/Adobe Illustrator 2024/Adobe Illustrator.app/Contents/MacOS/Adobe Illustrator',
+    '/Applications/Adobe Illustrator 2023/Adobe Illustrator.app/Contents/MacOS/Adobe Illustrator',
+    '/Applications/Adobe Illustrator 2022/Adobe Illustrator.app/Contents/MacOS/Adobe Illustrator',
+  ],
+};
+
+export function findIllustrator() {
+  const os = platform();
+  for (const p of (ILLUSTRATOR_PATHS[os] || [])) {
+    if (existsSync(p)) return { path: p, os };
+  }
+  if (os === 'darwin') {
+    try {
+      const r = execSync(
+        'mdfind "kMDItemCFBundleIdentifier == com.adobe.illustrator" 2>/dev/null | head -1',
+        { encoding: 'utf-8' }
+      ).trim();
+      if (r) {
+        const exe = join(r, 'Contents/MacOS/Adobe Illustrator');
+        if (existsSync(exe)) return { path: exe, os };
+      }
+    } catch (_) {}
+  }
+  return null;
+}
+
+// ── JSX dispatch ─────────────────────────────────────────────────
+
+/**
+ * Dispatch a .jsx file to Illustrator via OS command line.
+ * Illustrator will be launched automatically if not already running.
+ */
+export function dispatchJsx(jsxPath, illustratorInfo) {
+  const il  = illustratorInfo || findIllustrator();
+  if (!il) throw new Error('Illustrator not found. Check ILLUSTRATOR_PATHS in convert-ai.js.');
+
+  const abs = resolve(jsxPath).replace(/\\/g, '/');
+
+  if (il.os === 'darwin') {
+    execSync(
+      `osascript -e 'tell application "Adobe Illustrator" to do javascript file "${abs}"'`,
+      { timeout: 120_000, stdio: 'pipe' }
+    );
+  } else if (il.os === 'win32') {
+    execSync(`"${il.path}" /script "${abs}"`, { timeout: 120_000, stdio: 'pipe' });
+  } else {
+    throw new Error(`Unsupported platform: ${il.os}`);
+  }
+}
+
+// ── ExtendScript generation ──────────────────────────────────────
+
+/**
+ * Generate the ExtendScript that Illustrator executes.
+ * Opens EPS, saves as .ai, writes a done-marker file.
+ */
+function makeScript(epsAbsPath, aiAbsPath) {
+  // ExtendScript File() on Windows needs a file:// URI for reliable path resolution.
+  const toFileURI = (p) => 'file:///' + p.replace(/\\/g, '/');
+  const input = toFileURI(epsAbsPath);
+  const ai    = toFileURI(aiAbsPath);
+  const done  = toFileURI(aiAbsPath + '.done');
+
+  return `
+#target illustrator
+(function () {
+  // Suppress the "do you want to run this script?" dialog
+  app.preferences.setBooleanPreference("ShowExternalJSXWarning", false);
+
+  var inputFile = new File("${input}");
+  var aiFile    = new File("${ai}");
+  var doc = app.open(inputFile);
+  var opts = new IllustratorSaveOptions();
+  opts.compatibility    = Compatibility.ILLUSTRATOR24;
+  opts.pdfCompatible    = true;
+  opts.embedICCProfile  = true;
+  opts.embedLinkedFiles = true;
+  opts.compressed       = true;
+  doc.saveAs(aiFile, opts);
+  doc.close(SaveOptions.DONOTSAVECHANGES);
+  var doneFile = new File("${done}");
+  doneFile.open("w"); doneFile.write("ok"); doneFile.close();
+}());
+`.trim();
+}
+
+// ── Main ─────────────────────────────────────────────────────────
+
+/**
+ * Convert a metadata-injected EPS to .ai via Illustrator.
+ * Returns { success, aiPath, error? }
+ */
+export async function convertAi(inputPath, outputAiPath) {
+  const absInput = resolve(inputPath);
+  const ext = basename(absInput).split('.').pop();
+  const absAi = outputAiPath
+    ? resolve(outputAiPath)
+    : join(dirname(absInput), basename(absInput, '.' + ext) + '.ai');
+
+  mkdirSync(dirname(absAi), { recursive: true });
+
+  const il = findIllustrator();
+  if (!il) {
+    return {
+      success: false,
+      error: 'Adobe Illustrator not found.\nCheck installation paths in ILLUSTRATOR_PATHS inside convert-ai.js.',
+    };
+  }
+
+  console.log(`  Illustrator: ${il.path}`);
+
+  const jsxPath    = absAi + '.jsx';
+  const doneMarker = absAi + '.done';
+
+  if (existsSync(doneMarker)) unlinkSync(doneMarker);
+  writeFileSync(jsxPath, makeScript(absInput, absAi), 'utf-8');
+
+  try {
+    dispatchJsx(jsxPath, il);
+
+    // Poll for done marker — dispatch can return before Illustrator finishes
+    const start = Date.now();
+    while (!existsSync(doneMarker)) {
+      if (Date.now() - start > 90_000) throw new Error('Timed out waiting for Illustrator (90 s).');
+      await new Promise(r => setTimeout(r, 500));
+    }
+
+    if (!existsSync(absAi)) throw new Error(`Illustrator finished but .ai not found: ${absAi}`);
+
+    unlinkSync(jsxPath);
+    unlinkSync(doneMarker);
+
+    console.log(`  ✓ Saved: ${absAi}`);
+    return { success: true, aiPath: absAi };
+
+  } catch (err) {
+    console.warn(`  JSX preserved for inspection: ${jsxPath}`);
+    return { success: false, error: err.message };
+  }
+}
+
+// ── CLI ──────────────────────────────────────────────────────────
+
+if (process.argv[1]?.endsWith('convert-ai.js')) {
+  const args = process.argv.slice(2);
+
+  if (args[0] === '--dispatch') {
+    if (!args[1]) { console.error('Usage: node src/tools/convert-ai.js --dispatch <script.jsx>'); process.exit(1); }
+    dispatchJsx(args[1]);
+    console.log('Dispatched.');
+    process.exit(0);
+  }
+
+  if (!args[0]) {
+    console.error('Usage: node src/tools/convert-ai.js <input.eps> [output.ai]');
+    console.error('       node src/tools/convert-ai.js --dispatch <script.jsx>');
+    process.exit(1);
+  }
+
+  const result = await convertAi(args[0], args[1]);
+  if (result.success) {
+    console.log(`Done: ${result.aiPath}`);
+  } else {
+    console.error(`Failed: ${result.error}`);
+    process.exit(1);
+  }
+}

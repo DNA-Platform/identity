@@ -1,0 +1,181 @@
+
+
+# Specification — Altered-States DOI Digital-Twin Analysis
+
+The authoritative, self-contained specification for this analysis. For each part it states **what it
+does**, the **function** that does it, the **published method** it reproduces, and the **citation** that
+justifies it. The code implements this document; this document does not describe the code. It is kept
+current; anything unconfirmed is marked **⚠** and listed under Open Questions.
+
+**The goal.** This is a *descriptive* study of representation in mouse primary visual cortex. A digital
+twin (a deep encoding model) is an **instrument**: trained to predict each neuron's response to an image,
+it can then be run **forward** — synthesizing each cell's *most-exciting image* (MEI), the visual feature
+that cell encodes — and **inverted** — reconstructing the image a population represents. We build twins
+for a baseline state and a DOI (5-HT2A hallucinogen) state, on the neurons tracked across both, and ask
+**how the represented features change under the drug**. The aim is *what the cells encode and how that
+representation moves* — not prediction accuracy, not a benchmark score.
+
+---
+
+## Rules
+
+1. **Published-exact.** Every method and setting reproduces a published one, cited in its part. We use
+   the published code; we do not reimplement. The one exception is the metamer (Part 6): no public code
+   exists, so it is a faithful reimplementation from the paper's Methods.
+2. **Matched cells only.** The *entire* pipeline — training, validation, MEIs, reconstruction, and the
+   pre/post comparison — runs on the **neurons tracked across both scans**, matched by reciprocal
+   nearest-neighbour in the functional-stack coordinates within a distance cutoff (≈10 µm). The matching
+   is the lab's own method — the functional stack is recorded precisely so the *same physical cell* can
+   be followed from one state to the other. The number of matched cells is whatever this produces.
+3. **Closest published work.** Method template = **Franke 2022** (a state factor × an ensemble twin ×
+   fixed-state MEIs in single-session mouse V1). MEIs = **Walker 2019**. Reconstruction = **Cobos 2022**.
+   Twin architecture/training = **Lurz 2021**.
+
+---
+
+## The four twins
+
+A 2×2: **{baseline, DOI} × {behaviour, no-behaviour}**.
+
+| Twin     | State    | Behaviour | Input                                                       |
+|----------|----------|-----------|-------------------------------------------------------------|
+| pre · A  | baseline | yes       | image + behaviour + position channels, eye-position shifter |
+| pre · B  | baseline | no        | image only                                                  |
+| post · A | DOI      | yes       | image + behaviour + position channels, eye-position shifter |
+| post · B | DOI      | no        | image only                                                  |
+
+**Why behaviour, with and without.** Behavioural state (arousal, locomotion) *modulates* the V1 visual
+response — this is the published recipe: Franke 2022 feeds behaviour to the model as channels so the twin
+can capture that state modulation of visual tuning. The no-behaviour arm is the visual-only model.
+Behaviour channels, in order: **pupil size, pupil derivative, running**; eye position (pupil centre)
+feeds the shifter. [Cite: Franke 2022.]
+
+---
+
+## Parts
+
+### 1 · Data — load the matched-cell recordings
+- **Does:** return the dataloaders for one (state, arm), restricted to the matched cells in matched-pair
+  order; arm A adds the behaviour and position channels and eye position.
+- **Function:** `load(state, arm) → (dataloaders, data_key)`
+- **Published method:** `sensorium.datasets.static_loaders` (neuron subset via `neuron_ids`; per-neuron
+  std normalization).
+- **Why it is right:** the static-scan loader is the published data interface for this format; the arm-A
+  channel design (behaviour + position) is Franke 2022. The matching reproduces the lab's own
+  functional-stack pairing.
+- **Cite:** sinzlab/sensorium; Franke 2022.
+
+### 2 · Twin — build the encoding model
+- **Does:** build one seed — a 4-layer convolutional core feeding a per-neuron Gaussian readout; arm A
+  adds an eye-position shifter.
+- **Function:** `build_twin(loaders, arm, seed) → model`
+- **Published method:** `sensorium.models.stacked_core_full_gauss_readout`.
+- **Readout = learned-μ** (each cell's receptive-field position is a free parameter), **not** the
+  cortical-coordinate predictor. The cortical predictor ties RF position to cortical position through one
+  shared map; on this recording the cortical elevation extent is narrower than azimuth, so the shared map
+  collapses the elevation axis — learned-μ removes that single shared prior and is the smallest deviation
+  from Franke that survives it. ⚠ This deviation is the one place we leave Franke's exact readout; its
+  justification (our cortical-extent asymmetry) is verified against the data, not assumed.
+- **Settings:** `gamma_input = 6.3831`, `gamma_readout = 0.0076` (the canonical Lurz/Sensorium baseline
+  values). ⚠ a frozen fit on other data — confirm on-plateau for our scan (Open Q 2).
+- **Cite:** Lurz 2021 (architecture); Franke 2022 (readout, shifter).
+
+### 3 · Training — fit the ensemble
+- **Does:** train a 5-seed ensemble for one (state, arm) to convergence; resumable.
+- **Function:** `train(state, arm, n_seeds = 5) → ensemble`
+- **Published method:** `sensorium.training.standard_trainer`; `mei.modules.EnsembleModel`.
+- **Settings:** early-stop on validation correlation, best weights restored; `lr_init = 0.009`,
+  `lr_decay_steps = 4`, Poisson loss. Convergence, never a clock.
+- **Why it is right:** the Sensorium baseline trainer is the published fitting procedure; the ensemble is
+  the published twin (averaging seeds is how the lab forms the instrument used for MEIs/metamers). ⚠ The
+  exact ensemble size and early-stop criterion are to be confirmed verbatim against Lurz/Franke (Open Q 5).
+- **Cite:** Lurz 2021; Franke 2022.
+
+### 4 · Validation — is the twin a trustworthy instrument?
+- **Does:** check that a trained ensemble predicts held-out responses well enough to trust its MEIs and
+  metamers. *This is an instrument check, not the goal.*
+- **Function:** `validate(ensemble, loaders) → report`
+- **Checks:** (1) **FEVE** (noise-ceiling-corrected explained variance) in the published range; (2)
+  correlation-to-average; (3) the receptive-field map is 2-D (not collapsed to a line); (4) MEIs are
+  structured (oriented, RF-localized). A twin below the bar cannot support the representational reads.
+- **Published method:** `sensorium.utility.scores.get_fev`, `get_signal_correlations`.
+- ⚠ **Required:** `get_fev` drops unreliable cells *per state*, so a pre/post FEVE comparison must use
+  the full-length FEVE masked to cells reliable in **both** states (Open Q 3).
+- **Cite:** Schoppe 2016 (the FEVE metric); Lurz 2021 (the bar).
+
+### 5 · MEI — what each cell encodes
+- **Does:** synthesize, by gradient ascent on the ensemble, the image that most excites one neuron, at a
+  fixed behaviour state — the cell's preferred visual feature.
+- **Function:** `mei(ensemble, neuron, state) → image`
+- **Published method:** `mei.methods.gradient_ascent` with the `nnvision` walker operators.
+- **Settings:** gradient preconditioning (Fourier smoothing, magnitude normalization, annealed step) and
+  image post-processing (clip to the data range, annealed blur); a fixed iteration budget. Behaviour held
+  at a defined state (Franke's quiet/active percentiles). ⚠ The contrast constraint (Franke's L2-norm
+  budget) is the published form but untested here (Open Q 1).
+- **Cite:** Walker 2019; Franke 2022.
+
+### 6 · Metamer — what a population represents
+- **Does:** recover the image a matched population is encoding by inverting the ensemble — gradient
+  descent on the image until the predicted population response matches a target.
+- **Function:** `metamer(ensemble, target_response) → image`
+- **Published method:** none public — a faithful reimplementation from the paper's Methods (the only
+  principled reimplementation here; the lab's code is internal).
+- **Settings:** blank init; SGD on the image; MSE to the repeat-averaged response over all matched cells;
+  a single constant Gaussian gradient blur; a fixed iteration budget; step size and blur tuned per scan.
+- **Cite:** Cobos 2022.
+
+### 7 · Comparison — how the representation changes under DOI
+- **Does:** compare the represented features pre vs post on the matched cells — per-cell MEIs (single-cell
+  tuning) and population metamers (what the population represents), plus the response gain and the
+  predictive quality.
+- **Function:** `compare(pre, post) → report`
+- **Why it is right:** the matched cells make every change a within-cell change. DOI's known V1 effect is
+  a reduction in visual response gain (Michaiel 2019) — a reference for the gain term, not the aim.
+- **Cite:** Michaiel 2019.
+
+---
+
+## File structure
+
+One file per part; flat, no nested packages.
+
+```
+most-exciting-image/
+  specification.md      this file — the authoritative spec
+  data.py               Part 1   load
+  twin.py               Parts 2–3   build_twin, train
+  validate.py           Part 4   validate
+  mei.py                Part 5   mei
+  metamer.py            Part 6   metamer
+  compare.py            Part 7   compare
+  run.py                orchestrates the four twins end to end
+  _checkpoints/         trained ensembles (one per twin)
+  results/              figures
+```
+
+---
+
+## References
+
+| # | Work | What it justifies |
+|---|---|---|
+| 1 | **Lurz et al. 2021** — generalization in data-driven V1 models | twin architecture + training recipe |
+| 2 | **Franke et al. 2022** (Nature) — behavioural-state tuning of mouse vision | method template: channels, readout, fixed-state MEIs |
+| 3 | **Walker et al. 2019** — inception loops / MEIs | MEI synthesis |
+| 4 | **Cobos et al. 2022** (bioRxiv 2022.12.09.519708) — neural metamers | reconstruction (reimplementation source) |
+| 5 | **Michaiel et al. 2019** (Cell Reports) — DOI reduces V1 gain | DOI-in-V1 reference for the gain term |
+| 6 | **Schoppe et al. 2016** — noise-ceiling-normalized predictive metric | the FEVE instrument check |
+| — | **sinzlab/sensorium**, **sinzlab/nnvision**, **mei** | the published code packages we run |
+
+---
+
+## Open questions
+
+1. **⚠ MEI contrast constraint** — Franke's L2-norm budget is the published form; untested on our twin.
+   Decide by test, not assumption.
+2. **⚠ Gammas** — 6.3831 / 0.0076 are canonical but fit on other data; one sensitivity check on the
+   baseline matched scan to confirm we sit on the plateau. Share one set across all four twins.
+3. **⚠ Pre/post FEVE** — wire the full-length, reliable-in-both FEVE before any cross-state FEVE claim.
+4. **⚠ MEI behaviour state** — confirm the exact quiet/active percentile mechanism against the published
+   loader code.
+5. **⚠ Ensemble size + early-stop** — confirm the exact published values verbatim from Lurz/Franke.

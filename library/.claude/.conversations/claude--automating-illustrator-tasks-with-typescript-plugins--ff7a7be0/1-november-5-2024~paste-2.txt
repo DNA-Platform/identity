@@ -1,0 +1,138 @@
+// deploy/build.js
+const fs = require('fs');
+const path = require('path');
+const { exec, spawn } = require('child_process');
+const chokidar = require('chokidar');
+const rimraf = require('rimraf');
+const dotenv = require('dotenv');
+
+// Load environment variables from .env file
+dotenv.config();
+
+const srcDir = path.join(__dirname, 'src');
+const buildDir = path.join(__dirname, 'build');
+const pluginDir = process.env.ILLUSTRATOR_SCRIPTS_PATH;
+
+if (!pluginDir) {
+    console.error("Error: ILLUSTRATOR_SCRIPTS_PATH is not defined in the .env file.");
+    process.exit(1);
+}
+
+// Retry utility for file operations
+function retryOperation(operation, retries = 3, delay = 100) {
+    return new Promise((resolve, reject) => {
+        function attempt() {
+            try {
+                resolve(operation());
+            } catch (error) {
+                if (retries <= 0) {
+                    reject(error);
+                } else {
+                    setTimeout(() => {
+                        retries -= 1;
+                        attempt();
+                    }, delay);
+                }
+            }
+        }
+        attempt();
+    });
+}
+
+// Function to clean the build directory
+function cleanBuildDir() {
+    rimraf.sync(buildDir);
+    fs.mkdirSync(buildDir, { recursive: true });
+}
+
+// Function to compile TypeScript (non-watch mode)
+function compileTypescript(watch) {
+    return new Promise((resolve, reject) => {
+        console.log('Compiling TypeScript...');
+        var command = watch ? "tsc -w" : "tsc"
+        exec(command, { cwd: __dirname }, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`TypeScript compilation error: ${stderr || stdout}`);
+                reject(error);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
+
+// Function to sync .js files in build to plugin as .jsx
+function syncBuildToPlugin() {
+    console.log('Syncing build to plugin directory...');
+    fs.readdirSync(buildDir).forEach(file => {
+        if (file.endsWith('.js')) {
+            const jsPath = path.join(buildDir, file);
+            const jsxPath = path.join(pluginDir, file.replace('.js', '.jsx'));
+
+            try {
+                retryOperation(() => fs.copyFileSync(jsPath, jsxPath))
+                    .catch(error => console.error(`Failed to copy ${file}: ${error.message}`));
+            } catch (error) {
+                console.error(`Error syncing ${file}: ${error.message}`);
+            }
+        }
+    });
+}
+
+// Function to watch for changes and synchronize
+function watchFiles() {
+    console.log('Starting watch mode...');
+
+    // Run `tsc -w` in watch mode as a background process
+    compileTypescript(true)
+
+    // Watch for deletions in src and remove from build and plugin
+    const srcWatcher = chokidar.watch(srcDir, { persistent: true });
+    srcWatcher.on('unlink', filePath => {
+        const relativePath = path.relative(srcDir, filePath);
+        const jsFile = relativePath.replace('.ts', '.js');
+        const jsxFile = jsFile.replace('.js', '.jsx');
+        
+        const buildFile = path.join(buildDir, jsFile);
+        const pluginFile = path.join(pluginDir, jsxFile);
+
+        // Delete from build and plugin with error handling
+        [buildFile, pluginFile].forEach(file => {
+            if (fs.existsSync(file)) {
+                retryOperation(() => fs.unlinkSync(file))
+                    .catch(error => console.error(`Failed to delete ${file}: ${error.message}`));
+            }
+        });
+    });
+
+    // Watch for changes in build directory and sync to plugin as .jsx
+    const buildWatcher = chokidar.watch(buildDir, { persistent: true });
+    buildWatcher.on('add', pushToPlugin).on('change', pushToPlugin);
+
+    function pushToPlugin(jsPath) {
+        if (jsPath.endsWith('.js')) {
+            const jsxFile = path.basename(jsPath).replace('.js', '.jsx');
+            const pluginFile = path.join(pluginDir, jsxFile);
+            retryOperation(() => fs.copyFileSync(jsPath, pluginFile))
+                .catch(error => console.error(`Failed to sync ${jsxFile}: ${error.message}`));
+        }
+    }
+}
+
+// Main function to handle build and optional watch mode
+async function main() {
+    cleanBuildDir();
+    try {
+        await compileTypescript();
+        syncBuildToPlugin();
+
+        if (process.argv.includes('-w')) {
+            watchFiles();
+        }
+    } catch (error) {
+        console.error(`Error in main process: ${error.message}`);
+        process.exit(1);
+    }
+}
+
+main();

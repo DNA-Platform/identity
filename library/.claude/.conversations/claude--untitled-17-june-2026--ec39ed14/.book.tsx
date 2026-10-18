@@ -1,0 +1,3 @@
+import { $ClaudeConversation } from '../../.manual/.book';
+
+export default class $ClaudeUntitled17June2026Ec39ed14 extends $ClaudeConversation { }

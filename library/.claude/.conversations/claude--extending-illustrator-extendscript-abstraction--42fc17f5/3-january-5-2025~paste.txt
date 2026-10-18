@@ -1,0 +1,196 @@
+ sin(dim: "x" | "y" = "x"): Vector {
+        this._funcs.push(vector => vector.sin(dim));
+        return this.vector();
+    }
+
+    cos(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => {
+                const sinhIm = (Math.exp(im) - Math.exp(-im)) / 2;
+                const coshIm = (Math.exp(im) + Math.exp(-im)) / 2;
+                return [
+                    Math.cos(re) * coshIm,
+                    -Math.sin(re) * sinhIm
+                ];
+            });
+        }
+        return this.apply1(Math.cos, dim);
+    }
+
+    tan(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            const sin = this.sin();
+            const cos = this.cos();
+            return sin.divide(cos);
+        }
+        return this.apply1(Math.tan, dim);
+    }
+
+    abs(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => [Math.sqrt(re * re + im * im), 0]);
+        }
+        return this.apply1(Math.abs, dim);
+    }
+
+    sqrt(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => {
+                const magnitude = Math.sqrt(Math.sqrt(re * re + im * im));
+                const angle = Math.atan2(im, re) / 2;
+                return [
+                    magnitude * Math.cos(angle),
+                    magnitude * Math.sin(angle)
+                ];
+            });
+        }
+        return this.apply1(Math.sqrt, dim);
+    }
+
+    log(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => {
+                const magnitude = Math.sqrt(re * re + im * im);
+                const angle = Math.atan2(im, re);
+                return [Math.log(magnitude), angle];
+            });
+        }
+        return this.apply1(Math.log, dim);
+    }
+
+    round(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => [Math.round(re), Math.round(im)]);
+        }
+        return this.apply1(Math.round, dim);
+    }
+
+    atan(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => {
+                const re2 = Math.atan2(im, 1 + re);
+                const im2 = Math.atan2(-im, 1 - re);
+                return [0.5 * (re2 + im2), 0.5 * (re2 - im2)];
+            });
+        }
+        return this.apply1(Math.atan, dim);
+    }
+
+    acos(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => {
+                const z = v([re, im], "c").multiply(v([re, im], "c"));
+                const oneMinusZ = v(1, "c").subtract(z);
+                const sqrtOneMinusZ = oneMinusZ.sqrt();
+                const logPart = Vector.i().multiply(this.add(sqrtOneMinusZ)).log();
+                return logPart.multiply(v([-1, 0], "c")).at(0);
+            });
+        }
+        return this.apply1(Math.acos, dim);
+    }
+
+    asin(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => {
+                const sqrtPart = this.multiply(this).subtract(v(1)).sqrt();
+                const logPart = Vector.i().multiply(this.add(sqrtPart)).log();
+                return logPart.multiply(v([-1, 0], "c")).at(0);
+            });
+        }
+        return this.apply1(Math.asin, dim);
+    }
+
+    log10(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.log().divide(v([Math.LN10, 0], "c"));
+        }
+        return this.apply1((v) => Math.log(v) / Math.LN10, dim);
+    }
+
+    log2(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.log().divide(v([Math.LN2, 0], "c"));
+        }
+        return this.apply1((v) => Math.log(v) / Math.LN2, dim);
+    }
+
+    sinh(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => {
+                const sinhRe = (Math.exp(re) - Math.exp(-re)) / 2;
+                const coshRe = (Math.exp(re) + Math.exp(-re)) / 2;
+                return [
+                    sinhRe * Math.cos(im),
+                    coshRe * Math.sin(im)
+                ];
+            });
+        }
+        return this.apply1((v) => (Math.exp(v) - Math.exp(-v)) / 2, dim);
+    }
+
+    cosh(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => {
+                const sinhRe = (Math.exp(re) - Math.exp(-re)) / 2;
+                const coshRe = (Math.exp(re) + Math.exp(-re)) / 2;
+                return [
+                    coshRe * Math.cos(im),
+                    sinhRe * Math.sin(im)
+                ];
+            });
+        }
+        return this.apply1((v) => (Math.exp(v) + Math.exp(-v)) / 2, dim);
+    }
+
+    tanh(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            const sinh = this.sinh();
+            const cosh = this.cosh();
+            return sinh.divide(cosh);
+        }
+        return this.apply1((v) => (Math.exp(v) - Math.exp(-v)) / (Math.exp(v) + Math.exp(-v)), dim);
+    }
+
+    sign(dim: "x" | "y" = "x"): Vector {
+        if (this.type() === "c") {
+            return this.apply(([re, im]) => {
+                const magnitude = Math.sqrt(re * re + im * im);
+                return [re / magnitude, im / magnitude];
+            });
+        }
+        return this.apply1((v) => (v > 0 ? 1 : v < 0 ? -1 : 0), dim);
+    }
+
+
+    magnitude(): Vector {
+        this._assertComplex();
+        return new Vector(this.select(([re, im]) => Math.sqrt(re * re + im * im)), "x");
+    }
+
+    phase(): Vector {
+        this._assertComplex();
+        return new Vector(this.select(([re, im]) => Math.atan2(im, re)), "x");
+    }
+
+    angle(): Vector {
+        var phase = this.phase();
+        return phase.apply1(x => Region.toDegrees(x));
+    }
+
+    conjugate(): Vector {
+        this._assertComplex();
+        return new Vector(this.select(([re, im]) => [re, -im]), "c");
+    }
+
+    toPolar(): Vector {
+        this._assertComplex();
+        return this.magnitude().x().join(this.phase().xa());
+    }
+
+    fromPolar(): Vector {
+        this._assertComplex();
+        return this.pointwise2to2(this, ([mag, angle]) => [
+            mag * Math.cos(angle),
+            mag * Math.sin(angle)
+        ]);
+    }

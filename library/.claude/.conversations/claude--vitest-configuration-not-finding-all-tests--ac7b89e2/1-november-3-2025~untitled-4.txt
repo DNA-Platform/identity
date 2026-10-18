@@ -1,0 +1,159 @@
+export class $Representation<T = any> {
+    ref = '';
+    constructor(ref: string) {
+        this.ref = ref;
+    }
+}
+
+export const $rep = <T = any>(ref: string) => new $Representation<T>(ref);
+
+export type $Subject = any;
+export type $Topc = any;
+
+class $Catalogue {
+    private literature = new Map<$Representation, any>();
+    private references = new Map<string, $Representation>();
+    private subjects = new Set<$Subject>();
+    private topics: $Subject[] = [];
+    private dereferenced = false;
+    
+    readonly $subject: $Subject;
+    
+    constructor() {
+        // The elegant self-reference - this IS its own subject
+        this.$subject = this;
+        this.subjects.add(this);
+    }
+    
+    $empty(): $Catalogue {
+        if (this.dereferenced) return undefined as any;
+        const child = new $Catalogue();
+        this.subjects.add(child);
+        return child;
+    }
+    
+    $new(): $Catalogue {
+        if (this.dereferenced) return undefined as any;
+        const child = new $Catalogue();
+        child.topics.push(this);
+        this.subjects.add(child);
+        return child;
+    }
+    
+    $including(...topics: $Subject[]): $Catalogue {
+        if (this.dereferenced) return undefined as any;
+        const child = new $Catalogue();
+        
+        // Only add valid catalogues as topics
+        for (const topic of topics) {
+            if (topic instanceof $Catalogue) {
+                child.topics.push(topic);
+            }
+        }
+        
+        child.topics.push(this);
+        this.subjects.add(child);
+        return child;
+    }
+    
+    $find<T = any>(ref: $Representation<T>): T | undefined;
+    $find<T = any>(ref: $Representation<T>, subject: $Subject): T | undefined;
+    $find<T = any>(ref: $Representation<T>, subject?: $Subject): T | undefined {
+        if (this.dereferenced) return undefined;
+        
+        // The instanceof check - the internal handshake
+        if (subject && subject instanceof $Catalogue) {
+            if (this.subjects.has(subject)) {
+                return subject.$find(ref);
+            }
+            return undefined;
+        }
+        
+        // Check own literature
+        const canonical = this.references.get(ref.ref);
+        if (canonical) {
+            const value = this.literature.get(canonical);
+            if (value !== undefined) return value;
+        }
+        
+        // Walk the topics chain
+        for (const topic of this.topics) {
+            if (topic instanceof $Catalogue) {
+                const value = topic.$find(ref);
+                if (value !== undefined) return value;
+            }
+        }
+        
+        return undefined;
+    }
+    
+    $index<T = any>(ref: $Representation, literal: T): void;
+    $index<T = any>(ref: $Representation, literal: T, subject: $Subject): void;
+    $index<T = any>(ref: $Representation, literal: T, subject?: $Subject): void {
+        if (this.dereferenced) return;
+        
+        // The instanceof check - validate the subject
+        if (subject && subject instanceof $Catalogue) {
+            if (this.subjects.has(subject)) {
+                subject.$index(ref, literal);
+                return;
+            }
+            return;
+        }
+        
+        // Index locally
+        let canonical = this.references.get(ref.ref);
+        if (!canonical) {
+            canonical = ref;
+            this.references.set(ref.ref, canonical);
+        }
+        this.literature.set(canonical, literal);
+    }
+    
+    $deref(): void;
+    $deref(subject: $Subject): void;
+    $deref(ref: $Representation): void;
+    $deref(ref: $Representation, subject: $Subject): void;
+    $deref(arg1?: $Representation | $Subject, arg2?: $Subject): void {
+        if (this.dereferenced) return;
+        
+        if (!arg1 && ! arg2) {
+            this.dereferenced = true;
+            this.literature.clear();
+            this.references.clear();
+            this.subjects.clear();
+            this.topics = [];
+            return;
+        }
+        
+        // Check if it's a catalogue to remove from topics
+        if (arg1 instanceof $Catalogue) {
+            this.subjects.delete(arg1)
+            const index = this.topics.indexOf(arg1);
+            if (index >= 0) {
+                this.topics.splice(index, 1);
+            }
+            return;
+        }
+        
+        if (arg1 instanceof $Representation) {
+            const ref = arg1;
+            const subject = arg2;
+            
+            // Delegate to subject if provided and valid
+            if (subject && subject instanceof $Catalogue) {
+                subject.$deref(ref);
+                return;
+            }
+            
+            // Remove from own literature
+            const canonical = this.references.get(ref.ref);
+            if (canonical) {
+                this.literature.delete(canonical);
+                this.references.delete(ref.ref);
+            }
+        }
+    }
+}
+
+export const $lib = new $Catalogue();

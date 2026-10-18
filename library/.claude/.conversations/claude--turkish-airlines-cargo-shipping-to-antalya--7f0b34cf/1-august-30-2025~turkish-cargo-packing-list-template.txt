@@ -1,0 +1,33 @@
+PACKING LIST
+
+Shipper: Douglas Michael Rubino
+         [Your US Address]
+
+Consignee: Douglas Michael Rubino
+          c/o Turkish Airlines Cargo - Antalya Airport
+          Antalya, Turkey
+          Tel: +90 534 505 99 17
+
+CONTENTS:
+- Used clothing - [quantity] pieces
+- Books - [quantity] items
+- Kitchen items - [quantity] pieces
+- Personal toiletries - [quantity] items
+- [Other categories as needed]
+
+Total Declared Value: USD $[amount]
+Purpose: Personal household effects - relocation
+Status: USED PERSONAL EFFECTS - NOT FOR COMMERCIAL USE
+
+---
+
+İÇERİK:
+- Kullanılmış giysi - [quantity] parça
+- Kitaplar - [quantity] adet
+- Mutfak eşyası - [quantity] parça
+- Kişisel temizlik ürünleri - [quantity] adet
+- [Diğer kategoriler]
+
+Toplam Beyan Değeri: USD $[amount]
+Amaç: Kişisel ev eşyası - taşınma
+Durum: KULLANILMIŞ KİŞİSEL EŞYA - TİCARİ DEĞİL

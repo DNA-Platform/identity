@@ -1,0 +1,1124 @@
+# Spotlight Spec Format — Expert Reference
+
+> **Audience**: The expert who designs spotlight city posters.
+> **No code knowledge required.** You write JSON, the system does the rest.
+
+## Overview
+
+Each spotlight city lives in its own folder under `places/`. The folder name IS the namespace — no city prefix on any file:
+
+```
+src/maps/spotlights/places/boston/
+  spec.json        ← you write this
+  data.json        ← fetched from your spec (editable after fetch)
+  config.ts        ← generated from your spec (do not edit)
+  Spotlight.tsx     ← generated from your spec (do not edit)
+```
+
+The spec has five sections:
+
+1. **City** — identity, taglines, and title text
+2. **Geography** — where to look and how wide
+3. **Datasets** — what data to fetch (roads, rail, water, contours, administrative, parks — anything)
+4. **View** — how to render that data (classification rules, colors, mark weights, labels)
+5. **Accent** *(optional)* — a single spot color laid over the black-on-cream poster
+
+### Data location
+
+**Data lives in `public/data/spotlights/{city}/data.json`** and is loaded at runtime via `fetch()`. This avoids webpack/TypeScript processing the large GeoJSON files. The dataset is a curated, pre-fetched GeoJSON file generated from the spec's datasets section.
+
+---
+
+## Quick Start
+
+Minimal spec that fetches OSM roads and renders with defaults:
+
+```json
+{
+  "city": {
+    "id": "my-city",
+    "label": "My City",
+    "cityName": "MY CITY",
+    "visibleTagline": 0,
+    "taglines": [
+      { "type": "phrase", "text": "A beautiful place" }
+    ]
+  },
+  "geography": {
+    "center": [-71.06, 42.36],
+    "radiusKm": 5
+  },
+  "datasets": [
+    {
+      "source": "overpass",
+      "layer": "road",
+      "highwayTags": ["motorway", "trunk", "primary", "secondary", "tertiary", "residential"]
+    }
+  ],
+  "view": {
+    "classifyRules": [
+      { "match": { "highway": { "oneOf": ["motorway", "trunk"] } }, "tier": "pen" },
+      { "match": { "highway": { "oneOf": ["primary", "secondary"] } }, "tier": "arterial" },
+      { "match": { "highway": { "oneOf": ["tertiary"] } }, "tier": "pencil" },
+      { "default": true, "tier": "ghost" }
+    ]
+  }
+}
+```
+
+---
+
+## Section 1: City
+
+```json
+{
+  "city": {
+    "id": "new-york",
+    "label": "New York",
+    "cityName": "NEW YORK",
+    "visibleTagline": 0,
+    "taglines": [
+      {
+        "type": "quote",
+        "text": "No one should come to New York to live unless he is willing to be lucky.",
+        "attribution": "E.B. White — Here Is New York, 1949"
+      },
+      { "type": "phrase", "text": "The city that never sleeps" },
+      { "type": "fact", "text": "8.3 million people. 305 square miles. 468 subway stations." },
+      { "type": "coordinates", "text": "40°42′46″N 74°00′21″W" },
+      { "type": "founded", "text": "Est. 1624 — New Amsterdam" }
+    ]
+  }
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `id` | Yes | URL-safe slug. Must match the folder name. |
+| `label` | Yes | Display name in the city selector. |
+| `cityName` | Yes | Poster title (ALL CAPS). Font size is computed automatically — never specify it. |
+| `visibleTagline` | Yes | Index into `taglines[]` for the one shown to the viewer. |
+| `taglines` | Yes | Array of tagline objects (see below). |
+
+### Taglines
+
+Each tagline has a `type`, `text`, and optional `attribution`:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `type` | Yes | One of: `"quote"`, `"phrase"`, `"fact"`, `"coordinates"`, `"founded"` |
+| `text` | Yes | The tagline text. |
+| `attribution` | No | Attribution line (shown with em-dash prefix). Only meaningful for `quote` type. |
+
+**How taglines work in the SVG:**
+- The tagline at index `visibleTagline` renders in ink color, positioned below the city name, above the background rect.
+- All other taglines render below the background rect in the background color — structurally present but invisible.
+- An illustrator opens the file, finds the "Tagline Options" group, selects a hidden tagline, recolors it, and moves it to the visible position.
+
+**Tagline types affect rendering:**
+- `quote` — italic Georgia serif, wrapped in curly quotes, attribution below
+- `phrase` — italic Georgia serif
+- `fact` — italic Georgia serif
+- `coordinates` — italic Georgia serif with wider letter-spacing (0.12em)
+- `founded` — italic Georgia serif
+
+---
+
+## Section 2: Geography
+
+```json
+{
+  "geography": {
+    "center": [-71.0596, 42.3585],
+    "radiusKm": 5,
+    "rotation": 0
+  }
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `center` | Yes | `[longitude, latitude]` — note: longitude first! |
+| `radiusKm` | Yes | Circle radius in kilometers. Controls both data fetch area and projection scale. |
+| `rotation` | No | Clockwise rotation in degrees applied inside the circle aperture (default: 0). |
+
+---
+
+## Section 3: Datasets
+
+An array of dataset objects. Each describes one layer of geographic data to fetch. All datasets are fetched and merged into a single `data.json`. Every feature is tagged with a `layer` property matching the dataset's `layer` field.
+
+**Important:** ALL data goes in `datasets` — both visible map data AND hidden illustrator resources. Visibility is controlled entirely in the `view` section via classify rules. A subway dataset and a road dataset are fetched identically; the only difference is which tier the classify rules assign them to.
+
+### Available Sources
+
+#### Overpass (OSM)
+
+```json
+{
+  "source": "overpass",
+  "layer": "road",
+  "highwayTags": ["motorway", "trunk", "primary", "secondary", "tertiary", "residential"]
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `layer` | Yes | Any string — used as the `layer` property on each feature. |
+| `highwayTags` | No | OSM highway values to query. |
+| `extraTags` | No | Additional OSM tag queries (array of `{key: value}` objects). |
+
+Common highway tags (in descending importance):
+- `motorway`, `motorway_link` — Interstates, freeways
+- `trunk`, `trunk_link` — US/state routes with limited access
+- `primary`, `primary_link` — Major city streets
+- `secondary`, `secondary_link` — Collector streets
+- `tertiary`, `tertiary_link` — Connecting streets
+- `residential` — Neighborhood streets
+- `unclassified` — Minor roads
+- `service` — Alleys, parking lots, driveways
+
+**For non-road OSM data** (subway, parks, neighborhoods):
+
+```json
+{ "source": "overpass", "layer": "subway", "extraTags": [{ "railway": "subway" }] }
+{ "source": "overpass", "layer": "parks", "extraTags": [{ "leisure": "park" }] }
+{ "source": "overpass", "layer": "neighborhoods", "extraTags": [{ "place": "neighbourhood" }] }
+```
+
+#### TIGERweb (Census Bureau)
+
+```json
+{
+  "source": "tigerweb",
+  "layer": "rail",
+  "service": "tigerWMS_PhysicalFeatures",
+  "layerId": 7,
+  "where": "MTFCC IN ('R1011','R1051','R1052')",
+  "fields": ["OID", "BASENAME", "NAME", "MTFCC"]
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `layer` | Yes | Any string — used as the `layer` property on each feature. |
+| `service` | Yes | TIGERweb service name. |
+| `layerId` | Yes | Layer number within the service. |
+| `where` | No | SQL WHERE clause (default: `"1=1"` = all features). |
+| `fields` | No | Array of field names to return (default: all fields). |
+| `extractBoundary` | No | If `true`, extract polygon outer ring as LineString (for areal hydro like lake boundaries). |
+
+**Common TIGERweb configurations:**
+
+| What | Service | LayerId | Where | Notes |
+|------|---------|---------|-------|-------|
+| Railroads | `tigerWMS_PhysicalFeatures` | 7 | `MTFCC IN ('R1011','R1051','R1052')` | Layer 7 = Railroads, NOT 8 (labels) |
+| Rivers/Streams (linear) | `Hydro` | 0 | `1=1` | Fields: OID, BASENAME, NAME, MTFCC |
+| Lakes/Bays (areal boundary) | `Hydro` | 1 | `1=1` | Add `extractBoundary: true` |
+| County boundaries | `State_County` | 1 | `STATE='36'` | Filter by FIPS state code |
+| Primary Roads | `tigerWMS_PhysicalFeatures` | 1 | `1=1` | |
+| Secondary Roads | `tigerWMS_PhysicalFeatures` | 3 | `1=1` | |
+
+**Important field notes:**
+- Hydro layer 0 has `OID`, `BASENAME`, `NAME`, `MTFCC` — NOT `LINEARID`/`FULLNAME`
+- Always use `fields: ["OID", "BASENAME", "NAME", "MTFCC"]` for hydro
+- PhysicalFeatures layers have `OID`, `BASENAME`, `NAME`, `MTFCC`, `LINEARID`, `FULLNAME`
+
+#### USGS Contours
+
+```json
+{
+  "source": "usgs-contours",
+  "layer": "contour",
+  "contourType": "index"
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `contourType` | Yes | `"index"` (every ~40ft, sparse) or `"intermediate"` (every ~8ft, dense). |
+
+Use `"index"` for city-scale maps. `"intermediate"` produces 50,000+ features at city scale — too dense.
+
+#### Natural Earth
+
+```json
+{
+  "source": "natural-earth",
+  "layer": "water",
+  "neLayers": ["rivers_lake_centerlines"],
+  "resolution": "10m"
+}
+```
+
+Best for regional/continental maps. At city scale, TIGERweb hydro has better detail.
+
+#### CDN (Custom URL)
+
+```json
+{
+  "source": "cdn",
+  "layer": "boundary",
+  "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json"
+}
+```
+
+For any GeoJSON/TopoJSON available via URL.
+
+---
+
+## Section 4: View
+
+The view section controls how fetched data is rendered.
+
+### Ink Color
+
+```json
+{ "ink": "#1E1006" }
+```
+
+Base color for all visible marks. Every tier uses the same ink — the difference between features is weight and opacity, never color. Default: `"#1A1A1A"` (near-black).
+
+### Render Tiers
+
+The system has 9 standard tiers, painted back-to-front:
+
+| Tier | Default Width | Default Opacity | Purpose |
+|------|--------------|-----------------|---------|
+| `hidden` | 1.0 | 1.0 (bg color) | Illustrator resources — painted in background color, invisible to viewer |
+| `ghost` | 0.18 | 0.10 | Service roads, unclassified — barely visible |
+| `contour` | 0.38 | 0.18 | Elevation contours — faint background texture |
+| `pencil` | 0.32 | 0.22 | Tertiary roads, residential — light but legible |
+| `water` | 0.28 | 0.15 | Rivers, canals, shorelines — low opacity |
+| `rail` | 0.75 | 0.52 | Freight railroad — dashed stroke |
+| `arterial` | 0.65 | 0.45 | Primary/secondary roads, state routes |
+| `pen` | 1.4 | 0.82 | Metro/subway, named roads — bold |
+| `spine` | 2.0 | 0.95 | Interstates, freeways — the boldest marks |
+
+#### The `hidden` Tier
+
+The `hidden` tier is special. Features classified as `hidden`:
+- Are painted using the **canvas background color** as stroke (not the ink color)
+- Render **below the background rect** in the SVG layer order
+- Are structurally present in the SVG DOM but completely invisible to the viewer
+- Are available to an illustrator who opens the file — select them, recolor them, use as guides
+
+**This is how you embed illustrator resources.** Borough boundaries, subway lines, park outlines, building footprints — anything the illustrator might want but that shouldn't appear in the poster. Declare them in `datasets`, classify them to `hidden` in your rules.
+
+```json
+{
+  "datasets": [
+    { "source": "overpass", "layer": "road", "highwayTags": ["motorway", "primary", "residential"] },
+    { "source": "tigerweb", "layer": "borough", "service": "State_County", "layerId": 1, "where": "STATE='36'" },
+    { "source": "overpass", "layer": "subway", "extraTags": [{ "railway": "subway" }] }
+  ],
+  "view": {
+    "classifyRules": [
+      { "match": { "layer": "borough" }, "tier": "hidden" },
+      { "match": { "layer": "subway" }, "tier": "hidden" },
+      { "match": { "highway": "motorway" }, "tier": "spine" },
+      { "match": { "highway": "primary" }, "tier": "pen" },
+      { "default": true, "tier": "ghost" }
+    ]
+  }
+}
+```
+
+### Semantic Labels
+
+Map dataset layer names to human-readable SVG group names for illustrators:
+
+```json
+{
+  "labels": {
+    "road": "Streets",
+    "rail": "Transit",
+    "water": "Waterways",
+    "contour": "Elevation",
+    "subway": "Subway Lines",
+    "borough": "Borough Boundaries",
+    "parks": "Parks"
+  }
+}
+```
+
+**Rule:** Name what it is, not where it came from. The illustrator sees "Streets" and "Waterways" in their layer panel — never "OSM Highway" or "TIGERweb Hydro". If a layer has no entry in `labels`, the system capitalizes the layer id as a fallback.
+
+### Mark Style Overrides
+
+Override any tier's visual properties:
+
+```json
+{
+  "markStyles": {
+    "spine": { "width": 1.6, "opacity": 0.9 },
+    "pen": { "width": 1.6, "opacity": 1.0 },
+    "rail": { "width": 0.8, "opacity": 0.35, "dashArray": "4 3", "lineCap": "butt" },
+    "hidden": { "width": 1.0, "opacity": 0, "_note": "rendered in background color" }
+  }
+}
+```
+
+Available style properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `width` | number | Stroke width in SVG units |
+| `opacity` | number | Stroke opacity (0.0 – 1.0) |
+| `dashArray` | string | SVG stroke-dasharray (e.g., `"4 3"` for dashes) |
+| `lineCap` | string | `"round"`, `"butt"`, or `"square"` |
+| `lineJoin` | string | `"round"`, `"bevel"`, or `"miter"` |
+
+### Classification Rules
+
+**This is the heart of the spec.** Rules are evaluated top-to-bottom. First match wins.
+
+```json
+{
+  "classifyRules": [
+    { "match": { "name": { "contains": "storrow" } }, "tier": "spine", "_comment": "Storrow Drive" },
+    { "match": { "highway": { "oneOf": ["motorway", "trunk"] } }, "tier": "pen" },
+    { "match": { "layer": "water" }, "tier": "water" },
+    { "match": { "layer": "subway" }, "tier": "hidden" },
+    { "default": true, "tier": "ghost" }
+  ]
+}
+```
+
+#### Match Syntax
+
+Each match condition tests feature properties. All conditions in a single match must be true (AND logic).
+
+| Syntax | Meaning | Example |
+|--------|---------|---------|
+| `"value"` | Exact match | `{ "layer": "water" }` |
+| `{ "contains": "text" }` | Case-insensitive substring | `{ "name": { "contains": "broadway" } }` |
+| `{ "oneOf": ["a", "b"] }` | Value is one of the list | `{ "highway": { "oneOf": ["motorway", "trunk"] } }` |
+
+#### Available Feature Properties
+
+Properties depend on the data source:
+
+| Property | Source | Description |
+|----------|--------|-------------|
+| `layer` | All | Dataset layer tag (whatever you set in the dataset's `layer` field) |
+| `name` | OSM, TIGERweb | Feature name (e.g., "Broadway", "Charles River") |
+| `highway` | OSM | OSM highway classification (e.g., "motorway", "residential") |
+| `ref` | OSM | Route reference (e.g., "I-90", "US-1") |
+| `NAME` | TIGERweb | Feature name from TIGERweb |
+| `BASENAME` | TIGERweb | Base name (no directional prefix) |
+| `MTFCC` | TIGERweb | MAF/TIGER Feature Class Code |
+| `GEOID` | TIGERweb | Geographic identifier |
+| `elev` | USGS | Contour elevation in feet |
+| `interval` | USGS | Contour interval (index vs. intermediate) |
+
+#### Rule Order Matters
+
+Place **specific name-based rules first**, then **general type-based rules**, then the **default**:
+
+```json
+[
+  { "match": { "name": { "contains": "lake shore" } }, "tier": "spine", "_comment": "Named override" },
+  { "match": { "layer": "subway" }, "tier": "hidden", "_comment": "Hidden resource" },
+  { "match": { "highway": { "oneOf": ["motorway"] } }, "tier": "pen" },
+  { "match": { "layer": "water" }, "tier": "water" },
+  { "match": { "layer": "rail" }, "tier": "rail" },
+  { "default": true, "tier": "ghost" }
+]
+```
+
+#### Comments
+
+Use `"_comment"` on any rule to explain the design intent. Comments are preserved in the generated config as code comments.
+
+### Spatial Exclusion Rules
+
+Remove features by geographic location before classification:
+
+```json
+{
+  "excludeRules": [
+    { "latAbove": 42.400, "_comment": "Exclude north of Charles River" },
+    { "lonBelow": -122.200, "_comment": "Exclude far east suburbs" }
+  ]
+}
+```
+
+### Title Style
+
+The title section controls colors for the city name and tagline. **Font size and letter-spacing are computed automatically** — never specify `cityNameFontSize` or `cityNameLetterSpacing` directly. The codegen runs three chained equations at build time.
+
+```json
+{
+  "title": {
+    "cityNameFill": "#1E1006",
+    "taglineFill": "#7A5530",
+    "attributionFill": "#9A7550"
+  }
+}
+```
+
+| Field | Default | Description |
+|-------|---------|-------------|
+| `cityNameFill` | ink color | Color of the city name |
+| `taglineFill` | `#7A5530` | Color of the visible tagline |
+| `attributionFill` | `#9A7550` | Color of the tagline attribution |
+| `titleWidthFloor` | 0.75 | Min width target as fraction of circle diameter |
+| `titleWidthCeiling` | 0.95 | Max width target |
+| `titleWidthStep` | 0.025 | Width increase per character beyond 8 |
+
+**How the title equations work:**
+
+Three equations chain at build time. The spec only declares override constants if the designer wants to change the scaling rate. Most cities never touch these.
+
+**Equation 1 — Width target scales with character count:**
+```
+widthTarget(n) = clamp(0.75 + (n − 8) × 0.025, 0.75, 0.95)
+```
+"New York" (8 chars) → 75%. Every additional character earns 2.5% more width, capped at 95%.
+
+**Equation 2 — Font size from width target:**
+```
+fontSize = (circleDiameter × widthTarget) / (max(n, 8) × 1.12)
+```
+Where `circleDiameter = canvasWidth × radiusPct / 100 × 2` (default: 756px), `n` is clamped to minimum 8 (short names don't get bigger than 8-char names), and 1.12 is the empirical character width factor accounting for uppercase glyph width plus letter-spacing.
+
+**Equation 3 — Tracking compensation for emphasis:**
+```
+letterSpacing = 0.42 − (clamp(fontSize, 50, 90) − 50) × 0.004
+```
+Smaller names get wider letter-spacing to maintain visual presence. Large names (86px+) get tight 0.26em. Small names (50px) get wide 0.42em.
+
+**Result for current cities:**
+
+| City | Chars | Effective N | Font Size | Letter Spacing |
+|------|-------|-------------|-----------|----------------|
+| BOSTON | 6 | 8 (capped) | 63.3px | 0.37em |
+| CHICAGO | 7 | 8 (capped) | 63.3px | 0.37em |
+| NEW YORK | 8 | 8 | 63.3px | 0.37em |
+| SAVANNAH | 8 | 8 | 63.3px | 0.37em |
+| NEW ORLEANS | 11 | 11 | 50.6px | 0.42em |
+| SAN FRANCISCO | 13 | 13 | 45.4px | 0.42em |
+| WASHINGTON DC | 13 | 13 | 45.4px | 0.42em |
+| SALT LAKE CITY | 14 | 14 | 43.4px | 0.42em |
+
+Names with ≤8 characters all get the same font size — the 8-char cap prevents short names from being disproportionately large. Longer names get progressively smaller but their wider tracking gives them comparable visual weight.
+
+### Layout: Computed Text Positioning
+
+Text is positioned **relative to the circle** at codegen time. The circle keeps its configured size — text adapts around it. The key principle is **symmetric breathing room**: the gap between the circle bottom and the city name top equals the gap between the circle top and the frame top.
+
+```
+┌──────────────────────┐ ← frame (10px)
+│        gap A          │ ← gap above circle (cyPct-based)
+│      ●  circle  ●    │ ← radius = 42% of canvas width
+│                      │
+├ ─ ─ circle bottom ─ ─┤
+│        gap A          │ ← symmetric: same as gap above circle
+│      CITY NAME        │ ← font size from Eq1→Eq2 chain (min 8 chars)
+│   1.5625× line gap   │ ← 1.5625 × tagline line height
+│    tagline text       │ ← max(20px, max(16, cityNameFontSize/2) × 0.8)
+│    (word-wrapped)     │ ← wrapped to circle diameter at codegen time
+│    — attribution      │ ← max(13px, taglineFontSize × 0.75)
+│                      │ ← remaining space
+└──────────────────────┘ ← frame (10px)
+```
+
+**Everything is derived — the expert only controls the circle and canvas.**
+
+| Value | Equation | Notes |
+|-------|----------|-------|
+| Gap circle→name | symmetric with gap above circle | Same breathing room top and bottom |
+| City name font | `(diam × widthTarget) / (max(n,8) × 1.12)` | Short names (≤8 chars) cap at 8-char size |
+| Tagline font | `max(20, max(16, cityNameFontSize / 2) × 0.8)` | Half the city name, ×0.8 fudge, floor 20px for legibility, rounded to 0.5px |
+| Attribution font | `max(13, taglineFontSize × 0.75)` | |
+| Tagline wrapping | Word-wrap to circle diameter | Computed at codegen using `charWidth ≈ fontSize × 0.48` |
+| Gap name→tagline | `taglineLineHeight × 1.5625` | 25% more than baseline (was 1.25×) |
+| Tagline line height | `taglineFontSize × 1.45` | |
+
+The build system warns if text overflows the canvas.
+
+### Canvas Size (Optional)
+
+```json
+{
+  "canvas": { "width": 900, "height": 1200 }
+}
+```
+
+| Field | Default | Description |
+|-------|---------|-------------|
+| `width` | 900 | Canvas width in SVG units |
+| `height` | 1200 | Canvas height in SVG units (3:4 portrait) |
+| `background` | `#F8F7F4` | Canvas background color. Override for night palettes (e.g., `"#0D1520"` for Las Vegas). Hidden-tier features paint in this color. |
+
+### Circle Border (Optional)
+
+```json
+{
+  "circle": {
+    "borderWidth": 2.0,
+    "borderColor": "#1A1A1A"
+  }
+}
+```
+
+| Field | Default | Description |
+|-------|---------|-------------|
+| `borderWidth` | 2.0 | Circle border stroke width |
+| `borderColor` | ink color | Circle border color |
+
+The circle center defaults to `(50%, 38%)` — slightly above center to leave room for the text block below. Override `cyPct` to move the circle vertically.
+
+---
+
+## SVG Structure
+
+The generated SVG has a specific layer order designed for illustrators. The background rect is **load-bearing** — it hides everything below it.
+
+### Layer Order (bottom to top)
+
+| # | Group ID | Label | Contents |
+|---|----------|-------|----------|
+| 1 | `dna-hidden` | Hidden Resources | Hidden-tier features painted in bg color |
+| 2 | `taglines-hidden` | Tagline Options | N-1 taglines painted in bg color |
+| 3 | `dna-background` | Background | Background rect — hides everything below |
+| 4 | `dna-spotlight` | Spotlight | Visible map geometry (ghost → spine), clipped to circle |
+| 5 | — | — | Circle border |
+| 6 | `taglines-visible` / city name | Taglines | Visible tagline + city name |
+| 7 | `dna-frame` | Frame | Poster frame + signature |
+
+### Semantic Naming
+
+SVG groups are named for what the data represents, never where it came from:
+
+- Inside `dna-spotlight`: `spotlight-streets`, `spotlight-major-roads`, `spotlight-highways`, `spotlight-waterways`, `spotlight-transit`, `spotlight-elevation`
+- Inside `dna-hidden`: `hidden-borough-boundaries`, `hidden-subway-lines`, `hidden-parks`
+- Named features get IDs: `road-broadway`, `river-hudson`
+- Unnamed features: `street-0042`, `highway-0001`
+
+The `labels` field in the view section controls these names.
+
+---
+
+## Workflow
+
+### Creating a new city
+
+1. **Create the folder**: `src/maps/spotlights/places/my-city/`
+2. **Write `spec.json`**: Copy from an existing city and modify.
+3. **Run the pipeline**: `node scripts/build-spotlight-config.js src/maps/spotlights/places/my-city/spec.json`
+   - Fetches all datasets → `data.json`
+   - Generates config → `config.ts`
+   - Generates component → `Spotlight.tsx`
+   - Updates selector → `SpotlightsMap.tsx`
+4. **Verify**: Start the dev server and select your city in the spotlight viewer.
+
+### Rebuilding all cities
+
+```bash
+node scripts/build-spotlight-config.js --all          # fetch + codegen for all cities
+node scripts/build-spotlight-config.js --all --cache   # cache Overpass responses
+node scripts/build-spotlight-config.js --all --skip-fetch  # codegen only (no API calls)
+```
+
+### Iterating on a spec
+
+Edit `spec.json` → re-run the pipeline → refresh browser. Each run is idempotent — it overwrites the previous generated files.
+
+### Editing data
+
+After fetching, `data.json` is yours to edit. Remove noisy features, adjust properties, add hand-drawn features. The fetch script will overwrite it next time — save your edits under version control.
+
+### Important rules
+
+- **Never use `public/` for spotlight data.** Data lives in the city folder as `data.json`.
+- **`data.json` is editable.** After fetching, you can hand-edit features.
+- **`config.ts` and `Spotlight.tsx` are generated.** Re-run the build script to regenerate from the spec. Do not hand-edit.
+- **Folder IS the namespace.** All files are generic names (`spec.json`, `data.json`, `config.ts`, `Spotlight.tsx`).
+
+---
+
+## Architecture
+
+Understanding the system architecture helps when requesting new features. The system has three layers: **spec → codegen → components**.
+
+### Pipeline
+
+```
+spec.json
+    │
+    ▼
+┌─────────────────────────────┐
+│  build-spotlight-config.js  │  ← Node.js codegen script (build time)
+│                             │
+│  1. Read spec.json          │
+│  2. Compute layout          │  ← font sizes, positions, wrapping
+│  3. Generate config.ts      │  ← classify function + config object
+│  4. Generate Spotlight.tsx  │  ← assembled component with hardcoded values
+│  5. Update SpotlightsMap    │  ← city selector
+└─────────────────────────────┘
+    │
+    ▼
+config.ts           Spotlight.tsx
+(classify fn,       (assembled React component —
+ config object)      imports asset components,
+                     passes hardcoded props)
+```
+
+### Asset Components
+
+The `assets/` folder contains reusable building blocks. Each component does one thing and takes explicit props — no config interpretation, no defaults buried inside.
+
+| Component | File | What it renders |
+|-----------|------|-----------------|
+| `SpotlightBackground` | `assets/SpotlightBackground.tsx` | Full-canvas background rect (#F8F7F4) |
+| `CircleAperture` | `assets/CircleAperture.tsx` | Circular clip path + border ring, wraps children |
+| `SpotlightMapData` | `assets/SpotlightMapData.tsx` | GeoJSON features classified into tiers, grouped semantically |
+| `SpotlightTitle` | `assets/SpotlightTitle.tsx` | City name text element |
+| `SpotlightCaption` | `assets/SpotlightCaption.tsx` | City name + visible tagline container |
+| `HiddenTaglines` | `assets/SpotlightTaglines.tsx` | N-1 taglines painted in bg color (below background) |
+| `VisibleTagline` | `assets/SpotlightTaglines.tsx` | The one visible tagline (above background) |
+| `SpotlightFrame` | `assets/SpotlightFrame.tsx` | Poster border + inner drop shadow |
+| `SpotlightSignature` | `assets/SpotlightSignature.tsx` | Attribution text line |
+
+### How Codegen Works
+
+The generated `Spotlight.tsx` is **assembled code, not a runtime wrapper**. It imports asset components and passes them hardcoded values from the spec. A generated file reads like:
+
+```tsx
+<CircleAperture clipId="spotlight-circle-boston" cx={450} cy={456} radius={378} borderWidth={2} borderColor={'#1E1006'}>
+  <SpotlightMapData data={data} classify={classify} ink={'#1E1006'} mode="visible" />
+</CircleAperture>
+<SpotlightCaption x={450} cityName={'BOSTON'} cityNameY={947.6} cityNameFontSize={63.3} ... />
+```
+
+Every number is computed at build time. Nothing is interpreted at runtime. This means:
+- **Debugging is easy** — open the generated file, read the values, see what's wrong
+- **No runtime surprises** — the component renders exactly what you see in the code
+- **New features** only need: (1) a new asset component, (2) codegen to emit it with the right props
+
+### How to Think About Feature Requests
+
+When proposing a new capability, think about which layer it belongs to:
+
+| Layer | What lives here | Example feature |
+|-------|----------------|-----------------|
+| **Spec** | New JSON fields the expert writes | A `"strokeGradient"` field on classify rules |
+| **Codegen** | Build-time computation | A new equation for tagline opacity |
+| **Asset component** | A new reusable SVG building block | A `SpotlightLegend` component |
+
+The best features are **additive**: a new spec field, a new computation, a new component. They don't change existing behavior — cities that don't use the feature are unaffected.
+
+---
+
+## Feature Requests
+
+**This system is designed to evolve.** If a spec needs a capability that doesn't exist yet, the expert can request it directly in the spec using the `"_featureRequests"` field:
+
+```json
+{
+  "_featureRequests": [
+    {
+      "name": "stroke-gradient",
+      "description": "Apply a gradient along a LineString so that opacity fades toward the endpoints.",
+      "motivation": "River estuaries transition from freshwater to tidal — the mark should reflect this.",
+      "proposedSpec": {
+        "classifyRules": [
+          {
+            "match": { "name": { "contains": "james river" } },
+            "tier": "water",
+            "strokeGradient": { "startOpacity": 0.4, "endOpacity": 0.05 }
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+### How feature requests work
+
+1. **The expert writes a `_featureRequests` entry** in any city's `spec.json`. The leading underscore signals that it is metadata — the build pipeline ignores it.
+2. **The request describes what, why, and a proposed JSON shape.**
+3. **The system implementer builds it** as an additive, non-breaking change.
+4. **Once implemented, the feature is documented here** in spec-format.md.
+5. **The `_featureRequests` entry is removed** from the spec once the feature ships.
+
+### Currently available features (changelog)
+
+| Version | Feature | Spec field |
+|---------|---------|------------|
+| v1 | Multi-source data fetch | `datasets[]` with 5 source types |
+| v1 | 9-tier classification | `classifyRules[]` with match syntax |
+| v1 | Spatial exclusion | `excludeRules[]` with lat/lon bounds |
+| v1 | Mark style overrides | `markStyles` per tier |
+| v1 | Layout control | `circle`, `canvas` |
+| v1 | Map rotation | `geography.rotation` |
+| v2 | **Taglines array** | `city.taglines[]` + `city.visibleTagline` |
+| v2 | **Hidden tier** | `"tier": "hidden"` in classify rules — bg-color painted, below background rect |
+| v2 | **Semantic SVG labels** | `view.labels` — human-readable group names for illustrators |
+| v2 | **Computed font size** | `view.title.titleWidthTarget` — font size auto-computed at codegen |
+| v2 | **Flexible layer names** | `dataset.layer` is any string, not a fixed enum |
+| v3 | **Symmetric layout** | Gap below circle = gap above circle, text positioned at codegen time |
+| v3 | **Tagline at half size** | `max(16px, cityNameFontSize / 2) × 0.8` — readable, not overpowering |
+| v3 | **Short name cap** | Names ≤8 chars get same font size as 8-char names |
+| v3 | **Circle pushed up** | Default `cyPct` 41→38, giving more text room below |
+| v3 | **Tagline word-wrap** | Wrapped to circle diameter at codegen time (italic Georgia serif) |
+| v4 | **Assembled codegen** | `Spotlight.tsx` directly assembles asset components with hardcoded values — no runtime config interpretation |
+| v5 | **Tagline fudge factor** | Tagline font × 0.8, floor 20px, rounded to nearest 0.5px — prevents tagline from overpowering city name while staying legible |
+| v5 | **Wider title→tagline gap** | Gap multiplier 1.25× → 1.5625× (25% increase) — more breathing room |
+| v5 | **Fetch buffer** | Data fetched at 120% of display radius — prevents abrupt edge cutoff at circle boundary |
+| v6 | **Dark background** | `canvas.background` overrides the canvas color per city — enables night palettes (e.g., Las Vegas: cream ink on deep navy) |
+
+---
+
+## Full Annotated Example
+
+This is a complete, production-quality spec for Boston. Every field is annotated with comments explaining what it does, what alternatives exist, and what the expert could change.
+
+```jsonc
+{
+  // ── CITY IDENTITY ──────────────────────────────────────────────────
+  // These fields define the poster's text content. The cityName appears
+  // as the large title; taglines appear below it in italic serif.
+
+  "city": {
+    "id": "boston",               // URL slug — must match folder name
+    "label": "Boston",            // Display name in the city selector dropdown
+    "cityName": "BOSTON",          // ALL CAPS title on the poster
+                                  //   Font size is computed automatically from character count.
+                                  //   Short names (≤8 chars) cap at the 8-char size.
+                                  //   Longer names get progressively smaller with wider tracking.
+
+    "visibleTagline": 0,          // Index into taglines[] — which one is shown to the viewer
+                                  //   Change this to show a different tagline without editing text.
+                                  //   All others become hidden resources for illustrators.
+
+    "taglines": [
+      // TYPE: "phrase" — a descriptive statement, no quotes
+      { "type": "phrase", "text": "The walking city" },
+
+      // TYPE: "quote" — wrapped in curly quotes, attribution shown with em-dash
+      { "type": "quote", "text": "I have learned never to argue with a Bostonian", "attribution": "Rudyard Kipling" },
+
+      // TYPE: "fact" — statistics or notable details
+      { "type": "fact", "text": "23 neighborhoods. 47 square miles. 350 years of footpaths." },
+
+      // TYPE: "coordinates" — wider letter-spacing for readability
+      { "type": "coordinates", "text": "42°21′31″N  71°03′34″W" },
+
+      // TYPE: "founded" — establishment date/context
+      { "type": "founded", "text": "Est. 1630 — Massachusetts Bay Colony" }
+    ]
+  },
+
+  // ── GEOGRAPHY ──────────────────────────────────────────────────────
+  // Controls what area of the world is shown in the circle.
+
+  "geography": {
+    "center": [-71.0596, 42.3585],  // [longitude, latitude] — note: LONGITUDE FIRST
+                                     //   This is the center of the circle. Tip: use Google Maps
+                                     //   to find the center of the area you want to show.
+
+    "radiusKm": 12                   // Circle radius in real-world kilometers.
+                                     //   This controls BOTH how much data is fetched AND
+                                     //   how zoomed-in the map appears.
+                                     //   Typical values:
+                                     //     5-8km  — tight downtown focus (walkable core)
+                                     //     10-15km — city + nearby neighborhoods
+                                     //     18-22km — metro area (shows suburbs, highways)
+                                     //   Boston at 12km shows Back Bay through Cambridge.
+
+    // "rotation": 15                // OPTIONAL: clockwise rotation in degrees inside the circle.
+                                     //   Useful when the city's natural axis isn't north-south.
+                                     //   Manhattan might use rotation: -29 to align the island vertically.
+  },
+
+  // ── DATASETS ───────────────────────────────────────────────────────
+  // What geographic data to fetch. Each entry becomes a layer in data.json.
+  // Every feature gets a "layer" property matching the dataset's "layer" field.
+  // Visibility is controlled in the view section — not here.
+
+  "datasets": [
+    // ROADS from OpenStreetMap (via Overpass API)
+    // The highway tags control which road types to include.
+    // Add "_link" variants for ramps and connectors.
+    {
+      "source": "overpass",
+      "layer": "road",
+      "highwayTags": [
+        "motorway", "motorway_link",     // Interstates, freeways + their ramps
+        "trunk", "trunk_link",           // US/state routes with limited access
+        "primary", "primary_link",       // Major city streets
+        "secondary", "secondary_link",   // Collector streets
+        "tertiary", "tertiary_link",     // Connecting streets
+        "residential"                     // Neighborhood streets — the fine grain
+      ]
+      // To add non-road OSM data, use extraTags instead of highwayTags:
+      //   { "source": "overpass", "layer": "subway", "extraTags": [{ "railway": "subway" }] }
+      //   { "source": "overpass", "layer": "parks", "extraTags": [{ "leisure": "park" }] }
+    },
+
+    // RAILROADS from TIGERweb (Census Bureau)
+    // MTFCC codes: R1011=railroad, R1051=light rail, R1052=subway
+    {
+      "source": "tigerweb",
+      "layer": "rail",
+      "service": "tigerWMS_PhysicalFeatures",
+      "layerId": 7,
+      "where": "MTFCC IN ('R1011','R1051','R1052')",
+      "fields": ["OID", "BASENAME", "NAME", "MTFCC"]
+    },
+
+    // WATERWAYS from TIGERweb Hydro
+    // Layer 0 = linear features (rivers, streams, canals)
+    // For lake/bay BOUNDARIES, use layerId: 1 with "extractBoundary": true
+    {
+      "source": "tigerweb",
+      "layer": "water",
+      "service": "Hydro",
+      "layerId": 0,
+      "fields": ["OID", "BASENAME", "NAME", "MTFCC"]
+    },
+
+    // ELEVATION CONTOURS from USGS
+    // "index" = every ~40ft (sparse, good for city scale)
+    // "intermediate" = every ~8ft (very dense — 50,000+ features — use with caution)
+    {
+      "source": "usgs-contours",
+      "layer": "contour",
+      "contourType": "index"
+    }
+
+    // OTHER SOURCES YOU COULD ADD:
+    //
+    // County/state boundaries:
+    //   { "source": "tigerweb", "layer": "county", "service": "State_County",
+    //     "layerId": 1, "where": "STATE='25'", "fields": ["OID", "BASENAME", "NAME"] }
+    //
+    // Natural Earth (better for regional/continental):
+    //   { "source": "natural-earth", "layer": "rivers",
+    //     "neLayers": ["rivers_lake_centerlines"], "resolution": "10m" }
+    //
+    // Any GeoJSON/TopoJSON URL:
+    //   { "source": "cdn", "layer": "boundary",
+    //     "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json" }
+  ],
+
+  // ── VIEW ───────────────────────────────────────────────────────────
+  // How to render the fetched data. This is where the art direction happens.
+
+  "view": {
+    "ink": "#1E1006",               // Base color for all visible marks.
+                                     //   Every tier uses the same ink — difference is weight + opacity.
+                                     //   Default: "#1A1A1A" (near-black).
+                                     //   Try warm browns (#1E1006) or cool grays (#2D3436).
+
+    // SEMANTIC LABELS — human-readable group names for the SVG layer panel.
+    // An illustrator sees "Streets" and "Waterways", never "OSM Highway" or "TIGERweb Hydro".
+    "labels": {
+      "road": "Streets",
+      "rail": "Transit",
+      "water": "Waterways",
+      "contour": "Elevation"
+    },
+
+    // MARK STYLE OVERRIDES — customize stroke weight and opacity per tier.
+    // Unspecified tiers fall back to system defaults.
+    // The tiers, back-to-front: hidden → ghost → contour → pencil → water → rail → arterial → pen → spine
+    "markStyles": {
+      "spine": { "width": 1.6, "opacity": 0.9 },
+      "pen":   { "width": 1.6, "opacity": 1 },
+      "arterial": { "width": 1, "opacity": 0.6 },
+      "pencil": { "width": 0.4, "opacity": 0.25 },
+      "ghost": { "width": 0.3, "opacity": 0.18 },
+      "water": { "width": 1.2, "opacity": 0.25 },
+      "rail":  { "width": 0.8, "opacity": 0.35, "dashArray": "4 3", "lineCap": "butt" },
+      "contour": { "width": 0.2, "opacity": 0.08 }
+      // Available properties: width, opacity, dashArray, lineCap ("round"/"butt"/"square"), lineJoin
+    },
+
+    // CLASSIFICATION RULES — the heart of the spec.
+    // Rules are evaluated TOP-TO-BOTTOM. First match wins.
+    // Place specific name-based rules FIRST, then general type-based rules, then the default.
+    "classifyRules": [
+      // Named overrides — promote specific roads to higher tiers for artistic emphasis
+      {
+        "match": { "name": { "contains": "storrow" } },
+        "tier": "spine",
+        "_comment": "Storrow Drive — traces the Charles River void edge"
+      },
+      {
+        "match": { "name": { "contains": "mass ave" } },
+        "tier": "arterial",
+        "_comment": "Massachusetts Avenue — the great diagonal"
+      },
+
+      // Highway class rules — assign tiers by OSM highway classification
+      {
+        "match": { "highway": { "oneOf": ["motorway", "motorway_link", "trunk", "trunk_link"] } },
+        "tier": "pen",
+        "_comment": "Interstates, expressways"
+      },
+      {
+        "match": { "name": { "contains": "commonwealth" } },
+        "tier": "arterial",
+        "_comment": "Commonwealth Avenue — Back Bay's main SW/NE spine"
+      },
+      {
+        "match": { "name": { "contains": "boylston" } },
+        "tier": "arterial",
+        "_comment": "Boylston Street"
+      },
+      {
+        "match": { "highway": { "oneOf": ["primary", "primary_link"] } },
+        "tier": "arterial"
+      },
+      {
+        "match": { "highway": { "oneOf": ["secondary", "secondary_link", "tertiary", "tertiary_link"] } },
+        "tier": "pencil"
+      },
+
+      // Layer-based rules — assign entire layers from datasets to tiers
+      { "match": { "layer": "water" }, "tier": "water" },
+      { "match": { "layer": "rail" }, "tier": "rail" },
+      { "match": { "layer": "contour" }, "tier": "contour" },
+
+      // To hide data for illustrators (structurally present but invisible):
+      //   { "match": { "layer": "subway" }, "tier": "hidden" }
+      //   { "match": { "layer": "borough" }, "tier": "hidden" }
+
+      // Residential streets — the fine grain
+      {
+        "match": { "highway": { "oneOf": ["residential"] } },
+        "tier": "ghost",
+        "_comment": "Residential — the fine grain of Beacon Hill's medieval pattern"
+      },
+
+      // Default — anything not matched above
+      { "default": true, "tier": "ghost" }
+    ],
+
+    "defaultTier": "ghost",           // Fallback tier for the classify function
+
+    // SPATIAL EXCLUSION — remove features by geographic location before classification.
+    // Useful for trimming data that falls outside the area of interest.
+    "excludeRules": [],
+    // Examples:
+    //   { "latAbove": 42.4, "_comment": "Exclude north of Charles River" }
+    //   { "lonAbove": -122.28, "_comment": "Exclude East Bay" }
+    //   { "latBelow": 40.5, "_comment": "Exclude south of Staten Island" }
+
+    // TITLE COLORS — font size and spacing are computed automatically.
+    // Only specify colors here.
+    "title": {
+      "cityNameFill": "#1E1006",       // City name color (default: ink color)
+      "taglineFill": "#5C3A10",        // Tagline text color
+      "attributionFill": "#7A5530"     // Attribution line color (for quotes)
+      // Advanced: override the font scaling equations (most cities never need this)
+      // "titleWidthFloor": 0.75,      // Min width target (fraction of circle diameter)
+      // "titleWidthCeiling": 0.95,    // Max width target
+      // "titleWidthStep": 0.025       // Width increase per character beyond 8
+    }
+
+    // OPTIONAL: Override circle position/size
+    // "circle": {
+    //   "cxPct": 50,                  // Circle center X as % of canvas width (default: 50)
+    //   "cyPct": 38,                  // Circle center Y as % of canvas height (default: 38)
+    //   "radiusPct": 42,              // Circle radius as % of canvas width (default: 42)
+    //   "borderWidth": 2.0,           // Circle border stroke width
+    //   "borderColor": "#1E1006"      // Circle border color (default: ink)
+    // }
+
+    // OPTIONAL: Override canvas dimensions (default: 900×1200 portrait)
+    // "canvas": { "width": 900, "height": 1200 }
+  }
+}
+```
+
+---
+
+## 5. Accent — Spot Color
+
+The accent is a **third element** — a single spot color laid over the standard black-on-cream poster. It does not replace anything structural. It annotates.
+
+### The Invariants
+
+These never change, regardless of accent color:
+
+- **Background**: cream `#F8F7F4` — the paper
+- **Ink**: near-black — the pen
+- **Frame**: black border — the mount
+- **City name**: black — the primary text
+
+### What Accent Renders
+
+Each element is independent — omit any to leave it unaccented. Each has its own `color` and `width`, so different elements can use different colors for two-color compositions.
+
+1. **Frame inner border** — A rect drawn flush against the inner edge of the black frame. Stroke = color, configurable width.
+2. **Circle inner ring** — A circle drawn flush against the inner edge of the black circle border. Stroke = color, configurable width.
+3. **Title outline** — A fine stroke outline on the city name text. Uses SVG `paint-order: stroke` so the stroke renders behind the fill, creating a subtle outlined look. Configurable width (0.3–0.8px works well).
+4. **Map tier** — Any tier listed in `accent.map.tiers` renders its features in `accent.map.color` at that tier's normal opacity. The ink color is not used for those features.
+
+Nothing else changes. The paper is cream. The roads are black.
+
+### Accent Field Reference
+
+`accent` is a **top-level** field in spec.json — a sibling of `city`, `geography`, `datasets`, and `view`. Each sub-field is an object with its own `color` and optional `width`:
+
+```json
+{
+  "city": { ... },
+  "geography": { ... },
+  "datasets": [ ... ],
+  "view": { ... },
+  "accent": {
+    "frame":  { "color": "#FFB612", "width": 1.5 },
+    "circle": { "color": "#FFB612", "width": 1 },
+    "title":  { "color": "#FFB612", "width": 0.4 },
+    "map":    { "color": "#FFB612", "tiers": ["water"] },
+    "_note": "Expert commentary — ignored by codegen"
+  }
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `frame` | `{ color, width? }` | Accent line flush inside frame. Default width: 1. |
+| `circle` | `{ color, width? }` | Accent ring flush inside circle. Default width: 0.8. |
+| `title` | `{ color, width? }` | Outline stroke on city name. Default width: 0.5. |
+| `map` | `{ color, tiers[] }` | Map tiers rendered in accent color. Valid tiers: `ghost`, `pencil`, `water`, `rail`, `arterial`, `pen`, `spine`, `contour`, `admin`. |
+| `_note` | string | Expert commentary — ignored by codegen. |
+
+All sub-fields are optional. Each element's color is independent — you can use different colors for frame, circle, title, and map to create two-color (or more) compositions.
+
+### Design Guidance
+
+- **One color, one layer.** The accent works best when `map` targets a single tier. Pittsburgh's rivers in gold. London's Tube in red. The accent names the subject.
+- **The accent is the argument.** Every poster argues that something about this city matters. The accent color makes the argument visible. Black roads are context. The colored layer is meaning.
+- **Civic colors.** Pittsburgh gold, Chicago green, London red — these are recognizable. Use colors that belong to the city, not arbitrary decoration.
+- **No dark backgrounds.** The paper is always cream. The ink is always black. The accent is always a third element, never a replacement for either.
+
+### Examples
+
+| Spec | Accent Color | Accent Tier | What It Shows |
+|------|-------------|-------------|---------------|
+| `pittsburgh-gold` | `#FFB612` gold | water | Three rivers Y at the Point in Steelers gold |
+| `chicago-river-green` | `#00A651` green | water | Reversed river in St. Patrick's Day green |
+| `london-underground` | `#DC241F` red | rail | Tube network in TfL roundel red |
+| `rome-red` | `#CC2200` red | pen | Consular roads in Pompeian red |
+| `tokyo-torii` | `#D7003A` vermillion | water | Imperial moat in torii gate red |
+
+---
+
+### Live Examples
+
+| City | Key features | Good for studying |
+|------|-------------|-------------------|
+| `places/boston/` | Named road overrides, contours, exclude rules, 5 taglines | Full-featured spec |
+| `places/savannah/` | Named streets (Bull, Bay, Victory), 5 tagline types, custom attribution color | Tagline variety |
+| `places/san-francisco/` | Bridge overrides, spatial exclusion (East Bay), contours | Exclude rules |
+| `places/new-york/` | Named roads (Broadway, FDR, West Side Hwy), largest dataset | Complex classification |
+| `places/chicago/` | Named road override (Lake Shore Drive), rail + water layers | Clean tier hierarchy |
+| `places/pittsburgh-gold/` | Accent color on water tier, contours, named bridges | Accent / spot color |

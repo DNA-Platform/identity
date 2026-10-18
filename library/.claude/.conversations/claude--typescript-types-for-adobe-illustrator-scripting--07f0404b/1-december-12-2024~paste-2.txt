@@ -1,0 +1,115 @@
+class LayerQuery<T extends QueryItem = PageItemQuery> extends Queryable<Layer, T> {
+    document(): DocumentQuery { return (this.parent() as DocumentQuery).layers(); }
+    private _pageItems: LayerQuery<PageItemQuery> | undefined;
+    private _compoundPathItems: LayerQuery<CompoundPathItemQuery> | undefined;
+    private _pathItems: LayerQuery<PathItemQuery> | undefined;
+    private _rasterItems: LayerQuery<RasterItemQuery> | undefined;
+    private _placedItems: LayerQuery<PlacedItemQuery> | undefined;
+    private _meshItems: LayerQuery<MeshItemQuery> | undefined;
+    private _pluginItems: LayerQuery<PluginItemQuery> | undefined;
+    private _textFrames: LayerQuery<TextFrameQuery> | undefined;
+    private _groupItems: LayerQuery<GroupItemQuery> | undefined;
+    private _symbolItems: LayerQuery<SymbolItemQuery> | undefined;
+    private _graphItems: LayerQuery<GraphItemQuery> | undefined;
+
+    hide(): QueryItem { this.item().visible = false; return this; }
+    hidden(): boolean { return this.item().visible === false; }
+    show(): QueryItem { this.item().visible = true; return this; }
+    visible(): boolean { return this.item().visible === true; }
+
+    constructor(layer: Layer, collectionType: CollectionType = "pageItems") {
+        super(layer, collectionType);
+    }
+
+    group(groupName?: string, predicate?: (item: T) => boolean): GroupItemQuery {
+        var items = predicate ? this.where(predicate as any) : this.query();
+        var group = this.groupItems().create(groupName);
+        items.do(item => item.move(group, ElementPlacement.PLACEATEND));
+        return group;
+    }
+
+    replaceWith(layer: LayerQuery<T>): void {
+        this.name(layer.name());
+        this.pageItems().removeAll();
+        layer.pageItems().do(item => {
+            item.duplicate(item.name(), this, ElementPlacement.PLACEATEND);
+        });
+    }
+
+    pageItems() {
+        if (this.collectionType === "pageItems") return this;
+        if (this._pageItems) return this._pageItems;
+        this._pageItems = new LayerQuery<PageItemQuery>(this._item, "pageItems");
+        return this._pageItems;
+    }
+
+    compoundPathItems() {
+        if (this.collectionType === "compoundPathItems") return this;
+        if (this._compoundPathItems) return this._compoundPathItems;
+        this._compoundPathItems = new LayerQuery<CompoundPathItemQuery>(this._item, "compoundPathItems");
+        return this._compoundPathItems;
+    }
+
+    pathItems() {
+        if (this.collectionType === "pathItems") return this;
+        if (this._pathItems) return this._pathItems;
+        this._pathItems = new LayerQuery<PathItemQuery>(this._item, "pathItems");
+        return this._pathItems;
+    }
+
+    rasterItems() {
+        if (this.collectionType === "rasterItems") return this;
+        if (this._rasterItems) return this._rasterItems;
+        this._rasterItems = new LayerQuery<RasterItemQuery>(this._item, "rasterItems");
+        return this._rasterItems;
+    }
+
+    placedItems() {
+        if (this.collectionType === "placedItems") return this;
+        if (this._placedItems) return this._placedItems;
+        this._placedItems = new LayerQuery<PlacedItemQuery>(this._item, "placedItems");
+        return this._placedItems;
+    }
+
+    meshItems() {
+        if (this.collectionType === "meshItems") return this;
+        if (this._meshItems) return this._meshItems;
+        this._meshItems = new LayerQuery<MeshItemQuery>(this._item, "meshItems");
+        return this._meshItems;
+    }
+
+    pluginItems() {
+        if (this.collectionType === "pluginItems") return this;
+        if (this._pluginItems) return this._pluginItems;
+        this._pluginItems = new LayerQuery<PluginItemQuery>(this._item, "pluginItems");
+        return this._pluginItems;
+    }
+
+    textFrames() {
+        if (this.collectionType === "textFrames") return this;
+        if (this._textFrames) return this._textFrames;
+        this._textFrames = new LayerQuery<TextFrameQuery>(this._item, "textFrames");
+        return this._textFrames;
+    }
+
+    groupItems() {
+        if (this.collectionType === "groupItems") return this;
+        if (this._groupItems) return this._groupItems;
+        this._groupItems = new LayerQuery<GroupItemQuery>(this._item, "groupItems");
+        return this._groupItems;
+    }
+
+    symbolItems() {
+        if (this.collectionType === "symbolItems") return this;
+        if (this._symbolItems) return this._symbolItems;
+        this._symbolItems = new LayerQuery<SymbolItemQuery>(this._item, "symbolItems");
+        return this._symbolItems;
+    }
+
+    graphItems() {
+        if (this.collectionType === "graphItems") return this;
+        if (this._graphItems) return this._graphItems;
+        this._graphItems = new LayerQuery<GraphItemQuery>(this._item, "graphItems");
+        return this._graphItems;
+    }
+}

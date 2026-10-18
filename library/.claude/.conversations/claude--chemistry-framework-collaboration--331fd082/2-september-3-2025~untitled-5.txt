@@ -1,0 +1,179 @@
+export class $Chemical {
+    @inert()
+    private _diagram!: Diagram;
+
+    @inert()
+    get chemicalId() { return this._id; }
+    private _id: number;
+
+    @inert()
+    get formula(): this { return this.getType()._formula as any; }
+
+    @inert()
+    get formulaId() { return this.formula.chemicalId; }
+
+    @inert()
+    get Component(): Component<this> {
+        // Ensure that the formula creates a new model every time
+        if (this.formula === this) 
+            this._component = undefined;
+        if (!this._component)
+            this.assignComponent();
+
+        return this._component!;
+    }
+    private _component?: Component<this>;
+
+    @inert()
+    get reactive(): boolean { return this._reactive; }
+    private _reactive: boolean = true;
+
+    @inert()
+    children?: ReactNode;
+
+    @parent()
+    parent: $Chemical | undefined;
+
+    @inert()
+    get onReceivingProps() { return this._onReceivingProps; }
+    private _onReceivingProps = new Event<this, Properties>(this);
+
+    @inert()
+    get onBindingProps() { return this._onBindingProps; }
+    private _onBindingProps = new Event<this, Properties>(this);
+
+    @inert()
+    get onRenderingView() { return this._onRenderingView; }
+    private _onRenderingView = new Event<this, { props: Properties, view: ReactNode }>(this);
+
+    @inert()
+    get onAfterRenderingView() { return this._onAfterRenderingView; }
+    private _onAfterRenderingView = new DelayedEvent<this, { props: Properties, view: ReactNode }>(this);
+
+    $on?: Setter;
+
+    constructor() {
+        this._id = $Chemical.getNextChemicalId();
+        (this as any)[updateFunctionsKey] = [];
+        const type = this.getType();
+        if (!type._formula) {
+            type._formula = this;
+            this.constructFormula();
+        } else {
+            this._diagram = this.formula._diagram.duplicate();
+        }
+    }
+
+    construct(parent?: $Chemical): this {
+        const formula = this.getType()._formula;
+        const chemical$ = Object.create(formula);
+        const chemical: $Chemical = chemical$;
+
+        chemical.parent = parent;
+        this._id = $Chemical.getNextChemicalId();
+        chemical$[updateFunctionsKey] = [];
+        this._diagram = this.formula._diagram.duplicate();
+
+        return chemical as this;
+    }
+
+    // Override this to control rendering
+    view(): ReactNode {
+        // Default implementation shows the existing children from the props
+        return this.children;
+    }
+
+    reactivate() {
+        this._reactive = true;
+        this._diagram.bonds.forEach(bond => {
+            bond.isReactive = true;
+            bond.reactivate(this);
+        });
+    }
+
+    deactivate() {
+        this._reactive = false;
+        (this as any)[updatingKey] = false;
+        this._diagram.bonds.forEach(bond => {
+            bond.isReactive = false;
+        });
+    }
+
+    update(): void {
+        if (!this._reactive) return;
+        const updates = (this as any)[updateFunctionsKey];
+        if (Array.isArray(updates))
+            updates.map(update => update());
+        (this as any)[updatingKey] = false;
+    }
+
+    getType<T extends Type = typeof $Chemical>(): T {
+        return this.constructor as any;
+    }
+
+    // Must only be run for the formula
+    private constructFormula() {
+        this._diagram = new Diagram(this);
+    }
+
+    private assignComponent(): void {
+        const formula = this.getType().formula as this;
+        const isFormula = this === formula;
+        if (!isFormula && this._component) return
+
+        const Component = (props: Properties) => {
+            let chemical: this = this;
+            if (isFormula) {
+                chemical = this.construct();
+                chemical._component = Component;
+                formula._component = Component;
+                chemicalRegistry.set(Component as any, chemical);
+            } else {
+                chemical = chemicalRegistry.get(this.Component as any) as this;
+                if (!chemical) throw new Error(`isFormula: ${isFormula}, chemical: ${chemical}, chemical not found in registry`);
+            }
+
+            // Set up this component's update function
+            const [, update] = useState({});
+            const updateFunc = () => update({});
+            const chemical$ = chemical as any;
+            chemical$[updateFunctionsKey].push(updateFunc)
+
+            // Give subscribers the ability to weigh in on props
+            chemical.onReceivingProps.fire(props);
+
+            chemical.bindProps(props);
+
+            // Give subscribers the ability to weigh after the props are bound
+            chemical.onBindingProps.fire(props);
+
+            // bind implicit children
+
+            // Clean up on unmount
+            useEffect(() => {
+                return () => {
+                    const updateFunctions: (() => void)[] = chemical$[updateFunctionsKey];
+                    chemical$[updateFunctionsKey] = updateFunctions.filter((f: any) => f !== updateFunc);
+                    chemical._onReceivingProps.clear();
+                    chemical._onBindingProps.clear();
+                    chemical._onRenderingView.clear();
+                    chemical._onAfterRenderingView.clear();
+                    if (this._component)
+                        chemicalRegistry.delete(this._component as any)
+                };
+            }, []);
+
+            // When the formula is assigned a component, the new chemical might not have been
+            if (!formula._component)
+                formula._component = this._component;
+
+            const view = chemical.view();
+            // bind explicit childrean
+
+            // Give subscribers the ability to weigh after the view has been rendered
+            chemical.onRenderingView.fire({ props, view });
+            chemical.onAfterRenderingView.fire({ props, view });
+
+            return view
+        }
+    }

@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Is there any special connectio… ]]( claude--Is there any special connectio…--49675976 )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>49675976-63bf-4a86-b626-349616bf7fcb</Origin>
         <Paragraph>

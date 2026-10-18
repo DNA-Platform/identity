@@ -1,0 +1,47 @@
+import { Author, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
+import { BookshelfCover as Cover, Illustration, Messages, Participant, Participants, Period, Scheme, Volume, Window } from '../../../.manual/.book';
+import { Account, Origin, Project } from '../../.manual/.book';
+import SubjectCover from '../.cover.tsx';
+import StoryCover from '../../../.librarian/.cover.tsx';
+
+export default () => (
+    <Chapter>
+        <Cover />
+        <Volume>{SubjectCover()}</Volume>
+        <Volume>{StoryCover()}</Volume>
+        <Scheme
+            ground="#eef4ee"
+            band="#b9d4bf"
+            bandInk="#1f3f2a"
+            foot="#8fb79b"
+            footInk="#17351f"
+            ink="#1f3f2a"
+        />
+        <Window
+            x="-32"
+            y="-26"
+        />
+        <Participants>
+            <Participant>$[[ Doug ]]( Dougs Story )</Participant>
+            <Participant>$[[ Claude ]]( Dougs Claude )</Participant>
+        </Participants>
+        <Period
+            from="2026-03-05T19:39:30.478411Z"
+            to="2026-03-05T19:40:04.955655Z"
+        />
+        <Messages
+            shown="4"
+            all="4"
+        />
+        <Title>[[ Generalized anxiety disorder diagnosis across countries ]]( claude--Generalized anxiety disorder diagnosis across countries--c8269065 )</Title>
+        <Author>*[[ Doug ]]( The Librarian )</Author>
+        <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
+        <Project>***[[ Turkey ]]( claude--Turkey )</Project>
+        <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
+        <Origin>c8269065-e850-43ab-8883-a8802ac4062b</Origin>
+        <Paragraph>
+            <Illustration />
+            <Svg>![[ illustration.svg ]]</Svg>
+        </Paragraph>
+    </Chapter>
+);

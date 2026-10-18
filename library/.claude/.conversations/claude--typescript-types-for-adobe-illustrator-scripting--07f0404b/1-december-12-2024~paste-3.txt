@@ -1,0 +1,106 @@
+class GroupItemQuery<T extends QueryItem = PageItemQuery> extends Queryable<GroupItem, T> {
+    private _pageItems: GroupItemQuery<PageItemQuery> | undefined;
+    private _compoundPathItems: GroupItemQuery<CompoundPathItemQuery> | undefined;
+    private _pathItems: GroupItemQuery<PathItemQuery> | undefined;
+    private _rasterItems: GroupItemQuery<RasterItemQuery> | undefined;
+    private _placedItems: GroupItemQuery<PlacedItemQuery> | undefined;
+    private _meshItems: GroupItemQuery<MeshItemQuery> | undefined;
+    private _pluginItems: GroupItemQuery<PluginItemQuery> | undefined;
+    private _textFrames: GroupItemQuery<TextFrameQuery> | undefined;
+    private _groupItems: GroupItemQuery<GroupItemQuery> | undefined;
+    private _symbolItems: GroupItemQuery<SymbolItemQuery> | undefined;
+    private _graphItems: GroupItemQuery<GraphItemQuery> | undefined;
+
+    constructor(groupItem: GroupItem, collectionType: CollectionType = "pageItems") {
+        super(groupItem, collectionType);
+    }
+
+    group(groupName?: string, predicate?: (item: T) => boolean): GroupItemQuery {
+        var items = predicate ? this.where(predicate as any) : this.query();
+        var group = this.groupItems().create(groupName);
+        items.do(item => item.move(group, ElementPlacement.PLACEATEND));
+        return group;
+    }
+
+    ungroup() {
+        this.reverse().do(item => item.move(this, ElementPlacement.PLACEAFTER));
+        this.remove();
+    }
+
+    pageItems() {
+        if (this.collectionType === "pageItems") return this;
+        if (this._pageItems) return this._pageItems;
+        this._pageItems = new GroupItemQuery<PageItemQuery>(this._item, "pageItems");
+        return this._pageItems;
+    }
+
+    compoundPathItems() {
+        if (this.collectionType === "compoundPathItems") return this;
+        if (this._compoundPathItems) return this._compoundPathItems;
+        this._compoundPathItems = new GroupItemQuery<CompoundPathItemQuery>(this._item, "compoundPathItems");
+        return this._compoundPathItems;
+    }
+
+    pathItems() {
+        if (this.collectionType === "pathItems") return this;
+        if (this._pathItems) return this._pathItems;
+        this._pathItems = new GroupItemQuery<PathItemQuery>(this._item, "pathItems");
+        return this._pathItems;
+    }
+
+    rasterItems() {
+        if (this.collectionType === "rasterItems") return this;
+        if (this._rasterItems) return this._rasterItems;
+        this._rasterItems = new GroupItemQuery<RasterItemQuery>(this._item, "rasterItems");
+        return this._rasterItems;
+    }
+
+    placedItems() {
+        if (this.collectionType === "placedItems") return this;
+        if (this._placedItems) return this._placedItems;
+        this._placedItems = new GroupItemQuery<PlacedItemQuery>(this._item, "placedItems");
+        return this._placedItems;
+    }
+
+    meshItems() {
+        if (this.collectionType === "meshItems") return this;
+        if (this._meshItems) return this._meshItems;
+        this._meshItems = new GroupItemQuery<MeshItemQuery>(this._item, "meshItems");
+        return this._meshItems;
+    }
+
+    pluginItems() {
+        if (this.collectionType === "pluginItems") return this;
+        if (this._pluginItems) return this._pluginItems;
+        this._pluginItems = new GroupItemQuery<PluginItemQuery>(this._item, "pluginItems");
+        return this._pluginItems;
+    }
+
+    textFrames() {
+        if (this.collectionType === "textFrames") return this;
+        if (this._textFrames) return this._textFrames;
+        this._textFrames = new GroupItemQuery<TextFrameQuery>(this._item, "textFrames");
+        return this._textFrames;
+    }
+
+    groupItems() {
+        if (this.collectionType === "groupItems") return this;
+        if (this._groupItems) return this._groupItems;
+        this._groupItems = new GroupItemQuery<GroupItemQuery>(this._item, "groupItems");
+        return this._groupItems;
+    }
+
+    symbolItems() {
+        if (this.collectionType === "symbolItems") return this;
+        if (this._symbolItems) return this._symbolItems;
+        this._symbolItems = new GroupItemQuery<SymbolItemQuery>(this._item, "symbolItems");
+        return this._symbolItems;
+    }
+
+    graphItems() {
+        if (this.collectionType === "graphItems") return this;
+        if (this._graphItems) return this._graphItems;
+        this._graphItems = new GroupItemQuery<GraphItemQuery>(this._item, "graphItems");
+        return this._graphItems;
+    }
+}

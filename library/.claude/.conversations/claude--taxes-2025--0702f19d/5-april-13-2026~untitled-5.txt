@@ -1,0 +1,313 @@
+# Assumptions Check Report — Tax Filing Algorithm v1.2
+
+**Prepared:** 2026-04-13
+**Prepared by:** Arthur (Accountant), with Brooke, Rita, and Libby
+**Reviewing:** `2025/docs/tax-filing-algorithm-2025.md`
+**Status:** ⚠️ **DO NOT BEGIN FORM ENTRY.** Multiple flags require expert response.
+
+---
+
+## Summary
+
+- **11 confirmed** assumptions
+- **12 flagged** assumptions (some critical — see §PRIORITY below)
+- **4 unknown / unverifiable** from available docs
+- **Several additional issues** found outside the stated assumptions
+
+---
+
+## PRIORITY FLAGS (read these first)
+
+These would cause rejection, incorrect filing, or missed tax benefits. Must be resolved before form entry.
+
+### 🔴 P1. LLC legal name — "Art" not "Arts"
+
+**Every formation document spells the name as "Digital Narrative Art LLC" (singular "Art"), NOT "Digital Narrative Arts LLC" (plural "Arts").**
+
+Verified via `pdf-parse` text extraction of each source:
+
+| Document | Exact name |
+|----------|-----------|
+| CP 575 B EIN letter | `DIGITAL NARRATIVE ART LLC` |
+| Membership Notification (Statement of Resignation) | `Digital Narrative Art LLC` |
+| WY Filing Evidence (Articles of Organization) | `Digital Narrative Art LLC` |
+| Current W-9 (AcroForm value) | `Digital Narrative Art LLC` |
+
+The algorithm uses "Digital Narrative Arts LLC" (plural) throughout — in B1, in Form 1065 header, K-1 Item B, IT-204, W-7 attachments.
+
+Where the plural form appears: only in Mercury's customer-facing UI (e.g., "Digital Narrative Arts LLC" in the top-left sidebar). That's most likely a Mercury account-setup typo by Doug at signup; the IRS/WY/W-9 records are authoritative.
+
+**Impact:** Filing the 1065 with "Digital Narrative Arts LLC" would cause an IRS name-control mismatch or create a mismatched entity record. Name control "DIGI" works either way, but the full legal name must exactly match CP 575.
+
+**Recommendation:** Use `DIGITAL NARRATIVE ART LLC` (or `Digital Narrative Art LLC` in title case) on every IRS and state form. Also: Mercury's record should be corrected so next year's statements show the correct name.
+
+### 🔴 P2. Stale Line 10 / Line 20 numbers
+
+The algorithm's Line 10 guaranteed payment ($12,418.33) and Line 20 breakdown use the **pre-2026-04-13 numbers**, before Doug confirmed that Professional Services ($152.24) and Utilities ($204.61) are Ana's personal, not business.
+
+After Doug's clarification, the correct splits are:
+
+| Line | Algorithm says | Should be |
+|------|----------------|-----------|
+| Line 10 guaranteed payments | $12,418.33 | **$12,775.18** |
+| Line 20 Other deductions | $15,924.78 (includes prof svc + util + wrong EasyStaff) | **$15,567.93** |
+| Line 21 Total deductions | $28,343.12 | $28,343.11 (unchanged to the penny) |
+| Line 22 Ordinary loss | $(13,726.29) | $(13,726.28) (unchanged) |
+
+**The bottom line is identical**, but the individual lines need to be updated. Doug's K-1 ordinary loss stays at $(6,863.14).
+
+Corrected Line 20 breakdown should be:
+
+| Category | Amount |
+|----------|--------|
+| Domain lease (GoDaddy) | $11,033.16 |
+| Technology / SaaS | $3,266.82 |
+| Internet and telephone | $594.07 |
+| Bank and wire fees | $186.36 |
+| EasyStaff platform fees | $487.52 |
+| **Total Line 20** | **$15,567.93** |
+
+And Ana's K-1 Box 4a/4c guaranteed payment should be **$12,775.18** (includes the moved-in $152.24 + $204.61).
+
+### 🔴 P3. Missed potential itemized deduction — 2025 mortgage interest
+
+The algorithm assumes D2 standard deduction with a flag for team verification. But we have concrete evidence Doug had significant mortgage interest in 2025:
+
+- The 2024 IRS wage & income transcript shows a **Form 1098 from JPMORGAN CHASE BANK** (mortgage interest)
+- Doug owned the house (84 Lebrun Ave) from November 2018 through **December 2025** — so he paid mortgage interest for approximately **11 of 12 months in 2025**
+- Rough estimate: $400k remaining principal × 4% × 11/12 ≈ **$14,667 of mortgage interest for 2025**
+- Plus NY property tax (roughly $5k–10k for a NY home of this value)
+- Plus NY state income tax paid (capped at $10k under SALT)
+
+**Potential 2025 Schedule A total: ~$24,667**, vs. $15,000 standard deduction. That's roughly **$9,667 of additional deduction**, worth **$1,160+ in federal tax savings** at a 12% marginal rate, plus more at 22% on any IRA income reaching the next bracket, plus state savings.
+
+This could be larger than Doug's entire LLC loss benefit.
+
+**Action:** Doug should check his Chase mortgage account for the 2025 1098. Most banks publish it by late January. Also: locate 2025 NY property tax bills and evidence of any state income tax paid.
+
+**Note:** The 2025 1098 is not yet visible in the IRS Information Return Documents page (we confirmed earlier that the page has zero 2025 returns for Doug). JPMorgan's internal system should have it regardless.
+
+### 🔴 P4. Passive vs. nonpassive activity determination
+
+The algorithm assumes Doug is **nonpassive (materially participating)**, which makes his $6,863 loss immediately deductible. If Doug is **passive**, the loss is suspended under §469 (Form 8582) and can only offset passive income — which Doug doesn't have. **That would destroy the entire tax benefit for 2025.**
+
+Material participation is a 7-test standard. Doug:
+- Contributed capital and set up the LLC ✓
+- Directed formation and dealt with banking/taxes
+- But the day-to-day services appear to be performed by Ana (per the guaranteed payment structure)
+
+If Ana does substantially all the work and Doug is primarily a capital provider, Doug may NOT meet any of the material participation tests (which generally require hours of direct work). The safest test is "more than 500 hours during the year in the activity" — Doug needs to be able to defend that.
+
+**This is not a formality — it determines whether the $6,863 loss is useful or wasted.**
+
+**Recommendation:** Expert should explicitly analyze which material participation test Doug meets, given the facts. Doug should document his involvement hours. If he doesn't clearly meet a test, the expert should advise whether a different structure or treatment is appropriate.
+
+### 🟡 P5. Form 7004 contradiction within the algorithm
+
+Part 6 filing table row 8 says:
+> Form 7004 | Too late to file | **Do NOT file**
+
+But the expert's earlier verbal guidance (saved in `2025/docs/expert-guidance-capital-and-basis.md`) said "Form 7004 → file immediately regardless".
+
+The algorithm's position is correct — a late-filed 7004 doesn't create a valid extension. But this contradicts what the expert said verbally, which we had recorded as a "decision locked in" in our project docs.
+
+**Resolution:** Algorithm v1.2 supersedes. Do NOT file 7004. The earlier verbal guidance was an error or was misunderstood.
+
+### 🟡 P6. Schedules K-2 / K-3 for foreign partner
+
+The algorithm covers Schedule B Question 4 (small partnership exception from Schedules L/M-1/M-2) but **does not address Schedules K-2 and K-3** — the international reporting schedules.
+
+A partnership with a direct foreign partner (Ana) normally must file K-2/K-3 **unless** the "domestic filing exception" applies. The exception has several elements:
+- No or limited foreign activity (Ana's services are foreign-sourced)
+- Notification requirements
+- All partners given notice
+
+The expert's original scope memo said "small partnership exception likely exempts from Schedules K-2/K-3" but that's a different exception that may or may not apply here.
+
+**Recommendation:** Expert should explicitly rule on whether K-2/K-3 are required for this filing, and if required, add them to the algorithm.
+
+---
+
+## ASSUMPTIONS CHECK (full list)
+
+### Section A — Identity
+
+| ID | Assumption | Status | Notes |
+|----|------------|--------|-------|
+| A1 | Doug full legal name: Douglas Michael Rubino | ✅ CONFIRMED | Matches CP 575 B "DOUGLAS MICHAEL RUBINO MBR" and Statement of Resignation of Organizer |
+| A2 | Doug's SSN known and available | ❓ UNKNOWN | Not in our docs. Doug to provide at form entry time. |
+| A3 | US citizen, single, age 42 | ✅ CONFIRMED | Per prior expert memos and conversation |
+| A4 | Full-year NY resident in 2025 | ⚠️ FLAG | Doug's current address is 500 Westover Dr #36118, Sanford NC. We don't know when he actually moved. If he left NY mid-year, he's a **part-year** resident, not full-year. Doug must confirm. |
+| A5 | Mailing address: 500 Westover Dr #36118, Sanford NC 27330 | ✅ CONFIRMED | W-9 has this (AcroForm value verified). Doug confirmed it's his personal forwarding address. |
+| A6 | Ana's full legal name: Anastasiia Yurievna Krasavina | ⚠️ FLAG | Membership Notification shows "**Anastasiia Krasavina**" only (no middle name). The middle name "Yurievna" is from Doug's statement, not a document. For W-7, the name must match Ana's Russian passport exactly. |
+| A7 | Ana's address: 83 Sairme St, Apt. 3a, 0160, Tbilisi, Georgia | ❓ UNKNOWN | Not in any document we have. Doug stated it. Expert will need to verify for K-1 and W-7. |
+| A8 | Ana TIN = "Applied For" | ✅ CONFIRMED | Correct approach per IRS instructions for pending ITIN |
+| A9 | Ana is a nonresident alien | ✅ CONFIRMED | Per prior expert memos |
+
+### Section B — Entity
+
+| ID | Assumption | Status | Notes |
+|----|------------|--------|-------|
+| B1 | LLC legal name "Digital Narrative **Arts** LLC" | 🔴 **FLAG — P1 above** | All sources show "Digital Narrative **Art** LLC" (singular). Critical. |
+| B2 | EIN 33-4868229 | ✅ CONFIRMED | CP 575 B |
+| B3 | Name control DIGI | ✅ CONFIRMED | CP 575 B |
+| B4 | WY formation date April 15, 2025 | ✅ CONFIRMED | WY Filing Evidence, filed stamp "Apr 15 2025 3:33PM" |
+| B5 | Membership effective April 22, 2025 | ✅ CONFIRMED | Statement of Resignation of Organizer dated April 22, 2025 |
+| B6 | LLC tax year: April 22 – December 31, 2025 (short year) | ⚠️ FLAG | The LLC **existed** from April 15 (Articles of Organization filed). Members became effective April 22. Tax year technically starts at formation, not member effective date. Practical difference is minimal (no activity between Apr 15–22, first Mercury transaction was May 14) but the expert should confirm which date is correct for Line "Tax year beginning". |
+| B7 | Partnership taxed by default, no election | ⚠️ FLAG | Assumption — we cannot verify from our docs whether a Form 8832 was filed. Doug should confirm with ZenBusiness records. |
+| B8 | Ownership 50/50 | ⚠️ FLAG | Neither formation document states the ownership split. The Membership Notification lists both members without percentages. The 50/50 comes from the expert's original scope memo (which was based on Doug's statement). **There is no written partnership agreement or operating agreement establishing the split.** This has implications — see P4 and the expert's earlier §704(b) discussion. For filing, Doug's statement is what we use, but it should be documented prospectively. |
+| B9 | IRS has 84 Lebrun (old) | ✅ CONFIRMED | CP 575 B body shows this address |
+| B10 | WY RA: Wyoming Registered Agent Services LLC, Sheridan WY | ✅ CONFIRMED | WY Filing Evidence |
+| B11 | Mercury 5819 is sole operating account | ✅ CONFIRMED | Confirmed across 8 months of statements + CSV — Savings 5868 is $0.00, Sweep is FDIC pass-through only |
+| B12 | No Form 8832 filed | ❓ UNKNOWN | Same as B7 — Doug to verify |
+| B13 | No prior year 1065 | ✅ CONFIRMED | Derived from B4 — first year |
+
+### Section C — Income and Financial
+
+| ID | Assumption | Status | Notes |
+|----|------------|--------|-------|
+| C1 | Gross revenue $14,616.83 | ✅ CONFIRMED | PayPal $14,070.34 + Skrill $546.49 |
+| C2 | Capital contributions $16,000 | ✅ CONFIRMED | Four Citibank transfers |
+| C3 | Ana guaranteed payment $12,418.33 | ⚠️ **FLAG — P2 above** | **Stale.** Correct current figure is $12,775.18 after Doug moved prof svc + utilities to Ana's bucket. |
+| C4 | Core business expenses $4,891.62 | ⚠️ **FLAG — P2 above** | **Stale.** Correct current figure is $4,534.77 after prof svc + utilities moved out. |
+| C5 | GoDaddy $11,033.16 fully deductible lease | ✅ CONFIRMED | Expert decision logged |
+| C6 | LLC net loss ~$(13,726) | ✅ CONFIRMED | Exact: $(13,726.28). Bottom line is the same whether we use stale or current C3/C4 splits. |
+| C7 | Doug 50% = ~$(6,863) | ✅ CONFIRMED | Exact: $(6,863.14) |
+| C8 | 1099-R $46,500 / $4,650 withheld / code 1 | ✅ CONFIRMED | Directly matches `U2257053.2025.F1099R.pdf` |
+| C9 | §72(t) 10% penalty on full amount = $4,650 | ✅ CONFIRMED | Subject to the exception check (next item) |
+| C10 | Interest $19.93 | ✅ CONFIRMED | 1099-INT |
+| C11 | Qualified dividends $562.86 | ✅ CONFIRMED | 1099-DIV box 1b |
+| C12 | Foreign tax $78.37 | ✅ CONFIRMED | 1099-DIV box 7 |
+| C13 | IB short-term gain $1,218.08 | ✅ CONFIRMED | 8949 worksheet totals |
+| C14 | Coinbase short-term net $(183.07) | ✅ CONFIRMED | Crypto memo |
+| C15 | Coinbase LT known gain $5,791.94 | ✅ CONFIRMED | Crypto memo |
+| C16 | HitBTC reconstructed basis $438.31 | ✅ CONFIRMED | 0.04376 × $10,016.22 = $481.31... wait — **arithmetic check: 0.04376 × 10016.22 = $438.31 exactly** ✓ |
+| C17 | HitBTC long-term gain $3,227.56 | ✅ CONFIRMED | $3,665.87 − $438.31 = $3,227.56 ✓ |
+| C18 | Same-day BTC $0 gain | ✅ CONFIRMED | Per expert memo |
+| C19 | Total short-term gain $1,035.01 | ✅ CONFIRMED | $1,218.08 − $183.07 = $1,035.01 ✓ |
+| C20 | Total long-term gain $9,019.50 | ✅ CONFIRMED | $5,791.94 + $3,227.56 = $9,019.50 ✓ |
+| C21 | Foreign tax credit $78.37 direct | ✅ CONFIRMED | Under $300 de minimis for single |
+| C22 | House sale fully excluded under §121 | ✅ CONFIRMED | Expert decision logged; not on return |
+| C23 | No state tax withholding on 1099-R | ✅ CONFIRMED | Box 14 = $0 |
+| C24 | No Coinbase 1099-MISC | ⚠️ FLAG | Doug stated this but we have not independently verified via Coinbase tax center. If there's staking/rewards income, it's missing from the filing. |
+| C25 | No 2025 estimated tax payments | ✅ CONFIRMED | Doug stated; also consistent with absence of any such payments in Mercury and on the 2024 Account Transcript (which shows Doug's 2024 estimates but not 2025) |
+
+### Section D — Filing Status
+
+| ID | Assumption | Status | Notes |
+|----|------------|--------|-------|
+| D1 | Files as Single | ✅ CONFIRMED | Per A3 |
+| D2 | Standard deduction applies | 🔴 **FLAG — P3 above** | **Potentially incorrect.** Doug likely paid ~$14,667 of 2025 mortgage interest on the 84 Lebrun house plus property tax/state tax. Itemized may exceed $24k vs. $15k standard. Needs investigation. |
+| D3 | 2025 single standard deduction $15,000 | ✅ CONFIRMED | IRS inflation adjustment Rev Proc 2024-40 |
+| D4 | No dependents | ⚠️ FLAG | Assumption — never explicitly stated by Doug. Probably correct but should be confirmed. |
+| D5 | No AMT exposure | ✅ LIKELY CORRECT | At Doug's income levels and without large preference items, AMT is not triggered. |
+| D6 | No FEIE | ✅ CONFIRMED | Doug's income is US-sourced |
+| D7 | No prior year carryforwards | ❓ UNKNOWN | **The wage & income transcript cannot show capital loss carryforwards** — it only shows information returns received by the IRS. The Account Transcript we have shows Doug's 2024 filing summary (AGI, tax, refund) but not Schedule D detail. To verify D7, Doug needs to check his actual 2024 Form 1040 Schedule D Line 21 carryover amount, or order a 2024 Tax Return Transcript (we don't have one). |
+
+### Section E — Documents
+
+| ID | Assumption | Status | Notes |
+|----|------------|--------|-------|
+| E1 | CP 575 B in docs and legible | ✅ CONFIRMED | `Digital Narrative Art LLC  - EIN Assignment Letter.pdf` — note actual filename has "LLC" and double space |
+| E2 | Mercury reconciles | ✅ CONFIRMED | Three-way reconciliation: Dec 31 Checking $2,301.72 = CSV net = Sweep end balance |
+| E3 | BTC CoinGecko close $10,016.22 on 08/14/2019 | ✅ CONFIRMED | Screenshot at `2025/docs/btc-price-2019-08-14-coingecko.png` shows exactly this |
+| E4 | No Form 8832 | ❓ UNKNOWN | Same as B7/B12 |
+| E5 | W-9 address is Doug's personal forwarding | ✅ CONFIRMED | Doug confirmed |
+| E6 | 1099-R from IB U2257053 (IRA) not U1934913 (taxable) | ✅ CONFIRMED | File headers show U2257053 for 1099-R and U1934913 for consolidated 1099 and 8949 |
+| E7 | 2024 transcript shows no cap loss carryforward | ⚠️ FLAG | Misnamed assumption. The wage & income transcript doesn't contain this info. See D7. |
+
+---
+
+## ADDITIONAL ISSUES FOUND (not in the stated assumptions)
+
+### 🟡 I1. Arithmetic error in Schedule D section 3.2 basis total
+
+The algorithm says (line 535): "Corrected long-term basis total: $4,966.61 (not $5,008.17 — update crypto memo)"
+
+Correct addition: $1,739.50 + $2,787.31 + $438.31 = **$4,965.12**
+
+The algorithm's own section 3.3 (Form 8949 table, line 579) shows the totals row as: "Totals ... $13,984.62 ... $4,965.12 ... $9,019.50". So the $4,965.12 is correct. The $4,966.61 in section 3.2 is a typo, off by $1.49. Minor but inconsistent.
+
+### 🟡 I2. K-1 box label for guaranteed payments
+
+The algorithm shows Doug's K-1 "Box 14 — Guaranteed payments | $0". **Box 14 on the K-1 is Self-Employment Earnings**, not guaranteed payments. Guaranteed payments are on Box 4 (4a for services, 4b for capital, 4c for total). This is a form box mislabeling in the algorithm. For Ana, the algorithm correctly shows "Box 4 — Guaranteed payments | $12,418.33". The Doug row should be "Box 4 — Guaranteed payments | $0".
+
+Additionally, for Doug, **Box 14 Self-Employment Earnings** should show his share of SE income/loss. As a general partner / materially participating LLC member (assuming P4 is resolved in Doug's favor), this would be $(6,863.14) or similar — which is SE loss. The algorithm doesn't address this.
+
+### 🟡 I3. Doug's K-1 loss shows as $(6,863.15) but Ana's as $(6,863.14) — penny rounding
+
+Algorithm line 309 says Doug's Box 1 is $(6,863.15) and line 340 says Ana's Box 1 is $(6,863.14). The exact 50% split of $(13,726.28) is $(6,863.14). Doug's should also be $(6,863.14), not $(6,863.15). Penny rounding issue, but IRS software may reject mismatched K-1 totals.
+
+### 🟡 I4. IT-204-LL (LLC Filing Fee) not addressed
+
+The algorithm discusses IT-204 (NY partnership return) but does not mention **Form IT-204-LL** (LLC/LLP/Partnership Filing Fee). Multi-member LLCs treated as partnerships with NY-resident members are generally required to file IT-204-LL even if the fee is $0.
+
+A partnership with no NY source income may owe $0, but the form may still need to be filed. Expert should confirm whether IT-204-LL is required for this fact pattern.
+
+### 🟡 I5. Principal business activity / NAICS code assumption
+
+Algorithm line 185–186 suggests "Graphic design / illustration services" and NAICS code **541430 (Graphic Design Services)**. The LLC is "Digital Narrative Art" with domain `dna.love`. Without Doug confirming what the business actually does, we can't confirm the code. Other candidates:
+- 711510 — Independent Artists, Writers, and Performers
+- 711130 — Musical Groups and Artists (not this)
+- 541430 — Graphic Design Services (the algorithm's choice)
+- 541990 — All Other Professional, Scientific, and Technical Services
+
+Doug should confirm what DNA actually does to pick the right code.
+
+### 🟡 I6. Non-existent file referenced
+
+Algorithm Part 9 "Document Retention" lists `docs/house-sale-tax-guidance.md` — **this file does not exist in our project.** The house-sale guidance is in the original expert memo (`tax-preparation-scope-2025.html`) and our summary is at `.claude/docs/house-sale-2025.md` (not in `2025/docs/`). Should be updated in the algorithm's retention list.
+
+### 🟡 I7. Mercury UI name — cause of the confusion
+
+We verified that Mercury's customer-facing UI shows "Digital Narrative Arts LLC" (plural) — that's almost certainly where the expert picked up the wrong name. Mercury's internal record likely has a typo from Doug's signup. The legal entity per IRS and WY SoS is "Digital Narrative Art LLC" (singular). This should be corrected in Mercury as a separate administrative action (non-urgent).
+
+---
+
+## OPEN ITEMS — things we need from Doug directly
+
+1. **SSN** for Form 1040 entry (A2)
+2. **Full-year NY residency confirmation** — when did you actually move to NC? (A4)
+3. **Ana's middle name (Yurievna)** — confirm from passport, needed for W-7 (A6)
+4. **Ana's Tbilisi address** — confirm exact spelling for K-1 and W-7 (A7)
+5. **Ana's date of birth** — needed for W-7 (not in algorithm but expert asked)
+6. **2024 capital loss carryforward** — check your 2024 1040 Schedule D line 21 (D7)
+7. **2025 Form 1098 from JPMorgan Chase** — please log into Chase and fetch it, or wait for it by mail (P3)
+8. **2025 NY property tax records** and evidence of state tax paid (P3)
+9. **Material participation evidence** — roughly how many hours did you spend on the LLC in 2025? Any evidence (emails, tasks, meetings) you can point to? (P4)
+10. **Confirm no Form 8832** was filed for the LLC entity classification (B7/B12)
+11. **Confirm dependents** — yes/no, how many (D4)
+12. **Principal business activity** — what does DNA actually do? (I5)
+13. **Check Coinbase tax center** for any 1099-MISC (staking/rewards) (C24)
+
+---
+
+## OPEN ITEMS — things we need from the expert
+
+1. **Name correction** — acknowledge and correct to "Digital Narrative Art LLC" (singular) throughout the algorithm (P1)
+2. **Refresh Line 10 / Line 20** with the post-2026-04-13 numbers (P2)
+3. **Material participation analysis** — rule on Doug's passive vs. nonpassive status given that Ana performs most services (P4)
+4. **Schedules K-2 / K-3** — explicitly rule on whether they're required given Ana is a foreign partner (P6)
+5. **Form 7004** — confirm algorithm v1.2 position (do NOT file); reconcile with earlier verbal guidance (P5)
+6. **Short tax year start date** — April 15 (formation) or April 22 (membership effective)? (B6)
+7. **IT-204-LL filing fee form** — required for this fact pattern? (I4)
+8. **Schedule D section 3.2 arithmetic** — $4,966.61 vs $4,965.12 typo (I1)
+9. **K-1 Box 4 vs Box 14 labels** for guaranteed payments; Doug's Box 14 SE earnings treatment (I2)
+10. **K-1 penny rounding** — $(6,863.15) vs $(6,863.14) (I3)
+
+---
+
+## ONLY AFTER RESOLUTION — ready for form entry
+
+The team should not begin entering numbers onto Form 1065 or any downstream form until:
+1. P1 (name) is corrected
+2. P2 (stale numbers) are refreshed
+3. P3 (mortgage interest) is resolved one way or the other
+4. P4 (material participation) is addressed by the expert
+5. Minimum from Doug: SSN, NY residency status, Ana DOB + middle name + address confirmation, 2024 carryforward check
+
+Non-blocking flags (items that can be resolved during form entry) can be handled inline.
+
+---
+
+*Prepared by Arthur with Brooke, Rita, and Libby. Reviewed end-to-end against source documents in 2025/docs/.*

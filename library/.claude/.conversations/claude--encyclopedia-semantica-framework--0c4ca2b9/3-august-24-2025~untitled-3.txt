@@ -1,0 +1,112 @@
+private static _bindings?: any[];
+    private static _bindingsInitialized?: boolean;
+
+    private hasBindgs(): boolean {
+        const constructor = this.constructor as typeof Chemical;
+        return !!constructor._bindings && constructor._bindings.length > 0;
+    }
+    
+    private initializeBindings(): void {
+        const constructor = this.constructor as typeof Chemical;
+        
+        // Already initialized for this class
+        if (constructor._bindingsInitialized) return;
+        
+        // Start with parent's bindings
+        const parentProto = Object.getPrototypeOf(constructor);
+        if (parentProto && parentProto !== Chemical) {
+            // Recursively ensure parent is initialized
+            if (!parentProto._bindingsInitialized) {
+                this.initializeBindings.call({ constructor: parentProto });
+            }
+            
+            // Copy parent bindings if they exist
+            if (parentProto._bindings) {
+                constructor._bindings = [...parentProto._bindings, ...(constructor._bindings || [])];
+            }
+        }
+        
+        constructor._bindingsInitialized = true;
+    }
+
+    private applyBindings(): void {
+        this.initializeBindings();
+        if (!this.hasBindgs()) return;
+
+        // Collect bindings from entire prototype chain
+        const allBindings: any[] = [];
+        let proto = this.constructor as typeof Chemical;
+
+        while (proto && proto !== Chemical) {
+            if (proto._bindings) {
+                allBindings.push(...proto._bindings);
+            }
+            proto = Object.getPrototypeOf(proto);
+        }
+
+        if (allBindings.length === 0) return;
+
+        // Early exit if no children
+        const childMap = this.children;
+        if (!childMap || childMap.size === 0) return;
+
+        // Pre-index by class for O(1) lookup
+        const bindingsByClass = new Map<any, any[]>();
+        for (const binding of allBindings) {
+            const existing = bindingsByClass.get(binding.class) || [];
+            existing.push(binding);
+            bindingsByClass.set(binding.class, existing);
+        }
+
+        const instanceCounts = new Map<any, number>();
+        const satisfiedBindings = new Set<string>();
+        const boundChildren = new Set<Chemical>();
+
+        // Process children (already sorted bindings)
+        for (const child of childMap.values()) {
+            if (boundChildren.has(child)) continue;
+
+            for (const [BindingClass, classBindings] of bindingsByClass) {
+                if (!(child instanceof BindingClass)) continue;
+
+                for (const binding of classBindings) {
+                    const prop = (this as any)[binding.property];
+                    const isArray = Array.isArray(prop);
+
+                    if (!isArray && satisfiedBindings.has(binding.property)) continue;
+
+                    if (binding.predicate && !binding.predicate(child)) continue;
+
+                    if (binding.index !== undefined) {
+                        const count = instanceCounts.get(BindingClass) || 0;
+                        if (binding.index !== count) {
+                            instanceCounts.set(BindingClass, count + 1);
+                            continue;
+                        }
+                        instanceCounts.set(BindingClass, count + 1);
+                    }
+
+                    // Apply binding
+                    if (isArray) {
+                        prop.push(child);
+                    } else {
+                        (this as any)[binding.property] = child;
+                        satisfiedBindings.add(binding.property);
+                        boundChildren.add(child);
+                    }
+
+                    break;
+                }
+                break;
+            }
+        }
+
+        // Check required bindings
+        for (const binding of allBindings) {
+            if (binding.optional) continue;
+            const prop = (this as any)[binding.property];
+            if (Array.isArray(prop) ? prop.length === 0 : !prop) {
+                throw new Error(`Required binding '${binding.property}' not satisfied in ${this.constructor.name}`);
+            }
+        }
+    }

@@ -1,0 +1,282 @@
+class Region {
+    private _leftParent: number;
+    private _topParent: number;
+    private _rightParent: number;
+    private _bottomParent: number;
+    protected _parent: () => Region = () => this;
+
+    // Measure
+    unit(): number { return this._rightParent - this._leftParent; }
+    unitAbs(): number { return this.base().unit(); }
+    parent(): Region { return this._parent(); }
+    base(): Region { return this.isBase() ? this : this.parent(); }
+    isBase(): boolean { return this.parent() === this; }
+
+    topAbs(): number { return this.parent().isBase() ? this._leftParent : this.parent().topAbs(); }
+    leftAbs(): number { return this.parent().isBase() ? this._leftParent : this.parent().topAbs(); }
+    rightAbs(): number { return this.parent().isBase() ? this._leftParent : this.parent().topAbs(); }
+    bottomAbs(): number { return this.parent().isBase() ? this._leftParent : this.parent().topAbs(); }
+
+    topParent(): number { return this._topParent; }
+    leftParent(): number { return this._leftParent; }
+    rightParent(): number { return this._rightParent; }
+    bottomParent(): number { return this._bottomParent; }
+
+    left() { return this.toRelativeLocation(this.leftAbs(), "x"); }
+    right() { return this.toRelativeLocation(this.rightAbs(), "x"); }
+    top() { return this.toRelativeLocation(this.topAbs(), "y"); }
+    bottom() { return this.toRelativeLocation(this.bottomAbs(), "y"); }
+
+    boundsParent(): [number, number, number, number] { 
+        const parent = this.parent();
+        return [parent.left(), parent.top(), parent.right(), parent.bottom()]; 
+    }
+
+    rectParent(): Rect { 
+        return this.boundsParent(); 
+    }
+
+    centerParent(): Position { 
+        const parent = this.parent();
+        return [(parent.right() + parent.left()) / 2, (parent.top() + parent.bottom()) / 2]; 
+    }
+
+    widthParent() { 
+        const parent = this.parent();
+        return parent.right() - parent.left(); 
+    }
+
+    heightParent() { 
+        const parent = this.parent();
+        return parent.top() - parent.bottom(); 
+    }
+
+    boundsAbs(): [number, number, number, number] { 
+        const parent = this.parent();
+        return parent.isBase() ? this.boundsParent() : parent.boundsAbs(); 
+    }
+
+    rectAbs(): Rect { 
+        const parent = this.parent();
+        return parent.isBase() ? this.rectParent() : parent.rectAbs();
+    }
+
+    centerAbs(): Position { 
+        const parent = this.parent();
+        return parent.isBase() ? this.centerParent() : parent.centerAbs();
+    }
+
+    widthAbs(): number { 
+        const parent = this.parent();
+        return parent.isBase() ? this.widthParent() : parent.widthAbs();
+    }
+
+    heightAbs(): number { 
+        const parent = this.parent();
+        return parent.isBase() ? this.heightParent() : parent.heightAbs();
+    }
+
+    // Relative positions
+    bounds(): [number, number, number, number] { 
+        return [this.left(), this.top(), this.right(), this.bottom()]; 
+    }
+    
+    rect(): Rect { return this.bounds(); }
+    
+    center(newCenter?: Position) {
+        if (newCenter) this.moveTo(this.toParentPosition(newCenter));
+        return this.toParentPosition(this.centerParent());
+    }
+
+    // Width and height with optional resizing
+    width(newWidth?: number, proportional = true) {
+        if (newWidth) {
+            const scaleFactor = newWidth / this.width();
+            this.size([newWidth, proportional ? this.height() * scaleFactor : this.height()]);
+        }
+        return Math.abs(this.left() - this.right());
+    }
+
+    height(newHeight?: number, proportional = true) {
+        if (newHeight) {
+            const scaleFactor = newHeight / this.height();
+            this.size([proportional ? this.width() * scaleFactor : this.width(), newHeight]);
+        }
+        return Math.abs(this.top() - this.bottom());
+    }
+
+    size(newSize?: Size) {
+        if (newSize) {
+            const center = this.centerParent();
+            const newWidth = this.toParentUnits(newSize[0]);
+            const newHeight = this.toParentUnits(newSize[1]);
+
+            this._leftParent = center[0] - newWidth / 2;
+            this._rightParent = center[0] + newWidth / 2;
+            this._topParent = center[1] + newHeight / 2;
+            this._bottomParent = center[1] - newHeight / 2;
+        }
+        return [this.width(), this.height()];
+    }
+
+    constructor(left: number, top: number, right: number, bottom: number, parent?: () => Region) {
+        if (left > right || bottom > top)
+            throw `Invalid Region: ${[left, top, right, bottom]}`;
+
+        this._leftParent = left;
+        this._topParent = top;
+        this._bottomParent = bottom;
+        this._rightParent = right;
+        if (parent !== undefined)
+            this._parent = parent;
+    }
+
+    floor(): Region {
+        this._leftParent = Math.floor(this._leftParent);
+        this._topParent = Math.floor(this._topParent);
+        this._rightParent = Math.floor(this._rightParent);
+        this._bottomParent = Math.floor(this._bottomParent);
+        return this;
+    }
+
+    moveTo(newCenter: Position) {
+        const deltaX = newCenter[0] - this.centerAbs()[0];
+        const deltaY = newCenter[1] - this.centerAbs()[1];
+        this._leftParent += deltaX;
+        this._rightParent += deltaX;
+        this._topParent += deltaY;
+        this._bottomParent += deltaY;
+    }
+
+    toRelativeUnits(length: number, unit: "parent" | "abs" = "parent"): number {
+        if (unit === "parent") {
+            return this.round(length / this.widthParent());
+        } else {
+            const parent = this.parent();
+            return parent.isBase() 
+                ? this.round(length / this.widthParent())
+                : parent.toRelativeUnits(length, "abs");
+        }
+    }
+    
+    toRelativeLocation(location: number, axis: "x" | "y", unit: "parent" | "abs" = "parent"): number {
+        if (unit === "parent") {
+            var parent = this.parent();
+            const unit = this.unit();
+            return this.round(
+                axis === "x"
+                    ? (location - parent.left()) / unit
+                    : (location - parent.bottom()) / unit
+            );
+        } else {
+            const parent = this.parent();
+            return parent.isBase()
+                ? this.toRelativeLocation(location, axis, "parent")
+                : parent.toRelativeLocation(location, axis, "abs");
+        }
+    }
+    
+    toRelativePosition(position: Position, unit: "parent" | "abs" = "parent"): Position {
+        const x = this.toRelativeLocation(position[0], "x", unit);
+        const y = this.toRelativeLocation(position[1], "y", unit);
+        return [this.round(x), this.round(y)];
+    }
+
+    toParentUnits(length: number): number {
+        return roundPrecisely(length * this.widthParent());
+    }
+    
+    toParentLocation(location: number, axis: "x" | "y"): number {
+        const parent = this.parent();
+        return this.round(
+            axis === "x"
+                ? parent.left() + location * parent.unit() 
+                : parent.bottom() + location * parent.unit()
+        );
+    }
+    
+    toParentPosition(position: Position): Position {
+        const x = this.toParentLocation(position[0], "x");
+        const y = this.toParentLocation(position[1], "y");
+        return [this.round(x), this.round(y)];
+    }
+    
+    // Then modify the abs versions to use recursion:
+    toAbsoluteUnits(length: number): number {
+        const parent = this.parent();
+        return parent.isBase() 
+            ? this.toParentUnits(length)
+            : parent.toAbsoluteUnits(length);
+    }
+    
+    toAbsoluteLocation(location: number, axis: "x" | "y"): number {
+        const parent = this.parent();
+        return parent.isBase()
+            ? this.toParentLocation(location, axis)
+            : parent.toAbsoluteLocation(location, axis);
+    }
+    
+    toAbsolutePosition(position: Position): Position {
+        const parent = this.parent();
+        return parent.isBase()
+            ? this.toParentPosition(position)
+            : parent.toAbsolutePosition(position);
+    }
+
+    angle(position: Position, units: "degrees" | "radians" = "degrees"): number {
+        const center = this.center();
+        const deltaX = position[0] - center[0];
+        const deltaY = position[1] - center[1];
+        const radians = Math.atan2(deltaY, deltaX); // Returns angle in radians
+
+        // Normalize and convert based on units
+        if (units === "degrees") return Region.to360(Region.toDegrees(radians));
+        return Region.to2Pi(radians);
+    }
+
+    // Returns the radius (distance from the center) in relative units
+    radius(position: Position): number {
+        const center = this.center();
+        const deltaX = position[0] - center[0];
+        const deltaY = position[1] - center[1];
+        return Math.sqrt(deltaX ** 2 + deltaY ** 2);
+    }
+
+    round(value: number) {
+        return roundPrecisely(value, 3);
+    }
+
+    toString() {
+        return this.isBase() || this.parent().isBase() ? 
+            `[${this.bounds()}], [${this.boundsAbs()}]` :
+            `[${this.bounds()}], [${this.boundsParent()}], [${this.boundsAbs()}]`
+    }
+
+    static fromRect(rect: Rect): Region {
+        return new Region(rect[0], rect[1], rect[2], rect[3]);
+    }
+
+    static fromArray(rect: [number, number, number, number]): Region {
+        return Region.fromRect(rect);
+    }
+
+    static toRadians(degrees: number): number {
+        return Region.to2Pi((degrees * Math.PI) / 180);
+    }
+
+    // Converts radians to degrees
+    static toDegrees(radians: number): number {
+        return Region.to360((radians * 180) / Math.PI);
+    }
+
+    static to2Pi(radians: number): number {
+        const twoPi = 2 * Math.PI;
+        return ((radians % twoPi) + twoPi) % twoPi;
+    }
+
+    // Normalizes degrees to the range [0, 360)
+    static to360(degrees: number): number {
+        const fullCircle = 360;
+        return ((degrees % fullCircle) + fullCircle) % fullCircle;
+    }
+}

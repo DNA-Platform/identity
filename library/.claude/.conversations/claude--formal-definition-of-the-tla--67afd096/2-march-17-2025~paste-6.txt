@@ -1,0 +1,171 @@
+Computational Universality of Transductive Logical Automatons: A Formal Proof
+Theorem 1 (Computational Equivalence of TLAs and Turing Machines)
+Transductive Logical Automatons are Turing-equivalent; that is, TLAs can compute exactly the class of Turing-computable functions.
+To prove this theorem, we establish two directions:
+
+TLAs can simulate any Turing Machine (TM → TLA)
+Any TLA computation can be implemented on a Turing Machine (TLA → TM)
+
+Lemmas for Direction 1 (TM → TLA)
+Lemma 1.1 (Representation of Computable Functions)
+For any Turing-computable function A and input x, there exists a formula φ_A,x(y) in first-order arithmetic such that:
+
+∀m∈N:N⊨ϕA,x(mˉ)↔A(x)=m\forall m \in \mathbb{N}: \mathcal{N} \models \phi_{A,x}(\bar{m}) \leftrightarrow A(x) = m∀m∈N:N⊨ϕA,x​(mˉ)↔A(x)=m
+where N\mathcal{N}
+N is the standard model of arithmetic and mˉ\bar{m}
+mˉ is the numeral representing m.
+
+Proof: This follows directly from the Representability Theorem (Kleene, 1952), which establishes that any Turing-computable function is representable in first-order arithmetic. More precisely, for any computable function f:Nk→Nf: \mathbb{N}^k \rightarrow \mathbb{N}
+f:Nk→N, there exists a formula Φf(x1,…,xk,y)\Phi_f(x_1,\ldots,x_k,y)
+Φf​(x1​,…,xk​,y) in the language of Peano Arithmetic such that for all n1,…,nk,m∈Nn_1,\ldots,n_k,m \in \mathbb{N}
+n1​,…,nk​,m∈N:
+
+f(n1,…,nk)=m if and only if N⊨Φf(nˉ1,…,nˉk,mˉ)f(n_1,\ldots,n_k) = m \text{ if and only if } \mathcal{N} \models \Phi_f(\bar{n}_1,\ldots,\bar{n}_k,\bar{m})f(n1​,…,nk​)=m if and only if N⊨Φf​(nˉ1​,…,nˉk​,mˉ)
+For our case, we can instantiate this with the specific input x to obtain ϕA,x(y)=ΦA(x,y)\phi_{A,x}(y) = \Phi_A(x,y)
+ϕA,x​(y)=ΦA​(x,y). ■
+
+Lemma 1.2 (Systematic Output Construction)
+A TLA can systematically construct the output A(x) through a binary search strategy over the output space.
+Proof:
+
+Let θ0≡∃y.ϕA,x(y)\theta_0 \equiv \exists y. \phi_{A,x}(y)
+θ0​≡∃y.ϕA,x​(y) be the initial conjecture.
+
+For each stage n of the search, construct a formula ψn\psi_n
+ψn​ that partitions the current space of potential outputs.
+
+Form the conjecture θn+1≡∃y.(ϕA,x(y)∧χn(y))\theta_{n+1} \equiv \exists y. (\phi_{A,x}(y) \wedge \chi_n(y))
+θn+1​≡∃y.(ϕA,x​(y)∧χn​(y)) where χn\chi_n
+χn​ is either ψn\psi_n
+ψn​ or ¬ψn\neg\psi_n
+¬ψn​, depending on which is consistent with ϕA,x\phi_{A,x}
+ϕA,x​.
+
+By the Enumerability Theorem for Proofs (Gödel, 1931), the set of provable formulas in a recursively axiomatized formal system is recursively enumerable, ensuring that the TLA can systematically explore the proof space.
+Since each step halves the search space and the initial space is countable, this process converges to a unique value.
+
+More formally, let Sn={y∣ϕA,x(y)∧χ0(y)∧⋯∧χn−1(y)}S_n = \{y \mid \phi_{A,x}(y) \wedge \chi_0(y) \wedge \cdots \wedge \chi_{n-1}(y)\}
+Sn​={y∣ϕA,x​(y)∧χ0​(y)∧⋯∧χn−1​(y)} represent the search space at stage n. We choose ψn\psi_n
+ψn​ such that both Sn∩{y∣ψn(y)}S_n \cap \{y \mid \psi_n(y)\}
+Sn​∩{y∣ψn​(y)} and Sn∩{y∣¬ψn(y)}S_n \cap \{y \mid \neg\psi_n(y)\}
+Sn​∩{y∣¬ψn​(y)} are non-empty if ∣Sn∣>1|S_n| > 1
+∣Sn​∣>1. This ensures the search space is effectively reduced at each stage where multiple candidates remain. ■
+
+Lemma 1.3 (Completeness of Computation)
+The TLA's systematic search process will eventually identify A(x) as the unique value satisfying ϕA,x(y)\phi_{A,x}(y)
+ϕA,x​(y).
+
+Proof:
+
+By Lemma 1.1, ϕA,x(A(x))\phi_{A,x}(A(x))
+ϕA,x​(A(x)) is true in the standard model.
+
+By the uniqueness property of A, the formula ∃!yϕA,x(y)\exists!y \phi_{A,x}(y)
+∃!yϕA,x​(y) is valid.
+
+By the Completeness Theorem for First-Order Logic (Gödel, 1930), if a formula is valid, then it is provable in the formal system.
+Therefore, the TLA will eventually prove ϕA,x(mˉ)\phi_{A,x}(\bar{m})
+ϕA,x​(mˉ) where m=A(x)m = A(x)
+m=A(x) and establish ∀y(ϕA,x(y)→y=mˉ)\forall y(\phi_{A,x}(y) \rightarrow y = \bar{m})
+∀y(ϕA,x​(y)→y=mˉ).
+
+This constitutes a correct computation of A(x).
+
+To elaborate on step 3, the Completeness Theorem states that for any sentence σ\sigma
+σ in a first-order language, if σ\sigma
+σ is logically valid (i.e., true in all models), then σ\sigma
+σ is provable from the axioms using the rules of inference. Since ∃!yϕA,x(y)\exists!y \phi_{A,x}(y)
+∃!yϕA,x​(y) is valid in our system, it must be provable, ensuring that the TLA will eventually identify the unique value satisfying ϕA,x(y)\phi_{A,x}(y)
+ϕA,x​(y). ■
+
+Lemmas for Direction 2 (TLA → TM)
+Lemma 2.1 (Algorithmic Implementation of TLA Operations)
+All core operations of a TLA can be implemented algorithmically.
+Proof:
+
+Define Translation(ϕ,T,k)={p∣len(p)≤k∧ProofT(p,ϕ)}\text{Translation}(\phi, T, k) = \{p \mid \text{len}(p) \leq k \wedge \text{Proof}_T(p, \phi)\}
+Translation(ϕ,T,k)={p∣len(p)≤k∧ProofT​(p,ϕ)}, which searches for proofs of bounded length.
+
+Define Transcription(ϕ,T,k)\text{Transcription}(\phi, T, k)
+Transcription(ϕ,T,k) as the algorithm that generates a proof structure with conjectures ψ1,...,ψn\psi_1,...,\psi_n
+ψ1​,...,ψn​.
+
+Define τL(ϕ,s)\tau_L(\phi, s)
+τL​(ϕ,s) as a decision procedure implementing the transduction criteria.
+
+By the Decidability of Proof Checking (Kleene, 1952), determining whether a sequence constitutes a valid proof is decidable.
+Therefore, all these operations can be implemented as algorithms.
+
+To expand on step 4, Kleene showed that for any formal system with recursive axioms and rules of inference, the predicate ProofF(p,ϕ)\text{Proof}_F(p,\phi)
+ProofF​(p,ϕ) meaning "p is a proof of ϕ\phi
+ϕ in F" is decidable. This is because checking whether each step in a purported proof follows from the axioms or previous steps by a rule of inference is an algorithmic process. ■
+
+Lemma 2.2 (Implementation of the Recursive Structure)
+The recursive structure of TLA execution can be implemented on a Turing machine.
+Proof:
+
+Define the TLA execution function recursively:
+
+TLA(ϕ,s)=Confirmation\text{TLA}(\phi, s) = \text{Confirmation}
+TLA(ϕ,s)=Confirmation if Translation(ϕ,s.T)\text{Translation}(\phi, s.T)
+Translation(ϕ,s.T) succeeds
+
+TLA(ϕ,s)=Rejection\text{TLA}(\phi, s) = \text{Rejection}
+TLA(ϕ,s)=Rejection if Translation(¬ϕ,s.T)\text{Translation}(\neg\phi, s.T)
+Translation(¬ϕ,s.T) succeeds
+
+TLA(ϕ,s)=\text{TLA}(\phi, s) =
+TLA(ϕ,s)= process sub-conjectures recursively otherwise
+
+
+
+By the Recursion Theorem (Kleene, 1938), for any computable function ff
+f, there exists an index ee
+e such that φe(x)=f(e,x)\varphi_e(x) = f(e,x)
+φe​(x)=f(e,x), where φe\varphi_e
+φe​ is the ee
+e-th partial recursive function.
+
+This allows the implementation of self-referential recursive structures on a Turing machine.
+Therefore, the recursive spawning and execution of child TLAs can be implemented.
+
+The Recursion Theorem allows programs to access their own descriptions, which is essential for implementing the recursive spawning of child TLAs that must inherit properties from their parent. ■
+Lemma 2.3 (Complete Simulation)
+A Turing machine can faithfully simulate any TLA computation.
+Proof:
+
+The TLA state (including axioms, theorems, conjectures) can be encoded on a Turing machine tape using a suitable encoding function.
+The TLA execution algorithm can be implemented as the Turing machine's transition function.
+The recursive structure can be simulated using standard techniques for implementing recursion on Turing machines.
+By the Church-Turing Thesis, this simulation captures all effective computations of the TLA.
+
+For step 3, we use the standard technique of maintaining a stack on the Turing machine tape to track the state of each recursive call. When a child TLA is spawned, its state is pushed onto the stack, and when it halts, its results are processed and the parent TLA's state is restored. ■
+Proof of Theorem 1
+Direction 1 (TM → TLA):
+By Lemmas 1.1, 1.2, and 1.3, a TLA can compute any Turing-computable function by:
+
+Representing the function in first-order arithmetic (Lemma 1.1)
+Systematically constructing the output through binary search (Lemma 1.2)
+Eventually identifying the unique correct output (Lemma 1.3)
+
+Direction 2 (TLA → TM):
+By Lemmas 2.1, 2.2, and 2.3, any TLA computation can be implemented on a Turing machine by:
+
+Implementing all TLA operations algorithmically (Lemma 2.1)
+Implementing the recursive structure of TLA execution (Lemma 2.2)
+Faithfully simulating the entire TLA computation (Lemma 2.3)
+
+Therefore, TLAs and Turing machines are computationally equivalent. ■
+Corollaries and Implications
+Corollary 1 (Universal Computation Model)
+The TLA paradigm provides a universal model of computation equivalent to Turing machines but expressed through conjecture refinement and theorem proving.
+Proof: This follows directly from Theorem 1, which establishes the computational equivalence of TLAs and Turing machines. ■
+The significance of this corollary extends beyond the mere equivalence result. While many computational models have been shown to be Turing-equivalent, the TLA framework offers a distinctive perspective by recasting computation as logical reasoning. This perspective bridges the traditionally separate domains of mathematical logic and computational theory, suggesting that theorem proving and algorithm execution are deeply connected activities rather than distinct processes.
+Corollary 2 (Expressibility of Algorithms)
+Any algorithm can be expressed as a TLA attempting to prove a conjecture of the form ∃y.ϕA,x(y)\exists y. \phi_{A,x}(y)
+∃y.ϕA,x​(y) where ϕA,x(y)\phi_{A,x}(y)
+ϕA,x​(y) specifies the input-output relationship.
+
+Proof: By Theorem 1, any Turing-computable function can be computed by a TLA. Since all algorithms correspond to Turing-computable functions, any algorithm can be expressed in the TLA framework. ■
+This corollary has profound implications for how we understand algorithms. Traditionally, algorithms are expressed as sequences of instructions or state transitions. The TLA framework reinterprets algorithms as processes of conjecture refinement and proof construction. This suggests a novel approach to algorithm design and analysis where logical properties and proof strategies become central considerations.
+Furthermore, this reinterpretation offers new insights into longstanding questions in the philosophy of computation, particularly regarding the relationship between mathematical truth and computational processes. If algorithms can be understood as theorem-proving activities, then the distinction between discovering mathematical truth and executing computational procedures becomes less clear-cut than traditionally assumed.

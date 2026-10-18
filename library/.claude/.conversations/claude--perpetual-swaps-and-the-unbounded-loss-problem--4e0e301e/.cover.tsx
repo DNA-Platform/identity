@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Perpetual swaps and the unbounded loss problem ]]( claude--Perpetual swaps and the unbounded loss problem--4e0e301e )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>4e0e301e-5766-4f11-bf78-fa9bcdc87a8a</Origin>
         <Paragraph>

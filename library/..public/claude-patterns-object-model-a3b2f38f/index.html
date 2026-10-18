@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dougs Library</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 28 28%22%3E%3Cstyle%3E.pd-illustration%7Bfill%3Anone%3Bstroke%3A%231f5a60%3Bstroke-width%3A1.7%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.pd-illustration .fill%7Bfill%3A%238db9bd%3Bstroke%3A%231f5a60%7D.pd-illustration .light%7Bfill%3A%23ffffff%3Bstroke%3Anone%7D%3C%2Fstyle%3E%3CclipPath id%3D%22window%22%3E%3Crect width%3D%2228%22 height%3D%2228%22%2F%3E%3C%2FclipPath%3E%3Crect width%3D%2228%22 height%3D%2228%22 fill%3D%22%23c3e3e6%22%2F%3E%3Cg clip-path%3D%22url(%23window)%22%3E%3Csvg x%3D%22-43.361%22 y%3D%22-10.361%22 width%3D%2299.36%22 height%3D%2299.36%22 viewBox%3D%220 0 64 64%22 class%3D%22pd-illustration%22%3E%3Cpath class%3D%22light%22 d%3D%22M9 7h46v50H9z%22%2F%3E%3Cpath d%3D%22M9 7h46v50H9zM9 24h46M9 41h46%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 11h5v13h-5zM20 9h4v15h-4zM26 13h6v11h-6zM34 10h4v14h-4zM40 14h6v10h-6z%22%2F%3E%3Cpath d%3D%22M48 24l4-12 3 1-4 11z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 28h4v13h-4zM19 30h7v11h-7zM28 27h4v14h-4zM34 31h5v10h-5zM41 28h6v13h-6zM49 29h3v12h-3z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 46h6v11h-6zM21 44h4v13h-4zM27 47h8v10h-8zM37 45h4v12h-4zM43 48h6v9h-6z%22%2F%3E%3Cpath d%3D%22M50 57l3-11 3 1-3 10z%22%2F%3E%3C%2Fsvg%3E%3C%2Fg%3E%3Crect x%3D%221.319%22 y%3D%221.319%22 width%3D%2225.361%22 height%3D%2225.361%22 fill%3D%22none%22 stroke%3D%22%231f5a60%22 stroke-width%3D%222.639%22%2F%3E%3C%2Fsvg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@500;600;700&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="/assets/index-B5oAFc8f.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BgQkainO.css">
+  <link rel="stylesheet" href="/sheets/1a338ed56fec.css" />
+  <script>(function(){var k=[];function on(e){var r=document.getElementById('root');if(!r||!r.contains(e.target)||e.__replayed)return;k.push({t:e.target,type:e.type});}document.addEventListener('click',on,true);window.__replayKept=function(){document.removeEventListener('click',on,true);var q=k;k=[];q.forEach(function(one){if(!document.contains(one.t))return;var ev=new MouseEvent(one.type,{bubbles:true,cancelable:true});ev.__replayed=true;one.t.dispatchEvent(ev);});};})();</script>
+  <style>.pa-arriving .pd-pages{visibility:hidden}</style><script>((document, hash) => {
+  const root = document.documentElement;
+  const fragment = decodeURIComponent(hash.replace(/^#/u, ""));
+  if (fragment === "") return void 0;
+  root.classList.add("pa-arriving");
+  const open = () => {
+    root.classList.remove("pa-arriving");
+    const target = document.getElementById(fragment);
+    const chapter = target === null ? null : target.closest(".pd-pages .pa-page");
+    if (chapter === null || chapter.classList.contains("pa-open")) return void 0;
+    const layersOf = (page) => {
+      const layers = [];
+      for (let above = page.parentElement; above !== null && !above.classList.contains("pd-pages"); above = above.parentElement)
+        if (above.classList.contains("pd-container")) layers.push(above);
+      return layers;
+    };
+    for (const was of Array.from(document.querySelectorAll(".pd-pages .pa-page.pa-open"))) {
+      was.classList.remove("pa-open");
+      for (const layer of layersOf(was)) layer.classList.remove("pa-open");
+    };
+    chapter.classList.add("pa-open");
+    for (const layer of layersOf(chapter)) layer.classList.add("pa-open");
+    const title = chapter.querySelector(".pd-title");
+    const place = title === null || title.id === "" ? fragment : title.id;
+    for (const row2 of Array.from(document.querySelectorAll(".pd-holds .pa-entry.pa-open"))) row2.classList.remove("pa-open");
+    const anchor = document.querySelector(`.pd-holds a[href$="#${place}"]`);
+    const row = anchor === null ? null : anchor.querySelector(".pa-entry") ?? anchor.closest(".pa-entry");
+    row?.classList.add("pa-open");
+    const turned = () => {
+      if (typeof chapter.scrollIntoView === "function") chapter.scrollIntoView();
+    };
+    turned();
+    if (document.readyState !== "complete") document.defaultView?.addEventListener("load", turned, { once: true });
+    return place;
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      open();
+    });
+    return void 0;
+  };
+  return open();
+})(document,location.hash);</script>
+  </head>
+  <body>
+    <div id="root"><!--$--><div class="sc-gSYDHb gdMFJN pd-container"><div class="sc-bYwwMP dZBuKS pd-container"><div class="pd-book pa-paginated pa-layout pa-turned pa-tone pa-light"><div class="pd-library"><div class="pd-paragraph pd-logo"><div class="sc-iJCTZA cRVkBD pd-scheme"><span class="pd-filed"><a href="/our-conversations/" class="sc-eCAoTo pa-reference pd-container"><span class="sc-giAsBR epdjWO pd-container"><span class="pd-word pd-mark pa-reference"><span class="pd-drawing"><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M11 15h24M11 21h16"/><path class="fill" d="M24 31h34v20H52v6l-6-6H24z"/><path d="M24 31h34v20H52v6l-6-6H24z"/><path class="light" d="M29 37h24M29 43h16"/></svg></span></span></span></a></span></div><div class="sc-iJCTZA evWWSA pd-scheme"><span class="pd-own"><a href="/claude-patterns-object-model-a3b2f38f/" class="sc-eCAoTo pa-reference pd-container"><span class="sc-giAsBR fiCfTz pd-container"><span class="pd-word pd-mark pa-reference"><span class="pd-drawing"><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M11 15h24M11 21h16"/><path class="fill" d="M24 31h34v20H52v6l-6-6H24z"/><path d="M24 31h34v20H52v6l-6-6H24z"/><path class="light" d="M29 37h24M29 43h16"/></svg></span></span></span></a></span></div><span class="pd-names"><div class="sc-iJCTZA evWWSA pd-scheme"><span class="pd-name"><a href="/claude-patterns-object-model-a3b2f38f/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Patterns Object Model</span></a></span></div><div class="sc-iJCTZA cRVkBD pd-scheme"><span class="pd-name pd-under"><a href="/our-conversations/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Our Conversations</span></a></span></div></span></div></div><div class="pd-me"><div class="pd-paragraph pd-byline"><span class="pd-word pa-label">by</span><a href="/dougs-story/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Doug</span></a></div><div class="sc-iJCTZA jLFJTJ pd-scheme"><a href="/dougs-story/" class="sc-eCAoTo pa-reference pd-container"><span class="sc-giAsBR zHScS pd-container"><span class="pd-word pd-mark pa-reference"><span class="pd-drawing"><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M8 13h23v38H8zM33 13h23v38H33z"/><path d="M8 13h23v38H8zM33 13h23v38H33z"/><path d="M13 21h13M13 27h13M13 33h9M38 21h13M38 27h13M38 33h13M38 39h8"/><path class="fill" d="M15 55 45 25l4 4-30 30-6 2z"/><path d="M15 55 45 25l4 4-30 30-6 2zM43 27l4 4M17 53l2 2"/></svg></span></span></span></a></div><div class="pd-paragraph pd-project-line"><span class="pd-word pa-label">project</span><a href="/claude-dna-patternity/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">DNA Patternity</span></a></div><div class="pd-paragraph pd-account-line"><span class="pd-word pa-label">account</span><a href="/dougs-claude/#dna-legacy" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">DNA Legacy</span></a></div></div><div class="pd-holds"><nav class="sc-crzogQ pd-container"><div class="pd-chapter pa-table-of-contents"><a href="/claude-patterns-object-model-a3b2f38f/#table-of-contents" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><span id="table-of-contents" class="pd-sentence pd-title pa-parenthetical pa-reference pa-self-reference pa-referent" hidden=""></span></a><div class="pd-section"><a href="#august-2025" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="august-2025" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">August 2025</div></a><a href="/claude-patterns-object-model-a3b2f38f/#18-august-2025" class="sc-dIrNh pa-reference pd-container"><div class="sc-fKgHSI hcfsAk pd-container"><div class="pd-paragraph pa-entry pa-open pa-reference"><span class="pd-word pd-day-count">20</span><span class="sc-bqGEVu pa-content">18 August 2025</span></div></div></a><span class="pd-paragraph pa-parenthetical" hidden=""></span></div><div class="pd-paragraph pd-tree-root"><a href="/claude-patterns-object-model-a3b2f38f/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference"><span class="pd-drawing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5 10.5 8 6 12.5"/></svg></span>Patterns Object Model</span></a></div></div></nav></div><div class="pd-head"><header class="sc-lmgQQD pd-container"><div class="sc-iJCTZA evWWSA pd-scheme pd-container"><div class="pd-chapter pa-messages pa-period pa-scheme pa-volume pa-cover"><div class="pd-paragraph pd-participants"><a href="/dougs-story/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pd-participant pa-reference">Doug</span></a> and <a href="/dougs-claude/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pd-participant pa-reference">Claude</span></a></div><a href="/claude-patterns-object-model-a3b2f38f/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="patterns-object-model" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">Patterns Object Model</div></a><div class="pd-paragraph pa-illustration"><span class="pd-letter pd-figure pd-svg"><span><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M11 15h24M11 21h16"/><path class="fill" d="M24 31h34v20H52v6l-6-6H24z"/><path d="M24 31h34v20H52v6l-6-6H24z"/><path class="light" d="M29 37h24M29 43h16"/></svg>
+</span></span></div></div></div></header><div class="pd-switches"></div><div class="pd-paragraph pd-tally"><span class="pd-tally-count"><b>20</b> messages in <b>1</b> day</span><span class="pd-tally-period">18 August 2025</span></div></div><div class="pd-pages"><div class="pd-chapter pd-canonical pa-open pa-page pa-dated"><a href="/claude-patterns-object-model-a3b2f38f/#18-august-2025" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="18-august-2025" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">18 August 2025</div></a><div id="2025-08-18t16-57-26-427764-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-08-18T16:57:26.427764Z" class="pd-word pd-date pd-time">16:57 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Okay review the code. It is a vite project that compiles into a single html page that can be run locally. It interacts with no other files due to restrictions when launching an html file locally in the browser, and it makes use of TypeScript that compiles to web assembly. Use the image to help you assign the various pieces of code to locations in the file tree</div><div class="pd-paragraph">Just catch up for now and comprehend how everything works</div><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">PNG</span><span class="pd-chip-words"><b>image.png</b><small>not carried by the export</small></span></button><figcaption>Uploaded “image.png”, whose content the export does not carry</figcaption></figure></div></div><div id="2025-08-18t16-57-47-001369-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-08-18T16:57:47.001369Z" class="pd-word pd-date pd-time">16:57 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Looking at your DNA-Patternity project, I can see an interesting architecture that combines React, TypeScript, and WebAssembly. Let me map out how everything fits together based on the file tree and code:</div><div class="pd-sentence pd-heading">Project Structure</div><div class="pd-sentence pd-heading">Core Technologies:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Vite</span></b> - Build tool configured to output a single HTML file</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">React</span></b> - UI framework</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">AssemblyScript</span></b> - TypeScript-to-WebAssembly compiler</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Custom &quot;Chemistry&quot; framework</span></b> - A reactive component system</div></div></div><div class="pd-sentence pd-heading">File Locations in Tree:</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Root Level:</span></b></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">index.html</span> - Entry HTML file</div><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">package.json</span> &amp; <span class="pd-word pa-verbatim">package-lock.json</span> - Dependencies and scripts</div><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">vite.config.ts</span> - Vite configuration with single-file output</div><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">tsconfig.json</span> - TypeScript root config</div><div class="pd-sentence pd-line pa-item">Various config files (<span class="pd-word pa-verbatim">.gitignore</span>, <span class="pd-word pa-verbatim">eslint.config.js</span>, etc.)</div></div></div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word"> 0  directory:</span></b></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">App.tsx</span> - Main React component that loads and tests WASM</div><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">App.css</span> - Styles for App component</div><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">main.tsx</span> - React entry point</div><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">index.css</span> - Global styles</div><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">vite-env.d.ts</span> - Vite type definitions</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Missing but referenced:</span></b> <span class="pd-word pa-verbatim">chemistry.ts</span> should be here</div></div></div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word"> 0  directory:</span></b></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">index.ts</span> - AssemblyScript code that compiles to WASM</div><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">tsconfig.json</span> - AssemblyScript-specific TypeScript config</div></div></div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word"> 0  directory (generated):</span></b></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Contains compiled WASM modules (<span class="pd-word pa-verbatim">release.js</span>, <span class="pd-word pa-verbatim">release.wasm</span>, etc.)</div></div></div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word"> 0  directory (generated):</span></b></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">index.html</span> - Final single-file output</div></div></div><div class="pd-sentence pd-heading">How It Works:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Build Process:</span></b></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">AssemblyScript compiles <span class="pd-word pa-verbatim">assembly/index.ts</span> → <span class="pd-word pa-verbatim">build/release.js</span> + WASM</div><div class="pd-sentence pd-line pa-item">Vite bundles everything into a single HTML file using <span class="pd-word pa-verbatim">vite-plugin-singlefile</span></div><div class="pd-sentence pd-line pa-item">The cleanup script removes unnecessary files from dist</div></div></div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">WASM Integration:</span></b></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">The WASM module exports functions like <span class="pd-word pa-verbatim">multiplyByTwo</span> and <span class="pd-word pa-verbatim">calculateTilePosition</span></div><div class="pd-sentence pd-line pa-item">React imports these directly from the compiled module</div><div class="pd-sentence pd-line pa-item">Functions are pre-instantiated and ready to use</div></div></div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Chemistry Framework:</span></b></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Custom reactive component system built on top of React</div><div class="pd-sentence pd-line pa-item">Uses decorators (<span class="pd-word pa-verbatim">@inert</span>, <span class="pd-word pa-verbatim">@equate</span>, <span class="pd-word pa-verbatim">@dynamic</span>, <span class="pd-word pa-verbatim">@entail</span>, <span class="pd-word pa-verbatim">@transform</span>)</div><div class="pd-sentence pd-line pa-item">Provides automatic reactivity through property interception</div><div class="pd-sentence pd-line pa-item">Components extend <span class="pd-word pa-verbatim">Chemical</span> class and implement <span class="pd-word pa-verbatim">component()</span> method</div></div></div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Single-File Constraint:</span></b></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Everything compiles into one HTML file for local execution</div><div class="pd-sentence pd-line pa-item">No external dependencies or file access needed at runtime</div><div class="pd-sentence pd-line pa-item">WASM is embedded directly into the bundle</div></div></div></div></div><div class="pd-paragraph">The app currently shows a basic &quot;DNA-Patternity&quot; title and tests WASM functionality. The groundwork is laid for creating patterns using WebAssembly-accelerated calculations, likely for performance-critical tiling or pattern generation algorithms.</div><div class="pd-paragraph">The Chemistry framework appears to be a sophisticated reactive system that could enable complex, performant pattern generation with automatic UI updates when data changes.</div></div></div><div id="2025-08-18t17-01-05-684249-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-08-18T17:01:05.684249Z" class="pd-word pd-date pd-time">17:01 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">You can look at the project. Why isn&#x27;t chemistry.ts working in the src directory?</div><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">PNG</span><span class="pd-chip-words"><b>image.png</b><small>not carried by the export</small></span></button><figcaption>Uploaded “image.png”, whose content the export does not carry</figcaption></figure></div></div><div id="2025-08-18t17-01-17-865242-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-08-18T17:01:17.865242Z" class="pd-word pd-date pd-time">17:01 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Looking at the issue, I can see that <span class="pd-word pa-verbatim">chemistry.ts</span> is indeed in the <span class="pd-word pa-verbatim">/src</span> directory (as shown in your file tree and tab), but there&#x27;s a problem with how it&#x27;s being imported in <span class="pd-word pa-verbatim">App.tsx</span>.</div><div class="pd-sentence pd-heading">The Problem:</div><div class="pd-paragraph">In <span class="pd-word pa-verbatim">App.tsx</span> (line 2), you have:</div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./App.css&#x27;</span>
+<span class="hljs-comment">// Import the functions directly - they&#x27;re already instantiated!</span>
+<span class="hljs-keyword">import</span> { multiplyByTwo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../build/release.js&#x27;</span></code></pre></div><div class="pd-paragraph">But there&#x27;s no import for the Chemistry framework, even though <span class="pd-word pa-verbatim">chemistry.ts</span> exists in the same <span class="pd-word pa-verbatim">/src</span> directory.</div><div class="pd-sentence pd-heading">Why It&#x27;s Not Working:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Missing Import</span></b>: The Chemistry framework isn&#x27;t being imported anywhere in the current code</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">TypeScript Config</span></b>: The <span class="pd-word pa-verbatim">tsconfig.app.json</span> is set to <span class="pd-word pa-verbatim">&quot;noEmit&quot;: true</span>, which means TypeScript only type-checks but doesn&#x27;t emit JavaScript files</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">No Usage</span></b>: None of the components are currently using the <span class="pd-word pa-verbatim">Chemical</span> class</div></div></div><div class="pd-sentence pd-heading">To Fix:</div><div class="pd-paragraph">If you want to use the Chemistry framework, you need to:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Import it in App.tsx or where needed:</span></b></div></div></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Chemical</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./chemistry&#x27;</span>;</code></pre></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Create a component using it:</span></b></div></div></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyPattern</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Chemical</span> {
+  <span class="hljs-title function_">component</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Pattern here<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+  }
+}</code></pre></div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Use it in your app:</span></b></div></div></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">Pattern</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyPattern</span>().<span class="hljs-title function_">render</span>();
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Pattern</span> /&gt;</span></span>;
+}</code></pre></div><div class="pd-paragraph">The Chemistry framework is there and ready, but it&#x27;s not connected to anything yet. It&#x27;s like having a powerful engine sitting in the garage - you need to install it in the car (import and use it) for it to work!</div></div></div><div id="2025-08-18t17-01-49-703324-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-08-18T17:01:49.703324Z" class="pd-word pd-date pd-time">17:01 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">You didn&#x27;t look at the file. The error is in chemistry.ts itself. It&#x27;s now recognizing the react imports</div></div></div><div id="2025-08-18t17-01-59-637780-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-08-18T17:01:59.637780Z" class="pd-word pd-date pd-time">17:01 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Ah, you&#x27;re right! Looking at the <span class="pd-word pa-verbatim">chemistry.ts</span> file, the issue is with the import statement on line 2:</div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { <span class="hljs-title class_">ReactNode</span>, <span class="hljs-title class_">ReactElement</span>, useState, useRef, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;</code></pre></div><div class="pd-sentence pd-heading">The Problem:</div><div class="pd-paragraph">The TypeScript compiler isn&#x27;t recognizing the React imports. This is likely because:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Missing React import configuration</span></b> - The file needs to be recognized as a module that can import React</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">File extension</span></b> - React TypeScript files typically use <span class="pd-word pa-verbatim">.tsx</span> extension when they contain JSX or React code</div></div></div><div class="pd-sentence pd-heading">The Fix:</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Rename the file from  0  to  1 </span></b></div><div class="pd-paragraph">Since the Chemistry framework:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Imports React types and hooks</div><div class="pd-sentence pd-line pa-item">Works with React components and elements</div><div class="pd-sentence pd-line pa-item">Uses <span class="pd-word pa-verbatim">React.createElement</span>, <span class="pd-word pa-verbatim">React.Children</span>, <span class="pd-word pa-verbatim">React.Fragment</span></div><div class="pd-sentence pd-line pa-item">Returns JSX/React nodes from its methods</div></div></div><div class="pd-paragraph">It needs to be a <span class="pd-word pa-verbatim">.tsx</span> file for TypeScript to properly handle the React imports and JSX transformations.</div><div class="pd-paragraph">After renaming to <span class="pd-word pa-verbatim">chemistry.tsx</span>, the React imports should be recognized properly. The <span class="pd-word pa-verbatim">.tsx</span> extension tells TypeScript to enable JSX processing and properly resolve React types.</div></div></div><div id="2025-08-18t17-02-49-633092-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-08-18T17:02:49.633092Z" class="pd-word pd-date pd-time">17:02 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">It works as a ts file in other projects. Read chemistry.ts and see if it needs tsx syntax. I don&#x27;t think it does</div></div></div><div id="2025-08-18t17-02-59-564344-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-08-18T17:02:59.564344Z" class="pd-word pd-date pd-time">17:02 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">You&#x27;re absolutely right! Looking through <span class="pd-word pa-verbatim">chemistry.ts</span>, it doesn&#x27;t use any JSX syntax at all. It only uses:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">React types (<span class="pd-word pa-verbatim">ReactNode</span>, <span class="pd-word pa-verbatim">ReactElement</span>)</div><div class="pd-sentence pd-line pa-item">React hooks (<span class="pd-word pa-verbatim">useState</span>, <span class="pd-word pa-verbatim">useRef</span>, <span class="pd-word pa-verbatim">useEffect</span>)</div><div class="pd-sentence pd-line pa-item">React API methods (<span class="pd-word pa-verbatim">React.createElement</span>, <span class="pd-word pa-verbatim">React.Children.toArray</span>, <span class="pd-word pa-verbatim">React.isValidElement</span>)</div></div></div><div class="pd-paragraph">No JSX means it should work fine as a <span class="pd-word pa-verbatim">.ts</span> file.</div><div class="pd-sentence pd-heading">The Real Problem:</div><div class="pd-paragraph">The import statement on line 2 is incorrect for this project setup:</div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { <span class="hljs-title class_">ReactNode</span>, <span class="hljs-title class_">ReactElement</span>, useState, useRef, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;</code></pre></div><div class="pd-paragraph">Looking at your <span class="pd-word pa-verbatim">App.tsx</span>, the correct import pattern for React 19 is:</div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">import</span> { useEffect, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span></code></pre></div><div class="pd-sentence pd-heading">The Fix:</div><div class="pd-paragraph">Change line 2 in <span class="pd-word pa-verbatim">chemistry.ts</span> to:</div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { <span class="hljs-title class_">ReactNode</span>, <span class="hljs-title class_">ReactElement</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> { useState, useRef, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;</code></pre></div><div class="pd-paragraph">Or even simpler, since React is available globally in React 19:</div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> { <span class="hljs-title class_">ReactNode</span>, <span class="hljs-title class_">ReactElement</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> { useState, useRef, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;</code></pre></div><div class="pd-paragraph">The issue is that the current import statement is trying to import both the default export (<span class="pd-word pa-verbatim">React</span>) and named exports in a single line, which might not be properly configured in your TypeScript/Vite setup for React 19.</div></div></div><div id="2025-08-18t17-31-55-794934-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-08-18T17:31:55.794934Z" class="pd-word pd-date pd-time">17:31 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Okay that fixed it. Now... onto more fun things. Take a look at all of this code. This is extendscript, but I would like to adapt this code to the current project</div><div class="pd-paragraph">I would like to use Chemistry to define a view model called a Canvas. On it, I would like to make something like I had for illustrator scripting but specific to this domain. There is one canvas as a singleton. A canvas might have many symbols, which might represent bits of SVG themselves. The canvas has normalized coordinates. I want to make use of classes that are similar to my helper classes, though augmented to use libraries that might exist. We are doing some of this in web assembly to make it fast after all</div><div class="pd-paragraph">Looking at all this code, how might we adapt it from a high level? Don&#x27;t bother to write code. Think aloud</div><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>app.ts</b><small>1399 lines</small></span></button><figcaption>Attached “app.ts”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>math.ts</b><small>1065 lines</small></span></button><figcaption>Attached “math.ts”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>paths.ts</b><small>1649 lines</small></span></button><figcaption>Attached “paths.ts”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>position.ts</b><small>326 lines</small></span></button><figcaption>Attached “position.ts”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>properties.ts</b><small>290 lines</small></span></button><figcaption>Attached “properties.ts”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>ref.ts</b><small>792 lines</small></span></button><figcaption>Attached “ref.ts”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>reflection.ts</b><small>177 lines</small></span></button><figcaption>Attached “reflection.ts”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>space.ts</b><small>372 lines</small></span></button><figcaption>Attached “space.ts”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>types.ts</b><small>90 lines</small></span></button><figcaption>Attached “types.ts”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>utils.ts</b><small>1267 lines</small></span></button><figcaption>Attached “utils.ts”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>app.ts</b><small>not carried by the export</small></span></button><figcaption>Uploaded “app.ts”, whose content the export does not carry</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>math.ts</b><small>not carried by the export</small></span></button><figcaption>Uploaded “math.ts”, whose content the export does not carry</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>paths.ts</b><small>not carried by the export</small></span></button><figcaption>Uploaded “paths.ts”, whose content the export does not carry</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>position.ts</b><small>not carried by the export</small></span></button><figcaption>Uploaded “position.ts”, whose content the export does not carry</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>properties.ts</b><small>not carried by the export</small></span></button><figcaption>Uploaded “properties.ts”, whose content the export does not carry</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>ref.ts</b><small>not carried by the export</small></span></button><figcaption>Uploaded “ref.ts”, whose content the export does not carry</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>reflection.ts</b><small>not carried by the export</small></span></button><figcaption>Uploaded “reflection.ts”, whose content the export does not carry</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>space.ts</b><small>not carried by the export</small></span></button><figcaption>Uploaded “space.ts”, whose content the export does not carry</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>types.ts</b><small>not carried by the export</small></span></button><figcaption>Uploaded “types.ts”, whose content the export does not carry</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TS</span><span class="pd-chip-words"><b>utils.ts</b><small>not carried by the export</small></span></button><figcaption>Uploaded “utils.ts”, whose content the export does not carry</figcaption></figure></div></div><div id="2025-08-18t17-32-31-841975-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-08-18T17:32:31.841975Z" class="pd-word pd-date pd-time">17:32 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Looking at this extensive ExtendScript codebase and thinking about adapting it to your DNA-Patternity project, here&#x27;s how I see the high-level architecture translating:</div><div class="pd-sentence pd-heading">Core Architecture Translation</div><div class="pd-sentence pd-heading">From Illustrator DOM to Web Canvas Model</div><div class="pd-paragraph">Your ExtendScript code wraps Adobe Illustrator&#x27;s DOM with a fluent query API. For the web version, we&#x27;d replace:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item"><span class="pd-word pa-verbatim">$Document</span>, <span class="pd-word pa-verbatim">$Layer</span>, <span class="pd-word pa-verbatim">$PathItem</span> → Canvas-based equivalents</div><div class="pd-sentence pd-line pa-item">Adobe&#x27;s coordinate system → Normalized canvas coordinates (0-1 range)</div><div class="pd-sentence pd-line pa-item">Illustrator&#x27;s object model → SVG/Canvas hybrid rendering</div></div></div><div class="pd-sentence pd-heading">The Chemistry-Powered Canvas</div><div class="pd-paragraph">The <span class="pd-word pa-verbatim">Canvas</span> class would extend <span class="pd-word pa-verbatim">Chemical</span>, making it reactive. This is brilliant because:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Any change to canvas properties automatically triggers re-renders</div><div class="pd-sentence pd-line pa-item">The canvas becomes the single source of truth (singleton pattern)</div><div class="pd-sentence pd-line pa-item">Symbols on the canvas update automatically when their data changes</div></div></div><div class="pd-sentence pd-heading">Symbol System Architecture</div><div class="pd-paragraph">Your <span class="pd-word pa-verbatim">$Symbol</span> concept translates beautifully:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Each Symbol is a <span class="pd-word pa-verbatim">Chemical</span> component</div><div class="pd-sentence pd-line pa-item">Symbols can represent SVG fragments, patterns, or procedural graphics</div><div class="pd-sentence pd-line pa-item">Symbols have their own coordinate space that maps to canvas space</div><div class="pd-sentence pd-line pa-item">The reactive system means changing a symbol&#x27;s properties instantly updates the canvas</div></div></div><div class="pd-sentence pd-heading">WebAssembly Integration Strategy</div><div class="pd-sentence pd-heading">Performance-Critical Operations in WASM:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Vector Math</span></b> - Your <span class="pd-word pa-verbatim">Vector</span> class operations</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Path Calculations</span></b> - Bezier curves, smoothing algorithms</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Pattern Generation</span></b> - Complex mathematical patterns</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Coordinate Transformations</span></b> - Region/space calculations</div></div></div><div class="pd-sentence pd-heading">JavaScript/TypeScript Layer:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Chemistry Components</span></b> - Reactive UI layer</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">DOM Interaction</span></b> - Event handling, rendering</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">State Management</span></b> - Canvas state, symbol registry</div></div></div><div class="pd-sentence pd-heading">Key Adaptations Needed</div><div class="pd-sentence pd-heading">Coordinate System</div><div class="pd-paragraph">Your <span class="pd-word pa-verbatim">Region</span> class is sophisticated - it handles:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Nested coordinate spaces</div><div class="pd-sentence pd-line pa-item">Parent-child relationships</div><div class="pd-sentence pd-line pa-item">Transformations between spaces</div></div></div><div class="pd-paragraph">This maps well to canvas operations but needs:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Integration with browser&#x27;s coordinate system</div><div class="pd-sentence pd-line pa-item">Touch/mouse event coordinate mapping</div><div class="pd-sentence pd-line pa-item">Viewport/zoom handling</div></div></div><div class="pd-sentence pd-heading">Query System Evolution</div><div class="pd-paragraph">Your <span class="pd-word pa-verbatim">Queryable</span> pattern could become:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Instead of querying Illustrator objects, query canvas elements</div><div class="pd-sentence pd-line pa-item">Maintain similar fluent API</div><div class="pd-sentence pd-line pa-item">Use virtual DOM concepts for efficiency</div></div></div><div class="pd-sentence pd-heading">Path and Shape System</div><div class="pd-paragraph">Your path system (<span class="pd-word pa-verbatim">PathItem</span>, <span class="pd-word pa-verbatim">PathPoint</span>, smoothing algorithms) would:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Generate SVG path data or Canvas2D commands</div><div class="pd-sentence pd-line pa-item">Use WASM for complex calculations</div><div class="pd-sentence pd-line pa-item">Maintain the same high-level API</div></div></div><div class="pd-sentence pd-heading">Reference System Adaptation</div><div class="pd-paragraph">Your <span class="pd-word pa-verbatim">$Reference</span> system for deferred execution could:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Become a command pattern for canvas operations</div><div class="pd-sentence pd-line pa-item">Enable undo/redo functionality</div><div class="pd-sentence pd-line pa-item">Allow for animation sequences</div></div></div><div class="pd-sentence pd-heading">Unique Opportunities</div><div class="pd-sentence pd-heading">Real-Time Interactivity</div><div class="pd-paragraph">Unlike ExtendScript&#x27;s batch processing:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Immediate visual feedback</div><div class="pd-sentence pd-line pa-item">Smooth animations using requestAnimationFrame</div><div class="pd-sentence pd-line pa-item">Interactive parameter adjustment</div></div></div><div class="pd-sentence pd-heading">Pattern Generation Engine</div><div class="pd-paragraph">Your mathematical foundation (Vector, Complex numbers, etc.) could power:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Procedural pattern generation</div><div class="pd-sentence pd-line pa-item">Fractal designs</div><div class="pd-sentence pd-line pa-item">Physics simulations</div><div class="pd-sentence pd-line pa-item">Generative art</div></div></div><div class="pd-sentence pd-heading">Hybrid Rendering</div><div class="pd-paragraph">Combine strengths of different technologies:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">SVG for precise vector graphics</div><div class="pd-sentence pd-line pa-item">Canvas2D for raster operations</div><div class="pd-sentence pd-line pa-item">WebGL (future) for complex effects</div><div class="pd-sentence pd-line pa-item">WASM for computational geometry</div></div></div><div class="pd-sentence pd-heading">Architecture Layers</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">WASM Core</span></b> - Math, geometry, algorithms</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Chemistry Layer</span></b> - Reactive components, state management</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Canvas Abstraction</span></b> - Coordinate systems, rendering pipeline</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Symbol Library</span></b> - Reusable visual components</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Pattern Engine</span></b> - Procedural generation system</div></div></div><div class="pd-paragraph">The beauty is that your ExtendScript architecture already solves many complex problems:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Coordinate space management</div><div class="pd-sentence pd-line pa-item">Hierarchical object relationships</div><div class="pd-sentence pd-line pa-item">Fluent API design</div><div class="pd-sentence pd-line pa-item">Mathematical foundations</div></div></div><div class="pd-paragraph">The key is translating these solutions from Illustrator&#x27;s imperative API to a reactive, web-based system while leveraging WASM for performance where it matters most.</div></div></div><div id="2025-08-18t18-15-00-614513-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-08-18T18:15:00.614513Z" class="pd-word pd-date pd-time">18:15 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Here&#x27;s our conversation: How about you write some code and tell me where to put it where you import my library. Look for places to update. This code was compiled ES5, but bear in mind many things are in modern versions of TS. Perhaps my str class is not necessary. The A class adds a fluent sort of syntax that might not be that useful in modern JavaScript. If we decide to use such a wrapper to build vector out of, make sure not to reimplement methods that are already there. Althoygh I am partial to linq, so it is okay to implement my select and where type things There are probably many arrays in the TypeScript that goes to web assembly right? Can we resolve a version of my A class?</div><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TXT</span><span class="pd-chip-words"><b>paste.txt</b><small>193 lines</small></span></button><figcaption>Attached “paste.txt”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TXT</span><span class="pd-chip-words"><b>paste-2.txt</b><small>208 lines</small></span></button><figcaption>Attached “paste-2.txt”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TXT</span><span class="pd-chip-words"><b>paste.txt</b><small>not carried by the export</small></span></button><figcaption>Uploaded “paste.txt”, whose content the export does not carry</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TXT</span><span class="pd-chip-words"><b>paste-2.txt</b><small>not carried by the export</small></span></button><figcaption>Uploaded “paste-2.txt”, whose content the export does not carry</figcaption></figure></div></div><div id="2025-08-18t18-16-19-060192-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-08-18T18:16:19.060192Z" class="pd-word pd-date pd-time">18:16 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Looking at your code and modern TypeScript/JavaScript, you&#x27;re right - a lot has evolved! Let me create a modernized version that leverages native features while keeping your LINQ-style fluency. Here&#x27;s how to integrate it:</div><div class="pd-sentence pd-heading">1. First, let&#x27;s create a modern A class that works with both TypeScript and AssemblyScript</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Create  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-comment">/**
+ * Modern fluent array wrapper that works in both TypeScript and AssemblyScript
+ * Leverages native methods where possible, adds LINQ-style operations
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>&lt;T&gt; {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">protected</span> <span class="hljs-attr">_a</span>: T[] = []</span>) {}
+
+  <span class="hljs-comment">// Core access</span>
+  <span class="hljs-title function_">a</span>(): T[] { <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>; }
+  <span class="hljs-title function_">length</span>(): <span class="hljs-built_in">number</span> { <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-property">length</span>; }
+  <span class="hljs-title function_">at</span>(<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span>): T | <span class="hljs-literal">undefined</span> { 
+    <span class="hljs-comment">// Native at() supports negative indexing!</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">at</span>(index); 
+  }
+
+  <span class="hljs-comment">// LINQ-style operations (your favorites)</span>
+  select&lt;U&gt;(<span class="hljs-attr">selector</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">item</span>: T, <span class="hljs-attr">i</span>: <span class="hljs-built_in">number</span></span>) =&gt;</span> U): A&lt;U&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">map</span>(selector));
+  }
+
+  <span class="hljs-title function_">where</span>(<span class="hljs-attr">predicate</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">item</span>: T, <span class="hljs-attr">i</span>: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): A&lt;T&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">filter</span>(predicate));
+  }
+
+  selectMany&lt;U&gt;(<span class="hljs-attr">selector</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">item</span>: T, <span class="hljs-attr">i</span>: <span class="hljs-built_in">number</span></span>) =&gt;</span> U[]): A&lt;U&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">flatMap</span>(selector));
+  }
+
+  <span class="hljs-title function_">distinct</span>(<span class="hljs-attr">comparer</span>?: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">a</span>: T, <span class="hljs-attr">b</span>: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): A&lt;T&gt; {
+    <span class="hljs-keyword">if</span> (!comparer) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>([...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>)]);
+    }
+    <span class="hljs-comment">// Custom comparer logic</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-attr">result</span>: T[] = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>) {
+      <span class="hljs-keyword">if</span> (!result.<span class="hljs-title function_">some</span>(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> <span class="hljs-title function_">comparer</span>(r, item))) {
+        result.<span class="hljs-title function_">push</span>(item);
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(result);
+  }
+
+  aggregate&lt;U&gt;(<span class="hljs-attr">seed</span>: U, <span class="hljs-attr">func</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">acc</span>: U, <span class="hljs-attr">current</span>: T, <span class="hljs-attr">i</span>: <span class="hljs-built_in">number</span></span>) =&gt;</span> U): U {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">reduce</span>(func, seed);
+  }
+
+  <span class="hljs-comment">// Modern array methods (use native implementations)</span>
+  <span class="hljs-title function_">first</span>(<span class="hljs-attr">predicate</span>?: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">item</span>: T, <span class="hljs-attr">i</span>: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): T | <span class="hljs-literal">undefined</span> {
+    <span class="hljs-keyword">return</span> predicate ? <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">find</span>(predicate) : <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>[<span class="hljs-number">0</span>];
+  }
+
+  <span class="hljs-title function_">last</span>(<span class="hljs-attr">predicate</span>?: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">item</span>: T, <span class="hljs-attr">i</span>: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): T | <span class="hljs-literal">undefined</span> {
+    <span class="hljs-keyword">if</span> (!predicate) <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">at</span>(-<span class="hljs-number">1</span>);
+    <span class="hljs-comment">// Find from end</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-title function_">predicate</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>[i], i)) <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>[i];
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+  }
+
+  <span class="hljs-title function_">any</span>(<span class="hljs-attr">predicate</span>?: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">item</span>: T, <span class="hljs-attr">i</span>: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): <span class="hljs-built_in">boolean</span> {
+    <span class="hljs-keyword">return</span> predicate ? <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">some</span>(predicate) : <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>;
+  }
+
+  <span class="hljs-title function_">all</span>(<span class="hljs-attr">predicate</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">item</span>: T, <span class="hljs-attr">i</span>: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): <span class="hljs-built_in">boolean</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">every</span>(predicate);
+  }
+
+  <span class="hljs-comment">// Chaining operations</span>
+  <span class="hljs-title function_">skip</span>(<span class="hljs-attr">count</span>: <span class="hljs-built_in">number</span>): A&lt;T&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">slice</span>(count));
+  }
+
+  <span class="hljs-title function_">take</span>(<span class="hljs-attr">count</span>: <span class="hljs-built_in">number</span>): A&lt;T&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, count));
+  }
+
+  <span class="hljs-title function_">orderBy</span>(<span class="hljs-attr">selector</span>?: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">item</span>: T</span>) =&gt;</span> <span class="hljs-built_in">any</span>): A&lt;T&gt; {
+    <span class="hljs-keyword">const</span> copy = [...<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>];
+    <span class="hljs-keyword">if</span> (!selector) {
+      copy.<span class="hljs-title function_">sort</span>();
+    } <span class="hljs-keyword">else</span> {
+      copy.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> va = <span class="hljs-title function_">selector</span>(a);
+        <span class="hljs-keyword">const</span> vb = <span class="hljs-title function_">selector</span>(b);
+        <span class="hljs-keyword">return</span> va &lt; vb ? -<span class="hljs-number">1</span> : va &gt; vb ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+      });
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(copy);
+  }
+
+  <span class="hljs-comment">// Your special methods</span>
+  zip&lt;U&gt;(<span class="hljs-attr">other</span>: A&lt;U&gt; | U[]): A&lt;[T, U]&gt; {
+    <span class="hljs-keyword">const</span> arr = other <span class="hljs-keyword">instanceof</span> A ? other.<span class="hljs-property">_a</span> : other;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">item, i</span>) =&gt;</span> [item, arr[i]] <span class="hljs-keyword">as</span> [T, U]));
+  }
+
+  <span class="hljs-comment">// Native delegations</span>
+  <span class="hljs-title function_">forEach</span>(<span class="hljs-attr">callback</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">item</span>: T, <span class="hljs-attr">i</span>: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">forEach</span>(callback);
+  }
+
+  <span class="hljs-title function_">includes</span>(<span class="hljs-attr">item</span>: T): <span class="hljs-built_in">boolean</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">includes</span>(item);
+  }
+
+  <span class="hljs-title function_">push</span>(...<span class="hljs-attr">items</span>: T[]): <span class="hljs-variable language_">this</span> {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">push</span>(...items);
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;
+  }
+
+  <span class="hljs-title function_">concat</span>(<span class="hljs-attr">other</span>: A&lt;T&gt; | T[]): A&lt;T&gt; {
+    <span class="hljs-keyword">const</span> arr = other <span class="hljs-keyword">instanceof</span> A ? other.<span class="hljs-property">_a</span> : other;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">concat</span>(arr));
+  }
+
+  <span class="hljs-comment">// Convert to string</span>
+  <span class="hljs-title function_">toString</span>(): <span class="hljs-built_in">string</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`A[<span class="hljs-subst">${<span class="hljs-variable language_">this</span>._a.join(<span class="hljs-string">&#x27;, &#x27;</span>)}</span>]`</span>;
+  }
+}
+
+<span class="hljs-comment">// Helper function</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> f&lt;T&gt;(<span class="hljs-attr">array</span>: T[] | A&lt;T&gt; = []): A&lt;T&gt; {
+  <span class="hljs-keyword">return</span> array <span class="hljs-keyword">instanceof</span> A ? array : <span class="hljs-keyword">new</span> <span class="hljs-title function_">A</span>(array);
+}</code></pre></div><div class="pd-sentence pd-heading">2. Update your Vector class to use the modern A class</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Update  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">import</span> { A, f } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./collections&#x27;</span>;
+<span class="hljs-keyword">import</span> { vec2, mat2d } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;gl-matrix&#x27;</span>;
+<span class="hljs-keyword">import</span> { complex, sin, cos, sqrt, <span class="hljs-title class_">Complex</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mathjs&#x27;</span>;
+
+<span class="hljs-comment">// Modern type guards using TypeScript&#x27;s type predicates</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">VectorTypes</span> {
+  <span class="hljs-keyword">static</span> <span class="hljs-title function_">isNumber</span>(<span class="hljs-attr">value</span>: <span class="hljs-built_in">any</span>): value is <span class="hljs-built_in">number</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&#x27;number&#x27;</span>;
+  }
+
+  <span class="hljs-keyword">static</span> <span class="hljs-title function_">isPosition</span>(<span class="hljs-attr">value</span>: <span class="hljs-built_in">any</span>): value is <span class="hljs-title class_">Position</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(value) &amp;&amp; value.<span class="hljs-property">length</span> === <span class="hljs-number">2</span> &amp;&amp; 
+           <span class="hljs-keyword">typeof</span> value[<span class="hljs-number">0</span>] === <span class="hljs-string">&#x27;number&#x27;</span>;
+  }
+
+  <span class="hljs-keyword">static</span> <span class="hljs-title function_">isPositionArray</span>(<span class="hljs-attr">value</span>: <span class="hljs-built_in">any</span>): value is <span class="hljs-title class_">Position</span>[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(value) &amp;&amp; value.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span> &amp;&amp; 
+           <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">isPosition</span>(value[<span class="hljs-number">0</span>]);
+  }
+}
+
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Position</span> = [<span class="hljs-built_in">number</span>, <span class="hljs-built_in">number</span>];
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Complex</span> = <span class="hljs-title class_">Position</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Vector</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">A</span>&lt;<span class="hljs-title class_">Position</span>&gt; {
+  <span class="hljs-keyword">private</span> <span class="hljs-attr">_isComplex</span>: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>;
+  <span class="hljs-keyword">private</span> <span class="hljs-attr">glVec</span>?: <span class="hljs-title class_">Float32Array</span>; <span class="hljs-comment">// Cache for gl-matrix operations</span>
+
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">positions</span>: A&lt;<span class="hljs-title class_">Position</span>&gt; | <span class="hljs-title class_">Position</span>[], isComplex = <span class="hljs-literal">false</span></span>) {
+    <span class="hljs-variable language_">super</span>(positions <span class="hljs-keyword">instanceof</span> A ? positions.<span class="hljs-title function_">a</span>() : positions);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">_isComplex</span> = isComplex;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">updateGLCache</span>();
+  }
+
+  <span class="hljs-comment">// Cache gl-matrix representation</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-title function_">updateGLCache</span>(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">_isComplex</span> &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">length</span>() &gt; <span class="hljs-number">0</span>) {
+      <span class="hljs-comment">// Flatten positions for gl-matrix</span>
+      <span class="hljs-keyword">const</span> flat = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Float32Array</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">length</span>() * <span class="hljs-number">2</span>);
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">pos, i</span>) =&gt;</span> {
+        flat[i * <span class="hljs-number">2</span>] = pos[<span class="hljs-number">0</span>];
+        flat[i * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>] = pos[<span class="hljs-number">1</span>];
+      });
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">glVec</span> = flat;
+    }
+  }
+
+  <span class="hljs-comment">// Conversion utilities</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-title function_">toGL</span>(<span class="hljs-attr">index</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>): <span class="hljs-title class_">Float32Array</span> {
+    <span class="hljs-keyword">const</span> offset = index * <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">glVec</span>?.<span class="hljs-title function_">subarray</span>(offset, offset + <span class="hljs-number">2</span>) || 
+           <span class="hljs-keyword">new</span> <span class="hljs-title class_">Float32Array</span>([<span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>[index][<span class="hljs-number">0</span>], <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>[index][<span class="hljs-number">1</span>]]);
+  }
+
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">fromGL</span>(<span class="hljs-attr">gl</span>: <span class="hljs-title class_">Float32Array</span>): <span class="hljs-title class_">Vector</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>([[gl[<span class="hljs-number">0</span>], gl[<span class="hljs-number">1</span>] || <span class="hljs-number">0</span>]]);
+  }
+
+  <span class="hljs-keyword">private</span> <span class="hljs-title function_">toComplex</span>(): <span class="hljs-title class_">Complex</span>[] {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_a</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">[re, im]</span>) =&gt;</span> <span class="hljs-title function_">complex</span>(re, im) <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>);
+  }
+
+  <span class="hljs-comment">// Use gl-matrix for basic operations when possible</span>
+  <span class="hljs-title function_">plus</span>(<span class="hljs-attr">other</span>: <span class="hljs-title class_">Vector</span> | <span class="hljs-title class_">Position</span> | <span class="hljs-built_in">number</span>): <span class="hljs-title class_">Vector</span> {
+    <span class="hljs-keyword">const</span> otherVec = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">coerce</span>(other);
+    
+    <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">_isComplex</span> &amp;&amp; !otherVec.<span class="hljs-property">_isComplex</span> &amp;&amp; 
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">length</span>() === <span class="hljs-number">1</span> &amp;&amp; otherVec.<span class="hljs-title function_">length</span>() === <span class="hljs-number">1</span>) {
+      <span class="hljs-comment">// Use gl-matrix for single vector operations</span>
+      <span class="hljs-keyword">const</span> result = vec2.<span class="hljs-title function_">create</span>();
+      vec2.<span class="hljs-title function_">add</span>(result, <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">toGL</span>(), otherVec.<span class="hljs-title function_">toGL</span>());
+      <span class="hljs-keyword">return</span> <span class="hljs-title class_">Vector</span>.<span class="hljs-title function_">fromGL</span>(result);
+    }
+    
+    <span class="hljs-comment">// Fall back to your implementation for arrays</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>(
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">zip</span>(otherVec).<span class="hljs-title function_">select</span>(<span class="hljs-function">(<span class="hljs-params">[a, b]</span>) =&gt;</span> [
+        a[<span class="hljs-number">0</span>] + b[<span class="hljs-number">0</span>], 
+        a[<span class="hljs-number">1</span>] + b[<span class="hljs-number">1</span>]
+      ] <span class="hljs-keyword">as</span> <span class="hljs-title class_">Position</span>)
+    );
+  }
+
+  <span class="hljs-comment">// Use mathjs for complex operations</span>
+  <span class="hljs-title function_">sin</span>(): <span class="hljs-title class_">Vector</span> {
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">_isComplex</span>) {
+      <span class="hljs-keyword">const</span> results = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">toComplex</span>().<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> result = <span class="hljs-title function_">sin</span>(c);
+        <span class="hljs-keyword">return</span> [result.<span class="hljs-property">re</span>, result.<span class="hljs-property">im</span>] <span class="hljs-keyword">as</span> <span class="hljs-title class_">Position</span>;
+      });
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>(results, <span class="hljs-literal">true</span>);
+    }
+    <span class="hljs-comment">// Simple sin</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">select</span>(<span class="hljs-function">(<span class="hljs-params">[x, y]</span>) =&gt;</span> 
+      [<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(x), <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(y)] <span class="hljs-keyword">as</span> <span class="hljs-title class_">Position</span>
+    ));
+  }
+
+  <span class="hljs-comment">// Modern static methods using native features</span>
+  <span class="hljs-keyword">static</span> <span class="hljs-title function_">linspace</span>(<span class="hljs-attr">range</span>: [<span class="hljs-built_in">number</span>, <span class="hljs-built_in">number</span>], <span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span>): <span class="hljs-title class_">Vector</span> {
+    <span class="hljs-keyword">const</span> [min, max] = range;
+    <span class="hljs-keyword">const</span> step = (max - min) / (n - <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">const</span> positions = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>({ <span class="hljs-attr">length</span>: n }, <span class="hljs-function">(<span class="hljs-params">_, i</span>) =&gt;</span> 
+      [min + i * step, <span class="hljs-number">0</span>] <span class="hljs-keyword">as</span> <span class="hljs-title class_">Position</span>
+    );
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>(positions);
+  }
+
+  <span class="hljs-keyword">static</span> <span class="hljs-title function_">rand</span>(<span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">range</span>: [<span class="hljs-built_in">number</span>, <span class="hljs-built_in">number</span>] = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]): <span class="hljs-title class_">Vector</span> {
+    <span class="hljs-keyword">const</span> [min, max] = range;
+    <span class="hljs-keyword">const</span> positions = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>({ <span class="hljs-attr">length</span>: n }, <span class="hljs-function">() =&gt;</span> 
+      [<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (max - min) + min, <span class="hljs-number">0</span>] <span class="hljs-keyword">as</span> <span class="hljs-title class_">Position</span>
+    );
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>(positions);
+  }
+
+  <span class="hljs-comment">// Your specialized methods remain</span>
+  <span class="hljs-title function_">norm</span>(<span class="hljs-attr">range</span>: [<span class="hljs-built_in">number</span>, <span class="hljs-built_in">number</span>]): <span class="hljs-title class_">Vector</span> {
+    <span class="hljs-comment">// Implementation using your logic</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>; <span class="hljs-comment">// Simplified</span>
+  }
+
+  <span class="hljs-comment">// Helper to coerce inputs</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-title function_">coerce</span>(<span class="hljs-attr">x</span>: <span class="hljs-title class_">Vector</span> | <span class="hljs-title class_">Position</span> | <span class="hljs-built_in">number</span>): <span class="hljs-title class_">Vector</span> {
+    <span class="hljs-keyword">if</span> (x <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Vector</span>) <span class="hljs-keyword">return</span> x;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">&#x27;number&#x27;</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>([[x, <span class="hljs-number">0</span>]]);
+    <span class="hljs-keyword">if</span> (<span class="hljs-title class_">VectorTypes</span>.<span class="hljs-title function_">isPosition</span>(x)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>([x]);
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Invalid vector input&#x27;</span>);
+  }
+}
+
+<span class="hljs-comment">// Helper function</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">v</span>(<span class="hljs-params"><span class="hljs-attr">data</span>?: <span class="hljs-built_in">any</span></span>): <span class="hljs-title class_">Vector</span> {
+  <span class="hljs-keyword">if</span> (!data) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>([]);
+  <span class="hljs-keyword">if</span> (data <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Vector</span>) <span class="hljs-keyword">return</span> data;
+  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(data)) {
+    <span class="hljs-keyword">if</span> (data.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>([]);
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> data[<span class="hljs-number">0</span>] === <span class="hljs-string">&#x27;number&#x27;</span>) {
+      <span class="hljs-comment">// Convert number array to positions</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>(data.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> [n, <span class="hljs-number">0</span>] <span class="hljs-keyword">as</span> <span class="hljs-title class_">Position</span>));
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-title class_">VectorTypes</span>.<span class="hljs-title function_">isPosition</span>(data[<span class="hljs-number">0</span>])) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>(data);
+    }
+  }
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Invalid vector data&#x27;</span>);
+}</code></pre></div><div class="pd-sentence pd-heading">3. Create the WebAssembly module for heavy computations</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Create  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-comment">// AssemblyScript version - similar to TypeScript but optimized for WASM</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">vectorAdd</span>(<span class="hljs-params">
+  <span class="hljs-attr">a</span>: <span class="hljs-title class_">Float32Array</span>, 
+  <span class="hljs-attr">b</span>: <span class="hljs-title class_">Float32Array</span>, 
+  <span class="hljs-attr">len</span>: i32
+</span>): <span class="hljs-title class_">Float32Array</span> {
+  <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Float32Array</span>(len);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) {
+    result[i] = a[i] + b[i];
+  }
+  <span class="hljs-keyword">return</span> result;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">smoothPath</span>(<span class="hljs-params">
+  <span class="hljs-attr">points</span>: <span class="hljs-title class_">Float32Array</span>,
+  <span class="hljs-attr">smoothingType</span>: i32,
+  <span class="hljs-attr">tension</span>: f32 = <span class="hljs-number">0.16</span>
+</span>): <span class="hljs-title class_">Float32Array</span> {
+  <span class="hljs-comment">// Your smoothing algorithms in WASM</span>
+  <span class="hljs-keyword">return</span> points; <span class="hljs-comment">// Simplified</span>
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">generateFractal</span>(<span class="hljs-params">
+  <span class="hljs-attr">seed</span>: <span class="hljs-title class_">Float32Array</span>,
+  <span class="hljs-attr">iterations</span>: i32,
+  <span class="hljs-attr">type</span>: i32
+</span>): <span class="hljs-title class_">Float32Array</span> {
+  <span class="hljs-comment">// Heavy pattern generation in WASM</span>
+  <span class="hljs-keyword">return</span> seed; <span class="hljs-comment">// Simplified</span>
+}</code></pre></div><div class="pd-sentence pd-heading">4. Update your imports and remove unnecessary utilities</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Update  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-comment">// Remove Str class - use native string methods</span>
+<span class="hljs-comment">// Modern TypeScript has everything you need:</span>
+
+<span class="hljs-comment">// Instead of your Str class:</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">str</span>(<span class="hljs-params"><span class="hljs-attr">s</span>: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">string</span> {
+  <span class="hljs-keyword">return</span> s;
+}
+
+<span class="hljs-comment">// Native replacements:</span>
+<span class="hljs-comment">// str.startsWith() → native string.startsWith()</span>
+<span class="hljs-comment">// str.endsWith() → native string.endsWith()  </span>
+<span class="hljs-comment">// str.includes() → native string.includes()</span>
+<span class="hljs-comment">// str.padStart() → native string.padStart()</span>
+<span class="hljs-comment">// str.trim() → native string.trim()</span>
+<span class="hljs-comment">// str.replaceAll() → native string.replaceAll() (ES2021)</span>
+
+<span class="hljs-comment">// Your useful utilities that should stay:</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">roundPrecisely</span>(<span class="hljs-params"><span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span>, decimals = <span class="hljs-number">6</span></span>): <span class="hljs-built_in">number</span> {
+  <span class="hljs-keyword">const</span> factor = <span class="hljs-number">10</span> ** decimals;
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(value * factor) / factor;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> clone&lt;T&gt;(<span class="hljs-attr">obj</span>: T): T {
+  <span class="hljs-comment">// Use structuredClone if available (modern browsers)</span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> structuredClone !== <span class="hljs-string">&#x27;undefined&#x27;</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">structuredClone</span>(obj);
+  }
+  <span class="hljs-comment">// Fallback to JSON for simple objects</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(obj));
+}
+
+<span class="hljs-comment">// Modern console that doesn&#x27;t need a class</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable language_">console</span> = {
+  <span class="hljs-attr">log</span>: <span class="hljs-function">(<span class="hljs-params">...<span class="hljs-attr">args</span>: <span class="hljs-built_in">any</span>[]</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(...args),
+  <span class="hljs-attr">break</span>: <span class="hljs-function">(<span class="hljs-params">...<span class="hljs-attr">args</span>: <span class="hljs-built_in">any</span>[]</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(...args);
+    <span class="hljs-keyword">debugger</span>; <span class="hljs-comment">// Modern debugging</span>
+  }
+};</code></pre></div><div class="pd-sentence pd-heading">5. Update package.json to include the math libraries</div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">json</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;dependencies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;react&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^19.1.1&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;react-dom&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^19.1.1&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;gl-matrix&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^3.4.3&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;mathjs&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^13.0.0&quot;</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre></div><div class="pd-sentence pd-heading">6. Where to integrate in your existing code</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Update  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">import</span> { useEffect, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./App.css&#x27;</span>;
+<span class="hljs-keyword">import</span> { multiplyByTwo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../build/release.js&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Vector</span>, v } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./math&#x27;</span>;
+<span class="hljs-keyword">import</span> { f } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./collections&#x27;</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> [wasmLoaded, setWasmLoaded] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);
+  <span class="hljs-keyword">const</span> [testResult, setTestResult] = useState&lt;<span class="hljs-built_in">number</span>&gt;(<span class="hljs-number">0</span>);
+
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// Test WASM</span>
+    <span class="hljs-keyword">const</span> result = <span class="hljs-title function_">multiplyByTwo</span>(<span class="hljs-number">21</span>);
+    <span class="hljs-title function_">setTestResult</span>(result);
+    
+    <span class="hljs-comment">// Test Vector with gl-matrix</span>
+    <span class="hljs-keyword">const</span> v1 = <span class="hljs-title function_">v</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]);
+    <span class="hljs-keyword">const</span> v2 = <span class="hljs-title function_">v</span>([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]); 
+    <span class="hljs-keyword">const</span> sum = v1.<span class="hljs-title function_">plus</span>(v2);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Vector sum:&#x27;</span>, sum.<span class="hljs-title function_">toString</span>());
+    
+    <span class="hljs-comment">// Test collections</span>
+    <span class="hljs-keyword">const</span> numbers = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+    <span class="hljs-keyword">const</span> doubled = numbers
+      .<span class="hljs-title function_">where</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n &gt; <span class="hljs-number">2</span>)
+      .<span class="hljs-title function_">select</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n * <span class="hljs-number">2</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;LINQ-style:&#x27;</span>, doubled.<span class="hljs-title function_">toString</span>());
+    
+    <span class="hljs-title function_">setWasmLoaded</span>(<span class="hljs-literal">true</span>);
+  }, []);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;</span></span></span></code></pre></div></div></div><div id="2025-08-18t18-21-10-107152-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-08-18T18:21:10.107152Z" class="pd-word pd-date pd-time">18:21 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Okay we have these two in the assembly folder. How aboyt we set up unit testing for them? I have a bunch of tests that I can share</div><div class="pd-paragraph">import { A, f } from &#x27;./collections&#x27;;</div><div class="pd-paragraph">// AssemblyScript-compatible Position type type Position = [f32, f32];</div><div class="pd-paragraph">export class Vector extends A&lt;Position&gt; { private _isComplex: boolean = false;</div><div class="pd-paragraph">constructor(data: A&lt;Position&gt; | Position[], isComplex: boolean = false) { super(data instanceof A ? data : data); this._isComplex = isComplex; }</div><div class="pd-paragraph">// Your vector operations optimized for WASM plus(other: Vector): Vector { const result = new A&lt;Position&gt;(); for (let i = 0; i &lt; this.length; i++) { const a = this[i]; const b = other[i]; result.push([a[0] + b[0], a[1] + b[1]]); } return new Vector(result, this._isComplex || other._isComplex); }</div><div class="pd-paragraph">minus(other: Vector): Vector { const result = new A&lt;Position&gt;(); for (let i = 0; i &lt; this.length; i++) { const a = this[i]; const b = other[i]; result.push([a[0] - b[0], a[1] - b[1]]); } return new Vector(result, this._isComplex || other._isComplex); }</div><div class="pd-paragraph">times(scalar: f32): Vector { return new Vector( this.select((p: Position): Position =&gt; [p[0] <em class="sc-iCoKjR pa-emphasis pd-container"><span class="pd-word">scalar, p[1]</span></em> scalar]), this._isComplex ); }</div><div class="pd-paragraph">// Your specialized methods norm(min: f32 = 0, max: f32 = 1): Vector { let minVal = f32.MAX_VALUE; let maxVal = f32.MIN_VALUE;</div><div class="pd-paragraph">// Find min/max for (let i = 0; i &lt; this.length; i++) { const val = this[i][0]; if (val &lt; minVal) minVal = val; if (val &gt; maxVal) maxVal = val; }</div><div class="pd-paragraph">const range = maxVal - minVal; const targetRange = max - min;</div><div class="pd-paragraph">return new Vector( this.select((p: Position): Position =&gt; [ min + ((p[0] - minVal) / range)<em class="sc-iCoKjR pa-emphasis pd-container"><span class="pd-word">targetRange, min + ((p[1] - minVal) / range)</span></em> targetRange ]), this._isComplex ); }</div><div class="pd-paragraph">// Complex number operations magnitude(): Vector { if (!this._isComplex) return this; return new Vector( this.select((p: Position): Position =&gt; { const mag = Math.sqrt(p[0] <em class="sc-iCoKjR pa-emphasis pd-container"><span class="pd-word">p[0] + p[1]</span></em> p[1]) as f32; return [mag, 0]; }), false ); }</div><div class="pd-paragraph">// Static generators static linspace(min: f32, max: f32, count: i32): Vector { const step = (max - min) / (count - 1); const result = new A&lt;Position&gt;(); for (let i = 0; i &lt; count; i++) { result.push([min + step * i, 0]); } return new Vector(result); }</div><div class="pd-paragraph">static zeros(count: i32): Vector { const result = new A&lt;Position&gt;(); for (let i = 0; i &lt; count; i++) { result.push([0, 0]); } return new Vector(result); }</div><div class="pd-paragraph">// Convert to flat array for efficient WASM operations toFlat(): Float32Array { const flat = new Float32Array(this.length <em class="sc-iCoKjR pa-emphasis pd-container"><span class="pd-word">2); for (let i = 0; i &lt; this.length; i++) { flat[i</span></em> 2] = this[i][0]; flat[i * 2 + 1] = this[i][1]; } return flat; }</div><div class="pd-paragraph">static fromFlat(flat: Float32Array): Vector { const result = new A&lt;Position&gt;(); for (let i = 0; i &lt; flat.length; i += 2) { result.push([flat[i], flat[i + 1]]); } return new Vector(result); } }</div><div class="pd-paragraph">// Helper function export function v(data: Position[] | A&lt;Position&gt; | null = null): Vector { if (!data) return new Vector(new A&lt;Position&gt;()); return new Vector(data instanceof A ? data : data); }</div><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TXT</span><span class="pd-chip-words"><b>paste.txt</b><small>208 lines</small></span></button><figcaption>Attached “paste.txt”</figcaption></figure><figure class="pd-letter pd-figure pd-code pd-attachment"><button type="button" class="pd-chip" aria-pressed="false"><span class="pd-chip-mark">TXT</span><span class="pd-chip-words"><b>paste.txt</b><small>not carried by the export</small></span></button><figcaption>Uploaded “paste.txt”, whose content the export does not carry</figcaption></figure></div></div><div id="2025-08-18t18-22-08-616912-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-08-18T18:22:08.616912Z" class="pd-word pd-date pd-time">18:22 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Excellent! Let&#x27;s set up comprehensive unit testing for your AssemblyScript collections and vector implementations. I&#x27;ll create a test suite that covers both the A class and Vector class.</div><div class="pd-sentence pd-heading">1. First, install the testing dependencies</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Update  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">json</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;test:as&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;asp&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;test:as:watch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;asp --watch&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;test&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vitest &amp;&amp; npm run test:as&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;test:coverage&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vitest --coverage &amp;&amp; asp --coverage&quot;</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;devDependencies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;@as-pect/cli&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^8.0.0&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;assemblyscript&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^0.28.4&quot;</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre></div><div class="pd-sentence pd-heading">2. Create AssemblyScript test configuration</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Create  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">javascript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-comment">/**
+   * A set of globs passed to the glob package that qualify typescript files for testing.
+   */</span>
+  <span class="hljs-attr">include</span>: [<span class="hljs-string">&quot;assembly/**/*.spec.ts&quot;</span>],
+  <span class="hljs-comment">/**
+   * A set of globs passed to the glob package that disqualify typescript files.
+   */</span>
+  <span class="hljs-attr">exclude</span>: [<span class="hljs-string">&quot;node_modules/**/*&quot;</span>],
+  <span class="hljs-comment">/**
+   * A set of regexp that will disclude source files from testing.
+   */</span>
+  <span class="hljs-attr">disclude</span>: [<span class="hljs-regexp">/node_modules/</span>],
+  <span class="hljs-comment">/**
+   * Add your required AssemblyScript imports here.
+   */</span>
+  <span class="hljs-attr">imports</span>: {},
+  <span class="hljs-comment">/**
+   * Performance configuration for testing.
+   */</span>
+  <span class="hljs-attr">performance</span>: {
+    <span class="hljs-comment">/** Enable performance statistics gathering. */</span>
+    <span class="hljs-attr">enabled</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-comment">/** Set the maximum number of samples to run for each test. */</span>
+    <span class="hljs-attr">maxSamples</span>: <span class="hljs-number">10000</span>,
+    <span class="hljs-comment">/** Set the maximum test runtime in milliseconds. */</span>
+    <span class="hljs-attr">maxTestRunTime</span>: <span class="hljs-number">5000</span>,
+  },
+  <span class="hljs-comment">/** Use the summary reporter. */</span>
+  <span class="hljs-attr">reporter</span>: <span class="hljs-string">&quot;SummaryReporter&quot;</span>,
+};</code></pre></div><div class="pd-sentence pd-heading">3. Create test utilities for AssemblyScript</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Create  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-comment">// Test utilities that work in AssemblyScript</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">assertAlmostEqual</span>(<span class="hljs-params">
+  <span class="hljs-attr">actual</span>: f32,
+  <span class="hljs-attr">expected</span>: f32,
+  <span class="hljs-attr">tolerance</span>: f32 = <span class="hljs-number">0.0001</span>,
+  <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;&quot;</span>
+</span>): <span class="hljs-built_in">void</span> {
+  <span class="hljs-keyword">const</span> diff = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(actual - expected) <span class="hljs-keyword">as</span> f32;
+  <span class="hljs-keyword">if</span> (diff &gt; tolerance) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(
+      <span class="hljs-string">`<span class="hljs-subst">${message}</span>: Expected <span class="hljs-subst">${expected}</span> but got <span class="hljs-subst">${actual}</span> (diff: <span class="hljs-subst">${diff}</span>)`</span>
+    );
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> assertArrayEquals&lt;T&gt;(
+  <span class="hljs-attr">actual</span>: T[],
+  <span class="hljs-attr">expected</span>: T[],
+  <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;&quot;</span>
+): <span class="hljs-built_in">void</span> {
+  <span class="hljs-keyword">if</span> (actual.<span class="hljs-property">length</span> !== expected.<span class="hljs-property">length</span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(
+      <span class="hljs-string">`<span class="hljs-subst">${message}</span>: Array lengths differ. Expected <span class="hljs-subst">${expected.length}</span> but got <span class="hljs-subst">${actual.length}</span>`</span>
+    );
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; actual.<span class="hljs-property">length</span>; i++) {
+    <span class="hljs-keyword">if</span> (actual[i] !== expected[i]) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(
+        <span class="hljs-string">`<span class="hljs-subst">${message}</span>: Arrays differ at index <span class="hljs-subst">${i}</span>. Expected <span class="hljs-subst">${expected[i]}</span> but got <span class="hljs-subst">${actual[i]}</span>`</span>
+      );
+    }
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">assertPositionEquals</span>(<span class="hljs-params">
+  <span class="hljs-attr">actual</span>: [f32, f32],
+  <span class="hljs-attr">expected</span>: [f32, f32],
+  <span class="hljs-attr">tolerance</span>: f32 = <span class="hljs-number">0.0001</span>,
+  <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;&quot;</span>
+</span>): <span class="hljs-built_in">void</span> {
+  <span class="hljs-title function_">assertAlmostEqual</span>(actual[<span class="hljs-number">0</span>], expected[<span class="hljs-number">0</span>], tolerance, <span class="hljs-string">`<span class="hljs-subst">${message}</span> [x]`</span>);
+  <span class="hljs-title function_">assertAlmostEqual</span>(actual[<span class="hljs-number">1</span>], expected[<span class="hljs-number">1</span>], tolerance, <span class="hljs-string">`<span class="hljs-subst">${message}</span> [y]`</span>);
+}</code></pre></div><div class="pd-sentence pd-heading">4. Create tests for the A class</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Create  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-keyword">import</span> { A, f, r } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./collections&quot;</span>;
+
+<span class="hljs-title function_">describe</span>(<span class="hljs-string">&quot;A&lt;T&gt; Collections&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-title function_">describe</span>(<span class="hljs-string">&quot;Construction and Basic Access&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should create empty collection&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-keyword">new</span> A&lt;i32&gt;();
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">0</span>);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should create from array&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">3</span>);
+      <span class="hljs-title function_">expect</span>(arr[<span class="hljs-number">0</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">1</span>);
+      <span class="hljs-title function_">expect</span>(arr[<span class="hljs-number">2</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">3</span>);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should handle negative indexing with at()&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">at</span>(-<span class="hljs-number">1</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">5</span>);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">at</span>(-<span class="hljs-number">2</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">4</span>);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">at</span>(<span class="hljs-number">0</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">1</span>);
+    });
+  });
+
+  <span class="hljs-title function_">describe</span>(<span class="hljs-string">&quot;LINQ-style Operations&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should select (map) values&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+      <span class="hljs-keyword">const</span> doubled = arr.<span class="hljs-title function_">select</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x * <span class="hljs-number">2</span>);
+      <span class="hljs-title function_">expect</span>(doubled.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">3</span>);
+      <span class="hljs-title function_">expect</span>(doubled[<span class="hljs-number">0</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>);
+      <span class="hljs-title function_">expect</span>(doubled[<span class="hljs-number">1</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">4</span>);
+      <span class="hljs-title function_">expect</span>(doubled[<span class="hljs-number">2</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">6</span>);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should filter with where&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+      <span class="hljs-keyword">const</span> evens = arr.<span class="hljs-title function_">where</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>);
+      <span class="hljs-title function_">expect</span>(evens.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>);
+      <span class="hljs-title function_">expect</span>(evens[<span class="hljs-number">0</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>);
+      <span class="hljs-title function_">expect</span>(evens[<span class="hljs-number">1</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">4</span>);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should selectMany (flatMap)&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+      <span class="hljs-keyword">const</span> expanded = arr.<span class="hljs-title function_">selectMany</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> [x, x * <span class="hljs-number">10</span>]);
+      <span class="hljs-title function_">expect</span>(expanded.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">6</span>);
+      <span class="hljs-title function_">expect</span>(expanded.<span class="hljs-title function_">a</span>()).<span class="hljs-title function_">toStrictEqual</span>([<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>, <span class="hljs-number">20</span>, <span class="hljs-number">3</span>, <span class="hljs-number">30</span>]);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should find first matching element&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">first</span>()).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">1</span>);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">first</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x &gt; <span class="hljs-number">3</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">4</span>);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">first</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should find last matching element&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">last</span>()).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">5</span>);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">last</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x &lt; <span class="hljs-number">3</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should check any/all conditions&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>]);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">any</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x &gt; <span class="hljs-number">5</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-literal">true</span>);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">any</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x &gt; <span class="hljs-number">10</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-literal">false</span>);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">all</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-literal">true</span>);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">all</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x &gt; <span class="hljs-number">3</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-literal">false</span>);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should get distinct values&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]);
+      <span class="hljs-keyword">const</span> unique = arr.<span class="hljs-title function_">distinct</span>();
+      <span class="hljs-title function_">expect</span>(unique.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">4</span>);
+      <span class="hljs-title function_">expect</span>(unique.<span class="hljs-title function_">a</span>()).<span class="hljs-title function_">toStrictEqual</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should aggregate values&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]);
+      <span class="hljs-keyword">const</span> sum = arr.<span class="hljs-title function_">aggregate</span>(<span class="hljs-number">0</span>, <span class="hljs-function">(<span class="hljs-params">acc, curr</span>) =&gt;</span> acc + curr);
+      <span class="hljs-title function_">expect</span>(sum).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">10</span>);
+      
+      <span class="hljs-keyword">const</span> product = arr.<span class="hljs-title function_">aggregate</span>(<span class="hljs-number">1</span>, <span class="hljs-function">(<span class="hljs-params">acc, curr</span>) =&gt;</span> acc * curr);
+      <span class="hljs-title function_">expect</span>(product).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">24</span>);
+    });
+  });
+
+  <span class="hljs-title function_">describe</span>(<span class="hljs-string">&quot;Array Manipulation&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should skip elements&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+      <span class="hljs-keyword">const</span> skipped = arr.<span class="hljs-title function_">skip</span>(<span class="hljs-number">2</span>);
+      <span class="hljs-title function_">expect</span>(skipped.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">3</span>);
+      <span class="hljs-title function_">expect</span>(skipped.<span class="hljs-title function_">a</span>()).<span class="hljs-title function_">toStrictEqual</span>([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should take elements&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+      <span class="hljs-keyword">const</span> taken = arr.<span class="hljs-title function_">take</span>(<span class="hljs-number">3</span>);
+      <span class="hljs-title function_">expect</span>(taken.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">3</span>);
+      <span class="hljs-title function_">expect</span>(taken.<span class="hljs-title function_">a</span>()).<span class="hljs-title function_">toStrictEqual</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should zip arrays&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr1 = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+      <span class="hljs-keyword">const</span> arr2 = <span class="hljs-title function_">f</span>([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]);
+      <span class="hljs-keyword">const</span> zipped = arr1.<span class="hljs-title function_">zip</span>(arr2);
+      <span class="hljs-title function_">expect</span>(zipped.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">3</span>);
+      <span class="hljs-title function_">expect</span>(zipped[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">1</span>);
+      <span class="hljs-title function_">expect</span>(zipped[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;a&#x27;</span>);
+      <span class="hljs-title function_">expect</span>(zipped[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">3</span>);
+      <span class="hljs-title function_">expect</span>(zipped[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>]).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;c&#x27;</span>);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should handle zip with different lengths&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr1 = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+      <span class="hljs-keyword">const</span> arr2 = <span class="hljs-title function_">f</span>([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>]);
+      <span class="hljs-keyword">const</span> zipped = arr1.<span class="hljs-title function_">zip</span>(arr2);
+      <span class="hljs-title function_">expect</span>(zipped.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">// Takes minimum length</span>
+    });
+  });
+
+  <span class="hljs-title function_">describe</span>(<span class="hljs-string">&quot;Ordering&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should order by selector&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>]);
+      <span class="hljs-keyword">const</span> sorted = arr.<span class="hljs-title function_">orderBy</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x <span class="hljs-keyword">as</span> f32);
+      <span class="hljs-title function_">expect</span>(sorted.<span class="hljs-title function_">a</span>()).<span class="hljs-title function_">toStrictEqual</span>([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>]);
+    });
+
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should maintain do() chaining&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> <span class="hljs-attr">results</span>: i32[] = [];
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+        .<span class="hljs-title function_">do</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> results.<span class="hljs-title function_">push</span>(x * <span class="hljs-number">2</span>))
+        .<span class="hljs-title function_">select</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x + <span class="hljs-number">10</span>);
+      
+      <span class="hljs-title function_">expect</span>(results).<span class="hljs-title function_">toStrictEqual</span>([<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>]);
+      <span class="hljs-title function_">expect</span>(arr.<span class="hljs-title function_">a</span>()).<span class="hljs-title function_">toStrictEqual</span>([<span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>]);
+    });
+  });
+
+  <span class="hljs-title function_">describe</span>(<span class="hljs-string">&quot;Type Conversions&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;should convert to Float32Array&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-keyword">const</span> arr = <span class="hljs-title function_">f</span>([<span class="hljs-number">1.5</span>, <span class="hljs-number">2.5</span>, <span class="hljs-number">3.5</span>]);
+      <span class="hljs-keyword">const</span> float32 = arr.<span class="hljs-title function_">toFloat32Array</span>();
+      <span class="hljs-title function_">expect</span>(float32.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">3</span>);</code></pre></div></div></div><div id="2025-08-18t18-24-37-070777-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-08-18T18:24:37.070777Z" class="pd-word pd-date pd-time">18:24 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Can you give me the @as-pect npm commands and tell me why we are using this test framework as opposed to others for the assembly scrpt? Perhaps its the standard way but I don&#x27;t know it.</div><div class="pd-paragraph">THen take a look at my utils and translate whatever else we need. This is an error:</div><div class="pd-paragraph">[{ &quot;resource&quot;: &quot;/c:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/assembly/array.ts&quot;, &quot;owner&quot;: &quot;typescript&quot;, &quot;code&quot;: &quot;2556&quot;, &quot;severity&quot;: 8, &quot;message&quot;: &quot;A spread argument must either have a tuple type or be passed to a rest parameter.&quot;, &quot;source&quot;: &quot;ts&quot;, &quot;startLineNumber&quot;: 10, &quot;startColumn&quot;: 19, &quot;endLineNumber&quot;: 10, &quot;endColumn&quot;: 27, &quot;origin&quot;: &quot;extHost1&quot; },{ &quot;resource&quot;: &quot;/c:/Users/dougl/OneDrive/Source/DNA Platform/dna-patternity/assembly/array.ts&quot;, &quot;owner&quot;: &quot;typescript&quot;, &quot;code&quot;: &quot;2488&quot;, &quot;severity&quot;: 8, &quot;message&quot;: &quot;Type &#x27;T[]&#x27; must have a &#x27;[Symbol.iterator]()&#x27; method that returns an iterator.&quot;, &quot;source&quot;: &quot;ts&quot;, &quot;startLineNumber&quot;: 10, &quot;startColumn&quot;: 22, &quot;endLineNumber&quot;: 10, &quot;endColumn&quot;: 27, &quot;origin&quot;: &quot;extHost1&quot; }]</div><div class="pd-paragraph">I put that in array.ts</div></div></div><div id="2025-08-18t18-25-17-048055-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-08-18T18:25:17.048055Z" class="pd-word pd-date pd-time">18:25 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-sentence pd-heading">Why @as-pect for AssemblyScript Testing</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">@as-pect</span></b> is the standard testing framework for AssemblyScript because:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">AssemblyScript-specific</span></b>: Regular JavaScript test runners (Jest, Vitest) can&#x27;t run AssemblyScript code directly - it needs to be compiled to WASM first</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Built for WASM</span></b>: It compiles your tests to WebAssembly and runs them in a WASM runtime</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Familiar API</span></b>: Uses Jest-like syntax (<span class="pd-word pa-verbatim">describe</span>, <span class="pd-word pa-verbatim">it</span>, <span class="pd-word pa-verbatim">expect</span>) that developers know</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">No alternatives</span></b>: It&#x27;s essentially the only mature testing framework for AssemblyScript</div></div></div><div class="pd-sentence pd-heading">Install and Run Commands</div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">bash</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-bash"><span class="hljs-comment"># Install</span>
+npm install --save-dev @as-pect/cli
+
+<span class="hljs-comment"># Run tests once</span>
+npm run <span class="hljs-built_in">test</span>:as
+
+<span class="hljs-comment"># Run tests in watch mode</span>
+npm run <span class="hljs-built_in">test</span>:as:watch
+
+<span class="hljs-comment"># Run with coverage</span>
+npx asp --coverage
+
+<span class="hljs-comment"># Run specific test file</span>
+npx asp assembly/array.spec.ts</code></pre></div><div class="pd-sentence pd-heading">Fix the Spread Operator Error</div><div class="pd-paragraph">The error is because AssemblyScript doesn&#x27;t support the spread operator (<span class="pd-word pa-verbatim">...</span>) the same way TypeScript does. Here&#x27;s the fixed <span class="pd-word pa-verbatim">array.ts</span>:</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Update  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-comment">/**
+ * WASM-compatible Array wrapper with LINQ-style operations
+ * Extends native Array for maximum compatibility
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>&lt;T&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Array</span>&lt;T&gt; {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">items</span>?: T[] | <span class="hljs-title class_">ArrayLike</span>&lt;T&gt;</span>) {
+    <span class="hljs-variable language_">super</span>();
+    <span class="hljs-keyword">if</span> (items) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(items)) {
+        <span class="hljs-comment">// Can&#x27;t use spread in AssemblyScript, must iterate</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; items.<span class="hljs-property">length</span>; i++) {
+          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">push</span>(items[i]);
+        }
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Handle typed arrays from WASM</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; items.<span class="hljs-property">length</span>; i++) {
+          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">push</span>(items[i]);
+        }
+      }
+    }
+  }
+
+  <span class="hljs-comment">// Rest of your class remains the same...</span>
+}</code></pre></div><div class="pd-sentence pd-heading">Port Your Test Utilities to AssemblyScript</div><div class="pd-paragraph"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Create  0 :</span></b></div><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-comment">// AssemblyScript-compatible test utilities</span>
+
+<span class="hljs-comment">/**
+ * Round a number to specified decimals (AS version)
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">roundPrecisely</span>(<span class="hljs-params"><span class="hljs-attr">value</span>: f64, <span class="hljs-attr">decimals</span>: i32 = <span class="hljs-number">6</span></span>): f64 {
+  <span class="hljs-keyword">const</span> factor = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">pow</span>(<span class="hljs-number">10</span>, decimals);
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(value * factor) / factor;
+}
+
+<span class="hljs-comment">/**
+ * Evaluate negative index (AS version)
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">evaluateNegativeIndex</span>(<span class="hljs-params"><span class="hljs-attr">index</span>: i32, <span class="hljs-attr">length</span>: i32</span>): i32 {
+  <span class="hljs-keyword">const</span> evaluated = index &lt; <span class="hljs-number">0</span> ? length + index : index;
+  <span class="hljs-keyword">if</span> (evaluated &lt; <span class="hljs-number">0</span> || evaluated &gt;= length) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(
+      <span class="hljs-string">`Index <span class="hljs-subst">${index}</span> out of bounds for collection of length <span class="hljs-subst">${length}</span>`</span>
+    );
+  }
+  <span class="hljs-keyword">return</span> evaluated;
+}
+
+<span class="hljs-comment">/**
+ * Clone for AssemblyScript (simple version for primitives and arrays)
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> clone&lt;T&gt;(<span class="hljs-attr">obj</span>: T): T {
+  <span class="hljs-comment">// In AssemblyScript, we need type-specific cloning</span>
+  <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>) {
+    <span class="hljs-keyword">const</span> arr = obj <span class="hljs-keyword">as</span> <span class="hljs-title class_">Array</span>&lt;<span class="hljs-built_in">any</span>&gt;;
+    <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>&lt;<span class="hljs-built_in">any</span>&gt;();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-property">length</span>; i++) {
+      result.<span class="hljs-title function_">push</span>(arr[i]);
+    }
+    <span class="hljs-keyword">return</span> result <span class="hljs-keyword">as</span> T;
+  }
+  <span class="hljs-comment">// For primitives, just return</span>
+  <span class="hljs-keyword">return</span> obj;
+}
+
+<span class="hljs-comment">/**
+ * Array equality check for AssemblyScript
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> arrayEquals&lt;T&gt;(<span class="hljs-attr">first</span>: T[], <span class="hljs-attr">second</span>: T[]): <span class="hljs-built_in">boolean</span> {
+  <span class="hljs-keyword">if</span> (!first &amp;&amp; !second) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  <span class="hljs-keyword">if</span> (!first || !second) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  <span class="hljs-keyword">if</span> (first.<span class="hljs-property">length</span> !== second.<span class="hljs-property">length</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; first.<span class="hljs-property">length</span>; i++) {
+    <span class="hljs-comment">// For numbers, use tolerance</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> first[i] === <span class="hljs-string">&#x27;number&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> second[i] === <span class="hljs-string">&#x27;number&#x27;</span>) {
+      <span class="hljs-keyword">const</span> diff = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>((first[i] <span class="hljs-keyword">as</span> f64) - (second[i] <span class="hljs-keyword">as</span> f64));
+      <span class="hljs-keyword">if</span> (diff &gt; <span class="hljs-number">0.0001</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (first[i] !== second[i]) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-comment">/**
+ * TestClass base for AssemblyScript
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestClass</span> {
+  <span class="hljs-attr">tolerance</span>: f64 = <span class="hljs-number">0.0001</span>;
+
+  assertEquals&lt;T&gt;(<span class="hljs-attr">actual</span>: T, <span class="hljs-attr">expected</span>: T, <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;&quot;</span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// Handle numbers with tolerance</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> actual === <span class="hljs-string">&#x27;number&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> expected === <span class="hljs-string">&#x27;number&#x27;</span>) {
+      <span class="hljs-keyword">const</span> diff = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>((actual <span class="hljs-keyword">as</span> f64) - (expected <span class="hljs-keyword">as</span> f64));
+      <span class="hljs-keyword">if</span> (diff &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">tolerance</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(
+          <span class="hljs-string">`<span class="hljs-subst">${message}</span>: Expected <span class="hljs-subst">${expected}</span> but got <span class="hljs-subst">${actual}</span>`</span>
+        );
+      }
+      <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-comment">// Handle arrays</span>
+    <span class="hljs-keyword">if</span> (actual <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span> &amp;&amp; expected <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>) {
+      <span class="hljs-keyword">if</span> (!<span class="hljs-title function_">arrayEquals</span>(actual <span class="hljs-keyword">as</span> <span class="hljs-title class_">Array</span>&lt;<span class="hljs-built_in">any</span>&gt;, expected <span class="hljs-keyword">as</span> <span class="hljs-title class_">Array</span>&lt;<span class="hljs-built_in">any</span>&gt;)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(
+          <span class="hljs-string">`<span class="hljs-subst">${message}</span>: Arrays not equal`</span>
+        );
+      }
+      <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-comment">// Simple equality</span>
+    <span class="hljs-keyword">if</span> (actual !== expected) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(
+        <span class="hljs-string">`<span class="hljs-subst">${message}</span>: Expected <span class="hljs-subst">${expected}</span> but got <span class="hljs-subst">${actual}</span>`</span>
+      );
+    }
+  }
+
+  assertNotEqual&lt;T&gt;(<span class="hljs-attr">actual</span>: T, <span class="hljs-attr">expected</span>: T, <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;&quot;</span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">if</span> (actual === expected) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(
+        <span class="hljs-string">`<span class="hljs-subst">${message}</span>: Expected <span class="hljs-subst">${actual}</span> to not equal <span class="hljs-subst">${expected}</span>`</span>
+      );
+    }
+  }
+
+  <span class="hljs-title function_">assertTrue</span>(<span class="hljs-attr">condition</span>: <span class="hljs-built_in">boolean</span>, <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;&quot;</span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">if</span> (!condition) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`<span class="hljs-subst">${message}</span>: Expected true but got false`</span>);
+    }
+  }
+
+  <span class="hljs-title function_">assertFalse</span>(<span class="hljs-attr">condition</span>: <span class="hljs-built_in">boolean</span>, <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;&quot;</span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">if</span> (condition) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`<span class="hljs-subst">${message}</span>: Expected false but got true`</span>);
+    }
+  }
+
+  <span class="hljs-title function_">assertAlmostEqual</span>(
+    <span class="hljs-attr">actual</span>: f64,
+    <span class="hljs-attr">expected</span>: f64,
+    <span class="hljs-attr">tolerance</span>: f64 = <span class="hljs-number">0.0001</span>,
+    <span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;&quot;</span>
+  ): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">const</span> diff = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">abs</span>(actual - expected);
+    <span class="hljs-keyword">if</span> (diff &gt; tolerance) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(
+        <span class="hljs-string">`<span class="hljs-subst">${message}</span>: Expected <span class="hljs-subst">${expected}</span> but got <span class="hljs-subst">${actual}</span> (diff: <span class="hljs-subst">${diff}</span>)`</span>
+      );
+    }
+  }
+}
+
+<span class="hljs-comment">/**
+ * Simple console for AssemblyScript (outputs to host)
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">namespace</span> <span class="hljs-title class_">console</span> {
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">log</span>(<span class="hljs-params"><span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// In AssemblyScript, this will output to the host environment</span>
+    <span class="hljs-title function_">trace</span>(message);
+  }
+
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">error</span>(<span class="hljs-params"><span class="hljs-attr">message</span>: <span class="hljs-built_in">string</span></span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-title function_">trace</span>(<span class="hljs-string">&quot;ERROR: &quot;</span> + message);
+  }
+}
+
+<span class="hljs-comment">/**
+ * String utilities for AssemblyScript
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Str</span> {
+  <span class="hljs-keyword">private</span> <span class="hljs-attr">value</span>: <span class="hljs-built_in">string</span>;
+
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">s</span>: <span class="hljs-built_in">string</span></span>) {
+    <span class="hljs-variable language_">this</span>.</code></pre></div></div></div><div id="2025-08-18t18-35-10-925633-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-08-18T18:35:10.925633Z" class="pd-word pd-date pd-time">18:35 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">It says quicksort doesn&#x27;t exist. Are you sure you are editing array.ts for assemblyscript?</div></div></div><div id="2025-08-18t18-35-13-236629-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-08-18T18:35:13.236629Z" class="pd-word pd-date pd-time">18:35 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">Nothing was written in this message</div></div></div><div id="2025-08-18t18-37-03-594798-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-08-18T18:37:03.594798Z" class="pd-word pd-date pd-time">18:37 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">It says quicksort doesn&#x27;t exist. Are you sure you are editing array.ts for assemblyscript?</div></div></div><div id="2025-08-18t18-37-08-568286-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-08-18T18:37:08.568286Z" class="pd-word pd-date pd-time">18:37 UTC, 18 August 2025</time><div class="pd-said"><div class="pd-paragraph">You&#x27;re absolutely right! I apologize for the confusion. AssemblyScript doesn&#x27;t have built</div></div></div><div class="pd-paragraph pd-turn"><a href="/claude-patterns-object-model-a3b2f38f/#18-august-2025" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><span class="pd-word pa-reference pa-self-reference pa-before">← <!-- -->18 August 2025</span></a><span class="pd-word pd-count">1 of 1</span><a href="/claude-patterns-object-model-a3b2f38f/#18-august-2025" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><span class="pd-word pa-reference pa-self-reference pa-after">18 August 2025<!-- --> →</span></a></div><time dateTime="2025-08-18" class="pd-word pd-date">18 August 2025</time></div></div><div class="sc-laZLKQ kGoCqU pd-paragraph pd-pane"></div></div></div></div><!--/$--></div>
+  </body>
+</html>

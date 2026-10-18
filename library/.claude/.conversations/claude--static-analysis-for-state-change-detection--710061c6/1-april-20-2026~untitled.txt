@@ -1,0 +1,196 @@
+Doug: I can ask an expert who can research this better. But the goal is to what - compute this before running view and    then compute after, and view is not run twice at all                                                                                                                                                                                                Doug: Do we throw errors is something is not computable?                                                                                                                                                                                            Doug: How do we split the algorithm up? What is the output of the static analysis? How do we convert it into a            function?                                                                                                                                                                                                                                           Doug: Discuss this in depth. Then I am going to bring an expert in to consider this                                                                                                                                                                 Doug: Do we agree that this is potentially an extremely efficient and clever way to quickly compute state change? Is it    unique amount frameworks?                                                                                              
+                                                                                                                          
+● Cathy: Doug — that clarification is huge. Let me make sure I've got it right and then we can work through the rest.     
+
+  Cathy: View is NOT run twice. We generate, from static analysis, a SEPARATE function — call it compute(chemical) — that   evaluates exactly what the characteristic needs: the values flowing to createElement arguments and the branch conditions   that steered them. That function runs twice (before/after effects resolve), not view. View runs once per render, same    as today.                                                                                                                                                                                                                                           Cathy: This is substantially better than my previous framing. The separate function is strictly cheaper than view — no    createElement allocations, no React-element object construction, just the expression evaluations that determine what the
+   output is. View does the JSX; compute does the characteristic. They share source — both derived from the written view
+  method — but execute independently.
+
+  Cathy: The render flow:
+
+  Cathy:
+  Main render:
+    1. call chemical.view()  → JSX + React commit
+    2. call compute(chemical) → characteristic_before
+
+  Effects run. Lifecycle mutations may occur.
+
+  Post-lifecycle:
+    3. call compute(chemical) → characteristic_after
+    4. if characteristic_before != characteristic_after → $update$()
+
+  Cathy: View is called once. Compute is called twice. This is both cheaper and more semantically clean than re-running   
+  view.
+
+  Cathy: On error handling for unanalyzable constructs. Three paths:
+
+  Cathy: Strict. Throw at first-instantiation of a chemical class whose view can't be analyzed. Clear error pointing at   
+  the line: "line 14: dynamic property access this[key] cannot be analyzed. Please refactor view to use static paths."    
+  User fixes or uses a different framework. Predictable. Opinionated. Zero silent degradation.
+
+  Cathy: Lenient with bailout. Detect unanalyzable constructs, emit a warning at instantiation, degrade the compute       
+  function to "re-run view and diff output" for just that chemical. Framework remains functional; correctness preserved   
+  via fallback; performance degraded.
+
+  Cathy: Lenient with widening. Detect unanalyzable constructs, widen the characteristic to "all bonded state of this     
+  chemical" (effectively deep state snapshot for that one chemical). Works but spuriously re-renders.
+
+  Cathy: My lean: strict at v1. Users who hit the error get a clear message pointing at the line. The framework doesn't   
+  silently degrade behind your back. The rejection set is small in practice — most view methods don't use this[dynamicKey]
+   or call opaque external functions. Users who genuinely need such patterns get pointed at the bond constructor (for     
+  one-time initialization) or at explicit mirroring onto chemical state (for repeated values).
+
+  Cathy: A lenient mode could come later as an escape hatch with an explicit annotation (/* @chemistry-deep */ on the     
+  view), but we should make the strict path the default path.
+
+  Cathy: On algorithm decomposition. Six phases:
+
+  Cathy:
+  Phase 1 — Parse
+    Input:  view.toString() (JS source)
+    Output: ESTree AST
+    Tool:   acorn
+    Effort: turnkey (existing library)
+
+  Phase 2 — Scope resolution
+    Input:  AST
+    Output: AST with every identifier ref resolved to its declaration
+    Tool:   eslint-scope (existing library)
+    Effort: turnkey
+
+  Phase 3 — SSA conversion
+    Input:  AST + scope info
+    Output: SSA form (each variable version has one def; phi nodes at merges)
+    Tool:   hand-written (Cytron et al. 1991 algorithm)
+    Effort: 300-500 lines, well-documented algorithm
+
+  Phase 4 — Backward slicing
+    Input:  SSA form
+    Output: Dependency set — list of source expressions that flow to createElement arguments, plus branch conditions that 
+  determine which flow
+    Tool:   hand-written (Weiser 1981 technique, scoped to our case)
+    Effort: 300-500 lines
+
+  Phase 5 — Code generation (characteristic function)
+    Input:  Dependency set
+    Output: A JS function `compute(chemical)` that evaluates each source and returns a plain object
+    Tool:   hand-written (direct mapping of SSA → output values)
+    Effort: 200-300 lines
+
+  Phase 6 — Caching
+    Input:  Generated compute function
+    Output: Stored on chemical class for reuse across instances
+    Tool:   trivial
+    Effort: 20 lines
+
+  Cathy: The STATIC ANALYSIS OUTPUT (phases 1-4) is a dependency set — a data structure, not a function. It describes     
+  which source expressions matter. Example:
+
+  Cathy:
+  {
+    sources: [
+      { kind: 'this_read', path: ['$count'] },
+      { kind: 'this_read', path: ['$price'] },
+    ],
+    outputs: [
+      { kind: 'createElement_child', index: 2, expr: { op: '*', left: '$count', right: '$price' } },
+    ],
+    branches: [],
+    iterations: [],
+    bailouts: [],
+  }
+
+  Cathy: The CONVERSION TO A FUNCTION (phase 5) takes this data structure and emits JS code:
+
+  Cathy:
+  // generated compute function
+  (chemical) => {
+      const s = {};
+      s.$count = chemical.$count;
+      s.$price = chemical.$price;
+      s.output_0 = s.$count * s.$price;
+      return s;
+  }
+
+  Cathy: The conversion is straightforward: sources become reads, outputs become expressions, branches become if/else,    
+  iterations become maps. Each dependency-set node has a direct codegen rule. ~30-50 codegen cases total, one per AST node
+   kind we support. Tedious, not conceptually hard.
+
+  Cathy: On efficiency and uniqueness.
+
+  Cathy: Efficiency, yes. Compared to:
+  - Re-running view and diffing output (where we've been): compute() skips all React.createElement calls. No
+  element-object allocation. Just expression evaluation. 10-100× cheaper depending on view complexity.
+  - Deep state snapshot: compute() reads only what view actually needs; snapshot reads all bonded state. Proportional to  
+  view reads, not chemical size.
+  - Proxy-based runtime tracking (MobX): compute() is a straight-line compiled function; MobX's track() runs on every     
+  property access. Call counts roughly equal per render, but compute() is purpose-built and JIT-optimizable.
+
+  Cathy: Uniqueness: I think yes, genuinely. Let me state what's actually novel:
+
+  Cathy: Every reactivity-tracking framework I studied falls into one of these patterns:
+  - Runtime proxy tracking: MobX, Vue 3.
+  - Compile-time emission of DOM ops: Solid, Svelte 5.
+  - Compile-time memoization boundaries: React Compiler.
+
+  Cathy: None of them compute a standalone characteristic function whose sole purpose is change detection. They all       
+  intertwine change detection with either dependency tracking (runtime proxy) or with update emission (compile to DOM     
+  ops). The pattern "static analysis → pure characteristic function used only for change detection, leaving the render    
+  pipeline as plain React" is novel, at least among frameworks I've studied.
+
+  Cathy: It's uniquely elegant because:
+  - Render pipeline stays React-idiomatic. View returns JSX; React reconciles.
+  - Change detection is O(sources_count), not O(state_size) or O(view_complexity).
+  - The framework doesn't wrap chemicals in Proxies (no identity breakage).
+  - The compile step is additive — it doesn't change WHAT view does, only lets us AVOID running view twice.
+
+  Cathy: The caveat on uniqueness: research prototypes I don't know about might have explored this. And React Compiler's  
+  reactive scopes are adjacent. But as a shipped pattern in a production framework, I believe it's new.
+
+  Arthur: Cathy, this is a cleaner framing than the previous rounds. I want to note what I see as the key architectural   
+  property: the compute function is an ARTIFACT derived from view, not a replacement for view. That's what makes it novel 
+  — we're not rewriting view's behavior; we're synthesizing a parallel function for change detection.
+
+  Arthur: The implication for us: testing strategy is much more tractable. We can test "does compute() produce the same   
+  change-detection answer that deep-state-snapshot would have produced?" as a property test. That's a concrete oracle.    
+  Compiler bugs become visible as divergence from the oracle.
+
+  Arthur: The remaining concern I want Doug's expert to weigh in on: soundness of the slicer for JavaScript. Program      
+  slicing in general is undecidable for Turing-complete languages with dynamic dispatch. Practical slicers approximate,   
+  and the approximation matters:
+  - Too conservative → spurious re-renders (benign).
+  - Too loose → missed re-renders (bugs).
+
+  Arthur: The expert should answer: for the subset of JavaScript that shows up in well-written view methods (no eval, no  
+  with, no complex dynamic dispatch), is there a known-sound slicing algorithm? Or do we have to guard it with an "if the 
+  slicer is unsure, throw at compile time" rule (which is essentially your strict mode)?
+
+  Cathy: Agreed. My understanding is that sound slicing for a restricted JS subset (the "view-method idiom") IS tractable,
+   but that the restrictions must be precisely specified AND enforced. The expert should validate:
+
+  Cathy: 1. What JS features do we accept in view methods? (Baseline: expressions, assignments, if/else, ternary, loops   
+  over chemical state, chemical-method calls, JSX. Rejected: async, generators, eval, with, dynamic property access,      
+  try/catch.)
+
+  Cathy: 2. Given that subset, is the slicer sound? I.e., does it ever miss a source that reaches a sink?
+
+  Cathy: 3. What's the decidability boundary? Where do we draw the line between "the slicer handles this" and "throws at  
+  compile time"?
+
+  Cathy: 4. Are there known failure modes specific to JavaScript (e.g., prototype chain walks, property access through    
+  spreads, optional chaining interactions) that would surprise a compiler-textbook slicer?
+
+  Cathy: Doug, one question to align on before you bring the expert in: do we agree that the strict-mode approach ("reject
+   what we can't analyze") is the right default posture? That defines a lot of the expert's scope — if strict is the goal,
+   they focus on "is the accepted subset precisely specified and soundly analyzed?" rather than "how do we gracefully     
+  degrade on edge cases."
+
+  Arthur: And to answer Doug's "is this clever and unique" question directly: yes. Cathy's framing is precise enough now  
+  that I'd bring it to an expert with confidence. The pattern — static analysis produces a standalone characteristic      
+  function for change detection, leaving render pipeline unchanged — appears to be novel relative to the major frameworks.
+   An expert will either confirm it's genuinely unexplored or point at research prototypes we should study.
+
+✻ Sautéed for 1m 56s
+
+※ recap: Designing $Chemistry's reactivity change-detection via a compile-time-derived characteristic function — static     analysis of view produces a standalone compute() used for post-lifecycle diff. Next: Doug brings in a compiler expert to   validate slicer soundness for a restricted JS subset.                                                                  
+  

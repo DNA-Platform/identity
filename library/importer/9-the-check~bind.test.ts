@@ -29,6 +29,11 @@ const artifact: Block = {
     type: 'artifact', id: 'a1', title: '2. Symbols vs. Sets/Frames', contentType: 'application/vnd.ant.code',
     language: 'python', command: 'create', content: 'print([[1]])', oldText: '', newText: '',
 };
+// Found 2026-10-18: a call of the older account whose parameters leaked into its artifact's id, quotes and all.
+const leaked: Block = {
+    type: 'artifact', id: 'tracer</parameter name>\n<parameter name="command">update', title: 'Tracer', contentType: 'text/markdown',
+    language: '', command: 'create', content: '# Tracer', oldText: '', newText: '',
+};
 
 // The titles a scan of 3,815 names of both accounts found holding something the notation or JSX reads, on
 // 2026-10-17, and two conversations of one title, told apart by their ids.
@@ -65,7 +70,7 @@ describe('the bind', () => {
         };
         const messages = [
             sampleTextMessage('m1', 'Doug', hazards),
-            sampleMessage('m2', 'Claude', [{ type: 'text', text: 'Here.' }, artifact], 'm1'),
+            sampleMessage('m2', 'Claude', [{ type: 'text', text: 'Here.' }, artifact, leaked], 'm1'),
         ];
         const namesTaken = new Set<string>();
         const written: string[] = [];

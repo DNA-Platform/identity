@@ -1,0 +1,184 @@
+import { Chapter, Heading, Line, List, Paragraph, Section, Title } from '@dna-platform/public';
+import { Opaque } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ Photo Inventory - Items Visible in Pictures v9 ]]</Title>
+        <Section>
+            <Opaque />
+            <Heading>Photo Inventory - Items Visible in Pictures at version 9</Heading>
+            <Paragraph>PHOTO INVENTORY - ITEMS VISIBLE IN 7 PICTURES</Paragraph>
+            <Paragraph>PHOTO 1 (Bedroom - clothes on bed): Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>Multiple t-shirts (used)</Line>
+                <Line>Polo shirts (used)</Line>
+                <Line>One old suit</Line>
+                <Line>Several jackets</Line>
+                <Line>Button-down shirts (white dress shirt visible)</Line>
+                <Line>Dark colored clothing items (blacks, grays)</Line>
+                <Line>All thoroughly used clothing with minimal resale value</Line>
+            </Paragraph>
+            <Paragraph>LIKELY IN BOX: Box 8 "Master Clothes"</Paragraph>
+            <Paragraph>PHOTO 2 (Bedroom window bench): Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>Multiple pairs of shoes (sandals, sneakers, dress shoes)</Line>
+                <Line>Black bag containing winter accessories (hats, gloves)</Line>
+                <Line>Jacket(s)</Line>
+                <Line>Few t-shirts</Line>
+                <Line>Gray hoodie/sweatshirt visible</Line>
+                <Line>All old clothing, no significant resale value</Line>
+            </Paragraph>
+            <Paragraph>LIKELY IN BOXES:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>Shoes: Box 9 "Shoes and side bag"</Line>
+                <Line>Winter wear/bag: Box 9 "side bag" or Box 8 "Master Clothes"</Line>
+                <Line>Other clothing: Box 8 "Master Clothes"</Line>
+            </Paragraph>
+            <Paragraph>PHOTO 3 (Living room table - front view): Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>KitchenAid mixer (turquoise, used, ~5 years old)</Line>
+                <Line>Dyson vacuum (used, several years old)</Line>
+                <Line>Hair dryer</Line>
+                <Line>Shoebox with grandfather's memorabilia</Line>
+                <Line>Christmas ornaments (icicle boxes)</Line>
+                <Line>Blue box with canvas cover (decorations, office supplies, old letters)</Line>
+                <Line>Small brown box with Christmas ornament</Line>
+                <Line>Random toiletries</Line>
+                <Line>Keyboard and mouse visible</Line>
+                <Line>White trash can</Line>
+            </Paragraph>
+            <Paragraph>LIKELY IN BOXES:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>KitchenAid: Box 10, 12, or 7 "Kitchen Table" (mixer and bowl in separate boxes per movers)</Line>
+                <Line>Dyson: Box 4 "Dyson, Pickle Ball Rackets"</Line>
+                <Line>Decorations/ornaments: Box 15 "Box with Misc, Scale, Picture" or Box 22 "Art Stuff"</Line>
+                <Line>Toiletries: Box 2 "Garbage Pail, Coasters, Pigeon, &#91;?&#93;"</Line>
+            </Paragraph>
+            <Paragraph>PHOTO 4 (Living room table - side view with ski equipment): Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>Ski boots (used)</Line>
+                <Line>Skis (used, beat up, ~$300 new)</Line>
+                <Line>Ski helmet (used, ~$100 new)</Line>
+                <Line>Ski jacket (used, stained, ~$500 new)</Line>
+                <Line>Pickleball paddles (3+ paddles, thoroughly used)</Line>
+                <Line>Pickleballs (3 containers)</Line>
+                <Line>Poker chip set in silver briefcase (old, from 2003, missing pieces)</Line>
+                <Line>Picture frames with family photos</Line>
+            </Paragraph>
+            <Paragraph>LIKELY IN BOXES:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>Skis/poles: Box 17 "Skis, Ski Poles"</Line>
+                <Line>Ski jacket and helmet: Box 1 "Bathroom stuff and Jacket and Helmet"</Line>
+                <Line>Ski boots: Box 15 "Misc" or with other sports equipment</Line>
+                <Line>Pickleball equipment: Box 4 "Dyson, Pickle Ball Rackets"</Line>
+                <Line>Poker chips in briefcase: Box 2 or Box 15 "Misc"</Line>
+                <Line>Picture frames: Box 15 "Box with Misc, Scale, Picture"</Line>
+            </Paragraph>
+            <Paragraph>PHOTO 5 (Living room table - detail of electronics): Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>Desktop computer tower (left side, used)</Line>
+                <Line>Box containing:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>Another desktop tower (old, used)</Line>
+                    <Line>Old Wacom Cintiq tablet (1990s vintage)</Line>
+                    <Line>Old Wacom drawing tablet (1990s vintage)</Line>
+                </Paragraph>
+                <Line>Monitor stand base visible</Line>
+                <Line>Decorative wooden collectible box (what movers called "cigar box")</Line>
+            </Paragraph>
+            <Paragraph>LIKELY IN BOXES:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>Computer equipment: Box 6 "Computer, Tableware" and Box 18/20/21 (monitors)</Line>
+                <Line>Decorative wooden collectible box: Box 19 "Cigar Box"</Line>
+            </Paragraph>
+            <Paragraph>PHOTO 6 (Bedroom dresser with art supplies): Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>Black art portfolio (contains high school artwork, personal/no resale value)</Line>
+                <Line>Wooden folding easel (from 1999, thoroughly used)</Line>
+                <Line>Fishing tackle box with art supplies</Line>
+                <Line>Stack of canvas boards</Line>
+                <Line>White bathroom trash can</Line>
+                <Line>Empty decorative box (patterned/geometric design)</Line>
+                <Line>Two jars of art supplies</Line>
+                <Line>Stack of books/notebooks</Line>
+                <Line>Small white container</Line>
+            </Paragraph>
+            <Paragraph>LIKELY IN BOXES:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>Art supplies/portfolio/easel: Box 22 "Art Stuff"</Line>
+                <Line>
+                    Bathroom trash can: Box 2 "Garbage Pail, Coasters, Pigeon, &#91;?&#93;" or Box 11 "Garbage Pail, Books,
+                    Tool Box"
+                </Line>
+                <Line>Books: Box 11 or Box 16 "Books"</Line>
+            </Paragraph>
+            <Paragraph>PHOTO 7 (From memory - small pile): Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>~7 thin college books (Gödel's Proof, Algorithmic Information Theory, etc. - not textbooks)</Line>
+                <Line>Household utility bag containing:</Line>
+                <Paragraph>
+                    <List />
+                    <Line>Flashlights</Line>
+                    <Line>Drill gun</Line>
+                    <Line>Picture frame hangers</Line>
+                    <Line>Hammer</Line>
+                    <Line>Other tools</Line>
+                </Paragraph>
+                <Line>Few old black leatherbound sketchbooks (beat up)</Line>
+            </Paragraph>
+            <Paragraph>LIKELY IN BOXES:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>College books: Box 11 "Garbage Pail, Books, Tool Box" or Box 16 "Books"</Line>
+                <Line>Utility bag with tools: Box 11 "Garbage Pail, Books, Tool Box" (has "Tool Box" in name)</Line>
+                <Line>Sketchbooks: Box 22 "Art Stuff" or Box 16 "Books"</Line>
+            </Paragraph>
+            <Paragraph>PHOTO 8: Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line></Line>
+                <Line></Line>
+            </Paragraph>
+            <Paragraph>&#91;Questions/Unclear items:&#93;</Paragraph>
+            <Paragraph>PHOTO 9: Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line></Line>
+                <Line></Line>
+            </Paragraph>
+            <Paragraph>&#91;Questions/Unclear items:&#93;</Paragraph>
+            <Paragraph>PHOTO 10: Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line></Line>
+                <Line></Line>
+            </Paragraph>
+            <Paragraph>&#91;Questions/Unclear items:&#93;</Paragraph>
+            <Paragraph>PHOTO 11: Items observed:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line></Line>
+                <Line></Line>
+            </Paragraph>
+            <Paragraph>&#91;Questions/Unclear items:&#93;</Paragraph>
+            <Paragraph>
+                ITEMS TO MATCH WITH BOX LIST: &#91;We'll compile everything here after reviewing all photos&#93;
+            </Paragraph>
+        </Section>
+    </Chapter>
+);

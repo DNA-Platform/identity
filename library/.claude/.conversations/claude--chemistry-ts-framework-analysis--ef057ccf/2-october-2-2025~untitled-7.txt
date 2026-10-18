@@ -1,0 +1,134 @@
+Created element with key: chem-view-20 element.key: chem-view-20
+chemistry.ts:478 Bond initialized: $Chapter.$title
+chemistry.ts:478 Bond initialized: $Chapter.$page
+chemistry.ts:478 Bond initialized: $Chapter.$title
+chemistry.ts:478 Bond initialized: $Chapter.$page
+chemistry.ts:478 Bond initialized: $Chapter.$title
+chemistry.ts:478 Bond initialized: $Chapter.$page
+page.tsx:29 $Book constructor called with 3 chapters
+page.tsx:30 Chapter title: Introduction
+page.tsx:30 Chapter title: Main Content
+page.tsx:30 Chapter title: Conclusion
+chemistry.ts:939 Created element with key: chem-view-21 element.key: chem-view-21
+chemistry.ts:939 Created element with key: chem-view-22 element.key: chem-view-22
+chemistry.ts:939 Created element with key: chem-view-23 element.key: chem-view-23
+chemistry.ts:938 Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <div>. See https://react.dev/link/warning-keys for more information.
+error @ intercept-console-error.js:57
+eval @ react-dom-client.development.js:23715
+runWithFiberInDEV @ react-dom-client.development.js:873
+warnForMissingKey @ react-dom-client.development.js:23714
+warnOnInvalidKey @ react-dom-client.development.js:5693
+reconcileChildrenArray @ react-dom-client.development.js:5774
+reconcileChildFibersImpl @ react-dom-client.development.js:6095
+eval @ react-dom-client.development.js:6200
+reconcileChildren @ react-dom-client.development.js:8754
+beginWork @ react-dom-client.development.js:10951
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.createElement @ react.development.js:1040
+augmentNode @ chemistry.ts:938
+eval @ chemistry.ts:932
+eval @ react.development.js:457
+mapIntoArray @ react.development.js:358
+mapIntoArray @ react.development.js:403
+mapChildren @ react.development.js:456
+augmentNode @ chemistry.ts:932
+eval @ chemistry.ts:932
+eval @ react.development.js:457
+mapIntoArray @ react.development.js:358
+mapIntoArray @ react.development.js:403
+mapChildren @ react.development.js:456
+augmentNode @ chemistry.ts:932
+augmentView @ chemistry.ts:909
+render @ chemistry.ts:810
+__render @ chemistry.ts:202
+Component @ chemistry.ts:344
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:407
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+wakeChunk @ react-server-dom-webpack-client.browser.development.js:976
+fulfillReference @ react-server-dom-webpack-client.browser.development.js:1310
+wakeChunk @ react-server-dom-webpack-client.browser.development.js:977
+wakeChunkIfInitialized @ react-server-dom-webpack-client.browser.development.js:1012
+resolveModuleChunk @ react-server-dom-webpack-client.browser.development.js:1097
+eval @ react-server-dom-webpack-client.browser.development.js:1944
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js:1801
+(anonymous) @ main-app.js:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js:9Understand this error
+chemistry.ts:478 Bond initialized: $Document.chapters
+chemistry.ts:478 Bond initialized: $Document.$$$cid
+chemistry.ts:478 Bond initialized: $Title.$text
+chemistry.ts:478 Bond initialized: $Chapter.$title
+chemistry.ts:478 Bond initialized: $Chapter.$page
+chemistry.ts:478 Bond initialized: $Chapter.$title
+chemistry.ts:478 Bond initialized: $Chapter.$page
+chemistry.ts:478 Bond initialized: $Chapter.$title
+chemistry.ts:478 Bond initialized: $Chapter.$page
+chemistry.ts:478 Bond initialized: $Footer.$copyright

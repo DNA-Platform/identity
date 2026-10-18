@@ -1,0 +1,228 @@
+class $Formula {
+    private _initialized = false;
+    private _destroyed = false;
+
+    get chemical() { return this._chemical; }
+    private _chemical: $Chemical;
+
+    get bonds() { return this._bonds; }
+    private _bonds: Map<string, $Bond> = new Map();
+    
+    get state() { return $Represent.symbolize(this._state, 'fast'); }
+    private _state: $State;
+
+    get previousState() { return this._previousState; }
+    private _previousState: string = ''; 
+
+    get previousStateAsync() { return this._previousStateAsync; }
+    set previousStateAsync(value: string) { this._previousStateAsync = value; }
+    private _previousStateAsync: string = ''; 
+    
+    private _setState?: (state: string) => void;
+    private _setStateAsync?: (state: string) => void;
+
+    constructor(chemical: $Chemical) {
+        this._chemical = chemical;
+        this._state = { cid: this.chemical[$cid] };
+    }
+
+    diagram(closure: 'self-contained' | 'referential' = 'referential'): string {
+        const result: Record<string, any> = {};
+        for (const [property, bond] of this._bonds) {
+            if (bond.isMethod) continue; 
+            result[property] = $Represent.symbolize(bond.getter ? bond.getter() : bond.backingField, closure);
+        }
+        return $Represent.symbolize(result, 'fast');
+    }
+
+    init() {
+        if (this._destroyed) return;
+        if (this._initialized) {
+            this.refresh();
+            return;
+        }
+
+        try {
+            $Bond.reactive = false;
+            const template = this.chemical.__template;
+            if (!this.chemical.__isTemplate && !template[$formula]._initialized)
+                template[$formula].init();
+
+            this.chemical[$reactive] = false;
+            this._createBonds();
+            this._initialized = true;
+            this.chemical[$reactive] = true;
+        } finally {
+            $Bond.reactive = true;
+        }
+    }
+
+    read(diagram: string) {
+        this.refresh();
+        const symnbolized = JSON.parse(diagram);
+        const literalized = $Represent.literalize(symnbolized);
+        
+        if (!literalized || typeof literalized !== 'object')
+            throw new Error(`Could not read the specified diagram: ${diagram}`);
+        
+        for (const [property, value] of Object.entries(literalized)) {
+            const bond = this._bonds.get(property);
+            if (bond) {
+                if (bond.setter) {
+                    bond.setter(value);
+                } else if (!bond.getter && !bond.setter) {
+                    bond.backingField = value;
+                }
+            } else {
+                const descriptor = {
+                    value: value,
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                };
+                const newBond = new $Bond(this._chemical, property, descriptor);
+                this._bonds.set(property, newBond);
+                newBond.init();
+            }
+        }
+    }
+
+    track() {
+        this._bonds.forEach(bond => bond.accessed = false);
+    }
+
+    check(visited?: Set<number>) {
+        visited = visited || new Set<number>()
+        visited.add(this.chemical[$cid]);
+        const $chemical$ = this.chemical as any;
+        this._bonds.forEach(bond => {
+            if (bond.accessed) {
+                bond.accessed = false;
+                const value = $chemical$[bond.property];
+                if (value instanceof $Chemical) {
+                    if (visited.has(value[$cid])) return;
+                    visited.add(value[$cid]);
+                    value[$formula].check(visited);
+                }
+            }
+        })
+    }
+ 
+    refresh() {
+        if (this._destroyed) return;
+        if (!this._initialized) {
+            this.init();
+            return;
+        }
+        try {
+            $Bond.reactive = false;
+            this.chemical[$reactive] = false;
+            const chain = [Object.getPrototypeOf(this._chemical), this._chemical.__template, this._chemical];
+            this._createBonds(chain);
+            this.chemical[$reactive] = true;
+        } finally {
+            $Bond.reactive = true;
+        }
+    }
+
+    bindState() {
+        this._chemical[$lastState] = this._chemical[$state];
+        this._chemical[$state] = this._state;
+    }
+
+    unbindState() {
+        const state = this._chemical[$state];
+        const lastState = this._chemical[$lastState];
+        this._chemical[$state] = lastState;
+        const formula = this._chemical[$formula];
+        for (const bond of formula.bonds.values())
+            bond.unbind();
+    }
+
+    bindUpdate(setState: (state: string) => void, setStateAsync: (state: string) => void) {
+        this._setState = setState;
+        this._setStateAsync = setStateAsync;
+        this.bindState();
+    }
+
+    updateState() {
+        if (!this._setState)
+            throw new Error("The setSetate function has not been bound");
+
+        this.dispatchUpdate(
+            this._setState, 
+            () => this.state, 
+            () => this._previousState, 
+            state => this._previousState = state
+        );
+    }
+
+    updateStateAsync() {
+        if (!this._setStateAsync)
+            throw new Error("The update function has not been bound");
+
+        this.dispatchUpdate(
+            this._setStateAsync, 
+            () => this.state, 
+            () => this._previousStateAsync, 
+            state => this._previousStateAsync = state
+        );
+    }
+
+    cleanup() {
+        this._state = { cid: this._chemical[$cid]}
+        for (const bond of this._bonds.values()) bond.cleanup();
+        this._destroyed = true;
+    }
+
+    private dispatchUpdate(
+        setState: (value: any) => void, 
+        nextState?: () => any, 
+        previousState?: () => any, 
+        setPrevious?: (value: any) => void
+    ) {
+        previousState = previousState || (() => { return {}; });
+        nextState = nextState || (() => { return {}; });
+        setPrevious = setPrevious || (() => {});
+        const orchestrator = this._chemical[$orchestrator];
+        const state = `${orchestrator.mounting}Mount/${orchestrator.rendering}Render`;
+        switch(state) {
+            case 'BeforeMount/BeforeRender':
+            case 'BeforeMount/DuringRender': 
+            case 'BeforeMount/AfterRender':
+                // Not mounted yet - queue for useEffect
+                orchestrator.actions.push(() => {
+                    const previous = previousState();
+                    const next = nextState();
+                    const willUpdate = previous !== next;
+                    if (willUpdate) orchestrator.rendering = 'Before';
+                    setState(next);
+                    setPrevious(next);
+                });
+                break; 
+            case 'AfterMount/BeforeRender':
+                // Render already queued - skip redundant update
+                setPrevious(nextState());
+                break;
+            case 'AfterMount/DuringRender':
+                // Mid-render - must queue to avoid React error
+                orchestrator.actions.push(() => {
+                    const previous = previousState();
+                    const next = nextState();
+                    const willUpdate = previous !== next;
+                    if (willUpdate) orchestrator.rendering = 'Before';
+                    setState(next);
+                    setPrevious(next);
+                });
+                break;
+            case 'AfterMount/AfterRender':
+                // Idle - safe to update immediately
+                const previous = previousState();
+                const next = nextState();
+                const willUpdate = previous !== next;
+                if (willUpdate) orchestrator.rendering = 'Before';
+                setState(next);
+                setPrevious(next);
+                break;
+        }
+    }

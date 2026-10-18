@@ -1,0 +1,404 @@
+"use client"
+import React, { ReactNode, ReactElement, useState, useRef, useEffect } from 'react';
+import stringify from 'fast-safe-stringify';
+
+// Core framework types
+type Constructor<T = {}> = new (...args: any[]) => T;
+type Type<T = any> = Constructor<T>;
+type Setter<T = any> = (value: T) => void;
+
+type Properties<T> = {
+    [K in keyof T as K extends `$${infer Rest}` ? Rest : never]: T[K]
+} & {
+    children?: ReactNode;
+};
+
+interface ChemicalComponent extends React.FC<any> {
+    chemical: $Chemical;
+    isChemical: boolean;
+    isBound: boolean;
+}
+
+// Symbols on $Chemical
+const inertPropertiesSymbol = Symbol('inertProperties');
+const dynamicPropertiesSymbol = Symbol('comparisons');
+const updateFunctionsSymbol = Symbol('updateFunctions');
+const updatingSymbol = Symbol('updating');
+
+export class $Chemical {
+    @inert()
+    private _diagram!: Diagram;
+
+    @inert()
+    get chemicalId() { return this._id; }
+    private _id: number;
+
+    @inert()
+    get formula(): this { return this.getType()._formula as any; }
+
+    @inert()
+    get formulaId() { return this.formula.chemicalId; }
+
+    @inert()
+    get Component(): React.FC<Properties<this>> { return this._component!; }
+    private _component?: React.FC<Properties<this>>;
+
+    @inert()
+    get reactive(): boolean { return this._reactive; } 
+    private _reactive: boolean = true;
+
+    @inert()
+    children?: ReactNode;
+
+    @parent($Chemical)
+    parent: $Chemical | undefined;
+
+    $on?: Setter;
+
+    constructor() {
+        this._id = $Chemical.getNextChemicalId();
+        const type = this.getType();
+        if (!type._formula) {
+            type._formula = this;
+            this._diagram = new Diagram(type);
+        } else {
+            this._diagram = this.formula._diagram.duplicate();
+        }
+    }
+
+    construct(parent?: $Chemical): this {
+        const formula = this.getType()._formula;
+        const chemical = Object.create(this);
+        
+        chemical._bonds = [];
+        chemical[updateFunctionsSymbol] = [];
+        chemical.parent = parent;
+        return chemical as this;
+    }
+
+    // Override this to control rendering
+    view(): ReactNode {
+        // Default implementation shows the existing children from the props
+        return this.children;
+    }
+
+    reactivate() {
+        this._reactive = true;
+        this._diagram.bonds.forEach(bond => {
+            bond.isReactive = true;
+            bond.reactivate(this);
+        });
+    }
+
+    deactivate() {
+        this._reactive = false;
+        (this as any)[updatingSymbol] = false;
+        this._diagram.bonds.forEach(bond => {
+            bond.isReactive = false;
+        });
+    }
+
+    update(): void {
+        if (!this._reactive) return;
+        const updates = (this as any)[updateFunctionsSymbol];
+        if (Array.isArray(updates))
+            updates.map(update => update());
+        (this as any)[updatingSymbol] = false;
+    }
+
+    getType<T extends Type = typeof $Chemical>(): T {
+        return this.constructor as any;
+    }
+
+    private assignComponent(): void {
+        const formula = this.getType()._formula;
+        if (this === formula && formula._component)
+            return;
+        
+        this._component = (props: any) => {
+            let chemical = this;
+            if (chemical === formula)
+                chemical = this.construct();
+
+            // Set up this component's update function
+            const chemicalDynamic = chemical as any;
+            const [, update] = useState({});
+            const updateFunc = () => update({});
+            chemicalDynamic[updateFunctionsSymbol].push(updateFunc)
+            chemical.bindProps(props);
+
+            // Clean up on unmount
+            useEffect(() => {
+                return () => {
+                    const updateFunctions: (() => void)[] = chemicalDynamic[updateFunctionsSymbol];
+                    chemicalDynamic[updateFunctionsSymbol] = updateFunctions.filter((f: any) => f !== updateFunc);
+                };
+            }, []);
+
+            return chemical.view();
+        }
+
+        const component = this._component as ChemicalComponent;
+        component.chemical = this;
+        component.isChemical = true;
+        component.isBound = this !== formula;
+    }
+
+    private bindProps(props: any) {
+        const self = this as any;
+        if (props.children) 
+            this.children = props.children;
+        for (const key in props)
+            if (key !== 'children' && key !== 'key' && key !== 'ref') 
+                self['$' + key] = props[key];
+    }
+
+    private static _formula: $Chemical;
+    static get formula(): $Chemical { return this._formula; }
+
+    private static nextChemicalId = 1;
+    private static getNextChemicalId(): number { return $Chemical.nextChemicalId++; }
+}
+
+class Diagram {
+    private _bonds: Bond[] = [];
+    get bonds(): Bond[] { return this._bonds; }
+    get props() { return this.bonds.filter(b => b.isProp); }
+    get chemicals() { return this.bonds.filter(b => b.isChemical); }
+    constructor(type: Type) {
+        // Use the prototype chain back to $Chemical to create the bonds
+    }
+
+    duplicate(): this {
+        const diagram = Object.create(this) as this;
+        diagram._bonds = this.bonds.map(b => b.duplicate());
+        return this;
+    }
+}
+
+class Bond {
+    private _id: number;
+    get id() { return this._id; }
+    type: Type;
+    property: string;
+    isConfigured: boolean;
+    private _isReactive = false;
+    get isReactive() { return this.isInert ? false : this._isReactive; }
+    set isReactive(value: boolean) { this._isReactive = value; }
+    isCollective = false;
+    isObjective = false;
+    isRequired = false;    
+    isInert = false;
+    isProp = false;
+    isChemical = false;
+    isImplicitlyBound = false;
+    isExplicitlyBound = false;
+    isSettable = true;
+    synonyms: Bond[] = [];
+    comparer?: (first: any, second: any) => boolean;
+    constructor(property: string, type: Type) {
+        this._id = Bond.getNextBondId();
+        this.property = property;
+        this.type = type;
+        this.isConfigured = false;
+        this.isReactive = false;
+    }
+
+    reactivate(chemical: $Chemical): any {
+        if (chemical === chemical.getType().formula)
+            throw Error('Formulas should not have activated properties');
+        // Imagine this is called on the instance of the class
+        if (this.isConfigured && this.isReactive) return;
+        if (this.isConfigured) {
+            this.isReactive = true;
+            return;
+        }
+
+        const thisBond = this;
+        const dynamicChemical: any = chemical;
+        const backingField = Symbol(`_${this.property}${this.id}`);
+        const getValue: () => any = () => { return dynamicChemical[backingField]; }
+        const setValue: (value: any) => void = (value) => { dynamicChemical[backingField] = value; }
+        setValue(dynamicChemical[this.property]);
+        
+        const property = Object.defineProperty(dynamicChemical, this.property, {
+            get() {
+                if (thisBond.isInert)
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is inert and should not be bound to a reactive property.`);
+                if (thisBond.isReactive && thisBond.isObjective || thisBond.isCollective) {
+                    const previousValue = getValue();
+                    setTimeout(() => {
+                        if (!thisBond.isReactive) return;
+                        const nextValue = getValue();
+                        if (previousValue === nextValue) return;
+                        if (!thisBond.equivalent(previousValue, nextValue)) {
+                            if (!dynamicChemical[updatingSymbol])
+                                chemical.update();
+                        }
+                    })
+                }
+                return getValue();
+            },
+            set(value: any) {
+                if (thisBond.isInert)
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is inert and should not be bound to a reactive property.`);
+                if (!thisBond.isSettable)
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is not settable.`)
+                if (thisBond.isRequired && (value === null || value === undefined))
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is required to have a value.`)
+                if (thisBond.type)
+                    thisBond.validateType(value);
+                
+                const previousValue = getValue();
+                setValue(value);
+
+                if (!thisBond.isReactive) return;
+                if (dynamicChemical[updatingSymbol]) return;
+                if (!thisBond.equivalent(previousValue, value)) {
+                    dynamicChemical[updatingSymbol] = true;
+                    setTimeout(() => {
+                        chemical.update();
+                    });
+                }
+            },
+            enumerable: true,
+        });
+
+        this.isConfigured = true;
+        this.isReactive = true;
+        return property;
+    }
+
+    equivalent(first: any, second: any) {
+        return this. comparer ? this.comparer(first, second) : first === second;
+    }
+
+    duplicate(): this {
+        const double = Object.create(this);
+        double._id = Bond.getNextBondId();
+        return double;
+    }
+
+    private validateType(value: any): void {
+        if (!this.type || value === null || value === undefined) return;
+        
+        if (this.isChemical) {
+            if (!(value instanceof this.type))
+                throw Error(`${this.property} must be an instance of ${this.type.name}, got ${value.constructor.name}`);
+            return;
+        }
+        
+        const valueType = typeof value;
+        if (this.type === String && valueType !== 'string')
+            throw Error(`${this.property} must be a string, got ${valueType}`);
+        else if (this.type === Number && valueType !== 'number')
+            throw Error(`${this.property} must be a number, got ${valueType}`);
+        else if (this.type === Boolean && valueType !== 'boolean')
+            throw Error(`${this.property} must be a boolean, got ${valueType}`);
+        else if (this.type === Array && !Array.isArray(value))
+            throw Error(`${this.property} must be an array`);
+        else if (this.type === Object && valueType !== 'object')
+            throw Error(`${this.property} must be an object, got ${valueType}`);
+    }
+
+    private static nextBondId = 1;
+    private static getNextBondId(): number { return Bond.nextBondId++; }
+}
+
+// Decorator to mark a field as inert (non-reactive)
+export function inert() {
+    return function (target: any, property: string) {
+        if (!target[inertPropertiesSymbol]) 
+            target[inertPropertiesSymbol] = new Set<string>();
+        target[inertPropertiesSymbol].add(property);
+    };
+}
+
+// Decorator for properties that should use deep equality comparison
+export function dynamic(comparer?: (a: any, b: any) => boolean) {
+   return function (target: any, propertyKey: string) {
+       if (!target[dynamicPropertiesSymbol])
+           target[dynamicPropertiesSymbol] = new Map<string, (a: any, b: any) => boolean>();
+
+       const compareFn = comparer || ((a: any, b: any) => represent(a) === represent(b));
+       target[dynamicPropertiesSymbol].set(propertyKey, compareFn);
+   };
+}
+
+// A decorator for expressing configurable binding
+export function $(type: Type): Function;
+export function $(type: Type, requirement: '?' | '!' | '[]' = '!'): Function {
+    type = resolveType(type);
+    return function (target: $Chemical, property: string) {
+    };
+}
+
+// A decorator for reassigning the parent property
+export function parent(type: Type) {
+    type = resolveType(type);
+    return function (target: $Chemical, property: string) {
+        Object.defineProperty(target, property, {
+            get: function(this: $Chemical) {
+                const p = this.parent;
+                // Optional: runtime type check
+                if (p && !(p instanceof type)) {
+                    throw new Error(`Expected parent to be ${type.name}, got ${p.constructor.name}`);
+                }
+                return p;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        inert()(target, property);
+    };
+}
+
+
+function resolveType(type: Type | (() => Type)): Type {
+    // Check if it's a function
+    if (typeof type === 'function') {
+        // Try to determine if it's a constructor or a regular function
+        // Constructors typically have a prototype property with a constructor
+        if (type.prototype && type.prototype.constructor === type) {
+            // It's a constructor
+            return type as Type;
+        } else {
+            // It's a function that returns a constructor
+            return (type as () => Type) ();
+        }
+    }
+    
+    throw new Error('Input must be a constructor or a function returning a constructor');
+}
+
+function represent(value: any): string {
+    return stringify(value, function (this: any, property: string, value: any): any {
+        if (property === '') return value;
+        if (this instanceof $Chemical && !isReactiveProperty(this, property, value))
+            return undefined;
+        
+        // Only keep the Proxy check if Next.js proxies cause issues
+        // Otherwise, fast-safe-stringify handles most edge cases
+        if (value?.constructor?.name === 'Proxy') return '[NextProxy]';
+        return value;
+    });
+}
+
+function isReactiveProperty(instance: any, key: string, value: any): boolean {
+   // Skip symbols, functions, underscore properties
+   if (typeof key === 'symbol' || 
+       typeof value === 'function' || 
+       key.startsWith('_')) 
+       return false;
+   
+   // Skip if marked as @inert
+   const proto = Object.getPrototypeOf(instance);
+   if (proto?.[inertPropertiesSymbol]?.has(key)) return false;
+   
+   return true;
+}
+
+class X extends $Chemical {
+    @$(Number,'?','[]')
+    property = 5;
+}

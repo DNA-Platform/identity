@@ -1,0 +1,138 @@
+class Region {
+    private _leftParent: number;
+    private _topParent: number;
+    private _rightParent: number;
+    private _bottomParent: number;
+    protected _parent: (() => Region) | undefined;
+    private _onChange: Subscribable<Region> = new Subscribable<Region>();
+
+    unit(): number { return this._rightParent - this._leftParent; }
+    unitAbs(): number { return this.base().unit(); }
+    parent(): Region { return this.parent !== undefined ? (this._parent as any)() : undefined as any; }
+    base(): Region { return this.parent === undefined ? this : this.parent().base(); }
+    isBase(): boolean { return this.parent() === this; }
+    onChange(): Subscribable<Region> { return this._onChange; }
+
+    topAbs(): number { return this.isBase() ? this._topParent : this.parent().topAbs(); }
+    leftAbs(): number { return this.isBase() ? this._leftParent : this.parent().leftAbs(); }
+    rightAbs(): number { return this.isBase() ? this._rightParent : this.parent().rightAbs(); }
+    bottomAbs(): number { return this.isBase() ? this._bottomParent : this.parent().bottomAbs(); }
+
+    topParent(): number { return this._topParent; }
+    leftParent(): number { return this._leftParent; }
+    rightParent(): number { return this._rightParent; }
+    bottomParent(): number { return this._bottomParent; }
+
+    left() { return this.toRelativeLocation(this.leftAbs(), "x"); }
+    right() { return this.toRelativeLocation(this.rightAbs(), "x"); }
+    top() { return this.toRelativeLocation(this.topAbs(), "y"); }
+    bottom() { return this.toRelativeLocation(this.bottomAbs(), "y"); }
+
+    boundsParent(): [number, number, number, number] {
+        return [this._leftParent, this._topParent, this._rightParent, this._bottomParent];
+    }
+
+    rectParent(): Rect {
+        return this.boundsParent();
+    }
+
+    centerParent(): Position {
+        var bounds = this.boundsParent();
+        return [
+            (bounds[2] + bounds[0]) / 2,  // (right + left) / 2
+            (bounds[1] + bounds[3]) / 2   // (top + bottom) / 2
+        ];
+    }
+
+    widthParent() {
+        var bounds = this.boundsParent();
+        return bounds[2] - bounds[0];  // right - left
+    }
+
+    heightParent() {
+        var bounds = this.boundsParent();
+        return bounds[1] - bounds[3];  // top - bottom
+    }
+
+    boundsAbs(): [number, number, number, number] {
+        return this.base().boundsParent();
+    }
+
+    rectAbs(): Rect {
+        return this.base().rectParent();
+    }
+
+    centerAbs(): Position {
+        return this.base().centerParent();
+    }
+
+    widthAbs(): number {
+        return this.base().widthParent();
+    }
+
+    heightAbs(): number {
+        return this.base().heightParent();
+    }
+
+    // Relative positions
+    bounds(): [number, number, number, number] {
+        return [this.left(), this.top(), this.right(), this.bottom()];
+    }
+
+    rect(): Rect { return this.bounds(); }
+
+    center(newCenter?: Position): Position {
+        if (newCenter) {
+            this.moveTo(newCenter);
+            this.onChange().fire(this);
+        }
+        return [
+            (this.right() + this.left()) * 0.5,
+            (this.top() + this.bottom()) * 0.5
+        ];
+    }
+
+    // Width and height with optional resizing
+    width(newWidth?: number, proportional = true) {
+        if (newWidth) {
+            const scaleFactor = newWidth / this.width();
+            this.size([newWidth, proportional ? this.height() * scaleFactor : this.height()]);
+            this.onChange().fire(this);
+        }
+        return Math.abs(this.left() - this.right());
+    }
+
+    height(newHeight?: number, proportional = true) {
+        if (newHeight) {
+            const scaleFactor = newHeight / this.height();
+            this.size([proportional ? this.width() * scaleFactor : this.width(), newHeight]);
+            this.onChange().fire(this);
+        }
+        return Math.abs(this.top() - this.bottom());
+    }
+
+    size(newSize?: Size) {
+        if (newSize) {
+            const center = this.centerParent();
+            const newWidth = this.toParentUnits(newSize[0]);
+            const newHeight = this.toParentUnits(newSize[1]);
+
+            this._leftParent = center[0] - newWidth / 2;
+            this._rightParent = center[0] + newWidth / 2;
+            this._topParent = center[1] + newHeight / 2;
+            this._bottomParent = center[1] - newHeight / 2;
+            this.onChange().fire(this);
+        }
+        return [this.width(), this.height()];
+    }
+
+    constructor(left: number, right: number, bottom: number, top: number, parent?: () => Region) {
+        if (left > right || bottom > top)
+            throw `Invalid Region: ${[left, top, right, bottom]}`;
+
+        this._leftParent = left;
+        this._rightParent = right;
+        this._bottomParent = bottom;
+        this._topParent = top;
+        this._parent = parent;
+    }

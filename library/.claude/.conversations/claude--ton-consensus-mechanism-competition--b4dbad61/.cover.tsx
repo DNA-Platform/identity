@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ TON consensus mechanism competition ]]( claude--TON consensus mechanism competition--b4dbad61 )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>b4dbad61-6883-4fad-a4e7-5a5d6b2cfd7d</Origin>
         <Paragraph>

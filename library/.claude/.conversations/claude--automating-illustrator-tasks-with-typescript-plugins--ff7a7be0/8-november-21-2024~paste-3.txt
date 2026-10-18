@@ -1,0 +1,1235 @@
+/// <reference path="./core.ts" />
+
+interface Application {
+    selectDocument(ref?: Reference): Document;
+}
+
+(app as any)["__proto__"].selectDocument = function(ref: Reference): Document {
+    if (typeof ref === "number") {
+        var index = evaluateNegativeIndex(ref, this.documents.length);
+        var doc = this.documents[index];
+        doc.activate();
+        return doc;
+    }
+    
+    // Search by name
+    for (var i = 0; i < this.documents.length; i++) {
+        if (this.documents[i].name === ref) {
+            this.documents[i].activate();
+            return this.documents[i];
+        }
+    }
+    throw "Document not found";
+};
+
+/**
+ * Activates a document from the resources folder.
+ * @param fileName - Name of the resource file to activate
+ * @returns Result of activating the document
+ */
+function activateResource(fileName: string) {
+    return activateDocument(combinePaths("resources", fileName), false);
+}
+
+/**
+ * Gets, activates, or creates an Illustrator document based on the provided parameters.
+ * Checks both open documents and the documents directory.
+ * 
+ * @param fileName - The name of the document to find/create
+ * @param activate - Whether to make the found/created document active
+ * @param create - Whether to create a new document if one with the specified name isn't found
+ * 
+ * @returns The requested Document object
+ * @throws Error if document isn't found and create=false
+ */
+function activateDocument(fileName?: string, create: boolean = false): Document {
+    // Case 1: No arguments - return active document
+    if (!fileName) {
+        if (app.documents.length === 0) {
+            throw new Error("No documents are open.");
+        }
+
+        var documentName = app.selectDocument().name;
+        for (let i = 0; i < app.documents.length; i++) {
+            if (app.documents[i].name === documentName) {
+                var doc = app.documents[i];
+                doc.activate()
+                return doc;
+            }
+        }
+    }
+
+    // Case 2: Try to find in open documents
+    for (let i = 0; i < app.documents.length; i++) {
+        if (app.documents[i].name === fileName) {
+            app.documents[i].activate();
+            return app.documents[i];
+        }
+    }
+
+    // Case 3: Try to find in documents directory
+    const file = new File(combinePaths(DOCUMENTS_PATH, fileName as string));
+    if (file.exists) {
+        var doc = loadDocument(fileName as string);
+        doc.activate();
+        return doc;
+    }
+
+    // Case 4: Document not found anywhere - create or throw error
+    if (create) {
+        const newDoc = app.documents.add(DocumentColorSpace.RGB);
+        newDoc.activate();
+        resetArtboards();
+
+        saveDocument(newDoc, fileName as string);
+        return newDoc;
+    }
+
+    throw new Error(`Document '${fileName}' not found in open documents or documents directory.`);
+}
+
+/**
+ * Loads a document from the documents directory
+ * @param fileName - The name of the document
+ * @returns The loaded Document object
+ * @throws Error if document cannot be found or loaded
+ */
+function loadDocument(fileName: string): Document {
+    const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+
+    if (!file.exists) {
+        throw new Error(`Document '${fileName}' not found in documents directory.`);
+    }
+
+    try {
+        return app.open(file);
+    } catch (error: any) {
+        throw new Error(`Failed to load document '${fileName}': ${error.message}`);
+    }
+}
+
+/**
+ * Saves a document to the documents directory
+ * @param doc - The document to save
+ * @param fileName - Name to save as
+ * @throws Error if save fails
+ */
+function saveDocument(doc?: Document, fileName?: string): void {
+    if (!doc) {
+        doc = app.activeDocument;
+    }
+    
+    try {
+        if (fileName === undefined) {
+            doc.save();
+            return;
+        }
+        const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+        doc.saveAs(file);
+    } catch (error: any) {
+        throw new Error(`Failed to save document '${fileName}': ${error.message}`);
+    }
+}
+
+/**
+ * Finds and activates a document by its name.
+ * 
+ * @param name - The name of the document to find.
+ * @returns The Document object if found, or null if not found.
+ */
+function findDocument(name: string): Document {
+    for (let i = 0; i < app.documents.length; i++) {
+        const doc = app.documents[i];
+        if (doc.name === name) {
+            return doc;
+        }
+    }
+    throw `Found no matching document for ${name}`;
+}
+
+/**
+ * Adjusts the zoom level of the active document's view.
+ *
+ * @param percentage - The desired zoom level as a percentage (e.g., 100 for 100% zoom).
+ *
+ * This function calculates the zoom level relative to a base multiplier (3.1386),
+ * which maps the percentage to Illustrator's internal zoom scale. The calculated
+ * value is then applied to the `activeView.zoom` property of the currently active document.
+ */
+function zoom(percentage: number): void {
+    app.activeDocument.activeView.zoom = 3.1386 * percentage / 100; // Calculate and set the zoom level
+}
+
+/**
+ * Deselects all currently selected items in the active document.
+ *
+ * This function clears the selection by assigning an empty array to `app.selection`.
+ * It also forces the canvas to refresh by calling `app.redraw()` to ensure the changes
+ * are visually reflected in the Illustrator UI.
+ */
+function deselectAll(): void {
+    app.selection = []; // Clear all selected items
+    redraw(); // Refresh the canvas to apply the change
+}
+
+/**
+ * Redraws the Illustrator canvas and introduces a delay.
+ *
+ * @param milliseconds - The duration to pause in milliseconds.
+ */
+function redraw(milliseconds: number = 1000): void {
+    // Force Illustrator to redraw the canvas
+    app.redraw();
+
+    // Introduce a delay using a blocking loop
+    const start = new Date().getTime();
+    while (new Date().getTime() - start < milliseconds) {
+        // Keep the loop running until the specified time has passed
+    }
+}
+
+/**
+ * Creates a new layer in the specified document.
+ * If name is specified, either renames an existing layer or creates a new named layer.
+ * 
+ * @param ref - Optional name for the layer
+ * @param index - Optional position for the new layer (supports Python-style negative indexing)
+ * @returns The created Layer object
+ * 
+ * @example
+ * // Create a new unnamed layer
+ * const layer = createLayer();
+ * 
+ * @example
+ * // Create a named layer
+ * const namedLayer = createLayer("MyLayer");
+ * 
+ * @example
+ * // Create a named layer at a specific position
+ * const positionedLayer = createLayer("MyLayer", -1); // At the end
+ */
+function createLayer(ref?: Reference, index?: number): Layer {
+    var doc = app.activeDocument;
+    // Fix this logic - if ref is a number, it's the index
+    if (typeof ref === "number") {
+        index = ref;
+        ref = undefined;
+    }
+    if (index === undefined) {
+        index = -1;
+    }
+
+    if (!ref) {
+        const layer = doc.layers.add();
+        moveLayer(layer.name, index);
+        return layer;
+    }
+
+    // Check if layer with name exists
+    for (let i = 0; i < doc.layers.length; i++) {
+        if (doc.layers[i].name === ref) {
+            throw "A layer named " + ref + " already exists";
+        }
+    }
+
+    // Create new named layer
+    const layer = doc.layers.add();
+    layer.name = ref as string;
+    moveLayer(layer.name, index);
+    return layer;
+}
+
+/**
+ * Selects and optionally activates a layer by name or index.
+ * If no id provided and no active layer exists, throws error.
+ * If no id provided, returns active layer.
+ * If id is number, processes negative index like Python (-1 is last layer).
+ * If id is string, searches for layer by name.
+ * 
+ * @param ref - Layer name or index (optional)
+ * @param activate - Whether to activate the layer (default true)
+ * @returns The selected Layer
+ * @throws Error if layer not found or no active layer when id not provided
+ */
+function selectLayer(ref?: Reference, activate: boolean = true): Layer {
+    var layers = selectLayers(ref)
+    if (layers.length < 1)
+        throw "No layer found";
+
+    if (activate)
+        app.activeDocument.activeLayer = layers[0];
+    
+    return layers[0];
+}
+
+/**
+ * Selects multiple layers using various selector types.
+ * 
+ * @param selector - How to select layers:
+ *   undefined - returns active layer
+ *   number - selects layer by index (supports negative)
+ *   string - layer name or slice notation ("start:end")
+ *   array - multiple layers by name or index
+ * @returns Array of selected layers
+ * 
+ * @example
+ * selectLayers()          // Active layer
+ * selectLayers("MyLayer") // Layer named "MyLayer"
+ * selectLayers("2:5")     // Layers 2 through 5 inclusive
+ * selectLayers("2:-1")    // Layers 2 through end
+ * selectLayers(["Layer1", "Layer2"]) // Specific named layers
+ * selectLayers([0, -1])   // First and last layers
+ */
+function selectLayers(selector?: Selector): Layer[] {
+    var doc = app.activeDocument;
+
+    // No selector: return active layer
+    if (selector === undefined) {
+        if (!doc.activeLayer) {
+            throw "No active layer";
+        }
+        return [doc.activeLayer];
+    }
+
+    // Use evaluateSelector to handle all cases
+    var result = evaluateSelector(selector, doc.layers.length);
+
+    if (result.length == 0)
+        return []
+
+    // Handle string array case (layer names)
+    var selectedLayers = [];
+    if (typeof result[0] === "string") {
+        for (var i = 0; i < result.length; i++) {
+            var layerName = result[i];
+            var layerFound = false;
+            
+            // Search for the layer by name
+            for (var j = 0; j < doc.layers.length; j++) {
+                if (doc.layers[j].name === layerName) {
+                    selectedLayers.push(doc.layers[j]);
+                    layerFound = true;
+                    break;
+                }
+            }
+
+            // If a layer with the specified name is not found, throw an error or handle it as needed
+            if (!layerFound) {
+                throw "Layer '" + layerName + "' not found.";
+            }
+        }
+        return selectedLayers;
+    }
+
+    // Handle array of indices
+    var selectedLayers = [];
+    for (var i = 0; i < result.length; i++) {
+        selectedLayers.push(doc.layers[result[i] as number]);
+    }
+    return selectedLayers;
+}
+
+// Renames a layer by reference
+function renameLayer(ref: Reference, newName: string) { 
+    var layer = selectLayer(ref);
+    if (!layer)
+        throw `${ref} is not a valid reference for a layer`;
+
+    layer.name = newName;
+}
+
+/**
+ * Moves a layer to specified index position.
+ * Supports both positive and negative indices for positioning:
+ * - Positive indices (0+): Places layer BEFORE the layer at that index
+ * - Negative indices (-1+): Places layer AFTER the layer at that index
+ * When id is a number, moves the active layer to that position.
+ * When id is a string, moves the named layer to the specified index position.
+ * 
+ * @param ref - Either the name of layer to move, or the target position for active layer
+ * @param index - Target position when id is a string
+ * @throws Error if id undefined or if string id provided without index
+ * 
+ * @example
+ * moveLayer("MyLayer", 0)    // Move named layer to top
+ * moveLayer("MyLayer", -1)   // Move named layer to end
+ * moveLayer(0)               // Move active layer to top
+ * moveLayer(-1)              // Move active layer to end
+ * moveLayer(-2)              // Move active layer to second-from-end
+ */
+function moveLayer(ref: Reference, index: number): void {
+    var doc = app.activeDocument;
+    if (ref === undefined) {
+        throw new Error("Layer id required");
+    }
+    if (typeof ref === "string" && index === undefined) {
+        throw new Error("Target index required when moving layer by name");
+    }
+
+    var layerToMove = doc.activeLayer;
+    if (typeof ref === "string") {
+        layerToMove = selectLayer(ref, true);
+    } else {
+        // id is number, use it as index
+        index = ref;
+        layerToMove = selectLayer(undefined, true);
+    }
+
+    var placeMethod = index < 0 ? ElementPlacement.PLACEAFTER : ElementPlacement.PLACEBEFORE;
+    var referenceLayer = selectLayer(index, false);
+    
+    layerToMove.move(referenceLayer, placeMethod);
+}
+
+/**
+ * Copies all items from a specified layer in another document to a new layer in the current document.
+ * If a name is provided, it uses that as the new layer’s name; otherwise, it uses the original layer’s name.
+ *
+ * @param layer - The source layer from another document to copy.
+ * @param name - Optional name for the new layer. Defaults to the source layer's name.
+ * @returns The newly created layer in the current document with copied items.
+ * @throws Error if a layer with the same name already exists in the current document.
+ */
+function copyLayer(layer: Layer, name?: string, replaceIndex?: number): Layer {
+    const doc = app.activeDocument;
+
+    // Use the source layer's name if no name is specified
+    const layerName = name || layer.name;
+
+    // Check if a layer with the same name already exists in the current document
+    for (let i = 0; i < doc.layers.length; i++) {
+        if (doc.layers[i].name === layerName) {
+            throw new Error(`A layer named "${layerName}" already exists in the current document.`);
+        }
+    }
+
+    // Create a new layer with the specified or source layer's name
+    
+    var newLayer = createLayer(layerName, -1);
+    if (replaceIndex !== undefined) {
+        deleteLayer(replaceIndex);
+        moveLayer(newLayer.name, replaceIndex);
+    }
+
+    newLayer.name = layerName;
+    newLayer.visible = layer.visible;
+    newLayer.locked = layer.locked;
+    newLayer.opacity = layer.opacity;
+    newLayer.blendingMode = layer.blendingMode;
+    newLayer.dimPlacedImages = layer.dimPlacedImages;
+    newLayer.preview = layer.preview;
+    newLayer.printable = layer.printable;
+    newLayer.sliced = layer.sliced;
+    
+    // Copy each item from the source layer to the new layer
+    for (let i = 0; i < layer.pageItems.length; i++) {
+        var item = layer.pageItems[i];
+        var newItem = item.duplicate(newLayer, ElementPlacement.PLACEATEND);
+
+        // Copy PageItem properties that might affect positioning
+        newItem.position = item.position;
+        newItem.left = item.left;
+        newItem.top = item.top;
+        newItem.width = item.width;
+        newItem.height = item.height;
+
+        // Other visual properties
+        newItem.opacity = item.opacity;
+        newItem.blendingMode = item.blendingMode;
+        newItem.hidden = item.hidden;
+        newItem.locked = item.locked;
+    }
+
+    return newLayer;
+}
+
+/**
+ * Deletes a layer by name or index.
+ * If no id provided, deletes active layer.
+ * If id is number, processes negative index like Python (-1 is last layer).
+ * If id is string, deletes layer with that name.
+ * Optionally activates the next available layer after deletion.
+ * 
+ * @param ref - Layer name or index (optional)
+ * @param activate - Whether to activate next available layer after deletion (default true)
+ * @throws Error if layer not found or no active layer when id not provided
+ * 
+ * @example
+ * deleteLayer()           // Delete active layer
+ * deleteLayer("MyLayer")  // Delete named layer
+ * deleteLayer(-1)         // Delete last layer
+ * deleteLayer(0, false)   // Delete first layer without activating next
+ */
+function deleteLayer(ref?: Reference): void {
+    deleteLayers(ref);
+}
+
+/**
+ * Deletes multiple layers using various selector types.
+ * @param selector - Same options as selectLayers
+ */
+function deleteLayers(selector?: Selector): void {
+    var layers = selectLayers(selector);
+    for (let i = layers.length - 1; i >= 0; i--) {
+        layers[i].remove();
+    }
+}
+
+/**
+ * Nests selected layers under a parent layer.
+ * @param parentRef - Parent layer identifier
+ * @param childSelector - Selector for children (same options as selectLayers)
+ */
+function nestLayers(parentRef: Reference, childSelector?: Selector): void {
+    var parent = selectLayer(parentRef, false);
+    var children = selectLayers(childSelector);
+    for (let i = 0; i < children.length; i++) {
+        children[i].move(parent, ElementPlacement.PLACEATEND);
+    }
+}
+
+/**
+ * Locks or unlocks selected layers.
+ * @param selector - Layer selector (same options as selectLayers)
+ * @param lock - Whether to lock (true) or unlock (false)
+ */
+function lockLayers(selector: Selector, lock: boolean): void {
+    var layers = selectLayers(selector);
+    for (let i = 0; i < layers.length; i++) {
+        layers[i].locked = lock;
+    }
+}
+
+/**
+ * Shows or hides selected layers.
+ * @param selector - Layer selector (same options as selectLayers)
+ * @param hide - Whether to hide (true) or show (false)
+ */
+function hideLayers(selector: Selector, hide: boolean): void {
+    var layers = selectLayers(selector);
+    for (let i = 0; i < layers.length; i++) {
+        layers[i].visible = !hide;
+    }
+}
+
+/**
+ * Sets opacity for selected layers.
+ * @param selector - Layer selector (same options as selectLayers)
+ * @param opacity - Opacity value (0-100)
+ */
+function setOpacityForLayers(selector: Selector, opacity: number): void {
+    var layers = selectLayers(selector);
+    opacity = Math.max(0, Math.min(100, opacity));
+    for (let i = 0; i < layers.length; i++) {
+        layers[i].opacity = opacity;
+    }
+}
+
+/**
+ * A unified interface for objects containing `PageItem` elements.
+ * 
+ * This interface represents objects, like layers or groups, that:
+ * - Contain a collection of `PageItem` objects (`pageItems`).
+ * - Have a `name` property for identification.
+ */
+interface ItemContainer {
+    /**
+     * The collection of `PageItem` objects in the container.
+     */
+    pageItems: PageItems;
+
+    /**
+     * The collection of `GroupItem` objects in the container.
+     */
+    groupItems: GroupItems;
+
+    /**
+     * The name of the container.
+     */
+    name: string;
+}
+
+function selecContainer(type: "layer"|"group", ref?: Reference): ItemContainer {   
+    var doc = app.activeDocument;
+    if (type == "layer") {
+        return doc.activeLayer;
+    } else {
+        return selectItem(doc.activeLayer, ref as Reference, true) as GroupItem;
+    }
+}
+
+/**
+ * Selects and optionally activates an item by name or index within a specific layer.
+ * If no id provided and no active item exists in the layer, throws error.
+ * If no id provided, returns the active item in the layer.
+ * If id is a number, processes negative index like Python (-1 is last item).
+ * If id is a string, searches for an item by name within the layer.
+ * 
+ * @param container - The layer containing the items.
+ * @param ref - Item name or index (optional)
+ * @param activate - Whether to activate the item (default true)
+ * @returns The selected Item
+ * @throws Error if item not found or no active item when id not provided
+ */
+function selectItem(container: ItemContainer, ref: Reference, activate: boolean = true): PageItem {
+    var items = selectItems(container, ref);
+    if (items.length < 1) {
+        throw "No item found";
+    }
+
+    if (activate) {
+        items[0].selected = true;
+    }
+
+    return items[0];
+}
+
+/**
+ * Selects multiple items within a specific layer using various selector types.
+ * 
+ * @param container - The layer containing the items.
+ * @param selector - How to select items:
+ *   undefined - returns active item
+ *   number - selects item by index (supports negative)
+ *   string - item name or slice notation ("start:end")
+ *   array - multiple items by name or index
+ * @returns Array of selected items
+ * 
+ * @example
+ * selectItems(layer)             // Active item in the layer
+ * selectItems(layer, "MyItem")    // Item named "MyItem"
+ * selectItems(layer, "2:5")       // Items 2 through 5 inclusive
+ * selectItems(layer, "2:-1")      // Items 2 through end
+ * selectItems(layer, ["Item1", "Item2"]) // Specific named items
+ * selectItems(layer, [0, -1])     // First and last items
+ */
+function selectItems(container: ItemContainer, selector: Selector): PageItem[] {
+    var items = container.pageItems; // Access the items collection in the layer
+
+    // Use evaluateSelector to handle all cases
+    var result = evaluateSelector(selector, items.length);
+    if (result.length === 0) {
+        return [];
+    }
+
+    // Handle string array case (item names)
+    var selectedItems = [];
+    if (typeof result[0] === "string") {
+        for (var i = 0; i < result.length; i++) {
+            var itemName = result[i];
+
+            // Search for the item by name within the layer
+            for (var j = 0; j < items.length; j++) {
+                if (items[j].name === itemName) {
+                    selectedItems.push(items[j]);
+                }
+            }
+        }
+        return selectedItems;
+    }
+
+    // Handle array of indices
+    for (var i = 0; i < result.length; i++) {
+        selectedItems.push(items[result[i] as number]);
+    }
+    return selectedItems;
+}
+
+function deselectItems(container: ItemContainer, selector: Selector): void {
+    var items = selectItems(container, selector);
+    for (var i = 0; i < items.length; i++) {
+        items[i].selected = false;
+    }
+}
+
+/**
+ * Checks if an item exists within a specific layer by name or index.
+ *
+ * @param container - The layer containing the items.
+ * @param ref - The item reference, which can be a name (string) or an index (number).
+ * @returns True if the item exists, otherwise false.
+ *
+ * @example
+ * itemExists(layer, "MyItem"); // Returns true if an item named "MyItem" exists.
+ * itemExists(layer, 0);        // Returns true if an item exists at index 0.
+ * itemExists(layer, -1);       // Returns true if the last item exists (negative index).
+ */
+function itemExists(container: ItemContainer, ref: Reference): boolean {
+    const items = container.pageItems; // Access all items in the layer
+
+    if (typeof ref === "number") {
+        try {
+            // Check if the index is valid by evaluating it with negative index support
+            const index = evaluateNegativeIndex(ref, items.length);
+            return index >= 0 && index < items.length; // Ensure index is within bounds
+        } catch (e) {
+            return false; // Invalid index
+        }
+    }
+
+    // Check if an item with the specified name exists
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].name === ref) {
+            return true;
+        }
+    }
+
+    return false; // No match found
+}
+
+/**
+ * Retrieves the index of an item within a specific layer by name or index.
+ * Processes the reference and returns the resolved index of the item.
+ * 
+ * @param container - The layer containing the items.
+ * @param ref - Item name or index.
+ * @returns The index of the specified item in the layer.
+ * @throws Error if the item is not found or the reference is invalid.
+ * 
+ * @example
+ * getItemIndex(layer, 1);        // Returns 1 if it's a valid index
+ * getItemIndex(layer, -1);       // Returns the last item's index
+ * getItemIndex(layer, "MyItem"); // Returns the index of the item named "MyItem"
+ */
+function getItemIndex(container: ItemContainer, ref: Reference): number {
+    const items = container.pageItems; // Access all items in the layer
+
+    if (typeof ref === "number") {
+        // Process negative indices and validate bounds
+        return evaluateNegativeIndex(ref, items.length);
+    }
+
+    // Search for an item by name
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].name === ref) {
+            return i;
+        }
+    }
+
+    throw new Error(`Item with name "${ref}" not found in the layer.`);
+}
+
+/**
+ * Moves an item within a layer to a specified index position.
+ * Supports both positive and negative indices for positioning:
+ * - Positive indices (0+): Places item BEFORE the item at that index
+ * - Negative indices (-1+): Places item AFTER the item at that index
+ * When ref is a number, moves the active item to that position.
+ * When ref is a string, moves the named item to the specified index position.
+ * 
+ * @param source - The layer containing the item
+ * @param ref - Either the name of item to move, or the target position for active item
+ * @param index - Target position when ref is a string
+ * @throws Error if ref is undefined or if string ref is provided without index
+ * 
+ * @example
+ * moveItem(layer, "MyItem", 0)    // Move named item to top
+ * moveItem(layer, "MyItem", -1)   // Move named item to end
+ * moveItem(layer, 0)              // Move active item to top
+ * moveItem(layer, -1)             // Move active item to end
+ * moveItem(layer, -2)             // Move active item to second-from-end
+ */
+function moveItem(source: ItemContainer, ref: Reference, index: number, target?: ItemContainer): PageItem {
+    if (ref === undefined) {
+        throw new Error("Item reference required");
+    }
+    if (typeof ref === "string" && index === undefined) {
+        throw new Error("Target index required when moving item by name");
+    }
+    if (!target) {
+        target = source;
+    }
+
+    // Determine the item to move
+    var item = selectItem(source, ref, false); 
+
+    // Handle the boundary so place at the end works with positive numbers too
+    if (source.pageItems.length == index)
+        index = -1;
+
+    // Determine the placement method and reference item
+    var placeMethod = index < 0 ? ElementPlacement.PLACEAFTER : ElementPlacement.PLACEBEFORE;
+    var referenceItem = selectItem(target, index, false);
+    
+    item.move(referenceItem, placeMethod);
+    return item;
+}
+
+/**
+ * Renames an item within a layer by reference (name or index).
+ * @param container - The layer containing the item
+ * @param ref - Item name or index to identify the item to rename
+ * @param newName - The new name for the item
+ * @throws Error if the item is not found or the reference is invalid
+ */
+function renameItem(container: ItemContainer, ref: Reference, newName: string): PageItem {
+    var item = selectItem(container, ref);
+    if (!item) {
+        throw `${ref} is not a valid reference for an item in the specified layer`;
+    }
+
+    item.name = newName;
+    return item;
+}
+
+/**
+ * Deletes an item within a layer by name or index.
+ * If no id is provided, deletes the active item.
+ * If id is a number, processes negative index like Python (-1 is last item).
+ * If id is a string, deletes the item with that name.
+ * Optionally activates the next available item after deletion.
+ * 
+ * @param container - The layer containing the item
+ * @param ref - Item name or index (optional)
+ * @param activate - Whether to activate the next available item after deletion (default true)
+ * @throws Error if item not found or no active item when id is not provided
+ * 
+ * @example
+ * deleteItem(layer)           // Delete active item
+ * deleteItem(layer, "MyItem") // Delete named item
+ * deleteItem(layer, -1)       // Delete last item
+ * deleteItem(layer, 0, false) // Delete first item without activating next
+ */
+function deleteItem(container: ItemContainer, ref?: Reference, activate: boolean = true): void {
+    deleteItems(container, ref);
+    
+    // Optionally activate the next available item if `activate` is true
+    if (activate && container.pageItems.length > 0) {
+        app.activeDocument.selection = [container.pageItems[0]];
+    } else {
+        app.activeDocument.selection = [];
+    }
+}
+
+/**
+ * Deletes multiple items within a layer using various selector types.
+ * 
+ * @param container - The layer containing the items
+ * @param selector - Same options as selectItems
+ */
+function deleteItems(container: ItemContainer, selector?: Selector): void {
+    if (!selector) selector = ":";
+    var items = selectItems(container, selector);
+    for (let i = items.length - 1; i >= 0; i--) {
+        items[i].remove();
+    }
+}
+
+/**
+ * Groups items based on a selector within a specified layer.
+ * 
+ * @param container - The layer containing the items to group.
+ * @param selector - Selector for items to group.
+ * @returns The created GroupItem.
+ */
+function groupItems(container: ItemContainer, name: string, selector: Selector): GroupItem {
+    var items = selectItems(container, selector);
+    if (items.length === 0) {
+        throw new Error("No items to group");
+    }
+
+    // Group items
+    var group = container.groupItems.add();
+    group.name = name;
+
+    for (var i = 0; i < items.length; i++) {
+        items[i].move(group, ElementPlacement.PLACEATEND);
+    }
+    
+    return group;
+}
+
+/**
+ * Ungroups a specified group within a layer.
+ * 
+ * @param contained - The layer containing the group to ungroup.
+ * @param groupRef - The reference to the group (name or index).
+ * @returns Array of items that were ungrouped.
+ */
+function ungroupItems(contained: ItemContainer, groupRef: Reference): PageItem[] {
+    var group = selectItem(contained, groupRef);
+    if (!(group instanceof GroupItem)) {
+        throw new Error("Specified reference is not a group");
+    }
+
+    var ungroupedItems = [];
+    while (group.pageItems.length > 0) {
+        var item = group.pageItems[0];
+        item.move(contained, ElementPlacement.PLACEATEND);
+        ungroupedItems.push(item);
+    }
+
+    // Delete the empty group
+    group.remove();
+
+    return ungroupedItems;
+}
+
+/**
+ * Duplicates a PageItem and optionally assigns a new name or places it at a specific index.
+ * 
+ * If no name is specified, the duplicated item's name remains unchanged. If no index is specified,
+ * the item is placed at the end of its layer.
+ * 
+ * @param source - The PageItem to duplicate.
+ * @param targetName - Optional name for the duplicated item. If omitted, the name remains unchanged.
+ * @param targetIndex - Optional index to place the duplicated item. Supports Python-style negative indexing.
+ * 
+ * @returns The duplicated PageItem.
+ * 
+ * @throws Error if the source item is invalid or if the target index is out of bounds.
+ * 
+ * @example
+ * const item = selectItem(layer, "MyItem");
+ * const duplicatedItem = duplicateItem(item, "DuplicateItem", -1); // Place at the end of the layer
+ * 
+ * const item2 = duplicateItem(item); // Duplicate without renaming or moving
+ */
+function duplicateItem(source: PageItem, targetName?: string, targetIndex?: number): PageItem {
+    if (!source) {
+        throw new Error("Invalid source item for duplication.");
+    }
+
+    // Duplicate the source item
+    const duplicatedItem = source.duplicate();
+
+    // Set the name if specified
+    if (targetName) {
+        duplicatedItem.name = targetName;
+    }
+
+    // If a target index is specified, move the duplicated item to the specified position
+    if (targetIndex !== undefined) {
+        const container = source.parent as ItemContainer; // Get the parent layer of the source item
+        const pageItems = container.pageItems;
+
+        // Resolve the target index, supporting negative indexing
+        const resolvedIndex = evaluateNegativeIndex(targetIndex, pageItems.length);
+
+        // Get the reference item for placement
+        const referenceItem = pageItems[resolvedIndex];
+        const placementMethod = targetIndex < 0 ? ElementPlacement.PLACEAFTER : ElementPlacement.PLACEBEFORE;
+
+        duplicatedItem.move(referenceItem, placementMethod);
+    } else {
+        // If no index is provided, place the duplicated item at the end of the layer
+        duplicatedItem.move(source.parent as Layer, ElementPlacement.PLACEATEND);
+    }
+
+    return duplicatedItem;
+}
+
+/**
+ * Flattens a group or compound path into a single non-compound path by applying Pathfinder operations.
+ *
+ * @param container - The layer containing the items to flatten.
+ * @param itemRef - Reference to a group or item to flatten.
+ * @returns The flattened PathItem placed as the last item in the layer.
+ */
+function flattenItem(container: ItemContainer, itemRef: Reference) {
+    var groupItem = selectItem(container, itemRef) as GroupItem;
+    var name = groupItem.name;
+
+    // Ensure the item is selected for the Pathfinder operations
+    groupItem.selected = true;
+
+    // Get the items before the merge
+    var itemsBefore = selectItems(groupItem, ":");
+
+    // Apply Pathfinder Unite to merge all paths
+    app.executeMenuCommand('Live Pathfinder Add');
+
+    // Expand appearance to finalize the merge
+    app.executeMenuCommand('expandStyle');
+
+    // Get the items after the merge
+    var groupItem = selectItem(container, itemRef) as GroupItem;
+    var itemsAfter = selectItems(groupItem, ":");
+
+    if (itemsAfter.length == 1) {
+        deselectItems(container, ":");
+        selectItem(container, groupItem.name);
+
+        app.executeMenuCommand("ungroup");
+
+        // Move the new item to the end of the container
+        var newItem = moveItem(container, 0, -1);
+        newItem.name = name;
+        return newItem;
+    }
+
+    // Check if any itemsAfter have the same name as itemsBefore
+    for (var i = 0; i < itemsAfter.length; i++) {
+        for (var j = 0; j < itemsBefore.length; j++) {
+            if (itemsAfter[i].name === itemsBefore[j].name && itemsBefore[j].name !== "") {
+                return undefined; // Conflict detected, return undefined
+            }
+        }
+    }
+
+    // Check if all itemsAfter have empty names
+    var allUnnamed = true;
+    for (var i = 0; i < itemsAfter.length; i++) {
+        if (itemsAfter[i].name !== "") {
+            allUnnamed = false;
+            break;
+        }
+    }
+
+    if (!allUnnamed) {
+        return undefined;
+    }
+
+    var largestPageItem: PageItem|null = null;
+    if (allUnnamed) {
+        var largestArea = 0;
+
+        // Find the item with the largest bounding box
+        for (var i = 0; i < itemsAfter.length; i++) {
+            var bounds = itemsAfter[i].visibleBounds;
+            var area = (bounds[2] - bounds[0]) * (bounds[1] - bounds[3]);
+            if (area > largestArea) {
+                largestArea = area;
+                largestPageItem = itemsAfter[i];
+            }
+        }
+
+        // Remove all other items
+        for (var i = itemsAfter.length - 1; i >= 0; i--) {
+            if (itemsAfter[i] !== largestPageItem) {
+                itemsAfter[i].remove();
+            }
+        }
+    }
+
+    // If a largest item was found, ungroup and return it
+    if (largestPageItem) {
+        deselectItems(container, ":");
+        selectItem(container, groupItem.name);
+
+        app.executeMenuCommand("ungroup");
+
+        // Move the new item to the end of the container
+        var newItem = moveItem(container, 0, -1);
+        newItem.name = name;
+        return newItem;
+    }
+
+    return undefined;
+}
+
+interface ArtboardProperties {
+    name?: string;      // Artboard name
+    x: number;          // Left coordinate
+    y: number;          // Top coordinate
+    width: number;      // Width of the artboard
+    height: number;     // Height of the artboard
+    rulerOrigin?: [number, number];  // Ruler origin point
+}
+
+/**
+ * Returns the artboard with the specified referenec
+ */
+function getArtboard(ref?: Reference, docName?: string): Artboard {
+    var doc = app.activeDocument;
+    if (docName)
+        var doc = findDocument(docName);
+
+    var index = getArtboardIndex(ref, docName);
+    return doc.artboards[index];
+}
+
+/**
+ * Gets the index of an artboard by reference (name or index).
+ */
+function getArtboardIndex(ref?: Reference, docName?: string): number {
+    var doc = app.activeDocument;
+    if (docName)
+        var doc = findDocument(docName);
+    if (ref === undefined)
+        return doc.artboards.getActiveArtboardIndex();
+
+    if (typeof ref === "number") {
+        return evaluateNegativeIndex(ref, doc.artboards.length);
+    }
+
+    for (var i = 0; i < doc.artboards.length; i++) {
+        if (doc.artboards[i].name === ref) {
+            return i;
+        }
+    }
+
+    throw new Error("Artboard not found.");
+}
+
+/**
+ * Configures the current artboard with new settings and adjusts items accordingly.
+ *
+ * @param config - Configuration object with optional properties:
+ *   - name: string - New name for the artboard.
+ *   - width: number - New width for the artboard.
+ *   - height: number - New height for the artboard.
+ *   - x: number - New X position for the top-left corner.
+ *   - y: number - New Y position for the top-left corner.
+ *   - updateItems: boolean - Whether to reposition items to match the new artboard bounds.
+ */
+function configureArtboard(properties: ArtboardProperties) {
+    var doc = app.activeDocument;
+    var artboardIndex = doc.artboards.getActiveArtboardIndex();
+    var artboard = doc.artboards[artboardIndex];
+    var rect = artboard.artboardRect;
+
+    // Extract current values for calculations
+    var currentWidth = rect[2] - rect[0];
+    var currentHeight = rect[1] - rect[3];
+    var currentX = rect[0];
+    var currentY = rect[1];
+
+    // Update artboard name
+    if (properties.name) {
+        artboard.name = properties.name;
+    }
+
+    // Calculate new dimensions and position
+    var newWidth = properties.width || currentWidth;
+    var newHeight = properties.height || currentHeight;
+    var newX = properties.x !== undefined ? properties.x : currentX;
+    var newY = properties.y !== undefined ? properties.y : currentY;
+
+    // Update artboard rectangle
+    artboard.artboardRect = [newX, newY, newX + newWidth, newY - newHeight];
+    if (properties.rulerOrigin !== undefined) {
+        artboard.rulerOrigin = properties.rulerOrigin;
+    }
+}
+
+function fitArtboard(): void {
+    app.executeMenuCommand("fitin");
+    app.activeDocument.activeView.zoom = 0.9 * app.activeDocument.activeView.zoom;
+}
+
+function resetArtboards(): void {
+    deleteArtboards(":");
+    configureArtboard({ x: 500, y: -500, width: 1000, height: 1000 });
+    fitArtboard();
+}
+
+/**
+ * Copies artboard properties from a source document and applies them to the currently active artboard in the target document.
+ * 
+ * @param sourceDoc - Name of the source document containing the artboard to copy.
+ */
+function copyArtboard(sourceDoc: string): void {
+    // Cache the active document as the target
+    var target = app.activeDocument;
+    for (var i = 0; i < app.documents.length; i++)
+        if (target.name == app.documents[i].name)
+            target = app.documents[i];
+
+    var targetDoc = target.name;
+
+    // Get the source document and artboard
+    var source = activateDocument(sourceDoc);
+    var sourceIndex = source.artboards.getActiveArtboardIndex();
+    var sourceBoard = source.artboards[sourceIndex];
+
+    // Copy these while the source is active
+    var artboardRect = clone(sourceBoard.artboardRect);
+    var artboardName = sourceBoard.name;
+    var artboardRulerOrigin = clone(sourceBoard.rulerOrigin); 
+
+    // Get the source view properties
+    var sourceZoom = app.activeDocument.activeView.zoom;
+    var sourceCenterPoint = app.activeDocument.activeView.centerPoint;
+
+    // Get the target document
+    var target = activateDocument(targetDoc);
+    deleteArtboards(":");
+
+    app.activeDocument.activeView.zoom = sourceZoom;
+    app.activeDocument.activeView.centerPoint = sourceCenterPoint;
+
+    // Get the currently active artboard in the target document
+    var targetIndex = target.artboards.getActiveArtboardIndex();
+    var targetBoard = target.artboards[targetIndex];
+
+    // Copy properties from the source artboard to the target artboard
+    targetBoard.artboardRect = artboardRect;
+    targetBoard.name = artboardName;
+    targetBoard.rulerOrigin = artboardRulerOrigin;
+
+    // Set the zoom again
+    target.views[0].zoom = sourceZoom
+    target.views[0].centerPoint = sourceCenterPoint;
+    app.redraw();
+    app.redraw();
+    app.redraw();
+}
+
+/**
+ * Selects and returns the specified artboard, ensuring all other artboards
+ * are conceptually "deselected" by ensuring no art is linked to them.
+ *
+ * @param ref - Reference to the artboard (name or index).
+ * @returns The active Artboard.
+ */
+function selectArtboard(ref: Reference): Artboard {
+    var doc = app.activeDocument;
+
+    // Get the index of the artboard to activate
+    var index = getArtboardIndex(ref);
+
+    // Set the specified artboard as active
+    doc.artboards.setActiveArtboardIndex(index);
+    var activeArtboard = doc.artboards[index];
+
+    return activeArtboard;
+}
+
+/**
+ * Creates a new artboard with specified properties.
+ */
+function createArtboard(properties: ArtboardProperties): Artboard {
+    var doc = app.activeDocument;
+
+    var rect: Rect = [
+        properties.x,
+        properties.y,
+        properties.x + properties.width,
+        properties.y - properties.height
+    ];
+
+    var artboard = doc.artboards.add(rect);
+
+    if (properties.name) {
+        artboard.name = properties.name;
+    }
+
+    return artboard;
+}
+
+/**
+ * Deletes the specified artboard.
+ */
+function deleteArtboard(ref: Reference): void {
+    var doc = app.activeDocument;
+    var index = getArtboardIndex(ref);
+
+    // Deleting an artboard
+    doc.artboards[index].remove();
+}
+
+/**
+ * Deletes all the artboards
+ */
+function deleteArtboards(selector: Selector): void {
+    var doc = app.activeDocument;
+    var selection = evaluateSelector(selector, doc.artboards.length);
+    for (var i = selection.length - 1; i >= 0; i--) {
+        // There must be at least one artboard
+        if (doc.artboards.length == 1)
+            return; 
+
+        doc.artboards[selection[i] as number].remove();
+    }
+}

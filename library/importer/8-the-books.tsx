@@ -43,8 +43,10 @@ export default () => (
                 taken out, and every space one space. A chat the application left untitled takes the first
                 sentence of my first message, and failing that the day it began. The ledger is keyed by the
                 conversation's id and the book carries the same id on its cover, so whatever the title, the book
-                is found again and never imported twice. A file of a project takes its own name, numbered
-                against every title its book holds. A folder that exists
+                is found again and never imported twice. A conversation with no message to show is no book. A
+                project's book is keyed the same way, claude, two dashes and the project's name, and shows only
+                the name, since a project called Claude met the book about Claude. A file of a project takes its
+                own name, numbered against every title its book holds. A folder that exists
                 is never entered unless the run says to
                 overwrite and <Means>$[[ the ledger ]]( ./The Ledger )</Means> says the book is still the
                 importer's; a catalogue's chapter and row are added where its table lacks the reference.

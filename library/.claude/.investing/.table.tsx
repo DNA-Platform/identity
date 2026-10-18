@@ -17,7 +17,7 @@ export default () => (
             <Paragraph>
                 <Parenthetical />
                 <Word>
-                    <Content>$[[ Investing ]]</Content>
+                    <Content>$[[ Investing ]]( claude--Investing )</Content>
                 </Word>
                 <Word>
                     <Content>$[[ ./Synopsis ]]</Content>

@@ -1,0 +1,989 @@
+ ❯ tests/reflection.test.ts:250:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter array structure > single param + rest
+AssertionError: expected [ { spread: true } ] to deeply equal [ { spread: false }, { spread: true } ]
+
+- Expected
++ Received
+
+  [
+    {
+-     "spread": false,
+-   },
+-   {
+      "spread": true,
+    },
+  ]
+
+ ❯ tests/reflection.test.ts:251:43
+    249|                 it(name, () => {
+    250|                     const result = parseFunctionInfo(func);
+    251|                     expect(result.params).toEqual(expected);
+       |                                           ^
+    252|                 });
+    253|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter array structure > two params + rest
+AssertionError: expected [ { spread: false }, { spread: true } ] to deeply equal [ { spread: false }, …(2) ]
+
+- Expected
++ Received
+
+  [
+    {
+      "spread": false,
+    },
+    {
+-     "spread": false,
+-   },
+-   {
+      "spread": true,
+    },
+  ]
+
+ ❯ tests/reflection.test.ts:251:43
+    249|                 it(name, () => {
+    250|                     const result = parseFunctionInfo(func);
+    251|                     expect(result.params).toEqual(expected);
+       |                                           ^
+    252|                 });
+    253|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter array structure > three params + rest
+AssertionError: expected [ { spread: false }, …(2) ] to deeply equal [ { spread: false }, …(3) ]
+
+- Expected
++ Received
+
+@@ -4,11 +4,8 @@
+    },
+    {
+      "spread": false,
+    },
+    {
+-     "spread": false,
+-   },
+-   {
+      "spread": true,
+    },
+  ]
+ RERUN  src/reflection.ts x7 
+
+ ❯ tests/catalogue.test.ts (31 tests | 8 failed) 28ms
+   ❯ $Catalogue (31)
+     ✓ The Elegant Self-Reference (3)
+       ✓ should have itself as its own subject 2ms
+       ✓ should allow self-delegation through $subject 0ms
+       ✓ should treat $subject as opaque from outside perspective 0ms
+     ❯ Core Literature & References (4)
+       ✓ should index and find with canonical representations 1ms    
+       ✓ should overwrite on re-index 0ms
+       × should handle different value types 8ms
+       ✓ should return undefined for missing representations 0ms     
+     ✓ $empty() - Isolated Catalogues (2)
+       ✓ should create catalogue with no inheritance 0ms
+       ✓ should be completely isolated from root 0ms
+     ❯ $new() - Inheritance Through Topics (3)
+       ✓ should create child that inherits from parent 0ms
+       ✓ should allow child to shadow parent values 0ms
+       × should create inheritance chains 3ms
+     ❯ $including() - Multiple Topics (4)
+       × should inherit from multiple catalogues in order 2ms
+       ✓ should respect topic order for shadowing 0ms
+       × should include parent as last topic 1ms
+       ✓ should filter non-catalogue topics silently 0ms
+     ✓ Subject Delegation (4)
+       ✓ should delegate to known subjects 0ms
+       ✓ should ignore unknown subjects 0ms
+       ✓ should allow indexing to known subjects 0ms
+       ✓ should ignore indexing to unknown subjects 0ms
+     ❯ $deref() - Memory Management (5)
+       ✓ should clear entire catalogue when called empty 0ms
+       × should remove specific reference 1ms
+       × should remove subject from topics 1ms
+       ✓ should delegate deref with rep and subject 0ms
+       ✓ should make catalogue non-responsive after deref 0ms
+     ❯ Privacy Guarantees (3)
+       ✓ should not expose parent internals to child 0ms
+       × should maintain isolation through export boundaries 1ms
+       ✓ should use $subject as opaque capability token 0ms
+     ❯ Complex Scenarios (3)
+       × should handle deep inheritance with multiple branches 1ms
+       ✓ should handle re-referencing after deref 0ms
+       ✓ should maintain separate namespaces per catalogue 0ms
+ ❯ tests/reflection.test.ts (74 tests | 22 failed) 33ms
+   ❯ $Reflection (74)
+     ❯ parseFunctionInfo (74)
+       ❯ parameter variations (16)
+         × no parameters - lambda 10ms
+         × no parameters - function 1ms
+         × no parameters - method 1ms
+         × single parameter - lambda parens 1ms
+         × single parameter - lambda no parens 1ms
+         × single parameter - function 1ms
+         × single parameter - method 1ms
+         × multiple parameters - lambda 1ms
+         × multiple parameters - function 1ms
+         × multiple parameters - method 1ms
+         × rest only - lambda 1ms
+         × rest only - function 1ms
+         × rest only - method 1ms
+         × params + rest - lambda 1ms
+         × params + rest - function 1ms
+         × params + rest - method 1ms
+       ✓ async modifier (7)
+         ✓ async lambda 0ms
+         ✓ async lambda with params 0ms
+         ✓ async function 0ms
+         ✓ async function named 0ms
+         ✓ async method 0ms
+         ✓ async generator function 0ms
+         ✓ async generator method 0ms
+       ✓ generator modifier (5)
+         ✓ generator function 0ms
+         ✓ generator function named 0ms
+         ✓ generator method 0ms
+         ✓ async generator function 0ms
+         ✓ async generator method 0ms
+       ✓ function forms (15)
+         ✓ lambda no params 0ms
+         ✓ lambda single param no parens 0ms
+         ✓ lambda multiple params 0ms
+         ✓ async lambda 0ms
+         ✓ function anonymous 0ms
+         ✓ function named 0ms
+         ✓ async function 0ms
+         ✓ generator function 0ms
+         ✓ method 0ms
+         ✓ async method 0ms
+         ✓ generator method 0ms
+         ✓ getter 0ms
+         ✓ setter 0ms
+         ✓ class named 0ms
+         ✓ class anonymous 0ms
+       ✓ naming (10)
+         ✓ named functions (6)
+           ✓ function 0ms
+           ✓ method 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+           ✓ getter 0ms
+           ✓ setter 0ms
+         ✓ anonymous functions (4)
+           ✓ lambda 0ms
+           ✓ function 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+       ✓ native functions (7)
+         ✓ String constructor 0ms
+         ✓ Array constructor 0ms
+         ✓ Object constructor 0ms
+         ✓ Array.prototype.map 0ms
+         ✓ String.prototype.slice 0ms
+         ✓ Math.pow 0ms
+         ✓ bound function 0ms
+       ❯ unknown/unparseable (3)
+         × custom toString - gibberish 1ms
+         × custom toString - empty 1ms
+         × custom toString - unicode 1ms
+       ❯ comprehensive combinations (3)
+         × async lambda with rest params 1ms
+         × async generator with params and rest 1ms
+         × async generator method with rest 1ms
+       ✓ parameter array structure (8)
+         ✓ no params - empty array 0ms
+         ✓ single param - one element, no spread 0ms
+         ✓ two params - no spread 0ms
+         ✓ three params - no spread 0ms
+         ✓ rest only - single spread element 0ms
+         ✓ single param + rest 0ms
+         ✓ two params + rest 0ms
+         ✓ three params + rest 0ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 22 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > no parameters - lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > no parameters - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > no parameters - method
+AssertionError: expected [] to deeply equal { count: +0, rest: false }
+
+- Expected:
+{
+  "count": 0,
+  "rest": false,
+}
+
++ Received:
+[]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/22]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - lambda parens
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - lambda no parens
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - method
+AssertionError: expected [ { spread: false } ] to deeply equal { count: 1, rest: false }
+
+- Expected:
+{
+  "count": 1,
+  "rest": false,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/22]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > multiple parameters - lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > multiple parameters - function
+AssertionError: expected [ { spread: false }, …(2) ] to deeply equal { count: 3, rest: false }
+
+- Expected:
+{
+  "count": 3,
+  "rest": false,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+  {
+    "spread": false,
+  },
+  {
+    "spread": false,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/22]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > multiple parameters - method
+AssertionError: expected [ Array(2) ] to deeply equal { count: 2, rest: false }
+
+- Expected:
+{
+  "count": 2,
+  "rest": false,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+  {
+    "spread": false,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/22]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > rest only - lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > rest only - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > rest only - method
+AssertionError: expected [ { spread: true } ] to deeply equal { count: +0, rest: true }
+
+- Expected:
+{
+  "count": 0,
+  "rest": true,
+}
+
++ Received:
+[
+  {
+    "spread": true,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/22]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > params + rest - lambda
+AssertionError: expected [ { spread: false }, …(2) ] to deeply equal { count: 2, rest: true }
+
+- Expected:
+{
+  "count": 2,
+  "rest": true,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+  {
+    "spread": false,
+  },
+  {
+    "spread": true,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/22]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > params + rest - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > params + rest - method
+AssertionError: expected [ { spread: false }, { spread: true } ] to deeply equal { count: 1, rest: true }
+
+- Expected:
+{
+  "count": 1,
+  "rest": true,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+  {
+    "spread": true,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/22]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - gibberish
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - empty
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - unicode
+AssertionError: expected undefined to deeply equal { count: undefined, rest: undefined }
+
+- Expected:
+{
+  "count": undefined,
+  "rest": undefined,
+}
+
++ Received:
+undefined
+
+ ❯ tests/reflection.test.ts:202:43
+    200|                     expect(result.generator).toBeUndefined();
+    201|                     expect(result.native).toBeUndefined();
+    202|                     expect(result.params).toEqual({ count: undefined, rest: undefined });
+       |                                           ^
+    203|                 });
+    204|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/22]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > comprehensive combinations > async lambda with rest params
+AssertionError: expected [ { spread: true } ] to deeply equal { count: +0, rest: true }
+
+- Expected:
+{
+  "count": 0,
+  "rest": true,
+}
+
++ Received:
+[
+  {
+    "spread": true,
+  },
+]
+
+ ❯ tests/reflection.test.ts:212:39
+    210|                 expect(result.form).toBe('lambda');
+    211|                 expect(result.async).toBe(true);
+    212|                 expect(result.params).toEqual({ count: 0, rest: true });
+       |                                       ^
+    213|             });
+    214| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/22]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > comprehensive combinations > async generator with params and rest
+AssertionError: expected [ { spread: false }, …(2) ] to deeply equal { count: 2, rest: true }
+
+- Expected:
+{
+  "count": 2,
+  "rest": true,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+  {
+    "spread": false,
+  },
+  {
+    "spread": true,
+  },
+]
+
+ ❯ tests/reflection.test.ts:220:39
+    218|                 expect(result.async).toBe(true);
+    219|                 expect(result.generator).toBe(true);
+    220|                 expect(result.params).toEqual({ count: 2, rest: true });
+       |                                       ^
+    221|             });
+    222| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/22]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > comprehensive combinations > async generator method with rest
+AssertionError: expected [ { spread: true } ] to deeply equal { count: +0, rest: true }
+
+- Expected:
+{
+  "count": 0,
+  "rest": true,
+}
+
++ Received:
+[
+  {
+    "spread": true,
+  },
+]
+ RERUN  src/reflection.ts x8 
+
+ ❯ tests/catalogue.test.ts (31 tests | 8 failed) 28ms
+   ❯ $Catalogue (31)
+     ✓ The Elegant Self-Reference (3)
+       ✓ should have itself as its own subject 2ms
+       ✓ should allow self-delegation through $subject 0ms
+       ✓ should treat $subject as opaque from outside perspective 0ms
+     ❯ Core Literature & References (4)
+       ✓ should index and find with canonical representations 1ms    
+       ✓ should overwrite on re-index 0ms
+       × should handle different value types 8ms
+       ✓ should return undefined for missing representations 0ms     
+     ✓ $empty() - Isolated Catalogues (2)
+       ✓ should create catalogue with no inheritance 0ms
+       ✓ should be completely isolated from root 0ms
+     ❯ $new() - Inheritance Through Topics (3)
+       ✓ should create child that inherits from parent 0ms
+       ✓ should allow child to shadow parent values 0ms
+       × should create inheritance chains 3ms
+     ❯ $including() - Multiple Topics (4)
+       × should inherit from multiple catalogues in order 2ms
+       ✓ should respect topic order for shadowing 0ms
+       × should include parent as last topic 1ms
+       ✓ should filter non-catalogue topics silently 0ms
+     ✓ Subject Delegation (4)
+       ✓ should delegate to known subjects 0ms
+       ✓ should ignore unknown subjects 0ms
+       ✓ should allow indexing to known subjects 0ms
+       ✓ should ignore indexing to unknown subjects 0ms
+     ❯ $deref() - Memory Management (5)
+       ✓ should clear entire catalogue when called empty 0ms
+       × should remove specific reference 1ms
+       × should remove subject from topics 1ms
+       ✓ should delegate deref with rep and subject 0ms
+       ✓ should make catalogue non-responsive after deref 0ms
+     ❯ Privacy Guarantees (3)
+       ✓ should not expose parent internals to child 0ms
+       × should maintain isolation through export boundaries 1ms
+       ✓ should use $subject as opaque capability token 0ms
+     ❯ Complex Scenarios (3)
+       × should handle deep inheritance with multiple branches 1ms
+       ✓ should handle re-referencing after deref 0ms
+       ✓ should maintain separate namespaces per catalogue 0ms
+ ❯ tests/reflection.test.ts (74 tests | 26 failed) 39ms
+   ❯ $Reflection (74)
+     ❯ parseFunctionInfo (74)
+       ❯ parameter variations (16)
+         × no parameters - lambda 10ms
+         × no parameters - function 2ms
+         × no parameters - method 1ms
+         × single parameter - lambda parens 1ms
+         × single parameter - lambda no parens 1ms
+         × single parameter - function 1ms
+         × single parameter - method 1ms
+         × multiple parameters - lambda 1ms
+         × multiple parameters - function 1ms
+         × multiple parameters - method 1ms
+         × rest only - lambda 1ms
+         × rest only - function 1ms
+         × rest only - method 0ms
+         × params + rest - lambda 1ms
+         × params + rest - function 1ms
+         × params + rest - method 1ms
+       ✓ async modifier (7)
+         ✓ async lambda 0ms
+         ✓ async lambda with params 0ms
+         ✓ async function 0ms
+         ✓ async function named 0ms
+         ✓ async method 0ms
+         ✓ async generator function 0ms
+         ✓ async generator method 0ms
+       ✓ generator modifier (5)
+         ✓ generator function 0ms
+         ✓ generator function named 0ms
+         ✓ generator method 0ms
+         ✓ async generator function 0ms
+         ✓ async generator method 0ms
+       ✓ function forms (15)
+         ✓ lambda no params 0ms
+         ✓ lambda single param no parens 0ms
+         ✓ lambda multiple params 0ms
+         ✓ async lambda 0ms
+         ✓ function anonymous 0ms
+         ✓ function named 0ms
+         ✓ async function 0ms
+         ✓ generator function 0ms
+         ✓ method 0ms
+         ✓ async method 0ms
+         ✓ generator method 0ms
+         ✓ getter 0ms
+         ✓ setter 0ms
+         ✓ class named 0ms
+         ✓ class anonymous 0ms
+       ✓ naming (10)
+         ✓ named functions (6)
+           ✓ function 0ms
+           ✓ method 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+           ✓ getter 0ms
+           ✓ setter 0ms
+         ✓ anonymous functions (4)
+           ✓ lambda 0ms
+           ✓ function 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+       ✓ native functions (7)
+         ✓ String constructor 0ms
+         ✓ Array constructor 0ms
+         ✓ Object constructor 0ms
+         ✓ Array.prototype.map 0ms
+         ✓ String.prototype.slice 0ms
+         ✓ Math.pow 0ms
+         ✓ bound function 0ms
+       ❯ unknown/unparseable (3)
+         × custom toString - gibberish 1ms
+         × custom toString - empty 1ms
+         × custom toString - unicode 1ms
+       ❯ comprehensive combinations (3)
+         × async lambda with rest params 0ms
+         × async generator with params and rest 1ms
+         × async generator method with rest 1ms
+       ❯ parameter array structure (8)
+         ✓ no params - empty array 0ms
+         ✓ single param - one element, no spread 0ms
+         ✓ two params - no spread 0ms
+         ✓ three params - no spread 0ms
+         × rest only - single spread element 0ms
+         × single param + rest 2ms
+         × two params + rest 1ms
+         × three params + rest 1ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 26 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > no parameters - lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > no parameters - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > no parameters - method
+AssertionError: expected [] to deeply equal { count: +0, rest: false }
+
+- Expected:
+{
+  "count": 0,
+  "rest": false,
+}
+
++ Received:
+[]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - lambda parens
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - lambda no parens
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > single parameter - method
+AssertionError: expected [ { spread: false } ] to deeply equal { count: 1, rest: false }
+
+- Expected:
+{
+  "count": 1,
+  "rest": false,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > multiple parameters - lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > multiple parameters - function
+AssertionError: expected [ { spread: false }, …(2) ] to deeply equal { count: 3, rest: false }
+
+- Expected:
+{
+  "count": 3,
+  "rest": false,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+  {
+    "spread": false,
+  },
+  {
+    "spread": false,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > multiple parameters - method
+AssertionError: expected [ Array(2) ] to deeply equal { count: 2, rest: false }
+
+- Expected:
+{
+  "count": 2,
+  "rest": false,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+  {
+    "spread": false,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > rest only - lambda
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > rest only - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > rest only - method
+TypeError: Cannot set properties of undefined (setting 'spread')
+ ❯ createParams src/reflection.ts:982:43
+    980| function createParams(count: number, spread: boolean): { spread: boolean }[] {
+    981|     const result = Array.from({ length: count }, () => ({ spread: false }));
+    982|     if (spread) result[result.length - 1].spread = true;
+       |                                           ^
+    983|     return result;
+    984| }
+ ❯ parseFunctionInfo src/reflection.ts:926:75
+ ❯ tests/reflection.test.ts:37:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > params + rest - lambda
+AssertionError: expected [ { spread: false }, { spread: true } ] to deeply equal { count: 2, rest: true }
+
+- Expected:
+{
+  "count": 2,
+  "rest": true,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+  {
+    "spread": true,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > params + rest - function
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter variations > params + rest - method
+AssertionError: expected [ { spread: true } ] to deeply equal { count: 1, rest: true }
+
+- Expected:
+{
+  "count": 1,
+  "rest": true,
+}
+
++ Received:
+[
+  {
+    "spread": true,
+  },
+]
+
+ ❯ tests/reflection.test.ts:38:43
+     36|                 it(name, () => {
+     37|                     const result = parseFunctionInfo(func);
+     38|                     expect(result.params).toEqual(expected);
+       |                                           ^
+     39|                 });
+     40|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - gibberish
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - empty
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - unicode
+AssertionError: expected undefined to deeply equal { count: undefined, rest: undefined }
+
+- Expected:
+{
+  "count": undefined,
+  "rest": undefined,
+}
+
++ Received:
+undefined
+
+ ❯ tests/reflection.test.ts:202:43
+    200|                     expect(result.generator).toBeUndefined();
+    201|                     expect(result.native).toBeUndefined();
+    202|                     expect(result.params).toEqual({ count: undefined, rest: undefined });
+       |                                           ^
+    203|                 });
+    204|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > comprehensive combinations > async lambda with rest params
+TypeError: Cannot set properties of undefined (setting 'spread')
+ ❯ createParams src/reflection.ts:982:43
+    980| function createParams(count: number, spread: boolean): { spread: boolean }[] {
+    981|     const result = Array.from({ length: count }, () => ({ spread: false }));
+    982|     if (spread) result[result.length - 1].spread = true;
+       |                                           ^
+    983|     return result;
+    984| }
+ ❯ parseFunctionInfo src/reflection.ts:926:75
+ ❯ tests/reflection.test.ts:209:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > comprehensive combinations > async generator with params and rest
+AssertionError: expected [ { spread: false }, { spread: true } ] to deeply equal { count: 2, rest: true }
+
+- Expected:
+{
+  "count": 2,
+  "rest": true,
+}
+
++ Received:
+[
+  {
+    "spread": false,
+  },
+  {
+    "spread": true,
+  },
+]
+
+ ❯ tests/reflection.test.ts:220:39
+    218|                 expect(result.async).toBe(true);
+    219|                 expect(result.generator).toBe(true);
+    220|                 expect(result.params).toEqual({ count: 2, rest: true });
+       |                                       ^
+    221|             });
+    222| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > comprehensive combinations > async generator method with rest
+TypeError: Cannot set properties of undefined (setting 'spread')
+ ❯ createParams src/reflection.ts:982:43
+    980| function createParams(count: number, spread: boolean): { spread: boolean }[] {
+    981|     const result = Array.from({ length: count }, () => ({ spread: false }));
+    982|     if (spread) result[result.length - 1].spread = true;
+       |                                           ^
+    983|     return result;
+    984| }
+ ❯ parseFunctionInfo src/reflection.ts:926:75
+ ❯ tests/reflection.test.ts:224:32
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter array structure > rest only - single spread element
+TypeError: Cannot set properties of undefined (setting 'spread')
+ ❯ createParams src/reflection.ts:982:43
+    980| function createParams(count: number, spread: boolean): { spread: boolean }[] {
+    981|     const result = Array.from({ length: count }, () => ({ spread: false }));
+    982|     if (spread) result[result.length - 1].spread = true;
+       |                                           ^
+    983|     return result;
+    984| }
+ ❯ parseFunctionInfo src/reflection.ts:926:75
+ ❯ tests/reflection.test.ts:250:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter array structure > single param + rest
+AssertionError: expected [ { spread: true } ] to deeply equal [ { spread: false }, { spread: true } ]
+
+- Expected
++ Received
+
+  [
+    {
+-     "spread": false,
+-   },
+-   {
+      "spread": true,
+    },
+  ]
+
+ ❯ tests/reflection.test.ts:251:43
+    249|                 it(name, () => {
+    250|                     const result = parseFunctionInfo(func);
+    251|                     expect(result.params).toEqual(expected);
+       |                                           ^
+    252|                 });
+    253|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter array structure > two params + rest
+AssertionError: expected [ { spread: false }, { spread: true } ] to deeply equal [ { spread: false }, …(2) ]
+
+- Expected
++ Received
+
+  [
+    {
+      "spread": false,
+    },
+    {
+-     "spread": false,
+-   },
+-   {
+      "spread": true,
+    },
+  ]
+
+ ❯ tests/reflection.test.ts:251:43
+    249|                 it(name, () => {
+    250|                     const result = parseFunctionInfo(func);
+    251|                     expect(result.params).toEqual(expected);
+       |                                           ^
+    252|                 });
+    253|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/26]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > parameter array structure > three params + rest
+AssertionError: expected [ { spread: false }, …(2) ] to deeply equal [ { spread: false }, …(3) ]
+
+- Expected
++ Received
+
+@@ -4,11 +4,8 @@
+    },
+    {
+      "spread": false,
+    },
+    {
+-     "spread": false,
+-   },
+-   {
+      "spread": true,
+    },
+  ]
+
+ ❯ tests/reflection.test.ts:251:43
+    249|                 it(name, () => {
+    250|                     const result = parseFunctionInfo(func);
+    251|                     expect(result.params).toEqual(expected);
+       |                                           ^
+    252|                 });
+    253|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/26]⎯
+
+ Test Files  2 failed (2)
+      Tests  34 failed | 71 passed (105)
+   Start at  15:05:18
+   Duration  85ms
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit

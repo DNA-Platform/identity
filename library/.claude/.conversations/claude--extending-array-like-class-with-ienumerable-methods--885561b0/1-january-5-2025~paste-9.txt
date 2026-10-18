@@ -1,0 +1,368 @@
+class VectorFunction extends Vector {
+    private _region: Region;
+    private _length: number;
+    private _range: Range;
+    private _index: Vector = v();
+    private _vector: Vector = v();
+    private _funcs: A<(vector: Vector) => Vector> = f([]);
+    private _onChange = new Subscribable<Vector>();
+    region(): Region { return this._region; }
+    start(): number { return this._range[0]; }
+    end(): number { return this._range[1]; }
+
+    index(): Vector { return this._index; }
+    vector(): Vector { return this._vector; }
+    onChange(): Subscribable<Vector> { return this._onChange; }
+
+    length(newLength?: number): number {
+        if (newLength !== undefined) {
+            this._length = newLength;
+            this._buildVector();
+        }
+        return this._length;
+    }
+
+    range(newRange?: Range): Range {
+        if (newRange !== undefined) {
+            this._range = clone(newRange);
+            this._buildVector();
+        }
+        return clone(this._range);
+    }
+
+    type(): VType { return this.vector().type(); }
+    x(): Vector { return this.vector().x(); }
+    xa(): A<number> { return this.vector().xa(); }
+    y(): Vector { return this.vector().y(); }
+    ya(): A<number> { return this.vector().ya(); }
+    v(): Vector { return this.vector().v(); }
+    va(): A<number> { return this.v().xa(); }
+    p(): Vector { return this.vector().p(); }
+    pa(): A<Position> { return this.vector().pa(); }
+    dim(): number { return this.vector().dim() }
+    axis(): VType { return this.vector().axis() }
+    axisIndex(): number { return this.vector().axisIndex(); }
+
+    constructor(region: Region, length: number, range: Range = [0, 1]) {
+        super(f([]), "x")
+        this._region = region;
+        this._length = length;
+        this._range = range;
+        this._buildVector();
+    }
+
+    att(index: number, type: "x" | "y" = "x"): number {
+        return this.vector().att(index, type);
+    }
+
+    get(selector: string | Vector | VType | undefined): Vector {
+        return this.vector().get(selector);
+    }
+
+    clone(): Vector {
+        var func = new VectorFunction(this._region, x => x, this._length, this._range);
+        func._funcs = this._funcs.copy();
+        func.a = clone(this.a);
+        func._buildVector();
+        return func;
+    }
+
+    setX(x: Vector | A<number>, type: VType = "xy"): Vector {
+        this._applyFunc(vector => vector.setX(x, type));
+        return this;
+    }
+
+    setY(y: Vector | A<number>, type: VType = "xy") {
+        this._applyFunc(vector => vector.setY(y, type));
+        return this;
+    }
+
+    normDim(): Vector {
+        this._applyFunc(vector => vector.normDim());
+        return this;
+    }
+
+    flipDim(): Vector {
+        this._applyFunc(vector => vector.flipDim());
+        return this;
+    }
+
+    changeType(type: VType): Vector {
+        this._applyFunc(vector => vector.changeType(type));
+        return this;
+    }
+
+    pointwise2to2(other: Vector, op: (a: Position, b: Position) => Position): Vector {
+        this._applyFunc(vector => vector.pointwise2to2(other, op));
+        return this;
+    }
+
+    pointwise1to1(other: Vector, op: (a: number, b: number) => number): Vector {
+        this._applyFunc(vector => vector.pointwise1to1(other, op));
+        return this;
+    }
+
+    pointwise2to1(other: Vector, op: (a: Position, b: Position) => number): Vector {
+        this._applyFunc(vector => vector.pointwise2to1(other, op));
+        return this;
+    }
+
+    apply(f: (x: Position) => Position): Vector {
+        this._applyFunc(vector => vector.apply(f));
+        return this;
+    }
+
+    apply1(f: (x: number) => number, dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.apply1(f));
+        return this;
+    }
+
+    addAxis(rng: Range | number = [0, 1]): Vector {
+        this._applyFunc(vector => vector.addAxis(rng));
+        return this;
+    }
+
+    join(y: A<number> | Vector, type: VType = "xy"): Vector {
+        this._applyFunc(vector => vector.join(y, type));
+        return this;
+    }
+
+    norm(rng: Range | number): Vector;
+    norm(xrng: Range | number, yrng: Range | number): Vector;
+    norm(rng: Range | number, yrng?: Range | number): Vector {
+        this._applyFunc(vector => vector.norm(rng, yrng as any));
+        return this;
+    }
+
+    fit(region: Region): Vector {
+        this._applyFunc(vector => vector.fit(region));
+        return this;
+    }
+
+    real(): Vector {
+        this._applyFunc(vector => vector.real());
+        return this;
+    }
+
+    imag(): Vector {
+        this._applyFunc(vector => vector.imag());
+        return this;
+    }
+
+    toBoolean(): Vector {
+        this._applyFunc(vector => vector.toBoolean());
+        return this;
+    }
+
+    toComplex(): Vector {
+        this._applyFunc(vector => vector.toComplex());
+        return this;
+    }
+
+    toPosition(): Vector {
+        this._applyFunc(vector => vector.toPosition());
+        return this;
+    }
+
+    add(x: Vector | Position | number): Vector {
+        this._applyFunc(vector => vector.add(x));
+        return this;
+    }
+
+    subtract(x: Vector | Position | number): Vector {
+        this._applyFunc(vector => vector.subtract(x));
+        return this;
+    }
+
+    multiply(x: Vector | Position | number): Vector {
+        this._applyFunc(vector => vector.multiply(x));
+        return this;
+    }
+
+    divide(x: Vector | Position | number): Vector {
+        this._applyFunc(vector => vector.divide(x));
+        return this;
+    }
+
+    mod(base: number, dim?: "x" | "y"): Vector {
+        this._applyFunc(vector => vector.mod(base, dim));
+        return this;
+    }
+
+    greaterThan(x: Vector | number): Vector {
+        this._applyFunc(vector => vector.greaterThan(x));
+        return this;
+    }
+
+    greaterThanOrEqualTo(x: Vector | number): Vector {
+        this._applyFunc(vector => vector.greaterThanOrEqualTo(x));
+        return this;
+    }
+
+    lessThan(x: Vector | number): Vector {
+        this._applyFunc(vector => vector.lessThan(x));
+        return this;
+    }
+
+    lessThanOrEqualTo(x: Vector | number): Vector {
+        this._applyFunc(vector => vector.lessThanOrEqualTo(x));
+        return this;
+    }
+
+    equalTo(x: Vector | Position | number): Vector {
+        this._applyFunc(vector => vector.equalTo(x));
+        return this;
+    }
+
+    pow(x: Vector | Position | number): Vector {
+        this._applyFunc(vector => vector.pow(x));
+        return this;
+    }
+
+    exp(x: Vector | Position | number): Vector {
+        this._applyFunc(vector => vector.pow(x));
+        return this;
+    }
+
+    max(x: Vector | Position | number): Vector {
+        this._applyFunc(vector => vector.max(x));
+        return this;
+    }
+
+    min(x: Vector | Position | number): Vector {
+        this._applyFunc(vector => vector.min(x));
+        return this;
+    }
+
+    atan2(x: Vector | Position | number): Vector {
+        this._applyFunc(vector => vector.atan2(x));
+        return this;
+    }
+
+    sin(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.sin(dim));
+        return this;
+    }
+
+    cos(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.cos(dim));
+        return this;
+    }
+
+    tan(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.tan(dim));
+        return this;
+    }
+
+    abs(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.abs(dim));
+        return this;
+    }
+
+    sqrt(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.sqrt(dim));
+        return this;
+    }
+
+    log(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.log(dim));
+        return this;
+    }
+
+    round(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.round(dim));
+        return this;
+    }
+
+    atan(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.atan(dim));
+        return this;
+    }
+
+    acos(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.acos(dim));
+        return this;
+    }
+
+    asin(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.asin(dim));
+        return this;
+    }
+
+    log10(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.log10(dim));
+        return this;
+    }
+
+    log2(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.log2(dim));
+        return this;
+    }
+
+    sinh(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.sinh(dim));
+        return this;
+    }
+
+    cosh(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.cosh(dim));
+        return this;
+    }
+
+    tanh(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.tanh(dim));
+        return this;
+    }
+
+    sign(dim: "x" | "y" = "x"): Vector {
+        this._applyFunc(vector => vector.sign(dim));
+        return this;
+    }
+
+    magnitude(): Vector {
+        this._applyFunc(vector => vector.magnitude());
+        return this;
+    }
+
+    phase(): Vector {
+        this._applyFunc(vector => vector.phase());
+        return this;
+    }
+
+    angle(): Vector {
+        this._applyFunc(vector => vector.angle());
+        return this;
+    }
+
+    conjugate(): Vector {
+        this._applyFunc(vector => vector.conjugate());
+        return this;
+    }
+
+    toPolar(): Vector {
+        this._applyFunc(vector => vector.toPolar());
+        return this;
+    }
+
+    fromPolar(): Vector {
+        this._applyFunc(vector => vector.fromPolar());
+        return this;
+    }
+
+    private _applyFunc(func: (vector: Vector) => Vector, rebuild: boolean = false): void {
+        this._funcs.push(func);
+        if (rebuild) {
+            this._buildVector();
+        } else {
+            this._vector = func(this._vector);
+            this.onChange().fire(this._vector);
+        }
+    }
+
+    private _buildVector() {
+        this._index = Vector.linspace(this._length, this._range);
+        this._vector = this._index.clone();
+        this._funcs.do(f => { this._vector = f(this._vector); })
+        this.onChange().fire(this._vector);
+    }
+}

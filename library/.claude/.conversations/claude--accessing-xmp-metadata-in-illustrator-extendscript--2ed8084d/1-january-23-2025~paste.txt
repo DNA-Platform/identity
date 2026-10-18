@@ -1,0 +1,270 @@
+function decorate<T>(
+    instance: T,
+    config: {
+        before?: (
+            className: string,
+            methodName: string,
+            method: Function,
+            args: any[]
+        ) => [Function, any[]] | undefined;
+        after?: (
+            className: string,
+            methodName: string,
+            method: Function,
+            args: any[],
+            result: any
+        ) => any | undefined;
+        error?: (
+            className: string,
+            methodName: string,
+            method: Function,
+            args: any[],
+            error: any
+        ) => any | undefined;
+    }
+): T {
+    const className: string = instance?.constructor?.name ?? "<UNKNOWN>";
+    const originalMethods = getAllMethods(instance);
+
+    for (const key in originalMethods) {
+        if (originalMethods.hasOwnProperty(key)) {
+            const method = originalMethods[key];
+
+            (instance as any)[key] = function (...args: any[]) {
+                let finalMethod = method;
+                let finalArgs = args;
+
+                var action = () => {
+                    // Apply 'before' logic
+                    if (config.before) {
+                        const beforeResult = config.before(className, key, method, args) || [];
+                        finalMethod = beforeResult[0] || method;
+                        finalArgs = beforeResult[1] || args;
+                    }
+
+                    // Execute the method
+                    const result = finalMethod.apply(this, finalArgs);
+
+                    // Apply 'after' logic
+                    if (config.after) {
+                        var afterResult = config.after(className, key, finalMethod, finalArgs, result);
+                        return afterResult ?? result;
+                    }
+
+                    return result;
+                };
+
+                if (!config.error) {
+                    return action();
+                } else {
+                    try {
+                        return action();
+                    } catch (error) {
+                        // Apply 'catch' logic
+                        if (config.error) {
+                            var errorResult = config.error(className, key, method, finalArgs, error);
+                            if (errorResult !== undefined)
+                                throw new Error(errorResult);
+                            return;
+                        }
+                        throw error;
+                    }
+                }
+            };
+        }
+    }
+
+    return instance;
+}
+
+function isBaseObjectMethod(methodName: string): boolean {
+    return Object.prototype.hasOwnProperty.call(Object.prototype, methodName);
+}
+
+function getAllMethods(obj: any): { [key: string]: Function } {
+    const methods: { [key: string]: Function } = {};
+    let proto = obj;
+
+    while (proto && proto !== Object.prototype) {
+        for (const key in proto) {
+            if (
+                typeof proto[key] === "function" &&
+                !str(key).startsWith("_") && // Skip private methods
+                !isBaseObjectMethod(key)
+            ) {
+                methods[key] = proto[key];
+            }
+        }
+        proto = proto.__proto__;
+    }
+
+    return methods;
+}
+
+interface TraceFunction {
+    // Adds stack-trace console logging one particular instance
+    <T>(instance: T, traceExceptions?: boolean): T
+    // Returns true if documentation is enabled
+    isEnabled(): boolean
+    // Enables stack-trace documentation for the entire application
+    enabled(): TraceFunction
+    // Returns true if documentation is disabled
+    isDisabled(): boolean
+    // Disables stack-trace documentation for the entire application
+    disabled(): void
+}
+
+var trace: TraceFunction = 
+    (<T>(instance: T, documentExceptions: boolean = false): T => {
+        return decorate(instance, {
+            before: (className, methodName, method, args) => {
+                if (trace.isDisabled()) return;
+                const previousConsoleState = console.state();
+                console.on("terminal");
+
+                console.log(`${className}.${methodName} invoked`);
+                f(args).do((arg, index) => 
+                    console.log(`  { arg[${index}]: [[ ${arg?.toString?.() ?? "undefined"} ]] }`));
+
+                console.state(previousConsoleState);
+                return [method, args];
+            },
+            after: (className, methodName, method, args, result) => {
+                if (trace.isDisabled()) return;
+                const previousConsoleState = console.state();
+                console.on("terminal");
+
+                console.log(`${className}.${methodName} complete`);
+                console.log(`  { Result: [[ ${result?.toString?.() ?? "undefined"} ]] }`);
+
+                console.state(previousConsoleState);
+                return result;
+            },
+            error: documentExceptions ? (className, methodName, method, args, error) => {
+                if (trace.isDisabled()) return;
+                const previousConsoleState = console.state();
+                console.on("terminal");
+
+                const logArgs = f(args).select((arg, index) => 
+                    `  { arg[${index}]: [[ ${arg?.toString?.() ?? "undefined"} ]] }`);
+
+                const enhancedError =
+                    `${className}.${methodName} Error:\n` +
+                    `${logArgs.stringJoin("\n")}` + 
+                    `  { Error Message: \n${(error?.toString()) ?? error ?? "  <NO ERROR MESSAGE>" } }`;
+
+                console.log(`${className}.${methodName} exception`);
+                logArgs.do(arg => console.log(arg));
+                console.log(enhancedError)
+
+                console.state(previousConsoleState);
+                throw error instanceof Error ? 
+                    new Error(enhancedError) : 
+                    error;
+            } : undefined,
+        })
+    }) as any;
+
+// Implements the TraceFunction interface
+((d: TraceFunction) => {
+    var _d: any = d;
+    _d._isEnabled = true;
+    d.isEnabled = () => { return _d._isEnabled; };
+    d.enabled = () => { _d._isEnabled = true; return d; };
+    d.isDisabled = () => { return !_d._isEnabled; };
+    d.disabled = () => { _d._isEnabled = false; };
+})(trace)
+
+class ReflectionTests extends TestClass {
+    testBefore() {
+        var instance = decorate(new DecorateTestObject(), {
+            before: (className, methodName, method, args) => {
+                if (methodName == "methodOne") {
+                    return [
+                        (arg1: any, arg2: any) => `${className}.${methodName}: Expected Result: ${arg1} ${arg2}`,
+                        ["arg1", "arg2"]
+                    ]
+                }
+            }
+        });
+
+        console.log("Testing")
+
+        var expectedMethodOneResult: any = `DecorateTestObject.methodOne: Expected Result: arg1 arg2`
+        var actualMethodOneResult = instance.methodOne("text", 100);
+        this.assertEquals(actualMethodOneResult, expectedMethodOneResult, "The decorator should have intercepted the method");
+
+        var expectedMethodTwoResult = "1 2";
+        var actualMethodTwoResult = instance.methodTwo("1", "2");
+        this.assertEquals(actualMethodTwoResult, expectedMethodTwoResult, "The decorator should use the defaults when undefined");
+    }
+
+    testAfter() {
+        var instance = decorate(new DecorateTestObject(), {
+            after: (className, methodName, method, args, result) => 
+                `${className}.${methodName}: [${f(args).stringJoin(", ")}] [${result}]`      
+        });
+
+        var expectedMethodOneResult: any = "DecorateTestObject.methodOne: [text, 100] [text,with,100]";
+        var actualMethodOneResult = instance.methodOne("text", 100);
+        this.assertEquals(actualMethodOneResult, expectedMethodOneResult, "The decorator should have intercepted the result of methodOne");
+
+        var expectedMethodTwoResult: any = "DecorateTestObject.methodTwo: [1, 2] [1 2]";
+        var actualMethodTwoResult = instance.methodTwo("1", "2");
+        this.assertEquals(actualMethodTwoResult, expectedMethodTwoResult, "The decorator should use intercepted the result of methodTwo");
+    }
+
+    testError() {
+        var instance = decorate(new DecorateTestObject(), {
+            error: (className, methodName, method, args, error) => 
+                `${className}.${methodName}: [${f(args).stringJoin(", ")}] [${error}]`      
+        });
+
+        var expectedError: any = "DecorateTestObject.errorMethod: [true] [Error: Test Error]";
+        var actualError: any = undefined; 
+        try {
+            instance.errorMethod(true);
+        } catch (e: any) {
+            this.assertTrue(e instanceof Error, "The error should be an instance of Error");
+            actualError = e.message;
+        }
+        
+        this.assertEquals(actualError, expectedError, "The decorator should have intercepted the errorMethod error");
+
+        var expectedStringError: any = "DecorateTestObject.errorMethod: [false] [Test Error String]";
+        var actualStringError: any = undefined; 
+        try {
+            instance.errorMethod(false);
+        } catch (e: any) {
+            this.assertTrue(e instanceof Error, "The error should be an instance of Error");
+            actualStringError = e.message;
+        }
+        
+        this.assertEquals(actualStringError, expectedStringError, "The decorator should have intercepted the errorMethod string error");
+
+        var instance = decorate(new DecorateTestObject(), {
+            error: (name, method, args, error) => { }  
+        });
+
+        var expectedInterceptedError = undefined;
+        var actualInterceptedError = instance.errorMethod(true);
+        this.assertEquals(actualInterceptedError, expectedInterceptedError, "No error should be thrown if a message is not returned")
+    }
+}
+
+class DecorateTestObjectBase {
+    methodOne(input1: string, input2: number) {
+        return [input1, "with", input2];
+    }
+}
+
+class DecorateTestObject extends DecorateTestObjectBase {
+    methodTwo(...inputs: string[]) {
+        return f(inputs).stringJoin(" ");
+    }
+
+    errorMethod(throwError: boolean) {
+        if (throwError) throw new Error("Test Error");
+        throw "Test Error String"
+    }
+}

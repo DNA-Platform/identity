@@ -1,0 +1,321 @@
+interface $BondParameter {
+    isArray: boolean, 
+    isSpread: boolean
+}
+
+class $BondArguments {
+    values: any[] = [];
+    parameters: $BondParameter[] = [];
+    parameterIndex = -1;
+
+    constructor(parameters: $BondParameter[]) {
+        this.parameters = parameters;
+    }
+
+    static equals(first: $BondArguments | any[], second: $BondArguments | any[]) {
+        if (first instanceof $BondArguments) first = first.values;
+        if (second instanceof $BondArguments) second = second.values;
+        if (first.length != second.length) return false;
+        for (let i = 0; i < first.length; i++) {
+            const firstArg = first[i];
+            const secondArg = second[i];
+            const firstIsArray = Array.isArray(firstArg);
+            const secondIsArray = Array.isArray(secondArg);
+            if (firstIsArray !== secondIsArray) return false;
+            if (!firstIsArray && !secondIsArray && first != second) return false;
+            if (firstIsArray && secondIsArray && !$BondArguments.equals(firstArg, secondArg)) return false;
+        }
+        return true;
+    }
+}
+
+class $BondOrchestrationContext {
+    private parameters: $BondParameter[];
+    private parameterIndex = -1;
+    arguments: $BondArguments;
+    args: any[] = [];
+    chemical: $Chemical;
+    node: any = undefined;
+    children: ReactNode[] = [];
+    childContexts: $BondOrchestrationContext[] = [];
+    singleton: boolean = false;
+    parameter?: $BondParameter;
+    argsValid?: boolean = true;
+    parent?: $BondOrchestrationContext;
+    get isElement() { return React.isValidElement(this.node) }
+
+    private _isModified = false;
+    get isModified() { return this._isModified; }
+    set isModified(value: boolean) { 
+        this._isModified = value;
+        if (value) this.parent?.isModified;
+     }
+
+    constructor(chemical: $Chemical, parameters: $BondParameter[] = []) {
+        this.chemical = chemical;
+        this.parameters = parameters;
+        this.arguments = new $BondArguments(parameters || []);
+        this.args = this.arguments.values;
+    }
+
+    next(node: any) {
+        const context = this.clone();
+        context.node = node;
+        
+        if (!context.parameter && context.parameterIndex == -1) {
+            if (context.parameters && context.parameters.length > 0) {
+                context.parameterIndex = 0;
+                context.parameter = context.parameters[context.parameterIndex];
+            } else {
+                context.argsValid = false;
+            }
+        } else if (context.parameter && !context.parameter.isSpread) {
+            context.parameterIndex++;
+            if (context.parameters && context.parameterIndex < context.parameters.length) {
+                context.parameter = context.parameters[context.parameterIndex];
+                if (context.parameter && context.parameter.isSpread) {
+                    context.args = context.arguments.values;
+                }
+            } else {
+                context.parameter = undefined;
+                context.argsValid = false;
+            }
+        }
+        return context;
+    }
+
+    array() {
+        const context = this.clone();
+        context.parent = this;
+        context.args = [];
+        context.parameters = [];
+        context.parameterIndex = -1;
+        context.parameter = { isArray: true, isSpread: false };
+        this.args.push(context.args);
+        
+        context.children = [];
+        this.children.push(context.children);
+        context.isModified = true;
+        return context;
+    }
+
+    child(chemical: $Chemical, props: any): any {
+        if (chemical[$lastProps] === props) return props;
+        return chemical[$binder].bond(props, this);
+    }
+
+    build(): any {
+        if (!this.isModified) return undefined;
+        return this.singleton && this.children.length === 1 ? 
+            this.children[0] : 
+            this.children;
+    }
+
+    private clone(): this {
+        const context = Object.create(Object.getPrototypeOf(this));
+        Object.assign(context, this);
+        return context;
+    }
+}
+
+class $BondOrchestrator<T extends $Chemical> {
+    private _chemical: T;
+    private _bondConstructor?: Function;
+    private _parameters: { isArray: boolean, isSpread: boolean }[] = [];
+    private _lastProps?: any;
+    private _rendered: Map<Function, ReactElement> = new Map();
+    private _lastAguments?: $BondArguments;
+
+    constructor(chemical: T) {
+        this._chemical = chemical;
+        const name = chemical.__getType().name;
+        this._bondConstructor = (chemical as any)[name];
+        this.parseBondConstructor();
+    }
+
+    bond(props: any, parentContext?: $BondOrchestrationContext): any {
+        const chemical = this._chemical;
+        let children: ReactNode = props.children;
+        const context = new $BondOrchestrationContext(chemical, this._parameters);
+        parentContext?.childContexts.push(context);
+        if (props === this._lastProps) 
+            return this._lastProps;
+        
+        this._rendered = new Map();
+        this.bindProps(chemical, props);
+        
+        this.process(children, context);
+        if (context.isModified) {
+            children = context.build();
+            props = { ...props, children: children };
+        }
+
+        chemical[$children] = props.children;
+        this._lastProps = props;
+
+        if (this._bondConstructor && context.argsValid) {
+            if (!this._lastAguments || !$BondArguments.equals(this._lastAguments, context.arguments))
+            this.callConstructor(context.arguments.values);
+            this._lastAguments = context.arguments;
+        }
+
+        chemical[$formula].refresh();
+        return props;
+    }
+
+    render(): ReactNode {        
+        let view = this._chemical.view();
+        view = this.augmentView(view);
+        return view;
+    }
+
+    private parseBondConstructor() {
+        if (!this._bondConstructor) return;
+        
+        const match = this._bondConstructor.toString().match(/\(([^)]*)\)/);
+        if (!match) throw new Error(`Cannot parse constructor for ${this._chemical.__getType().name}`);
+        
+        const paramString = match[1].trim();
+        if (!paramString) return;
+        
+        this._parameters = paramString.split(',')
+            .map(p => p.trim())
+            .map(p => ({ 
+                isSpread: p.startsWith('...'), 
+                isArray: false 
+            }));
+    }
+
+    private bindProps(chemical: $Chemical, props: any) {
+        const $chemical$: any = chemical;
+        for (const prop in props) {
+            if (typeof prop === 'symbol' || prop === 'children' || prop === 'key' || prop === 'ref') continue;
+            $chemical$['$' + prop] = props[prop];
+        }
+        chemical[$formula].refresh();
+    }
+
+    private process(children: ReactNode, context: $BondOrchestrationContext) {
+        console.log(`=== process() for ${this._chemical.constructor.name} ===`);
+        console.log('children:', children);
+        const childArray = React.Children.toArray(children);
+        console.log('childArray:', childArray);
+        console.log('childArray.length:', childArray.length);
+        context.singleton = !Array.isArray(children) && childArray.length === 1;
+        childArray.map(child => {
+            context = context.next(child);
+            if (context.isElement) {
+                this.processElement(child as React.ReactElement<any>, context)
+            } else {
+                context.args.push(child);
+                context.children.push(child);
+            }
+        });
+    }
+
+    private processElement(element: React.ReactElement<any>, context: $BondOrchestrationContext) {
+        let type = element.type as any;
+        console.log(`processElement:`, {
+            typeName: type.name || type,
+            props: element.props,
+            hasChildren: 'children' in element.props,
+            children: element.props.children
+        });
+        if (type === React.Fragment && element.key?.toString().startsWith('chem-')) {
+            const cid = parseInt(element.key.toString().replace('chem-', ''));
+            const chemical = $chemicalRegistry.get(cid)!;
+            context.args.push(chemical);
+            context.children.push({ type: chemical.Component, props: {}, key: element.key })
+            this._rendered.set(chemical.Component, element);
+        } else if (type === $) {
+            context = context.array();
+            React.Children.map(element.props?.children || [], item => {
+                context.isModified = true;
+                context = context.next(item);
+                if (context.isElement) {
+                    this.processElement(item as React.ReactElement<any>, context)
+                } else {
+                    context.args.push(item);
+                    context.children.push(item);
+                }
+            });
+        } else if (typeof type === 'function') {
+            let component: $$Component = type; 
+            if (!component.$bind) {
+                let func = type as React.FC;
+                component = $(func).$Component;
+            }
+            if (!component.$bound)
+                component = component.$bind(this._chemical);
+
+            const chemical = component.$chemical;
+            const props = context.child(chemical, element.props);
+            const key = `${chemical[$cid]}`;
+            context.args.push(chemical);
+            if (props !== element.props || key !== element.key) {
+                context.children.push({ type: component, props: props, key: `${chemical[$cid]}` });
+                context.isModified = true;
+            }
+        } else {
+            context.args.push(element.props);
+            context.children.push(element);
+        }
+    }
+
+    private callConstructor(args: any[]) {
+        const paramCount = this._parameters.filter(p => !p.isSpread).length;
+        const hasRest = this._parameters.length > 0 && 
+            this._parameters[this._parameters.length - 1].isSpread;
+        
+        if (hasRest) {
+            const regular = args.slice(0, paramCount);
+            const rest = args.slice(paramCount);
+            this._bondConstructor!.apply(this._chemical, [...regular, ...rest]);
+        } else {
+            this._bondConstructor!.apply(this._chemical, arguments);
+        }
+    }
+
+    private augmentView(view: ReactNode): ReactNode {
+        const augmented = this.augmentNode(view);
+        return React.createElement(
+            React.Fragment,
+            { key: `chem-${this._chemical[$cid]}` },
+            augmented,
+        );
+    }
+
+    private augmentNode(node: ReactNode): ReactNode {
+        if (!node) return node;
+        
+        if (React.isValidElement(node)) {
+            // Check if we've already rendered this
+            const rendered = this._rendered.get(node.type as Function);
+            if (rendered) return rendered;
+            
+            const children = (node.props as any)?.children;
+            
+            // Only recurse if there are children
+            if (children) {
+                const augmented = React.Children.map(children, child => this.augmentNode(child));
+                if (augmented !== children) {
+                    return React.cloneElement(node, {}, augmented);
+                }
+            }
+            
+            return node;
+        }
+        
+        if (Array.isArray(node)) {
+            let changed = false;
+            const augmented = node.map(child => {
+                const aug = this.augmentNode(child);
+                changed ||= aug !== child;
+                return aug;
+            });
+            return changed ? augmented : node;
+        }
+        
+        return node;
+    }
+}

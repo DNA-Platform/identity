@@ -1,0 +1,112 @@
+Below is a summary of everything we know about BridgeTalk’s .send() method (the non-blocking option) in ExtendScript, drawn from ExtendScript documentation, known behavior, and typical usage patterns. This specifically addresses how .send() works in a no-wait fashion and what implications that has for UI updates and task queuing.
+
+1. Overview of BridgeTalk.send() (Non-blocking)
+Basic Use
+
+javascript
+Copy
+var bt = new BridgeTalk();
+bt.target = "illustrator";  // or some other Adobe application
+bt.body = "app.activeDocument.pathItems.add();";  // ExtendScript code as string
+bt.send();  // Non-blocking send
+Non-Blocking/Asynchronous
+Using .send() without any parameters (or with false) does not block the calling script. The BridgeTalk message is queued for the target application to process. Your calling script continues execution immediately.
+
+Callbacks
+To handle results or errors from the target application, you assign:
+
+javascript
+Copy
+bt.onResult = function (res) { /* handle success */ };
+bt.onError = function (err) { /* handle error */ };
+These callbacks fire when the script in the target application finishes. In other words, your script in the origin app does not block or wait.
+
+Queue of Messages in the Target Application
+The target application (e.g., Illustrator) receives BridgeTalk messages in a queue and processes them in the order they arrive, one after the other. As each script finishes, the next queued message is processed. This is effectively serialized in the target app’s ExtendScript engine.
+
+2. UI Catch-up Between .send() Calls
+Does .send() Guarantee UI Updates?
+UI Refresh
+In general, once a message completes execution in the target application, the target app has a moment to redraw or process its event loop before the next message in the queue is executed. This can allow UI updates to occur if the target application’s script has fully ended and the environment is free to handle UI painting.
+
+Partial UI Responsiveness
+Because .send() is non-blocking on the originating side, if the target application is the same as the originating one (e.g., Illustrator sending a script to Illustrator itself), it effectively:
+
+Puts the script in a queue.
+When the current ExtendScript call finishes, Illustrator can process events, handle UI updates, then run the next queued script.
+This does give the UI a chance to “catch up” between scripts if each script is relatively short.
+
+Caveats
+Long Scripts Still Block
+If any script chunk you send to Illustrator is very long or CPU-intensive, it will still block during its own execution.
+Order of Execution
+Messages are processed in the order they are received, but they will not necessarily allow other user events in the middle of a script’s run. The break only occurs after each script finishes.
+3. Implicit Queuing Behavior
+Serial Execution
+Even though .send() is “asynchronous” relative to the calling environment, scripts in the target environment run serially one after the other. BridgeTalk effectively lines them up and runs them in order.
+
+sendSync vs send
+
+sendSync(...) = calling script blocks, waiting for the target to finish.
+send(...) = calling script does not block; the target runs the message asynchronously.
+Bridging from the Same App
+
+Illustrator → Illustrator: The script is queued in the same app, so it only runs after the current script finishes. Once your script ends, Illustrator reclaims control, processes the message, and your onResult or onError fires afterward.
+Illustrator → Photoshop (Cross-app): Each application has its own ExtendScript runtime. Illustrator continues without waiting, while Photoshop handles the script on its own schedule.
+4. Why .send() Helps with UI Responsiveness
+Breaking Up Tasks
+If you chunk a large job into multiple small scripts and dispatch them to Illustrator using .send(), each chunk runs, then ends. Illustrator can update its UI in-between. The more granular your tasks, the more often the UI can refresh.
+
+Ensuring the Script Ends
+The crucial piece is that the script (the chunk) has to end for Illustrator to process the message queue and update its event loop. That means heavy tasks must be chunked carefully—one chunk per script.
+
+No True Parallelism
+Even though .send() is “non-blocking” for the originating script, ExtendScript in the target environment is still single-threaded. So each chunk is processed sequentially, but between chunks, Illustrator can handle UI events.
+
+5. Implementation Tips
+Use Callbacks
+Always define onResult and/or onError if you need to chain tasks. For instance:
+
+javascript
+Copy
+function runTask(scriptString, onComplete, onFailure) {
+  var bt = new BridgeTalk();
+  bt.target = "illustrator";
+  bt.body = scriptString;
+
+  bt.onResult = function (res) {
+    if (onComplete) onComplete(res);
+  };
+  bt.onError = function (err) {
+    if (onFailure) onFailure(err);
+  };
+  bt.send(); // Non-blocking
+}
+This design triggers callbacks after each chunk’s script finishes.
+
+Chunk Tasks Wisely
+Keep each chunk short enough that the UI can refresh frequently. For example, if you are drawing many shapes, send a few shapes per script chunk.
+
+Maintain State
+If your tasks require shared data, you might:
+
+Write data to a file or the app’s metadata at the end of each chunk,
+Or store in $.global if you’re sure the runtime remains loaded (less reliable in Illustrator).
+Error Handling
+If a chunk fails, your onError callback is triggered. You can choose to skip, retry, or abort subsequent tasks.
+
+Queue Approach
+You can implement a queue in the “origin” script, sending tasks with .send() one after another. Between tasks, if the origin script is also Illustrator, it can yield control to the target after each chunk, letting the UI update.
+
+6. Observed Behavior in Practice
+Yes, the UI Tends to Catch Up
+Many ExtendScript developers report that using .send() in chunks helps Illustrator remain more responsive than doing everything in a single, long monolithic script.
+Strictly Single-threaded
+Even with .send(), the actual execution in Illustrator remains single-threaded—just sequential chunks. That still provides points between chunks for UI refresh.
+7. Summary of .send()
+Non-blocking from the calling script’s perspective.
+Queued in the target application.
+Serial scripts in the target: one chunk at a time.
+UI Refresh occurs after each chunk completes, letting the user interface “catch up.”
+Use small tasks + callbacks for best responsiveness.
+In short, .send() is a valuable tool for chunked, asynchronous-like workflows in ExtendScript. It doesn’t provide true parallelism, but it does allow for cooperative multitasking by handing control back to the app between script executions, promoting better UI responsiveness.

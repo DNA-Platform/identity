@@ -118,7 +118,8 @@ export default () => (
             <Paragraph>
                 Each day of the conversation is a chapter, numbered in order and named by the day, with the date
                 said by Dated as a date and the day as the title. The chapter holds one Message per message,
-                said at its instant, which is the message's whole address, opening with its Origin, the
+                said at its instant, which with its speaker is the message's whole address, since a question and
+                its answer may share an instant to the microsecond in the older account's export, opening with its Origin, the
                 application's own id of the message, drawn nowhere, and then its Speaker as a reference to the
                 person's book, mine or Claude's. What was said is the library's own writing,
                 paragraphs, headings, lists and lines nested as written, tables, bold, emphasis, verbatim and

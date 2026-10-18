@@ -1,0 +1,117 @@
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:792 Cannot update a component (`Unknown`) while rendering a different component (`Unknown`). To locate the bad setState() call inside `Unknown`, follow the stack trace as described in https://react.dev/link/setstate-in-render
+error @ intercept-console-error.js:57
+scheduleUpdateOnFiber @ react-dom-client.development.js:14952
+dispatchSetStateInternal @ react-dom-client.development.js:8252
+dispatchSetState @ react-dom-client.development.js:8209
+dispatchUpdate @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:792
+updateState @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:720
+bondCall @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:987
+value @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:903
+view @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:393
+render @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1262
+__render @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:261
+Component @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:525
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooks @ react-dom-client.development.js:6793
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:14991
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+view @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\async\if-when-tests.tsx:193
+render @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1262
+__render @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:261
+Component @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:525
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:14991
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+WhenIfTests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\async\if-when-tests.tsx:434
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:14991
+performSyncWorkOnRoot @ react-dom-client.development.js:16831
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16677
+processRootScheduleInMicrotask @ react-dom-client.development.js:16715
+eval @ react-dom-client.development.js:16850
+<WhenIfTests>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+Tests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\async\page.tsx:74
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:14991
+performSyncWorkOnRoot @ react-dom-client.development.js:16831
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16677
+processRootScheduleInMicrotask @ react-dom-client.development.js:16715
+eval @ react-dom-client.development.js:16850
+<Tests>
+exports.jsx @ react-jsx-runtime.development.js:323
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Function.all @ VM1273 <anonymous>:1
+Function.all @ VM1273 <anonymous>:1
+Function.all @ VM1273 <anonymous>:1
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1343
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1761147550685:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+loadScriptsInSequence @ app-bootstrap.js:24
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1761147550685:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1761147550685:1878
+(anonymous) @ main-app.js?v=1761147550685:1879
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1761147550685:9

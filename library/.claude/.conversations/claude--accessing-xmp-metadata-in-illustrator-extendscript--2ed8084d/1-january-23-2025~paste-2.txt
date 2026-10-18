@@ -1,0 +1,140 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+if (ExternalObject.AdobeXMPScript == undefined) {
+    ExternalObject.AdobeXMPScript = new ExternalObject("lib:AdobeXMPScript");
+}
+var TaskArray = /** @class */ (function (_super) {
+    __extends(TaskArray, _super);
+    function TaskArray(document, property) {
+        var _this = _super.call(this, []) || this;
+        _this.namespace = "http://ns.adobe.com/xap/1.0/mm/";
+        _this.separator = "|||||";
+        _this.document = document;
+        _this.property = property;
+        _this.init();
+        return _this;
+    }
+    TaskArray.prototype.update = function (tasks) {
+        this._a = tasks.a();
+        this.sync();
+    };
+    TaskArray.prototype.sync = function () {
+        var xmp = this.createXmp();
+        var value = this.stringJoin(this.separator);
+        if (value === undefined || value.length === 0) {
+            xmp.deleteProperty(this.namespace, this.property);
+            console.log("Queue Delete: ", xmp.getProperty(this.namespace, this.property));
+        }
+        else {
+            xmp.setProperty(this.namespace, this.property, value);
+            console.log("Queue Update: ", xmp.getProperty(this.namespace, this.property));
+        }
+        this.document.XMPString = xmp.serialize();
+    };
+    TaskArray.prototype.init = function () {
+        var xmp = this.createXmp();
+        if (!xmp.doesPropertyExist(this.namespace, this.property)) {
+            xmp.setProperty(this.namespace, this.property, "");
+            this._a = [];
+        }
+        else {
+            var value = xmp.getProperty(this.namespace, this.property).value;
+            this._a = str(value).split(this.separator).a();
+        }
+    };
+    TaskArray.prototype.createXmp = function () {
+        if (!XMPMeta || !XMPConst)
+            throw new Error("XMP APIs are not defined");
+        return new XMPMeta(this.document.XMPString);
+    };
+    return TaskArray;
+}(A));
+var TaskQueue = /** @class */ (function () {
+    function TaskQueue(doc) {
+        this.array = new TaskArray(doc, TaskQueue.queueName);
+        trace(this);
+    }
+    TaskQueue.prototype.peek = function () {
+        return this.array.first();
+    };
+    TaskQueue.prototype.dequeue = function () {
+        if (this.array.length() == 0)
+            return undefined;
+        var task = this.peek();
+        this.array.update(this.array.skip(1));
+        return task;
+    };
+    TaskQueue.prototype.enqueue = function (task) {
+        this.array.push(task);
+        this.array.sync();
+    };
+    TaskQueue.prototype.clear = function () {
+        this.array.update(f([]));
+    };
+    TaskQueue.queueName = "TaskQueue";
+    return TaskQueue;
+}());
+var TaskQueueTests = /** @class */ (function (_super) {
+    __extends(TaskQueueTests, _super);
+    function TaskQueueTests() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    TaskQueueTests.prototype.document = function () { return api.activeDocument().item(); };
+    TaskQueueTests.prototype.init = function () {
+        alert("derived init");
+        api.openDocument("Test.ai", true);
+        api.activeDocument().reset();
+        var queue = new TaskQueue(this.document());
+        queue.clear();
+    };
+    TaskQueueTests.prototype.testQueue = function () {
+        var queue = new TaskQueue(this.document());
+        var expected = undefined;
+        var actual = queue.peek();
+        var m = this.assertEquals(actual, expected, "An empty queue", false);
+        if (m)
+            throw m;
+        queue.enqueue("a");
+        expected = "a";
+        actual = queue.peek();
+        var m = this.assertEquals(actual, expected, "After enqueue on the same queue", false);
+        if (m)
+            throw m;
+        var comparisonQueue = new TaskQueue(this.document());
+        expected = "a";
+        actual = comparisonQueue.peek();
+        var m = this.assertEquals(actual, expected, "Ensuring that it's in the document", false);
+        if (m)
+            throw m;
+        expected = "a";
+        actual = queue.dequeue();
+        var m = this.assertEquals(actual, expected, "After dequeue on the same queue", false);
+        if (m)
+            throw m;
+        expected = undefined;
+        actual = queue.peek();
+        var m = this.assertEquals(actual, expected, "Confirming dequeue on the same queue", false);
+        if (m)
+            throw m;
+        comparisonQueue = new TaskQueue(this.document());
+        expected = undefined;
+        actual = comparisonQueue.peek();
+        var m = this.assertEquals(actual, expected, "Ensuring that it's removed from the document", false);
+        if (m)
+            throw m;
+    };
+    return TaskQueueTests;
+}(TestClass));

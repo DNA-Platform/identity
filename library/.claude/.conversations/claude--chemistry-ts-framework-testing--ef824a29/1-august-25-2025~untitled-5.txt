@@ -1,0 +1,132 @@
+/**
+ * Decorates properties of an object with interceptors
+ */
+function decorateProperties(instance: any, className: string, config: DecoratorConfig): void {
+    const properties = getAllProperties(instance);
+
+    for (const key of properties) {
+        const value = instance[key];
+        
+        // Use the shared logic
+        if (!isReactiveProperty(instance, key, value)) {
+            continue;
+        }
+
+        // Check if already has getter/setter
+        const descriptor = Object.getOwnPropertyDescriptor(instance, key);
+        if (descriptor && (descriptor.get || descriptor.set)) {
+            continue;
+        }
+
+        // Check prototype descriptor
+        const protoDescriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(instance), key);
+        if (protoDescriptor && (protoDescriptor.get || protoDescriptor.set)) {
+            decorateAccessorProperty(instance, key, protoDescriptor, className, config);
+            continue;
+        }
+
+        // Store original value
+        instance[backingFields][key] = value;
+        
+        // Determine if should use dynamic checking
+        const isChemicalProperty = value instanceof $Chemical || 
+            (Array.isArray(value) && value.length > 0 && value[0] instanceof $Chemical);
+        const shouldUseDynamic = !isChemicalProperty && (Array.isArray(value) || 
+            (typeof value === 'object' && value !== null && !(value instanceof Date)));
+
+        // Create getter/setter with the same logic as before
+        Object.defineProperty(instance, key, {
+            get: function () {
+                const value = this[backingFields][key];
+                
+                // Dynamic checking for non-Chemical objects/arrays
+                if (shouldUseDynamic && value) {
+                    if (!this[backingFields][key + '_checkScheduled']) {
+                        const snapshot = represent(value);
+                        this[backingFields][key + '_checkScheduled'] = true;
+                        
+                        setTimeout(() => {
+                            try {
+                                const current = represent(this[backingFields][key]);
+                                if (snapshot !== current) {
+                                    console.log(`Dirty check detected change in ${key}`);
+                                    if (config.after) {
+                                        config.after(className, key, 'field', () => {}, [this[backingFields][key]], undefined);
+                                    }
+                                }
+                            } catch (e) {
+                                console.error(`Error in dirty check for ${key}:`, e);
+                            }
+                            this[backingFields][key + '_checkScheduled'] = false;
+                        }, 0);
+                    }
+                }
+
+                if (config.after) {
+                    const afterResult = config.after(className, key, 'property', () => { }, [], value);
+                    return afterResult ?? value;
+                }
+
+                return value;
+            },
+            set: function (newValue) {
+                const oldValue = this[backingFields][key];
+
+                if (oldValue === newValue) {
+                    return;
+                }
+
+                // Check for custom comparer
+                const proto = Object.getPrototypeOf(this);
+                const hasCustomComparer = proto &&
+                    proto[comparerSymbol as any] &&
+                    proto[comparerSymbol as any].has(key);
+
+                if (hasCustomComparer) {
+                    const customComparer = proto[comparerSymbol as any].get(key);
+                    if (customComparer(oldValue, newValue)) {
+                        return;
+                    }
+                } else if (shouldUseDynamic) {
+                    // Use represent for comparison
+                    try {
+                        if (represent(oldValue) === represent(newValue)) {
+                            return;
+                        }
+                    } catch (e) {
+                        // Continue with update if comparison fails
+                    }
+                }
+
+                let valueToSet = newValue;
+
+                if (config.before) {
+                    const beforeResult = config.before(className, key, 'field', () => { }, [newValue]);
+                    if (beforeResult && beforeResult[1]) {
+                        valueToSet = beforeResult[1][0];
+                    }
+                }
+
+                // Handle reactification of complex objects
+                if (valueToSet && typeof valueToSet === 'object') {
+                    if (!Object.isFrozen(valueToSet) &&
+                        !Object.isSealed(valueToSet) &&
+                        Object.isExtensible(valueToSet) &&
+                        !(valueToSet instanceof $Chemical)) {
+                        if (!Array.isArray(valueToSet) && !(valueToSet instanceof Date)) {
+                            reactivateData(valueToSet, this);
+                        }
+                    }
+                }
+
+                this[backingFields][key] = valueToSet;
+
+                if (config.after) {
+                    config.after(className, key, 'field', () => { }, [valueToSet], undefined);
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
+    }
+}

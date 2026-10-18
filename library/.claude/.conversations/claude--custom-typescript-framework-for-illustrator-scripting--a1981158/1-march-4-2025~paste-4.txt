@@ -1,0 +1,300 @@
+/// <reference path="./lib/types.ts" />
+/// <reference path="./lib/utils.ts" />
+/// <reference path="./lib/reflection.ts" />
+/// <reference path="./lib/math.ts" />
+/// <reference path="./lib/space.ts" />
+/// <reference path="./lib/tasks.ts" />
+/// <reference path="./lib/ref.ts" />
+/// <reference path="./lib/query.ts" />
+/// <reference path="./lib/position.ts" />
+/// <reference path="./lib/properties.ts" />
+/// <reference path="./lib/paths.ts" />
+
+run(() => {
+    // Simple configuration
+    const config = {
+        maxChanges: 25,             // Maximum number of changes to make
+        maxNestingLevel: 3,         // Maximum level to traverse
+        colorMixAmount: 0.5,       // Small color variation (3%)
+        debugMode: true
+    };
+
+    // Generate the next filename with bracketed index
+    function getNextFilename(name: string): string {
+        const match = name.match(/^(.*)\[(\d+)\]$/);
+        
+        if (match) {
+            const baseName = match[1];
+            const index = parseInt(match[2], 10);
+            return `${baseName}[${index + 1}]`;
+        } 
+        return `${name}[1]`;
+    }
+
+    // Only skip exact pure black or white colors
+    function isPureBlackOrWhite(color: DynamicColor): boolean {
+        return (color.red() === 255 && color.green() === 255 && color.blue() === 255) || 
+               (color.red() === 0 && color.green() === 0 && color.blue() === 0);
+    }
+
+    // Simple document variation maker focused only on color changes
+    class ColorVariationMaker {
+        private changesApplied = 0;
+        
+        // Debug logging helper
+        private log(message: string): void {
+            if (config.debugMode) {
+                console.log(message);
+            }
+        }
+
+        // Create a variation and save it
+        createAndSave(): void {
+            if (app.documents.length === 0) {
+                alert("Please open a document before running this script.");
+                return;
+            }
+            
+            const doc = app.activeDocument;
+            
+            if (!doc.saved) {
+                alert("Please save your document before creating variations.");
+                return;
+            }
+            
+            const originalPath = doc.fullName.parent;
+            const baseName = doc.name.split('.')[0];
+            const newName = getNextFilename(baseName);
+            
+            // Apply color variations
+            this.applyColorVariations();
+            
+            if (this.changesApplied > 0) {
+                // Save with the new name
+                const newFileName = newName + ".ai";
+                const saveFile = new File(originalPath + "/" + newFileName);
+                const saveOpts = new IllustratorSaveOptions();
+                doc.saveAs(saveFile, saveOpts);
+                
+                alert(`Created variation "${newName}" with ${this.changesApplied} subtle color modifications.`);
+            } else {
+                alert("Couldn't apply any color modifications to the document.");
+            }
+        }
+
+        // Apply color variations using breadth-first traversal
+        private applyColorVariations(): void {
+            // Process each layer first
+            try {
+                const doc = app.activeDocument;
+                if (doc.layers) {
+                    this.log(`Document has ${doc.layers.length} layers`);
+                    
+                    for (let i = 0; i < doc.layers.length; i++) {
+                        const layer = doc.layers[i];
+                        this.log(`Processing layer: ${layer.name}`);
+                        
+                        this.processPathsInContainer(layer);
+                        
+                        if (this.changesApplied >= config.maxChanges) break;
+                    }
+                }
+            } catch (e) {
+                this.log(`Error processing layers: ${e}`);
+            }
+            
+            // If we still need more changes, try breadth-first
+            if (this.changesApplied < config.maxChanges) {
+                for (let level = 0; level < config.maxNestingLevel; level++) {
+                    if (this.changesApplied >= config.maxChanges) break;
+                    
+                    this.log(`Processing level ${level}`);
+                    
+                    try {
+                        const doc = api.activeDocument();
+                        this.processContainersAtLevel(doc, 0, level);
+                    } catch (e) {
+                        this.log(`Error at level ${level}: ${e}`);
+                    }
+                }
+            }
+        }
+
+        // Process containers at a specific level
+        private processContainersAtLevel(container: any, currentLevel: number, targetLevel: number): void {
+            if (!container || this.changesApplied >= config.maxChanges) return;
+            
+            try {
+                // If we've reached our target level, process paths here
+                if (currentLevel === targetLevel) {
+                    this.processPathsInContainer(container);
+                    return;
+                }
+                
+                // Otherwise, go deeper
+                
+                // First try layers
+                if (container.layers) {
+                    for (let i = 0; i < container.layers.length; i++) {
+                        this.processContainersAtLevel(container.layers[i], currentLevel + 1, targetLevel);
+                        
+                        if (this.changesApplied >= config.maxChanges) break;
+                    }
+                }
+                
+                // Then try groups and compounds
+                if (this.changesApplied < config.maxChanges && container.pageItems) {
+                    for (let i = 0; i < container.pageItems.length; i++) {
+                        const item = container.pageItems[i];
+                        if (item && (item.typename === "GroupItem" || item.typename === "CompoundPathItem")) {
+                            this.processContainersAtLevel(item, currentLevel + 1, targetLevel);
+                            
+                            if (this.changesApplied >= config.maxChanges) break;
+                        }
+                    }
+                }
+            } catch (e) {
+                this.log(`Error in container at level ${currentLevel}: ${e}`);
+            }
+        }
+
+        // Process paths in a container
+        private processPathsInContainer(container: any): void {
+            if (!container || this.changesApplied >= config.maxChanges) return;
+            
+            try {
+                // Check for path items in pageItems collection
+                if (container.pageItems) {
+                    this.log(`Container has ${container.pageItems.length} pageItems`);
+                    
+                    for (let i = 0; i < container.pageItems.length; i++) {
+                        const item = container.pageItems[i];
+                        
+                        if (item && item.typename === "PathItem") {
+                            try {
+                                // Wrap the path with our query
+                                const path = q<PathItemQuery>(item);
+                                
+                                // Try to modify this path's color
+                                this.log(`Processing path #${i}`);
+                                if (this.modifyPathColor(path)) {
+                                    this.log(`Successfully modified path #${i}`);
+                                    
+                                    if (++this.changesApplied >= config.maxChanges) break;
+                                }
+                            } catch (e) {
+                                this.log(`Error processing path item #${i}: ${e}`);
+                            }
+                        }
+                    }
+                }
+                
+                // Also check direct pathItems collection if it exists
+                if (this.changesApplied < config.maxChanges && container.pathItems) {
+                    this.log(`Container has ${container.pathItems.length} direct pathItems`);
+                    
+                    for (let i = 0; i < container.pathItems.length; i++) {
+                        try {
+                            const path = q<PathItemQuery>(container.pathItems[i]);
+                            
+                            this.log(`Processing direct path #${i}`);
+                            if (this.modifyPathColor(path)) {
+                                this.log(`Successfully modified direct path #${i}`);
+                                
+                                if (++this.changesApplied >= config.maxChanges) break;
+                            }
+                        } catch (e) {
+                            this.log(`Error processing pathItem #${i}: ${e}`);
+                        }
+                    }
+                }
+            } catch (e) {
+                this.log(`Error in container: ${e}`);
+            }
+        }
+
+        // Modify a path's color - returns true if a change was made
+        private modifyPathColor(path: PathItemQuery): boolean {
+            try {
+                // Choose whether to modify fill or stroke randomly
+                // But prioritize fill if available
+                let modified = false;
+                
+                if (path.filled()) {
+                    try {
+                        const fillColor = path.fillColor();
+                        // Skip pure black and white
+                        if (!isPureBlackOrWhite(fillColor)) {
+                            if (this.modifyColor(path, true)) {
+                                modified = true;
+                                this.log("Modified fill color");
+                            }
+                        } else {
+                            this.log("Fill color is pure black/white, skipping");
+                        }
+                    } catch (e) {
+                        this.log(`Error with fill color: ${e}`);
+                    }
+                }
+                
+                // If fill didn't change and path has a stroke, try that
+                if (!modified && path.stroked()) {
+                    try {
+                        const strokeColor = path.strokeColor();
+                        // Skip pure black and white
+                        if (!isPureBlackOrWhite(strokeColor)) {
+                            if (this.modifyColor(path, false)) {
+                                modified = true;
+                                this.log("Modified stroke color");
+                            }
+                        } else {
+                            this.log("Stroke color is pure black/white, skipping");
+                        }
+                    } catch (e) {
+                        this.log(`Error with stroke color: ${e}`);
+                    }
+                }
+                
+                return modified;
+            } catch (e) {
+                this.log(`Error modifying path color: ${e}`);
+                return false;
+            }
+        }
+
+        // Modify either fill or stroke color
+        private modifyColor(path: PathItemQuery, isFill: boolean): boolean {
+            try {
+                // Get current color
+                const currentColor = isFill ? path.fillColor() : path.strokeColor();
+                
+                // Make a small but noticeable hue shift
+                const hue = currentColor.hue();
+                const newHue = (hue + (Math.random() * 8 - 4) + 360) % 360;
+                
+                // Create color with shifted hue but same saturation and lightness
+                const newColor = DynamicColor.fromHSL(
+                    newHue,
+                    currentColor.saturation(),
+                    currentColor.lightness()
+                );
+                
+                // Apply the new color
+                if (isFill) {
+                    path.fillColor(newColor);
+                } else {
+                    path.strokeColor(newColor);
+                }
+                
+                this.log(`Changed ${isFill ? 'fill' : 'stroke'} color hue from ${hue} to ${newHue}`);
+                return true;
+            } catch (e) {
+                this.log(`Error in modifyColor: ${e}`);
+                return false;
+            }
+        }
+    }
+
+    // Execute
+    new ColorVariationMaker().createAndSave();
+});

@@ -1,0 +1,444 @@
+// Completion of the OrnateScaleBar component
+export const OrnateScaleBar: React.FC<ScaleBarProps> = ({
+  x,
+  y,
+  width,
+  units,
+  divisions,
+  distance
+}) => {
+  const height = width * 0.15;
+  const divisionWidth = width / divisions;
+  
+  // Generate scale bar divisions
+  const renderDivisions = (): React.ReactNode[] => {
+    const divs: React.ReactNode[] = [];
+    for (let i = 0; i <= divisions; i++) {
+      const xPos = i * divisionWidth;
+      
+      // Vertical tick mark
+      divs.push(
+        <line
+          key={`tick-${i}`}
+          x1={xPos}
+          y1={0}
+          x2={xPos}
+          y2={height * 0.6}
+          stroke="#59260B"
+          strokeWidth="1"
+        />
+      );
+      
+      // Label for each division
+      divs.push(
+        <text
+          key={`label-${i}`}
+          x={xPos}
+          y={height * 0.9}
+          textAnchor="middle"
+          fontFamily="'Cormorant Garamond', serif"
+          fontSize={height * 0.5}
+          fill="#59260B"
+        >
+          {(i * (distance / divisions)).toString()}
+        </text>
+      );
+    }
+    return divs;
+  };
+  
+  // Create alternating filled/unfilled segments
+  const renderSegments = (): React.ReactNode[] => {
+    const segments: React.ReactNode[] = [];
+    for (let i = 0; i < divisions; i++) {
+      const xPos = i * divisionWidth;
+      segments.push(
+        <rect
+          key={`segment-${i}`}
+          x={xPos}
+          y={0}
+          width={divisionWidth}
+          height={height * 0.6}
+          fill={i % 2 === 0 ? "#59260B" : "none"}
+          stroke="#59260B"
+          strokeWidth="1"
+        />
+      );
+    }
+    return segments;
+  };
+  
+  return (
+    <g className="ornate-scale-bar" transform={`translate(${x}, ${y})`}>
+      {/* Decorative flourish above scale */}
+      <path
+        d={`M0,${-height * 0.3} 
+            Q${width * 0.5},${-height * 0.6} ${width},${-height * 0.3}`}
+        fill="none"
+        stroke="#59260B"
+        strokeWidth="0.75"
+        strokeDasharray="3,2"
+      />
+      
+      {/* Scale bar segments */}
+      {renderSegments()}
+      
+      {/* Scale bar divisions */}
+      {renderDivisions()}
+      
+      {/* Units label */}
+      <text
+        x={width + 10}
+        y={height * 0.35}
+        fontFamily="'Cormorant Garamond', serif"
+        fontSize={height * 0.5}
+        fill="#59260B"
+      >
+        {units}
+      </text>
+      
+      {/* Decorative end caps */}
+      <circle
+        cx={0}
+        cy={0}
+        r={2}
+        fill="#59260B"
+      />
+      <circle
+        cx={width}
+        cy={0}
+        r={2}
+        fill="#59260B"
+      />
+      
+      {/* Bottom flourish */}
+      <path
+        d={`M${width * 0.25},${height} 
+            Q${width * 0.5},${height * 1.3} ${width * 0.75},${height}`}
+        fill="none"
+        stroke="#59260B"
+        strokeWidth="0.75"
+        strokeDasharray="2,2"
+      />
+    </g>
+  );
+};
+
+// ============================================================================
+// 10. Historical Map Inset Frame
+// Creates an ornate inset frame for detail maps in historical style
+// ============================================================================
+interface InsetFrameProps {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  title?: string;
+}
+
+export const HistoricalInsetFrame: React.FC<InsetFrameProps> = ({
+  x,
+  y,
+  width,
+  height,
+  title,
+  children
+}) => {
+  const borderWidth = Math.min(width, height) * 0.05;
+  const cornerSize = Math.min(width, height) * 0.2;
+  
+  return (
+    <g className="historical-inset-frame" transform={`translate(${x}, ${y})`}>
+      {/* Background for the frame */}
+      <rect
+        x={0}
+        y={0}
+        width={width}
+        height={height}
+        fill="#F8F3E6" // Light parchment color
+        filter="url(#paper-grain)"
+      />
+      
+      {/* Decorative border */}
+      <rect
+        x={borderWidth / 2}
+        y={borderWidth / 2}
+        width={width - borderWidth}
+        height={height - borderWidth}
+        fill="none"
+        stroke="#8B4513"
+        strokeWidth={borderWidth}
+        strokeLinejoin="round"
+      />
+      
+      {/* Corner ornaments */}
+      {/* Top Left */}
+      <path
+        d={`M 0,${cornerSize} 
+            C ${cornerSize * 0.2},${cornerSize * 0.6} ${cornerSize * 0.6},${cornerSize * 0.2} ${cornerSize},0
+            L 0,0 Z`}
+        fill="#8B4513"
+        opacity={0.8}
+      />
+      
+      {/* Top Right */}
+      <path
+        d={`M ${width - cornerSize},0 
+            C ${width - cornerSize * 0.6},${cornerSize * 0.2} ${width - cornerSize * 0.2},${cornerSize * 0.6} ${width},${cornerSize}
+            L ${width},0 Z`}
+        fill="#8B4513"
+        opacity={0.8}
+      />
+      
+      {/* Bottom Right */}
+      <path
+        d={`M ${width},${height - cornerSize} 
+            C ${width - cornerSize * 0.2},${height - cornerSize * 0.6} ${width - cornerSize * 0.6},${height - cornerSize * 0.2} ${width - cornerSize},${height}
+            L ${width},${height} Z`}
+        fill="#8B4513"
+        opacity={0.8}
+      />
+      
+      {/* Bottom Left */}
+      <path
+        d={`M ${cornerSize},${height} 
+            C ${cornerSize * 0.6},${height - cornerSize * 0.2} ${cornerSize * 0.2},${height - cornerSize * 0.6} 0,${height - cornerSize}
+            L 0,${height} Z`}
+        fill="#8B4513"
+        opacity={0.8}
+      />
+      
+      {/* Title banner if provided */}
+      {title && (
+        <g>
+          <rect
+            x={width * 0.1}
+            y={-borderWidth * 1.5}
+            width={width * 0.8}
+            height={borderWidth * 3}
+            fill="#8B4513"
+            rx={borderWidth}
+            ry={borderWidth}
+          />
+          <text
+            x={width / 2}
+            y={borderWidth * 0.5}
+            fontFamily="'Cormorant Garamond', serif"
+            fontSize={borderWidth * 1.8}
+            fontWeight="bold"
+            textAnchor="middle"
+            fill="#F5F0DC"
+          >
+            {title}
+          </text>
+        </g>
+      )}
+      
+      {/* Content container with clipping */}
+      <g transform={`translate(${borderWidth * 2}, ${borderWidth * 2})`}>
+        <clipPath id="inset-content-clip">
+          <rect
+            x={0}
+            y={0}
+            width={width - borderWidth * 4}
+            height={height - borderWidth * 4}
+          />
+        </clipPath>
+        <g clipPath="url(#inset-content-clip)">
+          {children}
+        </g>
+      </g>
+      
+      {/* Decorative line accents */}
+      <line
+        x1={borderWidth * 2}
+        y1={borderWidth * 2}
+        x2={width - borderWidth * 2}
+        y2={borderWidth * 2}
+        stroke="#8B4513"
+        strokeWidth={borderWidth / 4}
+        strokeDasharray={`${borderWidth / 2},${borderWidth / 2}`}
+      />
+      
+      <line
+        x1={borderWidth * 2}
+        y1={height - borderWidth * 2}
+        x2={width - borderWidth * 2}
+        y2={height - borderWidth * 2}
+        stroke="#8B4513"
+        strokeWidth={borderWidth / 4}
+        strokeDasharray={`${borderWidth / 2},${borderWidth / 2}`}
+      />
+    </g>
+  );
+};
+
+// ============================================================================
+// 11. Artistic Land/Water Boundary
+// Creates stylized coastlines with depth effect for artistic maps
+// ============================================================================
+interface CoastlineEffectProps {
+  coastPath: string;
+  landFill?: string;
+  waterFill?: string;
+  effectWidth?: number;
+  waveAmplitude?: number;
+}
+
+export const ArtisticCoastline: React.FC<CoastlineEffectProps> = ({
+  coastPath,
+  landFill = "#E8DDCB",
+  waterFill = "#A4CAD4",
+  effectWidth = 8,
+  waveAmplitude = 2
+}) => {
+  // Generate a wavy edge pattern for coastlines
+  const generateWavyPattern = (): string => {
+    // Create wave pattern definition
+    const patternId = `coastline-wave-${Math.random().toString(36).substr(2, 9)}`;
+    
+    return patternId;
+  };
+  
+  const wavyPatternId = generateWavyPattern();
+  
+  return (
+    <g className="artistic-coastline">
+      <defs>
+        {/* Gradient for water depth effect */}
+        <linearGradient
+          id="coast-depth-gradient"
+          gradientUnits="userSpaceOnUse"
+          spreadMethod="repeat"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="0%"
+        >
+          <stop offset="0%" stopColor={waterFill} stopOpacity={0.3} />
+          <stop offset="50%" stopColor={waterFill} stopOpacity={0.6} />
+          <stop offset="100%" stopColor={waterFill} stopOpacity={0.3} />
+        </linearGradient>
+        
+        {/* Wave pattern */}
+        <pattern
+          id={wavyPatternId}
+          patternUnits="userSpaceOnUse"
+          width="20"
+          height="10"
+          patternTransform="rotate(45)"
+        >
+          <path
+            d={`M0,${5 - waveAmplitude} Q5,${5 + waveAmplitude} 10,${5 - waveAmplitude} Q15,${5 - waveAmplitude * 3} 20,${5 - waveAmplitude}`}
+            fill="none"
+            stroke={waterFill}
+            strokeWidth="0.5"
+            strokeOpacity="0.7"
+          />
+        </pattern>
+        
+        {/* Create a filter for the coastline glow */}
+        <filter id="coastline-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feColorMatrix
+            type="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 6 -3"
+            result="glow"
+          />
+          <feBlend in="SourceGraphic" in2="glow" mode="normal" />
+        </filter>
+      </defs>
+      
+      {/* Water base */}
+      <path
+        d={coastPath}
+        fill={waterFill}
+        filter="url(#watercolor)"
+      />
+      
+      {/* Coastline effect - multiple layers */}
+      <g filter="url(#hand-drawn)">
+        {/* Depth effect around coastline */}
+        <path
+          d={coastPath}
+          fill="none"
+          stroke="url(#coast-depth-gradient)"
+          strokeWidth={effectWidth * 3}
+          strokeOpacity="0.2"
+        />
+        
+        {/* Wave texture near coast */}
+        <path
+          d={coastPath}
+          fill="none"
+          stroke={`url(#${wavyPatternId})`}
+          strokeWidth={effectWidth * 1.5}
+        />
+        
+        {/* Main coastline */}
+        <path
+          d={coastPath}
+          fill={landFill}
+          stroke="#8B7765"
+          strokeWidth="1"
+          filter="url(#coastline-glow)"
+        />
+      </g>
+    </g>
+  );
+};
+
+// ============================================================================
+// 12. Historical Map Icons
+// Creates decorative map icons for cities, landmarks, etc.
+// ============================================================================
+interface HistoricalIconProps {
+  x: number;
+  y: number;
+  size: number;
+  type: 'city' | 'capital' | 'town' | 'castle' | 'monastery' | 'battlefield' | 'mountain' | 'forest';
+  name?: string;
+  rotation?: number;
+}
+
+export const HistoricalMapIcon: React.FC<HistoricalIconProps> = ({
+  x,
+  y,
+  size,
+  type,
+  name,
+  rotation = 0
+}) => {
+  // Icon path definitions
+  const iconPaths: Record<string, JSX.Element> = {
+    city: (
+      <g>
+        <circle cx={0} cy={0} r={size * 0.6} fill="#EADDCB" stroke="#59260B" strokeWidth={size * 0.1} />
+        <circle cx={0} cy={0} r={size * 0.3} fill="#59260B" />
+      </g>
+    ),
+    capital: (
+      <g>
+        <path
+          d={`M${-size * 0.7},${size * 0.7} L0,${-size * 0.7} L${size * 0.7},${size * 0.7} Z`}
+          fill="#EADDCB"
+          stroke="#59260B"
+          strokeWidth={size * 0.1}
+        />
+        <circle cx={0} cy={0} r={size * 0.4} fill="#59260B" />
+      </g>
+    ),
+    town: (
+      <g>
+        <circle cx={0} cy={0} r={size * 0.5} fill="#EADDCB" stroke="#59260B" strokeWidth={size * 0.1} />
+        <circle cx={0} cy={0} r={size * 0.2} fill="#59260B" />
+      </g>
+    ),
+    castle: (
+      <g>
+        <rect
+          x={-size * 0.6}
+          

@@ -1,0 +1,212 @@
+"use client"
+import React, { ReactNode, ReactElement, useState, useRef, useEffect } from 'react';
+import stringify from 'fast-safe-stringify';
+
+// Core framework types
+type Constructor<T = {}> = new (...args: any[]) => T;
+type Type<T = any> = Constructor<T>;
+type Setter<T = any> = (value: T) => void;
+
+type Properties<T> = {
+    [K in keyof T as K extends `$${infer Rest}` ? Rest : never]: T[K]
+} & {
+    children?: ReactNode;
+};
+
+interface ChemicalComponent extends React.FC<any> {
+    chemical: $Chemical;
+    isChemical: boolean;
+    isBound: boolean;
+}
+
+// Symbols on $Chemical
+const inertPropertiesSymbol = Symbol('inertProperties');
+const dynamicPropertiesSymbol = Symbol('comparisons');
+const updateFunctionsSymbol = Symbol('updateFunctions');
+
+export class $Chemical {
+    @inert()
+    private _diagram!: Diagram;
+
+    @inert()
+    get chemicalId() { return this._id; }
+    private _id: number;
+
+    @inert()
+    get formula(): this { return this.getType()._formula as any; }
+
+    @inert()
+    get formulaId() { return this.formula.chemicalId; }
+
+    @inert()
+    get Component(): React.FC<Properties<this>> { return this._component!; }
+    private _component?: React.FC<Properties<this>>;
+
+    @inert()
+    get reactive(): boolean { return this._reactive; } 
+    private _reactive: boolean = true;
+
+    @inert()
+    children?: ReactNode;
+
+    @parent($Chemical)
+    parent: $Chemical | undefined;
+
+    $on?: Setter;
+
+    constructor() {
+        this._id = $Chemical.getNextChemicalId();
+        const type = this.getType();
+        if (!type._formula) {
+            type._formula = this;
+            this._diagram = new Diagram(type);
+        } else {
+            this._diagram = this.formula._diagram.duplicate();
+        }
+    }
+
+    construct(parent?: $Chemical): this {
+        const formula = this.getType()._formula;
+        const chemical = Object.create(this);
+        
+        chemical._bonds = [];
+        chemical[updateFunctionsSymbol] = [];
+        chemical.parent = parent;
+        return chemical as this;
+    }
+
+    // Override this to control rendering
+    view(): ReactNode {
+        // Default implementation shows the existing children from the props
+        return this.children;
+    }
+
+    reactivate() {
+        this._reactive = true;
+        // Make the properties reactive
+    }
+
+    deactivate() {
+        this._reactive = false;
+    }
+
+    update(): void {
+        if (!this._reactive) return;
+        const updates = (this as any)[updateFunctionsSymbol];
+        if (Array.isArray(updates))
+            updates.map(update => update());
+    }
+
+    getType<T extends Type = typeof $Chemical>(): T {
+        return this.constructor as any;
+    }
+
+    private assignComponent(): void {
+        const formula = this.getType()._formula;
+        if (this === formula && formula._component)
+            return;
+        
+        this._component = (props: any) => {
+            let chemical = this;
+            if (chemical === formula)
+                chemical = this.construct();
+
+            // Set up this component's update function
+            const chemicalDynamic = chemical as any;
+            const [, update] = useState({});
+            const updateFunc = () => update({});
+            chemicalDynamic[updateFunctionsSymbol].push(updateFunc)
+            chemical.bindProps(props);
+
+            // Clean up on unmount
+            useEffect(() => {
+                return () => {
+                    const updateFunctions: (() => void)[] = chemicalDynamic[updateFunctionsSymbol];
+                    chemicalDynamic[updateFunctionsSymbol] = updateFunctions.filter((f: any) => f !== updateFunc);
+                };
+            }, []);
+
+            return chemical.view();
+        }
+
+        const component = this._component as ChemicalComponent;
+        component.chemical = this;
+        component.isChemical = true;
+        component.isBound = this !== formula;
+    }
+
+    private bindProps(props: any) {
+        const self = this as any;
+        if (props.children) 
+            this.children = props.children;
+        for (const key in props)
+            if (key !== 'children' && key !== 'key' && key !== 'ref') 
+                self['$' + key] = props[key];
+    }
+
+    private static _formula: $Chemical;
+    static get formula(): $Chemical { return this._formula; }
+
+    private static nextChemicalId = 1;
+    private static getNextChemicalId(): number { return $Chemical.nextChemicalId++; }
+}
+
+class Diagram {
+    private _bonds: Bond[] = [];
+    get bonds(): Bond[] { return this._bonds; }
+    get props() { return this.bonds.filter(b => b.isProp); }
+    get chemicals() { return this.bonds.filter(b => b.isChemical); }
+    constructor(type: Type) {
+        // Use the prototype chain back to $Chemical to create the bonds
+    }
+
+    duplicate(): this {
+        const diagram = Object.create(this) as this;
+        diagram._bonds = this.bonds.map(b => b.double());
+        return this;
+    }
+}
+
+class Bond {
+    get id() { return this._}
+    type: Type;
+    name: string;
+    property: any; // Type for property that will be accessible to the instance
+    isCollective = false;
+    isRequired = false;    
+    isInert = false;
+    isProp = false;
+    isChemical = false;
+    isImplicit = false;
+    isFunctionBound = false;
+    synonyms: Bond[] = [];
+    comparer?: (first: any, second: any) => boolean;
+    constructor(name: string, type: Type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    reactivate(chemical: $Chemical): void {
+        const dynamicChemical = chemical;
+        const property = this.double();
+        // Add random 
+        // set property to constant
+            // Much inner logic for the getter and setter but lets just scaffold for now - throw not implemented
+        
+        // Add property to the _bonds of the dia
+    }
+
+    compare(first: any, second: any) {
+        return this. comparer ? this.comparer(first, second) : first === second;
+    }
+
+    double(): this {
+        return Object.assign(
+            Object.create(Object.getPrototypeOf(this)), 
+            this
+        );
+    }
+
+    private static nextBondId = 1;
+    private static getNextBondId(): number { return Bond.nextBondId++; }
+}

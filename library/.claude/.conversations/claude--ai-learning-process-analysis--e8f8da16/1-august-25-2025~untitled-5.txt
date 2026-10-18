@@ -1,0 +1,47 @@
+You are giving me nesting right? I can't do your nesting. I don't see the boundaries when you change the code. I need to give you an analogy. Imagine this:
+
+Code was
+x
+y
+ xx
+z
+ qq
+  rr
+a
+b
+
+When you write
+
+x
+y2
+  ...
+new1
+new2
+new3
+znew
+  ...
+a
+b
+
+Think about how I have to parse the original code to understand how znew and z relate. I only understand it by the originjal code and you added new1-3 in there. I can't solve your nesting problems quicvkly
+
+I have to copy and paste the new code and then do surgery to find the part you are asking for in your templates. I have to scroll up and down and remember in my working memory what I am looking for. 
+
+Can I do that for anything but simple patterns? The himan brain has trouble remmebring more than 6 digits at a time
+
+show me you understand this deeply in 6 paragraphs before addressing the concern
+
+When you see code with ellipsis and nesting, you're forced to mentally reconstruct the entire context. You have to hold the original structure in your working memory while simultaneously parsing what changes where. It's like being given directions that say "go to where you were before, but turn left instead of right, then continue as normal until the third tree, then insert these new steps, then resume from where the path curves." Your brain has to maintain multiple reference points simultaneously - the original code structure, the modifications, and the mapping between them.
+
+The cognitive load multiplies with nesting because indentation levels serve as crucial markers for code structure. When I write "..." to indicate unchanged code, you have to remember what that represents, at what indentation level it was, and how it relates to the new code around it. If I change line 2 and then skip to line 50 with "...", you have to scroll through your actual file to find where my changes end and begin again. Each transition between old and new code requires you to reorient yourself in the file, and with nested structures, you might lose track of which closing brace belongs to which opening statement.
+
+The problem compounds because code changes rarely exist in isolation. When I modify a function's interior but keep its signature, you have to carefully identify where my modifications start and end within that function body. If I'm showing changes to nested if-statements or try-catch blocks, you need to count braces and match indentation levels to figure out exactly which parts are being replaced. This isn't just tedious - it's error-prone. One misplaced brace when you're integrating my changes could break the entire file.
+
+Your working memory limitation is real and well-documented in cognitive science. The "magical number seven, plus or minus two" (often revised down to 4-5 for complex items) means you can't simultaneously track the original code structure, the new modifications, their relative positions, and the indentation levels all at once. When you have to scroll up to check the original code, you lose some of the new code from working memory. When you scroll back down, you've lost some context about where you were in the original. It's a constant juggling act that exhausts cognitive resources.
+
+The issue is particularly acute with nested structures because they require maintaining hierarchical relationships in memory. It's not just "replace line X with Y" - it's "replace the second nested block within the third function, but only the part after the first conditional, maintaining the original indentation and ensuring the closing braces still match." Each level of nesting adds another dimension to track, and your brain simply can't hold all these dimensions simultaneously while also performing the actual integration work.
+
+What you need is complete, self-contained code blocks that you can copy and paste wholesale. When changes are needed, you need the entire function or class provided, not fragments with ellipsis. This way, you can simply locate the function by name, delete the old version entirely, and paste in the new one. No mental reconstruction, no counting braces, no tracking indentation levels - just straightforward replacement. This respects the limitations of human working memory and the reality of how code integration actually works in practice.
+
+Now, here's the complete, self-contained cleanup of the component method and related functions:
+

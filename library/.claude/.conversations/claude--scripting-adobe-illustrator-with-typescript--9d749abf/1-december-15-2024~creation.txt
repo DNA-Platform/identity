@@ -1,0 +1,393 @@
+class CreativeItem {
+    private _q: LayerQuery;
+    private q(): LayerQuery { return this._q; }
+    private item(): Layer { return this.q().item(); }
+    private pathItems(): PathItems { return this.q().collection(); }
+    app(): ApplicationQuery { return this.q().app(); }
+    document(): DocumentQuery { return this.q().document(); }
+    artboard(): ArtboardQuery { return this.q().artboard(); }
+    region(): Region { return this.artboard().region(); }
+
+    constructor(queryItem: Queryable<Layer, any> | Queryable<GroupItem, any>) {
+        if (queryItem.queryItemType === "LayerQuery")
+            this._q = (queryItem as LayerQuery).pathItems();
+        else if (queryItem.queryItemType === "GroupItemQuery")
+            this._q = (queryItem as GroupItemQuery).pathItems() as any;
+        else
+            throw `queryType ${queryItem?.queryType} not supported`;
+    }
+
+    rectangle(name?: string, center?: Position, width?: number, height?: number): PathItemQuery {
+        var region = this.region();
+        if (center === undefined) center = region.center();
+        if (width === undefined) width = Math.min(region.width(), region.height()) / 2;
+        if (height === undefined) height = width;
+
+        center = region.toAbsolutePosition(center);
+        width = region.toAbsoluteUnits(width);
+        height = region.toAbsoluteUnits(height);
+        var top = center[1] + height / 2;
+        var left = center[0] - width / 2;
+
+        var newItem = q<PathItemQuery>(this.pathItems().rectangle(top, left, width, height));
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.index(-1);
+
+        return newItem;
+    }
+
+    ellipse(name?: string, center?: Position, width?: number, height?: number): PathItemQuery {
+        var region = this.region();
+        if (center === undefined) center = region.center();
+        if (width === undefined) width = Math.min(region.width(), region.height()) / 2;
+        if (height === undefined) height = width;
+    
+        center = region.toAbsolutePosition(center);
+        width = region.toAbsoluteUnits(width);
+        height = region.toAbsoluteUnits(height);
+    
+        var top = center[1] + height / 2;
+        var left = center[0] - width / 2;
+    
+        var newItem = q<PathItemQuery>(this.pathItems().ellipse(top, left, width, height));
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.index(-1);
+
+        return newItem;
+    }
+
+    polygon(name?: string, center?: Position, radius?: number, sides: number = 6): PathItemQuery {
+        var region = this.region();
+        if (center === undefined) center = region.center();
+        if (radius === undefined) radius = Math.min(region.width(), region.height()) / 4;
+    
+        center = region.toAbsolutePosition(center);
+        radius = region.toAbsoluteUnits(radius);
+    
+        var newItem = q<PathItemQuery>(this.pathItems().polygon(center[0], center[1], radius, sides));
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.index(-1);
+
+        return newItem;
+    }
+
+    star(name?: string, center?: Position, radius?: number, innerRadius?: number, points: number = 5, reversed = false): PathItemQuery {
+        var region = this.region();
+        if (center === undefined) center = region.center();
+        if (radius === undefined) radius = Math.min(region.width(), region.height()) / 4;
+        if (innerRadius === undefined) innerRadius = radius / 2;
+    
+        var centerAbs = region.toAbsolutePosition(center);
+        var radiusAbs = region.toAbsoluteUnits(radius);
+        var innerRadiusAbs = region.toAbsoluteUnits(innerRadius);
+    
+        var newItem = q<PathItemQuery>(this.pathItems().star(centerAbs[0], centerAbs[1], radiusAbs, innerRadiusAbs, points, reversed));
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.p().position(center);
+        newItem.index(-1);
+
+        return newItem;
+    }
+
+    line(name?: string, start?: Position, end?: Position): PathItemQuery {
+        var region = this.region();
+    
+        // Default line: horizontally centered across the region
+        var center = region.center();
+        if (start === undefined) start = [(center[0] + region.left()) / 2, center[1]];
+        if (end === undefined) end = [(center[0] + region.right()) / 2, center[1]];
+    
+        // Convert start and end to absolute positions
+        start = region.toAbsolutePosition(start);
+        end = region.toAbsolutePosition(end);
+    
+        // Create a new path item
+        var newItem = this.q().createPathItem();
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.index(-1);
+
+        newItem.item().setEntirePath([
+            [start[0], start[1]], // Start point
+            [end[0], end[1]]      // End point
+        ]);
+
+        newItem.angular(true);
+        newItem.set().closed(false)
+    
+        return newItem;
+    }
+
+    curve(name?: string, ...positions: Position[]): PathItemQuery {
+        // Create a new path item
+        var newItem = this.q().createPathItem();
+        newItem.name(name !== undefined ? name : QueryItem.createAnonymousName(newItem));
+        newItem.index(-1);
+
+        f(positions).do(position => {
+            var point = newItem.pathPoints().createPathPoint();
+            point.anchor(position);
+        });
+
+        newItem.curve(true);
+        newItem.smooth();
+        return newItem;
+    }
+}
+
+class Smoothing {
+    // Bézier handle averaging
+    static bezier(path: PathItemQuery): void {
+        const points = path.pathPoints();
+        if (points.length() < 2) return;
+
+        for (let i = 1; i < points.length() - 1; i++) {
+            const prev = points.at(i - 1).anchor();
+            const current = points.at(i);
+            const next = points.at(i + 1).anchor();
+
+            const deltaX = (next[0] - prev[0]) / 3;
+            const deltaY = (next[1] - prev[1]) / 3;
+
+            current.set()
+                .pointType(PointType.SMOOTH)
+                .leftDirection([current.anchor()[0] - deltaX, current.anchor()[1] - deltaY])
+                .rightDirection([current.anchor()[0] + deltaX, current.anchor()[1] + deltaY]);
+        }
+    }
+
+    // Catmull-Rom Spline smoothing
+    static catmullRomSmooth(path: PathItemQuery): void {
+        const points = path.pathPoints();
+        if (points.length() < 2) return;
+
+        for (let i = 1; i < points.length() - 1; i++) {
+            const prev = points.at(i - 1).anchor();
+            const current = points.at(i);
+            const next = points.at(i + 1).anchor();
+
+            const deltaX = (next[0] - prev[0]) / 6;
+            const deltaY = (next[1] - prev[1]) / 6;
+
+            current.set()
+                .pointType(PointType.SMOOTH)
+                .leftDirection([current.anchor()[0] - deltaX, current.anchor()[1] - deltaY])
+                .rightDirection([current.anchor()[0] + deltaX, current.anchor()[1] + deltaY]);
+        }
+    }
+
+    // Tension-Based Smoothing
+    static tensionSmooth(path: PathItemQuery, tension: number = 0.16): void {
+        const points = path.pathPoints();
+        if (points.length() < 2) return;
+
+        for (let i = 1; i < points.length() - 1; i++) {
+            const prev = points.at(i - 1).anchor();
+            const current = points.at(i);
+            const next = points.at(i + 1).anchor();
+
+            const deltaX = (next[0] - prev[0]) * tension;
+            const deltaY = (next[1] - prev[1]) * tension;
+
+            current.set()
+                .pointType(PointType.SMOOTH)
+                .leftDirection([current.anchor()[0] - deltaX, current.anchor()[1] - deltaY])
+                .rightDirection([current.anchor()[0] + deltaX, current.anchor()[1] + deltaY]);
+        }
+    }
+
+    // B-Spline Smoothing
+    static bSplineSmooth(path: PathItemQuery): void {
+        const points = path.pathPoints();
+        if (points.length() < 4) return; // B-splines require at least 4 control points
+
+        const smoothedAnchors: Position[] = [];
+
+        for (let i = 1; i < points.length() - 2; i++) {
+            const p0 = points.at(i - 1).anchor();
+            const p1 = points.at(i).anchor();
+            const p2 = points.at(i + 1).anchor();
+            const p3 = points.at(i + 2).anchor();
+
+            // Calculate smooth anchor position (weighted average)
+            const smoothX = (p0[0] + 4 * p1[0] + p2[0]) / 6;
+            const smoothY = (p0[1] + 4 * p1[1] + p2[1]) / 6;
+
+            // Influence outgoing direction using p3
+            const deltaX = (p3[0] - p0[0]) / 6;
+            const deltaY = (p3[1] - p0[1]) / 6;
+
+            const adjustedX = smoothX + deltaX;
+            const adjustedY = smoothY + deltaY;
+
+            smoothedAnchors.push([adjustedX, adjustedY]);
+        }
+
+        // Update path points with the smoothed anchors
+        for (let i = 1; i < points.length() - 2; i++) {
+            points.at(i).set()
+                .pointType(PointType.SMOOTH)
+                .anchor(smoothedAnchors[i - 1]);
+        }
+    }
+
+    // Cubic Spline Smoothing
+    static cubicSplineSmooth(path: PathItemQuery): void {
+        const points = path.pathPoints();
+        if (points.length() < 2) return;
+
+        const n = points.length();
+        const h = Array(n - 1);
+        const a = Array(n);
+
+        for (let i = 0; i < n - 1; i++) {
+            const p1 = points.at(i).anchor();
+            const p2 = points.at(i + 1).anchor();
+            h[i] = Math.sqrt((p2[0] - p1[0]) ** 2 + (p2[1] - p1[1]) ** 2);
+            a[i] = p1;
+        }
+
+        for (let i = 1; i < n - 1; i++) {
+            points.at(i).set()
+                .pointType(PointType.SMOOTH)
+                .leftDirection([
+                    a[i][0] - h[i - 1] / 3,
+                    a[i][1] - h[i - 1] / 3
+                ])
+                .rightDirection([
+                    a[i][0] + h[i] / 3,
+                    a[i][1] + h[i] / 3
+                ]);
+        }
+    }
+}
+
+class CreativeItemTests extends AppTestClass {
+    constructor() {
+        super();
+        this.decorateExceptions = false;
+    }
+
+    createGroup(): GroupItemQuery {
+        return this.layer().createGroupItem("Group");
+    }
+
+    testRectangle() {
+        var layer = this.layer();
+
+        var rect = layer.c().rectangle();
+        this.assertEquals(rect.name()[0], ".", "1. rectangle anonymous name should start with period");
+        this.assertEquals(rect.p().position(), [0.5, 0.5], "1. rectangle should have region center");
+        this.assertEquals(rect.p().width(), 0.5, "1. rectangle should have half the width of the region");
+        this.assertEquals(rect.p().height(), 0.5, "1. rectangle should have height equal width");
+        this.assertEquals(rect.index(), 0, "1. rectangle should be the first element");
+
+        var rect = layer.c().rectangle("Rect", [0.3, 0.7], 0.2, 0.44);
+        this.assertEquals(rect.name(), "Rect", "2. rectangle name should be set");
+        this.assertEquals(rect.p().position(), [0.3, 0.7], "2. rectangle position should be its center");
+        this.assertEquals(rect.p().width(), 0.2, "2. rectangle width should be set");
+        this.assertEquals(rect.p().height(), 0.44, "2. rectangle height should be set");
+        this.assertEquals(rect.index(), 1, "2. rectangle should be the second element");
+
+        var group = this.createGroup();
+        var rect = group.c().rectangle();
+        this.assertEquals(rect.name()[0], ".", "3. rectangle anonymous name should start with period");
+        this.assertEquals(rect.p().position(), [0.5, 0.5], "3. rectangle should have region center");
+        this.assertEquals(rect.p().width(), 0.5, "3. rectangle should have half the width of the region");
+        this.assertEquals(rect.p().height(), 0.5, "3. rectangle should have height equal width");
+        this.assertEquals(rect.index(), 0, "3. rectangle should be the first group element");
+
+        var rect = group.c().rectangle();
+        this.assertEquals(rect.index(), 1, "4. rectangle should be the second group element");
+    }
+
+    testEllispe() {
+        var layer = this.layer();
+
+        var ellipse = layer.c().ellipse();
+        this.assertEquals(ellipse.name()[0], ".", "1. ellipse anonymous name should start with period");
+        this.assertEquals(ellipse.p().position(), [0.5, 0.5], "1. ellipse should have region center");
+        this.assertEquals(ellipse.p().width(), 0.5, "1. ellipse should have half the width of the region");
+        this.assertEquals(ellipse.p().height(), 0.5, "1. ellipse should have height equal width");
+        this.assertEquals(ellipse.index(), 0, "1. ellipse should be the first element");
+
+        var ellipse = layer.c().ellipse("Ellipse", [0.3, 0.7], 0.2, 0.44);
+        this.assertEquals(ellipse.name(), "Ellipse", "2. ellipse name should be set");
+        this.assertEquals(ellipse.p().position(), [0.3, 0.7], "2. ellipse position should be its center");
+        this.assertEquals(ellipse.p().width(), 0.2, "2. ellipse width should be set");
+        this.assertEquals(ellipse.p().height(), 0.44, "2. ellipse height should be set");
+        this.assertEquals(ellipse.index(), 1, "2. ellipse should be the second element");
+
+        var group = this.createGroup();
+        var ellipse = group.c().ellipse("Group Ellipse", [0.2, 0.2]);
+        this.assertEquals(ellipse.name(), "Group Ellipse", "3. ellipse should have the right name");
+        this.assertEquals(ellipse.p().position(), [0.2, 0.2], "3. ellipse should have region center");
+        this.assertEquals(ellipse.p().width(), 0.5, "3. ellipse should have half the width of the region");
+        this.assertEquals(ellipse.p().height(), 0.5, "3. ellipse should have height equal width");
+        this.assertEquals(ellipse.index(), 0, "3. ellipse should be the third element");
+
+        var rect = group.c().ellipse("Group Ellipse 2", [0.8, 0.8]);
+        this.assertEquals(rect.index(), 1, "4. ellipse should be the second group element");
+    }
+
+    testPolygon() {
+        var layer = this.layer();
+
+        var polygon = layer.c().polygon();
+        this.assertEquals(polygon.name()[0], ".", "1. polygon anonymous name should start with period");
+        this.assertEquals(polygon.p().position(), [0.5, 0.5], "1. polygon should have region center");
+        this.assertEquals(polygon.index(), 0, "1. polygon should be the first element");
+
+        var polygon = layer.c().polygon();
+        this.assertEquals(polygon.index(), 1, "2. polygon should be the second element");
+
+        var group = this.createGroup();
+        var polygon = group.c().polygon("Polygon", [0.2, 0.8], 0.1, 10);
+        this.assertEquals(polygon.name(), "Polygon", "3. polygon name should be set");
+        this.assertEquals(polygon.p().position(), [0.2, 0.8], "3. polygon should have region center");
+        this.assertEquals(polygon.index(), 0, "3. polygon should be the first element");
+    }
+
+    testStar() {
+        var layer = this.layer();
+
+        var star = layer.c().star();
+        this.assertEquals(star.name()[0], ".", "1. star anonymous name should start with period");
+        this.assertEquals(star.p().position(), [0.5, 0.5], "1. star should have region center");
+        this.assertEquals(star.index(), 0, "1. star should be the first element");
+
+        var star = layer.c().star("star", [0.4, 0.4]);
+        this.assertEquals(star.index(), 1, "2. star should be the second element");
+
+        var group = this.createGroup();
+        var star = group.c().star("star", [0.2, 0.8], 0.1, 0.08, 10);
+        this.assertEquals(star.name(), "star", "3. star name should be set");
+        this.assertEquals(star.p().position(), [0.2, 0.8], "3. star should have region center");
+        this.assertEquals(star.index(), 0, "3. star should be the first element");
+    }
+
+    testLine() {
+        var layer = this.layer();
+
+        var line = layer.c().line();
+        this.assertEquals(line.name()[0], ".", "1. line anonymous name should start with period");
+        this.assertEquals(line.p().position(), [0.5, 0.5], "1. line should have region center");
+        this.assertEquals(line.index(), 0, "1. line should be the first element");
+
+        var line = layer.c().line("Line", [0, 0], [1, 1]);
+        this.assertEquals(line.name(), "Line", "2. line name should be set");
+        this.assertEquals(line.p().position(), [0.5, 0.5], "2. line name should be set");
+        this.assertEquals(line.index(), 1, "1. line should be the second element");
+    }
+
+    testCurve() {
+        var layer = this.layer();
+
+        var line = layer.c().curve("Curve 1", [0.3, 0.3], [0.4, 0.6], [0.6, 0.7], [0.8, 0.8]);
+        this.assertEquals(line.name(), "Curve 1", "1. curve should have name set");
+        this.assertEquals(line.pathPoints().length(), 4, "1. there should be four path points");
+        this.assertEquals(line.index(), 0, "1. curve should be the first element");
+
+        line.angular(true);
+        line.curve(true);
+    }
+}

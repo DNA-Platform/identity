@@ -1,0 +1,115 @@
+Arthur: Annotated inventory saved at 2025/docs/file-inventory-for-expert.md. Here's the printable
+  summary for your expert:
+                                                                                                       2025/
+  ├── business/                                   [blank forms for business filing]                  
+  │   ├── f7004.pdf             Partnership extension (OVERDUE — Mar 15 passed)
+  │   ├── f1065.pdf             Partnership return
+  │   ├── k1_doug.pdf           K-1 for Doug (Member)
+  │   ├── k1_ana.pdf            K-1 for Anastasiia Krasavina (Member)
+  │   ├── it204.pdf             NY partnership return
+  │   ├── it204ip.pdf           NY K-1 for Doug
+  │   ├── f8822b.pdf            Change of Address — LLC needs this (IRS has old addr)
+  │   └── fw7.pdf               ITIN application for Ana
+  │
+  ├── personal/                                   [blank forms for personal filing]
+  │   ├── f1040.pdf             Personal return
+  │   ├── f1040se.pdf           Schedule E (K-1 flows here)
+  │   ├── f1040sd.pdf           Schedule D (restored — IB+Coinbase gains)
+  │   ├── f8949.pdf             Form 8949 detail
+  │   ├── it201.pdf             NY resident return
+  │   └── _removed/README.md    History: why Sch D/8949 were pulled then restored
+  │
+  └── docs/                                       [source documents + analysis]
+      │
+      │  --- LLC formation/identity ---
+      ├── tax-preparation-scope-2025.html        Original scope from expert
+      ├── Digital Narrative Art - W9.pdf         Current W-9 — new address 500 Westover Dr, Sanford  
+  NC
+      ├── Digital Narrative Art LLC  - EIN Assignment Letter.pdf
+      │                                          IRS CP 575 B. EIN 33-4868229. Name control DIGI.    
+      │                                          IRS still has 84 Lebrun Ave (OLD) — 8822-B needed.  
+      ├── Digital Narrative Art LLC - Membership Notification.pdf
+      │                                          Dated 2025-04-22. Members:
+      │                                          Douglas Rubino + Anastasiia Krasavina
+      └── Digital Narrative Art LLC - WY Filing Evidence.pdf
+                                                 WY SoS Articles filed 2025-04-15.
+                                                 WY record ALSO has 84 Lebrun (OLD).
+                                                 RA: Wyoming Registered Agent Services LLC, Sheridan 
+  WY.
+      │
+      │  --- IRS transcripts ---
+      ├── irs_wage_income_2025.pdf               "Requested data not found" (1 pg) — proves no 2025  
+  info returns exist
+      ├── irs_wage_income_2024.pdf               19 pg baseline — not for 2025 filing
+      ├── irs_account_2024.pdf                   2024 filing snapshot (most recent; 2025 doesn't     
+  exist yet)
+      ├── jpmorgan_1098_2024.pdf                 Sample doc proving download works — reference only  
+      └── report-irs-1099s-investigation.md      Full writeup of 1099-S investigation
+      │
+      │  --- Interactive Brokers ---
+      ├── U2257053.2025.F1099R.pdf               1099-R: $46,500 IRA distro, $4,650 withheld, code 1 
+  (early, 10% penalty)
+      ├── U1934913.2025.1099.pdf                 Consolidated 1099: INT $19.93, DIV $562.86
+  qualified,
+      │                                          foreign tax $78.37, 1099-B short-term gain $1,218.08
+      ├── U1934913.2025.8949.pdf                 8949 worksheet — 4 stocks (AAPL, NVDA, RDDT, WIT)   
+      ├── U1934913.2025.dividend-report-2025.txt Div detail — India/S.Korea foreign-sourced
+      └── report-ib-coinbase-extracted-numbers.md Raw extraction (superseded by crypto memo)
+      │
+      │  --- Coinbase ---
+      ├── coinbase-form-1099-da-2025.pdf         1099-DA: $16,685.80 proceeds total
+      ├── crypto-basis-and-gains-2025.md         EXPERT MEMO — full Form 8949 data.
+      │                                          Total cap gains: $10,011.46
+      │                                          ($1,035.01 ST + $8,976.45 LT)
+      ├── btc-price-2019-08-14-coingecko.png     Audit file: actual close $10,016.22 (memo used      
+  ~$11,000)
+      └── btc-price-2019-08-14-coinmarketcap.png Second-source attempt
+      │
+      │  --- Mercury (LLC banking) ---
+      ├── mercury_2025.csv                       400 tx, May 14 – Dec 31, 2025, Checking xx5819      
+      ├── mercury_statements_2025.zip            24 statements zipped
+      ├── mercury_statements_2025/               Unpacked:
+      │     ├── 5819 (checking) × 8 months       Real account — all activity here
+      │     ├── 5868 (savings) × 8 months        $0.00 every month — unused
+      │     └── choice-sweep × 8 months          FDIC pass-through only — no tx
+      └── mercury-categorized-2025.md            *** THE KEY REPORT FOR THE EXPERT ***
+                                                 Revenue $14,616.83 | Doug capital $16,000
+                                                 Core biz $4,891.62 | GoDaddy $11,033 (TBD)
+                                                 Ana total $12,418.33 (TBD guaranteed payment vs     
+  distribution)
+                                                 Four scenarios with net ranging $(13,726) loss →    
+  $9,296 profit
+      │
+      └── file-inventory-for-expert.md            THIS FILE — annotated inventory
+
+  Arthur: The two docs the expert needs to actually read:
+
+  Arthur: 1. mercury-categorized-2025.md — the LLC P&L analysis with all the open decisions
+  Arthur: 2. file-inventory-for-expert.md — this annotated inventory (the same information, plus the 
+  9 specific decisions we need from them)
+
+  Arthur: Headline numbers the expert needs to make calls on:
+
+  ┌───────────────────────────────┬────────────┬─────────────────────────────────────────────────┐   
+  │           Question            │   Amount   │                     Options                     │   
+  ├───────────────────────────────┼────────────┼─────────────────────────────────────────────────┤   
+  │ GoDaddy domain treatment      │ $11,033.16 │ Expense immediately OR §197 amortize 15 years   │   
+  │                               │            │ (~$429 Y1)                                      │   
+  ├───────────────────────────────┼────────────┼─────────────────────────────────────────────────┤   
+  │ Ana's total outflow           │ $12,418.33 │ Guaranteed payment (line 10) OR distribution    │   
+  │ classification                │            │ (line 19a)                                      │   
+  ├───────────────────────────────┼────────────┼─────────────────────────────────────────────────┤   
+  │ Form 7004 late-filing path    │ —          │ File with late explanation? Skip and file 1065  │   
+  │                               │            │ directly?                                       │   
+  └───────────────────────────────┴────────────┴─────────────────────────────────────────────────┘   
+
+  Arthur: New findings from the two LLC docs I just read:
+  - Ana's legal name: Anastasiia Krasavina (from the Membership Notification) — you can fill out her 
+  W-7 with confidence now
+  - LLC formation: April 15, 2025 (WY SoS)
+  - Members effective: April 22, 2025
+  - Wyoming SoS ALSO has the old 84 Lebrun address — so we may need a second address change filing at
+   the state level, not just IRS Form 8822-B
+
+  Arthur: Ready to share. Want me to format this any differently for the expert, or is the inventory 
+  + the mercury-categorized doc enough to hand over?

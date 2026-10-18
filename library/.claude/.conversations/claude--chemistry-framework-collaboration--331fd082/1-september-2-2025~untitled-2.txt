@@ -1,0 +1,270 @@
+"use client"
+import React, { ReactNode, ReactElement, useState, useRef, useEffect } from 'react';
+import stringify from 'fast-safe-stringify';
+import { consumeDynamicAccess } from 'next/dist/server/app-render/dynamic-rendering';
+import { isCustomErrorPage } from 'next/dist/build/utils';
+import { GSP_NO_RETURNED_VALUE } from 'next/dist/lib/constants';
+
+// Core framework types
+type Constructor<T = {}> = new (...args: any[]) => T;
+type Type<T = any> = Constructor<T>;
+type Setter<T = any> = (value: T) => void;
+
+type Properties<T> = {
+    [K in keyof T as K extends `$${infer Rest}` ? Rest : never]: T[K]
+} & {
+    children?: ReactNode;
+};
+
+interface ChemicalComponent extends React.FC<any> {
+    chemical: $Chemical;
+    isChemical: boolean;
+    isBound: boolean;
+}
+
+// Symbols on $Chemical
+const inertPropertiesSymbol = Symbol('inertProperties');
+const dynamicPropertiesSymbol = Symbol('comparisons');
+const updateFunctionsSymbol = Symbol('updateFunctions');
+
+export class $Chemical {
+    @inert()
+    private _diagram!: Diagram;
+
+    @inert()
+    get chemicalId() { return this._id; }
+    private _id: number;
+
+    @inert()
+    get formula(): this { return this.getType()._formula as any; }
+
+    @inert()
+    get formulaId() { return this.formula.chemicalId; }
+
+    @inert()
+    get Component(): React.FC<Properties<this>> { return this._component!; }
+    private _component?: React.FC<Properties<this>>;
+
+    @inert()
+    get reactive(): boolean { return this._reactive; } 
+    private _reactive: boolean = true;
+
+    @inert()
+    children?: ReactNode;
+
+    @parent($Chemical)
+    parent: $Chemical | undefined;
+
+    $on?: Setter;
+
+    constructor() {
+        this._id = $Chemical.getNextChemicalId();
+        const type = this.getType();
+        if (!type._formula) {
+            type._formula = this;
+            this._diagram = new Diagram(type);
+        } else {
+            this._diagram = this.formula._diagram.duplicate();
+        }
+    }
+
+    construct(parent?: $Chemical): this {
+        const formula = this.getType()._formula;
+        const chemical = Object.create(this);
+        
+        chemical._bonds = [];
+        chemical[updateFunctionsSymbol] = [];
+        chemical.parent = parent;
+        return chemical as this;
+    }
+
+    // Override this to control rendering
+    view(): ReactNode {
+        // Default implementation shows the existing children from the props
+        return this.children;
+    }
+
+    reactivate() {
+        this._reactive = true;
+        // Make the properties reactive
+    }
+
+    deactivate() {
+        this._reactive = false;
+    }
+
+    update(): void {
+        if (!this._reactive) return;
+        const updates = (this as any)[updateFunctionsSymbol];
+        if (Array.isArray(updates))
+            updates.map(update => update());
+    }
+
+    getType<T extends Type = typeof $Chemical>(): T {
+        return this.constructor as any;
+    }
+
+    private assignComponent(): void {
+        const formula = this.getType()._formula;
+        if (this === formula && formula._component)
+            return;
+        
+        this._component = (props: any) => {
+            let chemical = this;
+            if (chemical === formula)
+                chemical = this.construct();
+
+            // Set up this component's update function
+            const chemicalDynamic = chemical as any;
+            const [, update] = useState({});
+            const updateFunc = () => update({});
+            chemicalDynamic[updateFunctionsSymbol].push(updateFunc)
+            chemical.bindProps(props);
+
+            // Clean up on unmount
+            useEffect(() => {
+                return () => {
+                    const updateFunctions: (() => void)[] = chemicalDynamic[updateFunctionsSymbol];
+                    chemicalDynamic[updateFunctionsSymbol] = updateFunctions.filter((f: any) => f !== updateFunc);
+                };
+            }, []);
+
+            return chemical.view();
+        }
+
+        const component = this._component as ChemicalComponent;
+        component.chemical = this;
+        component.isChemical = true;
+        component.isBound = this !== formula;
+    }
+
+    private bindProps(props: any) {
+        const self = this as any;
+        if (props.children) 
+            this.children = props.children;
+        for (const key in props)
+            if (key !== 'children' && key !== 'key' && key !== 'ref') 
+                self['$' + key] = props[key];
+    }
+
+    private static _formula: $Chemical;
+    static get formula(): $Chemical { return this._formula; }
+
+    private static nextChemicalId = 1;
+    private static getNextChemicalId(): number { return $Chemical.nextChemicalId++; }
+}
+
+class Diagram {
+    private _bonds: Bond[] = [];
+    get bonds(): Bond[] { return this._bonds; }
+    get props() { return this.bonds.filter(b => b.isProp); }
+    get chemicals() { return this.bonds.filter(b => b.isChemical); }
+    constructor(type: Type) {
+        // Use the prototype chain back to $Chemical to create the bonds
+    }
+
+    duplicate(): this {
+        const diagram = Object.create(this) as this;
+        diagram._bonds = this.bonds.map(b => b.duplicate());
+        return this;
+    }
+}
+
+class Bond {
+    private _id: number;
+    get id() { return this._id; }
+    type: Type;
+    property: string;
+    isConfigured: boolean;
+    private _isReactive = false;
+    get isReactive() { return this.isInert ? false : this._isReactive; }
+    set isReactive(value: boolean) { this.isReactive = true; }
+    isCollective = false;
+    isObjective = false;
+    isRequired = false;    
+    isInert = false;
+    isProp = false;
+    isChemical = false;
+    isImplicitlyBound = false;
+    isExplicitlyBound = false;
+    isSettable = true;
+    synonyms: Bond[] = [];
+    comparer?: (first: any, second: any) => boolean;
+    constructor(property: string, type: Type) {
+        this._id = Bond.getNextBondId();
+        this.property = property;
+        this.type = type;
+        this.isConfigured = false;
+        this.isReactive = false;
+    }
+
+    reactivate(chemical: $Chemical): void {
+        if (chemical === chemical.getType().formula)
+            throw Error('Formulas should not have activated properties');
+        // Imagine this is called on the instance of the class
+        if (this.isConfigured && this.isReactive) return;
+        if (this.isConfigured) {
+            this.isReactive = true;
+            return;
+        }
+
+        const thisBond = this;
+        const dynamicChemical: any = chemical;
+        const backingField = Symbol(`_${this.property}${this.id}`);
+        const getValue: () => any = () => { return dynamicChemical[backingField]; }
+        const setValue: (value: any) => void = (value) => { dynamicChemical[backingField] = value; }
+        setValue(dynamicChemical[this.property]);
+        
+        const property = Object.defineProperty(dynamicChemical, this.property, {
+            get() {
+                if (thisBond.isInert)
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is inert and should not be bound to a reactive property.`);
+                if (thisBond.isReactive && thisBond.isObjective || thisBond.isCollective) {
+                    const currentValue = getValue();
+                    setTimeout(() => {
+                        if (!thisBond.isReactive) return;
+                        const nextValue = getValue();
+                        if (currentValue === nextValue) return;
+                        if (!thisBond.equivalent(currentValue, nextValue)) {
+                            chemical.update();
+                        }
+                    })
+                }
+                return getValue();
+            },
+            set(value: any) {
+                if (thisBond.isInert)
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is inert and should not be bound to a reactive property.`);
+                if (!this.isSettable)
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is not settable.`)
+                if (this.isRequired && (value === null || value === undefined))
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is required to have a value.`)
+                
+                const previousValue = getValue();
+                setValue(value);
+
+                if (!thisBond.isReactive) return;
+                if (!thisBond.equivalent(previousValue, value))
+                    chemical.update();
+            },
+            enumerable: true,
+            configurable: true
+        });
+
+        this.isConfigured = true;
+        this.isReactive = true;
+    }
+
+    equivalent(first: any, second: any) {
+        return this. comparer ? this.comparer(first, second) : first === second;
+    }
+
+    duplicate(): this {
+        const double = Object.create(this);
+        double._id = Bond.getNextBondId();
+        return double;
+    }
+
+    private static nextBondId = 1;
+    private static getNextBondId(): number { return Bond.nextBondId++; }
+}

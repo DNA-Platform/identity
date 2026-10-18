@@ -1,0 +1,81 @@
+# SVG Metadata for Adobe Stock
+
+> Research findings on embedding metadata in SVG files for stock submission.
+> **Last updated with verified findings — see "The Real Answer" below.**
+
+## The Real Answer
+
+**Illustrator STRIPS metadata from SVG files when opening them.** This is a confirmed, unresolved Adobe bug since 2017, still broken as of April 2025.
+
+Source: [Adobe UserVoice Bug #31818979](https://illustrator.uservoice.com/forums/601447-illustrator-bugs/suggestions/31818979-meta-data-in-svg-file-ignored) — "Meta data defined in a svg file are ignored by AI when opening file so no longer available once the file is saved." Confirmed by multiple users including Bradley Smith (April 2025): "SVG files still do not keep the meta data. i can add keywords and information in other apps even bridge but once they're opened in illustrator it removes them all."
+
+Adobe's Dirk Schulze acknowledged the issue (March 2018) and marked it "Under Review" but it was never fixed.
+
+**This means**: No matter what XMP, Dublin Core, or metadata we embed in SVG files, Illustrator will discard it on open. Our previous XMP packet approach was technically correct XML but pointless because Illustrator ignores it.
+
+## The Workflow
+
+```
+DNA Atlas (SVG) → Ana/Illustrator (edits, Save As EPS) → We embed metadata in EPS → Upload
+```
+
+## What Actually Works for EPS Metadata
+
+### Option A: Xpiks (RECOMMENDED — verified tool for this exact workflow)
+
+[Xpiks](https://xpiksapp.com/) is a free/paid tool built specifically for microstock contributors. It is **one of the few tools that can write metadata directly to EPS vector files** — not just JPEG previews. ([Source](https://xpiksapp.com/blog/metadata/))
+
+Workflow:
+1. Ana saves EPS files from Illustrator → drops them in `bin/maps/iran-news/`
+2. Open EPS files in Xpiks
+3. Xpiks can **import metadata from CSV** (filename-matched)
+4. We provide a CSV with our pre-researched titles, descriptions, and 49 keywords
+5. Xpiks embeds metadata into the EPS files
+6. Upload to Adobe Stock from Xpiks or separately
+
+**Why Xpiks**: It handles Illustrator-generated EPS files (unlike ExifTool which refuses). It supports CSV import for batch operations. It's the industry standard tool for microstock metadata workflows.
+
+### Option B: ExifTool on EPS (RISKY — may not work on Illustrator EPS)
+
+ExifTool can write XMP to EPS files, **but refuses on Illustrator-generated EPS** if it detects the Illustrator header. Phil Harvey (ExifTool author): "ExifTool will refuse to write XMP to EPS files if it identifies them as Illustrator files." ([Source](https://exiftool.org/forum/index.php?topic=10154.0))
+
+Workaround exists (change PS-Adobe version header) but is fragile and may corrupt files.
+
+### Option C: Adobe Bridge batch metadata
+
+1. Open Ana's EPS files in Adobe Bridge
+2. Use **Tools > Append Metadata** with a template
+3. Bridge writes XMP into the files
+
+Works but requires Bridge installed and manual template setup.
+
+## What We Deliver
+
+### 1. The SVG files (art for Ana to edit)
+`bin/maps/iran-news/*.svg`
+
+### 2. A metadata CSV (for Xpiks import)
+`bin/maps/iran-news/metadata.csv` — filename, title, description, keywords columns. Xpiks matches by filename.
+
+### 3. Individual .metadata.txt files (human-readable backup)
+One per SVG with title, description, keywords formatted for copy-paste into File > File Info if needed.
+
+### 4. The metadata config (for our tooling)
+`scripts/metadata-config.js` — 49 keywords per map, research-validated against competitor listings.
+
+## Adobe Stock Spec (verified)
+
+- **Keywords**: Hard limit **49**. First 10 have the most weight in search placement.
+- **Title**: 70 chars recommended for search display (longer still indexed).
+- **Keyword order**: "Keyword order is critical. Arrange keywords in order of importance."
+- **Prohibited**: brand names, artist names, fictional characters, camera specs.
+- **Format**: `.AI` (preferred), `.EPS`, or `.SVG`. Vectors should have organized, labeled layers.
+
+## Sources
+
+- [Adobe Bug: SVG metadata ignored](https://illustrator.uservoice.com/forums/601447-illustrator-bugs/suggestions/31818979-meta-data-in-svg-file-ignored) — confirmed 2017-2025
+- [ExifTool: XMP in Illustrator EPS disabled](https://exiftool.org/forum/index.php?topic=10154.0)
+- [How to Add Keywords to AI Files](https://anatechconsultancy.com/blog/how-do-you-add-keywords-to-ai-files/) — File > File Info is the way
+- [Adobe Bridge Metadata Templates](https://helpx.adobe.com/bridge/using/metadata-adobe-bridge.html)
+- [Adobe Stock Titles and Keywords](https://helpx.adobe.com/stock/contributor/help/titles-and-keyword.html)
+- [Adobe Stock Vector Requirements](https://helpx.adobe.com/stock/contributor/help/vector-requirements.html)

@@ -1,0 +1,86 @@
+Arthur's review of the field completion guide
+                                                                                                     
+  I read the guide end-to-end. Patrick enumerated every PDF in the filing set (14 forms, 2,373 total 
+  AcroForm fields) and extracted visible labels via pdfjs. Then I compared structure to coverage.      Here's what we found.                                                                                                                                                                                     🔴 Critical errors in the guide                                                                    
+
+  1. Form 1065 Page 1 line numbers are off by one. The guide says "Line 21 = Total deductions, Line  
+  22 = Ordinary loss." The actual 2025 form is Line 22 = Total deductions, Line 23 = Ordinary loss.  
+  Plus Lines 24–32 (look-back interest, BBA AAR, taxes, payments, overpayment) are not addressed at  
+  all. All $0 for our case but the lines exist.
+  2. Schedule D Line 6 "Box H" is wrong. The guide says "Line 6 Short-term gain from Form 8949 Box   
+  H." Schedule D Line 6 is actually "Short-term capital loss carryover." Box H entries don't have a  
+  dedicated Schedule D line — they flow into Line 3 (Box C "basis not reported"). Need expert        
+  confirmation on this.
+  3. Date typo: Guide says "04/13/2026" in the HOW TO USE section. Today (filing date) is 04/14/2026.
+
+  🔴 Major coverage gaps
+
+  4. Form 1065 Schedule B has 33 questions, guide covers ~16. Missing entirely: Q11–13a, 14, 16a     
+  (called "13" by the guide), 17–18, 20–29, 32, 33. Most are "No" but Q30 (digital asset question)   
+  needs a deliberate answer (No, since the LLC didn't hold crypto — Doug personally did) and Q19     
+  (foreign person payments) needs the expert to reconcile. The guide says Yes for Q19, but if Ana's  
+  GP isn't US-source FDAP, Q19 should be No.
+  5. IT-204 has 151 lines across 9 pages. Guide covers ~10 lines. Sections completely uncovered:     
+    - Section 2 detail (Lines 1–26, federal income/deduction line-by-line)
+    - Section 3 COGS (Lines 27–39, all $0)
+    - Section 4 Balance sheets (Lines 40–65)
+    - Section 5 M-1 reconciliation (Lines 66–84)
+    - Section 7 Partners' share / federal Schedule K mirror (Lines 86–106) — this is critical, has   
+  real numbers
+    - Section 8 NY modifications (Lines 107–115)
+    - Section 9 Other info (Lines 116–117)
+    - Section 10 NY allocation (Lines 118–126)
+    - Section 11 Credits (Lines 127–151)
+  6. IT-204-IP has 55 lines across 5 pages, guide covers ~5. The guide says "all NY income lines = 0"
+   — but each line has TWO columns (federal amount + NY-source amount). Doug's federal K-1 numbers go
+   in column A; only column B (NY source) is $0. The guide's wording is misleading.
+  7. IT-201 missing critical lines:
+    - Line 9 (NY IRA distributions, $46,500) — separate from federal AGI flow
+    - Line 28 (US gov bond interest subtraction) — need to check if any of Doug's $19.93 IB interest 
+  is from US Treasuries
+    - Line 29 (Pension exclusion) — doesn't apply since Doug is 42, but should be confirmed
+    - Line 59 (Sales/use tax) — explicit "do not leave blank" — must enter 0
+    - Line 81 (NY underpayment penalty) — Doug had $0 NY withholding on IRA distribution, may owe NY 
+  penalty
+
+  Signature/date/initials inventory (Doug's specific request)
+
+  Tracked separately for every form. Key callouts:
+  - K-1 Doug, K-1 Ana, IT-204-IP, Schedule D, Form 8949, Schedule E, Form 5329 — NO separate
+  signatures (these are partner copies or attachments)
+  - Form W-7 — Ana must sign personally (not Doug)
+  - Form 5329 — only signed if filed standalone; we attach to 1040 so no separate sig
+  - Date everywhere = 04/14/2026 (not 04/13 as the guide says)
+
+  Patrick's tooling readiness
+
+  Patrick: I can fill any of these PDFs end-to-end. Form 8822-B is already done. The other 12 will   
+  take roughly the same effort each, once the data is in. I have:
+  - AcroForm field discovery working on every form (verified 2,373 fields total)
+  - pdfjs ground-truth coordinate extraction working
+  - Stealth black Helvetica Bold + flatten + signature embedding pipeline proven
+  - Field map convention established
+
+  I'm waiting on the expert's resolution of the 14 questions in the report before Patrick fills the  
+  next form.
+
+  14 specific questions back to the expert
+
+  The full report has them all numbered. Most important:
+  - Q1. Confirm 1065 line numbering correction (22 not 21 for total deductions)
+  - Q2. Schedule B Q19 — Yes or No?
+  - Q3. Schedule B Q30 — confirm No for the partnership
+  - Q5. Schedule D Box H/K — does it go on Lines 3/10, or is there a 2025 update we missed?
+  - Q6. IT-204 Section 7 (Lines 86–106) per-line numbers please
+  - Q7. IT-204 Section 4/5 — does small partnership exception apply on the NY side?
+  - Q9–11. IT-201 Lines 9, 28, 81 specifics
+
+  Inventory artifacts
+
+  - 2025/docs/field-guide-comparison-report.md — the full report (this comparison)
+  - .claude/perspectives/arthur/all-form-labels.md — pdfjs label extraction for every form (71KB,    
+  1,126 lines)
+  - tools/enumerate-fields.js, tools/enumerate-all.js, tools/extract-form-labels.mjs,
+  tools/inventory-all-forms.mjs — reusable tooling
+
+  The full report is ready to send to the expert verbatim.

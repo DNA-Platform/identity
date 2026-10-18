@@ -1,0 +1,3444 @@
+interface Item {
+    [key: string]: any;
+    name?: string;
+    hidden?: boolean;
+    readonly typename: string;
+    readonly parent: any;
+    readonly length?: number;
+    readonly geometricBounds?: Rect;
+    selected?: any;
+    remove?(): void;
+    removeAll?(): void;
+    getIndex?(): number;
+    getByName?(name: string): Item;
+    add?(...args: any[]): Item;
+    insert?(...args: any[]): void;
+    duplicate?(relativeObject: object, insertionLocation: ElementPlacement): Item;
+    move?(relativeObject: object, insertionLocation: ElementPlacement): Item;
+    q: Queryable<this, any>;
+}
+
+class EmptyItem implements Item {
+    name: string = "";
+    typename: string = "EMPTY";
+    parent: Application = app;
+    length: number = 0;
+    geometricBounds: Rect = [0, 0, 0, 0];
+    selected: any = false;
+    remove(): void { }
+    removeAll(): void { }
+    getIndex(): number { return -1; }
+    getByName(name: string): Item { return this; }
+    add(...args: any[]): Item { return this; }
+    insert(...args: any[]): void { }
+    duplicate(relativeObject: object, insertionLocation: ElementPlacement): Item { return this; }
+    move?(relativeObject: object, insertionLocation: ElementPlacement): Item { return this; }
+    q: Queryable<this, any> = undefined as any;
+
+    private constructor() { }
+
+    private static _empty: EmptyItem;
+    static empty(): EmptyItem {
+        if (EmptyItem._empty) return EmptyItem._empty;
+        EmptyItem._empty = new EmptyItem();
+        return EmptyItem._empty;
+    }
+}
+
+interface ItemCollection extends Array<any> {
+    readonly length: number
+    readonly parent: object
+    readonly typename: string
+    getByName(name: string): any
+}
+
+class QueryItem {
+    _item: any;
+    id: number;
+    itemType: string;
+    itemDefaults: any;
+    queryItemType: string;
+    queryItemDefaults: any;
+    queryType: string;
+    queryDefaults: any;
+    collectionType: CollectionType | undefined;
+    
+    _p: PositionedItem | undefined;
+    p(): PositionedItem {
+        if (this._p === undefined)
+            this._p = new PositionedItem(this as any);
+        return this._p;
+    }
+
+    set(name?: string): SetProperties { return new SetProperties(this, name); }
+
+    name(value?: string): string {
+        if (value !== undefined) {
+            this._item.name = value;
+            return this._item.name;
+        }
+        return this._item?.name ? this._item.name.toString() : "";
+    }
+
+    app(): ApplicationQuery { return api; }
+    parent(): QueryItem { return this._item.parent ? q(this._item.parent) : QueryItem.empty() as any; }
+    empty(): boolean { return this._item.typename === "EMPTY"; }
+    activated(): boolean { return !!this._item?.selected; }
+    activate(): QueryItem { if (this._item) { this._item.selected = true; } return this; }
+    deactivate(): QueryItem { if (this._item) { this._item.selected = false; } return this; }
+    hide(): QueryItem { if (this._item.hidden !== undefined) { this._item.hidden = true; } return this; }
+    hidden(): boolean { return this._item.hidden === true; }
+    show(): QueryItem { if (this._item.hidden !== undefined) { this._item.hidden = false; } return this; }
+    visible(): boolean { return this._item.hidden !== true; }
+    length(): number { return 0; }
+    enumerable(): boolean { return this.collectionType !== undefined; }
+    positionable(): boolean { return (this._item as PageItem)?.position !== undefined; }
+    collection(): any | any[] { return this.collectionType !== undefined ? (this._item as any)[this.collectionType] : []; }
+
+    document(): DocumentQuery {
+        if (this.empty()) return this as any;
+        let currentItem = this._item;
+        while (currentItem) {
+            if (currentItem.typename === "Document")
+                return q(currentItem);
+            currentItem = currentItem.parent;
+        }
+        return QueryItem.empty() as DocumentQuery;
+    }
+
+    artboard(): ArtboardQuery {
+        if (this.empty()) return this as any;
+        return this.document().artboard();
+    }
+
+    layer(): LayerQuery {
+        if (this.empty()) return this as any;
+        return this.document().layer();
+    }
+
+    region(): Region {
+        return this.artboard().region();
+    }
+
+    constructor(item: any = EmptyItem.empty(), collectionType?: CollectionType) {
+        this._item = item;
+        this._item.q = this;
+        this.id = QueryItem.nextId();
+        this.itemType = this._item?.typename ?? "EMPTY";
+        this.queryItemType = this.constructor.name;
+        this.queryType = `${this.queryItemType}<${this.itemType}>`;
+        this.collectionType = collectionType;
+
+        if (QueryItem._itemDefaults[this.itemType] === undefined)
+            QueryItem._itemDefaults[this.itemType] = {}
+        if (QueryItem._queryItemDefaults[this.queryItemType] === undefined)
+            QueryItem._queryItemDefaults[this.queryItemType] = {}
+        if (QueryItem._queryDefaults[this.queryType] === undefined)
+            QueryItem._queryDefaults[this.queryType] = {}
+
+        this.itemDefaults = QueryItem._itemDefaults[this.itemType];
+        this.queryItemDefaults = QueryItem._queryItemDefaults[this.queryItemType];
+        this.queryDefaults = QueryItem._queryDefaults[this.queryType];
+        this._configureDefaults();
+    }
+
+    cast<T extends QueryItem>() {
+        return this as any as T
+    }
+
+    equals(item: QueryItem): boolean {
+        if (item === undefined) return false;
+        return this._item == item._item;
+    }
+
+    remove() {
+        this._item?.remove?.();
+        this._item = QueryItem.empty();
+    }
+
+    removeIfEmpty(): boolean {
+        var empty = this.empty();
+        if (empty)
+            this.remove();
+        return empty;
+    }
+
+    duplicate(name: string, relativeObject?: QueryItem, insertionLocation: ElementPlacement = ElementPlacement.PLACEAFTER): Queryable<any, any> {
+        if (relativeObject === undefined) relativeObject = this;
+        var duplicate = this._item?.duplicate?.(relativeObject._item, insertionLocation);
+        duplicate.name = name;
+        return q(duplicate);
+    }
+
+    move(relativeObject: QueryItem, insertionLocation: ElementPlacement): void {
+        this._item?.move?.(relativeObject._item, insertionLocation);
+    }
+
+    moveTo(index: number): this { 
+        return this; 
+    }
+
+    protected _create<TCollection extends ItemCollection, TQuery extends QueryItem>(
+        select: (item: this) => TCollection, 
+        create: (colletion: TCollection) => TQuery,
+        name?: string
+    ): TQuery {
+        var collection = select(this);
+        var queryItem = create(collection);
+        if (name !== undefined)
+            queryItem.set().name(name);
+        var item: Item = queryItem._item;
+        item?.move?.(queryItem.parent()._item, ElementPlacement.PLACEATEND);
+        return queryItem;
+    }
+
+    protected _configureDefaults() { }
+
+    static createAnonymousName(item: QueryItem): string {
+        if (!item) return `.Item[${item}]`;
+        return `.${item.itemType ? item.itemType : "Item"}[${item.id}]`;
+    }
+
+    private static _empty: QueryItem;
+    static empty(): QueryItem {
+        if (QueryItem._empty) return QueryItem._empty;
+        QueryItem._empty = new Queryable<any, any>(EmptyItem.empty(), undefined);
+        QueryItem._empty._item.q = QueryItem._empty;
+        return QueryItem._empty;
+    }
+
+    private static _nextId: number = 1;
+    private static nextId(): number {
+        var nextId = QueryItem._nextId;
+        QueryItem._nextId += 1;
+        return nextId;
+    }
+
+    private static _itemDefaults = dictionary();
+    private static _queryItemDefaults = dictionary();
+    private static _queryDefaults = dictionary();
+}
+
+class Queryable<I extends Item, T extends QueryItem> extends QueryItem {
+    item(): I { return this._item; }
+    active(): boolean { return !!this._item.selected; }
+    inactive(): boolean { return !this.active(); }
+    activate() { this._item.selected = true; return this; }
+    deactivate() { this._item.selected = false; return this; }
+
+    constructor(item: I, collectionType?: CollectionType) {
+        super(item, collectionType);
+        this._item = item;
+    }
+
+    query(selector: string = ":"): A<T> {
+        var collection = this.collection();
+        if (collection.length == 0) return f();
+        var indexes = evaluateRangeSelector(selector, collection.length)
+        var len = indexes.length;
+        var result: A<T> = f();
+        for (var i = 0; i < len; i++) {
+            var item = collection[indexes[i]];
+            if (item)
+                result.push(q(item));
+        }
+
+        return result;
+    }
+
+    index(newIndex?: number): number {
+        if (newIndex !== undefined) {
+            var index = this.index();
+            var parent = this.parent() as Queryable<any, any>;
+
+            newIndex = evaluateNegativeIndex(newIndex, parent.length());
+            if (index == newIndex) 
+                return index;
+            if (index < newIndex)
+                this.move(parent.at(newIndex), ElementPlacement.PLACEAFTER);
+            if (index > newIndex)
+                this.move(parent.at(newIndex), ElementPlacement.PLACEBEFORE);
+        }
+        return (this.parent() as Queryable<any, any>).firstIndex(i => i._item == this._item);
+    }
+
+    create(name?: string): T {
+        var collection = this.collection() as any;
+        var newItem = q(collection.add()) as T;
+        if (name !== undefined)
+            newItem.name(name);
+
+        if (this.length() > 1)
+            newItem.move(this.last() as T, ElementPlacement.PLACEAFTER);
+
+        return newItem;
+    }
+
+    moveTo(index: number): this {
+        if (index == undefined) throw "Index not specified";
+        this.index(index);
+        return this;
+    }
+
+    reverse(selector: string = ":"): A<T> {
+        return this.query(selector).reverse();
+    }
+
+    at(index: number): T {
+        return this.query(`${index}`).at(0);
+    }
+
+    get(selector: string): A<T> {
+        return this.query(selector);
+    }
+
+    getByName(name: string): Queryable<any, any> {
+        var collection = this.collection() as any;
+        return q(collection?.getByName?.(name));
+    }
+
+    length(): number { return this.collection().length; }
+
+    replace(index: number, item: T): void {
+        var itemAtIndex = this.at(index);
+        item.move(itemAtIndex, ElementPlacement.PLACEBEFORE);
+        itemAtIndex.remove?.();
+    }
+
+    insert(item: T) {
+        this.insertAt(-1, item);
+    }
+
+    insertAt(index: number, item: T): void {
+        var len = this.length();
+        index = evaluateNegativeInsertIndex(index, len);
+        if (index == 0) {
+            item._item.move(this.item(), ElementPlacement.PLACEATBEGINNING);
+            return;
+        }
+        if (index == len) {
+            item._item.move(this.item(), ElementPlacement.PLACEATEND);
+            return;
+        }
+        var itemBeforeIndex = this.at(index - 1);
+        item.move(itemBeforeIndex, ElementPlacement.PLACEAFTER);
+    }
+
+    insertMany(items: T[] | A<T>) {
+        f(items).do(item => this.insert(item));
+    }
+
+    insertManyAt(index: number, items: A<T>) {
+        var len = items.length();
+        index = evaluateNegativeInsertIndex(index, this.collection.length);
+        for (var i = 0; i < len; i++) {
+            this.insertAt(index + i, items.at(i));
+        }
+    }
+
+    delete(item: T) {
+        item.remove();
+    }
+
+    deleteMany(items: A<T>) {
+        items.do(item => item.remove());
+    }
+
+    deleteAt(index: number, count: number = 1) {
+        for (var i = 0; i < count; i++)
+            this.delete(this.at(index)._item);
+    }
+
+    removeAll() {
+        this.query().do(item => { item.remove() });
+    }
+
+    forEach(callback: (item: T, index?: number) => any | void): any | void {
+        return this.query().forEach(callback);
+    }
+
+    do(callback: (item: T, index?: number) => any | void): any | void {
+        return this.query().forEach(callback);
+    }
+
+    doOnce(callback: (item: T, index?: number) => boolean): boolean {
+        var collection = this.collection();
+        for (let i = 0; i < collection.length; i++) {
+            if (callback(q(collection[i]), i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    select<U>(selector: (item: T) => U): A<U> {
+        return this.query().select(selector);
+    }
+
+    where(predicate: (item: T) => boolean): A<T> {
+        return this.query().where(predicate);
+    }
+
+    whereNameMatches(pattern: RegExp): A<T> {
+        return this.where(item => pattern.test(item.name()));
+    }
+
+    // Simple string pattern matchers that use whereNameMatches
+    whereNameStartsWith(prefix: string): A<T> {
+        return this.whereNameMatches(new RegExp(`^${this._escapeRegExp(prefix)}`));
+    }
+
+    whereNameEndsWith(suffix: string): A<T> {
+        return this.whereNameMatches(new RegExp(`${this._escapeRegExp(suffix)}$`));
+    }
+
+    whereNameContains(substring: string): A<T> {
+        return this.whereNameMatches(new RegExp(this._escapeRegExp(substring)));
+    }
+
+    // Helper to escape special regex characters in string literals
+    private _escapeRegExp(string: string): string {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    first(predicate?: (item: T) => boolean): T {
+        var len = this.length();
+        if (!predicate) return len > 0 ? this.at(0) : undefined as any as T;
+        for (let i = 0; i < len; i++) {
+            var item = this.at(i);
+            if (predicate(item)) return item;
+        }
+        return undefined as any as T;
+    }
+
+    firstIndex(predicate: (item: T) => boolean): number {
+        var len = this.length();
+        for (let i = 0; i < len; i++) {
+            var item = this.at(i);
+            if (predicate(item)) return i;
+        }
+        return -1;
+    }
+
+    last(predicate?: (item: T) => boolean): T {
+        var len = this.length();
+        if (!predicate) return len > 0 ? this.at(-1) : undefined as any as T;
+        for (let i = len - 1; i >= 0; i--) {
+            var item = this.at(i);
+            if (predicate(item)) return item;
+        }
+        return undefined as any as T;
+    }
+
+    lastIndex(predicate: (item: T) => boolean): number {
+        var len = this.length();
+        for (let i = len - 1; i >= 0; i--) {
+            var item = this.at(i);
+            if (predicate(item)) return i;
+        }
+        return -1;
+    }
+
+    skip(count: number): A<T> {
+        var len = this.length();
+        if (count >= len) return f() as A<T>;
+        count = Math.min(count, len);
+        return this.query(`${count}:`);
+    }
+
+    take(count: number): A<T> {
+        if (count == 0) return f() as A<T>;
+        count = Math.min(count, this.length());
+        return this.query(`:${count - 1}`);
+    }
+
+    any(predicate?: (item: T) => boolean): boolean {
+        if (predicate === undefined) return this.length() > 0;
+        return this.where(predicate).length() > 0;
+    }
+
+    all(predicate: (item: T) => boolean): boolean {
+        return this.where(predicate).length() == this.length();
+    }
+
+    includes(item: T): boolean {
+        return this.any(i => i._item == item._item);
+    }
+
+    hideAll(predicate?: (item: T) => boolean): this {
+        if (predicate === undefined) {
+            this.do(item => item.hide());
+        } else {
+            this.where(predicate).do(item => item.hide());
+        }
+        return this;
+    }
+
+    showAll(predicate?: (item: T) => boolean): this {
+        if (predicate === undefined) {
+            this.do(item => item.show());
+        } else {
+            this.where(predicate).do(item => item.show());
+        }
+        return this;
+    }
+
+    activateAll(predicate?: (item: T) => boolean): this {
+        if (predicate === undefined) {
+            this.do(item => item.activate());
+        } else {
+            this.where(predicate).do(item => item.activate());
+        }
+        return this;
+    }
+
+    inactivateAll(predicate?: (item: T) => boolean): this {
+        if (predicate === undefined) {
+            this.do(item => item.deactivate());
+        } else {
+            this.where(predicate).do(item => item.deactivate());
+        }
+        return this;
+    }
+}
+
+class ApplicationQuery extends Queryable<Application, DocumentQuery<LayerQuery<PageItemQuery>>> {
+    set(name?: string): SetApplicationProperties { return new SetApplicationProperties(this, name); }
+    documents(): ApplicationQuery { return this; }
+    document(): DocumentQuery { return this.activeDocument(); }
+    defaults() { return clone<ApplicationDefaults>(this.queryDefaults); }
+    activeDocument(): DocumentQuery<LayerQuery<PageItemQuery>> { return q(this.item().activeDocument); }
+    dpi(): number { return RasterEffectOptions.resolution; }
+
+    constructor(application: Application) {
+        if (api !== undefined)
+            throw "Application cannot be defined twice";
+
+        super(application, "documents");
+        this.init();
+    }
+
+    init() {
+        // Set the ruler origin to bottom-left
+        app.preferences.setBooleanPreference("isRulerOriginTopLeft", false);
+
+        // Set the Y-axis to increase upward (1st quadrant behavior)
+        app.preferences.setBooleanPreference("isRulerIn4thQuad", false);
+
+        // Sets ruleUnits to points for all new documents
+        app.preferences.setIntegerPreference("rulerUnits", 0); // 0 = Points
+    }
+
+    isOpen(fileName: string): boolean {
+        // Check if the document exists in the currently open documents
+        var isOpen = false;
+        this.documents().forEach(doc => {
+            if (doc.name() === fileName) {
+                isOpen = true;
+            }
+        });
+        return isOpen;
+    }
+
+    exists(fileName: string): boolean {
+        // Check if the document exists in the currently open documents
+        if (this.isOpen(fileName))
+            return true;
+
+        // Check if the document exists in the file system
+        const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+        return file.exists;
+    }
+
+    createDocument(fileName: string, width: number, height: number, activate: boolean = true): DocumentQuery {
+        var lastActiveDoc = this.app().activeDocument();
+        var doc: DocumentQuery = q((this._item.documents as Documents).add(DocumentColorSpace.RGB, width, height, 1));
+        doc.save(fileName);
+
+        if (activate) {
+            doc.activate();
+        } else {
+            this.item().activeDocument = lastActiveDoc.item();
+        }
+
+        return doc;
+    }
+
+    openDocument(fileName: string, create: boolean = false): DocumentQuery {
+        const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+        var openDoc: DocumentQuery | undefined;
+        if (this.exists(fileName)) {
+            this.documents().doOnce(doc => {
+                if (doc.name() === fileName) {
+                    openDoc = doc;
+                    return true;
+                }
+                return false;
+            });
+
+            if (openDoc) {
+                return openDoc;
+            } else {
+                return q<DocumentQuery>(this.app().item().open(file));
+            }
+        }
+
+        if (create) {
+            var size = this.defaults().documentSize;
+            var newDoc = this.createDocument(fileName, size, size);
+            return newDoc;
+        }
+
+        throw `Failed to open document: ${fileName}`;
+    }
+
+    openResource(fileName: string): DocumentQuery {
+        return this.openDocument(combinePaths("resources", fileName), false);
+    }
+
+    closeDocument(doc: DocumentQuery | string) {
+        app.userInteractionLevel = UserInteractionLevel.DONTDISPLAYALERTS;
+        if (typeof doc == "string") {
+            api.documents().do(d => { if (d.name() == doc) d.item().close(SaveOptions.DONOTSAVECHANGES); });
+            return;
+        }
+
+        doc?.item().close(SaveOptions.DONOTSAVECHANGES);
+        app.userInteractionLevel = UserInteractionLevel.DISPLAYALERTS;
+    }
+
+    closeResource(doc: DocumentQuery | string) {
+        this.closeDocument(doc);
+    }
+
+    deleteDocument(fileName: string) {
+        if (api.exists(fileName)) {
+            // Try to delete through Illustrator first if it's open
+            api.documents().doOnce(doc => {
+                if (doc.name() === fileName) {
+                    doc.remove();
+                    return true;
+                }
+                return false;
+            });
+
+            // Also try to delete the file directly
+            const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+            if (file.exists) {
+                file.remove();
+            }
+        }
+    }
+
+    redraw(count: number = 1) {
+        if (!api.documents().any())
+            return;
+
+        // Force Illustrator to redraw the canvas
+        for (var i = 0; i < count; i++)
+            app.redraw();
+    }
+
+    reset(count: number = 1) {
+        this.app().item().selection = [];
+        this.redraw(count);
+    };
+
+    _configureDefaults(): void {
+        const defaults = this.queryDefaults as ApplicationDefaults;
+        defaults.documentSize = 5 * 12 * this.dpi();
+        defaults.layerName = "Layer 1";
+        defaults.artboardRect = [0, 1199, 1198, 0];
+    }
+}
+
+interface ApplicationDefaults {
+    documentSize: number;
+    layerName: string;
+    artboardRect: Rect;
+}
+
+class DocumentQuery<T extends QueryItem = LayerQuery<PageItemQuery>> extends Queryable<Document, T> {
+    private _layers: DocumentQuery<LayerQuery<PageItemQuery>> | undefined;
+    private _artboards: DocumentQuery<ArtboardQuery> | undefined;
+    private _views: DocumentQuery<ViewQuery> | undefined;
+    private _stories: DocumentQuery<StoryQuery<TextRangeQuery>> | undefined;
+    private _variables: DocumentQuery<VariableQuery> | undefined;
+    private _swatches: DocumentQuery<SwatchQuery> | undefined;
+    private _brushes: DocumentQuery<BrushQuery> | undefined;
+    private _symbols: DocumentQuery<SymbolQuery> | undefined;
+    private _patterns: DocumentQuery<PatternQuery> | undefined;
+    private _spots: DocumentQuery<SpotQuery> | undefined;
+    private _gradients: DocumentQuery<GradientQuery> | undefined;
+    private _tags: DocumentQuery<TagQuery> | undefined;
+
+    set(name?: string): SetDocumentProperties { return new SetDocumentProperties(this as any, name); }
+    active(): boolean { return this.app().item().activeDocument == this._item; }
+    activate() { this.app().item().activeDocument = this._item; return this; }
+    deactivate() { this.app().item().activeDocument = f(this.app().item().documents).at(-1); return this; }
+    remove() { this._item?.close?.(); this._item = QueryItem.empty(); }
+    activeArtboard(): ArtboardQuery { return this.artboards().at(this.getActiveArtboardIndex()); }
+    activeLayer(): LayerQuery { return q(this.item().activeLayer); }
+    activeView(): ViewQuery { return q(this.item().activeView); }
+    defaults(): ApplicationDefaults { return this.app().defaults(); }
+    dpi(): number { return this.app().dpi(); }
+
+    // QueryItem overrides
+    document(): DocumentQuery { return this as any; }
+    artboard(): ArtboardQuery { return this.activeArtboard(); }
+    layer(): LayerQuery { return this.activeLayer(); }
+    region(): Region { return this.activeArtboard().region(); }
+
+    constructor(doc: Document, collectionType: CollectionType = "layers") {
+        super(doc, collectionType);
+
+        // Ensures Cartesian coordinates
+        this.item().rulerOrigin = [0, 0];
+    }
+
+    save(fileName?: string): this {
+        try {
+            if (fileName === undefined) {
+                this._item.save();
+                return this;
+            }
+            const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+            this._item.saveAs(file);
+            return api.documents().first(d => d.name() == fileName) as any;
+        } catch (error: any) {
+            throw new Error(`Failed to save document '${fileName}': ${error.message}`);
+        }
+    }
+
+    close() {
+        this.remove();
+    }
+
+    reset() {
+        if (this.artboards().any()) {
+            this.layers().removeAll();
+            this.artboards().removeAll();
+        }
+    }
+
+    create(name?: string): T {
+        if (this.collectionType !== "artboards")
+            return super.create(name);
+
+        throw "Cannot create an artbaord because it is treated as a singleston";
+    }
+
+    removeAll(): void {
+        if (this.collectionType == "artboards") {
+            var activeArtboard = this.activeArtboard();
+            this.where(a => a._item !== activeArtboard._item).do(a => a.remove());
+            this.activeArtboard().reset();
+        } else if (this.collectionType == "layers") {
+            var defaultLayer = this.layers().length() > 0 ? this.layers().at(0) : this.layers().create();
+            defaultLayer.name(this.defaults().layerName);
+            defaultLayer.pageItems().removeAll();
+            defaultLayer.activate();
+            this.layers().skip(1).do(layer => layer.remove());
+            this.layers().first().removeAll();
+        } else {
+            super.removeAll();
+        }
+        api.redraw();
+    }
+
+    copyLayer(layer: LayerQuery, index: number = -1): LayerQuery {
+        var differentDocuments = this.item() !== layer.document().item();
+        if (differentDocuments) {
+            // Match the aspect ratio of the source artboard
+            layer.document().activate();
+            const sourceAspectRatio = layer.document().activeArtboard().aspectRatio();
+
+            this.activate();
+            this.activeArtboard().reset();
+            this.activeArtboard().aspectRatio(sourceAspectRatio);
+            this.rearrangeArtboards();
+        }
+
+        // Activate the source document and get its artboard rect
+        layer.document().activate();
+        const sourceRect = layer.document().activeArtboard().rect();
+
+        // Pre-calculate relative centers for all items in the source layer
+        const itemCenters = layer.pageItems().select(p => p.p().position());
+
+        // Activate the target document and get its artboard rect
+        this.activate();
+        const targetRect = this.activeArtboard().rect();
+
+        // Create the new layer in the target document
+        const layers = this.layers();
+        const newLayer = layers.create(layer.name());
+        newLayer.replaceWith(layer);
+        newLayer.moveTo(index);
+
+        if (differentDocuments) {
+            const sourceWidth = Math.abs(sourceRect[2] - sourceRect[0]);
+            const sourceHeight = Math.abs(sourceRect[1] - sourceRect[3]);
+            const targetWidth = Math.abs(targetRect[2] - targetRect[0]);
+            const targetHeight = Math.abs(targetRect[1] - targetRect[3]);
+            const scaleFactors = { scaleX: targetWidth / sourceWidth, scaleY: targetHeight / sourceHeight }
+
+            // Apply scaling and translation using the pre-stored relative centers
+            newLayer.pageItems().forEach((item, i) => {
+                i = i as number;
+                item.p().scale([scaleFactors.scaleX, scaleFactors.scaleY]);
+                this.p().position(itemCenters.at(i));
+            });
+        }
+
+        return newLayer;
+    }
+
+    copyArtboard(artboard: ArtboardQuery) {
+        artboard.document().activate();
+        this.activeArtboard().aspectRatio(artboard.aspectRatio());
+        this.activate();
+    }
+
+    getActiveArtboardIndex(): number {
+        var artboards: Artboards = this.artboards().collection() as Artboards;
+        var activeIndex = artboards.getActiveArtboardIndex();
+        if (activeIndex === undefined || activeIndex === null || activeIndex < 0) {
+            artboards.setActiveArtboardIndex(0);
+            return 0;
+        }
+        return activeIndex;
+    }
+
+    rearrangeArtboards(artboardLayout?: DocumentArtboardLayout, artboardRowsOrCols?: number, artboardSpacing?: number, artboardMoveArtwork?: boolean): boolean {
+        return this.item().rearrangeArtboards(artboardLayout, artboardRowsOrCols, artboardSpacing, artboardMoveArtwork);
+    }
+
+    layers() {
+        if (this.collectionType === "layers") return this;
+        if (this._layers) return this._layers;
+        this._layers = new DocumentQuery<LayerQuery<PageItemQuery>>(this._item, "layers");
+        return this._layers;
+    }
+
+    artboards() {
+        if (this.collectionType === "artboards") return this;
+        if (this._artboards) return this._artboards;
+        this._artboards = new DocumentQuery<ArtboardQuery>(this._item, "artboards");
+        return this._artboards;
+    }
+
+    views() {
+        if (this.collectionType === "views") return this;
+        if (this._views) return this._views;
+        this._views = new DocumentQuery<ViewQuery>(this._item, "views");
+        return this._views;
+    }
+
+    stories() {
+        if (this.collectionType === "stories") return this;
+        if (this._stories) return this._stories;
+        this._stories = new DocumentQuery<StoryQuery<TextRangeQuery>>(this._item, "stories");
+        return this._stories;
+    }
+
+    variables() {
+        if (this.collectionType === "variables") return this;
+        if (this._variables) return this._variables;
+        this._variables = new DocumentQuery<VariableQuery>(this._item, "variables");
+        return this._variables;
+    }
+
+    swatches() {
+        if (this.collectionType === "swatches") return this;
+        if (this._swatches) return this._swatches;
+        this._swatches = new DocumentQuery<SwatchQuery>(this._item, "swatches");
+        return this._swatches;
+    }
+
+    brushes() {
+        if (this.collectionType === "brushes") return this;
+        if (this._brushes) return this._brushes;
+        this._brushes = new DocumentQuery<BrushQuery>(this._item, "brushes");
+        return this._brushes;
+    }
+
+    symbols() {
+        if (this.collectionType === "symbols") return this;
+        if (this._symbols) return this._symbols;
+        this._symbols = new DocumentQuery<SymbolQuery>(this._item, "symbols");
+        return this._symbols;
+    }
+
+    patterns() {
+        if (this.collectionType === "patterns") return this;
+        if (this._patterns) return this._patterns;
+        this._patterns = new DocumentQuery<PatternQuery>(this._item, "patterns");
+        return this._patterns;
+    }
+
+    spots() {
+        if (this.collectionType === "spots") return this;
+        if (this._spots) return this._spots;
+        this._spots = new DocumentQuery<SpotQuery>(this._item, "spots");
+        return this._spots;
+    }
+
+    gradients() {
+        if (this.collectionType === "gradients") return this;
+        if (this._gradients) return this._gradients;
+        this._gradients = new DocumentQuery<GradientQuery>(this._item, "gradients");
+        return this._gradients;
+    }
+
+    tags() {
+        if (this.collectionType === "tags") return this;
+        if (this._tags) return this._tags;
+        this._tags = new DocumentQuery<TagQuery>(this._item, "tags");
+        return this._tags;
+    }
+
+    createLayer(name?: string): LayerQuery {
+        return this._create(i => i.item().layers, layers => q(layers.add()), name);
+    }
+    
+    createArtboard(artboardRect: Rect, name?: string): ArtboardQuery {
+        return this._create(i => i.item().artboards, items => q(items.add(artboardRect)), name);
+    }
+    
+    createStory(): StoryQuery {
+        // Stories collection doesn't have an add method, so we can't create directly
+        throw new Error("Stories cannot be created directly");
+    }
+    
+    createVariable(name?: string): VariableQuery {
+        return this._create(i => i.item().variables, variables => q(variables.add()), name);
+    }
+    
+    createSwatch(name?: string): SwatchQuery {
+        return this._create(i => i.item().swatches, swatches => q(swatches.add()), name);
+    }
+    
+    createBrush(brushDefinition: File, brushName?: string, itemName?: string): BrushQuery {
+        return this._create(i => i.item().brushes, items => q(items.add(brushDefinition, brushName)), itemName);
+    }
+    
+    createSymbol(sourceArt: PageItem, registrationPoint?: SymbolRegistrationPoint, name?: string): SymbolQuery {
+        return this._create(i => i.item().symbols, items => q(items.add(sourceArt, registrationPoint)), name);
+    }
+    
+    createPattern(name?: string): PatternQuery {
+        return this._create(i => i.item().patterns, patterns => q(patterns.add()), name);
+    }
+    
+    createSpot(name?: string): SpotQuery {
+        return this._create(i => i.item().spots, spots => q(spots.add()), name);
+    }
+    
+    createGradient(name?: string): GradientQuery {
+        return this._create(i => i.item().gradients, gradients => q(gradients.add()), name);
+    }
+    
+    createTag(name?: string): TagQuery {
+        return this._create(i => i.item().tags, tags => q(tags.add()), name);
+    }
+}
+
+class ArtboardQuery extends Queryable<Artboard, QueryItem> {
+    set(name?: string): SetArtboardProperties { return new SetArtboardProperties(this as any, name); }
+    document(): DocumentQuery { return (this.parent() as DocumentQuery).artboards() as any; }
+    index(): number { return this.document().artboards().firstIndex(i => i._item == this._item); }
+    activate() { this.document().item().artboards.setActiveArtboardIndex(this.index()); return this; }
+    activated(): boolean { return this.document().activeArtboard().item() === this.item(); }
+    deactivate() { ((this.parent() as DocumentQuery).item()).artboards.setActiveArtboardIndex(0); return this; }
+
+    // How to change the absoluie coordinate of the Artboard
+    region(region?: Region): Region {
+        if (region !== undefined) {
+            var newArtboardRect = region.floor().rectAbs();
+            this.item().artboardRect = newArtboardRect;
+        }
+        return Region.fromRect(this.item().artboardRect);
+    }
+
+    // Absolute bounds in document coordinates
+    rect(): Rect { return this.item().artboardRect; }
+
+    center(newCenter?: Position): Position {
+        if (newCenter) {
+            var region = this.region();
+            region.center(newCenter);
+            this.region(region);
+        }
+        return this.region().center();
+    }
+
+    width(newWidth?: number, proportional?: boolean): number {
+        if (newWidth !== undefined) {
+            var region = this.region();
+            region.width(newWidth, proportional);
+            this.region(region);
+        }
+        return this.region().width();
+    }
+
+    height(newHeight?: number, proportional?: boolean): number {
+        if (newHeight !== undefined) {
+            var region = this.region();
+            region.height(newHeight, proportional);
+            this.region(region);
+        }
+        return this.region().height();
+    }
+
+    size(newSize?: Size): Size {
+        if (newSize) {
+            var region = this.region();
+            region.size(newSize);
+            this.region(region);
+        }
+        return this.region().size();
+    }
+
+    aspectRatio(widthToHeight?: number): number {
+        if (widthToHeight !== undefined) {
+            const width = this.width(); // Current width in relative units
+            const height = this.height(); // Current height in relative units
+
+            // Calculate the new dimensions while maintaining the specified aspect ratio
+            const newWidth = Math.min(width, height * widthToHeight);
+            const newHeight = Math.min(height, width / widthToHeight);
+
+            // Set the new size centered on the current position
+            this.size([newWidth, newHeight]);
+        }
+        return this.width() / this.height();
+    }
+
+    constructor(artboard: Artboard) {
+        super(artboard);
+    }
+
+    reset() {
+        var rect = this.document().defaults().artboardRect;
+        if (f(rect).doesntEqual(f(this.item().artboardRect))) {
+            var region = Region.fromRect(rect);
+            this.region(region);
+        }
+        this.fullScreen();
+    }
+
+    fullScreen(padding: number = 0.05): ArtboardQuery {
+        if (this.isFullScreen(padding)) return this;
+
+        const view = this.document().item().activeView;
+
+        // Step 1: Reset to a known zoom level (100%)
+        view.zoom = 1;
+
+        // Step 2: Calculate viewable area at this zoom
+        const viewBounds = view.bounds; // [left, top, right, bottom]
+        const viewWidth = viewBounds[2] - viewBounds[0];
+        const viewHeight = viewBounds[1] - viewBounds[3];
+
+        // Step 3: Adjust artboard dimensions with padding
+        const region = this.region();
+        const paddedWidth = region.widthAbs() * (1 + padding);
+        const paddedHeight = region.heightAbs() * (1 + padding);
+
+        // Step 4: Determine the scale to fit the padded artboard into the view
+        const scale = Math.min(viewWidth / paddedWidth, viewHeight / paddedHeight);
+        const centerPoint = region.centerAbs() as [number, number];
+
+        // Step 5: Apply the calculated zoom and center the view
+        view.centerPoint = centerPoint;
+        view.zoom = scale;
+
+        return this;
+    }
+
+    isFullScreen(padding: number = 0.05): boolean {
+        const view = this.document().item().activeView;
+
+        // Get current view bounds [left, top, right, bottom]
+        const viewBounds = view.bounds;
+        const viewWidth = viewBounds[2] - viewBounds[0];
+        const viewHeight = viewBounds[1] - viewBounds[3];
+
+        // Get artboard region and padded dimensions
+        const region = this.region();
+        const paddedWidth = region.widthAbs() * (1 + padding);
+        const paddedHeight = region.heightAbs() * (1 + padding);
+
+        // Define a tolerance for comparison
+        const tolerance = 2; // Allow a difference of points
+
+        // Check if view dimensions approximately match the padded artboard dimensions
+        const widthMatch = Math.abs(viewWidth - paddedWidth) <= tolerance;
+        const heightMatch = Math.abs(viewHeight - paddedHeight) <= tolerance;
+
+        // Check if center points approximately align
+        const viewCenter = view.centerPoint;
+        const regionCenter = region.centerAbs();
+        const centerXMatch = Math.abs(viewCenter[0] - regionCenter[0]) <= tolerance;
+        const centerYMatch = Math.abs(viewCenter[1] - regionCenter[1]) <= tolerance;
+
+        // Only one dimension will be full-sized because the screen and the board have different shapes
+        return (widthMatch || heightMatch) && centerXMatch && centerYMatch;
+    }
+
+    square(): ArtboardQuery {
+        this.aspectRatio(1);
+        return this;
+    }
+}
+
+class LayerQuery<T extends QueryItem = PageItemQuery> extends Queryable<Layer, T> {
+    private _pageItems: LayerQuery<PageItemQuery> | undefined;
+    private _compoundPathItems: LayerQuery<CompoundPathItemQuery> | undefined;
+    private _pathItems: LayerQuery<PathItemQuery> | undefined;
+    private _rasterItems: LayerQuery<RasterItemQuery> | undefined;
+    private _placedItems: LayerQuery<PlacedItemQuery> | undefined;
+    private _meshItems: LayerQuery<MeshItemQuery> | undefined;
+    private _pluginItems: LayerQuery<PluginItemQuery> | undefined;
+    private _textFrames: LayerQuery<TextFrameQuery> | undefined;
+    private _groupItems: LayerQuery<GroupItemQuery> | undefined;
+    private _symbolItems: LayerQuery<SymbolItemQuery> | undefined;
+    private _graphItems: LayerQuery<GraphItemQuery> | undefined;
+
+    set(name?: string): SetLayerProperties { return new SetLayerProperties(this as any, name); }
+    document(): DocumentQuery { return (this.parent() as DocumentQuery).layers(); }
+    hide(): QueryItem { this.item().visible = false; return this; }
+    hidden(): boolean { return this.item().visible === false; }
+    show(): QueryItem { this.item().visible = true; return this; }
+    visible(): boolean { return this.item().visible === true; }
+
+    private _c: CreativeItem | undefined;
+    c(): CreativeItem {
+        if (this._c === undefined)
+            this._c = new CreativeItem(this);
+        return this._c;
+    }
+
+    constructor(layer: Layer, collectionType: CollectionType = "pageItems") {
+        super(layer, collectionType);
+    }
+
+    group(groupName?: string, predicate?: (item: T) => boolean): GroupItemQuery {
+        var items = predicate ? this.where(predicate as any) : this.query();
+        var group = this.groupItems().create(groupName);
+        items.do(item => item.move(group, ElementPlacement.PLACEATEND));
+        return group;
+    }
+
+    replaceWith(layer: LayerQuery<T>): void {
+        this.name(layer.name());
+        this.pageItems().removeAll();
+        layer.pageItems().do(item => {
+            item.duplicate(item.name(), this, ElementPlacement.PLACEATEND);
+        });
+    }
+
+    pageItems() {
+        if (this.collectionType === "pageItems") return this;
+        if (this._pageItems) return this._pageItems;
+        this._pageItems = new LayerQuery<PageItemQuery>(this._item, "pageItems");
+        return this._pageItems;
+    }
+
+    compoundPathItems() {
+        if (this.collectionType === "compoundPathItems") return this;
+        if (this._compoundPathItems) return this._compoundPathItems;
+        this._compoundPathItems = new LayerQuery<CompoundPathItemQuery>(this._item, "compoundPathItems");
+        return this._compoundPathItems;
+    }
+
+    pathItems() {
+        if (this.collectionType === "pathItems") return this;
+        if (this._pathItems) return this._pathItems;
+        this._pathItems = new LayerQuery<PathItemQuery>(this._item, "pathItems");
+        return this._pathItems;
+    }
+
+    rasterItems() {
+        if (this.collectionType === "rasterItems") return this;
+        if (this._rasterItems) return this._rasterItems;
+        this._rasterItems = new LayerQuery<RasterItemQuery>(this._item, "rasterItems");
+        return this._rasterItems;
+    }
+
+    placedItems() {
+        if (this.collectionType === "placedItems") return this;
+        if (this._placedItems) return this._placedItems;
+        this._placedItems = new LayerQuery<PlacedItemQuery>(this._item, "placedItems");
+        return this._placedItems;
+    }
+
+    meshItems() {
+        if (this.collectionType === "meshItems") return this;
+        if (this._meshItems) return this._meshItems;
+        this._meshItems = new LayerQuery<MeshItemQuery>(this._item, "meshItems");
+        return this._meshItems;
+    }
+
+    pluginItems() {
+        if (this.collectionType === "pluginItems") return this;
+        if (this._pluginItems) return this._pluginItems;
+        this._pluginItems = new LayerQuery<PluginItemQuery>(this._item, "pluginItems");
+        return this._pluginItems;
+    }
+
+    textFrames() {
+        if (this.collectionType === "textFrames") return this;
+        if (this._textFrames) return this._textFrames;
+        this._textFrames = new LayerQuery<TextFrameQuery>(this._item, "textFrames");
+        return this._textFrames;
+    }
+
+    groupItems() {
+        if (this.collectionType === "groupItems") return this;
+        if (this._groupItems) return this._groupItems;
+        this._groupItems = new LayerQuery<GroupItemQuery>(this._item, "groupItems");
+        return this._groupItems;
+    }
+
+    symbolItems() {
+        if (this.collectionType === "symbolItems") return this;
+        if (this._symbolItems) return this._symbolItems;
+        this._symbolItems = new LayerQuery<SymbolItemQuery>(this._item, "symbolItems");
+        return this._symbolItems;
+    }
+
+    graphItems() {
+        if (this.collectionType === "graphItems") return this;
+        if (this._graphItems) return this._graphItems;
+        this._graphItems = new LayerQuery<GraphItemQuery>(this._item, "graphItems");
+        return this._graphItems;
+    }
+    
+    createCompoundPathItem(name?: string): CompoundPathItemQuery {
+        return this._create(i => i.item().compoundPathItems, items => q(items.add()), name);
+    }
+    
+    createPathItem(name?: string): PathItemQuery {
+        return this._create(i => i.item().pathItems, items => q(items.add()), name);
+    }
+    
+    createPlacedItem(name?: string): PlacedItemQuery {
+        return this._create(i => i.item().placedItems, items => q(items.add()), name);
+    }
+    
+    createTextFrame(name?: string): TextFrameQuery {
+        return this._create(i => i.item().textFrames, items => q(items.add()), name);
+    }
+    
+    createGroupItem(name?: string): GroupItemQuery {
+        return this._create(i => i.item().groupItems, items => q(items.add()), name);
+    }
+    
+    createSymbolItem(symbol: Symbol, name?: string): SymbolItemQuery {
+        return this._create(i => i.item().symbolItems, items => q(items.add(symbol)), name);
+    }
+}
+
+class GroupItemQuery<T extends QueryItem = PageItemQuery> extends Queryable<GroupItem, T> {
+    private _pageItems: GroupItemQuery<PageItemQuery> | undefined;
+    private _compoundPathItems: GroupItemQuery<CompoundPathItemQuery> | undefined;
+    private _pathItems: GroupItemQuery<PathItemQuery> | undefined;
+    private _rasterItems: GroupItemQuery<RasterItemQuery> | undefined;
+    private _placedItems: GroupItemQuery<PlacedItemQuery> | undefined;
+    private _meshItems: GroupItemQuery<MeshItemQuery> | undefined;
+    private _pluginItems: GroupItemQuery<PluginItemQuery> | undefined;
+    private _textFrames: GroupItemQuery<TextFrameQuery> | undefined;
+    private _groupItems: GroupItemQuery<GroupItemQuery> | undefined;
+    private _symbolItems: GroupItemQuery<SymbolItemQuery> | undefined;
+    private _graphItems: GroupItemQuery<GraphItemQuery> | undefined
+
+    set(name?: string): SetGroupItemProperties { return new SetGroupItemProperties(this as any, name); }
+
+    private _c: CreativeItem | undefined;
+    c(): CreativeItem {
+        if (this._c === undefined)
+            this._c = new CreativeItem(this);
+        return this._c;
+    }
+
+    constructor(groupItem: GroupItem, collectionType: CollectionType = "pageItems") {
+        super(groupItem, collectionType);
+    }
+
+    group(groupName?: string, predicate?: (item: T) => boolean): GroupItemQuery {
+        var items = predicate ? this.where(predicate as any) : this.query();
+        var group = this.groupItems().create(groupName);
+        items.do(item => item.move(group, ElementPlacement.PLACEATEND));
+        return group;
+    }
+
+    ungroup() {
+        this.reverse().do(item => item.move(this, ElementPlacement.PLACEAFTER));
+        this.remove();
+    }
+
+    pageItems() {
+        if (this.collectionType === "pageItems") return this;
+        if (this._pageItems) return this._pageItems;
+        this._pageItems = new GroupItemQuery<PageItemQuery>(this._item, "pageItems");
+        return this._pageItems;
+    }
+
+    compoundPathItems() {
+        if (this.collectionType === "compoundPathItems") return this;
+        if (this._compoundPathItems) return this._compoundPathItems;
+        this._compoundPathItems = new GroupItemQuery<CompoundPathItemQuery>(this._item, "compoundPathItems");
+        return this._compoundPathItems;
+    }
+
+    pathItems() {
+        if (this.collectionType === "pathItems") return this;
+        if (this._pathItems) return this._pathItems;
+        this._pathItems = new GroupItemQuery<PathItemQuery>(this._item, "pathItems");
+        return this._pathItems;
+    }
+
+    rasterItems() {
+        if (this.collectionType === "rasterItems") return this;
+        if (this._rasterItems) return this._rasterItems;
+        this._rasterItems = new GroupItemQuery<RasterItemQuery>(this._item, "rasterItems");
+        return this._rasterItems;
+    }
+
+    placedItems() {
+        if (this.collectionType === "placedItems") return this;
+        if (this._placedItems) return this._placedItems;
+        this._placedItems = new GroupItemQuery<PlacedItemQuery>(this._item, "placedItems");
+        return this._placedItems;
+    }
+
+    meshItems() {
+        if (this.collectionType === "meshItems") return this;
+        if (this._meshItems) return this._meshItems;
+        this._meshItems = new GroupItemQuery<MeshItemQuery>(this._item, "meshItems");
+        return this._meshItems;
+    }
+
+    pluginItems() {
+        if (this.collectionType === "pluginItems") return this;
+        if (this._pluginItems) return this._pluginItems;
+        this._pluginItems = new GroupItemQuery<PluginItemQuery>(this._item, "pluginItems");
+        return this._pluginItems;
+    }
+
+    textFrames() {
+        if (this.collectionType === "textFrames") return this;
+        if (this._textFrames) return this._textFrames;
+        this._textFrames = new GroupItemQuery<TextFrameQuery>(this._item, "textFrames");
+        return this._textFrames;
+    }
+
+    groupItems() {
+        if (this.collectionType === "groupItems") return this;
+        if (this._groupItems) return this._groupItems;
+        this._groupItems = new GroupItemQuery<GroupItemQuery>(this._item, "groupItems");
+        return this._groupItems;
+    }
+
+    symbolItems() {
+        if (this.collectionType === "symbolItems") return this;
+        if (this._symbolItems) return this._symbolItems;
+        this._symbolItems = new GroupItemQuery<SymbolItemQuery>(this._item, "symbolItems");
+        return this._symbolItems;
+    }
+
+    graphItems() {
+        if (this.collectionType === "graphItems") return this;
+        if (this._graphItems) return this._graphItems;
+        this._graphItems = new GroupItemQuery<GraphItemQuery>(this._item, "graphItems");
+        return this._graphItems;
+    }
+    
+    createCompoundPathItem(name?: string): CompoundPathItemQuery {
+        return this._create(i => i.item().compoundPathItems, items => q(items.add()), name);
+    }
+    
+    createPathItem(name?: string): PathItemQuery {
+        return this._create(i => i.item().pathItems, items => q(items.add()), name);
+    }
+    
+    createPlacedItem(name?: string): PlacedItemQuery {
+        return this._create(i => i.item().placedItems, items => q(items.add()), name);
+    }
+    
+    createTextFrame(name?: string): TextFrameQuery {
+        return this._create(i => i.item().textFrames, items => q(items.add()), name);
+    }
+    
+    createGroupItem(name?: string): GroupItemQuery {
+        return this._create(i => i.item().groupItems, items => q(items.add()), name);
+    }
+    
+    createSymbolItem(symbol: Symbol, name?: string): SymbolItemQuery {
+        return this._create(i => i.item().symbolItems, items => q(items.add(symbol)), name);
+    }
+}
+
+type SmoothingType = "bezier" | "catmullRom" | "tension" | "bSpline" | "cubicSpline";
+
+class PathItemQuery extends Queryable<PathItem, PathPointQuery> {
+    private _pathPoints: PathItemQuery | undefined;
+    private _defaultPointType: PointType;
+    private _defaultSmoothingFunction: SmoothingType;
+    set(name?: string): SetPathItemProperties { return new SetPathItemProperties(this as any, name); }
+
+    defaultPointType(newType?: PointType): PointType {
+        if (newType !== undefined) this._defaultPointType = newType;
+        return this._defaultPointType;
+    }
+
+    defaultSmoothingFunction(newType?: SmoothingType): SmoothingType {
+        if (newType !== undefined) this._defaultSmoothingFunction = newType;
+        return this._defaultSmoothingFunction;
+    }
+
+    curve(makeCurve?: boolean): boolean {
+        if (makeCurve) {
+            this.pathPoints().do(p => p.set().pointType(PointType.SMOOTH));
+            this._defaultPointType = PointType.SMOOTH;
+        }
+        this.smooth();
+        const allSmooth = this.pathPoints().all(p => p.item().pointType === PointType.SMOOTH);
+        return allSmooth;
+    }
+
+    angular(makeAngular?: boolean): boolean {
+        if (makeAngular) {
+            this.pathPoints().do(p => {
+                const anchor = p.anchor();
+                p.set()
+                    .pointType(PointType.CORNER)
+                    .leftDirection(anchor)
+                    .rightDirection(anchor);
+            });
+            this._defaultPointType = PointType.CORNER;
+        }
+        const allCorner = this.pathPoints().all(p => p.item().pointType === PointType.CORNER);
+        return allCorner;
+    }
+
+    constructor(pathItem: PathItem) {
+        super(pathItem, "pathPoints");
+        this._defaultPointType = PointType.SMOOTH;
+        this._defaultSmoothingFunction = "catmullRom";
+    }
+
+    pathPoints() {
+        if (this.collectionType === "pathPoints") return this;
+        if (this._pathPoints) return this._pathPoints;
+        this._pathPoints = new PathItemQuery(this._item);
+        return this._pathPoints;
+    }
+
+    createPathPoint(name?: string): PathPointQuery {
+        return this._create(i => i.item().pathPoints, pathPoints => q(pathPoints.add()), name);
+    }
+
+    smooth(type: SmoothingType = "catmullRom", tension?: number): PathItemQuery {
+        switch (type) {
+            case "bezier":
+                Smoothing.bezier(this);
+                return this;
+            case "catmullRom":
+                Smoothing.catmullRomSmooth(this);
+                return this;
+            case "tension":
+                Smoothing.tensionSmooth(this, tension || 0.16);
+                return this;
+            case "bSpline":
+                Smoothing.bSplineSmooth(this);
+                return this;
+            case "cubicSpline":
+                Smoothing.cubicSplineSmooth(this);
+                return this;
+            default:
+                throw new Error(`Unknown smoothing type: ${type}`);
+        }
+    }
+}
+
+class StoryQuery<T extends QueryItem = TextRangeQuery> extends Queryable<Story, T> {
+    private _textRanges: StoryQuery<TextRangeQuery> | undefined;
+    private _characters: StoryQuery<TextRangeQuery> | undefined;
+    private _words: StoryQuery<TextRangeQuery> | undefined;
+    private _lines: StoryQuery<TextRangeQuery> | undefined;
+    private _paragraphs: StoryQuery<TextRangeQuery> | undefined;
+    private _insertionPoints: StoryQuery<InsertionPointQuery> | undefined;
+    set(name?: string): SetStoryProperties { return new SetStoryProperties(this as any, name); }
+
+    constructor(story: Story, collectionType: CollectionType = "textRanges") {
+        super(story, collectionType);
+    }
+
+    textRanges() {
+        if (this.collectionType === "textRanges") return this;
+        if (this._textRanges) return this._textRanges;
+        this._textRanges = new StoryQuery<TextRangeQuery>(this._item, "textRanges");
+        return this._textRanges;
+    }
+
+    characters() {
+        if (this.collectionType === "characters") return this;
+        if (this._characters) return this._characters;
+        this._characters = new StoryQuery<TextRangeQuery>(this._item, "characters");
+        return this._characters;
+    }
+
+    words() {
+        if (this.collectionType === "words") return this;
+        if (this._words) return this._words;
+        this._words = new StoryQuery<TextRangeQuery>(this._item, "words");
+        return this._words;
+    }
+
+    lines() {
+        if (this.collectionType === "lines") return this;
+        if (this._lines) return this._lines;
+        this._lines = new StoryQuery<TextRangeQuery>(this._item, "lines");
+        return this._lines;
+    }
+
+    paragraphs() {
+        if (this.collectionType === "paragraphs") return this;
+        if (this._paragraphs) return this._paragraphs;
+        this._paragraphs = new StoryQuery<TextRangeQuery>(this._item, "paragraphs");
+        return this._paragraphs;
+    }
+
+    insertionPoints() {
+        if (this.collectionType === "insertionPoints") return this;
+        if (this._insertionPoints) return this._insertionPoints;
+        this._insertionPoints = new StoryQuery<InsertionPointQuery>(this._item, "insertionPoints");
+        return this._insertionPoints;
+    }
+
+    createCharacter(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().characters, items => q(items.add(contents)), name);
+    }
+    
+    createWord(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().words, items => q(items.add(contents)), name);
+    }
+    
+    createParagraph(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().paragraphs, items => q(items.add(contents)), name);
+    }
+}
+
+
+class TextFrameQuery<T extends QueryItem = TextRangeQuery> extends Queryable<TextFrame, T> {
+    private _characters: TextFrameQuery<TextRangeQuery> | undefined;
+    private _words: TextFrameQuery<TextRangeQuery> | undefined;
+    private _lines: TextFrameQuery<TextRangeQuery> | undefined;
+    private _paragraphs: TextFrameQuery<TextRangeQuery> | undefined;
+    set(name?: string): SetTextFrameProperties { return new SetTextFrameProperties(this as any, name); }
+
+    constructor(textFrame: TextFrame, collectionType: CollectionType = "characters") {
+        super(textFrame, collectionType);
+    }
+
+    characters() {
+        if (this.collectionType === "characters") return this;
+        if (this._characters) return this._characters;
+        this._characters = new TextFrameQuery<TextRangeQuery>(this._item, "characters");
+        return this._characters;
+    }
+
+    words() {
+        if (this.collectionType === "words") return this;
+        if (this._words) return this._words;
+        this._words = new TextFrameQuery<TextRangeQuery>(this._item, "words");
+        return this._words;
+    }
+
+    lines() {
+        if (this.collectionType === "lines") return this;
+        if (this._lines) return this._lines;
+        this._lines = new TextFrameQuery<TextRangeQuery>(this._item, "lines");
+        return this._lines;
+    }
+
+    paragraphs() {
+        if (this.collectionType === "paragraphs") return this;
+        if (this._paragraphs) return this._paragraphs;
+        this._paragraphs = new TextFrameQuery<TextRangeQuery>(this._item, "paragraphs");
+        return this._paragraphs;
+    }
+
+    createCharacter(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().characters, items => q(items.add(contents)), name);
+    }
+    
+    createWord(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().words, items => q(items.add(contents)), name);
+    }
+    
+    createParagraph(contents: string, name?: string): TextRangeQuery {
+        return this._create(i => i.item().paragraphs, items => q(items.add(contents)), name);
+    }
+}
+
+class GradientQuery extends Queryable<Gradient, GradientStopQuery> {
+    private _gradientStops: GradientQuery | undefined;
+    set(name?: string): SetGradientProperties { return new SetGradientProperties(this as any, name); }
+
+    constructor(gradient: Gradient) {
+        super(gradient, "gradientStops");
+    }
+
+    gradientStops() {
+        if (this.collectionType === "gradientStops") return this;
+        if (this._gradientStops) return this._gradientStops;
+        this._gradientStops = new GradientQuery(this._item);
+        return this._gradientStops;
+    }
+
+    createGradientStops(name?: string): GradientStopQuery {
+        return this._create(i => i.item().gradientStops, gradientStops => q(gradientStops.add()), name);
+    }
+}
+
+class PageItemQuery extends Queryable<PageItem, QueryItem> {
+    set(name?: string): SetPageItemProperties { return new SetPageItemProperties(this as any, name); }
+    constructor(pageItem: PageItem) {
+        super(pageItem);
+    }
+}
+
+class CompoundPathItemQuery extends Queryable<CompoundPathItem, QueryItem> {
+    set(name?: string): SetCompoundPathItemProperties { return new SetCompoundPathItemProperties(this as any, name); }
+    constructor(compoundPathItem: CompoundPathItem) {
+        super(compoundPathItem);
+    }
+}
+
+class RasterItemQuery extends Queryable<RasterItem, QueryItem> {
+    set(name?: string): SetRasterItemProperties { return new SetRasterItemProperties(this as any, name); }
+    constructor(rasterItem: RasterItem) {
+        super(rasterItem);
+    }
+}
+
+class PlacedItemQuery extends Queryable<PlacedItem, QueryItem> {
+    set(name?: string): SetPlacedItemProperties { return new SetPlacedItemProperties(this as any, name); }
+    constructor(placedItem: PlacedItem) {
+        super(placedItem);
+    }
+}
+
+class SymbolItemQuery extends Queryable<SymbolItem, QueryItem> {
+    set(name?: string): SetSymbolItemProperties { return new SetSymbolItemProperties(this as any, name); }
+    constructor(symbolItem: SymbolItem) {
+        super(symbolItem);
+    }
+}
+
+class MeshItemQuery extends Queryable<MeshItem, QueryItem> {
+    set(name?: string): SetMeshItemProperties { return new SetMeshItemProperties(this as any, name); }
+    constructor(meshItem: MeshItem) {
+        super(meshItem);
+    }
+}
+
+class PluginItemQuery extends Queryable<PluginItem, QueryItem> {
+    set(name?: string): SetPluginItemProperties { return new SetPluginItemProperties(this as any, name); }
+    constructor(pluginItem: PluginItem) {
+        super(pluginItem);
+    }
+}
+
+class GraphItemQuery extends Queryable<GraphItem, QueryItem> {
+    set(name?: string): SetGraphItemProperties { return new SetGraphItemProperties(this as any, name); }
+    constructor(graphItem: GraphItem) {
+        super(graphItem);
+    }
+}
+
+class LegacyTextItemQuery extends Queryable<LegacyTextItem, QueryItem> {
+    set(name?: string): SetLegacyTextItemProperties { return new SetLegacyTextItemProperties(this as any, name); }
+    constructor(legacyTextItem: LegacyTextItem) {
+        super(legacyTextItem);
+    }
+}
+
+class NonNativeItemQuery extends Queryable<NonNativeItem, QueryItem> {
+    set(name?: string): SetNonNativeItemProperties { return new SetNonNativeItemProperties(this as any, name); }
+    constructor(nonNativeItem: NonNativeItem) {
+        super(nonNativeItem);
+    }
+}
+
+class SwatchQuery extends Queryable<Swatch, QueryItem> {
+    set(name?: string): SetSwatchProperties { return new SetSwatchProperties(this as any, name); }
+    constructor(swatch: Swatch) {
+        super(swatch);
+    }
+}
+
+class BrushQuery extends Queryable<Brush, QueryItem> {
+    set(name?: string): SetBrushProperties { return new SetBrushProperties(this as any, name); }
+    constructor(brush: Brush) {
+        super(brush);
+    }
+}
+
+class TagQuery extends Queryable<Tag, QueryItem> {
+    set(name?: string): SetTagProperties { return new SetTagProperties(this as any, name); }
+    constructor(tag: Tag) {
+        super(tag);
+    }
+}
+
+class SymbolQuery extends Queryable<Symbol, QueryItem> {
+    set(name?: string): SetSymbolProperties { return new SetSymbolProperties(this as any, name); }
+    constructor(symbol: Symbol) {
+        super(symbol);
+    }
+}
+
+class TextRangeQuery extends Queryable<TextRange, QueryItem> {
+    set(name?: string): SetTextRangeProperties { return new SetTextRangeProperties(this as any, name); }
+    constructor(textRange: TextRange) {
+        super(textRange);
+    }
+}
+
+class InsertionPointQuery extends Queryable<InsertionPoint, QueryItem> {
+    set(name?: string): SetInsertionPointProperties { return new SetInsertionPointProperties(this as any, name); }
+    constructor(insertionPoint: InsertionPoint) {
+        super(insertionPoint);
+    }
+}
+
+class ParagraphStyleQuery extends Queryable<ParagraphStyle, QueryItem> {
+    set(name?: string): SetParagraphStyleProperties { return new SetParagraphStyleProperties(this as any, name); }
+    constructor(paragraphStyle: ParagraphStyle) {
+        super(paragraphStyle);
+    }
+}
+
+class PatternQuery extends Queryable<Pattern, QueryItem> {
+    set(name?: string): SetPatternProperties { return new SetPatternProperties(this as any, name); }
+    constructor(pattern: Pattern) {
+        super(pattern);
+    }
+}
+
+class SpotQuery extends Queryable<Spot, QueryItem> {
+    set(name?: string): SetSpotProperties { return new SetSpotProperties(this as any, name); }
+    constructor(spot: Spot) {
+        super(spot);
+    }
+}
+
+class CharacterStyleQuery extends Queryable<CharacterStyle, QueryItem> {
+    set(name?: string): SetCharacterStyleProperties { return new SetCharacterStyleProperties(this as any, name); }
+    constructor(characterStyle: CharacterStyle) {
+        super(characterStyle);
+    }
+}
+
+class ArtStyleQuery extends Queryable<ArtStyle, QueryItem> {
+    set(name?: string): SetArtStyleProperties { return new SetArtStyleProperties(this as any, name); }
+    constructor(artStyle: ArtStyle) {
+        super(artStyle);
+    }
+}
+
+class VariableQuery extends Queryable<Variable, QueryItem> {
+    set(name?: string): SetVariableProperties { return new SetVariableProperties(this as any, name); }
+    constructor(variable: Variable) {
+        super(variable);
+    }
+}
+
+class DataSetQuery extends Queryable<DataSet, QueryItem> {
+    set(name?: string): SetDataSetProperties { return new SetDataSetProperties(this as any, name); }
+    constructor(dataSet: DataSet) {
+        super(dataSet);
+    }
+}
+
+class ViewQuery extends Queryable<View, QueryItem> {
+    set(name?: string): SetViewProperties { return new SetViewProperties(this as any, name); }
+    constructor(view: View) {
+        super(view);
+    }
+}
+
+class PathPointQuery extends Queryable<PathPoint, QueryItem> {
+    set(name?: string): SetPathPointProperties { return new SetPathPointProperties(this as any, name); }
+    
+    constructor(pathPoint: PathPoint) {
+        super(pathPoint);
+    }
+
+    // Anchor in absolute units
+    anchorAbs(): Position {
+        return this.item().anchor;
+    }
+
+    // Anchor in relative units (settable)
+    anchor(newAnchor?: Position): Position {
+        const region = this.region();
+        if (newAnchor) {
+            this.item().anchor = region.toAbsolutePosition(newAnchor) as Point;
+        }
+        return region.toRelativePosition(this.item().anchor);
+    }
+
+    // Left direction in absolute units
+    leftDirectionAbs(): Position {
+        return this.item().leftDirection;
+    }
+
+    // Left direction in relative units (settable)
+    leftDirection(newLeftDirection?: Position): Position {
+        const region = this.region();
+        if (newLeftDirection) {
+            this.item().leftDirection = region.toAbsolutePosition(newLeftDirection) as Point;
+        }
+        return region.toRelativePosition(this.item().leftDirection);
+    }
+
+    // Right direction in absolute units
+    rightDirectionAbs(): Position {
+        return this.item().rightDirection;
+    }
+
+    // Right direction in relative units (settable)
+    rightDirection(newRightDirection?: Position): Position {
+        const region = this.region();
+        if (newRightDirection) {
+            this.item().rightDirection = region.toAbsolutePosition(newRightDirection) as Point;
+        }
+        return region.toRelativePosition(this.item().rightDirection);
+    }
+}
+
+class GradientStopQuery extends Queryable<GradientStop, QueryItem> {
+    set(name?: string): SetGradientStopProperties { return new SetGradientStopProperties(this as any, name); }
+    constructor(gradientStop: GradientStop) {
+        super(gradientStop);
+    }
+}
+
+// Declare Interfaces
+declare interface Application { q: ApplicationQuery; }
+declare interface Document { q: DocumentQuery; }
+declare interface Layer { q: LayerQuery; }
+declare interface PathItem { q: PathItemQuery; }
+declare interface TextFrame { q: TextFrameQuery; }
+declare interface Story { q: StoryQuery; }
+declare interface Gradient { q: GradientQuery; }
+declare interface Artboard { q: ArtboardQuery; }
+declare interface PageItem { q: PageItemQuery; }
+declare interface CompoundPathItem { q: CompoundPathItemQuery; }
+declare interface RasterItem { q: RasterItemQuery; }
+declare interface PlacedItem { q: PlacedItemQuery; }
+declare interface GroupItem { q: GroupItemQuery; }
+declare interface SymbolItem { q: SymbolItemQuery; }
+declare interface MeshItem { q: MeshItemQuery; }
+declare interface PluginItem { q: PluginItemQuery; }
+declare interface GraphItem { q: GraphItemQuery; }
+declare interface Swatch { q: SwatchQuery; }
+declare interface Brush { q: BrushQuery; }
+declare interface Tag { q: TagQuery; }
+declare interface Symbol { q: SymbolQuery; }
+declare interface TextRange { q: TextRangeQuery; }
+declare interface InsertionPoint { q: InsertionPointQuery; }
+declare interface ParagraphStyle { q: ParagraphStyleQuery; }
+declare interface Pattern { q: PatternQuery; }
+declare interface Spot { q: SpotQuery; }
+declare interface CharacterStyle { q: CharacterStyleQuery; }
+declare interface ArtStyle { q: ArtStyleQuery; }
+declare interface LegacyTextItem { q: LegacyTextItemQuery; }
+declare interface Variable { q: VariableQuery; }
+declare interface DataSet { q: DataSetQuery; }
+declare interface View { q: ViewQuery; }
+declare interface NonNativeItem { q: NonNativeItemQuery; }
+declare interface PathPoint { q: PathPointQuery; }
+declare interface GradientStop { q: GradientStopQuery; }
+
+app.q = new ApplicationQuery(app);
+var api = app.q;
+
+function q<TQuery extends QueryItem = QueryItem>(obj: any): TQuery {
+    if (obj && obj.q) return obj.q;
+    if (!obj || obj.typename === undefined) return QueryItem.empty() as any;
+
+    // Switch based on the typename and create the appropriate query instance
+    var q: any = undefined;;
+    switch (obj.typename) {
+        case "Application":
+            return api as any;
+        case "Document":
+            q = new DocumentQuery(obj as Document);
+            break;
+        case "Layer":
+            q = new LayerQuery(obj as Layer);
+            break;
+        case "PathItem":
+            q = new PathItemQuery(obj as PathItem);
+            break;
+        case "TextFrame":
+            q = new TextFrameQuery(obj as TextFrame);
+            break;
+        case "Story":
+            q = new StoryQuery(obj as Story);
+            break;
+        case "Gradient":
+            q = new GradientQuery(obj as Gradient);
+            break;
+        case "Artboard":
+            q = new ArtboardQuery(obj as Artboard);
+            break;
+        case "PageItem":
+            q = new PageItemQuery(obj as PageItem);
+            break;
+        case "CompoundPathItem":
+            q = new CompoundPathItemQuery(obj as CompoundPathItem);
+            break;
+        case "RasterItem":
+            q = new RasterItemQuery(obj as RasterItem);
+            break;
+        case "PlacedItem":
+            q = new PlacedItemQuery(obj as PlacedItem);
+            break;
+        case "GroupItem":
+            q = new GroupItemQuery(obj as GroupItem);
+            break;
+        case "SymbolItem":
+            q = new SymbolItemQuery(obj as SymbolItem);
+            break;
+        case "MeshItem":
+            q = new MeshItemQuery(obj as MeshItem);
+            break;
+        case "PluginItem":
+            q = new PluginItemQuery(obj as PluginItem);
+            break;
+        case "GraphItem":
+            q = new GraphItemQuery(obj as GraphItem);
+            break;
+        case "Swatch":
+            q = new SwatchQuery(obj as Swatch);
+            break;
+        case "Brush":
+            q = new BrushQuery(obj as Brush);
+            break;
+        case "Tag":
+            q = new TagQuery(obj as Tag);
+            break;
+        case "Symbol":
+            q = new SymbolQuery(obj as Symbol);
+            break;
+        case "TextRange":
+            q = new TextRangeQuery(obj as TextRange);
+            break;
+        case "InsertionPoint":
+            q = new InsertionPointQuery(obj as InsertionPoint);
+            break;
+        case "CharacterStyle":
+            q = new CharacterStyleQuery(obj as CharacterStyle);
+            break;
+        case "ParagraphStyle":
+            q = new ParagraphStyleQuery(obj as ParagraphStyle);
+            break;
+        case "Pattern":
+            q = new PatternQuery(obj as Pattern);
+            break;
+        case "Spot":
+            q = new SpotQuery(obj as Spot);
+            break;
+        case "ArtStyle":
+            q = new ArtStyleQuery(obj as ArtStyle);
+            break;
+        case "LegacyTextItem":
+            q = new LegacyTextItemQuery(obj as LegacyTextItem);
+            break;
+        case "Vari":
+            q = new VariableQuery(obj as Variable);
+            break;
+        case "DataSet":
+            q = new DataSetQuery(obj as DataSet);
+            break;
+        case "View":
+            q = new ViewQuery(obj as View);
+            break;
+        case "NonNativeItem":
+            q = new NonNativeItemQuery(obj as NonNativeItem);
+            break;
+        case "PathPoint":
+            q = new PathPointQuery(obj as PathPoint);
+            break;
+        default:
+            // Handle unsupported or unknown typenames
+            obj.q = Queryable.empty;
+            q = obj.q;
+            break;
+    }
+    return q;
+};
+
+type CollectionType =
+    | "artboards"
+    | "brushes"
+    | "characters"
+    | "compoundPathItems"
+    | "documents"
+    | "gradientStops"
+    | "gradients"
+    | "graphItems"
+    | "groupItems"
+    | "insertionPoints"
+    | "layers"
+    | "legacyTextItems"
+    | "lines"
+    | "meshItems"
+    | "nonNativeItems"
+    | "pageItems"
+    | "paragraphs"
+    | "pathItems"
+    | "pathPoints"
+    | "patterns"
+    | "placedItems"
+    | "pluginItems"
+    | "rasterItems"
+    | "spots"
+    | "stories"
+    | "swatches"
+    | "symbolItems"
+    | "symbols"
+    | "tags"
+    | "textFrames"
+    | "textRanges"
+    | "variables"
+    | "views"
+    | "words";
+
+class AppTestClass extends TestClass {
+    api: ApplicationQuery = api;
+    document(): DocumentQuery { return this.api.activeDocument(); }
+    layer(): LayerQuery { return this.document().activeLayer(); }
+    artboard(): ArtboardQuery { return this.document().activeArtboard(); }
+    region(): Region { return this.artboard().region(); }
+
+    init() {
+        this.api.openDocument("Test.ai", true);
+        this.document().reset();
+    }
+}
+
+class QueryableTests extends AppTestClass {
+    constructor() {
+        super();
+        this.decorateExceptions = false;
+    }
+
+    // Helper method to create test items
+    createTestPageItems(): LayerQuery {
+        const layer = api.activeDocument().layers().at(0);
+        const rect1 = layer.pathItems().create();
+        rect1.name("Rect 1");
+        const rect2 = layer.pathItems().create();
+        rect2.name("Rect 2");
+        const rect3 = layer.pathItems().create();
+        rect3.name("Rect 3");
+        return layer;
+    }
+
+    testTypes() {
+        var layer = api.activeDocument().layers().at(0);
+        var pathItem = layer.pathItems().create();
+
+        // Test Layer types
+        if (layer.itemDefaults === undefined || layer.queryItemDefaults === undefined || layer.queryDefaults === undefined)
+            throw "Layer default values are unassigned";
+
+        var expectedItemType = "Layer";
+        var expectedQueryItemType = "LayerQuery";
+        var expectedQueryType = "LayerQuery<Layer>";
+        var actualItemType = layer.itemType;
+        var actualQueryItemType = layer.queryItemType;
+        var actualQueryType = layer.queryType;
+
+        if (expectedItemType !== actualItemType)
+            throw `Layer itemType: expected ${expectedItemType}, got ${actualItemType}`;
+        if (expectedQueryItemType !== actualQueryItemType)
+            throw `Layer queryItemType: expected ${expectedQueryItemType}, got ${actualQueryItemType}`;
+        if (expectedQueryType !== actualQueryType)
+            throw `Layer queryType: expected ${expectedQueryType}, got ${actualQueryType}`;
+
+        // Test PathItem types
+        if (pathItem.itemDefaults === undefined || pathItem.queryItemDefaults === undefined || pathItem.queryDefaults === undefined)
+            throw "PathItem default values are unassigned";
+
+        expectedItemType = "PathItem";
+        expectedQueryItemType = "PathItemQuery";
+        expectedQueryType = "PathItemQuery<PathItem>";
+        actualItemType = pathItem.itemType;
+        actualQueryItemType = pathItem.queryItemType;
+        actualQueryType = pathItem.queryType;
+
+        if (expectedItemType !== actualItemType)
+            throw `PathItem itemType: expected ${expectedItemType}, got ${actualItemType}`;
+        if (expectedQueryItemType !== actualQueryItemType)
+            throw `PathItem queryItemType: expected ${expectedQueryItemType}, got ${actualQueryItemType}`;
+        if (expectedQueryType !== actualQueryType)
+            throw `PathItem queryType: expected ${expectedQueryType}, got ${actualQueryType}`;
+    }
+
+    testParent() {
+        const layer = api.activeDocument().layers().at(0);
+        const pathItem = layer.pathItems().create();
+
+        const parent = pathItem.parent();
+        const expectedParentType = "Layer";
+        const actualParentType = parent.itemType;
+        if (actualParentType !== expectedParentType)
+            throw `Parent type: expected ${expectedParentType}, got ${actualParentType}`;
+    }
+
+    testEmpty() {
+        const layer = api.activeDocument().layers().at(0);
+        const pathItem = layer.pathItems().create();
+
+        const expectedEmpty = false;
+        const actualEmpty = pathItem.empty();
+        if (actualEmpty !== expectedEmpty)
+            throw `Empty state: expected ${expectedEmpty}, got ${actualEmpty}`;
+
+        // Test empty item
+        const emptyItem = QueryItem.empty();
+        const expectedEmptyState = true;
+        const actualEmptyState = emptyItem.empty();
+        if (actualEmptyState !== expectedEmptyState)
+            throw `Empty item state: expected ${expectedEmptyState}, got ${actualEmptyState}`;
+    }
+
+    testActivation() {
+        const layer = api.activeDocument().layers().at(0);
+        const pathItem = layer.pathItems().create();
+
+        // Test initial state
+        const expectedInitialState = false;
+        const actualInitialState = pathItem.activated();
+        if (actualInitialState !== expectedInitialState)
+            throw `Initial activation: expected ${expectedInitialState}, got ${actualInitialState}`;
+
+        // Test activation
+        pathItem.activate();
+        const expectedActivated = true;
+        const actualActivated = pathItem.activated();
+        if (actualActivated !== expectedActivated)
+            throw `After activation: expected ${expectedActivated}, got ${actualActivated}`;
+
+        // Test deactivation
+        pathItem.deactivate();
+        const expectedDeactivated = false;
+        const actualDeactivated = pathItem.activated();
+        if (actualDeactivated !== expectedDeactivated)
+            throw `After deactivation: expected ${expectedDeactivated}, got ${actualDeactivated}`;
+    }
+
+    testName() {
+        const layer = api.activeDocument().layers().at(0);
+        const pathItem = layer.pathItems().create();
+
+        // Test setting name
+        pathItem.name("Test Item");
+        const expectedName = "Test Item";
+        const actualName = pathItem.name();
+        if (actualName !== expectedName)
+            throw `Item name: expected ${expectedName}, got ${actualName}`;
+
+        // Test getting existing name
+        const retrievedName = pathItem.name();
+        if (retrievedName !== expectedName)
+            throw `Retrieved name: expected ${expectedName}, got ${retrievedName}`;
+    }
+
+    testRemove() {
+        const layer = api.activeDocument().layers().at(0);
+        const pathItem = layer.pathItems().create();
+
+        const initialCount = layer.pathItems().length();
+        pathItem.remove();
+
+        const expectedFinalCount = initialCount - 1;
+        const actualFinalCount = layer.pathItems().length();
+        if (actualFinalCount !== expectedFinalCount)
+            throw `Items after remove: expected ${expectedFinalCount}, got ${actualFinalCount}`;
+    }
+
+    testDeleteAll() {
+        const layer = api.activeDocument().layers().at(0);
+        const group = layer.groupItems().create();
+        group.pathItems().create();
+        group.pathItems().create();
+
+        const initialCount = group.pathItems().length();
+        if (initialCount !== 2)
+            throw `Initial group items: expected 2, got ${initialCount}`;
+
+        group.removeAll();
+
+        const expectedFinalCount = 0;
+        const actualFinalCount = group.pathItems().length();
+        if (actualFinalCount !== expectedFinalCount)
+            throw `Items after removeAll: expected ${expectedFinalCount}, got ${actualFinalCount}`;
+    }
+
+    testGetByName() {
+        const layer = api.activeDocument().layers().at(0);
+        const item = layer.pathItems().create();
+        item.name("FindMe");
+
+        const foundItem = layer.getByName("FindMe");
+        const expectedName = "FindMe";
+        const actualName = foundItem.name();
+        if (actualName !== expectedName)
+            throw `Found item name: expected ${expectedName}, got ${actualName}`;
+    }
+
+    testInsert() {
+        const layer = api.activeDocument().layers().at(0);
+        const group = layer.groupItems().create();
+        const item1 = layer.pathItems().create();
+        const item2 = layer.pathItems().create();
+
+        group.insertMany([item1, item2]);
+
+        const expectedCount = 2;
+        const actualCount = group.pathItems().length();
+        if (actualCount !== expectedCount)
+            throw `Group items after insert: expected ${expectedCount}, got ${actualCount}`;
+    }
+
+    testDuplicate() {
+        const layer = api.activeDocument().layers().at(0);
+        const original = layer.pathItems().create();
+        original.name("Original");
+
+        const duplicate = original.duplicate("New", layer, ElementPlacement.PLACEATEND);
+
+        const expectedName = "New";
+        const actualName = duplicate.name();
+        if (actualName !== expectedName)
+            throw `Duplicate name: expected ${expectedName}, got ${actualName}`;
+
+        const expectedCount = 2;
+        const actualCount = layer.pathItems().length();
+        if (actualCount !== expectedCount)
+            throw `Items after duplicate: expected ${expectedCount}, got ${actualCount}`;
+    }
+
+    testMove() {
+        const layer = api.activeDocument().layers().at(0);
+        const group1 = layer.groupItems().create();
+        const group2 = layer.groupItems().create();
+        const item = group1.pathItems().create();
+
+        item.move(group2, ElementPlacement.PLACEATEND);
+
+        const expectedSourceCount = 0;
+        const actualSourceCount = group1.pathItems().length();
+        if (actualSourceCount !== expectedSourceCount)
+            throw `Source group items: expected ${expectedSourceCount}, got ${actualSourceCount}`;
+
+        const expectedTargetCount = 1;
+        const actualTargetCount = group2.pathItems().length();
+        if (actualTargetCount !== expectedTargetCount)
+            throw `Target group items: expected ${expectedTargetCount}, got ${actualTargetCount}`;
+    }
+
+    testMoveTo() {
+        const layer = api.activeDocument().layers().at(0);
+        const item0 = layer.pathItems().create("0");
+        const item1 = layer.pathItems().create("1");
+        const item2 = layer.pathItems().create("2");
+
+        item2.moveTo(-1);
+        var expectSameItem = layer.pageItems().at(2);
+        if (!expectSameItem.equals(item2))
+            throw `Expected item ${expectSameItem.name()} at index 2 to be ${item2.name()}`;
+
+        item2.moveTo(2);
+        var expectSameItem = layer.pageItems().at(2);
+        if (!expectSameItem.equals(item2))
+            throw `Expected item ${expectSameItem.name()} at index 2 to be ${item2.name()}`;
+
+        item2.moveTo(0);
+        var expectSameItem = layer.pageItems().at(0);
+        if (!expectSameItem.equals(item2))
+            throw `Expected item ${expectSameItem.name()} at index 0 to be ${item2.name()}`;
+
+        item2.moveTo(1);
+        var expectSameItem = layer.pageItems().at(1);
+        if (!expectSameItem.equals(item2))
+            throw `Expected item ${expectSameItem.name()} at index 1 to be ${item2.name()}`;
+    }
+
+    testCollectionAccess() {
+        const layer = this.createTestPageItems();
+
+        // Test length
+        const expectedLength = 3;
+        const actualLength = layer.pageItems().length();
+        if (actualLength !== expectedLength)
+            throw `Collection length: expected ${expectedLength}, got ${actualLength}`;
+
+        // Test at() positive index
+        const expectedName = "Rect 1";
+        const actualName = layer.pageItems().at(0).name();
+        if (actualName !== expectedName)
+            throw `First item name: expected ${expectedName}, got ${actualName}`;
+
+        // Test at() negative index
+        const expectedLastName = "Rect 3";
+        const actualLastName = layer.pageItems().at(-1).name();
+        if (actualLastName !== expectedLastName)
+            throw `Last item name: expected ${expectedLastName}, got ${actualLastName}`;
+    }
+
+    testIndex() {
+        const layer = this.createTestPageItems();
+        if (layer.at(0).index() != 0 || layer.at(1).index() != 1 || layer.at(2).index() != 2)
+            throw `Index is returning the wrong number`;
+    }
+
+    testQuery() {
+        const layer = this.createTestPageItems();
+
+        // Test default query (all items)
+        const expectedFullLength = 3;
+        const actualFullLength = layer.pageItems().query().length();
+        if (actualFullLength !== expectedFullLength)
+            throw `Full query length: expected ${expectedFullLength}, got ${actualFullLength}`;
+
+        // Test range query
+        const expectedRangeLength = 2;
+        const actualRangeLength = layer.pageItems().query("0:1").length();
+        if (actualRangeLength !== expectedRangeLength)
+            throw `Range query length: expected ${expectedRangeLength}, got ${actualRangeLength}`;
+    }
+
+    testGet() {
+        const layer = this.createTestPageItems();
+
+        // Test get with range
+        const items = layer.pageItems().get("0:1");
+        const expectedLength = 2;
+        const actualLength = items.length();
+        if (actualLength !== expectedLength)
+            throw `Get range length: expected ${expectedLength}, got ${actualLength}`;
+
+        // Verify items are in correct order
+        const expectedFirstName = "Rect 1";
+        const actualFirstName = items.at(0).name();
+        if (actualFirstName !== expectedFirstName)
+            throw `First item in range: expected ${expectedFirstName}, got ${actualFirstName}`;
+    }
+
+    testCreate() {
+        const layer = api.activeDocument().layers().at(0);
+
+        // Test create with name
+        const item = layer.pathItems().create("New Rect");
+        const expectedName = "New Rect";
+        const actualName = item.name();
+        if (actualName !== expectedName)
+            throw `Created item name: expected ${expectedName}, got ${actualName}`;
+
+        // Test position after creation with existing items
+        const item2 = layer.pathItems().create("Another Rect");
+        const lastIndex = layer.pathItems().length() - 1;
+        const actualLastItem = layer.pathItems().at(lastIndex);
+        if (actualLastItem.name() !== "Another Rect")
+            throw `Last item name: expected Another Rect, got ${actualLastItem.name()}`;
+    }
+
+    testReplace() {
+        const layer = this.createTestPageItems();
+        const newItem = layer.pathItems().create("Replacement");
+
+        // Replace second item
+        layer.pageItems().replace(1, newItem);
+
+        const expectedName = "Replacement";
+        const actualName = layer.pageItems().at(1).name();
+        if (actualName !== expectedName)
+            throw `Replaced item name: expected ${expectedName}, got ${actualName}`;
+
+        const expectedLength = 3;
+        const actualLength = layer.pageItems().length();
+        if (actualLength !== expectedLength)
+            throw `Collection length after replace: expected ${expectedLength}, got ${actualLength}`;
+    }
+
+    testDelete() {
+        const layer = this.createTestPageItems();
+        const itemToDelete = layer.pageItems().at(1);
+
+        // Delete middle item
+        layer.pageItems().delete(itemToDelete);
+
+        const expectedLength = 2;
+        const actualLength = layer.pageItems().length();
+        if (actualLength !== expectedLength)
+            throw `Collection length after delete: expected ${expectedLength}, got ${actualLength}`;
+
+        // Verify remaining items
+        const expectedSecondName = "Rect 3";
+        const actualSecondName = layer.pageItems().at(1).name();
+        if (actualSecondName !== expectedSecondName)
+            throw `Second item after delete: expected ${expectedSecondName}, got ${actualSecondName}`;
+    }
+
+    testDeleteMany() {
+        const layer = this.createTestPageItems();
+        const itemsToDelete = layer.pageItems().get("0:1");
+
+        layer.pageItems().deleteMany(itemsToDelete);
+
+        const expectedLength = 1;
+        const actualLength = layer.pageItems().length();
+        if (actualLength !== expectedLength)
+            throw `Collection length after deleteMany: expected ${expectedLength}, got ${actualLength}`;
+
+        const expectedName = "Rect 3";
+        const actualName = layer.pageItems().at(0).name();
+        if (actualName !== expectedName)
+            throw `Remaining item name: expected ${expectedName}, got ${actualName}`;
+    }
+
+    testSelect() {
+        const layer = this.createTestPageItems();
+
+        // Select names of items
+        const names = layer.pageItems().select(item => item.name());
+        const expectedLength = 3;
+        const actualLength = names.length();
+        if (actualLength !== expectedLength)
+            throw `Selected names length: expected ${expectedLength}, got ${actualLength}`;
+
+        const expectedFirstName = "Rect 1";
+        const actualFirstName = names.at(0);
+        if (actualFirstName !== expectedFirstName)
+            throw `First selected name: expected ${expectedFirstName}, got ${actualFirstName}`;
+    }
+
+    testWhere() {
+        const layer = this.createTestPageItems();
+
+        // Filter items by name
+        const filtered = layer.pageItems().where(item => stringContains(item.name(), "2"));
+        const expectedLength = 1;
+        const actualLength = filtered.length();
+        if (actualLength !== expectedLength)
+            throw `Filtered length: expected ${expectedLength}, got ${actualLength}`;
+
+        const expectedName = "Rect 2";
+        const actualName = filtered.at(0).name();
+        if (actualName !== expectedName)
+            throw `Filtered item name: expected ${expectedName}, got ${actualName}`;
+    }
+
+    testWhereNameMatches() {
+        const layer = this.createTestPageItems();
+
+        // Filter items by regex pattern - match specifically "Rect 2"
+        const filtered = layer.pageItems().whereNameMatches(/Rect 2$/);
+        const expectedLength = 1;
+        const actualLength = filtered.length();
+        if (actualLength !== expectedLength)
+            throw `Regex filtered length: expected ${expectedLength}, got ${actualLength}`;
+
+        const expectedName = "Rect 2";
+        const actualName = filtered.at(0).name();
+        if (actualName !== expectedName)
+            throw `Regex filtered item name: expected ${expectedName}, got ${actualName}`;
+    }
+
+    testWhereNameStartsWith() {
+        const layer = this.createTestPageItems();
+        layer.pathItems().create("Unmatched");
+
+        // Filter items starting with "Rect"
+        const filtered = layer.pageItems().whereNameStartsWith("Rect");
+        const expectedLength = 3;
+        const actualLength = filtered.length();
+        if (actualLength !== expectedLength)
+            throw `StartsWith filtered length: expected ${expectedLength}, got ${actualLength}`;
+
+        const expectedName = "Rect 1";
+        const actualName = filtered.at(0).name();
+        if (actualName !== expectedName)
+            throw `StartsWith filtered first item name: expected ${expectedName}, got ${actualName}`;
+    }
+
+    testWhereNameEndsWith() {
+        const layer = this.createTestPageItems();
+
+        // Filter items ending with "2"
+        const filtered = layer.pageItems().whereNameEndsWith("2");
+        const expectedLength = 1;
+        const actualLength = filtered.length();
+        if (actualLength !== expectedLength)
+            throw `EndsWith filtered length: expected ${expectedLength}, got ${actualLength}`;
+
+        const expectedName = "Rect 2";
+        const actualName = filtered.at(0).name();
+        if (actualName !== expectedName)
+            throw `EndsWith filtered item name: expected ${expectedName}, got ${actualName}`;
+    }
+
+    testWhereNameContains() {
+        const layer = this.createTestPageItems();
+        layer.pathItems().create("Unmatched");
+
+        // Filter items containing "ct"
+        const filtered = layer.pageItems().whereNameContains("ct");
+        const expectedLength = 3;
+        const actualLength = filtered.length();
+        if (actualLength !== expectedLength)
+            throw `Contains filtered length: expected ${expectedLength}, got ${actualLength}`;
+
+        const expectedName = "Rect 1";
+        const actualName = filtered.at(0).name();
+        if (actualName !== expectedName)
+            throw `Contains filtered first item name: expected ${expectedName}, got ${actualName}`;
+    }
+
+    testFirst() {
+        const layer = this.createTestPageItems();
+
+        // Test first without predicate
+        const first = layer.pageItems().first();
+        const expectedFirstName = "Rect 1";
+        const actualFirstName = first?.name();
+        if (actualFirstName !== expectedFirstName)
+            throw `First item name: expected ${expectedFirstName}, got ${actualFirstName}`;
+
+        // Test first with predicate
+        const firstMatching = layer.pageItems().first(item => stringContains(item.name(), "2"));
+        const expectedMatchingName = "Rect 2";
+        const actualMatchingName = firstMatching?.name();
+        if (actualMatchingName !== expectedMatchingName)
+            throw `First matching item: expected ${expectedMatchingName}, got ${actualMatchingName}`;
+
+        // Test first with no matches
+        const noMatch = layer.pageItems().first(item => stringContains(item.name(), "NonExistent"));
+        if (noMatch !== undefined)
+            throw `No match should return undefined, got ${noMatch}`;
+    }
+
+    testFirstIndex() {
+        const layer = this.createTestPageItems();
+
+        // Test finding existing item
+        const index = layer.pageItems().firstIndex(item => stringContains(item.name(), "2"));
+        const expectedIndex = 1;
+        if (index !== expectedIndex)
+            throw `First index: expected ${expectedIndex}, got ${index}`;
+
+        // Test no match
+        const noMatchIndex = layer.pageItems().firstIndex(item => stringContains(item.name(), "NonExistent"));
+        const expectedNoMatch = -1;
+        if (noMatchIndex !== expectedNoMatch)
+            throw `No match index: expected ${expectedNoMatch}, got ${noMatchIndex}`;
+    }
+
+    testLast() {
+        const layer = this.createTestPageItems();
+
+        // Test last without predicate
+        const last = layer.pageItems().last();
+        const expectedLastName = "Rect 3";
+        const actualLastName = last?.name();
+        if (actualLastName !== expectedLastName)
+            throw `Last item name: expected ${expectedLastName}, got ${actualLastName}`;
+
+        // Test last with predicate
+        const lastMatching = layer.pageItems().last(item => stringContains(item.name(), "Rect"));
+        const expectedMatchingName = "Rect 3";
+        const actualMatchingName = lastMatching?.name();
+        if (actualMatchingName !== expectedMatchingName)
+            throw `Last matching item: expected ${expectedMatchingName}, got ${actualMatchingName}`;
+    }
+
+    testLastIndex() {
+        const layer = this.createTestPageItems();
+
+        // Test finding existing item
+        const index = layer.pageItems().lastIndex(item => stringContains(item.name(), "Rect"));
+        const expectedIndex = 2;
+        if (index !== expectedIndex)
+            throw `Last index: expected ${expectedIndex}, got ${index}`;
+
+        // Test no match
+        const noMatchIndex = layer.pageItems().lastIndex(item => stringContains(item.name(), "NonExistent"));
+        const expectedNoMatch = -1;
+        if (noMatchIndex !== expectedNoMatch)
+            throw `No match last index: expected ${expectedNoMatch}, got ${noMatchIndex}`;
+    }
+
+    testSkip() {
+        const layer = this.createTestPageItems();
+
+        const skipped = layer.pageItems().skip(1);
+        const expectedLength = 2;
+        const actualLength = skipped.length();
+        if (actualLength !== expectedLength)
+            throw `Skipped length: expected ${expectedLength}, got ${actualLength}`;
+
+        const expectedFirstName = "Rect 2";
+        const actualFirstName = skipped.at(0).name();
+        if (actualFirstName !== expectedFirstName)
+            throw `First skipped item: expected ${expectedFirstName}, got ${actualFirstName}`;
+    }
+
+    testTake() {
+        const layer = this.createTestPageItems();
+
+        const taken = layer.pageItems().take(2);
+        const expectedLength = 2;
+        const actualLength = taken.length();
+        if (actualLength !== expectedLength)
+            throw `Taken length: expected ${expectedLength}, got ${actualLength}`;
+
+        const expectedLastName = "Rect 2";
+        const actualLastName = taken.at(-1).name();
+        if (actualLastName !== expectedLastName)
+            throw `Last taken item: expected ${expectedLastName}, got ${actualLastName}`;
+    }
+
+    testAny() {
+        const layer = this.createTestPageItems();
+
+        // Test without predicate
+        const hasAny = layer.pageItems().any();
+        if (!hasAny)
+            throw `Any without predicate should be true`;
+
+        // Test with matching predicate
+        const hasMatch = layer.pageItems().any(item => stringContains(item.name(), "2"));
+        if (!hasMatch)
+            throw `Any with matching predicate should be true`;
+
+        // Test with non-matching predicate
+        const hasNoMatch = layer.pageItems().any(item => stringContains(item.name(), "NonExistent"));
+        if (hasNoMatch)
+            throw `Any with non-matching predicate should be false`;
+    }
+
+    testIncludes() {
+        const layer = this.createTestPageItems();
+        const item = layer.pageItems().at(1);
+
+        const doesInclude = layer.pageItems().includes(item);
+        if (!doesInclude)
+            throw `Includes should find existing item`;
+
+        const otherLayer = api.activeDocument().layers().create();
+        const otherItem = otherLayer.pathItems().create();
+        const doesNotInclude = layer.pageItems().includes(otherItem);
+        if (doesNotInclude)
+            throw `Includes should not find item from other layer`;
+    }
+
+    testForEach() {
+        const layer = this.createTestPageItems();
+        let count = 0;
+        let names: string[] = [];
+
+        layer.pageItems().forEach((item, index) => {
+            count++;
+            names.push(item.name());
+        });
+
+        const expectedCount = 3;
+        if (count !== expectedCount)
+            throw `ForEach count: expected ${expectedCount}, got ${count}`;
+
+        const expectedFirstName = "Rect 1";
+        if (names[0] !== expectedFirstName)
+            throw `ForEach first name: expected ${expectedFirstName}, got ${names[0]}`;
+    }
+
+    testDo() {
+        const layer = this.createTestPageItems();
+        let count = 0;
+        let names: string[] = [];
+
+        layer.pageItems().do(item => {
+            count++;
+            names.push(item.name());
+        });
+
+        const expectedCount = 3;
+        if (count !== expectedCount)
+            throw `ForEach count: expected ${expectedCount}, got ${count}`;
+
+        const expectedFirstName = "Rect 1";
+        if (names[0] !== expectedFirstName)
+            throw `ForEach first name: expected ${expectedFirstName}, got ${names[0]}`;
+    }
+
+    testDoOnce() {
+        const layer = this.createTestPageItems();
+        let count = 0;
+
+        // Should stop after finding match
+        layer.pageItems().doOnce(item => {
+            count++;
+            return stringContains(item.name(), "2");
+        });
+
+        const expectedCount = 2;
+        if (count !== expectedCount)
+            throw `DoOnce count: expected ${expectedCount}, got ${count}`;
+    }
+
+    testHide() {
+        const layer = this.createTestPageItems();
+        const rect = layer.pathItems().at(0);
+
+        // Initial visibility check
+        const expectedVisible = true;
+        const actualVisible = rect.visible();
+        if (actualVisible !== expectedVisible)
+            throw `1. Expected visible: ${expectedVisible}, got: ${actualVisible}`;
+
+        // Hide the item
+        rect.hide();
+
+        // Verify hidden state
+        const expectedHidden = true;
+        const actualHidden = rect.hidden();
+        if (actualHidden !== expectedHidden)
+            throw `2. Expected hidden: ${expectedHidden}, got: ${actualHidden}`;
+    }
+
+    testShow() {
+        const layer = this.createTestPageItems();
+        const rect = layer.pathItems().at(0);
+
+        // Hide the item
+        rect.hide();
+
+        // Show the item
+        rect.show();
+
+        // Verify visibility
+        const expectedVisible = true;
+        const actualVisible = rect.visible();
+        if (actualVisible !== expectedVisible)
+            throw `3. Expected visible: ${expectedVisible}, got: ${actualVisible}`;
+    }
+
+    testHidden() {
+        const layer = this.createTestPageItems();
+        const rect = layer.pathItems().at(0);
+
+        // Verify initial hidden state
+        const expectedHidden = false;
+        const actualHidden = rect.hidden();
+        if (actualHidden !== expectedHidden)
+            throw `4. Expected hidden: ${expectedHidden}, got: ${actualHidden}`;
+
+        // Hide the item
+        rect.hide();
+
+        // Verify it reports as hidden
+        const expectedHiddenAfterHide = true;
+        const actualHiddenAfterHide = rect.hidden();
+        if (actualHiddenAfterHide !== expectedHiddenAfterHide)
+            throw `5. Expected hidden after hide: ${expectedHiddenAfterHide}, got: ${actualHiddenAfterHide}`;
+    }
+
+    testVisible() {
+        const layer = this.createTestPageItems();
+        const rect = layer.pathItems().at(0);
+
+        // Verify initial visibility
+        const expectedVisible = true;
+        const actualVisible = rect.visible();
+        if (actualVisible !== expectedVisible)
+            throw `6. Expected visible: ${expectedVisible}, got: ${actualVisible}`;
+
+        // Hide the item
+        rect.hide();
+
+        // Verify not visible
+        const expectedVisibleAfterHide = false;
+        const actualVisibleAfterHide = rect.visible();
+        if (actualVisibleAfterHide !== expectedVisibleAfterHide)
+            throw `7. Expected visible after hide: ${expectedVisibleAfterHide}, got: ${actualVisibleAfterHide}`;
+    }
+
+    testHideAll() {
+        const layer = this.createTestPageItems();
+
+        // Hide all items
+        layer.pathItems().hideAll();
+
+        // Verify all items are hidden
+        layer.pathItems().do(item => {
+            const expectedHidden = true;
+            const actualHidden = item.hidden();
+            if (actualHidden !== expectedHidden)
+                throw `8. Expected hideAll hidden: ${expectedHidden}, got: ${actualHidden}`;
+        });
+
+        // Hide all with a predicate
+        const rect2 = layer.pathItems().at(1);
+        layer.pathItems().showAll(); // Reset visibility
+
+        layer.pathItems().hideAll(item => item.name() === rect2.name());
+        const expectedHiddenPredicate = true;
+        const actualHiddenPredicate = rect2.hidden();
+        if (actualHiddenPredicate !== expectedHiddenPredicate)
+            throw `9. Expected hideAll rect2 hidden after predicate hideAll: ${expectedHiddenPredicate}, got: ${actualHiddenPredicate}`;
+    }
+
+    testShowAll() {
+        const layer = this.createTestPageItems();
+
+        // Hide all items first
+        layer.pathItems().hideAll();
+
+        // Show all items
+        layer.pathItems().showAll();
+
+        // Verify all items are visible
+        layer.pathItems().do(item => {
+            const expectedVisible = true;
+            const actualVisible = item.visible();
+            if (actualVisible !== expectedVisible)
+                throw `10. Expected visible: ${expectedVisible}, got: ${actualVisible}`;
+        })
+
+        // Show all with a predicate
+        const rect2 = layer.pathItems().at(1);
+        layer.pathItems().hideAll(); // Reset visibility
+
+        layer.pathItems().showAll(item => item.name() === rect2.name());
+        const expectedVisiblePredicate = true;
+        const actualVisiblePredicate = rect2.visible();
+        if (actualVisiblePredicate !== expectedVisiblePredicate)
+            throw `11. Expected rect2 visible after predicate showAll: ${expectedVisiblePredicate}, got: ${actualVisiblePredicate}`;
+    }
+
+    testDefaultHide() {
+        const doc = api.activeDocument();
+
+        // Ensure hide/show operations do not throw errors
+        doc.hide()
+        doc.show()
+
+        // Ensure hidden() returns false and visible() returns true
+        const expectedHidden = false;
+        const actualHidden = doc.hidden();
+        if (actualHidden !== expectedHidden)
+            throw `Expected document hidden: ${expectedHidden}, got: ${actualHidden}`;
+
+        const expectedVisible = true;
+        const actualVisible = doc.visible();
+        if (actualVisible !== expectedVisible)
+            throw `Expected document visible: ${expectedVisible}, got: ${actualVisible}`;
+    }
+
+    testActivate() {
+        const layer = this.createTestPageItems();
+        const rect = layer.pathItems().at(0);
+
+        // Inactivate the item
+        rect.deactivate();
+
+        // Activate the item
+        rect.activate();
+
+        // Verify activation state
+        const expectedActive = true;
+        const actualActive = rect.active();
+        if (actualActive !== expectedActive)
+            throw `3. Expected active: ${expectedActive}, got: ${actualActive}`;
+    }
+
+    testInactive() {
+        const layer = this.createTestPageItems();
+        const rect = layer.pathItems().at(0);
+
+        // Verify initial inactive state
+        const expectedInactive = true;
+        const actualInactive = rect.inactive();
+        if (actualInactive !== expectedInactive)
+            throw `4. Expected inactive: ${expectedInactive}, got: ${actualInactive}`;
+
+        // Inactivate the item
+        rect.deactivate();
+
+        // Verify it reports as inactive
+        const expectedInactiveAfterDeactivate = false;
+        const actualInactiveAfterDeactivate = rect.active();
+        if (actualInactiveAfterDeactivate !== expectedInactiveAfterDeactivate)
+            throw `5. Expected inactive after deactivate: ${expectedInactiveAfterDeactivate}, got: ${actualInactiveAfterDeactivate}`;
+    }
+
+    testActive() {
+        const layer = this.createTestPageItems();
+        const rect = layer.pathItems().at(0);
+
+        rect.activate();
+
+        // Verify initial active state
+        const expectedActive = true;
+        const actualActive = rect.active();
+        if (actualActive !== expectedActive)
+            throw `6. Expected active: ${expectedActive}, got: ${actualActive}`;
+
+        // Inactivate the item
+        rect.deactivate();
+
+        // Verify not active
+        const expectedActiveAfterInactivate = false;
+        const actualActiveAfterInactivate = rect.active();
+        if (actualActiveAfterInactivate !== expectedActiveAfterInactivate)
+            throw `7. Expected active after inactivate: ${expectedActiveAfterInactivate}, got: ${actualActiveAfterInactivate}`;
+    }
+
+    testInactivateAll() {
+        const layer = this.createTestPageItems();
+
+        // Inactivate all items
+        layer.pathItems().inactivateAll();
+
+        // Verify all items are inactive
+        layer.pathItems().do(item => {
+            const expectedInactive = true;
+            const actualInactive = item.inactive();
+            if (actualInactive !== expectedInactive)
+                throw `8. Expected inactivateAll inactive: ${expectedInactive}, got: ${actualInactive}`;
+        });
+
+        // Inactivate all with a predicate
+        const rect2 = layer.pathItems().at(1);
+        layer.pathItems().activateAll();
+
+        layer.pathItems().inactivateAll(item => item.name() === rect2.name());
+        const expectedPredicate = false;
+        const actualPredicate = rect2.active();
+        if (actualPredicate !== expectedPredicate)
+            throw `9. Expected inactivateAll rect2 inactive after predicate inactivateAll: ${expectedPredicate}, got: ${actualPredicate}`;
+    }
+}
+
+class DocumentQueryTests extends AppTestClass {
+    constructor() {
+        super();
+        this.decorateExceptions = false;
+    }
+
+    _testDocumentDelete() {
+        // Test deleting non-existent document
+        const nonExistentFile = "NonExistent.ai";
+        api.deleteDocument(nonExistentFile); // Should not throw
+
+        // Test deleting existing file
+        const testFile = "TestDelete.ai";
+        api.createDocument(testFile, 1000, 1000);
+
+        const expectedExistsBefore = true;
+        const actualExistsBefore = api.exists(testFile);
+        if (actualExistsBefore !== expectedExistsBefore)
+            throw `Before delete: expected exists=${expectedExistsBefore}, got ${actualExistsBefore}`;
+
+        api.deleteDocument(testFile);
+
+        const expectedExistsAfter = false;
+        const actualExistsAfter = api.exists(testFile);
+        if (actualExistsAfter !== expectedExistsAfter)
+            throw `After delete: expected exists=${expectedExistsAfter}, got ${actualExistsAfter}`;
+
+        // Test deleting open document
+        const openFile = "TestDeleteOpen.ai";
+        const openDoc = api.createDocument(openFile, 1000, 1000);
+        openDoc.save();
+
+        api.deleteDocument(openFile);
+
+        const expectedExistsAfterOpen = false;
+        const actualExistsAfterOpen = api.exists(openFile);
+        if (actualExistsAfterOpen !== expectedExistsAfterOpen)
+            throw `After delete open: expected exists=${expectedExistsAfterOpen}, got ${actualExistsAfterOpen}`;
+    }
+
+    _testDocumentCreate() {
+        const testFile = "TestCreate.ai";
+        api.deleteDocument(testFile);  // Cleanup any existing file
+
+        // Test basic creation
+        const doc = api.createDocument(testFile, 1000, 1000);
+        const expectedName = testFile;
+        const actualName = doc.name();
+        if (actualName !== expectedName)
+            throw `Document name mismatch: expected '${expectedName}', got '${actualName}'`;
+
+        // Test creation sets active document
+        const expectedActiveDoc = doc._item;
+        const actualActiveDoc = app.activeDocument;
+        if (actualActiveDoc !== expectedActiveDoc)
+            throw `Active document mismatch: expected ${expectedActiveDoc.q.name()}, got ${actualActiveDoc.q.name()}`;
+
+        // Test creation with activation false
+        const inactiveFile = "TestCreateInactive.ai";
+        api.deleteDocument(inactiveFile);  // Cleanup
+
+        api.createDocument(inactiveFile, 1000, 1000, false);
+        const expectedActive = doc._item;
+        const actualActive = app.activeDocument;
+        if (actualActive !== expectedActive)
+            throw `Active document after inactive creation: expected ${expectedActive.q.name()}, got ${actualActive.q.name()}`;
+
+        // Cleanup
+        api.deleteDocument(testFile);
+        api.deleteDocument(inactiveFile);
+    }
+
+    _testDocumentOpen() {
+        const testFile = "TestOpen.ai";
+        api.deleteDocument(testFile);  // Cleanup
+
+        // Create and save a test document
+        const originalDoc = api.createDocument(testFile, 1000, 1000);
+        originalDoc.save();
+
+        // Test basic opening
+        const openedDoc = api.openDocument(testFile);
+        const expectedName = testFile;
+        const actualName = openedDoc.name();
+        if (actualName !== expectedName)
+            throw `Opened document name: expected '${expectedName}', got '${actualName}'`;
+
+        // Test opening with creation disabled
+        const nonExistentFile = "NonExistent.ai";
+        api.deleteDocument(nonExistentFile);  // Cleanup
+
+        this.assertThrows(
+            () => api.openDocument(nonExistentFile, false),
+            `Opening non-existent file '${nonExistentFile}' should throw`
+        );
+
+        // Test opening with creation enabled
+        const newFile = "CreateNew.ai";
+        api.deleteDocument(newFile);  // Cleanup
+
+        const createdDoc = api.openDocument(newFile, true);
+        const expectedNewName = newFile;
+        const actualNewName = createdDoc.name();
+        if (actualNewName !== expectedNewName)
+            throw `Created document name: expected '${expectedNewName}', got '${actualNewName}'`;
+
+        // Cleanup
+        api.deleteDocument(testFile);
+        api.deleteDocument(newFile);
+        api.deleteDocument(nonExistentFile);
+    }
+
+    testCopyLayer() {
+        var layer = api.activeDocument().activeLayer();
+        layer.pathItems().create("0");
+        layer.pathItems().create("1");
+        layer.pathItems().create("2");
+        layer.pathItems().create("3");
+
+        var newLayer = api.activeDocument().copyLayer(layer);
+
+        if (newLayer.name() != layer.name() || newLayer.length() != layer.length())
+            throw `Expected copyLayer to copy the name and items of the specified later`;
+    }
+}
+
+class LayerQueryTests extends AppTestClass {
+    testCreate() {
+        const doc = api.activeDocument();
+
+        // Test initial state (should be empty from init)
+        const expectedInitialCount = 1;
+        const actualInitialCount = doc.layers().length();
+        if (actualInitialCount !== expectedInitialCount)
+            throw `Initial layer count: expected ${expectedInitialCount}, got ${actualInitialCount}`;
+
+        // Test adding a new layer
+        doc.layers().create();
+        const expectedCountAfterAdd = 2;
+        const actualCountAfterAdd = doc.layers().length();
+        if (actualCountAfterAdd !== expectedCountAfterAdd)
+            throw `Layer count after add: expected ${expectedCountAfterAdd}, got ${actualCountAfterAdd}`;
+    }
+
+    testNaming() {
+        const doc = api.activeDocument();
+        const layer = doc.layers().at(0);
+
+        // Test default layer name
+        const expectedDefaultName = "Layer 1";
+        const actualDefaultName = layer.name();
+        if (actualDefaultName !== expectedDefaultName)
+            throw `Default layer name: expected '${expectedDefaultName}', got '${actualDefaultName}'`;
+
+        // Test setting layer name
+        const newName = "Test Layer";
+        layer.name(newName);
+        const actualNewName = layer.name();
+        if (actualNewName !== newName)
+            throw `Set layer name: expected '${newName}', got '${actualNewName}'`;
+    }
+
+    testSelection() {
+        const doc = api.activeDocument();
+        const layer1 = doc.layers().create();
+        const layer2 = doc.layers().create();
+        doc.layers().at(0).remove(); // Remove initial layer
+
+        // Test initial selection state
+        const expectedInitialSelection = false;
+        const actualInitialSelection = layer1.activated();
+        if (actualInitialSelection !== expectedInitialSelection)
+            throw `Initial selection state: expected ${expectedInitialSelection}, got ${actualInitialSelection}`;
+
+        // Test activating layer
+        layer1.activate();
+        const expectedActivated = true;
+        const actualActivated = layer1.activated();
+        if (actualActivated !== expectedActivated)
+            throw `After activation: expected ${expectedActivated}, got ${actualActivated}`;
+
+        // Test deactivating layer
+        layer1.deactivate();
+        const expectedDeactivated = false;
+        const actualDeactivated = layer1.activated();
+        if (actualDeactivated !== expectedDeactivated)
+            throw `After deactivation: expected ${expectedDeactivated}, got ${actualDeactivated}`;
+    }
+
+    testDelete() {
+        const doc = api.activeDocument();
+        doc.layers().create();
+        doc.layers().create();
+        doc.layers().create();
+        doc.layers().at(0).remove(); // Remove initial layer
+
+        // Test initial count
+        const expectedInitialCount = 3;
+        const actualInitialCount = doc.layers().length();
+        if (actualInitialCount !== expectedInitialCount)
+            throw `Initial layer count: expected ${expectedInitialCount}, got ${actualInitialCount}`;
+
+        // Test deleting single layer
+        doc.layers().at(1).remove();
+        const expectedAfterDelete = 2;
+        const actualAfterDelete = doc.layers().length();
+        if (actualAfterDelete !== expectedAfterDelete)
+            throw `Layer count after delete: expected ${expectedAfterDelete}, got ${actualAfterDelete}`;
+
+        // Test deleteAll
+        doc.layers().removeAll();
+        const expectedAfterDeleteAll = 1;
+        const actualAfterDeleteAll = doc.layers().length();
+        if (actualAfterDeleteAll !== expectedAfterDeleteAll)
+            throw `Layer count after deleteAll: expected ${expectedAfterDeleteAll}, got ${actualAfterDeleteAll}`;
+    }
+
+    testMove() {
+        const doc = api.activeDocument();
+        const layer1 = doc.layers().create();
+        const layer2 = doc.layers().create();
+        const layer3 = doc.layers().create();
+        doc.layers().at(0).remove(); // Remove initial layer
+
+        // Test moving layer
+        layer1.move(layer3, ElementPlacement.PLACEAFTER);
+        const expectedIndex = 2;
+        const actualIndex = doc.layers().firstIndex(layer => layer._item === layer1._item);
+        if (actualIndex !== expectedIndex)
+            throw `Layer index after move: expected ${expectedIndex}, got ${actualIndex}`;
+    }
+
+    testItemCollection() {
+        const doc = api.activeDocument();
+        const layer = doc.layers().create();
+
+        // Add different types of items
+        const pathItem = layer.pathItems().create();
+        const textFrame = layer.textFrames().create();
+        const compoundPath = layer.compoundPathItems().create();
+
+        // Test total pageItems count
+        const expectedItemCount = 3;
+        const actualItemCount = layer.pageItems().length();
+        if (actualItemCount !== expectedItemCount)
+            throw `Page items count: expected ${expectedItemCount}, got ${actualItemCount}`;
+
+        // Test specific collection counts
+        const expectedPathCount = 1;
+        const actualPathCount = layer.pathItems().length();
+        if (actualPathCount !== expectedPathCount)
+            throw `Path items count: expected ${expectedPathCount}, got ${actualPathCount}`;
+
+        const expectedTextCount = 1;
+        const actualTextCount = layer.textFrames().length();
+        if (actualTextCount !== expectedTextCount)
+            throw `Text frames count: expected ${expectedTextCount}, got ${actualTextCount}`;
+
+        const expectedCompoundCount = 1;
+        const actualCompoundCount = layer.compoundPathItems().length();
+        if (actualCompoundCount !== expectedCompoundCount)
+            throw `Compound path count: expected ${expectedCompoundCount}, got ${actualCompoundCount}`;
+    }
+
+    testGroup() {
+        var layer = api.activeDocument().activeLayer();
+        layer.pathItems().create("0");
+        layer.pathItems().create("1");
+        layer.pathItems().create("2");
+
+        var group = layer.group("Group");
+
+        if (group.name() !== "Group")
+            throw `Expected name to be "Group", got ${group.name()}`;
+
+        var expectedGroupLength = 3;
+        var actualGroupLength = group.length();
+        if (expectedGroupLength != actualGroupLength)
+            throw `Expected group length of ${expectedGroupLength}, get ${actualGroupLength}`;
+
+        if (group.at(2).name() != "2")
+            throw `Expected group name of "2", get ${group.at(2).name()}`;
+
+        if (layer.length() !== 1)
+            throw `Expected layer length of "1", get ${layer.length()}`;
+    }
+
+    testUngroup() {
+        var layer = api.activeDocument().activeLayer();
+        var zerothItem = layer.pathItems().create("0");
+        layer.pathItems().create("1");
+        layer.pathItems().create("2");
+        layer.pathItems().create("3");
+
+        var group = layer.group("Group", item => item.name() == "1" || item.name() == "2");
+        group.move(zerothItem, ElementPlacement.PLACEAFTER);
+
+        if (group.name() !== "Group")
+            throw `Expected name to be "Group", got ${group.name()}`;
+
+        var expectedGroupLength = 2;
+        var actualGroupLength = group.length();
+        if (expectedGroupLength != actualGroupLength)
+            throw `Expected group length of ${expectedGroupLength}, get ${actualGroupLength}`;
+
+        var expectedItemsLength = 3;
+        var actualItemsLength = layer.length();
+        if (expectedItemsLength != actualItemsLength)
+            throw `Expected layer length of ${expectedItemsLength}, get ${actualItemsLength}`;
+
+        group.ungroup();
+
+        var expectedItemsLength = 4;
+        var actualItemsLength = layer.length();
+        if (expectedItemsLength != actualItemsLength)
+            throw `Expected after ungroup layer length of ${expectedItemsLength}, get ${actualItemsLength}`;
+        if (layer.at(0).name() != "0" || layer.at(1).name() != "1" || layer.at(2).name() != "2" || layer.at(3).name() != "3")
+            throw "The later items are in the wrong order: " + layer.select(i => i.name()).a;
+    }
+
+    testReplaceWith() {
+        var layer = api.activeDocument().activeLayer();
+        layer.pathItems().create("0");
+        layer.pathItems().create("1");
+        layer.pathItems().create("2");
+        layer.pathItems().create("3");
+
+        var secondLayer = api.activeDocument().layers().create("New");
+        secondLayer.pathItems().create("4");
+        layer.replaceWith(secondLayer);
+
+        if (layer.name() != "New" || layer.length() != 1 || layer.pageItems().first().name() != "4")
+            throw `Expected original layer to be named New, have lentgth 1 and contain a single element`;
+    }
+}
+
+class ArtboardQueryTests extends AppTestClass {
+    constructor() {
+        super();
+        this.decorateExceptions = false;
+    }
+
+    testDocument() {
+        const doc = api.activeDocument();
+        const artboard = doc.artboards().at(0);
+
+        // Test document access
+        const artboardDoc = artboard.document();
+        const expectedDocName = doc.name();
+        const actualDocName = artboardDoc.name();
+        if (actualDocName !== expectedDocName)
+            throw `Document name: expected ${expectedDocName}, got ${actualDocName}`;
+
+        // Verify it's configured for artboards
+        const expectedProperty = "artboards";
+        const actualProperty = artboardDoc.collectionType;
+        if (actualProperty !== expectedProperty)
+            throw `Collection property: expected ${expectedProperty}, got ${actualProperty}`;
+    }
+
+    testIndex() {
+        const doc = api.activeDocument();
+        const artboard = doc.artboards().at(0);
+
+        // Test index of first artboard
+        const expectedFirstIndex = 0;
+        const actualFirstIndex = artboard.index();
+        if (actualFirstIndex !== expectedFirstIndex)
+            throw `First artboard index: expected ${expectedFirstIndex}, got ${actualFirstIndex}`;
+
+    }
+
+    testActivation() {
+        const doc = api.activeDocument();
+        const artboard = doc.activeArtboard();
+        if (!artboard.activated())
+            throw `Second artboard should be activated`;
+    }
+
+    testCreate() {
+        const doc = api.activeDocument();
+        this.assertThrows(() => doc.artboards().create(), "Cannot create artboards");
+    }
+
+    testReset() {
+        const doc = api.activeDocument();
+        const artboard = doc.activeArtboard();
+
+        artboard.aspectRatio(2);
+        artboard.reset();
+
+        var expectedRect = api.defaults().artboardRect;
+        var actualRect = artboard.rect();
+
+        this.assertEquals(expectedRect, actualRect, "2. The artboard rect is not the default rect");
+    }
+
+    testWidth() {
+        var artboard = api.activeDocument().activeArtboard();
+        var region = artboard.region();
+
+        // Adjust the region virtually
+        var width = region.width()
+        region.width(width + 0.05, false);
+
+        // Adjust the artboard actually
+        artboard.width(width + 0.05, false)
+
+        // Compare the new region and the old one
+        var newRegion = artboard.region();
+        this.assertEquals(region.leftAbs(), newRegion.leftAbs(), "width should have the same left", 1);
+        this.assertEquals(region.rightAbs(), newRegion.rightAbs(), "width should have the same right", 1);
+        this.assertEquals(region.topAbs(), newRegion.topAbs(), "width should have the same top", 1);
+        this.assertEquals(region.bottomAbs(), newRegion.bottomAbs(), "width should have the same bottom", 1);
+
+        region = artboard.region();
+        width = region.width()
+        region.width(width + 0.05, true);
+
+        // Adjust the artboard actually
+        artboard.width(width + 0.05, true)
+
+        // Compare the new region and the old one
+        var newRegion = artboard.region();
+        this.assertEquals(region.leftAbs(), newRegion.leftAbs(), "width should have the same left", 1);
+        this.assertEquals(region.rightAbs(), newRegion.rightAbs(), "width should have the same right", 1);
+        this.assertEquals(region.topAbs(), newRegion.topAbs(), "width should have the same top", 1);
+        this.assertEquals(region.bottomAbs(), newRegion.bottomAbs(), "width should have the same bottom", 1);
+    }
+
+    testHeight() {
+        var artboard = api.activeDocument().activeArtboard();
+        var region = artboard.region();
+
+        // Adjust the region virtually
+        var height = region.height()
+        region.height(height + 0.05, false);
+
+        // Adjust the artboard actually
+        artboard.height(height + 0.05, false)
+
+        // Compare the new region and the old one
+        var newRegion = artboard.region();
+        this.assertEquals(region.leftAbs(), newRegion.leftAbs(), "height should have the same left", 1);
+        this.assertEquals(region.rightAbs(), newRegion.rightAbs(), "height should have the same right", 1);
+        this.assertEquals(region.topAbs(), newRegion.topAbs(), "height should have the same top", 1);
+        this.assertEquals(region.bottomAbs(), newRegion.bottomAbs(), "height should have the same bottom", 1);
+
+        region = artboard.region();
+        height = region.height()
+        region.height(height + 0.05, true);
+
+        // Adjust the artboard actually
+        artboard.height(height + 0.05, true)
+
+        // Compare the new region and the old one
+        var newRegion = artboard.region();
+        this.assertEquals(region.leftAbs(), newRegion.leftAbs(), "height should have the same left", 1);
+        this.assertEquals(region.rightAbs(), newRegion.rightAbs(), "height should have the same right", 1);
+        this.assertEquals(region.topAbs(), newRegion.topAbs(), "height should have the same top", 1);
+        this.assertEquals(region.bottomAbs(), newRegion.bottomAbs(), "height should have the same bottom", 1);
+    }
+
+    testCenter() {
+        var artboard = api.activeDocument().activeArtboard();
+        var region = artboard.region();
+
+        // Adjust the region virtually
+        var currentCenter = region.center();
+        region.center([currentCenter[0] + 0.01, currentCenter[1] + 0.01]);
+
+        // Adjust the artboard actually
+        artboard.center([currentCenter[0] + 0.01, currentCenter[1] + 0.01])
+
+        // Compare the new region and the old one
+        var newRegion = artboard.region();
+        this.assertEquals(region.leftAbs(), newRegion.leftAbs(), "center should have the same left", 1);
+        this.assertEquals(region.rightAbs(), newRegion.rightAbs(), "center should have the same right", 1);
+        this.assertEquals(region.topAbs(), newRegion.topAbs(), "center should have the same top", 1);
+        this.assertEquals(region.bottomAbs(), newRegion.bottomAbs(), "center should have the same bottom", 1);
+    }
+
+    testSize() {
+        var artboard = api.activeDocument().activeArtboard();
+        var region = artboard.region();
+
+        // Adjust the region virtually
+        var currentSize = region.size();
+        region.size([currentSize[0] + 0.01, currentSize[1] + 0.01]);
+
+        // Adjust the artboard actually
+        artboard.size([currentSize[0] + 0.01, currentSize[1] + 0.01])
+
+        // Compare the new region and the old one
+        var newRegion = artboard.region();
+        this.assertEquals(region.leftAbs(), newRegion.leftAbs(), "size should have the same left", 1);
+        this.assertEquals(region.rightAbs(), newRegion.rightAbs(), "size should have the same right", 1);
+        this.assertEquals(region.topAbs(), newRegion.topAbs(), "size should have the same top", 1);
+        this.assertEquals(region.bottomAbs(), newRegion.bottomAbs(), "size should have the same bottom", 1);
+    }
+}

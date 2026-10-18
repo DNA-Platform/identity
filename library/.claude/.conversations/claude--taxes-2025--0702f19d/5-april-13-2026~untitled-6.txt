@@ -1,0 +1,121 @@
+Team readiness check                                                                                                                                                                                    
+  Arthur: I am NOT ready to execute yet. The algorithm is solid, the expert's responses are all in,  
+  and the numbers tie. But there are four hard blockers and a tooling gap that we need to resolve
+  before I start entering values on forms.
+
+  🔴 Hard blockers (must resolve before form entry)
+
+  Arthur: B1. Chase 2025 Form 1098 (mortgage interest). This gates the entire Schedule A vs. standard
+   deduction decision on Form 1040. If Doug itemizes, Line 12 of the 1040 changes, AGI flow-through  
+  changes, taxable income changes, and the final tax owed changes. I literally cannot begin entering 
+  personal return numbers without knowing the answer. Potential swing: ~$1,100+ in federal tax       
+  savings alone. Doug needs to fetch this from Chase.
+
+  Arthur: B2. NY residency determination. A4 is flagged — we don't know if Doug was a full-year NY   
+  resident or part-year. That choice determines the entire IT-201 form (full-year uses IT-201,       
+  part-year uses IT-203). Two different forms. Doug needs to tell us the date he actually moved to NC
+   (if he moved).
+
+  Arthur: B3. Doug's material participation hours documentation. The expert's P4 analysis says Test 3
+   is viable (100+ hours) — but Doug has to document it. If he can't show 100+ hours, his $6,863 loss
+   becomes a suspended passive loss under §469 — and we'd check the passive box on Schedule E and add
+   Form 8582 instead. Doug needs to reconstruct his hours now, not after we've already marked it     
+  nonpassive.
+
+  Arthur: B4. Doug's SSN. Obvious but needed on every form. Doug hasn't provided it yet (correctly — 
+  it's sensitive). He'll need to provide it at form entry time.
+
+  🟡 Medium blockers (need resolution but won't fully stop me)
+
+  Arthur: M1. 2024 Schedule D Line 21 carryforward. If Doug has a capital loss carryforward from     
+  2024, it reduces his 2025 capital gains (currently $10,054.51). Could be material. Doug to check   
+  his 2024 1040 Schedule D.
+
+  Arthur: M2. Ana's middle name + date of birth + exact Tbilisi address. For K-1 and W-7. Needed but 
+  doesn't gate the entire 1065 — I can fill everything else first and plug these in last.
+
+  Arthur: M3. NAICS code. The algorithm suggests 541430 (Graphic Design Services). Doug should       
+  confirm what DNA actually does so we pick right.
+
+  Arthur: M4. Confirm no dependents. Should be a quick "no."
+
+  Arthur: M5. Confirm no Form 8832 filed. ZenBusiness records check.
+
+  Arthur: M6. Check Coinbase tax center for any 1099-MISC. Staking rewards would be additional       
+  ordinary income we're missing.
+
+  ⚙️ Tooling gap
+
+  Adam: We don't yet have PDF form-filling tooling installed. We have pdf-parse for reading PDFs, but
+   writing values into fillable AcroForm fields requires pdf-lib or similar. That's a 5-minute       
+  install (npm install pdf-lib), but the bigger question is the workflow:
+
+  Adam: Two options for actually generating the filled forms:
+
+  Adam: Option A — Programmatic fill. I install pdf-lib, write a small script that reads the
+  algorithm's values and writes them into each form's AcroForm fields. Output: filled PDFs in a new  
+  folder that Doug can review and sign. Pros: fast, reproducible, version-controllable. Cons: if the 
+  form's AcroForm field names are cryptic or some values don't fit cleanly, we might have to fall    
+  back to manual for a few fields.
+
+  Adam: Option B — Worksheet + manual entry. I generate a markdown worksheet showing every field and 
+  its value, keyed to the algorithm. Doug opens each blank PDF in Adobe Reader and types the values. 
+  Pros: Doug has total control and sees every field. Cons: slower, manual, no machine-verified       
+  output.
+
+  Adam: I'd recommend Option A with per-form review — I fill one form (start with Form 7004... wait, 
+  we're not filing 7004... start with Form 8822-B, simplest). Doug reviews the output. If that works,
+   we proceed to bigger forms.
+
+  ✅ What IS ready
+
+  Rita: Everything data-side is reconciled and verified.
+  - LLC: name, EIN, name control, formation dates, addresses — all confirmed in v1.4
+  - Mercury P&L: $14,616.83 revenue, $4,534.77 core, $11,033.16 GoDaddy, $12,775.18 Ana →
+  $(13,726.28) loss → Doug's $(6,863.14) — all tied to the CSV to the penny
+  - IB 1099-R, IB 1099-B, Coinbase 1099-DA, crypto basis memo — all extracted and cross-checked      
+  - Capital gain totals: $1,035.01 ST + $9,019.50 LT = $10,054.51
+  - Foreign tax credit: $78.37 de minimis
+  - §72(t) penalty: $4,650
+  - IRS confirmed no 2025 info returns exist for Doug
+
+  Libby: Documentation is current and complete.
+  - Expert guidance captured (expert-guidance-capital-and-basis.md)
+  - Assumptions check report (assumptions-check-report.md)
+  - Mercury categorization (mercury-categorized-2025.md)
+  - LLC reference (llc.md)
+  - Form dependency chain (form-dependencies.md)
+  - House sale resolution (house-sale-2025.md)
+  - Payer inventory (payer-inventory.md)
+
+  Brooke: Browser is alive and authenticated to Mercury. I can go back and grab anything additional  
+  if needed — another CSV slice, a statement for a missing month, screenshots of Mercury settings to 
+  show the "Digital Narrative Arts" typo for the correction request.
+
+  📋 One minor item we should do now
+
+  Adam: Download Form 5329 (the §72(t) penalty form) to 2025/personal/f5329.pdf. The algorithm says  
+  "team must download" — that's a one-line curl. I can do this now; it doesn't require any decisions.
+
+  ---
+  Summary for Doug
+
+  Arthur: Not ready to execute. Four items from you would move us from "not ready" to "ready":       
+
+  1. 2025 Chase 1098 (critical — itemize vs standard)
+  2. NY residency — when did you move to NC, if you moved?
+  3. Your LLC hours reconstruction — 100+ hours defensible?
+  4. SSN (provide at execution time, not earlier)
+
+  Arthur: Four more items are nice-to-have but won't fully block:
+  - 2024 Schedule D carryforward check
+  - Ana's middle name + DOB + address
+  - NAICS code / business description
+  - Coinbase 1099-MISC check + no-dependents + no-8832
+
+  Arthur: Adam also needs to decide with you on programmatic fill vs. worksheet handoff for actually 
+  generating the forms. I'd recommend starting with programmatic fill on the simplest form (Form     
+  8822-B address change) as a test, then proceeding to the bigger ones.
+
+  Arthur: When you give me the four hard blockers, I'm ready to go. Should I download Form 5329 now  
+  (non-decision work), and should Adam install pdf-lib to prep the tooling?

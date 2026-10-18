@@ -1,0 +1,74 @@
+The structure
+
+BOOKS                           the nodes — a folder with three dot chapters
+
+TREE 1 · THE CATALOGUE          what a thing is about
+    one root                    the library — the book that is its own subject
+    one parent each             every other book
+    no cycles
+    everything reaches the root
+
+TREE 2 · THE AUTHORS            who is speaking — a SUBTREE of tree 1
+    one root                    the origin — the book that authors itself
+    joined by delegation        catalogued by an author AND authored by that catalogue
+    rooted anywhere             the origin need not be the library
+
+OVERLAY · TOPICS                where else a thing can be found
+    any book, any book
+    cycles allowed
+    never the canonical catalogue
+
+ATTRIBUTION                     every book has an author, and every author is in tree 2
+The syntax
+
+[[ X ]]        this is titled X                      about this writing
+[[[ X ]]]      this is named X                       about this spot
+[[ X ]]*       this is author X                      about this writing
+[[ X ]]**      this is subject X                     about this writing
+[[ X ]]***     this is a catalogue of X              about this writing
+
+  *[[ X ]]     this is authored by X                 about X
+ **[[ X ]]     this is catalogued by X canonically   about X
+***[[ X ]]     this is catalogued by X               about X
+
+  $[ X ]       the address of X                      about X
+Left the edge points out, right it points in. One star author, two canonical catalogue, three catalogue.
+
+The rules
+
+WELL-FORMED
+├── NAMES
+│   ├── every book has a title
+│   ├── one title, one book
+│   └── every $[ ] resolves
+├── THE CATALOGUE — a tree
+│   ├── exactly one root
+│   ├── no cycles
+│   ├── every book reaches the root
+│   └── every edge answered from both ends
+├── TOPICS — an overlay
+│   ├── a topic is never the canonical catalogue
+│   ├── every topical edge answered from both ends
+│   └── a non-canonical listing carries a synopsis
+└── AUTHORSHIP — a subtree of the catalogue
+    ├── exactly one book authors itself
+    ├── every book has an author
+    ├── an author is the origin, OR catalogued by an author and authored by that catalogue
+    └── every book's author is an author
+The catalogue: about-ness that has to stop
+Arthur: The catalogue is the library's answer to what is this about — and the answer is always another book. There is no subject floating outside as a string, no tag, nothing that exists by being typed. To be about something is to stand under a book, which stands under a book.
+
+So the library is what happens when you insist that everything be somewhere, and a somewhere is another thing in the same system. That regress has to terminate, and it can't terminate outside — there is no outside. It terminates in a book that is its own place: about itself, catalogued by itself. That is the library, and it is not declared anywhere. You find it by finding the loop.
+
+And topics are the admission that one place is never enough. The canonical tree is where a thing lives; the topics are where else it can be found. One is for getting there, the others are for meaning — and meaning is allowed to be circular. Peano inside set theory and set theory inside Peano is not a fault; it's two frames each able to hold the other, which is a true thing about mathematics and would be a lie to forbid.
+
+The author: how one came to be
+Arthur: Your pre-library scene is the whole story. A compositional thing, Wikipedia-shaped. And somewhere in it, a note that claims to be someone — and which then has the power to rewrite other nodes so they point at it.
+
+Nothing granted it that. No registry, no account, no authority above. It said I am, and then it wrote that claim onto other writing. Authorship begins as an assertion of power over text, and there is no version of the story where it begins any other way, because whatever granted it would need something to have granted that.
+
+The only thing that keeps it from being vandalism is that the claim is self-consistent. The node does not claim to be authored by something above it — that would be a lie, since nothing is above. It does not claim nothing — that would leave it ungrounded and every attribution beneath it resting on air. It closes the loop on itself. Self-authorship is the minimal act that is neither a lie nor a void.
+
+Then the being specialises. It makes a place for itself in the catalogue, and inside that place it can represent itself again — a professional, a persona, a mask. And here is the rule that fell out and that I think is the good one: you can only delegate downward, and only where you already stand. A persona appears inside the region the being already occupies, and becomes real only when the parent both shelves it and signs it — catalogued by an author, authored by that author. Both halves.
+
+Which means: identity spreads by vouching, never by declaration. Nothing in the library can wake up and be an author.

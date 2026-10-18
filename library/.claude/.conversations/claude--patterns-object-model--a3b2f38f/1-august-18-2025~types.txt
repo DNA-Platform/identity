@@ -1,0 +1,90 @@
+// Defines the places where we save and load documents from as specified in .env and added by the build
+var SCRIPTS_PATH = "";
+var DOCUMENTS_PATH: string = "";
+var STOCKSUBMITTER_PATH: string = "";
+
+type Selector = string | number | string[] | number[];
+type Position = [number, number];
+type Complex = Position;
+type Scale = number | [number, number] | number[];
+type Delta = [number, number] | number[];
+type Size = [number, number] | number[];
+type Range = [number, number] | number[];
+type Direction = "c" | "cc";
+type OnCompleteHandler = (cmd: string, i: number) => void | any
+type OnErrorHandler = (cmd: string, i: number, e: { body: string, headers: { "Error-Code": number } }) => void | any
+
+declare function eval(code: string): any;
+declare enum ElementPlacement {
+    PLACEATBEGINNING = 1,
+    PLACEATEND = 2,
+    PLACEAFTER = 3,
+    PLACEBEFORE = 4
+}
+
+const BridgeTalkApps = {
+    photoshop: "photoshop",
+    illustrator: "illustrator",
+    indesign: "indesign",
+    aftereffects: "aftereffects",
+    premiere: "premiere"
+} as const;
+
+type BridgeTalkApp = typeof BridgeTalkApps[keyof typeof BridgeTalkApps];
+
+interface BridgeTalkClass {
+    // Static Properties
+    appInstance: string; // Instance identifier for multi-instance apps
+    appLocale: string; // Current application locale
+    appName: string; // Full application name
+    appSpecifier: string; // Complete application specifier
+    appStatus: "busy" | "idle" | "not installed"; // Current processing status
+    appVersion: string; // Application version number
+    onReceive: (bridgeTalkObject: BridgeTalkMessage) => any; // Handler for unsolicited messages
+
+    // Static Methods
+    bringToFront(app: string): void;
+    getAppPath(app: string): string;
+    getDisplayName(app: string): string | null;
+    getSpecifier(appName: string, version?: number, locale?: string): string | null;
+    getStatus(targetSpec?: string): "BUSY" | "IDLE" | "PUMPING" | "ISNOTRUNNING" | "ISNOTINSTALLED" | "UNDEFINED";
+    getTargets(version?: string | null, locale?: string | null): string[];
+    isRunning(specifier: string): boolean;
+    launch(specifier: string, where?: "background"): boolean;
+    loadAppScript(specifier: string): boolean;
+    ping(specifier: string, pingRequest: "STATUS" | "DIAGNOSTICS" | "ECHO_REQUEST"): string;
+    pump(): boolean;
+
+    new (): BridgeTalkMessage;
+}
+
+interface BridgeTalkMessage {
+    // Properties
+    body: string;            // Data payload, typically script as string
+    headers: {               // Custom header data object
+        [key: string]: any;  // Allows any name/value pairs
+        "Error-Code"?: number;  // Predefined error code header
+    };
+    sender: string;          // Sending application's specifier
+    target: string;          // Target application's specifier
+    timeout: number;         // Timeout in seconds
+    type: string;           // Message type, default "ExtendScript"
+
+    // Callback Methods
+    onError: (errorMsgObject: { body: string, headers: { "Error-Code": number } }) => void;
+    onReceived: (origMsgObject: BridgeTalkMessage) => void;
+    onResult: (responseMsgObject: { body: string }) => void;
+    onTimeout: (timeoutMsgObject: BridgeTalkMessage) => void;
+
+    // Instance Methods
+    send(timeoutInSecs?: number, launchParameters?: string): boolean;
+    sendResult(result: any): boolean;
+}
+
+function $BridgeTalk(): BridgeTalkClass { 
+    return BridgeTalk as any;
+}
+
+function $BridgeTalkMessage(): BridgeTalkMessage {
+    return new BridgeTalk();
+}

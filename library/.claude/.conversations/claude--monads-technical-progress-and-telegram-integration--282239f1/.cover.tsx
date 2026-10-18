@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Monad's technical progress and Telegram integration ]]( claude--Monad's technical progress and Telegram integration--282239f1 )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>282239f1-93e6-4ac7-bd15-5c813c050d6d</Origin>
         <Paragraph>

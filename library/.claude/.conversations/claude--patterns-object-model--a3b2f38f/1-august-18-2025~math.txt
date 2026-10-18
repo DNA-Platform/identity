@@ -1,0 +1,1065 @@
+class VectorTypes {
+    static isBoolean(value: any): value is boolean {
+        return typeof value === "boolean";
+    }
+
+    static isNumber(value: any): value is number {
+        return typeof value === "number";
+    }
+
+    static isPosition(value: any): value is Position {
+        return this.isArray(value) && value.length == 2 && this.isNumber(value[0]);
+    }
+
+    static isRange(value: any): value is Range {
+        return this.isPosition(value);
+    }
+
+    static isArray(value: any): value is any[] {
+        return value instanceof Array;
+    }
+
+    static isArrayAndPosition(value: any): value is number[] | Position {
+        return this.isArray(value) && this.isPosition(value);
+    }
+
+    static isArrayExtension(value: any): value is A<any> {
+        return value instanceof A;
+    }
+
+    static isNumberArray(value: any): value is number[] {
+        if (!this.isArray(value)) return false;
+        if (value.length === 0) return true;
+        return this.isNumber(value[0]);
+    }
+
+    static isNumberArrayExtension(value: any): value is A<number> {
+        if (!this.isArrayExtension(value)) return false;
+        if (value.length() === 0) return true;
+        return this.isNumber(value.at(0));
+    }
+
+    static isPositionArray(value: any): value is Position[] {
+        if (!this.isArray(value)) return false;
+        if (value.length === 0) return false;
+        return this.isPosition(value[0]);
+    }
+
+    static isPositionArrayExtension(value: any): value is A<Position> {
+        if (!this.isArrayExtension(value)) return false;
+        if (value.length() === 0) return false;
+        return this.isPosition(value.at(0));
+    }
+
+    static isBooleanArray(value: any): value is boolean[] {
+        if (!this.isArray(value)) return false;
+        if (value.length === 0) return false;
+        return this.isBoolean(value[0]);
+    }
+
+    static isBooleanArrayExtension(value: any): value is A<boolean> {
+        if (!this.isArrayExtension(value)) return false;
+        if (value.length() === 0) return false;
+        return this.isBoolean(value.at(0));
+    }
+
+    static isComplexArray(value: any): value is Complex[] {
+        return this.isPositionArray(value);
+    }
+
+    static isComplexArrayExtension(value: any): value is A<Complex> {
+        return this.isPositionArrayExtension(value);
+    }
+}
+
+class Vector extends A<Position> {
+    private _isComplex: boolean = false;
+    x(): Vector { return new Vector(this.select(x => [x[0], 0]), this._isComplex); }
+    xa(): A<number> { return this.select(x => x[0]); }
+    xn(): number[] { return this.xa().a(); }
+    xrng(): Range { var x = this.x(); return [x.gmin(), x.gmax()]; }
+    y(): Vector { return new Vector(this.select(x => [x[1], 0]), this._isComplex); }
+    ya(): A<number> { return this.select(x => x[1]); }
+    yn(): number[] { return this.ya().a(); }
+    yrng(): Range { var y = this.y(); return [y.gmin(), y.gmax()]; }
+    pos(): A<Position> { return f(this.a()); }
+    real(): Vector { return this.x(); }
+    imag(): Vector { return this.y(); }
+    bool(): Vector { return new Vector(this.select(x => [x[0] > 0 ? 1 : 0, 0])); }
+    
+    isComplex(): boolean { return this._isComplex; }
+    complex(): Vector { 
+        if (this._isComplex) return this;
+        var c = this.copy();
+        c._isComplex = true;
+        return c;  
+    }
+
+    n(): number[] { return this.na().a(); }
+    na(): A<number> {
+        if (this.dim() !== 1) 
+            throw new Error("Can only return a number array for 1D vectors");
+        return this.xa();
+    }
+
+    rng(): Range {
+        if (this.dim() !== 1) 
+            throw new Error("Can only return a Range for 1D vectors");
+        return this.xrng();
+    }
+
+    private __dim: number | undefined;
+    dim(): number {
+        if (this.__dim === undefined)
+            this.__dim = this.all(x => this.equalToPrecisely(x[1], 0)) ? 1 : 2;
+        return this.__dim;
+    }
+
+    constructor(x: A<Position>, isComplex: boolean = false) {
+        super(x.a());
+        this._isComplex = isComplex;
+    }
+
+    equals(other: A<Position> | Position[] | Vector, decimals?: number): boolean {
+        if (!(other instanceof Vector)) other = v(other) as Vector;
+        return this.zip(other).all(p => 
+            this.equalToPrecisely(p[0][0], p[1][0], decimals) && 
+            this.equalToPrecisely(p[0][1], p[1][1], decimals))
+    }
+
+    att(index: number, axis: "x" | "y" = "x"): number {
+        if (index < 0) index = evaluateNegativeIndex(index, this.length());
+        var axisIndex = this.dim() == 1 ? 0 : (axis == "x" ? 0 : 1);
+        return this.a()[index][axisIndex];
+    }
+
+    get(selector: string | Vector | undefined): Vector {
+        if (selector === undefined) return this;
+        if (typeof selector === "string")
+            return new Vector(super.get(selector));
+        if (selector.length() !== this.length())
+            throw "Boolean vectors must be the same length when used as a selector";
+        var result: A<Position> = f([]);
+        for (var i = 0; i < this.length(); i++) {
+            if (selector.a()[i][0] > 0)
+                result.push(this.at(i));
+        }
+        return new Vector(result, this.isComplex());
+    }
+
+    sett(index: number, value: number, dim: number = 0): Vector {
+        if (index < 0) index = evaluateNegativeIndex(index, this.length());
+        this.a()[index][dim] = value;
+        return this;
+    }
+
+    copy(): Vector {
+        var c = super.select(x => [x[0], x[1]] as Position);
+        var v = new Vector(c, this.isComplex());
+        v.__dim = this.__dim;
+        return v;
+    }
+
+    setX(x: Vector | A<number> | number) {
+        x = VectorTypes.isNumber(x) ? vc(x) : v(x);
+        if (x.length() == 1) x = this.constant(x.at(0));
+        if (this.length() !== x.length()) throw new Error("The vector must be a singleton or the same length for setX")
+        return x.join(this.y());
+    }
+
+    setY(y: Vector | A<number> | number) {
+        y = VectorTypes.isNumber(y) ? vc(y) : v(y);
+        if (y.length() == 1) y = this.constant(y.at(0));
+        return this.x().join(y);
+    }
+
+    flipDim(): Vector {
+        return new Vector(this.select(x => [x[1], x[0]]), this.isComplex());
+    }
+
+    aggregate2(op: (acc: Position, value: Position) => Position, seed?: Position): Position {
+        if (seed === undefined) seed = [0, 0];
+        let result = seed;
+        for (let i = 0; i < this.length(); i++) {
+            result = op(result, this.at(i));
+        }
+        return result;
+    }
+
+    aggregate1(op: (acc: number, value: number) => number, seed?: number): number {
+        if (this.dim() !== 1) throw new Error("The aggregate1 function only works on 1D vectors")
+        if (seed === undefined) seed = 0;
+        let result = seed;
+        var values = this.xa();
+        for (let i = 0; i < this.length(); i++) {
+            result = op(result, values.at(i));
+        }
+        return result;
+    }
+
+    constant(c: number | Position) {
+        var x = Vector.constant(c, this.length());
+        x._isComplex = this._isComplex;
+        return x;
+    }
+
+    coerce(x: Vector | Position | number): Vector {
+        var y = !(x instanceof Vector) ? vc(x) : x.copy();
+        y._isComplex = this.isComplex();
+        if (this.dim() == 1 && y.dim() == 2)
+            throw "Cannot coerce a 2D vector into a 1D vector"
+        if (this.length() > 1 && y.length() == 1) 
+            y = this.constant(y.at(0));    
+        return y; 
+    }
+
+    pointwise2to2(x: Vector, op: (a: Position, b: Position) => Position): Vector {
+        if (this.length() !== x.length()) throw "Vectors must be same length for pointwise operations";
+        if (this.length() !== x.length()) throw "Pointwise operations require vectors of the same length";
+        return new Vector(this.zip(x).select(([a, b]) => op(a, b)), this.isComplex() || x.isComplex());
+    }
+
+    pointwise1to1(x: Vector, op: (a: number, b: number) => number): Vector {
+        if (this.dim() == 2 || x.dim() == 2) throw "Cannot perform 1-to-1 operations on 2D vectors";
+        if (this.length() !== x.length()) throw "Pointwise operations require vectors of the same length";
+        return new Vector(this.zip(x).select(([x, y]) => [op(x[0], y[0]), 0]), this.isComplex() || x.isComplex());
+    }
+
+    pointwise2to1(x: Vector, op: (a: Position, b: Position) => number): Vector {
+        if (this.dim() == 2 || x.dim() == 2) throw "Cannot perform 1-to-1 operations on 2D vectors";
+        if (this.length() !== x.length()) throw "Pointwise operations require vectors of the same length";
+        return new Vector(this.zip(x).select(([x, y]) => [op(x, y), 0]), this.isComplex() || x.isComplex());
+    }
+
+    apply(f: (x: Position) => Position): Vector {
+        return new Vector(this.select(f), this.isComplex());
+    }
+
+    apply1(f: (x: number) => number, dim: "x" | "y" = "x"): Vector {
+        if (this.dim() == 1)
+            return new Vector(this.select(x => [f(x[0]), 0]));
+        if (dim === "x")
+            return v(this.xa().select(f)).join(this.y());
+        else
+            return this.x().join(this.ya().select(f));
+    }
+
+    join(x: A<number> | Vector): Vector {
+        if (!(x instanceof Vector)) x = v(x);
+        if (this.dim() !== 1 || x.dim() !== 1)
+            throw new Error("Only one-dimensional vectors can be joined");
+        if (this.length() != x.length())
+            throw new Error("Vectors must be the same length");
+        return new Vector(this.xa().zip(x.xa()), this.isComplex() || x.isComplex());
+    }
+
+    norm(rng: Range | Vector | number, yrng?: Range | Vector | number): Vector {
+        if (VectorTypes.isNumber(rng)) rng = [0, rng];
+        if (rng instanceof Vector) rng = rng.rng();
+        if (VectorTypes.isNumber(yrng)) yrng = [0, yrng];
+        if (yrng instanceof Vector) yrng = yrng.rng();
+        if (yrng) return this.norm1(rng, "x").x().join(this.norm1(yrng, "y").y());
+
+        var len = this.length();
+        var normAll = v(this.x().concat(this.y())).norm1(rng);
+        return v(normAll.get(`:${len-1}`)).join(normAll.get(`${len}:`));
+    }
+
+    norm1(rng: Range | Vector | number, type: "x" | "y" = "x") {
+        if (VectorTypes.isNumber(rng)) rng = [0, rng];
+        if (rng instanceof Vector) rng = rng.rng();
+        var x = this.x();
+        var y = this.y();
+        var v = type == "y" ? y : x;
+        v._isComplex = false;
+
+        var [low, high] = rng;
+        var min = v.gmin();
+        var max = v.gmax();
+        var scale = (high - low) / (max - min);
+        var offset = low - min * scale;
+        v = v.times(scale).plus(offset);
+        v._isComplex = this.isComplex();
+
+        return type == "y" ? x.join(v) : v.join(y);
+    }
+
+    mapLinear(fromRange: Range | number, toRange: Range | number): Vector {
+        var len = this.length();
+        var mapAll = v(this.x().concat(this.y())).mapLinear1(fromRange, toRange);
+        return v(mapAll.get(`:${len-1}`)).join(mapAll.get(`${len}:`));
+    }
+
+    mapLinear1(fromRange: Range | number, toRange: Range | number, type: "x" | "y" = "x") {
+        if (VectorTypes.isNumber(fromRange)) fromRange = [0, fromRange];
+        if (VectorTypes.isNumber(toRange)) toRange = [0, toRange];
+        var x = this.x();
+        var y = this.y();
+        var v = type == "y" ? y : x;
+        v._isComplex = false;
+    
+        var [fromLow, fromHigh] = fromRange;
+        var [toLow, toHigh] = toRange;
+        var scale = (toHigh - toLow) / (fromHigh - fromLow);
+        var offset = toLow - fromLow * scale;
+    
+        v = v.times(scale).plus(offset);
+    
+        return type === "y" ? x.join(v) : v.join(y);
+    }
+
+    fit(region: Region): Vector {
+        var xrng = [0, region.width()];
+        var yrng = [0, region.height()];
+        return this.norm(xrng, yrng);
+    }
+
+    gmax(type: "x" | "y" = "x"): number {
+        var values = this.dim() == 2 && type === "y" ? this.ya().a() : this.xa().a();
+        return Math.max.apply($.global, values);
+    }
+
+    gmin(type: "x" | "y" = "x"): number {
+        var values = this.dim() == 2 && type === "y" ? this.ya().a() : this.xa().a();
+        return Math.min.apply($.global, values);
+    }
+
+    sum(type?: "x" | "y"): number {
+        var result = this.aggregate2((acc, val) => [acc[0] + val[0], acc[1] + val[1]]);
+        return this.dim() == 2 && type === "y" ? result[1] : result[0];
+    }
+
+    mean(type?: "x" | "y"): number {
+        if (this.length() == 0) return 0;
+        return this.sum(type) / this.length();
+    }
+
+    removeMean(): Vector {
+        return this.minus(this.mean());
+    }
+
+    median(type?: "x" | "y"): number {
+        var values = this.dim() == 2 && type === "y" ? this.ya().a() : this.xa().a();
+        values.sort((a, b) => a - b);
+        var mid = Math.floor(values.length / 2);
+
+        return values.length % 2 === 0 ?
+            (values[mid - 1] + values[mid]) / 2 :
+            values[mid];
+    }
+
+    std(type?: "x" | "y"): number {
+        var values = this.dim() == 2 && type === "y" ? this.ya().a() : this.xa().a();
+        var mn = this.mean(type);
+        var vs = v(values).aggregate1((acc, v) => acc + (v - mn) ** 2);
+        var variance = vs / this.length();
+        return Math.sqrt(variance);
+    }
+
+    plus(x: Vector | Position | number): Vector {
+        var self: Vector = this;
+        if (VectorTypes.isNumber(x)) x = this.dim() == 1 ? vc(x) : vc([x, x]);
+        if (VectorTypes.isPosition(x)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = x.expand(this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        if (self.dim() == 1 && x.dim() == 1)
+            return self.pointwise1to1(x, (x, y) => x + y);
+        else
+            return self.pointwise2to2(x, (x, y) => [x[0] + y[0], x[1] + y[1]]);
+    }
+
+    minus(x: Vector | Position | number): Vector {
+        var self: Vector = this;
+        if (VectorTypes.isNumber(x)) x = this.dim() == 1 ? vc(x) : vc([x, x]);
+        if (VectorTypes.isPosition(x)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = x.expand(this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        if (self.dim() == 1 && x.dim() == 1)
+            return self.pointwise1to1(x, (x, y) => x - y);
+        else
+            return self.pointwise2to2(x, (x, y) => [x[0] - y[0], x[1] - y[1]]);
+    }
+
+    times(x: Vector | Position | number): Vector {
+        var self: Vector = this;
+        if (VectorTypes.isNumber(x)) x = this.dim() == 1 ? vc(x) : vc([x, x]);
+        if (VectorTypes.isPosition(x)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = x.expand(this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        if (!self.isComplex() && !x.isComplex()) {
+            if (self.dim() == 1 && x.dim() == 1)
+                return self.pointwise1to1(x, (x, y) => x * y);
+            else
+                return self.pointwise2to2(x, (x, y) => [x[0] * y[0], x[1] * y[1]]);
+        } else {
+            return self.pointwise2to2(x, ([re1, im1], [re2, im2]) => [
+                re1 * re2 - im1 * im2, // Real part
+                re1 * im2 + im1 * re2, // Imaginary part
+            ]);
+        }
+    }
+
+    dividedBy(x: Vector | Position | number): Vector {
+        var self: Vector = this;
+        if (VectorTypes.isNumber(x)) x = this.dim() == 1 ? vc(x) : vc([x, x]);
+        if (VectorTypes.isPosition(x)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = x.expand(this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        if (!self.isComplex() && !x.isComplex()) {
+            if (self.dim() == 1 && x.dim() == 1)
+                return self.pointwise1to1(x, (x, y) => x / y);
+            else
+                return self.pointwise2to2(x, (x, y) => [x[0] / y[0], x[1] / y[1]]);
+        } else {
+            return self.pointwise2to2(x, ([re1, im1], [re2, im2]) => {
+                var denom = re2 * re2 + im2 * im2; // Magnitude squared of the divisor
+                return [
+                    (re1 * re2 + im1 * im2) / denom, // Real part
+                    (im1 * re2 - re1 * im2) / denom, // Imaginary part
+                ];
+            });
+        }
+    }
+
+    mod(base: number, dim?: "x" | "y"): Vector {
+        if (!this.isComplex()) {
+            return this.apply(x => [x[0] % base, x[1] % base]);
+        } else {
+            return this.apply(([re, im]) => {
+                var modRe = ((re % base) + base) % base;
+                var modIm = ((im % base) + base) % base;
+                return [modRe, modIm];
+            });
+        }
+    }
+
+    greaterThan(x: Vector | number): Vector {
+        var self: Vector = this;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.dim() !== 1 || x.dim() !== 1) throw new Error("Boolean operations only defined for one dimensional vectors");
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        return self.pointwise1to1(x, (x, y) => (x > y ? 1 : 0));
+    }
+
+    greaterThanOrEqualTo(x: Vector | number): Vector {
+        var self: Vector = this;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.dim() !== 1 || x.dim() !== 1) throw new Error("Boolean operations only defined for one dimensional vectors");
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        return self.pointwise1to1(x, (x, y) => (x >= y ? 1 : 0));
+    }
+
+    lessThan(x: Vector | number): Vector {
+        var self: Vector = this;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.dim() !== 1 || x.dim() !== 1) throw new Error("Boolean operations only defined for one dimensional vectors");
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        return self.pointwise1to1(x, (x, y) => (x < y ? 1 : 0));
+    }
+
+    lessThanOrEqualTo(x: Vector | number): Vector {
+        var self: Vector = this;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.dim() !== 1 || x.dim() !== 1) throw new Error("Boolean operations only defined for one dimensional vectors");
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        return self.pointwise1to1(x, (x, y) => (x <= y ? 1 : 0));
+    }
+
+    equalTo(x: Vector | Position | number, decimals?: number): Vector {
+        var self: Vector = this;
+        var eq = this.equalToPrecisely;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        if (self.length() !== x.length()) throw new Error("equalTo requires vectors that are the same length");
+        return self.pointwise2to2(x, (x, y) => [(eq(x[0], y[0], decimals) && eq(x[1], y[1], decimals)) ? 1 : 0, 0]);
+    }
+
+    private equalToPrecisely(x: number, y: number, decimals: number = 8) {
+        return roundPrecisely(x, decimals) === roundPrecisely(y, decimals);
+    }
+
+    and(x: Vector | Position | number): Vector {
+        var self: Vector = this;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        return self.bool().times(x.bool());
+    }
+
+    or(x: Vector | Position | number): Vector {
+        var self: Vector = this;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        return self.bool().plus(x.bool()).bool();
+    }
+
+    not(): Vector {
+        return this.apply1(x => x > 0 ? 0 : 1).bool();
+    }
+
+    concat(other: A<Position> | Position[] | Vector): Vector {
+        return v(super.concat(other));
+    }
+
+    diff(zeroPad: boolean = true): Vector {
+        var diff = this.get("1:").minus(this.get("0:-2"));
+        return zeroPad ? vc([0, 0]).concat(diff) : diff;
+    }
+
+    round(decimals: number = 0): Vector {
+        return this.dim() == 1 ? 
+            this.apply1(x => roundPrecisely(x, decimals)) : 
+            this.apply(x => [roundPrecisely(x[0], decimals), roundPrecisely(x[1], decimals)]);
+    }
+
+    scale(x: number, y: number = 1): Vector {
+        if (this.dim() == 1) {
+            var mn = this.mean();
+            return this.removeMean().times(x).plus(mn);
+        } else {
+            var xs = this.x().scale(x);
+            var ys = y === 1 ? this.y() : this.y().scale(y);
+            return xs.join(ys);
+        }
+    }
+
+    pow(x: Vector | Position | number): Vector {
+        var self: Vector = this;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        if (!self.isComplex() && !x.isComplex()) {
+            if (self.dim() == 1)
+                return self.pointwise1to1(x, (x, y) => Math.pow(x, y));
+            else
+                return self.pointwise2to2(x, (x, y) => [Math.pow(x[0], y[0]), Math.pow(x[1], y[1])]);
+        }
+        else {
+            return self.pointwise2to2(x, ([re1, im1], [re2, im2]) => {
+                var baseMagnitude = Math.sqrt(re1 * re1 + im1 * im1);
+                var baseAngle = Math.atan2(im1, re1);
+
+                var logRe = Math.log(baseMagnitude);
+                var logIm = baseAngle;
+
+                var powerRe = logRe * re2 - logIm * im2;
+                var powerIm = logRe * im2 + logIm * re2;
+
+                var resultMagnitude = Math.exp(powerRe);
+                var resultAngle = powerIm;
+
+                return [
+                    resultMagnitude * Math.cos(resultAngle), // Real part
+                    resultMagnitude * Math.sin(resultAngle)  // Imaginary part
+                ];
+            });
+        }
+    }
+
+    exp(): Vector {
+        if (!this.isComplex())
+            return this.dim() == 1 ? 
+                this.apply1(Math.exp) : 
+                this.x().apply1(Math.exp).join(this.y().apply1(Math.exp));
+
+        return this.apply(([re, im]) => {
+            var magnitude = Math.exp(re);
+            return [
+                magnitude * Math.cos(im), // Real part
+                magnitude * Math.sin(im)  // Imaginary part
+            ];
+        });
+    }
+
+    max(x: Vector | Position | number): Vector {
+        var self: Vector = this;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        return self.pointwise2to2(x, (x, y) => [Math.max(x[0], y[0]), Math.max(x[1], y[1])]);
+    }
+
+    min(x: Vector | Position | number): Vector {
+        var self: Vector = this;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        return self.pointwise2to2(x, (x, y) => [Math.min(x[0], y[0]), Math.min(x[1], y[1])]);
+    }
+
+    cumsum(): Vector {
+        if (this.length() == 0) return v();
+        var x = this.copy();
+        var xa = x.a();
+        var last0 = xa[0][0];
+        var last1 = xa[0][1];
+        x.do((p, i) => {
+            if (i == 0) return;
+            last0 = last0 + p[0];
+            last1 = last1 + p[1];
+            p[0] = last0;
+            p[1] = last1;
+        });
+        return x;
+    }
+
+    atan2(x: Vector | Position | number): Vector {
+        var self: Vector = this;
+        if (!(x instanceof Vector)) x = vc(x);
+        if (this.length() > 1 && x.length() == 1) x = Vector.constant(x.at(0), this.length());
+        if (this.length() == 1 && x.length() > 1) self = this.expand(x.length());
+        if (self.dim() == 1)
+            return self.pointwise1to1(x, (x, y) => Math.atan2(x, y));
+        else if (!self.isComplex() && !x.isComplex())
+            return self.pointwise2to2(x, (x, y) => [
+                Math.atan2(x[1], x[0]), // Angle of vector 1
+                Math.atan2(y[1], y[0])  // Angle of vector 2
+            ]);
+        else {
+            return self.pointwise2to2(x, ([re1, im1], [re2, im2]) => {
+                var deltaRe = re2 - re1;
+                var deltaIm = im2 - im1;
+                return [Math.atan2(deltaIm, deltaRe), 0]; // Result is real; imaginary part is 0
+            });
+        }
+    }
+
+    sin(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            return this.apply(([re, im]) => {
+                var sinhIm = (Math.exp(im) - Math.exp(-im)) / 2;
+                var coshIm = (Math.exp(im) + Math.exp(-im)) / 2;
+                return [
+                    Math.sin(re) * coshIm,
+                    Math.cos(re) * sinhIm
+                ];
+            });
+        }
+        return this.apply1(Math.sin, dim);
+    }
+
+    cos(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            return this.apply(([re, im]) => {
+                var sinhIm = (Math.exp(im) - Math.exp(-im)) / 2;
+                var coshIm = (Math.exp(im) + Math.exp(-im)) / 2;
+                return [
+                    Math.cos(re) * coshIm,
+                    -Math.sin(re) * sinhIm
+                ];
+            });
+        }
+        return this.apply1(Math.cos, dim);
+    }
+
+    tan(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            var sin = this.sin();
+            var cos = this.cos();
+            return sin.dividedBy(cos);
+        }
+        return this.apply1(Math.tan, dim);
+    }
+
+    abs(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            return this.apply(([re, im]) => [Math.sqrt(re * re + im * im), 0]);
+        }
+        return this.apply1(Math.abs, dim);
+    }
+
+    sqrt(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            return this.apply(([re, im]) => {
+                var magnitude = Math.sqrt(Math.sqrt(re * re + im * im));
+                var angle = Math.atan2(im, re) / 2;
+                return [
+                    magnitude * Math.cos(angle),
+                    magnitude * Math.sin(angle)
+                ];
+            });
+        }
+        return this.apply1(Math.sqrt, dim);
+    }
+
+    log(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            return this.apply(([re, im]) => {
+                var magnitude = Math.sqrt(re * re + im * im);
+                var angle = Math.atan2(im, re);
+                return [Math.log(magnitude), angle];
+            });
+        }
+        return this.apply1(Math.log, dim);
+    }
+
+    atan(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            return this.apply(([re, im]) => {
+                var re2 = Math.atan2(im, 1 + re);
+                var im2 = Math.atan2(-im, 1 - re);
+                return [0.5 * (re2 + im2), 0.5 * (re2 - im2)];
+            });
+        }
+        return this.apply1(Math.atan, dim);
+    }
+
+    acos(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            return this.apply(([re, im]) => {
+                var z = v([re, im]).complex().times(v([re, im]));
+                var oneMinusZ = vc(1).complex().minus(z);
+                var sqrtOneMinusZ = oneMinusZ.sqrt();
+                var logPart = Vector.i().times(this.plus(sqrtOneMinusZ)).log();
+                return logPart.times(v([-1, 0])).at(0);
+            });
+        }
+        return this.apply1(Math.acos, dim);
+    }
+
+    asin(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            var sqrtPart = this.times(this).minus(1).sqrt();
+            var logPart = Vector.i().times(this.plus(sqrtPart)).log();
+            return logPart.times(v([-1, 0]));
+        }
+        return this.apply1(Math.asin, dim);
+    }
+
+    log10(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex())
+            return this.log().dividedBy(v([Math.LN10, 0]).complex());
+        return this.apply1((v) => Math.log(v) / Math.LN10, dim);
+    }
+
+    log2(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex())
+            return this.log().dividedBy(v([Math.LN2, 0]).complex());
+        return this.apply1((v) => Math.log(v) / Math.LN2, dim);
+    }
+
+    sinh(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            return this.apply(([re, im]) => {
+                var sinhRe = (Math.exp(re) - Math.exp(-re)) / 2;
+                var coshRe = (Math.exp(re) + Math.exp(-re)) / 2;
+                return [
+                    sinhRe * Math.cos(im),
+                    coshRe * Math.sin(im)
+                ];
+            });
+        }
+        return this.apply1((v) => (Math.exp(v) - Math.exp(-v)) / 2, dim);
+    }
+
+    cosh(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            return this.apply(([re, im]) => {
+                var sinhRe = (Math.exp(re) - Math.exp(-re)) / 2;
+                var coshRe = (Math.exp(re) + Math.exp(-re)) / 2;
+                return [
+                    coshRe * Math.cos(im),
+                    sinhRe * Math.sin(im)
+                ];
+            });
+        }
+        return this.apply1((v) => (Math.exp(v) + Math.exp(-v)) / 2, dim);
+    }
+
+    tanh(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            var sinh = this.sinh();
+            var cosh = this.cosh();
+            return sinh.dividedBy(cosh);
+        }
+        return this.apply1((v) => (Math.exp(v) - Math.exp(-v)) / (Math.exp(v) + Math.exp(-v)), dim);
+    }
+
+    sign(dim: "x" | "y" = "x"): Vector {
+        if (this.isComplex()) {
+            return this.apply(([re, im]) => {
+                var magnitude = Math.sqrt(re * re + im * im);
+                return [re / magnitude, im / magnitude];
+            });
+        }
+        return this.apply1((v) => (v > 0 ? 1 : v < 0 ? -1 : 0), dim);
+    }
+
+
+    magnitude(): Vector {
+        this.assertComplex();
+        return new Vector(this.select(([re, im]) => [Math.sqrt(re * re + im * im), 0]));
+    }
+
+    phase(): Vector {
+        return new Vector(this.select(([re, im]) => [Math.atan2(im, re), 0]));
+    }
+
+    angle(): Vector {
+        var phase = this.phase();
+        return phase.apply1(x => Region.toDegrees(x));
+    }
+
+    conjugate(): Vector {
+        this.assertComplex();
+        return new Vector(this.select(([re, im]) => [re, -im]), this._isComplex);
+    }
+
+    toPolar(): Vector {
+        this.assertComplex();
+        return this.magnitude().real().join(this.phase().xa());
+    }
+
+    fromPolar(): Vector {
+        this.assertComplex();
+        return this.pointwise2to2(this, ([mag, angle]) => [
+            mag * Math.cos(angle),
+            mag * Math.sin(angle)
+        ]);
+    }
+
+    toString(): string {
+        try {
+            if (this.dim() == 1) return `Vector<${this.isComplex() ? "complex" : "real"},1D>[${this.x().select(x => `${x[0]}`).a()}]`;
+            else return `Vector<${this.isComplex() ? "complex" : "real"},2D>[${stringJoin(this.select(x => `[${x}]`).a(), ", ")}]`;
+        } catch (e) {
+            return `Vector<toStringERROR>[${this.a()}]`;
+        }
+    }
+
+    expand(n: number): Vector {
+        if (this.length() !== 1)
+            throw "Expand is for singleton vectors";
+
+        var c = Vector.constant(this.at(0), n);
+        c._isComplex = this.isComplex();
+        return c;
+    }
+
+    private assertComplex() {
+        if (!this.isComplex()) 
+            throw new Error("Operation only defined for complex numbers");
+    }
+
+    static i(): Vector { return new Vector(f([[0, 1]]), true); }
+
+    static zeros(n: number): Vector {
+        return this.constant(0, n);
+    }
+
+    static constant(c: number | Position, n: number): Vector {
+        var isNumber = typeof c === "number";
+        var x: Position[] = [];
+        for (var i = 0; i < n; i++) 
+            x.push(isNumber ? [c, 0] : c as any);
+
+        return new Vector(f(x));
+    }
+
+    static linspace(rng: Range, n: number): Vector {
+        var [xmin, xmax] = rng;
+        var step = (xmax - xmin) / (n - 1);
+        var index: A<number> = f([]);
+        for (var i = 0; i < n; i++) 
+            index.push(i);
+
+        return v(index.select(i => xmin + i * step));
+    }
+
+    static rand(n: number, range: Range = [0, 1]): Vector {
+        var [min, max] = range;
+        var r = [];
+        for (var i = 0; i < n; i++) {
+            r.push(Math.random() * (max - min) + min);
+        }
+        return v(r);
+    }
+
+    // Gaussian Random Generator using Box-Muller Transform
+    static randn(n: number, mean: number = 0, std: number = 1): Vector {
+        var gauss = r(n).select(() => {
+            let u = 0, v = 0;
+            while (u === 0) u = Math.random(); // Avoid zero
+            while (v === 0) v = Math.random();
+            
+            const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+            return z * std + mean;
+        });
+        return v(gauss);
+    }
+
+    static recursive(n: number, func: (seq: number[], i: number) => number, initial: number[]): Vector {
+        var sequence = initial.slice();
+        for (let i = initial.length; i < n; i++) {
+            sequence.push(func(sequence, i));
+        }
+        return v(f(sequence));
+    }
+
+    private static memoizedPrimes: A<number> = f([]);
+
+    /**
+     * Generate the first `n` primes using an efficient sieve-based approach.
+     * @param n - Number of primes to generate
+     * @returns A vector containing the primes
+     */
+    static primes(n: number, start: number = 2): Vector {
+        if (start > 2) {
+            var attempt: A<Position> = v();
+            while (attempt.length() < n)
+                attempt = this.primes(2 * start).where(p => p[0] >= start);
+            return v(attempt.take(n))
+        }
+        const primes = Vector.memoizedPrimes;
+        let upperBound = primes.last() || start; // Start from the last cached prime or given start
+    
+        while (primes.length() < n) {
+            upperBound = Math.max(upperBound + 1, Math.ceil(upperBound * 1.5));
+            const sieve = f(r(`:${upperBound - start}`).select(i => start + i)); // Sieve for numbers from 'start' to 'upperBound'
+    
+            for (let i = 0; i < sieve.length(); i++) {
+                const value = sieve.at(i);
+                if (value > Math.sqrt(upperBound)) break; // No need to mark multiples beyond sqrt(upperBound)
+                if (value === 0) continue; // Skip already marked numbers
+                for (let j = i + value; j < sieve.length(); j += value) sieve.a()[j] = 0; // Mark multiples as 0
+            }
+    
+            sieve.do(x => {
+                if (x !== 0 && !primes.includes(x)) primes.push(x); // Add unmarked primes to the memoized list
+            });
+    
+            if (primes.length() > 10000) primes.a().splice(0, primes.length() - 10000); // Maintain memoized list size
+        }
+    
+        return v(primes.slice(0, n)); // Return the first 'n' primes
+    }
+
+    // Fibonacci
+    static fib(n: number, first: number = 0, second: number = 1): Vector {
+        var fibSeq = [first, second];
+        for (let i = 2; i < n; i++) {
+            fibSeq.push(fibSeq[i - 1] + fibSeq[i - 2]);
+        }
+        return v(f(fibSeq.slice(0, n)));
+    }
+
+    // Collatz Sequence
+    static collatz(start: number): Vector {
+        var sequence = [start];
+        while (start > 1) {
+            start = start % 2 === 0 ? start / 2 : 3 * start + 1;
+            sequence.push(start);
+        }
+        return v(f(sequence));
+    }
+
+    // Triangular Numbers
+    static triangular(n: number): Vector {
+        var triangularSeq = [];
+        for (let i = 1; i <= n; i++) {
+            triangularSeq.push((i * (i + 1)) / 2);
+        }
+        return v(f(triangularSeq));
+    }
+
+    // Factorials
+    static factorial(n: number): Vector {
+        var factorials = [1];
+        for (let i = 1; i <= n; i++) {
+            factorials.push(factorials[i - 1] * i);
+        }
+        return v(f(factorials.slice(1)));
+    }
+
+    // Pascal's Triangle Row
+    static pascalRow(n: number): Vector {
+        var row = [1];
+        for (let i = 1; i <= n; i++) {
+            row.push((row[i - 1] * (n - i + 1)) / i);
+        }
+        return v(f(row));
+    }
+
+    // Golden Ratio Modulus
+    static goldenMod(n: number): Vector {
+        var phi = (1 + Math.sqrt(5)) / 2;
+        var sequence = [];
+        for (let i = 0; i < n; i++) {
+            sequence.push((i * phi) % 1); // Fractional part of i * phi
+        }
+        return v(f(sequence));
+    }
+
+    // Logistic Map
+    static logisticMap(n: number, r: number = 3.9, x0: number = 0.5): Vector {
+        var sequence = [x0];
+        for (let i = 1; i < n; i++) {
+            sequence.push(r * sequence[i - 1] * (1 - sequence[i - 1]));
+        }
+        return v(f(sequence));
+    }
+
+    // Cantor Dust
+    static cantorDust(n: number): Vector {
+        var sequence = [0.5];
+        for (let i = 0; i < n; i++) {
+            sequence.push(sequence[sequence.length - 1] / 3);
+        }
+        return v(f(sequence));
+    }
+
+    // Halton Sequence
+    static haltonSequence(n: number, base: number = 2): Vector {
+        var sequence = [];
+        for (let i = 1; i <= n; i++) {
+            let f = 1;
+            let x = 0;
+            let k = i;
+            while (k > 0) {
+                f /= base;
+                x += f * (k % base);
+                k = Math.floor(k / base);
+            }
+            sequence.push(x);
+        }
+        return v(f(sequence));
+    }
+
+    static sierpinski(n: number): Vector {
+        var sequence = [];
+        for (let i = 0; i < Math.pow(2, n); i++) {
+            sequence.push((i & (i - 1)) === 0 ? 1 : 0); // Powers of 2
+        }
+        return v(f(sequence));
+    }
+}
+
+function vc(x: Vector | Position | number | boolean, length: number | Vector = 1): Vector {
+    if (length instanceof Vector) length = length.length();
+    if (VectorTypes.isBoolean(x)) return Vector.constant(x ? 1 : 0, length);
+    if (VectorTypes.isNumber(x)) return Vector.constant(x, length);
+    if (VectorTypes.isPosition(x)) return Vector.constant(x, length);
+    if (x instanceof Vector && x.length() == length) return x;
+    if (x instanceof Vector && x.length() == 1) return Vector.constant(x.at(0), length);
+    throw new Error("The input x must be a constant");
+}
+
+function v(x?: Vector | A<Position> | A<number> | A<boolean> | Position[] | number[] | boolean[]): Vector {
+    if (x === undefined) return new Vector(f([]));
+    if (x instanceof Vector) return x;
+    if (VectorTypes.isArray(x) && x.length == 0) return new Vector(f([]));
+    if (VectorTypes.isArrayExtension(x) && x.length() === 0) return new Vector(f([]));
+    if (VectorTypes.isNumberArray(x)) return new Vector(f(x).select(x => [x, 0]));
+    if (VectorTypes.isPositionArray(x)) return new Vector(f(x));
+    if (VectorTypes.isBooleanArray(x)) return new Vector(f(x).select(x => [x ? 1 : 0, 0]));
+    if (VectorTypes.isNumberArrayExtension(x)) return new Vector(x.select(x => [x, 0]));
+    if (VectorTypes.isPositionArrayExtension(x)) return new Vector(x);
+    if (VectorTypes.isBooleanArrayExtension(x)) return new Vector(x.select(x => [x ? 1 : 0, 0]));
+    throw "Vector type not recognized";
+}

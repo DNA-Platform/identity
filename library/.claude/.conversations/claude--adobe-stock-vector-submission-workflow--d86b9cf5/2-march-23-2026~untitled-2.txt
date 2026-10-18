@@ -1,0 +1,219 @@
+Similar Content in Our Collection
+5 replies
+1677 views
+Translate
+I have a question that when I upload images to Adobe Stock, some images are rejected and this message comes up "Similar content in our collection". Please guide me how can I check if such content already exists? And if images are rejected like this, it will affect my performance badly. Please guide me to resolve this issue, thanks.
+
+ 
+
+[Moderator cured HTML formatting to improve readability]
+
+RALPH_L
+RALPH_L
+Correct answer
+Community Expert
+9 months ago
+I have recently contacted Adobe and asked what response we could give to help support the contributors facing this issue and to reduce the number of rejections based on "similar items". This was their response:
+
+
+Your file may be considered overly repetitive or highly similar to other content already available on Adobe Stock. To avoid refusal, we suggest reviewing the below resources on our Learn & Support site
+
+
+Research Existing Content: Look at similar content already available on Adobe Stock. Identify common themes, styles, and subjects to ensure your submission offers a different perspective or approach. What is in demand. 
+Add Unique Elements: Incorporate unique elements, techniques, or perspectives that set your content apart from others. This could include unique angles, lighting, compositions, or creative concepts.  
+Quality and Creativity: Focus on high-quality production and creative originality. Ensure your content is well-executed and visually appealing. https://helpx.adobe.com/stock/contributor/help/contribution-tips.html 
+               8 Tips for Better Images. 
+
+By following these steps, you can increase the chances that your content will be considered accepted on Adobe Stock. 
+
+ 
+
+View reply
+Contributors
+
+Like
+
+Reply
+
+Subscribe
+
+Share
+
+Leave a reply...
+5 replies
+
+: 
+Newest first
+F
+Fardin Sefat
+Participant
+5 months ago
+Im facing the same issue. I uploades 2 png images with 2 sets of overly which looks completely different from each other. One gets accepted in hours and the other one get refused for this reason after 4 or 5 days. I think my problem is using the same keyword as the guidline pages says, if your keywords and titles are same that can get it rejected. I also noticed unlike most other platform like this, contributor here tends to upload 1 file with very large set of something. Where in other sites you see many files of same catagories with smaller collection in a single file. Now i know why. 
+
+Translate
+
+Like
+
+Reply
+AbamboCommunity Expert
+Abambo
+Community Expert
+Community Expert
+9 months ago
+Honestly, you really can't. There is no mean that assures you that your pictures won't get struck with this refusal. My guess is that the tool they use is not working correctly or is ill configured. They pretend their tool works as intended.
+
+ 
+
+This does not mean that you should submit knowingly similar assets either in the submission (e.g. 100 pictures of the same dog) or in your database (100 pictures of the same dog over a longer period in different small batches), as this can get you really in trouble. Accounts like that may get suspended if caught. You also shouldn't resubmit persistently the same assets, as this can get you banned too. (Some contributors will advise you to do exactly this, despite the clear instructions on the Adobe web site not to do that.)
+
+Translate
+ABAMBO | Hard- and Software Engineer | Photographer
+
+1 reply
+
+Like
+
+Reply
+J
+Jo-FaceOff
+Participant
+8 months ago
+I have had a high number of similar items rejected only just recently which I know are quite unique, I rarely have images rejected but lately it's been off the scale,  i work hard on my images and they sell quite well but these rejections lately are making me feel disheartened and feel like I'm wasting my hours, Im ready to throw in the towel if I'm honest. 
+
+Translate
+
+3 replies
+
+Like
+
+D
+1
+
+Reply
+Nancy OSheaCommunity Expert
+Nancy OShea
+Community Expert
+Community Expert
+8 months ago
+quote
+these rejections are making me feel disheartened and feel like I'm wasting my hours...
+
+By @Jo-FaceOff
+=========
+
+There's no harm in taking a break from Stock and submitting to other royalty-free services. 
+
+Seeing what other services are doing might help bring you some new perspectives.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Translate
+Nancy O'Shea— Product User & Community Expert
+
+Like
+
+Abambo
+M
+2
+
+Reply
+
+Show 2 more replies
+RALPH_LCommunity Expert
+RALPH_L
+Community Expert
+Correct answer
+Community Expert
+9 months ago
+I have recently contacted Adobe and asked what response we could give to help support the contributors facing this issue and to reduce the number of rejections based on "similar items". This was their response:
+
+
+Your file may be considered overly repetitive or highly similar to other content already available on Adobe Stock. To avoid refusal, we suggest reviewing the below resources on our Learn & Support site
+
+
+Research Existing Content: Look at similar content already available on Adobe Stock. Identify common themes, styles, and subjects to ensure your submission offers a different perspective or approach. What is in demand. 
+Add Unique Elements: Incorporate unique elements, techniques, or perspectives that set your content apart from others. This could include unique angles, lighting, compositions, or creative concepts.  
+Quality and Creativity: Focus on high-quality production and creative originality. Ensure your content is well-executed and visually appealing. https://helpx.adobe.com/stock/contributor/help/contribution-tips.html 
+               8 Tips for Better Images. 
+
+By following these steps, you can increase the chances that your content will be considered accepted on Adobe Stock. 
+
+ 
+
+Translate
+
+Like
+
+D
+H
+P
+7
+
+Reply
+daniellei4510Community Expert
+daniellei4510
+Community Expert
+Community Expert
+9 months ago
+To date, I've had 150 submissions rejected for being "too similar." Some perhaps rightfully so, others that are at least arguably unique. I've also had assets accepted that I felt certain would be rejected as too similar (wallpapers and backgrounds, for example). So there are really no guidelines that I personally can recommend, other than to pay extra attention to your titles and keywords. I don't use keywords or titles that do not represent the actual content of my submissions, but I will try to think outside the box while leaning toward being very specific about the content, rather than generalizing. For example, I do a lot of portrait and fashion images, and Adobe's suggestions for keywords always include words like fashion, beauty, glamour, etc. I either avoid such words or place them at the very end of the list. Sometimes, but not always, those images will bypass the gatekeeper and be accepted.
+
+Translate
+Adobe Community Expert | If you can't fix it, hide it; if you can't hide it, delete it.
+
+Like
+
+O
+T
+P
+3
+
+Reply
+Jill_CCommunity Expert
+Jill_C
+Community Expert
+Community Expert
+9 months ago
+You can search in the Buyer portal stock.adobe.com for images with a few of the most important keywords you are using in your images. Some categories are very competitive, and Adobe doesn't any more images similar to the many that are already in the database. Nevertheless, many have complained that even if their images aren't very similar to other existing images, they are rejected anyway. Such rejections don't place your account in jeopardy. However, you must not submit a bunch of similars in your own batches. Doing so can be considered spamming and CAN get your account suspended.
+
+Translate
+Jill C., Forum Volunteer
+
+1 reply
+
+Like
+
+Reply
+P
+pixels9ninety9
+Participant
+5 months ago
+Everybody should stop submitting design in adobe stock. Then adobe will understand. Their review process are funny now. Rejection reasons are causeless.
+
+Translate
+
+3 replies
+
+Like
+
+Reply
+J
+Jo-FaceOff
+Participant
+5 months ago
+I'm ready to give up if I'm completely honest, I've got about 3000 asserts and they sell quite well but I'm wasting my time lately, almost everything I submit is getting rejected lately, I've started to upload to dreamstime, dunno how it will go but I'm giving it a try. 
+
+Translate
+
+Like
+
+Reply
+
+Show 2 more replies

@@ -1,0 +1,23 @@
+
+{
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.addDollarToMembers",
+                "title": "Add $ to Members"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "editorLangId == typescript",
+                    "command": "extension.addDollarToMembers",
+                    "group": "1_modification"
+                }
+            ]
+        }
+    },
+    "extensionDependencies": [
+        "vscode.typescript-language-features"
+    ]
+}

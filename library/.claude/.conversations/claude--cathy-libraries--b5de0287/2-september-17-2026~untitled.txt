@@ -1,0 +1,679 @@
+
+
+# The whole system, and the clean compiler design I want back
+
+Your last answer landed and we took all three parts: Babel rejected, virtual-module-plus-watch-edge
+is the shape, and **compose by reference not by value**. We separately proved in the JS that
+`<A>{chapter1()}{chapter2()}</A>` and `<A><B/><C/></A>` build identical element trees, so
+import-composition costs nothing at the object level; keys are the only difference and we will key
+chapters. That question is closed.
+
+**Now the real ask, and this time you get the code.** I have been asking you to design against a
+system you have never seen. Below is all of it — what it is for, the shape of a library on disk,
+the framework package folder by folder and file by file, and the compiler folder by folder and
+file by file. Then the question.
+
+**Please take your time on this one and research the technology properly.** There is a list at the
+end of what I want researched. I would rather wait for a real design than get a quick one.
+
+---
+
+# PART 1 · WHAT THIS IS FOR
+
+## The claim underneath everything
+
+**A library is a knowledge graph with library semantics, and the semantics are what make it sound.**
+A knowledge graph is an abstraction of a library; we are choosing *canonical library semantics* —
+a catalogue, a call number, an author, a subject, a citation — because they carry integrity
+properties an ad-hoc graph does not have.
+
+Three that drive the whole compiler:
+
+1. **A reference names a THING, never a PLACE.** `[Doug](My Library Log)` points at a book by its
+   *title*, not a path. Addresses are derived late, from the catalogue, and can change without any
+   reference changing.
+2. **The catalogue refuses by NON-MEMBERSHIP ALONE.** If a title is not in the catalogue, the
+   citation is refused. No filesystem probe, no fuzzy match, no fallback. You cannot cite what the
+   library does not hold. That is the entire integrity story.
+3. **The compile is the only moment the library exists as one object.** At runtime there is no
+   server and no index — just prerendered HTML. Every cross-document truth is established at build
+   time or it does not exist.
+
+## What it physically is
+
+Books written as TSX, where the prose is **JSX text**, inline in the markup. No markdown, no MDX.
+
+```tsx
+export default class OnBooks extends BookkeepingChapter {
+    print() {
+        return <Chapter>
+            <Title>On Books</Title>
+            <Paragraph>A book is the unit of authorship, and it sits beside its
+            *$[subject]( Bookkeeping )* as a flat peer.</Paragraph>
+        </Chapter>;
+    }
+}
+```
+
+Output: **prerendered static HTML, one page per book, on GitHub Pages under a base path.** No
+runtime server. A reader moves between books by loading another page.
+
+## The scale — this should drive "minimum components"
+
+| | |
+|---|---|
+| books | **6** |
+| chapters | **51** |
+| prose objects parsed out of those chapters | **2,702** |
+| rendered pages | **6** |
+| framework source files | **107** |
+| compiler source files | **54** (1,953 lines) |
+| `.tsx` files in scope for the reference transform | 112 of 132 |
+| a full TS-compiler-API scan of the corpus | low hundreds of ms |
+
+**Six books.** Not six thousand. It should grow to a few hundred. Design for *instant while
+editing prose* and for *not rotting*, not for scale.
+
+## What is being added, and why the compiler must change
+
+A reference notation in the prose, resolved statically against a **card catalogue**. Prefix
+allocates, postfix returns:
+
+```
+ *[ X ]( Y )        allocate here                        -> nothing
+ *$[ X ]( Y )*      allocate a stand-in, this writing    -> an address
+**$[ X ]( Y )*      allocate a stand-in, the book        -> an address
+**$[ X ]( Y )**     allocate a stand-in, the collection  -> an address to a reference
+  $[ X ]( Y )*      no allocation, just stand in         -> an address
+```
+
+Plain `[ text ]( target )` too, and **it is already in use** in our covers:
+
+```tsx
+<Author>[Author: Doug](My Library Log)</Author>
+<Subject>[Doug](Doug&rsquo;s Library)</Subject>
+```
+
+`(My Library Log)` is a **book title**, not a URL. Every book's author points at an autobiography;
+"authorship lives in an autobiography" is already implemented, not proposed.
+
+## The constraint that forces this into the static layer
+
+The runtime substrate is an in-house reactive framework (components are classes; each has an
+initialiser that runs once per construction). We established this month, over sixteen agents and
+three candidate designs, that the initialiser **cannot be made to re-run** — and the decisive
+reason is that **a miss is unrecordable**: the substrate cannot write down *"I asked for key K and
+it was not there."* That negative dependency is exactly what an incremental system needs to be
+sound. The runtime structurally cannot supply it. **A static parse can.**
+
+So the catalogue is static, or the system is unsound. Settled.
+
+---
+
+# PART 2 · WHAT A LIBRARY LOOKS LIKE ON DISK
+
+A library is a folder. Inside it are **book folders**; a book folder is any folder carrying a
+`.book.tsx`. Beside them sits `..public/`, which is where everything generated goes.
+
+```
+.me/                                     THE LIBRARY (this is the live one, Doug's)
+  my-library-log/                          A BOOK. Its .book.tsx is the book's own class.
+    .book.tsx
+    0-lead.tsx  1-the-books.tsx  2-the-sheet.tsx  ...      CHAPTERS, ordered by filename
+    2-the-sheet.tsx.tsx                    A CHAPTER THAT DOCUMENTS A RESOURCE. The double
+                                           extension means "the chapter about 2-the-sheet.tsx".
+                                           The chapter places its own source with
+                                           <Resource>2-the-sheet.tsx</Resource>.
+  ..reference/                             ANOTHER BOOK (12 chapters). The `..` prefix is a
+                                           library-catalogue book in our naming system.
+  .claude-and-our-projects/                A SUBJECT FOLDER holding three more books:
+    ..reference/  .claudes-importer/  semantic-reference-theory/.reference/
+
+  ..public/                              EVERYTHING GENERATED, and the compiler itself
+    .binding/                              THE COMPILER, COPIED IN. See Part 4.
+      .graph.json                          THE PERSISTED CATALOGUE. See below.
+      .manifest.json                       every file the last build wrote
+      .pubconfig                           this library's configuration
+      .shell.html  index.html  code.css    the page shell
+      application/                         GENERATED MODULES (books.ts, routes.ts, stylesheets.ts)
+      node_modules/                        this library's own install — the compiler is not shared
+    assets/                                THE BUNDLE. One entry chunk per build, hashed.
+    <book>/index.html                      THE PRERENDERED PAGES, one per book
+```
+
+Two things about that layout that matter to the design:
+
+- **`node_modules` lives inside `.binding`.** The library is not a workspace member. It installs
+  its own copy of everything, which is why the Vite config does the deduping described in 4.3.
+- **`assets/` accumulates.** There are 27 `.book-*.js` and 13 `claudes-importer-*.js` chunks in
+  there right now from past builds. `manifest/removal.ts` deletes what the *source* no longer
+  writes, but hashed bundle output from old builds survives. Minor, but it is the kind of thing a
+  clean design should just not have.
+
+## The catalogue as it exists today
+
+`.graph.json` — six entries, one per book. This is a real entry, verbatim:
+
+```json
+{
+  "folder": "..reference",
+  "book": {
+    "name":    "Doug's Library",
+    "title":   "Doug's Library",
+    "author":  "My Library Log",
+    "subject": "Doug's Library",
+    "chapters":   ["Doug's Library", "The Librarian", "Table of Contents", "Lead",
+                   "The books", "The Sheet", "The Masthead", "The Chapter Mark",
+                   "The Plate", "The Ledger", "The Switchboard", "The Domain"],
+    "catalogued": ["The books", "The Sheet", "The Masthead", ... ],
+    "shelves":    ["Doug's Library", "Doug's Library", "My Library Log", "Claude & Our Projects"],
+    "types":      ["Catalogue", "Cover", "Document", "Document"]
+  },
+  "digest": "eb6431b095e1fe70",
+  "walked": 452
+}
+```
+
+The six `walked` counts sum to exactly 2,702 — that is where the prose-object number comes from.
+A book whose `digest` is unchanged is skipped on the next build.
+
+**So the catalogue already exists and already has content-digest skipping.** The gap between this
+and the design is exactly two things:
+
+- **(a)** nothing below chapter level — no declaration sites, no anchors inside a chapter;
+- **(b)** it is produced by **evaluating** the books (loading and running them) rather than
+  **parsing** them.
+
+---
+
+# PART 3 · THE FRAMEWORK PACKAGE — `src/`, 107 files
+
+This is the published npm package the books import. It is not the compiler, but the compiler's job
+is to feed it, so you need to know what the vocabulary is. **One word per file**; a file is named
+for the word it defines, and each file holds that word's class, its type and its registration.
+
+```
+src/
+  index.ts                  THE COMPOSITION ROOT and the one place dependency injection happens.
+                            Re-exports everything, then a machine-emitted <registrations> block
+                            calls $Book.$register(), $Reference.$register(), etc. A kind that
+                            needs wiring declares `static $register()` and the block is regenerated
+                            before each build, so a kind cannot be added and silently left unwired.
+  application.ts article.ts conversation.ts encyclopedia.ts library.ts markdown.ts utilities.ts
+                            FOLDER BARRELS. A root file named for its folder; the base re-exports
+                            these until every consumer imports from here.
+
+  writing/                  THE PROSE VOCABULARY — what a piece of writing is made of.
+    Writing.tsx               THE BASE. Everything below is a Writing.
+    Composition.tsx           A writing whose LEVELS ARE FOUND BY THE PARSE, never authored. The
+                              author writes prose; paragraph/sentence/word structure is derived.
+    Type.tsx                  The type of a writing.
+    Annotation.tsx            A writing that is ABOUT another writing. Reference extends this.
+    Letter.tsx Word.tsx Sentence.tsx Paragraph.tsx Section.tsx
+                              The found levels, smallest to largest.
+    Heading.tsx Quote.tsx Aside.tsx Note.tsx Summary.tsx Description.tsx Phrase.tsx Emphasis.tsx
+                              Prose kinds an author does write.
+    List.tsx Item.tsx Table.tsx Cell.tsx      Structured prose.
+    Math.tsx Equation.tsx                     KaTeX-backed.
+    Code.tsx CodeNavigator.tsx                Source shown on a page; the navigator is what the
+                              <Resource> plugin swaps a placement for.
+    Image.tsx Svg.tsx Illustration.tsx Figure.tsx   Pictures.
+    Date.tsx                  A date as a first-class writing.
+    Theme.tsx Format.tsx      Appearance, registered rather than inherited.
+
+  library/                  THE LIBRARY VOCABULARY — what a book is made of.
+    Book.tsx                  THE BOOK. Holds the scratchpad its descendants fold into.
+    Chapter.tsx               A chapter. A chapter's class IS its book's class, which is how the
+                              theme reaches it.
+    Cover.tsx Synopsis.tsx TableOfContents.tsx Index.tsx Footer.tsx
+                              The apparatus of a book.
+    Title.tsx Author.tsx Subject.tsx
+                              THE THREE CARD FIELDS. These are the ones that must learn to receive
+                              a reference — today they hold prose.
+    Canonical.tsx             The canonical name of a thing.
+    Catalogue.tsx CatalogueCard.tsx
+                              The catalogue as something a page can show.
+    Document.tsx Row.tsx      Structure.
+    Biography.tsx Autobiography.tsx
+                              Authorship lives in an autobiography; only one subject may hold it.
+    Bookmark.tsx Highlight.tsx PageFold.tsx
+                              A reader's marks.
+    Scratchpad.tsx            Where descendants fold information up to the book.
+    Resource.tsx              A file placed on a page. The compiler resolves this at build time.
+
+  reference/                THE REFERENCE VOCABULARY — this is what the new notation feeds.
+    Reference.tsx             $Reference extends $Annotation. Its initialiser adds a $Path only
+                              when url.addresses(copy) says the target is absolute.
+    Path.tsx                  The address a reference resolved to.
+    Ref.tsx Entry.tsx Citation.tsx References.tsx Notes.tsx
+                              Citations and the notes apparatus.
+    Catalogue.tsx ReferenceCard.tsx
+                              The catalogue seen as references.
+    Fold.tsx                  How a reference folds its information up to the book.
+
+  utilities/                THE MACHINERY.
+    Parser.tsx                Turns prose into the found levels (the 2,702 objects).
+    Reflection.tsx            meaning(writing) — finds a $Reference among a writing's own elements.
+                              THIS IS THE SEAM by which a Title receives a reference.
+    Specification.ts          What a book answers about itself; the compiler reads through this.
+    Html.ts                   The computed $Html<T> type ($value / $elements).
+    Url.ts                    url.addresses(copy) — is this target absolute. Counts scheme, //, /,
+                              # and ? as absolute. A relative target gets no path and is refused.
+    Tex.ts                    KaTeX.
+
+  article/ encyclopedia/ conversation/ application/ markdown/
+                            PRESENTATION FAMILIES. Each is a set of kinds plus a Theme that a book
+                            registers to choose how it looks — article (Abstract, Theorem, Footnote,
+                            Appendix), encyclopedia (Article, Infobox, Hatnote, Navbox, Talk),
+                            conversation (Dialogue, Exchange, Participant, Topic), application
+                            (Header, Toolbar, Menu, Search, Appearance, Control), markdown (Theme).
+```
+
+**The one thing to know about this package for the compiler design:** the seam for "a Title
+receives a reference" already exists. `$Reference extends $Annotation`, and `Reflection.meaning()`
+finds a reference among a writing's own elements. Giving a `$Title` a reference means putting a
+`$Reference` in its block. Nothing new is needed in the framework for that.
+
+---
+
+# PART 4 · THE COMPILER — `.binding/`, 54 files, 1,953 lines
+
+Run as `tsx binding.ts`. It runs nine phases and exits.
+
+**It is a TEMPLATE, not a dependency.** `manifest/copy.ts` copies this entire folder into each
+library as that library's own compiler; `manifest/synced.ts` keeps a copy current with the package
+it came from. **The library it compiles is its own parent folder.** No monorepo, no workspace.
+
+## 4.1 The folder structure, every file, what it does
+
+```
+.binding/
+  binding.ts            (156)  THE ENTRY POINT. A Task[] of nine phases run in order, stopping at
+                               the first failure. `tsx binding.ts assemble specify` runs a subset.
+                               Full source in 4.2.
+  vite.config.ts         (92)  The Vite config as a function of {isPreview}. Four plugins and a
+                               dozen hard-won fixes. Detail in 4.3.
+  vitest.config.ts       (11)  Merges the vite config with the test setup.
+  package.json                 bind = "tsx binding.ts" · dev = "vite" · build = bind ·
+                               preview = "vite preview" · copy · sync · specify · typecheck
+  .pubconfig                   This library's config. Currently `{}` — all defaults.
+  index.html                   The SPA shell vite serves in dev.
+
+  configuration/               READS .pubconfig INTO A TYPED OBJECT.
+    configuration.ts     (43)    configure(binding) -> Configuration. Slice<T> composes the
+                                 per-concern config types that live beside each phase.
+    schema.ts             (5)    The shape .pubconfig is validated against.
+    exclude.ts            (8)    excluded(name) — folders the walk never enters.
+
+  inventory/                   FINDS WHAT IS THERE. Pure filesystem. No evaluation.
+    walk.ts              (34)    walk(library, chosen) -> Library. The directory walk.
+    library.ts           (48)    Types Book, Library, Diagnostic. around(binding) -> the face and
+                                 library folders. problem(diagnostic) formats a fault for a human.
+    books.ts             (26)    isBook(folder) — does it carry a .book.tsx. book(...).
+    chapters.ts          (34)    accountOfFiles(dir) -> which files are chapters and which are
+                                 resources standing beside a chapter.
+    filenames.ts         (48)    THE FILENAME GRAMMAR: apparatus, isChapter, isDeclaration,
+                                 isKnown, withoutFinalExtension, before. This is what knows that
+                                 `2-the-sheet.tsx.tsx` is a chapter about `2-the-sheet.tsx`, and
+                                 that the cover/table/synopsis have reserved filenames.
+    accounting.ts        (43)    misaccounted(found, chosen) — EVERY file must be the book, a
+                                 chapter, or a chapter's resource. Anything else FAILS THE BUILD.
+    configuration.ts     (19)    The inventory slice of .pubconfig.
+
+  assembly/                    WRITES GENERATED MODULES TO DISK.
+    book.ts              (42)    assemble(face, book) — ONE MODULE PER BOOK, importing its chapters
+                                 and composing them. Source in 4.4. ITS INPUT IS A DIRECTORY.
+    books.ts             (25)    Writes application/books.ts, the index of all books.
+    routes.ts            (40)    Writes application/routes.ts from the resolved table.
+    stylesheets.ts       (17)    Writes application/stylesheets.ts.
+    resources.ts         (49)    A VITE PLUGIN, enforce:'pre', ALREADY IN PRODUCTION. Source in 4.5.
+                                 THIS IS THE PRECEDENT the reference transform would follow.
+
+  application/                 THE GENERATED ARTIFACTS. Currently real files in the working tree.
+    routes.ts             (9)    GENERATED. `Route[]` and `root`.
+    books.ts                     GENERATED — and ABSENT in the package's own copy, which is exactly
+                                 why `npm run dev` fails there. See 4.6.
+    stylesheets.ts        (2)    GENERATED. Currently empty.
+    main.tsx                     The app entry that reads the above.
+
+  specification/               LOADS AND RUNS EVERY BOOK. The expensive phase, and the one whose
+                               reason for existing is being deleted.
+    specifying.ts        (92)    specifying(...) -> Verdict {loaded, unchanged, walked, failures,
+                                 held}. Orchestrates the per-book read and skips a book whose
+                                 content digest is unchanged.
+    specify.ts           (66)    specify(...) -> Answer. One book's own specification run.
+    reading.ts           (49)    class Reading — ONE MEMBER PER FACT a book answers about itself:
+                                 name, title, author, subject, types, chapters, catalogued,
+                                 shelves. THIS IS THE CARD, and today it is produced by RUNNING
+                                 the book.
+    running.ts           (54)    running(...) — runs a vitest suite in-process.
+    proof.ts             (96)    proof(face, pages) — reads the emitted HTML back and checks it is
+                                 what a browser will actually build.
+    environment.ts       (22)    Ambient accessors the suites read: binding, face, library, chosen,
+                                 found, held, table, shipping.
+    library.test.ts     (173)    The library-wide suite.
+    rendering.test.ts    (20)    The rendering suite.
+    configuration.ts     (18)    The specification slice.
+
+  resolution/                  NAMES AND ADDRESSES. Pure. NEVER loads a book.
+    addresses.ts         (43)    resolution(found, held, chosen) -> Table {routes}. A pure late
+                                 pass over the graph and the config. specifierOf(...).
+    names.ts              (6)    nameOf(...).
+    configuration.ts     (12)    The resolution slice, including the GitHub Pages `base`.
+
+  rendering/                   PRERENDER. Build only.
+    rendering.ts         (32)    rendering(binding, names) -> the pages written. shellOf.
+    draw.ts              (65)    draw(...) — renders one page to HTML.
+    page.ts              (29)    template(html, chosen) for transformIndexHtml; page(...).
+    dom.ts               (32)    A happy-dom window for the prerender.
+    place.ts              (7)    placeOf(...) — where a page is written.
+    styles.ts             (2)    Collected styles.
+    render.mjs                   The child-process entry for rendering.
+    configuration.ts     (18)    The rendering slice.
+
+  manifest/                    WHAT WAS WRITTEN, AND KEEPING THE TEMPLATE IN SYNC.
+    manifest.ts          (35)    manifest.read/write — the record of every file the last build
+                                 wrote (assembled, written, rendered, bundled).
+    removal.ts           (20)    removal(face, previous, current) — deletes what the source no
+                                 longer writes.
+    graph.ts             (66)    graph.read/write, types Entry and Graph. THE PERSISTED CATALOGUE.
+    copy.ts              (69)    Copies this whole .binding into a library.
+    synced.ts            (24)    Keeps a library's copy current with the package's.
+    origin.ts           (101)    Where a copy came from; repository, within, kept, skipped,
+                                 forward, origin, describe, listing, reading, bring.
+    configuration.ts     (13)    The manifest slice.
+```
+
+## 4.2 `binding.ts` — the nine phases, real source
+
+```ts
+// THE BINDER IS A COMPILER: a sequence of named tasks, each run in order, each saying what it
+// did, the sequence stopping at the first that fails.
+//
+// RESOLVE FOLLOWS SPECIFY, because a book is named by its own title and a title is a thing a
+// running book answers. So the books are assembled, then read once — which is the expensive step,
+// and the one that is kept — and only then are they named, ruled on, and given their addresses.
+
+export const tasks: Task[] = [
+    { name: 'configure', run: state => { state.chosen = configure(state.binding); ... } },
+
+    { name: 'inventory', run: state => {
+        state.found = walk(state.library, chosen);
+        if (state.found.books.length === 0) throw new Error(`${state.library} holds no book`);
+        const wrong = misaccounted(state.found, chosen);
+        if (wrong !== undefined) throw new Error(wrong);
+    } },
+
+    { name: 'assemble', run: state => {
+        state.previous  = manifest.read(state.binding);
+        state.assembled = found.books.map(book => assemble(state.face, book));   // TO DISK
+        state.written   = [books(state.binding, found), stylesheets(state.binding, chosen)];
+    } },
+
+    { name: 'specify', run: async state => {
+        // LOADS AND RUNS EVERY BOOK, walks its object tree, writes the graph.
+        const verdict = specifying(state.binding, found, scope, graph.read(state.binding), chosen);
+        state.graph = graph.write(state.binding, verdict.held);
+        const wrong = verdict.failures.length ? verdict.failures
+                    : await running(state.binding, found, 'specification/library');
+        if (wrong.length) throw new Error(`the library does not specify — ...`);
+    } },
+
+    { name: 'resolve', run: state => {
+        state.table = resolution(found, graph, chosen);        // PURE. Never loads a book.
+        state.written.push(routes(state.binding, state.table));
+    } },
+
+    { name: 'bundle', run: async state => {
+        const built = await build({ ...configuration({ isPreview: false }), configFile: false });
+        state.bundled = emitted(built);
+    } },
+
+    { name: 'render', run: state => { state.rendered = rendering(state.binding, names); } },
+
+    { name: 'proof', run: state => {
+        // RUNNABLE ON ITS OWN, reading the pages the last binding wrote, so a person checking one
+        // page does not pay for a bundle to find out.
+        const wrong = proof(state.face, pages);
+        if (wrong.length) throw new Error(`the pages are not readable — ...`);
+    } },
+
+    { name: 'record', run: state => {
+        const current = manifest.write(state.binding, {assembled, written, rendered, bundled});
+        removal(state.face, state.previous, current);
+    } },
+];
+```
+
+**That top comment is what the new design kills.** "A title is a thing a running book answers" is
+the only reason `resolve` follows `specify`. Parse the titles out of the source instead and the
+expensive load-and-run-every-book step leaves the critical path entirely.
+
+## 4.3 `vite.config.ts` — what is already there
+
+Four plugins: `@vitejs/plugin-react` (with `decorators-legacy`), a `transformIndexHtml` template
+plugin, `resources()`, and a preview middleware that 301s `/turing` to `/turing/` to match GitHub
+Pages. Plus these, each one a bug already paid for:
+
+- **`resolve.dedupe` = every dependency in package.json**, not a hand-written list. A book reaching
+  for `chroma-js` failed the bundle with "Rollup failed to resolve import" because the hand list
+  had never heard of it. *What a library installs is exactly what its books may reach for.*
+- **`ssr.noExternal` = every `file:` dependency.** SSR externalisation made Node walk up from the
+  package's own folder and load a **second copy of React**; every prerendered page came out an
+  854-byte error shell **while the build reported success**.
+- **`resolve.extensions` puts `.tsx` before `.ts`**, because a chapter and the resource it
+  documents share a name, and Vite loaded the code in the chapter's place and ran it.
+- **one chunk on purpose** — the pages are prerendered and a reader moves by loading another page,
+  so splitting buys nothing; the warning limit is set above what we ship rather than at it.
+- `build.outDir` is the library folder with `emptyOutDir: false`.
+
+## 4.4 `assembly/book.ts` — the artifact that must go virtual
+
+```ts
+export const assemble = (face: string, book: Book): string => {
+    const lines = [
+        `import { $ } from '@dna-platform/chemistry';`,
+        `import $Book from '${from}/.book';`,
+        ...book.files.map(file => `import $${classed(file)} from '${from}/${named(file)}';`),
+        `const Book = $($Book);`,
+        ...book.files.map(file => `const ${classed(file)} = $($${classed(file)});`),
+        `export const book = $<$Book>(`,
+        `    <Book>`,
+        ...book.files.map(file => `        <${classed(file)} />`),
+        `    </Book>`,
+        `);`,
+    ];
+    // WRITTEN ONLY WHEN IT CHANGED. A thousand books rewritten identically every build is a
+    // thousand writes vite must then decide are new, and the digest that keeps a book from being
+    // read again has the book's module among its inputs.
+    if (!existsSync(book.module) || readFileSync(book.module,'utf8') !== written) writeFileSync(...);
+    return relative(face, book.module);
+};
+```
+
+Note it **already composes by reference** — it imports chapters, it does not inline them. So your
+answer costs nothing to adopt; this file just needs to stop being a file. Its input is a
+**directory**, so adding a thirteenth chapter invalidates nothing.
+
+## 4.5 `assembly/resources.ts` — the plugin shape we would copy
+
+```ts
+export const resources = (): Plugin => ({
+    name: 'binding:resources',
+    enforce: 'pre',
+    transform(code, id) {
+        const file = id.split('?')[0];
+        if (!file.endsWith('.tsx') || !code.includes('<Resource>')) return null;
+        const standing = accountOfFiles(dirname(file)).resources.get(basename(file)) ?? [];
+        const imports = [];
+        const drawn = code.replace(placement, (_, asked) => {
+            const named = standing.find(one => one.endsWith(asked));
+            if (named === undefined) throw new Error(missing(basename(file), asked, standing));
+            imports.push(`import resource${imports.length} from './${named}?raw';`);
+            return `<CodeNavigatorForResource file="${named}">{resource${n}}</CodeNavigatorForResource>`;
+        });
+        return imports.length ? [importLine, ...imports, drawn].join('\n') : null;
+    },
+});
+```
+
+Its own comments carry two rulings:
+
+- *"A resource is a BUILD-TIME fact. There is no disk at draw time and nothing to walk for."*
+  Resolved at draw time instead, this once cost 291 seconds on one book and died on a 4GB heap,
+  and because every book extends the library's own, one book took the whole library with it.
+- *"It runs `pre`, so what the React plugin compiles is ordinary markup and nothing downstream
+  needs to know a resource was ever written."*
+
+## 4.6 THE BOOTSTRAP PROBLEM, stated exactly
+
+```json
+"bind": "tsx binding.ts",   "dev": "vite",   "build": "tsx binding.ts"
+```
+
+**`npm run dev` is literally `vite`.** It serves artifacts a *previous* `bind` wrote to disk —
+`application/books.ts`, `application/routes.ts`, and the per-book modules.
+
+**The dev server depends on the batch and cannot produce what it serves.** Right now the package's
+own copy is stale — `books.ts` is absent, `routes.ts` is an older generated shape — so `npm run
+dev` there fails outright. The live library works only because someone ran `bind` in it recently.
+
+**This is the thing to fix. Everything else is detail.**
+
+---
+
+# PART 5 · WHAT IS ALREADY SETTLED OR MEASURED
+
+Do not re-derive these. Tell me if you think any is wrong.
+
+- **Vite, not Babel.** Your answer; taken.
+- **Virtual module + per-file watch edge + compose by reference.** Your answer; taken.
+- **The transform always succeeds.** When it cannot resolve a reference it emits a **proxy** and
+  logs it. The proxy log IS the diagnostics. The publish refuses if any proxy survives; dev never
+  needs global invalidation, because a proxy re-resolves on the next edit of its own file.
+- **No editor plugin.** We cut a `tsserver` plugin because it would be a second implementation of
+  the grammar that can drift from the build. The build is the loop.
+- **Frozen catalogue keys** — non-reactive by construction, so a stale table is *incomplete*,
+  never *wrong*.
+- **The scan is linear** — 0.91 steps/char, flat across sixteen doublings of a 2MB corpus, every
+  adversarial input at or below 1.00. Splicing by absolute offset leaves the file byte-identical
+  outside matches. The TS compiler API on `JsxText` sees prose and only prose — on one real cover
+  it found 3 prose nodes and correctly did not see a `String.raw` formula, 3 imports or 5 comments.
+- **Measured HMR** on a real dev server, twelve chapters into one book: cold 13 transforms /
+  153 ms; edit one chapter → **23 ms, that chapter only**; edit and ask only for it → 7 ms.
+- **390 plain markdown links in the corpus are already wrong** — hand-slugged internal targets and
+  relative paths that should be absolute. The rule "a plain link must be absolute" finds every one.
+- **Chapter classes use almost none of the substrate** — 101 of 101 are `print()` and nothing else,
+  and 0 of 101 reference `this`.
+
+---
+
+# PART 6 · WHAT I WANT FROM YOU
+
+> **A clean design for this compiler. The folder structure, the files inside it, and a line per
+> file saying what it owns. The minimum number of components that is still durable.**
+
+Give it back **in the format of Part 4.1** — an actual tree, a line per file. That is the
+deliverable. Then the reasoning.
+
+Settle these inside it:
+
+### Q1 · What is the ONE process?
+
+Today there are two entry points: `vite` (dev, serves stale artifacts) and `tsx binding.ts` (batch,
+produces them). Should there be **one** that owns both modes — hosting Vite via `createServer` in
+dev and driving it via `build()` for publish, so the phases before and after the bundle are the
+same code in both? Or does that couple things that should stay apart? What do the frameworks
+actually do, and which of them regretted it?
+
+### Q2 · Where does the catalogue live, and when is it built? — **THE CRUX**
+
+The catalogue must exist *before* any file's reference transform can resolve. But the catalogue is
+built *by parsing all the files*. That is a global barrier inside a system meant to be lazy and
+per-file.
+
+- **(a)** Eager full scan at server start (~150ms at our scale), kept warm, patched per file change.
+- **(b)** Lazy, with early transforms emitting proxies that resolve on a later pass.
+- **(c)** Persisted and loaded from disk, rescanning only what changed by digest (what we do now).
+
+**How do real incremental build systems handle "I need a global table before I can transform any
+single file, and the table comes from all the files"?** I assume this is well-trodden ground and I
+want the vocabulary, the standard shapes, and the known failure modes. In particular:
+
+- How is the table invalidated when a **declaration** changes rather than a citation?
+- How is **absence** tracked — "I looked up title T and it was not in the catalogue" — so that
+  later *adding* T re-runs what was refused? This is the negative-dependency problem that defeated
+  our runtime, and I suspect demand-driven memoised query systems (the rust-analyzer / salsa
+  family) are the right prior art. **Confirm or refute that**, and tell me what such a system costs
+  to adopt at our size — or whether at six books it is over-engineering and (a) simply wins.
+
+### Q3 · Which of the nine phases survive, as what?
+
+For each of configure / inventory / assemble / specify / resolve / bundle / render / proof /
+record: does it become a plugin hook, a component of a resident compiler, a build-only step, or
+does it disappear? Say where each lands in your tree. **`specify` is the one I expect to change
+most**, since its reason for existing — asking a running book its title — is being deleted.
+
+### Q4 · Do we throw the current one away?
+
+We are seriously considering archiving all 1,953 lines and writing it clean, then installing the
+new one into the live library. **For:** the phase order is built on an assumption we are deleting,
+much of the code exists to make a batch behave, and retrofitting hooks into a batch usually
+produces a thing that is neither. **Against:** `resolution/`, `inventory/`, the resources plugin,
+and the prerender/proof steps all work and are paid for, and the config holds a dozen fixes that
+were each a day.
+
+**A real opinion please, in the form of "keep exactly these, rewrite exactly those."**
+
+### Q5 · What does being a COPIED TEMPLATE cost the design?
+
+The compiler is copied into each library rather than imported as a dependency, and each library
+installs its own `node_modules` inside `.binding`. Does that change what you would build? **Should
+it stop being a copy and become a package the library depends on?** That is a live option I have
+not thought through, and it interacts with Q1 — a package can export a Vite plugin and a config
+factory, where a copied folder tends to want to be a program.
+
+### Q6 · What are we going to regret?
+
+Name the two or three decisions in whatever you propose that are hardest to reverse, and say what
+the early warning sign of each looks like.
+
+---
+
+# PART 7 · RESEARCH I WANT DONE
+
+**Please actually research these rather than answer from memory.** I would rather wait.
+
+1. **Vite 7's current plugin and HMR surface** — `resolveId`/`load`/`transform`, the virtual-module
+   `\0` convention, `addWatchFile`, `handleHotUpdate` versus the newer `hotUpdate`, the Environment
+   API introduced in Vite 6 and whether it changes how a plugin like ours should be written, and
+   `createServer` used programmatically as a long-lived compiler host. **What is the current
+   idiomatic shape, and what is deprecated?**
+2. **Astro's content layer** — you pointed at content collections; go deeper. How is the collection
+   cache keyed and invalidated, what is on disk versus virtual, what happens when a file is added
+   or removed mid-session, and what did they change between the original collections and the
+   newer content layer, and why?
+3. **SvelteKit, Nuxt, unplugin-vue-router / unplugin-pages, Remix / React Router** — for each, one
+   verdict: where does the generated module live, what registers the invalidation edge, and what is
+   the known failure mode.
+4. **Demand-driven incremental computation** — salsa and rust-analyzer, Adapton, build systems à la
+   carte, Bazel/Buck's dependency model, Turbopack's. **Specifically: how each records that a
+   lookup MISSED, and re-runs on later insertion.** Is that machinery worth it for six books, or
+   is the honest answer "scan eagerly, it is 150ms"?
+5. **The TypeScript compiler API for repeated parsing** — is there a cheaper path than
+   `createSourceFile` per file per change for our purpose (we only need JsxText spans), and do the
+   incremental/watch APIs or a lighter scanner buy anything here?
+6. **Prerendering a Vite SPA to static HTML** — what people actually use in 2026 for
+   "render each route to HTML at build time" without adopting a full framework, and whether our
+   happy-dom-in-a-child-process approach has a better standard equivalent.
+
+---
+
+# PART 8 · HOW TO ANSWER
+
+- **Prose plus the file tree. No documents, no artifacts.**
+- **The tree is the deliverable** — a line per file saying what it owns, in Part 4.1's format.
+- **Name real systems with verdicts**, not a survey.
+- **Prioritise Q2 and Q4**, and Part 7 items 1, 2 and 4.
+- Where Parts 1–5 look wrong to you, **say so**. Seeing the code for the first time is the point.
+- Assume competence — skip explaining what a Vite plugin is.

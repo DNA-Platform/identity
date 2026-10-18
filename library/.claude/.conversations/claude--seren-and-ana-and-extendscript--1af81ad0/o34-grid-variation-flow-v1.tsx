@@ -1,0 +1,55 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ grid-variation-flow v1 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="800" fill="#FFD700"/>
+    
+    <!-- Grid lines with organic flow -->
+    <g stroke="#fff8e0" fill="none">
+        <!-- Vertical lines with varying weights and natural movement -->
+        <path d="M 57,0 C 77,200 37,400 67,600 S 47,800 57,800" stroke-width="9"/>
+        <path d="M 118,0 C 128,150 108,350 123,550 S 113,800 118,800" stroke-width="7"/>
+        <path d="M 179,0 C 189,180 169,380 189,580 S 169,800 179,800" stroke-width="8"/>
+        <path d="M 240,0 C 250,220 230,420 245,620 S 235,800 240,800" stroke-width="7"/>
+        <path d="M 301,0 C 321,160 281,360 311,560 S 291,800 301,800" stroke-width="9"/>
+        <path d="M 362,0 C 372,190 352,390 367,590 S 357,800 362,800" stroke-width="8"/>
+        <path d="M 423,0 C 443,170 403,370 433,570 S 413,800 423,800" stroke-width="7"/>
+        <path d="M 484,0 C 494,210 474,410 489,610 S 479,800 484,800" stroke-width="9"/>
+        <path d="M 545,0 C 565,180 525,380 555,580 S 535,800 545,800" stroke-width="8"/>
+        <path d="M 606,0 C 616,160 596,360 611,560 S 601,800 606,800" stroke-width="7"/>
+        <path d="M 667,0 C 687,190 647,390 677,590 S 657,800 667,800" stroke-width="9"/>
+        <path d="M 728,0 C 738,200 718,400 733,600 S 723,800 728,800" stroke-width="8"/>
+        <path d="M 789,0 C 809,170 769,370 799,570 S 779,800 789,800" stroke-width="7"/>
+
+        <!-- Horizontal lines with natural flow and weight variation -->
+        <path d="M 0,53 C 200,73 400,33 600,63 S 700,43 800,53" stroke-width="8"/>
+        <path d="M 0,110 C 200,130 400,90 600,120 S 700,100 800,110" stroke-width="7"/>
+        <path d="M 0,167 C 200,187 400,147 600,177 S 700,157 800,167" stroke-width="9"/>
+        <path d="M 0,224 C 200,244 400,204 600,234 S 700,214 800,224" stroke-width="8"/>
+        <path d="M 0,281 C 200,301 400,261 600,291 S 700,271 800,281" stroke-width="7"/>
+        <path d="M 0,338 C 200,358 400,318 600,348 S 700,328 800,338" stroke-width="9"/>
+        <path d="M 0,395 C 200,415 400,375 600,405 S 700,385 800,395" stroke-width="8"/>
+        <path d="M 0,452 C 200,472 400,432 600,462 S 700,442 800,452" stroke-width="7"/>
+        <path d="M 0,509 C 200,529 400,489 600,519 S 700,499 800,509" stroke-width="9"/>
+        <path d="M 0,566 C 200,586 400,546 600,576 S 700,556 800,566" stroke-width="8"/>
+        <path d="M 0,623 C 200,643 400,603 600,633 S 700,613 800,623" stroke-width="7"/>
+        <path d="M 0,680 C 200,700 400,660 600,690 S 700,670 800,680" stroke-width="9"/>
+        <path d="M 0,737 C 200,757 400,717 600,747 S 700,727 800,737" stroke-width="8"/>
+        <path d="M 0,794 C 200,814 400,774 600,804 S 700,784 800,794" stroke-width="7"/>
+    </g>
+
+    <!-- Signature -->
+    <text x="20" y="780" fill="#fff8e0" font-family="Arial" font-size="12" opacity="0.6">Seren</text>
+</svg>`}
+        </CodeBox>
+    </Chapter>
+);

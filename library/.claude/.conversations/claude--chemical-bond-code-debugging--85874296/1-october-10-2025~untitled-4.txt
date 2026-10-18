@@ -1,0 +1,85 @@
+chemical: 10, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 10, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 10, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 11, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 11, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 11, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 12, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 12, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 12, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 13, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 13, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 13, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 14, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 14, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 14, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:491 {"cid":10,"$Display[10].$text":"\"Hello World\""}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:483 setState:10
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:493 setState called: (state)=>{
+            console.log("setState:".concat(this._chemical[$cid]));
+            setState(state);
+        }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:491 {"cid":11,"$Counter[11].count":"0"}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:483 setState:11
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:493 setState called: (state)=>{
+            console.log("setState:".concat(this._chemical[$cid]));
+            setState(state);
+        }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:491 {"cid":12,"$Counter[12].count":"0"}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:483 setState:12
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:493 setState called: (state)=>{
+            console.log("setState:".concat(this._chemical[$cid]));
+            setState(state);
+        }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:491 {"cid":13,"$MultiProp[13].$first":"\"One\"","$MultiProp[13].$second":"\"Two\"","$MultiProp[13].$third":"99"}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:483 setState:13
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:493 setState called: (state)=>{
+            console.log("setState:".concat(this._chemical[$cid]));
+            setState(state);
+        }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:491 {"cid":14,"$ComplexProps[14].$arrayProp":"[\"passed1\",\"passed2\",\"passed3\"]","$ComplexProps[14].$objectProp":"{\"name\":\"Passed Object\",\"value\":42}","$ComplexProps[14].regularArray":"[\"initial1\",\"initial2\",\"initial3\"]","$ComplexProps[14].regularObject":"{\"status\":\"ready\",\"count\":10}","$ComplexProps[14].computedProp":"200"}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:483 setState:14
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:493 setState called: (state)=>{
+            console.log("setState:".concat(this._chemical[$cid]));
+            setState(state);
+        }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:491 {"cid":10}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:483 setState:10
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:493 setState called: (state)=>{
+            console.log("setState:".concat(this._chemical[$cid]));
+            setState(state);
+        }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:491 {"cid":11}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:483 setState:11
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:493 setState called: (state)=>{
+            console.log("setState:".concat(this._chemical[$cid]));
+            setState(state);
+        }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:491 {"cid":12}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:483 setState:12
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:493 setState called: (state)=>{
+            console.log("setState:".concat(this._chemical[$cid]));
+            setState(state);
+        }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:491 {"cid":13}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:483 setState:13
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:493 setState called: (state)=>{
+            console.log("setState:".concat(this._chemical[$cid]));
+            setState(state);
+        }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:491 {"cid":14}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:483 setState:14
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:493 setState called: (state)=>{
+            console.log("setState:".concat(this._chemical[$cid]));
+            setState(state);
+        }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 6, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 6, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 7, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 7, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 7, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 7, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 8, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 8, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 9, destroyed: false
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:346 chemical: 9, destroyed: false

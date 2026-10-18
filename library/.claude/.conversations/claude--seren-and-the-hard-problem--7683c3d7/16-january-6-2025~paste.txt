@@ -1,0 +1,249 @@
+Semantic Reference Theory: Cheat Sheet
+**Title**: Semantic Reference Theory: Cheat Sheet
+**Author**: I=am>Doug
+**Subject**: Semantic Reference Theory
+**Content**: Thought
+---
+
+There’s a typographical lingo to Semantic Reference Theory that gives it a unique flavor. Representing reference symbolically is akin to pointers in programming language. I choose a symbology that builds its aesthetic identity using programming as inspiration.
+
+There is also a touch of absurdism. When extending Semantic Reference Theory to create your own theory, it is expected that you build your own grammar. So my base grammar is vacuous in a way that emphasizes abstraction, and thus begs reinterpretation in any specific domain
+---
+
+# A Programmatic Grammar for Formal Logic
+
+Semantic Reference Theory uses an informal grammar to replace the more austere symbology of first order logic. It is meant to be more down to earth. Most importantly, it is meant to be expressible without a special typesetting language.
+
+For the propositional variables X and Y from first order logic, which represent expressions subject to truth and falsity:
+
+!X : means: not X
+X & Y : means: X and Y
+X | Y : means X or Y
+X =|> Y : means X implies Y
+X <|=|> Y : means X if and only if Y
+
+For the non-logical variables of first order logic, I adopt programmer semantics:
+
+x == y : means: x equals y
+x != y : means: x does not equal y
+
+Quantification is trickier. There’s nothing to draw on in programming. The closest thing I can think of is:
+
+Ex: x == y : means: there exists x where x equals y Ax: x == y. : means all x equal y Ax.Ey: x = y : means all x equal at least one y
+
+Definition is important in Semantic Reference Theory, though it is a metalogical construct. Formally, I use this syntax to express a grammatical convention:
+
+x == y := x = y
+
+That statement expresses that I use double equals to mean the thing that single equals means in first order logic. Note that == expresses a propositional form of equality and := a definitional sense of equality. And regular equals = is unused, which leaves it free to be included, for instance, in a semantic theory of arithmetic
+---
+
+# The Grammar of Semantic Reference Theory
+
+Semantic Reference Theory does have a formal representation in first-order logic, and I appeal to that in foundational contexts
+
+The central object of study is the tertiary Relation that represents Relationship itself. It is expressed simply as:
+
+R(x,y,t)
+
+This expresses the proposition that x is related to y with a relationship of type t.
+
+The variables x, y and t represent the domain of the theory. The reference is the object of relationship in the semantics of the theory, but the domain itself is composed of referents. Referents are the object of references. Therefore x, y and t are variables that represent referents. The variable x is the canonical variable for a subjective referent, y is the canonical variable for an objective referent, and t is the canonical variable for a referent that represents the reference type
+
+# Representing Relationships
+
+R(x,y,t) expresses the idea that x and y have a subject-object relationship of type t. Because x and y are objects of reference, their relationship is specified as a t-type reference. I introduce grammatical conventions that makes it clear that the subject of the theory is about expressing relationships through reference. These are the simplest expressions. There is a whimsical element to its symbology and its commitment to arrows:
+
+x =t> y :=. R(x,y,t) is true
+x !=t> y := R(x,y,t) is not true
+x <t= y := R(y,x,t) is true
+x <t=! y :=. R(y,x,t) is not true
+x <t=t> y :=. R(x,y,t) and R(y,x,t) are both true
+x <t=t> y :=. R(x,y,t) and R(y,x,t) are both true
+x <t!=!t> y :=. R(x,y,t) and R(y,x,t) are both false
+x.t^ := R(x,x,t) is true
+x.!t^ := R(x,x,t) is not true
+---
+
+# Specific Referents
+
+Specific referents exist to define the concrete objects of the theory:
+
+The canonical referent is the most basic referent, and perhaps the only on that has to exist. It has the special property that all other referents have to be related to it in a certain way. It uses a symbol to evoke the notion of symbol itself:
+
+o : the canonical referent
+
+The next referent is a bit controversial. I’m not sure I entirely believe in its existence. But insofar as semantic reference theory seeks to objectify the domain itself, we probably should have a canonical object to represent the absence of reference or relationship. I invent the word “irreferent” so that we can refer to this as the irreferential referent. I chose this symbol by using the ! from not and the two symbols from the arrow syntax that evoke a sense of direction:
+
+<!> : the irreferential referent
+
+The third referent is of great importance. If the first is an object that symbolizes the existence of objectivity by embodying a prototypical object, and second is an object that symbolizes the absence of subject, the third is an object that symbolizes relatedness itself. The idea that one can objectify a reference as a unit of relationship implies that all relationships share a commonality. They all express the ways that semantic structures reference each other. When one endeavors to describe relationship, one admits that all examples of relationships are types of relationship. Therefore, let the most general type of reference artfully make use of the symbol for relationship itself:
+
+R : the relational referent
+---
+
+# Revisiting Reference Representation
+
+The purpose of the relational referent can be expressed quite simply:
+
+x =t> y =|> x =R> y
+
+That is to say that if x references y in a t-type relationship, it also references y in an R-type relationship. R is the master relationship type. Therefore, if we can make our point by assuming only that a reference for any type, one can drop the t from the reference syntax:
+
+x => y :=. R(x,y,R) is true
+x !=> y := R(x,y,R) is not true
+x <= y := R(y,x,R) is true
+x <=! y :=. R(y,x,R) is not true
+x <=> y :=. R(x,y,R) and R(y,x,R) are both true
+x <=> y :=. R(x,y,R) and R(y,x,R) are both true
+x <!=!> y :=. R(x,y,R) and R(y,x,R) are both false
+x.^ := R(x,x,R) is true
+x.!^ := R(x,x,R) is not true
+---
+
+# Chaining Syntax
+
+A series of references can be expressed as a chain:
+
+x => y & y => z & z => a & a => b & b => c
+
+can be written as:
+
+x => y => z => a => b => c
+---
+
+# Indirect Reference
+
+Reference can be generalized by incorporating the notion of indirect reference, which is when one referent is subject to another through a reference chain. We can refer to the unification of direct and indirect reference using single arrow syntax
+
+x => y =|> x -> y
+
+x => y => z =|> x -> z
+
+x => y => z => a =|> x -> a
+
+When x -> y, we can say that "x refers to y"
+---
+
+# Canonical Values
+
+Semantic Reference Theory is meant to be down-to-earth in sense that it describes relationships between objects that have a sense of reality to them. Therefore, relationships are required to have canonical values:
+
+The canonical object of x:
+(x)
+t(x)
+
+The canonical subject of y:
+[y]
+t[y]
+
+This syntax is meant to evoke the notion of function call and array access. Note that one version has an implied type and the other includes the type. The canonical values relate to their corresponding referents in the obvious way:
+
+R(x,y,t) =|>
+E(x).E[y]: R(x,(x),t) & R([y],y,t)
+
+This is meant to express that if x references y, there is a special value called the canonical object of x that can be used as a proxy for y. Similarly, the canonical subject of y can be used as a proxy for x. This is incredibly helpful when specifying catalogues because it allows you to avoid making up constants.
+
+One can express that o has a unique object by adding an axiom of the form:
+
+o => (o) & o != (o)
+
+Similarly, on can express that o has a unique subject by adding an axiom of the form:
+
+[o] => o & [o] != o
+\—-
+
+# Catalogues
+
+A catalogue is a way of organizing references into subjects. A relationship type naturally provides organization. The notion of canonicals can be extended to relationships of type t.
+
+I use the syntax of dereference from computer programming to express the relationship between a referent and the referent that identifies its subject. This supports the idea that a catalogue contains references for different subjects.
+
+## The Subjects of a Catalogue
+
+The subjective canonical x in the catalogue of t is a referent that refers to every referent that x refers to under t:
+
+x -t> y : implies: *x[t] -> y
+
+Or in general form:
+
+x -> y : implies: *x -> y
+
+Subjects partition referents in the catalogue through their canonicals. The canonical provides the identity of the catalogue through two axioms:
+
+z -t> x & z -t> y =|> *x[t] == *y[t]
+
+Or in general form:
+
+z -> x & z -> y =|> *x == *y
+
+It is not obvious that such a value can be uniquely specified, and in many cases it can’t. Imagine referents x, y and referents a, b denote members of different nuclear families, and the default relationship expresses that the referents share nuclear families. Then:
+
+x <=> y & a <=> b
+
+But:
+
+x <!=!> a & x <!=!> b & y <!=!> a & y <!=!> b
+
+There are two unique groups. But which referent in each group should be the canonical? When it is not clear, such things must be expressed with an axiom such as this:
+
+*x[t] == x *a[t] == a
+
+It follows that *y[t] == x and *b[t] == a
+
+In this sense, *x is at the top of a hierarchy where all the arrows point downward. Ambiguities must be resolved through axioms. A topic of interest in Semantic Reference Theory is what relationships have unique canonicals, and what relationships makes it easier to specify the canonicals of an associated relationship
+
+## The Objects of a Catalogue
+
+Referents have the inverse relationship to their objective canonicals:
+
+x -> z & y -> z =|>
+x* == y*
+
+These too might not be uniquely specified. In the example of nuclear families, each member of a nuclear family is as much a candidate of being the objective canonical as another. And there’s no reason a referent cannot be both.
+
+In fact, it is interesting to ask what catalogues can even support this property:
+
+*x == x*
+
+## Catalogue Membership
+
+Not all referents are catalogued by a relationship of type t. If x has no subjects or objects under t, it has no catalogue canonical.
+
+First we need to express catalogue membership. Consider these definitions:
+
+x>t : Ey: x =t> y
+
+x<t : Ey: y =t> x
+
+x<>t : x>t | x<t
+
+x<!>t : !x<>t
+
+The first expresses that x is an object of t. The second expresses that x is a subject of t. The third expresses that x is catalogued by t. And the fourth expresses that it is not. You'll notice that the irreferential referent gets used as an operator in the context of expressing that x is not catalogued by the relationship of type t.
+
+When x is *not* catalogued by t, neither *x nor x* are defined. This is inconvenient, as it has the property of dividing by zero. There is no way to paper it over. There is no way around it. x simply has noting to do with relationships of type t. Like love and tires.
+
+But this is by design. We want catalogues to be independent of each other in a semantic sense. The irreferential referent is supposed to represent a lack of reference, and that concept doesn't quite fit here to express the notion of semantic independence.
+
+But there is an important consequence. It means every time one evokes the *x or x* deference syntax, one must already have proven that x<>t. The next section will introduce the concept of semantic reference frames. This lack of definition will force us to think relativistically when it comes to catalogues. Semantic Reference Frames are the very heart of
+
+# Semantic Reference Frames
+
+It took me a long time, but it's finally time to talk about what a semantic reference frame means. Historically, I invented the test of this theory to give meaning to the notional of a semantic reference frame. Here's what they do. It's relatively simple
+
+Suppose you wanted to explore the essence of a relationship. You might only want to think in terms of canonicals. Saying *t[x] and t[x]* is very clunky. So in semantic reference frames, referents are transformed into canonical referents, the refers to arrow is transformed into the references arrow.
+
+Ax[t].Ey[t].Ez[t]: x => y => z
+
+means
+
+Ax.Ey: *x != *y & *y != *z & *x != *z & *x[t] -t> *y[t] -t> *z[t]
+
+Semantic reference frames allow you to treat individual variables as unique canonicals, and then allow you to express direct reference at a new scale
+
+Now of course, if
+
+x => y => z
+
+Then x, y and z are not valid canonicals. The values of semantic reference frames is that you can explore relationships between different relationships as expressed only in the behavior of the canonicals.

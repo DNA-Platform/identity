@@ -1,0 +1,192 @@
+Okay I wrote something about importing the math parts. You write this:
+
+Existing Vector Math Libraries
+For JavaScript/TypeScript:
+1. gl-matrix - Highly optimized, widely used for WebGL
+   * Pros: Battle-tested, very fast, handles 2D/3D vectors, matrices
+   * Cons: Functional API (not OOP), verbose for simple operations
+1. vecmath - Simple 2D/3D vector math
+   * Pros: Clean API, lightweight
+   * Cons: Not as optimized as gl-matrix
+1. mathjs - Comprehensive math library
+   * Pros: Everything including complex numbers
+   * Cons: Large, might be overkill
+For WebAssembly:
+* Most WASM math libraries are internal to larger projects (game engines, etc.)
+* Not many standalone WASM vector libraries available
+* Best approach: Write our own optimized for our use case
+What to Port to WASM
+Looking at your code, the essential pieces for WASM would be:
+1. Core Vector Operations (math.ts)
+* Basic operations: add, subtract, multiply, divide
+* Transformations: scale, rotate, normalize
+* Complex number operations (since you have pattern generation)
+* The specialized methods like cumsum(), diff(), etc.
+2. Simple Utilities
+* roundPrecisely()
+* Range evaluations
+* Basic array operations that are performance-critical
+Skip for Now:
+* The Region class (keep in TypeScript initially)
+* String operations (keep in TypeScript)
+* Most of the utility functions
+* The reflection/decoration system
+Suggested Approach
+Instead of porting everything, we could:
+1. Create a slim WASM module with just the hot-path vector operations
+2. Keep your Vector class API in TypeScript as a wrapper
+3. Call into WASM for heavy computations like:
+typescript
+
+// TypeScript wrapper
+class Vector {
+  plus(other: Vector): Vector {
+    // Call WASM for the actual computation
+    const result = wasmVectorAdd(this.data, other.data);
+    return new Vector(result);
+  }
+}
+This gives us:
+* Your nice API
+* WASM performance where it matters
+* Ability to use existing JS libraries where convenient
+Starting Point for WASM
+Here's what a minimal AssemblyScript vector module might focus on:
+
+assembly/
+  vectors.ts     - Core vector math (add, multiply, normalize, etc.)
+  complex.ts     - Complex number operations
+  transforms.ts  - Rotation, scaling matrices
+  patterns.ts    - Pattern-specific math (fibonacci, primes, etc.)
+The beauty is that AssemblyScript is TypeScript-like, so porting your vector operations would be straightforward. We'd focus on the pure mathematical functions that:
+* Are called frequently
+* Do heavy computation
+* Don't need DOM/browser APIs
+Would you like to start by porting just the core Vector operations to AssemblyScript, keeping everything else in TypeScript for now?
+
+I like the idea of choosing a math framework for web assembly. It's cool to have a great math library. Perhaps my vector can be a wrapper if we like it. How much does mathjs give you? I like the idea that gl-matrix is optimized. Can we have both? Are these libraries that big? Do they get compiled in pieces in this framework?
+
+Great questions! Let me break down what these libraries offer and how they'd work in your build system:
+
+MathJS - The Kitchen Sink
+MathJS is huge - about 700KB minified, 170KB gzipped. It includes:
+
+Complex numbers (which you need!)
+Matrices (all operations)
+Statistics
+Probability
+Expression parsing (math.evaluate('2 + 3 * 4'))
+Units (math.evaluate('5 inch to cm'))
+BigNumbers for arbitrary precision
+And much more...
+The good news: It's modular! You can import just what you need:
+
+typescript
+// Instead of importing everything
+import * as math from 'mathjs'
+
+// Import only what you need
+import { complex, add, multiply, sqrt } from 'mathjs'
+GL-Matrix - The Speed Demon
+GL-Matrix is tiny - about 55KB minified, 15KB gzipped. It gives you:
+
+2D vectors (vec2)
+3D vectors (vec3)
+4D vectors (vec4)
+2x2, 3x3, 4x4 matrices
+Quaternions
+Dual quaternions
+It's specifically optimized for graphics operations and uses typed arrays for speed.
+
+Can We Have Both?
+Absolutely! And with Vite's tree-shaking, you only bundle what you actually use. Here's a hybrid approach:
+
+typescript
+// Use gl-matrix for basic vector operations (FAST)
+import { vec2 } from 'gl-matrix'
+
+// Use mathjs for complex numbers and special functions
+import { complex, add as complexAdd } from 'mathjs'
+
+// Your Vector class wraps both!
+class Vector {
+  private glVec?: Float32Array  // For real vectors
+  private complexData?: any      // For complex vectors
+  
+  // Use gl-matrix for simple operations
+  plus(other: Vector): Vector {
+    if (!this.isComplex()) {
+      const result = vec2.create()
+      vec2.add(result, this.glVec, other.glVec)
+      return new Vector(result)
+    } else {
+      // Use mathjs for complex operations
+      return this.complexAdd(other)
+    }
+  }
+}
+How Vite Handles This
+Vite + tree-shaking means:
+
+Development: Libraries stay separate, fast HMR
+Production Build:
+Only used functions are included
+Dead code eliminated
+Everything in one HTML file (your single-file plugin)
+For example:
+
+typescript
+// Only these specific functions end up in your bundle
+import { vec2 } from 'gl-matrix'         // ~2KB
+import { complex, sqrt } from 'mathjs'   // ~15KB of mathjs, not 700KB!
+WebAssembly Integration Strategy
+Here's the clever part - you could use:
+
+GL-Matrix for the TypeScript layer (already fast)
+MathJS for complex numbers and special math
+WASM for your custom pattern generation algorithms
+typescript
+// Hybrid approach
+class Vector {
+  // Use gl-matrix for basic ops (already optimized)
+  private data: Float32Array
+  
+  // Delegate to WASM for pattern-specific operations
+  async generateFractal(iterations: number) {
+    return wasmModule.fractalPattern(this.data, iterations)
+  }
+  
+  // Use mathjs for complex number operations
+  toComplex() {
+    return complex(this.data[0], this.data[1])
+  }
+}
+Recommended Architecture
+TypeScript Layer:
+├── gl-matrix (for fast basic vector/matrix math)
+├── mathjs (import only complex numbers + special functions)
+└── Your Vector wrapper class (nice API)
+
+WebAssembly Layer:
+├── Pattern generation algorithms
+├── Heavy iterative calculations  
+├── Custom geometric operations
+└── Anything that runs in tight loops
+Size Comparison for Your Use Case
+If you selectively import:
+
+GL-Matrix (vec2 + mat2d): ~5KB gzipped
+MathJS (complex + basic ops): ~20KB gzipped
+Your WASM module: ~10-30KB depending on what you include
+Total math overhead: ~35-55KB gzipped
+That's very reasonable for the power you get! The single HTML file will still be quite small.
+
+The Best Part
+You can start with the TypeScript libraries and progressively move hot paths to WASM:
+
+Build with gl-matrix + selective mathjs imports
+Profile and identify bottlenecks
+Port only those specific operations to WASM
+Keep the nice Vector API throughout
+This way you get immediate productivity with proven libraries, then optimize where it actually matters.
+

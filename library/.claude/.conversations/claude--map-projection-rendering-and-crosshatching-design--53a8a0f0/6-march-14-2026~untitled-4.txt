@@ -1,0 +1,202 @@
+{
+  "city": {
+    "id": "boston",
+    "label": "Boston",
+    "cityName": "BOSTON",
+    "subtitle": "UNITED STATES",
+    "quote": "The walking city"
+  },
+  "geography": {
+    "center": [
+      -71.0596,
+      42.3585
+    ],
+    "radiusKm": 5
+  },
+  "datasets": [
+    {
+      "source": "overpass",
+      "layer": "road",
+      "highwayTags": [
+        "motorway",
+        "trunk",
+        "primary",
+        "secondary",
+        "tertiary",
+        "residential"
+      ]
+    },
+    {
+      "source": "tigerweb",
+      "layer": "rail",
+      "service": "tigerWMS_PhysicalFeatures",
+      "layerId": 7,
+      "where": "MTFCC IN ('R1011','R1051','R1052')",
+      "fields": [
+        "OID",
+        "BASENAME",
+        "NAME",
+        "MTFCC"
+      ]
+    },
+    {
+      "source": "tigerweb",
+      "layer": "water",
+      "service": "Hydro",
+      "layerId": 0,
+      "fields": [
+        "OID",
+        "BASENAME",
+        "NAME",
+        "MTFCC"
+      ]
+    },
+    {
+      "source": "usgs-contours",
+      "layer": "contour",
+      "contourType": "index"
+    }
+  ],
+  "view": {
+    "ink": "#1E1006",
+    "markStyles": {
+      "spine": {
+        "width": 1.6,
+        "opacity": 0.9
+      },
+      "pen": {
+        "width": 1.6,
+        "opacity": 1
+      },
+      "arterial": {
+        "width": 1,
+        "opacity": 0.6
+      },
+      "pencil": {
+        "width": 0.4,
+        "opacity": 0.25
+      },
+      "ghost": {
+        "width": 0.3,
+        "opacity": 0.18
+      },
+      "water": {
+        "width": 1.2,
+        "opacity": 0.25
+      },
+      "rail": {
+        "width": 0.8,
+        "opacity": 0.35,
+        "dashArray": "4 3",
+        "lineCap": "butt"
+      },
+      "contour": {
+        "width": 0.2,
+        "opacity": 0.08
+      }
+    },
+    "classifyRules": [
+      {
+        "match": {
+          "name": {
+            "contains": "storrow"
+          }
+        },
+        "tier": "spine",
+        "_comment": "Storrow Drive — traces the Charles River void edge"
+      },
+      {
+        "match": {
+          "highway": {
+            "oneOf": [
+              "motorway",
+              "motorway_link",
+              "trunk",
+              "trunk_link"
+            ]
+          }
+        },
+        "tier": "pen",
+        "_comment": "Interstates, expressways"
+      },
+      {
+        "match": {
+          "name": {
+            "contains": "commonwealth"
+          }
+        },
+        "tier": "arterial",
+        "_comment": "Commonwealth Avenue — Back Bay's main SW/NE spine"
+      },
+      {
+        "match": {
+          "highway": {
+            "oneOf": [
+              "primary",
+              "primary_link"
+            ]
+          }
+        },
+        "tier": "arterial"
+      },
+      {
+        "match": {
+          "highway": {
+            "oneOf": [
+              "secondary",
+              "secondary_link",
+              "tertiary",
+              "tertiary_link"
+            ]
+          }
+        },
+        "tier": "pencil"
+      },
+      {
+        "match": {
+          "layer": "water"
+        },
+        "tier": "water"
+      },
+      {
+        "match": {
+          "layer": "rail"
+        },
+        "tier": "rail"
+      },
+      {
+        "match": {
+          "layer": "contour"
+        },
+        "tier": "contour"
+      },
+      {
+        "match": {
+          "highway": {
+            "oneOf": [
+              "residential"
+            ]
+          }
+        },
+        "tier": "ghost",
+        "_comment": "Residential — the fine grain of Beacon Hill's medieval pattern"
+      },
+      {
+        "default": true,
+        "tier": "ghost"
+      }
+    ],
+    "defaultTier": "ghost",
+    "excludeRules": [
+      {
+        "latAbove": 42.4,
+        "_comment": "Exclude Somerville/Cambridge north of the Charles — cross-river context pollution"
+      }
+    ],
+    "title": {
+      "cityNameFill": "#1E1006",
+      "subtitleFill": "#5C3A10",
+      "quoteFill": "#7A5530"
+    }
+  }
+}

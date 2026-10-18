@@ -1,0 +1,227 @@
+// NaturalEarthDatasets.ts
+// A straightforward utility for accessing Natural Earth Data URLs
+
+export type NaturalEarthDataset = 
+    // https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json
+    // Medium-resolution country boundaries
+    "COUNTRIES_50M" | 
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_populated_places.geojson
+    // Medium-resolution populated places
+    "POPULATED_PLACES_50M" | 
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_urban_areas.geojson
+    // Medium-resolution urban areas
+    "URBAN_AREAS_50M" |
+    
+    // https://cdn.jsdelivr.net/npm/world-atlas@2/states-50m.json
+    // Medium-resolution states/provinces
+    "ADMIN1_STATES_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_roads.geojson
+    // Medium-resolution roads
+    "ROADS_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_railroads.geojson
+    // Medium-resolution railroads
+    "RAILROADS_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_airports.geojson
+    // Medium-resolution airports
+    "AIRPORTS_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_ports.geojson
+    // Medium-resolution ports
+    "PORTS_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_boundary_lines_land.geojson
+    // Medium-resolution country boundary lines on land
+    "BOUNDARY_LINES_LAND_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_boundary_lines_maritime.geojson
+    // Medium-resolution maritime boundaries
+    "BOUNDARY_LINES_MARITIME_50M" |
+    
+    // https://cdn.jsdelivr.net/npm/world-atlas@2/countries-10m.json
+    // High-resolution country boundaries
+    "COUNTRIES_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_populated_places.geojson
+    // High-resolution populated places
+    "POPULATED_PLACES_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_urban_areas.geojson
+    // High-resolution urban areas
+    "URBAN_AREAS_10M" |
+    
+    // https://cdn.jsdelivr.net/npm/world-atlas@2/states-10m.json
+    // High-resolution states/provinces
+    "ADMIN1_STATES_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_minor_islands.geojson
+    // High-resolution minor islands
+    "MINOR_ISLANDS_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_parks_and_protected_lands.geojson
+    // High-resolution parks and protected lands
+    "PARKS_PROTECTED_LANDS_10M" |
+    
+    // https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json
+    // Low-resolution country boundaries
+    "COUNTRIES_110M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_populated_places.geojson
+    // Low-resolution populated places
+    "POPULATED_PLACES_110M" |
+    
+    // https://cdn.jsdelivr.net/npm/world-atlas@2/states-110m.json
+    // Low-resolution states/provinces
+    "ADMIN1_STATES_110M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_coastline.geojson
+    // Medium-resolution coastlines
+    "COASTLINE_50M" |
+    
+    // https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json
+    // Medium-resolution land areas
+    "LAND_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_ocean.geojson
+    // Medium-resolution oceans
+    "OCEAN_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_rivers_lake_centerlines.geojson
+    // Medium-resolution rivers and lake centerlines
+    "RIVERS_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_lakes.geojson
+    // Medium-resolution lakes
+    "LAKES_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_glaciated_areas.geojson
+    // Medium-resolution glaciated areas
+    "GLACIERS_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_geographic_lines.geojson
+    // Medium-resolution geographic lines (e.g., Arctic Circle, Equator)
+    "GEOGRAPHIC_LINES_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_graticules_10.geojson
+    // Medium-resolution graticules (10-degree grid)
+    "GRATICULES_50M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_coastline.geojson
+    // High-resolution coastlines
+    "COASTLINE_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_rivers_lake_centerlines.geojson
+    // High-resolution rivers and lake centerlines
+    "RIVERS_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_lakes.geojson
+    // High-resolution lakes
+    "LAKES_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_reefs.geojson
+    // High-resolution reefs
+    "REEFS_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_playas.geojson
+    // High-resolution playas (dry lakes)
+    "PLAYAS_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_coastline.geojson
+    // Low-resolution coastlines
+    "COASTLINE_110M" |
+    
+    // https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json
+    // Low-resolution land areas
+    "LAND_110M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_ocean.geojson
+    // Low-resolution oceans
+    "OCEAN_110M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_lakes.geojson
+    // Low-resolution lakes
+    "LAKES_110M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_rivers_lake_centerlines.geojson
+    // Low-resolution rivers and lake centerlines
+    "RIVERS_110M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_geographic_lines.geojson
+    // Low-resolution geographic lines (e.g., Arctic Circle, Equator)
+    "GEOGRAPHIC_LINES_110M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_admin_0_sovereignty.geojson
+    // High-resolution country sovereignty
+    "SOVEREIGNTY_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_admin_0_disputed_areas.geojson
+    // High-resolution disputed areas
+    "DISPUTED_AREAS_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_time_zones.geojson
+    // High-resolution time zones
+    "TIME_ZONES_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_antarctic_ice_shelves.geojson
+    // High-resolution Antarctic ice shelves
+    "ANTARCTIC_ICE_SHELVES_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_land.geojson
+    // High-resolution land
+    "LAND_10M" |
+    
+    // https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_ocean.geojson
+    // High-resolution ocean
+    "OCEAN_10M";
+
+// Map of dataset types to their URLs
+export const naturalEarthDatasetUrls = new Map<NaturalEarthDataset, string>([
+    ["COUNTRIES_50M", 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json'],
+    ["POPULATED_PLACES_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_populated_places.geojson'],
+    ["URBAN_AREAS_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_urban_areas.geojson'],
+    ["ADMIN1_STATES_50M", 'https://cdn.jsdelivr.net/npm/world-atlas@2/states-50m.json'],
+    ["ROADS_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_roads.geojson'],
+    ["RAILROADS_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_railroads.geojson'],
+    ["AIRPORTS_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_airports.geojson'],
+    ["PORTS_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_ports.geojson'],
+    ["BOUNDARY_LINES_LAND_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_boundary_lines_land.geojson'],
+    ["BOUNDARY_LINES_MARITIME_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_boundary_lines_maritime.geojson'],
+    ["COUNTRIES_10M", 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-10m.json'],
+    ["POPULATED_PLACES_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_populated_places.geojson'],
+    ["URBAN_AREAS_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_urban_areas.geojson'],
+    ["ADMIN1_STATES_10M", 'https://cdn.jsdelivr.net/npm/world-atlas@2/states-10m.json'],
+    ["MINOR_ISLANDS_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_minor_islands.geojson'],
+    ["PARKS_PROTECTED_LANDS_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_parks_and_protected_lands.geojson'],
+    ["COUNTRIES_110M", 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'],
+    ["POPULATED_PLACES_110M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_populated_places.geojson'],
+    ["ADMIN1_STATES_110M", 'https://cdn.jsdelivr.net/npm/world-atlas@2/states-110m.json'],
+    ["COASTLINE_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_coastline.geojson'],
+    ["LAND_50M", 'https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json'],
+    ["OCEAN_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_ocean.geojson'],
+    ["RIVERS_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_rivers_lake_centerlines.geojson'],
+    ["LAKES_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_lakes.geojson'],
+    ["GLACIERS_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_glaciated_areas.geojson'],
+    ["GEOGRAPHIC_LINES_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_geographic_lines.geojson'],
+    ["GRATICULES_50M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_graticules_10.geojson'],
+    ["COASTLINE_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_coastline.geojson'],
+    ["RIVERS_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_rivers_lake_centerlines.geojson'],
+    ["LAKES_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_lakes.geojson'],
+    ["REEFS_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_reefs.geojson'],
+    ["PLAYAS_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_playas.geojson'],
+    ["COASTLINE_110M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_coastline.geojson'],
+    ["LAND_110M", 'https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json'],
+    ["OCEAN_110M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_ocean.geojson'],
+    ["LAKES_110M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_lakes.geojson'],
+    ["RIVERS_110M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_rivers_lake_centerlines.geojson'],
+    ["GEOGRAPHIC_LINES_110M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_110m_geographic_lines.geojson'],
+    ["SOVEREIGNTY_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_admin_0_sovereignty.geojson'],
+    ["DISPUTED_AREAS_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_admin_0_disputed_areas.geojson'],
+    ["TIME_ZONES_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_time_zones.geojson'],
+    ["ANTARCTIC_ICE_SHELVES_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_antarctic_ice_shelves.geojson'],
+    ["LAND_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_land.geojson'],
+    ["OCEAN_10M", 'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_ocean.geojson']
+]);

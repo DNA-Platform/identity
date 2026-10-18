@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Monad unstaking failing in Atomic Wallet ]]( claude--Monad unstaking failing in Atomic Wallet--eef8f474 )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Investing ]]</Project>
+        <Project>***[[ Investing ]]( claude--Investing )</Project>
         <Account>$[[ DNA ]]( Dougs Claude / DNA )</Account>
         <Origin>eef8f474-1487-4b97-9139-c5a160b1d988</Origin>
         <Paragraph>

@@ -1,0 +1,75 @@
+Here's the wiki structure before we start researching:
+
+  docs/metadata/
+    INDEX.md                    ← Wiki home page, global nav, platform comparison table
+    general/                    ← Platform-agnostic (every platform article links back here)
+      KEYWORDS.md               ← Keyword science
+      TITLES.md                 ← Title optimization
+      BANNED-TERMS.md           ← Trademarks & rejection triggers
+      VECTOR-NICHES.md          ← Market research by art type
+      COMPETITIVE-ANALYSIS.md   ← Reusable methodology
+    adobe-stock/                ← Adobe-specific (densely cross-refs general/)
+      SPEC.md → KEYWORDS.md → SEARCH-STRATEGY.md → FORUM-INSIGHTS.md → REJECTION-PATTERNS.md
+    istock/                     ← iStock-specific (densely cross-refs general/)
+      SPEC.md → KEYWORDS.md → SEARCH-STRATEGY.md → FORUM-INSIGHTS.md → REJECTION-PATTERNS.md
+
+  Cross-linking convention: Every article opens with a > Related: block. Inline links use heading anchors
+  (KEYWORDS.md#positional-weighting). Platform articles always open with > Builds on: general/KEYWORDS.md. The INDEX.md comparison table    
+  links to every article's specific section.
+
+  Now starting Track 1 — the four general fundamentals articles. These are all P0 and independent, so I'm launching them in parallel.       
+
+  ━━━ Stock Compliance — STORY-1101: Universal Keyword Science ━━━
+  ━━━ Stock Compliance — STORY-1102: Title Optimization Guide ━━━
+  ━━━ Marketing Director — STORY-1103: Banned Terms & Trademark Rules ━━━
+  ━━━ Marketing Director — STORY-1104: Vector Niche Market Research ━━━
+
+● Update(docs\phases\phase-11-metadata-research\STATUS.md)
+  ⎿  Added 4 lines, removed 4 lines
+       6
+       7  | ID | Title | Priority | Assigned | Status |
+       8  |----|-------|----------|----------|--------|
+       9 -| 1101 | Universal Keyword Science | P0 | stock-compliance | ready |                                                              
+      10 -| 1102 | Title Optimization Guide | P0 | stock-compliance | ready |                                                               
+      11 -| 1103 | Banned Terms & Trademark Rules | P0 | marketing-director | ready |                                                       
+      12 -| 1104 | Vector Niche Market Research | P1 | marketing-director | ready |                                                         
+       9 +| 1101 | Universal Keyword Science | P0 | stock-compliance | in-progress |                                                        
+      10 +| 1102 | Title Optimization Guide | P0 | stock-compliance | in-progress |                                                         
+      11 +| 1103 | Banned Terms & Trademark Rules | P0 | marketing-director | in-progress |                                                 
+      12 +| 1104 | Vector Niche Market Research | P1 | marketing-director | in-progress |                                                   
+      13  | 1105 | Adobe Stock Metadata Spec | P0 | stock-compliance | ready |
+      14  | 1106 | Adobe Stock Keyword Strategy | P1 | stock-compliance | ready |
+      15  | 1107 | Adobe Stock Forum Insights | P1 | backend-lead | ready |
+
+● 2 stock-compliance agents launched (ctrl+o to expand)
+   ├─ Research keyword science
+   │  ⎿  Running in the background
+   └─ Research title optimization
+      ⎿  Running in the background
+
+● All four Track 1 research agents are running in parallel:
+
+  ┌───────┬────────────────────┬──────────────────────────────┬────────────────┐
+  │ Story │       Agent        │            Topic             │     Status     │
+  ├───────┼────────────────────┼──────────────────────────────┼────────────────┤
+  │ 1101  │ Stock Compliance   │ Universal Keyword Science    │ researching... │
+  ├───────┼────────────────────┼──────────────────────────────┼────────────────┤
+  │ 1102  │ Stock Compliance   │ Title Optimization           │ researching... │
+  ├───────┼────────────────────┼──────────────────────────────┼────────────────┤
+  │ 1103  │ Marketing Director │ Banned Terms & Trademarks    │ researching... │
+  ├───────┼────────────────────┼──────────────────────────────┼────────────────┤
+  │ 1104  │ Marketing Director │ Vector Niche Market Research │ researching... │
+  └───────┴────────────────────┴──────────────────────────────┴────────────────┘
+
+  Each agent is doing web searches against live sources (Adobe help docs, Getty contributor FAQ, contributor forums, market data) and       
+  writing comprehensive articles to docs/metadata/general/. Once all four complete, I'll launch Tracks 2 and 3 (Adobe Stock + iStock deep   
+  dives) in parallel — those articles will densely cross-reference the general ones.
+
+  I'll report back as results come in.
+
+✻ Churned for 1m 59s · 4 background tasks still running (↓ to manage)
+
+❯ /btw stil using all caps name. Please change to lowercase!                                                                                                                                  
+  /btw stil using all caps name. Please change to lowercase!                                                                                
+                                                                                                                                            
+    You're right — the article filenames are all caps (KEYWORDS.md, TITLES.md, etc.). Unfortunately I can't make changes right now since the     research agents are actively writing to those files. Once they complete, I'll rename everything to lowercase (keywords.md, titles.md,      banned-terms.md, etc.) and update all cross-references in INDEX.md and between articles to match.                                                                                                                                                                                       Good catch — lowercase is cleaner for a wiki-style knowledge base.   

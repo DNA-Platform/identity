@@ -1,0 +1,136 @@
+import { $Rep, Type, Typeof, Constructor } from "./types";
+import { $lib } from './catalogue';
+
+type $Library = typeof $lib;
+
+type $ObjectiveRole = 'object' | 'function' | 'primitive' | 'array' | 'parameter' | 'instance' | 'prototype' | 'type' | 'constructor' | 'class' | 'generic' | 'member' | 'field' | 'property' | 'method' | 'getter' | 'setter' | 'JavaScript';
+
+function $role(role: $ObjectiveRole, of: $ObjectiveRep): string {
+    return `${role}(${of.ref})`;
+}
+
+class $ObjectiveRep {
+    #lib?: $Library;
+    #roles = new Map<string, $ObjectiveRep>
+    #role: $ObjectiveRole;
+    #of?: $ObjectiveRep
+    #literal: any;
+    #typeof: Typeof;
+    #prototype?: $ObjectiveRep;
+    #members?: $ObjectiveRep[];
+    #membersOwn?: $ObjectiveRep[];
+    #membersMap?: Map<string, $ObjectiveRep>;
+    #membersOwnMap?: Map<string, $ObjectiveRep>;
+
+    get literal() { return this.#literal; }
+    get $ref(): string { return (this.literal?.name ? this.#literal.name : this.#literal?.toString()) || 'undefined'; }
+    get $prototype(): $ObjectiveRep {
+        if (this.#prototype) return this.#prototype;
+        if (value === null) return new $ObjectiveRep('prototype', this)
+        
+        const t = typeof value;
+        
+        switch (t) {
+            case 'string': return String.prototype;
+            case 'number': return Number.prototype;
+            case 'boolean': return Boolean.prototype;
+            case 'symbol': return Symbol.prototype;
+            case 'bigint': return BigInt.prototype;
+            case 'object':
+            case 'function':
+                return Object.getPrototypeOf(value);
+            default:
+                return null;
+        }
+    }
+
+    constructor(role: $ObjectiveRole, of?: $ObjectiveRep, literal: any, lib?: $Library) {
+        this.#lib = lib;
+        this.#role = role;
+        this.#of = of;
+        this.#literal = literal;
+        this.#typeof = typeof this;
+        this.#roles.set(this.#roleof(role, of), this);
+        if (lib && role === 'type') {
+            let type = $lib.$find(this) as $ObjectiveRep;
+            if (type) return type.$as(this.#role, this.#of)
+        }
+    }
+
+    #is(type: Typeof): boolean { return typeof this.#typeof === type; }
+    $is(role: $ObjectiveRole, relationship: { of: $ObjectiveRole }) { 
+        return this.#roles.has(this.#roleof(role, relationship.of));
+    }
+
+    $as(role: $ObjectiveRole): $ObjectiveRep;
+    $as(role: $ObjectiveRole, of: $ObjectiveRole): $ObjectiveRep;
+    $as(role?: $ObjectiveRole, of?: $ObjectiveRole): $ObjectiveRep { 
+        role = role || this.#role;
+        of = of ? of : this.#of ? this.#of.#role : 'JavaScript';
+        const ref = this.#roleof(role, of);
+        if (this.#roles.has(ref))
+            return this.#roles.get(ref)!;
+        const $this = Object.create(this) as $ObjectiveRep;
+        $this.#role = role;
+        $this.#of = this.#of;
+        return $this;
+    }
+
+    #roleof(role: $ObjectiveRole, of?: $ObjectiveRole | $ObjectiveRep) {
+        if (of instanceof $ObjectiveRep) of = of.#role; 
+        of = of || 'JavaScript';
+        return `${role}(${of})`;
+    }
+
+    $members(own?: boolean): $ObjectiveRep[] {
+        if (own && this.#membersOwn) return this.#membersOwn;
+        if (!own && this.#members) return this.#members;
+
+        const literal
+        if (!this.#literal)
+
+    }
+    $fields(own?: boolean): $Field[];
+    $properties(own?: boolean): $Property[];
+    $methods(own?: boolean): $Method[];
+    $getField(name: string, own?: boolean): $Field | undefined;
+    $getProperty(name: string, own?: boolean): $Property | undefined;
+    $getMethod(name: string, own?: boolean): $Method | undefined;
+
+    protected enumerateMembers(own: boolean = true): $ObjectRep[] {
+        if (own && this.#membersOwm)
+        const descriptors = Object.getOwnPropertyDescriptors(this.literal);
+
+
+        const cacheKey = this.#kinds.has('type') && this.#lib
+            ? new $ObjectRep(`members:${this.ref}:${own}`, 'primitive')
+            : null;
+
+        if (cacheKey) {
+            const cached = this.#lib!.$find<$ObjectRep[]>(cacheKey);
+            if (cached !== undefined) return cached;
+        }
+
+        const result: $ObjectRep[] = [];
+        const seen = new Set<string>();
+        const descriptors = Object.getOwnPropertyDescriptors(target);
+
+        for (const [name, desc] of Object.entries(descriptors)) {
+            if (name === 'constructor' && this.#kinds.has('prototype')) continue;
+            seen.add(name);
+            result.push($ObjectRep.member(desc, name, this, this.#lib));
+        }
+
+        if (!own) {
+            const parent = getParent();
+            if (parent) {
+                for (const m of parent.$members(false)) {
+                    if (!seen.has(m.name)) result.push(m);
+                }
+            }
+        }
+
+        if (cacheKey) this.#lib!.$index(cacheKey, result, this.#lib!.$subject);
+        return result;
+    }
+}

@@ -1,0 +1,941 @@
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Book[34] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 35, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 36, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 37, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 38, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 39, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 40, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 41, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 42, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 43, Symbol($Chemical.formula): $Formula, …}
+ $Document[44] 
+ bonds ['$text']
+ $Document[44] $Title {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 45, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $Document[44] 
+ bonds (2) ['$title', '$page']
+ $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 46, Symbol($Chemical.formula): $Formula, …}
+ $Document[44] 
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 47, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 48, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$copyright']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Footer {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 49, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$text']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Title {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 50, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 51, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 52, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 53, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$copyright']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Footer {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 54, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$text']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Title {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 55, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 56, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 57, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 58, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$copyright']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Footer {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 59, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 61, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 62, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 63, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 64, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 65, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 66, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 67, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 68, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 69, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 70, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 71, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 72, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 78, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 79, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 80, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 81, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 82, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 83, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 84, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 85, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 86, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[87] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[87] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 88, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[87] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[87] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 89, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[87] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[87] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 90, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[87] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[87] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 91, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[87] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[87] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 92, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[87] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[87] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 93, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$text']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Title {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 95, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 96, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 97, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 98, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 99, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 100, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds ['$text']
+ $StrictContainer[94] $Title {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 101, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 102, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 103, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 104, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 105, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 106, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds ['$text']
+ $StrictContainer[94] $Title {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 107, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 108, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 109, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 110, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 111, Symbol($Chemical.formula): $Formula, …}
+ $StrictContainer[94] 
+ bonds (2) ['$title', '$page']
+ $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 112, Symbol($Chemical.formula): $Formula, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 114, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 115, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 116, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 117, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 118, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 119, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 120, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 121, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 122, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 123, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 124, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 125, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 126, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 127, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 128, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 129, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 130, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $NestedContainer[113] 
+ bonds ['$value']
+ $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 131, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 132, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 133, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 134, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 135, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 136, Symbol($Chemical.formula): $Formula, …}
+ $Book[34] 
+ bonds (2) ['$title', '$page']
+ $Book[34] $Chapter {Symbol($Chemical.parent): $Book, Symbol($Chemical.cid): 137, Symbol($Chemical.formula): $Formula, …}
+ $Document[44] 
+ bonds ['$text']
+ $Document[44] $Title {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 138, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $Document[44] 
+ bonds (2) ['$title', '$page']
+ $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 139, Symbol($Chemical.formula): $Formula, …}
+ $Document[44] 
+ bonds (2) ['$title', '$page']
+ $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 140, Symbol($Chemical.formula): $Formula, …}
+ $Document[44] 
+ bonds (2) ['$title', '$page']
+ $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 141, Symbol($Chemical.formula): $Formula, …}
+ $Document[44] 
+ bonds ['$copyright']
+ $Document[44] $Footer {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 142, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $Document[44] 
+ bonds ['$text']
+ $Document[44] $Title {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 143, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+ $Document[44] 
+ bonds (2) ['$title', '$page']
+ $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 144, Symbol($Chemical.formula): $Formula, …}
+ $Document[44] 
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 145, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Chapter {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 146, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Document[44] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$copyright']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Document[44] $Footer {Symbol($Chemical.parent): $Document, Symbol($Chemical.cid): 147, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 148, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 149, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 150, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 151, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 152, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 153, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 154, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $PolyBook[60] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $PolyBook[60] $Chapter {Symbol($Chemical.parent): $PolyBook, Symbol($Chemical.cid): 155, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 156, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 157, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 158, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 159, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 160, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $Article[77] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$name', 'items']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $Article[77] $Section {Symbol($Chemical.parent): $Article, Symbol($Chemical.cid): 161, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[87] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[87] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 162, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[87] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[87] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 163, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[87] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[87] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 164, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[87] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[87] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 165, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$text']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Title {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 166, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 167, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 168, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 169, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 170, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 171, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$text']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Title {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 172, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 173, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 174, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 175, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 176, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $StrictContainer[94] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$title', '$page']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $StrictContainer[94] $Chapter {Symbol($Chemical.parent): $StrictContainer, Symbol($Chemical.cid): 177, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 178, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 179, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 180, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 181, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 182, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 183, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 184, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 185, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 186, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 187, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 188, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $NestedContainer[113] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds ['$value']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $NestedContainer[113] $NestedChild {Symbol($Chemical.parent): $NestedContainer, Symbol($Chemical.cid): 189, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $MixedContainer[190] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$text', '$color']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $MixedContainer[190] $Label {Symbol($Chemical.parent): $MixedContainer, Symbol($Chemical.cid): 191, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $MixedContainer[190] SimpleCard
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds []
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $MixedContainer[190] $$Function {Symbol($Chemical.parent): $MixedContainer, Symbol($Chemical.cid): 193, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $MixedContainer[190] InfoCard
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds []
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $MixedContainer[190] $$Function {Symbol($Chemical.parent): $MixedContainer, Symbol($Chemical.cid): 195, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $MixedContainer[196] (props)=>{
+            const [cid, setChemicalId] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1);
+            const initialCid = -1;
+            let chemical;
+            let newChemical = fal…
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds (2) ['$text', '$color']
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $MixedContainer[196] $Label {Symbol($Chemical.parent): $MixedContainer, Symbol($Chemical.cid): 197, Symbol($Chemical.formula): $Formula, …}
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $MixedContainer[196] SimpleCard
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds []
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $MixedContainer[196] $$Function {Symbol($Chemical.parent): $MixedContainer, Symbol($Chemical.cid): 199, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}Symbol($Chemical.binder): $BondOrchestrator {_parameters: Array(0), _rendered: Map(0), _chemical: $$Function, _bondConstructor: undefined}Symbol($Chemical.children): undefinedSymbol($Chemical.cid): 199Symbol($Chemical.component): (props)=> {…}Symbol($Chemical.formula): $Formula {_initialized: true, _destroyed: false, _bonds: Map(0), _chemical: $$Function, _state: {…}}Symbol($Chemical.lastProps): {}Symbol($Chemical.parent): $MixedContainer {label: $Label, simpleCard: $$Function, Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 196, Symbol($Chemical.formula): $Formula, …}Symbol($Chemical.reactive): true$Component: (...)Component: (...)children: (...)key: (...)parent: (...)__$Function: (...)__isTemplate: (...)__name: "SimpleCard"__props: (...)__template: (...)[[Prototype]]: $$Function
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1077 $MixedContainer[196] InfoCard
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1087 bonds []
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1094 $MixedContainer[196] $$Function {Symbol($Chemical.parent): $MixedContainer, Symbol($Chemical.cid): 201, Symbol($Chemical.formula): $Formula, Symbol($Chemical.binder): $BondOrchestrator, Symbol($Chemical.reactive): true, …}Symbol($Chemical.binder): $BondOrchestrator {_parameters: Array(0), _rendered: Map(0), _chemical: $$Function, _bondConstructor: undefined}Symbol($Chemical.children): undefinedSymbol($Chemical.cid): 201Symbol($Chemical.component): (props)=> {…}Symbol($Chemical.formula): $Formula {_initialized: true, _destroyed: false, _bonds: Map(0), _chemical: $$Function, _state: {…}}Symbol($Chemical.lastProps): {}Symbol($Chemical.parent): $MixedContainer {label: $Label, simpleCard: $$Function, Symbol($Chemical.parent): undefined, Symbol($Chemical.cid): 196, Symbol($Chemical.formula): $Formula, …}Symbol($Chemical.reactive): true$Component: (...)Component: (...)children: (...)key: (...)parent: (...)__$Function: (...)__isTemplate: (...)__name: "SimpleCard"__props: (...)__template: (...)[[Prototype]]: $$Function
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1229 Uncaught Error: 
+$Chemistry Constructor Validation Failed: $MixedContainer
+
+Expected signature:
+  $MixedContainer(
+    $Label,
+    SimpleCard,
+    InfoCard
+  )
+
+Parameter 3: expected InfoCard, received SimpleCard>
+    at $ParamValidation.eval (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1229:15)
+    at $check (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1674:25)
+    at $MixedContainer (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\arg-tests.tsx:60:31)
+    at $BondOrchestrator.bond (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:991:40)
+    at $MixedContainer.__render (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:246:16)
+    at Component (C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:441:29)
+    at Object.react_stack_bottom_frame (react-dom-client.development.js:23584:20)
+    at renderWithHooks (react-dom-client.development.js:6793:22)
+    at updateFunctionComponent (react-dom-client.development.js:9247:19)
+    at beginWork (react-dom-client.development.js:10858:18)
+    at runWithFiberInDEV (react-dom-client.development.js:872:30)
+    at performUnitOfWork (react-dom-client.development.js:15727:22)
+    at workLoopSync (react-dom-client.development.js:15547:41)
+    at renderRootSync (react-dom-client.development.js:15527:11)
+    at performWorkOnRoot (react-dom-client.development.js:15034:44)
+    at performSyncWorkOnRoot (react-dom-client.development.js:16831:7)
+    at flushSyncWorkAcrossRoots_impl (react-dom-client.development.js:16677:21)
+    at processRootScheduleInMicrotask (react-dom-client.development.js:16715:9)
+    at eval (react-dom-client.development.js:16850:13)
+eval @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1229
+$check @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:1674
+$MixedContainer @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\arg-tests.tsx:60
+bond @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:991
+__render @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:246
+Component @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:441
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooks @ react-dom-client.development.js:6793
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:15034
+performSyncWorkOnRoot @ react-dom-client.development.js:16831
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16677
+processRootScheduleInMicrotask @ react-dom-client.development.js:16715
+eval @ react-dom-client.development.js:16850
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+ArgTests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\arg-tests.tsx:589
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:15034
+performSyncWorkOnRoot @ react-dom-client.development.js:16831
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16677
+processRootScheduleInMicrotask @ react-dom-client.development.js:16715
+eval @ react-dom-client.development.js:16850
+<ArgTests>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+Tests @ C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\app\tests\child-bonding\page.tsx:81
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopSync @ react-dom-client.development.js:15547
+renderRootSync @ react-dom-client.development.js:15527
+performWorkOnRoot @ react-dom-client.development.js:15034
+performSyncWorkOnRoot @ react-dom-client.development.js:16831
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16677
+processRootScheduleInMicrotask @ react-dom-client.development.js:16715
+eval @ react-dom-client.development.js:16850
+<Tests>
+exports.jsx @ react-jsx-runtime.development.js:323
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Function.all @ VM11098 <anonymous>:1
+Function.all @ VM11098 <anonymous>:1
+Function.all @ VM11098 <anonymous>:1
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1343
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1760965947653:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+loadScriptsInSequence @ app-bootstrap.js:24
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1760965947653:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1760965947653:1878
+(anonymous) @ main-app.js?v=1760965947653:1879
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1760965947653:9

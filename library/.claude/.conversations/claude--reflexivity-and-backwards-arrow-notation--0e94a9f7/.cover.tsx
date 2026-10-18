@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Reflexivity and backwards arrow notation ]]( claude--Reflexivity and backwards arrow notation--0e94a9f7 )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Semantic Reference Theory ]]</Project>
+        <Project>***[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>0e94a9f7-d99d-4ed0-b29c-28675dc29a24</Origin>
         <Paragraph>

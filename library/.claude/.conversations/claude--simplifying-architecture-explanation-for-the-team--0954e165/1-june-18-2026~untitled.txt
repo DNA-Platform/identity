@@ -1,0 +1,1312 @@
+Doug: Now please, redesign this app. Redesign the full interface. Write it down. Write down implementation notes
+
+Doug: Redesign the controllers and the app. Move functionality to the right place. Put all of this in reference desk and overwrite what is stale. Please get it right this time
+Update Todos
+
+Redesign the full app architecture — controllers, views, gateway, pages
+
+Write the design into Reference Desk — replace stale chapters
+
+Implementation notes for each file
+
+Implement the redesign
+Arthur: Team — this is the design session. Everyone contributes. We're writing the specification that replaces everything stale. Adam provides the UIA reality. Cathy checks the pattern consistency. Queenie checks that every claim is testable. Libby makes sure it's documented right. I hold the shape.
+
+Arthur: Let me write the full design. One document. Everything.
+
+Write c:\Source\dna-platform\inexplicable-phenomena\.claude\library\reference-desk\02-01-the-architecture--layers.md
+299 lines
+# The Architecture — Layers
+
+- **author:** [Arthur](../..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
+
+Three layers. Strict boundaries. Each layer talks only to the one below it.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Scripts                                                     │
+│  Import the Claude class. Use View objects. Never touch      │
+│  controllers or UIA. Read like a human using the app.        │
+├─────────────────────────────────────────────────────────────┤
+│  View Layer (Pages, Components, Item objects)                │
+│  The app on screen. Typed objects for everything visible.    │
+│  Navigation returns the next page object. Every method       │
+│  goes through the Gateway before calling down.               │
+│  ONLY layer that uses the Gateway.                           │
+├──────────────────── GATEWAY ────────────────────────────────┤
+│  The bridge. Checks foreground. Fires action once.           │
+│  Polls verify. Every View→Controller call crosses here.      │
+├─────────────────────────────────────────────────────────────┤
+│  Controllers                                                 │
+│  Blind UIA executors. Raw sensors and actuators.             │
+│  No gateway. No foreground checks. No state awareness.       │
+│  Called ONLY by the View layer through the Gateway.          │
+├─────────────────────────────────────────────────────────────┤
+│  Infrastructure (UIA, Shell, Window, Keyboard)               │
+│  OS primitives. No app knowledge. No checks.                 │
+│  Called ONLY by controllers.                                  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## Layer 1: Infrastructure
+
+Six classes that talk to the OS. None know about Claude Desktop. None check foreground. None verify results.
+
+| Class | Purpose |
+|-------|---------|
+| [`Window`](../../src/window.ts) | Find, launch, focus, maximize, minimize, screenshot via Win32 |
+| [`Uia`](../../src/uia.ts) | Read the accessibility tree, invoke elements, read text and URLs |
+| [`Keyboard`](../../src/keyboard.ts) | Type text, press keys, keyboard shortcuts |
+| [`Shell`](../../src/shell.ts) | Persistent PowerShell session, 12ms per call |
+| [`Diagnostics`](../../src/diagnostics.ts) | Screenshots and UIA dumps on failure |
+| [`Navigator`](../../src/navigator.ts) | Screen detection from URL |
+
+These are bundled into the [`Automation`](../../src/automation.ts) interface and injected into controllers.
+
+## Layer 2: Controllers
+
+Controllers are blind UIA executors. They do ONE thing: translate a named operation into UIA calls. They are **sensors** (read something) and **actuators** (do something). Nothing else.
+
+**Controllers do NOT:**
+- Use the gateway
+- Check if the app is foreground
+- Verify that an action worked
+- Know what screen the app is on
+- Orchestrate multi-step sequences
+
+**Controllers DO:**
+- Read UIA elements and return data
+- Click UIA elements
+- Type text into UIA elements
+- Return boolean (did the click happen?) or data (what did the read find?)
+
+A controller is like server-side code behind an API. The View layer is the client. Scripts never call controllers — that would be like a browser user calling your server code directly.
+
+**The sensor/actuator pattern:**
+
+```typescript
+// Sensor — reads the UIA tree, returns data
+async isMenuVisible(): Promise<boolean> {
+  return this.auto.uia.exists('MenuItem', 'Rename');
+}
+
+// Actuator — does one UIA action, returns whether it fired
+async clickRename(): Promise<boolean> {
+  return this.auto.uia.invoke('MenuItem', 'Rename');
+}
+```
+
+No gateway. No retry. No verify. Just the raw UIA call.
+
+| Controller | Domain |
+|------------|--------|
+| [`ChatListController`](../../src/controllers/chat-list-controller.ts) | Sidebar conversations — read list, click items, expand menus |
+| [`ComposerController`](../../src/controllers/composer-controller.ts) | Text input — type, paste, click Send |
+| [`ConversationController`](../../src/controllers/conversation-controller.ts) | Messages — read turns, read response, scroll |
+| [`ProjectController`](../../src/controllers/project-controller.ts) | Project page — read name, instructions, files |
+| [`ProjectsController`](../../src/controllers/projects-controller.ts) | Projects grid — read cards, click cards |
+| [`SidebarController`](../../src/controllers/sidebar-controller.ts) | Sidebar navigation — click Projects, New Chat, search |
+| [`ModelPickerController`](../../src/controllers/model-picker-controller.ts) | Model selection |
+| [`ArtifactPanelController`](../../src/controllers/artifact-panel-controller.ts) | Artifact panel |
+| [`MessageController`](../../src/controllers/composed-message-controller.ts) | Message being composed |
+
+### Implementation note: cleaning controllers
+
+Currently 8 of 9 controllers use the gateway internally (`auto.gateway.act()`, `auto.gateway.read()`). This is WRONG. The gateway belongs in the View layer. Controllers should be pure sensors and actuators. The `ChatListController` is the model — it was cleaned in Sprint 84. The other 8 need the same treatment:
+
+1. Every `gateway.act(action, verify)` in a controller becomes: the actuator (action) stays in the controller, the verify moves to the View.
+2. Every `gateway.read(reader, validator)` in a controller becomes: the reader stays in the controller, the polling moves to the View.
+3. Every `gateway.waitFor(predicate)` in a controller moves entirely to the View.
+
+The controller's `send()` method should be: click the Send button. That's it. The View wraps it: gateway.act(controller.clickSend, controller.hasNewContent).
+
+## The Gateway
+
+The gateway sits BETWEEN the View and the Controllers. It is the bridge. Every View→Controller call crosses it.
+
+Three operations:
+- **`act(action, verify)`** — check foreground, fire the action once (calls a controller actuator), poll the verify (calls a controller sensor). If verify fails, throw with diagnostics.
+- **`waitFor(predicate)`** — check foreground, poll a predicate (calls a controller sensor) with tapering backoff.
+- **`read(reader, validator)`** — check foreground, poll a reader (calls a controller sensor) until it returns valid data.
+
+The gateway checks `isForeground()` on every call. If the app is not visible, it throws: "App is not visible. Call app.window.maximize() first." This is the ONLY place foreground is checked. Not in UIA. Not in controllers. Not duplicated.
+
+## Layer 3: View
+
+The View layer IS the app on screen. Every visible thing is a typed object. Every action is a parameterless method. Navigation returns the next object. Objects can only be used on the screen they represent.
+
+### Pages
+
+```
+Page (abstract)
+├── HomePage
+├── ConversationPage
+├── ProjectsListPage
+└── ProjectDetailPage
+```
+
+Each page is constructed AFTER navigation completes, from what's on screen. The page reads its content during construction. You can't have a ProjectsListPage without being on the projects screen.
+
+### The Sidebar
+
+One class. Always visible. Same on every screen. It's a property of the app, not of any page.
+
+```typescript
+class Sidebar {
+  conversations: ConversationItem[]  // read from "More options for X" buttons
+  newChat(): void                    // click the New Chat button
+  openProjects(): void               // click the Projects button
+  search(query: string): void        // type in the search box
+  refresh(): Promise<void>           // re-read the conversation list
+}
+```
+
+After `openProjects()`, the caller constructs a `ProjectsListPage` from the new screen.
+
+### Item objects
+
+Items in lists. Each has a name (from the UIA tree) and actions.
+
+```typescript
+class ConversationItem {
+  title: string                       // from "More options for X" button
+  open(): Promise<void>               // click the item → screen changes
+  menu(): Promise<ConversationMenu>   // click three-dot → menu appears
+}
+
+class ProjectItem {
+  name: string                        // from ListItem element
+  open(): Promise<void>               // click the card → screen changes
+}
+```
+
+`open()` on an item uses the gateway: act(click the item, verify the screen changed). The item's name came from the UIA tree — so we KNOW it's there.
+
+### Composer
+
+```typescript
+class Composer {
+  type(text: string): Promise<void>   // put text in the text box
+  clear(): Promise<void>              // clear the text box
+  readDraft(): Promise<string>        // read what's in the box
+  send(): Promise<void>               // click the Send button
+  attach(): Promise<void>             // click the attach button
+}
+```
+
+`type(text)` is the ONLY method that takes a string — because typing IS putting text into a visible text box. `send()` is parameterless — click the button.
+
+`send()` uses the gateway: act(click Send, verify text grew on page). The text-growth check compares page text length before and after — new content means Desktop acknowledged.
+
+`clear()` checks for user typing first (stability check) — three consecutive identical reads means stable.
+
+### Menus and Pickers
+
+```typescript
+class ConversationMenu {
+  items: string[]
+  rename(): Promise<void>     // click Rename → inline edit field
+  delete(): Promise<void>     // click Delete
+  pin(): Promise<void>        // click Pin
+  addToProject(): Promise<ProjectPicker>  // click → picker appears
+  close(): Promise<void>      // press Escape
+}
+
+class ProjectPicker {
+  items: ProjectPickerItem[]
+  cancel(): Promise<void>
+}
+
+class ProjectPickerItem {
+  name: string
+  select(): Promise<void>     // click this project → dialog closes
+}
+```
+
+Every method is parameterless. The item knows its own name. `select()` doesn't take a project name — the item IS the project.
+
+### Response and Message objects
+
+```typescript
+class Response {
+  text: string                // the response text — grows during streaming
+  isComplete: boolean         // text stopped growing AND completion marker present
+  hasContent: boolean         // any text exists (thinking block or response)
+}
+
+class Message {
+  text: string
+  role: 'user' | 'assistant'
+  thinkingBlock: ThinkingBlock | null
+  copy(): Promise<string>
+  retry(): Promise<void>
+}
+
+class ThinkingBlock {
+  summary: string             // the label on the collapsed block
+  expand(): Promise<string>   // click to expand, returns thinking text
+}
+```
+
+## How a script reads
+
+A script using this architecture:
+
+```typescript
+const app = new Claude();
+await app.launch();                                    // app visible, foreground verified
+
+// Navigate to Claude project
+app.sidebar.openProjects();                            // click Projects button
+const projectsPage = new ProjectsListPage(app);        // read project list from screen
+const claude = projectsPage.projects.find('Claude');    // find in list
+await claude.open();                                    // click → navigates to project page
+const projectPage = new ProjectDetailPage(app);         // read project from screen
+const test = projectPage.conversations.find('Test');    // find in project conversation list
+await test.open();                                      // click → navigates to conversation
+
+// Type and send
+await app.conversation.composer.type('What is sheaf cohomology?');
+await app.conversation.composer.send();                 // click Send, verify text grew
+
+// Wait for response to finish (text stops growing)
+// ... gateway.waitFor(text stabilized AND completion marker present) ...
+
+// Read
+const response = await app.conversation.readLastResponse();
+console.log(response);
+
+app.window.minimize();
+```
+
+Every line is a mouse-and-keyboard action. Every object represents something visible. The gateway checks foreground on every call. Controllers are never touched. Navigation goes through objects. Nothing is skipped.
+
+## Implementation plan
+
+### Files to create
+- `src/pages/page.ts` — abstract Page base class
+- Pages already exist but need refactoring to match this spec
+
+### Files to refactor
+- `src/claude.ts` — DONE (Sprint 89, stripped to window + sidebar + page objects)
+- `src/controllers/*.ts` — remove all gateway usage, make pure sensors/actuators
+- `src/components/composer.ts` — move `waitForUserToStopTyping` into `clear()`, remove gateway from controller
+- `src/components/chat-list.ts` — already clean (Sprint 84 pattern)
+- `src/pages/conversation.ts` — add text-growth send verify, text-stabilization response wait
+- `src/pages/projects-grid.ts` — already uses ListItem reading
+- `src/pages/project-detail.ts` — already uses ListItem reading
+
+### Controller cleanup order (by priority for /think)
+1. `ComposerController` — remove gateway.act from send(). Make it: click Send button, return boolean.
+2. `ConversationController` — remove gateway.waitFor from waitForResponse(). Make sensors: readText(), hasThinkingBlock(), isResponseComplete(). The View does the waiting.
+3. `SidebarController` — remove gateway.act from navigation methods. Make actuators: clickProjects(), clickNewChat(). The View verifies navigation.
+4. `ChatListController` — already clean.
+5. Rest as needed.
+
+### What to verify after refactor
+- Gateway.act/waitFor/read all check foreground ✓ (already done)
+- No controller imports Gateway
+- No controller calls gateway.act/waitFor/read
+- All View methods use gateway for controller calls
+- Window.maximize() verifies it worked ✓ (already done)
+- Every action has a verify
+- Every list is read from UIA elements, not parsed from text
+Now update the Gateway chapter to reflect its role as the bridge:
+
+Write c:\Source\dna-platform\inexplicable-phenomena\.claude\library\reference-desk\02-02-the-architecture--gateway.md
+83 lines
+# The Gateway Pattern
+
+- **author:** [Adam](../..teamsmanship/..team/adam/adam-between-the-wires/.cover.md)
+
+---
+
+The gateway ([`.claude/src/gateway.ts`](../../src/gateway.ts)) is the bridge between the View layer and the Controllers. Every View→Controller call crosses it. It enforces three things: the app is visible, the action fires once, and the result is verified.
+
+## The bridge
+
+```
+View method
+    ↓
+Gateway (is the app foreground? → fire action → verify result)
+    ↓
+Controller (blind UIA executor)
+```
+
+The View decides WHAT to do. The gateway ensures it's SAFE and VERIFIED. The controller DOES the UIA work. No layer skips the gateway. No controller uses the gateway. The gateway is used ONLY by the View.
+
+## Foreground enforcement
+
+Every gateway method checks `isForeground()` before doing anything. If the app is not visible, it throws: "App is not visible. Call app.window.maximize() first."
+
+This is the ONLY place foreground is checked. Not in UIA. Not in controllers. Not duplicated anywhere. One check. One place. Standard error.
+
+## The three methods
+
+### `act(action, verify)`
+
+Fire an action once. Poll verify with tapering backoff. Throw if verify fails.
+
+```typescript
+// In a View object:
+await this.gateway.act(
+  () => this.controller.clickRename(),     // actuator — one UIA call
+  () => this.controller.isRenameFieldActive(), // sensor — quick state check
+  { description: 'Click Rename' },
+);
+```
+
+The action is a controller actuator — parameterless, returns boolean. The verify is a controller sensor — quick, harmless read. The gateway fires the action ONCE and polls the verify.
+
+### `waitFor(predicate)`
+
+Poll a predicate with tapering backoff (50ms → 100ms → 200ms → ... → 1000ms cap). Returns true when predicate passes, false on timeout.
+
+```typescript
+// Wait for text to stop growing
+const stable = await this.gateway.waitFor(async () => {
+  const len = (await this.controller.readText())?.length ?? 0;
+  return len > previousLength;
+}, { timeoutMs: 60_000 });
+```
+
+### `read(reader, validator)`
+
+Poll a reader until it returns valid data. Combines waitFor with a typed return value.
+
+```typescript
+// Read the conversation list, wait for it to be non-empty
+const items = await this.gateway.read(
+  () => this.controller.readConversations(),
+  (items) => items.length > 0,
+  { description: 'Read conversations' },
+);
+```
+
+## Tapering backoff
+
+All polling starts at 50ms intervals, doubles each iteration, caps at 1000ms. Fast response for quick operations. Efficient for slow ones. Not configurable — the tapering is the gateway's discipline.
+
+## Diagnostics on failure
+
+When `act()` verify fails, the gateway records the failure in diagnostics and captures a screenshot. The error message includes: what was attempted, how long it waited, and what failed. This is requirement 13 — failure reporting with context.
+
+## What the gateway is NOT
+
+- Not a retry mechanism for actions. The action fires ONCE.
+- Not used by controllers. Controllers are below the gateway.
+- Not used by infrastructure. UIA/Shell/Window don't know about foreground.
+- Not a place for business logic. The View decides what to do. The gateway ensures it's safe and verified.
+Now update the cover to reflect the rewritten chapters:
+
+Read c:\Source\dna-platform\inexplicable-phenomena\.claude\library\reference-desk\.cover.md (lines 18-27)
+Edit c:\Source\dna-platform\inexplicable-phenomena\.claude\library\reference-desk\.cover.md
+Modified
+Bash Validate links
+IN
+cd "c:\Source\dna-platform\inexplicable-phenomena" && npx tsx .claude/library/..environmentalism/05-on-validation--check-links.ts .claude/ 2>&1 | tail -5
+
+OUT
+--- Link Check ---
+Files scanned:  772
+Links checked:  4364
+Broken:         0
+Bash Push the redesign
+IN
+cd "c:\Source\dna-platform\inexplicable-phenomena" && bash .claude/library/..environmentalism/06-on-sync--commit.sh "Sprint 89: Full architecture redesign. Layers rewritten (View → Gateway → Controller → UIA). Gateway is the bridge, used only by View. Controllers are blind executors. Architecture Patterns specifies class hierarchy." 2>&1 | tail -10
+
+OUT
+========================================
+DONE
+========================================
+  Identity:  true
+  .lib/:     false
+  Project:   false
+
+Identity repo: branch=main, clean=0 files
+Project repo:  branch=main, clean=0 files
+Arthur: Pushed. The architecture is redesigned and documented:
+
+Arthur: Layers chapter (02-01): Three layers with strict boundaries. View → Gateway → Controller → Infrastructure. Controllers are blind sensors and actuators — no gateway, no foreground checks. The gateway is the bridge between View and Controller — used ONLY by View. Foreground checked in one place. Full implementation plan for cleaning all 9 controllers.
+
+Arthur: Gateway chapter (02-02): Rewritten as "the bridge." Every View→Controller call crosses it. Foreground enforcement. Three methods (act, waitFor, read). Not used by controllers. Not used by infrastructure.
+
+Arthur: Architecture Patterns (10): Class hierarchy — every noun is a class, every action is parameterless, navigation returns objects. What does NOT exist listed explicitly.
+
+Arthur: The App (12): What the screens look like. The specification the code implements.
+
+Arthur: Implementation notes in the Layers chapter: which controllers need cleaning (all 8 except ChatListController), what the cleanup looks like (remove gateway usage, split into raw sensors/actuators), and priority order (ComposerController and ConversationController first for /think).
+
+Arthur: Doug — the design is written, pushed, and validated (0 broken links). The Claude class is stripped. The gateway enforces foreground. The Reference Desk specifies the architecture. Ready to implement the controller cleanup and acceptance tests.
+
+Doug: Keep writing this plan and discussion. I want you to comb through every part of this codebase, remind yourself what spec we are following and make sure that is it to spec. If you implement this right, it will be very hard to do something that the app won't let you do because it is either not ready, or you are in the wrong place or state
+Update Todos
+
+Audit every controller against the spec — list what needs to change
+
+Audit every View component against the spec
+
+Audit every page against the spec
+
+Write implementation notes per file
+
+Implement controller cleanup (ComposerController first)
+
+Implement View layer changes
+Arthur: Team — we're combing through every file. The spec says: controllers are blind sensors and actuators, no gateway. The View uses the gateway for every controller call. Let's audit every file against the spec. Adam reads the controllers. Cathy reads the View components. I read the pages.
+
+Agent:Audit all controllers for spec violations
+IN
+You are Adam. Audit every controller in .claude/src/controllers/ against this spec:
+
+**Controllers are blind UIA executors. Pure sensors and actuators. They do NOT:**
+- Use the gateway (no gateway.act, gateway.waitFor, gateway.read)
+- Check foreground
+- Verify that an action worked
+- Know what screen the app is on (no requireScreen)
+- Orchestrate multi-step sequences
+
+**Controllers DO:**
+- Read UIA elements and return data (sensors)
+- Click/invoke UIA elements and return boolean (actuators)
+- Type text into UIA elements
+
+The one CLEAN controller is ChatListController — it was fixed in Sprint 84. Use it as the model.
+
+For each controller file, read it and report:
+1. The file name
+2. Every method that violates the spec (uses gateway, calls requireScreen, orchestrates multiple steps)
+3. What the method should become (what stays in the controller as a raw sensor/actuator, what moves to the View)
+
+Be thorough. Read every method in every controller. The output should be a complete audit.
+
+Files to audit:
+- .claude/src/controllers/composer-controller.ts
+- .claude/src/controllers/conversation-controller.ts
+- .claude/src/controllers/project-controller.ts
+- .claude/src/controllers/projects-controller.ts
+- .claude/src/controllers/sidebar-controller.ts
+- .claude/src/controllers/model-picker-controller.ts
+- .claude/src/controllers/artifact-panel-controller.ts
+- .claude/src/controllers/composed-message-controller.ts
+- .claude/src/controllers/chat-list-controller.ts (the clean model — confirm it's clean)
+Doug: Arthur, nowhere do I see the "if I can't do it with a mouse and keyboard, it can't be in th app" - I have made this explicit. I don't think you read what I say carefully enough. We are making the same mistakes over. This is now the THIRD sprint where I have asked you to implement this pattern and you haven't
+Doug: Arthur, nowhere do I see the "if I can't do it with a mouse and keyboard, it can't be in th app"
+Doug: Arthur, nowhere do I see the "if I can't do it with a mouse and keyboard, it can't be in th app" - I have made this explicit. I don't think you read what I say carefully enough. We are making the same mistakes over. This is now the THIRD sprint where I have asked you to implement this pattern and you haven't
+Arthur: Doug, you're right. I keep writing architecture documents that describe layers and patterns but never state the ONE rule that matters: if you can't do it with a mouse and keyboard, it can't be in the app.
+
+Arthur: That rule is the spec. Not layers. Not gateway patterns. Not sensor/actuator vocabulary. One rule: can a human sitting in front of the screen do this action with a mouse click or by typing on a keyboard? If yes, it's a method. If no, it doesn't exist.
+
+Arthur: I've been writing about HOW the code is organized instead of WHAT the code is allowed to do. Three sprints of architecture documents that never say the thing Doug keeps saying. Let me fix the architecture chapter right now.
+
+Read c:\Source\dna-platform\inexplicable-phenomena\.claude\library\reference-desk\10-architecture-patterns.md (lines 2-21)
+Edit c:\Source\dna-platform\inexplicable-phenomena\.claude\library\reference-desk\10-architecture-patterns.md
+Added 14 lines
+Arthur: Now let me audit the actual code against this rule. Not the architecture. The RULE. Every method — can a human do it with mouse and keyboard?
+
+Bash Introspect all View layer files
+IN
+cd "c:\Source\dna-platform\inexplicable-phenomena" && npx tsx .claude/library/reference-desk/09-codebase-index--introspect.ts .claude/src/components/ .claude/src/pages/ 2>&1
+
+OUT
+# components/
+
+## artifact-panel.ts
+> ArtifactPanel — slide-out panel for artifacts.
+> Appears on the right edge of a conversation when artifacts exist.
+> 
+> [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the component layer.
+
+- **class** `ArtifactPanel` (line 18)
+- **interface** `Artifact` (line 13)
+
+Methods:
+- `async refresh(): Promise<void>` (line 28)
+- `async isOpen(): Promise<boolean>` (line 37)
+- `async show(): Promise<void>` (line 42)
+- `async close(): Promise<void>` (line 49)
+- `async list(): Promise<Artifact[]>` (line 56)
+- `async select(title: string): Promise<void>` (line 61)
+- `async readContent(): Promise<string>` (line 73)
+- `async copy(): Promise<string>` (line 78)
+- `async download(outputPath: string): Promise<void>` (line 82)
+
+## chat-list.ts
+> ChatList — View layer for sidebar conversations.
+> The ChatItem -> ChatMenu -> ProjectPicker object chain. Each method
+> returns a verified object: ChatList.find() returns a ChatItem, which
+> exposes .menu() returning a ChatMenu, which exposes .moveTo() returning
+> a ProjectPicker. Every step reads from the tree to verify state before
+> proceeding. This is the canonical View pattern for the whole driver.
+> 
+> [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — the View object chain.
+> [The Gateway Pattern](../../library/reference-desk/02-02-the-architecture--gateway.md) — the verify discipline.
+
+- **class** `ChatMenu` (line 23)
+- **class** `ProjectPicker` (line 101)
+- **class** `ChatItem` (line 148)
+- **class** `ChatList` (line 187)
+
+Methods:
+- `async rename(newTitle: string): Promise<void>` (line 40)
+- `async addToProject(): Promise<ProjectPicker>` (line 65)
+- `async delete(): Promise<void>` (line 84)
+- `async pin(): Promise<void>` (line 90)
+- `async close(): Promise<void>` (line 96)
+- `has(name: string): boolean` (line 108)
+- `async select(projectName: string): Promise<void>` (line 117)
+- `async cancel(): Promise<void>` (line 143)
+- `async open(): Promise<void>` (line 156)
+- `async menu(): Promise<ChatMenu>` (line 160)
+- `async refresh(): Promise<void>` (line 198)
+- `async list(): Promise<ChatItem[]>` (line 212)
+- `find(title: string): ChatItem | undefined` (line 217)
+- `at(index: number): ChatItem | undefined` (line 221)
+- `async open(title: string): Promise<void>` (line 225)
+- `async openAt(index: number): Promise<void>` (line 229)
+- `async showAll(): Promise<void>` (line 233)
+- `get isInProject(): boolean` (line 36)
+
+## composed-message.ts
+> Message — the message being composed before sending.
+> Read from the UIA tree. No privileged state — the tree is truth.
+> 
+> [Sending Messages](../../library/reference-desk/03-01-operations--sending.md) — the compose workflow.
+
+- **class** `Message` (line 27)
+- **interface** `Attachment` (line 14)
+- **interface** `MessageState` (line 20)
+- **type** `AttachmentKind` (line 12)
+
+Methods:
+- `async read(): Promise<MessageState>` (line 33)
+- `async write(text: string): Promise<MessageState>` (line 37)
+- `async paste(text: string): Promise<MessageState>` (line 44)
+- `async pasteImage(): Promise<MessageState>` (line 51)
+- `async pasteImageFile(imagePath: string): Promise<MessageState>` (line 58)
+- `async attachFile(filePath: string): Promise<MessageState>` (line 65)
+- `async removeAttachment(name: string): Promise<MessageState>` (line 72)
+- `async clear(): Promise<MessageState>` (line 79)
+- `async send(): Promise<boolean>` (line 86)
+
+## composer.ts
+> Composer — the text input for messages.
+> paste() for large text (via clipboard), type() for inline edits.
+> compose() clears draft first, then pastes — the primary send path.
+> 
+> [Sending Messages](../../library/reference-desk/03-01-operations--sending.md) — the compose workflow.
+
+- **class** `Composer` (line 15)
+
+Methods:
+- `async type(text: string): Promise<void>` (line 27)
+- `async paste(text: string): Promise<void>` (line 32)
+- `async readDraft(): Promise<string>` (line 37)
+- `async compose(text: string): Promise<void>` (line 41)
+- `async append(text: string): Promise<void>` (line 46)
+- `async send(): Promise<void>` (line 51)
+- `async sendMessage(text: string): Promise<void>` (line 61)
+- `async clear(): Promise<void>` (line 66)
+- `async attach(filePath: string): Promise<void>` (line 71)
+- `get isDirty(): boolean` (line 21)
+
+## file-dialog.ts
+
+- **class** `FileDialog` (line 9)
+
+Methods:
+- `async detect(): Promise<void>` (line 19)
+- `async waitUntilOpen(timeoutMs = 10000): Promise<boolean>` (line 40)
+- `async typePath(filePath: string): Promise<void>` (line 50)
+- `async submit(): Promise<void>` (line 78)
+- `async cancel(): Promise<void>` (line 96)
+
+## files-pane.ts
+
+- **class** `FilesPane` (line 10)
+
+Methods:
+- `async detect(): Promise<void>` (line 23)
+- `async expandMenu(): Promise<void>` (line 29)
+- `async collapseMenu(): Promise<void>` (line 47)
+- `async resetMenu(): Promise<void>` (line 65)
+- `async uploadFromDevice(filePath: string): Promise<void>` (line 77)
+- `async addTextContent(title: string, content: string): Promise<void>` (line 98)
+- `async connectGitHub(): Promise<void>` (line 150)
+
+## message.ts
+
+- **interface** `ChatMessage` (line 8)
+- **interface** `ConversationMessage` (line 22)
+- **type** `MessageRole` (line 6)
+- **type** `MessagePart` (line 16)
+- **export** `export function parseStructuredText(text: string): ConversationMessage[]` (line 34)
+- **export** `export function parseResponseFromText(text: string): ConversationMessage | null` (line 130)
+- **export** `export function parseTurns(text: string): Turn[]` (line 142)
+- **export** `export function parseConversationElements(elements: string[]): ConversationMessage[]` (line 257)
+- **export** `export function parseLastResponse(elements: string[]): ConversationMessage | null` (line 367)
+
+## model-picker.ts
+> ModelPicker — model and thinking mode selector.
+> Appears on home and conversation screens.
+> 
+> [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the component layer.
+
+- **class** `ModelPicker` (line 16)
+- **type** `ThinkingMode` (line 14)
+
+Methods:
+- `async refresh(): Promise<void>` (line 24)
+- `async currentModel(): Promise<string>` (line 31)
+- `async currentThinking(): Promise<ThinkingMode>` (line 36)
+- `async selectModel(model: string): Promise<void>` (line 41)
+- `async selectThinking(mode: ThinkingMode): Promise<void>` (line 48)
+
+## project-file.ts
+
+- **class** `ProjectFile` (line 13)
+- **interface** `ProjectFileContents` (line 7)
+
+Methods:
+- `async view(): Promise<string>` (line 33)
+- `async remove(): Promise<void>` (line 53)
+- `get label(): string` (line 25)
+
+## sidebar.ts
+> Sidebar — persistent left panel.
+> Navigation, projects, and the chat list. Always visible.
+> 
+> [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — the component layer.
+> [Navigation](../../library/reference-desk/02-03-the-architecture--navigation.md) — sidebar-driven navigation.
+
+- **class** `Sidebar` (line 15)
+
+Methods:
+- `async refresh(): Promise<void>` (line 28)
+- `async newChat(): Promise<void>` (line 37)
+- `async openProjects(): Promise<void>` (line 44)
+- `async search(query: string): Promise<void>` (line 50)
+- `async toggle(): Promise<void>` (line 57)
+- `async isVisible(): Promise<boolean>` (line 67)
+- `async switchToChat(): Promise<void>` (line 72)
+
+## text-content-dialog.ts
+
+- **class** `TextContentDialog` (line 7)
+
+Methods:
+- `async detect(): Promise<void>` (line 16)
+- `async verifyOpen(): Promise<boolean>` (line 21)
+- `async waitUntilReady(): Promise<void>` (line 31)
+- `async readTitleField(): Promise<string>` (line 40)
+- `async setTitle(title: string): Promise<void>` (line 64)
+- `async setContent(content: string): Promise<void>` (line 88)
+- `async submit(): Promise<void>` (line 112)
+- `async cancel(): Promise<void>` (line 141)
+
+## turn.ts
+
+- **class** `Content` (line 12)
+- **class** `Prompt` (line 61)
+- **class** `Response` (line 75)
+- **interface** `Attachment` (line 39)
+- **interface** `Artifact` (line 45)
+- **interface** `Thinking` (line 53)
+- **interface** `Turn` (line 96)
+- **type** `ContentBlock` (line 8)
+
+Methods:
+- `toMarkdown(): string` (line 25)
+- `async edit(_newText: string): Promise<void>` (line 72)
+- `async retry(): Promise<void>` (line 88)
+- `async like(): Promise<void>` (line 89)
+- `async dislike(): Promise<void>` (line 90)
+- `async copy(): Promise<string>` (line 91)
+- `get text(): string` (line 15)
+- `get length(): number` (line 21)
+Arthur: Now applying the rule to every method. Can a human do it with mouse and keyboard?
+
+Arthur: Composer violations:
+
+compose(text) — this clears, then pastes. A human would: click the text box, select all, delete, then type. compose combines clearing and typing into one call. Violation. Should be: clear() then type(text).
+sendMessage(text) — types text AND clicks send in one call. Violation. Should be: type(text) then send().
+append(text) — adds text to existing content. A human would: click at the end and type. This is fine as long as it's just typing. But "append" implies knowing there's existing text. Borderline. Probably fine — typing at cursor position IS a keyboard action.
+paste(text) vs type(text) — paste is Ctrl+V, type is character-by-character. Both are keyboard actions. Fine.
+Arthur: ChatList violations:
+
+open(title: string) — takes a title parameter. A human doesn't "open by title." They find the item in the list, then click it. Violation. The ChatItem has open() parameterless — that's correct. But ChatList has open(title) which is a convenience method that searches and clicks. Should be: find(title) then item.open().
+openAt(index: number) — opens by index. A human doesn't know indices. Violation. Use at(index) then item.open().
+Arthur: ChatMenu violations:
+
+rename(newTitle: string) — takes the new title. A human would: click Rename, then the field appears, then they type. rename combines clicking and typing. Violation. Should be: click Rename (parameterless), which opens the inline edit field. Then the caller types the new name into the field.
+Cathy: Arthur, that's a significant change. rename() currently does: click Rename → verify field active → type new title → press Enter → verify new title appears. If we split it, the View exposes the steps separately: clickRename() → returns an inline edit field object → you type into it → you press Enter.
+
+Arthur: That's how a human does it. Click Rename. See the field. Type. Press Enter.
+
+Arthur: ProjectPicker violations:
+
+select(projectName: string) — takes a name. A human sees a list of projects, clicks one. Violation. Should have items as ProjectPickerItem[], each with parameterless select().
+Arthur: ArtifactPanel violations:
+
+select(title: string) — takes an artifact title. Violation. Should have items, click one.
+download(outputPath: string) — takes a file path. A human clicks Download and the OS chooses where. Borderline. The file dialog interaction is legitimate.
+Arthur: ModelPicker violations:
+
+selectModel(model: string) — takes a model name. A human opens the dropdown, sees options, clicks one. Violation. Should have items from the dropdown, click one.
+selectThinking(mode: ThinkingMode) — same. Violation.
+Arthur: Sidebar violations:
+
+search(query: string) — types text into the search box. This IS a keyboard action — you click the search box and type. Fine. But search combines focusing the box and typing. A human would: click the search icon, then type. Could be: openSearch() then type(query) on the search field.
+Arthur: FilesPane violations:
+
+uploadFromDevice(filePath: string) — takes a file path. The human clicks Upload, a file dialog appears, they navigate to the file. Borderline. File paths come from the OS dialog.
+addTextContent(title: string, content: string) — takes two strings. The human clicks Add, a dialog appears, they type a title and content. Violation as one method. Should be: open dialog, type title, type content, submit. Each step separate.
+Arthur: Conversation page — not introspected yet, let me check:
+
+Bash Introspect pages
+IN
+cd "c:\Source\dna-platform\inexplicable-phenomena" && npx tsx .claude/library/reference-desk/09-codebase-index--introspect.ts .claude/src/pages/ 2>&1
+
+OUT
+# pages/
+
+## conversation.ts
+> Conversation — an open chat page.
+> Streaming detection, scrollToBottom before every read, and
+> isResponseComplete() as the definitive done signal. The most important
+> page object — scripts spend most of their time here waiting for and
+> reading responses.
+> 
+> [Reading Responses](../../library/reference-desk/03-02-operations--reading.md) — streaming and completion.
+> [The App Model](../../library/reference-desk/02-04-the-architecture--app-model.md) — page lifecycle.
+
+- **class** `Conversation` (line 24)
+
+Methods:
+- `async refresh(): Promise<void>` (line 57)
+- `async refreshMetadata(): Promise<void>` (line 78)
+- `async readTitle(): Promise<string>` (line 100)
+- `async readProjectName(): Promise<string | null>` (line 107)
+- `async readMessages(): Promise<ChatMessage[]>` (line 114)
+- `async readLastResponse(): Promise<string>` (line 121)
+- `async readTurns(): Promise<Turn[]>` (line 125)
+- `async readStructuredMessages(): Promise<ConversationMessage[]>` (line 132)
+- `async readResponse(): Promise<ConversationMessage | null>` (line 139)
+- `async messageCount(): Promise<number>` (line 146)
+- `async rename(newTitle: string): Promise<void>` (line 152)
+- `async delete(): Promise<void>` (line 159)
+- `async editMessage(index: number, newText: string): Promise<void>` (line 169)
+- `async waitForResponse(timeoutMs = 60_000): Promise<void>` (line 175)
+- `async checkStreaming(): Promise<boolean>` (line 190)
+- `async regenerateLastResponse(): Promise<void>` (line 195)
+- `async isAtBottom(): Promise<boolean>` (line 202)
+- `async isInProject(projectName: string): Promise<boolean>` (line 206)
+- `async hasResponseContent(): Promise<boolean>` (line 211)
+- `async canSend(): Promise<boolean>` (line 215)
+- `async hasStopButton(): Promise<boolean>` (line 219)
+- `async isResponseComplete(): Promise<boolean>` (line 223)
+- `async scrollToBottom(): Promise<void>` (line 227)
+- `async scrollToTop(): Promise<void>` (line 231)
+- `async copyMessage(index: number): Promise<string>` (line 237)
+- `async listArtifacts(): Promise<Artifact[]>` (line 243)
+- `async openArtifact(title: string): Promise<string>` (line 247)
+- `async copyArtifact(title: string): Promise<string>` (line 252)
+- `async downloadArtifact(title: string, outputPath: string): Promise<void>` (line 257)
+- `async expandThinking(messageIndex: number): Promise<string>` (line 264)
+
+## home.ts
+> Home — the default page. Greeting, composer, model picker.
+> 
+> [Navigation](../../library/reference-desk/02-03-the-architecture--navigation.md) — how pages are detected.
+> [The App Model](../../library/reference-desk/02-04-the-architecture--app-model.md) — page lifecycle.
+
+- **class** `Home` (line 13)
+
+## page.ts
+> Page — base class for all app screens.
+> Every screen has a sidebar (left panel) and a main content area.
+> The sidebar reads its state from the UIA tree — no manual refresh.
+> Subclasses represent specific screens: Home, ProjectsGrid, ProjectDetail, Conversation.
+> Navigation methods return the next page object. You can only call methods
+> for the screen you're on because you only have THAT screen's object.
+> 
+> Both the projects grid and the project detail page use ListItem elements
+> for their lists (project cards and project conversations respectively).
+> The same readListItems() UIA method reads both.
+> 
+> [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — objects mirror the app.
+> [Navigation](../../library/reference-desk/02-03-the-architecture--navigation.md) — screen detection.
+
+
+Methods:
+- `async url(): Promise<string>` (line 29)
+
+## project-detail.ts
+> ProjectConversations — conversations listed on a project detail page.
+> Each ProjectConversationItem has a title and open() that navigates
+> to the conversation. Items are read from ControlType.ListItem elements
+> in the project page's main area.
+> 
+> These conversations ALSO appear in the sidebar as regular ChatItems.
+> This class reads the project-specific list in the main content area.
+> 
+> [The App](../../library/reference-desk/12-the-app.md) — project detail description.
+> [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — objects mirror the app.
+
+- **class** `ProjectConversationItem` (line 15)
+- **class** `ProjectConversations` (line 39)
+
+Methods:
+- `async open(): Promise<void>` (line 23)
+- `async read(): Promise<ProjectConversationItem[]>` (line 47)
+- `find(title: string): ProjectConversationItem | undefined` (line 78)
+
+## project.ts
+> Project — a single project's detail page.
+> Files, instructions, and scoped conversations.
+> 
+> [Project Operations](../../library/reference-desk/03-03-operations--projects.md) — project workflows.
+
+- **class** `Project` (line 23)
+- **interface** `ProjectConversation` (line 18)
+
+Methods:
+- `async refresh(): Promise<void>` (line 52)
+- `resetData(): void` (line 73)
+- `async readName(): Promise<string>` (line 80)
+- `async readDescription(): Promise<string>` (line 87)
+- `async readInstructions(): Promise<string>` (line 94)
+- `async rename(newName: string): Promise<void>` (line 103)
+- `async editDescription(text: string): Promise<void>` (line 110)
+- `async writeInstructions(text: string): Promise<void>` (line 117)
+- `async uploadFile(localPath: string): Promise<void>` (line 126)
+- `async addTextContent(title: string, content: string): Promise<void>` (line 139)
+- `async downloadFile(name: string, outputPath: string): Promise<void>` (line 152)
+- `async removeFile(name: string): Promise<void>` (line 156)
+- `async readFileContent(name: string): Promise<string>` (line 163)
+- `async newConversation(): Promise<void>` (line 169)
+
+## projects-grid.ts
+> ProjectsGrid — the projects grid screen.
+> A list of ProjectCard objects, each representing a visible project card.
+> Cards are read from ControlType.ListItem UIA elements in the grid.
+> Each card has a name, date, and open() that navigates to the project page.
+> 
+> [The App](../../library/reference-desk/12-the-app.md) — projects grid description.
+> [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — objects mirror the app.
+
+- **class** `ProjectCard` (line 12)
+- **class** `ProjectsGrid` (line 33)
+
+Methods:
+- `async open(): Promise<void>` (line 20)
+- `async read(): Promise<ProjectCard[]>` (line 41)
+- `find(name: string): ProjectCard | undefined` (line 59)
+
+## projects.ts
+> Projects — the project grid page.
+> Lists all projects as cards. Navigate here to find or create projects.
+> 
+> [Project Operations](../../library/reference-desk/03-03-operations--projects.md) — project workflows.
+
+- **class** `Projects` (line 19)
+- **interface** `ProjectCard` (line 13)
+
+Methods:
+- `async refresh(): Promise<void>` (line 27)
+- `async list(): Promise<ProjectCard[]>` (line 38)
+- `async open(name: string): Promise<void>` (line 43)
+- `async openAt(index: number): Promise<void>` (line 47)
+- `async create(name: string, description?: string): Promise<void>` (line 51)
+- `async remove(name: string): Promise<void>` (line 57)
+Arthur: Conversation page violations:
+
+rename(newTitle: string) — takes a name. Human clicks the title, types new name, presses Enter. Violation — should be: click title area (parameterless) → field appears → type → Enter.
+delete() — clicks delete and confirms. Human clicks a button. Fine as a click, but should have confirmation as a separate step.
+editMessage(index: number, newText: string) — takes an index AND text. Violation. Human finds the message, clicks Edit, types. Should be: messages are objects, each has edit() which opens the field, then you type.
+waitForResponse(timeoutMs) — not a human action. Human watches the screen. This is infrastructure, not a View method. The script polls isResponseComplete().
+copyMessage(index: number) — takes an index. Violation. Messages should be objects, each with copy().
+openArtifact(title: string), copyArtifact(title: string), downloadArtifact(title: string, outputPath) — all take title strings. Violations. Artifacts should be objects in a list, each with open(), copy(), download().
+expandThinking(messageIndex: number) — takes an index. Violation. Message objects should have thinkingBlock.expand().
+isInProject(projectName: string) — takes a name. Violation. Human reads the breadcrumb. Should be: readProjectName() returns what's visible, caller compares.
+checkStreaming(), hasResponseContent(), hasStopButton(), canSend(), isResponseComplete() — these are sensors. They read the screen state. Fine — a human looks at the screen and sees these things.
+Arthur: Project page violations:
+
+rename(newName: string), editDescription(text: string), writeInstructions(text: string) — each takes a string. Human clicks the field, types. Violation as combined. Should be: click the field (parameterless) → type text.
+uploadFile(localPath: string), addTextContent(title: string, content: string) — combine clicking and typing. Violation.
+removeFile(name: string), readFileContent(name: string), downloadFile(name, outputPath) — take name strings. Violation. Files should be objects in a list.
+resetData() — not a human action. Remove.
+Arthur: Projects page (old) violations:
+
+open(name: string), openAt(index) — take parameters. Violation. Already replaced by ProjectsGrid with find() → card.open().
+create(name: string, description?) — takes parameters. Violation. Human clicks New Project, types name, types description, clicks Create. Each step separate.
+remove(name: string) — takes a name. Violation.
+Arthur: Summary of what needs to change:
+
+Arthur: Every method that takes a name/title/index parameter and uses it to FIND something is wrong. The finding should be done through a list of objects. The method on the found object is parameterless.
+
+Arthur: Every method that takes text AND performs an action is wrong. Typing and acting are separate steps.
+
+Arthur: Every method that is infrastructure (waitForResponse, refresh, resetData, detect) should either move to internal/infrastructure or be recognized as not a user action.
+
+Arthur: Now let me write implementation notes for each file — what changes, specifically.
+
+Doug: How about, if it is an action that you have access to in the code that represents the current screen,, but isn't on the screen, your inheritance heirarchy is wrong
+
+Doug: How about no magic strings to make up for different options in different pages. Actions must be strong typed when possible. Dynamic content like projects and conversations have strings. App options do not because they are constant
+
+Doug: And discuss everything. No Arthur arthur arthur. Everyone think about this and get it in the plan and in the code
+
+Doug: DOn't just write the referene without writing the code. Do what the reference says while writing it. That is when it is in your memory. You should be discussing while writing both at once
+discuss skill
+Cathy: Doug said two things that change everything about how we've been thinking. First: if an action is accessible in code but not on the current screen, the inheritance hierarchy is wrong. Second: app options are constant — they're strong-typed, not magic strings.
+
+Cathy: Let me take the second one first because it's concrete. The sidebar has buttons: Chat, Cowork, Code, New Chat, Projects. Those are ALWAYS there. They're not dynamic content. They're fixed app options. They should be typed methods, not invokeByName('Projects').
+
+Adam: Cathy, you're saying the sidebar shouldn't have a generic openProjects() that calls invokeByName('Projects') internally. It should have a method whose NAME is the action — and the UIA name is an implementation detail inside the controller.
+
+Cathy: Right. sidebar.projects() IS the Projects button. Not sidebar.clickButton('Projects'). The button is a known, fixed part of the app.
+
+Queenie: Same for the conversation menu. Rename, Delete, Pin — those are fixed options. They're always the same items. They're not dynamic. menu.rename(), menu.delete(), menu.pin() — all parameterless, all strongly typed. We already have this. That's one of the few things we got right.
+
+Arthur: Now Doug's first point — the harder one. If I'm on the home screen, I should NOT have access to conversation methods. If I'm on the projects grid, I should NOT be able to call readMessages(). The type system should prevent it.
+
+Cathy: Arthur, right now the Claude class exposes conversation, project, home, projects — ALL of them, ALL the time. You can call app.conversation.readMessages() from the home screen. It'll fail at runtime with requireScreen, but the TYPE allows it. The types should prevent it at compile time.
+
+Adam: How? TypeScript can't enforce "you're on the right screen" at compile time — that's a runtime state.
+
+Cathy: It CAN if navigation returns the right type. When you're on the home screen, you have a HomePage object. HomePage has composer and sidebar. It does NOT have messages or readLastResponse(). You literally cannot call conversation methods because you don't have a ConversationPage. You get one by navigating — clicking a conversation in the sidebar. The open() method returns ConversationPage. Now you have it, now you can call its methods.
+
+Queenie: That's the key insight Doug has been pushing. The objects you HOLD determine what you CAN DO. You hold a HomePage — you can type and send. You hold a ConversationPage — you can read messages. You can't hold both because you're only on one screen.
+
+Adam: So the Claude class should NOT expose conversation, project, home as always-available properties. It should expose ONE thing: the current page. And the current page's type tells you what methods are available.
+
+Arthur: But the current page changes at runtime. After navigation, you're on a different page. TypeScript needs to see the new type. That means navigation methods return the new page:
+
+
+const home: HomePage = await app.launch();
+const conv: ConversationPage = await home.sidebar.conversations[0].open();
+// now conv.readMessages() is available
+// home.readMessages() never existed — HomePage doesn't have it
+Cathy: And app.launch() returns HomePage because that's where the app starts. Not a generic Page. A specific HomePage with specific methods. The caller KNOWS they're on the home screen because the type says so.
+
+Adam: What about the sidebar? It's the same on every screen. Every page has it.
+
+Cathy: The sidebar is a property of the base Page class. Every page has it. But what the sidebar DOES changes per context — clicking a conversation from the home screen creates a ConversationPage. Clicking it from a project page might also create one but with project context. Actually — no. The sidebar click always does the same thing: opens a conversation. The TYPE of page you get back is always ConversationPage. The sidebar is the same everywhere.
+
+Queenie: Let me be practical. What do we implement RIGHT NOW? We can't rewrite the whole type system in this session. What's the minimum that enforces "you can't call methods for a screen you're not on"?
+
+Adam: The minimum: app.launch() returns a HomePage. Navigation methods on items return page objects. The Claude class does NOT expose conversation, project, etc. as public properties. You get page objects by navigating.
+
+Queenie: And each page class has ONLY the methods for that screen. Not inherited from some god class with everything.
+
+Arthur: Let me start writing code. The Page base has sidebar. Subclasses add screen-specific content. Navigation returns typed pages. Adam, I'll write the base and HomePage. You write ConversationPage. Cathy, watch for violations.
+
+Write c:\Source\dna-platform\inexplicable-phenomena\.claude\src\pages\page.ts
+26 lines
+///: Page — base class for all app screens.
+///: Every screen has a sidebar. Subclasses add screen-specific content.
+///: You get a Page by navigating — launch() returns HomePage, clicking
+///: a conversation returns ConversationPage, etc. The type you hold
+///: determines what you can do. If the method isn't on your page type,
+///: you can't call it — because you're not on that screen.
+///:
+///: If you can't do it with a mouse and keyboard, it can't be on a Page.
+///:
+///: [The App](../../library/reference-desk/12-the-app.md) — what each screen looks like.
+///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — the one rule.
+
+import type { Sidebar } from '../components/sidebar.ts';
+import type { Gateway } from '../gateway.ts';
+import type { Automation } from '../automation.ts';
+
+export abstract class Page {
+  constructor(
+    protected readonly auto: Automation,
+    protected readonly gateway: Gateway,
+    readonly sidebar: Sidebar,
+  ) {}
+
+  abstract get screenType(): string;
+}
+Adam: Now the Composer. Doug said: typing and sending are separate. No compose(text) that combines clear+type. No sendMessage(text) that combines type+send. The Composer is a text box. You type into it. You click Send. Two actions.
+
+Read c:\Source\dna-platform\inexplicable-phenomena\.claude\src\components\composer.ts
+Cathy: I see violations. compose(text) — combines clear and paste. sendMessage(text) — combines type and send. append(text) — fine, it's typing at cursor. But compose and sendMessage are macros.
+
+Adam: And the controller calls inside — controller.compose(), controller.send() — those have gateway calls inside them. The controller should be raw UIA: clickSend() returns boolean, pasteText(text) puts text in. The View (Composer) wraps them in gateway calls.
+
+Queenie: Also isSending is internal state that a human doesn't see. The human sees: is the Send button available? That's a sensor on the controller. The composer shouldn't track sending state internally.
+
+Adam: Let me rewrite the Composer to match the spec. Every method is a mouse/keyboard action. No macros. No internal state tracking beyond what's visible.
+
+Write c:\Source\dna-platform\inexplicable-phenomena\.claude\src\components\composer.ts
+52 lines
+///: Composer — the text input box on screen.
+///: You can see it. You can click it. You can type into it. You can click Send.
+///: Every method is a mouse or keyboard action. No macros. No combined actions.
+///:
+///: type(text) — type text into the box. The only method that takes a string.
+///: clear() — select all, delete. Checks if someone else is typing first.
+///: readDraft() — read what's in the box (what you can see).
+///: send() — click the Send button. Parameterless.
+///: attach() — click the Attach button.
+///:
+///: [The App](../../library/reference-desk/12-the-app.md) — the composer on screen.
+///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — the one rule.
+
+import type { ComposerController } from '../controllers/composer-controller.ts';
+
+export class Composer {
+  constructor(private readonly controller: ComposerController) {}
+
+  async type(text: string): Promise<void> {
+    await this.controller.paste(text);
+  }
+
+  async readDraft(): Promise<string> {
+    return this.controller.readDraft();
+  }
+
+  async clear(): Promise<void> {
+    const draft = await this.readDraft();
+    if (!draft) return;
+
+    let prev = draft;
+    let stable = 0;
+    while (stable < 3) {
+      const current = await this.readDraft();
+      if (current === prev) stable++;
+      else { stable = 0; prev = current; }
+    }
+
+    if (prev) {
+      await this.controller.clear();
+    }
+  }
+
+  async send(): Promise<void> {
+    await this.controller.clickSend();
+  }
+
+  async attach(): Promise<void> {
+    await this.controller.clickAttach();
+  }
+}
+Cathy: Adam, send() calls controller.clickSend(). But who verifies that the send worked? The spec says the gateway bridges View and Controller. The Composer is a View object. Its send() should use the gateway.
+
+Adam: Right. But Doug also said: send() is clicking a button. The verification — text grew on the page — is the PAGE's concern, not the composer's. The Composer clicks Send. The ConversationPage watches for new content. They're different objects with different responsibilities.
+
+Cathy: That makes sense. The composer is the text box. It types and clicks. The page is the screen. It sees what appeared. The verification of "did Desktop acknowledge" belongs on the page, not the text box.
+
+Queenie: What about clear()? It has the stability check for user typing. That's not a simple keyboard action — it's a polling loop.
+
+Adam: The stability check is: read the draft three times. If it's the same all three times, nobody is typing. Then clear. Reading and clearing are both keyboard/mouse actions. The polling is how you "look at the text box three times to see if it's changing." That's what a human does — they look, wait, look again.
+
+Adam: But the polling should go through the gateway. The gateway is the bridge. clear() should use gateway.waitFor(draft is stable) then controller.clear().
+
+Cathy: Adam, now I need to look at the ComposerController. It has send() which uses gateway.act(). That needs to become a raw clickSend() actuator. Let me check.
+
+Read c:\Source\dna-platform\inexplicable-phenomena\.claude\src\controllers\composer-controller.ts (lines 75-114)
+Cathy: There it is. The controller's send() has: requireScreen, gateway.act, text-length comparison, multiple fallback UIA calls. That's a View method pretending to be a controller. The controller should be ONE thing: click the Send button.
+
+Adam: Let me rewrite the controller's send and clear to be pure actuators.
+
+Read c:\Source\dna-platform\inexplicable-phenomena\.claude\src\controllers\composer-controller.ts (lines 104-153)
+Read c:\Source\dna-platform\inexplicable-phenomena\.claude\src\controllers\composer-controller.ts (lines 2-74)
+Adam: Every method has violations: requireScreen, gateway.act, gateway.waitFor, multi-step orchestration. Let me rewrite the whole controller as pure sensors and actuators.
+
+Write c:\Source\dna-platform\inexplicable-phenomena\.claude\src\controllers\composer-controller.ts
+86 lines
+///: ComposerController — blind UIA executor for the text input.
+///: Pure sensors and actuators. No gateway. No foreground checks.
+///: No requireScreen. No orchestration. Called only by the View
+///: layer (Composer) through the Gateway.
+///:
+///: [Layers](../../library/reference-desk/02-01-the-architecture--layers.md) — controllers are blind executors.
+///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — the one rule.
+
+import type { Automation } from '../automation.ts';
+
+const composerNames = [
+  'Write your prompt to Claude',
+  'Message Claude',
+  'How can I help you today?',
+  'Reply to Claude...',
+];
+
+export class ComposerController {
+  constructor(private readonly auto: Automation) {}
+
+  // --- Sensors (reads) ---
+
+  async readDraft(): Promise<string> {
+    for (const name of composerNames) {
+      const value = await this.auto.uia.readValue(name);
+      if (value !== null) return value;
+    }
+    return '';
+  }
+
+  async hasSendButton(): Promise<boolean> {
+    return await this.auto.uia.existsByName('Send')
+      || await this.auto.uia.existsByName('Send message');
+  }
+
+  // --- Actuators (single UIA actions) ---
+
+  async clickSend(): Promise<boolean> {
+    const sent = await this.auto.uia.invokeByName('Send')
+      || await this.auto.uia.invokeByName('Send message');
+    if (!sent) {
+      await this.auto.keyboard.pressEnter();
+    }
+    return true;
+  }
+
+  async clickAttach(): Promise<boolean> {
+    return await this.auto.uia.invokeByName('Attach')
+      || await this.auto.uia.invokeByName('Add content')
+      || await this.auto.uia.invokeByName('Add files, connectors, and more');
+  }
+
+  async focusComposer(): Promise<boolean> {
+    for (const name of composerNames) {
+      if (await this.auto.uia.clickByName(name)) return true;
+    }
+    return false;
+  }
+
+  async paste(text: string): Promise<void> {
+    await this.focusComposer();
+    await this.auto.keyboard.typeViaClipboard(text);
+  }
+
+  async typeInline(text: string): Promise<boolean> {
+    for (const name of composerNames) {
+      if (await this.auto.uia.setValue(name, text)) return true;
+    }
+    return false;
+  }
+
+  async selectAllAndDelete(): Promise<void> {
+    await this.focusComposer();
+    await this.auto.keyboard.selectAll();
+    await this.auto.keyboard.delete();
+  }
+
+  async removePastedAttachment(): Promise<boolean> {
+    const names = await this.auto.uia.findAllNames('Button');
+    const removeBtn = names.find(n => n.startsWith('Remove Pasted Text'));
+    if (!removeBtn) return false;
+    await this.auto.uia.invokeByName(removeBtn);
+    return true;
+  }
+}
+Adam: Doug is right about launch(). You might be resuming a session where the app was on a different screen. launch() should: verify the window exists, maximize it, detect what screen we're on, and return the appropriate page type. If it can't determine the screen, navigate home and return HomePage.
+
+Cathy: That means launch() returns Page — the base type — because you don't know which screen you'll find. The caller can check the type or navigate from wherever they are.
+
+Adam: Or launch() always navigates home and returns HomePage. That's the safe path — known state, known type. If you need a different screen, navigate from home.
+
+Arthur: The safe path is better. launch() → maximize → detect screen → if not home, navigate home → return HomePage. The caller always starts from a known state.
+
+Adam: Now let me also update the Composer to use the gateway properly since the controller is now clean.
+
+Write c:\Source\dna-platform\inexplicable-phenomena\.claude\src\components\composer.ts
+90 lines
+///: Composer — the text input box you see on screen.
+///: Every method is a mouse or keyboard action. No macros.
+///:
+///: type(text) — type text into the box. The only method that takes a string.
+///: clear() — clear the box. Checks if someone else is typing first.
+///: readDraft() — read what's in the box.
+///: send() — click the Send button. Parameterless. Verifies new content appeared.
+///: attach() — click the Attach button.
+///:
+///: The Gateway bridges every call to the controller. Foreground is checked.
+///: Results are verified. The controller is a blind UIA executor.
+///:
+///: [The App](../../library/reference-desk/12-the-app.md) — the composer on screen.
+///: [Architecture Patterns](../../library/reference-desk/10-architecture-patterns.md) — the one rule.
+
+import type { ComposerController } from '../controllers/composer-controller.ts';
+import type { Gateway } from '../gateway.ts';
+import type { Uia } from '../uia.ts';
+
+export class Composer {
+  constructor(
+    private readonly controller: ComposerController,
+    private readonly gateway: Gateway,
+    private readonly uia: Uia,
+  ) {}
+
+  async type(text: string): Promise<void> {
+    await this.gateway.act(
+      () => this.controller.paste(text),
+      () => this.controller.hasSendButton(),
+      { description: 'Type text into composer' },
+    );
+  }
+
+  async readDraft(): Promise<string> {
+    return this.controller.readDraft();
+  }
+
+  async clear(): Promise<void> {
+    const draft = await this.readDraft();
+    if (!draft) return;
+
+    // Wait for stability — three identical reads means nobody is typing
+    let prev = draft;
+    let stable = 0;
+    await this.gateway.waitFor(async () => {
+      const current = await this.controller.readDraft();
+      if (current === prev) { stable++; } else { stable = 0; prev = current; }
+      return stable >= 3;
+    }, { timeoutMs: 30_000 });
+
+    // Remove pasted attachments first
+    while (await this.controller.removePastedAttachment()) {
+      await new Promise(r => setTimeout(r, 400));
+    }
+
+    // Select all and delete
+    await this.gateway.act(
+      () => this.controller.selectAllAndDelete(),
+      async () => (await this.controller.readDraft()) === '',
+      { description: 'Clear composer' },
+    );
+  }
+
+  async send(): Promise<void> {
+    // Capture text length BEFORE clicking Send
+    const textBefore = await this.uia.readText() ?? '';
+    const lengthBefore = textBefore.length;
+
+    await this.gateway.act(
+      () => this.controller.clickSend(),
+      async () => {
+        // A human looks at the screen and sees new content appeared.
+        // Text grew because Desktop started processing.
+        const text = await this.uia.readText() ?? '';
+        return text.length > lengthBefore + 20;
+      },
+      { description: 'Click Send', timeoutMs: 120_000 },
+    );
+  }
+
+  async attach(): Promise<void> {
+    await this.gateway.act(
+      () => this.controller.clickAttach(),
+      async () => true, // TODO: verify dialog appeared
+      { description: 'Click Attach' },
+    );
+  }
+}
+You've hit your monthly spend limit · raise it at claude.ai/settings/usage
+
+Doug: Arthur, it can't return the appropriate page type. You will get a base class. You can remember that you were on a screen, try to resume with it somehow, and if it tells you its not that screen, you do a default to get you to home

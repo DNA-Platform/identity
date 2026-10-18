@@ -36,7 +36,7 @@ export default () => (
         <Title>[[ Type systems and inheritance formalism ]]( claude--Type systems and inheritance formalism--ab0b8d4d )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
-        <Project>***[[ Semantic Reference Theory ]]</Project>
+        <Project>***[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Project>
         <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
         <Origin>ab0b8d4d-8032-48a8-8f20-d2aa686f254b</Origin>
         <Paragraph>

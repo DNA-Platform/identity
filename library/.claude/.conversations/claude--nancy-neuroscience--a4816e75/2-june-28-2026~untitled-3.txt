@@ -1,0 +1,208 @@
+
+
+# Specification — Altered-States DOI Digital-Twin Analysis
+
+The authoritative, self-contained specification. For each part: **what it does**, the **function** that
+does it, the **published method** it reproduces, the **settings** (every one), and the **citation**. The
+code implements this document. Anything unconfirmed is **⚠** and listed under Open Questions. Settings are
+read from the analysis code in source; where a value is a deviation or a convention it is marked.
+
+**The goal.** A *descriptive* study of representation in mouse V1: build a digital twin (a deep encoding
+model) of a baseline state and a DOI (5-HT2A hallucinogen) state, on the neurons tracked across both, then
+use the twins as instruments — **MEIs** (each cell's most-exciting image, the feature it encodes) and
+**metamers** (the image a population's response corresponds to) — and **compare them across pre/post** to
+ask how the represented features change under the drug. The deliverables are: the twins, their MEIs, their
+metamers, and the characterization of each one's quality. (Erin's framing: "how psychedelics reshape the
+visual features represented by individual neurons.")
+
+**Data constraint — amplitude is not comparable across scans, so the analysis is scale-invariant.** The
+recording is volumetric; a z-drift rescales every cell's amplitude across the field, so absolute response
+magnitude is not interpretable between scans. The dataset ships, and we use, a **per-neuron per-scan std
+normalization**. That normalization is necessary and also removes the documented DOI gain change (Michaiel)
+— so we make **no absolute-gain claim**; the twins, MEIs, and metamers are all scale-invariant, which is
+the appropriate regime here. (We do *not* build a gain instrument.)
+
+---
+
+## Rules
+
+1. **Published-exact.** Every method and setting reproduces a published one, cited. We use the published
+   code; we do not reimplement — except the metamer (no public code), a reimplementation from the Methods.
+2. **Matched cells only.** The entire pipeline — training, validation, MEIs, metamers, comparison — runs on
+   the neurons tracked across both scans (reciprocal nearest-neighbour in the functional-stack coordinates,
+   within a distance cutoff). The matching is the lab's method; the count is whatever it produces.
+3. **Method sources.** Twin = **Lurz 2021 / Sensorium-2022**; behaviour/position input = **Franke 2022**
+   (Fig 1e); MEIs = **Walker 2019**; metamers = **Cobos 2022**; noise ceiling = the Sensorium oracle;
+   FEVE = **Schoppe 2016**.
+
+---
+
+## The four twins
+
+A 2×2: **{baseline (pre), DOI (post)} × {behaviour (arm A), no-behaviour (arm B)}**, all on the matched cells.
+
+| Twin     | State    | Arm A input                                                        | Arm B input |
+|----------|----------|--------------------------------------------------------------------|-------------|
+| pre · A  | baseline | image + 3 behaviour channels + 2 position channels + eye-shifter   |             |
+| pre · B  | baseline |                                                                    | image only  |
+| post · A | DOI      | image + 3 behaviour channels + 2 position channels + eye-shifter   |             |
+| post · B | DOI      |                                                                    | image only  |
+
+Behaviour enters **as channels** (Franke 2022's input design), order verified from data: **[0] pupil size,
+[1] pupil derivative, [2] running**; eye position (pupil centre) feeds the shifter. Arm B (no behaviour) is
+*our* control (does conditioning on behaviour change the recovered features?). [Cite: Franke 2022.]
+
+---
+
+## Parts
+
+### 1 · Data
+- **Does:** load the dataloaders for one (state, arm), restricted to the matched cells in matched-pair order.
+- **Function:** `load(state, arm) → (dataloaders, data_key)`
+- **Method:** `sensorium.datasets.static_loaders`. **Settings:** `normalize=True` (per-scan std — the
+  necessary z-drift removal); arm A: `include_behavior=True` (3 channels), `include_px_position=True` (2
+  CoordConv channels, via the restored `AddPositionAsChannels`, a normalized [-1,1] x/y ramp — Liu 2018 /
+  Franke Fig 1e), `include_eye_position=True` (shifter); `neuron_ids` = the matched cells.
+- **Noise ceiling** (for validation): per-neuron leave-one-out oracle correlation over the repeated test
+  images (the Sensorium oracle). **Cite:** sinzlab/sensorium; Franke 2022; Liu 2018.
+
+### 2 · Twin
+- **Does:** build one seed — convolutional core → per-neuron Gaussian readout; arm A adds the eye-position shifter.
+- **Function:** `build_twin(loaders, arm, seed) → model`
+- **Method:** `sensorium.models.stacked_core_full_gauss_readout` (the Sensorium-2022 baseline).
+- **Settings (verbatim baseline):** `layers 4, input_kern 9, hidden_kern 7, hidden_channels 64,
+  depth_separable, pad_input=False, stack=-1, gauss_type='full', init_sigma 0.1, init_mu_range 0.3`;
+  `gamma_input 6.3831, gamma_readout 0.0076`. ⚠ the gammas are the **Sensorium-2022 competition** values
+  (a frozen fit on other data); `gamma_input` sets MEI Gabor-ness, so re-derive/plateau-check on our scan
+  (Open Q 1).
+- **The one deviation — learned-μ:** `grid_mean_predictor=None` (each cell's RF position is a free
+  parameter) instead of the cortical-coordinate predictor. Justification: the cortical predictor exists for
+  cross-animal data-efficiency (Lurz), a rationale absent in a single-session single-mouse scan; and, with
+  behaviour-as-channels, it collapsed the elevation axis of the readout (the y-collapse) — learned-μ removes
+  that shared map. *Verified:* learned-μ holds a 2-D readout map at no validation cost.
+- **Cite:** Lurz 2021 (Gaussian readout); Sensorium-2022 (baseline config).
+
+### 3 · Training
+- **Does:** train a 5-seed ensemble for one (state, arm) to convergence; resumable (a finished seed is loaded).
+- **Function:** `train(state, arm, n_seeds=5) → ensemble`
+- **Method:** `sensorium.training.standard_trainer`; `mei.modules.EnsembleModel`.
+- **Settings:** `loss=PoissonLoss, stop_function=get_correlations` (early-stop on validation correlation,
+  best weights restored), `lr_init 0.009, lr_decay_steps 4, patience 5` (Sensorium baseline); `max_iter 500`
+  is a non-binding ceiling — training stops on convergence. ⚠ the 5-seed ensemble size is a **lab convention**,
+  not paper-specified (Open Q 2).
+- **Cite:** Lurz 2021; Sensorium-2022.
+
+### 4 · Twin quality (characterization)
+- **Does:** characterize whether a trained twin is a trustworthy instrument, by eye and by number.
+- **Function:** `verify_twin(ensemble, loaders, data_key) → report + figure`
+- **Checks (the existing `verify_twin`):** first-layer filters (oriented/Gabor = healthy V1 core),
+  readout retinotopy (a smooth 2-D map, not collapsed), predicted-vs-measured for the best cells, and the
+  per-neuron **FEVE** (`get_fev`) + **correlation-to-average** (`get_signal_correlations`) distributions;
+  plus automated red-flags (dead-filter fraction, non-negative-prediction fraction, retinotopy spread).
+- ⚠ `get_fev` drops unreliable cells *per state*, so any pre/post FEVE must use the full-length FEVE masked
+  to cells reliable in **both** states (Open Q 3). The FEVE bar is relative/sanity, not another rig's number.
+- **Cite:** Schoppe 2016 (FEVE); Sensorium (corr-to-average, the oracle ceiling).
+
+### 5 · MEI
+- **Does:** synthesize, by gradient ascent on the ensemble, the image that most excites one neuron (arm A:
+  at a held-fixed behaviour state).
+- **Function:** `mei(ensemble, neuron) → image`
+- **Method:** `mei.methods.gradient_ascent` with the `nnvision` walker operators (the lab's own ops).
+- **Settings (the walker recipe, in source):** init `RandomNormal`; SGD `lr 1.0`; 1000 steps;
+  precondition on the gradient = `FourierSmoothing(0.04)` → `DivideByMeanOfAbsolute` → `MultiplyBy(1/850 →
+  1/20400)`; postprocess the image = `ClipRange(standardized-image extremes)` → `GaussianBlur(1.5 → 0.01)`.
+  ⚠ confirm this preconditioning schedule verbatim against Walker's Methods (Open Q 4). Arm A: optimize the
+  stimulus channel only; hold behaviour + position channels fixed at a defined state; clamp eye position.
+- **Cite:** Walker 2019.
+
+### 6 · MEI quality (characterization)
+- **Does:** confirm the MEIs are real V1 features, not artefacts.
+- **Checks:** structured and oriented (Gabor/edge-like), spatially **RF-localized** (the excitatory
+  structure sits at the cell's readout-μ, the field otherwise uniform), and resembling masked natural-image
+  features (Erin's prediction). Display rule: `cmap='gray'`, fixed shared range across the panel, no
+  per-image rescale.
+- **Cite:** Walker 2019; Erin's deck (the masked-natural-image prediction).
+
+### 7 · Metamer
+- **Does:** recover the image a matched population is encoding by inverting the ensemble.
+- **Function:** `metamer(ensemble, target_response) → (image, final_mse)`
+- **Method:** a faithful reimplementation from Cobos 2022's Methods (no public code).
+- **Settings (in source):** blank (normalized-mean) init; SGD on the image; loss = MSE between the twin's
+  predicted population response and the **repeat-averaged response over all matched cells** (no reliability
+  threshold); a single **constant σ=2.5 Gaussian gradient blur**; 1000 steps; step size and σ tuned per scan
+  by SSIM / re-evoked response. Display rule: per-image min/max + bicubic upsample 36×64→144×256.
+- ⚠ Cobos's headline reconstructions optimized in a generative (VAE) image prior; this build is the
+  **pixel-space** variant — a documented difference, not a faithful copy of the headline method (Open Q 5).
+- **Cite:** Cobos 2022.
+
+### 8 · Metamer quality (characterization)
+- **Does:** confirm the metamer is a valid metamer — that it **re-evokes the target response**.
+- **Check:** correlation between the twin's response to the synthesized metamer and the target response (the
+  reference-free metamer-validity criterion the code's `tune_step_size` already uses); compared against the
+  per-condition repeat-reliability upper bound.
+- **Cite:** Cobos 2022.
+
+### 9 · Comparison — pre vs post
+- **Does:** compare the represented features across states on the matched cells: each matched cell's **MEI
+  pre vs post** (at the same fixed behaviour state) and the population **metamers pre vs post** (same target
+  images). Scale-invariant metrics only (e.g. MEI×MEI correlation in the RF mask, spatial-frequency/
+  orientation/RF-size change). No amplitude/gain comparison (the data constraint precludes it).
+- **Function:** `compare(pre, post) → report`
+- **Calibrate:** Franke found behavioural state leaves MEI *spatial* structure largely unchanged, so
+  pre-specify what magnitude of spatial change counts as real.
+- **Cite:** Franke 2022 (the null calibration); Michaiel 2019 (the DOI biology, cited — not measured here).
+
+---
+
+## File structure
+
+One file per part; flat, no nested packages.
+
+```
+most-exciting-image/
+  specification.md      this file
+  data.py               Part 1   load (+ position channels, noise ceiling)
+  twin.py               Parts 2–3   build_twin, train
+  validate.py           Part 4   verify_twin (twin quality) + the FEVE/corr metrics
+  mei.py                Parts 5–6   mei + MEI-quality checks
+  metamer.py            Parts 7–8   metamer + metamer-quality check
+  compare.py            Part 9   compare
+  run.py                orchestrates the four twins end to end
+  _checkpoints/         trained ensembles (one per twin)
+  _cache/               noise-ceiling cache
+  results/              figures
+```
+
+---
+
+## References
+
+| # | Work | What it justifies |
+|---|---|---|
+| 1 | **Lurz et al. 2021** / **Sensorium 2022** (sinzlab) | the twin: core, Gaussian readout, trainer, gammas |
+| 2 | **Franke et al. 2022** (Nature) | the arm-A input: behaviour-as-channels + position channels + shifter; the quiet/active percentile states; the spatial-null calibration |
+| 3 | **Walker et al. 2019** | the MEI recipe (gradient ascent + the walker ops) |
+| 4 | **Cobos et al. 2022** (bioRxiv 2022.12.09.519708) | the metamer (encoder inversion); headline uses a generative prior, our build is pixel-space |
+| 5 | **Schoppe et al. 2016** | the FEVE quality metric |
+| 6 | **Liu et al. 2018** | the CoordConv position channels |
+| 7 | **Michaiel et al. 2019** (Cell Reports) | DOI's V1 biology (cited; the gain is not measured here) |
+| — | **sinzlab/sensorium**, **sinzlab/nnvision**, **mei**, **neuralpredictors** | the published code packages |
+
+---
+
+## Open questions (every setting that is not yet source-verified or is a deviation/convention)
+
+1. **⚠ Gammas** — 6.3831 / 0.0076 are Sensorium-competition values fit on other data; re-derive / plateau-
+   check on our baseline matched scan, share one set across all four twins, never cite to Lurz.
+2. **⚠ Ensemble size** — "5 seeds" is a lab convention; confirm against the source.
+3. **⚠ Pre/post FEVE** — wire the full-length, reliable-in-both FEVE before any cross-state FEVE claim.
+4. **⚠ MEI preconditioning** — confirm the walker blur σ / step schedule verbatim against Walker's Methods.
+5. **⚠ Metamer** — the build is pixel-space; Cobos's headline used a generative prior. Decide: add the prior
+   or label the deliverable "pixel-space reconstruction (Cobos baseline)." Confirm optimizer/iteration counts.
+6. **⚠ MEI behaviour state** — the fixed quiet/active percentile (Franke 3rd/97th) and its mechanism (set
+   channels vs rejection-sample a trial); identical fixed state pre and post.
+7. **⚠ learned-μ across all four** — applied to all twins for comparability though the collapse it fixes was
+   arm-A specific; this is intentional, noted.
+
+*This spec describes only what the code builds and what the cited sources specify. It introduces no analysis
+the sources don't (notably: no gain instrument, no behaviour modulator — both were removed as inventions).*

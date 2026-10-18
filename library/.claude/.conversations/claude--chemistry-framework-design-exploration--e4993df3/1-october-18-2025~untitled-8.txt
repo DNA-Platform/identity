@@ -1,0 +1,224 @@
+// app/tests/async/loading-tests.tsx
+'use client'
+import { $Chemical, $lookup, $load } from '@/chemistry';
+import React from 'react';
+
+// Base entry class
+export class $DictionaryEntry extends $Chemical {
+    static meta?: { title?: string; category?: string; tags?: string[] };
+    definition = '';
+    examples: string[] = [];
+    
+    get dictionary() { 
+        return this.parent as $Dictionary;
+    }
+    
+    view() {
+        return (
+            <div>
+                <div>{this.definition}</div>
+                {this.examples.length > 0 && (
+                    <div style={{ marginTop: '5px', fontSize: '12px', color: '#666' }}>
+                        Examples: {this.examples.join(', ')}
+                    </div>
+                )}
+            </div>
+        );
+    }
+}
+
+// Dictionary that accepts entries through constructor
+export class $Dictionary extends $Chemical {
+    entries: $DictionaryEntry[] = [];
+    loadMethod: 'sync' | 'async' | 'none' = 'none';
+    loadTime: number = 0;
+    expanded: Record<string, boolean> = {};
+    
+    constructor(entries?: $DictionaryEntry[]) {
+        super();
+        if (entries) {
+            this.entries = entries;
+        }
+    }
+    
+    $toggleEntry(index: number) {
+        const key = `entry-${index}`;
+        this.expanded[key] = !this.expanded[key];
+    }
+    
+    view() {
+        return (
+            <div style={{ padding: '15px', border: '1px solid #4a5568', borderRadius: '8px' }}>
+                <h3>Dictionary ({this.loadMethod})</h3>
+                <div style={{ fontSize: '12px', color: '#666', marginBottom: '15px' }}>
+                    Loaded {this.entries.length} entries in {this.loadTime}ms
+                </div>
+                <div style={{ display: 'grid', gap: '10px' }}>
+                    {this.entries.map((entry, i) => {
+                        const meta = (entry.constructor as any).meta || {};
+                        const isExpanded = this.expanded[`entry-${i}`];
+                        return (
+                            <div key={i} style={{ 
+                                padding: '10px', 
+                                background: '#f7fafc', 
+                                borderRadius: '6px',
+                                border: '1px solid #e2e8f0'
+                            }}>
+                                <div 
+                                    onClick={() => this.$toggleEntry(i)}
+                                    style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between' }}
+                                >
+                                    <div>
+                                        <strong>{meta.title || 'Unknown'}</strong>
+                                        <span style={{ marginLeft: '10px', fontSize: '11px', color: '#718096' }}>
+                                            {meta.category}
+                                        </span>
+                                        {meta.tags && (
+                                            <span style={{ marginLeft: '10px', fontSize: '10px', color: '#a0aec0' }}>
+                                                [{meta.tags.join(', ')}]
+                                            </span>
+                                        )}
+                                    </div>
+                                    <span>{isExpanded ? '−' : '+'}</span>
+                                </div>
+                                {isExpanded && (
+                                    <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px solid #e2e8f0' }}>
+                                        <entry.Component />
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    }
+}
+
+// Test components
+export class $SyncDictionaryTest extends $Chemical {
+    dictionary?: $Dictionary;
+    error?: string;
+    
+    constructor() {
+        super();
+        try {
+            const start = Date.now();
+            // @ts-ignore - import.meta.glob is Vite specific
+            const modules = import.meta.glob('./entries/*.tsx', { eager: true });
+            const entries = $lookup<$DictionaryEntry>(modules, '[]');
+            const loadTime = Date.now() - start;
+            
+            this.dictionary = new $Dictionary(entries);
+            this.dictionary.loadMethod = 'sync';
+            this.dictionary.loadTime = loadTime;
+        } catch (e) {
+            this.error = (e as Error).message;
+        }
+    }
+    
+    view() {
+        if (this.error) {
+            return <div style={{ color: 'red' }}>Error: {this.error}</div>;
+        }
+        if (!this.dictionary) {
+            return <div>No dictionary loaded</div>;
+        }
+        return <this.dictionary.Component />;
+    }
+}
+
+export class $AsyncDictionaryTest extends $Chemical {
+    dictionary?: $Dictionary;
+    loading = true;
+    error?: string;
+    
+    constructor() {
+        super();
+        this.$loadDictionary();
+    }
+    
+    async $loadDictionary() {
+        try {
+            const start = Date.now();
+            // @ts-ignore - import.meta.glob is Vite specific
+            const loaders = import.meta.glob('./entries/*.tsx');
+            const entries = await $load<$DictionaryEntry>(loaders, '[]');
+            const loadTime = Date.now() - start;
+            
+            this.dictionary = new $Dictionary(entries);
+            this.dictionary.loadMethod = 'async';
+            this.dictionary.loadTime = loadTime;
+            this.loading = false;
+        } catch (e) {
+            this.error = (e as Error).message;
+            this.loading = false;
+        }
+    }
+    
+    async $reload() {
+        this.loading = true;
+        this.dictionary = undefined;
+        await this.$loadDictionary();
+    }
+    
+    view() {
+        if (this.loading) {
+            return <div>⏳ Loading dictionary entries...</div>;
+        }
+        if (this.error) {
+            return <div style={{ color: 'red' }}>Error: {this.error}</div>;
+        }
+        if (!this.dictionary) {
+            return <div>No dictionary loaded</div>;
+        }
+        return (
+            <div>
+                <this.dictionary.Component />
+                <button 
+                    onClick={this.$reload} 
+                    style={{ marginTop: '10px', padding: '5px 10px' }}
+                >
+                    Reload Async
+                </button>
+            </div>
+        );
+    }
+}
+
+const SyncDictionaryTest = new $SyncDictionaryTest().Component;
+const AsyncDictionaryTest = new $AsyncDictionaryTest().Component;
+
+export default function LoadingTests() {
+    return (
+        <div style={{ padding: '40px' }}>
+            <h1>Module Loading Tests</h1>
+            <p style={{ color: '#666', marginBottom: '30px' }}>
+                Testing $lookup (sync) and $load (async) with actual dictionary entries
+            </p>
+            
+            <div style={{ display: 'grid', gap: '30px' }}>
+                <SyncDictionaryTest />
+                <AsyncDictionaryTest />
+            </div>
+            
+            <div style={{ 
+                marginTop: '40px', 
+                padding: '20px', 
+                background: '#f0f8ff', 
+                borderRadius: '8px',
+                border: '1px solid #2196f3'
+            }}>
+                <h3>📝 How it works</h3>
+                <ul style={{ margin: '10px 0', paddingLeft: '20px' }}>
+                    <li>Dictionary entries are loaded from ./entries/*.tsx files</li>
+                    <li>Each entry extends $DictionaryEntry base class</li>
+                    <li>$lookup loads all modules synchronously (eager)</li>
+                    <li>$load handles async loading (lazy)</li>
+                    <li>Entries are passed to Dictionary constructor</li>
+                    <li>Parent relationship allows entries to access their dictionary</li>
+                </ul>
+            </div>
+        </div>
+    );
+}

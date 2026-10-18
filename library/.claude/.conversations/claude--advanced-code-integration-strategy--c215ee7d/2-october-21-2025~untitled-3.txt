@@ -1,0 +1,90 @@
+bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:898 bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:898 bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:898 bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:898 bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:898 bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:898 bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:898 bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:898 bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:898 bondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 schedule: active update $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }

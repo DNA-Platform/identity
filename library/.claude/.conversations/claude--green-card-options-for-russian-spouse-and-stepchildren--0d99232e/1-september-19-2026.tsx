@@ -1,0 +1,1143 @@
+import { Bold, Chapter, Date, Emphasis, Heading, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
+import { Dated, Message, Quoted, Speaker } from '../../../.manual/.book';
+import { Action, Origin } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Dated>
+            <Date>[19 September 2026](2026-09-19)</Date>
+        </Dated>
+        <Title>[[ 19 September 2026 ]]</Title>
+        <Message
+            at="2026-09-19T13:25:25.298726Z"
+        >
+            <Origin>01a0b9d7-f4cb-792f-85da-5d75c2dacc65</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                I am a US citizen with a Russian wife and two step children. As of Jan 2026, US blocked green cards for
+                Russian citizens, even if they were wives us citizens. My understanding is that that has been removed
+                recently. My marriage happened in the country of Georgia, so the United States still needs to be alerted
+                about it.
+            </Paragraph>
+            <Paragraph>
+                What rights does my wife and do my stepchildren have in terms of getting their green card, or whatever it is
+                that they need to immigrate. What do we have to do and is there any way to predict what time scale it would
+                happen in?
+            </Paragraph>
+            <Paragraph>Verify all the facts, please by looking into Primary source</Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T13:28:03.036937Z"
+        >
+            <Origin>01a0b9d7-f4cb-703e-bfa0-539d02a7294b</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Paragraph>
+                I'll verify this against primary sources — the policy situation for Russian nationals has changed more than
+                once.
+            </Paragraph>
+            <Action>Searched the web for “Russia immigrant visa green card restriction proclamation 2026”</Action>
+            <Action>
+                Fetched
+                https://immigration-analytics.com/2026/09/14/immigrant-visa-interviews-in-2026-untangling-the-bans-pauses-and-what-comes-next/
+            </Action>
+            <Action>
+                Searched the web for “travel.state.gov immigrant visa interview scheduling resumed September 2026 public
+                charge training pause”
+            </Action>
+            <Action>
+                Searched the web for “US Embassy Tbilisi Georgia immigrant visa processing IR-1 CR-1 residents of Georgia”
+            </Action>
+            <Action>Fetched https://www.uscis.gov/policy-manual/volume-6-part-b-chapter-3</Action>
+            <Action>
+                Searched the web for “USCIS policy manual stepchild definition INA 101(b)(1)(B) marriage before 18th
+                birthday immediate relative”
+            </Action>
+            <Action>
+                Searched the web for “USCIS I-130 processing time immediate relative spouse of US citizen 2026 months”
+            </Action>
+            <Action>
+                Searched the web for “I-864 affidavit of support sponsor domicile requirement US citizen living abroad
+                establish domicile travel.state.gov”
+            </Action>
+            <Action>
+                Searched the web for “immigrant visa interviews resume State Department week of September 15 2026”
+            </Action>
+            <Action>
+                Searched the web for “immigrant visa child consular processing other biological parent consent custody
+                documents required embassy”
+            </Action>
+            <Action>
+                Searched the web for “"CLINIC v. Rubio" State Department guidance embassies resume 75 countries immigrant
+                visa September 2026 cable”
+            </Action>
+            <Heading>The Russia block: what it actually was, and where it stands</Heading>
+            <Paragraph>
+                You're right that it's been lifted, but it helps to know there were three separate things stacked on top of
+                each other, because only one of them applied to Russians.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    1. The 75-country immigrant visa pause — this was the one that hit you, and it's dead.
+                </Word> On January 14, 2026 the State Department issued a cable (26 STATE 3740) directing consulates to
+                refuse immigrant visas under INA §221(g) for nationals of 75 countries, including Russia, on "public charge"
+                grounds, effective January 21. Interviews could still happen; visas just couldn't be issued. On August 21,
+                2026, Judge Jeannette A. Vargas (S.D.N.Y.) vacated it in <Word>
+                    <Emphasis />
+                    Catholic Legal Immigration Network, Inc. v. Rubio
+                </Word>, No. 26-CV-00858, holding the Secretary exceeded his statutory authority — the INA bars
+                nationality-based discrimination in immigrant visa issuance and requires individualized adjudication. State
+                has since updated its own public guidance confirming the January pause is no longer in effect. The
+                government filed a notice of appeal to the Second Circuit on September 10, so this isn't permanently
+                settled, but the vacatur stands unless stayed.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    2. The 39-country travel ban (Proclamations 10949 and 10998).
+                </Word> Russia is <Word>
+                    <Bold />
+                    not
+                </Word> on either the full or partial suspension list. This one is still in force and is legally separate,
+                but it doesn't touch you.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    3. A worldwide interview-scheduling freeze.
+                </Word> On August 25, 2026 State paused immigrant visa interview scheduling at every post worldwide for
+                consular officer training on new public-charge standards. There's still no formal government-wide restart
+                announcement, only post-by-post resumption. As of mid-September, embassies have been instructed to resume
+                processing for 75-country nationals and a federal judge in N.D. Cal. ordered State to file thrice-weekly
+                status reports on resumption through September 30. This is now your main practical obstacle, not a
+                Russia-specific one.
+            </Paragraph>
+            <Heading>What Ana and the children are entitled to</Heading>
+            <Paragraph>
+                Ana is an <Word>
+                    <Bold />
+                    immediate relative
+                </Word> as the spouse of a US citizen. No annual cap, no visa bulletin, no queue for a number. IR-1 if
+                you've been married 2+ years when she's admitted; CR-1 (2-year conditional card, then Form I-751) if less.
+            </Paragraph>
+            <Paragraph>
+                The children qualify as your <Word>
+                    <Bold />
+                    stepchildren
+                </Word> under INA §101(b)(1)(B) — and this is the one hard gate — only if you married their mother before
+                each child's 18th birthday. The rule is strict, there's no waiver, and a marriage one day after the 18th
+                birthday fails. If they were under 18 when you married in Georgia, each is an immediate relative (IR-2) so
+                long as they're unmarried and under 21. <Word>
+                    <Bold />
+                    You do not need to adopt them.
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                One thing worth knowing now: a stepchild is a "child" for green card purposes but <Word>
+                    <Emphasis />
+                    not
+                </Word> for citizenship purposes — a stepchild doesn't acquire citizenship through the US citizen stepparent
+                unless adopted. So the kids get green cards through you, but their route to citizenship runs through Ana
+                naturalizing (3 years as an LPR married to you), after which they'd acquire automatically under INA §320 if
+                still under 18 and living with her.
+            </Paragraph>
+            <Heading>The mechanics</Heading>
+            <Paragraph>
+                There's no separate "notifying the US" of your marriage. No registration requirement exists. The I-130
+                <Word>
+                    <Emphasis />
+                    is
+                </Word> the notification — you submit the Georgian marriage certificate with it.
+            </Paragraph>
+            <Paragraph>
+                <List ordered />
+                <Line>
+                    <Word>
+                        <Bold />
+                        File three separate Form I-130s
+                    </Word> — one for Ana, one for each child. Stepchildren don't ride along as derivatives on a US
+                    citizen's spousal petition. $625 online, $675 paper.
+                </Line>
+                <Line>
+                    <Word>
+                        <Bold />
+                        NVC stage
+                    </Word> — DS-261, fees ($120 affidavit of support review, $325 per immigrant visa applicant), DS-260 for
+                    each applicant, civil documents, I-864.
+                </Line>
+                <Line>
+                    <Word>
+                        <Bold />
+                        Interview at Embassy Tbilisi.
+                    </Word> Tbilisi processes immigrant visas for residents of Georgia, and post assignment follows
+                    residence, not nationality — so you're not sent to Warsaw or Astana the way Russians resident in Russia
+                    are for nonimmigrant visas. This is a meaningful advantage.
+                </Line>
+                <Line>Medical exam with a Tbilisi panel physician, then visa issuance, then admission as LPRs.</Line>
+            </Paragraph>
+            <Heading>Two things likely to bite you</Heading>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Domicile.
+                </Word> This is the one I'd flag hardest. An I-864 sponsor must have a domicile in the United States. Unlike
+                an income shortfall, a joint sponsor cannot cure it. If you're living abroad you must show either that the
+                absence is temporary and you've maintained US domicile, or that you intend in good faith to establish
+                domicile no later than the date they're admitted, with evidence supplied to NVC or brought to the interview.
+                A US employer relationship, US tax filings, property, bank accounts, a lease, and a written declaration of
+                intent all go to this. Worth assembling before you file, not after.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    The children's other parent.
+                </Word> US law doesn't require his consent for the I-130 or the visa. But consular officers do look at
+                custody documentation for a minor immigrating with one parent, and the Russian-side exit question is
+                entirely separate from the American one. That's a known constraint in your situation rather than something
+                new here.
+            </Paragraph>
+            <Heading>Timeline</Heading>
+            <Paragraph>Honest answer: wide and currently unpredictable.</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>
+                    <Word>
+                        <Bold />
+                        I-130 adjudication
+                    </Word>: published estimates diverge badly right now. Around 10–15 months at most service centers per
+                    one reading of the USCIS tool; trackers using consular-processing IR data put it at 17–18 months and
+                    rising, citing a USCIS processing stall since mid-March 2026; the tool's outer range for spouses of US
+                    citizens runs to 80 months. Check the USCIS Processing Times tool yourself against the specific service
+                    center once you have a receipt number.
+                </Line>
+                <Line>
+                    <Word>
+                        <Bold />
+                        NVC
+                    </Word>: typically 2–6 months if documents are clean.
+                </Line>
+                <Line>
+                    <Word>
+                        <Bold />
+                        Interview scheduling at Tbilisi
+                    </Word>: currently the wild card, because of the worldwide freeze.
+                </Line>
+            </Paragraph>
+            <Paragraph>
+                Planning range: roughly <Word>
+                    <Bold />
+                    18 months to 3 years
+                </Word> from filing to admission, with the front half being the most predictable part. Filing sooner is
+                strictly better — the I-130 clock runs regardless of what the consular backlog does.
+            </Paragraph>
+            <Paragraph>
+                I'm not a lawyer and this is a fast-moving area where three separate legal tracks are in active litigation.
+                Given the domicile question and the custody documentation, this is worth an hour with an immigration
+                attorney who does consular processing before you file.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T13:38:59.822619Z"
+        >
+            <Origin>01a0b9e4-6344-7b95-8f92-52a769422c5f</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                Good information now let’s talk about the domicile because there’s nothing preventing me from doing that
+                except that I don’t know when we’re gonna be there if it’s 18 months to three years, so how do I make
+                arrangements? I would move with them when we can. We do have the intent to move there because this thing
+                isn’t useful unless we do right?
+            </Paragraph>
+            <Paragraph>
+                And then we’re considering negotiating with the father to get his consent so what would the consent look
+                like and where does it get injected into this? Is it at the time when we submit the application? Ideally, we
+                can do it in the beginning because if we can have something signed from the start, we can know that we’re
+                going to get permission because you said that they might care whereas if it has to happen at a specific time
+                he’s difficult so he might agree in court, but then not do it so that’s an important consideration we want
+                there to be something that we can get from him independently.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T13:41:45.529387Z"
+        >
+            <Origin>01a0b9e4-6344-7684-bc37-38319d78de97</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>
+                Searched the web for “9 FAM 302.8-2(B)(5) domicile sponsor intent to establish domicile evidence I-864
+                employed abroad US institution”
+            </Action>
+            <Action>Fetched https://fam.state.gov/fam/09FAM/09FAM060114.html</Action>
+            <Action>
+                Searched the web for “8 CFR 316.20 list of designated American institutions of research recognized”
+            </Action>
+            <Action>Fetched https://www.law.cornell.edu/cfr/text/8/316.20</Action>
+            <Action>
+                Searched the web for “Hague Convention 1980 child abduction Russia accession United States accepted partner
+                country status”
+            </Action>
+            <Action>
+                Searched the web for “travel.state.gov Georgia country information international parental child abduction
+                treaty partner Hague”
+            </Action>
+            <Action>
+                Searched the web for “нотариальное согласие на выезд ребенка на ПМЖ отзыв согласия заявление о несогласии
+                114-ФЗ 2026”
+            </Action>
+            <Heading>Domicile — the timing problem is already solved</Heading>
+            <Paragraph>
+                You don't need to know the date. The Foreign Affairs Manual anticipates exactly your situation. From 9 FAM
+                601.14-7(a)(3), a petitioner living abroad qualifies as a sponsor if he satisfies the officer that he has
+                taken steps to establish a domicile, and that he has either already taken up physical residence in the US
+                <Word>
+                    <Bold />
+                    or will do so concurrently with the applicant
+                </Word>. The FAM says it explicitly: the sponsor does not have to precede the applicant, but if he doesn't,
+                he must at least arrive concurrently. And: there is no time frame for establishing residence — the officer
+                just has to be satisfied it will happen no later than the applicant's immigration.
+            </Paragraph>
+            <Paragraph>
+                So the arrangement you're making isn't "move by date X." It's "accumulate a continuous, dated evidentiary
+                record of intent, and be on the plane with them." That's a much easier thing to do over an
+                18-month-to-3-year horizon.
+            </Paragraph>
+            <Paragraph>The FAM lists the officer's own evidence menu, which is effectively your checklist:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>Opening a US bank account</Line>
+                <Line>Transferring funds to the US</Line>
+                <Line>Making investments in the US</Line>
+                <Line>Seeking employment in the US</Line>
+                <Line>Registering children in US schools</Line>
+                <Line>Applying for a Social Security number</Line>
+                <Line>Voting in local, state, or federal elections</Line>
+            </Paragraph>
+            <Paragraph>
+                The FAM also requires you to establish an address — a house, an apartment, or documented arrangements to
+                stay with family or friends. That last one matters: a written arrangement with a relative is sufficient. You
+                don't need a lease running for three years.
+            </Paragraph>
+            <Paragraph>Two things worth knowing:</Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    The shortcut probably doesn't apply to you.
+                </Word> Under 9 FAM 601.14-7(b), a US citizen abroad is <Word>
+                    <Emphasis />
+                    deemed
+                </Word> domiciled if his employment meets INA §319(b)(1) — US government, a US institution of research
+                recognized by DHS, a US firm engaged in foreign trade and commerce, a public international organization, or
+                a religious denomination. The research-institution list is at 8 CFR 316.20, and it's a fossil: last
+                substantively set at 32 FR 9634 (1967), listing things like the Atomic Bomb Casualty Commission and Radio
+                Liberty. Baylor isn't on it, and neither is any modern academic medical center. USCIS has acknowledged the
+                list is outdated. Don't spend time on this route; it's faster to build the intent record.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Two other numbers.
+                </Word> Your household size for the I-864 is four (you, Ana, both children), so the 125% poverty-guideline
+                threshold is set against that. And the FAM is explicit at 601.14-3(b)(1)(d)(i) that an I-864 <Word>
+                    <Bold />
+                    is
+                </Word> required for an IR-2 based on a stepparent relationship — the children don't get the Child
+                Citizenship Act exemption that biological children of a USC do. That's the same stepchild/citizenship gap I
+                flagged before, showing up again.
+            </Paragraph>
+            <Paragraph>
+                Nothing about domicile goes stale. What goes stale is the medical exam (must be under six months old at
+                entry) and police certificates. Those you time to the interview; domicile you build starting now.
+            </Paragraph>
+            <Heading>The father's consent — there is no slot for it</Heading>
+            <Paragraph>This is the part where your model needs adjusting, and I think the adjustment helps you.</Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    On the US side, it never gets injected.
+                </Word> No US form asks for it. The I-130 doesn't require it, the DS-260 has no field for it, and no statute
+                or regulation conditions an IR-2 on the non-petitioning biological parent's consent. It goes into the CEAC
+                document upload and the interview packet as supporting custody documentation, where it carries discretionary
+                weight with a consular officer looking at a minor emigrating with one parent. Useful, not required. So
+                there's no deadline you're racing and no moment where its absence stops the case.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Where it actually has legal force is elsewhere, and this is where it's worth real money to you:
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Emphasis />
+                    Russian exit control.
+                </Word> Under Art. 20 of 114-FZ, a minor exits Russia with one legal representative unless the other has
+                filed a заявление о несогласии. Under MVD Order No. 651 (31 Aug 2021, as amended 2 Apr 2024), the parent who
+                filed it can withdraw it out of court — and by the same mechanism, nothing stops him filing a fresh one
+                afterward. That's precisely the reneging risk you named, and it's structural, not a matter of his character.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Emphasis />
+                    The Hague channel — and here the geography matters.
+                </Word> Per travel.state.gov, Russia acceded to the 1980 Abduction Convention in 2011 but the US never
+                accepted the accession, so the Convention is not in force between the US and Russia. Georgia, however,
+                <Word>
+                    <Bold />
+                    is
+                </Word> a US treaty partner. Since the children's habitual residence is Georgia, the live channel if he
+                later objected would be a Hague return petition filed in US federal court on the Georgia–US relationship. A
+                clear, documented written consent to relocation is the Article 13(a) consent-and-acquiescence defense. That
+                is the single place where a signed piece of paper does the most work for you.
+            </Paragraph>
+            <Heading>What the instrument should be</Heading>
+            <Paragraph>Weakest to strongest:</Paragraph>
+            <Paragraph>
+                <List ordered />
+                <Line>
+                    <Word>
+                        <Bold />
+                        Нотариальное согласие на выезд.
+                    </Word> Weakest. It's built for trips — it has country fields and date fields, and it says nothing about
+                    relocation. Better than nothing, but don't mistake it for the thing.
+                </Line>
+                <Line>
+                    <Word>
+                        <Bold />
+                        Notarial agreement on the children's place of residence
+                    </Word> (соглашение об определении места жительства детей), with an express, open-ended consent to
+                    permanent relocation to the United States for residence and education. Both children named in full, no
+                    end date, apostilled — Russia and the US are both Apostille Convention parties — with a certified
+                    English translation.
+                </Line>
+                <Line>
+                    <Word>
+                        <Bold />
+                        A court act.
+                    </Word> A мировое соглашение approved by the court, or a determination of место жительства carrying
+                    relocation language, with the withdrawal of the exit objection recorded in it.
+                </Line>
+            </Paragraph>
+            <Paragraph>
+                Your instinct is right but points the opposite way from what you said. You're worried a court agreement is
+                weaker because he might agree in court and then not perform. That's only true if the order requires a <Word>
+                    <Emphasis />
+                    future act by him
+                </Word> — signing something later, appearing somewhere later. The fix isn't to bypass the court for a
+                private notarial document he could equally walk back. It's to make the court order <Word>
+                    <Bold />
+                    self-executing
+                </Word>: the order itself is the permission, nothing further required from him. A judicial act isn't a
+                unilateral declaration he can revoke; a notarial consent much more nearly is.
+            </Paragraph>
+            <Paragraph>
+                So yes — get it as early as you can. Nothing in the US process consumes it, nothing expires it, and it only
+                gets harder to obtain as positions harden. But structure it so the paper you walk away with needs no further
+                cooperation from him to function.
+            </Paragraph>
+            <Paragraph>
+                What he'll want in exchange is access terms. Whatever you agree there travels with you, since a US court
+                will generally look at the foreign order if this is ever relitigated. Worth pricing that in before you open
+                the negotiation rather than after.
+            </Paragraph>
+            <Paragraph>
+                The exact wording is what does all the work here, and it has to satisfy three different legal systems at
+                once. This is the document to have both the Russian lawyers and a US immigration attorney read before anyone
+                signs.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T13:49:17.275176Z"
+        >
+            <Origin>01a0b9ed-cf77-7743-a568-e93dc845cf50</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                OK, well I already work in the US and have investments in the US and otherwise completely operational in the
+                US except that I don’t live there and I think it would be pretty easy to explain to them that I plan to move
+                back there so that’s not a problem I assume. I have a job at a US university so could probably even go live
+                there or at least put it on the list of options. I provide services for Baylor College of medicine as an
+                independent contractor. And have illness based US Social Security benefits, so I’m strongly tied to the
+                United States
+            </Paragraph>
+            <Paragraph>
+                The children are outside of the country, but this is an important consideration because they also are travel
+                ban prevented from leaving it.. if someone looked into the custody document, you would see that the mother
+                has custody rights where the children live wherever she lives in an unqualified way, which is the absolute
+                most permissive form. But you’d also say that the father has placed a travel ban. I’m not sure that actually
+                comes up anywhere in the US search but it’s worth knowing and getting the permission and some document would
+                also involve having the band lifted. How does this factor into the plans?
+            </Paragraph>
+            <Paragraph>
+                I have considerable personal finances so I would imagine that that plays into the rules because does someone
+                really need a job if they can support themselves without one? When can check my investments?
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T13:51:23.564799Z"
+        >
+            <Origin>01a0b9ed-cf77-74a5-89ee-2184707d192b</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>Searched the web for “I-864P 2026 poverty guidelines 125% household of 4 affidavit of support”</Action>
+            <Action>Fetched https://www.uscis.gov/i-864p</Action>
+            <Action>
+                Searched the web for “I-864 sponsor income Social Security disability SSDI counts as income SSI means-tested
+                cannot count”
+            </Action>
+            <Heading>Domicile — you're in good shape, with two refinements</Heading>
+            <Paragraph>
+                Everything you listed maps onto the FAM's own evidence list, and a US university job is the strongest single
+                item on it ("seeking employment in the United States" — actually having it is better). Two things to
+                tighten:
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Independent contractor status doesn't get you the shortcut, but you don't need it.
+                </Word> INA §319(b)(1) requires being "in the employ of" a qualifying entity, and contractor work for a
+                medical school isn't that even if BCM were on the 8 CFR 316.20 list. You're on the intent-to-establish
+                route, which you'll clear comfortably.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Add the address.
+                </Word> The FAM is specific that the sponsor "must establish an address (a house, an apartment, or
+                arrangements for accommodations with family or friend)." Investments and income aren't a substitute for this
+                one item. Documented arrangements with a relative satisfy it. Pair it with a signed declaration of intent to
+                return, and you've covered the only part of the FAM checklist your list doesn't already hit.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    One thing to verify independently:
+                </Word> SSDI is payable to US citizens living abroad; SSI generally stops after 30 consecutive days outside
+                the country. Which one you're receiving matters for the next section too, so it's worth pinning down
+                exactly.
+            </Paragraph>
+            <Heading>Money — income first, assets only if income falls short</Heading>
+            <Paragraph>Your instinct is right, but the order matters and it's better than you're assuming.</Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Investment returns are income, not just assets.
+                </Word> Per 9 FAM 601.14-6(a)(2), income means total unadjusted income as shown on the tax return before
+                deductions, and explicitly includes rent, interest, and dividends — not just salary. The current I-864
+                instructions (08/24/26 edition) say the same. So dividends and interest go on the income line directly. You
+                may never reach the assets question.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    SSDI counts; SSI doesn't.
+                </Word> SSDI is not a means-tested benefit and may be included as income, documented with the award letter.
+                SSI is means-tested — USCIS's own I-864P page lists it alongside SNAP, Medicaid, and TANF — and cannot be
+                counted toward the income requirement. Separately, and in your favor: 9 FAM 601.14-13(e)(3)(f) says a
+                sponsor is not required to disclose past receipt of means-tested benefits and officers may not hold a
+                sponsor's past receipt against the affidavit. The restriction is only on <Word>
+                    <Emphasis />
+                    counting it as income
+                </Word>.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Your threshold is a household of four.
+                </Word> Reported 2026 figures for the 48 contiguous states at 125% cluster at $41,250 for four, though I saw
+                sources disagreeing — confirm on uscis.gov/i-864p before you calculate, since some pages are still showing
+                2025 numbers.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    If income does fall short, assets substitute at 3x, not 5x.
+                </Word> This is a real advantage for you. The normal rule is five times the shortfall. But per 9 FAM
+                601.14-6(d)(3), sponsors of an immediate-relative spouse, and of a child of a USC who will <Word>
+                    <Emphasis />
+                    not
+                </Word> acquire citizenship under §320, only need three times. Your stepchildren fall in that second
+                category precisely because the stepchild/citizenship gap excludes them. The same rule that costs you an
+                I-864 for the kids also cuts your asset multiplier. Assets must be in the US, readily convertible to cash
+                within one year, and documented as to location, ownership, value, and any liens.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    When do they look?
+                </Word> The I-864 goes in at the NVC stage, after I-130 approval — not at filing. The poverty guideline that
+                governs is the one in effect when you submit it (601.14-15(a)(6)), so your threshold locks at that date. The
+                sufficiency call is the consular officer's. And here's the useful part: 601.14-6(b)(3)(a) says if the tax
+                return shows income at or above the threshold, the officer <Word>
+                    <Bold />
+                    must
+                </Word> find the I-864 sufficient without requesting further evidence, and may request more "only if there
+                is a specific reason (other than the passage of time)" to doubt it. Clear the income line and the assets
+                never get examined.
+            </Paragraph>
+            <Paragraph>
+                Two cautions: verification can run to employers, financial institutions, the IRS, and SSA (601.14-13(j)),
+                and USCIS now treats signing the I-864 as authorization to pull consumer reports. And contractor income is
+                <Word>
+                    <Emphasis />
+                    net
+                </Word> after Schedule C deductions — if you optimize deductions aggressively, the number that reaches the
+                income line may be well below what you actually earn. Worth looking at your last return with that
+                specifically in mind.
+            </Paragraph>
+            <Heading>The travel ban — it doesn't surface, but it does something worse</Heading>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Does it show up in the US process?
+                </Word> No. There's no mechanism. The DS-260 doesn't ask, the I-130 doesn't ask, and the security checks
+                don't query Russian border-control records. A заявление о несогласии under 114-FZ is an administrative entry
+                in a Russian system with no international propagation — no Interpol notice, nothing in Georgian or US
+                databases.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    And as a physical obstacle it is currently inert.
+                </Word> The Art. 21 objection operates at the Russian border. It stops exit <Word>
+                    <Emphasis />
+                    from Russia
+                </Word>. It does not stop a child sitting in Tbilisi from boarding a flight. The children are already out.
+                The one dependency worth tracking: if a child's загранпаспорт expires during an 18-to-36-month process, it
+                has to be renewed — at the Russian embassy in Tbilisi, on one legal representative's application, not by
+                returning to Russia. Check both expiry dates now, because the passport must be valid for at least six months
+                past the interview.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Where it actually bites is evidentiary, and this is the part I'd think hardest about.
+                </Word> The ban is the cleanest possible documentary proof that the father objects to the children leaving.
+                It is the exact opposite of the Article 13(a) consent-and-acquiescence defense in a Hague proceeding — and
+                the live Hague channel here is Georgia→US, since Georgia is a US treaty partner and the children's habitual
+                residence is Georgia. Russia's non-partner status doesn't help you on that route.
+            </Paragraph>
+            <Paragraph>
+                There's also <Word>
+                    <Emphasis />
+                    Abbott v. Abbott
+                </Word>, 560 U.S. 1 (2010), where the Supreme Court held that a ne exeat right — a right to consent before a
+                child is taken abroad — is a "right of custody" conferring a return remedy. A filed exit objection looks a
+                lot like that. The counter-argument is Convention Art. 3: rights of custody are determined under the law of
+                the child's <Word>
+                    <Emphasis />
+                    habitual residence
+                </Word>, which is Georgia, not Russia. Whether a Russian exit objection translates into a Georgian-law
+                custody right is a genuinely open question and exactly the thing to put to the Georgian lawyers and a US
+                Hague practitioner.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Which reframes the negotiation.
+                </Word> Withdrawing the ban isn't primarily about unblocking the move — that's already unblocked. It's about
+                converting his recorded position from "objects" to "consents," and removing the single best exhibit he'd
+                have. That may make it cheaper to buy than you'd expect, because what you're asking him to give up doesn't
+                currently stop anything physical. But it also means the lever he still holds is the Hague route, not the ban
+                — so the consent document has to be drafted to close <Word>
+                    <Emphasis />
+                    that
+                </Word> door, which is the Georgian-law and relocation-consent language, not just a withdrawal filed with
+                the MVD.
+            </Paragraph>
+            <Paragraph>
+                Your custody documentation — unqualified right to determine the children's residence — is strong for the
+                consular officer, who will likely ask for custody papers for a minor emigrating with one parent. It's
+                helpful but not dispositive on the Hague question, which turns on the father's residual rights rather than
+                the mother's.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T13:59:54.595494Z"
+        >
+            <Origin>01a0b9f7-874a-77a3-96db-e7d56fa5d65a</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                I don’t intend to bring a family of four to any relative and I don’t have a relative to support that group
+                of people we would get an apartment or house when we get in. And yes, I can be fully employed by the place I
+                work, although getting 4K per month in Social Security from the US government has to be something like
+                employment in addition to the remaining amount that I’m allowed to get from the university I work with. SSDI
+                is income, Ana and I clear the min and can makeup gaps.
+            </Paragraph>
+            <Paragraph>
+                Yes, this is why we would ask the father, and he most likely owes quite a bit of money marriage dissolution
+                because he didn’t split funds and so there’s a court case that hasn’t happened and we’re willing to make it
+                not happen if he’s going to leave the van off until the children are in the US and to provide consent. And
+                if that ends at any time, we’ll go after him for money, some sort of negotiation process that looks like
+                that. It sounds like we might not need it. Russia has no Hague right and he doesn’t use lawyers because he
+                can’t afford them. The Russian courts have also favored the mother entirely in this.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T14:01:54.134196Z"
+        >
+            <Origin>01a0b9f7-874a-7f36-9282-d11de10911f8</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>
+                Searched the web for “раздел имущества супругов срок исковой давности три года статья 38 СК РФ Пленум ВС 15
+                пункт 19”
+            </Action>
+            <Action>
+                Searched the web for “ICARA 22 USC 9003 petition filed directly state or federal court Hague return pro bono
+                attorney network left-behind parent United States”
+            </Action>
+            <Paragraph>
+                Three of the things you just said are load-bearing, and two of them won't hold. Let me take the money
+                quickly and then spend the space where it matters.
+            </Paragraph>
+            <Heading>Money — you're done, and don't overpay for it</Heading>
+            <Paragraph>
+                SSDI at ~$4k/month is roughly $48k/year, against a household-of-four threshold around $41,250. That clears
+                it alone, before any university income. Which means you should <Word>
+                    <Bold />
+                    not
+                </Word> convert to fuller employment to strengthen the domicile case — SSDI has substantial-gainful-activity
+                limits, and you'd be trading a benefit you're already using to win an argument you've already won. Domicile
+                is satisfied by <Word>
+                    <Emphasis />
+                    steps and intent
+                </Word>, not by employment volume. You have enough steps.
+            </Paragraph>
+            <Paragraph>
+                On Ana's income: it's treated differently from ordinary household income. Under 9 FAM 601.14-8(c)(1), a
+                sponsored immigrant's income counts toward the sponsor's household only if she signs Form I-864A — which she
+                can, because she has accompanying family members (the children) and is your spouse. But the officer may
+                require evidence the income <Word>
+                    <Emphasis />
+                    continues after immigration
+                </Word>. Income that travels — remote, freelance, contract — documents easily. Income tied to a Georgian
+                payer does not, because it stops at the airport. Worth sorting which category hers falls in before you count
+                on it as gap-fill.
+            </Paragraph>
+            <Paragraph>
+                Housing: no relative needed. The FAM says "a house, an apartment, or arrangements for accommodations with
+                family or friend" — a signed lease timed to the move satisfies it cleanly. Before that, documented search
+                plus earmarked funds.
+            </Paragraph>
+            <Heading>The consent you described is the wrong shape</Heading>
+            <Paragraph>
+                This is the important one. You said: leave the ban off <Word>
+                    <Emphasis />
+                    until the children are in the US
+                </Word>, and provide consent.
+            </Paragraph>
+            <Paragraph>
+                A consent that expires on arrival is not consent to relocation. It's consent to a trip. For Article 13(a)
+                purposes it's arguably worse than nothing, because it documents on the record that his consent had a
+                terminus and then ended — which is precisely the "wrongful retention" theory rather than a defense against
+                it.
+            </Paragraph>
+            <Paragraph>
+                What you need is unconditional consent to <Word>
+                    <Bold />
+                    permanent relocation and residence with the mother
+                </Word>, with no end date and no trip framing. If he'll agree to the temporary version he can usually be
+                moved to the permanent version, because from his side the practical difference feels small. It isn't.
+            </Paragraph>
+            <Heading>The enforcement structure is also the wrong shape</Heading>
+            <Paragraph>
+                "He behaves, we don't sue; he stops, we sue" is a standing hostage arrangement. It never terminates, it
+                requires his continued non-action forever, and it leaves him a permanent live reason to reopen the question
+                — including after you're all in Texas, when reopening costs him nothing and costs you everything.
+            </Paragraph>
+            <Paragraph>
+                The alternative is one court-approved мировое соглашение that does all of it at once: resolves the property
+                claim on stated terms, withdraws the exit objection, records unconditional consent to relocation, and sets
+                access. Judicially approved, self-executing, nothing further required from him. That's the difference
+                between a promise you have to keep enforcing and a fact.
+            </Paragraph>
+            <Paragraph>
+                Two cautions on drafting it. First, courts in most systems — Russian ones included — will not approve an
+                agreement that on its face trades child-related rights for money, because the child's interests aren't the
+                parents' to barter. Structure it as two settlements concluded in parallel, not as consideration flowing one
+                for the other. Second, for the same reason, consent that looks bought or coerced is a weaker Article 13(a)
+                defense in a US court later. Keep the framing at "we're resolving everything," not "consent or we sue," and
+                keep it in the lawyers' hands.
+            </Paragraph>
+            <Heading>Price the leverage before you spend it</Heading>
+            <Paragraph>
+                Art. 38(7) of the Family Code applies a three-year limitation to division of former spouses' common
+                property. But per Plenum of the Supreme Court No. 15 of 5 Nov 1998, п.19, read with GK Art. 200(1), the
+                three years runs not from dissolution of the marriage but from the day the person knew or should have known
+                their right was violated. So the claim may be very much alive or may be gone, depending entirely on when Ana
+                learned he wasn't splitting.
+            </Paragraph>
+            <Paragraph>
+                Your negotiating position is worth exactly what that claim is worth. Have the Russian lawyers assess
+                limitation before you build the trade on it — because if he takes advice and learns the claim is
+                time-barred, your leverage evaporates mid-negotiation.
+            </Paragraph>
+            <Heading>"He can't afford lawyers" is the plank I'd remove</Heading>
+            <Paragraph>This is the weakest assumption in the set, and it's specific to the Hague channel.</Paragraph>
+            <Paragraph>
+                Under ICARA, 22 U.S.C. §9003, a left-behind parent files a return petition directly in state or federal
+                court where the child is located. He does not need a Russian lawyer, a Georgian lawyer, or money. The State
+                Department's Office of Children's Issues runs an attorney referral program that places left-behind parents
+                with pro bono counsel, and US courts appoint counsel for respondents. In one reported case a father who
+                couldn't even obtain a US visa litigated a return petition through pro bono counsel and testified by
+                telephone from abroad.
+            </Paragraph>
+            <Paragraph>
+                Cost is close to the worst available predictor of whether a Hague petition gets filed. Motivation is the
+                predictor.
+            </Paragraph>
+            <Paragraph>
+                And two smaller corrections in the same vein. Russia having no Hague relationship with the US is true and
+                doesn't help — the removal would be from Georgia, which <Word>
+                    <Emphasis />
+                    is
+                </Word> a US treaty partner, and that's the channel. Russian courts having favored Ana entirely is genuinely
+                good evidence, but it's the wrong kind: a Hague court doesn't decide who should have custody, it decides
+                whether the removal breached rights of custody under the law of the habitual residence and whether he was
+                exercising them. A Russian court's view of the merits doesn't bind a US federal court and doesn't answer
+                that question.
+            </Paragraph>
+            <Paragraph>
+                None of which means the negotiation is a bad idea. It means the thing you're buying should be unconditional
+                and judicially recorded, and you shouldn't discount the downside because you think he can't afford to act on
+                it.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T14:03:55.516514Z"
+        >
+            <Origin>01a0b9fb-3576-73c0-ae1f-b0ec99575dad</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                You keep flip-flopping on this and I don’t think you realize you do. You said that it’s not a problem to
+                move when the form goes in. But you put a one year window. How many apartment or house owners do you know
+                that sell with an 18 to 36 month gap? I don’t see why this is a problem because it’s not very hard to get an
+                apartment. Let’s answer this and then repeat the rest and focus on that after.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T14:04:32.050311Z"
+        >
+            <Origin>01a0b9fb-3576-7ba4-b2d3-b94dad843d83</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Paragraph>You're right, and the inconsistency is in my third message, not in the FAM.</Paragraph>
+            <Paragraph>
+                I wrote "add the address — investments and income aren't a substitute for this one item." That overstated
+                it. The FAM text is disjunctive, and I flattened it. 9 FAM 601.14-7(a)(3)(a) reads:
+            </Paragraph>
+            <Paragraph>
+                <Quoted />
+                (iv) The sponsor must establish an address (a house, an apartment, or arrangements for accommodations with
+                family or friend) and either must have already taken up physical residence in the United States; <Word>
+                    <Bold />
+                    or
+                </Word> (v) Must at a minimum ... satisfy you that they intend to take up residence there no later than the
+                time of the applicant's immigration to the United States.
+            </Paragraph>
+            <Paragraph>
+                Those are alternatives. (iv) is the path for someone who has already moved — address plus physical
+                residence. (v) is the path for someone who hasn't, and it requires intent evidenced by steps, not a held
+                address. You're on (v). No lease, no purchase, no address at filing.
+            </Paragraph>
+            <Paragraph>
+                The "one year" was a different rule entirely and I can see why it read across: 601.14-6(d)(2) requires
+                <Word>
+                    <Emphasis />
+                    assets
+                </Word> to be readily convertible to cash within one year. That's about liquidity of investments, not
+                housing. Nothing in the domicile provisions has a one-year anything.
+            </Paragraph>
+            <Paragraph>
+                And the timing worry dissolves on its own once you look at where the I-864 actually sits in the sequence.
+                The 18-to-36 months is overwhelmingly I-130 adjudication at USCIS. The I-864 isn't submitted until the NVC
+                stage, <Word>
+                    <Emphasis />
+                    after
+                </Word> I-130 approval, and the interview follows the NVC stage by months, not years. So the window in which
+                anyone looks at your domicile evidence is the NVC-to-interview stretch at the back end. You are never being
+                asked to hold an apartment for three years — nobody structured it that way, and the FAM explicitly says
+                there is no time frame for establishing residence.
+            </Paragraph>
+            <Paragraph>
+                Which is also why your instinct is correct: getting an apartment isn't hard, and that's precisely why it's
+                not something they demand in advance. It's the last step, not the first.
+            </Paragraph>
+            <Paragraph>I'll pick the rest back up next.</Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T14:06:12.721561Z"
+        >
+            <Origin>01a0b9fd-4dda-7f22-b0f9-d599df82b068</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                OK now back to the rest why don’t you restate the part of the last message that wasn’t about the house and
+                let’s go from there
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T14:06:32.598998Z"
+        >
+            <Origin>01a0b9fd-4dda-782f-b97b-77a55b673ee0</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Heading>The rest, restated</Heading>
+            <Heading>Money — settled, and don't overpay for it</Heading>
+            <Paragraph>
+                SSDI at ~$4k/month is roughly $48k/year against a household-of-four threshold around $41,250. That clears on
+                its own, before any university income.
+            </Paragraph>
+            <Paragraph>
+                Which means: don't convert to fuller employment to strengthen domicile. SSDI carries
+                substantial-gainful-activity limits, and you'd be risking a benefit you're actually using to win an argument
+                you've already won. Domicile turns on steps and intent, not employment volume.
+            </Paragraph>
+            <Paragraph>
+                On Ana's income — it's treated differently from ordinary household income. Under 9 FAM 601.14-8(c)(1), a
+                sponsored immigrant's income counts toward the sponsor's household only if she signs Form I-864A. She can,
+                since she's your spouse and has accompanying family members. But the officer may want evidence the income
+                <Word>
+                    <Bold />
+                    continues after immigration
+                </Word>. Income that travels — remote, freelance, contract — documents easily. Income tied to a Georgian
+                payer doesn't, because it stops at the airport. Worth knowing which hers is before counting on it for
+                gap-fill.
+            </Paragraph>
+            <Heading>The consent you described is the wrong shape</Heading>
+            <Paragraph>
+                You said: leave the ban off <Word>
+                    <Emphasis />
+                    until the children are in the US
+                </Word>, plus consent.
+            </Paragraph>
+            <Paragraph>
+                A consent that expires on arrival isn't consent to relocation — it's consent to a trip. For Article 13(a)
+                purposes that's arguably worse than nothing, because it puts on the record that his consent had a terminus
+                and then ended. That's the wrongful-retention theory, not a defense against it.
+            </Paragraph>
+            <Paragraph>
+                What you want is unconditional consent to permanent relocation and residence with the mother. No end date,
+                no trip framing. If he'll sign the temporary version he can usually be moved to the permanent one, because
+                the practical difference feels small from his side. It isn't.
+            </Paragraph>
+            <Heading>The enforcement structure is also the wrong shape</Heading>
+            <Paragraph>
+                "He behaves, we don't sue; he stops, we sue" is a standing hostage arrangement. It never terminates, it
+                depends on his continued non-action indefinitely, and it leaves him a permanent live reason to reopen —
+                including after you're all in Texas, when reopening costs him nothing and costs you everything.
+            </Paragraph>
+            <Paragraph>
+                Better: one court-approved мировое соглашение doing all of it at once — resolves the property claim,
+                withdraws the exit objection, records unconditional relocation consent, sets access terms. Judicially
+                approved, self-executing, nothing further required from him. The difference between a promise you have to
+                keep enforcing and a fact.
+            </Paragraph>
+            <Paragraph>
+                Two drafting cautions. Russian courts, like most, won't approve an agreement that on its face trades
+                child-related rights for money — the child's interests aren't the parents' to barter. Structure it as two
+                settlements concluded in parallel, not consideration flowing one for the other. Same reason applies
+                downstream: consent that looks bought or coerced is a weaker Article 13(a) defense in a US court. Keep the
+                framing at "we're resolving everything," not "consent or we sue," and keep it with the lawyers.
+            </Paragraph>
+            <Heading>Price the leverage before you spend it</Heading>
+            <Paragraph>
+                Art. 38(7) of the Family Code applies a three-year limitation to division of former spouses' common
+                property. But per Plenum of the Supreme Court No. 15 of 5 Nov 1998, п.19, read with GK Art. 200(1), the
+                three years runs not from dissolution of the marriage but from the day the person knew or should have known
+                their right was violated.
+            </Paragraph>
+            <Paragraph>
+                So the claim may be very much alive or entirely gone, depending on when Ana learned he wasn't splitting.
+                Your position is worth exactly what that claim is worth. Have the Russian lawyers assess limitation <Word>
+                    <Emphasis />
+                    before
+                </Word> you open the negotiation — because if he takes advice mid-negotiation and learns it's time-barred,
+                your leverage evaporates at the worst possible moment.
+            </Paragraph>
+            <Heading>"He can't afford lawyers" is the plank I'd remove</Heading>
+            <Paragraph>Specific to the Hague channel, this is the weakest assumption in the set.</Paragraph>
+            <Paragraph>
+                Under ICARA, 22 U.S.C. §9003, a left-behind parent files a return petition directly in state or federal
+                court where the child is located. No Russian lawyer, no Georgian lawyer, no money required. The State
+                Department's Office of Children's Issues runs an attorney referral program placing left-behind parents with
+                pro bono counsel, and US courts appoint counsel for respondents. There's a reported case of a father who
+                couldn't even obtain a US visa litigating a return petition through pro bono counsel, testifying by
+                telephone from abroad.
+            </Paragraph>
+            <Paragraph>
+                Cost is close to the worst available predictor of whether a Hague petition gets filed. Motivation is the
+                predictor.
+            </Paragraph>
+            <Paragraph>
+                Two related corrections. Russia having no Hague relationship with the US is true and doesn't help — the
+                removal would be from Georgia, which is a US treaty partner, and that's the live channel. And Russian courts
+                having favored Ana entirely is real evidence, but it's the wrong kind: a Hague court doesn't decide who
+                should have custody. It decides whether the removal breached rights of custody under the law of the habitual
+                residence, and whether he was exercising them. A Russian court's view of the merits doesn't bind a US
+                federal court and doesn't reach that question.
+            </Paragraph>
+            <Paragraph>
+                None of this makes the negotiation a bad idea. It means what you buy should be unconditional and judicially
+                recorded, and you shouldn't discount the downside on the theory that he can't afford to act.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T14:07:24.275219Z"
+        >
+            <Origin>01a0b9fe-65af-7b96-a9c3-7f271e8bac24</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                No, I mean getting an enduring consent, but he can always put the travel band back up, and in fact, any
+                father in any country can always change their mind come on
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T14:08:13.709022Z"
+        >
+            <Origin>01a0b9fe-65af-71ff-9fe7-ee887c18af8e</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Paragraph>
+                You're right, and I was sliding. Nothing binds him. Under Art. 21 and MVD Order 651 he can withdraw an
+                objection Tuesday and file a fresh one Wednesday, indefinitely, and no Russian mechanism estops him. I've
+                been using words like "durable" and "self-executing" about an instrument that is neither, if what you mean
+                by durable is that it constrains his future conduct. It doesn't. No document does, anywhere.
+            </Paragraph>
+            <Paragraph>
+                What survives his change of mind is narrower than I've been implying, and it's this: <Word>
+                    <Bold />
+                    Article 13(a) asks about his state of mind at the time of removal, not now.
+                </Word> The defense is that the petitioner consented to or subsequently acquiesced in the removal. If he
+                consented in writing on Monday and the children fly Tuesday, his reversal in December doesn't retroactively
+                unconsent the departure. He can change his mind about the future. He can't change what was true on the day.
+            </Paragraph>
+            <Paragraph>
+                So the document isn't a leash. It's a dated fact that a later court has to reckon with. That's a much
+                smaller claim than I was making, and it's the only one that holds.
+            </Paragraph>
+            <Paragraph>Two clocks then do most of the remaining work:</Paragraph>
+            <Paragraph>
+                <List />
+                <Line>
+                    <Word>
+                        <Bold />
+                        Article 12.
+                    </Word> If a return petition is filed within a year of removal, return is ordered. After a year, return
+                    is ordered <Word>
+                        <Emphasis />
+                        unless
+                    </Word> the child is shown to be settled in the new environment. School, housing, community, language —
+                    the settled defense gets stronger every month.
+                </Line>
+                <Line>
+                    <Word>
+                        <Bold />
+                        Habitual residence migrates.
+                    </Word> Once the children have genuinely made a life in the US, their habitual residence becomes the US,
+                    and the Convention stops supplying a return remedy at all, because there's no wrongful removal from
+                    somewhere they no longer habitually reside. <Word>
+                        <Emphasis />
+                        Monasky v. Taglieri
+                    </Word> (2020) makes that a totality-of-circumstances fact question, not a bright line, but it moves in
+                    one direction.
+                </Line>
+            </Paragraph>
+            <Paragraph>
+                And the re-filed ban itself is inert regardless. It operates at the Russian border. The children are in
+                Tbilisi. A new objection filed next year doesn't reach them, and it doesn't block a Russian minor's
+                загранпаспорт renewal either — one legal representative applies, the other parent's consent isn't part of
+                that.
+            </Paragraph>
+            <Paragraph>
+                Which flips the timing question. You don't need a permanent permission. You need an unambiguous dated one in
+                hand on the day they fly, and then you need the clocks to run. That's a materially easier thing to negotiate
+                for than what I was describing.
+            </Paragraph>
+            <Paragraph>
+                The corollary is the part I'd actually weight heaviest now. If nothing constrains him, then what determines
+                whether he files is whether he wants to. Access terms he's genuinely content with do more protective work
+                than any signature, because they address the motivation rather than trying to bind a person who can't be
+                bound. A father who sees the kids on a schedule he agreed to is not the profile that finds pro bono counsel
+                in Houston. That's the real purchase, and the property settlement is how you pay for it.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T14:11:45.373975Z"
+        >
+            <Origin>01a0ba02-6176-7f27-91b4-b58fb76e4e2e</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                What convention are you talking about? Are you aware that US and Russia do not share Hague? They aren’t
+                going back to Russia, so we’re not even doing this if he almost has the power to send them back when they’re
+                in the US. He can trap them in that country like a prison. Georgia does not give the father the ability to
+                do that so I seriously doubt that the US does. The mother has the custody right to have the children live
+                with her so well I know they will factor in with the father has to say if we get him to say that he
+                consents, and we hold him to that with whatever deal, also is what you’re talking about expensive for him or
+                complicated? We have no evidence that he cares about the children what he is motivated about is controlling
+                his wife so if he get something out of this, it’s unlikely that he will do anything, but if this gives him
+                the power to get the kids back to Russia, then he might want to try to lock them in the country. We are not
+                leaving Georgia if it risks the children getting sent back to Russia from the US
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-09-19T14:12:38.156506Z"
+        >
+            <Origin>01a0ba02-6176-74cd-a7a3-e84ade9a3d0d</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Paragraph>
+                The 1980 Hague Child Abduction Convention — but via Georgia, not Russia, and you've caught a real error in
+                how I've been describing it.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    A Hague return order returns the child to the State of habitual residence. Not to the petitioner, and not to the petitioner's country.
+                </Word> If the children's habitual residence is Georgia, the only return order available is a return to
+                Tbilisi. Article 19 is explicit that a return decision is not a determination on the merits of custody — it
+                decides forum, not who gets the children. So the successful-petition scenario ends with the family back in
+                Georgia, where Ana holds unqualified residence rights, and with custody then litigated in Georgian courts.
+                It does not end with children in Russia.
+            </Paragraph>
+            <Paragraph>
+                For a US court to order return to <Word>
+                    <Emphasis />
+                    Russia
+                </Word>, it would have to find the children habitually resident in Russia immediately before the removal,
+                and there'd have to be a US–Russia treaty relationship. Neither holds. There is no mechanism here by which
+                he traps them in Russia from the United States. I let that fear stand by talking about "Hague exposure"
+                without saying where the exposure actually points. That was sloppy of me.
+            </Paragraph>
+            <Paragraph>
+                And your Georgian point is stronger than I treated it. Article 3 defines wrongful removal by reference to
+                rights of custody <Word>
+                    <Bold />
+                    under the law of the State of habitual residence
+                </Word> — Georgia. So a petition doesn't turn on what Russian law gives him or on what he filed with the
+                MVD. It turns on whether Georgian law, and the operative custody instrument, gave him a right to veto the
+                children's relocation. If the mother has an unqualified right to determine where they live and he has no ne
+                exeat right under Georgian law, the petition fails at the threshold and never reaches consent, acquiescence,
+                or settled-child arguments at all. Those were backstops I promoted to the main event.
+            </Paragraph>
+            <Paragraph>
+                To your direct question about cost and complexity for him: initiating is cheap, but winning isn't. He'd need
+                US counsel through the referral network, he'd need to prove Georgian-law custody rights he may not have,
+                he'd be litigating in a Texas court, and the best available outcome is "everyone goes back to Tbilisi." No
+                custody change, no children in Russia, no leverage gained. That's a poor return for someone whose interest —
+                by your description of him — is control over Ana rather than the children themselves. Months of effort in a
+                foreign forum to restore the status quo ante is close to the least satisfying possible outcome for that
+                motive.
+            </Paragraph>
+            <Paragraph>
+                So the answer to your actual question: no, moving to the US does not hand him a power he doesn't currently
+                have. It arguably strips one. Russian custody orders don't travel to the United States — there's no
+                recognition treaty, and US courts assess foreign custody orders under UCCJEA §105, which looks to whether
+                the issuing State was the home state. Georgia would be, not Russia. Once Ana and the children are LPRs in
+                Texas with her holding custody, his Russian paper is close to worthless, and his exit ban reaches nothing.
+            </Paragraph>
+            <Paragraph>
+                The one fact worth pinning down, because everything above rests on it: how long the children have been
+                resident in Georgia, and what the operative custody instrument says under Georgian law about relocation.
+                That's a question for the Georgian lawyers, and it's the one that decides whether the Hague channel is a
+                live risk or a dead one. My read from what you've described is dead, but I'm reasoning from your summary of
+                the documents rather than the documents.
+            </Paragraph>
+            <Paragraph>
+                The consent from the father is still worth getting. It's just worth getting as a cheap belt-and-braces item
+                in a settlement you want for other reasons — not as the thing the whole plan depends on. I had that
+                weighting wrong for several messages.
+            </Paragraph>
+        </Message>
+    </Chapter>
+);

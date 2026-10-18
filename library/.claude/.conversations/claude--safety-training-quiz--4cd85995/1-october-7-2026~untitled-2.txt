@@ -1,0 +1,217 @@
+Privacy
+
+Confidential Information
+
+Members of the BCM Community are entrusted with the personal, medical and financial information of our students, program applicants, employees, research study participants, and patients. Not only is BCM ethically responsible for protecting this confidential information, but maintaining the security and privacy of confidential information is considered the standard of care for academic and healthcare institutions. 
+
+Texas and Federal laws have made the ethical and professional duty of maintaining information security and privacy a legal requirement.
+
+Confidential Information: that which the Baylor Community is required to keep in strict confidence, including but not limited to
+
+personally identifiable information
+student records
+protected health information (PHI)
+financial information
+Privacy and Security is EVERYONE’s responsibility. YOU must safeguard confidential information to respect the privacy of the BCM Community and to prevent misuse, improper use or disclosure of information that may lead to:
+
+Identity Theft
+Insurance Fraud
+Financial Harm
+Discriminatory/Wrongful Use
+What types of employee information
+ are confidential?
+
+Select each card below to see what information is considered confidential.
+
+Employment/ Personnel File
+
+
+Click to flip
+Employment Related Personnel File and Employment Eligibility records (including employment application, personnel status changes, resignation letters, I-9 forms)
+Records pertaining to benefits
+Employee performance or disciplinary information
+
+Click to flip
+Employee Medical Records
+
+
+Includes work related injuries, FMLA, immunization records, which are stored separately from personnel records
+
+
+Identity Theft Information
+
+
+Information that may put an employee at risk for identity theft includes:
+
+Social Security numbers
+Date of Birth
+Financial information
+Address
+
+Genetic Information
+
+
+The Genetic Information Nondiscrimination Act of 2008 (GINA) is a federal law that protects individuals from genetic discrimination in health insurance and employment. Genetic discrimination is the misuse of genetic information. 
+
+
+Leave of Absence
+
+
+Do not disclose the reason for FMLA (Family Medical Leave Act) or non-FMLA absences with other employees or supervisors; only address time periods for approval, duration and frequency (if applicable).
+Do not disclose that an employee is on FMLA or non-FMLA leave specifically. It may generate more questions especially if the employee is friends with the co-worker that is currently off work.
+
+Being responsible with employee information
+
+Although some information may not be protected by specific laws, courts have granted civil remedies for the inaccurate release of information that has a detrimental effect on a former or current employee’s attempt to gain new employment.
+
+stock-image.jpg
+Access of employee information should be for sanctioned business purposes only
+Refer callers to Human Resources for verification of employment
+Medical information should not be shared with those without a valid business purpose that requires the knowledge
+The unauthorized release of confidential employee information should be reported to Employee Relations or Compliance immediately.
+Student Privacy: Federal Rights and Privacy Act (FERPA)
+
+EVERYONE plays an important role in the privacy and security of student records. If you find an unsecured student record, deliver it and/or report it to the Office of the Registrar, which will work with the Compliance Office to report and notify the student. Expand the key terms below to learn more about how FERPA works:
+
+
+FERPA
++
+
+Academic or Educational Records
++
+
+Office of the Registrar
++
+
+Directory Information
++
+
+Non-Disclosure of Directory Information
++
+Distance Education
+
+All programs offering distance education courses must be compliant with FERPA regulations to protect the privacy of student records and rights of the student. 
+
+As outlined in the BCM Distance Education Policy, the College expects each student to 
+
+preserve the academic integrity of distance education courses and maintain the confidentiality of course materials, including any assessments administered during the course and/or outside the classroom setting, and
+uphold the privacy of other students enrolled in the course, not sharing personal information divulged by another student outside the virtual classroom, discussion, forum, or assessment setting. 
+This means it is never appropriate to share class documents or exam questions, or to discuss personal information you learn about other students. To learn more about FERPA, please review the U.S. Department of Education FERPA site.
+
+
+Scenario End
+The goal of the BCM Information Security and Compliance Program is to protect Confidential Information by ensuring that only authorized persons use the information for its intended purposes.
+
+START OVER
+Continued
+Security
+Security
+
+BCM is a diverse institution. Our health care providers treat patients and teach students at each of BCM's affiliated institutions as well as at BCM's clinical departments, and outpatient clinics.  BCM researchers also obtain confidential information for research purposes.
+
+All BCM computing assets must be maintained securely to avoid risks of:
+
+
+bullet
+Privacy violations
+
+
+bullet
+Identity theft
+
+
+bullet
+Compromised research protocols
+
+
+bullet
+Civil and/or criminal penalties
+
+Security that is intentionally not maintained could result in a BCM employee’s loss of indemnification. See BCM Policies and Procedures for Legal Representation and Indemnification for Baylor Persons. 
+
+Violation of the Security Compliance Program will result in disciplinary action up to and including termination from employment with BCM, or removal from educational programs. 
+
+References to BCM Information Security policies, procedures and guidelines are provided at IT Policies and Guidelines
+
+Security Standards for Computer Resources
+
+stock-image.jpg
+Information Security and Compliance provides security standards, including the HIPAA Security Standards Rule, for BCM computer resources. The BCM Information Security Officer oversees compliance with  information security requirements. 
+
+The BCM security standards require the following:
+
+1
+
+1
+Provide for the confidentiality, integrity, and availability of all confidential information that is created, received, maintained or transmitted by BCM; 
+
+2
+
+2
+Protect against any reasonably anticipated threats or hazards to the security or integrity of confidential information; 
+
+3
+
+3
+Protect against any reasonably anticipated uses or disclosure that are not permitted by BCM policy or regulatory requirements; and 
+
+4
+
+4
+Provide for compliance with BCM security policies and regulatory requirements.
+
+Security Standards for Electronic Media
+
+BCM security standards apply to ALL electronic media (including personal devices) used for communicating and storing confidential information including but not limited to:
+
+
+
+
+
+
+
+
+
+
+Encrypted Messaging (E-mails)
+
+All members of the BCM Community are responsible for the protection of confidential information through the following security requirements:
+
+
+DO USE
+
+DO NOT
+Do use BCM encrypted secure messaging (e-mail) and websites to guard against unauthorized access to confidential information being transmitted. Google, DropBox, and other public internet sites may not be secure or encrypted. 
+
+-14Asb8irfM3HmV3.png
+Malicious E-mails, Phishing and Spearing
+
+Select each number below for quick tips for spotting a malicious email:
+
+
+
+
+
+
+
+
+
+
+Remember, BCM will never ask you for your user name and password.
+
+stock-image.jpg
+Reusing Passwords
+
+As cyber crimes become more prolific, it is important to make sure we as members of the Baylor community are doing all we can to safeguard our access to the BCM network. One area of weakness is in the reuse of passwords for multiple sites. Reuse of passwords opens an employee up to a specific type of threat called credential stuffing. 
+
+Credential stuffing is the name of an automated attack that takes the compromised credentials from one leak/site and uses them to break into user accounts from other services/sites that use the same username and password. Passwords are typically obtained by cybercriminals through data breaches and phishing.
+
+With this in mind BCM will be using enhanced password standards to improve security, provide for flexibility, and to be in alignment with the recently released Federal National Institute of Standards and Technology (NIST) standards. For additional information, please reference the Password Standard Knowledge Base Article on the IT Portal.
+
+It is important to not reuse passwords, especially any password you use to access the Baylor network
+
+Access to Baylor Property and Resources
+x7g6hKksjh_veOtZ-BCM%2520campus.jpg
+Select start to review the Dos and Do Nots when accessing BCM property and resources
+
+START 

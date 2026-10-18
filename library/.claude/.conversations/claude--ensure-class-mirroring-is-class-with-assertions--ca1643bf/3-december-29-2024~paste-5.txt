@@ -1,0 +1,97 @@
+class DynamicColorTests extends AppTestClass {
+    constructor() {
+        super();
+        this.decorateExceptions = false;
+    }
+
+    testConstructor() {
+        alert("Hello!")
+        const fromHex = new DynamicColor("#FF0000", 0.5);
+        this.assertEquals(fromHex.red(), 255, "1. should parse red from hex");
+        this.assertEquals(fromHex.opacity(), 0.5, "2. should set opacity from constructor");
+
+        const rgb = new RGBColor();
+        rgb.red = 0; rgb.green = 255; rgb.blue = 0;
+        const fromRGB = new DynamicColor(rgb);
+        this.assertEquals(fromRGB.hex(), "#00FF00", "3. should construct from RGBColor");
+        this.assertEquals(fromRGB.opacity(), 1, "4. should default to full opacity");
+    }
+
+    testOpacity() {
+        const color = new DynamicColor("#FF0000");
+        
+        // Test setter/getter
+        color.opacity(0.5);
+        this.assertEquals(color.opacity(), 0.5, "1. should set opacity");
+        
+        // Test withOpacity
+        const newColor = color.withOpacity(0.25);
+        this.assertEquals(newColor.opacity(), 0.25, "2. new instance should have new opacity");
+        this.assertEquals(color.opacity(), 0.5, "3. original should be unchanged");
+    }
+
+    testOverlay() {
+        const red = new DynamicColor("#FF0000");
+        const blue = new DynamicColor("#0000FF");
+        
+        const fullOverlay = red.overlay(blue, 1);
+        this.assertEquals(fullOverlay.hex(), "#0000FF", "1. full opacity should fully overlay");
+        
+        const halfOverlay = red.overlay(blue, 0.5);
+        this.assertEquals(halfOverlay.hex(), "#800080", "2. half opacity should blend 50/50");
+        
+        const noOverlay = red.overlay(blue, 0);
+        this.assertEquals(noOverlay.hex(), "#FF0000", "3. zero opacity should not change base");
+    }
+
+    testMix() {
+        // Use pure red (#FF0000), pure blue (#0000FF) - we KNOW these
+        const red = new DynamicColor("#FF0000");
+        const blue = new DynamicColor("#0000FF");
+        
+        // When mixed 50/50, we should get purple - each component should be half
+        const purple = red.mix(blue);
+        this.assertEquals(purple.red(), 128, "1. purple should be half red");
+        this.assertEquals(purple.blue(), 128, "2. purple should be half blue");
+        this.assertEquals(purple.green(), 0, "3. purple should have no green");
+        
+        // Test proportions with simple 75/25 mix
+        const mostlyRed = red.mix(blue, 0.25);  // 75% red, 25% blue
+        this.assertEquals(mostlyRed.red() > mostlyRed.blue(), true, "4. should have more red than blue");
+        
+        // Test no mix
+        const noMix = red.mix(blue, 0);
+        this.assertEquals(noMix.hex(), "#FF0000", "5. zero mix should return original color");
+    }
+
+    testComplement() {
+        const red = new DynamicColor("#FF0000");
+        
+        // Test individual channels first
+        const comp = red.complement();
+        this.assertEquals(comp.red(), 0, "1. red should invert to 0");
+        this.assertEquals(comp.green(), 255, "2. no green should invert to full green");
+        this.assertEquals(comp.blue(), 255, "3. no blue should invert to full blue");
+        
+        // Only then test the hex
+        this.assertEquals(comp.hex(), "#00FFFF", "4. red complement should be cyan");
+    }
+
+    testBrightness() {
+        const blue = new DynamicColor("#0000FF");
+        
+        const lighter = blue.lighten(50);
+        this.assertEquals(lighter.hex(), "#7F7FFF", "1. should lighten color");
+        
+        const darker = blue.darken(50);
+        this.assertEquals(darker.hex(), "#000080", "2. should darken color");
+    }
+
+    testFlatten() {
+        const halfRed = new DynamicColor("#FF0000", 0.5);
+        const flattened = halfRed.flatten();
+        
+        this.assertEquals(flattened.hex(), "#FF8080", "1. should blend with white");
+        this.assertEquals(flattened.opacity(), 1, "2. should be fully opaque");
+    }
+}

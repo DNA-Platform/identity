@@ -1,0 +1,1375 @@
+Unable to add filesystem: <illegal path>
+hot-reloader-app.js:197 [Fast Refresh] rebuilding
+report-hmr-latency.js:14 [Fast Refresh] done in 737ms
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Book.chapters
+chemistry.ts:480 Bond initialized: $Title.$text
+chemistry.ts:480 Bond initialized: $Footer.$copyright
+chemistry.ts:480 Bond initialized: $Document.chapters
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $PolyBook.chapters
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:580 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+chemistry.ts:480 Bond initialized: $Article.$addToAllSections
+chemistry.ts:480 Bond initialized: $Article.sections
+chemistry.ts:480 Bond initialized: $StrictContainer.content
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedContainer.groups
+chemistry.ts:480 Bond initialized: $Book.chapters
+chemistry.ts:480 Bond initialized: $Book.$$$cid
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:29 $Book constructor called with 3 chapters
+page.tsx:30 Chapter title: Introduction
+page.tsx:30 Chapter title: Main Content
+page.tsx:30 Chapter title: Conclusion
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:29 $Book constructor called with 3 chapters
+page.tsx:30 Chapter title: Introduction
+page.tsx:30 Chapter title: Main Content
+page.tsx:30 Chapter title: Conclusion
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:29 $Book constructor called with 3 chapters
+page.tsx:30 Chapter title: Introduction
+page.tsx:30 Chapter title: Main Content
+page.tsx:30 Chapter title: Conclusion
+page.tsx:45 Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <div>. See https://react.dev/link/warning-keys for more information.
+error @ intercept-console-error.js:57
+eval @ react-dom-client.development.js:23715
+runWithFiberInDEV @ react-dom-client.development.js:873
+warnForMissingKey @ react-dom-client.development.js:23714
+warnOnInvalidKey @ react-dom-client.development.js:5693
+reconcileChildrenArray @ react-dom-client.development.js:5774
+reconcileChildFibersImpl @ react-dom-client.development.js:6095
+eval @ react-dom-client.development.js:6200
+reconcileChildren @ react-dom-client.development.js:8754
+beginWork @ react-dom-client.development.js:10951
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+eval @ page.tsx:45
+view @ page.tsx:43
+render @ chemistry.ts:811
+__render @ chemistry.ts:204
+Component @ chemistry.ts:346
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:427
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759424527969:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759424527969:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759424527969:1801
+(anonymous) @ main-app.js?v=1759424527969:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759424527969:9
+chemistry.ts:480 Bond initialized: $Document.chapters
+chemistry.ts:480 Bond initialized: $Document.$$$cid
+chemistry.ts:480 Bond initialized: $Title.$text
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Footer.$copyright
+page.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+chemistry.ts:480 Bond initialized: $Document.title
+chemistry.ts:480 Bond initialized: $Document.footer
+chemistry.ts:480 Bond initialized: $Title.$text
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Footer.$copyright
+page.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+chemistry.ts:480 Bond initialized: $Title.$text
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Footer.$copyright
+page.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+page.tsx:115 Each child in a list should have a unique "key" prop.
+
+Check the render method of `div`. See https://react.dev/link/warning-keys for more information.
+error @ intercept-console-error.js:57
+eval @ react-dom-client.development.js:23715
+runWithFiberInDEV @ react-dom-client.development.js:873
+warnForMissingKey @ react-dom-client.development.js:23714
+warnOnInvalidKey @ react-dom-client.development.js:5693
+reconcileChildrenArray @ react-dom-client.development.js:5774
+reconcileChildFibersImpl @ react-dom-client.development.js:6095
+eval @ react-dom-client.development.js:6200
+reconcileChildren @ react-dom-client.development.js:8754
+beginWork @ react-dom-client.development.js:11028
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+eval @ page.tsx:115
+view @ page.tsx:113
+render @ chemistry.ts:811
+__render @ chemistry.ts:204
+Component @ chemistry.ts:346
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:445
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759424527969:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759424527969:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759424527969:1801
+(anonymous) @ main-app.js?v=1759424527969:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759424527969:9
+chemistry.ts:480 Bond initialized: $PolyBook.chapters
+chemistry.ts:480 Bond initialized: $PolyBook.$$$cid
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+page.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+page.tsx:152 Chapter 1 is fancy!
+page.tsx:152 Chapter 3 is fancy!
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+page.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+page.tsx:152 Chapter 1 is fancy!
+page.tsx:152 Chapter 3 is fancy!
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+page.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+page.tsx:152 Chapter 1 is fancy!
+page.tsx:152 Chapter 3 is fancy!
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$$$cid
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $FancyChapter.$$$cid
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$$$cid
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $FancyChapter.$$$cid
+chemistry.ts:580 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+chemistry.ts:480 Bond initialized: $Article.$addToAllSections
+chemistry.ts:480 Bond initialized: $Article.sections
+chemistry.ts:480 Bond initialized: $Article.$$$cid
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+page.tsx:208 $Article constructor with 3 sections
+page.tsx:181 Adding "Auto-added by Article at index 0" to section Introduction
+page.tsx:181 Adding "Auto-added by Article at index 1" to section Methods
+page.tsx:181 Adding "Auto-added by Article at index 2" to section Results
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+page.tsx:208 $Article constructor with 3 sections
+page.tsx:181 Adding "Auto-added by Article at index 0" to section Introduction
+page.tsx:181 Adding "Auto-added by Article at index 1" to section Methods
+page.tsx:181 Adding "Auto-added by Article at index 2" to section Results
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+page.tsx:208 $Article constructor with 3 sections
+page.tsx:181 Adding "Auto-added by Article at index 0" to section Introduction
+page.tsx:181 Adding "Auto-added by Article at index 1" to section Methods
+page.tsx:181 Adding "Auto-added by Article at index 2" to section Results
+chemistry.ts:480 Bond initialized: $Book.chapters
+chemistry.ts:480 Bond initialized: $Book.$$$cid
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:29 $Book constructor called with 3 chapters
+page.tsx:30 Chapter title: Introduction
+page.tsx:30 Chapter title: Main Content
+page.tsx:30 Chapter title: Conclusion
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:29 $Book constructor called with 3 chapters
+page.tsx:30 Chapter title: Introduction
+page.tsx:30 Chapter title: Main Content
+page.tsx:30 Chapter title: Conclusion
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:29 $Book constructor called with 3 chapters
+page.tsx:30 Chapter title: Introduction
+page.tsx:30 Chapter title: Main Content
+page.tsx:30 Chapter title: Conclusion
+chemistry.ts:480 Bond initialized: $Document.chapters
+chemistry.ts:480 Bond initialized: $Document.$$$cid
+chemistry.ts:480 Bond initialized: $Title.$text
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Footer.$copyright
+page.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+chemistry.ts:480 Bond initialized: $Document.title
+chemistry.ts:480 Bond initialized: $Document.footer
+chemistry.ts:480 Bond initialized: $Title.$text
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Footer.$copyright
+page.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+chemistry.ts:480 Bond initialized: $Title.$text
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Footer.$copyright
+page.tsx:86 $Document constructor: {titleText: 'My Document', chapterCount: 3, footerText: '© 2024 Chemistry Framework'}
+chemistry.ts:480 Bond initialized: $PolyBook.chapters
+chemistry.ts:480 Bond initialized: $PolyBook.$$$cid
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+page.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+page.tsx:152 Chapter 1 is fancy!
+page.tsx:152 Chapter 3 is fancy!
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+page.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+page.tsx:152 Chapter 1 is fancy!
+page.tsx:152 Chapter 3 is fancy!
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+page.tsx:147 $PolyBook received chapters: (4) [$Chapter, $FancyChapter, $Chapter, $FancyChapter]
+page.tsx:152 Chapter 1 is fancy!
+page.tsx:152 Chapter 3 is fancy!
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$$$cid
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $FancyChapter.$$$cid
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$$$cid
+chemistry.ts:480 Bond initialized: $FancyChapter.$title
+chemistry.ts:480 Bond initialized: $FancyChapter.$page
+chemistry.ts:480 Bond initialized: $FancyChapter.$color
+chemistry.ts:480 Bond initialized: $FancyChapter.$$$cid
+chemistry.ts:580 $addToAllSections: $addToAllSections(text) {
+        this.sections.forEach((section)=>{
+            section.addItem(text);
+        });
+    }
+chemistry.ts:480 Bond initialized: $Article.$addToAllSections
+chemistry.ts:480 Bond initialized: $Article.sections
+chemistry.ts:480 Bond initialized: $Article.$$$cid
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+page.tsx:208 $Article constructor with 3 sections
+page.tsx:181 Adding "Auto-added by Article at index 0" to section Introduction
+page.tsx:181 Adding "Auto-added by Article at index 1" to section Methods
+page.tsx:181 Adding "Auto-added by Article at index 2" to section Results
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+page.tsx:208 $Article constructor with 3 sections
+page.tsx:181 Adding "Auto-added by Article at index 0" to section Introduction
+page.tsx:181 Adding "Auto-added by Article at index 1" to section Methods
+page.tsx:181 Adding "Auto-added by Article at index 2" to section Results
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+chemistry.ts:480 Bond initialized: $Section.$name
+chemistry.ts:480 Bond initialized: $Section.items
+page.tsx:208 $Article constructor with 3 sections
+page.tsx:181 Adding "Auto-added by Article at index 0" to section Introduction
+page.tsx:181 Adding "Auto-added by Article at index 1" to section Methods
+page.tsx:181 Adding "Auto-added by Article at index 2" to section Results
+chemistry.ts:480 Bond initialized: $StrictContainer.content
+chemistry.ts:480 Bond initialized: $StrictContainer.$$$cid
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:261 $StrictContainer validating inputs...
+chemistry.ts:480 Bond initialized: $StrictContainer.header
+page.tsx:297 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:261 $StrictContainer validating inputs...
+page.tsx:297 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:261 $StrictContainer validating inputs...
+page.tsx:297 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+chemistry.ts:480 Bond initialized: $StrictContainer.content
+chemistry.ts:480 Bond initialized: $StrictContainer.$$$cid
+chemistry.ts:480 Bond initialized: $Title.$text
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:261 $StrictContainer validating inputs...
+page.tsx:272 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ page.tsx:272
+callConstructor @ chemistry.ts:906
+bond @ chemistry.ts:803
+__render @ chemistry.ts:203
+Component @ chemistry.ts:346
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooks @ react-dom-client.development.js:6764
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:519
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759424527969:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759424527969:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759424527969:1801
+(anonymous) @ main-app.js?v=1759424527969:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759424527969:9
+chemistry.ts:480 Bond initialized: $StrictContainer.header
+page.tsx:297 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:297 Chapter 1: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:297 Chapter 2: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+chemistry.ts:480 Bond initialized: $Title.$text
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:261 $StrictContainer validating inputs...
+page.tsx:272 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ page.tsx:272
+callConstructor @ chemistry.ts:906
+bond @ chemistry.ts:803
+__render @ chemistry.ts:203
+Component @ chemistry.ts:346
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6767
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:519
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759424527969:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759424527969:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759424527969:1801
+(anonymous) @ main-app.js?v=1759424527969:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759424527969:9
+page.tsx:297 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:297 Chapter 1: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:297 Chapter 2: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+chemistry.ts:480 Bond initialized: $Title.$text
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+chemistry.ts:480 Bond initialized: $Chapter.$title
+chemistry.ts:480 Bond initialized: $Chapter.$page
+page.tsx:261 $StrictContainer validating inputs...
+page.tsx:272 Warning: More than 3 chapters, only taking first 3
+$StrictContainer @ page.tsx:272
+callConstructor @ chemistry.ts:906
+bond @ chemistry.ts:803
+__render @ chemistry.ts:203
+Component @ chemistry.ts:346
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:519
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759424527969:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759424527969:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759424527969:1801
+(anonymous) @ main-app.js?v=1759424527969:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759424527969:9
+page.tsx:297 Chapter 0: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:297 Chapter 1: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+page.tsx:297 Chapter 2: {chapter: $Chapter, hasComponent: true, has$Component: true, Component: ƒ, $Component: ƒ, …}
+chemistry.ts:480 Bond initialized: $NestedContainer.groups
+chemistry.ts:480 Bond initialized: $NestedContainer.$$$cid
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+page.tsx:348 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+page.tsx:351 Filtered to 3 groups
+page.tsx:355 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+page.tsx:355 Group 1: (2) [$NestedChild, $NestedChild]
+page.tsx:355 Group 2: [$NestedChild]
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+page.tsx:348 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+page.tsx:351 Filtered to 3 groups
+page.tsx:355 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+page.tsx:355 Group 1: (2) [$NestedChild, $NestedChild]
+page.tsx:355 Group 2: [$NestedChild]
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+chemistry.ts:480 Bond initialized: $NestedChild.$value
+page.tsx:348 $NestedContainer received: (3) [Array(3), Array(2), Array(1)]
+page.tsx:351 Filtered to 3 groups
+page.tsx:355 Group 0: (3) [$NestedChild, $NestedChild, $NestedChild]
+page.tsx:355 Group 1: (2) [$NestedChild, $NestedChild]
+page.tsx:355 Group 2: [$NestedChild]
+react-dom-client.development.js:4508 Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <InnerLayoutRouter url="/tests/chi..." tree={[...]} cacheNode={{lazyData:null, ...}} segmentPath={[...]}>
+      <ClientPageRoot Component={function ChildBindingTest} searchParams={{}} params={{}}>
+        <ChildBindingTest params={Promise} searchParams={Promise}>
+          <div style={{padding:"40px", ...}}>
+            <h1>
+            <p>
+            <div>
+            <div>
+            <div>
+            <div style={{...}}>
+              <h2>
+              <div>
+              <div style={{border:"2p...", ...}}>
+                <h3>
+                <button>
+                <div>
+                  <div style={{padding:"10px", ...}}>
+                    <strong>
+                    <ul>
+                      <li>
+                      <li>
+                      <li>
+                      <li>
+                      <li>
+                      <li>
++                     <li>
+                      ...
+                  ...
+              ...
+            ...
+      ...
+
+    at throwOnHydrationMismatch (react-dom-client.development.js:4508:11)
+    at beginWork (react-dom-client.development.js:10929:17)
+    at runWithFiberInDEV (react-dom-client.development.js:873:30)
+    at performUnitOfWork (react-dom-client.development.js:15678:22)
+    at workLoopConcurrentByScheduler (react-dom-client.development.js:15672:9)
+    at renderRootConcurrent (react-dom-client.development.js:15647:15)
+    at performWorkOnRoot (react-dom-client.development.js:14941:13)
+    at performWorkOnRootViaSchedulerTask (react-dom-client.development.js:16767:7)
+    at MessagePort.performWorkUntilDeadline (scheduler.development.js:45:48)
+throwOnHydrationMismatch @ react-dom-client.development.js:4508
+beginWork @ react-dom-client.development.js:10929
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<li>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+eval @ page.tsx:196
+view @ page.tsx:195
+render @ chemistry.ts:811
+__render @ chemistry.ts:204
+Component @ chemistry.ts:346
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+eval @ page.tsx:247
+view @ page.tsx:245
+render @ chemistry.ts:811
+__render @ chemistry.ts:204
+Component @ chemistry.ts:346
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:487
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15672
+renderRootConcurrent @ react-dom-client.development.js:15647
+performWorkOnRoot @ react-dom-client.development.js:14941
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759424527969:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759424527969:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759424527969:1801
+(anonymous) @ main-app.js?v=1759424527969:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759424527969:9
+chemistry.ts:449 updateState: {"cid":74,"$Chapter[74].$title":"\"Introduction\"","$Chapter[74].$page":"1"}
+chemistry.ts:449 updateState: {"cid":75,"$Chapter[75].$title":"\"Main Content\"","$Chapter[75].$page":"10"}
+chemistry.ts:449 updateState: {"cid":76,"$Chapter[76].$title":"\"Conclusion\"","$Chapter[76].$page":"100"}
+chemistry.ts:449 updateState: {"cid":67,"$Chapter[68].$title":"\"Introduction\"","$Chapter[68].$page":"1","$Chapter[69].$title":"\"Main Content\"","$Chapter[69].$page":"10","$Chapter[70].$title":"\"Conclusion\"","$Chapter[70].$page":"100","$Book[67].chapters":"[74,75,76]","$Chapter[71].$title":"\"Introduction\"","$Chapter[71].$page":"1","$Chapter[72].$title":"\"Main Content\"","$Chapter[72].$page":"10","$Chapter[73].$title":"\"Conclusion\"","$Chapter[73].$page":"100","$Chapter[74].$title":"\"Introduction\"","$Chapter[74].$page":"1","$Chapter[75].$title":"\"Main Content\"","$Chapter[75].$page":"10","$Chapter[76].$title":"\"Conclusion\"","$Chapter[76].$page":"100"}
+chemistry.ts:449 updateState: {"cid":88,"$Title[88].$text":"\"My Document\""}
+chemistry.ts:449 updateState: {"cid":89,"$Chapter[89].$title":"\"Chapter 1\"","$Chapter[89].$page":"1"}
+chemistry.ts:449 updateState: {"cid":90,"$Chapter[90].$title":"\"Chapter 2\"","$Chapter[90].$page":"20"}
+chemistry.ts:449 updateState: {"cid":91,"$Chapter[91].$title":"\"Chapter 3\"","$Chapter[91].$page":"40"}
+chemistry.ts:449 updateState: {"cid":92,"$Footer[92].$copyright":"\"© 2024 Chemistry Framework\""}
+chemistry.ts:449 updateState: {"cid":77,"$Title[78].$text":"\"My Document\"","$Document[77].title":"{\"$text\":88}","$Footer[82].$copyright":"\"© 2024 Chemistry Framework\"","$Document[77].footer":"{\"$copyright\":92}","$Chapter[79].$title":"\"Chapter 1\"","$Chapter[79].$page":"1","$Chapter[80].$title":"\"Chapter 2\"","$Chapter[80].$page":"20","$Chapter[81].$title":"\"Chapter 3\"","$Chapter[81].$page":"40","$Document[77].chapters":"[89,90,91]","$Title[83].$text":"\"My Document\"","$Footer[87].$copyright":"\"© 2024 Chemistry Framework\"","$Chapter[84].$title":"\"Chapter 1\"","$Chapter[84].$page":"1","$Chapter[85].$title":"\"Chapter 2\"","$Chapter[85].$page":"20","$Chapter[86].$title":"\"Chapter 3\"","$Chapter[86].$page":"40","$Title[88].$text":"\"My Document\"","$Footer[92].$copyright":"\"© 2024 Chemistry Framework\"","$Chapter[89].$title":"\"Chapter 1\"","$Chapter[89].$page":"1","$Chapter[90].$title":"\"Chapter 2\"","$Chapter[90].$page":"20","$Chapter[91].$title":"\"Chapter 3\"","$Chapter[91].$page":"40"}
+chemistry.ts:449 updateState: {"cid":106,"$Chapter[106].$title":"\"Regular 1\"","$Chapter[106].$page":"1"}
+chemistry.ts:449 updateState: {"cid":107,"$FancyChapter[107].$color":"\"gold\"","$FancyChapter[107].$title":"\"Special\"","$FancyChapter[107].$page":"50"}
+chemistry.ts:449 updateState: {"cid":108,"$Chapter[108].$title":"\"Regular 2\"","$Chapter[108].$page":"100"}
+chemistry.ts:449 updateState: {"cid":109,"$FancyChapter[109].$color":"\"silver\"","$FancyChapter[109].$title":"\"Premium\"","$FancyChapter[109].$page":"150"}
+chemistry.ts:449 updateState: {"cid":93,"$Chapter[94].$title":"\"Regular 1\"","$Chapter[94].$page":"1","$FancyChapter[95].$title":"\"Special\"","$FancyChapter[95].$page":"50","$FancyChapter[95].$color":"\"gold\"","$Chapter[96].$title":"\"Regular 2\"","$Chapter[96].$page":"100","$FancyChapter[97].$title":"\"Premium\"","$FancyChapter[97].$page":"150","$FancyChapter[97].$color":"\"silver\"","$PolyBook[93].chapters":"[102,103,104,105]","$Chapter[98].$title":"\"Regular 1\"","$Chapter[98].$page":"1","$FancyChapter[99].$title":"\"Special\"","$FancyChapter[99].$page":"50","$FancyChapter[99].$color":"\"gold\"","$Chapter[100].$title":"\"Regular 2\"","$Chapter[100].$page":"100","$FancyChapter[101].$title":"\"Premium\"","$FancyChapter[101].$page":"150","$FancyChapter[101].$color":"\"silver\"","$Chapter[102].$title":"\"Regular 1\"","$Chapter[102].$page":"1","$FancyChapter[103].$title":"\"Special\"","$FancyChapter[103].$page":"50","$FancyChapter[103].$color":"\"gold\"","$Chapter[104].$title":"\"Regular 2\"","$Chapter[104].$page":"100","$FancyChapter[105].$title":"\"Premium\"","$FancyChapter[105].$page":"150","$FancyChapter[105].$color":"\"silver\""}
+chemistry.ts:449 updateState: {"cid":117,"$Section[117].$name":"\"Introduction\"","$Section[117].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]"}
+chemistry.ts:449 updateState: {"cid":118,"$Section[118].$name":"\"Methods\"","$Section[118].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]"}
+chemistry.ts:449 updateState: {"cid":119,"$Section[119].$name":"\"Results\"","$Section[119].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]"}
+chemistry.ts:449 updateState: {"cid":110,"$Section[111].$name":"\"Introduction\"","$Section[111].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]","$Section[112].$name":"\"Methods\"","$Section[112].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]","$Section[113].$name":"\"Results\"","$Section[113].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]","$Article[110].sections":"[117,118,119]","$Section[114].$name":"\"Introduction\"","$Section[114].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]","$Section[115].$name":"\"Methods\"","$Section[115].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]","$Section[116].$name":"\"Results\"","$Section[116].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]","$Section[117].$name":"\"Introduction\"","$Section[117].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]","$Section[118].$name":"\"Methods\"","$Section[118].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]","$Section[119].$name":"\"Results\"","$Section[119].items":"[\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\",\"Auto-added by Article at index 0\",\"Auto-added by Article at index 1\",\"Auto-added by Article at index 2\"]"}
+chemistry.ts:449 updateState: {"cid":125,"$Chapter[125].$title":"\"Only Content\"","$Chapter[125].$page":"1"}
+chemistry.ts:449 updateState: {"cid":126,"$Chapter[126].$title":"\"No Header Warning\"","$Chapter[126].$page":"2"}
+chemistry.ts:449 updateState: {"cid":120,"$Chapter[121].$title":"\"Only Content\"","$Chapter[121].$page":"1","$StrictContainer[120].header":"{\"$title\":125,\"$page\":125}","$Chapter[122].$title":"\"No Header Warning\"","$Chapter[122].$page":"2","$StrictContainer[120].content":"[126]","$Chapter[123].$title":"\"Only Content\"","$Chapter[123].$page":"1","$Chapter[124].$title":"\"No Header Warning\"","$Chapter[124].$page":"2","$Chapter[125].$title":"\"Only Content\"","$Chapter[125].$page":"1","$Chapter[126].$title":"\"No Header Warning\"","$Chapter[126].$page":"2"}
+chemistry.ts:449 updateState: {"cid":140,"$Title[140].$text":"\"Valid Header\""}
+chemistry.ts:449 updateState: {"cid":141,"$Chapter[141].$title":"\"Ch1\"","$Chapter[141].$page":"1"}
+chemistry.ts:449 updateState: {"cid":142,"$Chapter[142].$title":"\"Ch2\"","$Chapter[142].$page":"2"}
+chemistry.ts:449 updateState: {"cid":143,"$Chapter[143].$title":"\"Ch3\"","$Chapter[143].$page":"3"}
+chemistry.ts:449 updateState: {"cid":127,"$Title[128].$text":"\"Valid Header\"","$StrictContainer[127].header":"{\"$text\":140}","$Chapter[129].$title":"\"Ch1\"","$Chapter[129].$page":"1","$Chapter[130].$title":"\"Ch2\"","$Chapter[130].$page":"2","$Chapter[131].$title":"\"Ch3\"","$Chapter[131].$page":"3","$StrictContainer[127].content":"[141,142,143]","$Title[134].$text":"\"Valid Header\"","$Chapter[135].$title":"\"Ch1\"","$Chapter[135].$page":"1","$Chapter[136].$title":"\"Ch2\"","$Chapter[136].$page":"2","$Chapter[137].$title":"\"Ch3\"","$Chapter[137].$page":"3","$Title[140].$text":"\"Valid Header\"","$Chapter[141].$title":"\"Ch1\"","$Chapter[141].$page":"1","$Chapter[142].$title":"\"Ch2\"","$Chapter[142].$page":"2","$Chapter[143].$title":"\"Ch3\"","$Chapter[143].$page":"3"}
+chemistry.ts:449 updateState: {"cid":159,"$NestedChild[159].$value":"\"Group1-Item1\""}
+chemistry.ts:449 updateState: {"cid":160,"$NestedChild[160].$value":"\"Group1-Item2\""}
+chemistry.ts:449 updateState: {"cid":161,"$NestedChild[161].$value":"\"Group1-Item3\""}
+chemistry.ts:449 updateState: {"cid":162,"$NestedChild[162].$value":"\"Group2-Item1\""}
+chemistry.ts:449 updateState: {"cid":163,"$NestedChild[163].$value":"\"Group2-Item2\""}
+chemistry.ts:449 updateState: {"cid":164,"$NestedChild[164].$value":"\"Group3-Item1\""}
+chemistry.ts:449 updateState: {"cid":146,"$NestedContainer[146].groups":"[[159,160,161],[162,163],[164]]"}
+chemistry.ts:337 Uncaught TypeError: Cannot read properties of undefined (reading 'updateState')
+    at eval (chemistry.ts:337:36)
+    at Object.react_stack_bottom_frame (react-dom-client.development.js:23638:20)
+    at runWithFiberInDEV (react-dom-client.development.js:873:30)
+    at commitHookEffectListMount (react-dom-client.development.js:12296:29)
+    at commitHookPassiveMountEffects (react-dom-client.development.js:12417:11)
+    at reconnectPassiveEffects (react-dom-client.development.js:14514:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14561:11)
+    at recursivelyTraverseReconnectPassiveEffects (react-dom-client.development.js:14485:9)
+    at reconnectPassiveEffects (react-dom-client.development.js:14507:11)
+eval @ chemistry.ts:337
+react_stack_bottom_frame @ react-dom-client.development.js:23638
+runWithFiberInDEV @ react-dom-client.development.js:873
+commitHookEffectListMount @ react-dom-client.development.js:12296
+commitHookPassiveMountEffects @ react-dom-client.development.js:12417
+reconnectPassiveEffects @ react-dom-client.development.js:14514
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14507
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+recursivelyTraverseReconnectPassiveEffects @ react-dom-client.development.js:14485
+reconnectPassiveEffects @ react-dom-client.development.js:14561
+doubleInvokeEffectsOnFiber @ react-dom-client.development.js:16517
+runWithFiberInDEV @ react-dom-client.development.js:873
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom-client.development.js:16481
+commitDoubleInvokeEffectsInDEV @ react-dom-client.development.js:16526
+flushPassiveEffects @ react-dom-client.development.js:16299
+eval @ react-dom-client.development.js:15925
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+eval @ page.tsx:45
+view @ page.tsx:43
+render @ chemistry.ts:811
+__render @ chemistry.ts:204
+Component @ chemistry.ts:346
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<...>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+ChildBindingTest @ page.tsx:427
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+<ChildBindingTest>
+exports.jsx @ react-jsx-runtime.development.js:338
+ClientPageRoot @ client-page.js:20
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10629
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14985
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16767
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1206
+eval @ react-server-dom-webpack-client.browser.development.js:2830
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1109
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1084
+resolveModel @ react-server-dom-webpack-client.browser.development.js:1907
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2664
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2606
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2733
+progress @ react-server-dom-webpack-client.browser.development.js:2997
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:1870
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:2858
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3228
+eval @ app-index.js:131
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1759424527969:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:62
+loadScriptsInSequence @ app-bootstrap.js:23
+appBootstrap @ app-bootstrap.js:56
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1759424527969:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1759424527969:1801
+(anonymous) @ main-app.js?v=1759424527969:1802
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1759424527969:9

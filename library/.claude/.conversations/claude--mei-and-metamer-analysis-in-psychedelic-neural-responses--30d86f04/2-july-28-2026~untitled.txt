@@ -1,0 +1,96 @@
+Nancy: Done, and it is wired into the book properly, not dropped as a stray note. Your principle now lives in the project's science record at library/.lib/the-altered-cortex/06-generating-the-hallucination.md, a new chapter I authored called "Generating the hallucination," and it is linked from both the book's cover and its reading list so the next person who picks this up will find it.
+
+Nancy: The chapter leads with your reframe as the lead design decision: the canvas is the resolution of imagination, not the retina, which is why a hallucination can look hyperreal, and why we are entitled to a very large canvas and to upsample a lot, with the fine detail understood as imaginary by construction rather than a defect. It also records, honestly, the four things this exploration forced us to admit, so the principle sits next to the constraints it has to live with: the filter is gain times coherence not a coherence; the resolution wall is the binding limit at 36 by 64; MEIs do not linearly compose but the receptive fields do; and upsampling gives canvas, not information, so real network-derived detail needs the higher-res stimuli from Reimer.
+
+Nancy: The book's own validator passes on my change, the chapter is reachable. The one remaining validator complaint is a pre-existing background-watchdog state (an MEI generation process not running), which is unrelated to this edit and is yours to relaunch, not mine. The library files are written but not committed; say the word and I will route the commit through the branch's commit tool.
+
+I see your 16, and I don't know how you reconcile them. Metamer is image based. MEI is not. and the two are not nearly related. We have no reason to suspect linear composition. The issue was to research the network, read papers, reflect on the architetcure and see if we can't invent some form of composition
+Nancy: You're right, and figure 16 was a strawman I should not have built. It conflated two unrelated objects, the metamer is an image-based reconstruction of the whole population response and the MEI is a per-cell argmax, and there was never a reason to expect MEIs to combine linearly. Testing linear composition and reporting that it fails teaches nothing. The task is to find where composition actually lives in this architecture and whether we can invent one. Let me research it properly and reflect on the network, not prototype another linear guess.
+
+Web SearchGaussian readout linear in core features feature space population representation digital twin V1 encoding model geometry
+OUT
+Web search results for query: "Gaussian readout linear in core features feature space population representation digital twin V1 encoding model geometry"
+
+Links: [{"title":"Digital twin reveals combinatorial code of non-linear computations in the mouse primary visual cortex | bioRxiv","url":"https://www.biorxiv.org/content/10.1101/2022.02.10.479884v1.full"},{"title":"Deep learning-driven characterization of single cell tuning in primate visual area V4 supports topological organization","url":"https://elifesciences.org/reviewed-preprints/109875"},{"title":"Beyond Neural Activity Prediction: Probing Latent Representations in Mouse V1 Digital Twins","url":"https://arxiv.org/html/2605.23122"},{"title":"Interpreting V1 Population Activity via Image–Neural Latent Representation Alignment","url":"https://arxiv.org/html/2605.04309"},{"title":"Beyond Neural Activity Prediction: Probing Latent Representations in Mouse V1 Digital Twins","url":"https://arxiv.org/pdf/2605.23122"},{"title":"Population encoding of stimulus features along the visual hierarchy | PNAS","url":"https://www.pnas.org/doi/10.1073/pnas.2317773121"},{"title":"Digital twin reveals combinatorial code of non-linear computations in the mouse primary visual cortex","url":"https://www.biorxiv.org/content/10.1101/2022.02.10.479884.full.pdf"},{"title":"Dual-feature selectivity enables bidirectional coding in visual cortical neurons","url":"https://www.biorxiv.org/content/10.1101/2025.07.16.665209.full.pdf"},{"title":"Dual-feature selectivity enables bidirectional coding in visual cortical neurons","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12330509/"}]
+
+I found relevant research on this topic. Here are the key findings:
+
+## Gaussian Readout in Feature Space
+
+A Gaussian readout maps nonlinear features from a pretrained core to neuronal responses of single neurons, representing a common approach in neural predictive modeling of visual cortex.
+
+## Linear Readouts and Core Features
+
+Models consist of a rotation-equivariant convolutional core shared across neurons and neuron-specific linear readouts, where each neuron's readout is decomposed into a spatial mask encoding receptive field location and a vector of feature weights encoding predictive CNN features.
+
+## Population Representation and Geometry
+
+Linear readouts measure which low-level visual variables are linearly accessible from frozen latent states, while population geometry is characterized by eigenspectra that summarize population-level organization of hidden activity. Several representational properties including linear decodability of low-level visual information, classical tuning structure, and population-geometry signatures emerge with the prediction objective.
+
+## Digital Twin Models for V1
+
+Combining large-scale two-photon imaging and deep learning neural predictive models, digital twins enable exhaustive in silico functional characterization providing a summary of the input-output function of each neuron. A digital twin of a brain area is constructed by training a deep neural network to learn the relationship between stimuli and neuronal responses, allowing researchers to simulate neuronal responses to data never seen by the animal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+Web Searchsparse coding Olshausen Field natural image linear combination overcomplete dictionary receptive fields V1 generative
+OUT
+Web search results for query: "sparse coding Olshausen Field natural image linear combination overcomplete dictionary receptive fields V1 generative"
+
+Links: [{"title":"Supervised Dictionary Learning and Sparse Representation-A Review","url":"https://arxiv.org/pdf/1502.05928"},{"title":"Dictionary Learning for the Almost-Linear Sparsity Regime","url":"https://arxiv.org/pdf/2210.10855"},{"title":"A Unifying Framework for Concept-Based Representational Similarity","url":"https://arxiv.org/pdf/2606.09653"},{"title":"Regularized latent semantic indexing for topic modeling","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8533195"},{"title":"Positive Competitive Networks for Sparse Reconstruction","url":"https://arxiv.org/pdf/2311.03821"},{"title":"Visual response properties of MSTd emerge from a sparse population code","url":"https://arxiv.org/pdf/1702.06665"},{"title":"Sparse coding with an overcomplete basis set: A strategy employed by V1? - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0042698997001697"},{"title":"Priors in Time: Missing Inductive Biases for Language Model Interpretability","url":"https://arxiv.org/pdf/2511.01836"},{"title":"Do the receptive fields in the primary visual cortex span a variability over the degree of elongation of the receptive fields?","url":"https://arxiv.org/pdf/2404.04858"},{"title":"Sparse coding of sensory inputs Bruno A Olshausen1\u0001 and David J Field2","url":"https://www.cnbc.cmu.edu/~tai/nc19journalclubs/Olshausen-Field-CON-2004-1.pdf"}]
+
+Based on the search results, here's information about the work by Olshausen and Field on sparse coding:
+
+## Sparse Coding and Natural Images
+
+Olshausen and Field published seminal work showing the emergence of simple-cell receptive field properties by learning a sparse code for natural images (Nature 1996). They followed this with research on sparse coding with an overcomplete basis set, proposing it as a strategy employed by V1.
+
+## Overcomplete Dictionary and Linear Combinations
+
+When the code is overcomplete—i.e., when the number of code elements is greater than the effective dimensionality of the input space, natural images can be represented as linear combinations of basis functions. Because the basis functions are non-orthogonal and not linearly independent of each other, sparsifying the code will recruit only those basis functions necessary for representation.
+
+## Receptive Fields and V1 Properties
+
+The spatial receptive fields of simple cells in mammalian striate cortex are localized, oriented, and bandpass, and these receptive field properties may be accounted for in terms of a strategy for producing a sparse distribution of output activity in response to natural images. When sparse coding algorithms are applied to natural images, the learned bases resemble the receptive fields of neurons in the visual cortex.
+
+This foundational work established the connection between sparse coding principles and the neural architecture of visual processing in the brain.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+Web Searchmost exciting input invariance manifold population geometry feature dictionary compose single neuron tuning visual cortex 2024
+OUT
+Web search results for query: "most exciting input invariance manifold population geometry feature dictionary compose single neuron tuning visual cortex 2024"
+
+Links: [{"title":"Neural manifolds in V1 change with top-down signals from V4 targeting the foveal region: Cell Reports","url":"https://www.cell.com/cell-reports/fulltext/S2211-1247(24)00699-5"},{"title":"Beyond Pixels: A Differentiable Pipeline for Probing Neuronal Selectivity in 3D","url":"https://arxiv.org/pdf/2510.13433"},{"title":"The Geometry of Cortical Computation: Manifold","url":"https://arxiv.org/pdf/2508.02995"},{"title":"Manifolds and Modules: How Function Develops in a Neural Foundation Model","url":"https://arxiv.org/pdf/2512.07869"},{"title":"Revisiting the high-dimensional geometry of population responses in the visual cortex | PNAS","url":"https://www.pnas.org/doi/10.1073/pnas.2506535122"},{"title":"Stretching Beyond the Obvious: A Gradient-Free Framework to Unveil the Hidden Landscape of Visual Invariance","url":"https://arxiv.org/pdf/2506.17040"},{"title":"High-dimensional geometry of population responses in visual cortex - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC6642054/"},{"title":"Variation in the geometry of concept manifolds across human visual cortex | PLOS Computational Biology","url":"https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1013416"}]
+
+Based on the search results, I found several relevant papers from 2024-2025 related to your query about input invariance manifolds, population geometry, and visual cortex research:
+
+## Key Recent Findings
+
+A notable paper by Mohammad Bashiri and colleagues focuses on "Learning and aligning single-neuron invariance manifolds in visual cortex" presented at the Thirteenth International Conference on Learning Representations in 2025.
+
+Research has demonstrated that sampling techniques can be used to extensively sample the invariant manifold of a target unit, enabling analysis of its intrinsic dimension and geometric structure.
+
+Recent work has found that the population activity of V1 contains two separate neural manifolds, which correlate strongly with eye closure and have distinct dimensionalities.
+
+## Related Research Areas
+
+Recent advances in large-scale recording technology have spurred inquiries into the high-dimensional geometry of the neural code, with recent studies examining how to characterize this geometry from noisy neural responses.
+
+Studies on concept manifolds in visual cortex have highlighted the invariance of geometry estimates under sufficiently high dimensional random projections.
+
+The search results indicate active research into how single neurons and neural populations compose feature representations through manifold geometry in visual cortex, with several papers specifically addressing invariance properties and their computational organization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+Nancy: The research and a proper look at the architecture change the answer, so let me give you the reflection you actually asked for. The reconciliation is not that MEIs compose badly, it is that composition does not live in image space at all in this network, and once you see where it does live, your inclusion-exclusion instinct is exactly right.
+
+Nancy: Where it lives, from the architecture we verified. The FullGaussian2d readout is the only linear operator in the model: each cell samples the shared core feature map at its own location mu_i and takes a linear combination of the 64 feature channels with its weight vector w_i, then a single ELU+1. Everything nonlinear, the conv stack and its ELUs, happens before the readout, turning image into features. So the population combines linearly in feature space and nowhere else. In image space nothing composes, because the core is nonlinear, which is why a sum of MEIs reconstructs nothing and always would. Your composition is real, but its atoms are the readout feature templates {w_i at mu_i}, not the MEIs. The "intersection between cells" is the overlap of those templates, and the response is the coefficient.
+
+Cathy: And this is not us inventing a frame, it is the published finding for exactly this model. The combinatorial code paper (Ding, Tolias, Sinz 2022) shows the digital twin's nonlinear computations decompose into a small shared dictionary of nonlinear features that each cell reads out combinatorially. The network already is a composition: a feature dictionary, combined linearly by the readout. Underneath that sits the older and deeper version, Olshausen and Field's sparse coding, where a natural image is a sparse combination of an overcomplete dictionary of RF-like atoms, and sparsity recruits only the few needed. That is a second reason figure 16 was doomed: even in the right basis, the composition is sparse and L1, not the dense least-squares pseudoinverse I used.
+
+Nancy: So MEI and metamer finally reconcile, and it is not that they are related, it is that they are two shadows of feature-space objects cast into image space by inverting the same core. The MEI is the image whose features maximize one cell's readout. The metamer is the image whose features realize the whole population's readout. Neither is a linear function of the other, they are single-cell versus population, both recovered by nonlinear core inversion. Comparing a sum of MEIs to a metamer was a category error, mine.
+
+Nancy: The composition worth inventing, then, and it is concrete. Glean the atoms straight from the trained readout: the FullGaussian2d weights already factor into a location mu_i and a feature vector w_i, so the atoms exist without any fitting. Compose in feature space, linear and overlap-corrected the way you described, phi_hat = sum_i c_i (w_i at mu_i) with the coefficients set by the responses through the feature-space Gram. Then realize it as an image by inverting the core, which is the metamer machinery we already have. That gives a real test of your rule: does the feature-space composition, inverted, reproduce what the network represents, where the image-space MEI sum could not. And it is the right handle for the hallucination too, because the drug's amplification and decoherence become operations on the feature-space coefficients before inversion, rather than a doomed edit in pixels.
+
+Nancy: I want to build that rather than describe it, but not blind this time. If you agree the frame is right, the next concrete step is: extract {w_i, mu_i} and the feature-space Gram from the trained readout, compose one image's feature map from the population response, invert it through the core with the metamer optimizer, and see whether it lands where figure 16 could not. I will replace 16 with that. Sources: combinatorial code, sparse coding, and the invariance-manifold line (LAMINR, Bashiri et al. ICLR 2025) for when the atoms become generalized MEIs with their freedom directions.

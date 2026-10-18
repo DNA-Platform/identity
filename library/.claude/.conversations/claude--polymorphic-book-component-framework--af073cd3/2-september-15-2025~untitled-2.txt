@@ -1,0 +1,228 @@
+page.tsx:156  GET http://localhost:3000/tests/basics/ 500 (Internal Server Error)
+insertOrAppendPlacementNode @ react-dom-client.development.js:12769
+commitPlacement @ react-dom-client.development.js:12816
+runWithFiberInDEV @ react-dom-client.development.js:873
+commitReconciliationEffects @ react-dom-client.development.js:14052
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13792
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13791
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13791
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13776
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13776
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13591
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13575
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:14043
+recursivelyTraverseMutationEffects @ react-dom-client.development.js:13563
+commitMutationEffectsOnFiber @ react-dom-client.development.js:13849
+flushMutationEffects @ react-dom-client.development.js:15973
+commitRoot @ react-dom-client.development.js:15947
+commitRootWhenReady @ react-dom-client.development.js:15179
+performWorkOnRoot @ react-dom-client.development.js:15098
+performSyncWorkOnRoot @ react-dom-client.development.js:16782
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16628
+processRootScheduleInMicrotask @ react-dom-client.development.js:16666
+eval @ react-dom-client.development.js:16801
+<iframe>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:345
+TestRunner @ page.tsx:156
+react_stack_bottom_frame @ react-dom-client.development.js:23553
+renderWithHooksAgain @ react-dom-client.development.js:6864
+renderWithHooks @ react-dom-client.development.js:6776
+updateFunctionComponent @ react-dom-client.development.js:9070
+beginWork @ react-dom-client.development.js:10680
+runWithFiberInDEV @ react-dom-client.development.js:873
+performUnitOfWork @ react-dom-client.development.js:15678
+workLoopSync @ react-dom-client.development.js:15498
+renderRootSync @ react-dom-client.development.js:15478
+performWorkOnRoot @ react-dom-client.development.js:14942
+performSyncWorkOnRoot @ react-dom-client.development.js:16782
+flushSyncWorkAcrossRoots_impl @ react-dom-client.development.js:16628
+processRootScheduleInMicrotask @ react-dom-client.development.js:16666
+eval @ react-dom-client.development.js:16801Understand this error
+2chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:482 Property: computedProp, isReactive: true
+page.tsx:82 Getter called, returning: NaN
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:482 Property: computedProp, isReactive: true
+page.tsx:82 Getter called, returning: NaN
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+2chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:482 Property: computedProp, isReactive: true
+page.tsx:82 Getter called, returning: NaN
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:482 Property: computedProp, isReactive: true
+page.tsx:82 Getter called, returning: NaN
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+2chemistry3.ts:482 Property: $text, isReactive: true
+2chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:482 Property: computedProp, isReactive: true
+page.tsx:82 Getter called, returning: NaN
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:482 Property: computedProp, isReactive: true
+page.tsx:82 Getter called, returning: NaN
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+2chemistry3.ts:482 Property: $increment, isReactive: true
+chemistry3.ts:482 Property: computedProp, isReactive: true
+page.tsx:82 Getter called, returning: NaN
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+chemistry3.ts:482 Property: computedProp, isReactive: true
+page.tsx:82 Getter called, returning: NaN
+page.tsx:82 Getter called, returning: NaN
+chemistry3.ts:482 Property: $modifyRegularArray, isReactive: true
+chemistry3.ts:482 Property: $modifyRegularObject, isReactive: true
+chemistry3.ts:482 Property: $modifyComputed, isReactive: true
+2chemistry3.ts:482 Property: $text, isReactive: true
+chemistry3.ts:598 Uncaught RangeError: Maximum call stack size exceeded
+    at $Display.get [as _formula] (chemistry3.ts:598:18)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)
+    at $Display.get [as _formula] (chemistry3.ts:599:47)
+    at get formula (chemistry3.ts:97:43)

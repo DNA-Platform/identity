@@ -1,0 +1,192 @@
+class $BondOrchestrator<T extends $Chemical> {
+    private _chemical: T;
+    private _bondConstructor?: Function;
+    private _paramCount = 0;
+    private _hasRest = false;
+    private _lastProps: any;
+    
+    constructor(chemical: T) {
+        this._chemical = chemical;
+        const name = chemical.getType().name;
+        this._bondConstructor = (chemical as any)[name];
+        this.parseBondConstructor();
+    }
+    
+    bond(props: any): any {
+        const [children, args] = this.process(props.children);
+        this.validateArgs(args);
+        
+        const augmentedProps = { ...props, children };
+        this._chemical.__children = augmentedProps.children;
+        for (const key in augmentedProps) {
+            if (typeof key === 'symbol' || key === 'children' || key === 'key' || key === 'ref') continue;
+            (this._chemical as any)['$' + key] = augmentedProps[key];
+        }
+        
+        if (this._bondConstructor) {
+            if (this._hasRest) {
+                const regular = args.slice(0, this._paramCount);
+                const rest = args.slice(this._paramCount);
+                this._bondConstructor.apply(this._chemical, [...regular, ...rest]);
+            } else {
+                this._bondConstructor.apply(this._chemical, args);
+            }
+        }
+        
+        this._chemical.formula.refresh();
+        this._lastProps = augmentedProps;
+        return augmentedProps;
+    }
+
+    render(): ReactNode | Promise<ReactNode> {
+        const chemical = this._chemical;
+        let view = chemical.view();
+        view = this.augmentView(view, chemical.Component);
+        this._lastProps = undefined;
+        return view;
+    }
+    
+    private validateArgs(args: any[]) {
+        if (!this._bondConstructor) return;
+        
+        const argCount = args.length;
+        if (this._hasRest) {
+            if (argCount < this._paramCount)
+                throw new Error(`${this._chemical.getType().name} expects at least ${this._paramCount} arguments, got ${argCount}`);
+        } else {
+            if (argCount !== this._paramCount)
+                throw new Error(`${this._chemical.getType().name} expects ${this._paramCount} arguments, got ${argCount}`);
+        }
+    }
+    
+    private parseBondConstructor() {
+        if (!this._bondConstructor) return;
+        
+        const match = this._bondConstructor.toString().match(/\(([^)]*)\)/);
+        if (!match) throw new Error(`Cannot parse constructor for ${this._chemical.getType().name}`);
+        
+        const params = match[1].split(',').map(p => p.trim()).filter(p => p);
+        this._hasRest = params.length > 0 && params[params.length - 1].startsWith('...');
+        this._paramCount = this._hasRest ? params.length - 1 : params.length;
+    }
+    
+    private process(children: ReactNode, depth = 0): [ReactNode, any[]] {
+        const args: any[] = [];
+        
+        const augmented = React.Children.map(children, child => {
+            if (!React.isValidElement(child)) {
+                if (depth === 0) args.push(child);
+                return child;
+            }
+            
+            const element = child as React.ReactElement<any>;
+            let type = element.type as any;
+            
+            if (element.props['data-chem-start']) {
+                const chem = $chemicalRegistry.get(element.props['data-chem-start']);
+                if (chem && depth === 0) args.push(chem);
+                return element;
+            }
+            if (element.props['data-chem-end']) return element;
+            
+            if (type === $) {
+                const [inner, innerArgs] = this.process(element.props.children, depth + 1);
+                if (depth === 0) args.push(innerArgs);
+                return inner;
+            }
+            
+            if (typeof type === 'function' && !type.$template) 
+                type = $(type);
+            
+            if (type.$template instanceof $Chemical) {
+                const component: $Component = type;
+                const [children] = element.props.children ? 
+                    this.process(element.props.children, depth + 1) : 
+                    [undefined];
+                
+                if (!component.$bound) {
+                    const boundComponent = component.$bind();
+                    const chemical = boundComponent.$chemical;
+                    const newProps = chemical.binder.bond({...element.props, children: children});
+                    if (depth === 0)
+                        args.push(chemical);
+                    
+                    return React.createElement(boundComponent, {
+                        ...element.props,
+                        key: element.key,
+                        children: newProps.children
+                    });
+                }
+                
+                const chem = type.$chemical;
+                if (depth === 0) args.push(chem);
+                
+                if (children !== element.props.children) {
+                    this.bondChemical(chem, {...element.props, children: children});
+                    return React.cloneElement(element, {
+                        ...element.props,
+                        children: children
+                    });
+                }
+                
+                this.bondChemical(chem, element.props);
+                return child;
+            }
+            
+            if (element.props.children) {
+                const [augChildren] = this.process(element.props.children, depth + 1);
+                if (augChildren !== element.props.children) {
+                    return React.cloneElement(element, {
+                        ...element.props,
+                        children: augChildren
+                    });
+                }
+            }
+            
+            if (depth === 0) args.push(child);
+            return child;
+        });
+        
+        return [augmented, args];
+    }
+    
+    private bondChemical(chemical: $Chemical, props: any) {
+        chemical.__children = props.children;
+        for (const key in props) {
+            if (typeof key === 'symbol' || key === 'children' || key === 'key' || key === 'ref') continue;
+            (chemical as any)['$' + key] = props[key];
+        }
+        chemical.formula.refresh();
+    }
+
+    private augmentView(view: ReactNode | Promise<ReactNode>, component: $Component<T>): ReactNode | Promise<ReactNode> {
+        if (view instanceof Promise) {
+            view = view.then(view => this.augmentView(view, component));
+            (view as any).$Component = component;
+            return view;
+        }
+        
+        return [this.createMark('start'), view, this.createMark('end')];
+    }
+
+    private createMark(position: 'start' | 'end'): React.ReactElement {
+        const chemical = this._chemical;
+        const isStart = position === 'start';
+        const commentText = isStart 
+            ? `chem-start:${chemical.cid}:${chemical.getType().name}`
+            : `chem-end:${chemical.cid}`;
+        
+        return React.createElement('span', {
+            key: `chem-${position}-${chemical.cid}`,
+            [`data-chem-${position}`]: chemical.cid,
+            ...(isStart && { 'data-chem-type': chemical.getType().name }),
+            style: { display: 'none' },
+            ref: (el: HTMLElement | null) => {
+                if (el?.parentNode) {
+                    const comment = document.createComment(commentText);
+                    el.parentNode.replaceChild(comment, el);
+                }
+            }
+        });
+    }
+}

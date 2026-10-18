@@ -1,0 +1,502 @@
+class A<T> {
+    protected _a: T[];
+    a(): T[] { return this._a; }
+
+    constructor(array?: T[]) {
+        if (array === undefined) array = [];
+        this._a = array;
+    }
+
+    equals(other: T[] | A<T>): boolean {
+        if (!other) return false;
+        var that = other instanceof Array ? other : other.a()
+        return arrayEquals(this.a(), that);
+    }
+
+    doesntEqual(other: T[] | A<T>): boolean {
+        return !this.equals(other);
+    }
+
+    at(index: number): T {
+        index = evaluateNegativeIndex(index, this._a.length);
+        return this._a[index];
+    }
+
+    get(selector: string): A<T> {
+        var indexes = evaluateRangeSelector(selector, this.a().length);
+        var result = new A<T>();
+        for (var i = 0; i < indexes.length; i++) {
+            result.push(this.a()[indexes[i]]);
+        }
+        return result;
+    }
+
+    set(index: number, item: T): A<T> {
+        index = evaluateNegativeIndex(index, this.a().length);
+        this.a()[index] = item;
+        return this;
+    }
+
+    length(): number { return this.a().length; }
+
+    concat(other: T[] | A<T>): A<T> {
+        var otherArray = other instanceof Array ? other : other.a();
+        return new A<T>([...this.a(), ...otherArray]);
+    }
+
+    copy(): A<T> {
+        return new A<T>(this.a().slice());
+    }
+
+    insertAt(index: number, item: T): A<T> {
+        var insertAt = evaluateNegativeInsertIndex(index, this.a().length);
+        this.a().splice(insertAt, 0, item);
+        return this;
+    }
+
+    insertManyAt(index: number, items: T[]): A<T> {
+        var insertAt = evaluateNegativeInsertIndex(index, this.a().length);
+        this.a().splice(insertAt, 0, ...items);
+        return this;
+    }
+
+    delete(item: T): A<T> {
+        for (var i = 0; i < this.a().length; i++) {
+            if (this.a()[i] === item) {
+                this.a().splice(i, 1);
+                break;
+            }
+        }
+        return this;
+    }
+
+    deleteMany(items: T[]): A<T> {
+        f(items).forEach(item => this.delete(item));
+        return this;
+    }
+
+    deleteAt(index: number, count: number = 1): A<T> {
+        var removeFrom = evaluateNegativeIndex(index, this.a().length);
+        this.a().splice(removeFrom, count);
+        return this;
+    }
+
+    deleteAll(): A<T> {
+        this.a().length = 0;
+        return this;
+    }
+
+    forEach(callback: (item: T, i: number) => any | void): any | void {
+        var result: any;
+        for (var i = 0; i < this.a().length; i++) {
+            result = callback(this.a()[i], i);
+        }
+        return result;
+    }
+
+    do(callback: (item: T, i: number) => any | void): A<T> {
+        this.forEach(callback);
+        return this;
+    }
+
+    doOnce(callback: (item: T, i: number) => boolean): boolean {
+        for (var i = 0; i < this.a().length; i++) {
+            if (callback(this.a()[i], i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    select<U>(selector: (element: T, i: number) => U): A<U> {
+        var result = new A<U>();
+        for (var i = 0; i < this.a().length; i++) {
+            result.push(selector(this.a()[i], i));
+        }
+        return result;
+    }
+
+    selectMany<U>(selector: (element: T, i: number) => U[]): A<U> {
+        var result = new A<U>();
+        for (var i = 0; i < this.a().length; i++) {
+            var selectedArray = selector(this.a()[i], i);
+            result.insertManyAt(result.length(), selectedArray);
+        }
+        return result;
+    }
+
+    where(predicate: (element: T, i: number) => boolean): A<T> {
+        var result = new A<T>();
+        for (var i = 0; i < this.a().length; i++) {
+            if (predicate(this.a()[i], i)) {
+                result.push(this.a()[i]);
+            }
+        }
+        return result
+    }
+
+    aggregate<U>(seed: U, func: (acc: U, current: T, i: number) => U): U {
+        var result = seed;
+        for (var i = 0; i < this.a().length; i++) {
+            result = func(result, this.a()[i], i);
+        }
+        return result;
+    }
+
+    orderByAscending(): A<T> {
+        return this.orderBy(item => item);
+    }
+
+    orderBy(selector: (item: T) => any): A<T> {
+        if (this.length() === 0) return f([]);
+        var copy = this.copy();
+        copy.a().sort(A.getTypedComparer<T>(this.a(), selector, false));
+        return copy;
+    }
+
+    orderByDescending(selector?: (item: T) => any): A<T> {
+        if (this.length() === 0) return f([]);
+        var copy = this.copy();
+        copy.a().sort(A.getTypedComparer<T>(this.a(), selector, true));
+        return copy;
+    }
+
+    first(predicate?: (element: T, i: number) => boolean): T {
+        if (!predicate) return this.a().length > 0 ? this.a()[0] : undefined as any as T;
+        for (var i = 0; i < this.a().length; i++) {
+            if (predicate(this.a()[i], i)) return this.a()[i];
+        }
+        return undefined as any as T;
+    }
+
+    firstIndex(predicate?: (element: T, i: number) => boolean): number {
+        if (!predicate) return this.a().length > 0 ? 0 : -1;
+        for (var i = 0; i < this.a().length; i++) {
+            if (predicate(this.a()[i], i)) return i;
+        }
+        return -1;
+    }
+
+    last(predicate?: (element: T, i: number) => boolean): T | undefined {
+        if (!predicate) return this.a().length > 0 ? this.a()[this.a().length - 1] : undefined;
+        for (var i = this.a().length - 1; i >= 0; i--) {
+            if (predicate(this.a()[i], i))
+                return this.a()[i];
+        }
+        return undefined;
+    }
+
+    lastIndex(predicate?: (element: T, i: number) => boolean): number {
+        if (!predicate) return this.a().length > 0 ? this.a().length - 1 : -1;
+        for (var i = this.a().length - 1; i >= 0; i--) {
+            if (predicate(this.a()[i], i)) return i;
+        }
+        return -1;
+    }
+
+    any(predicate?: (element: T) => boolean): boolean {
+        if (!predicate) return this.a().length > 0;
+        for (var i = 0; i < this.a().length; i++) {
+            if (predicate(this.a()[i])) return true;
+        }
+        return false;
+    }
+
+    all(predicate: (element: T) => boolean): boolean {
+        return this.length() == this.where(predicate).length();
+    }
+
+    includes(item: T): boolean {
+        return this.any(i => i == item);
+    }
+
+    // Array methods
+    push(...items: T[]): A<T> {
+        this.a().push(...items);
+        return this;
+    }
+
+    pop(): T | undefined {
+        return this.a().pop();
+    }
+
+    splice(start: number, deleteCount?: number, ...items: T[]): A<T> {
+        this.a().splice(start, deleteCount, ...items);
+        return this;
+    }
+
+    slice(start?: number, end?: number): A<T> {
+        return new A(this.a().slice(start, end));
+    }
+
+    shift(): T | undefined {
+        return this.a().shift();
+    }
+
+    unshift(...items: T[]): A<T> {
+        this.a().unshift(...items);
+        return this;
+    }
+
+    reverse(): A<T> {
+        var arr = this.a();
+        var reversed: T[] = [];
+        for (var i = arr.length - 1; i >= 0; i--) {
+            reversed.push(arr[i]);
+        }
+        return new A<T>(reversed);
+    }
+
+    skip(count: number): A<T> {
+        if (count >= this.length()) return f([]);
+        return this.get(`${count}:`)
+    }
+
+    take(count: number): A<T> {
+        count = Math.min(count, this.length());
+        return this.get(`:${count - 1}`);
+    }
+
+    zip<U>(items: A<U>): A<[T, U]> {
+        var len = this.length();
+        if (len !== items.length())
+            throw "Arrays must be the same length to be zipped";
+
+        var result: A<[T, U]> = f([]);
+        for (var i = 0; i < len; i++) {
+            result.push([this.at(i), items.at(i)]);
+        }
+
+        return result;
+    }
+
+    vector(): Vector {
+        if (this.length() === 0) return v();
+        if (VectorTypes.isNumberArrayExtension(this)) return v(this);
+        if (VectorTypes.isPositionArrayExtension(this)) return v(this);
+        throw new Error("The vector function only works on number and position arrays");
+    }
+
+    stringJoin(separator: string): string {
+        return stringJoin(this.select(x => x + "").a(), separator);
+    }
+
+    toString(): string {
+        if (this.length() == 0) return "A[]";
+        try {
+            return `A<${typeof this.at(0)}>[${this.select(x => `${x}`).a()}]`;
+        } catch {
+           return `A<${typeof this.at(0)}>[${this.a()}]`;
+        }
+    }
+
+    static empty(): A<any> { return new A<any>([]) };
+
+    private static getTypedComparer<T>(arr: T[], selector?: (item: T) => any, desc: boolean = false): (a: T, b: T) => number {
+        if (arr.length === 0) return () => 0;
+        var getValue = selector || ((x: T) => x);
+        var first = getValue(arr[0]);
+        var type = typeof first;
+
+        if (type === 'number' || type === 'boolean')
+            return desc
+                ? (a, b) => getValue(b) - getValue(a)
+                : (a, b) => getValue(a) - getValue(b);
+
+        if (type === 'string')
+            return desc
+                ? (a, b) => getValue(b).toString().localeCompare(getValue(a))
+                : (a, b) => getValue(a).toString().localeCompare(getValue(b));
+
+        if (first instanceof Date)
+            return desc
+                ? (a, b) => getValue(b).getTime() - getValue(a).getTime()
+                : (a, b) => getValue(a).getTime() - getValue(b).getTime();
+
+        return desc
+            ? (a, b) => getValue(a) < getValue(b) ? 1 : getValue(a) > getValue(b) ? -1 : 0
+            : (a, b) => getValue(a) < getValue(b) ? -1 : getValue(a) > getValue(b) ? 1 : 0;
+    }
+}
+
+class Str extends A<string> {
+    a(): string[] {
+        this.makeMutable(); 
+        return this.a();
+    }
+
+    s(): string {
+        if (typeof this._a === "string") 
+            return this._a;
+        return stringJoin(this._a, "");
+    }
+
+    constructor(str: string) {
+        super(str as any)
+    }
+
+    startsWith(prefix: string): boolean {
+        return Str.stringStartsWith(this.s(), prefix);
+    }
+
+    endsWith(suffix: string): boolean {
+        return Str.stringEndsWith(this.s(), suffix);
+    }
+
+    replace(pattern: string | RegExp, replacement: string): string {
+        return Str.stringReplace(this.s(), pattern, replacement);
+    }
+
+    includes(search: string): boolean { 
+        return Str.stringIncludes(this.s(), search); 
+    }
+
+    contains(search: string): boolean {
+        return Str.stringContains(this.s(), search);
+    }
+
+    padStart(targetLength: number, padChar: string = " "): string {
+        return Str.stringPadStart(this.s(), targetLength, padChar);
+    }
+
+    padEnd(targetLength: number, padChar: string = " "): string {
+        return Str.stringPadEnd(this.s(), targetLength, padChar);
+    }
+
+    toString(): string {
+        try {
+            return this.s();
+        } catch {
+            return super.toString();
+        }
+    }
+
+    private makeMutable(): void {
+        if (typeof this._a === "string")
+            this._a = stringToArray(this._a);
+    }
+
+    /**
+     * Utility function to check if a string starts with a specific prefix
+     * @param str - The main string to check
+     * @param prefix - The prefix to look for
+     * @returns True if the string starts with the prefix, otherwise false
+     */
+    static stringStartsWith(str: string, prefix: string): boolean {
+        return str.slice(0, prefix.length) === prefix;
+    }
+
+    /**
+     * Utility function to check if a string ends with a specific suffix
+     * @param str - The main string to check
+     * @param suffix - The suffix to look for
+     * @returns True if the string ends with the suffix, otherwise false
+     */
+    static stringEndsWith(str: string, suffix: string): boolean {
+        return str.slice(-suffix.length) === suffix;
+    }
+
+    /**
+     * Utility function to replace parts of a string using a pattern or substring
+     * @param str - The original string
+     * @param pattern - The pattern (string or RegExp) to replace
+     * @param replacement - The string to replace the pattern with
+     * @returns The resulting string after the replacement
+     */
+    static stringReplace(str: string, pattern: string | RegExp, replacement: string): string {
+        if (typeof pattern === "string") {
+            var index = str.indexOf(pattern);
+            if (index !== -1) {
+                return str.slice(0, index) + replacement + str.slice(index + pattern.length);
+            }
+            return str;
+        } else if (pattern instanceof RegExp) {
+            var match = pattern.exec(str);
+            if (match) {
+                return str.slice(0, match.index) + replacement + str.slice(match.index + match[0].length);
+            }
+            return str;
+        }
+        throw "Invalid pattern type. Must be a string or RegExp.";
+    }
+
+    /**
+     * Utility function to check if a string contains a specific substring
+     * @param str - The main string to check
+     * @param search - The substring to look for
+     * @returns True if the string contains the substring, otherwise false
+     */
+    static stringIncludes(str: string, search: string): boolean { return Str.stringContains(str, search) }
+    static stringContains(str: string, search: string): boolean {
+        if (str === undefined || str === null) return false;
+        if (search === "") return true;
+
+        var index = 0;
+        var len = str.length;
+        var searchLen = search.length;
+
+        while (index + searchLen <= len) {
+            if (str.slice(index, index + searchLen) === search) {
+                return true;
+            }
+            index++;
+        }
+        return false;
+    }
+
+    /**
+     * Utility function to pad the start of a string with a specific character
+     * @param str - The main string to pad
+     * @param targetLength - The desired total length of the output string
+     * @param padChar - The character to use for padding (default is ' ')
+     * @returns The padded string
+     */
+    static stringPadStart(str: string, targetLength: number, padChar: string = " "): string {
+        str = String(str);
+        if (padChar.length === 0) padChar = " ";
+        var padding = "";
+        var padLength = Math.max(targetLength - str.length, 0);
+
+        while (padding.length < padLength) {
+            padding += padChar;
+        }
+
+        return padding.slice(0, padLength) + str;
+    }
+
+    /**
+     * Utility function to pad the end of a string with a specific character
+     * @param str - The main string to pad
+     * @param targetLength - The desired total length of the output string
+     * @param padChar - The character to use for padding (default is ' ')
+     * @returns The padded string
+     */
+    static stringPadEnd(str: string, targetLength: number, padChar: string = " "): string {
+        str = String(str);
+        if (padChar.length === 0) padChar = " ";
+        var padding = "";
+        var padLength = Math.max(targetLength - str.length, 0);
+
+        while (padding.length < padLength) {
+            padding += padChar;
+        }
+
+        return str + padding.slice(0, padLength);
+    }
+}
+
+function f<T>(array: T[] | A<T> = A.empty()): A<T> {
+    if (array instanceof A) return array as A<T>;
+    return new A(array);
+}
+
+function r(selector: string | number, length?: number): A<number> {
+    if (typeof selector === "number") selector = `0:${selector}`;
+    return f(evaluateRangeSelector(selector, length));
+}
+
+function str(str: string | A<string> = ""): Str {
+    if (str instanceof A)
+        str = stringJoin(str.a(), "");
+    return new Str(str);
+}

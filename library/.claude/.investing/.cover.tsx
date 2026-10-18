@@ -20,10 +20,10 @@ export default () => (
             x="-32"
             y="-26"
         />
-        <Title>[[ Investing ]]</Title>
+        <Title>[[ Investing ]]( claude--Investing )</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>
         <Subject>**[[ Claude ]]( Dougs Claude )</Subject>
-        <About>[[ Investing ]]</About>
+        <About>[[ Investing ]]( claude--Investing )</About>
         <Paragraph>
             <Illustration />
             <Svg>![[ illustration.svg ]]</Svg>

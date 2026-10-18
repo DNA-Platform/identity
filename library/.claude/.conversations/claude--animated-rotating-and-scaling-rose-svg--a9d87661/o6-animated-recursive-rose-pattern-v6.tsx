@@ -1,0 +1,496 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ Animated Recursive Rose Pattern v6 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 1200 1200" style="enable-background:new 0 0 1200 1200;" xml:space="preserve">
+<style type="text/css">
+    .petal{fill:#000000;stroke:#000000;stroke-width:1;stroke-miterlimit:10;}
+</style>
+
+<!-- White background -->
+<rect width="1200" height="1200" fill="#FFFFFF"/>
+
+<defs>
+    <!-- Define the petal as a reusable element -->
+    <g id="petal">
+        <path class="petal" d="M611.1,436.8c-0.3,30.5-4.3,60.9-11.9,90.4c-4,15.6-9,30.9-14.9,45.8c-5,12.6-10.6,24.9-17,36.9c0,0,0,0,0,0.1
+            c-1.2,2.3-2.5,4.7-3.8,7c-8.8,15.8-19.6,29.7-36.1,51.9c28-53,46.6-123.5,55.1-183c0.1-0.5,0.1-1,0.2-1.5
+            c13.8-98-20.9-205.1-96-271.4c-31.9-28.1-61.5-52.2-98.6-73.1c-39.1-21.9-77.4-45.5-112.2-73.6c0.5,0.4-12.3,10.7-12.3,10.8
+            c-43.7,33.8-88.3,66.3-131.7,100.6c-10.8,8.5-21.5,17.1-32.1,25.7c-4.3,3.5-16.4,17.6-18.5,20.1c-0.2,0.2-0.3,0.4-0.3,0.4
+            s-31.8-1.9-81,6.2c0.3-0.1,0.7-0.3,1.2-0.7c3.6-2.5,12.1-10.8,13.2-11.9c2.4-2.6,5.3-4.8,7.9-7.2c6.4-5.7,12.8-11.4,19.3-17
+            c12.9-11.2,26-22.2,39.3-33.1c4.1-3.3,8.2-6.6,12.3-9.9c37.2-29.5,76-56.6,114.7-84.3C236,45.9,255,29,279.2,0
+            c25.7,38.9,65.9,64.1,106.6,85.7c37.3,19.7,73.8,41.7,105.7,69.4c10.7,9.3,20.7,19.3,30,30c17.6,20.1,32.6,42.5,45.1,66.5
+            C596.5,308.5,611.7,373.9,611.1,436.8z"/>
+    </g>
+    
+    <!-- Define a complete whorl with 6 petals -->
+    <g id="whorl">
+        <!-- Petal 1 (0 degrees) -->
+        <use xlink:href="#petal" transform="translate(-300, -585) scale(1.0)" />
+        <!-- Petal 2 (60 degrees) -->
+        <use xlink:href="#petal" transform="rotate(60) translate(-300, -585) scale(1.0)" />
+        <!-- Petal 3 (120 degrees) -->
+        <use xlink:href="#petal" transform="rotate(120) translate(-300, -585) scale(1.0)" />
+        <!-- Petal 4 (180 degrees) -->
+        <use xlink:href="#petal" transform="rotate(180) translate(-300, -585) scale(1.0)" />
+        <!-- Petal 5 (240 degrees) -->
+        <use xlink:href="#petal" transform="rotate(240) translate(-300, -585) scale(1.0)" />
+        <!-- Petal 6 (300 degrees) -->
+        <use xlink:href="#petal" transform="rotate(300) translate(-300, -585) scale(1.0)" />
+    </g>
+</defs>
+
+<!-- Center point at x="600" y="600" -->
+<g transform="translate(600, 600)">
+    <!-- Animated whorls using animateTransform with combined transform matrices -->
+    
+    <!-- Whorl 1 (original size) - fades out as it expands -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="1.0"
+            to="1.2720196495"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0"
+            to="22.9179606750"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <animate
+            attributeName="opacity"
+            from="1"
+            to="0"
+            dur="10s"
+            keyTimes="0; 0.7; 1"
+            values="1; 0.9; 0"
+            repeatCount="indefinite"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 2 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.7861513778"
+            to="1.0"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="37.0820393250"
+            to="0"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 3 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.6180339887"
+            to="0.7861513778"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="74.1640786500"
+            to="37.0820393250"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 4 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.4858682718"
+            to="0.6180339887"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="111.2461179750"
+            to="74.1640786500"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 5 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.3819660113"
+            to="0.4858682718"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="148.3281573000"
+            to="111.2461179750"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 6 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.3002869943"
+            to="0.3819660113"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="185.4101966250"
+            to="148.3281573000"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 7 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.2360822226"
+            to="0.3002869943"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="222.4922359500"
+            to="185.4101966250"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 8 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.1855982016"
+            to="0.2360822226"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="259.5742752750"
+            to="222.4922359500"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 9 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.1459107132"
+            to="0.1855982016"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="296.6563146000"
+            to="259.5742752750"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 10 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.1147035775"
+            to="0.1459107132"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="333.7383539250"
+            to="296.6563146000"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 11 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.0901713058"
+            to="0.1147035775"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="370.8203932500"
+            to="333.7383539250"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 12 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.0708866091"
+            to="0.0901713058"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="407.9024325750"
+            to="370.8203932500"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 13 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.0557237720"
+            to="0.0708866091"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="444.9844719000"
+            to="407.9024325750"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 14 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.0438100825"
+            to="0.0557237720"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="482.0665112250"
+            to="444.9844719000"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 15 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.0344404673"
+            to="0.0438100825"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="519.1485505500"
+            to="482.0665112250"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 16 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.0270741493"
+            to="0.0344404673"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="556.2305898750"
+            to="519.1485505500"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 17 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.0212811950"
+            to="0.0270741493"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="593.3126292000"
+            to="556.2305898750"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 18 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.0167266748"
+            to="0.0212811950"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="630.3946685250"
+            to="593.3126292000"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 19 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.0131471307"
+            to="0.0167266748"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="667.4767078500"
+            to="630.3946685250"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- Whorl 20 -->
+    <g>
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.0103343724"
+            to="0.0131471307"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="704.5587471750"
+            to="667.4767078500"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <use xlink:href="#whorl"/>
+    </g>
+    
+    <!-- New seed whorl that appears during animation -->
+    <g opacity="0">
+        <animateTransform
+            attributeName="transform"
+            type="scale"
+            from="0.00812"
+            to="0.0103343724"
+            dur="10s"
+            repeatCount="indefinite"/>
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="741.6407865000"
+            to="704.5587471750"
+            dur="10s"
+            repeatCount="indefinite"
+            additive="sum"/>
+        <animate
+            attributeName="opacity"
+            from="0"
+            to="1"
+            dur="10s"
+            keyTimes="0; 0.3; 1"
+            values="0; 0.1; 1"
+            repeatCount="indefinite"/>
+        <use xlink:href="#whorl"/>
+    </g>
+</g>
+</svg>
+`}
+        </CodeBox>
+    </Chapter>
+);

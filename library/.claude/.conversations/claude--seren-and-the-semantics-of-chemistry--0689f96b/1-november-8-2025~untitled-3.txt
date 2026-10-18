@@ -1,0 +1,339 @@
+  vite:cache [memory-hmr] /tests/reflection.test.ts +18s
+  vite:cache [memory] /src/catalogue.ts +9ms
+  vite:load 1.01ms [fs] /src/reflection.ts +19s
+  vite:import-analysis 2.29ms [3 imports rewritten] src/reflection.ts +19s
+  vite:transform 8.12ms /src/reflection.ts +19s
+  vite:cache [memory] /src/types.ts +47ms
+  vite:cache [memory] /src/symbols.ts +4ms
+ ❯ tests/reflection.test.ts (140 tests | 10 failed) 75ms
+   ❯ $Reflection (140)
+     ❯ $ObjectiveRep (60)
+       ✓ $type function (10)
+         ✓ should cache the same instances 2ms
+         ✓ should return the right metadata for undefined 1ms
+         ✓ should have the right metadata for null 1ms
+         ✓ should have the right metadata for string 2ms
+         ✓ should have the right metadata for number 1ms
+         ✓ should have the right metadata for bigint 0ms
+         ✓ should have the right metadata for boolean 0ms
+         ✓ should have the right metadata for symbol 0ms
+         ✓ should have the right metadata for function 1ms
+         ✓ should have the right metadata for object 1ms
+       ✓ $typeof function (10)
+         ✓ should cache equivalent instances 1ms
+         ✓ should return the right metadata for undefined 0ms
+         ✓ should have the right metadata for null 0ms
+         ✓ should have the right metadata for a string 1ms
+         ✓ should have the right metadata for number 1ms
+         ✓ should have the right metadata for bigint 1ms
+         ✓ should have the right metadata for boolean 0ms
+         ✓ should have the right metadata for symbol 0ms
+         ✓ should have the right metadata for function 1ms
+         ✓ should have the right metadata for object 1ms
+       ❯ $properties (21)
+         ✓ on instances (4)
+           ✓ should list own properties of plain objects 1ms
+           ✓ should list all properties including inherited 3ms
+           ✓ should handle arrays correctly 1ms
+           ✓ should handle functions as objects 1ms
+         ✓ on types (2)
+           ✓ should list prototype properties of built-in types 2ms
+           ✓ should list class prototype properties 0ms
+         ✓ on primitives (2)
+           ✓ should delegate to type for primitive strings 3ms
+           ✓ should return empty for null/undefined 0ms
+         ✓ should find specific properties by name 0ms
+         ✓ should return undefined rep for missing properties 0ms
+         × should find inherited properties with "all" 13ms
+         × should handle symbol properties 1ms
+         × should work with properties 2ms
+         ✓ should identify field descriptors 1ms
+         × should identify method descriptors 1ms
+         × should handle getter-only properties 2ms
+         × should handle setter-only properties 1ms
+         ✓ should transform property to field when appropriate 0ms
+         ✓ should transform property to method when appropriate 0ms
+         × should handle getter/setter role transformations 1ms
+         ✓ should maintain of relationship through transformations 0ms
+       ✓ $fields (4)
+         ✓ should filter only fields (non-function values) 1ms
+         ✓ should correctly identify fields on class instances 0ms
+         ✓ should return field rep for valid field 0ms
+         ✓ should return undefined rep for non-field 0ms
+       ❯ $methods (4)
+         ✓ should filter only methods (function values) 1ms
+         ✓ should find methods on class prototypes 0ms
+         × should return method rep for valid method 2ms
+         ✓ should handle bound methods 0ms
+       ❯ $parameters (4)
+         ✓ should handle parameter literals with rest property 1ms
+         ✓ should handle non-rest parameters 0ms
+         × should build parameters array from function info 1ms
+         × should detect hasRest on functions 1ms
+       ✓ $miscellaneous (7)
+         ✓ should handle nested object properties 0ms
+         ✓ should handle properties on prototype chain correctly 1ms
+         ✓ should handle property modifications through descriptors 0ms
+         ✓ should handle objects with null prototype 0ms
+         ✓ should handle frozen objects 0ms
+         ✓ should handle property names that are numbers 0ms
+         ✓ should handle empty objects 1ms
+     ✓ parseFunctionInfo (80)
+       ✓ async modifier (7)
+         ✓ async lambda 0ms
+         ✓ async lambda with params 0ms
+         ✓ async function 0ms
+         ✓ async function named 0ms
+         ✓ async method 0ms
+         ✓ async generator function 0ms
+         ✓ async generator method 0ms
+       ✓ generator modifier (5)
+         ✓ generator function 0ms
+         ✓ generator function named 0ms
+         ✓ generator method 0ms
+         ✓ async generator function 0ms
+         ✓ async generator method 0ms
+       ✓ function forms (15)
+         ✓ lambda no params 0ms
+         ✓ lambda single param no parens 0ms
+         ✓ lambda multiple params 0ms
+         ✓ async lambda 0ms
+         ✓ function anonymous 0ms
+         ✓ function named 0ms
+         ✓ async function 0ms
+         ✓ generator function 0ms
+         ✓ method 0ms
+         ✓ async method 0ms
+         ✓ generator method 0ms
+         ✓ getter 0ms
+         ✓ setter 0ms
+         ✓ class named 0ms
+         ✓ class anonymous 0ms
+       ✓ naming (10)
+         ✓ named functions (6)
+           ✓ function 0ms
+           ✓ method 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+           ✓ getter 0ms
+           ✓ setter 0ms
+         ✓ anonymous functions (4)
+           ✓ lambda 0ms
+           ✓ function 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+       ✓ native functions (7)
+         ✓ String constructor 0ms
+         ✓ Array constructor 0ms
+         ✓ Object constructor 0ms
+         ✓ Array.prototype.map 0ms
+         ✓ String.prototype.slice 0ms
+         ✓ Math.pow 0ms
+         ✓ bound function 0ms
+       ✓ unknown/unparseable (3)
+         ✓ custom toString - gibberish 0ms
+         ✓ custom toString - empty 0ms
+         ✓ custom toString - unicode 0ms
+       ✓ comprehensive combinations (3)
+         ✓ async lambda with rest params 0ms
+         ✓ async generator with params and rest 0ms
+         ✓ async generator method with rest 0ms
+       ✓ parameter array structure (30)
+         ✓ no params - lambda 0ms
+         ✓ no params - function 0ms
+         ✓ no params - method 0ms
+         ✓ single param - lambda 0ms
+         ✓ single param - function 0ms
+         ✓ single param - method 0ms
+         ✓ two params - lambda 0ms
+         ✓ two params - function 0ms
+         ✓ two params - method 0ms
+         ✓ three params - lambda 0ms
+         ✓ three params - function 0ms
+         ✓ three params - method 0ms
+         ✓ four params - lambda 0ms
+         ✓ four params - function 0ms
+         ✓ four params - method 0ms
+         ✓ rest only - lambda 0ms
+         ✓ rest only - function 0ms
+         ✓ rest only - method 0ms
+         ✓ single param + rest - lambda 0ms
+         ✓ single param + rest - function 0ms
+         ✓ single param + rest - method 0ms
+         ✓ two params + rest - lambda 0ms
+         ✓ two params + rest - function 0ms
+         ✓ two params + rest - method 0ms
+         ✓ three params + rest - lambda 0ms
+         ✓ three params + rest - function 0ms
+         ✓ three params + rest - method 0ms
+         ✓ four params + rest - lambda 0ms
+         ✓ four params + rest - function 0ms
+         ✓ four params + rest - method 0ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should find inherited properties with "all"
+AssertionError: expected undefined to be [Function toString] // Object.is equality
+
+- Expected:
+[Function toString]
+
++ Received:
+undefined
+
+ ❯ tests/reflection.test.ts:371:53
+    369|                 expect(subField.$value.literal).toBe(2);
+    370|                 expect(inherited.$type.literal).toBe(undefined);
+    371|                 expect(inheritedAll.$value.literal).toBe(Object.prototype.toString);
+       |                                                     ^
+    372|             });
+    373| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should handle symbol properties
+AssertionError: expected undefined to be 'symbol value' // Object.is equality
+
+- Expected:
+"symbol value"
+
++ Received:
+undefined
+
+ ❯ tests/reflection.test.ts:381:48
+    379|                 const symProp = instance.$property(sym);
+    380|                 expect(symProp.$role.role).toBe('property');
+    381|                 expect(symProp.$value.literal).toBe('symbol value');
+       |                                                ^
+    382|             });
+    383| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should work with properties
+TypeError: _a2.$as is not a function
+ ❯ _$ObjectiveRep.$property src/reflection.ts:210:54
+    208|         this.getProperties(whos);
+    209|         if (whos === 'own')
+    210|             return this[$propertiesMap$]!.get(name)?.$as('property') || $instanceof(undefined).$as('property').$of(this);
+       |                                                      ^
+    211|         return this[$propertiesMap$]!.get(name)?.$as('property') || this.$type.$property(whos).$of(this) || $instanceof(undefined).$as('property').$of(this);
+    212|     }
+ ❯ tests/reflection.test.ts:385:43
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should identify method descriptors
+TypeError: _a2.$as is not a function
+ ❯ _$ObjectiveRep.$property src/reflection.ts:210:54
+    208|         this.getProperties(whos);
+    209|         if (whos === 'own')
+    210|             return this[$propertiesMap$]!.get(name)?.$as('property') || $instanceof(undefined).$as('property').$of(this);
+       |                                                      ^
+    211|         return this[$propertiesMap$]!.get(name)?.$as('property') || this.$type.$property(whos).$of(this) || $instanceof(undefined).$as('property').$of(this);
+    212|     }
+ ❯ _$ObjectiveRep.$method src/reflection.ts:228:31
+ ❯ tests/reflection.test.ts:406:43
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should handle getter-only properties
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/reflection.test.ts:418:40
+    416|                 expect(rep.isProperty).toBe(true);
+    417|                 expect(rep.isReadable).toBe(true);
+    418|                 expect(rep.isWritable).toBe(false);
+       |                                        ^
+    419|                 expect(rep.$getter.literal).toBeDefined();
+    420|                 expect(rep.$setter.literal).toBeUndefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should handle setter-only properties
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/reflection.test.ts:427:40
+    425|                 const rep = $instanceof(obj).$property("writeOnly");
+    426|                 expect(rep.isProperty).toBe(true);
+    427|                 expect(rep.isReadable).toBe(false);
+       |                                        ^
+    428|                 expect(rep.isWritable).toBe(true);
+    429|                 expect(rep.$getter.literal).toBeUndefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $properties > should handle getter/setter role transformations
+TypeError: _a2.$as is not a function
+ ❯ _$ObjectiveRep.$property src/reflection.ts:210:54
+    208|         this.getProperties(whos);
+    209|         if (whos === 'own')
+    210|             return this[$propertiesMap$]!.get(name)?.$as('property') || $instanceof(undefined).$as('property').$of(this);
+       |                                                      ^
+    211|         return this[$propertiesMap$]!.get(name)?.$as('property') || this.$type.$property(whos).$of(this) || $instanceof(undefined).$as('property').$of(this);
+    212|     }
+ ❯ tests/reflection.test.ts:456:48
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $methods > should return method rep for valid method
+TypeError: Cannot use 'in' operator to search for 'value' in undefined
+ ❯ _$ObjectiveRep.get isMethod [as isMethod] src/reflection.ts:173:16
+    171|     get isMethod(): boolean {
+    172|         const descriptor = this[$literal$] as PropertyDescriptor;
+    173|         return 'value' in descriptor && typeof descriptor.value === 'function';
+       |                ^
+    174|     }
+    175| 
+ ❯ _$ObjectiveRep.$method src/reflection.ts:229:25
+ ❯ tests/reflection.test.ts:552:41
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $parameters > should build parameters array from function info
+AssertionError: expected +0 to be 3 // Object.is equality
+
+- Expected
++ Received
+
+- 3
++ 0
+
+ ❯ tests/reflection.test.ts:592:43
+    590|                 const parameters = func.$parameters;
+    591| 
+    592|                 expect(parameters.length).toBe(3);
+       |                                           ^
+    593|                 expect(parameters[0].isRest).toBe(false);
+    594|                 expect(parameters[1].isRest).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+ FAIL  tests/reflection.test.ts > $Reflection > $ObjectiveRep > $parameters > should detect hasRest on functions
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/reflection.test.ts:605:42
+    603|                 const withoutRest = $typeof((x: number, y: number) => {});
+    604| 
+    605|                 expect(withRest.hasRest).toBe(true);
+       |                                          ^
+    606|                 expect(withoutRest.hasRest).toBe(false);
+    607|             });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+ Test Files  1 failed (1)
+      Tests  10 failed | 130 passed (140)
+   Start at  23:16:38
+   Duration  161ms
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit

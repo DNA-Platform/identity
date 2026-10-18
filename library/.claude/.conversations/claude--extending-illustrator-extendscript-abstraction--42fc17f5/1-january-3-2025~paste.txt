@@ -1,0 +1,291 @@
+class Region {
+    private _leftAbs: number = -1;
+    private _topAbs: number = -1;
+    private _rightAbs: number = -1;
+    private _bottomAbs: number = -1;
+    protected _parent: () => Region = () => this;
+
+    // Measure
+    unit(): number { var base = this.base(); return base._rightAbs - base._leftAbs; }
+    parent(): Region { return this._parent(); }
+    base(): Region { return this.isBase() ? this : this.parent(); }
+    isBase(): boolean { return this.parent() === this; }
+
+    // Absolute positions
+    boundsAbs(): [number, number, number, number] { return [this.leftAbs(), this.topAbs(), this.rightAbs(), this.bottomAbs()]; }
+    rectAbs(): Rect { return this.boundsAbs(); }
+    topAbs() { return this.base()._topAbs; }
+    leftAbs() { return this.base()._leftAbs; }
+    rightAbs() { return this.base()._rightAbs; }
+    bottomAbs() { return this.base()._bottomAbs; }
+    centerAbs(): Position { var base = this.base(); return [(base._rightAbs + base._leftAbs) / 2, (base._topAbs + base._bottomAbs) / 2]; }
+    widthAbs() { return this.rightAbs() - this.leftAbs(); }
+    heightAbs() { return this.topAbs() - this.bottomAbs(); }
+
+    // Relative positions
+    bounds(): [number, number, number, number] { return [this.left(), this.top(), this.right(), this.bottom()]; }
+    rect(): Rect { return this.bounds(); }
+    left() { return this.toRelativeLocation(this.leftAbs(), "x"); }
+    right() { return this.toRelativeLocation(this.rightAbs(), "x"); }
+    top() { return this.toRelativeLocation(this.topAbs(), "y"); }
+    bottom() { return this.toRelativeLocation(this.bottomAbs(), "y"); }
+    center(newCenter?: Position) {
+        if (newCenter) this.moveTo(this.toAbsolutePosition(newCenter));
+        return this.toRelativePosition(this.centerAbs());
+    }
+
+    // Width and height with optional resizing
+    width(newWidth?: number, proportional = true) {
+        if (newWidth) {
+            const scaleFactor = newWidth / this.width();
+            this.size([newWidth, proportional ? this.height() * scaleFactor : this.height()]);
+        }
+        return Math.abs(this.left() - this.right());
+    }
+
+    height(newHeight?: number, proportional = true) {
+        if (newHeight) {
+            const scaleFactor = newHeight / this.height();
+            this.size([proportional ? this.width() * scaleFactor : this.width(), newHeight]);
+        }
+        return Math.abs(this.top() - this.bottom());
+    }
+
+    // Set new size
+    size(newSize?: Size) {
+        if (newSize) {
+            if (this.isBase()) {
+                const center = this.centerAbs();
+                const newWidth = this.toAbsoluteUnits(newSize[0]);
+                const newHeight = this.toAbsoluteUnits(newSize[1]);
+
+                this._leftAbs = center[0] - newWidth / 2;
+                this._rightAbs = center[0] + newWidth / 2;
+                this._topAbs = center[1] + newHeight / 2;
+                this._bottomAbs = center[1] - newHeight / 2;
+            } else {
+                
+            }
+        }
+        return [this.width(), this.height()];
+    }
+
+    constructor(parent: () => Region)
+    constructor(left: number, top: number, right: number, bottom: number)
+    constructor(left: number | (() => Region), top?: number, right?: number, bottom?: number) {
+        if (left === undefined) throw new Error("Either the parent constructor or all four coordinates need to be specified");
+        if (typeof left === "number" && typeof top === "number" && typeof right === "number" && typeof bottom === "number") {
+            if (left > right || bottom > top)
+                throw `Invalid Region: ${[left, top, right, bottom]}`;
+
+            this._leftAbs = left;
+            this._topAbs = top;
+            this._bottomAbs = bottom;
+            this._rightAbs = right;
+        } else {
+            this._parent = left as any;
+        }
+    }
+
+    floor(): Region {
+        var base = this.base();
+        this._leftAbs = Math.floor(base._leftAbs);
+        this._topAbs = Math.floor(base._topAbs);
+        this._rightAbs = Math.floor(base._rightAbs);
+        this._bottomAbs = Math.floor(base._bottomAbs);
+        return this;
+    }
+
+    moveTo(newCenter: Position) {
+        const deltaX = newCenter[0] - this.centerAbs()[0];
+        const deltaY = newCenter[1] - this.centerAbs()[1];
+        this._leftAbs += deltaX;
+        this._rightAbs += deltaX;
+        this._topAbs += deltaY;
+        this._bottomAbs += deltaY;
+    }
+
+    toRelativeUnits(length: number): number {
+        // Normalize length based on width (unit becomes total width for scaling)
+        return this.round(length / this.widthAbs());
+    }
+
+    toRelativeLocation(location: number, axis: "x" | "y"): number {
+        const left = this.leftAbs();
+        const bottom = this.bottomAbs();
+        const unit = this.unit();
+
+        return this.round
+            (
+                axis === "x"
+                    ? (location - left) / unit // Normalize x-axis [0, 1]
+                    : (location - bottom) / unit // Normalize y-axis proportional to width
+            );
+    }
+
+    toRelativePosition(position: Position): Position {
+        const x = this.toRelativeLocation(position[0], "x");
+        const y = this.toRelativeLocation(position[1], "y");
+        return [
+            this.round(x),
+            this.round(y)
+        ];
+    }
+
+    toAbsoluteUnits(length: number): number {
+        // Scale relative length back to absolute based on width
+        return roundPrecisely(length * this.widthAbs());
+    }
+
+    toAbsoluteLocation(location: number, axis: "x" | "y"): number {
+        const left = this.leftAbs();
+        const bottom = this.bottomAbs();
+        const unit = this.unit();
+
+        return this.round(
+            axis === "x"
+                ? left + location * unit // Convert back to absolute x
+                : bottom + location * unit // Convert back to absolute y (proportional to width)
+        );
+    }
+
+    toAbsolutePosition(position: Position): Position {
+        const x = this.toAbsoluteLocation(position[0], "x");
+        const y = this.toAbsoluteLocation(position[1], "y");
+        return [this.round(x), this.round(y)];
+    }
+
+    angle(position: Position, units: "degrees" | "radians" = "degrees"): number {
+        const center = this.center();
+        const deltaX = position[0] - center[0];
+        const deltaY = position[1] - center[1];
+        const radians = Math.atan2(deltaY, deltaX); // Returns angle in radians
+
+        // Normalize and convert based on units
+        if (units === "degrees") return Region.to360(Region.toDegrees(radians));
+        return Region.to2Pi(radians);
+    }
+
+    // Returns the radius (distance from the center) in relative units
+    radius(position: Position): number {
+        const center = this.center();
+        const deltaX = position[0] - center[0];
+        const deltaY = position[1] - center[1];
+        return Math.sqrt(deltaX ** 2 + deltaY ** 2);
+    }
+
+    round(value: number) {
+        return roundPrecisely(value, 3);
+    }
+
+    toString() {
+        return `[${this.bounds()}], [${this.boundsAbs()}]`;
+    }
+
+    static fromRect(rect: Rect): Region {
+        return new Region(rect[0], rect[1], rect[2], rect[3]);
+    }
+
+    static fromArray(rect: [number, number, number, number]): Region {
+        return Region.fromRect(rect);
+    }
+
+    static toRadians(degrees: number): number {
+        return Region.to2Pi((degrees * Math.PI) / 180);
+    }
+
+    // Converts radians to degrees
+    static toDegrees(radians: number): number {
+        return Region.to360((radians * 180) / Math.PI);
+    }
+
+    static to2Pi(radians: number): number {
+        const twoPi = 2 * Math.PI;
+        return ((radians % twoPi) + twoPi) % twoPi;
+    }
+
+    // Normalizes degrees to the range [0, 360)
+    static to360(degrees: number): number {
+        const fullCircle = 360;
+        return ((degrees % fullCircle) + fullCircle) % fullCircle;
+    }
+}
+
+class RegionTests extends TestClass {
+    testRegionInitialization() {
+        const region = new Region(50, 100, 150, 0); // left, top, right, bottom
+        this.assertEquals(region.boundsAbs(), [50, 100, 150, 0], "Region absolute bounds incorrect");
+    }
+
+    testToRelativeLocation() {
+        const region = new Region(50, 100, 150, 0); // Width = 100
+        this.assertEquals(region.toRelativeLocation(50, "x"), 0, "Left boundary should map to 0");
+        this.assertEquals(region.toRelativeLocation(150, "x"), 1, "Right boundary should map to 1");
+        this.assertEquals(region.toRelativeLocation(0, "y"), 0, "Bottom boundary should map to 0");
+        this.assertEquals(region.toRelativeLocation(100, "y"), 1, "Top boundary should map proportionally to 1");
+    }
+
+    testToRelativePosition() {
+        const region = new Region(50, 100, 150, 0); // left, top, right, bottom
+        this.assertEquals(region.toRelativePosition([50, 0]), [0, 0], "Relative position for bottom-left incorrect");
+        this.assertEquals(region.toRelativePosition([150, 100]), [1, 1], "Relative position for top-right incorrect");
+    }
+
+    testWidthAndHeight() {
+        const region = new Region(50, 100, 150, 0); // Width = 100, Height = 100
+        this.assertEquals(region.width(), 1, "Normalized width should be 1");
+        this.assertEquals(region.height(), 1, "Normalized height should be 1 (proportional to width)");
+    }
+
+    testToAbsoluteLocation() {
+        const region = new Region(50, 100, 150, 0); // Width = 100
+        this.assertEquals(region.toAbsoluteLocation(0, "x"), 50, "Relative x=0 should map to left boundary");
+        this.assertEquals(region.toAbsoluteLocation(1, "x"), 150, "Relative x=1 should map to right boundary");
+        this.assertEquals(region.toAbsoluteLocation(0, "y"), 0, "Relative y=0 should map to bottom boundary");
+        this.assertEquals(region.toAbsoluteLocation(1, "y"), 100, "Relative y=1 should map to top boundary");
+    }
+
+    testAngle() {
+        const region = new Region(50, 100, 150, 0); // Region in normalized coordinates
+        this.assertEquals(region.angle([0.5, 1]), 90, "Angle at top center should be 90 degrees");
+        this.assertEquals(region.angle([1, 0.5]), 0, "Angle at right center should be 0 degrees");
+        this.assertEquals(region.angle([0.5, 0]), 270, "Angle at bottom center should be 270 degrees");
+        this.assertEquals(region.angle([0, 0.5]), 180, "Angle at left center should be 180 degrees");
+
+        this.assertEquals(region.angle([0.5, 1], "radians"), Math.PI / 2, "Angle in radians at top center should be π/2");
+        this.assertEquals(region.angle([1, 0.5], "radians"), 0, "Angle in radians at right center should be 0");
+    }
+
+    testRadius() {
+        const region = new Region(50, 100, 150, 0);
+        this.assertEquals(region.radius([0.5, 1]), 0.5, "Radius at top center should be 0.5");
+        this.assertEquals(region.radius([1, 0.5]), 0.5, "Radius at right center should be 0.5");
+        this.assertEquals(region.radius([0.5, 0]), 0.5, "Radius at bottom center should be 0.5");
+        this.assertEquals(region.radius([0, 0.5]), 0.5, "Radius at left center should be 0.5");
+    }
+
+    testToRadians() {
+        this.assertEquals(Region.toRadians(0), 0, "0 degrees should be 0 radians", 0.0001);
+        this.assertEquals(Region.toRadians(180), Math.PI, "180 degrees should be π radians", 0.0001);
+        this.assertEquals(Region.toRadians(-180), Math.PI, "180 degrees should be π radians", 0.0001);
+        this.assertEquals(Region.toRadians(360), 0, "360 degrees should be 2π radians", 0.0001);
+    }
+
+    testToDegrees() {
+        this.assertEquals(Region.toDegrees(0), 0, "0 radians should be 0 degrees");
+        this.assertEquals(Region.toDegrees(Math.PI), 180, "π radians should be 180 degrees");
+        this.assertEquals(Region.toDegrees(2 * Math.PI), 0, "2π radians should be 360 degrees");
+    }
+
+    testTo2Pi() {
+        this.assertEquals(Region.to2Pi(-Math.PI), Math.PI, "Negative π radians should map to π radians", 0.0001);
+        this.assertEquals(Region.to2Pi(3 * Math.PI), Math.PI, "3π radians should map to π radians", 0.0001);
+        this.assertEquals(Region.to2Pi(0), 0, "0 radians should remain 0", 0.0001);
+    }
+
+    testTo360() {
+        this.assertEquals(Region.to360(-90), 270, "-90 degrees should map to 270 degrees");
+        this.assertEquals(Region.to360(450), 90, "450 degrees should map to 90 degrees");
+        this.assertEquals(Region.to360(0), 0, "0 degrees should remain 0");
+    }
+}

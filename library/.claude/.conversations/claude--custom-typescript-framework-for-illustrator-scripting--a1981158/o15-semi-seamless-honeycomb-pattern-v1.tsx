@@ -1,0 +1,147 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ Semi-Seamless Honeycomb Pattern v1 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <!-- Definitions for reusable elements -->
+  <defs>
+    <!-- Basic honeycomb cell -->
+    <polygon id="honeycomb" points="0,0 15,-26 45,-26 60,0 45,26 15,26" fill="#F4D7A8" stroke="#3F2E23" stroke-width="1.5" />
+    
+    <!-- Small pattern element for background texture -->
+    <pattern id="microPattern" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(30)">
+      <rect width="10" height="10" fill="#BFC7C4" />
+      <circle cx="5" cy="5" r="0.5" fill="#A8B3B0" />
+    </pattern>
+    
+    <!-- Simplified bee silhouette -->
+    <g id="bee">
+      <ellipse cx="0" cy="0" rx="4" ry="7" fill="#3F2E23" />
+      <line x1="-3" y1="-2" x2="3" y2="-2" stroke="#F4D7A8" stroke-width="1.2" />
+      <line x1="-3" y1="0" x2="3" y2="0" stroke="#F4D7A8" stroke-width="1.2" />
+      <line x1="-3" y1="2" x2="3" y2="2" stroke="#F4D7A8" stroke-width="1.2" />
+    </g>
+    
+    <!-- Ray/beam element -->
+    <line id="ray" x1="0" y1="0" x2="80" y2="0" stroke="#6D91B0" stroke-width="3" stroke-opacity="0.6" />
+    
+    <!-- Pollen dot -->
+    <circle id="pollen" cx="0" cy="0" r="1.5" fill="#E9C06D" fill-opacity="0.7" />
+  </defs>
+
+  <!-- Background -->
+  <rect width="500" height="500" fill="url(#microPattern)" />
+  
+  <!-- Central element -->
+  <circle cx="250" cy="250" r="80" fill="#E9C06D" stroke="#3F2E23" stroke-width="3" />
+  
+  <!-- Radiating beams using <use> -->
+  <g>
+    <use href="#ray" transform="translate(250, 250) rotate(0)" />
+    <use href="#ray" transform="translate(250, 250) rotate(45)" />
+    <use href="#ray" transform="translate(250, 250) rotate(90)" />
+    <use href="#ray" transform="translate(250, 250) rotate(135)" />
+    <use href="#ray" transform="translate(250, 250) rotate(180)" />
+    <use href="#ray" transform="translate(250, 250) rotate(225)" />
+    <use href="#ray" transform="translate(250, 250) rotate(270)" />
+    <use href="#ray" transform="translate(250, 250) rotate(315)" />
+  </g>
+  
+  <!-- Honeycomb pattern - first layer (outer) -->
+  <g>
+    <!-- Top section -->
+    <use href="#honeycomb" transform="translate(250, 90)" />
+    <use href="#honeycomb" transform="translate(205, 116)" />
+    <use href="#honeycomb" transform="translate(295, 116)" />
+    
+    <!-- Right section -->
+    <use href="#honeycomb" transform="translate(365, 195)" />
+    <use href="#honeycomb" transform="translate(365, 247)" />
+    <use href="#honeycomb" transform="translate(410, 221)" />
+    
+    <!-- Bottom section -->
+    <use href="#honeycomb" transform="translate(250, 410)" />
+    <use href="#honeycomb" transform="translate(205, 384)" />
+    <use href="#honeycomb" transform="translate(295, 384)" />
+    
+    <!-- Left section -->
+    <use href="#honeycomb" transform="translate(135, 195)" />
+    <use href="#honeycomb" transform="translate(135, 247)" />
+    <use href="#honeycomb" transform="translate(90, 221)" />
+  </g>
+  
+  <!-- Honeycomb pattern - second layer (inner) -->
+  <g>
+    <use href="#honeycomb" transform="translate(250, 170)" />
+    <use href="#honeycomb" transform="translate(250, 330)" />
+    <use href="#honeycomb" transform="translate(190, 195)" />
+    <use href="#honeycomb" transform="translate(190, 247)" />
+    <use href="#honeycomb" transform="translate(310, 195)" />
+    <use href="#honeycomb" transform="translate(310, 247)" />
+  </g>
+  
+  <!-- Honeycomb pattern - partial cells for semi-seamless effect -->
+  <g>
+    <!-- Partial cells at edges -->
+    <use href="#honeycomb" transform="translate(455, 145) scale(0.7)" />
+    <use href="#honeycomb" transform="translate(455, 300) scale(0.7)" />
+    <use href="#honeycomb" transform="translate(45, 145) scale(0.7)" />
+    <use href="#honeycomb" transform="translate(45, 300) scale(0.7)" />
+    <use href="#honeycomb" transform="translate(145, 45) scale(0.7)" />
+    <use href="#honeycomb" transform="translate(300, 45) scale(0.7)" />
+    <use href="#honeycomb" transform="translate(145, 455) scale(0.7)" />
+    <use href="#honeycomb" transform="translate(300, 455) scale(0.7)" />
+  </g>
+  
+  <!-- Bees - more subtle and professional looking -->
+  <g>
+    <use href="#bee" transform="translate(165, 135) rotate(30) scale(1.2)" />
+    <use href="#bee" transform="translate(360, 340) rotate(-40) scale(1.2)" />
+    <use href="#bee" transform="translate(280, 120) rotate(15)" />
+    <use href="#bee" transform="translate(120, 280) rotate(-15)" />
+    <use href="#bee" transform="translate(330, 220) rotate(60)" />
+  </g>
+  
+  <!-- Scattered pollen -->
+  <g>
+    <use href="#pollen" transform="translate(180, 180)" />
+    <use href="#pollen" transform="translate(320, 180)" />
+    <use href="#pollen" transform="translate(180, 320)" />
+    <use href="#pollen" transform="translate(320, 320)" />
+    <use href="#pollen" transform="translate(250, 200)" />
+    <use href="#pollen" transform="translate(200, 250)" />
+    <use href="#pollen" transform="translate(300, 250)" />
+    <use href="#pollen" transform="translate(250, 300)" />
+    <use href="#pollen" transform="translate(220, 220)" />
+    <use href="#pollen" transform="translate(280, 220)" />
+    <use href="#pollen" transform="translate(220, 280)" />
+    <use href="#pollen" transform="translate(280, 280)" />
+  </g>
+  
+  <!-- Edge elements for semi-seamless effect -->
+  <g opacity="0.5">
+    <!-- Partial patterns at edges to suggest continuation -->
+    <use href="#honeycomb" transform="translate(30, 30) scale(0.4) rotate(45)" />
+    <use href="#honeycomb" transform="translate(470, 30) scale(0.4) rotate(-45)" />
+    <use href="#honeycomb" transform="translate(30, 470) scale(0.4) rotate(-45)" />
+    <use href="#honeycomb" transform="translate(470, 470) scale(0.4) rotate(45)" />
+    
+    <!-- Hint of pattern continuation -->
+    <path d="M0,100 Q30,115 60,100" fill="none" stroke="#3F2E23" stroke-width="1" stroke-opacity="0.3" />
+    <path d="M440,100 Q470,115 500,100" fill="none" stroke="#3F2E23" stroke-width="1" stroke-opacity="0.3" />
+    <path d="M0,400 Q30,385 60,400" fill="none" stroke="#3F2E23" stroke-width="1" stroke-opacity="0.3" />
+    <path d="M440,400 Q470,385 500,400" fill="none" stroke="#3F2E23" stroke-width="1" stroke-opacity="0.3" />
+  </g>
+</svg>
+`}
+        </CodeBox>
+    </Chapter>
+);

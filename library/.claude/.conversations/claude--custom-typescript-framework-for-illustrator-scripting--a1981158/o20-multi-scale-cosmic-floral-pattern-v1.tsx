@@ -1,0 +1,308 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ Multi-Scale Cosmic Floral Pattern v1 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="800" viewBox="0 0 1000 800">
+  <!-- Definitions -->
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D1B2A" />
+      <stop offset="100%" stop-color="#1B263B" />
+    </linearGradient>
+    
+    <radialGradient id="tealGlow" cx="50%" cy="50%" r="70%" fx="40%" fy="40%">
+      <stop offset="0%" stop-color="#64E9EE" />
+      <stop offset="80%" stop-color="#1A6373" />
+      <stop offset="100%" stop-color="#0C3B45" />
+    </radialGradient>
+    
+    <radialGradient id="roseGlow" cx="50%" cy="50%" r="70%" fx="40%" fy="40%">
+      <stop offset="0%" stop-color="#FF7582" />
+      <stop offset="80%" stop-color="#B83B5E" />
+      <stop offset="100%" stop-color="#7D2945" />
+    </radialGradient>
+    
+    <radialGradient id="lavenderGlow" cx="50%" cy="50%" r="70%" fx="40%" fy="40%">
+      <stop offset="0%" stop-color="#E1CCEC" />
+      <stop offset="80%" stop-color="#6A4C93" />
+      <stop offset="100%" stop-color="#3A2A50" />
+    </radialGradient>
+    
+    <!-- Floral petal shape -->
+    <path id="petal" d="M 0,0 C 5,15 15,20 0,30 C -15,20 -5,15 0,0 Z" />
+    
+    <!-- Cosmic floral shape -->
+    <g id="cosmicFloral">
+      <use xlink:href="#petal" />
+      <use xlink:href="#petal" transform="rotate(60)" />
+      <use xlink:href="#petal" transform="rotate(120)" />
+      <use xlink:href="#petal" transform="rotate(180)" />
+      <use xlink:href="#petal" transform="rotate(240)" />
+      <use xlink:href="#petal" transform="rotate(300)" />
+    </g>
+    
+    <!-- Spiral arm for decoration -->
+    <path id="spiral" d="M 0,0 C 5,5 10,5 15,0 C 20,-5 25,0 30,5 C 35,10 40,5 45,0" fill="none" stroke-width="1.5" stroke-linecap="round" />
+    
+    <!-- Dot cluster -->
+    <g id="dotCluster">
+      <circle cx="0" cy="0" r="1.2" />
+      <circle cx="5" cy="2" r="0.9" />
+      <circle cx="-3" cy="4" r="0.7" />
+      <circle cx="4" cy="-3" r="0.8" />
+      <circle cx="-5" cy="-2" r="0.6" />
+    </g>
+    
+    <!-- Single base pattern unit - small  -->
+    <g id="patternUnitSmall">
+      <circle cx="0" cy="0" r="15" fill-opacity="0.7" stroke-width="0.5" />
+      <use xlink:href="#cosmicFloral" transform="scale(0.4)" stroke-width="0.5" />
+      <use xlink:href="#spiral" transform="scale(0.25) rotate(0)" />
+      <use xlink:href="#spiral" transform="scale(0.25) rotate(120)" />
+      <use xlink:href="#spiral" transform="scale(0.25) rotate(240)" />
+    </g>
+    
+    <!-- Medium pattern unit -->
+    <g id="patternUnitMedium">
+      <circle cx="0" cy="0" r="30" fill-opacity="0.8" stroke-width="0.8" />
+      <use xlink:href="#cosmicFloral" transform="scale(0.8)" stroke-width="0.8" />
+      <use xlink:href="#spiral" transform="scale(0.5) rotate(30)" />
+      <use xlink:href="#spiral" transform="scale(0.5) rotate(150)" />
+      <use xlink:href="#spiral" transform="scale(0.5) rotate(270)" />
+      <use xlink:href="#dotCluster" transform="translate(25, 5)" />
+      <use xlink:href="#dotCluster" transform="translate(-5, 25)" />
+      <use xlink:href="#dotCluster" transform="translate(-25, -10)" />
+    </g>
+    
+    <!-- Large pattern unit -->
+    <g id="patternUnitLarge">
+      <circle cx="0" cy="0" r="60" fill-opacity="0.9" stroke-width="1" />
+      <use xlink:href="#cosmicFloral" transform="scale(1.5)" stroke-width="1" />
+      <use xlink:href="#spiral" transform="scale(1) rotate(0)" />
+      <use xlink:href="#spiral" transform="scale(1) rotate(60)" />
+      <use xlink:href="#spiral" transform="scale(1) rotate(120)" />
+      <use xlink:href="#spiral" transform="scale(1) rotate(180)" />
+      <use xlink:href="#spiral" transform="scale(1) rotate(240)" />
+      <use xlink:href="#spiral" transform="scale(1) rotate(300)" />
+      <use xlink:href="#dotCluster" transform="translate(45, 10) scale(1.5)" />
+      <use xlink:href="#dotCluster" transform="translate(20, 45) scale(1.5)" />
+      <use xlink:href="#dotCluster" transform="translate(-20, 45) scale(1.5)" />
+      <use xlink:href="#dotCluster" transform="translate(-45, 10) scale(1.5)" />
+      <use xlink:href="#dotCluster" transform="translate(-30, -35) scale(1.5)" />
+      <use xlink:href="#dotCluster" transform="translate(30, -35) scale(1.5)" />
+    </g>
+    
+    <!-- Complete teal pattern set -->
+    <g id="tealPattern">
+      <use xlink:href="#patternUnitLarge" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitMedium" transform="translate(120, 0)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitMedium" transform="translate(60, 104)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitMedium" transform="translate(-60, 104)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitMedium" transform="translate(-120, 0)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitMedium" transform="translate(-60, -104)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitMedium" transform="translate(60, -104)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitSmall" transform="translate(90, 52)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitSmall" transform="translate(150, 52)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitSmall" transform="translate(30, 156)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitSmall" transform="translate(-90, 156)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitSmall" transform="translate(-150, 52)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitSmall" transform="translate(-90, -52)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitSmall" transform="translate(30, -156)" fill="url(#tealGlow)" stroke="#64E9EE" />
+      <use xlink:href="#patternUnitSmall" transform="translate(150, -52)" fill="url(#tealGlow)" stroke="#64E9EE" />
+    </g>
+    
+    <!-- Complete rose pattern set -->
+    <g id="rosePattern">
+      <use xlink:href="#patternUnitLarge" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitMedium" transform="translate(120, 0)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitMedium" transform="translate(60, 104)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitMedium" transform="translate(-60, 104)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitMedium" transform="translate(-120, 0)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitMedium" transform="translate(-60, -104)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitMedium" transform="translate(60, -104)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitSmall" transform="translate(90, 52)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitSmall" transform="translate(150, 52)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitSmall" transform="translate(30, 156)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitSmall" transform="translate(-90, 156)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitSmall" transform="translate(-150, 52)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitSmall" transform="translate(-90, -52)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitSmall" transform="translate(30, -156)" fill="url(#roseGlow)" stroke="#FF7582" />
+      <use xlink:href="#patternUnitSmall" transform="translate(150, -52)" fill="url(#roseGlow)" stroke="#FF7582" />
+    </g>
+    
+    <!-- Complete lavender pattern set -->
+    <g id="lavenderPattern">
+      <use xlink:href="#patternUnitLarge" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitMedium" transform="translate(120, 0)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitMedium" transform="translate(60, 104)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitMedium" transform="translate(-60, 104)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitMedium" transform="translate(-120, 0)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitMedium" transform="translate(-60, -104)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitMedium" transform="translate(60, -104)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitSmall" transform="translate(90, 52)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitSmall" transform="translate(150, 52)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitSmall" transform="translate(30, 156)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitSmall" transform="translate(-90, 156)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitSmall" transform="translate(-150, 52)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitSmall" transform="translate(-90, -52)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitSmall" transform="translate(30, -156)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+      <use xlink:href="#patternUnitSmall" transform="translate(150, -52)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+    </g>
+    
+    <!-- Star field background pattern -->
+    <pattern id="starField" patternUnits="userSpaceOnUse" width="200" height="200">
+      <rect width="200" height="200" fill="none" />
+      <circle cx="10" cy="10" r="0.8" fill="#FFFFFF" />
+      <circle cx="30" cy="20" r="0.5" fill="#FFFFFF" />
+      <circle cx="50" cy="10" r="0.7" fill="#FFFFFF" />
+      <circle cx="70" cy="30" r="0.6" fill="#FFFFFF" />
+      <circle cx="90" cy="15" r="0.5" fill="#FFFFFF" />
+      <circle cx="120" cy="40" r="0.8" fill="#FFFFFF" />
+      <circle cx="140" cy="25" r="0.6" fill="#FFFFFF" />
+      <circle cx="160" cy="15" r="0.7" fill="#FFFFFF" />
+      <circle cx="180" cy="30" r="0.5" fill="#FFFFFF" />
+      <circle cx="20" cy="50" r="0.6" fill="#FFFFFF" />
+      <circle cx="50" cy="60" r="0.7" fill="#FFFFFF" />
+      <circle cx="75" cy="45" r="0.5" fill="#FFFFFF" />
+      <circle cx="100" cy="55" r="0.8" fill="#FFFFFF" />
+      <circle cx="125" cy="70" r="0.6" fill="#FFFFFF" />
+      <circle cx="150" cy="60" r="0.7" fill="#FFFFFF" />
+      <circle cx="170" cy="50" r="0.5" fill="#FFFFFF" />
+      <circle cx="15" cy="80" r="0.7" fill="#FFFFFF" />
+      <circle cx="40" cy="95" r="0.6" fill="#FFFFFF" />
+      <circle cx="65" cy="85" r="0.8" fill="#FFFFFF" />
+      <circle cx="90" cy="90" r="0.5" fill="#FFFFFF" />
+      <circle cx="115" cy="100" r="0.7" fill="#FFFFFF" />
+      <circle cx="135" cy="90" r="0.6" fill="#FFFFFF" />
+      <circle cx="160" cy="85" r="0.5" fill="#FFFFFF" />
+      <circle cx="185" cy="95" r="0.7" fill="#FFFFFF" />
+      <circle cx="25" cy="120" r="0.5" fill="#FFFFFF" />
+      <circle cx="50" cy="130" r="0.8" fill="#FFFFFF" />
+      <circle cx="75" cy="115" r="0.6" fill="#FFFFFF" />
+      <circle cx="105" cy="125" r="0.7" fill="#FFFFFF" />
+      <circle cx="130" cy="115" r="0.5" fill="#FFFFFF" />
+      <circle cx="155" cy="130" r="0.6" fill="#FFFFFF" />
+      <circle cx="175" cy="120" r="0.8" fill="#FFFFFF" />
+      <circle cx="20" cy="150" r="0.6" fill="#FFFFFF" />
+      <circle cx="45" cy="165" r="0.5" fill="#FFFFFF" />
+      <circle cx="65" cy="150" r="0.7" fill="#FFFFFF" />
+      <circle cx="85" cy="170" r="0.6" fill="#FFFFFF" />
+      <circle cx="110" cy="155" r="0.8" fill="#FFFFFF" />
+      <circle cx="135" cy="170" r="0.5" fill="#FFFFFF" />
+      <circle cx="155" cy="150" r="0.7" fill="#FFFFFF" />
+      <circle cx="180" cy="165" r="0.6" fill="#FFFFFF" />
+      <circle cx="30" cy="190" r="0.7" fill="#FFFFFF" />
+      <circle cx="60" cy="180" r="0.5" fill="#FFFFFF" />
+      <circle cx="90" cy="195" r="0.6" fill="#FFFFFF" />
+      <circle cx="120" cy="185" r="0.8" fill="#FFFFFF" />
+      <circle cx="150" cy="195" r="0.5" fill="#FFFFFF" />
+      <circle cx="175" cy="185" r="0.7" fill="#FFFFFF" />
+    </pattern>
+  </defs>
+  
+  <!-- Main composition -->
+  
+  <!-- Background -->
+  <rect width="1000" height="800" fill="url(#bgGradient)" />
+  <rect width="1000" height="800" fill="url(#starField)" opacity="0.8" />
+  
+  <!-- Main pattern layout -->
+  
+  <!-- Teal pattern region - top left quadrant -->
+  <g transform="translate(250, 200)">
+    <use xlink:href="#tealPattern" />
+  </g>
+  
+  <!-- Teal pattern smaller echoes -->
+  <g>
+    <use xlink:href="#patternUnitMedium" transform="translate(100, 100)" fill="url(#tealGlow)" stroke="#64E9EE" />
+    <use xlink:href="#patternUnitSmall" transform="translate(150, 150)" fill="url(#tealGlow)" stroke="#64E9EE" />
+    <use xlink:href="#patternUnitSmall" transform="translate(80, 170)" fill="url(#tealGlow)" stroke="#64E9EE" />
+    <use xlink:href="#patternUnitSmall" transform="translate(70, 50)" fill="url(#tealGlow)" stroke="#64E9EE" />
+  </g>
+  
+  <!-- Rose pattern region - top right quadrant -->
+  <g transform="translate(750, 200)">
+    <use xlink:href="#rosePattern" />
+  </g>
+  
+  <!-- Rose pattern smaller echoes -->
+  <g>
+    <use xlink:href="#patternUnitMedium" transform="translate(900, 100)" fill="url(#roseGlow)" stroke="#FF7582" />
+    <use xlink:href="#patternUnitSmall" transform="translate(850, 150)" fill="url(#roseGlow)" stroke="#FF7582" />
+    <use xlink:href="#patternUnitSmall" transform="translate(920, 170)" fill="url(#roseGlow)" stroke="#FF7582" />
+    <use xlink:href="#patternUnitSmall" transform="translate(880, 50)" fill="url(#roseGlow)" stroke="#FF7582" />
+  </g>
+  
+  <!-- Lavender pattern region - bottom center -->
+  <g transform="translate(500, 600)">
+    <use xlink:href="#lavenderPattern" />
+  </g>
+  
+  <!-- Lavender pattern smaller echoes -->
+  <g>
+    <use xlink:href="#patternUnitMedium" transform="translate(500, 450)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+    <use xlink:href="#patternUnitSmall" transform="translate(400, 700)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+    <use xlink:href="#patternUnitSmall" transform="translate(600, 700)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+    <use xlink:href="#patternUnitSmall" transform="translate(500, 750)" fill="url(#lavenderGlow)" stroke="#E1CCEC" />
+  </g>
+  
+  <!-- Mixed transition regions -->
+  <g opacity="0.8">
+    <!-- Teal to Rose transition (center top) -->
+    <use xlink:href="#patternUnitMedium" transform="translate(500, 150)" fill="url(#tealGlow)" stroke="#64E9EE" opacity="0.6" />
+    <use xlink:href="#patternUnitMedium" transform="translate(500, 150)" fill="url(#roseGlow)" stroke="#FF7582" opacity="0.4" />
+    <use xlink:href="#patternUnitSmall" transform="translate(450, 200)" fill="url(#tealGlow)" stroke="#64E9EE" opacity="0.7" />
+    <use xlink:href="#patternUnitSmall" transform="translate(550, 200)" fill="url(#roseGlow)" stroke="#FF7582" opacity="0.7" />
+    
+    <!-- Teal to Lavender transition (left center) -->
+    <use xlink:href="#patternUnitMedium" transform="translate(300, 400)" fill="url(#tealGlow)" stroke="#64E9EE" opacity="0.6" />
+    <use xlink:href="#patternUnitMedium" transform="translate(300, 400)" fill="url(#lavenderGlow)" stroke="#E1CCEC" opacity="0.4" />
+    <use xlink:href="#patternUnitSmall" transform="translate(350, 350)" fill="url(#tealGlow)" stroke="#64E9EE" opacity="0.7" />
+    <use xlink:href="#patternUnitSmall" transform="translate(350, 450)" fill="url(#lavenderGlow)" stroke="#E1CCEC" opacity="0.7" />
+    
+    <!-- Rose to Lavender transition (right center) -->
+    <use xlink:href="#patternUnitMedium" transform="translate(700, 400)" fill="url(#roseGlow)" stroke="#FF7582" opacity="0.6" />
+    <use xlink:href="#patternUnitMedium" transform="translate(700, 400)" fill="url(#lavenderGlow)" stroke="#E1CCEC" opacity="0.4" />
+    <use xlink:href="#patternUnitSmall" transform="translate(650, 350)" fill="url(#roseGlow)" stroke="#FF7582" opacity="0.7" />
+    <use xlink:href="#patternUnitSmall" transform="translate(650, 450)" fill="url(#lavenderGlow)" stroke="#E1CCEC" opacity="0.7" />
+  </g>
+  
+  <!-- Center focal point that ties all colors together -->
+  <g transform="translate(500, 400)">
+    <circle cx="0" cy="0" r="50" fill="#0D1B2A" stroke-width="0" />
+    <circle cx="0" cy="0" r="48" fill="none" stroke="#64E9EE" stroke-width="1" stroke-opacity="0.3" />
+    <circle cx="0" cy="0" r="46" fill="none" stroke="#FF7582" stroke-width="1" stroke-opacity="0.3" />
+    <circle cx="0" cy="0" r="44" fill="none" stroke="#E1CCEC" stroke-width="1" stroke-opacity="0.3" />
+    
+    <!-- Triple overlay floral pattern -->
+    <g opacity="0.7">
+      <use xlink:href="#cosmicFloral" transform="scale(1.2)" fill="url(#tealGlow)" stroke="#64E9EE" opacity="0.6" />
+      <use xlink:href="#cosmicFloral" transform="scale(1.2) rotate(20)" fill="url(#roseGlow)" stroke="#FF7582" opacity="0.6" />
+      <use xlink:href="#cosmicFloral" transform="scale(1.2) rotate(40)" fill="url(#lavenderGlow)" stroke="#E1CCEC" opacity="0.6" />
+    </g>
+    
+    <!-- Center spirals -->
+    <g stroke-width="1" opacity="0.8">
+      <use xlink:href="#spiral" transform="scale(0.8) rotate(0)" stroke="#64E9EE" />
+      <use xlink:href="#spiral" transform="scale(0.8) rotate(60)" stroke="#FF7582" />
+      <use xlink:href="#spiral" transform="scale(0.8) rotate(120)" stroke="#E1CCEC" />
+      <use xlink:href="#spiral" transform="scale(0.8) rotate(180)" stroke="#64E9EE" />
+      <use xlink:href="#spiral" transform="scale(0.8) rotate(240)" stroke="#FF7582" />
+      <use xlink:href="#spiral" transform="scale(0.8) rotate(300)" stroke="#E1CCEC" />
+    </g>
+  </g>
+</svg>
+`}
+        </CodeBox>
+    </Chapter>
+);

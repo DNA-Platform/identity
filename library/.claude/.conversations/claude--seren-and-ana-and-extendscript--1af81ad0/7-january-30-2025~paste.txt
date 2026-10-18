@@ -1,0 +1,587 @@
+class CommandQuueue implements Queue {
+    private complete: boolean = true;
+    private commands: A<string> = f();
+
+    length(): number { return this.commands.length(); }
+
+    peek(): string | undefined {
+        if (this.length() == 0) return undefined;
+        return this.commands.first();
+    }
+
+    dequeue(): string | undefined {
+        return this.commands.shift();
+    }
+
+    enqueue(task: string, sync: boolean): void {
+        this.commands.push(task);
+        if (sync) this.sync();
+    }
+
+    sync(onComplete?: OnCompleteHandler, onError?: OnErrorHandler): void {
+        if (this.length() == 0) return;
+        this.complete = false;
+        while (this.length() > 0) {
+            var cmd = this.dequeue() as string;
+            console.log("i", this.length())
+            send(cmd, 
+                (cmd, i) => {
+                    if (i == 0) this.complete = true;
+                    if (onComplete) onComplete(cmd, i);
+                },
+                (cmd, i, error) => {
+                    this.complete = true;
+                    this.clear();
+                    if (onError) onError(cmd, i, error);
+                    else throw new Error(`${error.headers}\n${error.body}`);
+                },
+                this.length()
+            );
+        }
+
+        while (!this.complete) {
+            $BridgeTalk().pump();
+            $.sleep(1000);
+        }
+    }
+
+    clear(): void {
+        this.commands = f([]);
+    }
+}
+
+class Reference<Type = any> {
+    _expression: string;
+    address(): string { return this._expression; }
+    loc(): string { return this.address(); }
+
+    constructor(expression?: string) {
+        this._expression = expression || "$.global";
+    }
+
+    dot<TSelection = any>(selector: (o: Type) => TSelection): PropertyReference<this, TSelection> {
+        var path = str(stringJoin(str(selector.toString()).split(".").skip(1), ".").split(";").first()).replaceAll(" ", "");
+        return new PropertyReference<this, TSelection>(this, path.s());
+    }
+
+    dott<TSelection = any>(expression: string): PropertyReference<this, TSelection> {
+        return new PropertyReference<this, TSelection>(this, expression);
+    }
+
+    call<TResult = any>(...args: (Reference | string)[]): FunctionCallReference<TResult> {
+        var refs = f(args).select(r => $ref(r)).a();
+        return new FunctionCallReference<TResult>(this, refs);
+    }
+
+    of<TElement = any>(index: number): IndexReference<this, TElement> {
+        return new IndexReference<this, TElement>(this, index);
+    }
+
+    cast<T extends Reference = any>(convert?: (ref: this) => T): T {
+        if (convert) return convert(this);
+        return this as any;
+    }
+
+    resolve(): Type {
+        var referent: Type = undefined as any;
+        eval(`var referent = ${this.address()};`);
+        return referent;
+    }
+
+    equals(ref: Reference): boolean {
+        var thisObject = this.resolve();
+        var otherObj = ref.resolve();
+        return thisObject === otherObj;
+    }
+
+    toString(): string {
+        return this.address();
+    }
+}
+
+class Command {
+    _expression: string = "";
+    expression(): string { return this._expression; }
+    empty(): boolean { return !this.expression(); }
+
+    constructor(expression?: string | Reference) {
+        if (expression instanceof Reference) expression = `${expression.address()};`;
+        this._expression = expression || "";
+    }
+
+    add(cmd: string | Command): Command {
+        if (typeof cmd === "string") cmd = new Command(cmd);
+        return cmd.empty() ? 
+            new Command(this.expression()) : 
+            new Command(`${this.expression()}\n${cmd.expression()}`);
+    }
+
+    execute(global: boolean = false): void {
+        if (global) {
+            // Explicitly run eval in the global scope
+            eval.call($.global || globalThis, this.expression());
+        } else {
+            eval(this.expression());
+        }
+    }
+
+    toString(): string {
+        return this.expression();
+    }
+}
+
+class VariableReference<TVariable = any> extends Reference<TVariable> {
+    protected _name: string;
+    name(): string { return this._name; }
+    address(): string { return this.name(); }
+
+    constructor(name: string) {
+        super();
+        if (name === undefined || name.length === 0) 
+            throw new Error("A variable reference must have a name");
+        this._name = name;
+    }
+}
+
+class PropertyReference<TObject extends Reference = any, TProperty = any> extends Reference<TProperty> {
+    protected _object: TObject;
+    protected _property: string;
+    property(): string { return this._property; }
+    object(): TObject { return this._object; }
+    address(): string { return `${this.object().address()}.${this.property()}` }
+
+    constructor(object: TObject, property: string) {
+        super();
+        if (property === undefined || property.length == 0 || object === undefined)
+            throw new Error("The object and property both need to be defined in a property reference");
+        this._object = object;
+        this._property = property;
+    }
+}
+
+class ArrayReference<TObject extends Reference = any, TArray = any, TElement extends IndexReference = any> extends PropertyReference<TObject, TArray> {
+    protected _selector: (array: ArrayReference, index: number) => TElement;
+
+    constructor(object: TObject, array: string, selector: (array: ArrayReference, index: number) => TElement) {
+        super(object, array);
+        this._selector = selector;
+    }
+
+    at(index: number): TElement {
+        return this._selector(this, index);
+    }
+}
+
+class IndexReference<TArray extends Reference = any, TElement = any> extends Reference<TElement> {
+    protected _array: TArray;
+    index: number;
+    array(): Reference { return this._array; }
+    property(): string { 
+        return `[${this.index}]`; 
+    }
+    address(): string { 
+        return `${this.array().address()}[${this.index}]`;
+    }
+
+    constructor(array: TArray, index: number) {
+        super();
+        if (index < 0) throw new Error("Referential indexing does not support negative indexing");
+        if (array === undefined || index == undefined)
+            throw new Error("Index references must have an array and an index");
+        this._array = array;
+        this.index = index;
+    }
+}
+
+class FunctionCallReference<TResult = any> extends Reference<TResult> {
+    _func: Reference;
+    _args: A<Reference>;
+    func(): Reference { return this._func; }
+    args(): A<Reference> { return this._args; }
+    address(): string {
+        var args = this.args().select(a => a.address()).stringJoin(",");
+        return `${this.func().address()}(${args})`;
+    }
+
+    constructor(func: Reference, args: Reference[]) {
+        super();
+        if (func === undefined) throw new Error("A FunctionCallReference must have an function")
+        if (args === undefined)  
+            args = [];
+        this._func = func;
+        this._args = f(args);
+    }
+}
+
+class StringLiteralReferece extends Reference<string> {
+    _value: string;
+    value(): string { return this._value; }
+
+    constructor(value: string | Str| Reference, quoteType: `"` | `'` = `"`) {
+        if (value === undefined) throw new Error("String literal unspecified");
+        if (value instanceof Reference) value = value.toString();
+        if (value instanceof Str) value = value.s();
+        super(`${quoteType}${value}${quoteType}`);
+        this._value = value;
+    }
+}
+
+class Var {
+    static $<Type = any>(name: string): { equals: (ref: Reference<Type> | string) => VariableAssingment<Type> } {
+        return { 
+            equals: (ref: Reference<Type> | string) => {
+                if (typeof ref === "string") ref = $ref<Type>(ref);
+                return new VariableAssingment<Type>(name, ref);
+            }
+        };
+    }
+
+    static $$<Type = any>(name: string): Reference<Type> {
+        return VariableAssingment.lookup(name);
+    }
+}
+
+class VariableAssingment<Type> extends Command {
+    _name: string;
+    _value: Reference<Type>;
+    _variable: Reference<Type>;
+
+    name(): string { return this._name; }
+    ref(): Reference<Type> { return this._value as any; }
+    expression(): string { return `${this.variable().address()} = ${this.value().address()};` }
+    value(): Reference<Type> { return this._value; }
+    variable(): Reference<Type> { return this._variable; }
+
+    constructor(name: string, value: Reference<Type>) {
+        super();
+        this._name = name || `var${VariableAssingment.nextId++}`;
+        this._value = value;
+        this._variable = VariableAssingment.createVariable(this.name());
+    }
+
+    private static nextId = 1;
+    private static variables = dictionary<Reference>();
+    private static createVariable<Type = any>(name: string): Reference<Type> {
+        var variableName = `_____${name}_____`;
+        var ref =  new Reference(`$.global.${variableName}`);
+        this.variables[name] = ref;
+        return ref;
+    }
+
+    public static lookup<Type = any>(variableName: string): Reference<Type> {
+        var variable = this.variables[variableName];
+        if (variable === undefined) throw new Error(`The variable ${variableName} has not been created`);
+        return variable;
+    }
+}
+
+function $ref<Type = any>(expression: string | Reference): Reference<Type> {
+    if (expression instanceof Reference) return expression;
+    return new Reference<Type>(expression);
+}
+
+function $cmd(expression: string | Reference): Command {
+    return new Command(expression);
+}
+
+function $str(...args: (string | Str | Reference)[]): StringLiteralReferece {
+    var value = f(args).stringJoin(" ");
+    return new StringLiteralReferece(value);
+}
+
+type ExecutionMode = "Remote" | "Local"
+
+class $Eval {
+    private static _commands: CommandQuueue | undefined;
+    private static _mode: ExecutionMode = "Remote";
+
+    private static commands() { if (!this._commands) this._commands = new CommandQuueue(); return this._commands; }
+    private static mode(newMode?: ExecutionMode) { if (newMode !== undefined) this._mode = newMode; return this._mode; }
+
+    static debug: boolean = false;
+
+    static cmd(cmd: Command | Reference | string, onComplete?: OnCompleteHandler, onError?: OnErrorHandler): void {
+        onComplete = onComplete || this.onCompleteDefault;
+        onError = onError || this.onErrorDefault;
+        if (this.mode() === "Remote") {
+            if (cmd instanceof Reference) cmd = cmd.address();
+            if (cmd instanceof Command) cmd = cmd.expression();
+            this.commands().enqueue(cmd, false);
+        } else {
+            if (!(cmd instanceof Command)) cmd = $cmd(cmd);
+            if (this.commands().length() > 0) 
+                this.sync(onComplete, onError);
+
+            var cmdExpression = cmd.expression();
+            if (!onError) {
+                cmd.execute();
+                if (onComplete) onComplete(cmdExpression, 0);
+            } else {
+                try {
+                    cmd.execute();
+                    if (onComplete) onComplete(cmdExpression, 0);
+                } catch (e) {
+                    onError(cmdExpression, 0, { 
+                        body: (e as any || "Command failed").toSring() as string, 
+                        headers: { "Error-Code": -1 } 
+                    });
+                }
+            }
+        }
+    }
+
+    static sync(onComplete?: OnCompleteHandler, onError?: OnErrorHandler) {
+        onComplete = onComplete || this.onCompleteDefault;
+        onError = onError || this.onErrorDefault;
+        if (this.debug) {
+            onComplete = (cmd, i) => { console.log(`$eval.sync ${i} complete:`, cmd); if (onComplete) onComplete(cmd, i); }
+            onError = (cmd, i, e) => { console.log(`$eval.sync ${i} FAILED:`, cmd, e?.headers?.["Error-Code"], e?.body); if (onError) onError(cmd, i, e); }
+        }
+        this.commands().sync(onComplete, onError);
+    }
+
+    static onCompleteDefault: OnCompleteHandler | undefined;
+    static onErrorDefault: OnErrorHandler | undefined;
+}
+
+function $eval(cmd: Command | Reference | string, onComplete?: OnCompleteHandler, onError?: OnErrorHandler): void {
+    $Eval.cmd(cmd, onComplete, onError);
+}
+
+function $sync(onComplete?: OnCompleteHandler, onError?: OnErrorHandler) {
+    $Eval.sync(onComplete, onError);
+}
+
+class DocumentReference<Type = any> extends Reference<Type> {
+    private _typename: string;
+    protected _document: $Document;
+    private _parent: Reference<any> | undefined;
+
+    app(): $Application { return $app; }
+    document(): $Document { return this._document; }
+    typename(): string { return this._typename; }
+    parent<TParent extends DocumentObject = any>(): Reference<TParent> { if (!this._parent) this._parent = this.dot(o => (o as any).parent); return this._parent; }
+
+    constructor(ref: Reference<Type> | string, typename: string, document: $Document) {
+        super(ref instanceof Reference ? ref.address() : ref)
+        this._typename = typename;
+        this._document = this instanceof $Document ? this : document;
+    }
+
+    protected $get<TProperty>(propertySelector: ((o: Type) => any) | string | Reference, value?: Reference | string): Reference<TProperty> {
+        var property = propertySelector instanceof Reference ? 
+            propertySelector : typeof propertySelector === "string" ? 
+            this.dott(propertySelector) : 
+            this.dot(propertySelector);
+
+        if (value !== undefined) {
+            console.log(value);
+            var cmd = $cmd(
+                `if (${property} !== undefined) { 
+                    ${property} = ${value}; 
+                } else { 
+                    throw new Error(${$str(property, "does not exist on", this.typename())}); 
+                }`
+            );
+            $eval(cmd);
+        }
+
+        return property;
+    }
+
+    protected $try(methodSelector: ((o: Type) => any) | string | Reference, ...args: (Reference | string)[]): void {
+        var method = methodSelector instanceof Reference ? 
+            methodSelector : typeof methodSelector === "string" ? 
+            this.dott(methodSelector) : 
+            this.dot(methodSelector);
+
+        var cmd = $cmd(
+            `if (${method} !== undefined) { 
+                ${method.call(...args)}; 
+            } else { 
+                throw new Error(${$str(method, "does not exist on", this.typename())}); 
+            }`
+        );
+
+        $eval(cmd);
+    }
+}
+
+class DocumentObject<TObject = any> extends DocumentReference<TObject> {
+    name(newName?: string | Reference): Reference<string> {  
+        return this.$get("name", newName !== undefined ? $str(newName) : undefined); 
+    }
+
+    remove(): void
+    remove(...args: Reference[]): void {
+        this.$try("remove");
+    }
+}
+
+class DocumentCollection<TCollection = any, $TElement extends DocumentObject = any, TElement = any> extends DocumentReference<TCollection> {
+    private _etypename: string;
+    private _length: Reference<string> | undefined;
+
+    app(): $Application { return $app; }
+    length(): Reference<string> { if (!this._length) this._length = this.dot(o => (o as any).length); return this._length; }
+
+    constructor(ref: Reference<TCollection> | string, typename: string, document: $Document) {
+        super(ref, typename, document)
+        this._etypename = typename.slice(0, -1);
+    }
+
+    at(index: number): $TElement {
+        return $docref<$TElement>(this.of(index), this._etypename, this.document());
+    }
+
+    getByName(name: string | Reference): $TElement {
+        if (typeof name === "string") name = new StringLiteralReferece(name); 
+        return $docref<$TElement>(this.dott<TElement>(`getByName(${name})`), this._etypename, this.document());
+    }
+
+    add(): $TElement
+    add(...args: Reference[]): $TElement {
+        $eval(this.dot(o => (o as any).add).call(...args));
+        return this.at(0);
+    }
+
+    remove(index: number): void {
+        this.$try(this.at(index).dott("remove"));
+    }
+
+    removeAll(): void {
+        this.$try("removeAll");
+    }
+
+    private static nextId = 1;
+    private static variableName = "element";
+    protected static getNextVariableName() { return `${this.variableName}${this.nextId++}`; }
+}
+
+var $$: $Util = undefined as any;
+var $app: $Application = undefined as any;
+
+class $Util extends VariableReference<$> {
+    private _global: Reference<any> | undefined;
+    global(): Reference<any> {
+        if (!this._global) 
+            this._global = $$.dot(o => o.global);
+        return this._global;
+    }
+
+    constructor() {
+        super("$");
+        if ($$) throw new Error("$ reference already defined");
+    }
+} 
+
+class $Application extends DocumentObject<Application> {
+    private _documents: $Documents | undefined;
+    private _activeDocument: $Document | undefined;
+
+    document(): $Document { return this.activeDocument(); }
+    documents(): $Documents { if (!this._documents) this._documents = new $Documents(); return this._documents; }
+    activeDocument(): $Document { if (!this._activeDocument) this._activeDocument = new $Document("app.activeDocument"); return this._activeDocument; }
+
+    constructor() {
+        super("app", "Application", undefined as any);
+        if ($app) throw new Error("Application reference already defined");
+    }
+}
+
+class $Documents extends DocumentCollection<Documents, $Document, Document> {
+    document(): $Document { return this.app().activeDocument(); }
+    constructor() {
+        super($app.dot(app => app.documents), "Documents", $app.activeDocument());
+    }
+}
+
+class $Document extends DocumentObject<Document> {
+    private _layers: $Layers | undefined;
+    private _artboards: $Artboards | undefined;
+    private _views: $Views | undefined;
+    private _brushes: $Brushes | undefined;
+    private _swatches: $Swatches | undefined;
+    private _symbols: $Symbols | undefined;
+    private _stories: $Stories | undefined;
+    private _pluginItems: $PluginItems | undefined;
+    private _pageItems: $PageItems | undefined;
+    private _pathItems: $PathItems | undefined;
+    private _textFrames: $TextFrames | undefined;
+    private _groupItems: $GroupItems | undefined;
+    private _rasterItems: $RasterItems | undefined;
+    private _compoundPathItems: $CompoundPathItems | undefined;
+    private _legacyTextItems: $LegacyTextItems | undefined;
+    private _nonNativeItems: $NonNativeItems | undefined;
+    private _gradients: $Gradients | undefined;
+    private _variables: $Variables | undefined;
+    private _patterns: $Patterns | undefined;
+    private _paragraphStyles: $ParagraphStyles | undefined;
+    private _characterStyles: $CharacterStyles | undefined;
+    private _spots: $Spots | undefined;
+    private _datasets: $DataSets | undefined;
+    private _tags: $Tags | undefined;
+    private _graphicStyles: $ArtStyles | undefined
+
+    layers(): $Layers { if (!this._layers) this._layers = new $Layers(this.dot(o => o.layers), this); return this._layers; }
+    artboards(): $Artboards { if (!this._artboards) this._artboards = new $Artboards(this.dot(o => o.artboards), this); return this._artboards; }
+    views(): $Views { if (!this._views) this._views = new $Views(this.dot(o => o.views), this); return this._views; }
+    brushes(): $Brushes { if (!this._brushes) this._brushes = new $Brushes(this.dot(o => o.brushes), this); return this._brushes; }
+    swatches(): $Swatches { if (!this._swatches) this._swatches = new $Swatches(this.dot(o => o.swatches), this); return this._swatches; }
+    symbols(): $Symbols { if (!this._symbols) this._symbols = new $Symbols(this.dot(o => o.symbols), this); return this._symbols; }
+    stories(): $Stories { if (!this._stories) this._stories = new $Stories(this.dot(o => o.stories), this); return this._stories; }
+    pluginItems(): $PluginItems { if (!this._pluginItems) this._pluginItems = new $PluginItems(this.dot(o => o.pluginItems), this); return this._pluginItems; }
+    pageItems(): $PageItems { if (!this._pageItems) this._pageItems = new $PageItems(this.dot(o => o.pageItems), this); return this._pageItems; }
+    pathItems(): $PathItems { if (!this._pathItems) this._pathItems = new $PathItems(this.dot(o => o.pathItems), this); return this._pathItems; }
+    textFrames(): $TextFrames { if (!this._textFrames) this._textFrames = new $TextFrames(this.dot(o => o.textFrames), this); return this._textFrames; }
+    groupItems(): $GroupItems { if (!this._groupItems) this._groupItems = new $GroupItems(this.dot(o => o.groupItems), this); return this._groupItems; }
+    rasterItems(): $RasterItems { if (!this._rasterItems) this._rasterItems = new $RasterItems(this.dot(o => o.rasterItems), this); return this._rasterItems; }
+    compoundPathItems(): $CompoundPathItems { if (!this._compoundPathItems) this._compoundPathItems = new $CompoundPathItems(this.dot(o => o.compoundPathItems), this); return this._compoundPathItems; }
+    legacyTextItems(): $LegacyTextItems { if (!this._legacyTextItems) this._legacyTextItems = new $LegacyTextItems(this.dot(o => o.legacyTextItems), this); return this._legacyTextItems; }
+    nonNativeItems(): $NonNativeItems { if (!this._nonNativeItems) this._nonNativeItems = new $NonNativeItems(this.dot(o => o.nonNativeItems), this); return this._nonNativeItems; }
+    gradients(): $Gradients { if (!this._gradients) this._gradients = new $Gradients(this.dot(o => o.gradients), this); return this._gradients; }
+    variables(): $Variables { if (!this._variables) this._variables = new $Variables(this.dot(o => o.variables), this); return this._variables; }
+    patterns(): $Patterns { if (!this._patterns) this._patterns = new $Patterns(this.dot(o => o.patterns), this); return this._patterns; }
+    paragraphStyles(): $ParagraphStyles { if (!this._paragraphStyles) this._paragraphStyles = new $ParagraphStyles(this.dot(o => o.paragraphStyles), this); return this._paragraphStyles; }
+    characterStyles(): $CharacterStyles { if (!this._characterStyles) this._characterStyles = new $CharacterStyles(this.dot(o => o.characterStyles), this); return this._characterStyles; }
+    spots(): $Spots { if (!this._spots) this._spots = new $Spots(this.dot(o => o.spots), this); return this._spots; }
+    datasets(): $DataSets { if (!this._datasets) this._datasets = new $DataSets(this.dot(o => o.dataSets), this); return this._datasets; }
+    tags(): $Tags { if (!this._tags) this._tags = new $Tags(this.dot(o => o.tags), this); return this._tags; }
+    graphicStyles(): $ArtStyles { if (!this._graphicStyles) this._graphicStyles = new $ArtStyles(this.dot(o => o.graphicStyles), this); return this._graphicStyles; }
+
+    constructor(ref: Reference<Document> | string) {
+        super(ref, "Document", undefined as any);
+        this._document = this;
+    }
+}
+
+
+class $Layers extends DocumentCollection<Layers, $Layer, Layer> {
+    constructor(ref: Reference<Layers>, document: $Document) {
+        super(ref, "Layers", document);
+    }
+}
+
+class $Layer extends DocumentObject<Layer> {
+    private _pageItems: $PageItems | undefined;
+    private _pathItems: $PathItems | undefined;
+    private _textFrames: $TextFrames | undefined;
+    private _groupItems: $GroupItems | undefined;
+    private _rasterItems: $RasterItems | undefined;
+    private _compoundPathItems: $CompoundPathItems | undefined;
+    private _legacyTextItems: $LegacyTextItems | undefined;
+    private _nonNativeItems: $NonNativeItems | undefined;
+
+    pageItems(): $PageItems { if (!this._pageItems) this._pageItems = new $PageItems(this.dot(o => o.pageItems), this.document()); return this._pageItems; }
+    pathItems(): $PathItems { if (!this._pathItems) this._pathItems = new $PathItems(this.dot(o => o.pathItems), this.document()); return this._pathItems; }
+    textFrames(): $TextFrames { if (!this._textFrames) this._textFrames = new $TextFrames(this.dot(o => o.textFrames), this.document()); return this._textFrames; }
+    groupItems(): $GroupItems { if (!this._groupItems) this._groupItems = new $GroupItems(this.dot(o => o.groupItems), this.document()); return this._groupItems; }
+    rasterItems(): $RasterItems { if (!this._rasterItems) this._rasterItems = new $RasterItems(this.dot(o => o.rasterItems), this.document()); return this._rasterItems; }
+    compoundPathItems(): $CompoundPathItems { if (!this._compoundPathItems) this._compoundPathItems = new $CompoundPathItems(this.dot(o => o.compoundPathItems), this.document()); return this._compoundPathItems; }
+    legacyTextItems(): $LegacyTextItems { if (!this._legacyTextItems) this._legacyTextItems = new $LegacyTextItems(this.dot(o => o.legacyTextItems), this.document()); return this._legacyTextItems; }
+    nonNativeItems(): $NonNativeItems { if (!this._nonNativeItems) this._nonNativeItems = new $NonNativeItems(this.dot(o => o.nonNativeItems), this.document()); return this._nonNativeItems; }
+
+    constructor(ref: Reference<Layer> | string, document: $Document) {
+        super(ref, "Layer", document);
+    }
+}

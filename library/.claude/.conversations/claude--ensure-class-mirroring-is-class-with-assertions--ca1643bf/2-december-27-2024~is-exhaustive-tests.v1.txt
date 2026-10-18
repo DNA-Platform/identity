@@ -1,0 +1,380 @@
+describe('Is Properties and Methods', () => {
+    // Properties
+    describe('undefined property', () => {
+        it('returns true for undefined values', () => {
+            let undef;
+            const obj = { prop: undef };
+            expect(obj.prop.is?.undefined).toBe(true);
+        });
+
+        it('returns false for defined values', () => {
+            expect("string".is.undefined).toBe(false);
+            expect((42).is.undefined).toBe(false);
+            expect(false.is.undefined).toBe(false);
+            expect(null.is?.undefined).toBe(false);
+        });
+    });
+
+    describe('null property', () => {
+        it('returns true for null values', () => {
+            const obj = { prop: null };
+            expect(obj.prop.is?.null).toBe(true);
+        });
+
+        it('returns false for non-null values', () => {
+            expect("string".is.null).toBe(false);
+            expect((42).is.null).toBe(false);
+            expect(false.is.null).toBe(false);
+            expect(undefined.is?.null).toBe(false);
+        });
+    });
+
+    describe('string property', () => {
+        it('returns true for strings', () => {
+            expect("".is.string).toBe(true);
+            expect("hello".is.string).toBe(true);
+            expect(String("test").is.string).toBe(true);
+        });
+
+        it('returns false for non-strings', () => {
+            expect((42).is.string).toBe(false);
+            expect(true.is.string).toBe(false);
+            expect([].is.string).toBe(false);
+            expect(({}).is.string).toBe(false);
+        });
+    });
+
+    describe('number property', () => {
+        it('returns true for numbers', () => {
+            expect((42).is.number).toBe(true);
+            expect((0).is.number).toBe(true);
+            expect((-1).is.number).toBe(true);
+            expect((3.14).is.number).toBe(true);
+            expect((NaN).is.number).toBe(true);
+            expect(Number.POSITIVE_INFINITY.is.number).toBe(true);
+        });
+
+        it('returns false for non-numbers', () => {
+            expect("42".is.number).toBe(false);
+            expect(true.is.number).toBe(false);
+            expect(BigInt(42).is.number).toBe(false);
+        });
+    });
+
+    describe('boolean property', () => {
+        it('returns true for booleans', () => {
+            expect(true.is.boolean).toBe(true);
+            expect(false.is.boolean).toBe(true);
+            expect(Boolean(1).is.boolean).toBe(true);
+        });
+
+        it('returns false for non-booleans', () => {
+            expect("true".is.boolean).toBe(false);
+            expect((1).is.boolean).toBe(false);
+            expect(([]).is.boolean).toBe(false);
+        });
+    });
+
+    describe('bigint property', () => {
+        it('returns true for bigints', () => {
+            expect(BigInt(42).is.bigint).toBe(true);
+            expect(BigInt(0).is.bigint).toBe(true);
+            expect(BigInt(-1).is.bigint).toBe(true);
+        });
+
+        it('returns false for non-bigints', () => {
+            expect((42).is.bigint).toBe(false);
+            expect("42".is.bigint).toBe(false);
+            expect(true.is.bigint).toBe(false);
+        });
+    });
+
+    describe('symbol property', () => {
+        it('returns true for symbols', () => {
+            expect(Symbol().is.symbol).toBe(true);
+            expect(Symbol('test').is.symbol).toBe(true);
+            expect(Symbol.for('test').is.symbol).toBe(true);
+        });
+
+        it('returns false for non-symbols', () => {
+            expect("symbol".is.symbol).toBe(false);
+            expect((42).is.symbol).toBe(false);
+            expect(({}).is.symbol).toBe(false);
+        });
+    });
+
+    describe('object property', () => {
+        it('returns true for objects', () => {
+            expect(({}).is.object).toBe(true);
+            expect(([]).is.object).toBe(true);
+            expect(new Date().is.object).toBe(true);
+            expect(new Map().is.object).toBe(true);
+        });
+
+        it('returns false for non-objects', () => {
+            expect("string".is.object).toBe(false);
+            expect((42).is.object).toBe(false);
+            expect(true.is.object).toBe(false);
+            expect(null.is?.object).toBe(false);
+        });
+    });
+
+    describe('function property', () => {
+        it('returns true for functions', () => {
+            expect((() => {}).is.function).toBe(true);
+            expect((function(){}).is.function).toBe(true);
+            expect((async () => {}).is.function).toBe(true);
+            expect((class {}).is.function).toBe(true);
+        });
+
+        it('returns false for non-functions', () => {
+            expect("function".is.function).toBe(false);
+            expect(({}).is.function).toBe(false);
+            expect([].is.function).toBe(false);
+        });
+    });
+
+    describe('type property', () => {
+        it('returns true for constructor functions', () => {
+            class Test {}
+            expect(Test.is.type).toBe(true);
+            expect(String.is.type).toBe(true);
+            expect(Number.is.type).toBe(true);
+            expect(Boolean.is.type).toBe(true);
+        });
+
+        it('returns false for non-constructor functions', () => {
+            expect((() => {}).is.type).toBe(false);
+            expect(({}).is.type).toBe(false);
+            expect("class".is.type).toBe(false);
+        });
+    });
+
+    describe('emptyObject property', () => {
+        it('returns true for empty objects', () => {
+            expect(({}).is.emptyObject).toBe(true);
+            expect(Object.create(null).is.emptyObject).toBe(true);
+        });
+
+        it('returns false for non-empty objects or non-objects', () => {
+            expect(({ prop: 'value' }).is.emptyObject).toBe(false);
+            expect([].is.emptyObject).toBe(false);
+            expect("".is.emptyObject).toBe(false);
+        });
+    });
+
+    describe('populatedObject property', () => {
+        it('returns true for populated objects', () => {
+            expect(({ prop: 'value' }).is.populatedObject).toBe(true);
+            expect(new Date().is.populatedObject).toBe(true);
+        });
+
+        it('returns false for empty objects or non-objects', () => {
+            expect(({}).is.populatedObject).toBe(false);
+            expect("object".is.populatedObject).toBe(false);
+        });
+    });
+
+    describe('array property', () => {
+        it('returns true for arrays', () => {
+            expect([].is.array).toBe(true);
+            expect([1, 2, 3].is.array).toBe(true);
+            expect(new Array().is.array).toBe(true);
+        });
+
+        it('returns false for non-arrays', () => {
+            expect(({}).is.array).toBe(false);
+            expect("[]".is.array).toBe(false);
+            expect(arguments.is?.array).toBe(false);
+        });
+    });
+
+    describe('emptyArray property', () => {
+        it('returns true for empty arrays', () => {
+            expect([].is.emptyArray).toBe(true);
+            expect(new Array().is.emptyArray).toBe(true);
+        });
+
+        it('returns false for non-empty arrays or non-arrays', () => {
+            expect([1].is.emptyArray).toBe(false);
+            expect(({}).is.emptyArray).toBe(false);
+        });
+    });
+
+    describe('populatedArray property', () => {
+        it('returns true for populated arrays', () => {
+            expect([1].is.populatedArray).toBe(true);
+            expect(['test'].is.populatedArray).toBe(true);
+            expect([{}].is.populatedArray).toBe(true);
+        });
+
+        it('returns false for empty arrays or non-arrays', () => {
+            expect([].is.populatedArray).toBe(false);
+            expect(({}).is.populatedArray).toBe(false);
+        });
+    });
+
+    describe('specified property', () => {
+        it('returns true for specified values', () => {
+            expect("".is.specified).toBe(true);
+            expect((0).is.specified).toBe(true);
+            expect(false.is.specified).toBe(true);
+            expect(({}).is.specified).toBe(true);
+        });
+
+        it('returns false for unspecified values', () => {
+            const obj = { prop: undefined };
+            expect(obj.prop.is?.specified).toBe(false);
+            expect(obj.nonexistent?.is?.specified).toBe(false);
+        });
+    });
+
+    describe('unspecified property', () => {
+        it('returns true for unspecified values', () => {
+            const obj = { prop: undefined };
+            expect(obj.prop.is?.unspecified).toBe(true);
+            expect(obj.nonexistent?.is?.unspecified).toBe(true);
+        });
+
+        it('returns false for specified values', () => {
+            expect("".is.unspecified).toBe(false);
+            expect((0).is.unspecified).toBe(false);
+            expect(false.is.unspecified).toBe(false);
+        });
+    });
+
+    describe('positiveInfinity property', () => {
+        it('returns true for positive infinity', () => {
+            expect(Number.POSITIVE_INFINITY.is.positiveInfinity).toBe(true);
+            expect((1/0).is.positiveInfinity).toBe(true);
+        });
+
+        it('returns false for other values', () => {
+            expect(Number.NEGATIVE_INFINITY.is.positiveInfinity).toBe(false);
+            expect((42).is.positiveInfinity).toBe(false);
+            expect(NaN.is.positiveInfinity).toBe(false);
+        });
+    });
+
+    describe('negativeInfinity property', () => {
+        it('returns true for negative infinity', () => {
+            expect(Number.NEGATIVE_INFINITY.is.negativeInfinity).toBe(true);
+            expect((-1/0).is.negativeInfinity).toBe(true);
+        });
+
+        it('returns false for other values', () => {
+            expect(Number.POSITIVE_INFINITY.is.negativeInfinity).toBe(false);
+            expect((-42).is.negativeInfinity).toBe(false);
+            expect(NaN.is.negativeInfinity).toBe(false);
+        });
+    });
+
+    describe('nan property', () => {
+        it('returns true for NaN', () => {
+            expect(NaN.is.nan).toBe(true);
+            expect((0/0).is.nan).toBe(true);
+            expect(Number('not a number').is.nan).toBe(true);
+        });
+
+        it('returns false for non-NaN values', () => {
+            expect((42).is.nan).toBe(false);
+            expect(Number.POSITIVE_INFINITY.is.nan).toBe(false);
+            expect("NaN".is.nan).toBe(false);
+        });
+    });
+
+    describe('notNan property', () => {
+        it('returns true for non-NaN numbers', () => {
+            expect((42).is.notNan).toBe(true);
+            expect((0).is.notNan).toBe(true);
+            expect(Number.POSITIVE_INFINITY.is.notNan).toBe(true);
+        });
+
+        it('returns false for NaN or non-numbers', () => {
+            expect(NaN.is.notNan).toBe(false);
+            expect("number".is.notNan).toBe(false);
+        });
+    });
+
+    // Methods
+    describe('equal method', () => {
+        it('correctly compares equal values', () => {
+            expect("test".is.equal("test")).toBe(true);
+            expect((42).is.equal(42)).toBe(true);
+            expect(true.is.equal(true)).toBe(true);
+            const obj = {};
+            expect(obj.is.equal(obj)).toBe(true);
+        });
+
+        it('correctly identifies non-equal values', () => {
+            expect("test".is.equal("other")).toBe(false);
+            expect((42).is.equal(43)).toBe(false);
+            expect(({}).is.equal({})).toBe(false);
+            expect([].is.equal([])).toBe(false);
+        });
+    });
+
+    describe('parentType method', () => {
+        class Parent {}
+        class Child extends Parent {}
+        class Other {}
+
+        it('correctly identifies parent types', () => {
+            expect(Parent.is.parentType(Child)).toBe(true);
+            expect(Object.is.parentType(Array)).toBe(true);
+        });
+
+        it('correctly identifies non-parent types', () => {
+            expect(Child.is.parentType(Parent)).toBe(false);
+            expect(Other.is.parentType(Child)).toBe(false);
+            expect(({}).is.parentType(Parent)).toBe(false);
+        });
+    });
+
+    describe('childType method', () => {
+        class Parent {}
+        class Child extends Parent {}
+        class Other {}
+
+        it('correctly identifies child types', () => {
+            expect(Child.is.childType(Parent)).toBe(true);
+            expect(Array.is.childType(Object)).toBe(true);
+        });
+
+        it('correctly identifies non-child types', () => {
+            expect(Parent.is.childType(Child)).toBe(false);
+            expect(Other.is.childType(Parent)).toBe(false);
+            expect(({}).is.childType(Parent)).toBe(false);
+        });
+    });
+
+    describe('instanceOf method', () => {
+        class TestClass {}
+        const instance = new TestClass();
+
+        it('correctly identifies instances', () => {
+            expect(instance.is.instanceOf(TestClass)).toBe(true);
+            expect([].is.instanceOf(Array)).toBe(true);
+            expect(({}).is.instanceOf(Object)).toBe(true);
+        });
+
+        it('correctly identifies non-instances', () => {
+            expect(instance.is.instanceOf(Array)).toBe(false);
+            expect("string".is.instanceOf(Number)).toBe(false);
+            expect((42).is.instanceOf(String)).toBe(false);
+        });
+    });
+
+    // Function behavior
+    describe('function call behavior', () => {
+        it('works as a function for type checking', () => {
+            expect("string".is(String)).toBe(true);
+            expect((42).is(Number)).toBe(true);
+            expect(true.is(Boolean)).toBe(true);
+            expect([].is(Array)).toBe(true);
+            expect(({}).is(Object)).toBe(true);
+        });
+
+        it('returns false for incorrect types', () => {
+            expect("string".is(Number)).toBe(false);
+            expect((42).is(String)).toBe(false

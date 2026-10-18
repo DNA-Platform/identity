@@ -1,0 +1,892 @@
+declare class Artboards {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(artboardRect: Rect): Artboard;
+    getActiveArtboardIndex(): number;
+    getByName(name: string): Artboard;
+    getByName(artboardName: string): Artboard;
+    insert(artboardRect: Rect, index: number): void;
+    remove(index: number): void;
+    removeAll(): void;
+    setActiveArtboardIndex(index: number): void;
+}
+declare class Documents {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(documentColorSpace?: DocumentColorSpace, width?: number, height?: number, numArtboards?: number, artboardLayout?: DocumentArtboardLayout, artboardSpacing?: number, artboardRowsOrCols?: number): Document;
+    static addDocument(startupPreset: string, presetSettings?: DocumentPreset, showOptionsDialog?: boolean): Document;
+    static addDocumentWithDialogOption(startupPreset: string, showOptionsDialog?: boolean): Document;
+    arrange(layoutStyle: DocumentLayoutStyle): boolean;
+    getByName(name: string): Document;
+}
+declare class Layers {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): Layer;
+    getByName(name: string): Layer;
+    removeAll(): void;
+}
+declare class GroupItems {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): GroupItem;
+    static createFromFile(imageFile: File): GroupItem;
+    getByName(name: string): GroupItem;
+    removeAll(): void;
+}
+declare class PageItems {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    getByName(name: string): PageItem;
+}
+declare class PathItems {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): PathItem;
+    ellipse(top?: number, left?: number, width?: number, height?: number, reversed?: boolean, inscribed?: boolean): PathItem;
+    getByName(name: string): PathItem;
+    polygon(centerX?: number, centerY?: number, radius?: number, sides?: number, reversed?: boolean): PathItem;
+    rectangle(top: number, left: number, width: number, height: number, reversed?: boolean): PathItem;
+    removeAll(): void;
+    roundedRectangle(top: number, left: number, width: number, height: number, horizontalRadius?: number, verticalRadius?: number, reversed?: boolean): PathItem;
+    star(centerX?: number, centerY?: number, radius?: number, innerRadius?: number, points?: number, reversed?: boolean): PathItem;
+}
+declare class PathPoints {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): PathPoint;
+    getByName(name: string): PathPoint;
+    removeAll(): void;
+}
+declare class CompoundPathItems {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): CompoundPathItem;
+    getByName(name: string): CompoundPathItem;
+    removeAll(): void;
+}
+declare class Stories {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    getByName(name: string): Story;
+}
+declare class LegacyTextItems {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    convertToNative(): boolean;
+    getByName(name: string): LegacyTextItem;
+}
+declare class TextRanges {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    getByName(name: string): TextRange;
+}
+declare class InsertionPoints {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    getByName(name: string): InsertionPoint;
+}
+declare class CharacterStyles {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(name: string): CharacterStyle;
+    getByName(name: string): CharacterStyle;
+    removeAll(): void;
+}
+declare class ParagraphStyles {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(name: string): ParagraphStyle;
+    getByName(name: string): ParagraphStyle;
+    removeAll(): void;
+}
+declare class Spots {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): Spot;
+    getByName(name: string): Spot;
+    removeAll(): void;
+}
+declare class Swatches {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): Swatch;
+    getByName(name: string): Swatch;
+    getSelected(includeSwatchInGroup?: boolean): Swatch[];
+    removeAll(): void;
+}
+declare class Gradients {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): Gradient;
+    getByName(name: string): Gradient;
+    removeAll(): void;
+}
+declare class GradientStops {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): GradientStop;
+    getByName(name: string): GradientStop;
+    removeAll(): void;
+}
+declare class Patterns {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): Pattern;
+    getByName(name: string): Pattern;
+    removeAll(): void;
+}
+declare class Symbols {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(sourceArt: PageItem, registrationPoint?: SymbolRegistrationPoint): Symbol;
+    getByName(name: string): Symbol;
+    removeAll(): void;
+}
+declare class SymbolItems {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(symbol: Symbol): SymbolItem;
+    getByName(name: string): SymbolItem;
+    removeAll(): void;
+}
+declare class Brushes {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(brushDefinition: File, brushName?: string): Brush;
+    static addAndLoad(brushDefinition: File): Brush;
+    getByName(name: string): Brush;
+}
+declare class ArtStyles {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    getByName(name: string): ArtStyle;
+    removeAll(): void;
+}
+declare class Tags {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): Tag;
+    getByName(name: string): Tag;
+    removeAll(): void;
+}
+declare class RasterItems {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    getByName(name: string): RasterItem;
+    removeAll(): void;
+}
+declare class PluginItems {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    getByName(name: string): PluginItem;
+    removeAll(): void;
+}
+declare class NonNativeItems {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    getByName(name: string): NonNativeItem;
+}
+declare class Views {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    getByName(name: string): View;
+}
+declare class Variables {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): Variable;
+    getByName(name: string): Variable;
+    removeAll(): void;
+}
+declare class DataSets {
+    readonly length: number;
+    readonly parent: object;
+    readonly typename: string;
+    add(): DataSet;
+    getByName(name: string): DataSet;
+    removeAll(): void;
+}
+declare class Application {
+    readonly PDFPresetsList: string[];
+    readonly PPDFileList: PPDFile[];
+    activeDocument: Document;
+    readonly browserAvailable: boolean;
+    readonly buildNumber: string;
+    readonly colorSettingsList: File[];
+    coordinateSystem: CoordinateSystem;
+    readonly defaultColorSettings: File;
+    readonly documents: Documents;
+    readonly flattenerPresetsList: string[];
+    readonly freeMemory: number;
+    readonly locale: string;
+    readonly name: string;
+    readonly parent: object;
+    pasteRemembersLayers: boolean;
+    readonly path: File;
+    readonly preferences: Preferences;
+    readonly printPresetsList: string[];
+    readonly printerList: Printer[];
+    readonly scriptingVersion: string;
+    selection: any;
+    readonly startupPresetsList: string[];
+    readonly textFonts: TextFonts;
+    readonly tracingPresetsList: string[];
+    readonly typename: string;
+    readonly userAdobeID: string;
+    readonly userGUID: string;
+    userInteractionLevel: UserInteractionLevel;
+    readonly version: string;
+    readonly visible: boolean;
+    aATAddItem(sessionIndex: number, destinationSequenceID: number, destinationIndex: number, srcItemIDData: string, type: string): string;
+    aATClear(): string;
+    aATDuplicateItem(sessionIndex: number, item: string): string;
+    aATEditItem(sessionIndex: number, item: string): string;
+    aATErrorsExist(): boolean;
+    aATExecuteSession(): void;
+    aATExecuteSessionFromFile(file: File): void;
+    aATFileRelativeChanged(path: string, relative: string, newRelative: string): string;
+    aATFileSaveDialog(path: string, relative: string, type: string): string;
+    aATGetEditorDialogFile(): File;
+    aATGetErrorDialogFile(): File;
+    aATGetListOfRelativePaths(): string;
+    aATGetSession(): string;
+    aATLoadLibExtension(): string;
+    aATLoadModel(): string;
+    aATLoadSessionFile(): string;
+    aATLoadUIExtension(): string;
+    aATMoveItem(sessionIndex: number, moveThisID: string, newSessionIndex: number, destinationSequenceID: string, destinationIndex: number): string;
+    aATRemoveItem(sessionIndex: number, item: string): string;
+    aATReplaceItem(sessionIndex: number, replaceThisID: number, srcItemIDData: string, type: string): string;
+    aATSaveAsSession(): string;
+    aATSaveSession(): string;
+    applyDataToItem(sessionIndex: number, item: string, data: string): string;
+    applySingleDataPointToItem(sessionIndex: number, item: string, dataID: string, data: string): boolean;
+    beep(): void;
+    beginSyncSettingsAutomationTest(): boolean;
+    beginTypekitFontAutomationTest(): boolean;
+    concatenateMatrix(matrix: Matrix, secondMatrix: Matrix): Matrix;
+    concatenateRotationMatrix(matrix: Matrix, angle: number): Matrix;
+    concatenateScaleMatrix(matrix: Matrix, scaleX?: number, scaleY?: number): Matrix;
+    concatenateTranslationMatrix(matrix: Matrix, deltaX?: number, deltaY?: number): Matrix;
+    convertSampleColor(sourceColorSpace: ImageColorSpace, sourceColor: number[], destColorSpace: ImageColorSpace, colorConvertPurpose: ColorConvertPurpose, sourceHasAlpha?: boolean, destHasAlpha?: boolean): number[];
+    copy(): void;
+    cut(): void;
+    deleteWorkspace(workspaceName: string): boolean;
+    doScript(action: string, from: string, dialogs?: boolean): void;
+    dumpPGFFile(file: File, documentColorSpace?: DocumentColorSpace, pGFFile?: File): boolean;
+    executeMenuCommand(menuCommandString: string): void;
+    getCCXUserJSONData(mode?: string): string;
+    getExecutionOutput(): string;
+    getHelloJSONData(): string;
+    getIdentityMatrix(): Matrix;
+    getPPDFileInfo(name: string): PPDFileInfo;
+    getPresetFileOfType(presetType: DocumentPresetType): File;
+    getPresetSettings(preset: string): DocumentPreset;
+    getRotationMatrix(angle?: number): Matrix;
+    getScaleMatrix(scaleX?: number, scaleY?: number): Matrix;
+    getScriptableHelpGroup(): any;
+    getTranslationMatrix(deltaX?: number, deltaY?: number): Matrix;
+    getVersionString(): string;
+    invertMatrix(matrix: Matrix): Matrix;
+    isEqualMatrix(matrix: Matrix, secondMatrix: Matrix): boolean;
+    isFillActive(): boolean;
+    isSingularMatrix(matrix: Matrix): boolean;
+    isStrokeActive(): boolean;
+    isTouchWorkspace(): boolean;
+    isUserSharingAppUsageData(): boolean;
+    launchExtension(extensionID: string): number;
+    loadAction(actionFilePath: File): void;
+    loadColorSettings(fileSpec: File): void;
+    open(file: File, documentColorSpace?: DocumentColorSpace, options?: any): Document;
+    openCloudLibraryAssetForEditing(assetURL: File, thumbnailURL: File, options?: any): Document;
+    paste(): void;
+    quit(): void;
+    redo(): void;
+    redraw(): void;
+    reflectCSAW(outputFolder: File): void;
+    resetWorkspace(): boolean;
+    runAPITest(testName: string): void;
+    saveWorkspace(workspaceName: string): boolean;
+    sendScriptMessage(pluginName: string, messageSelector: string, inputString: string): string;
+    setThumbnailOptionsForCloudLibrary(options: any): void;
+    showColorPicker(color: Color): Color;
+    showPresets(fileSpec: File): string[];
+    switchWorkspace(workspaceName: string): boolean;
+    translatePlaceholderText(text: string): string;
+    translateString(key: string, source: string): string;
+    undo(): void;
+    unloadAction(setName: string, actionName: string): void;
+}
+declare class Document {
+    XMPString: string;
+    activeDataSet: DataSet;
+    activeLayer: Layer;
+    readonly activeView: View;
+    readonly artboards: Artboards;
+    readonly brushes: Brushes;
+    readonly characterStyles: CharacterStyles;
+    readonly colorProfileName: string;
+    readonly compoundPathItems: CompoundPathItems;
+    cropBox: Rect;
+    cropStyle: CropOptions;
+    readonly dataSets: DataSets;
+    defaultFillColor: Color;
+    defaultFillOverprint: boolean;
+    defaultFilled: boolean;
+    defaultStrokeCap: StrokeCap;
+    defaultStrokeColor: Color;
+    defaultStrokeDashOffset: number;
+    defaultStrokeDashes: number[];
+    defaultStrokeJoin: StrokeJoin;
+    defaultStrokeMiterLimit: number;
+    defaultStrokeOverprint: boolean;
+    defaultStrokeWidth: number;
+    defaultStroked: boolean;
+    readonly documentColorSpace: DocumentColorSpace;
+    readonly embeddedItems: EmbeddedItems;
+    readonly fullName: File;
+    readonly geometricBounds: Rect;
+    readonly gradients: Gradients;
+    readonly graphItems: GraphItems;
+    readonly graphicStyles: ArtStyles;
+    readonly groupItems: GroupItems;
+    readonly height: number;
+    readonly inkList: Ink[];
+    readonly kinsokuSet: string[];
+    readonly layers: Layers;
+    readonly legacyTextItems: LegacyTextItems;
+    readonly meshItems: MeshItems;
+    readonly mojikumiSet: string[];
+    readonly name: string;
+    readonly nonNativeItems: NonNativeItems;
+    readonly outputResolution: number;
+    readonly pageItems: PageItems;
+    pageOrigin: Point | [
+        number,
+        number
+    ];
+    readonly paragraphStyles: ParagraphStyles;
+    readonly parent: object;
+    readonly path: File;
+    readonly pathItems: PathItems;
+    readonly patterns: Patterns;
+    readonly placedItems: PlacedItems;
+    readonly pluginItems: PluginItems;
+    readonly printTiles: boolean;
+    rasterEffectSettings: RasterEffectOptions;
+    readonly rasterItems: RasterItems;
+    rulerOrigin: Point | [
+        number,
+        number
+    ];
+    readonly rulerUnits: RulerUnits;
+    saved: boolean;
+    selection: any;
+    readonly showPlacedImages: boolean;
+    readonly splitLongPaths: boolean;
+    readonly spots: Spots;
+    readonly stationery: boolean;
+    readonly stories: Stories;
+    readonly swatchGroups: SwatchGroups;
+    readonly swatches: Swatches;
+    readonly symbolItems: SymbolItems;
+    readonly symbols: Symbols;
+    readonly tags: Tags;
+    readonly textFrames: TextFrameItems;
+    readonly tileFullPages: boolean;
+    readonly typename: string;
+    readonly useDefaultScreen: boolean;
+    readonly variables: Variables;
+    variablesLocked: boolean;
+    readonly views: Views;
+    readonly visibleBounds: Rect;
+    readonly width: number;
+    activate(): void;
+    close(saving?: SaveOptions): void;
+    convertCoordinate(coordinate: Point | [
+        number,
+        number
+    ], source: CoordinateSystem, destination: CoordinateSystem): Point | [
+        number,
+        number
+    ];
+    exportFile(exportFile: File, exportFormat: ExportType, options?: any): void;
+    exportPDFPreset(file: File): void;
+    exportPerspectiveGridPreset(file: File): void;
+    exportPrintPreset(file: File): void;
+    exportSelectionAsAi(exportFile: File): void;
+    exportSelectionAsPNG(exportFile: File, options?: any): void;
+    exportVariables(file: File): void;
+    fitArtboardToSelectedArt(index?: number): boolean;
+    getPerspectiveActivePlane(): PerspectiveGridPlaneType;
+    hidePerspectiveGrid(): boolean;
+    imageCapture(imageFile: File, clipBounds?: Rect, options?: ImageCaptureOptions): void;
+    importCharacterStyles(fileSpec: File): void;
+    importFile(importFile: File, isLinked: boolean, libraryName?: string, itemName?: string, elementRef?: string, modifiedTime?: number, creationTime?: number, adobeStockId?: string, adobeStockLicense?: string): void;
+    importPDFPreset(fileSpec: File, replacingPreset?: boolean): void;
+    importParagraphStyles(fileSpec: File): void;
+    importPerspectiveGridPreset(fileSpec: File, perspectivePreset?: string): void;
+    importPrintPreset(printPreset: string, fileSpec: File): void;
+    importVariables(fileSpec: File): void;
+    print(options?: PrintOptions): void;
+    processGesture(gesturePointsFile: string): void;
+    rasterize(sourceArt: any, clipBounds?: Rect, options?: RasterizeOptions): RasterItem;
+    rearrangeArtboards(artboardLayout?: DocumentArtboardLayout, artboardRowsOrCols?: number, artboardSpacing?: number, artboardMoveArtwork?: boolean): boolean;
+    save(): void;
+    saveAs(saveIn: File, options?: any): void;
+    selectObjectsOnActiveArtboard(): boolean;
+    selectPerspectivePreset(perspectivePreset: string): boolean;
+    setPerspectiveActivePlane(perspectiveGridPlane: PerspectiveGridPlaneType): boolean;
+    showPerspectiveGrid(): boolean;
+    windowCapture(imageFile: File, windowSize: Point | [
+        number,
+        number
+    ]): void;
+}
+declare class Layer {
+    readonly absoluteZOrderPosition: number;
+    artworkKnockout: KnockoutState;
+    blendingMode: BlendModes;
+    color: RGBColor;
+    readonly compoundPathItems: CompoundPathItems;
+    dimPlacedImages: boolean;
+    readonly graphItems: GraphItems;
+    readonly groupItems: GroupItems;
+    hasSelectedArtwork: boolean;
+    isIsolated: boolean;
+    readonly layers: Layers;
+    readonly legacyTextItems: LegacyTextItems;
+    locked: boolean;
+    readonly meshItems: MeshItems;
+    name: string;
+    readonly nonNativeItems: NonNativeItems;
+    opacity: number;
+    readonly pageItems: PageItems;
+    readonly parent: object;
+    readonly pathItems: PathItems;
+    readonly placedItems: PlacedItems;
+    readonly pluginItems: PluginItems;
+    preview: boolean;
+    printable: boolean;
+    readonly rasterItems: RasterItems;
+    sliced: boolean;
+    readonly symbolItems: SymbolItems;
+    readonly textFrames: TextFrameItems;
+    readonly typename: string;
+    visible: boolean;
+    readonly zOrderPosition: number;
+    move(relativeObject: object, insertionLocation: any): Layer;
+    remove(): void;
+    removeAll(): void;
+    zOrder(zOrderCmd: ZOrderMethod): void;
+}
+declare class View {
+    readonly bounds: Rect;
+    centerPoint: Point | [
+        number,
+        number
+    ];
+    readonly parent: object;
+    screenMode: ScreenMode;
+    readonly typename: string;
+    zoom: number;
+}
+declare class Gradient {
+    readonly gradientStops: GradientStops;
+    name: string;
+    readonly parent: object;
+    type: GradientType;
+    readonly typename: string;
+    remove(): void;
+    removeAll(): void;
+}
+declare class GradientStop {
+    color: Color;
+    midPoint: number;
+    opacity: number;
+    readonly parent: object;
+    rampPoint: number;
+    readonly typename: string;
+    remove(): void;
+    removeAll(): void;
+}
+declare class Spot {
+    color: Color;
+    colorType: ColorModel;
+    name: string;
+    readonly parent: object;
+    readonly spotKind: SpotColorKind;
+    readonly typename: string;
+    getInternalColor(): number[];
+    remove(): void;
+    removeAll(): void;
+}
+declare class Variable {
+    kind: VariableKind;
+    name: string;
+    readonly pageItems: PageItems;
+    readonly parent: object;
+    readonly typename: string;
+    remove(): void;
+    removeAll(): void;
+}
+declare class DataSet {
+    name: string;
+    readonly parent: object;
+    readonly typename: string;
+    display(): void;
+    remove(): void;
+    removeAll(): void;
+    update(): void;
+}
+declare class Swatch {
+    color: Color;
+    name: string;
+    readonly parent: object;
+    readonly typename: string;
+    remove(): void;
+    removeAll(): void;
+}
+declare class Pattern {
+    name: string;
+    readonly parent: object;
+    readonly typename: string;
+    remove(): void;
+    removeAll(): void;
+}
+declare class Symbol {
+    name: string;
+    readonly parent: object;
+    readonly typename: string;
+    duplicate(relativeObject: object, insertionLocation: any): Symbol;
+    remove(): void;
+    removeAll(): void;
+}
+declare class Brush {
+    name: string;
+    readonly parent: object;
+    readonly typename: string;
+    applyTo(artItem: any): void;
+}
+declare class ArtStyle {
+    name: string;
+    readonly parent: object;
+    readonly typename: string;
+    applyTo(artItem: any): void;
+    mergeTo(artItem: any): void;
+    remove(): void;
+    removeAll(): void;
+}
+declare class PageItem {
+    URL: string;
+    readonly absoluteZOrderPosition: number;
+    artworkKnockout: KnockoutState;
+    blendingMode: BlendModes;
+    readonly controlBounds: Rect;
+    readonly editable: boolean;
+    readonly geometricBounds: Rect;
+    height: number;
+    hidden: boolean;
+    isIsolated: boolean;
+    readonly layer: Layer;
+    left: number;
+    locked: boolean;
+    name: string;
+    note: string;
+    opacity: number;
+    readonly parent: object;
+    pixelAligned: boolean;
+    position: Point | [
+        number,
+        number
+    ];
+    selected: boolean;
+    sliced: boolean;
+    readonly tags: Tags;
+    top: number;
+    readonly typename: string;
+    visibilityVariable: any;
+    readonly visibleBounds: Rect;
+    width: number;
+    wrapInside: boolean;
+    wrapOffset: number;
+    wrapped: boolean;
+    readonly zOrderPosition: number;
+    applyEffect(liveEffectXML: string): void;
+    bringInPerspective(positionX: number, positionY: number, perspectiveGridPlane: PerspectiveGridPlaneType): void;
+    duplicate(relativeObject: object, insertionLocation: any): PageItem;
+    move(relativeObject: object, insertionLocation: any): PageItem;
+    remove(): void;
+    removeAll(): void;
+    resize(scaleX: number, scaleY: number, changePositions?: boolean, changeFillPatterns?: boolean, changeFillGradients?: boolean, changeStrokePattern?: boolean, changeLineWidths?: number, scaleAbout?: Transformation): void;
+    rotate(angle: number, changePositions?: boolean, changeFillPatterns?: boolean, changeFillGradients?: boolean, changeStrokePattern?: boolean, rotateAbout?: Transformation): void;
+    sendScriptMessage(pluginName: string, messageSelector: string, inputString: string): string;
+    transform(transformationMatrix: Matrix, changePositions?: boolean, changeFillPatterns?: boolean, changeFillGradients?: boolean, changeStrokePattern?: boolean, changeLineWidths?: number, transformAbout?: Transformation): void;
+    translate(deltaX?: number, deltaY?: number, transformObjects?: boolean, transformFillPatterns?: boolean, transformFillGradients?: boolean, transformStrokePattern?: boolean): void;
+    zOrder(zOrderCmd: ZOrderMethod): void;
+}
+declare class CompoundPathItem {
+    readonly pathItems: PathItems;
+}
+declare class Tag {
+    name: string;
+    readonly parent: object;
+    readonly typename: string;
+    value: string;
+    remove(): void;
+    removeAll(): void;
+}
+declare class PathItem {
+    readonly area: number;
+    clipping: boolean;
+    closed: boolean;
+    evenodd: boolean;
+    fillColor: Color;
+    fillOverprint: boolean;
+    filled: boolean;
+    guides: boolean;
+    readonly length: number;
+    readonly pathPoints: PathPoints;
+    polarity: PolarityValues;
+    resolution: number;
+    readonly selectedPathPoints: PathPoints;
+    strokeCap: StrokeCap;
+    strokeColor: Color;
+    strokeDashOffset: number;
+    strokeDashes: number[];
+    strokeJoin: StrokeJoin;
+    strokeMiterLimit: number;
+    strokeOverprint: boolean;
+    strokeWidth: number;
+    stroked: boolean;
+    setEntirePath(pathPoints: [
+        number,
+        number
+    ][]): void;
+}
+declare class PathPoint {
+    anchor: Point | [
+        number,
+        number
+    ];
+    leftDirection: Point | [
+        number,
+        number
+    ];
+    readonly parent: object;
+    pointType: PointType;
+    rightDirection: Point | [
+        number,
+        number
+    ];
+    selected: PathPointSelection;
+    readonly typename: string;
+    remove(): void;
+    removeAll(): void;
+}
+declare class RasterItem {
+    readonly bitsPerChannel: number;
+    boundingBox: Rect;
+    readonly channels: number;
+    readonly colorants: string[];
+    readonly colorizedGrayscale: boolean;
+    contentVariable: any;
+    embedded: boolean;
+    readonly file: File;
+    readonly imageColorSpace: ImageColorSpace;
+    matrix: Matrix;
+    overprint: boolean;
+    readonly status: RasterLinkState;
+    readonly transparent: boolean;
+    colorize(rasterColor: Color): void;
+    trace(): PluginItem;
+}
+declare class NonNativeItem {
+}
+declare class PluginItem {
+    readonly isTracing: boolean;
+    readonly tracing: TracingObject;
+}
+declare class GroupItem {
+    clipped: boolean;
+    readonly compoundPathItems: CompoundPathItems;
+    readonly graphItems: GraphItems;
+    readonly groupItems: GroupItems;
+    readonly legacyTextItems: LegacyTextItems;
+    readonly meshItems: MeshItems;
+    readonly nonNativeItems: NonNativeItems;
+    readonly pageItems: PageItems;
+    readonly pathItems: PathItems;
+    readonly placedItems: PlacedItems;
+    readonly pluginItems: PluginItems;
+    readonly rasterItems: RasterItems;
+    readonly symbolItems: SymbolItems;
+    readonly textFrames: TextFrameItems;
+}
+declare class SymbolItem {
+    symbol: Symbol;
+    breakLink(): void;
+}
+declare class Story {
+    readonly characters: Characters;
+    readonly insertionPoints: InsertionPoints;
+    readonly length: number;
+    readonly lines: Lines;
+    readonly paragraphs: Paragraphs;
+    readonly parent: object;
+    readonly textFrames: TextFrameItems;
+    readonly textRange: TextRange;
+    readonly textRanges: TextRanges;
+    readonly textSelection: TextRange[];
+    readonly typename: string;
+    readonly words: Words;
+}
+declare class TextFrame {
+    anchor: Point | [
+        number,
+        number
+    ];
+    antialias: TextAntialias;
+    readonly characters: Characters;
+    columnCount: number;
+    columnGutter: number;
+    contentVariable: any;
+    contents: string;
+    endTValue: number;
+    firstBaseline: FirstBaselineType;
+    firstBaselineMin: number;
+    flowLinksHorizontally: boolean;
+    readonly insertionPoints: InsertionPoints;
+    readonly kind: TextType;
+    readonly lines: Lines;
+    readonly matrix: Matrix;
+    nextFrame: TextFrame;
+    opticalAlignment: boolean;
+    orientation: TextOrientation;
+    readonly paragraphs: Paragraphs;
+    previousFrame: TextFrame;
+    rowCount: number;
+    rowGutter: number;
+    spacing: number;
+    startTValue: number;
+    readonly story: Story;
+    readonly textPath: TextPath;
+    readonly textRange: TextRange;
+    readonly textRanges: TextRanges;
+    readonly textSelection: TextRange[];
+    readonly words: Words;
+    convertAreaObjectToPointObject(): TextFrame;
+    convertPointObjectToAreaObject(): TextFrame;
+    createOutline(): GroupItem;
+    generateThumbnailWithTextFrameProperties(textString: string, fontSize: number, textColor: Color, destinationPath: File): void;
+}
+declare class LegacyTextItem {
+    readonly converted: boolean;
+    convertToNative(): GroupItem;
+}
+declare class TextRange {
+    readonly characterAttributes: CharacterAttributes;
+    characterOffset: number;
+    readonly characterStyles: CharacterStyles;
+    readonly characters: Characters;
+    contents: string;
+    readonly insertionPoints: InsertionPoints;
+    kerning: number;
+    length: number;
+    readonly lines: Lines;
+    readonly paragraphAttributes: ParagraphAttributes;
+    readonly paragraphStyles: ParagraphStyles;
+    readonly paragraphs: Paragraphs;
+    readonly parent: object;
+    readonly story: Story;
+    readonly textRanges: TextRanges;
+    readonly textSelection: TextRange[];
+    readonly typename: string;
+    readonly words: Words;
+    changeCaseTo(type: CaseChangeType): void;
+    deSelect(): void;
+    duplicate(relativeObject: object, insertionLocation: any): TextRange;
+    move(relativeObject: object, insertionLocation: any): TextRange;
+    remove(): void;
+    removeAll(): void;
+    select(addToDocument?: boolean): void;
+}
+declare class InsertionPoint {
+    readonly characters: Characters;
+    readonly lines: Lines;
+    readonly paragraphs: Paragraphs;
+    readonly parent: object;
+    readonly story: Story;
+    readonly textRanges: TextRanges;
+    readonly typename: string;
+    readonly words: Words;
+}
+declare class CharacterStyle {
+    readonly characterAttributes: CharacterAttributes;
+    name: string;
+    readonly parent: object;
+    readonly typename: string;
+    add(): CharacterStyle;
+    applyTo(textItem: any, clearingOverrides?: boolean): void;
+    clear(): void;
+    remove(): void;
+    removeAll(): void;
+}
+declare class ParagraphStyle {
+    readonly characterAttributes: CharacterAttributes;
+    name: string;
+    readonly paragraphAttributes: ParagraphAttributes;
+    readonly parent: object;
+    readonly typename: string;
+    add(): ParagraphStyle;
+    applyTo(textItem: any, clearingOverrides?: boolean): void;
+    clear(): void;
+    remove(): void;
+    removeAll(): void;
+}
+declare class Artboard {
+    artboardRect: Rect;
+    name: string;
+    readonly parent: object;
+    rulerOrigin: Point | [
+        number,
+        number
+    ];
+    rulerPAR: number;
+    showCenter: boolean;
+    showCrossHairs: boolean;
+    showSafeAreas: boolean;
+    readonly typename: string;
+    remove(): void;
+    removeAll(): void;
+}

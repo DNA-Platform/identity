@@ -1,0 +1,217 @@
+class DocumentQueryable<T extends QueryItem> extends Queryable<T> {
+    app: Application;
+    active(): boolean { return this.app.activeDocument == this.item; }
+    activate() { this.app.activeDocument = this.item; }
+    inactivate() { this.app.activeDocument = f(this.app.documents).at(-1); }
+
+    constructor(doc: Document) {
+        super(doc, CollectionProperty.Layers);
+        this.app = doc.parent as Application;
+    }
+
+    save(fileName?: string): void {
+        try {
+            if (fileName === undefined) {
+                this.item.save();
+                return;
+            }
+            const file = new File(combinePaths(DOCUMENTS_PATH, fileName));
+            this.item.saveAs(file);
+        } catch (error: any) {
+            throw new Error(`Failed to save document '${fileName}': ${error.message}`);
+        }
+    }
+}
+
+// Queryable Classes
+class LayerQueryable extends Queryable<Layer> {
+    constructor(layer: Layer) {
+        super(layer, CollectionProperty.PageItems);
+    }
+}
+
+class PathItemQueryable extends Queryable<PathItem> {
+    constructor(pathItem: PathItem) {
+        super(pathItem, CollectionProperty.PathPoints);
+    }
+}
+
+class TextFrameQueryable extends Queryable<TextFrame> {
+    constructor(textFrame: TextFrame) {
+        super(textFrame, CollectionProperty.Characters);
+    }
+}
+
+class StoryQueryable extends Queryable<Story> {
+    constructor(story: Story) {
+        super(story, CollectionProperty.TextRanges);
+    }
+}
+
+class GradientQueryable extends Queryable<Gradient> {
+    constructor(gradient: Gradient) {
+        super(gradient, CollectionProperty.GradientStops);
+    }
+}
+
+class ArtboardQueryable extends Queryable<Artboard> {
+    constructor(artboard: Artboard) {
+        super(artboard);
+    }
+}
+
+class PageItemQueryable extends Queryable<PageItem> {
+    constructor(pageItem: PageItem) {
+        super(pageItem);
+    }
+}
+
+class CompoundPathItemQueryable extends Queryable<CompoundPathItem> {
+    constructor(compoundPathItem: CompoundPathItem) {
+        super(compoundPathItem);
+    }
+}
+
+class RasterItemQueryable extends Queryable<RasterItem> {
+    constructor(rasterItem: RasterItem) {
+        super(rasterItem);
+    }
+}
+
+class PlacedItemQueryable extends Queryable<PlacedItem> {
+    constructor(placedItem: PlacedItem) {
+        super(placedItem);
+    }
+}
+
+class GroupItemQueryable extends Queryable<GroupItem> {
+    constructor(groupItem: GroupItem) {
+        super(groupItem);
+    }
+}
+
+class SymbolItemQueryable extends Queryable<SymbolItem> {
+    constructor(symbolItem: SymbolItem) {
+        super(symbolItem);
+    }
+}
+
+class MeshItemQueryable extends Queryable<MeshItem> {
+    constructor(meshItem: MeshItem) {
+        super(meshItem);
+    }
+}
+
+class PluginItemQueryable extends Queryable<PluginItem> {
+    constructor(pluginItem: PluginItem) {
+        super(pluginItem);
+    }
+}
+
+class GraphItemQueryable extends Queryable<GraphItem> {
+    constructor(graphItem: GraphItem) {
+        super(graphItem);
+    }
+}
+
+class SwatchQueryable extends Queryable<Swatch> {
+    constructor(swatch: Swatch) {
+        super(swatch);
+    }
+}
+
+class BrushQueryable extends Queryable<Brush> {
+    constructor(brush: Brush) {
+        super(brush);
+    }
+}
+
+class TagQueryable extends Queryable<Tag> {
+    constructor(tag: Tag) {
+        super(tag);
+    }
+}
+
+class SymbolQueryable extends Queryable<Symbol> {
+    constructor(symbol: Symbol) {
+        super(symbol);
+    }
+}
+
+class TextRangeQueryable extends Queryable<TextRange> {
+    constructor(textRange: TextRange) {
+        super(textRange);
+    }
+}
+
+class InsertionPointQueryable extends Queryable<InsertionPoint> {
+    constructor(insertionPoint: InsertionPoint) {
+        super(insertionPoint);
+    }
+}
+
+class ParagraphStyleQueryable extends Queryable<ParagraphStyle> {
+    constructor(paragraphStyle: ParagraphStyle) {
+        super(paragraphStyle);
+    }
+}
+
+class PatternQueryable extends Queryable<Pattern> {
+    constructor(pattern: Pattern) {
+        super(pattern);
+    }
+}
+
+class SpotQueryable extends Queryable<Spot> {
+    constructor(spot: Spot) {
+        super(spot);
+    }
+}
+
+class CharacterStyleQueryable extends Queryable<CharacterStyle> {
+    constructor(characterStyle: CharacterStyle) {
+        super(characterStyle);
+    }
+}
+
+class ArtStyleQueryable extends Queryable<ArtStyle> {
+    constructor(artStyle: ArtStyle) {
+        super(artStyle);
+    }
+}
+
+class LegacyTextItemQueryable extends Queryable<LegacyTextItem> {
+    constructor(legacyTextItem: LegacyTextItem) {
+        super(legacyTextItem);
+    }
+}
+
+class VariableQueryable extends Queryable<Variable> {
+    constructor(variable: Variable) {
+        super(variable);
+    }
+}
+
+class DataSetQueryable extends Queryable<DataSet> {
+    constructor(dataSet: DataSet) {
+        super(dataSet);
+    }
+}
+
+class ViewQueryable extends Queryable<View> {
+    constructor(view: View) {
+        super(view);
+    }
+}
+
+class NonNativeItemQueryable extends Queryable<NonNativeItem> {
+    constructor(nonNativeItem: NonNativeItem) {
+        super(nonNativeItem);
+    }
+}
+
+class PathPointQueryable extends Queryable<PathPoint> {
+    constructor(pathPoint: PathPoint) {
+        super(pathPoint);
+    }
+}

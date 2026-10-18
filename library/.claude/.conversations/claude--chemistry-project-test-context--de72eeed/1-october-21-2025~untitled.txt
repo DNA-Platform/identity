@@ -1,0 +1,372 @@
+Yes, exactly! That's a cleaner approach. Always push the action, then conditionally trigger an update only if the orchestrator is active:
+typescriptprivate schedule(chemical: $Chemical, action: () => void) {
+    const orchestrator = chemical[$orchestrator];
+    orchestrator.actions.push(action);
+    
+    if (orchestrator.active) {
+        // Component is mounted, safe to update
+        chemical[$formula].update();
+    }
+    // If not active, the action waits in queue for useEffect
+}
+This elegantly handles both cases:
+Case 1: Promise resolves before mount
+
+Action gets queued
+Orchestrator not active, no update attempted
+useEffect runs, activates orchestrator, processes action
+Action calls formula.update() which triggers re-render
+
+Case 2: Promise resolves after mount
+
+Action gets queued
+Orchestrator is active, formula.update() called immediately
+Triggers re-render as expected
+
+The beauty is that the action itself contains the update logic (formula.update() and context.react(id)), so it doesn't matter when it runs - it will do the right thing. The orchestrator activation in useEffect ensures any pre-mount async completions get processed.
+This also means you can remove the complexity of checking anyResolved or tracking pending updates separately. The action queue becomes your single source of truth for pending work, and the orchestrator's active state determines whether to trigger immediate updates or wait.Retry'use client'
+import { $Chemical } from '@/chemistry';
+import React from 'react';
+
+// Test 1: Async $ method directly in onClick
+export class $AsyncButton extends $Chemical {
+    clickCount = 0;
+    lastMessage = 'Click to start';
+    loading = false;
+    
+    async $handleClick() {
+      pastedDOkay take a look at these tests. It's a start. But this idempotent assumption should work in the view too right? So can you rewrite these tests verbatim, test that case (maybe in the autoloader you add a second method to be called in the view and update the test for bothBut after you write that as an editable artifact (you claude have commands to create an editable artifact so please use them to create this), then look for other ways this system might go wrong and add extra test cases with clear UI following the pattern:Expanded Async Tests for ChemistryInteractive artifact I've expanded the tests to include:
+Updated Test 2: AutoLoader
+Now tests async methods being called both in the constructor AND in the view method. The $loadViewData() is called directly in view() and should be idempotent - only running once despite being called on every render.
+New Test Cases Added:
+Test 6: Race Conditions
+Tests rapid clicking of async methods to ensure the framework handles overlapping async operations correctly. Each click starts a process with a random delay to simulate real-world race conditions.
+Test 7: Conditional Async in View
+Tests async methods being called conditionally in the view based on component state. This tests that idempotency works even when methods are called conditionally - they shouldn't re-run when the condition remains true across renders.
+Test 8: Nested Async Calls
+Tests async methods calling other async methods, including recursive calls. This ensures state updates propagate correctly through nested async operations and that the depth tracking remains accurate.
+Potential Issues to Watch For:
+
+Memory Leaks: If promises are tracked but never cleaned up when components unmount
+Stale Closures: Async methods capturing old state values
+Unmount During Async: Component unmounting while async operations are in flight
+Error Boundary: Unhandled promise rejections in certain edge cases
+Infinite Loops: If idempotency detection fails for conditional calls
+
+The tests follow your pattern with clear visual feedback showing what's happening with each async operation. Each test case isolates a specific async behavior pattern that could potentially break if the idempotency system isn't working correctly.RetryDThe problem is these idempotent things work fine, and I will run these tests. But each call will trigger two renders per call, even after the thing is already loaded. We do need a thing like the $Atom formed method that has run-once semanticsI mean, it would be cool if it could be called anywhere, so that the thing that can be in any state of readiness, yet it is guaranteed to run once in the lifetime of a chemical.These tests should work, and we'll leave them and we'll see if they do. But perhaps $$ methods have run exactly once semantics. We could do thatThe $$ prefix for run-once methods is a clean solution! It follows Chemistry's naming conventions and provides clear semantics. Here's how it could work:
+The $$ Run-Once Pattern
+typescriptclass $Chemical {
+    private $$executed = new Set<string>();
+    
+    // In bondCall or wherever methods are invoked
+    if (methodName.startsWith('$$')) {
+        if (this.$$executed.has(methodName)) {
+            return; // Already ran once
+        }
+        this.$$executed.add(methodName);
+    }
+}
+Usage Examples
+typescriptexport class $DataComponent extends $Chemical {
+    data: any = null;
+    
+    // Runs exactly once, even if called from multiple places
+    async $$loadInitialData() {
+        const response = await fetch('/api/data');
+        this.data = await response.json();
+    }
+    
+    $DataComponent() {
+        this.$$loadInitialData(); // First call - executes
+    }
+    
+    view() {
+        this.$$loadInitialData(); // Subsequent calls - skipped
+        
+        if (!this.data) return <div>Loading...</div>;
+        return <div>{this.data.message}</div>;
+    }
+}
+This gives you:
+
+Clear semantics: $ = idempotent per render cycle, $$ = run exactly once per lifetime
+Flexible placement: Can be called from constructor, view, or event handlers
+No extra renders: After the first execution, subsequent calls are no-ops
+Natural async handling: Works with the existing async infrastructure
+
+The implementation would need to:
+
+Detect $$ prefix in method names
+Track which $$ methods have executed on each chemical instance
+Skip execution if already run
+Maybe provide a way to reset if needed (for testing or special cases)
+
+This is cleaner than having developers manually track "has this run?" state, and it follows Chemistry's philosophy of making complex patterns simple through naming conventions.RetryDQuick little thing. Can you tell me how to add rimraf as a dev dependency and have this command delete the site folder at the root before running:
+"dev": "next dev",To add rimraf and set up the clean command:
+jsonnpm install --save-dev rimraf
+Then update your package.json scripts:
+json"scripts": {
+  "clean": "rimraf site",
+  "dev": "npm run clean && next dev",
+  ...
+}
+Or if you want it inline without a separate clean script:
+json"scripts": {
+  "dev": "rimraf site && next dev",
+  ...
+}
+This will delete the site folder at the root before starting the dev server each time you run npm run dev.RetryDWelp, already failed!## Error Type
+Runtime Error
+## Error Message
+Too many re-renders. React limits the number of renders to prevent an infinite loop.
+    at BasicTests (app\tests\async\basic-tests.tsx:502:17)
+    at Tests (app\tests\async\page.tsx:67:13)
+## Code Frame
+  500 |             <div style={{ display: 'grid', gap: '20px' }}>
+  501 |                 <AsyncButton />
+> 502 |                 <AutoLoader />
+      |                 ^
+  503 |                 <MultiAsync />
+  504 |                 <ErrorHandler />
+  505 |                 <ListLoader />
+Next.js version: 15.5.4 (Webpack)The infinite loop is happening because $loadViewData() is being called in the view() method of AutoLoader. Every time it runs, it changes state, which triggers a re-render, which calls view() again, which calls $loadViewData() again...
+The idempotency check is supposed to prevent this, but it's not working because the method is being called synchronously in the render phase. The issue is that the idempotency tracking in $BondExecutionContext only works for async methods that have already resolved and triggered a render.
+Here's the problem flow:
+
+view() calls $loadViewData()
+Sets viewLoadData, triggers re-render
+New render calls view() which calls $loadViewData() again
+The promise hasn't resolved yet from the first call, so it's not in the "resolved" state
+New promise starts, sets state again... infinite loop
+
+The fix is to check if the async method is already running:
+typescriptasync $loadViewData() {
+    if (this.viewLoadData || this._loadingViewData) return;
+    this._loadingViewData = true;
+    
+    await new Promise(resolve => setTimeout(resolve, 800));
+    
+    this.viewLoadData = {
+        viewMessage: 'Loaded from view method',
+        viewValue: Math.floor(Math.random() * 50)
+    };
+    this.viewLoadTime = new Date().toLocaleTimeString();
+    this._loadingViewData = false;
+}
+Or better, the framework should track "in-flight" async operations, not just resolved ones. The $$ run-once pattern would solve this cleanly - the method would only run once regardless of how many times it's called during render.RetrybondCall: context: async complete
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:919 schedule $AutoLoader[12] ()=>{
+                context.resolve(id);
+                formula.update();
+            }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemistry.ts:924 pastedDI added this logging:private bondCall(chemical: $Chemical, ...args: any[]): any {
+        let id: string | undefined;
+        const context = $Bond.context;
+        const formula = chemical[$formula];
+        if (context) {
+            // Handle idempotency of reactive functions
+            id = $BondExecutionContext.executionId(chemical, this);
+            if (context.actions.has(id)) {
+                if (context.resolved.get(id) && !context.reacted.get(id)) {
+                    // Update when the promise resolves, but don't call the idempotent function again 
+                    this.schedule(chemical, () => {
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id!);
+                    });
+                    return;
+                } else if (context.reacted.get(id)) {
+                    // During that update, if this method is called, simply remove and assume it's idempotent
+                    console.log("bondCall: context: removed");
+                    context.remove(id);
+                    return;
+                }
+            }
+        }        formula.bindState();
+        formula.track()
+        let result = this.action!(...args);        const isAsync = result instanceof Promise;
+        if (!isAsync) {
+            formula.check();
+            formula.updateState();
+        }        formula.unbind();
+        if (!isAsync) return result;
+        if (!context) {
+            result.then(() => {
+                console.log("bondCall: context-free: update");
+                formula.update();
+            });
+            return;
+        }        id = $BondExecutionContext.executionId(chemical, this);
+        context.add(this, result.then(() => {
+            console.log("bondCall: context: async complete");
+            this.schedule(chemical, () => {
+                context.resolve(id!);
+                formula.update();
+            });
+        }));
+    }    private bondForm(value: $Chemical) {
+        value[$formula].track();
+        const lastState = value[$lastState];
+        value[$lastState] = value[$state];
+        value[$state] = this._chemical[$state];
+        let unbind = this._unbind;
+        this._unbind = () => {
+            value[$state] = lastState;
+            this._unbind = unbind;
+        }
+    }    private schedule(chemical: $Chemical, action: () => void) {
+        console.log("schedule", chemical.toString(), action);
+        const formula = chemical[$formula];
+        const orchestrator = chemical[$orchestrator];
+        orchestrator.actions.push(action);
+        if (orchestrator.active) {
+            console.log("schedule: active update", chemical.toString(), action);
+            formula.update();
+        }
+    }And this is the console logs that are echoing:Looking at your logs, the async method is completing and triggering updates repeatedly. The issue is that each formula.update() triggers a re-render, which calls view() again, which calls $loadViewData() again, which starts a new promise that completes and schedules another update.
+The problem is that your idempotency check isn't preventing the method from being called - it's only checking if a promise with that ID already exists in the context. But when the promise completes, you're not preventing future calls.
+Here's what's happening:
+
+view() calls $loadViewData()
+Promise created, added to context
+Promise completes → schedules update
+Update triggers re-render
+view() calls $loadViewData() again
+No promise with that ID exists (it was completed), so it runs again
+Infinite loop
+
+The fix is to track that a method has been called for this render cycle, not just whether its promise is currently in flight:
+typescriptclass $BondExecutionContext {
+    chemical: $Chemical;
+    actions: Map<string, Promise<void>> = new Map();
+    resolved: Map<string, boolean> = new Map();
+    reacted: Map<string, boolean> = new Map();
+    called: Set<string> = new Set();  // Track what's been called this render
+    
+    // In bondCall:
+    if (context) {
+        id = $BondExecutionContext.executionId(chemical, this);
+        
+        // If already called this render, skip
+        if (context.called.has(id)) {
+            return;
+        }
+        context.called.add(id);
+        
+        // Rest of your logic...
+    }
+}
+Or implement the $$ run-once pattern to make this explicit and simpler - methods that should only run once in the component's lifetime, regardless of how many renders happen.RetryDBut my returns on bondCall don't fix that?Looking at your returns more carefully, they SHOULD be preventing the infinite loop, but they're not. Here's why:
+When $loadViewData() is called in view(), it goes through bondCall:
+
+First render: No entry in context.actions, so it runs normally, creates promise, adds to context
+Promise completes: "async complete" logs, schedules update
+Update triggers re-render
+Second render: context.actions.has(id) is now TRUE
+
+But here's the issue - neither of your return conditions is met:
+
+context.resolved.get(id) might be false (not resolved yet in the context)
+context.reacted.get(id) is also false (hasn't reacted yet)
+
+So it falls through and runs the method AGAIN, creating a new promise.
+The problem is in your context.add() method:
+typescriptcontext.add(this, result.then(() => {
+    // This runs AFTER the promise resolves
+    this.schedule(chemical, () => {
+        context.resolve(id!);  // Only NOW is it marked as resolved
+        formula.update();
+    });
+}));
+The context.resolve(id) only happens inside the scheduled action, which runs in useEffect. But the view is calling the method again before useEffect runs.
+The fix: Mark it as "in flight" immediately when adding:
+typescriptadd(bond: $Bond, action: Promise<void>) {
+    const id = $BondExecutionContext.executionId(this.chemical, bond);
+    this.actions.set(id, action.then(() => { this.resolved.set(id, true) }));
+    this.resolved.set(id, false);  // Currently in flight
+    this.reacted.set(id, false);
+}
+Then in bondCall, check if it's in flight:
+typescriptif (context.actions.has(id)) {
+    // Method already called, skip regardless of resolution state
+    return;
+}
+This would prevent the method from being called multiple times in the same render cycle.Retryschedule: active update $AutoLoader[12] ()=>{
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id);
+                    }
+C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src\chemipastedDTried this:    private bondCall(chemical: $Chemical, ...args: any[]): any {
+        let id: string | undefined;
+        const context = $Bond.context;
+        const formula = chemical[$formula];
+        if (context) {
+            // Handle idempotency of reactive functions
+            id = $BondExecutionContext.executionId(chemical, this);
+            if (context.actions.has(id)) {
+                if (context.resolved.get(id) && !context.reacted.get(id)) {
+                    // Update when the promise resolves, but don't call the idempotent function again 
+                    this.schedule(chemical, () => {
+                        console.log("bondCall: context: resolved but not reacted");
+                        formula.update();
+                        context.react(id!);
+                    });
+                    return;
+                } else if (context.reacted.get(id)) {
+                    // During that update, if this method is called, simply remove and assume it's idempotent
+                    console.log("bondCall: context: removed");
+                    context.remove(id);
+                    return;
+                }
+                return;
+            }
+        }Got this:Now you've added a blanket return which prevents the method from ever running! Looking at your new code:
+typescriptif (context.actions.has(id)) {
+    if (context.resolved.get(id) && !context.reacted.get(id)) {
+        // ... schedule update
+        return;
+    } else if (context.reacted.get(id)) {
+        // ... remove
+        return;
+    }
+    return;  // <-- This always returns if action exists!
+}
+The problem is the unconditional return at the end. Now if the action exists but hasn't resolved yet (still in flight), you return without doing anything.
+The infinite loop is happening because context.react(id) is being called but it's not actually preventing future calls. Looking at your logs, you're in the "resolved but not reacted" state repeatedly, which means:
+
+Promise resolves
+Marks as resolved
+Schedules update with context.react(id)
+Update triggers re-render
+Method called again
+It's STILL in "resolved but not reacted" state
+Schedules another update...
+
+The issue is that context.react(id) isn't being called properly or isn't persisting. Check your react method:
+typescriptreact(id: string) {
+    if (!this.resolved.get(id))
+        throw new Error("One cannot react to an unresolved action")
+    this.resolved.set(id, true);  // Should this be reacted?
+}
+That looks wrong - it's setting resolved again instead of reacted. It should be:
+typescriptreact(id: string) {
+    if (!this.resolved.get(id))
+        throw new Error("One cannot react to an unresolved action")
+    this.reacted.set(id, true);  // Set reacted, not resolved!
+}
+That's your bug - react() isn't actually setting the reacted flag, so the condition never changes!RetryDNo, it wouldn't have the id if the method hadn't run before right?You're absolutely right! If context.actions.has(id) is true, that means the method HAS already been called at least once to create that action entry. So the blanket return makes sense - if the action exists at all, don't run the method again.
+But that's not working because the action is getting removed somewhere. Looking back at your BondExecutionContext:
+typescriptreact(id: string) {
+    if (!this.resolved.get(id))
+        throw new Error("One cannot react to an unresolved action")
+    this.resolved.set(id, true);  // BUG: Should be this.reacted.set(id, true)
+}
+That's definitely a bug - react() is setting resolved instead of reacted. So when you check:
+typescriptif (context.resolved.get(id) && !context.reacted.get(id))
+The !context.reacted.get(id) is ALWAYS true because react() never sets it. That's why you're stuck in the "resolved but not reacted" loop forever.
+Fix the react method to:
+typescriptreact(id: string) {
+    if (!this.resolved.get(id))
+        throw new Error("One cannot react to an unresolved action")
+    this.reacted.set(id, true);  // Fix: set reacted, not resolved
+}
+That should break the infinite loop.

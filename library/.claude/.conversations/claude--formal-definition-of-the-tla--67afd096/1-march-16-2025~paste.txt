@@ -1,0 +1,118 @@
+The Transductive Logical Automaton: A Formal Definition
+First-Order Logical Foundation (following Enderton)
+A first-order language L consists of:
+
+A set of constant symbols C
+A set of function symbols F, each with an associated arity
+A set of relation symbols R, each with an associated arity
+Variables v₀, v₁, v₂, ...
+Logical connectives: ∧, ∨, →, ¬, ↔
+Quantifiers: ∀, ∃
+Punctuation symbols: (, ), ,
+
+The set of terms of L is inductively defined:
+
+Every variable is a term
+Every constant symbol c ∈ C is a term
+If f ∈ F is an n-ary function symbol and t₁, ..., tₙ are terms, then f(t₁, ..., tₙ) is a term
+
+The set of formulas of L is inductively defined:
+
+If R ∈ R is an n-ary relation symbol and t₁, ..., tₙ are terms, then R(t₁, ..., tₙ) is a formula
+If t₁ and t₂ are terms, then t₁ = t₂ is a formula
+If φ and ψ are formulas, then ¬φ, (φ ∧ ψ), (φ ∨ ψ), (φ → ψ), and (φ ↔ ψ) are formulas
+If φ is a formula and x is a variable, then ∀x φ and ∃x φ are formulas
+
+A theory T is a set of formulas (axioms) in language L.
+A proof in T is a finite sequence of formulas, each of which is either an axiom of T or follows from earlier formulas by a rule of inference.
+We write T ⊢ φ to mean there exists a proof of φ from axioms in T.
+Transductive Logical Automaton
+A Transductive Logical Automaton (TLA) is a system that dynamically modifies its logical structures through transduction operations while maintaining consistency.
+The TLA operates on:
+
+A first-order language L as defined above
+An initial set of constant symbols C₀ ⊂ C
+An initial set of function symbols F₀ ⊂ F
+An initial set of relation symbols R₀ ⊂ R
+An initial theory T₀ (initial axioms)
+A set of inference rules I
+
+At any time t, the TLA maintains:
+
+Current sets C_t, F_t, R_t (possibly expanded from the initial sets)
+Current theory T_t (possibly expanded from T₀)
+Current inference rules I_t (possibly expanded from I)
+
+Transduction Functions
+
+Logical Transduction τ_L: Formula × State → {true, false}
+For a formula φ where T_t ⊢ φ, τ_L(φ, s) determines whether φ becomes an axiom in T_{t+1}.
+For all φ, τ_L(φ, s) = true only if:
+
+T_t ⊢ φ (φ is provable from current axioms)
+Con(T_t ∪ {φ}) (adding φ preserves consistency)
+
+When τ_L(φ, s) = true, then T_{t+1} = T_t ∪ {φ}
+Symbolic Transduction τ_S: Symbol × State → {true, false}
+For new constant, function, or relation symbols, τ_S(σ, s) determines whether σ is added to the language.
+For a constant symbol c, τ_S(c, s) = true only if:
+
+There exists a formula φ(x) such that T_t ⊢ ∃!x φ(x)
+Adding c with axiom φ(c) preserves consistency
+
+Similar conditions apply for function and relation symbols.
+When τ_S(σ, s) = true, the appropriate symbol set is expanded and a defining axiom is added to T_{t+1}.
+Conjective Transduction τ_C: State → ℘(Formula)
+Maps the current state to a set of conjectures (candidate formulas to prove).
+For all formulas φ ∈ τ_C(s):
+
+Con(T_t ∪ {φ}) (the conjecture is consistent with current theory)
+φ is not trivially derivable from T_t (it represents a non-trivial extension)
+φ has potential relevance to the system's operation
+
+
+Associative Transduction τ_A: ProofPattern × State → {true, false}
+For a recurring proof pattern π, τ_A(π, s) determines whether π becomes a derived inference rule.
+For all π, τ_A(π, s) = true only if:
+
+π represents a valid proof step from premises φ₁, ..., φₙ to conclusion ψ
+The pattern occurs frequently in the system's reasoning
+
+When τ_A(π, s) = true, a new derived inference rule "from φ₁, ..., φₙ infer ψ" is added to I_{t+1}.
+Eliminative Transduction τ_E: LogicalElement × State → {true, false}
+Determines whether a previously transduced element (axiom, symbol, inference rule) should be removed.
+For an axiom φ ∈ T_t, τ_E(φ, s) = true only if:
+
+φ ∉ T₀ (it's not an original axiom)
+Removing φ would free resources needed for more valuable elements
+Removing φ doesn't significantly impair the system's capabilities
+
+Similar conditions apply for symbols and derived inference rules.
+When τ_E(e, s) = true, the element e is removed from its respective set.
+Perceptual Transduction τ_P: Perception × State → Formula
+Maps perceptual inputs to logical formulas in the language L.
+For a perception p, τ_P(p, s) produces a formula φ such that:
+
+φ uses only symbols in C_t, F_t, and R_t
+φ appropriately represents the perceptual content of p in logical form
+
+
+
+Consistency Invariant
+The fundamental invariant maintained by all transduction operations is:
+
+Con(T_t) for all times t
+
+That is, the theory must remain consistent throughout all transductive operations.
+State Transition
+The TLA evolves through recursive application of transduction functions:
+
+Perceptual inputs are converted to formulas via τ_P
+Conjectures are generated via τ_C
+The system attempts to prove conjectures using current axioms and rules
+Proven conjectures may be transduced into axioms via τ_L
+New symbols may be introduced via τ_S
+Common proof patterns may be transduced into inference rules via τ_A
+Elements may be eliminated via τ_E when necessary
+
+This recursive "lightning storm" of operations allows the TLA to continuously reshape its logical structures while maintaining consistency.

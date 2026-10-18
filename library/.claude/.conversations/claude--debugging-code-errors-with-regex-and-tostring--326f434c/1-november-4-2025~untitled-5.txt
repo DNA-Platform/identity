@@ -1,0 +1,117 @@
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - gibberish
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - empty
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - unicode
+AssertionError: expected false to be undefined
+
+- Expected:
+undefined
+
++ Received:
+false
+
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> npm run tests
+
+> chemistry@0.1.0 tests
+> vitest
+
+
+ DEV  v4.0.6 C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry
+
+ ✓ tests/catalogue.test.ts (31 tests) 12ms
+ ❯ tests/reflection.test.ts (66 tests | 3 failed) 22ms
+         ✓ no parameters - lambda 3ms
+         ✓ no parameters - function 0ms
+         ✓ no parameters - method 0ms
+         ✓ single parameter - lambda parens 0ms
+         ✓ single parameter - lambda no parens 0ms
+         ✓ single parameter - function 0ms
+         ✓ single parameter - method 0ms
+         ✓ multiple parameters - lambda 0ms
+         ✓ multiple parameters - function 0ms
+         ✓ multiple parameters - method 0ms
+         ✓ rest only - lambda 0ms
+         ✓ rest only - function 0ms
+         ✓ rest only - method 0ms
+         ✓ params + rest - lambda 0ms
+         ✓ params + rest - function 0ms
+         ✓ params + rest - method 0ms
+         ✓ async lambda 0ms
+         ✓ async lambda with params 0ms
+         ✓ async function 0ms
+         ✓ async function named 0ms
+         ✓ async method 0ms
+         ✓ async generator function 0ms
+         ✓ async generator method 0ms
+         ✓ generator function 0ms
+         ✓ generator function named 0ms
+         ✓ generator method 0ms
+         ✓ async generator function 0ms
+         ✓ async generator method 0ms
+         ✓ lambda no params 0ms
+         ✓ lambda single param no parens 0ms
+         ✓ lambda multiple params 0ms
+         ✓ async lambda 0ms
+         ✓ function anonymous 0ms
+         ✓ function named 0ms
+         ✓ async function 0ms
+         ✓ generator function 0ms
+         ✓ method 0ms
+         ✓ async method 0ms
+         ✓ generator method 0ms
+         ✓ getter 0ms
+         ✓ setter 0ms
+         ✓ class named 0ms
+         ✓ class anonymous 0ms
+           ✓ function 0ms
+           ✓ method 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+           ✓ getter 0ms
+           ✓ setter 0ms
+           ✓ lambda 0ms
+           ✓ function 0ms
+           ✓ generator 0ms
+           ✓ class 0ms
+         ✓ String constructor 0ms
+         ✓ Array constructor 0ms
+         ✓ Object constructor 0ms
+         ✓ Array.prototype.map 0ms
+         ✓ String.prototype.slice 0ms
+         ✓ Math.pow 0ms
+         ✓ bound function 0ms
+         × custom toString - gibberish 7ms
+         × custom toString - empty 1ms
+         × custom toString - unicode 1ms
+         ✓ async lambda with rest params 0ms
+         ✓ async generator with params and rest 0ms
+         ✓ async generator method with rest 0ms
+ ✓ tests/particle.test.ts (17 tests) 13ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - gibberish
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - empty
+ FAIL  tests/reflection.test.ts > $Reflection > parseFunctionInfo > unknown/unparseable > custom toString - unicode
+AssertionError: expected false to be undefined
+
+- Expected:
+undefined
+
++ Received:
+false
+
+ ❯ tests/reflection.test.ts:201:43
+    199|                     expect(result.async).toBeUndefined();
+    200|                     expect(result.generator).toBeUndefined();
+    201|                     expect(result.native).toBeUndefined();
+       |                                           ^
+    202|                     expect(result.params).toEqual({ count: undefined, rest: undefined });
+    203|                 });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  3 failed | 111 passed (114)
+   Start at  16:23:58
+   Duration  954ms (transform 305ms, setup 0ms, collect 432ms, tests 47ms, environment 1.46s, prepare 59ms)
+
+ FAIL  Tests failed. Watching for file changes...

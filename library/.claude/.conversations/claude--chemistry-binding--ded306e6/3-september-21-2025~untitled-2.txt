@@ -1,0 +1,126 @@
+class $ComponentFunction<T extends $Chemical> {
+    private Component: $Component<T>;
+    private _parent?: $Chemical;
+
+    get $template() { return this._template; };
+    private _template: T;
+
+    get $chemical() { return this._chemical; }
+    private _chemical?: T;
+
+    get $ref() { return this._ref; }
+    private _ref?: $Component<$Chemical>;
+
+    get $bound() { return !!this._chemical; }
+    get $referenced() { return !!this._ref; }
+    
+    constructor(template: T, chemical?: T, parent?: $Chemical) {
+        this._template = template;
+        this._chemical = chemical;
+        this._parent = parent;
+        const isArray = this._template.getType().name === $Collection.name;
+
+        this.Component = ((props: any) => {
+            if (isArray && typeof props === 'function') return new $$Function(props);
+            const [cid, setChemicalId] = useState<number>(-1);
+            let chemical: T;
+            if (!this.$bound) {
+                let newChemical = cid === -1;
+                chemical = newChemical ? this.createChemical() : $chemicalRegistry.get(cid)! as T;
+                if (newChemical) {
+                    $chemicalRegistry.set(chemical.cid, chemical);
+                    setChemicalId(chemical.cid);
+                }
+            } else {
+                chemical = this._chemical!;
+                $chemicalRegistry.delete(chemical.cid);
+            }
+
+            chemical.formula.clearState();
+            const [_, setState] = useState<string>(chemical.formula.state);
+            chemical.formula.bindUpdate(setState);
+
+            useEffect(() => {
+                chemical.formula.updateState();
+                return () => {
+                    //chemical._molecule.remove(chemical);
+                    $chemicalRegistry.delete(cid);
+                };
+            }, [chemical]);
+
+            this.bindProps(chemical, props);
+
+            let view = chemical.view();
+
+            const $ref = Collection.$reference(chemical);
+
+            //Wrap the view in the $ref, which is a chemical component, and whatever is in view are its children. It has no other props
+
+            return view;
+        }) as any;
+
+        if (this._chemical) {
+            this._chemical.__parent = parent;
+            this._chemical.__component = this.Component;
+        }
+        
+        Object.setPrototypeOf(this.Component, this);
+        return this.Component as any;
+    }
+
+    $?(): $$Component<T> { return this.Component as any; }
+    
+    $bind(chemical?: T, parent?: $Chemical): $$Component<T> {
+        if (chemical && chemical === this._chemical) return this.Component as any;
+        if (!chemical) chemical = this.createChemical(parent ?? this._parent);
+        return new $ComponentFunction(chemical, parent ?? this._parent) as any;
+    }
+
+    $reference(component: $Component<$Chemical>) {
+        let referent = this.Component.bind(Object.create(this)) as any as this;
+        referent._ref = component;
+        return referent;
+    }
+
+    private createChemical(parent?: $Chemical): T {
+        this.$template.formula.refresh();
+        const chemical = Object.create(this.$template) as T;
+        chemical.__parent = parent;
+        chemical.__cid = $Chemical.getNextCid();
+        chemical.__formula = new $Formula(chemical);
+        //chemical.__processor = new $Processor(this);
+        chemical.__formula.init();
+        console.log(`${chemical.getType().name}[${chemical.cid}].isTemplate = ${chemical.isTemplate}`)
+        return chemical;
+    }
+
+    private bindProps(chemical: T, props: any) {
+        const $chemical$ = chemical as any;
+
+        chemical.__children = props.children;  
+        for (const key in props) {
+            if (typeof key === 'symbol' || key === 'children' || key === 'key' || key === 'ref')
+                continue;
+            
+            const property = '$' + key;
+            $chemical$[property] = props[key];
+        }
+
+        if (props.children) {
+            this.bindChildren(chemical, props.children);
+        }
+
+        chemical.formula.refresh();
+    }
+    
+    private bindChildren(chemical: T, children: ReactNode) {
+        // const args = chemical.__processor.processChildren(children);
+        
+        // // Call the constructor if it exists
+        // const constructorName = chemical.getType().name;
+        // const constructor = (chemical as any)[constructorName];
+        // if (typeof constructor === 'function') {
+        //     constructor.apply(chemical, args);
+        // }
+    }
+}

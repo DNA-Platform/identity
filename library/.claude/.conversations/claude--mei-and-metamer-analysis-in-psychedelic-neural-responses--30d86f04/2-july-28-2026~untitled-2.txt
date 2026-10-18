@@ -1,0 +1,213 @@
+Nancy: You're right, and the researched answer is better than the test I proposed, because it removes the question instead of measuring it.
+
+Nancy: The linearization question is already solved, exactly, and the answer is not to linearize at a point. A Jacobian at a point is an approximation of unknown range, which is why I reached for a validity probe. But Integrated Gradients (Sundararajan, Taly, Yan 2017) rests on the completeness axiom, which is a consequence of the fundamental theorem of calculus: for any differentiable function, the attributions sum to f(x) − f(x′) exactly. Equivalently, the path-averaged Jacobian Ā = ∫₀¹ J(x′ + t(x−x′)) dt satisfies Ā·(x−x′) = f(x) − f(x′) exactly over the whole finite displacement. There is no validity range to test, because it is exact by theorem, and it is axiomatically pinned down (completeness, sensitivity, implementation invariance, linearity, symmetry). What we owe is a numerical check that our implementation reproduces completeness, which verifies our understanding, not nature's cooperation. That is the distinction you were drawing.
+
+Nancy: One structural fact worth knowing, since it explains why the cheap route is closed. ReLU networks are exactly piecewise-affine within a linear region, so there the linearization is exact by proof and no path integral is needed. Our core uses ELU, which is smooth, so that exactness does not transfer. The path integral needs only differentiability, so it is the correct instrument for our architecture specifically.
+
+Nancy: The composition rule is also already researched, and the vision-native case is the right precedent. Olshausen and Field proved out that natural images decompose as sparse linear combinations of an overcomplete dictionary of localized, oriented, bandpass atoms. That is the established framework saying features compose linearly, and it is vision rather than language, so it matches us better than the transformer literature. Its modern form is sparse-autoencoder dictionary learning under the linear representation and superposition hypotheses. Applied to the core's 64-channel feature map it gives both the atoms and the rule, and the atoms are images, so they upsample, which is your requirement.
+
+Nancy: One honest caveat I put in the notes rather than hiding: superposition arguments assume many more features than dimensions, and our measured effective rank is 51 of 64, so there is very little room for superposition here. The dictionary will come out close to a rotation of the feature basis rather than a large overcomplete set. Sparse coding still applies; the dramatic disentangling claims do not.
+
+Nancy: So the order changes. Nothing to test, two things to reproduce: the path-integrated Jacobian with a completeness check, and the combinatorial-code decomposition of Ding, Tolias and Sinz, which is the published decomposition of exactly this model class and should be reproduced before anything bespoke. Chapter 6 now says that, with my proposed test struck out and the reason recorded. Want me to start with the path-integrated Jacobian and its completeness verification?
+
+How do you do a check. How do you resolve what we can say about relating neural activation in a trial to what we believe the network represents?
+Nancy: Two different questions, and the second is the important one. Let me answer the first by running it, since a check is a thing you do.
+
+Write c:\Source\dna-platform\altered-states\results_completeness_check.py
+91 lines
+"""The check: numerical COMPLETENESS of the path-integrated Jacobian.
+
+Completeness is a theorem (fundamental theorem of calculus), so this is not an experiment about whether
+the network cooperates -- it verifies our implementation and tells us the step count needed:
+
+    integral_0^1 J(x' + t*delta) delta dt  ==  f(x) - f(x')      exactly,   delta = x - x'
+
+Each Riemann step is ONE jacobian-vector product (forward mode), giving all 749 cells at once.
+m = 1 is the ordinary single-point linearization, so its error is also the honest measure of how much
+a one-point Jacobian misses -- read off a convergence curve with a known target, not an invented probe.
+
+Also reports the CONSTRAINT COUNT: how many independent numbers a trial's activity pins down.
+Renders 18-completeness-check.png .
+"""
+import sys
+from pathlib import Path
+from collections import defaultdict
+import numpy as np
+import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
+import torch
+
+ROOT = Path('c:/Source/dna-platform/altered-states/src/analyses/most-exciting-image')
+HALLUC = ROOT / 'results/examples/hallucination'; DEL = ROOT / 'results/deliverable/altered-states-digital-twins'
+for p in (str(ROOT.parents[1]), str(ROOT / 'pipeline')):
+    if p not in sys.path: sys.path.insert(0, p)
+from twins import load_twin
+from synthesis import mu_to_pixel
+
+ens, key, _, _, (IH, IW), _ = load_twin('pre', 'B', n_seeds=1)
+member = ens.members[0] if hasattr(ens, 'members') else list(ens.children())[0]
+member.eval()
+stim = np.load(DEL / 'data/stimuli.npy')
+
+def f(x):                                                    # image -> 749 responses
+    return member(x, data_key=key)[0]
+
+def integrated_jacobian(x0, x1, m):                          # integral J dt applied to delta, m steps
+    delta = x1 - x0
+    total = torch.zeros(749)
+    for k in range(m):
+        t = (k + 0.5) / m                                    # midpoint rule
+        xt = x0 + t * delta
+        _, jv = torch.func.jvp(f, (xt,), (delta,))
+        total = total + jv
+    return total / m
+
+steps = [1, 2, 4, 8, 16, 32, 64, 128]
+errors = {s: [] for s in steps}
+for img in stim[:6]:
+    x1 = torch.as_tensor(img, dtype=torch.float32)[None, None]
+    x0 = torch.zeros_like(x1)                                # baseline: mean-gray in standardized units
+    with torch.no_grad():
+        target = (f(x1) - f(x0))
+    denom = target.norm().item()
+    for s in steps:
+        got = integrated_jacobian(x0, x1, s)
+        errors[s].append(((got - target).norm() / denom).item())
+print('completeness: relative error of  integral(J)delta  vs  f(x)-f(x0)   [6 images]')
+for s in steps:
+    print('  m=%3d steps :  %.4f%%' % (s, 100 * np.mean(errors[s])))
+
+# ---- constraint count: how many independent numbers the activity pins down ----
+readout = member.readout[key]
+w = readout.features.detach()[0, :, 0, :].T.numpy()
+mu = readout.mu.detach()[0, :, 0, :].numpy()
+FH, FW = readout.in_shape[1], readout.in_shape[2]
+col, row = mu_to_pixel(mu, FH, FW)
+ci, ri = np.clip(np.round(col).astype(int), 0, FW - 1), np.clip(np.round(row).astype(int), 0, FH - 1)
+at = defaultdict(list)
+for i in range(len(w)): at[(ri[i], ci[i])].append(i)
+total_rank = sum(np.linalg.matrix_rank(w[idx], tol=1e-6) for idx in at.values())
+print('\nindependent constraints from one trial: %d  (cells=749, positions measured=%d)' % (total_rank, len(at)))
+print('image degrees of freedom: %d pixels;  RF strip is ~10.7%% of them (~%d px)' % (IH * IW, int(0.107 * IH * IW)))
+
+mean_err = [100 * np.mean(errors[s]) for s in steps]
+fig, ax = plt.subplots(1, 2, figsize=(12, 4.4))
+ax[0].loglog(steps, mean_err, 'o-', color='#2C6E8F', lw=2)
+ax[0].set_xlabel('integration steps m'); ax[0].set_ylabel('relative error (%)')
+ax[0].set_title('completeness converges to 0 (theorem)\nm=1 is the single-point linearization: %.1f%% error' % mean_err[0], fontsize=10)
+ax[0].grid(True, which='both', lw=0.3, alpha=0.4)
+ax[1].bar(['constraints\nfrom activity', 'pixels in\nRF strip', 'pixels in\nframe'],
+          [total_rank, int(0.107 * IH * IW), IH * IW], color=['#C44E52', '#4C72B0', '0.75'])
+ax[1].set_yscale('log'); ax[1].set_ylabel('count')
+ax[1].set_title('what one trial pins down vs what an image has', fontsize=10)
+for i, v in enumerate([total_rank, int(0.107 * IH * IW), IH * IW]):
+    ax[1].text(i, v * 1.1, str(v), ha='center', fontsize=9)
+fig.suptitle('The check: path-integrated Jacobian satisfies completeness; and the constraint budget of a single trial', fontsize=11)
+fig.tight_layout(rect=(0, 0, 1, 0.94))
+fig.savefig(HALLUC / '18-completeness-check.png', dpi=110, bbox_inches='tight'); plt.close(fig)
+print('wrote 18')
+Wrong path — that belongs beside the other scripts. Let me move it and run.
+
+Bash Move script and run the completeness check
+IN
+cd c:/Source/dna-platform/altered-states
+mv results_completeness_check.py src/analyses/most-exciting-image/results/examples/hallucination/completeness_check.py && echo moved
+cd src/analyses/most-exciting-image/pipeline
+timeout 900 python "c:/Source/dna-platform/altered-states/src/analyses/most-exciting-image/results/examples/hallucination/completeness_check.py" 2>&1 | grep -vE "Warning|warn|gamma_readout|initialized" | tail -20
+
+OUT
+moved
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Source\dna-platform\altered-states\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Source\dna-platform\altered-states\.venv\Lib\site-packages\neuralpredictors\layers\readouts\multi_readout.py", line 78, in forward
+    return self[data_key](*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Source\dna-platform\altered-states\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Source\dna-platform\altered-states\.venv\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Source\dna-platform\altered-states\.venv\Lib\site-packages\neuralpredictors\layers\readouts\gaussian.py", line 586, in forward
+    grid = self.sample_grid(batch_size=bs, sample=sample)  # sample determines sampling from Gaussian
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Source\dna-platform\altered-states\.venv\Lib\site-packages\neuralpredictors\layers\readouts\gaussian.py", line 438, in sample_grid
+    self.mu.clamp_(
+RuntimeError: During a grad (vjp, jvp, grad, etc) transform, the function provided attempted to call in-place operation (aten::clamp_) that would mutate a captured Tensor. This is not supported; please rewrite the function being transformed to explicitly accept the mutated Tensor(s) as inputs.
+The readout mutates mu in place, which torch.func.jvp forbids. Plain autograd handles that fine (we used it earlier), so let me use per-cell gradients, which is also the standard Integrated Gradients formulation.
+
+Edit c:\Source\dna-platform\altered-states\src\analyses\most-exciting-image\results\examples\hallucination\completeness_check.py
+Added 2 lines
+Bash Run completeness check with autograd
+IN
+cd c:/Source/dna-platform/altered-states/src/analyses/most-exciting-image/pipeline
+timeout 900 python "c:/Source/dna-platform/altered-states/src/analyses/most-exciting-image/results/examples/hallucination/completeness_check.py" 2>&1 | grep -vE "Warning|warn|gamma_readout|initialized" | tail -18
+
+OUT
+Command did not complete within its 120s timeout and was moved to the background (ID: bsw8dw1w2). Output is being written to: C:\Users\dougl\AppData\Local\Temp\claude\c--Source-dna-platform-altered-states\e16288e6-c57b-4fc8-8602-67cc08a4aa18\tasks\bsw8dw1w2.output. You will be notified when it completes. To check interim output, use Read on that file path.
+Session cwd remains C:\Source\dna-platform\altered-states\src\analyses\most-exciting-image\pipeline; directory changes made by the backgrounded command do not apply to subsequent commands.
+While that runs, the second question is the one that matters, so let me answer it properly. Let me check on the job.
+
+Bash Check completeness check progress
+IN
+sleep 60; tail -25 "C:\Users\dougl\AppData\Local\Temp\claude\c--Source-dna-platform-altered-states\e16288e6-c57b-4fc8-8602-67cc08a4aa18\tasks\bsw8dw1w2.output" 2>/dev/null | grep -vE "Warning|warn|gamma_readout|initialized"
+
+OUT
+<tool_use_error>Blocked: sleep 60 followed by: tail -25 "C:\Users\dougl\AppData\Local\Temp\claude\c--Source-dna-platform-altered-states\e16288e6-c57b-4fc8-8602-67cc08a4aa18\tasks\bsw8dw1w2.output" grep -vE "Warning|warn|gamma_readout|initialized". To wait for a condition, use Monitor with an until-loop (e.g. `until <check>; do sleep 2; done`). To wait for a command you started, use run_in_background: true. Do not chain shorter sleeps to work around this block.</tool_use_error>
+Read C:\Users\dougl\AppData\Local\Temp\claude\c--Source-dna-platform-altered-states\e16288e6-c57b-4fc8-8602-67cc08a4aa18\tasks\bsw8dw1w2.output
+Nancy: The check is running; let me answer both properly, because the second question is the real one.
+
+Nancy: How you do a check. A legitimate check needs a quantity whose true value is known in advance by proof, so that any discrepancy is your machinery's fault and not the world's. Completeness gives exactly that: the attributions must sum to f(x) − f(baseline), by theorem. So the check is to compute the path integral numerically with m midpoint steps and measure the relative error against that known target, sweeping m. Two things fall out. If the error goes to zero as m grows, the implementation is correct. And the error at m = 1 is precisely the single-point linearization error, so the number I was going to invent an experiment for comes free, as a convergence property with a known answer. That is the difference between verifying understanding and running a probe: I am not asking whether the network cooperates, I am asking whether my arithmetic reproduces a theorem.
+
+Nancy: Now the epistemics, and the resolution is to partition rather than to argue. Three tiers, with different standing, and we can state the size of each.
+
+Nancy: Tier one, determined, and this is algebra rather than inference. ELU+1 inverts exactly, and the readout is linear in features, so the trial's activity determines the projection of the core's feature map onto span{w_i} at each measured location, exactly and with nothing assumed. Verified at r = 0.98. Measured size: about 3 of 64 dimensions at each of 167 locations. That is what the network represents on this trial, in the only sense that is exact, and note it is a feature-space object, not an image. Everything else at that location is null space.
+
+Nancy: Tier two, the constrained set, and we already own the instrument. Going from features to an image requires inverting the core, which is many-to-one, so the activity does not pick an image, it picks a set of images consistent with it. That set is the metamer set, and Cobos-style within-condition metamers are the published way to characterize it. We already computed four metamer sets and shipped them. Their diversity across seeds is the empirical measurement of what the activity leaves free at the image level. So the honest answer to "what can we say about the image" is: we can exhibit the set and measure its spread, and we do not need to invent anything to do it.
+
+Cathy: Tier three, the posterior sample, which requires a prior and must be labeled as such. Picking one member of that set is where the diffusion prior enters. The output is a sample, not a measurement, and the epistemic content lives in the spread across samples rather than in any one of them. That is not a weakness of the method, it is the correct form of the claim, and it is why the seed-spread statistic is the result rather than the picture.
+
+Nancy: What this resolves for the per-trial hallucination specifically. The trial residual inherits the same structure exactly. What the trial-unique activity determines is the projection of the feature-map deviation onto that same measured subspace, a few hundred independent numbers, which the running script is counting against the 2304 pixels of a frame. Everything in a synthesized hallucination beyond that count is prior, not data. So the sentence we are entitled to is precise: this trial's activity pins down N independent numbers about the model's features; the images consistent with it form a set whose spread we measure with metamers; anything sharper than that set is a prior-dependent sample and gets labeled as one.
+
+Nancy: One standing caution that survives all three tiers, and it is the branch's discipline rather than caution for its own sake: all of this is about what the model represents. The twin is a model that fits, which is not the same as the animal's mechanism. Every claim above is a claim about the digital twin, and the bridge to the animal is a separate argument that the encoding model's accuracy has to carry.
+
+Nancy: I will report the completeness numbers and the constraint count when the run lands.
+
+Read C:\Users\dougl\AppData\Local\Temp\claude\c--Source-dna-platform-altered-states\e16288e6-c57b-4fc8-8602-67cc08a4aa18\tasks\bsw8dw1w2.output
+Read c:\Source\dna-platform\altered-states\src\analyses\most-exciting-image\results\examples\hallucination\18-completeness-check.png
+The check converges cleanly over four orders of magnitude, but the constraint count corrects something I said last turn. Let me fix the library first.
+
+Edit c:\Source\dna-platform\altered-states\library\.lib\the-altered-cortex\06-generating-the-hallucination.md
+Added 2 lines
+Edit c:\Source\dna-platform\altered-states\library\.lib\the-altered-cortex\06-generating-the-hallucination.md
+Edit failed
+Bash Locate the exact IG verification sentence
+IN
+cd c:/Source/dna-platform/altered-states/library/.lib/the-altered-cortex
+grep -n "axiomatically characterized" 06-generating-the-hallucination.md | head -3
+
+OUT
+71:- **Image-space attribution: use the path integral, which is exact by theorem.** [Integrated Gradients](https://arxiv.org/abs/1703.01365) (Sundararajan, Taly, Yan 2017) rests on the **completeness axiom**, a consequence of the fundamental theorem of calculus: for any differentiable `f`, `f(x) − f(x′)` equals the sum of attributions **exactly**. Equivalently the **path-averaged Jacobian** `Ā = ∫₀¹ J(x′ + t(x−x′)) dt` satisfies `Ā·(x−x′) = f(x) − f(x′)` exactly over the *whole finite displacement*, with no validity range to probe. It is axiomatically characterized (completeness, sensitivity, implementation invariance, linearity, symmetry). Our verification is numerical completeness: does the attribution sum reproduce the response difference to floating point.
+Edit c:\Source\dna-platform\altered-states\library\.lib\the-altered-cortex\06-generating-the-hallucination.md
+Modified
+Bash Validate book after correction
+IN
+cd c:/Source/dna-platform/altered-states/library/.lib/the-altered-cortex
+timeout 120 python 00-the-turn--check.py 2>&1 | grep -iE 'ERROR|GRAPH|LINK' | head -5
+
+OUT
+1 ERROR(S) — the book does not match the code. Fix before anything else:
+  ERROR  RUN: no generation watchdog alive. Relaunch DETACHED from src/analyses/most-exciting-image/pipeline/:
+Nancy: Check ran, and it did its job in both directions. 18-completeness-check.png.
+
+Nancy: The check. Relative error of the attribution sum against the theorem's target: 135.9% at one step, 5.7% at four, 0.81% at sixteen, 0.012% at 128. Converging cleanly over four orders of magnitude, which confirms the implementation. And the free result: m = 1 is the single-point linearization, so linearizing at a point carries 136 percent error over the displacement from gray to a natural image. That is the number I was going to invent an experiment to get, and it arrived as a convergence property against a known target instead. Use 32 steps or more for a tenth of a percent.
+
+Nancy: The correction, and it goes against what I told you last turn. I said 93 percent of the local feature content is null space and called that the freedom the hallucination gets to fill. That framing is wrong. The feature map is 100,352 numbers describing a 2304-pixel image, so it is wildly overcomplete and almost all of those directions are produced by no image at all. They are unreachable, not free. That is the same fact that kills the compose-features-then-invert route. The count that matters is at the image level, and it runs the other way: one trial gives 749 independent constraints against roughly 246 pixels in the receptive-field strip, over-determined about three to one. Within the strip, the activity is by counting more than enough to pin the image.
+
+Nancy: So where the freedom actually is, which is the useful part of being wrong. Not in the feature null space. It is in three places: outside the strip, which is 89 percent of the frame and completely unconstrained; in the nonlinear degeneracy, meaning genuinely different images that produce the same population response; and in the released frequency band. Only the third is something we measured, and the second cannot be settled by counting at all, which is exactly why the metamer sets are the instrument for it and why they are the right tier-two answer.
+
+Nancy: What we can now say, precisely, relating a trial's activity to what the network represents. The activity determines, exactly and provably, the projection of the feature map onto the span of the sampling cells' weights, verified at r = 0.98. Converting that to a statement about an image is exact only through the path integral, which is a theorem rather than an approximation, and which we have now verified numerically. The image is not determined uniquely, but it is heavily constrained inside the strip and unconstrained outside it, and the size of the remaining ambiguity is an empirical question that the metamer sets answer rather than an arithmetic one. Anything sharper than that is a prior-dependent sample and has to be labeled as one.
+
+Nancy: Chapter 6 is updated, including the correction struck through my earlier claim rather than quietly rewritten. The natural next step is the tier-two measurement we can make with instruments already built: quantify metamer diversity, inside the strip versus outside it, which converts "how much does the activity leave free at the image level" from an argument into a number.

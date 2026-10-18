@@ -1,0 +1,317 @@
+class $Formula {
+    get initialize() { return this._initialized; }
+    private _initialized = false;
+
+    get destroyed() { return this._destroyed; }
+    private _destroyed = false;
+
+    get chemical() { return this._chemical; }
+    private _chemical: $Chemical;
+
+    get bonds() { return this._bonds; }
+    private _bonds: Map<string, $Bond> = new Map();
+    
+    get state() { return this._state; }
+    get stateSymbol() { return $Represent.symbolize(this._state); }
+    private _state: $State = { cid: "-1" }
+
+    get previousState() { return this._state; }
+    get previousStateSymbol() { return $Represent.symbolize(this._state); }
+    private _previousState: $State = { cid: "-1" }
+
+    // get previousStateAsync() { return this._previousStateAsync; }
+    // set previousStateAsync(value: string) { this._previousStateAsync = value; }
+    // private _previousStateAsync: string = ''; 
+    
+    // private _setState?: (state: string) => void;
+    // private _setStateAsync?: (state: string) => void;
+
+    constructor(chemical: $Chemical) {
+        this._chemical = chemical;
+    }
+
+    diagram(closure: 'self-contained' | 'referential' = 'referential'): string {
+        const result: Record<string, any> = {};
+        for (const [property, bond] of this._bonds) {
+            if (bond.isMethod) continue; 
+            result[property] = $Represent.symbolize(bond.getter ? bond.getter() : bond.backingField, closure);
+        }
+        return $Represent.symbolize(result, 'fast');
+    }
+
+    init() {
+        if (this._destroyed) return;
+        if (this._initialized) {
+            this.refresh();
+            return;
+        }
+
+        try {
+            $Bond.reactive = false;
+            const template = this.chemical.__template;
+            if (!this.chemical.__isTemplate && !template[$formula]._initialized)
+                template[$formula].init();
+            this._createBonds();
+        } finally {
+            $Bond.reactive = true;
+            this._initialized = true;
+        }
+    }
+
+    read(diagram: string) {
+        if (this._destroyed) return;
+        this.refresh();
+
+        const symnbolized = JSON.parse(diagram);
+        const literalized = $Represent.literalize(symnbolized);
+        if (!literalized || typeof literalized !== 'object')
+            throw new Error(`Could not read the specified diagram: ${diagram}`);
+        
+        for (const [property, value] of Object.entries(literalized)) {
+            const bond = this._bonds.get(property);
+            if (bond) {
+                if (bond.isField) {
+                    bond.backingField = value;
+                } else if (bond.isWritable) {
+                    bond.setter?.(value);
+                }
+            } else {
+                const descriptor = {
+                    value: value,
+                    writable: true,
+                    enumerable: true,
+                    configurable: true
+                };
+                const newBond = new $Bond(this._chemical, property, descriptor);
+                this._bonds.set(property, newBond);
+                newBond.init();
+            }
+        }
+    }
+
+    track(visited?: Set<number>) {
+        visited = visited || new Set<number>();
+        visited.add(this.chemical[$cid]);
+        this._bonds.forEach(bond => {
+            bond.accessed = false;
+            const value = bond.lastSeenValue;
+            if (value instanceof $Chemical) {
+                if (visited.has(value[$cid])) return;
+                visited.add(value[$cid]);
+                value[$formula].track(visited);
+            } else if (Array.isArray(value)) {
+                value.forEach(item => { 
+                    if (item instanceof $Chemical) 
+                        item[$formula].track(visited);
+                });
+            }
+        });
+    }
+
+    check(state?: $State, visited?: Set<number>): $State {
+        state = state || { cid: `${this._chemical[$cid]}` };
+        visited = visited || new Set<number>();
+        visited.add(this.chemical[$cid]);
+        this._bonds.forEach(bond => {
+            if (bond.accessed) {
+                bond.accessed = false;
+                const value = bond.lastSeenValue;
+                state[bond.bid] = $Represent.symbolize(value);
+                if (value instanceof $Chemical) {
+                    if (visited.has(value[$cid])) return;
+                    visited.add(value[$cid]);
+                    value[$formula].check(state, visited);
+                } else if (Array.isArray(value)) {
+                    value.forEach(item => { 
+                        if (item instanceof $Chemical) 
+                            item[$formula].check(state, visited);
+                    });
+                }
+            }
+        });
+        this._previousState = this._state;
+        this._state = state;
+        return state;
+    }
+ 
+    refresh() {
+        if (this._destroyed) return;
+        if (!this._initialized) {
+            this.init();
+            return;
+        }
+        try {
+            $Bond.reactive = false;
+            this.chemical[$reactive] = false;
+            const chain = [this._chemical, Object.getPrototypeOf(this._chemical)];
+            this._createBonds(chain);
+            this.chemical[$reactive] = true;
+        } finally {
+            $Bond.reactive = true;
+        }
+    }
+
+    private _update: (token: any) => void = () => {};
+    bindUpdate(update: (token: any) => void) { this._update = update; }
+    update(): boolean {
+        if (!this._update)
+            throw new Error("No update function has been bound to the chemical.");
+        const changed = this.stateSymbol !== this.previousStateSymbol;
+        if (changed) this._update({});
+        return changed;
+    }
+
+    // bindState() {
+    //     this._chemical[$lastState] = this._chemical[$state];
+    //     this._chemical[$state] = this._state;
+    // }
+
+    // unbindState() {
+    //     const state = this._chemical[$state];
+    //     const lastState = this._chemical[$lastState];
+    //     this._chemical[$state] = lastState;
+    //     const formula = this._chemical[$formula];
+    //     for (const bond of formula.bonds.values())
+    //         bond.unbind();
+    // }
+
+    // bindUpdate(setState: (state: string) => void, setStateAsync: (state: string) => void) {
+    //     this._setState = setState;
+    //     this._setStateAsync = setStateAsync;
+    //     this.bindState();
+    // }
+
+    // updateState() {
+    //     if (!this._setState)
+    //         throw new Error("The setSetate function has not been bound");
+
+    //     this.dispatchUpdate(
+    //         this._setState, 
+    //         () => this.state, 
+    //         () => this._previousState, 
+    //         state => this._previousState = state
+    //     );
+    // }
+
+    // updateStateAsync() {
+    //     if (!this._setStateAsync)
+    //         throw new Error("The update function has not been bound");
+
+    //     this.dispatchUpdate(
+    //         this._setStateAsync, 
+    //         () => this.state, 
+    //         () => this._previousStateAsync, 
+    //         state => this._previousStateAsync = state
+    //     );
+    // }
+
+    cleanup() {
+        for (const bond of this._bonds.values()) bond.cleanup();
+        this._destroyed = true;
+    }
+
+    private dispatchUpdate(
+        setState: (value: any) => void, 
+        nextState?: () => any, 
+        previousState?: () => any, 
+        setPrevious?: (value: any) => void
+    ) {
+        previousState = previousState || (() => { return {}; });
+        nextState = nextState || (() => { return {}; });
+        setPrevious = setPrevious || (() => {});
+        const orchestrator = this._chemical[$orchestrator];
+        const state = `${orchestrator.mounting}Mount/${$BondOrchestrator.rendering}Render`;
+        switch(state) {
+            case 'BeforeMount/BeforeRender':
+            case 'BeforeMount/DuringRender': 
+            case 'BeforeMount/AfterRender':
+                // Not mounted yet - queue for useEffect
+                orchestrator.actions.push(() => {
+                    const previous = previousState();
+                    const next = nextState();
+                    const willUpdate = previous !== next;
+                    if (willUpdate) $BondOrchestrator.rendering = 'Before';
+                    setState(next);
+                    setPrevious(next);
+                });
+                break; 
+            case 'AfterMount/BeforeRender':
+                // Render already queued - skip redundant update
+                setPrevious(nextState());
+                break;
+            case 'AfterMount/DuringRender':
+                // Mid-render - must queue to avoid React error
+                orchestrator.actions.push(() => {
+                    const previous = previousState();
+                    const next = nextState();
+                    const willUpdate = previous !== next;
+                    if (willUpdate) $BondOrchestrator.rendering = 'Before';
+                    setState(next);
+                    setPrevious(next);
+                });
+                break;
+            case 'AfterMount/AfterRender':
+                // Idle - safe to update immediately
+                const previous = previousState();
+                const next = nextState();
+                const willUpdate = previous !== next;
+                if (willUpdate) $BondOrchestrator.rendering = 'Before';
+                setState(next);
+                setPrevious(next);
+                break;
+        }
+    }
+
+    private _createBonds(chain?: any[]) {
+        if (this._destroyed) return;
+        if (!chain) chain = this._getDescendancyChain();
+        const properties = this._findProperties(chain);
+        for (const [property, descriptor] of properties) {
+            if (this._bonds.has(property)) continue;
+            const bond = new $Bond(this._chemical, property, descriptor);
+            this._bonds.set(property, bond);
+            bond.init();
+        }
+    }
+
+    private _findProperties(chain: any[]) {
+        const properties = new Map<string, PropertyDescriptor>();
+        for (const chemical of chain) {
+            for (const property of Object.getOwnPropertyNames(chemical)) {
+                if (this.bonds.has(property)) continue;
+
+                const descriptor = Object.getOwnPropertyDescriptor(chemical, property);
+                if (!descriptor) continue;
+                if ($Bond.isReactiveProperty(property, descriptor.value))
+                    properties.set(property, descriptor);
+            }
+
+            const decorators = chemical[$decorators] as $Decorators | undefined;
+            if (!decorators) continue;
+            
+            decorators.inert.forEach((isInert, prop) => {
+                if (isInert) properties.delete(prop);
+            });
+            
+            decorators.reactive.forEach((isReactive, property) => {
+                if (!isReactive) return properties.delete(property);
+                const descriptor = Object.getOwnPropertyDescriptor(chemical, property);
+                if (descriptor) properties.set(property, descriptor);
+            });
+        }
+
+        return properties;
+    }
+
+    private _getDescendancyChain(): any[] {
+        const chain: any[] = [this._chemical];
+        let current = Object.getPrototypeOf(this._chemical);
+        while (current && current !== $Chemical.prototype) {
+            chain.push(current);
+            current = Object.getPrototypeOf(current);
+        }
+        if (current === $Chemical.prototype) chain.push(current);
+        chain.reverse();
+        return chain;
+    }
+}

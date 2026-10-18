@@ -1,0 +1,16 @@
+class $Document extends $ApplicationItem<Document, $Application> {
+    layers(): $Layers { return $docref(this.$get(o => o.layers), this.typename(), this); }
+    artboards(): $Artboards { return $docref(this.$get(o => o.artboards), this.typename(), this); }
+    views(): $Views { return $docref(this.$get(o => o.views), this.typename(), this); }
+    brushes(): $Brushes { return $docref(this.$get(o => o.brushes), this.typename(), this); }
+    swatches(): $Swatches { return $docref(this.$get(o => o.swatches), this.typename(), this); }
+    symbols(): $Symbols { return $docref(this.$get(o => o.symbols), this.typename(), this); }
+    stories(): $Stories { return $docref(this.$get(o => o.stories), this.typename(), this); }
+    pluginItems(): $PluginItems { return $docref(this.$get(o => o.pluginItems), this.typename(), this); }
+    pageItems(): $PageItems { return $docref(this.$get(o => o.pageItems), this.typename(), this); }
+    pathItems(): $PathItems { return $docref(this.$get(o => o.pathItems), this.typename(), this); }
+    textFrames(): $TextFrames { return $docref(this.$get(o => o.textFrames), this.typename(), this); }
+    groupItems(): $GroupItems { return $docref(this.$get(o => o.groupItems), this.typename(), this); }
+    rasterItems(): $RasterItems { return $docref(this.$get(o => o.rasterItems), this.typename(), this); }
+    compoundPathItems(): $CompoundPathItems { return $docref(this.$get(o => o.compoundPathItems), this.typename(), this); }
+    legacyTextItems

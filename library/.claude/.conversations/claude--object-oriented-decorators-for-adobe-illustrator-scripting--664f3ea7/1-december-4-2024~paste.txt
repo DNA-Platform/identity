@@ -1,0 +1,397 @@
+class Query<TCollection extends Collection, TParent extends Item> {
+    collection: TCollection;
+    parent: TParent;
+    constructor(collection: TCollection, parent: TParent) {
+        this.collection = collection;
+        this.parent = parent;
+    }
+}
+
+class Model<TItem extends Item, TCollection extends Collection> {
+    item: TItem;
+    parent: TCollection;
+    constructor(item: TItem, parent: TCollection) {
+        this.item = item;
+        this.parent = parent;
+    }
+}
+
+// Models - Each wraps a single object
+class ApplicationModel {
+    private app: Application;
+    constructor(app: Application) { 
+      this.app = app;
+    }
+  }
+  
+  class DocumentModel {
+    private doc: Document;
+    constructor(doc: Document) {
+      this.doc = doc;
+    }
+  }
+  
+  class ArtboardModel {
+    private artboard: Artboard;
+    constructor(artboard: Artboard) {
+      this.artboard = artboard;
+    }
+  }
+  
+  class LayerModel {
+    private layer: Layer;
+    constructor(layer: Layer) {
+      this.layer = layer;
+    }
+  }
+  
+  class PathItemModel {
+    private pathItem: PathItem;
+    constructor(pathItem: PathItem) {
+      this.pathItem = pathItem;
+    }
+  }
+  
+  class CompoundPathItemModel {
+    private compoundPathItem: CompoundPathItem;
+    constructor(compoundPathItem: CompoundPathItem) {
+      this.compoundPathItem = compoundPathItem;
+    }
+  }
+  
+  class TextFrameModel {
+    private textFrame: TextFrame;
+    constructor(textFrame: TextFrame) {
+      this.textFrame = textFrame;
+    }
+  }
+  
+  class GroupItemModel {
+    private groupItem: GroupItem;
+    constructor(groupItem: GroupItem) {
+      this.groupItem = groupItem;
+    }
+  }
+  
+  class SymbolModel {
+    private symbol: Symbol;
+    constructor(symbol: Symbol) {
+      this.symbol = symbol;
+    }
+  }
+  
+  class SymbolItemModel {
+    private symbolItem: SymbolItem;
+    constructor(symbolItem: SymbolItem) {
+      this.symbolItem = symbolItem;
+    }
+  }
+  
+  class PlacedItemModel {
+    private placedItem: PlacedItem;
+    constructor(placedItem: PlacedItem) {
+      this.placedItem = placedItem;
+    }
+  }
+  
+  class RasterItemModel {
+    private rasterItem: RasterItem;
+    constructor(rasterItem: RasterItem) {
+      this.rasterItem = rasterItem;
+    }
+  }
+  
+  class MeshItemModel {
+    private meshItem: MeshItem;
+    constructor(meshItem: MeshItem) {
+      this.meshItem = meshItem;
+    }
+  }
+  
+  class LegacyTextItemModel {
+    private legacyTextItem: LegacyTextItem;
+    constructor(legacyTextItem: LegacyTextItem) {
+      this.legacyTextItem = legacyTextItem;
+    }
+  }
+  
+  class TextPathModel {
+    private textPath: TextPath;
+    constructor(textPath: TextPath) {
+      this.textPath = textPath;
+    }
+  }
+  
+  class StoryModel {
+    private story: Story;
+    constructor(story: Story) {
+      this.story = story;
+    }
+  }
+  
+  class TextRangeModel {
+    private textRange: TextRange;
+    constructor(textRange: TextRange) {
+      this.textRange = textRange;
+    }
+  }
+  
+  class CharacterStyleModel {
+    private characterStyle: CharacterStyle;
+    constructor(characterStyle: CharacterStyle) {
+      this.characterStyle = characterStyle;
+    }
+  }
+  
+  class ParagraphStyleModel {
+    private paragraphStyle: ParagraphStyle;
+    constructor(paragraphStyle: ParagraphStyle) {
+      this.paragraphStyle = paragraphStyle;
+    }
+  }
+  
+  class SwatchModel {
+    private swatch: Swatch;
+    constructor(swatch: Swatch) {
+      this.swatch = swatch;
+    }
+  }
+  
+  class SwatchGroupModel {
+    private swatchGroup: SwatchGroup;
+    constructor(swatchGroup: SwatchGroup) {
+      this.swatchGroup = swatchGroup;
+    }
+  }
+  
+  class GradientModel {
+    private gradient: Gradient;
+    constructor(gradient: Gradient) {
+      this.gradient = gradient;
+    }
+  }
+  
+  class GradientStopModel {
+    private gradientStop: GradientStop;
+    constructor(gradientStop: GradientStop) {
+      this.gradientStop = gradientStop;
+    }
+  }
+  
+  class PatternModel {
+    private pattern: Pattern;
+    constructor(pattern: Pattern) {
+      this.pattern = pattern;
+    }
+  }
+  
+  class BrushModel {
+    private brush: Brush;
+    constructor(brush: Brush) {
+      this.brush = brush;
+    }
+  }
+  
+  class GraphItemModel {
+    private graphItem: GraphItem;
+    constructor(graphItem: GraphItem) {
+      this.graphItem = graphItem;
+    }
+  }
+  
+  class PluginItemModel {
+    private pluginItem: PluginItem;
+    constructor(pluginItem: PluginItem) {
+      this.pluginItem = pluginItem;
+    }
+  }
+  
+  class TagModel {
+    private tag: Tag;
+    constructor(tag: Tag) {
+      this.tag = tag;
+    }
+  }
+  
+  // Queries - Each wraps a collection
+  class DocumentQuery {
+    private docs: Documents;
+    constructor(docs: Documents) {
+      this.docs = docs;
+    }
+  }
+  
+  class ArtboardQuery {
+    private artboards: Artboards;
+    constructor(artboards: Artboards) {
+      this.artboards = artboards;
+    }
+  }
+  
+  class LayerQuery {
+    private layers: Layers;
+    constructor(layers: Layers) {
+      this.layers = layers;
+    }
+  }
+  
+  class PathItemQuery {
+    private pathItems: PathItems;
+    constructor(pathItems: PathItems) {
+      this.pathItems = pathItems;
+    }
+  }
+  
+  class CompoundPathItemQuery {
+    private compoundPathItems: CompoundPathItems;
+    constructor(compoundPathItems: CompoundPathItems) {
+      this.compoundPathItems = compoundPathItems;
+    }
+  }
+  
+  class TextFrameQuery {
+    private textFrames: TextFrameItems;
+    constructor(textFrames: TextFrameItems) {
+      this.textFrames = textFrames;
+    }
+  }
+  
+  class GroupItemQuery {
+    private groupItems: GroupItems;
+    constructor(groupItems: GroupItems) {
+      this.groupItems = groupItems;
+    }
+  }
+  
+  class PageItemQuery {
+    private pageItems: PageItems;
+    constructor(pageItems: PageItems) {
+      this.pageItems = pageItems;
+    }
+  }
+  
+  class SymbolQuery {
+    private symbols: Symbols;
+    constructor(symbols: Symbols) {
+      this.symbols = symbols;
+    }
+  }
+  
+  class SymbolItemQuery {
+    private symbolItems: SymbolItems;
+    constructor(symbolItems: SymbolItems) {
+      this.symbolItems = symbolItems;
+    }
+  }
+  
+  class PlacedItemQuery {
+    private placedItems: PlacedItems;
+    constructor(placedItems: PlacedItems) {
+      this.placedItems = placedItems;
+    }
+  }
+  
+  class RasterItemQuery {
+    private rasterItems: RasterItems;
+    constructor(rasterItems: RasterItems) {
+      this.rasterItems = rasterItems;
+    }
+  }
+  
+  class MeshItemQuery {
+    private meshItems: MeshItems;
+    constructor(meshItems: MeshItems) {
+      this.meshItems = meshItems;
+    }
+  }
+  
+  class LegacyTextItemQuery {
+    private legacyTextItems: LegacyTextItems;
+    constructor(legacyTextItems: LegacyTextItems) {
+      this.legacyTextItems = legacyTextItems;
+    }
+  }
+  
+  class TextRangeQuery {
+    private textRanges: TextRanges;
+    constructor(textRanges: TextRanges) {
+      this.textRanges = textRanges;
+    }
+  }
+  
+  class CharacterStyleQuery {
+    private characterStyles: CharacterStyles;
+    constructor(characterStyles: CharacterStyles) {
+      this.characterStyles = characterStyles;
+    }
+  }
+  
+  class ParagraphStyleQuery {
+    private paragraphStyles: ParagraphStyles;
+    constructor(paragraphStyles: ParagraphStyles) {
+      this.paragraphStyles = paragraphStyles;
+    }
+  }
+  
+  class SwatchQuery {
+    private swatches: Swatches;
+    constructor(swatches: Swatches) {
+      this.swatches = swatches;
+    }
+  }
+  
+  class SwatchGroupQuery {
+    private swatchGroups: SwatchGroups;
+    constructor(swatchGroups: SwatchGroups) {
+      this.swatchGroups = swatchGroups;
+    }
+  }
+  
+  class GradientQuery {
+    private gradients: Gradients;
+    constructor(gradients: Gradients) {
+      this.gradients = gradients;
+    }
+  }
+  
+  class GradientStopQuery {
+    private gradientStops: GradientStops;
+    constructor(gradientStops: GradientStops) {
+      this.gradientStops = gradientStops;
+    }
+  }
+  
+  class PatternQuery {
+    private patterns: Patterns;
+    constructor(patterns: Patterns) {
+      this.patterns = patterns;
+    }
+  }
+  
+  class BrushQuery {
+    private brushes: Brushes;
+    constructor(brushes: Brushes) {
+      this.brushes = brushes;
+    }
+  }
+  
+  class GraphItemQuery {
+    private graphItems: GraphItems;
+    constructor(graphItems: GraphItems) {
+      this.graphItems = graphItems;
+    }
+  }
+  
+  class PluginItemQuery {
+    private pluginItems: PluginItems;
+    constructor(pluginItems: PluginItems) {
+      this.pluginItems = pluginItems;
+    }
+  }
+  
+  class TagQuery {
+    private tags: Tags;
+    constructor(tags: Tags) {
+      this.tags = tags;
+    }
+  }

@@ -1,0 +1,101 @@
+[makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 702.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 708.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 714.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 720.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 726.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 732.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 738.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 744.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 750.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 756.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 762.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 768.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 782.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 788.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 794.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 800.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 806.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 812.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 818.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 824.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 830.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 836.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 842.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 848.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 854.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08305pt on
+  input line 860.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 873.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 879.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 885.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 891.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 897.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 903.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 909.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 915.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 921.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 927.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 933.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 939.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 945.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 951.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.08426pt on
+  input line 957.
+[WARNING] [makePDF] LaTeX Warning: Float too large for page by 27.07814pt on
+  input line 963.
+[WARNING] [makePDF] LaTeX Warning: There were undefined references.
+[WARNING] Missing character: There is no Γå⌐ (U+21A9) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γå⌐ (U+21A9) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γ¥ñ (U+2764) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no ∩╕Å (U+FE0F) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γ¥ñ (U+2764) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no ∩╕Å (U+FE0F) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γ¥ñ (U+2764) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no ∩╕Å (U+FE0F) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γå⌐ (U+21A9) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γå⌐ (U+21A9) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γå⌐ (U+21A9) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γå⌐ (U+21A9) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γå⌐ (U+21A9) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γå⌐ (U+21A9) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There is no Γå⌐ (U+21A9) in font Times New Roman/OT:script=cyrl;languag
+[WARNING] Missing character: There i

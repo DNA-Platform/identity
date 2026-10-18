@@ -1,0 +1,640 @@
+In React, achieving this requires either prop drilling, context, or having Chapter components "register" themselves somehow. Your system makes it declarative - the parent-child relationship is part of the type system.
+The limitation is that children must be Chemical components and the binding happens at mount time. But for the use cases you're describing, that's actually a benefit - it enforces structure.RetryDWell yeah, the children have to be Chemicals. I think we can accept that right? And we should probably have a ReactElement that represents the non-chemical children in order, so they can be rendered too - but lets worry about that laterCan we get this working? Can you write a child-binding test using the patterns you have been that does the simplest thing - a parent with one child, we expect it to only have that one child, and it does something to affect how that child is rendered in its viewThen do a case where the child is optionalThen do a case where it is an array of children of the same typeCan you do one where the array is of a base class ($Chemical works fine as the type) and then you use instance of in the view of the parent to handle alternating patternsEdittypescript'use client'
+import { $Chemical, child, optional } from '@/chemistry';
+
+// Test 1: Single required child
+class $Badge extends $Chemical {
+   $label = 'Badge';
+   $color = 'blue';
+   
+   view() {
+       return (
+           <span style={{ 
+               padding: '2px 8px', 
+               background: this.$color,
+               color: 'white',
+               borderRadius: '4px',
+               fontSize: '12px'
+           }}>
+               {this.$label}
+           </span>
+       );
+   }
+}
+
+class $Card extends $Chemical {
+   @child($Badge)
+   badge!: $Badge;
+   
+   $title = 'Card Title';
+   
+   view() {
+       return (
+           <div style={{ 
+               border: '1px solid #ddd', 
+               padding: '15px',
+               borderRadius: '8px'
+           }}>
+               <div style={{ 
+                   display: 'flex', 
+                   justifyContent: 'space-between',
+                   marginBottom: '10px'
+               }}>
+                   <h3 style={{ margin: 0 }}>{this.$title}</h3>
+                   {this.badge && this.badge.view()}
+               </div>
+               <div>Card content here</div>
+           </div>
+       );
+   }
+}
+
+// Test 2: Optional child
+class $OptionalCard extends $Chemical {
+   @optional()
+   @child($Badge)
+   badge?: $Badge;
+   
+   $title = 'Optional Badge Card';
+   
+   view() {
+       return (
+           <div style={{ 
+               border: '1px solid #ddd', 
+               padding: '15px',
+               borderRadius: '8px'
+           }}>
+               <h3>{this.$title}</h3>
+               {this.badge ? (
+                   <div>Has badge: {this.badge.view()}</div>
+               ) : (
+                   <div style={{ color: '#999' }}>No badge provided</div>
+               )}
+           </div>
+       );
+   }
+}
+
+// Test 3: Array of children
+class $ListItem extends $Chemical {
+   $text = 'Item';
+   
+   view() {
+       return <li>{this.$text}</li>;
+   }
+}
+
+class $List extends $Chemical {
+   @child($ListItem)
+   items: $ListItem[] = [];
+   
+   view() {
+       return (
+           <div style={{ border: '1px solid #ddd', padding: '15px' }}>
+               <h4>List ({this.items.length} items)</h4>
+               <ul>
+                   {this.items.map((item, i) => (
+                       <li key={i} style={{ color: i % 2 === 0 ? 'blue' : 'green' }}>
+                           {item.$text}
+                       </li>
+                   ))}
+               </ul>
+           </div>
+       );
+   }
+}
+
+// Test 4: Polymorphic children
+class $TextBlock extends $Chemical {
+   $content = 'Text';
+   
+   view() {
+       return <p>{this.$content}</p>;
+   }
+}
+
+class $ImageBlock extends $Chemical {
+   $url = '/placeholder.png';
+   $alt = 'Image';
+   
+   view() {
+       return (
+           <div style={{ background: '#f0f0f0', padding: '20px', textAlign: 'center' }}>
+               [Image: {this.$alt}]
+           </div>
+       );
+   }
+}
+
+class $Document extends $Chemical {
+   @child($Chemical)
+   blocks: $Chemical[] = [];
+   
+   view() {
+       return (
+           <div style={{ border: '2px solid #333', padding: '20px' }}>
+               <h3>Document with mixed content</h3>
+               {this.blocks.map((block, i) => (
+                   <div key={i} style={{ 
+                       padding: '10px',
+                       background: i % 2 === 0 ? '#f9f9f9' : 'white',
+                       borderLeft: block instanceof $ImageBlock ? '4px solid orange' : '4px solid blue'
+                   }}>
+                       {block instanceof $ImageBlock && <strong>IMAGE: </strong>}
+                       {block instanceof $TextBlock && <strong>TEXT: </strong>}
+                       {block.view()}
+                   </div>
+               ))}
+           </div>
+       );
+   }
+}
+
+export default function ChildBindingTest() {
+   const Card = new $Card().Component;
+   const Badge = new $Badge().Component;
+   const OptionalCard = new $OptionalCard().Component;
+   const List = new $List().Component;
+   const ListItem = new $ListItem().Component;
+   const Document = new $Document().Component;
+   const TextBlock = new $TextBlock().Component;
+   const ImageBlock = new $ImageBlock().Component;
+   
+   return (
+       <div style={{ padding: '40px', fontFamily: 'system-ui' }}>
+           <h1>Child Binding Tests</h1>
+           
+           {/* Test 1 */}
+           <div style={{ marginBottom: '40px' }}>
+               <h2>Test 1: Single Required Child</h2>
+               <Card title="Product Card">
+                   <Badge label="NEW" color="red" />
+               </Card>
+               <div style={{ marginTop: '10px', color: '#666' }}>
+                   ✓ Pass if badge appears in top-right of card<br/>
+                   ✗ Fail if badge missing or not bound
+               </div>
+           </div>
+           
+           {/* Test 2 */}
+           <div style={{ marginBottom: '40px' }}>
+               <h2>Test 2: Optional Child</h2>
+               <div style={{ display: 'flex', gap: '20px' }}>
+                   <div>
+                       <h4>With Badge:</h4>
+                       <OptionalCard title="Has Badge">
+                           <Badge label="OPTIONAL" color="green" />
+                       </OptionalCard>
+                   </div>
+                   <div>
+                       <h4>Without Badge:</h4>
+                       <OptionalCard title="No Badge" />
+                   </div>
+               </div>
+               <div style={{ marginTop: '10px', color: '#666' }}>
+                   ✓ Pass if left shows badge, right shows "No badge provided"<br/>
+                   ✗ Fail if error or badge appears on right
+               </div>
+           </div>
+           
+           {/* Test 3 */}
+           <div style={{ marginBottom: '40px' }}>
+               <h2>Test 3: Array of Children</h2>
+               <List>
+                   <ListItem text="First item" />
+                   <ListItem text="Second item" />
+                   <ListItem text="Third item" />
+               </List>
+               <div style={{ marginTop: '10px', color: '#666' }}>
+                   ✓ Pass if shows 3 items with alternating colors<br/>
+                   ✗ Fail if items missing or not styled differently
+               </div>
+           </div>
+           
+           {/* Test 4 */}
+           <div style={{ marginBottom: '40px' }}>
+               <h2>Test 4: Polymorphic Children (Base Class)</h2>
+               <Document>
+                   <TextBlock content="This is a text block" />
+                   <ImageBlock alt="Chart" />
+                   <TextBlock content="Another text block" />
+                   <ImageBlock alt="Graph" />
+               </Document>
+               <div style={{ marginTop: '10px', color: '#666' }}>
+                   ✓ Pass if different block types have different borders/labels<br/>
+                   ✗ Fail if blocks not differentiated by type
+               </div>
+           </div>
+       </div>
+   );
+}
+This test suite covers:
+
+Single required child - Parent controls where/how the badge appears
+Optional child - Gracefully handles missing children
+Array binding - Parent can style items differently (alternating colors)
+Polymorphic children - Using base class type and instanceof to handle different child types with different rendering
+
+Each test shows how the parent has full control over child presentation without the child knowing anything about how it will be used.RetryDNope we're not quite there yetEditLooking at the test results, none of the child binding tests are working. The console shows the binding process isn't happening - we can see applyBinding being called but the children aren't getting bound to their parent properties.
+Looking at the logs more carefully, I see a critical issue. When applyBinding is called, it's being called with the parent and child reversed in some cases. Also, the binding isn't happening at the right time.
+The problem is in how we're handling the parent-child relationship. When we modify children to add __parentInstance, that happens in the parent's render. But the child components need to mount and call handleParentBinding to actually register themselves.
+Let's add some debugging to see what's happening:
+typescriptclass $Card extends $Chemical {
+    @child($Badge)
+    badge!: $Badge;
+    
+    $title = 'Card Title';
+    
+    view() {
+        console.log('Card.view - this.badge:', this.badge);
+        return (
+            <div style={{ 
+                border: '1px solid #ddd', 
+                padding: '15px',
+                borderRadius: '8px'
+            }}>
+                <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'space-between',
+                    marginBottom: '10px'
+                }}>
+                    <h3 style={{ margin: 0 }}>{this.$title}</h3>
+                    {this.badge ? (
+                        <div>Badge exists: {this.badge.view()}</div>
+                    ) : (
+                        <div>No badge bound</div>
+                    )}
+                </div>
+                <div>Card content here</div>
+            </div>
+        );
+    }
+}
+The fundamental issue is that the parent renders before the child components have mounted and registered themselves. The parent's view() is called, but this.badge is still undefined because the child hasn't mounted yet.
+We need to render this.elements (the modified children) somewhere so they actually mount and trigger the binding process.RetryDHere's what we seeEditThe child binding isn't working at all. Looking at the console output, I can see the issue - the children aren't being rendered, so they never mount and register themselves with the parent.
+The problem is that the parent's view() method needs to render this.elements (which contains the modified children with __parentInstance props) for the children to actually mount and trigger the binding. But in your test, the parent is trying to access this.badge directly without ever rendering the children.
+Here's the fix for the $Card class:
+typescriptclass $Card extends $Chemical {
+    @child($Badge)
+    badge!: $Badge;
+    
+    $title = 'Card Title';
+    
+    view() {
+        console.log('Card.view - this.badge:', this.badge);
+        return (
+            <div style={{ 
+                border: '1px solid #ddd', 
+                padding: '15px',
+                borderRadius: '8px'
+            }}>
+                <div style={{ 
+                    display: 'flex', 
+                    justifyContent: 'space-between',
+                    marginBottom: '10px'
+                }}>
+                    <h3 style={{ margin: 0 }}>{this.$title}</h3>
+                    {this.badge ? (
+                        <div>Badge exists: {this.badge.view()}</div>
+                    ) : (
+                        <div>No badge bound</div>
+                    )}
+                </div>
+                <div>Card content here</div>
+                {/* CRITICAL: Render the children so they mount and bind */}
+                <div style={{ display: 'none' }}>{this.elements}</div>
+            </div>
+        );
+    }
+}
+But this is awkward - you have to render the children in a hidden div just to trigger binding, then render them again where you actually want them.
+The fundamental issue is that the binding happens when children mount, but the parent needs the bindings before it renders. This is a chicken-and-egg problem. The parent can't use bound children in its view because they haven't mounted yet, but they can't mount until the parent renders them.
+This architecture might need rethinking. Options:
+
+Two-pass rendering (bind first, then render)
+Lazy binding (access triggers mounting)
+Pre-process children before first render
+RetryDI haven't read it yet, but what if - I don't know if it helps - but what if the intended way to render a Chemical prop is:{ chemical }Would this trigger toString? Can we do something cool in toString?EditUsing {chemical} in JSX won't trigger toString() - React renders objects as [object Object] and throws an error. But we could override how the Chemical renders when used directly in JSX.
+Instead of toString(), we could add a special property that React recognizes. React looks for certain properties when rendering objects:
+typescriptclass $Chemical {
+    // React will use this if the object is rendered directly
+    get $$typeof() {
+        return Symbol.for('react.element');
+    }
+    
+    get type() {
+        return this.Component;
+    }
+    
+    get props() {
+        // Return current property values as props
+        const props: any = {};
+        for (const key in this) {
+            if (key.startsWith('$')) {
+                props[key.substring(1)] = this[key];
+            }
+        }
+        return props;
+    }
+}
+But this is hacky and could break React's internals.
+The real issue is architectural - the parent needs bound children before rendering, but children can't bind until they mount. The current flow is:
+
+Parent renders
+Parent's view() tries to use this.badge (undefined)
+Children mount later and bind themselves (too late)
+
+The binding needs to happen earlier, perhaps when the parent processes its children in modifyChildren, not when children mount. That way the parent has access to bound children immediately in its view().RetryDCould the child decorator do something to the object where it's children render invisible at first and then we can handle things reactively?EditThe decorator approach could work but adds complexity. The @child decorator could initialize the property with a placeholder that renders invisibly:
+typescriptexport function child(ChildClass: any) {
+    return function (target: any, propertyKey: string) {
+        // ... existing decorator logic ...
+        
+        // Initialize with a placeholder
+        Object.defineProperty(target, propertyKey, {
+            get() {
+                if (!this['_' + propertyKey]) {
+                    // Return a placeholder that renders nothing
+                    this['_' + propertyKey] = {
+                        view: () => null,
+                        isPlaceholder: true
+                    };
+                }
+                return this['_' + propertyKey];
+            },
+            set(value) {
+                this['_' + propertyKey] = value;
+                // Trigger update when real child binds
+                const updateFn = componentUpdaters.get(this);
+                if (updateFn) updateFn();
+            }
+        });
+    };
+}
+But this is getting convoluted. The real problem is timing - the parent renders before children exist as instances.
+A simpler fix might be to have the parent's view always render this.elements (which triggers child mounting), then access the bound children after they've mounted:
+typescriptview() {
+    return (
+        <>
+            {/* Render children first to trigger binding */}
+            <div style={{ display: 'none' }}>{this.elements}</div>
+            
+            {/* Now use bound children */}
+            <div>
+                {this.badge && this.badge.view()}
+            </div>
+        </>
+    );
+}
+But this requires every parent to remember to render this.elements. The framework should handle this automatically, not require manual workarounds in every parent component.RetryDBut that's what I mean by the child decorator. If that is ever called, override view somehow to put the children in invisibly (only do this once, mark that its been done so multiple child decorators are fine), and then the children are present but invisible in an innocuous container, and then their rendering triggers another cycle where properties of the child chemicals are added as regular reactive properties. And the child decorator makes sure the properties are there already, initialized with some proxy value like 0 so that there is a reactive property already presentEditThat's a clever approach. The @child decorator could:
+
+Wrap the original view() method to always render this.elements invisibly first
+Initialize the property with a default value to ensure reactivity exists
+When the real child binds, it replaces the placeholder and triggers an update
+
+Here's how it could work:
+typescriptexport function child(ChildClass: any) {
+    return function (target: any, propertyKey: string) {
+        const constructor = target.constructor as any;
+        if (!constructor.__bindingsMap) constructor.__bindingsMap = new Map<string, Binding>();
+
+        let binding = constructor.__bindingsMap.get(propertyKey);
+        if (!binding) {
+            binding = { property: propertyKey };
+            constructor.__bindingsMap.set(propertyKey, binding);
+        }
+
+        binding.class = ChildClass;
+        if (binding.optional === undefined)
+            binding.optional = false;
+
+        // Wrap view() method once (only on first @child decorator)
+        if (!constructor.__viewWrapped) {
+            constructor.__viewWrapped = true;
+            const originalView = target.view;
+            
+            target.view = function() {
+                const originalResult = originalView.call(this);
+                
+                // Always render elements invisibly to trigger child mounting
+                return (
+                    <>
+                        <div style={{ display: 'none', position: 'absolute' }}>
+                            {this.elements}
+                        </div>
+                        {originalResult}
+                    </>
+                );
+            };
+        }
+
+        // Initialize property with null/array to ensure it's reactive
+        const isArray = propertyKey.endsWith('s'); // Simple heuristic
+        target[propertyKey] = isArray ? [] : null;
+    };
+}
+This way:
+
+Parents don't need to manually render this.elements
+Properties exist and are reactive from the start
+Children mount invisibly, bind themselves, trigger updates
+Parent re-renders with bound children available
+
+The approach auto-handles the timing issue without requiring manual intervention in each parent's view() method.RetryDOh use {} as a default because we want object binding semantics for Chemicals right?EditYou're right - using {} as the default for Chemical properties would automatically give them the dirty-checking semantics for mutations. But there's a type mismatch - the property expects a $Badge instance, not a plain object.
+We could initialize with a proxy object that has the right shape:
+typescriptexport function child(ChildClass: any) {
+    return function (target: any, propertyKey: string) {
+        // ... existing binding setup ...
+
+        // Wrap view() method once
+        if (!target.constructor.__viewWrapped) {
+            target.constructor.__viewWrapped = true;
+            const originalView = target.view;
+            
+            target.view = function() {
+                const originalResult = originalView.call(this);
+                
+                return (
+                    <>
+                        <div style={{ display: 'none', position: 'absolute' }}>
+                            {this.elements}
+                        </div>
+                        {originalResult}
+                    </>
+                );
+            };
+        }
+
+        // Initialize with an object to get dirty-checking semantics
+        // This will be replaced when the real child binds
+        const isArray = Array.isArray(target[propertyKey]);
+        target[propertyKey] = isArray ? [] : {};
+    };
+}
+The property starts as {}, which gets reactive dirty-checking. When the real Chemical child mounts and binds, it replaces the {} with the actual Chemical instance. The setter fires, triggering a re-render with the bound child available.
+This leverages the existing object reactivity system rather than fighting against it. The timing issue is solved because the property always exists and is reactive from the start.RetryDOkay can you rewrite child from scratch, and can you make sure that the elements are on the bottom not the top and can you make sure thet are truly as innocusous as possible? Is that definitely a div with display none and absolute? Sounds like it but just making sure?Edittypescriptexport function child(ChildClass: any) {
+   return function (target: any, propertyKey: string) {
+       // Set up binding metadata
+       const constructor = target.constructor as any;
+       if (!constructor.__bindingsMap) {
+           constructor.__bindingsMap = new Map<string, Binding>();
+       }
+
+       let binding = constructor.__bindingsMap.get(propertyKey);
+       if (!binding) {
+           binding = { property: propertyKey };
+           constructor.__bindingsMap.set(propertyKey, binding);
+       }
+
+       binding.class = ChildClass;
+       if (binding.optional === undefined) {
+           binding.optional = false;
+       }
+
+       // Wrap the view method only once for the entire class
+       if (!constructor.__viewWrapped) {
+           constructor.__viewWrapped = true;
+           const originalView = target.view;
+           
+           target.view = function() {
+               const originalResult = originalView.call(this);
+               
+               // Render elements at the bottom, completely hidden
+               // position: fixed with left: -9999px ensures it's off-screen
+               // visibility: hidden ensures no interaction
+               // pointerEvents: none as extra safety
+               return (
+                   <>
+                       {originalResult}
+                       <div style={{ 
+                           position: 'fixed',
+                           left: '-9999px',
+                           top: '-9999px',
+                           visibility: 'hidden',
+                           pointerEvents: 'none',
+                           width: 0,
+                           height: 0,
+                           overflow: 'hidden'
+                       }}>
+                           {this.elements}
+                       </div>
+                   </>
+               );
+           };
+       }
+
+       // Initialize property with empty object for dirty-checking semantics
+       // Arrays get [], single items get {}
+       if (!target.hasOwnProperty(propertyKey)) {
+           const descriptor = Object.getOwnPropertyDescriptor(target, propertyKey);
+           const isArray = descriptor?.value instanceof Array;
+           target[propertyKey] = isArray ? [] : {};
+       }
+   };
+}
+Using position: fixed; left: -9999px moves it completely off-screen rather than just hiding it. Combined with visibility: hidden and pointerEvents: none, it's completely innocuous - won't affect layout, won't be visible, won't intercept clicks, and won't be read by screen readers. The elements render at the bottom after the original content.RetryDThat won't cause a scrollbar?EditYou're right to check - position: fixed with negative coordinates shouldn't cause scrollbars because fixed positioning takes elements out of the document flow. But to be absolutely safe, let's use a cleaner approach:
+typescriptexport function child(ChildClass: any) {
+    return function (target: any, propertyKey: string) {
+        // Set up binding metadata
+        const constructor = target.constructor as any;
+        if (!constructor.__bindingsMap) {
+            constructor.__bindingsMap = new Map<string, Binding>();
+        }
+
+        let binding = constructor.__bindingsMap.get(propertyKey);
+        if (!binding) {
+            binding = { property: propertyKey };
+            constructor.__bindingsMap.set(propertyKey, binding);
+        }
+
+        binding.class = ChildClass;
+        if (binding.optional === undefined) {
+            binding.optional = false;
+        }
+
+        // Wrap the view method only once for the entire class
+        if (!constructor.__viewWrapped) {
+            constructor.__viewWrapped = true;
+            const originalView = target.view;
+            
+            target.view = function() {
+                const originalResult = originalView.call(this);
+                
+                // Most innocuous: display none with aria-hidden
+                return (
+                    <>
+                        {originalResult}
+                        <div 
+                            style={{ display: 'none' }}
+                            aria-hidden="true"
+                        >
+                            {this.elements}
+                        </div>
+                    </>
+                );
+            };
+        }
+
+        // Initialize property with empty object for dirty-checking semantics
+        // Arrays get [], single items get {}
+        if (!target.hasOwnProperty(propertyKey)) {
+            const descriptor = Object.getOwnPropertyDescriptor(target, propertyKey);
+            const isArray = descriptor?.value instanceof Array;
+            target[propertyKey] = isArray ? [] : {};
+        }
+    };
+}
+Simple display: none is actually the safest - no scrollbars, no layout impact, no accessibility concerns with aria-hidden="true". The off-screen positioning was overkill.RetryDThe JSX in the chilkd function is returning an errorEditThe JSX syntax error is because we're inside a decorator function, not a React component. We can't use JSX there. We need to use React.createElement:
+typescriptexport function child(ChildClass: any) {
+    return function (target: any, propertyKey: string) {
+        // Set up binding metadata
+        const constructor = target.constructor as any;
+        if (!constructor.__bindingsMap) {
+            constructor.__bindingsMap = new Map<string, Binding>();
+        }
+
+        let binding = constructor.__bindingsMap.get(propertyKey);
+        if (!binding) {
+            binding = { property: propertyKey };
+            constructor.__bindingsMap.set(propertyKey, binding);
+        }
+
+        binding.class = ChildClass;
+        if (binding.optional === undefined) {
+            binding.optional = false;
+        }
+
+        // Wrap the view method only once for the entire class
+        if (!constructor.__viewWrapped) {
+            constructor.__viewWrapped = true;
+            const originalView = target.view;
+            
+            target.view = function() {
+                const originalResult = originalView.call(this);
+                
+                // Use React.createElement instead of JSX
+                return React.createElement(
+                    React.Fragment,
+                    null,
+                    originalResult,
+                    React.createElement(
+                        'div',
+                        { 
+                            style: { display: 'none' },
+                            'aria-hidden': 'true'
+                        },
+                        this.elements
+                    )
+                );
+            };
+        }
+
+        // Initialize property with empty object for dirty-checking semantics
+        // Arrays get [], single items get {}
+        if (!target.hasOwnProperty(propertyKey)) {
+            const descriptor = Object.getOwnPropertyDescriptor(target, propertyKey);
+            const isArray = descriptor?.value instanceof Array;
+            target[propertyKey] = isArray ? [] : {};
+        }
+    };
+}
+We need to import React at the top of the file for this to work.

@@ -1,0 +1,139 @@
+class Bond {
+    private _id: number;
+    get id() { return this._id; }
+    type: Type;
+    property: string;
+    isConfigured: boolean;
+    private _isReactive = false;
+    get isReactive() { return this.isInert ? false : this._isReactive; }
+    set isReactive(value: boolean) { this._isReactive = value; }
+    isParent = false;
+    isDynamic = false;
+    isCollective = false;
+    isObjective = false;
+    isRequired = false;    
+    isInert = false;
+    isProp = false;
+    isChemical = false;
+    isImplicitlyBound = false;
+    isExplicitlyBound = false;
+    isSettable = true;
+    synonyms: Bond[] = [];
+    symbolizer: (value: any) => any = (value) => value;
+    constructor(property: string, type: Type) {
+        this._id = Bond.getNextBondId();
+        this.property = property;
+        this.type = type;
+        this.isConfigured = false;
+        this.isReactive = false;
+    }
+
+    reactivate(chemical: $Chemical): any {
+        if (chemical === chemical.getType().formula)
+            throw Error('Formulas should not have activated properties');
+        // Imagine this is called on the instance of the class
+        if (this.isConfigured && this.isReactive) return;
+        if (this.isConfigured) {
+            this.isReactive = true;
+            return;
+        }
+
+        const thisBond = this;
+        const dynamicChemical: any = chemical;
+        const backingField = Symbol(`_${this.property}${this.id}`);
+        const getValue: () => any = () => { return dynamicChemical[backingField]; }
+        const setValue: (value: any) => void = (value) => { dynamicChemical[backingField] = value; }
+        setValue(dynamicChemical[this.property]);
+        
+        const property = Object.defineProperty(dynamicChemical, this.property, {
+            get() {
+                if (thisBond.isInert)
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is inert and should not be bound to a reactive property.`);
+                if (thisBond.isReactive && thisBond.isObjective || thisBond.isCollective) {
+                    const previousValue = getValue();
+                    setTimeout(() => {
+                        if (!thisBond.isReactive) return;
+                        const value = getValue();
+                        if (previousValue === value) return;
+                        if (!thisBond.equivalent(previousValue, value)) {
+                            if (!dynamicChemical[updatingKey])
+                                chemical.update();
+                        }
+                    })
+                }
+                return getValue();
+            },
+            set(value: any) {
+                if (thisBond.isInert)
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is inert and should not be bound to a reactive property.`);
+                if (!thisBond.isSettable)
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is not settable.`)
+                if (thisBond.isRequired && (value === null || value === undefined))
+                    throw Error(`${thisBond.type}.${chemical.chemicalId}.${thisBond.property} is required to have a value.`)
+                if (thisBond.type)
+                    thisBond.checkType(value);
+                
+                const previousValue = getValue();
+                setValue(value);
+
+                if (previousValue instanceof $Chemical) {
+                    const previousUpdateFunctions: (() => void)[] = (previousValue as any)[updateFunctionsKey];
+                    (previousValue as any)[updateFunctionsKey] = previousUpdateFunctions.filter(f => f !== this.update);
+                }
+                if (value instanceof $Chemical) {
+                    const valueUpdateFunctions: (() => void)[] = (value as any)[updateFunctionsKey];
+                    valueUpdateFunctions.push(this.update);
+                }
+
+                if (!thisBond.isReactive) return;
+                if (dynamicChemical[updatingKey]) return;
+                if (!thisBond.equivalent(previousValue, value)) {
+                    dynamicChemical[updatingKey] = true;
+                    setTimeout(() => {
+                        chemical.update();
+                    });
+                }
+            },
+            enumerable: true,
+        });
+
+        this.isConfigured = true;
+        this.isReactive = true;
+        return property;
+    }
+
+    equivalent(first: any, second: any) {
+        return this. symbolizer ? this.symbolizer(first) === this.symbolizer(second) : first === second;
+    }
+
+    duplicate(): this {
+        const double = Object.create(this);
+        double._id = Bond.getNextBondId();
+        return double;
+    }
+
+    private checkType(value: any): void {
+        if (!this.type || value === null || value === undefined) return;
+        
+        if (this.isChemical) {
+            if (!(value instanceof this.type))
+                throw Error(`${this.property} must be an instance of ${this.type.name}, got ${value.constructor.name}`);
+            return;
+        }
+        
+        const valueType = typeof value;
+        if (this.type === String && valueType !== 'string')
+            throw Error(`${this.property} must be a string, got ${valueType}`);
+        else if (this.type === Number && valueType !== 'number')
+            throw Error(`${this.property} must be a number, got ${valueType}`);
+        else if (this.type === Boolean && valueType !== 'boolean')
+            throw Error(`${this.property} must be a boolean, got ${valueType}`);
+        else if (this.type === Array && !Array.isArray(value))
+            throw Error(`${this.property} must be an array`);
+        else if (this.type === Object && valueType !== 'object')
+            throw Error(`${this.property} must be an object, got ${valueType}`);
+    }
+
+    private static nextBondId = 1;
+    private static getNextBondId(): number { return Bond.nextBondId++; }
+}

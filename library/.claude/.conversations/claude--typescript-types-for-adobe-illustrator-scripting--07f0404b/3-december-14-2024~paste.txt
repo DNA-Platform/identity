@@ -1,0 +1,202 @@
+const fs = require('fs');
+const path = require('path');
+const { exec } = require('child_process');
+const chokidar = require('chokidar');
+const rimraf = require('rimraf');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const srcDir = path.resolve(__dirname, 'src');
+const buildDir = path.resolve(__dirname, 'build');
+
+// Resolve locale-specific folders dynamically
+const pluginDir = resolveLocalePath(process.env.ILLUSTRATOR_SCRIPTS_PATH);
+const documentsDir = resolveLocalePath(process.env.ILLUSTRATOR_DOCUMENTS_PATH);
+
+if (!pluginDir || !documentsDir) {
+    console.error("Error: Both ILLUSTRATOR_SCRIPTS_PATH and ILLUSTRATOR_DOCUMENTS_PATH must be defined in the .env file.");
+    process.exit(1);
+}
+
+// Function to handle locale-specific paths and ensure they exist
+function resolveLocalePath(envPath) {
+    if (!envPath) return null;
+    const normalizedPath = path.normalize(envPath);
+    if (!fs.existsSync(normalizedPath)) {
+        console.error(`Error: Path does not exist - ${normalizedPath}`);
+        process.exit(1);
+    }
+    return normalizedPath;
+}
+
+// Copy src structure to build, excluding .ts files
+function copySrcToBuild() {
+    console.log('Copying src structure to build...');
+
+    function copyRecursive(source, target) {
+        if (!fs.existsSync(target)) {
+            fs.mkdirSync(target, { recursive: true });
+        }
+
+        const files = fs.readdirSync(source);
+        files.forEach(file => {
+            const sourcePath = path.join(source, file);
+            const targetPath = path.join(target, file);
+
+            if (fs.lstatSync(sourcePath).isDirectory()) {
+                copyRecursive(sourcePath, targetPath);
+            } else if (!file.endsWith('.ts')) {
+                fs.copyFileSync(sourcePath, targetPath);
+            }
+        });
+    }
+
+    copyRecursive(srcDir, buildDir);
+}
+
+// Process JS files, converting imports to JSX and renaming extensions
+function processJSFiles() {
+    console.log('Processing JS files...');
+
+    function processRecursive(dir) {
+        const files = fs.readdirSync(dir);
+        files.forEach(file => {
+            const filePath = path.join(dir, file);
+
+            if (fs.lstatSync(filePath).isDirectory()) {
+                processRecursive(filePath);
+            } else if (file.endsWith('.js')) {
+                const jsxPath = filePath.replace('.js', '.jsx');
+                const content = processImports(filePath);
+                fs.writeFileSync(jsxPath, content);
+                fs.unlinkSync(filePath); // Remove the .js file
+            }
+        });
+    }
+
+    processRecursive(buildDir);
+}
+
+// Modify imports in JS files for Illustrator compatibility
+function processImports(filePath) {
+    let content = fs.readFileSync(filePath, 'utf8');
+    content = content.replace(/"use strict";\n/, '');
+
+    let output = '';
+    const referenceRegex = /\/\/\/?\s*<reference path="([^"]+)"\s*\/>/g;
+
+    // Match all reference statements at the top of the file
+    let match;
+    let includePaths = [];
+    while ((match = referenceRegex.exec(content)) !== null) {
+        let includePath = match[1].replace(/^\.\//, '').replace('.ts', '.jsx');
+        includePaths.push(includePath);
+    }
+
+    // Add each include statement to the output
+    if (includePaths.length > 0) {
+        includePaths.forEach((path) => {
+            output += `#include ${path}\n`;
+        });
+        output += '\n'; // Separate includes from the rest of the content
+    }
+
+    // Add environment variable definitions
+    const scriptsPath = pluginDir.replace(/\\/g, '\\\\');
+    const documentsPath = documentsDir.replace(/\\/g, '\\\\');
+    output += `var SCRIPTS_PATH = "${scriptsPath}";\n`;
+    output += `var DOCUMENTS_PATH = "${documentsPath}";\n\n`;
+
+    // Remove reference statements from content and append remaining content
+    output += content.replace(referenceRegex, '');
+
+    return output;
+}
+
+// Sync build folder to plugin directory
+function syncToPlugin() {
+    console.log('Syncing to plugin directory...');
+
+    function syncRecursive(source, target) {
+        if (!fs.existsSync(target)) {
+            fs.mkdirSync(target, { recursive: true });
+        }
+
+        const files = fs.readdirSync(source);
+        files.forEach(file => {
+            const sourcePath = path.join(source, file);
+            const targetPath = path.join(target, file);
+
+            if (fs.lstatSync(sourcePath).isDirectory()) {
+                syncRecursive(sourcePath, targetPath);
+            } else {
+                fs.copyFileSync(sourcePath, targetPath);
+            }
+        });
+    }
+
+    syncRecursive(buildDir, pluginDir);
+}
+
+// Watch mode for file changes
+function watchFiles() {
+    console.log('Starting watch mode...');
+    chokidar.watch(srcDir, {
+        ignored: /.ts$/,
+        persistent: true
+    }).on('all', (event, filePath) => {
+        if (event === 'add' || event === 'change') {
+            const relativePath = path.relative(srcDir, filePath);
+            const buildPath = path.join(buildDir, relativePath);
+
+            fs.mkdirSync(path.dirname(buildPath), { recursive: true });
+            fs.copyFileSync(filePath, buildPath);
+
+            const pluginPath = path.join(pluginDir, relativePath);
+            fs.mkdirSync(path.dirname(pluginPath), { recursive: true });
+            fs.copyFileSync(filePath, pluginPath);
+        }
+    });
+
+    const tsc = exec("tsc -w", { cwd: __dirname });
+    tsc.stdout.on('data', (data) => console.log(data.toString()));
+    tsc.stderr.on('data', (data) => console.error('TypeScript error:', data.toString()));
+}
+
+// Main function with process flow
+async function main() {
+    try {
+        console.log('Cleaning build directory...');
+        rimraf.sync(buildDir);
+        fs.mkdirSync(buildDir, { recursive: true });
+
+        copySrcToBuild();
+        console.log('Running TypeScript compiler...');
+
+        await new Promise((resolve, reject) => {
+            exec("tsc", { cwd: __dirname }, (error, stdout, stderr) => {
+                if (error) {
+                    console.error('TypeScript compilation failed:');
+                    console.error(stdout);
+                    console.error(stderr);
+                    reject(error);
+                } else {
+                    resolve();
+                }
+            });
+        });
+
+        processJSFiles();
+        syncToPlugin();
+
+        if (process.argv.includes('-w')) {
+            watchFiles();
+        }
+    } catch (error) {
+        console.error(`Error in build process: ${error.message}`);
+        process.exit(1);
+    }
+}
+
+main();

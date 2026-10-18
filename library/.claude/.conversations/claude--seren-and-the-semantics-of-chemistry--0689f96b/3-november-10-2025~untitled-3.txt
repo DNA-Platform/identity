@@ -1,0 +1,89 @@
+ connect:dispatcher use / viteTimeMiddleware +0ms
+  connect:dispatcher use / viteRejectInvalidRequestMiddleware +1ms
+  connect:dispatcher use / corsMiddleware +0ms
+  connect:dispatcher use / viteHostCheckMiddleware +0ms
+  connect:dispatcher use / viteCachedTransformMiddleware +0ms
+  connect:dispatcher use /__open-in-editor launchEditorMiddleware +1ms
+  connect:dispatcher use / viteHMRPingMiddleware +0ms
+  connect:dispatcher use / viteServePublicMiddleware +1ms
+  connect:dispatcher use / viteTransformMiddleware +0ms
+  connect:dispatcher use / viteServeRawFsMiddleware +0ms
+  connect:dispatcher use / viteServeStaticMiddleware +0ms
+  connect:dispatcher use / viteHtmlFallbackMiddleware +1ms
+  connect:dispatcher use / viteIndexHtmlMiddleware +0ms
+  connect:dispatcher use / vite404Middleware +0ms
+  connect:dispatcher use / viteErrorMiddleware +1ms
+
+ DEV  v4.0.6 C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry
+
+  vite:resolve 0.77ms /tests/reflection.test.ts -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/tests/reflection.test.ts +0ms
+  vite:resolve 0.60ms /tests/catalogue.test.ts -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/tests/catalogue.test.ts +4ms
+  vite:resolve 0.85ms /tests/particle.test.ts -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/tests/particle.test.ts +2ms
+  vite:load 4.70ms [fs] /tests/reflection.test.ts +0ms
+  vite:load 4.96ms [fs] /tests/catalogue.test.ts +3ms
+  vite:load 3.74ms [fs] /tests/particle.test.ts +0ms
+  vite:resolve 0.67ms vitest -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/node_modules/vitest/dist/index.js +22ms
+  vite:resolve 7.41ms C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src/chemistry/particle -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/chemistry/particle.tsx +7ms
+  vite:resolve 7.44ms C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src/symbols -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/symbols.ts +0ms
+  vite:resolve 7.98ms ../src/catalogue -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/catalogue.ts +0ms
+  vite:resolve 7.62ms react -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/node_modules/react/index.js +0ms
+  vite:resolve 8.45ms @/chemistry/particle -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/chemistry/particle.tsx +1ms
+  vite:resolve 8.48ms @/symbols -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/symbols.ts +0ms
+  vite:import-analysis 10.81ms [2 imports rewritten] tests/catalogue.test.ts +0ms
+  vite:transform 28.31ms /tests/catalogue.test.ts +0ms
+  vite:import-analysis 11.40ms [4 imports rewritten] tests/particle.test.ts +1ms
+  vite:transform 28.70ms /tests/particle.test.ts +1ms
+  vite:resolve 1.85ms C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src/catalogue -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/catalogue.ts +42ms
+  vite:resolve 1.59ms C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry\src/reflection -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/reflection.ts +1ms
+  vite:resolve 2.15ms @/catalogue -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/catalogue.ts +0ms
+  vite:resolve 1.87ms @/reflection -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/reflection.ts +0ms
+  vite:import-analysis 3.01ms [3 imports rewritten] tests/reflection.test.ts +41ms
+  vite:transform 72.11ms /tests/reflection.test.ts +41ms
+  vite:load 1.81ms [fs] /src/catalogue.ts +116ms
+  vite:import-analysis 0.41ms [no imports] src/catalogue.ts +51ms
+  vite:transform 4.57ms /src/catalogue.ts +51ms
+  vite:load 0.51ms [fs] /src/reflection.ts +14ms
+  vite:resolve 1.69ms ./types -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/types.ts +86ms
+  vite:resolve 1.73ms ./catalogue -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/catalogue.ts +0ms
+  vite:resolve 1.74ms ./symbols -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/symbols.ts +0ms
+  vite:import-analysis 2.74ms [3 imports rewritten] src/reflection.ts +35ms
+  vite:transform 26.26ms /src/reflection.ts +35ms
+  vite:load 22.83ms [fs] /src/chemistry/particle.tsx +26ms
+  vite:resolve 0.83ms ../symbols -> C:/Users/dougl/OneDrive/Source/DNA Platform/chemistry/src/symbols.ts +23ms
+  vite:import-analysis 1.24ms [2 imports rewritten] src/chemistry/particle.tsx +23ms
+  vite:transform 22.68ms /src/chemistry/particle.tsx +23ms
+ ✓ tests/catalogue.test.ts (31 tests) 12ms
+  vite:load 2.49ms [fs] /src/symbols.ts +38ms
+  vite:load 3.26ms [fs] /src/types.ts +1ms
+  vite:import-analysis 0.08ms [no imports] src/symbols.ts +18ms
+  vite:transform 2.65ms /src/symbols.ts +18ms
+  vite:import-analysis 0.02ms [no imports] src/types.ts +2ms
+  vite:transform 4.30ms /src/types.ts +2ms
+  vite:cache [memory] /src/symbols.ts +0ms
+ ✓ tests/particle.test.ts (17 tests) 12ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/reflection.test.ts [ tests/reflection.test.ts ]
+TypeError: Cannot add the same private member more than once
+ ❯ __typeError src/reflection.ts:19:9
+     17| export function $instanceof(literal: symbol): $Primitive<symbol>;
+     18| export function $instanceof(literal: bigint): $Primitive<bigint>;
+     19| export function $instanceof(literal: Function): $Function;
+       |         ^
+     20| export function $instanceof<T>(literal: T[]): $Array<T>;
+     21| export function $instanceof<T>(literal: T): $Object<T>;
+ ❯ __privateAdd src/reflection.ts:23:62
+ ❯ new _$ObjectiveRep src/reflection.ts:509:5
+ ❯ $type src/reflection.ts:66:12
+ ❯ src/reflection.ts:914:22
+ ❯ tests/reflection.test.ts:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  48 passed (48)
+   Start at  01:26:35
+   Duration  1.05s (transform 508ms, setup 0ms, collect 378ms, tests 25ms, environment 1.49s, prepare 61ms)
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit

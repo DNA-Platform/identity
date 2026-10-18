@@ -1,0 +1,209 @@
+class $Bond<T extends $Chemical = any, P = any> {
+    private _getter?: () => any;
+    private _setter?: (value: any) => void;
+    private _backingField: any;
+    private _propertyDescriptor?: PropertyDescriptor;
+
+    private _bid?: string;
+    get bid() { 
+        if (!this._bid) 
+            this._bid = `${this._chemical.getType().name}[${this.chemical.cid}].${this._property}`; 
+        return this._bid 
+    }
+    
+    get chemical() { return this._chemical; }
+    private _chemical: T;
+    
+    get property() { return this._property; }
+    private _property: string;
+    
+    get descriptor() { return this._descriptor; }
+    private _descriptor: PropertyDescriptor;
+    
+    get binding() { return this._binding; }
+    private _binding!: $Binding;
+    
+    get bound() { return !!this._binding; }
+    get value(): P { return (this._chemical as any)[this._property]; }
+    
+    set value(value: P) { (this._chemical as any)[this._property] = value; }
+    
+    get valueType() { return this._valueType; }
+    private _valueType: $Type = Object;
+
+    get reactive() { return this._reactive; }
+    get inactive() { return !this._reactive; }
+    private _reactive = true;
+    reactivate() { this._reactive = true && !this._frozen; }
+    deactivate() { this._reactive = false; }
+
+    get frozen() { return this._frozen; }
+    crystallize() { this.deactivate(); this._frozen = true;  }
+    private _frozen = false;
+
+    constructor(chemical: T, property: string, descriptor: PropertyDescriptor) {
+        this._chemical = chemical;
+        this._property = property;
+        this._descriptor = descriptor;
+    }
+
+    init() {
+        if (this._chemical.crystalized) return;
+        const property = this._property;
+        const descriptor = this._descriptor;
+
+        this._backingField = descriptor.value;
+        this._getter = descriptor.get?.bind(this._chemical);
+        this._setter = descriptor.set?.bind(this._chemical);
+
+        const getValue = () => this._getter ? this._getter() : this._backingField;
+        const setValue = (value: any) => {
+            if (this._setter) this._setter(value);
+            else if (this._getter) throw new Error(`${property} property not settable`);
+            else this._backingField = value;
+        };
+        
+        const value = getValue();
+        if (value && Array.isArray(value) && value[0] instanceof $Binding) {
+            this._binding = value[0];
+            this._binding.property = property;
+            this._binding.parent = this._chemical.cid;
+            this._valueType = value[1];
+            if (this._binding.plurality == 'one') {
+                const type: typeof $Chemical = value[1] as any;
+                setValue(type.template ?? type.prototype);
+            } else {
+                if (this._frozen) return;
+                setValue([]);
+            }
+        }
+
+        if (typeof this._backingField === 'function') {
+            this._propertyDescriptor = {
+                value: (...args: any[]) => {
+                    // These should use 'this' to reference the bond
+                    // Then double() will work because the arrow function captures the new bond's 'this'
+                    this._chemical.formula?.bindState();
+                    const result = this._backingField.apply(this._chemical, args);
+                    this._chemical.formula.updateState();
+                    return result;
+                },
+                writable: true,
+                enumerable: true,
+                configurable: true,
+            };
+        }
+
+        if (typeof this._backingField === 'function') {
+            this._propertyDescriptor = {
+                value: (...args: any[]) => {
+                    this._chemical.formula.bindState();
+                    const result = this._backingField.apply(this._chemical, args);
+                    this._chemical.formula.updateState();
+                    return result;
+                },
+                writable: true,
+                enumerable: true,
+                configurable: true,
+            };
+        } else {
+            this._propertyDescriptor = {
+                get: () => this._bondGet(),
+                set: (value: any) => this._bondSet(value),
+                enumerable: true,
+                configurable: true,
+            };
+        }
+
+        Object.defineProperty(this._chemical, property, this._propertyDescriptor);
+    }
+
+    double(chemical: T): $Bond<T, P> {
+        const bond = Object.create(Object.getPrototypeOf(this));
+        Object.assign(bond, this);
+        
+        bond._chemical = chemical;
+        bond._bid = undefined;
+        bond._frozen = false;
+        
+        // Rebind the stored functions to the new chemical
+        if (this._getter) bond._getter = this._descriptor.get?.bind(chemical);
+        if (this._setter) bond._setter = this._descriptor.set?.bind(chemical);
+        
+        // The _propertyDescriptor already references 'this' methods
+        // So the new bond's _bondGet/_bondSet will be called automatically
+        Object.defineProperty(chemical, bond._property, bond._propertyDescriptor);
+        return bond;
+    }
+
+    private _bondGet() {
+        const getValue = () => this._getter ? this._getter() : this._backingField;
+        const setValue = (value: any) => {
+            if (this._setter) this._setter(value);
+            else if (this._getter) throw new Error(`${this._property} property not settable`);
+            else this._backingField = value;
+        };
+        
+        const state = this._chemical[$state];
+        const molecule = this._chemical.molecule;
+        let value = getValue();
+        
+        if (this.bound) {
+            const cid = molecule.bonds.get(this.binding);
+            let chemical = molecule.chemicals.get(cid!);
+            if (molecule.proxies.has(cid!)) {
+                chemical = molecule.proxies.get(cid!)!;
+                molecule.proxies.delete(cid!);
+                setValue(chemical);
+            }
+            if (!chemical) {
+                if (molecule.proxies.has(cid!)) {
+                    chemical = molecule.proxies.get(cid!)!;
+                    molecule.proxies.delete(cid!);
+                    setValue(chemical.cid);
+                }
+            }
+            value = chemical ? chemical : undefined;
+            if (this.reactive && value && state) 
+                value[$state] = state;
+        } else if (this.bound && Array.isArray(value)) {
+            value.forEach((item, index) => {
+                if (!(item instanceof $Chemical))
+                    throw new Error("Bound arrays must contain chemicals");
+                if (molecule.proxies.has(item.cid)) {
+                    const proxyId = item.cid;
+                    item = molecule.proxies.get(proxyId)!;
+                    molecule.proxies.delete(proxyId);
+                    value[index] = item;
+                }
+                if (this.reactive && item && state)
+                    item[$state] = state;
+            })
+        }
+        
+        if (this.reactive && state) 
+            state[this.bid] = symbolize(value);
+        return value;
+    }
+
+    private _bondSet(value: any) {
+        const setValue = (val: any) => {
+            if (this._setter) this._setter(val);
+            else if (this._getter) throw new Error(`${this._property} property not settable`);
+            else this._backingField = val;
+        };
+        
+        if (this._chemical.crystalized) return;
+        if (this.bound) {
+            if (!(value instanceof $Chemical || Array.isArray(value) || value === undefined))
+                throw new Error(`Expected a chemical or chemical array, got ${value}`);
+            if (Array.isArray(value))
+                throw new Error("Cannot assign a bound array. Modify the array instead");
+            if (value instanceof $Chemical)
+                this._chemical.molecule.bonds.set(this.binding, value.cid);
+            else
+                this._chemical.molecule.bonds.set(this.binding, -1);
+        }
+        setValue(value);
+    }
+}

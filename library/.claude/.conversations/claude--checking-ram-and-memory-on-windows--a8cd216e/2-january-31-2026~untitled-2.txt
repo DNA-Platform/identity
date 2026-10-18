@@ -1,0 +1,96 @@
+C:\Windows\System32>powercfg /Qh SCHEME_CURRENT SUB_DISK
+Power Scheme GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (Balanced)
+  GUID Alias: SCHEME_BALANCED
+  Subgroup GUID: 0012ee47-9041-4b5d-9b77-535fba8b1442  (Hard disk)
+    GUID Alias: SUB_DISK
+    Power Setting GUID: 0b2d69d7-a2a1-449c-9680-f91c70521c60  (AHCI Link Power Management - HIPM/DIPM)
+      Possible Setting Index: 000
+      Possible Setting Friendly Name: Active
+      Possible Setting Index: 001
+      Possible Setting Friendly Name: HIPM
+      Possible Setting Index: 002
+      Possible Setting Friendly Name: HIPM+DIPM
+      Possible Setting Index: 003
+      Possible Setting Friendly Name: DIPM
+      Possible Setting Index: 004
+      Possible Setting Friendly Name: Lowest
+    Current AC Power Setting Index: 0x00000001
+    Current DC Power Setting Index: 0x00000001
+
+    Power Setting GUID: 51dea550-bb38-4bc4-991b-eacf37be5ec8  (Maximum Power Level)
+      GUID Alias: DISKMAXPOWER
+      Minimum Possible Setting: 0x00000000
+      Maximum Possible Setting: 0x00000064
+      Possible Settings increment: 0x00000001
+      Possible Settings units: %
+    Current AC Power Setting Index: 0x00000064
+    Current DC Power Setting Index: 0x00000064
+
+    Power Setting GUID: 6738e2c4-e8a5-4a42-b16a-e040e769756e  (Turn off hard disk after)
+      GUID Alias: DISKIDLE
+      Minimum Possible Setting: 0x00000000
+      Maximum Possible Setting: 0xffffffff
+      Possible Settings increment: 0x00000001
+      Possible Settings units: Seconds
+    Current AC Power Setting Index: 0x0000003c
+    Current DC Power Setting Index: 0x0000003c
+
+    Power Setting GUID: 80e3c60e-bb94-4ad8-bbe0-0d3195efc663  (Hard disk burst ignore time)
+      GUID Alias: DISKBURSTIGNORE
+      Minimum Possible Setting: 0x00000000
+      Maximum Possible Setting: 0xffffffff
+      Possible Settings increment: 0x00000001
+      Possible Settings units: Seconds
+    Current AC Power Setting Index: 0x00000000
+    Current DC Power Setting Index: 0x0000001e
+
+    Power Setting GUID: d3d55efd-c1ff-424e-9dc3-441be7833010  (Secondary NVMe Idle Timeout)
+      Minimum Possible Setting: 0x00000000
+      Maximum Possible Setting: 0x0000ea60
+      Possible Settings increment: 0x00000001
+      Possible Settings units: milliseconds
+    Current AC Power Setting Index: 0x000007d0
+    Current DC Power Setting Index: 0x000003e8
+
+    Power Setting GUID: d639518a-e56d-4345-8af2-b9f32fb26109  (Primary NVMe Idle Timeout)
+      GUID Alias: NVMEPRIMARYIDLETIMEOUT
+      Minimum Possible Setting: 0x00000000
+      Maximum Possible Setting: 0x0000ea60
+      Possible Settings increment: 0x00000001
+      Possible Settings units: milliseconds
+    Current AC Power Setting Index: 0x000000c8
+    Current DC Power Setting Index: 0x0000001e
+
+    Power Setting GUID: dab60367-53fe-4fbc-825e-521d069d2456  (AHCI Link Power Management - Adaptive)
+      Minimum Possible Setting: 0x00000000
+      Maximum Possible Setting: 0x000493e0
+      Possible Settings increment: 0x00000001
+      Possible Settings units: millisecond
+    Current AC Power Setting Index: 0x00000064
+    Current DC Power Setting Index: 0x00000064
+
+    Power Setting GUID: dbc9e238-6de9-49e3-92cd-8c2b4946b472  (Secondary NVMe Power State Transition Latency Tolerance)
+      Minimum Possible Setting: 0x00000000
+      Maximum Possible Setting: 0x0000ea60
+      Possible Settings increment: 0x00000001
+      Possible Settings units: milliseconds
+    Current AC Power Setting Index: 0x00000064
+    Current DC Power Setting Index: 0x00000064
+
+    Power Setting GUID: fc7372b6-ab2d-43ee-8797-15e9841f2cca  (NVMe NOPPME)
+      GUID Alias: DISKNVMENOPPME
+      Possible Setting Index: 000
+      Possible Setting Friendly Name: Off
+      Possible Setting Index: 001
+      Possible Setting Friendly Name: On
+    Current AC Power Setting Index: 0x00000001
+    Current DC Power Setting Index: 0x00000000
+
+    Power Setting GUID: fc95af4d-40e7-4b6d-835a-56d131dbc80e  (Primary NVMe Power State Transition Latency Tolerance)
+      Minimum Possible Setting: 0x00000000
+      Maximum Possible Setting: 0x0000ea60
+      Possible Settings increment: 0x00000001
+      Possible Settings units: milliseconds
+    Current AC Power Setting Index: 0x0000000f
+    Current DC Power Setting Index: 0x00000032
+

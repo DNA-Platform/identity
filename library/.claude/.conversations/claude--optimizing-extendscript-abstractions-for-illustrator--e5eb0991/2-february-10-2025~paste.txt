@@ -1,0 +1,428 @@
+type $Ref<T = any> = $Reference<T> | T
+type $Arg<T = any> = $Reference<T> | T
+type $Any = $Ref<any>
+type $Str = $Ref<string> | Str
+type $Num = $Ref<number>
+type $Bool = $Ref<boolean>
+type $Arr<T=any> = $Ref<T[]> | A<T>
+type ExecutionMode = "Remote" | "Local"
+
+class $Command {
+    _expression: string = "";
+    _steps: A<$Command>;
+
+    expression(): string { return this._expression; }
+    steps(): A<$Command> { return this._steps; }
+
+    constructor(expression?: string, previous?: $Command) {
+        if (!expression) throw new Error("No expression specified");
+        this._steps = previous ? previous.steps().copy() : f([]); 
+        previous instanceof $Reference ?
+            this._steps.set(-1, this) :
+            this._steps.push(this);
+    }
+
+    $compile() {
+        return this.steps().stringJoin("\n").s();
+    }
+
+    $eval(onComplete?: OnCompleteHandler, onError?: OnErrorHandler): void {
+        var expression = this.$compile();
+        $eval(expression, onComplete, onError);
+    }
+
+    $execute<T = any>(global: boolean = false): T {
+        var __referent__: T = undefined as any;
+        var cmd = this instanceof $VariableReference ? this.$var("__referent__") : this;
+        var expression = cmd.$compile();
+        if (global) {
+            // Explicitly run eval in the global scope
+            eval.call($.global || globalThis, expression);
+        } else {
+            eval(expression);
+        }
+        return __referent__;
+    }
+
+    toString(): string {
+        return this.expression();
+    }
+}
+
+class $Reference<Type = any> extends $Command {
+    _address: string;
+    _properties = dictionary<$PropertyReference>();
+    address(): string { return this._address; }
+    loc(): string { return this.address(); }
+
+    constructor(address?: $Any, previous?: $Command) {
+        address = `${address}`;
+        super(`${address};`, previous)
+        this._address = address;
+    }
+
+    $dot<TSelection = any>(selector: string): $PropertyReference<this, TSelection>
+    $dot<TSelection = any>(selector: (o: Type) => TSelection): $PropertyReference<this, TSelection>
+    $dot<TSelection = any>(selector: ((o: Type) => TSelection) | string): $PropertyReference<this, TSelection> {
+        var key = typeof selector === "function" ? selector.toString() : selector;
+        var ref = this._properties[key];
+        if (ref) return ref;
+
+        var path = typeof selector === "function" ?
+            str(stringJoin(str(key).split(".").skip(1), ".").split(";").first()).replaceAll(" ", "").s() :
+            selector;
+
+        ref = new $PropertyReference<this, TSelection>(this, path);
+        this._properties[path] = ref;
+        return ref;
+    }
+
+    $get<TSelection = any>(selector: string, newValue?: TSelection): $PropertyReference<this, TSelection>
+    $get<TSelection = any>(selector: (o: Type) => TSelection, newValue?: TSelection | $Any): $PropertyReference<this, TSelection>
+    $get<TSelection = any>(selector: ((o: Type) => TSelection) | string, newValue?: TSelection | $Any): $PropertyReference<this, TSelection> {
+        var ref = typeof selector === "function" ?  this.$dot(selector) : this.$dot(selector);
+        if (newValue !== undefined) ref.$assign($arg(newValue));
+        return ref;
+    }
+
+    $set<TSelection = any>(selector: string, value: TSelection): void
+    $set<TSelection = any>(selector: (o: Type) => TSelection, value: TSelection | $Any): void
+    $set<TSelection = any>(selector: ((o: Type) => TSelection) | string, value: TSelection | $Any): void {
+        var ref = typeof selector === "function" ?  this.$dot(selector) : this.$dot(selector);
+        ref.$assign($arg(value));
+    }
+
+    $call<TResult = any>(selector: ((o: Type) => TResult) | string, ...args: $Any[]): $MethodCallReference<this, TResult> {
+        var propertyRef = typeof selector === "function" ?  this.$dot(selector) : this.$dot(selector);
+        return new $MethodCallReference<this, TResult>(propertyRef, args);
+    }
+
+    $invoke<TResult = any>(...args: $Any[]): $FunctionCallReference<TResult> {
+        return new $FunctionCallReference<TResult>(this, args);
+    }
+
+    $of<TElement = any>(index: number | string | $Num | $Str): $IndexerReference<$Reference<Type>, TElement> {
+        return new $IndexerReference<this, TElement>(this, index);
+    }
+
+    $cast<T>(): T {
+        return this as any;
+    }
+
+    $check(): this {
+        var check = new $CheckedReference(this);
+        this._expression = check._expression;
+        return this;
+    }
+
+    $assign(value: $Arg) {
+        var cmd = new $Command(`${this} = ${$arg(value)};`);
+        console.log(cmd)
+        cmd.$execute();
+    }
+
+    $var(name: string): $VariableReference<Type> {
+        var assignment = new $VariableAssignment<Type>(name, this);
+        return assignment.variable();
+    }
+
+    $equals(ref: $Reference): boolean {
+        var thisObject = this.$resolve();
+        var otherObj = ref.$resolve();
+        return thisObject === otherObj;
+    }
+
+    $func<T = any>(selector: (o: Type) => T): $VariableReference<T> {
+        //Need to implement like dot
+    }
+
+    $resolve(global?: boolean): Type {
+        var _referent_: Type = undefined as any;
+        this.$var("_referent_").$execute(global);
+        return _referent_;
+    }
+
+    toString(): string {
+        return this.address();
+    }
+
+    private static variableCounter = 1;
+    static generateUniqueVariableName(prefix?: string) {
+        var timestamp = new Date().getTime(); // Current time in milliseconds
+        var randomNum = Math.floor(Math.random() * 100000); // Random number between 0 and 99999
+        return `____${prefix || "var"}_${timestamp}_${randomNum}_${this.variableCounter++}____`;
+    }
+}
+
+class $CheckedReference<Type = any> extends $Reference<Type> {
+    constructor(ref: $Any, newValue?: $Any) {
+        super($CheckedReference.addCheck(ref, newValue));
+    }
+
+    protected static addCheck(expression: $Any, newValue?: $Any): string {
+        var varName = $Reference.generateUniqueVariableName();
+        expression = `
+            (function() {
+                var ${varName} = ${expression};
+                if (${varName} === null || ${varName} === undefined) {
+                    throw new Error(${$str(expression, "is null or undefined")});
+                }
+                ${newValue ? `${expression} = ${newValue};` : ""}
+                return ${varName};
+            })()`
+        return expression;
+    }
+}
+
+class $VariableReference<TVariable = any> extends $Reference<TVariable> {
+    protected _name: string;
+    name(): string { return this._name; }
+
+    constructor(name: string, previous: $Command) {
+        super(name, previous);
+        if (name === undefined || name.length === 0)
+            throw new Error("A variable reference must have a name");
+        this._name = name;
+    }
+}
+
+class $VariableAssignment<TVariable = any> extends $Command {
+    protected _name: string;
+    protected _variable: $VariableReference<TVariable>;
+    name(): string { return this._name; }
+    variable(): $VariableReference<TVariable> { return this._variable;  }
+
+    constructor(name: string, ref: $Reference<TVariable>) {
+        if (name === undefined || name.length === 0 || !ref)
+            throw new Error("A variable reference must have a name and a referenec to assign");
+        var expression = `var ${name} = ${ref};`;
+        super(expression, ref);
+        this._name = name;
+        this._variable = new $VariableReference<TVariable>(name, this);
+    }
+}
+
+class $ClassReference<Type extends Function = any> extends $Reference<Type> {
+    protected _ctor: Type;
+    ctor(): Type { return this._ctor; }
+
+    constructor(ctor: Type) {
+        if (!ctor) throw new Error("No class specified")
+        super(ctor.name)
+        this._ctor = ctor;
+    }
+}
+
+class $PropertyReference<TObject extends $Reference<any> = any, TProperty = any> extends $Reference<TProperty> {
+    protected _object: TObject;
+    protected _property: string;
+    property(): string { return this._property; }
+    object(): TObject { return this._object; }
+
+    constructor(object: TObject, property: string) {
+        if (property === undefined || property.length == 0 || object === undefined)
+            throw new Error("The object and property both need to be defined in a property reference");
+
+        var expression = `${object.address()}.${property}`;
+        super(expression, object);
+        this._object = object;
+        this._property = property;
+    }
+}
+
+class $FunctionCallReference<TResult = any> extends $Reference<TResult> {
+    protected _func: $Reference;
+    protected _args: A<$Reference>;
+    func(): $Reference { return this._func; }
+    args(): A<$Reference> { return this._args; }
+
+    constructor(func: $Reference, args: $Any[]) {
+        if (args === undefined) args = [];
+        if (func === undefined) throw new Error("A FunctionCallReference must have an function");
+        var $args = f(args).select(a => $arg(a));
+        var ref = `${func}(${$args.stringJoin(",")})`;
+        super(ref, func);
+        this._func = func;
+        this._args = $args;
+    }
+}
+
+class $MethodCallReference<TObject extends $Reference = any, TResult = any> extends $Reference<TResult> {
+    protected _object: TObject;
+    protected _method: string;
+    protected _args: A<$Reference>
+    method(): string { return this._method; }
+    args(): A<$Reference> { return this._args; }
+
+    constructor(method: $PropertyReference<TObject, any>, args: $Any[]) {
+        if (args === undefined) args = [];
+        if (method === undefined) throw new Error("A MethodCallReference must have an function");
+        var $args = f(args).select(a => $arg(a));
+        var ref = `${method}(${$args.stringJoin(",")})`;
+        super(ref, method);
+        this._object = method.object();
+        this._method = method.property();
+        this._args = $args;
+    }
+}
+
+class $ArrayReference<TElement = any> extends $Reference<TElement[]> {
+    constructor(array: $Reference, previous?: $Command) {
+        super(array, previous);
+    }
+}
+
+class $IndexerReference<TArray extends $Reference = any, TElement = any> extends $Reference<TElement> {
+    protected _array: TArray;
+    protected _index: $Reference;
+    array(): $Reference { return this._array; }
+    index(): $Reference { return this._index; }
+
+    constructor(array: TArray, index: number | string | $Num | $Str) {
+        var [$arrayIndex, $index] = $IndexerReference.createIndexExpression(array, index);
+        super($arrayIndex);
+        if (array === undefined || index == undefined)
+            throw new Error("Index references must have an array and an index");
+        this._array = array;
+        this._index = $index;
+
+    }
+
+    private static createIndexExpression(array: $Reference, index: $Arg): [$Reference, $Reference] {
+        if (typeof index === "number" && index < 0) index = $ref(`${array}.length + ${index}`);
+        else index = $arg(index);
+        return [$ref(`${array}[${index}]`), index];
+    }
+}
+
+class $ArrayLiteralReference<TElement = any> extends $ArrayReference<TElement> {
+    constructor(array: TElement[] | A<TElement>) {
+        if (!array) throw new Error("Array literal undefined");
+        super($ArrayLiteralReference.createArrayExpression(array));
+    }
+
+    private static createArrayExpression(array: any[] | A<any>): $Reference {
+        if (array instanceof A) array = array.a();
+        if (array.length == 0) return $ref("[]");
+        return $ref(`[${f(array).select(r => $arg(r)).stringJoin(",")}]`);
+    }
+}
+
+class $StringLiteralReference extends $Reference<string> {
+    _value: string;
+    value(): string { return this._value; }
+
+    constructor(value: string | Str| $Reference, quoteType: `"` | `'` = `"`) {
+        if (value === undefined) throw new Error("String literal unspecified");
+        if (value instanceof $Reference) value = value.toString();
+        if (value instanceof Str) value = value.s();
+        super(`${quoteType}${value}${quoteType}`);
+        this._value = value;
+    }
+}
+
+class $Eval {
+    private static _commands: CommandQueue | undefined;
+    private static _mode: ExecutionMode = "Remote";
+
+    private static commands() { if (!this._commands) this._commands = new CommandQueue(); return this._commands; }
+    private static mode(newMode?: ExecutionMode) { if (newMode !== undefined) this._mode = newMode; return this._mode; }
+
+    static debug: boolean = false;
+
+    static cmd(cmd: $Command | $Reference | string, onComplete?: OnCompleteHandler, onError?: OnErrorHandler): void {
+        onComplete = onComplete || this.onCompleteDefault;
+        onError = onError || this.onErrorDefault;
+        if (this.mode() === "Remote") {
+            if (cmd instanceof $Reference) cmd = cmd.address();
+            if (cmd instanceof $Command) cmd = cmd.expression();
+            this.commands().enqueue(cmd, false);
+        } else {
+            if (!(cmd instanceof $Command)) cmd = $cmd(cmd);
+            if (this.commands().length() > 0)
+                this.sync(onComplete, onError);
+
+            var cmdExpression = cmd.expression();
+            if (!onError) {
+                cmd.$execute();
+                if (onComplete) onComplete(cmdExpression, 0);
+            } else {
+                try {
+                    cmd.$execute();
+                    if (onComplete) onComplete(cmdExpression, 0);
+                } catch (e) {
+                    onError(cmdExpression, 0, {
+                        body: (e as any || "Command failed").toSring() as string,
+                        headers: { "Error-Code": -1 }
+                    });
+                }
+            }
+        }
+    }
+
+    static sync(onComplete?: OnCompleteHandler, onError?: OnErrorHandler) {
+        onComplete = onComplete || this.onCompleteDefault;
+        onError = onError || this.onErrorDefault;
+        if (this.debug) {
+            onComplete = (cmd, i) => { console.log(`$eval.sync ${i} complete:`, cmd); if (onComplete) onComplete(cmd, i); }
+            onError = (cmd, i, e) => { console.log(`$eval.sync ${i} FAILED:`, cmd, e?.headers?.["Error-Code"], e?.body); if (onError) onError(cmd, i, e); }
+        }
+        this.commands().sync(onComplete, onError);
+    }
+
+    static onCompleteDefault: OnCompleteHandler | undefined;
+    static onErrorDefault: OnErrorHandler | undefined;
+}
+
+function $ref<Type = any>(expression: $Any): $Reference<Type> {
+    if (expression === null || expression === undefined) return expression as any;
+    if (expression instanceof $Reference) return expression;
+    if (expression === null || expression === undefined) return undefined as any;
+    if (expression instanceof A) expression = expression.a();
+    if (expression instanceof Array) return $arr(expression) as any;
+    if (typeof expression === "function") return new $ClassReference(expression);
+    return new $Reference<Type>(expression);
+}
+
+function $cmd(expression: $Any): $Command {
+    if (expression === undefined) return undefined as any;
+    if (expression instanceof $Command) return expression;
+    if (expression instanceof Str) return new $Command(expression.s());
+    if (typeof expression === "string") return new $Command(expression);
+    return $ref(expression);
+}
+
+// Like $ref but strings are treated as string literals
+function $arg<Type = any>(arg: $Arg): $Reference<Type> {
+    if (typeof arg === "string" || arg instanceof Str) return $str(arg) as any;
+    return $ref(arg);
+}
+
+function $str(...parts: $Any[]): $StringLiteralReference {
+    if (parts === undefined) return undefined as any;
+    var len = parts.length;
+    if (len == 1) {
+        var part = parts[0];
+        if (typeof part === "string") return new $StringLiteralReference(part);
+        if (part instanceof Str) return new $StringLiteralReference(part.s());
+        if (part instanceof $StringLiteralReference) return part;
+        return new $StringLiteralReference(`${part}`);
+    }
+    var value = f(parts).select(s => s instanceof $StringLiteralReference ? s.value() : s).stringJoin(" ").s();
+    return new $StringLiteralReference(value);
+}
+
+function $arr<TElement = any>(array: $Arr<TElement>): $ArrayReference<TElement> {
+    if (array === undefined) return undefined as any;
+    if (array instanceof $Reference) return new $ArrayReference(array);
+    if (array instanceof A) array = array.a();
+    return new $ArrayLiteralReference(array);
+}
+
+function $eval(cmd: $Command | $Reference | string, onComplete?: OnCompleteHandler, onError?: OnErrorHandler): void {
+    $Eval.cmd(cmd, onComplete, onError);
+}
+
+function $sync(onComplete?: OnCompleteHandler, onError?: OnErrorHandler) {
+    $Eval.sync(onComplete, onError);
+}

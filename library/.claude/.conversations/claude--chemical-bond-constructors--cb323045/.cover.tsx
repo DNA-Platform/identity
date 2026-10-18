@@ -1,0 +1,47 @@
+import { Author, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
+import { BookshelfCover as Cover, Illustration, Messages, Participant, Participants, Period, Scheme, Volume, Window } from '../../../.manual/.book';
+import { Account, Origin, Project } from '../../.manual/.book';
+import SubjectCover from '../.cover.tsx';
+import StoryCover from '../../../.librarian/.cover.tsx';
+
+export default () => (
+    <Chapter>
+        <Cover />
+        <Volume>{SubjectCover()}</Volume>
+        <Volume>{StoryCover()}</Volume>
+        <Scheme
+            ground="#f6f0ea"
+            band="#e0c6ad"
+            bandInk="#5a3a1e"
+            foot="#c89a72"
+            footInk="#4a2c12"
+            ink="#5a3a1e"
+        />
+        <Window
+            x="-32"
+            y="-26"
+        />
+        <Participants>
+            <Participant>$[[ Doug ]]( Dougs Story )</Participant>
+            <Participant>$[[ Claude ]]( Dougs Claude )</Participant>
+        </Participants>
+        <Period
+            from="2025-09-26T15:44:17.170733Z"
+            to="2025-09-26T18:11:00.348769Z"
+        />
+        <Messages
+            shown="16"
+            all="16"
+        />
+        <Title>[[ Chemical bond constructors ]]( claude--Chemical bond constructors--cb323045 )</Title>
+        <Author>*[[ Doug ]]( The Librarian )</Author>
+        <Subject>**[[ Conversations ]]( Our Conversations )</Subject>
+        <Project>***[[ Chemistry ]]( claude--Chemistry )</Project>
+        <Account>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Account>
+        <Origin>cb323045-404f-4578-aa7d-9238956f81d5</Origin>
+        <Paragraph>
+            <Illustration />
+            <Svg>![[ illustration.svg ]]</Svg>
+        </Paragraph>
+    </Chapter>
+);

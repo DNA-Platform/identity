@@ -1,0 +1,227 @@
+// app/tests/dependencies/sharing-tests.tsx
+'use client'
+import { $Chemical, $use, $check } from '@/chemistry';
+import React from 'react';
+
+// ============================================
+// SIMPLE TITLE COMPONENT
+// ============================================
+
+class $Title extends $Chemical {
+    $value = 'Title';
+    
+    view() {
+        return (
+            <div style={{ 
+                fontSize: '16px',
+                fontWeight: 'bold',
+                marginBottom: '10px',
+                color: '#333'
+            }}>
+                {this.$value}
+            </div>
+        );
+    }
+}
+
+// ============================================
+// SIMPLE CARD COMPONENT
+// ============================================
+
+class $Card extends $Chemical {
+    // Simple properties that can be overridden via TSX
+    $background? = '#e3f2fd';  // Light blue default - optional in TSX
+    $text? = 'Card Text';      // Optional in TSX
+    $border? = '2px solid #1976d2';  // Optional in TSX
+    
+    // Track instance (not TSX properties, no $)
+    id = Math.random().toString(36).substr(2, 5);
+    updateCount = 0;
+    
+    changeBackground() {
+        // Generate a light random color
+        const hue = Math.floor(Math.random() * 360);
+        this.$background = `hsl(${hue}, 70%, 90%)`;
+        this.updateCount++;
+    }
+    
+    changeText() {
+        this.$text = `Updated ${this.updateCount++}`;
+    }
+    
+    changeBorder() {
+        const styles = ['solid', 'dashed', 'dotted', 'double'];
+        const currentStyle = this.$border!.split(' ')[1];
+        const nextIndex = (styles.indexOf(currentStyle) + 1) % styles.length;
+        this.$border = `2px ${styles[nextIndex]} #1976d2`;
+        this.updateCount++;
+    }
+    
+    view() {
+        return (
+            <div style={{ 
+                padding: '20px',
+                background: this.$background,
+                border: this.$border,
+                borderRadius: '8px',
+                marginBottom: '10px',
+                position: 'relative'
+            }}>
+                <div style={{ 
+                    position: 'absolute', 
+                    top: '5px', 
+                    right: '5px',
+                    fontSize: '10px',
+                    color: '#666',
+                    background: 'white',
+                    padding: '2px 5px',
+                    borderRadius: '3px'
+                }}>
+                    ID: {this.id}
+                </div>
+                
+                <div style={{ fontWeight: 'bold', marginBottom: '10px', fontSize: '16px' }}>
+                    {this.$text}
+                </div>
+                
+                <div style={{ fontSize: '11px', color: '#444', marginBottom: '10px' }}>
+                    Updates: {this.updateCount} | BG: {this.$background}
+                </div>
+                
+                <div style={{ display: 'flex', gap: '5px' }}>
+                    <button 
+                        onClick={() => this.changeBackground()}
+                        style={{ fontSize: '12px', padding: '4px 8px' }}
+                    >
+                        Change BG
+                    </button>
+                    <button 
+                        onClick={() => this.changeText()}
+                        style={{ fontSize: '12px', padding: '4px 8px' }}
+                    >
+                        Change Text
+                    </button>
+                    <button 
+                        onClick={() => this.changeBorder()}
+                        style={{ fontSize: '12px', padding: '4px 8px' }}
+                    >
+                        Change Border
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+
+// ============================================
+// CARD CONTAINER - Has cards as children
+// ============================================
+
+class $CardContainer extends $Chemical {
+    title!: $Title;
+    card1!: $Card;
+    card2!: $Card;
+    
+    $CardContainer(title: $Title, card1: $Card, card2: $Card) {
+        this.title = $check(title, $Title);
+        this.card1 = $check(card1, $Card);
+        this.card2 = $check(card2, $Card);
+    }
+    
+    view() {
+        const Title = $use(this.title);
+        const Card1 = $use(this.card1);
+        const Card2 = $use(this.card2);
+        
+        return (
+            <div style={{ 
+                padding: '15px',
+                background: '#f5f5f5',
+                border: '2px solid #999',
+                borderRadius: '8px',
+                marginBottom: '15px'
+            }}>
+                <Title />
+                <Card1 />
+                <Card2 />
+            </div>
+        );
+    }
+}
+
+// ============================================
+// TEST 1: SAME BOUND INSTANCE RENDERED TWICE
+// ============================================
+
+class $BoundSharingTest extends $Chemical {
+    // Get bound cards from constructor
+    card1!: $Card;
+    card2!: $Card;
+    
+    $BoundSharingTest(card1: $Card, card2: $Card) {
+        this.card1 = $check(card1, $Card);
+        this.card2 = $check(card2, $Card);
+    }
+    
+    view() {
+        const Card1 = $use(this.card1);
+        const Card2 = $use(this.card2);
+        
+        return (
+            <div style={{ padding: '20px', background: 'white', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                <h3>Test 1: Same Bound Instance - With and Without Props</h3>
+                
+                <div style={{ marginBottom: '20px', background: '#e8f5e9', padding: '15px', borderRadius: '4px' }}>
+                    <strong>Key Concept:</strong>
+                    <p style={{ margin: '10px 0' }}>
+                        Each row shows the SAME bound instance rendered twice. Left side: no props (original). 
+                        Right side: with color override. Changes to the left affect both UNTIL the right side 
+                        shadows that property by changing it directly.
+                    </p>
+                </div>
+                
+                <div style={{ marginBottom: '20px' }}>
+                    <h4>Card 1 - Instance {this.card1.id}</h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                        <div>
+                            <div style={{ fontSize: '12px', marginBottom: '5px', color: '#666' }}>
+                                ✨ Original (no props)
+                            </div>
+                            <Card1 />
+                        </div>
+                        <div>
+                            <div style={{ fontSize: '12px', marginBottom: '5px', color: '#666' }}>
+                                🎨 With background override
+                            </div>
+                            <Card1 background="#ffe0b2" text="Same instance, orange BG" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Card 2 - Instance {this.card2.id}</h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                        <div>
+                            <div style={{ fontSize: '12px', marginBottom: '5px', color: '#666' }}>
+                                ✨ Original (no props)
+                            </div>
+                            <Card2 />
+                        </div>
+                        <div>
+                            <div style={{ fontSize: '12px', marginBottom: '5px', color: '#666' }}>
+                                🎨 With background override
+                            </div>
+                            <Card2 background="#f3e5f5" text="Same instance, purple BG" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div style={{ marginTop: '20px', padding: '10px', background: '#fff3cd', borderRadius: '4px' }}>
+                    <strong>Try This:</strong> Change the background on the left - the right keeps its override. 
+                    Change the border on the left - BOTH update! Change text on the right - it shadows and 
+                    becomes independent.
+                </div>
+            </div>
+        );
+    }
+}

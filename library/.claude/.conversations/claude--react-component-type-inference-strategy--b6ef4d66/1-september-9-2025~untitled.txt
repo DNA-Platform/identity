@@ -1,0 +1,612 @@
+Also verify that $Children<$Child1> resolves correctly:
+typescripttype Debug1 = $Children<$Child1>;
+// Should be: { children?: React.ReactElement<any, typeof Func> }
+
+type Debug2 = $Properties<$Child1> & $Children<$Child1>;  
+// Should include both 'name' and 'children' properties
+If the types resolve correctly but you're still getting the error, the issue is likely that the Component getter isn't preserving the generic type properly.RetryDexport class $Chemical {
+    get cid() { return this._cid; }
+    private _cid: number;    get formula(): $Formula { return this._formula; }
+    private _formula: $Formula;    get template(): this { return this._template; }
+    private set template(chemical: this) {
+        this._template = chemical;
+    }
+    private _template: this;    get parent() { return this._parent; }
+    private _parent: $Chemical | undefined;    get Component(): $Component<this> {
+        if (!this._component)
+            this._component = this.__createComponent();
+        return this._component!;
+    }
+    private _component?: $Component<this>;EditThe issue is that your Component getter returns $Component<this>, but when you create an instance with new $Child1(), the this type becomes the instance type, not the class type.
+Check if __createComponent() is correctly typed. It should return $Component<this>.
+To debug, check what TypeScript thinks these types are:
+typescriptconst child1Instance = new $Child1();
+type ComponentType = typeof child1Instance.Component;
+// Should be: $Component<$Child1>
+
+type PropsType = Parameters<ComponentType>[0];
+// Should include both 'name' and 'children'
+The problem might be that this in the getter refers to the instance, but $Component<this> expects the full type info. Try:
+typescriptget Component(): $Component<this> {
+    if (!this._component) {
+        const self = this;
+        this._component = ((props: $Properties<typeof self> & $Children<typeof self>) => {
+            // Implementation
+        }) as $Component<this>;
+    }
+    return this._component;
+}
+Or ensure __createComponent preserves the type:
+typescriptprivate __createComponent(): $Component<this> {
+    return ((props: $Properties<this> & $Children<this>) => {
+        // Your implementation
+    }) as $Component<this>;
+}
+The cast might be necessary because TypeScript can't verify the implementation matches the expected type.RetryDGive me an example of typing the child prop in various ways in function components and then having it enforced in the JSX so we can debug the types. Do this for basic components like divs, and then other function componentsEditHere are examples of typing children in React function components with TypeScript enforcement:
+typescript// 1. Single ReactNode (most permissive)
+const AcceptsAnything: React.FC<{ children: ReactNode }> = ({ children }) => {
+    return <div>{children}</div>;
+};
+
+// Usage - all valid:
+<AcceptsAnything>Hello</AcceptsAnything>
+<AcceptsAnything><div>A div</div></AcceptsAnything>
+<AcceptsAnything>{42}</AcceptsAnything>
+<AcceptsAnything>{null}</AcceptsAnything>
+
+// 2. Single string only
+const TextOnly: React.FC<{ children: string }> = ({ children }) => {
+    return <span>{children}</span>;
+};
+
+// Usage:
+<TextOnly>Hello</TextOnly>  // ✓ Valid
+<TextOnly><div>Nope</div></TextOnly>  // ✗ Error: Type 'Element' is not assignable to type 'string'
+
+// 3. Single specific element
+const DivOnly: React.FC<{ children: React.ReactElement<HTMLDivElement> }> = ({ children }) => {
+    return <section>{children}</section>;
+};
+
+// Usage:
+<DivOnly><div>Valid</div></DivOnly>  // ✓ Valid
+<DivOnly><span>Invalid</span></DivOnly>  // ✗ Error: Type 'ReactElement<HTMLSpanElement>' not assignable
+
+// 4. Specific function component type
+const Button: React.FC<{ onClick: () => void }> = ({ onClick }) => {
+    return <button onClick={onClick}>Click</button>;
+};
+
+const ButtonOnly: React.FC<{ children: React.ReactElement<any, typeof Button> }> = ({ children }) => {
+    return <div className="button-wrapper">{children}</div>;
+};
+
+// Usage:
+<ButtonOnly><Button onClick={() => {}} /></ButtonOnly>  // ✓ Valid
+<ButtonOnly><div>Not a button</div></ButtonOnly>  // ✗ Error
+
+// 5. Multiple specific children as tuple
+const TwoChildren: React.FC<{ 
+    children: [
+        React.ReactElement<HTMLDivElement>,
+        React.ReactElement<any, typeof Button>
+    ]
+}> = ({ children }) => {
+    return <>{children}</>;
+};
+
+// Usage:
+<TwoChildren>
+    <div>First</div>
+    <Button onClick={() => {}} />
+</TwoChildren>  // ✓ Valid
+
+<TwoChildren>
+    <div>Only one</div>
+</TwoChildren>  // ✗ Error: Expected 2 children
+
+// 6. Array of specific type
+const ListOfButtons: React.FC<{ 
+    children: React.ReactElement<any, typeof Button>[]
+}> = ({ children }) => {
+    return <div className="button-list">{children}</div>;
+};
+
+// Usage:
+<ListOfButtons>
+    {[
+        <Button key="1" onClick={() => {}} />,
+        <Button key="2" onClick={() => {}} />,
+        <Button key="3" onClick={() => {}} />
+    ]}
+</ListOfButtons>  // ✓ Valid
+
+// 7. Optional children of specific type
+const MaybeDiv: React.FC<{ 
+    children?: React.ReactElement<HTMLDivElement>
+}> = ({ children }) => {
+    return <section>{children || "No content"}</section>;
+};
+
+// Usage:
+<MaybeDiv />  // ✓ Valid (no children)
+<MaybeDiv><div>Content</div></MaybeDiv>  // ✓ Valid
+<MaybeDiv><span>Wrong</span></MaybeDiv>  // ✗ Error
+The key types:
+
+ReactNode - anything renderable
+string - text only
+React.ReactElement<HTMLDivElement> - specific HTML element
+React.ReactElement<any, typeof Component> - specific component
+[Type1, Type2] - tuple for exact multiple children
+Type[] - array of specific type
+
+These should help debug what your $Children type is producing vs what React expects.RetryDGive me an example that I can paste into a JSX document and see that it vcompilesEditHere's a complete example you can paste into a .tsx file:
+tsximport React, { ReactNode } from 'react';
+
+// 1. Component that accepts only a string
+const TextOnly: React.FC<{ children: string }> = ({ children }) => {
+    return <span>{children}</span>;
+};
+
+// 2. Component that accepts only a div element
+const DivOnly: React.FC<{ children: React.ReactElement<HTMLDivElement> }> = ({ children }) => {
+    return <section>{children}</section>;
+};
+
+// 3. A custom component
+const Button: React.FC<{ label: string }> = ({ label }) => {
+    return <button>{label}</button>;
+};
+
+// 4. Component that accepts only Button elements
+const ButtonWrapper: React.FC<{ children: React.ReactElement<any, typeof Button> }> = ({ children }) => {
+    return <div className="wrapper">{children}</div>;
+};
+
+// 5. Component that accepts exactly 2 children: a div and a Button
+const TwoKids: React.FC<{ 
+    children: [
+        React.ReactElement<HTMLDivElement>,
+        React.ReactElement<any, typeof Button>
+    ]
+}> = ({ children }) => {
+    return <div>{children}</div>;
+};
+
+// Test component showing what compiles and what doesn't
+export function Test() {
+    return (
+        <div>
+            {/* These compile */}
+            <TextOnly>Hello World</TextOnly>
+            <DivOnly><div>I am a div</div></DivOnly>
+            <ButtonWrapper><Button label="Click" /></ButtonWrapper>
+            <TwoKids>
+                <div>First child</div>
+                <Button label="Second child" />
+            </TwoKids>
+
+            {/* These would NOT compile - uncomment to see errors */}
+            {/* <TextOnly><div>Not text</div></TextOnly> */}
+            {/* <DivOnly><span>Not a div</span></DivOnly> */}
+            {/* <ButtonWrapper><div>Not a Button</div></ButtonWrapper> */}
+            {/* <TwoKids><div>Only one child</div></TwoKids> */}
+        </div>
+    );
+}
+This shows strong typing of children - TypeScript will enforce the exact types expected. The commented-out lines will produce type errors if you uncomment them.RetryDGood. Please format like this and give examples with a spread operator or nested collections too so I can see those types:// Test component showing what compiles and what doesn't
+export function Test() {
+    return (
+        <div>
+            {/* These compile */}
+            <TextOnly>
+                Hello World
+            </TextOnly>
+            <DivOnly>
+                <div>I am a div</div>
+            </DivOnly>
+            <ButtonWrapper>
+                <Button label="Click" />
+            </ButtonWrapper>
+            <TwoKids>
+                <div>First child</div>
+                <Button label="Second child" />
+            </TwoKids>            {/* These would NOT compile - uncomment to see errors /}
+            {/ <TextOnly><div>Not text</div></TextOnly> /}
+            {/ <DivOnly><span>Not a div</span></DivOnly> /}
+            {/ <ButtonWrapper><div>Not a Button</div></ButtonWrapper> /}
+            {/ <TwoKids><div>Only one child</div></TwoKids> */}
+        </div>
+    );
+}Edittsximport React, { ReactNode } from 'react';
+
+// Component definitions
+const Button: React.FC<{ label: string }> = ({ label }) => {
+   return <button>{label}</button>;
+};
+
+// 6. Array of specific elements
+const ButtonList: React.FC<{ 
+   children: React.ReactElement<any, typeof Button>[]
+}> = ({ children }) => {
+   return <div>{children}</div>;
+};
+
+// 7. Mixed array types
+const MixedList: React.FC<{ 
+   children: (React.ReactElement<HTMLDivElement> | React.ReactElement<any, typeof Button>)[]
+}> = ({ children }) => {
+   return <div>{children}</div>;
+};
+
+// 8. First required, rest optional spread
+const FirstThenRest: React.FC<{ 
+   children: [
+       React.ReactElement<HTMLDivElement>,
+       ...React.ReactElement<any, typeof Button>[]
+   ]
+}> = ({ children }) => {
+   return <div>{children}</div>;
+};
+
+// 9. Nested arrays (array as single child)
+const NestedArrays: React.FC<{ 
+   children: React.ReactElement<any, typeof Button>[][]
+}> = ({ children }) => {
+   return <div>{children}</div>;
+};
+
+// 10. Optional tuple
+const MaybeTuple: React.FC<{ 
+   children?: [
+       React.ReactElement<HTMLDivElement>,
+       React.ReactElement<any, typeof Button>
+   ]
+}> = ({ children }) => {
+   return <div>{children || "No children"}</div>;
+};
+
+// Test component
+export function Test() {
+   return (
+       <div>
+           {/* Array of buttons */}
+           <ButtonList>
+               {[
+                   <Button key="1" label="One" />,
+                   <Button key="2" label="Two" />,
+                   <Button key="3" label="Three" />
+               ]}
+           </ButtonList>
+
+           {/* Mixed array */}
+           <MixedList>
+               {[
+                   <div key="1">A div</div>,
+                   <Button key="2" label="A button" />,
+                   <div key="3">Another div</div>
+               ]}
+           </MixedList>
+
+           {/* First required, rest spread */}
+           <FirstThenRest>
+               <div>Required first div</div>
+               <Button label="Optional 1" />
+               <Button label="Optional 2" />
+               <Button label="Optional 3" />
+           </FirstThenRest>
+
+           {/* Also valid with just the required */}
+           <FirstThenRest>
+               <div>Only required div</div>
+           </FirstThenRest>
+
+           {/* Nested arrays */}
+           <NestedArrays>
+               {[
+                   [
+                       <Button key="1-1" label="Group 1 Item 1" />,
+                       <Button key="1-2" label="Group 1 Item 2" />
+                   ],
+                   [
+                       <Button key="2-1" label="Group 2 Item 1" />,
+                       <Button key="2-2" label="Group 2 Item 2" />
+                   ]
+               ]}
+           </NestedArrays>
+
+           {/* Optional tuple - both valid */}
+           <MaybeTuple />
+           <MaybeTuple>
+               <div>Div part</div>
+               <Button label="Button part" />
+           </MaybeTuple>
+
+           {/* These would NOT compile - uncomment to see errors */}
+           {/* Wrong array type */}
+           {/* <ButtonList>
+               {[
+                   <div key="1">Not a button</div>
+               ]}
+           </ButtonList> */}
+           
+           {/* Missing required first element */}
+           {/* <FirstThenRest>
+               <Button label="Wrong - needs div first" />
+           </FirstThenRest> */}
+           
+           {/* Wrong tuple length */}
+           {/* <MaybeTuple>
+               <div>Only one child</div>
+           </MaybeTuple> */}
+       </div>
+   );
+}
+This shows:
+
+Arrays of specific types
+Mixed arrays with union types
+Spread operators in tuples
+Nested arrays (arrays of arrays)
+Optional tuples
+
+The spread operator ...React.ReactElement[] allows any number of additional elements after the required ones.RetryDCan you, where possible avoid typing where an explicit array needs to be put in? The button list could be a tuple with a spread? I'm not sureEditYou're right - for JSX children, React doesn't require explicit arrays. Here's a cleaner version:
+tsximport React, { ReactNode } from 'react';
+
+// Component definitions
+const Button: React.FC<{ label: string }> = ({ label }) => {
+    return <button>{label}</button>;
+};
+
+// 6. Multiple buttons without explicit array
+const ButtonList: React.FC<{ 
+    children: React.ReactElement<any, typeof Button> | React.ReactElement<any, typeof Button>[]
+}> = ({ children }) => {
+    return <div>{children}</div>;
+};
+
+// 7. Tuple with spread - first div required, then any number of buttons
+const FirstThenRest: React.FC<{ 
+    children: [
+        React.ReactElement<HTMLDivElement>,
+        ...React.ReactElement<any, typeof Button>[]
+    ]
+}> = ({ children }) => {
+    return <div>{children}</div>;
+};
+
+// 8. All same type with spread (0 or more)
+const AnyButtons: React.FC<{ 
+    children: React.ReactElement<any, typeof Button>[]
+}> = ({ children }) => {
+    return <div>{children}</div>;
+};
+
+// 9. Mixed types without array wrapper
+const Mixed: React.FC<{ 
+    children: ReactNode | ReactNode[]
+}> = ({ children }) => {
+    return <div>{children}</div>;
+};
+
+// Test component
+export function Test() {
+    return (
+        <div>
+            {/* Single button */}
+            <ButtonList>
+                <Button label="Single" />
+            </ButtonList>
+
+            {/* Multiple buttons without array */}
+            <ButtonList>
+                <Button label="One" />
+                <Button label="Two" />
+                <Button label="Three" />
+            </ButtonList>
+
+            {/* Tuple with spread - required div + optional buttons */}
+            <FirstThenRest>
+                <div>Required div</div>
+                <Button label="Optional 1" />
+                <Button label="Optional 2" />
+            </FirstThenRest>
+
+            {/* Just the required element */}
+            <FirstThenRest>
+                <div>Only required</div>
+            </FirstThenRest>
+
+            {/* Any number of buttons */}
+            <AnyButtons>
+                <Button label="A" />
+                <Button label="B" />
+                <Button label="C" />
+            </AnyButtons>
+
+            {/* Mixed content */}
+            <Mixed>
+                <div>A div</div>
+                <Button label="A button" />
+                <span>A span</span>
+                Text content
+                {42}
+            </Mixed>
+
+            {/* These would NOT compile - uncomment to see errors */}
+            
+            {/* Wrong first element in tuple */}
+            {/* <FirstThenRest>
+                <Button label="Should be div first" />
+                <Button label="Button" />
+            </FirstThenRest> */}
+            
+            {/* Wrong type in ButtonList */}
+            {/* <ButtonList>
+                <div>Not a button</div>
+            </ButtonList> */}
+        </div>
+    );
+}
+The issue with React children typing is that when you pass multiple JSX elements as children, React automatically converts them to an array. So React.ReactElement[] as a children type requires an explicit array in curly braces, which isn't natural JSX.
+The union type ReactElement | ReactElement[] accepts both single and multiple children naturally.RetryDWhy do you need the union type if the array works for multiple without it being nested?EditYou're right to question this! The issue is that React's JSX children typing is inconsistent.
+When you write:
+tsx<ButtonList>
+    <Button />
+    <Button />
+    <Button />
+</ButtonList>
+React passes this to the component as an array. But TypeScript's type checking for JSX is stricter - if you type children as just ReactElement[], TypeScript expects you to write:
+tsx<ButtonList>
+    {[<Button />, <Button />, <Button />]}
+</ButtonList>
+This is a mismatch between how React works (automatically converting multiple children to an array) and how TypeScript checks JSX (requiring explicit array syntax for array-typed children).
+The union type ReactElement | ReactElement[] is a workaround that makes TypeScript accept both:
+
+Single child (passed as single element)
+Multiple children (passed as array, but written without explicit array syntax)
+
+Actually, for true "spread" behavior where you want 0 or more of the same type without explicit arrays, you'd need:
+tsxtype ButtonListProps = {
+    children?: React.ReactElement<any, typeof Button> | React.ReactElement<any, typeof Button>[]
+}
+This accepts:
+
+No children
+One Button
+Multiple Buttons (without array brackets)
+
+It's a TypeScript JSX limitation, not a React limitation.RetryDDoes that trick work for multiple types?[Component1 | Component1[], Component2 | Component2[]]//Does this work?
+<1>
+<1>
+<2>EditNo, that trick doesn't work for tuples with multiple types. TypeScript's JSX type checking doesn't handle position-based children well.
+If you type children as:
+tsxchildren: [
+    Component1 | Component1[], 
+    Component2 | Component2[]
+]
+TypeScript still expects a tuple structure, and the union doesn't help with positional requirements.
+For mixed types in order without array brackets, you're stuck with:
+
+Using a single permissive type like ReactNode
+Accepting that TypeScript can't enforce the order/types without explicit array syntax
+Using runtime validation instead of compile-time types
+
+The fundamental issue is that React passes multiple children as a flat array at runtime, but TypeScript's tuple types expect exact positional matching. There's no good way to type "first child must be Component1, second must be Component2" without requiring array syntax.
+For your Chemistry framework with constructor-based typing:
+typescriptconstructor(first: Component1, second: Component2) {}
+// Creates children type: [Component1, Component2]
+// Requires explicit array syntax in JSX
+This is a limitation where TypeScript's type system and React's JSX handling don't align well. You can have either:
+
+Strong typing with awkward syntax (explicit arrays)
+Natural syntax with weak typing (ReactNode)
+
+But not both.RetryDBut does a spread work in the tuple type?EditYes, spreads work in tuple types for JSX children! This is actually the best solution:
+tsx// This type accepts a div followed by any number of Buttons
+type SpreadChildren = [
+    React.ReactElement<HTMLDivElement>,
+    ...React.ReactElement<any, typeof Button>[]
+];
+
+const SpreadExample: React.FC<{ children: SpreadChildren }> = ({ children }) => {
+    return <div>{children}</div>;
+};
+
+// These all work naturally:
+<SpreadExample>
+    <div>Required first</div>
+</SpreadExample>
+
+<SpreadExample>
+    <div>Required first</div>
+    <Button label="Optional" />
+</SpreadExample>
+
+<SpreadExample>
+    <div>Required first</div>
+    <Button label="One" />
+    <Button label="Two" />
+    <Button label="Three" />
+</SpreadExample>
+The spread in the tuple [First, ...Rest[]] tells TypeScript:
+
+First element must be the specified type
+After that, accept any number (including 0) of the Rest type
+No explicit array syntax needed!
+
+This is perfect for your constructor-based typing:
+typescriptconstructor(
+    header: React.ReactElement<HTMLDivElement>,
+    ...buttons: React.ReactElement<any, typeof Button>[]
+) {}
+// Generates children type: [ReactElement<HTMLDivElement>, ...ReactElement<any, typeof Button>[]]
+This gives you strong typing with natural JSX syntax - exactly what you want for Chemistry!RetryDIs there a way of typing the basic elements as strings? Like 'div"EditYes! React provides types for HTML elements using string literals:
+tsximport React from 'react';
+
+// Using string literals for HTML elements
+const DivOnly: React.FC<{ 
+    children: React.ReactElement<any, 'div'>
+}> = ({ children }) => {
+    return <section>{children}</section>;
+};
+
+const SpanOnly: React.FC<{ 
+    children: React.ReactElement<any, 'span'>
+}> = ({ children }) => {
+    return <div>{children}</div>;
+};
+
+// Multiple HTML element types
+const HtmlElements: React.FC<{
+    children: [
+        React.ReactElement<any, 'header'>,
+        React.ReactElement<any, 'main'>,
+        React.ReactElement<any, 'footer'>
+    ]
+}> = ({ children }) => {
+    return <div>{children}</div>;
+};
+
+// Union of string literals
+const DivOrSpan: React.FC<{
+    children: React.ReactElement<any, 'div' | 'span'>
+}> = ({ children }) => {
+    return <section>{children}</section>;
+};
+
+// Test component
+export function Test() {
+    return (
+        <div>
+            <DivOnly>
+                <div>Valid div</div>
+            </DivOnly>
+
+            <SpanOnly>
+                <span>Valid span</span>
+            </SpanOnly>
+
+            <HtmlElements>
+                <header>Header content</header>
+                <main>Main content</main>
+                <footer>Footer content</footer>
+            </HtmlElements>
+
+            <DivOrSpan>
+                <div>A div works</div>
+            </DivOrSpan>
+
+            <DivOrSpan>
+                <span>A span works too</span>
+            </DivOrSpan>
+
+            {/* These would error */}
+            {/* <DivOnly>
+                <span>Not a div</span>
+            </DivOnly> */}
+        </div>
+    );
+}
+The string literal types like 'div', 'span', 'header' correspond to the HTML element tag names. TypeScript knows these map to the intrinsic JSX elements.

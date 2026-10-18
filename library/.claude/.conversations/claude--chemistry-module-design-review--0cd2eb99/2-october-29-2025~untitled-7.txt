@@ -1,0 +1,493 @@
+// app/tests/dependencies/member-tests.tsx
+'use client'
+import { $Chemical, $use, $check, List } from '@/chemistry';
+import React from 'react';
+
+// ============================================
+// TEST CHEMICALS - Simple dependencies
+// ============================================
+
+// A simple data chemical
+class $DataSource extends $Chemical {
+    $value = 'initial';
+    counter = 0;
+    
+    increment() {
+        this.counter++;
+        this.$value = `Value: ${this.counter}`;
+    }
+    
+    view() {
+        return (
+            <div style={{ 
+                padding: '8px', 
+                background: '#e3f2fd', 
+                borderRadius: '4px',
+                fontFamily: 'monospace'
+            }}>
+                DataSource[{this.key}]: {this.$value} (count: {this.counter})
+            </div>
+        );
+    }
+}
+
+// A chemical that displays another chemical's state
+class $DataViewer extends $Chemical {
+    source!: $DataSource;
+    ownValue = 'viewer';
+    
+    $DataViewer(source: $DataSource) {
+        this.source = $check(source, $DataSource);
+    }
+    
+    view() {
+        const Source = $use(this.source);
+        
+        return (
+            <div style={{ 
+                padding: '12px', 
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                marginBottom: '10px'
+            }}>
+                <div style={{ fontWeight: 'bold', marginBottom: '8px' }}>
+                    DataViewer[{this.key}] - Own: {this.ownValue}
+                </div>
+                <div style={{ marginLeft: '20px' }}>
+                    <Source />
+                </div>
+            </div>
+        );
+    }
+}
+
+// A container that rebinds its dependencies
+class $RebindingContainer extends $Chemical {
+    viewer!: $DataViewer;
+    originalSource!: $DataSource;
+    reboundSource?: $DataSource;
+    reboundViewer?: $DataViewer;
+    
+    $RebindingContainer(viewer: $DataViewer, source: $DataSource) {
+        this.viewer = $check(viewer, $DataViewer);
+        this.originalSource = $check(source, $DataSource);
+    }
+    
+    rebindSource() {
+        // Create a new catalyst by calling $bind() without parent
+        this.reboundSource = this.originalSource.Component.$bind().$chemical;
+        this.reboundSource.$value = 'Rebound Source';
+    }
+    
+    rebindViewer() {
+        // Rebind the viewer, which should reassign its source's parent
+        this.reboundViewer = this.viewer.Component.$bind(this).$chemical;
+        this.reboundViewer.ownValue = 'Rebound Viewer';
+    }
+    
+    modifyOriginal() {
+        this.originalSource.increment();
+    }
+    
+    modifyRebound() {
+        if (this.reboundSource) {
+            this.reboundSource.increment();
+        }
+    }
+    
+    view() {
+        const Viewer = $use(this.viewer);
+        const ReboundSource = this.reboundSource ? $use(this.reboundSource) : null;
+        const ReboundViewer = this.reboundViewer ? $use(this.reboundViewer) : null;
+        
+        const hasSameCatalyst = this.viewer.parent === this;
+        const reboundHasNewCatalyst = this.reboundSource && !this.reboundSource.parent;
+        
+        return (
+            <div style={{ padding: '15px', background: '#f9f9f9', borderRadius: '8px' }}>
+                <h4>Rebinding Container Test</h4>
+                
+                <div style={{ marginBottom: '15px' }}>
+                    <button 
+                        onClick={() => this.rebindSource()}
+                        style={{ marginRight: '10px' }}
+                        key={1}
+                    >
+                        Rebind Source (New Catalyst)
+                    </button>
+                    <button 
+                        onClick={() => this.rebindViewer()}
+                        style={{ marginRight: '10px' }}
+                        key={2}
+                    >
+                        Rebind Viewer (With Parent)
+                    </button>
+                    <button 
+                        onClick={() => this.modifyOriginal()}
+                        style={{ marginRight: '10px' }}
+                        key={3}
+                    >
+                        Modify Original
+                    </button>
+                    <button 
+                        onClick={() => this.modifyRebound()}
+                        key={4}
+                    >
+                        Modify Rebound
+                    </button>
+                </div>
+                
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Status:</strong>
+                    <ul style={{ margin: '5px 0', paddingLeft: '20px' }}>
+                        <li>Viewer parent is this: {hasSameCatalyst ? '✅' : '❌'}</li>
+                        <li>Rebound source has no parent: {reboundHasNewCatalyst ? '✅' : '❌'}</li>
+                    </ul>
+                </div>
+                
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                    <div>
+                        <h5>Original Viewer:</h5>
+                        <Viewer />
+                    </div>
+                    
+                    <div>
+                        <h5>Rebound Components:</h5>
+                        {ReboundSource && (
+                            <div style={{ marginBottom: '10px' }}>
+                                <div style={{ fontSize: '12px', color: '#666' }}>Rebound Source (independent):</div>
+                                <ReboundSource />
+                            </div>
+                        )}
+                        {ReboundViewer && (
+                            <div>
+                                <div style={{ fontSize: '12px', color: '#666' }}>Rebound Viewer (same reaction):</div>
+                                <ReboundViewer />
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+// A complex container that takes multiple chemicals
+class $ChemicalOrchestrator extends $Chemical {
+    sources: $DataSource[] = [];
+    viewer?: $DataViewer;
+    
+    $ChemicalOrchestrator(...args: any[]) {
+        // Split into sources array and optional viewer
+        const lastArg = args[args.length - 1];
+        if (lastArg instanceof $DataViewer) {
+            this.viewer = $check(lastArg, $DataViewer);
+            this.sources = $check(args.slice(0, -1), [$DataSource]);
+        } else {
+            this.sources = $check(args, [$DataSource]);
+        }
+    }
+    
+    addSource() {
+        const newSource = new $DataSource();
+        newSource.$value = `Added Source ${this.sources.length}`;
+        // Rebind to ensure it's in our reaction
+        const rebound = newSource.Component.$bind(this).$chemical;
+        this.sources.push(rebound);
+    }
+    
+    view() {
+        const Viewer = this.viewer ? $use(this.viewer) : null;
+        const Sources = this.sources.map((source, i) => {
+            const Source = $use(source);
+            return Source;
+        });
+        
+        return (
+            <div style={{ padding: '15px', background: '#fff', border: '2px solid #ddd', borderRadius: '8px' }}>
+                <h4>Chemical Orchestrator</h4>
+                
+                <button 
+                    onClick={() => this.addSource()}
+                    style={{ marginBottom: '10px' }}
+                >
+                    Add Source
+                </button>
+                
+                <div style={{ marginBottom: '15px' }}>
+                    <strong>Sources ({this.sources.length}):</strong>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px' }}>
+                        {Sources.map((Source, i) => (
+                            <div key={i} style={{ flex: '0 0 auto' }}>
+                                <Source />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                
+                {Viewer && (
+                    <div>
+                        <strong>Optional Viewer:</strong>
+                        <Viewer />
+                    </div>
+                )}
+            </div>
+        );
+    }
+}
+
+// ============================================
+// ADDITIONAL TEST CHEMICALS - Method returns
+// ============================================
+
+// A chemical that returns other chemicals from methods
+class $ChemicalFactory extends $Chemical {
+    template!: $DataSource;
+    instances: $DataSource[] = [];
+    
+    $ChemicalFactory(template: $DataSource) {
+        this.template = $check(template, $DataSource);
+    }
+    
+    createInstance(): $DataSource {
+        // Return a new chemical from a method
+        const instance = this.template.Component.$bind().$chemical;
+        instance.$value = `Instance ${this.instances.length}`;
+        this.instances.push(instance);
+        return instance;
+    }
+    
+    getLatest(): $DataSource | undefined {
+        return this.instances[this.instances.length - 1];
+    }
+    
+    view() {
+        const Template = $use(this.template);
+        const Instances = this.instances.map(inst => $use(inst));
+        
+        return (
+            <div style={{ padding: '15px', background: '#e8f5e9', borderRadius: '8px' }}>
+                <h4>Chemical Factory</h4>
+                
+                <button 
+                    onClick={() => this.createInstance()}
+                    style={{ marginBottom: '10px' }}
+                >
+                    Create Instance
+                </button>
+                
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Template:</strong>
+                    <Template />
+                </div>
+                
+                <div>
+                    <strong>Created Instances ({this.instances.length}):</strong>
+                    <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '10px' }}>
+                        {Instances.map((Instance, i) => (
+                            <div key={i}>
+                                <Instance />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+// A chemical that holds another as a member and can swap it
+class $DynamicMember extends $Chemical {
+    current!: $DataSource;
+    original!: $DataSource;
+    swapped = false;
+    
+    $DynamicMember(source: $DataSource) {
+        this.original = $check(source, $DataSource);
+        this.current = this.original;
+    }
+    
+    swap() {
+        if (!this.swapped) {
+            // Create new chemical and swap
+            this.current = this.original.Component.$bind(this).$chemical;
+            this.current.$value = 'Swapped Member';
+        } else {
+            // Swap back
+            this.current = this.original;
+        }
+        this.swapped = !this.swapped;
+    }
+    
+    modifyCurrent() {
+        this.current.increment();
+    }
+    
+    view() {
+        const Current = $use(this.current);
+        const isOriginal = this.current === this.original;
+        
+        return (
+            <div style={{ padding: '15px', background: '#fff3cd', borderRadius: '8px' }}>
+                <h4>Dynamic Member Test</h4>
+                
+                <div style={{ marginBottom: '10px' }}>
+                    <button 
+                        onClick={() => this.swap()}
+                        style={{ marginRight: '10px' }}
+                    >
+                        {this.swapped ? 'Restore Original' : 'Swap Member'}
+                    </button>
+                    <button 
+                        onClick={() => this.modifyCurrent()}
+                    >
+                        Modify Current
+                    </button>
+                </div>
+                
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Status:</strong> Currently showing {isOriginal ? 'Original' : 'Swapped'} member
+                </div>
+                
+                <Current />
+            </div>
+        );
+    }
+}
+
+const DataSource = new $DataSource().Component;
+const DataViewer = new $DataViewer().Component;
+const RebindingContainer = new $RebindingContainer().Component;
+const ChemicalOrchestrator = new $ChemicalOrchestrator().Component;
+const ChemicalFactory = new $ChemicalFactory().Component;
+const DynamicMember = new $DynamicMember().Component;
+
+// ============================================
+// MAIN TEST COMPONENT
+// ============================================
+
+export default function MemberTests() {
+    // Create JSX-based tests using bond constructors
+    const RebindingTest = (() => {
+        return (
+            <RebindingContainer>
+                <DataViewer>
+                    <DataSource value="Nested Source" />
+                </DataViewer>
+                <DataSource value="Second Source" />
+            </RebindingContainer>
+        );
+    })();
+    
+    const OrchestratorTest = (() => {
+        return (
+            <ChemicalOrchestrator>
+                <DataSource value="Orchestrated 1" />
+                <DataSource value="Orchestrated 2" />
+                <DataSource value="Orchestrated 3" />
+                <DataViewer>
+                    <DataSource value="Viewer's Source" />
+                </DataViewer>
+            </ChemicalOrchestrator>
+        );
+    })();
+    
+    const FactoryTest = (() => {
+        return (
+            <ChemicalFactory>
+                <DataSource value="Template Source" />
+            </ChemicalFactory>
+        );
+    })();
+    
+    const DynamicTest = (() => {
+        return (
+            <DynamicMember>
+                <DataSource value="Initial Member" />
+            </DynamicMember>
+        );
+    })();
+    
+    return (
+        <div style={{ padding: '40px', fontFamily: 'system-ui' }}>
+            <h1>Member Tests - Dependencies & Catalysts</h1>
+            <p style={{ color: '#666', marginBottom: '30px' }}>
+                Testing how chemicals handle dependencies with different catalysts and parent reassignment
+            </p>
+            
+            {/* Test 1: Rebinding */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Test 1: Rebinding & Catalyst Creation</h2>
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Expected:</strong> 
+                    <ul>
+                        <li>Rebinding source creates independent catalyst (no parent)</li>
+                        <li>Rebinding viewer with parent maintains reaction boundary</li>
+                        <li>Modifications to original don't affect rebound</li>
+                    </ul>
+                </div>
+                {RebindingTest}
+            </div>
+            
+            {/* Test 2: Multiple Dependencies */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Test 2: Multiple Chemical Dependencies</h2>
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Expected:</strong>
+                    <ul>
+                        <li>Array of chemicals validated with $check</li>
+                        <li>Optional viewer as last argument</li>
+                        <li>Added sources properly bound to parent</li>
+                    </ul>
+                </div>
+                {OrchestratorTest}
+            </div>
+            
+            {/* Test 3: Factory Pattern */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Test 3: Chemical Factory - Methods Returning Chemicals</h2>
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Expected:</strong>
+                    <ul>
+                        <li>Methods can return chemicals created with $bind()</li>
+                        <li>Factory creates independent instances</li>
+                        <li>All instances tracked in array</li>
+                    </ul>
+                </div>
+                {FactoryTest}
+            </div>
+            
+            {/* Test 4: Dynamic Member Swapping */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Test 4: Dynamic Member Assignment</h2>
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Expected:</strong>
+                    <ul>
+                        <li>Chemical members can be swapped at runtime</li>
+                        <li>Swapped member inherits parent's reaction</li>
+                        <li>Original remains unchanged</li>
+                    </ul>
+                </div>
+                {DynamicTest}
+            </div>
+            
+            {/* Test 5: Direct Creation */}
+            <div style={{ marginBottom: '40px' }}>
+                <h2>Test 5: Direct Chemical Creation</h2>
+                <div style={{ marginBottom: '10px' }}>
+                    <strong>Expected:</strong> 
+                    Components created directly work with List for arrays
+                </div>
+                <div style={{ padding: '15px', background: '#f0f0f0', borderRadius: '8px' }}>
+                    <List>
+                        <DataSource value="Direct 1" />
+                        <DataSource value="Direct 2" />
+                        <DataViewer>
+                            <DataSource value="Nested Source" />
+                        </DataViewer>
+                    </List>
+                </div>
+            </div>
+        </div>
+    );
+}

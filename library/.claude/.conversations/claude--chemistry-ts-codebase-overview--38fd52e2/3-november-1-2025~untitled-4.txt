@@ -1,0 +1,93 @@
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   │   ├── particle.test.ts
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   │   ├── particle.test.ts
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   │   ├── chemical.test.ts
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   │   ├── chemical.test.ts
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   │   ├── bond.test.ts
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   │   ├── bond.test.ts
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   │   ├── molecule.test.ts
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   │   ├── molecule.test.ts
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   │   ├── reaction.test.ts
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   │   ├── reaction.test.ts
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   │   └── reflection.test.ts
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   │   └── reflection.test.ts
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   ├── integration/
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   ├── integration/
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   │   ├── binding.test.tsx
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   │   ├── binding.test.tsx
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   │   ├── rendering.test.tsx
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   │   ├── rendering.test.tsx
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   │   └── orchestration.test.tsx
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   │   └── orchestration.test.tsx
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │   └── fixtures/
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
++ │   └── fixtures/
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> │       └── test-chemicals.ts
+│ : The term '│' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ │       └── test-chemicals.ts
++ ~
+    + CategoryInfo          : ObjectNotFound: (│:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+PS C:\Users\dougl\OneDrive\Source\DNA Platform\chemistry> ├── chemistry.ts
+├── : The term '├──' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ ├── chemistry.ts
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (├──:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 

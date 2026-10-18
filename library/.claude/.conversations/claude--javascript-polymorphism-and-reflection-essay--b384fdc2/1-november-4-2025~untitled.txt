@@ -1,0 +1,580 @@
+import { $Rep, Type, Constructor } from "./types";
+import { $lib } from './catalogue';
+
+type $Catalogue = typeof $lib;
+
+const $$object = new Set(['object']);
+const $$primitive = new Set(['primitive']);
+const $$prototype = new Set(['prototype']);
+const $$function = new Set([...$$object, 'function']);
+const $$constructor = new Set([...$$function, 'constructor']);
+const $$type = new Set([...$$constructor, 'type', 'class']);
+const $$member = new Set(['member']);
+const $$method = new Set([...$$member, 'function']);
+
+export interface $Object extends $Rep {
+    literal: any;
+    isPrimitive: boolean;
+    isPrototype: boolean;
+    isFunction: boolean;
+    isArray: boolean;
+    $as(kind: 'primitive'): $Primitive;
+    $as(kind: 'function'): $Function;
+    $as(kind: 'prototype'): $Prototype;
+    $prototype: $Prototype;
+    $type: $Type;
+    $members(own?: boolean): $Member[];
+    $fields(own?: boolean): $Field[];
+    $properties(own?: boolean): $Property[];
+    $methods(own?: boolean): $Method[];
+    $getField(name: string, own?: boolean): $Field | undefined;
+    $getProperty(name: string, own?: boolean): $Property | undefined;
+    $getMethod(name: string, own?: boolean): $Method | undefined;
+}
+
+export interface $Primitive extends $Rep {
+    literal: any;
+    $as(kind: 'object'): $Object;
+}
+
+export interface $Prototype extends $Rep {
+    literal: object;
+    $as(kind: 'object'): $Object;
+    $members(own?: boolean): $Member[];
+    $fields(own?: boolean): $Field[];
+    $properties(own?: boolean): $Property[];
+    $methods(own?: boolean): $Method[];
+    $getField(name: string, own?: boolean): $Field | undefined;
+    $getProperty(name: string, own?: boolean): $Property | undefined;
+    $getMethod(name: string, own?: boolean): $Method | undefined;
+}
+
+export interface $Function extends $Object {
+    literal: (...args: any[]) => any;
+    form: 'lambda' | 'function' | 'method' | 'getter' | 'setter' | 'class' | 'unknown';
+    name: string;
+    async: boolean;
+    generator: boolean;
+    native: boolean;
+    isConstructor: boolean;
+    isType: boolean;
+    isMethod: boolean;
+    isGeneric: boolean;
+    $as(kind: 'primitive'): $Primitive;
+    $as(kind: 'function'): $Function;
+    $as(kind: 'prototype'): $Prototype;
+    $as(kind: 'constructor'): $Constructor;
+    $as(kind: 'generic'): $GenericFunction;
+    $typeParameters: $TypeParameter[];
+    $parameters: $FunctionParameter[];
+}
+
+export interface $Constructor extends $Rep {
+    $as(kind: 'function'): $Function;
+}
+
+export interface $Type extends $Rep {
+    literal: Type;
+    isGeneric: boolean;
+    $as(kind: 'class'): $Class;
+    $as(kind: 'constructor'): $Constructor;
+    $as(kind: 'generic'): $GenericType;
+    $baseType: $Type;
+    $prototype: $Prototype;
+    $parameters: $TypeParameter[];
+    asGenericType(...types: $GenericType[]): any;
+    $members(own?: boolean): $Member[];
+    $fields(own?: boolean): $Field[];
+    $properties(own?: boolean): $Property[];
+    $methods(own?: boolean): $Method[];
+    $getMember(name: string, own?: boolean): $Member | undefined;
+    $getField(name: string, own?: boolean): $Field | undefined;
+    $getProperty(name: string, own?: boolean): $Property | undefined;
+    $getMethod(name: string, own?: boolean): $Method | undefined;
+}
+
+export interface $Class extends $Rep {
+    literal: Type;
+    $members(): $Member[];
+    $fields(): $Field[];
+    $methods(): $Method[];
+    $getField(name: string): $Field | undefined;
+    $getMethod(name: string): $Method | undefined;
+}
+
+export interface $Member extends $Rep {
+    name: string;
+    isReadable: boolean;
+    isWritable: boolean;
+    isConfigurable: boolean;
+    isEnumerable: boolean;
+    $owner: $Object;
+    $as(kind: 'field'): $Field;
+    $as(kind: 'property'): $Property;
+    $as(kind: 'method'): $Method;
+}
+
+export interface $Field extends $Rep {
+    $value: $Object;
+    isConfigurable: boolean;
+    isEnumerable: boolean;
+}
+
+export interface $Property extends $Rep {
+    $get?: $Function;
+    $set?: $Function;
+    isReadable: boolean;
+    isWritable: boolean;
+    isConfigurable: boolean;
+    isEnumerable: boolean;
+}
+
+export interface $Method extends $Function {
+    isConfigurable: boolean;
+    isEnumerable: boolean;
+}
+
+export interface $FunctionParameter extends $Rep {
+    name: string;
+    position: number;
+    isRest: boolean;
+}
+
+export interface $TypeParameter extends $Rep {
+    name: string;
+    position: number;
+    $constraint?: $Type;
+    $default?: $Type;
+}
+
+export interface $GenericFunction extends $Rep {
+    $as(kind: 'function'): $Function;
+    $as(kind: 'constructor'): $Constructor;
+    $arguments: $Type;
+}
+
+export interface $GenericType extends $Rep {
+    $as(kind: 'type'): $Type;
+    $as(kind: 'constructor'): $Constructor;
+    arguments: $Type;
+}
+
+// ========== OBJECT IMPLEMENTATION ==========
+
+class $ObjectRep {
+    static #nextRid = 1;
+
+    #literal: any;
+    #lib?: $Catalogue;
+    #rid: number;
+    #kinds: Set<string>;
+    #name?: string;
+    #owner?: $ObjectRep;
+
+    #ref?: string;
+    #prototype?: $ObjectRep;
+    #type?: $ObjectRep;
+    #asObject?: $ObjectRep;
+    #asPrimitive?: $ObjectRep;
+    #value?: $ObjectRep;
+    #get?: $ObjectRep;
+    #set?: $ObjectRep;
+
+    protected get kinds(): Set<string> { return this.#kinds; }
+    protected get rid(): number { return this.#rid; }
+    protected set ref(value: string) { this.#ref = value; }
+
+    constructor(literal: object, kind: 'object');
+    constructor(literal: object, kind: 'prototype');
+    constructor(literal: any, kind: 'primitive');
+    constructor(literal: PropertyDescriptor, name: string, kind: 'member', owner?: $ObjectRep, lib?: $Catalogue);
+    constructor(literal: any, kindOrName: any, libOrOwner?: any, owner?: $ObjectRep, lib?: $Catalogue) {
+        this.#kinds = $$object;
+        this.#rid = $ObjectRep.#nextRid++;
+        if (typeof literal === 'function' && kindOrName !== 'member') {
+            return new $FunctionRep(literal, kindOrName, libOrOwner) as any;
+        }
+        
+        this.#literal = literal;
+        if (kindOrName === 'prototype') {
+            this.#kinds = $$prototype;
+        } else if (kindOrName === 'primitive') {
+            this.#kinds = $$primitive;
+        } else if (libOrOwner === 'member') {
+            const desc = literal as PropertyDescriptor;
+            this.#kinds = (desc.value !== undefined && typeof desc.value === 'function') ? $$method : $$member;
+            this.#name = kindOrName;
+            this.#owner = owner;
+            this.#lib = lib;
+        }
+    }
+
+    static member(desc: PropertyDescriptor, name: string, owner: $ObjectRep, lib?: $Catalogue): $ObjectRep {
+        return new $ObjectRep(desc, name, 'member', owner, lib);
+    }
+
+    #enumerateMembers(target: object, getParent: () => $ObjectRep | null, own: boolean): $ObjectRep[] {
+        const cacheKey = this.#kinds.has('type') && this.#lib
+            ? new $ObjectRep(`members:${this.ref}:${own}`, 'primitive')
+            : null;
+
+        if (cacheKey) {
+            const cached = this.#lib!.$find<$ObjectRep[]>(cacheKey);
+            if (cached !== undefined) return cached;
+        }
+
+        const result: $ObjectRep[] = [];
+        const seen = new Set<string>();
+        const descriptors = Object.getOwnPropertyDescriptors(target);
+
+        for (const [name, desc] of Object.entries(descriptors)) {
+            seen.add(name);
+            result.push($ObjectRep.member(desc, name, this, this.#lib));
+        }
+
+        if (!own) {
+            const parent = getParent();
+            if (parent) {
+                for (const m of parent.$members(false)) {
+                    if (!seen.has(m.name)) result.push(m);
+                }
+            }
+        }
+
+        if (cacheKey) this.#lib!.$index(cacheKey, result, this.#lib!.$subject);
+        return result;
+    }
+
+    get ref(): string {
+        if (this.#ref !== undefined) return this.#ref;
+
+        if (this.#kinds.has('object')) {
+            this.#ref = `${this.$type?.ref || 'Object'}{$rid:${this.#rid}}`;
+        } else if (this.#kinds.has('prototype')) {
+            this.#ref = `Prototype{$rid:${this.#rid}}`;
+        } else if (this.#kinds.has('primitive')) {
+            const t = typeof this.#literal;
+            if (this.#literal === null) this.#ref = 'null';
+            else if (this.#literal === undefined) this.#ref = 'undefined';
+            else if (t === 'symbol') this.#ref = `symbol:${this.#literal.toString()}`;
+            else this.#ref = `${t}:${String(this.#literal)}`;
+        } else if (this.#kinds.has('member')) {
+            this.#ref = `Member:${this.#name}`;
+        }
+
+        return this.#ref!;
+    }
+
+    get literal(): any { return this.#literal; }
+    get name(): string { return this.#name || ''; }
+
+    get isPrimitive(): boolean { return this.#kinds.has('primitive'); }
+    get isPrototype(): boolean { return this.#kinds.has('prototype'); }
+    get isFunction(): boolean { return false; }
+    get isArray(): boolean { return this.#kinds.has('object') && Array.isArray(this.#literal); }
+    get isField(): boolean {
+        if (!this.#kinds.has('member')) return false;
+        return this.#literal.value !== undefined && typeof this.#literal.value !== 'function';
+    }
+    get isProperty(): boolean {
+        if (!this.#kinds.has('member')) return false;
+        return this.#literal.get !== undefined || this.#literal.set !== undefined;
+    }
+    get isMethod(): boolean { return this.#kinds.has('method'); }
+    get isReadable(): boolean {
+        if (!this.#kinds.has('member')) return false;
+        return this.#literal.get !== undefined || this.#literal.value !== undefined;
+    }
+    get isWritable(): boolean {
+        if (!this.#kinds.has('member')) return false;
+        return this.#literal.set !== undefined || (this.#literal.writable === true);
+    }
+    get isConfigurable(): boolean { return this.#kinds.has('member') && this.#literal.configurable === true; }
+    get isEnumerable(): boolean { return this.#kinds.has('member') && this.#literal.enumerable === true; }
+
+    get $type(): $ObjectRep {
+        if (!this.#kinds.has('object')) return undefined as any;
+        if (this.#type === undefined) {
+            const ctor = this.#literal.constructor;
+            this.#type = (ctor && typeof ctor === 'function') ? new $FunctionRep(ctor, 'type') : undefined;
+        }
+        return this.#type!;
+    }
+    get $prototype(): $ObjectRep {
+        if (this.#kinds.has('object')) {
+            if (this.#prototype === undefined) {
+                const proto = Object.getPrototypeOf(this.#literal);
+                this.#prototype = proto === null ? undefined : new $ObjectRep(proto, 'prototype');
+            }
+            return this.#prototype!;
+        }
+        return undefined as any;
+    }
+    get $owner(): $ObjectRep | undefined { return this.#owner; }
+    get $value(): $ObjectRep | undefined {
+        if (!this.isField) return undefined;
+        if (this.#value === undefined) {
+            this.#value = new $ObjectRep(this.#literal.value, 'object');
+        }
+        return this.#value;
+    }
+    get $get(): $ObjectRep | undefined {
+        if (!this.isProperty) return undefined;
+        if (!this.#literal.get) return undefined;
+        if (this.#get === undefined) {
+            this.#get = new $FunctionRep(this.#literal.get, 'function', this.#lib!);
+        }
+        return this.#get;
+    }
+    get $set(): $ObjectRep | undefined {
+        if (!this.isProperty) return undefined;
+        if (!this.#literal.set) return undefined;
+        if (this.#set === undefined) {
+            this.#set = new $FunctionRep(this.#literal.set, 'function', this.#lib!);
+        }
+        return this.#set;
+    }
+
+    $as(kind: string): $ObjectRep {
+        if (kind === 'object') {
+            if (this.#kinds.has('prototype')) {
+                if (this.#asObject === undefined) this.#asObject = new $ObjectRep(this.#literal, 'object');
+                return this.#asObject;
+            }
+            if (this.#kinds.has('primitive')) {
+                if (this.#asObject === undefined) {
+                    if (this.#literal === null || this.#literal === undefined) return undefined as any;
+                    this.#asObject = new $ObjectRep(Object(this.#literal), 'object');
+                }
+                return this.#asObject!;
+            }
+        } else if (kind === 'primitive') {
+            if (!this.#kinds.has('object')) return undefined as any;
+            if (this.#asPrimitive === undefined) {
+                this.#asPrimitive = new $ObjectRep(this.#literal.valueOf(), 'primitive');
+            }
+            return this.#asPrimitive;
+        } else if (kind === 'prototype') {
+            return this.$prototype;
+        } else if (kind === 'field') {
+            return this.isField ? this : undefined as any;
+        } else if (kind === 'property') {
+            return this.isProperty ? this : undefined as any;
+        } else if (kind === 'method') {
+            return this.isMethod ? this : undefined as any;
+        }
+        return undefined as any;
+    }
+
+    $members(own: boolean = true): $ObjectRep[] {
+        if (this.#kinds.has('object')) return this.#enumerateMembers(this.#literal, () => this.$prototype, own);
+        if (this.#kinds.has('prototype')) {
+            return this.#enumerateMembers(this.#literal, () => {
+                const proto = Object.getPrototypeOf(this.#literal);
+                return proto ? new $ObjectRep(proto, 'prototype') : null;
+            }, own);
+        }
+        return [];
+    }
+    $fields(own: boolean = true): $ObjectRep[] { return this.$members(own).filter(m => m.isField); }
+    $properties(own: boolean = true): $ObjectRep[] { return this.$members(own).filter(m => m.isProperty); }
+    $methods(own: boolean = true): $ObjectRep[] { return this.$members(own).filter(m => m.isMethod); }
+    $getField(name: string, own: boolean = true): $ObjectRep | undefined { return this.$fields(own).find(f => f.name === name); }
+    $getProperty(name: string, own: boolean = true): $ObjectRep | undefined { return this.$properties(own).find(p => p.name === name); }
+    $getMethod(name: string, own: boolean = true): $ObjectRep | undefined { return this.$methods(own).find(m => m.name === name); }
+    $getMember(name: string, own: boolean = false): $ObjectRep | undefined { return this.$members(own).find(m => m.name === name); }
+}
+
+// ========== FUNCTION IMPLEMENTATION ==========
+
+class $FunctionRep extends $ObjectRep {
+    #lib: $Catalogue;
+    #info?: FunctionInfo;
+    #parameters?: $ParameterRep[];
+    #asConstructor?: $FunctionRep;
+    #asFunction?: $FunctionRep;
+    #baseType?: $FunctionRep;
+
+    constructor(literal: Function, kind: 'function', lib: $Catalogue);
+    constructor(literal: Function, kind: 'constructor', lib: $Catalogue);
+    constructor(literal: Constructor, kind: 'type', lib?: $Catalogue);
+    constructor(literal: any, kind: any, lib?: $Catalogue) {
+        super(literal, 'object');
+        this.#lib = lib!;
+
+        if (kind === 'function') {
+            (this as any).#kinds = $$function;
+        } else if (kind === 'constructor') {
+            (this as any).#kinds = $$constructor;
+        } else if (kind === 'type') {
+            (this as any).#kinds = $$type;
+            if (this.#lib) {
+                const existing = this.#lib.$find<$FunctionRep>(this, this.#lib.$subject);
+                if (existing) return existing;
+                this.#lib.$index(this, this, this.#lib.$subject);
+            }
+        }
+    }
+
+    static function$(literal: Function, lib: $Catalogue): $FunctionRep {
+        return new $FunctionRep(literal, 'function', lib);
+    }
+
+    static constructor$(literal: Function, lib: $Catalogue): $FunctionRep {
+        return new $FunctionRep(literal, 'constructor', lib);
+    }
+
+    static type(literal: Constructor, lib?: $Catalogue): $FunctionRep {
+        return new $FunctionRep(literal, 'type', lib);
+    }
+
+    #getInfo(): FunctionInfo {
+        if (this.#info === undefined) {
+            const cached = this.#lib.$find<FunctionInfo>(this);
+            if (cached !== undefined) return cached;
+            this.#info = parseFunctionInfo(this.literal);
+            this.#lib.$index(this, this.#info, this.#lib.$subject);
+        }
+        return this.#info;
+    }
+
+    get ref(): string {
+        if ((this as any).#ref !== undefined) return (this as any).#ref;
+
+        if (this.kinds.has('function') && !this.kinds.has('constructor')) {
+            this.ref = `Function{$rid:${this.rid}}`;
+        } else if (this.kinds.has('constructor') && !this.kinds.has('type')) {
+            this.ref = this.literal.name || 'Constructor';
+        } else if (this.kinds.has('type')) {
+            const name = this.literal.name || 'Anonymous';
+            const params = this.$parameters;
+            const generic = params.length > 0 ? `<${params.map(p => p.ref).join(',')}>` : '';
+            const ns = this.#lib ? `${this.#lib.$subject}.` : '';
+            this.ref = `${ns}${name}${generic}`;
+        }
+
+        return super.ref;
+    }
+
+    get isFunction(): boolean { return true; }
+    get isConstructor(): boolean { return this.kinds.has('constructor'); }
+    get isType(): boolean { return this.kinds.has('type'); }
+    get form(): 'lambda' | 'function' | 'method' | 'getter' | 'setter' | 'class' | 'unknown' { return this.#getInfo().form; }
+    get async(): boolean { return this.#getInfo().async || false; }
+    get generator(): boolean { return this.#getInfo().generator || false; }
+    get native(): boolean { return this.#getInfo().native || false; }
+    get isGeneric(): boolean { return false; }
+
+    get $prototype(): $FunctionRep {
+        if (this.kinds.has('type')) {
+            const proto = (this as any).#prototype;
+            if (proto === undefined) {
+                (this as any).#prototype = new $ObjectRep(this.literal.prototype, 'prototype');
+            }
+            return (this as any).#prototype;
+        }
+        return super.$prototype as any;
+    }
+    get $baseType(): $FunctionRep {
+        if (!this.isType) return undefined as any;
+        if (this.#baseType === undefined) {
+            const proto = Object.getPrototypeOf(this.literal.prototype);
+            if (proto === null) return undefined as any;
+            const baseCtor = proto.constructor;
+            if (!baseCtor || baseCtor === Function || baseCtor === Object) return undefined as any;
+            this.#baseType = $FunctionRep.type(baseCtor, this.#lib);
+        }
+        return this.#baseType!;
+    }
+    get $typeParameters(): $ParameterRep[] { return []; }
+    get $parameters(): $ParameterRep[] {
+        if (this.#parameters === undefined) {
+            const info = this.#getInfo();
+            const params = info.params;
+            if (params?.count === undefined) {
+                this.#parameters = [];
+            } else {
+                this.#parameters = [];
+                for (let i = 0; i < params.count; i++) {
+                    this.#parameters.push(new $ParameterRep(`param${i}`, i, false));
+                }
+                if (params.rest) {
+                    this.#parameters.push(new $ParameterRep('rest', params.count, true));
+                }
+            }
+        }
+        return this.#parameters;
+    }
+
+    $as(kind: string): $FunctionRep {
+        if (kind === 'constructor') {
+            if (this.#asConstructor === undefined) {
+                if (!this.isType && this.literal.prototype === undefined) return undefined as any;
+                this.#asConstructor = $FunctionRep.constructor$(this.literal, this.#lib);
+            }
+            return this.#asConstructor!;
+        } else if (kind === 'function') {
+            if (!this.isConstructor) return this;
+            if (this.#asFunction === undefined) {
+                this.#asFunction = $FunctionRep.function$(this.literal, this.#lib);
+            }
+            return this.#asFunction;
+        } else if (kind === 'class') {
+            if (!this.isType) return undefined as any;
+            return this;
+        } else if (kind === 'generic') {
+            return undefined as any;
+        }
+        return super.$as(kind) as any;
+    }
+
+    asGenericType(...types: any[]): any { return undefined; }
+
+    $members(own: boolean = true): $FunctionRep[] {
+        if (this.kinds.has('type')) {
+            if (this.kinds.has('class')) {
+                return (this as any).#enumerateMembers(this.literal, () => null, true);
+            }
+            return (this as any).#enumerateMembers(this.literal.prototype, () => this.$baseType, own);
+        }
+        return super.$members(own) as any;
+    }
+}
+
+// ========== PARAMETER IMPLEMENTATION ==========
+
+class $ParameterRep {
+    #name: string;
+    #position: number;
+    #isRest: boolean;
+
+    constructor(name: string, position: number, isRest: boolean) {
+        this.#name = name;
+        this.#position = position;
+        this.#isRest = isRest;
+    }
+
+    get ref(): string { return `Parameter:${this.#name}`; }
+    get name(): string { return this.#name; }
+    get position(): number { return this.#position; }
+    get isRest(): boolean { return this.#isRest; }
+}
+
+export function $object(literal: object): $Object { return new $ObjectRep(literal, 'object') as $Object; }
+export function $function(literal: Function, lib: $Catalogue): $Function { return $FunctionRep.function$(literal, lib) as $Function; }
+export function $type(literal: Constructor, lib?: $Catalogue): $Type { return $FunctionRep.type(literal, lib) as $Type; }
+
+// ========== HELPER FUNCTIONS ==========
+
+interface FunctionInfo {
+    form: 'lambda' | 'function' | 'method' | 'getter' | 'setter' | 'class' | 'unknown';
+    name?: string;
+    async?: boolean;
+    generator?: boolean;
+    native?: boolean;
+    params?: { count: number | undefined; rest: boolean | undefined; };
+}
+
+export function parseFunctionInfo(func: Function): FunctionInfo {
+    return { form: 'unknown', name: '', async: false, generator: false, native: false, params: { count: 0, rest: false } };
+}

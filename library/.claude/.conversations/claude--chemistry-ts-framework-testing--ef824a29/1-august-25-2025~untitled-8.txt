@@ -1,0 +1,220 @@
+/**
+ * Decorates properties of an object with interceptors
+ */
+function decorateProperties(instance: any, className: string, config: DecoratorConfig): void {
+    const properties = getAllProperties(instance);
+
+    // Initialize backing fields if needed
+    if (!instance[backingFields]) {
+        instance[backingFields] = {};
+    }
+
+    for (const key of properties) {
+        const value = instance[key];
+
+        // Skip non-reactive properties
+        if (!isReactiveProperty(instance, key, value)) {
+            continue;
+        }
+
+        // Check if THIS INSTANCE already has a reactive property
+        const ownDescriptor = Object.getOwnPropertyDescriptor(instance, key);
+        if (ownDescriptor && (ownDescriptor.get || ownDescriptor.set)) {
+            continue;  // Already reactive on this instance
+        }
+
+        // Check if prototype has an accessor property we need to handle
+        const protoDescriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(instance), key);
+        if (protoDescriptor && (protoDescriptor.get || protoDescriptor.set)) {
+            decorateAccessorProperty(instance, key, protoDescriptor, className, config);
+            continue;
+        }
+
+        // Store current value (could be inherited from prototype)
+        instance[backingFields][key] = value;
+
+        // Determine checking strategy
+        const shouldUseDynamic = shouldUseDynamicChecking(value);
+
+        // Create reactive property on instance (shadows prototype if inherited)
+        Object.defineProperty(instance, key, {
+            get: createReactiveGetter(key, className, shouldUseDynamic, config),
+            set: createReactiveSetter(key, className, shouldUseDynamic, config),
+            enumerable: true,
+            configurable: true
+        });
+    }
+}
+
+/**
+ * Creates a reactive getter for a property
+ */
+function createReactiveGetter(key: string, className: string, shouldUseDynamic: boolean, config: DecoratorConfig) {
+    return function (this: any) {
+        const value = this[backingFields][key];
+
+        // Schedule dirty check for dynamic properties
+        if (shouldUseDynamic && value) {
+            if (!this[backingFields][key + '_checkScheduled']) {
+                const snapshot = represent(value);
+                this[backingFields][key + '_checkScheduled'] = true;
+
+                setTimeout(() => {
+                    try {
+                        const current = represent(this[backingFields][key]);
+                        if (snapshot !== current) {
+                            console.log(`Dirty check detected change in ${key}`);
+                            if (config.after) {
+                                config.after(className, key, 'field', () => { }, [this[backingFields][key]], undefined);
+                            }
+                        }
+                    } catch (e) {
+                        console.error(`Error in dirty check for ${key}:`, e);
+                    }
+                    this[backingFields][key + '_checkScheduled'] = false;
+                }, 0);
+            }
+        }
+
+        if (config.after) {
+            const afterResult = config.after(className, key, 'property', () => { }, [], value);
+            return afterResult ?? value;
+        }
+
+        return value;
+    };
+}
+
+/**
+ * Decorates an accessor property (getter/setter)
+ */
+function decorateAccessorProperty(
+    instance: any,
+    key: string,
+    descriptor: PropertyDescriptor,
+    className: string,
+    config: DecoratorConfig
+): void {
+    const originalGet = descriptor.get;
+    const originalSet = descriptor.set;
+
+    Object.defineProperty(instance, key, {
+        get: function () {
+            // Preserve original getter behavior
+            const value = originalGet?.call(this);
+
+            if (config.after) {
+                const afterResult = config.after(className, key, 'property', () => { }, [], value);
+                return afterResult ?? value;
+            }
+
+            return value;
+        },
+        set: function (newValue) {
+            if (!originalSet) return; // Read-only property
+
+            const oldValue = originalGet?.call(this);
+
+            // Skip update if values are equal
+            if (oldValue === newValue) {
+                return;
+            }
+
+            // Check for custom comparer
+            const proto = Object.getPrototypeOf(this);
+            const hasCustomComparer = proto &&
+                proto[comparerSymbol as any] &&
+                proto[comparerSymbol as any].has(key);
+
+            if (hasCustomComparer) {
+                const customComparer = proto[comparerSymbol as any].get(key);
+                if (customComparer(oldValue, newValue)) {
+                    return; // Skip update if custom comparer says they're equal
+                }
+            }
+
+            // Call original setter
+            originalSet.call(this, newValue);
+
+            // Apply after logic to trigger updates
+            if (config.after) {
+                config.after(className, key, 'field', () => { }, [newValue], undefined);
+            }
+        },
+        enumerable: descriptor.enumerable,
+        configurable: descriptor.configurable
+    });
+}
+
+/**
+ * Creates a reactive setter for a property
+ */
+function createReactiveSetter(key: string, className: string, shouldUseDynamic: boolean, config: DecoratorConfig) {
+    return function (this: any, newValue: any) {
+        const oldValue = this[backingFields][key];
+
+        // Check if values are equal
+        if (oldValue === newValue) {
+            return;
+        }
+
+        // Check for custom comparer
+        const proto = Object.getPrototypeOf(this);
+        const hasCustomComparer = proto?.[comparerSymbol as any]?.has(key);
+
+        if (hasCustomComparer) {
+            const customComparer = proto[comparerSymbol as any].get(key);
+            if (customComparer(oldValue, newValue)) {
+                return;
+            }
+        } else if (shouldUseDynamic) {
+            // Use represent for comparison
+            try {
+                if (represent(oldValue) === represent(newValue)) {
+                    return;
+                }
+            } catch (e) {
+                // Continue with update if comparison fails
+            }
+        }
+
+        let valueToSet = newValue;
+
+        // Apply before interceptor
+        if (config.before) {
+            const beforeResult = config.before(className, key, 'field', () => { }, [newValue]);
+            if (beforeResult?.[1]) {
+                valueToSet = beforeResult[1][0];
+            }
+        }
+
+        // Reactify complex objects
+        if (valueToSet && typeof valueToSet === 'object' &&
+            !Object.isFrozen(valueToSet) &&
+            !Object.isSealed(valueToSet) &&
+            Object.isExtensible(valueToSet) &&
+            !(valueToSet instanceof $Chemical) &&
+            !Array.isArray(valueToSet) &&
+            !(valueToSet instanceof Date)) {
+            reactivateData(valueToSet, this);
+        }
+
+        this[backingFields][key] = valueToSet;
+
+        // Apply after interceptor
+        if (config.after) {
+            config.after(className, key, 'field', () => { }, [valueToSet], undefined);
+        }
+    };
+}
+
+/**
+ * Determines if a value should use dynamic dirty-checking
+ */
+function shouldUseDynamicChecking(value: any): boolean {
+    const isChemicalProperty = value instanceof $Chemical ||
+        (Array.isArray(value) && value.length > 0 && value[0] instanceof $Chemical);
+
+    return !isChemicalProperty && (Array.isArray(value) ||
+        (typeof value === 'object' && value !== null && !(value instanceof Date)));
+}

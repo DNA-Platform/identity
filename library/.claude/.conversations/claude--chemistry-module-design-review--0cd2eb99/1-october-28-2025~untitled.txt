@@ -1,0 +1,196 @@
+export class $Chemical {
+    /** @internal */
+    [$remove] = false;
+
+    /** @internal */
+    [$destroyed] = false;
+
+    /** @internal */
+    [$decorators]!: $Decorators;
+
+    /** @internal */
+    [$cid]: number;
+
+    /** @internal */
+    [$symbol]: string;
+
+    /** @internal */
+    [$type]: typeof $Chemical;
+
+    /** @internal */
+    [$molecule]: $Molecule;
+
+    /** @internal */
+    [$reaction]: $Reaction;
+
+    /** @internal */
+    [$$reaction]: $Reaction | undefined;
+
+    /** @internal */
+    [$parent]: $Chemical | undefined;
+
+    /** @internal */
+    [$component]?: $Component<this>;
+
+    /** @internal */
+    [$orchestrator]: $BondOrchestrator<this>;
+
+    /** @internal */
+    [$children]: ReactNode;
+
+    /** @internal */
+    [$lastProps]: any;
+
+    /** @internal */
+    [$template]: this;
+
+    /** @internal */
+    static [$$template]: $Chemical;
+
+    /** @internal */
+    get __isTemplate() { 
+        return this === this[$template]; 
+    }
+
+    /** @internal */
+    get __isBound() { 
+        return this?.[$component]?.$chemical == this; 
+    }
+
+    /** @internal */
+    get __activeReaction(): $Reaction | undefined { 
+        return this[$reaction].active ? this[$reaction] : 
+            this[$$reaction] && this[$$reaction].active ? this[$$reaction] :
+            this.parent ? this.parent.__activeReaction :
+            undefined; 
+    }
+
+    get parent(): $Chemical | undefined { 
+        const parent = this[$parent];
+        if (parent) {
+            parent[$$reaction] = 
+                this[$reaction].active ? this[$reaction] :
+                this[$$reaction] && this[$$reaction].active ? this[$$reaction] :
+                undefined;
+
+            if (parent[$$reaction]?.active)
+                $Reaction.track(parent);
+        }
+        return parent;
+    }
+
+    /** @internal */
+    set parent(chemical: $Chemical) {
+        chemical[$$reaction] = this[$parent]?.[$$reaction]
+        this[$parent] = chemical; 
+    }
+
+    get children() { return this[$children]; }
+
+    /** @internal */
+    get Component(): $Component<this> {
+        if (!this[$component]) {
+            if (!this[$template][$component])
+                this[$template][$component] = this[$template].__createComponent();
+        }
+        return this[$component] ?? this[$template][$component] as any;
+    }
+
+    /** @internal */
+    get $Component(): $$Component<this> {
+        return this.Component as any;
+    }
+
+    $key?: string;
+    get key() { return this[$cid]; }
+
+    constructor() {
+        this[$cid] = $Chemical.getNextCid();
+        this[$type] = this.constructor as any;
+        if (!this[$type][$$template]) 
+            this[$type][$$template] = this;
+        this[$template] = this[$type][$$template] as any;
+        this[$symbol] = this.toString();
+        this[$molecule] = new $Molecule(this);
+        this[$reaction] = new $Reaction(this);
+        this[$orchestrator] = new $BondOrchestrator(this);
+    }
+
+    view(): ReactNode {
+        return this.children;
+    }
+
+    toString() {
+        if (this[$symbol]) return this[$symbol];
+        return $Chemical.createSymbol(this);
+    }
+
+    async mount() { return this[$reaction].mount(); } 
+    async render() { return this[$reaction].render(); } 
+    async layout() { return this[$reaction].layout(); } 
+    async effect() { return this[$reaction].effect(); } 
+    async unmount() { return this[$reaction].unmount(); } 
+
+    /** @internal */
+    __render(props: any): ReactNode {
+        return this[$orchestrator].render(props);
+    }
+
+    /** @internal */
+    __destroy() {
+        const component = this[$component];
+        if (component && component.$bound && component.$chemical == this) return;
+        this[$parent] = undefined as any
+        this[$molecule]?.destroy();
+        this[$reaction]?.destroy();
+        this[$destroyed] = true;
+    }
+
+    /** @internal */
+    protected __createComponent(): $Component<this> {
+        if (this[$component]) 
+            throw new Error(`The Component for ${this} has already been created`);
+
+        this.assertViewConstructors();
+        this[$template][$molecule].reactivate();
+        return new $Component$(this[$template]) as any;
+    }
+
+    private assertViewConstructors(prototype?: any, childConstructor?: any) {
+        if (!prototype) prototype = Object.getPrototypeOf(this[$template]);
+        if (!prototype || prototype === $Chemical.prototype) return;
+        
+        const className = prototype.constructor.name;
+        const thisConstructor = prototype[className];
+        if (thisConstructor && typeof thisConstructor !== 'function')
+            throw new Error(`The ${className} class has property ${className} but it's not a function`);
+        if (childConstructor && !thisConstructor)
+            throw new Error(`The ${className} class must have a constructor method named ${className} because child class has one`);
+
+        this.assertViewConstructors(Object.getPrototypeOf(prototype), thisConstructor);
+    }
+
+    /** @internal */
+    static getNextCid(): number { return $Chemical.nextCid++; }
+    private static nextCid = 1;
+
+    /** @internal */
+    static createSymbol(chemical: $Chemical) {
+        return `$Chemistry.${chemical[$type].name}[${chemical[$cid]}]`;
+    }
+
+    /** @internal */
+    static isSymbol(symbol: string): boolean {
+        return symbol.startsWith('$Chemistry.');
+    }
+
+    /** @internal */
+    static parseCid(symbol: string): number | undefined {
+        if (!$Chemical.isSymbol(symbol)) return undefined;
+        const match = symbol.match($Chemical.symbolPattern);
+        if (!match) throw new Error(`Invalid chemical symbol: ${symbol}`);
+        return Number(match[1]);
+    }
+
+    private static symbolPattern = /\[(\d+)\]$/;
+}

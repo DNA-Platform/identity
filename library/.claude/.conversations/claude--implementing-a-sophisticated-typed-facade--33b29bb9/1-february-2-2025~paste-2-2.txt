@@ -1,0 +1,170 @@
+type ExecutionMode = "Remote" | "Local"
+
+class $Eval {
+    private static _commands: CommandQuueue | undefined;
+    private static _mode: ExecutionMode = "Remote";
+
+    private static commands() { if (!this._commands) this._commands = new CommandQuueue(); return this._commands; }
+    private static mode(newMode?: ExecutionMode) { if (newMode !== undefined) this._mode = newMode; return this._mode; }
+
+    static debug: boolean = false;
+
+    static cmd(cmd: Command | Reference | string, onComplete?: OnCompleteHandler, onError?: OnErrorHandler): void {
+        onComplete = onComplete || this.onCompleteDefault;
+        onError = onError || this.onErrorDefault;
+        if (this.mode() === "Remote") {
+            if (cmd instanceof Reference) cmd = cmd.address();
+            if (cmd instanceof Command) cmd = cmd.expression();
+            this.commands().enqueue(cmd, false);
+        } else {
+            if (!(cmd instanceof Command)) cmd = $cmd(cmd);
+            if (this.commands().length() > 0)
+                this.sync(onComplete, onError);
+
+            var cmdExpression = cmd.expression();
+            if (!onError) {
+                cmd.execute();
+                if (onComplete) onComplete(cmdExpression, 0);
+            } else {
+                try {
+                    cmd.execute();
+                    if (onComplete) onComplete(cmdExpression, 0);
+                } catch (e) {
+                    onError(cmdExpression, 0, {
+                        body: (e as any || "Command failed").toSring() as string,
+                        headers: { "Error-Code": -1 }
+                    });
+                }
+            }
+        }
+    }
+
+    static sync(onComplete?: OnCompleteHandler, onError?: OnErrorHandler) {
+        onComplete = onComplete || this.onCompleteDefault;
+        onError = onError || this.onErrorDefault;
+        if (this.debug) {
+            onComplete = (cmd, i) => { console.log(`$eval.sync ${i} complete:`, cmd); if (onComplete) onComplete(cmd, i); }
+            onError = (cmd, i, e) => { console.log(`$eval.sync ${i} FAILED:`, cmd, e?.headers?.["Error-Code"], e?.body); if (onError) onError(cmd, i, e); }
+        }
+        this.commands().sync(onComplete, onError);
+    }
+
+    static onCompleteDefault: OnCompleteHandler | undefined;
+    static onErrorDefault: OnErrorHandler | undefined;
+}
+
+function $eval(cmd: Command | Reference | string, onComplete?: OnCompleteHandler, onError?: OnErrorHandler): void {
+    $Eval.cmd(cmd, onComplete, onError);
+}
+
+function $sync(onComplete?: OnCompleteHandler, onError?: OnErrorHandler) {
+    $Eval.sync(onComplete, onError);
+}
+
+/**
+ * Base class for all document-related references.
+ * Provides common methods to access the application, document, typename, and parent object.
+ */
+class ApplicationReference<IItem = any, TParent extends ApplicationItem = any> extends Reference<IItem> {
+    private _typename: string;
+    protected _document: $Document;
+
+    app(): $Application { return $app; }
+    document(): $Document { return this._document; }
+    typename(): string { return this._typename; }
+    parent(): TParent { return $docref<TParent>(this.$get(o => (o as Layer).parent), this.typename(), this.document()); }
+
+    constructor(ref: Reference<IItem> | string, typename: string, document: $Document) {
+        super(ref instanceof Reference ? ref.address() : ref)
+        this._typename = typename;
+        this._document = this instanceof $Document ? this : document;
+    }
+}
+
+/**
+ * Represents an object within a document that has a name and can be removed.
+ * Used for individual objects like layers, items, and styles.
+ */
+class ApplicationItem<TItem = any, TParent extends ApplicationItem = any> extends ApplicationReference<TItem, TParent> {
+    protected _name(newValue?: string | Reference<string>) {
+        newValue = $ref(newValue);
+        this.$get<string>(o => (o as Layer).name, newValue);
+    }
+
+    protected _remove(): void
+    protected _remove(...args: Reference[]): void {
+        this.$call(o => (o as Layer).remove, args);
+    }
+}
+
+/**
+ * Represents a collection of objects within a application.
+ * Provides methods for adding, accessing, and removing objects in the collection.
+ */
+class ApplicationCollection<TCollection = any, $TElement extends ApplicationItem = any, TElement = any, TParent extends ApplicationItem = any> extends ApplicationReference<TCollection, TParent> {
+    private _etypename: string;
+
+    app(): $Application { return $app; }
+    length() { return this.$get<number>(o => (o as Layers).length); }
+
+    constructor(ref: Reference<TCollection> | string, typename: string, document: $Document) {
+        super(ref, typename, document)
+        this._etypename = typename.slice(0, -1);
+    }
+
+    at(index: number): $TElement {
+        return $docref<$TElement>(this.$of(index), this._etypename, this.document());
+    }
+
+    protected _add(): $TElement
+    protected _add(...args: (Reference | Str | string)[]): $TElement
+    protected _add(...args: (Reference | Str | string)[]): $TElement {
+        this.$call(o => (o as Layers).add, ...args).$eval();
+        return this.at(0);
+    }
+
+    protected _removeAll(): void {
+        this.$call(o => (o as Layers).removeAll).$eval();
+    }
+
+    protected _getByName(name: string | Reference<string>): $TElement {
+        var result = this.$call(o => (o as Layers).getByName, $ref(name));
+        return $docref<$TElement>(result, this._etypename, this.document());
+    }
+
+    private static nextId = 1;
+    private static variableName = "element";
+    protected static getNextVariableName() { return `${this.variableName}${this.nextId++}`; }
+}
+
+/**
+ * Represents an object inside a document that **can be moved, duplicated, and reordered**.
+ * Used for `Layers`, `PathItems`, `PageItems`, `GroupItems`.
+ */
+class DocumentItem<TObject = any, TParent extends ApplicationItem = any> extends ApplicationItem<TObject> {
+    move(relativeObject: this | TParent, insertionLocation: ElementPlacement): void { this.$call("move", relativeObject, insertionLocation).$eval(); }
+    duplicate(relativeObject: this | TParent, insertionLocation: ElementPlacement): void { this.$call(o => (o as PathItem).duplicate, relativeObject, insertionLocation).$eval(); }
+    zOrder(command: ZOrderMethod): void { this.$call(o => (o as Layer).zOrder, command).$eval(); }
+}
+
+/**
+ * Represents an object **inside an artboard** that has **geometric properties**.
+ * Includes things like `geometricBounds`, `position`, `resize`, `rotate`, `transform`, etc.
+ */
+class ArtboardItem<TItem = any, TParent extends ApplicationItem = any> extends DocumentItem<TItem, TParent> {
+    geometricBounds(): Rect | Reference<Rect> { return this.$get<Rect>(o => (o as PathItem).geometricBounds); }
+    visibleBounds(): Rect | Reference<Rect> { return this.$get<Rect>(o => (o as PathItem).visibleBounds); }
+    controlBounds(): Rect | Reference<Rect> { return this.$get<Rect>(o => (o as PathItem).controlBounds); }
+    height(newValue?: number | Reference<number>): number | Reference<number> { return this.$get<number>(o => (o as PathItem).height, $ref(newValue)); }
+    width(newValue?: number | Reference<number>): number | Reference<number> { newValue = $ref(newValue); return this.$get<number>(o => (o as PathItem).width, newValue); }
+    position(newValue?: Position | Reference<Position>): Position | Reference<Position> { return this.$get<Position>(o => (o as PathItem).position as Position, $ref(newValue)); }
+    translate(deltaX?: number | Reference<number>, deltaY?: number | Reference<number>): void { this.$call("translate", deltaX, deltaY).$eval(); }
+
+    protected _resize(scaleX: number | Reference<number>, scaleY: number | Reference<number>, ...args: any[]): void {
+        this.$call(o => (o as PathItem).resize, $ref(scaleX), $ref(scaleY), ...args).$eval();
+    }
+
+    protected _rotate(angle: number | Reference<number>, ...args: any[]): void {
+        this.$call("rotate", $ref<number>(angle), ...args).$eval();
+    }
+}

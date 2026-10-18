@@ -1,0 +1,59 @@
+{
+  "name": "dna-patternity",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build && npm run open",
+    "build": "npm run asbuild:release && tsc -b && vite build && npm run cleanup",
+    "watch": "npm run build && npm run open && chokidar \"src/**/*\" \"assembly/**/*\" -c \"npm run build\"",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "asbuild:debug": "asc assembly/index.ts --target debug --exportRuntime --bindings esm",
+    "asbuild:release": "asc assembly/index.ts --target release --exportRuntime --bindings esm",
+    "asbuild": "npm run asbuild:debug && npm run asbuild:release",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "start": "npx serve dist",
+    "open": "start dist/index.html",
+    "cleanup": "node -e \"try{require('fs').unlinkSync('dist/release.wasm')}catch{}; try{require('fs').unlinkSync('dist/vite.svg')}catch{}\""
+  },
+  "dependencies": {
+    "gl-matrix": "^3.4.4",
+    "mathjs": "^14.6.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@as-pect/cli": "^8.1.0",
+    "@assemblyscript/loader": "^0.28.4",
+    "@eslint/js": "^9.33.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/gl-matrix": "^2.4.5",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "assemblyscript": "^0.28.4",
+    "chokidar-cli": "^3.0.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "jsdom": "^26.1.0",
+    "rimraf": "^6.0.1",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.39.1",
+    "vite": "^7.1.2",
+    "vite-plugin-singlefile": "^2.3.0",
+    "vite-plugin-top-level-await": "^1.6.0",
+    "vite-plugin-wasm": "^3.5.0",
+    "vitest": "^3.2.4"
+  },
+  "exports": {
+    ".": {
+      "import": "./build/release.js",
+      "types": "./build/release.d.ts"
+    }
+  }
+}

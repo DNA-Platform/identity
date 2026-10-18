@@ -1,0 +1,502 @@
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import List, Enum, Optional, TypeVar, Iterator, Callable, Tuple, Any
+
+T = TypeVar('T', bound=Element)
+type Content = List[Element] | Element | str | None
+
+class Unit(Enum):
+    """Defines valid measurement units for SVG attributes."""
+    PX = "px"
+    PERCENT = "%"
+    EM = "em"
+    REM = "rem"
+    VW = "vw"
+    VH = "vh"
+    CM = "cm"
+    MM = "mm"
+    IN = "in"
+    PT = "pt"
+    PC = "pc"
+
+class TransformType(Enum):
+    """Defines valid transformation types in SVG."""
+    TRANSLATE = "translate"
+    ROTATE = "rotate"
+    SCALE = "scale"
+    SKEW_X = "skewX"
+    SKEW_Y = "skewY"
+    MATRIX = "matrix"
+
+class Element(ABC):
+    """Base class for all SVG elements. Immutable once created."""
+
+    @property
+    def parent(self) -> Element:
+        """Return the parent element."""
+        pass
+
+    @property
+    def annotation(self) -> ElementCollection[Element]:
+        "Structured content assocuated with the Element"
+        pass
+
+    @property
+    def attribues(self) -> ElementCollection[Attribute]:
+        "The attributes associated with the Element"
+        pass
+
+    @property
+    def content(self) -> Content:
+        "The attributes associated with the Element"
+        pass
+
+    @property
+    def _dirty(self) -> bool:
+        """Indicates whether there are pending updates in this collection (private)."""
+        pass
+
+    @_dirty.setter
+    def _dirty(self, value: bool) -> None:
+        """
+        Set the dirty flag here and on the parent Element
+        """
+        pass
+
+    def __init__(
+        self,
+        parent: Element | None = None,
+        attributes: List[Attribute] = [], 
+        content: Content = None,
+        annotation: List[Element] | None = None,
+    ):
+        """
+        Initialize an immutable element with attributes, content, and annotation.
+        Parent must always be provided.
+        """
+        pass
+
+    def update(self: T) -> T:
+        """
+        Return a new element with all pending changes applied.
+        Calls update() on collections to ensure changes propagate.
+        """
+        pass
+
+    def visit(self, visitor: Callable[[Element], None]) -> None:
+        """
+        Apply visitor function to this element and recursively to all
+        attributes and child elements.
+        """
+        pass
+
+    def clone(self: T, **overrides) -> T:
+        """
+        Create a new element with optional modifications.
+        Used to maintain immutability while updating properties.
+        """
+        pass
+
+    @abstractmethod
+    def render(self, indent: int = 0) -> str:
+        """Render element as SVG string with appropriate indentation."""
+        pass
+
+class Container[T: Element](Element):
+    """Base class for all SVG elements that have children. Immutable once created."""
+
+    @property
+    def children(self) -> ElementCollection[T]:
+        """Indicates whether there are pending updates in this collection (private)."""
+        pass
+
+    def __init__(
+        self,
+        parent: Element | None = None,
+        attributes: List[Attribute] | None = None, 
+        children: List[T] | None = None,
+        annotation: List[Element] | None = None,
+    ):
+        """
+        Initialize an immutable element with attributes, content, and annotation.
+        Parent must always be provided.
+        """
+        pass
+
+class ElementCollection[T]:
+    """
+    An immutable collection of elements with deferred modifications.
+    Tracks parent relationships and ensures only elements with the correct parent can be added.
+    """
+
+    @property
+    def parent(self) -> Element:
+        """The parent element that owns this collection."""
+        pass
+
+    @property
+    def _elements(self) -> List[Tuple[Element, Optional[int]]]:
+        """The internal list of elements and their indexes."""
+        pass
+
+    @property
+    def _new_elements(self) -> List[Tuple[Element, Optional[int]]]:
+        """The internal immutable list if new indexes."""
+        pass
+
+    @property
+    def _dirty(self) -> bool:
+        """Indicates whether there are pending updates in this collection (private)."""
+        pass
+
+    @_dirty.setter
+    def _dirty(self, value: bool) -> None:
+        """
+        Set the dirty flag here and on the parent Element
+        """
+        pass
+
+    def __init__(self, parent: Element):
+        """Initialize the collection with a parent. Elements are empty initially."""
+        pass
+
+    def __iter__(self) -> Iterator[Element]:
+        """Allows iteration over elements."""
+        pass
+
+    def __len__(self) -> int:
+        """Returns the number of elements in the collection."""
+        pass
+
+    def __getitem__(self, index: int) -> Element:
+        """Allows indexing into the collection."""
+        pass
+
+    def add(self, element: Element):
+        """
+        Puts an element in the new_elements collection with the higest index.
+        """
+        pass
+
+    def remove(self, element: Element):
+        """
+        Marks an element as having no index and adjusts the associated indices.
+        """
+        pass
+
+    def replace(self, index: int, element: Element):
+        """
+        Removes the element at the index and adds the new element.
+        """
+        pass
+
+    def move(self, old_index: int, new_index: int):
+        """
+        Changes the index of the element and adjusts the others to accommodate it.
+        """
+        pass
+
+    def clear(self):
+        """
+        Removes indexer from all elements.
+        """
+        pass
+
+    def update(self, new_parent: Element) -> ElementCollection:
+        """
+        Return a new collection with all pending changes applied.
+        If no changes exist, return itself.
+        The new parent is required since this update is triggered from the parent.
+        """
+        pass
+
+class String(Element):
+    """An Element that has only string content"""
+
+    @property
+    def text(self) -> str:
+        """Returns the content as a string."""
+        pass
+
+    def __init__(self, parent: Element, content: str):
+        """Initialize the collection with a parent. Elements are empty initially."""
+
+class Attribute(Element):
+    """An attribute of an SVG element, which is itself an element."""
+
+    @property
+    def name(self) -> String:
+        """Returns the first attribute which will always ."""
+
+    def __init__(self, name: str, value: Any, parent: Element):
+        """Initialize an attribute with a name, value, and parent reference."""
+        pass
+
+    def render(self, indent: int = 0) -> str:
+        """Render the attribute as name="value"."""
+        pass
+
+
+class Graphic(Element):
+    """
+    A complete SVG graphic representation.
+    Immutable - all changes create a new instance.
+    """
+
+    def __init__(
+        self, 
+        root_element: Element, 
+        width: int = 100, 
+        height: int = 100
+    ):
+        """Initialize with root element and dimensions."""
+        pass
+
+    def render(self, indent: int = 0) -> str:
+        """Render the complete SVG document."""
+        pass
+
+class Canvas:
+    """
+    Mutable container for a Graphic.
+    Maintains history stack for undo/redo.
+    """
+
+    def __init__(self, graphic: Optional[Graphic] = None, filename: Optional[str] = None):
+        """Initialize with an optional graphic and a filename for saving."""
+        pass
+
+    @property
+    def graphic(self) -> Optional[Graphic]:
+        """Get the current immutable graphic."""
+        pass
+
+    @graphic.setter
+    def graphic(self, new_graphic: Graphic) -> None:
+        """
+        Set a new graphic state, adding it to history.
+        Clears any redo states beyond the current position.
+        """
+        pass
+
+    def undo(self) -> Optional[Graphic]:
+        """Move back in history and return the previous state."""
+        pass
+
+    def redo(self) -> Optional[Graphic]:
+        """Move forward in history and return the next state."""
+        pass
+
+    def render(self) -> str:
+        """Render the current graphic as an SVG string."""
+        pass
+
+    def save(self) -> None:
+        """Save the current graphic to the filename."""
+        pass
+
+
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import List, Optional, TypeVar, Any
+from css import CssStyleRule
+from svg import Element, Container, Attribute, String, ElementCollection
+
+T = TypeVar("T", bound=Element)
+
+
+### **1. SVG Core Elements**
+class Svg(Graphic):
+    """
+    The root SVG element that holds all content.
+    """
+
+    @property
+    def version(self) -> String:
+        """SVG version (e.g., '1.1')."""
+        pass
+
+    @property
+    def viewBox(self) -> String:
+        """Defines the coordinate system and dimensions."""
+        pass
+
+    def __init__(
+        self,
+        parent: Optional[Element] = None,
+        attributes: List[Attribute] | None = None,
+        children: List[Element] | None = None,
+    ):
+        """Initialize the root SVG element."""
+        pass
+
+
+class Group(Container[Element]):
+    """
+    Represents <g> elements for logical grouping.
+    """
+
+    def __init__(
+        self,
+        parent: Optional[Element] = None,
+        attributes: List[Attribute] | None = None,
+        children: List[Element] | None = None,
+    ):
+        """Initialize an SVG group."""
+        pass
+
+
+class Rect(Element):
+    """
+    Represents <rect> elements with width, height, and positioning attributes.
+    """
+
+    @property
+    def x(self) -> Size:
+        """X coordinate of the rectangle."""
+        pass
+
+    @property
+    def y(self) -> Size:
+        """Y coordinate of the rectangle."""
+        pass
+
+    @property
+    def width(self) -> Size:
+        """Width of the rectangle."""
+        pass
+
+    @property
+    def height(self) -> Size:
+        """Height of the rectangle."""
+        pass
+
+    def __init__(
+        self,
+        parent: Optional[Element] = None,
+        x: Size = Size(0),
+        y: Size = Size(0),
+        width: Size = Size(100),
+        height: Size = Size(100),
+        attributes: List[Attribute] | None = None,
+    ):
+        """Initialize an SVG rectangle."""
+        pass
+
+
+class Style(Container[CssStyleRule]):
+    """
+    Represents the <style> tag that holds CSS.
+    """
+
+    def __init__(
+        self,
+        parent: Optional[Element] = None,
+        rules: List[CssStyleRule] | None = None,
+    ):
+        """Initialize an SVG style element."""
+        pass
+
+
+class Defs(Container[Element]):
+    """
+    Represents the <defs> tag for reusable content.
+    """
+
+    def __init__(
+        self,
+        parent: Optional[Element] = None,
+        children: List[Element] | None = None,
+    ):
+        """Initialize an SVG definitions block."""
+        pass
+
+
+### **2. Structured Attributes for SVG Elements**
+class Color(Attribute):
+    """
+    Represents colors (fill, stroke, etc.).
+    """
+
+    @property
+    def value(self) -> String:
+        """Returns the color value."""
+        pass
+
+    def __init__(self, parent: Optional[Element], color: str):
+        """Initialize a color attribute."""
+        pass
+
+
+class Transform(Attribute):
+    """
+    Represents translate(), rotate(), etc.
+    """
+
+    @property
+    def value(self) -> String:
+        """Returns the transformation string."""
+        pass
+
+    def __init__(self, parent: Optional[Element], transform: str):
+        """Initialize a transform attribute."""
+        pass
+
+
+class Size(Attribute):
+    """
+    Represents width/height properties.
+    """
+
+    @property
+    def value(self) -> String:
+        """Returns the size value (e.g., px, %)."""
+        pass
+
+    def __init__(self, parent: Optional[Element], size: str):
+        """Initialize a size attribute."""
+        pass
+
+
+class Use(Element):
+    """
+    Represents <use> for referencing <defs>.
+    """
+
+    @property
+    def href(self) -> String:
+        """Returns the reference to the element in <defs>."""
+        pass
+
+    def __init__(self, parent: Optional[Element], href: str):
+        """Initialize a reference to a <defs> element."""
+        pass
+
+
+class ClipPath(Container[Element]):
+    """
+    Represents <clipPath>.
+    """
+
+    def __init__(
+        self,
+        parent: Optional[Element] = None,
+        children: List[Element] | None = None,
+    ):
+        """Initialize an SVG clip path."""
+        pass
+
+
+class Metadata(Container[Element]):
+    """
+    Represents <metadata>.
+    """
+
+    def __init__(
+        self,
+        parent: Optional[Element] = None,
+        children: List[Element] | None = None,
+    ):
+        """Initialize an SVG metadata block."""
+        pass
+    

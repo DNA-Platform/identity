@@ -1,0 +1,151 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ Seamless Russian Language Wallpaper Pattern v12 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`${''}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Russian Language Patterns</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+      background-color: #f9f7f1;
+      color: #333;
+    }
+    
+    #container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      max-width: 250px;
+    }
+    
+    .letter-connection {
+      fill: none;
+      stroke-width: 1;
+    }
+    
+    .letter-node {
+      cursor: pointer;
+    }
+    
+    .tooltip {
+      position: absolute;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      max-width: 200px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    select, button {
+      margin: 5px 0;
+      padding: 5px;
+      width: 100%;
+    }
+    
+    h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+    
+    .fade-text {
+      opacity: 0.4;
+    }
+    
+    input[type="range"] {
+      width: 100%;
+      margin: 10px 0;
+    }
+    
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <!-- The SVG will be appended here -->
+  </div>
+  
+  <div class="controls">
+    <h3>Linguistic Patterns</h3>
+    <label for="patternType">Pattern Type:</label>
+    <select id="patternType">
+      <option value="cyrillic-latin">Cyrillic-Latin Connections</option>
+      <option value="cyrillic-greek">Cyrillic-Greek Connections</option>
+      <option value="phonetic">Phonetic Relationships</option>
+      <option value="poetry">Russian Poetry Structure</option>
+    </select>
+    
+    <label for="density">Pattern Density:</label>
+    <input type="range" id="density" min="1" max="10" value="5">
+    
+    <label for="colorScheme">Color Scheme:</label>
+    <select id="colorScheme">
+      <option value="traditional">Traditional</option>
+      <option value="winter">Winter</option>
+      <option value="modern">Modern</option>
+      <option value="imperial">Imperial</option>
+    </select>
+    
+    <button id="regenerate">Regenerate Pattern</button>
+  </div>
+  
+  <div class="tooltip"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script>
+    // Define the Russian alphabet with connections to Latin and Greek
+    const russianAlphabet = [
+      { cyrillic: 'А', latin: 'A', greek: 'Alpha', name: 'ah', sound: 'a as in father', type: 'vowel', frequency: 0.062 },
+      { cyrillic: 'Б', latin: 'B', greek: 'Beta', name: 'beh', sound: 'b as in boy', type: 'consonant', frequency: 0.014 },
+      { cyrillic: 'В', latin: 'V', greek: 'Beta', name: 'veh', sound: 'v as in voice', type: 'consonant', frequency: 0.038 },
+      { cyrillic: 'Г', latin: 'G', greek: 'Gamma', name: 'ghe', sound: 'g as in go', type: 'consonant', frequency: 0.013 },
+      { cyrillic: 'Д', latin: 'D', greek: 'Delta', name: 'deh', sound: 'd as in day', type: 'consonant', frequency: 0.025 },
+      { cyrillic: 'Е', latin: 'E/Ye', greek: 'Epsilon', name: 'yeh', sound: 'ye as in yes', type: 'vowel', frequency: 0.072 },
+      { cyrillic: 'Ё', latin: 'Yo', greek: '', name: 'yo', sound: 'yo as in yolk', type: 'vowel', frequency: 0.004 },
+      { cyrillic: 'Ж', latin: 'Zh', greek: '', name: 'zheh', sound: 'zh as in measure', type: 'consonant', frequency: 0.007 },
+      { cyrillic: 'З', latin: 'Z', greek: 'Zeta', name: 'zeh', sound: 'z as in zoo', type: 'consonant', frequency: 0.016 },
+      { cyrillic: 'И', latin: 'I', greek: 'Iota', name: 'ee', sound: 'i as in machine', type: 'vowel', frequency: 0.062 },
+      { cyrillic: 'Й', latin: 'Y', greek: '', name: 'ee kratkoyeh', sound: 'y as in boy', type: 'semivowel', frequency: 0.010 },
+      { cyrillic: 'К', latin: 'K', greek: 'Kappa', name: 'kah', sound: 'k as in kite', type: 'consonant', frequency: 0.028 },
+      { cyrillic: 'Л', latin: 'L', greek: 'Lambda', name: 'el', sound: 'l as in lamp', type: 'consonant', frequency: 0.035 },
+      { cyrillic: `}
+        </CodeBox>
+    </Chapter>
+);

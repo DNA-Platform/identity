@@ -1,0 +1,171 @@
+You are an expert science writer and a systems neuroscientist. Below is a Markdown report: a descriptive, model-free first-pass data exploration of two-photon calcium-imaging recordings of mouse V1 before and after the psychedelic DOI. Its audience is peers who already know this kind of data but do not know the analyst or her intentions; its job is to MOTIVATE the analysis, not re-describe the data.
+
+Rewrite it to read more fluidly, with more expertise and clarity — a genuine pleasure to read — WITHOUT making it longer (same length or slightly shorter; this is a polish, not an expansion). Every constraint below is hard:
+
+- Preserve every technical detail, number, equation, and caveat EXACTLY — nothing dropped, nothing altered. The footnotes stay, content intact (you may sharpen their prose).
+- Keep the structure, all section headings, the Markdown, and every image line (the lines like ![...](figures/...)) exactly where they are, in order.
+- Each analysis section must make its PURPOSE unmistakable in its first sentence — why this analysis, what question it answers for someone deciding how to analyze the data — then give the computation precisely enough to reproduce, then what it establishes.
+- Keep the honest framing: descriptive, confounded by behavioural state, no causal DOI claim. The piece builds to the "behaviour decodes the session" confound and its implication for any future analysis.
+- Improve rhythm, transitions, word choice, and flow; remove stiffness and abbreviation-induced terseness. Make the motivations vivid and the logic easy to follow.
+- Return ONLY the complete rewritten Markdown document, ready to save — no preamble, no commentary.
+
+Here is the document:
+
+----------------------------------------------------------------------
+# Initial Data Exploration
+![](figures/cover-psychedelic.jpg)
+
+**Matched two-photon V1 recordings before and after DOI — a first descriptive pass**
+*Animal 33328 · session 6 (baseline), session 7 (DOI) · 2026-06-23*
+
+---
+
+## What this exploration is for
+
+These are the matched pre/post-DOI recordings of mouse V1 — same stimuli, repeated test images,
+cells tracked across both sessions. The data are sound; the open question is how to analyze them.
+An initial pass has three jobs: confirm the data supports the comparisons we plan, characterize the
+pre/post differences at face value, and find the confounds that decide whether a naive contrast is
+interpretable at all. The analyses build from a single image to the population to the same cells,
+then close on the behavioural confound that governs every reading upstream of it. The product is a
+decision about how DOI must be analyzed — not a claim that it does anything.
+
+## What the design provides
+
+![The two recordings](figures/00_recordings.png)
+![Example stimuli](figures/01_stimuli.png)
+
+Two preconditions for what follows. Both sessions carry the repeated test tier — ~100 images shown
+~10× each — the only lever for a per-cell noise ceiling; and the sessions are balanced (1,654 cells
+/ 5,936 trials baseline; 1,449 / 5,996 under DOI) over the same stimuli, so same-image and
+cross-session comparisons are licensed. These confirm the analyses are well-posed; they are not
+results.
+
+## A single image, on the cortical surface
+
+![One image, two states](figures/02_single_image.png)
+
+What does one stimulus do to the population, and where? For an image shown in both sessions, each
+neuron is drawn at its cortical position and shaded by its response on that trial, on a shared
+scale.[^single] The code is sparse: one image drives a scattered minority of cells, with no spatial
+clustering or artifact. This fixes the regime — mean rates ride on a few high-responders,
+single-image contrasts are underpowered — so the analysis moves to distributions over all cells and
+trials, taking with it a first qualitative look at whether the same image recruits cells differently
+under DOI.
+
+## Behavioural state, per session
+
+![Behavioural state differs](figures/03_behavior.png)
+
+V1 is strongly modulated by arousal and locomotion, so each session's behavioural state must be
+characterized before any neural comparison is trusted. The three covariates — pupil size, its
+derivative, running speed[^behchannels] — are shown as per-session distributions. They differ, most
+visibly in running: near-stationary at baseline, frequently locomoting under DOI. This puts the
+confound on the table at the start, and motivates the final analysis — how much of the pre/post
+distinction is nothing but this.
+
+## Per-cell reliability (the noise ceiling)
+
+![Per-cell reliability](figures/04_reliability.png)
+
+Reliability caps how much of a cell's response any model could explain, and is the natural basis for
+selecting analyzable cells. Per session it is the split-half correlation over the repeated images:
+split each image's repeats in two, average within each half, and correlate the two per-cell
+half-means across images.[^splithalf] The ceiling is usable — a broad spread to ~0.9, baseline
+median near 0.5 — and it drops under DOI (median 0.51 → 0.38). That is both a data-quality fact (DOI
+fits will look worse for non-mechanistic reasons) and a candidate effect — one already shadowed by
+the state difference above, since a more variable state inflates apparent noise on its own.
+
+## Population rate structure
+
+![Population code](figures/05_population.png)
+
+The gross population statistics — sparsity, dynamic range, any global shift in scale — inform
+normalization and tell whether a difference is global or cell-specific. The panels show each
+neuron's trial-averaged mean, sorted, and the density of all response values.[^units] The code is
+sharply long-tailed in both states, and the baseline rate profile sits above DOI across the whole
+rank range: the reduction is broad, not confined to a subset. That points the matched-cell analysis
+at one question — does the shift survive with cell identity held fixed?
+
+## Population co-activity
+
+![Population raster](figures/06_population_raster.png)
+
+Trial-averaging discards the structure that justifies population methods, so it is worth checking
+for co-active ensembles and population-wide events directly. Neurons are ordered by a Rastermap
+embedding and shown as a grayscale neuron × trial raster.[^raster] Both sessions show clear
+structure — horizontal bands of co-active cells, vertical streaks where one trial drives much of the
+population — so the activity is far from independent and population-geometry methods are warranted.
+A qualitative check by construction: the orderings are per session and not comparable row-for-row.
+
+## The same neurons, before and after
+
+![The same cells](figures/07_matched_cells.png)
+
+The cleanest contrast removes cell identity as a variable, using only cells located in both
+sessions. For each of 749 matched pairs, the baseline mean response is plotted against the same
+cell's mean under DOI, the diagonal marking no change.[^matching] The population rate drop is not an
+artifact of comparing different cells: it holds cell by cell, the cloud lying below the diagonal.
+This is the strongest face-value statement the pass can make — and the one the final panel forces us
+to qualify.
+
+## Decoding the session from behaviour alone
+
+![State from behaviour alone](figures/08_drug_state.png)
+
+Every difference so far is a candidate DOI effect; this measures the alternative. A random forest
+predicts the session from the behavioural features alone — no neural data — scored by
+cross-validation.[^classifier] It reaches 97%, on pupil position and running speed. The two sessions
+are nearly separable on behaviour, so none of the neural differences can be assigned to the drug
+rather than to the animal being in a different state during the DOI session.
+
+---
+
+## What this exploration achieves
+
+Three things, for whoever chooses the analysis:
+
+- **The data is usable and its regime known** — sparse code, long-tailed rates, structured
+  co-activity, a workable noise ceiling, 749 matched cells.
+- **The differences are characterized and consistent** — reliability down, rates down globally, the
+  same cells responding less.
+- **The binding constraint is identified** — behaviour alone separates the sessions at 97%, so the
+  difference is entangled with arousal and locomotion and cannot, here, be read as a drug effect.
+
+A credible comparison must therefore either condition on behavioural state — matching or regressing
+on pupil and running — or move to a stimulus-and-behaviour encoding model that separates the
+stimulus-driven response from the state-driven one. The pass finds no DOI effect; it shows the data
+is sound, what the naive differences are, and what must be controlled before they can mean anything.
+
+---
+
+[^single]: A test image present in both sessions (median of the shared ids), one presentation each;
+cells at their `cell_motor_coordinates` (x, y); shared colour scale, `vmax` at the 99th percentile
+across both trials, white = 0. The cell sets are independently segmented, so each panel is its own
+field — a within-session view, not a cell-by-cell overlay.
+
+[^behchannels]: Channel order was verified against the extract, not assumed: channel 0 strictly
+positive (pupil size), 1 symmetric about zero (its derivative), 2 non-negative with a stationary
+mode (running speed). Pupil-centre (x, y) is stored separately and enters only the classifier.
+
+[^splithalf]: One random split per image (odd repeats dropped); the Pearson correlation of the two
+half-mean vectors across images. A single-split, uncorrected estimate — conservative and relative,
+adequate for comparing sessions, not a calibrated absolute ceiling.
+
+[^units]: Responses are deconvolved activity in arbitrary units (not ΔF/F); the distribution is
+decimated for plotting only. No normalization is applied — the global scale difference is part of
+what the panel reports.
+
+[^raster]: Rastermap orders neurons on a 1-D embedding (Stringer & Pachitariu, 2024), computed
+independently per session, so row position is not comparable between panels; trials subsampled to
+400 columns, display clipped at the 99th percentile.
+
+[^matching]: Reciprocal nearest neighbour in the common functional-stack frame, mutually-nearest
+pairs ≤ 10 µm — 749 pairs, median 2.68 µm. The match is geometric, not yet functionally validated.
+Per-cell values are means over all trials.
+
+[^classifier]: Random forest, 200 trees, predicting session from the five behavioural features
+(pupil size, derivative, running speed, pupil x, y) per trial, pooled; accuracy the mean of 5-fold
+stratified cross-validation, bars the Gini importances; no neural data. Per-trial decoding ignores
+trial-to-trial autocorrelation, which inflates accuracy somewhat — not enough to change the
+conclusion.

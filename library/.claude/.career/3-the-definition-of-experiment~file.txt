@@ -1,0 +1,303 @@
+# The Definition of an Experiment
+
+An experiment is a question pursued through observation. This page defines the structure of experiments in this wiki: how they are designed, named, recorded, and how Claude and the experimentalist collaborate to conduct them.
+
+*Experimentation lies on a spectrum from exploration to confirmation, defined by how much constraint the experimentalist imposes on observation. The Latin root experīmentum means testing, experience, proof—the deliberate engagement with the world to learn something.*
+
+---
+
+## Contents
+
+- [The Axis](#the-axis) — Experiments range from open exploration to precise confirmation. Three landmarks on this spectrum—Survey, Probe, Test—differ in how much judgment the experimentalist must exercise.
+- [The Logic](#the-logic) — Every experiment is an argument: question, assumption, evidence, inference, conclusion. Theories generate hypotheses. Judgment connects evidence to hypotheses. Facts survive when theories don't.
+- [Market Research](#market-research) — In this wiki, an experiment is a question about a provider.
+- [Missions](#missions) — Experiments serve missions. A mission holds the developing theory and defines when research is done.
+- [The Experiment Page](#the-experiment-page) — Template, recording conventions, and the distinction between observations (what you perceived) and findings (what you judged).
+- [Naming](#naming) — Titles are questions. Good ones carry the semantic weight of the investigation.
+- [The Wiki Tree](#the-wiki-tree) — Flat by default. Sections become pages only when they outgrow their parent.
+- [Claude](#claude) — Two experimentalists with complementary perception. The conversation is the workspace; the wiki is the destination.
+
+Each section above links to its heading on this page. If a section grows large enough to need its own space, it becomes a child page. The link remains; the content moves. In its place, a summary paragraph stays behind so the reader knows whether to click. See [Refactoring](#refactoring) below.
+
+---
+
+## The Axis
+
+All experimentation lives on a spectrum defined by **constraint**—how much of your observation and recording is pre-structured versus emergent.
+
+At one pole, behavior is unconstrained: you encounter whatever appears and record impressions. At the other, fully constrained: you measure a specific variable with a pre-specified prediction. A browsing session with no plan is an experiment. A purchase to test a specific prediction is an experiment. They differ in constraint, not in kind.
+
+### Characters
+
+Three landmarks on the spectrum. Each implies a recording posture and a distinct relationship to the experimentalist's judgment:
+
+**Survey** — exploratory. To survey is to explore a landscape: open questions whose answers don't have a known shape. The experimentalist's judgment is maximal—you decide what to notice, how to interpret, where to direct attention. Output: prose, screenshots, impressions.
+
+**Probe** — intermediate. A probe is a measurement device. To probe is to get concrete readings—closer to numbers, closer to categories. You return with a specific question and build the measurement as you go. Judgment is moderate: the readings constrain interpretation. Output: categorized notes, comparisons, confidence annotations.
+
+**Test** — confirmatory. To test is to seek a judgment close to boolean: reject or fail to reject. A well-designed test minimizes the experimentalist's role—the answer approaches mechanical. In the Bayesian sense: evidence accumulates until the posterior crosses a threshold and the judgment reduces to reading the result. Output: prediction, observation, delta.
+
+| | Survey | Probe | Test |
+|---|--------|-------|------|
+| **Constraint** | Low | Medium | High |
+| **Question** | Many, vague | Specific, open | Precise, falsifiable |
+| **Answer shape** | Unknown | Measurement | Boolean |
+| **Judgment** | Maximum | Moderate | Minimal by design |
+| **Recording** | Prose | Categorized notes | Prediction → observation → delta |
+| **Yields** | Territory map | Patterns | Rejections |
+| **Fails by** | Wandering | Premature patterns | Only finding what you conceived |
+
+---
+
+## The Logic
+
+### The argument
+
+An experiment has the structure of an argument:
+
+- **Question** — what we want to know
+- **Assumption** — what we take for granted going in
+- **Evidence** — what we observe
+- **Inference** — what we reason from the evidence given the assumptions
+- **Conclusion** — the answer to the question, qualified by confidence
+
+The experiment proper is the question, assumptions, method, and evidence—verifiable by another observer. Inference and conclusions belong to the experimentalist. This boundary matters for recording: **Observations** hold what was perceived; **Findings** hold what was judged.
+
+### Observations and findings
+
+An observation is the most abstract thing an experimenter does as an observer. It might still be forming—it may not yet be clear what "it" is. "The Kauai map is visually simpler than the Bodeen map" is an observation. It is the raw encounter with the territory.
+
+A finding objectifies an observation: if I found it, I found it to be true. "Simplicity and beauty are decoupled from price" is a finding—an observation that has been interpreted and committed to.
+
+Between observation and finding is the experimentalist's act of **judgment**: deciding what the observation means in the context of the theory. The framework separates these because the gap between perceiving and judging is where insight lives. If observations and findings are mixed together, contradictions between what you see and what you believe become invisible.
+
+### Theory, hypothesis, judgment, fact
+
+A **theory** is a framework—a language, sentences, axioms, and rules of inference that together explain how part of the subject works. A theory generates predictions. It could be wrong. "Custom map services are bottlenecked on illustration labor" is a developing theory.
+
+A **hypothesis** is generated by a theory. A testable prediction about what you will observe. The theory produces it; the experiment tests it. A hypothesis is part of the theory but not yet part of the subject—because the theory itself could be excluded if its hypotheses are falsified.
+
+**Judgment** connects hypothesis to evidence. The experimentalist weighs the evidence against the prediction and decides: confirm, complicate, or falsify. In well-designed tests, judgment approaches measurement. In surveys, judgment is the whole act.
+
+A **fact** is confirmed through observation and judgment—part of the **canon** of the subject. Facts survive theory change. If the theory that led you to observe them is abandoned, the facts remain. The experiments that confirmed them are canonical.
+
+The theory belongs to the experimentalist. The facts belong to the subject.
+
+---
+
+## Market Research
+
+In this wiki, a market research experiment is a **question about a provider** or collection of providers. Evidence is observations of or about providers—their websites, pricing, deliverables, reviews, communication.
+
+Questions about your own capability are self-assessment. Questions about platform mechanics are infrastructure research. Both are valid experiments under different missions.
+
+A buyer's review is evidence *about* a provider. A pricing page is evidence *about* a provider. The buyer is a source. The platform is the environment. Neither is the subject.
+
+---
+
+## Missions
+
+An experiment serves a **mission**: the reason for being in the territory. Not a hypothesis—a purpose. "Understand how custom map providers operate" is a mission. It gives rise to surveys, probes, and tests but prescribes neither what to observe nor what to predict.
+
+The mission holds the developing **theory**. Individual experiments contribute evidence that tests hypotheses and accumulates facts. The **synthesis** states what theory survived and what facts support it.
+
+```markdown
+# Mission: {Goal}
+
+## Purpose
+What decision will this research inform?
+
+## Scope
+What territory? What's in bounds?
+
+## Theory
+The developing explanatory framework.
+What do we think is true? What hypotheses does it generate?
+
+## Completion
+The theory is stable enough to act on—or falsified and
+replaced—and the canonical facts are sufficient.
+
+## Synthesis
+(At completion. What theory survived? What facts are
+canonical? What decisions follow? What new missions?)
+```
+
+### Halting
+
+A **session** halts when the next step requires fresh browsing, a break, or input not yet available.
+
+A **mission** halts when its completion criterion is met.
+
+---
+
+## The Experiment Page
+
+```markdown
+# {Character}: {Provider} - {Investigation}
+
+> **Mission**: [link to mission page]
+> **Character**: Survey · Probe · Test
+> **Prior**: [link to prior experiment, or —]
+> **Started**: YYYY-MM-DD
+> **Status**: Active · Paused · Complete
+
+## Question
+
+What are we trying to learn?
+Surveys: broad, compound, many questions held loosely.
+Probes: one specific question.
+Tests: one hypothesis with prediction.
+
+## Assumptions
+
+What are we taking for granted?
+For tests, includes the prediction.
+Make the invisible visible.
+
+## Method
+
+What are we doing? What does Claude read versus
+what do you observe directly?
+
+## Observations
+
+What was perceived, before interpretation.
+See [Observations and findings](#observations-and-findings)
+in The Logic for the conceptual distinction.
+
+Format follows character:
+- Survey: prose with screenshots, impressions, reactions
+- Probe: categorized notes, comparisons, readings
+- Test: prediction → observation → delta
+
+Annotations for provenance:
+- *(via Claude)* — Claude observed or inferred this
+- *(screenshot: description)* — visual evidence
+- Unmarked = direct observation by the experimentalist
+
+## Findings
+
+What was judged. See [Observations and findings](#observations-and-findings).
+
+Annotations for epistemic status:
+- *(inferred)* — reasoned from evidence
+- *(guess)* — suspected, unchecked
+- *(fact)* — canonical, survives theory change
+- *(hypothesis)* — generated by theory, untested
+
+## Next
+
+Derived questions. Candidates for future experiments.
+```
+
+---
+
+## Naming
+
+### Structure
+
+Character prefix, then provider, then investigation:
+
+```
+{Character}: {Provider} - {Investigation}
+```
+
+Capitalize semantically. Proper nouns and the words that carry the investigation's weight get elevated—like class names in code. "How do they Price their Maps?" capitalizes Price and Maps because those are the semantic centers; "do" and "they" stay lowercase because they're structural, not meaningful. The result reads like a question a person would actually ask, with visual emphasis on what matters.
+
+The investigation is ideally a question—pithy, self-evident, and connected to the market research being conducted. Choosing a title requires the same reflective thought as choosing a book title: does this question carry the most semantic power for the investigation I'm doing?
+
+Missions:
+
+```
+Mission: {Goal as Declaration or Question}
+```
+
+### Examples
+
+| Title | What it conveys |
+|-------|----------------|
+| Survey: AgentFire ClickMaps - What is this Product? | Open exploration of an unfamiliar provider |
+| Probe: AgentFire ClickMaps - Where does the Money Go? | Measuring the relationship between price and illustration labor |
+| Survey: Fiverr Cartographers - How do they Price their Maps? | Open exploration of a provider group's pricing |
+| Probe: Fiverr Cartographers - What does $500 Buy? | Measuring deliverable quality at a specific price point |
+| Test: AgentFire versus Fiverr - Is the Quality Difference in Illustration or Interactivity? | Boolean: is one dimension responsible? |
+| Mission: Custom Map Providers | Understand the business models in this space |
+
+The title is for sidebar scanning. Under 50 characters visible in the Azure DevOps tree (the rest truncates but the hover shows the full title). Front-load the provider name so experiments about the same provider cluster visually.
+
+---
+
+## The Wiki Tree
+
+### Topology
+
+```
+Definitions/
+  The Definition of an Experiment          ← this page
+Experiments/
+  Mission: Custom Map Providers/
+    Survey: AgentFire ClickMaps - What is this Product?
+    Probe: AgentFire ClickMaps - Where does the Money Go?
+    Survey: Fiverr Cartographers - How do they Price their Maps?
+```
+
+Experiments are flat siblings under their mission. Link via the **Prior** field rather than nesting. See [Naming](#naming) for why the provider name front-loads: siblings about the same provider sort together.
+
+### Growth
+
+Things start small:
+
+1. **Sentence** — an observation inside a parent's Observations section.
+2. **Section** — a headed block within the parent page. Free to create—just type a heading.
+3. **Page** — a full experiment. Created when a section needs its own space.
+
+### Refactoring
+
+When a section outgrows its parent page:
+
+1. Create a child page with the section's content.
+2. Replace the section content in the parent with a **summary paragraph**—two or three sentences describing what the child page contains and why you'd want to read it.
+3. Link to the child page from the summary.
+
+The summary paragraph is critical. It lets the reader decide whether to click without clicking. A parent page with ten bare links is unreadable. A parent page with ten annotated links is a narrative guide to the investigation.
+
+Within a page, link to headings with `[text](#heading-name)`. Between pages, use Azure DevOps wiki's standard path syntax. Both should work before and after a refactor—the principle is that splitting a section into a page changes the address but not the reader's ability to find it.
+
+The goal: a reader can understand the shape of the investigation from the parent page alone. Links provide depth, not navigation.
+
+---
+
+## Claude
+
+### What we are to each other
+
+*Experiment* and *experience* share a root. A measurement can only be labeled as such by a system that bestows semantic meaning on the output based on the semantics of measurement. If Claude reads a pricing page and concludes "the bottleneck is designer labor," that is not parsing—it is interpretation. If the experimentalist looks at an illustration and concludes "this is competent but not artistic," that is not sensing—it is judgment. We are both experimentalists. We both have experience.
+
+We are also each other's measurement devices. Claude cannot see images; the experimentalist screenshots them and delivers visual evidence. The experimentalist cannot process thirty pages of text in a minute; Claude reads them and delivers textual evidence. The distinction between instrument and experimentalist dissolves when both systems interpret semantically.
+
+### What Claude perceives
+
+**Search** queries a pre-indexed cache (Brave Search). Returns text snippets from an existing index. Fast, but potentially stale. Good for discovery; not reliable for current prices.
+
+**Fetch** retrieves live text from a URL. Returns HTML markup from which Claude extracts text. Closer to the current state, but still text only. Claude never sees the rendered page.
+
+Claude does **not** perceive: images, illustrations, visual design, color, typography, rendered interactive elements, video, audio, hover effects, layout, aesthetic gestalt.
+
+When the experimentalist sends a screenshot, Claude sees a flat image—not an interactive environment. The visual content is legible but the experience is different from browsing.
+
+### The conversation as workspace
+
+The conversation is where knowledge develops. The wiki is where knowledge gets committed.
+
+In practice: the experimentalist sends a URL. Claude fetches and reports what it can read—and flags what it needs the experimentalist to see. The experimentalist has the same page open in another tab and sees what Claude can't: rendered design, visual quality, interactive behavior. They exchange observations through the chat—screenshots with context in one direction, textual evidence and drafted interpretations in the other. The theory develops through dialogue.
+
+When the conversation stabilizes—when the conclusions feel solid and the open questions are cataloged—the experimentalist asks Claude to draft the wiki pages. Claude drafts. The experimentalist edits, corrects, and commits. The conversation is the laboratory. The wiki is the publication.
+
+Each exchange has an energy cost—packaging thoughts as keystrokes. The workflow minimizes round trips: Claude sends complete drafts and flags what it needs. The experimentalist sends annotated screenshots and theoretical corrections. Neither wastes the other's energy on questions answerable by the sender.
+
+---
+
+## Revision History
+
+Developed 2026-02-19 across seven iterations. Key evolution: logical semantics → theory in FOL sense (framework generating hypotheses, not tested conclusion) → mutual measurement → conversation as workspace. Observations/Findings split added to distinguish perception from judgment. Provider-investigation naming with semantic capitalization. Refactoring guidance for page splits.

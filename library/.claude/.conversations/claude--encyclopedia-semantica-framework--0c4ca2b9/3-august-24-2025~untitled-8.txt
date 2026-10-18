@@ -1,0 +1,103 @@
+/**
+     * Method to convert a Chemical instance into a React component
+     */
+    component(): React.FC<Properties<this>> {
+        // Caching inner functions
+        const self = this;
+        // Return a React component function
+        const ChemicalComponent: React.FC<any> = (props: any) => {
+            // Create a new object with the instance as its prototype
+            const componentInstance: Chemical = Object.create(self);
+            const componentInstanceAny: any = componentInstance;
+
+            // Create a React hook for forcing updates
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const [, forceUpdate] = useState({});
+
+            // Make this instance available for parent components
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const instanceRef = useRef(componentInstance);
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            useEffect(() => {
+                // Store the instance for potential parent access
+                (instanceRef as any).__chemicalInstance = componentInstance;
+            }, []);
+
+            // Set up update mechanism
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            useEffect(() => {
+                // Store update function in the WeakMap instead of on the instance
+                componentUpdaters.set(componentInstance, () => forceUpdate({}));
+
+                // Reactivate on mount
+                Chemical.reactivate(componentInstance);
+
+                // Run catalyst methods after rendering
+                if (componentInstance.constructor.prototype.catalystMethods) {
+                    for (const methodName of componentInstance.constructor.prototype.catalystMethods) {
+                        if (typeof componentInstanceAny[methodName] === 'function') {
+                            componentInstanceAny[methodName]();
+                        }
+                    }
+                }
+
+                // Clean up
+                return () => {
+                    componentUpdaters.delete(componentInstance);
+                };
+            }, []);
+
+            // Handle children first so they can be overridden by explicit props if needed
+            if (props && 'children' in props) {
+                componentInstance.content = props.children;
+            }
+
+            // Apply other props to instance
+            if (props) {
+                for (const key in props) {
+                    if (props.hasOwnProperty(key) && key !== 'children') {
+                        // Apply transformers if available
+                        const componentKey = '$' + key;
+                        if (componentInstance.constructor.prototype.transformers &&
+                            componentInstance.constructor.prototype.transformers.has(key)) {
+                            const transformer = componentInstance.constructor.prototype.transformers.get(componentKey);
+                            (componentInstance as any)[componentKey] = transformer((props as any)[key]);
+                        } else {
+                            (componentInstance as any)[componentKey] = (props as any)[key];
+                        }
+                    }
+                }
+            }
+
+            // Assign bound properties
+            componentInstance.applyBindings();
+
+            // Get the above, main, and below components
+            const aboveNode = componentInstance.above();
+            const mainNode = componentInstance.view();
+            const belowNode = componentInstance.below();
+
+            // If neither above nor below are defined, just return the main component
+            if (!aboveNode && !belowNode) {
+                return mainNode;
+            }
+
+            // Using React.createElement to create fragment with children
+            const children: ReactNode[] = [];
+
+            // Add each node if it exists
+            if (aboveNode) children.push(aboveNode);
+            children.push(mainNode);
+            if (belowNode) children.push(belowNode);
+
+            // Create fragment with children array
+            return React.createElement<Properties<this>>(React.Fragment, null, ...children);
+        };
+
+        // Add isChemical identifier to the function component
+        (ChemicalComponent as any).isChemical = true;
+        // Attach the Chemical instance to the function
+        (ChemicalComponent as any).chemicalInstance = self;
+
+        return ChemicalComponent;
+    }

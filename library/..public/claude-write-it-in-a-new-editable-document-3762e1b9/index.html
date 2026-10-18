@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dougs Library</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 28 28%22%3E%3Cstyle%3E.pd-illustration%7Bfill%3Anone%3Bstroke%3A%231f5a60%3Bstroke-width%3A1.7%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.pd-illustration .fill%7Bfill%3A%238db9bd%3Bstroke%3A%231f5a60%7D.pd-illustration .light%7Bfill%3A%23ffffff%3Bstroke%3Anone%7D%3C%2Fstyle%3E%3CclipPath id%3D%22window%22%3E%3Crect width%3D%2228%22 height%3D%2228%22%2F%3E%3C%2FclipPath%3E%3Crect width%3D%2228%22 height%3D%2228%22 fill%3D%22%23c3e3e6%22%2F%3E%3Cg clip-path%3D%22url(%23window)%22%3E%3Csvg x%3D%22-43.361%22 y%3D%22-10.361%22 width%3D%2299.36%22 height%3D%2299.36%22 viewBox%3D%220 0 64 64%22 class%3D%22pd-illustration%22%3E%3Cpath class%3D%22light%22 d%3D%22M9 7h46v50H9z%22%2F%3E%3Cpath d%3D%22M9 7h46v50H9zM9 24h46M9 41h46%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 11h5v13h-5zM20 9h4v15h-4zM26 13h6v11h-6zM34 10h4v14h-4zM40 14h6v10h-6z%22%2F%3E%3Cpath d%3D%22M48 24l4-12 3 1-4 11z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 28h4v13h-4zM19 30h7v11h-7zM28 27h4v14h-4zM34 31h5v10h-5zM41 28h6v13h-6zM49 29h3v12h-3z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 46h6v11h-6zM21 44h4v13h-4zM27 47h8v10h-8zM37 45h4v12h-4zM43 48h6v9h-6z%22%2F%3E%3Cpath d%3D%22M50 57l3-11 3 1-3 10z%22%2F%3E%3C%2Fsvg%3E%3C%2Fg%3E%3Crect x%3D%221.319%22 y%3D%221.319%22 width%3D%2225.361%22 height%3D%2225.361%22 fill%3D%22none%22 stroke%3D%22%231f5a60%22 stroke-width%3D%222.639%22%2F%3E%3C%2Fsvg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@500;600;700&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="/assets/index-B5oAFc8f.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BgQkainO.css">
+  <link rel="stylesheet" href="/sheets/e946aa18f112.css" />
+  <script>(function(){var k=[];function on(e){var r=document.getElementById('root');if(!r||!r.contains(e.target)||e.__replayed)return;k.push({t:e.target,type:e.type});}document.addEventListener('click',on,true);window.__replayKept=function(){document.removeEventListener('click',on,true);var q=k;k=[];q.forEach(function(one){if(!document.contains(one.t))return;var ev=new MouseEvent(one.type,{bubbles:true,cancelable:true});ev.__replayed=true;one.t.dispatchEvent(ev);});};})();</script>
+  <style>.pa-arriving .pd-pages{visibility:hidden}</style><script>((document, hash) => {
+  const root = document.documentElement;
+  const fragment = decodeURIComponent(hash.replace(/^#/u, ""));
+  if (fragment === "") return void 0;
+  root.classList.add("pa-arriving");
+  const open = () => {
+    root.classList.remove("pa-arriving");
+    const target = document.getElementById(fragment);
+    const chapter = target === null ? null : target.closest(".pd-pages .pa-page");
+    if (chapter === null || chapter.classList.contains("pa-open")) return void 0;
+    const layersOf = (page) => {
+      const layers = [];
+      for (let above = page.parentElement; above !== null && !above.classList.contains("pd-pages"); above = above.parentElement)
+        if (above.classList.contains("pd-container")) layers.push(above);
+      return layers;
+    };
+    for (const was of Array.from(document.querySelectorAll(".pd-pages .pa-page.pa-open"))) {
+      was.classList.remove("pa-open");
+      for (const layer of layersOf(was)) layer.classList.remove("pa-open");
+    };
+    chapter.classList.add("pa-open");
+    for (const layer of layersOf(chapter)) layer.classList.add("pa-open");
+    const title = chapter.querySelector(".pd-title");
+    const place = title === null || title.id === "" ? fragment : title.id;
+    for (const row2 of Array.from(document.querySelectorAll(".pd-holds .pa-entry.pa-open"))) row2.classList.remove("pa-open");
+    const anchor = document.querySelector(`.pd-holds a[href$="#${place}"]`);
+    const row = anchor === null ? null : anchor.querySelector(".pa-entry") ?? anchor.closest(".pa-entry");
+    row?.classList.add("pa-open");
+    const turned = () => {
+      if (typeof chapter.scrollIntoView === "function") chapter.scrollIntoView();
+    };
+    turned();
+    if (document.readyState !== "complete") document.defaultView?.addEventListener("load", turned, { once: true });
+    return place;
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      open();
+    });
+    return void 0;
+  };
+  return open();
+})(document,location.hash);</script>
+  </head>
+  <body>
+    <div id="root"><!--$--><div class="sc-gSYDHb gdMFJN pd-container"><div class="sc-bYwwMP lovhee pd-container"><div class="pd-book pa-paginated pa-layout pa-turned pa-tone pa-light"><div class="pd-library"><div class="pd-paragraph pd-logo"><div class="sc-iJCTZA cRVkBD pd-scheme"><span class="pd-filed"><a href="/our-conversations/" class="sc-eCAoTo pa-reference pd-container"><span class="sc-giAsBR epdjWO pd-container"><span class="pd-word pd-mark pa-reference"><span class="pd-drawing"><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M11 15h24M11 21h16"/><path class="fill" d="M24 31h34v20H52v6l-6-6H24z"/><path d="M24 31h34v20H52v6l-6-6H24z"/><path class="light" d="M29 37h24M29 43h16"/></svg></span></span></span></a></span></div><div class="sc-iJCTZA dNEoJA pd-scheme"><span class="pd-own"><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/" class="sc-eCAoTo pa-reference pd-container"><span class="sc-giAsBR fhreub pd-container"><span class="pd-word pd-mark pa-reference"><span class="pd-drawing"><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M11 15h24M11 21h16"/><path class="fill" d="M24 31h34v20H52v6l-6-6H24z"/><path d="M24 31h34v20H52v6l-6-6H24z"/><path class="light" d="M29 37h24M29 43h16"/></svg></span></span></span></a></span></div><span class="pd-names"><div class="sc-iJCTZA dNEoJA pd-scheme"><span class="pd-name"><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Write it in a new editable document.</span></a></span></div><div class="sc-iJCTZA cRVkBD pd-scheme"><span class="pd-name pd-under"><a href="/our-conversations/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Our Conversations</span></a></span></div></span></div></div><div class="pd-me"><div class="pd-paragraph pd-byline"><span class="pd-word pa-label">by</span><a href="/dougs-story/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">Doug</span></a></div><div class="sc-iJCTZA jLFJTJ pd-scheme"><a href="/dougs-story/" class="sc-eCAoTo pa-reference pd-container"><span class="sc-giAsBR zHScS pd-container"><span class="pd-word pd-mark pa-reference"><span class="pd-drawing"><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M8 13h23v38H8zM33 13h23v38H33z"/><path d="M8 13h23v38H8zM33 13h23v38H33z"/><path d="M13 21h13M13 27h13M13 33h9M38 21h13M38 27h13M38 33h13M38 39h8"/><path class="fill" d="M15 55 45 25l4 4-30 30-6 2z"/><path d="M15 55 45 25l4 4-30 30-6 2zM43 27l4 4M17 53l2 2"/></svg></span></span></span></a></div><div class="pd-paragraph pd-account-line"><span class="pd-word pa-label">account</span><a href="/dougs-claude/#dna-legacy" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference">DNA Legacy</span></a></div></div><div class="pd-holds"><nav class="sc-crzogQ pd-container"><div class="pd-chapter pa-table-of-contents"><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/#table-of-contents" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><span id="table-of-contents" class="pd-sentence pd-title pa-parenthetical pa-reference pa-self-reference pa-referent" hidden=""></span></a><div class="pd-section"><a href="#september-2025" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="september-2025" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">September 2025</div></a><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/#14-september-2025" class="sc-dIrNh pa-reference pd-container"><div class="sc-fKgHSI hcfsAk pd-container"><div class="pd-paragraph pa-entry pa-open pa-reference"><span class="pd-word pd-day-count">2</span><span class="sc-bqGEVu pa-content">14 September 2025</span></div></div></a><span class="pd-paragraph pa-parenthetical" hidden=""></span></div><div class="pd-section pa-appendix"><a href="#artifacts" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="artifacts" class="pd-sentence pd-heading pa-referent pa-reference pa-self-reference">Artifacts</div></a><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/#complete-chemistry-framework-v1" class="sc-dIrNh pa-reference pd-container"><span class="pd-paragraph pa-reference pa-parenthetical" hidden=""></span></a></div><div class="pd-paragraph pd-tree-root"><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pa-reference"><span class="pd-drawing"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5 10.5 8 6 12.5"/></svg></span>Write it in a new editable document.</span></a></div></div></nav></div><div class="pd-head"><header class="sc-lmgQQD pd-container"><div class="sc-iJCTZA dNEoJA pd-scheme pd-container"><div class="pd-chapter pa-messages pa-period pa-scheme pa-volume pa-cover"><div class="pd-paragraph pd-participants"><a href="/dougs-story/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pd-participant pa-reference">Doug</span></a> and <a href="/dougs-claude/" class="sc-eCAoTo pa-reference pd-container"><span class="pd-word pd-participant pa-reference">Claude</span></a></div><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="write-it-in-a-new-editable-document" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">Write it in a new editable document.</div></a><div class="pd-paragraph pa-illustration"><span class="pd-letter pd-figure pd-svg"><span><svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M6 9h34v20H18l-6 6v-6H6z"/><path d="M11 15h24M11 21h16"/><path class="fill" d="M24 31h34v20H52v6l-6-6H24z"/><path d="M24 31h34v20H52v6l-6-6H24z"/><path class="light" d="M29 37h24M29 43h16"/></svg>
+</span></span></div></div></div></header><div class="pd-switches"></div><div class="pd-paragraph pd-tally"><span class="pd-tally-count"><b>2</b> messages in <b>1</b> day</span><span class="pd-tally-period">14 September 2025</span></div></div><div class="pd-pages"><div class="pd-chapter pd-canonical pa-open pa-page pa-dated"><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/#14-september-2025" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="14-september-2025" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">14 September 2025</div></a><div id="2025-09-14t23-42-05-600944-doug" class="pd-section pd-message pa-mine pa-referent pa-opaque"><a href="/dougs-story/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Doug</div></a><time dateTime="2025-09-14T23:42:05.600944Z" class="pd-word pd-date pd-time">23:42 UTC, 14 September 2025</time><div class="pd-said"><div class="pd-paragraph">Write it in a new editable document. Your parseConstructor method didnd&#x27;t make it. You are getting</div></div></div><div id="2025-09-14t23-44-42-061040-claude" class="pd-section pd-message pa-referent pa-opaque"><a href="/dougs-claude/" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div class="pd-sentence pd-heading pd-speaker pa-reference pa-self-reference">Claude</div></a><time dateTime="2025-09-14T23:44:42.061040Z" class="pd-word pd-date pd-time">23:44 UTC, 14 September 2025</time><div class="pd-said"><div class="pd-paragraph">Looking at your project files, I can see you&#x27;re building a chemical-inspired reactive framework for React. The error you&#x27;re encountering is because the <span class="pd-word pa-verbatim">parseConstructor</span> method is missing from your <span class="pd-word pa-verbatim">chemistry.ts</span> file. Let me create a complete, working version of the chemistry framework with all the necessary methods and fixes.</div><figure class="pd-letter pd-figure pd-code pd-artifact"><button type="button" class="pd-card" aria-pressed="false"><span class="pd-card-mark"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13 5l-2 14"/></svg></span><span class="pd-card-words"><b>Complete Chemistry Framework</b><small>Click to open code · v1</small></span></button><figcaption>Made the artifact “Complete Chemistry Framework”</figcaption></figure><div class="pd-paragraph">I&#x27;ve created a complete working version of your Chemistry framework. This implementation includes:</div><div class="pd-sentence pd-heading">Key Features Fixed:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list pa-ordered"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Proper instance management</span></b> - Uses a global registry keyed by component keys to preserve Chemical instances across re-renders</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Complete binding system</span></b> - The <span class="pd-word pa-verbatim">@child</span> decorator properly binds child components to parent properties with support for:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Single required children</div><div class="pd-sentence pd-line pa-item">Optional children</div><div class="pd-sentence pd-line pa-item">Arrays of children</div><div class="pd-sentence pd-line pa-item">Positional binding (<span class="pd-word pa-verbatim">@first</span>, <span class="pd-word pa-verbatim">@second</span>, etc.)</div><div class="pd-sentence pd-line pa-item">Conditional binding with <span class="pd-word pa-verbatim">@where</span></div></div></div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Reactivity system</span></b> - Properties are made reactive through getter/setter interception with:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Custom equality comparers via <span class="pd-word pa-verbatim">@equate</span></div><div class="pd-sentence pd-line pa-item">Deep equality checking via <span class="pd-word pa-verbatim">@dynamic</span></div><div class="pd-sentence pd-line pa-item">Inert (non-reactive) properties via <span class="pd-word pa-verbatim">@inert</span></div></div></div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Proper prop handling</span></b> - Props prefixed with <span class="pd-word pa-verbatim">$</span> are automatically bound to component properties</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Lifecycle methods</span></b> - Methods decorated with <span class="pd-word pa-verbatim">@entail</span> run after rendering</div></div></div><div class="pd-sentence pd-heading">Key Implementation Details:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">No  0  method needed</span></b> - The binding system works through decorators and runtime type checking</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Stable component keys</span></b> - Uses either provided keys or generates stable ones</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Proper cleanup</span></b> - Registry entries are cleaned up when components unmount</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Placeholder chemicals</span></b> - Creates safe placeholders for required but unbound children</div><div class="pd-sentence pd-line pa-item"><b class="sc-fujBio pa-bold pd-container"><span class="pd-word">Transform support</span></b> - Props can be transformed via <span class="pd-word pa-verbatim">@transform</span> decorator</div></div></div><div class="pd-paragraph">The framework now properly handles all your test cases:</div><div class="sc-kEqYZi ldScnz pd-container"><div class="pd-paragraph pa-list"><div class="pd-sentence pd-line pa-item">Basic prop passing and updates</div><div class="pd-sentence pd-line pa-item">Children rendering</div><div class="pd-sentence pd-line pa-item">View method switching</div><div class="pd-sentence pd-line pa-item">Child binding with various configurations</div></div></div><div class="pd-paragraph">This should resolve the issues you were experiencing and provide a solid foundation for your chemical-inspired React framework.</div></div></div><div class="pd-paragraph pd-turn"><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/#14-september-2025" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><span class="pd-word pa-reference pa-self-reference pa-before">← <!-- -->14 September 2025</span></a><span class="pd-word pd-count">1 of 1</span><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/#14-september-2025" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><span class="pd-word pa-reference pa-self-reference pa-after">14 September 2025<!-- --> →</span></a></div><time dateTime="2025-09-14" class="pd-word pd-date">14 September 2025</time></div><div class="pd-chapter pd-canonical pa-page pa-version"><a href="/claude-write-it-in-a-new-editable-document-3762e1b9/#complete-chemistry-framework-v1" class="sc-jSFhYz sc-gKzYWW pa-reference pa-self-reference pd-container"><div id="complete-chemistry-framework-v1" class="pd-sentence pd-title pa-reference pa-self-reference pa-referent">Complete Chemistry Framework v1</div></a><div class="pd-letter pd-figure pd-code pd-code-box"><div class="pd-code-bar"><span class="pd-code-name">typescript</span><button type="button" class="pd-copy">Copy</button></div><pre><code class="language-typescript"><span class="hljs-string">&quot;use client&quot;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { <span class="hljs-title class_">ReactNode</span>, <span class="hljs-title class_">ReactElement</span>, useState, useRef, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> stringify <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;fast-safe-stringify&#x27;</span>;
+
+<span class="hljs-comment">// Symbols for internal tracking</span>
+<span class="hljs-keyword">const</span> reactivated = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;reactivated&#x27;</span>);
+<span class="hljs-keyword">const</span> backingFields = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;backingFields&#x27;</span>);
+<span class="hljs-keyword">const</span> originalValues = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;originalValues&#x27;</span>);
+<span class="hljs-keyword">const</span> deactivated = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;deactivated&#x27;</span>);
+<span class="hljs-keyword">const</span> comparerSymbol = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;comparer&#x27;</span>);
+<span class="hljs-keyword">const</span> updateSymbol = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&#x27;update&#x27;</span>);
+
+<span class="hljs-comment">// Global registry for Chemical instances by key</span>
+<span class="hljs-keyword">const</span> chemicalRegistry = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, $Chemical&gt;();
+
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Properties</span>&lt;T&gt; = {
+    [K <span class="hljs-keyword">in</span> keyof T <span class="hljs-keyword">as</span> K <span class="hljs-keyword">extends</span> <span class="hljs-string">`$<span class="hljs-subst">${infer Rest}</span>`</span> ? <span class="hljs-title class_">Rest</span> : <span class="hljs-built_in">never</span>]: T[K]
+} &amp; {
+    <span class="hljs-attr">children</span>?: <span class="hljs-title class_">ReactNode</span>;
+};
+
+<span class="hljs-comment">/**
+ * Base class for Chemical components
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">$Chemical</span> {
+    <span class="hljs-meta">@inert</span>()
+    <span class="hljs-keyword">private</span> <span class="hljs-attr">childPositionCounts</span>?: <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">any</span>, <span class="hljs-built_in">number</span>&gt;;
+
+    <span class="hljs-meta">@inert</span>()
+    <span class="hljs-keyword">private</span> <span class="hljs-attr">_isSetup</span>: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>;
+
+    <span class="hljs-meta">@inert</span>()
+    <span class="hljs-keyword">private</span> <span class="hljs-attr">_id</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&#x27;&#x27;</span>;
+
+    <span class="hljs-meta">@inert</span>()
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">get</span> <span class="hljs-title function_">_prototype</span>(): $Chemical {
+        <span class="hljs-keyword">const</span> constructor = <span class="hljs-variable language_">this</span>.<span class="hljs-property">constructor</span> <span class="hljs-keyword">as</span> <span class="hljs-keyword">typeof</span> $Chemical;
+        <span class="hljs-keyword">return</span> constructor.<span class="hljs-property">chemicalPrototype</span>;
+    }
+
+    <span class="hljs-comment">// Public inert properties</span>
+    <span class="hljs-meta">@inert</span>()
+    <span class="hljs-keyword">public</span> <span class="hljs-title class_">Component</span>!: <span class="hljs-title class_">React</span>.<span class="hljs-property">FC</span>&lt;<span class="hljs-title class_">Properties</span>&lt;<span class="hljs-variable language_">this</span>&gt;&gt;;
+
+    <span class="hljs-meta">@inert</span>()
+    <span class="hljs-keyword">public</span> <span class="hljs-attr">parent</span>?: $Chemical;
+
+    <span class="hljs-meta">@inert</span>()
+    <span class="hljs-keyword">public</span> <span class="hljs-attr">children</span>?: <span class="hljs-title class_">ReactNode</span>;
+
+    <span class="hljs-meta">@inert</span>()
+    <span class="hljs-keyword">public</span> <span class="hljs-attr">elements</span>?: <span class="hljs-title class_">ReactNode</span>;
+
+    <span class="hljs-comment">// Constructor</span>
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">_id</span> = $Chemical.<span class="hljs-title function_">_getNextId</span>();
+        <span class="hljs-keyword">const</span> <span class="hljs-attr">constructor</span>: <span class="hljs-built_in">any</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">constructor</span> <span class="hljs-keyword">as</span> <span class="hljs-keyword">typeof</span> $Chemical;
+        <span class="hljs-keyword">if</span> (!constructor.<span class="hljs-property">chemicalPrototype</span>) {
+            constructor.<span class="hljs-property">chemicalPrototype</span> = <span class="hljs-variable language_">this</span>;
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">Component</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">createComponent</span>();
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">Component</span> = constructor.<span class="hljs-property">chemicalPrototype</span>.<span class="hljs-property">Component</span>;
+        }
+    }
+
+    <span class="hljs-comment">// Public method - subclasses override this to control rendering</span>
+    <span class="hljs-title function_">view</span>(): <span class="hljs-title class_">ReactNode</span> {
+        <span class="hljs-comment">// Default implementation - subclasses should override</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">children</span>;
+    }
+
+    <span class="hljs-comment">/**
+     * Creates a React component that preserves Chemical instances across re-renders
+     * by caching them in a global registry keyed by React&#x27;s key prop
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-title function_">createComponent</span>(): <span class="hljs-title class_">React</span>.<span class="hljs-property">FC</span>&lt;<span class="hljs-title class_">Properties</span>&lt;<span class="hljs-variable language_">this</span>&gt;&gt; {
+        <span class="hljs-keyword">const</span> <span class="hljs-title class_">ChemicalComponent</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">FC</span>&lt;<span class="hljs-title class_">Properties</span>&lt;<span class="hljs-variable language_">this</span>&gt;&gt; = <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">props</span>: <span class="hljs-built_in">any</span></span>) =&gt;</span> {
+            <span class="hljs-comment">// Generate a stable key for this component instance</span>
+            <span class="hljs-keyword">const</span> componentKey = props.<span class="hljs-property">key</span> || <span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-variable language_">this</span>.constructor.name}</span>-<span class="hljs-subst">${<span class="hljs-variable language_">this</span>._id}</span>`</span>;
+            
+            <span class="hljs-comment">// Look up or create instance based on key</span>
+            <span class="hljs-keyword">let</span> instance = chemicalRegistry.<span class="hljs-title function_">get</span>(componentKey);
+            <span class="hljs-keyword">if</span> (!instance) {
+                instance = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">createInstance</span>();
+                instance.<span class="hljs-property">_id</span> = componentKey;
+                chemicalRegistry.<span class="hljs-title function_">set</span>(componentKey, instance);
+            }
+            
+            <span class="hljs-comment">// Set up this component&#x27;s update function</span>
+            <span class="hljs-keyword">const</span> [, update] = <span class="hljs-title function_">useState</span>({});
+            (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[updateSymbol] = <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">update</span>({});
+            
+            <span class="hljs-comment">// Clean up on unmount</span>
+            <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
+                    chemicalRegistry.<span class="hljs-title function_">delete</span>(componentKey);
+                    (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[updateSymbol] = <span class="hljs-literal">undefined</span>;
+                };
+            }, [componentKey]);
+
+            <span class="hljs-comment">// Apply props and setup</span>
+            <span class="hljs-keyword">if</span> (!instance.<span class="hljs-property">_isSetup</span>) {
+                instance.<span class="hljs-property">_isSetup</span> = <span class="hljs-literal">true</span>;
+                $Chemical.<span class="hljs-title function_">applyProps</span>(instance, props);
+                <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setupReactivity</span>(instance);
+            } <span class="hljs-keyword">else</span> {
+                $Chemical.<span class="hljs-title function_">applyProps</span>(instance, props);
+            }
+
+            <span class="hljs-comment">// Handle parent binding</span>
+            $Chemical.<span class="hljs-title function_">handleParentBinding</span>(instance, props);
+
+            <span class="hljs-comment">// Handle children</span>
+            <span class="hljs-keyword">if</span> (props.<span class="hljs-property">children</span>) {
+                <span class="hljs-keyword">const</span> modifiedChildren = $Chemical.<span class="hljs-title function_">modifyChildren</span>(instance, props.<span class="hljs-property">children</span>);
+                instance.<span class="hljs-property">children</span> = modifiedChildren;
+                
+                <span class="hljs-comment">// Store original children for @child binding</span>
+                instance.<span class="hljs-property">elements</span> = <span class="hljs-title class_">React</span>.<span class="hljs-property">Children</span>.<span class="hljs-title function_">toArray</span>(props.<span class="hljs-property">children</span>);
+            }
+
+            <span class="hljs-comment">// Run catalyst methods</span>
+            $Chemical.<span class="hljs-title function_">runCatalystMethods</span>(instance);
+
+            <span class="hljs-keyword">return</span> instance.<span class="hljs-title function_">view</span>() <span class="hljs-keyword">as</span> <span class="hljs-title class_">ReactElement</span>;
+        };
+
+        (<span class="hljs-title class_">ChemicalComponent</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">isChemical</span> = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">ChemicalComponent</span>;
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-title function_">createInstance</span>(): $Chemical {
+        <span class="hljs-keyword">const</span> prototype = <span class="hljs-variable language_">this</span>.<span class="hljs-property">_prototype</span> || <span class="hljs-variable language_">this</span>;
+        <span class="hljs-keyword">const</span> instance = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(prototype);
+        instance.<span class="hljs-property">_isSetup</span> = <span class="hljs-literal">false</span>;
+        instance.<span class="hljs-property">childPositionCounts</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+
+        <span class="hljs-comment">// Copy bindable properties from prototype</span>
+        <span class="hljs-keyword">const</span> bindings = <span class="hljs-title function_">getBindings</span>(<span class="hljs-variable language_">this</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> binding <span class="hljs-keyword">of</span> bindings) {
+            <span class="hljs-keyword">if</span> (binding.<span class="hljs-property">property</span> !== <span class="hljs-string">&#x27;children&#x27;</span>) {
+                <span class="hljs-keyword">const</span> <span class="hljs-variable language_">self</span> = <span class="hljs-variable language_">this</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>;
+                <span class="hljs-keyword">const</span> protoValue = <span class="hljs-variable language_">self</span>[binding.<span class="hljs-property">property</span>];
+
+                <span class="hljs-keyword">if</span> (protoValue !== <span class="hljs-literal">undefined</span>) {
+                    <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(protoValue)) {
+                        instance[binding.<span class="hljs-property">property</span>] = [];
+                    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!binding.<span class="hljs-property">optional</span>) {
+                        instance[binding.<span class="hljs-property">property</span>] = <span class="hljs-title function_">createPlaceholderChemical</span>(binding.<span class="hljs-property">class</span>);
+                    }
+                }
+            }
+        }
+
+        <span class="hljs-keyword">return</span> instance;
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-title function_">setupReactivity</span>(<span class="hljs-attr">instance</span>: $Chemical): <span class="hljs-built_in">void</span> {
+        <span class="hljs-comment">// Make the instance reactive</span>
+        <span class="hljs-title function_">reactivate</span>(instance, instance);
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> _nextId = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-attr">chemicalPrototype</span>: $Chemical;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">_getNextId</span>(): <span class="hljs-built_in">string</span> { 
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`chemical-<span class="hljs-subst">${<span class="hljs-variable language_">this</span>._nextId++}</span>`</span>; 
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">applyProps</span>(<span class="hljs-attr">instance</span>: $Chemical, <span class="hljs-attr">props</span>: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">if</span> (!props) <span class="hljs-keyword">return</span>;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> props) {
+            <span class="hljs-keyword">if</span> (props.<span class="hljs-title function_">hasOwnProperty</span>(key) &amp;&amp;
+                key !== <span class="hljs-string">&#x27;children&#x27;</span> &amp;&amp;
+                key !== <span class="hljs-string">&#x27;__parentInstance&#x27;</span> &amp;&amp;
+                key !== <span class="hljs-string">&#x27;key&#x27;</span>) {
+                <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setProp</span>(instance, key, props[key]);
+            }
+        }
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">setProp</span>(<span class="hljs-attr">instance</span>: $Chemical, <span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">value</span>: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">const</span> componentKey = <span class="hljs-string">&#x27;$&#x27;</span> + <span class="hljs-title class_">String</span>(key);
+        <span class="hljs-keyword">const</span> transformers = instance.<span class="hljs-property">constructor</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">transformers</span>;
+
+        <span class="hljs-keyword">if</span> (transformers?.<span class="hljs-title function_">has</span>(componentKey)) {
+            <span class="hljs-keyword">const</span> transformer = transformers.<span class="hljs-title function_">get</span>(componentKey);
+            (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[componentKey] = <span class="hljs-title function_">transformer</span>(value);
+        } <span class="hljs-keyword">else</span> {
+            (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[componentKey] = value;
+        }
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">handleParentBinding</span>(<span class="hljs-attr">instance</span>: $Chemical, <span class="hljs-attr">props</span>: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">if</span> (!props.<span class="hljs-property">__parentInstance</span>) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        instance.<span class="hljs-property">parent</span> = props.<span class="hljs-property">__parentInstance</span>;
+        <span class="hljs-keyword">if</span> (instance.<span class="hljs-property">parent</span>) {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">applyBinding</span>(instance, instance.<span class="hljs-property">parent</span>);
+        }
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">applyBinding</span>(<span class="hljs-attr">child</span>: $Chemical, <span class="hljs-attr">parent</span>: $Chemical): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">const</span> bindings = <span class="hljs-title function_">getBindings</span>(parent);
+
+        <span class="hljs-keyword">if</span> (!parent.<span class="hljs-property">childPositionCounts</span>) {
+            parent.<span class="hljs-property">childPositionCounts</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+        }
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> binding <span class="hljs-keyword">of</span> bindings) {
+            <span class="hljs-keyword">if</span> (binding.<span class="hljs-property">property</span> === <span class="hljs-string">&#x27;children&#x27;</span>) <span class="hljs-keyword">continue</span>;
+
+            <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">matchesBinding</span>(child, parent, binding)) {
+                <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">bindChild</span>(child, parent, binding);
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">matchesBinding</span>(<span class="hljs-attr">child</span>: $Chemical, <span class="hljs-attr">parent</span>: $Chemical, <span class="hljs-attr">binding</span>: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">boolean</span> {
+        <span class="hljs-keyword">if</span> (!binding.<span class="hljs-property">class</span> || !(child <span class="hljs-keyword">instanceof</span> binding.<span class="hljs-property">class</span>)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+        <span class="hljs-keyword">if</span> (binding.<span class="hljs-property">position</span> !== <span class="hljs-literal">undefined</span>) {
+            <span class="hljs-keyword">const</span> count = parent.<span class="hljs-property">childPositionCounts</span>!.<span class="hljs-title function_">get</span>(binding.<span class="hljs-property">class</span>) || <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">if</span> (binding.<span class="hljs-property">position</span> !== count) {
+                parent.<span class="hljs-property">childPositionCounts</span>!.<span class="hljs-title function_">set</span>(binding.<span class="hljs-property">class</span>!, count + <span class="hljs-number">1</span>);
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            }
+            parent.<span class="hljs-property">childPositionCounts</span>!.<span class="hljs-title function_">set</span>(binding.<span class="hljs-property">class</span>!, count + <span class="hljs-number">1</span>);
+        }
+
+        <span class="hljs-keyword">if</span> (binding.<span class="hljs-property">where</span> &amp;&amp; !binding.<span class="hljs-title function_">where</span>(child)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">bindChild</span>(<span class="hljs-attr">child</span>: $Chemical, <span class="hljs-attr">parent</span>: $Chemical, <span class="hljs-attr">binding</span>: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">void</span> {
+        <span class="hljs-comment">// Initialize property if undefined</span>
+        <span class="hljs-keyword">if</span> ((parent <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[binding.<span class="hljs-property">property</span>] === <span class="hljs-literal">undefined</span>) {
+            <span class="hljs-keyword">const</span> defaultValue = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(binding.<span class="hljs-property">default</span>) ? [] : 
+                                binding.<span class="hljs-property">optional</span> ? <span class="hljs-literal">undefined</span> : 
+                                <span class="hljs-title function_">createPlaceholderChemical</span>(binding.<span class="hljs-property">class</span>);
+            (parent <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[binding.<span class="hljs-property">property</span>] = defaultValue;
+        }
+
+        <span class="hljs-comment">// Get the current value</span>
+        <span class="hljs-keyword">const</span> currentValue = (parent <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[binding.<span class="hljs-property">property</span>];
+
+        <span class="hljs-comment">// Handle array properties</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(currentValue)) {
+            <span class="hljs-comment">// Replace placeholder if it exists at index 0</span>
+            <span class="hljs-keyword">if</span> (currentValue.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span> &amp;&amp; currentValue[<span class="hljs-number">0</span>].<span class="hljs-property">_isPlaceholder</span>) {
+                currentValue[<span class="hljs-number">0</span>] = child;
+            } <span class="hljs-keyword">else</span> {
+                currentValue.<span class="hljs-title function_">push</span>(child);
+            }
+
+            <span class="hljs-comment">// Trigger update through setter</span>
+            (parent <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[binding.<span class="hljs-property">property</span>] = [...currentValue];
+
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// Handle single property</span>
+            <span class="hljs-keyword">if</span> (!currentValue || currentValue.<span class="hljs-property">_isPlaceholder</span>) {
+                (parent <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[binding.<span class="hljs-property">property</span>] = child;
+            }
+        }
+
+        <span class="hljs-comment">// Trigger update</span>
+        <span class="hljs-keyword">const</span> <span class="hljs-attr">update</span>: <span class="hljs-title class_">Function</span> = (parent <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[updateSymbol];
+        <span class="hljs-keyword">if</span> (update) {
+            <span class="hljs-title function_">update</span>();
+        }
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">runCatalystMethods</span>(<span class="hljs-attr">instance</span>: $Chemical): <span class="hljs-built_in">void</span> {
+        <span class="hljs-keyword">const</span> methods = instance.<span class="hljs-property">constructor</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">catalystMethods</span>;
+        <span class="hljs-keyword">if</span> (!methods) <span class="hljs-keyword">return</span>;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> methodName <span class="hljs-keyword">of</span> methods) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-title function_">typeof</span> (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[methodName] === <span class="hljs-string">&#x27;function&#x27;</span>) {
+                (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[methodName]();
+            }
+        }
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-title function_">modifyChildren</span>(<span class="hljs-attr">instance</span>: $Chemical, <span class="hljs-attr">children</span>: <span class="hljs-title class_">ReactNode</span>): <span class="hljs-title class_">ReactNode</span> {
+        <span class="hljs-keyword">const</span> childrenArray = <span class="hljs-title class_">React</span>.<span class="hljs-property">Children</span>.<span class="hljs-title function_">toArray</span>(children);
+
+        <span class="hljs-keyword">return</span> childrenArray.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">child, index</span>) =&gt;</span> {
+            <span class="hljs-keyword">if</span> (<span class="hljs-title class_">React</span>.<span class="hljs-title function_">isValidElement</span>(child) &amp;&amp; (child.<span class="hljs-property">type</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">isChemical</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-title class_">React</span>.<span class="hljs-title function_">cloneElement</span>(child <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>, {
+                    ...(child.<span class="hljs-property">props</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>),
+                    <span class="hljs-attr">__parentInstance</span>: instance,
+                    <span class="hljs-attr">key</span>: child.<span class="hljs-property">key</span> || <span class="hljs-string">`child-<span class="hljs-subst">${index}</span>`</span>
+                });
+            }
+            <span class="hljs-keyword">return</span> child;
+        });
+    }
+}
+
+<span class="hljs-comment">/**
+ * Decorator to mark a field as inert (non-reactive)
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">inert</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">target</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">propertyKey</span>: <span class="hljs-built_in">string</span></span>) {
+        <span class="hljs-keyword">if</span> (!target[deactivated <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>]) {
+            target[deactivated <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>&lt;<span class="hljs-built_in">string</span>&gt;();
+        }
+        target[deactivated <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>].<span class="hljs-title function_">add</span>(propertyKey);
+    };
+}
+
+<span class="hljs-comment">/**
+ * Decorator to specify a custom equality comparison for a field
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">equate</span>(<span class="hljs-params"><span class="hljs-attr">comparer</span>: (a: <span class="hljs-built_in">any</span>, b: <span class="hljs-built_in">any</span>) =&gt; <span class="hljs-built_in">boolean</span></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">target</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">propertyKey</span>: <span class="hljs-built_in">string</span></span>) {
+        <span class="hljs-keyword">if</span> (!target[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>]) {
+            target[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">a</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">b</span>: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>&gt;();
+        }
+        target[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>].<span class="hljs-title function_">set</span>(propertyKey, comparer);
+    };
+}
+
+<span class="hljs-comment">/**
+ * Decorator for properties that should use deep equality comparison
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">dynamic</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">target</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">propertyKey</span>: <span class="hljs-built_in">string</span></span>) {
+        <span class="hljs-keyword">if</span> (!target[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>]) {
+            target[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">a</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">b</span>: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>&gt;();
+        }
+        target[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>].<span class="hljs-title function_">set</span>(propertyKey, <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">a</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">b</span>: <span class="hljs-built_in">any</span></span>) =&gt;</span> {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-title function_">stringify</span>(a) === <span class="hljs-title function_">stringify</span>(b);
+            } <span class="hljs-keyword">catch</span> (e) {
+                <span class="hljs-keyword">return</span> a === b;
+            }
+        });
+    };
+}
+
+<span class="hljs-comment">/**
+ * Decorator for methods that should run after component rendering
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">entail</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">target</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">propertyKey</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">descriptor</span>: <span class="hljs-title class_">PropertyDescriptor</span></span>) {
+        <span class="hljs-keyword">if</span> (!target.<span class="hljs-property">catalystMethods</span>) {
+            target.<span class="hljs-property">catalystMethods</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>&lt;<span class="hljs-built_in">string</span>&gt;();
+        }
+        target.<span class="hljs-property">catalystMethods</span>.<span class="hljs-title function_">add</span>(propertyKey);
+        <span class="hljs-keyword">return</span> descriptor;
+    };
+}
+
+<span class="hljs-comment">/**
+ * Decorator for properties that should run the value through a transformation function
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">transform</span>(<span class="hljs-params"><span class="hljs-attr">transformer</span>: (value: <span class="hljs-built_in">any</span>) =&gt; <span class="hljs-built_in">any</span></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">target</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">propertyKey</span>: <span class="hljs-built_in">string</span></span>) {
+        <span class="hljs-keyword">if</span> (!target.<span class="hljs-property">transformers</span>) {
+            target.<span class="hljs-property">transformers</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">value</span>: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">any</span>&gt;();
+        }
+        target.<span class="hljs-property">transformers</span>.<span class="hljs-title function_">set</span>(propertyKey, transformer);
+    };
+}
+
+<span class="hljs-comment">/**
+ * Interface for binding decorators
+ */</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Binding</span> {
+    <span class="hljs-attr">class</span>?: <span class="hljs-keyword">typeof</span> $Chemical;
+    <span class="hljs-attr">optional</span>?: <span class="hljs-built_in">boolean</span>;
+    <span class="hljs-attr">position</span>?: <span class="hljs-built_in">number</span>;
+    <span class="hljs-attr">where</span>?: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">instance</span>: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+    <span class="hljs-attr">property</span>: <span class="hljs-built_in">string</span>;
+    <span class="hljs-attr">default</span>?: <span class="hljs-built_in">any</span>;
+}
+
+<span class="hljs-comment">/**
+ * Decorator for binding a child to a property
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">child</span>(<span class="hljs-params"><span class="hljs-title class_">ChildClass</span>: <span class="hljs-built_in">any</span></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">target</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">propertyKey</span>: <span class="hljs-built_in">string</span></span>) {
+        <span class="hljs-keyword">const</span> constructor = target.<span class="hljs-property">constructor</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>;
+        <span class="hljs-keyword">if</span> (!constructor.<span class="hljs-property">__bindingsMap</span>) {
+            constructor.<span class="hljs-property">__bindingsMap</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Binding</span>&gt;();
+        }
+
+        <span class="hljs-keyword">let</span> binding = constructor.<span class="hljs-property">__bindingsMap</span>.<span class="hljs-title function_">get</span>(propertyKey);
+        <span class="hljs-keyword">if</span> (!binding) {
+            binding = { <span class="hljs-attr">property</span>: propertyKey };
+            constructor.<span class="hljs-property">__bindingsMap</span>.<span class="hljs-title function_">set</span>(propertyKey, binding);
+        }
+
+        <span class="hljs-keyword">if</span> (!constructor.<span class="hljs-property">__chemicalProperties</span>) {
+            constructor.<span class="hljs-property">__chemicalProperties</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>&lt;<span class="hljs-built_in">string</span>&gt;();
+        }
+        constructor.<span class="hljs-property">__chemicalProperties</span>.<span class="hljs-title function_">add</span>(propertyKey);
+
+        binding.<span class="hljs-property">class</span> = <span class="hljs-title class_">ChildClass</span>;
+        <span class="hljs-keyword">if</span> (binding.<span class="hljs-property">optional</span> === <span class="hljs-literal">undefined</span>) {
+            binding.<span class="hljs-property">optional</span> = <span class="hljs-literal">false</span>;
+        }
+
+        <span class="hljs-comment">// Initialize property with placeholder or array</span>
+        <span class="hljs-keyword">const</span> descriptor = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getOwnPropertyDescriptor</span>(target, propertyKey);
+        <span class="hljs-keyword">const</span> isArray = descriptor?.<span class="hljs-property">value</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span>;
+        
+        <span class="hljs-keyword">if</span> (!target.<span class="hljs-title function_">hasOwnProperty</span>(propertyKey)) {
+            target[propertyKey] = isArray ? [] : 
+                                 !binding.<span class="hljs-property">optional</span> ? <span class="hljs-title function_">createPlaceholderChemical</span>(<span class="hljs-title class_">ChildClass</span>) : 
+                                 <span class="hljs-literal">undefined</span>;
+        }
+        
+        <span class="hljs-title function_">dynamic</span>()(target, propertyKey);
+    };
+}
+
+<span class="hljs-comment">/**
+ * Decorator for optional child property binding
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">optional</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">target</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">propertyKey</span>: <span class="hljs-built_in">string</span></span>) {
+        <span class="hljs-keyword">const</span> constructor = target.<span class="hljs-property">constructor</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>;
+        <span class="hljs-keyword">if</span> (!constructor.<span class="hljs-property">__bindingsMap</span>) constructor.<span class="hljs-property">__bindingsMap</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Binding</span>&gt;();
+
+        <span class="hljs-keyword">let</span> binding = constructor.<span class="hljs-property">__bindingsMap</span>.<span class="hljs-title function_">get</span>(propertyKey);
+        <span class="hljs-keyword">if</span> (!binding) {
+            binding = { <span class="hljs-attr">property</span>: propertyKey };
+            constructor.<span class="hljs-property">__bindingsMap</span>.<span class="hljs-title function_">set</span>(propertyKey, binding);
+        }
+
+        binding.<span class="hljs-property">optional</span> = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">if</span> (target[propertyKey]) {
+            target[propertyKey] = <span class="hljs-literal">undefined</span>;
+        }
+    };
+}
+
+<span class="hljs-comment">/**
+ * Decorator for conditional child property binding
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">where</span>(<span class="hljs-params"><span class="hljs-attr">predicate</span>: (instance: $Chemical) =&gt; <span class="hljs-built_in">boolean</span></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">target</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">propertyKey</span>: <span class="hljs-built_in">string</span></span>) {
+        <span class="hljs-keyword">const</span> constructor = target.<span class="hljs-property">constructor</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>;
+        <span class="hljs-keyword">if</span> (!constructor.<span class="hljs-property">__bindingsMap</span>) constructor.<span class="hljs-property">__bindingsMap</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Binding</span>&gt;();
+
+        <span class="hljs-keyword">let</span> binding = constructor.<span class="hljs-property">__bindingsMap</span>.<span class="hljs-title function_">get</span>(propertyKey);
+        <span class="hljs-keyword">if</span> (!binding) {
+            binding = { <span class="hljs-attr">property</span>: propertyKey };
+            constructor.<span class="hljs-property">__bindingsMap</span>.<span class="hljs-title function_">set</span>(propertyKey, binding);
+        }
+
+        binding.<span class="hljs-property">where</span> = predicate;
+        binding.<span class="hljs-property">optional</span> = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">if</span> (target[propertyKey]) {
+            target[propertyKey] = <span class="hljs-literal">undefined</span>;
+        }
+    };
+}
+
+<span class="hljs-comment">/**
+ * Decorator for positional child property binding
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">position</span>(<span class="hljs-params"><span class="hljs-attr">n</span>: <span class="hljs-built_in">number</span></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">target</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">propertyKey</span>: <span class="hljs-built_in">string</span></span>) {
+        <span class="hljs-keyword">const</span> constructor = target.<span class="hljs-property">constructor</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>;
+        <span class="hljs-keyword">if</span> (!constructor.<span class="hljs-property">__bindingsMap</span>) constructor.<span class="hljs-property">__bindingsMap</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title class_">Binding</span>&gt;();
+
+        <span class="hljs-keyword">let</span> binding = constructor.<span class="hljs-property">__bindingsMap</span>.<span class="hljs-title function_">get</span>(propertyKey);
+        <span class="hljs-keyword">if</span> (!binding) {
+            binding = { <span class="hljs-attr">property</span>: propertyKey };
+            constructor.<span class="hljs-property">__bindingsMap</span>.<span class="hljs-title function_">set</span>(propertyKey, binding);
+        }
+
+        binding.<span class="hljs-property">position</span> = n - <span class="hljs-number">1</span>;  <span class="hljs-comment">// 0-based</span>
+    };
+}
+
+<span class="hljs-comment">// Convenience child binding decorators for different positions</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> first = <span class="hljs-title function_">position</span>(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> second = <span class="hljs-title function_">position</span>(<span class="hljs-number">2</span>);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> third = <span class="hljs-title function_">position</span>(<span class="hljs-number">3</span>);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fourth = <span class="hljs-title function_">position</span>(<span class="hljs-number">4</span>);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fifth = <span class="hljs-title function_">position</span>(<span class="hljs-number">5</span>);
+
+<span class="hljs-comment">/**
+ * Get merged bindings for a Chemical instance
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getBindings</span>(<span class="hljs-params"><span class="hljs-attr">instance</span>: $<span class="hljs-title class_">Chemical</span></span>): <span class="hljs-built_in">any</span>[] {
+    <span class="hljs-keyword">const</span> constructor = instance.<span class="hljs-property">constructor</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>;
+
+    <span class="hljs-keyword">if</span> (constructor.<span class="hljs-property">_mergedBindings</span>) {
+        <span class="hljs-keyword">return</span> constructor.<span class="hljs-property">_mergedBindings</span>;
+    }
+
+    <span class="hljs-keyword">const</span> mergedMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">any</span>&gt;();
+
+    <span class="hljs-keyword">let</span> proto = constructor;
+    <span class="hljs-keyword">while</span> (proto &amp;&amp; proto !== $Chemical) {
+        <span class="hljs-keyword">if</span> (proto.<span class="hljs-property">__bindingsMap</span>) {
+            proto.<span class="hljs-property">__bindingsMap</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">binding</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span></span>) =&gt;</span> {
+                <span class="hljs-keyword">if</span> (!mergedMap.<span class="hljs-title function_">has</span>(key)) {
+                    mergedMap.<span class="hljs-title function_">set</span>(key, { ...binding, <span class="hljs-attr">property</span>: key });
+                }
+            });
+        }
+        proto = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(proto);
+    }
+
+    <span class="hljs-keyword">const</span> <span class="hljs-attr">bindings</span>: <span class="hljs-built_in">any</span>[] = [];
+    mergedMap.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">binding</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (binding.<span class="hljs-property">class</span>) {
+            bindings.<span class="hljs-title function_">push</span>(binding);
+        }
+    });
+
+    bindings.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (a.<span class="hljs-property">position</span> !== <span class="hljs-literal">undefined</span> &amp;&amp; b.<span class="hljs-property">position</span> === <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span> (b.<span class="hljs-property">position</span> !== <span class="hljs-literal">undefined</span> &amp;&amp; a.<span class="hljs-property">position</span> === <span class="hljs-literal">undefined</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span> (a.<span class="hljs-property">position</span> !== <span class="hljs-literal">undefined</span> &amp;&amp; b.<span class="hljs-property">position</span> !== <span class="hljs-literal">undefined</span>) {
+            <span class="hljs-keyword">return</span> a.<span class="hljs-property">position</span> - b.<span class="hljs-property">position</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    });
+
+    constructor.<span class="hljs-property">_mergedBindings</span> = bindings;
+    <span class="hljs-keyword">return</span> bindings;
+}
+
+<span class="hljs-comment">/**
+ * Reactivates an object, making its properties reactive
+ */</span>
+<span class="hljs-keyword">function</span> reactivate&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-built_in">object</span>&gt;(<span class="hljs-attr">instance</span>: T, <span class="hljs-attr">owner</span>?: $Chemical): T {
+    <span class="hljs-keyword">if</span> ((instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[reactivated]) <span class="hljs-keyword">return</span> instance;
+    
+    (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[reactivated] = <span class="hljs-literal">true</span>;
+
+    <span class="hljs-keyword">const</span> <span class="hljs-title function_">triggerUpdate</span> = (<span class="hljs-params"></span>) =&gt; {
+        <span class="hljs-keyword">const</span> update = owner ? (owner <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[updateSymbol] :
+                      instance <span class="hljs-keyword">instanceof</span> $Chemical ? (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[updateSymbol] :
+                      <span class="hljs-literal">undefined</span>;
+
+        <span class="hljs-keyword">if</span> (update) {
+            <span class="hljs-title function_">update</span>();
+        }
+    };
+
+    <span class="hljs-title function_">decorate</span>(instance, {
+        <span class="hljs-attr">after</span>: <span class="hljs-function">(<span class="hljs-params">className, memberName, memberType, method, args, result</span>) =&gt;</span> {
+            <span class="hljs-keyword">if</span> (memberType === <span class="hljs-string">&#x27;field&#x27;</span>) {
+                <span class="hljs-title function_">triggerUpdate</span>();
+            }
+            <span class="hljs-keyword">return</span> result;
+        }
+    });
+
+    <span class="hljs-keyword">return</span> instance;
+}
+
+<span class="hljs-comment">/**
+ * Creates a placeholder Chemical that won&#x27;t crash when accessed
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createPlaceholderChemical</span>(<span class="hljs-params"><span class="hljs-title class_">ChildClass</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">isOptional</span>: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span></span>): <span class="hljs-built_in">any</span> {
+    <span class="hljs-keyword">if</span> (isOptional || !<span class="hljs-title class_">ChildClass</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+    
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> placeholder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ChildClass</span>();
+        placeholder.<span class="hljs-property">_isPlaceholder</span> = <span class="hljs-literal">true</span>;
+        placeholder.<span class="hljs-property">_optional</span> = isOptional;
+        <span class="hljs-keyword">return</span> placeholder;
+    } <span class="hljs-keyword">catch</span> (e) {
+        <span class="hljs-comment">// If we can&#x27;t create an instance, return a stub</span>
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-attr">_isPlaceholder</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">_optional</span>: isOptional,
+            <span class="hljs-attr">view</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-literal">null</span>
+        };
+    }
+}
+
+<span class="hljs-comment">// Type definitions for decorator configuration</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">MemberType</span> = <span class="hljs-string">&#x27;method&#x27;</span> | <span class="hljs-string">&#x27;property&#x27;</span> | <span class="hljs-string">&#x27;field&#x27;</span>;
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">DecoratorConfig</span> = {
+    <span class="hljs-attr">before</span>?: <span class="hljs-function">(<span class="hljs-params">
+        <span class="hljs-attr">className</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-attr">memberName</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-attr">memberType</span>: <span class="hljs-title class_">MemberType</span>,
+        <span class="hljs-attr">method</span>: <span class="hljs-title class_">Function</span>,
+        <span class="hljs-attr">args</span>: <span class="hljs-built_in">any</span>[]
+    </span>) =&gt;</span> [<span class="hljs-title class_">Function</span>, <span class="hljs-built_in">any</span>[]] | <span class="hljs-literal">undefined</span>;
+    <span class="hljs-attr">after</span>?: <span class="hljs-function">(<span class="hljs-params">
+        <span class="hljs-attr">className</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-attr">memberName</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-attr">memberType</span>: <span class="hljs-title class_">MemberType</span>,
+        <span class="hljs-attr">method</span>: <span class="hljs-title class_">Function</span>,
+        <span class="hljs-attr">args</span>: <span class="hljs-built_in">any</span>[],
+        <span class="hljs-attr">result</span>: <span class="hljs-built_in">any</span>
+    </span>) =&gt;</span> <span class="hljs-built_in">any</span> | <span class="hljs-literal">undefined</span>;
+    <span class="hljs-attr">error</span>?: <span class="hljs-function">(<span class="hljs-params">
+        <span class="hljs-attr">className</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-attr">memberName</span>: <span class="hljs-built_in">string</span>,
+        <span class="hljs-attr">memberType</span>: <span class="hljs-title class_">MemberType</span>,
+        <span class="hljs-attr">method</span>: <span class="hljs-title class_">Function</span>,
+        <span class="hljs-attr">args</span>: <span class="hljs-built_in">any</span>[],
+        <span class="hljs-attr">error</span>: <span class="hljs-built_in">any</span>
+    </span>) =&gt;</span> <span class="hljs-built_in">any</span> | <span class="hljs-literal">undefined</span>;
+};
+
+<span class="hljs-comment">/**
+ * Decorates an object&#x27;s methods and properties with interceptors
+ */</span>
+<span class="hljs-keyword">function</span> decorate&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-built_in">object</span>&gt;(<span class="hljs-attr">instance</span>: T, <span class="hljs-attr">config</span>: <span class="hljs-title class_">DecoratorConfig</span>): T {
+    <span class="hljs-keyword">if</span> ((instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[reactivated]) {
+        <span class="hljs-keyword">return</span> instance;
+    }
+
+    <span class="hljs-keyword">const</span> <span class="hljs-attr">className</span>: <span class="hljs-built_in">string</span> = instance?.<span class="hljs-property">constructor</span>?.<span class="hljs-property">name</span> ?? <span class="hljs-string">&quot;&lt;UNKNOWN&gt;&quot;</span>;
+
+    <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[backingFields]) {
+        (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[backingFields] = {};
+    }
+    <span class="hljs-keyword">if</span> (!(instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[originalValues]) {
+        (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[originalValues] = {};
+    }
+
+    <span class="hljs-title function_">decorateProperties</span>(instance, className, config);
+
+    (instance <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[reactivated] = <span class="hljs-literal">true</span>;
+
+    <span class="hljs-keyword">return</span> instance;
+}
+
+<span class="hljs-comment">/**
+ * Decorates properties of an object with interceptors
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">decorateProperties</span>(<span class="hljs-params"><span class="hljs-attr">instance</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">className</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">config</span>: <span class="hljs-title class_">DecoratorConfig</span></span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">const</span> properties = <span class="hljs-title function_">getAllProperties</span>(instance);
+
+    <span class="hljs-keyword">if</span> (!instance[backingFields]) {
+        instance[backingFields] = {};
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> properties) {
+        <span class="hljs-keyword">const</span> value = instance[key];
+
+        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_">isReactiveProperty</span>(instance, key, value)) {
+            <span class="hljs-keyword">continue</span>;
+        }
+
+        <span class="hljs-keyword">const</span> ownDescriptor = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getOwnPropertyDescriptor</span>(instance, key);
+        <span class="hljs-keyword">if</span> (ownDescriptor &amp;&amp; (ownDescriptor.<span class="hljs-property">get</span> || ownDescriptor.<span class="hljs-property">set</span>)) {
+            <span class="hljs-keyword">continue</span>;
+        }
+
+        <span class="hljs-keyword">const</span> protoDescriptor = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getOwnPropertyDescriptor</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(instance), key);
+        <span class="hljs-keyword">if</span> (protoDescriptor &amp;&amp; (protoDescriptor.<span class="hljs-property">get</span> || protoDescriptor.<span class="hljs-property">set</span>)) {
+            <span class="hljs-title function_">decorateAccessorProperty</span>(instance, key, protoDescriptor, className, config);
+            <span class="hljs-keyword">continue</span>;
+        }
+
+        instance[backingFields][key] = value;
+
+        <span class="hljs-keyword">const</span> constructor = instance.<span class="hljs-property">constructor</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>;
+        <span class="hljs-keyword">const</span> isChemicalProperty = constructor.<span class="hljs-property">__chemicalProperties</span>?.<span class="hljs-title function_">has</span>(key);
+
+        <span class="hljs-keyword">let</span> <span class="hljs-attr">shouldUseDynamic</span>: <span class="hljs-built_in">boolean</span>;
+        <span class="hljs-keyword">if</span> (isChemicalProperty) {
+            shouldUseDynamic = <span class="hljs-literal">true</span>;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">undefined</span>) {
+            shouldUseDynamic = <span class="hljs-literal">true</span>;
+        } <span class="hljs-keyword">else</span> {
+            shouldUseDynamic = <span class="hljs-title function_">shouldUseDynamicChecking</span>(value);
+        }
+
+        <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(instance, key, {
+            <span class="hljs-attr">get</span>: <span class="hljs-title function_">createReactiveGetter</span>(key, className, shouldUseDynamic, config),
+            <span class="hljs-attr">set</span>: <span class="hljs-title function_">createReactiveSetter</span>(key, className, shouldUseDynamic, config),
+            <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">configurable</span>: <span class="hljs-literal">true</span>
+        });
+    }
+}
+
+<span class="hljs-comment">/**
+ * Creates a reactive getter for a property
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createReactiveGetter</span>(<span class="hljs-params"><span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">className</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">shouldUseDynamic</span>: <span class="hljs-built_in">boolean</span>, <span class="hljs-attr">config</span>: <span class="hljs-title class_">DecoratorConfig</span></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">this</span>: <span class="hljs-built_in">any</span></span>) {
+        <span class="hljs-keyword">const</span> value = <span class="hljs-variable language_">this</span>[backingFields][key];
+
+        <span class="hljs-keyword">if</span> (config.<span class="hljs-property">after</span>) {
+            <span class="hljs-keyword">const</span> afterResult = config.<span class="hljs-title function_">after</span>(className, key, <span class="hljs-string">&#x27;property&#x27;</span>, <span class="hljs-function">() =&gt;</span> { }, [], value);
+            <span class="hljs-keyword">return</span> afterResult ?? value;
+        }
+
+        <span class="hljs-keyword">return</span> value;
+    };
+}
+
+<span class="hljs-comment">/**
+ * Creates a reactive setter for a property
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createReactiveSetter</span>(<span class="hljs-params"><span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">className</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">shouldUseDynamic</span>: <span class="hljs-built_in">boolean</span>, <span class="hljs-attr">config</span>: <span class="hljs-title class_">DecoratorConfig</span></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">this</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">newValue</span>: <span class="hljs-built_in">any</span></span>) {
+        <span class="hljs-keyword">const</span> oldValue = <span class="hljs-variable language_">this</span>[backingFields][key];
+
+        <span class="hljs-keyword">if</span> (oldValue === newValue) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-keyword">const</span> proto = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(<span class="hljs-variable language_">this</span>);
+        <span class="hljs-keyword">const</span> hasCustomComparer = proto?.[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>]?.<span class="hljs-title function_">has</span>(key);
+
+        <span class="hljs-keyword">if</span> (hasCustomComparer) {
+            <span class="hljs-keyword">const</span> customComparer = proto[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>].<span class="hljs-title function_">get</span>(key);
+            <span class="hljs-keyword">if</span> (<span class="hljs-title function_">customComparer</span>(oldValue, newValue)) {
+                <span class="hljs-keyword">return</span>;
+            }
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (shouldUseDynamic) {
+            <span class="hljs-keyword">if</span> (oldValue !== <span class="hljs-literal">undefined</span> &amp;&amp; newValue !== <span class="hljs-literal">undefined</span>) {
+                <span class="hljs-keyword">try</span> {
+                    <span class="hljs-keyword">if</span> (<span class="hljs-title function_">represent</span>(oldValue) === <span class="hljs-title function_">represent</span>(newValue)) {
+                        <span class="hljs-keyword">return</span>;
+                    }
+                } <span class="hljs-keyword">catch</span> (e) {
+                    <span class="hljs-comment">// Continue with update if comparison fails</span>
+                }
+            }
+        }
+
+        <span class="hljs-keyword">let</span> valueToSet = newValue;
+
+        <span class="hljs-keyword">if</span> (config.<span class="hljs-property">before</span>) {
+            <span class="hljs-keyword">const</span> beforeResult = config.<span class="hljs-title function_">before</span>(className, key, <span class="hljs-string">&#x27;field&#x27;</span>, <span class="hljs-function">() =&gt;</span> { }, [newValue]);
+            <span class="hljs-keyword">if</span> (beforeResult?.[<span class="hljs-number">1</span>]) {
+                valueToSet = beforeResult[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>];
+            }
+        }
+
+        <span class="hljs-variable language_">this</span>[backingFields][key] = valueToSet;
+
+        <span class="hljs-keyword">if</span> (config.<span class="hljs-property">after</span>) {
+            config.<span class="hljs-title function_">after</span>(className, key, <span class="hljs-string">&#x27;field&#x27;</span>, <span class="hljs-function">() =&gt;</span> { }, [valueToSet], <span class="hljs-literal">undefined</span>);
+        }
+    };
+}
+
+<span class="hljs-comment">/**
+ * Decorates an accessor property (getter/setter)
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">decorateAccessorProperty</span>(<span class="hljs-params">
+    <span class="hljs-attr">instance</span>: <span class="hljs-built_in">any</span>,
+    <span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>,
+    <span class="hljs-attr">descriptor</span>: <span class="hljs-title class_">PropertyDescriptor</span>,
+    <span class="hljs-attr">className</span>: <span class="hljs-built_in">string</span>,
+    <span class="hljs-attr">config</span>: <span class="hljs-title class_">DecoratorConfig</span>
+</span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">const</span> originalGet = descriptor.<span class="hljs-property">get</span>;
+    <span class="hljs-keyword">const</span> originalSet = descriptor.<span class="hljs-property">set</span>;
+
+    <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(instance, key, {
+        <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+            <span class="hljs-keyword">const</span> value = originalGet?.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);
+
+            <span class="hljs-keyword">if</span> (config.<span class="hljs-property">after</span>) {
+                <span class="hljs-keyword">const</span> afterResult = config.<span class="hljs-title function_">after</span>(className, key, <span class="hljs-string">&#x27;property&#x27;</span>, <span class="hljs-function">() =&gt;</span> { }, [], value);
+                <span class="hljs-keyword">return</span> afterResult ?? value;
+            }
+
+            <span class="hljs-keyword">return</span> value;
+        },
+        <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">newValue</span>) {
+            <span class="hljs-keyword">if</span> (!originalSet) <span class="hljs-keyword">return</span>;
+
+            <span class="hljs-keyword">const</span> oldValue = originalGet?.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>);
+
+            <span class="hljs-keyword">if</span> (oldValue === newValue) {
+                <span class="hljs-keyword">return</span>;
+            }
+
+            <span class="hljs-keyword">const</span> proto = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(<span class="hljs-variable language_">this</span>);
+            <span class="hljs-keyword">const</span> hasCustomComparer = proto &amp;&amp;
+                proto[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>] &amp;&amp;
+                proto[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>].<span class="hljs-title function_">has</span>(key);
+
+            <span class="hljs-keyword">if</span> (hasCustomComparer) {
+                <span class="hljs-keyword">const</span> customComparer = proto[comparerSymbol <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>].<span class="hljs-title function_">get</span>(key);
+                <span class="hljs-keyword">if</span> (<span class="hljs-title function_">customComparer</span>(oldValue, newValue)) {
+                    <span class="hljs-keyword">return</span>;
+                }
+            }
+
+            originalSet.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, newValue);
+
+            <span class="hljs-keyword">if</span> (config.<span class="hljs-property">after</span>) {
+                config.<span class="hljs-title function_">after</span>(className, key, <span class="hljs-string">&#x27;field&#x27;</span>, <span class="hljs-function">() =&gt;</span> { }, [newValue], <span class="hljs-literal">undefined</span>);
+            }
+        },
+        <span class="hljs-attr">enumerable</span>: descriptor.<span class="hljs-property">enumerable</span>,
+        <span class="hljs-attr">configurable</span>: descriptor.<span class="hljs-property">configurable</span>
+    });
+}
+
+<span class="hljs-comment">/**
+ * Determines if a value should use dynamic dirty-checking
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">shouldUseDynamicChecking</span>(<span class="hljs-params"><span class="hljs-attr">value</span>: <span class="hljs-built_in">any</span></span>): <span class="hljs-built_in">boolean</span> {
+    <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">undefined</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">const</span> isChemicalProperty = value <span class="hljs-keyword">instanceof</span> $Chemical ||
+        (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(value) &amp;&amp; value.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span> &amp;&amp; value[<span class="hljs-number">0</span>] <span class="hljs-keyword">instanceof</span> $Chemical);
+
+    <span class="hljs-keyword">return</span> !isChemicalProperty &amp;&amp; (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(value) ||
+        (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; value !== <span class="hljs-literal">null</span> &amp;&amp; !(value <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Date</span>)));
+}
+
+<span class="hljs-comment">/**
+ * Creates a string representation for comparison
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">represent</span>(<span class="hljs-params"><span class="hljs-attr">value</span>: <span class="hljs-built_in">any</span></span>): <span class="hljs-built_in">string</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">stringify</span>(value, <span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-attr">this</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">val</span>: <span class="hljs-built_in">any</span></span>): <span class="hljs-built_in">any</span> {
+        <span class="hljs-keyword">if</span> (key === <span class="hljs-string">&#x27;&#x27;</span>) <span class="hljs-keyword">return</span> val;
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span> &amp;&amp; <span class="hljs-variable language_">this</span> <span class="hljs-keyword">instanceof</span> $Chemical) {
+            <span class="hljs-keyword">if</span> (!<span class="hljs-title function_">isReactiveProperty</span>(<span class="hljs-variable language_">this</span>, key, val)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+            }
+        }
+
+        <span class="hljs-keyword">if</span> (val <span class="hljs-keyword">instanceof</span> $Chemical) {
+            <span class="hljs-keyword">const</span> <span class="hljs-attr">simplified</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">any</span>&gt; = { <span class="hljs-attr">_chemical</span>: val.<span class="hljs-property">constructor</span>.<span class="hljs-property">name</span> };
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> prop <span class="hljs-keyword">in</span> val) {
+                <span class="hljs-keyword">if</span> (prop.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&#x27;$&#x27;</span>) &amp;&amp; <span class="hljs-title function_">typeof</span> (val <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[prop] !== <span class="hljs-string">&#x27;function&#x27;</span>) {
+                    simplified[prop] = (val <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)[prop];
+                }
+            }
+            <span class="hljs-keyword">return</span> simplified;
+        }
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> val === <span class="hljs-string">&#x27;function&#x27;</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+        }
+
+        <span class="hljs-keyword">if</span> (val &amp;&amp; <span class="hljs-keyword">typeof</span> val === <span class="hljs-string">&#x27;object&#x27;</span>) {
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">if</span> (val.<span class="hljs-property">constructor</span>?.<span class="hljs-property">name</span> === <span class="hljs-string">&#x27;Proxy&#x27;</span>) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;[NextProxy]&#x27;</span>;
+                }
+            } <span class="hljs-keyword">catch</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;[Inaccessible]&#x27;</span>;
+            }
+        }
+
+        <span class="hljs-keyword">return</span> val;
+    });
+}
+
+<span class="hljs-comment">/**
+ * Determines if a property should be reactive (tracked for changes)
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">isReactiveProperty</span>(<span class="hljs-params"><span class="hljs-attr">instance</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">value</span>: <span class="hljs-built_in">any</span></span>): <span class="hljs-built_in">boolean</span> {
+    <span class="hljs-keyword">if</span> (key === <span class="hljs-title class_">String</span>(reactivated) ||
+        key === <span class="hljs-title class_">String</span>(deactivated) ||
+        key === <span class="hljs-title class_">String</span>(backingFields) ||
+        key === <span class="hljs-title class_">String</span>(originalValues) ||
+        key === <span class="hljs-title class_">String</span>(comparerSymbol) ||
+        key === <span class="hljs-title class_">String</span>(updateSymbol)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (key === <span class="hljs-string">&#x27;constructor&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;state&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;props&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;Component&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;parent&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;children&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;elements&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;__parentInstance&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;_isSetup&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;_id&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;_prototype&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;childPositionCounts&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;_isPlaceholder&#x27;</span> ||
+        key === <span class="hljs-string">&#x27;_optional&#x27;</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&#x27;function&#x27;</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">if</span> ($Chemical.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title function_">hasOwnProperty</span>(key)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">const</span> proto = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(instance);
+    <span class="hljs-keyword">if</span> (proto &amp;&amp; proto[deactivated <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>]?.<span class="hljs-title function_">has</span>(key)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-comment">/**
+ * Gets all properties from an object
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getAllProperties</span>(<span class="hljs-params"><span class="hljs-attr">obj</span>: <span class="hljs-built_in">any</span></span>): <span class="hljs-built_in">string</span>[] {
+    <span class="hljs-keyword">const</span> properties = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>&lt;<span class="hljs-built_in">string</span>&gt;();
+
+    <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getOwnPropertyNames</span>(obj).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">prop</span> =&gt;</span> {
+        properties.<span class="hljs-title function_">add</span>(prop);
+    });
+
+    <span class="hljs-keyword">let</span> proto = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(obj);
+    <span class="hljs-keyword">while</span> (proto &amp;&amp; proto !== <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>) {
+        <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getOwnPropertyNames</span>(proto).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">prop</span> =&gt;</span> {
+            <span class="hljs-keyword">if</span> (!prop.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&#x27;_&#x27;</span>) &amp;&amp; prop !== <span class="hljs-string">&#x27;constructor&#x27;</span>) {
+                properties.<span class="hljs-title function_">add</span>(prop);
+            }
+        });
+        proto = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(proto);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(properties);
+}</code></pre></div></div></div><div class="sc-laZLKQ kGoCqU pd-paragraph pd-pane"></div></div></div></div><!--/$--></div>
+  </body>
+</html>

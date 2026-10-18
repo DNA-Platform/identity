@@ -1,0 +1,139 @@
+import { Chapter, Title } from '@dna-platform/public';
+import { CodeBox } from '../../../.manual/.book';
+import { Version } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Version />
+        <Title>[[ Dalla Tor Logo - Improved Vector v1 ]]</Title>
+        <CodeBox
+            language="xml"
+        >
+            {`
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="300" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet">
+  <!-- Definitions for reusable components -->
+  <defs>
+    <!-- Script Font Components -->
+    <!-- Curve helper for script components -->
+    <path id="script-stem" d="M0,0 C2,-50 0,-100 5,-120" />
+    
+    <!-- Sans-Serif Font Components -->
+    <!-- Vertical stem for sans-serif letters -->
+    <rect id="sans-vertical-stem" width="12" height="70" rx="1" ry="1" />
+    
+    <!-- Horizontal bar for sans-serif letters -->
+    <rect id="sans-horizontal-bar" width="50" height="12" rx="1" ry="1" />
+    
+    <!-- Diagonal stroke for sans-serif letters -->
+    <path id="sans-diagonal" d="M0,70 L30,0" stroke-width="12" stroke-linecap="round" />
+    
+    <!-- Circle for O -->
+    <circle id="sans-circle" cx="25" cy="35" r="35" stroke-width="12" fill="none" />
+  </defs>
+
+  <!-- Script "Dalla Tor" -->
+  <g transform="translate(20, 120)" fill="black">
+    <!-- D -->
+    <path d="M10,10 C20,-20 50,-40 70,-30 S100,20 100,40 S80,100 40,100 S10,80 10,70 S10,30 10,10z" />
+    
+    <!-- a -->
+    <path d="M120,70 C140,50 160,40 180,50 S200,80 190,90 S160,100 140,90 S120,70 130,60 S150,50 170,60 S180,80 170,90" />
+    
+    <!-- l -->
+    <path d="M210,0 C210,20 210,40 210,60 S210,90 210,100" />
+    
+    <!-- l -->
+    <path d="M240,0 C240,20 240,40 240,60 S240,90 240,100" />
+    
+    <!-- a -->
+    <path d="M270,70 C290,50 310,40 330,50 S350,80 340,90 S310,100 290,90 S270,70 280,60 S300,50 320,60 S330,80 320,90" />
+    
+    <!-- T -->
+    <path d="M400,-10 C420,-20 450,-20 480,-10 S520,10 530,20" />
+    <path d="M460,10 C460,30 460,50 460,70 S460,90 460,100" />
+    
+    <!-- o -->
+    <path d="M540,70 C540,50 560,40 580,50 S620,70 600,90 S560,100 540,90 S530,70 540,70z" />
+    
+    <!-- r -->
+    <path d="M630,60 C630,70 630,80 630,90 S630,100 630,100 C640,80 660,70 680,70" />
+  </g>
+
+  <!-- Sans-Serif "FLAVOR OF ITALY" -->
+  <g transform="translate(150, 240)" fill="black">
+    <!-- F -->
+    <use href="#sans-vertical-stem" x="0" y="0" />
+    <use href="#sans-horizontal-bar" x="0" y="0" />
+    <use href="#sans-horizontal-bar" x="0" y="30" width="40" />
+    
+    <!-- L -->
+    <use href="#sans-vertical-stem" x="60" y="0" />
+    <use href="#sans-horizontal-bar" x="60" y="58" />
+    
+    <!-- A -->
+    <g transform="translate(120, 0)">
+      <path d="M0,70 L18,0 L36,70" stroke="black" stroke-width="12" stroke-linecap="round" fill="none" />
+      <rect x="8" y="40" width="20" height="8" />
+    </g>
+    
+    <!-- V -->
+    <g transform="translate(170, 0)">
+      <path d="M0,0 L18,70 L36,0" stroke="black" stroke-width="12" stroke-linecap="round" fill="none" />
+    </g>
+    
+    <!-- O -->
+    <g transform="translate(210, 0)">
+      <use href="#sans-circle" stroke="black" />
+    </g>
+    
+    <!-- R -->
+    <g transform="translate(270, 0)">
+      <use href="#sans-vertical-stem" x="0" y="0" />
+      <path d="M0,0 C30,0 50,10 50,25 S30,50 0,50" stroke="black" stroke-width="12" stroke-linecap="round" fill="none" />
+      <path d="M25,50 L45,70" stroke="black" stroke-width="12" stroke-linecap="round" />
+    </g>
+    
+    <!-- O -->
+    <g transform="translate(330, 0)">
+      <use href="#sans-circle" stroke="black" />
+    </g>
+    
+    <!-- F -->
+    <g transform="translate(390, 0)">
+      <use href="#sans-vertical-stem" x="0" y="0" />
+      <use href="#sans-horizontal-bar" x="0" y="0" />
+      <use href="#sans-horizontal-bar" x="0" y="30" width="40" />
+    </g>
+    
+    <!-- I -->
+    <use href="#sans-vertical-stem" x="450" y="0" />
+    
+    <!-- T -->
+    <g transform="translate(480, 0)">
+      <use href="#sans-horizontal-bar" x="-15" y="0" width="60" />
+      <use href="#sans-vertical-stem" x="15" y="0" />
+    </g>
+    
+    <!-- A -->
+    <g transform="translate(530, 0)">
+      <path d="M0,70 L18,0 L36,70" stroke="black" stroke-width="12" stroke-linecap="round" fill="none" />
+      <rect x="8" y="40" width="20" height="8" />
+    </g>
+    
+    <!-- L -->
+    <g transform="translate(580, 0)">
+      <use href="#sans-vertical-stem" x="0" y="0" />
+      <use href="#sans-horizontal-bar" x="0" y="58" />
+    </g>
+    
+    <!-- Y -->
+    <g transform="translate(640, 0)">
+      <path d="M0,0 L18,30 L36,0" stroke="black" stroke-width="12" stroke-linecap="round" fill="none" />
+      <path d="M18,30 L18,70" stroke="black" stroke-width="12" stroke-linecap="round" />
+    </g>
+  </g>
+</svg>
+`}
+        </CodeBox>
+    </Chapter>
+);
