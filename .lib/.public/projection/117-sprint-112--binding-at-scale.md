@@ -124,3 +124,4 @@ Approved 2026-10-17 on his *"Approve R1 to R5"*. **`implementation-ready`.**
     - Gödel and Goldbach draws 154 messages and 1,699 formulas;
     - 0 console errors.
     - The register draws in 1.7 s and finishes its 1,003 requests within 5 s.
+  - **The unchanged bind of 1,019 books, measured 2026-10-18 morning with the workbench and the library's browser open beside it: 1,166.4 s, 19 min 32 s**, the bundle 1,101.5 s of it, the catalogue 10.7 s, the proof 5.6 s, nothing read or drawn. Against 393 s for the same bundle inside the full bind the night before, so the bundle's cost moves with what else the machine is doing. That is R4's whole case: an unchanged bind is the bundle, and the bundle is rebuilt whole.
