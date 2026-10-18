@@ -28,7 +28,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Rebuilding routine after ankle surgery ]]( ./claude--Rebuilding routine after ankle surgery--91ffb132 )</Content>

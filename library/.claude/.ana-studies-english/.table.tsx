@@ -28,7 +28,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Preserving continuity across account transition ]]( ./claude--Preserving continuity across account transition--f54999bb )</Content>
@@ -38,6 +38,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Preserving continuity across account transition--f54999bb )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>March 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Building and practicing a personal vocabulary ]]( ./claude--Building and practicing a personal vocabulary--2fb9debb )</Content>

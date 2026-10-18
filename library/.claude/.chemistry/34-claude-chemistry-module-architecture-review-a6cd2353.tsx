@@ -1,10 +1,14 @@
-import { Chapter, Means, Paragraph, Synopsis, Title } from '@dna-platform/public';
-import { Brief, Volume } from '../../.manual/.book';
+import { Chapter, Means, Paragraph, Synopsis, Title, Date, Part } from '@dna-platform/public';
+import { Brief, Dated, Volume } from '../../.manual/.book';
 import TheCover from '../.conversations/claude--chemistry-module-architecture-review--a6cd2353/.cover.tsx';
 import TheSynopsis from '../.conversations/claude--chemistry-module-architecture-review--a6cd2353/.synopsis.tsx';
 
 export default () => (
     <Chapter>
+        <Part>October 2025</Part>
+        <Dated>
+            <Date>[8 October 2025](2025-10-08)</Date>
+        </Dated>
         <Volume>{TheCover()}</Volume>
         <Title>[[ Chemistry module architecture review ]]( claude--Chemistry module architecture review--a6cd2353 )</Title>
         <Paragraph>

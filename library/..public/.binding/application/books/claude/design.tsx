@@ -6,6 +6,7 @@ import Synopsis from '../../../../../.claude/.design/.synopsis';
 import Table from '../../../../../.claude/.design/.table';
 import StartingFromTheAudit1 from '../../../../../.claude/.design/1-starting-from-the-audit';
 import TheConversationsPage2 from '../../../../../.claude/.design/2-the-conversations-page';
+import TheProjectPage3 from '../../../../../.claude/.design/3-the-project-page';
 
 const Book = $($Book);
 
@@ -16,6 +17,7 @@ export const book = () => (
         {Table()}
         {StartingFromTheAudit1()}
         {TheConversationsPage2()}
+        {TheProjectPage3()}
     </Book>
 );
 

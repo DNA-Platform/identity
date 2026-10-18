@@ -1,10 +1,14 @@
-import { Chapter, Means, Paragraph, Synopsis, Title } from '@dna-platform/public';
-import { Brief, Volume } from '../../.manual/.book';
+import { Chapter, Means, Paragraph, Synopsis, Title, Date, Part } from '@dna-platform/public';
+import { Brief, Dated, Volume } from '../../.manual/.book';
 import TheCover from '../.conversations/claude--refactoring-chemistry-ts-into-particle-and-chemical-classes--4887921b/.cover.tsx';
 import TheSynopsis from '../.conversations/claude--refactoring-chemistry-ts-into-particle-and-chemical-classes--4887921b/.synopsis.tsx';
 
 export default () => (
     <Chapter>
+        <Part>December 2025</Part>
+        <Dated>
+            <Date>[13 December 2025](2025-12-13)</Date>
+        </Dated>
         <Volume>{TheCover()}</Volume>
         <Title>[[ Refactoring chemistry.ts into particle and chemical classes ]]( claude--Refactoring chemistry..ts into particle and chemical classes--4887921b )</Title>
         <Paragraph>

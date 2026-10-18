@@ -425,7 +425,13 @@ export const projectEntry = (
     const importPath = manualImportPath(folders, folder);
     const entryPath = join(folder, `${nextChapterNumber(folder)}-${slugFromName(name.key)}.tsx`);
     const bookRelativePath = relativePath(folder, bookFolder);
-    writtenFile(entryPath, entryFileText(importPath, ['Brief', 'Volume'], entryPackageWords, bookRelativePath, [
+    // A project's entry is dated and set under its month as the register's is, so the project's page can lay its
+    // conversations by month and its side can list the months; Sprint 113, on Doug's 'That is not navigable'.
+    writtenFile(entryPath, entryFileText(importPath, ['Brief', 'Dated', 'Volume'], [...entryPackageWords, 'Date', 'Part'], bookRelativePath, [
+        `<Part>${monthHeading(instant)}</Part>`,
+        '<Dated>',
+        `    <Date>${dateReference(instant)}</Date>`,
+        '</Dated>',
         '<Volume>{TheCover()}</Volume>',
         titleLine(name),
         '<Paragraph>',
@@ -434,7 +440,7 @@ export const projectEntry = (
         '</Paragraph>',
         '<Synopsis>{TheSynopsis()}</Synopsis>',
     ]));
-    writtenFile(tablePath, tableWithRow(tableText, 'Conversations', rowLines(name, '***'), whereThisBookStandsSection));
+    writtenFile(tablePath, tableWithRow(tableText, monthHeading(instant), rowLines(name, '***'), whereThisBookStandsSection));
 
     return [entryPath, tablePath];
 };

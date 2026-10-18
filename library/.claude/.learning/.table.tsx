@@ -28,7 +28,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>October 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ History of propositional logic ]]( ./claude--History of propositional logic--47a37760 )</Content>

@@ -1,10 +1,14 @@
-import { Chapter, Means, Paragraph, Synopsis, Title } from '@dna-platform/public';
-import { Brief, Volume } from '../../.manual/.book';
+import { Chapter, Means, Paragraph, Synopsis, Title, Date, Part } from '@dna-platform/public';
+import { Brief, Dated, Volume } from '../../.manual/.book';
 import TheCover from '../.conversations/claude--online-shopping-options-for-new-georgia-residents--05f502ea/.cover.tsx';
 import TheSynopsis from '../.conversations/claude--online-shopping-options-for-new-georgia-residents--05f502ea/.synopsis.tsx';
 
 export default () => (
     <Chapter>
+        <Part>March 2026</Part>
+        <Dated>
+            <Date>[5 March 2026](2026-03-05)</Date>
+        </Dated>
         <Volume>{TheCover()}</Volume>
         <Title>[[ Online shopping options for new Georgia residents ]]( claude--Online shopping options for new Georgia residents--05f502ea )</Title>
         <Paragraph>

@@ -1,10 +1,14 @@
-import { Chapter, Means, Paragraph, Synopsis, Title } from '@dna-platform/public';
-import { Brief, Volume } from '../../.manual/.book';
+import { Chapter, Means, Paragraph, Synopsis, Title, Date, Part } from '@dna-platform/public';
+import { Brief, Dated, Volume } from '../../.manual/.book';
 import TheCover from '../.conversations/claude--legal-strategies-in-domestic-violence-custody-cases--00982e61/.cover.tsx';
 import TheSynopsis from '../.conversations/claude--legal-strategies-in-domestic-violence-custody-cases--00982e61/.synopsis.tsx';
 
 export default () => (
     <Chapter>
+        <Part>January 2026</Part>
+        <Dated>
+            <Date>[16 January 2026](2026-01-16)</Date>
+        </Dated>
         <Volume>{TheCover()}</Volume>
         <Title>[[ Legal strategies in domestic violence custody cases ]]( claude--Legal strategies in domestic violence custody cases--00982e61 )</Title>
         <Paragraph>

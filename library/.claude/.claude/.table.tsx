@@ -28,7 +28,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>September 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Cathy &gt; Programming ]]( ./claude--Cathy &gt; Programming--b6395c0d )</Content>
@@ -38,6 +38,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Cathy &gt; Programming--b6395c0d )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Claude &gt; Philosophy ]]( ./claude--Claude &gt; Philosophy--f8c40c37 )</Content>

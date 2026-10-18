@@ -79,7 +79,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>March 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Automating stock art uploads to Adobe Stock ]]( ./claude--Automating stock art uploads to Adobe Stock--c5329f22 )</Content>
@@ -127,15 +127,6 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Patterns Object Model ]]( ./claude--Patterns Object Model--a3b2f38f )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Patterns Object Model--a3b2f38f )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
                     <Content>$[[ Ana Grid I ]]( ./claude--Ana Grid I--8906171b )</Content>
                 </Word>
                 <Word>
@@ -177,6 +168,18 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Adding images and market research to product descriptions--0af11d32 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>August 2025</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Patterns Object Model ]]( ./claude--Patterns Object Model--a3b2f38f )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Patterns Object Model--a3b2f38f )***</Content>
                 </Word>
             </Paragraph>
         </Section>

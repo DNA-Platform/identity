@@ -32,6 +32,9 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Conversation's Page ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Project's Page ]]</Content>
+            </Paragraph>
         </Section>
     </Chapter>
 );

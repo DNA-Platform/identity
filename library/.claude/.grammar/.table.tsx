@@ -37,7 +37,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>September 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Blog: Biology &amp; Etymology, Semantic Homeostasis ]]( ./claude--Blog: Biology &amp; Etymology, Semantic Homeostasis--5fdfa75e )</Content>
@@ -47,6 +47,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Blog: Biology &amp; Etymology, Semantic Homeostasis--5fdfa75e )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Lexeme and word-form distinction in verb conjugation ]]( ./claude--Lexeme and word-form distinction in verb conjugation--e0994d83 )</Content>
@@ -74,6 +77,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Continuity through narrative memory--4df03bdf )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Grammar lessons from custom curriculum ]]( ./claude--Grammar lessons from custom curriculum--aed40882 )</Content>

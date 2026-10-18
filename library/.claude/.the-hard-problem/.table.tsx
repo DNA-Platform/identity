@@ -37,7 +37,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>September 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ The Project ]]( ./claude--The Project--c0f5ecaf )</Content>
@@ -47,6 +47,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--The Project--c0f5ecaf )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Analyzing Chalmers, Dennett, and Hofstadter on consciousness and ontology ]]( ./claude--Analyzing Chalmers, Dennett, and Hofstadter on consciousness and ontology--586e07a1 )</Content>

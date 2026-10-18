@@ -34,7 +34,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Experiment specification framework for wiki-based market research ]]( ./claude--Experiment specification framework for wiki-based market research--6ad6437b )</Content>

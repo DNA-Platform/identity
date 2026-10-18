@@ -1,10 +1,14 @@
-import { Chapter, Means, Paragraph, Synopsis, Title } from '@dna-platform/public';
-import { Brief, Volume } from '../../.manual/.book';
+import { Chapter, Means, Paragraph, Synopsis, Title, Date, Part } from '@dna-platform/public';
+import { Brief, Dated, Volume } from '../../.manual/.book';
 import TheCover from '../.conversations/claude--formalism-authorship-and-axiom-analysis--20b704e8/.cover.tsx';
 import TheSynopsis from '../.conversations/claude--formalism-authorship-and-axiom-analysis--20b704e8/.synopsis.tsx';
 
 export default () => (
     <Chapter>
+        <Part>September 2025</Part>
+        <Dated>
+            <Date>[4 September 2025](2025-09-04)</Date>
+        </Dated>
         <Volume>{TheCover()}</Volume>
         <Title>[[ Formalism Authorship and Axiom Analysis ]]( claude--Formalism Authorship and Axiom Analysis--20b704e8 )</Title>
         <Paragraph>

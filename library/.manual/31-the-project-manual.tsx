@@ -32,6 +32,25 @@ export default () => (
                 importer writes the file chapters and the entries; the type reads them.
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>The project's page</Heading>
+            <Paragraph>
+                The page opens on the conversations held in the project, down the main column as the
+                application lists them, newest first under their months: each a row with its title, its count of
+                exchanges and its day, the whole row leading to the conversation. What the project is and what
+                it holds stand at the head, with where it is filed. The knowledge of the project stands in a
+                column at the right where the application keeps it, the chapter about the project and then its
+                files, and a file pressed turns the page to that file's chapter, shown beside its words as every
+                manual shows one; the column goes with the list, and the project's name in the bar brings the
+                list back. The side lists what the table lists, every section a folder, folded until pressed,
+                each month with its count and each row with its day. The type knows its chapters by what they
+                are: a file is a chapter that appends a file, the project is the one that appends none, an entry
+                is a chapter holding a synopsis; nothing is placed by position. The importer dates each entry and
+                lists it under its month, as the register's, so the months are the entries' own. The design is
+                concept 4 of <Means>$[[ Claudes Design / The Project's Page ]]</Means>, its first layout, until I
+                decide by number; and the way back from a conversation is that chapter's concept 5.
+            </Paragraph>
+        </Section>
         <Append
             identifier="code"
             type=".tsx"

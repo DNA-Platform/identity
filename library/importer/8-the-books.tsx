@@ -46,7 +46,9 @@ export default () => (
                 is found again and never imported twice. A conversation with no message to show is no book. A
                 project's book is keyed the same way, claude, two dashes and the project's name, and shows only
                 the name, since a project called Claude met the book about Claude. A file of a project takes its
-                own name, numbered against every title its book holds. A folder that exists
+                own name, numbered against every title its book holds. A project's entry for a conversation is
+                dated and listed under its month, as the register's is, so the project's page can lay its
+                conversations by month and its side can list the months. A folder that exists
                 is never entered unless the run says to
                 overwrite and <Means>$[[ the ledger ]]( ./The Ledger )</Means> says the book is still the
                 importer's; a catalogue's chapter and row are added where its table lacks the reference.

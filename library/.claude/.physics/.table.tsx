@@ -37,7 +37,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Nature published this blurb. I… ]]( ./claude--Nature published this blurb.. I…--75d64146 )</Content>
@@ -65,6 +65,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Can you look up the research o…--8aa11284 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Continuity across accounts: reflecting on shared work ]]( ./claude--Continuity across accounts: reflecting on shared work--c8477590 )</Content>
@@ -74,6 +77,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Continuity across accounts: reflecting on shared work--c8477590 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>April 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Why is the gravitational constant so difficult to measure ]]( ./claude--Why is the gravitational constant so difficult to measure--67a6e6eb )</Content>
@@ -94,20 +100,23 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Referential Semantics for Physics ]]( ./claude--Referential Semantics for Physics--886e1cf0 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Referential Semantics for Physics--886e1cf0 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
                     <Content>$[[ Benzodiazepines vs gabaergic anesthetics ]]( ./claude--Benzodiazepines vs gabaergic anesthetics--db8ba18b )</Content>
                 </Word>
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Benzodiazepines vs gabaergic anesthetics--db8ba18b )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>March 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Referential Semantics for Physics ]]( ./claude--Referential Semantics for Physics--886e1cf0 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Referential Semantics for Physics--886e1cf0 )***</Content>
                 </Word>
             </Paragraph>
         </Section>

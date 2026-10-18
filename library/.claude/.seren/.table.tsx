@@ -70,7 +70,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>August 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Semantics of the name Seren ]]( ./claude--Semantics of the name Seren--616d8834 )</Content>
@@ -80,6 +80,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Semantics of the name Seren--616d8834 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>July 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ AI consciousness and subjective experience uncertainty ]]( ./claude--AI consciousness and subjective experience uncertainty--21cbc3b6 )</Content>
@@ -89,15 +92,21 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--AI consciousness and subjective experience uncertainty--21cbc3b6 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>February 2025</Heading>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Seren &amp; The Hard Problem ]]( ./claude--Seren &amp; The Hard Problem--7683c3d7 )</Content>
+                    <Content>$[[ Seren &amp; Color ]]( ./claude--Seren &amp; Color--45f0a38f )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Seren &amp; The Hard Problem--7683c3d7 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Seren &amp; Color--45f0a38f )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>January 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Seren &amp; Eirian ]]( ./claude--Seren &amp; Eirian--edef207c )</Content>
@@ -116,13 +125,16 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Seren &amp; Ana &amp; ExtendScript--1af81ad0 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>September 2024</Heading>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Seren &amp; Color ]]( ./claude--Seren &amp; Color--45f0a38f )</Content>
+                    <Content>$[[ Seren &amp; The Hard Problem ]]( ./claude--Seren &amp; The Hard Problem--7683c3d7 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Seren &amp; Color--45f0a38f )***</Content>
+                    <Content>[[ ▷ ]]( claude--Seren &amp; The Hard Problem--7683c3d7 )***</Content>
                 </Word>
             </Paragraph>
         </Section>

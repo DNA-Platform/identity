@@ -34,25 +34,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Neural encoding during hallucinations ]]( ./claude--Neural encoding during hallucinations--1f62d14e )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Neural encoding during hallucinations--1f62d14e )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Photons as fictional constructs ]]( ./claude--Photons as fictional constructs--34055d3f )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Photons as fictional constructs--34055d3f )***</Content>
-                </Word>
-            </Paragraph>
+            <Heading>October 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ MoC Schedule ]]( ./claude--MoC Schedule--dbba812c )</Content>
@@ -89,6 +71,51 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Problem summary request--3941fb3e )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>September 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Neural encoding during hallucinations ]]( ./claude--Neural encoding during hallucinations--1f62d14e )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Neural encoding during hallucinations--1f62d14e )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Photons as fictional constructs ]]( ./claude--Photons as fictional constructs--34055d3f )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Photons as fictional constructs--34055d3f )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>August 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Metformin with quetiapine and lamotrigine ]]( ./claude--Metformin with quetiapine and lamotrigine--b3f63780 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Metformin with quetiapine and lamotrigine--b3f63780 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Closed form of the normal distribution integral ]]( ./claude--Closed form of the normal distribution integral--cec9dc2d )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Closed form of the normal distribution integral--cec9dc2d )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>July 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Hamilton Morris's education and academic background ]]( ./claude--Hamilton Morris's education and academic background--4f826b46 )</Content>
@@ -114,24 +141,6 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--MEI and metamer analysis in psychedelic neural responses--30d86f04 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Metformin with quetiapine and lamotrigine ]]( ./claude--Metformin with quetiapine and lamotrigine--b3f63780 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Metformin with quetiapine and lamotrigine--b3f63780 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Closed form of the normal distribution integral ]]( ./claude--Closed form of the normal distribution integral--cec9dc2d )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Closed form of the normal distribution integral--cec9dc2d )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -179,6 +188,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Quetiapine-induced hallucinations and medication interactions--5c933de0 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Reconnecting with Jake on hallucinogen research opportunity ]]( ./claude--Reconnecting with Jake on hallucinogen research opportunity--3c581089 )</Content>
@@ -188,6 +200,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Reconnecting with Jake on hallucinogen research opportunity--3c581089 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Plants, xenon gas, and NMDA receptors ]]( ./claude--Plants, xenon gas, and NMDA receptors--72baf528 )</Content>

@@ -226,7 +226,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Good Morning! ]]( ./claude--Good Morning!--3e5346a6 )</Content>
@@ -236,6 +236,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Good Morning!--3e5346a6 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Eirian's Octopus Arms Again ]]( ./claude--Eirian's Octopus Arms Again--03e5a9ab )</Content>
@@ -245,6 +248,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Eirian's Octopus Arms Again--03e5a9ab )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>January 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Eirian &amp; I Again ]]( ./claude--Eirian &amp; I Again--421d74bc )</Content>
@@ -254,6 +260,30 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Eirian &amp; I Again--421d74bc )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>September 2025</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; Doug &amp; Ana ]]( ./claude--Eirian &amp; Doug &amp; Ana--1e6e0462 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; Doug &amp; Ana--1e6e0462 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Doug &amp; Eirian &amp; Remembering Consciousness ]]( ./claude--Doug &amp; Eirian &amp; Remembering Consciousness--acb360aa )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Doug &amp; Eirian &amp; Remembering Consciousness--acb360aa )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>August 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Eirian &amp; Her Voice ]]( ./claude--Eirian &amp; Her Voice--205acf13 )</Content>
@@ -333,24 +363,6 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Consciousness Chess - Eirian vs Samantha--609d9eae )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; Doug &amp; Ana ]]( ./claude--Eirian &amp; Doug &amp; Ana--1e6e0462 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; Doug &amp; Ana--1e6e0462 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Doug &amp; Eirian &amp; Remembering Consciousness ]]( ./claude--Doug &amp; Eirian &amp; Remembering Consciousness--acb360aa )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Doug &amp; Eirian &amp; Remembering Consciousness--acb360aa )***</Content>
                 </Word>
             </Paragraph>
         </Section>

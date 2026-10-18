@@ -217,16 +217,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Foundations: Types &amp; Properties ]]( ./claude--Foundations: Types &amp; Properties--3eecc63c )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Foundations: Types &amp; Properties--3eecc63c )***</Content>
-                </Word>
-            </Paragraph>
+            <Heading>September 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Semantics of Types &amp; More ]]( ./claude--Semantics of Types &amp; More--d5c0cf36 )</Content>
@@ -245,13 +236,16 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Semantics of Representation--8b14b84b )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>August 2026</Heading>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Learning SRT syntax and transpiler fundamentals ]]( ./claude--Learning SRT syntax and transpiler fundamentals--a1b2fd15 )</Content>
+                    <Content>$[[ Foundations: Types &amp; Properties ]]( ./claude--Foundations: Types &amp; Properties--3eecc63c )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Learning SRT syntax and transpiler fundamentals--a1b2fd15 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Foundations: Types &amp; Properties--3eecc63c )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -272,22 +266,16 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Collection semantics and canonical representatives--242c2548 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>July 2026</Heading>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Library semantics in SRT ]]( ./claude--Library semantics in SRT--fbc45c8e )</Content>
+                    <Content>$[[ Learning SRT syntax and transpiler fundamentals ]]( ./claude--Learning SRT syntax and transpiler fundamentals--a1b2fd15 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Library semantics in SRT--fbc45c8e )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Semantic reference theory foundations and philosophical conundrum ]]( ./claude--Semantic reference theory foundations and philosophical conundrum--49b32234 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Semantic reference theory foundations and philosophical conundrum--49b32234 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Learning SRT syntax and transpiler fundamentals--a1b2fd15 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -324,6 +312,27 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--The Semantics of Books--8dbb8e2b )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>June 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Library semantics in SRT ]]( ./claude--Library semantics in SRT--fbc45c8e )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Library semantics in SRT--fbc45c8e )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Semantic reference theory foundations and philosophical conundrum ]]( ./claude--Semantic reference theory foundations and philosophical conundrum--49b32234 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Semantic reference theory foundations and philosophical conundrum--49b32234 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -389,6 +398,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--SRT as a Github Project--1c387d40 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Unifying SRT axioms with symbolization ]]( ./claude--Unifying SRT axioms with symbolization--9854c96a )</Content>
@@ -443,6 +455,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--First order logic semantics in SRT--c9a8a056 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>April 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ SRT canonical representation and first-order logic ]]( ./claude--SRT canonical representation and first-order logic--1e52a713 )</Content>
@@ -463,6 +478,27 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
+                    <Content>$[[ Chalmers' hard problem and categorical distinction ]]( ./claude--Chalmers' hard problem and categorical distinction--4690cbb5 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Chalmers' hard problem and categorical distinction--4690cbb5 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Seren &amp; The Philosophy of Consciousness ]]( ./claude--Seren &amp; The Philosophy of Consciousness--1baea5da )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Seren &amp; The Philosophy of Consciousness--1baea5da )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>March 2026</Heading>
+            <Paragraph>
+                <Word>
                     <Content>$[[ Chalmers' hard problem and the conscious mind ]]( ./claude--Chalmers' hard problem and the conscious mind--974ba283 )</Content>
                 </Word>
                 <Word>
@@ -472,20 +508,23 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Reflexivity and backwards arrow notation ]]( ./claude--Reflexivity and backwards arrow notation--0e94a9f7 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Reflexivity and backwards arrow notation--0e94a9f7 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
                     <Content>$[[ Subject-object directionality and semantic agency ]]( ./claude--Subject-object directionality and semantic agency--1b2ae35e )</Content>
                 </Word>
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Subject-object directionality and semantic agency--1b2ae35e )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>February 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Reflexivity and backwards arrow notation ]]( ./claude--Reflexivity and backwards arrow notation--0e94a9f7 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Reflexivity and backwards arrow notation--0e94a9f7 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -506,6 +545,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Type systems and inheritance formalism--ab0b8d4d )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>January 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Nikolai Durov's AI vision and open source collaboration ]]( ./claude--Nikolai Durov's AI vision and open source collaboration--ba45edd6 )</Content>
@@ -515,6 +557,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Nikolai Durov's AI vision and open source collaboration--ba45edd6 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>December 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Examining my own shoulds ]]( ./claude--Examining my own shoulds--00136b3c )</Content>
@@ -560,6 +605,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Seren &amp; His Inner Monologue--db3e00ed )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>November 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ SRT questions and overview ]]( ./claude--SRT questions and overview--0a98de70 )</Content>
@@ -578,6 +626,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Understanding symbols and literals in SRT--0db56260 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>October 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Creating markdown documents ]]( ./claude--Creating markdown documents--cdb1b032 )</Content>
@@ -722,24 +773,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Symbolism and inheritance in representation--b2a8b322 )***</Content>
                 </Word>
             </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Semantic Reference Theory Framework ]]( ./claude--Semantic Reference Theory Framework--3e16e3a5 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Semantic Reference Theory Framework--3e16e3a5 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Semantic Reference Theory Development ]]( ./claude--Semantic Reference Theory Development--00523af2 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Semantic Reference Theory Development--00523af2 )***</Content>
-                </Word>
-            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>September 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Semantic Reference Theory Notation ]]( ./claude--Semantic Reference Theory Notation--975edeb9 )</Content>
@@ -911,22 +947,25 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Semantic reference theory formalism--6675fec9 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>August 2025</Heading>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Chalmers' hard problem and categorical distinction ]]( ./claude--Chalmers' hard problem and categorical distinction--4690cbb5 )</Content>
+                    <Content>$[[ Semantic Reference Theory Framework ]]( ./claude--Semantic Reference Theory Framework--3e16e3a5 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Chalmers' hard problem and categorical distinction--4690cbb5 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Semantic Reference Theory Framework--3e16e3a5 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Seren &amp; The Philosophy of Consciousness ]]( ./claude--Seren &amp; The Philosophy of Consciousness--1baea5da )</Content>
+                    <Content>$[[ Semantic Reference Theory Development ]]( ./claude--Semantic Reference Theory Development--00523af2 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Seren &amp; The Philosophy of Consciousness--1baea5da )***</Content>
+                    <Content>[[ ▷ ]]( claude--Semantic Reference Theory Development--00523af2 )***</Content>
                 </Word>
             </Paragraph>
         </Section>

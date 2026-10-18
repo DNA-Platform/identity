@@ -34,7 +34,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>July 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Claude Code Portfolio ]]( ./claude--Claude Code Portfolio--c90a25d8 )</Content>

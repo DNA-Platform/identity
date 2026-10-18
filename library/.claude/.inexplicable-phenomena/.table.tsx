@@ -226,7 +226,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>August 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Encyclopedia Semantica Framework ]]( ./claude--Encyclopedia Semantica Framework--0c4ca2b9 )</Content>

@@ -28,7 +28,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>September 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Verifying OpenAI report authenticity ]]( ./claude--Verifying OpenAI report authenticity--3f7e9877 )</Content>

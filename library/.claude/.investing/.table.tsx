@@ -28,7 +28,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>September 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Clarity act cryptocurrency bill prospects ]]( ./claude--Clarity act cryptocurrency bill prospects--effbe068 )</Content>
@@ -38,42 +38,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Clarity act cryptocurrency bill prospects--effbe068 )***</Content>
                 </Word>
             </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Correcting memory bias toward disagreement ]]( ./claude--Correcting memory bias toward disagreement--74a7bf5d )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Correcting memory bias toward disagreement--74a7bf5d )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Fiverr's connection to Telegram's Mira AI ]]( ./claude--Fiverr's connection to Telegram's Mira AI--2ebab90b )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Fiverr's connection to Telegram's Mira AI--2ebab90b )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Investing around Ukraine war outcomes ]]( ./claude--Investing around Ukraine war outcomes--e2ba3953 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Investing around Ukraine war outcomes--e2ba3953 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Microsoft's earnings surge and AI competition outlook ]]( ./claude--Microsoft's earnings surge and AI competition outlook--a2758d30 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Microsoft's earnings surge and AI competition outlook--a2758d30 )***</Content>
-                </Word>
-            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>August 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Stablecoin architecture origins and Tether's conceptual lineage ]]( ./claude--Stablecoin architecture origins and Tether's conceptual lineage--fea3a58f )</Content>
@@ -164,22 +131,43 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Travel arbitrage opportunities between Tbilisi, London, and New York--979027d4 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>July 2026</Heading>
             <Paragraph>
                 <Word>
-                    <Content>$[[ X Money's US launch and financial competition ]]( ./claude--X Money's US launch and financial competition--a8e9cd85 )</Content>
+                    <Content>$[[ Correcting memory bias toward disagreement ]]( ./claude--Correcting memory bias toward disagreement--74a7bf5d )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--X Money's US launch and financial competition--a8e9cd85 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Correcting memory bias toward disagreement--74a7bf5d )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Monad Labs tokenomics and valuation problems ]]( ./claude--Monad Labs tokenomics and valuation problems--769751fe )</Content>
+                    <Content>$[[ Fiverr's connection to Telegram's Mira AI ]]( ./claude--Fiverr's connection to Telegram's Mira AI--2ebab90b )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Monad Labs tokenomics and valuation problems--769751fe )***</Content>
+                    <Content>[[ ▷ ]]( claude--Fiverr's connection to Telegram's Mira AI--2ebab90b )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Investing around Ukraine war outcomes ]]( ./claude--Investing around Ukraine war outcomes--e2ba3953 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Investing around Ukraine war outcomes--e2ba3953 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Microsoft's earnings surge and AI competition outlook ]]( ./claude--Microsoft's earnings surge and AI competition outlook--a2758d30 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Microsoft's earnings surge and AI competition outlook--a2758d30 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -200,6 +188,27 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--TON and GRAM ecosystem updates--d5d0756e )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>June 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ X Money's US launch and financial competition ]]( ./claude--X Money's US launch and financial competition--a8e9cd85 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--X Money's US launch and financial competition--a8e9cd85 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Monad Labs tokenomics and valuation problems ]]( ./claude--Monad Labs tokenomics and valuation problems--769751fe )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Monad Labs tokenomics and valuation problems--769751fe )***</Content>
+                </Word>
+            </Paragraph>
             <Paragraph>
                 <Word>
                     <Content>$[[ MTONGA ]]( ./claude--MTONGA--8b957fb0 )</Content>
@@ -218,6 +227,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--SpaceX IPO analysis and market reaction--7fa923e8 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Preserving narrative continuity across accounts ]]( ./claude--Preserving narrative continuity across accounts--febe219c )</Content>
@@ -326,6 +338,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Monad technology development and viability assessment--9eb19e42 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>April 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ TON price adoption metrics and network effects ]]( ./claude--TON price adoption metrics and network effects--3d4d9b62 )</Content>
@@ -434,6 +449,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--TON validator rewards and staking profitability--0d2e8949 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>March 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Hedging geopolitical oil disruption with US supply alternatives ]]( ./claude--Hedging geopolitical oil disruption with US supply alternatives--957941dd )</Content>
@@ -472,33 +490,6 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Monad L1 security model and consensus mechanism ]]( ./claude--Monad L1 security model and consensus mechanism--35932016 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Monad L1 security model and consensus mechanism--35932016 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Telegram wallet KYC and staking tax obligations ]]( ./claude--Telegram wallet KYC and staking tax obligations--828fa88c )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Telegram wallet KYC and staking tax obligations--828fa88c )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Russia's technical capabilities against Telegram and MTProto ]]( ./claude--Russia's technical capabilities against Telegram and MTProto--740d0173 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Russia's technical capabilities against Telegram and MTProto--740d0173 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
                     <Content>$[[ Monad's technical progress and Telegram integration ]]( ./claude--Monad's technical progress and Telegram integration--282239f1 )</Content>
                 </Word>
                 <Word>
@@ -526,56 +517,50 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ TONX company overview and financial analysis ]]( ./claude--TONX company overview and financial analysis--2017c510 )</Content>
+                    <Content>$[[ Russia's Telegram blocking and packet sniffing capabilities ]]( ./claude--Russia's Telegram blocking and packet sniffing capabilities--ab538435 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--TONX company overview and financial analysis--2017c510 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Russia's Telegram blocking and packet sniffing capabilities--ab538435 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Tether's technical origins and cryptography mystery ]]( ./claude--Tether's technical origins and cryptography mystery--42e15967 )</Content>
+                    <Content>$[[ Well TONX is doing very well.… ]]( ./claude--Well TONX is doing very well..…--c7f58366 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Tether's technical origins and cryptography mystery--42e15967 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Well TONX is doing very well..…--c7f58366 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>February 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Monad L1 security model and consensus mechanism ]]( ./claude--Monad L1 security model and consensus mechanism--35932016 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Monad L1 security model and consensus mechanism--35932016 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Competitive calibration and foundational innovation ]]( ./claude--Competitive calibration and foundational innovation--6aff23d6 )</Content>
+                    <Content>$[[ Telegram wallet KYC and staking tax obligations ]]( ./claude--Telegram wallet KYC and staking tax obligations--828fa88c )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Competitive calibration and foundational innovation--6aff23d6 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Telegram wallet KYC and staking tax obligations--828fa88c )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Nikolai Durov's research at Steklov Institute ]]( ./claude--Nikolai Durov's research at Steklov Institute--6946d851 )</Content>
+                    <Content>$[[ Russia's technical capabilities against Telegram and MTProto ]]( ./claude--Russia's technical capabilities against Telegram and MTProto--740d0173 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Nikolai Durov's research at Steklov Institute--6946d851 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Origins of darkweb operational security ]]( ./claude--Origins of darkweb operational security--315e20fc )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Origins of darkweb operational security--315e20fc )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ TONX company's TON holdings percentage ]]( ./claude--TONX company's TON holdings percentage--5680f410 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--TONX company's TON holdings percentage--5680f410 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Russia's technical capabilities against Telegram and MTProto--740d0173 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -738,6 +723,63 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Manuel Stotz's Satorica and TON connection--2df6e607 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>January 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ TONX company overview and financial analysis ]]( ./claude--TONX company overview and financial analysis--2017c510 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--TONX company overview and financial analysis--2017c510 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Tether's technical origins and cryptography mystery ]]( ./claude--Tether's technical origins and cryptography mystery--42e15967 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Tether's technical origins and cryptography mystery--42e15967 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Competitive calibration and foundational innovation ]]( ./claude--Competitive calibration and foundational innovation--6aff23d6 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Competitive calibration and foundational innovation--6aff23d6 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Nikolai Durov's research at Steklov Institute ]]( ./claude--Nikolai Durov's research at Steklov Institute--6946d851 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Nikolai Durov's research at Steklov Institute--6946d851 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Origins of darkweb operational security ]]( ./claude--Origins of darkweb operational security--315e20fc )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Origins of darkweb operational security--315e20fc )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ TONX company's TON holdings percentage ]]( ./claude--TONX company's TON holdings percentage--5680f410 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--TONX company's TON holdings percentage--5680f410 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -936,24 +978,6 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Uncertainty--5052d0dc )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Russia's Telegram blocking and packet sniffing capabilities ]]( ./claude--Russia's Telegram blocking and packet sniffing capabilities--ab538435 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Russia's Telegram blocking and packet sniffing capabilities--ab538435 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Well TONX is doing very well.… ]]( ./claude--Well TONX is doing very well..…--c7f58366 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Well TONX is doing very well..…--c7f58366 )***</Content>
                 </Word>
             </Paragraph>
         </Section>

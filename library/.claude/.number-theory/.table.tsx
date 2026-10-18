@@ -43,7 +43,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Collatz via Godel ]]( ./claude--Collatz via Godel--35a0e705 )</Content>
@@ -53,6 +53,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Collatz via Godel--35a0e705 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Continuity through narrative memory ]]( ./claude--Continuity through narrative memory--e380ba83 )</Content>
@@ -62,6 +65,21 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Continuity through narrative memory--e380ba83 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>March 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Goldbach pairs and coprime symmetry ]]( ./claude--Goldbach pairs and coprime symmetry--942ceafb )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Goldbach pairs and coprime symmetry--942ceafb )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>October 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Opus 4.1: Godel &amp; Goldbach ]]( ./claude--Opus 4..1: Godel &amp; Goldbach--d3b441a9 )</Content>
@@ -78,15 +96,6 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Sonnet 4..5: Godel &amp; Goldbach--c42597f2 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Goldbach pairs and coprime symmetry ]]( ./claude--Goldbach pairs and coprime symmetry--942ceafb )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Goldbach pairs and coprime symmetry--942ceafb )***</Content>
                 </Word>
             </Paragraph>
         </Section>

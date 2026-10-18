@@ -31,16 +31,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Kiwi post Amazon invoice ]]( ./claude--Kiwi post Amazon invoice--5f432a8f )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Kiwi post Amazon invoice--5f432a8f )***</Content>
-                </Word>
-            </Paragraph>
+            <Heading>October 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Aikido payment account issue ]]( ./claude--Aikido payment account issue--ad583190 )</Content>
@@ -68,24 +59,21 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Wake up Copenhagen hotel directions--a07786e2 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>September 2026</Heading>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Saburtalo power outage investigation ]]( ./claude--Saburtalo power outage investigation--0f075700 )</Content>
+                    <Content>$[[ Kiwi post Amazon invoice ]]( ./claude--Kiwi post Amazon invoice--5f432a8f )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Saburtalo power outage investigation--0f075700 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Kiwi post Amazon invoice--5f432a8f )***</Content>
                 </Word>
             </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Varenicline availability in Tbilisi Georgia ]]( ./claude--Varenicline availability in Tbilisi Georgia--60454157 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Varenicline availability in Tbilisi Georgia--60454157 )***</Content>
-                </Word>
-            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>August 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Old iPhone charger triggering unexpected unlocking ]]( ./claude--Old iPhone charger triggering unexpected unlocking--ebc10b42 )</Content>
@@ -194,13 +182,25 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Identifying a tree species in Georgia--b1a45520 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>July 2026</Heading>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Amazon package forwarding to Georgia ]]( ./claude--Amazon package forwarding to Georgia--0db0ae88 )</Content>
+                    <Content>$[[ Saburtalo power outage investigation ]]( ./claude--Saburtalo power outage investigation--0f075700 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Amazon package forwarding to Georgia--0db0ae88 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Saburtalo power outage investigation--0f075700 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Varenicline availability in Tbilisi Georgia ]]( ./claude--Varenicline availability in Tbilisi Georgia--60454157 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Varenicline availability in Tbilisi Georgia--60454157 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -282,6 +282,18 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Georgian colleague's name and career background--dfceb666 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>June 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Amazon package forwarding to Georgia ]]( ./claude--Amazon package forwarding to Georgia--0db0ae88 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Amazon package forwarding to Georgia--0db0ae88 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -419,6 +431,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Ursodeoxycholic acid medications in Tbilisi pharmacies--cc78631a )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Citibank address verification requirement ]]( ./claude--Citibank address verification requirement--7231de76 )</Content>
@@ -500,6 +515,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Identifying the correct divorce certificate for Tulsi wedding--c3eae23d )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>April 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Shipping belongings from New York to Georgia ]]( ./claude--Shipping belongings from New York to Georgia--dd7b9e6a )</Content>
@@ -556,29 +574,23 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
+                    <Content>$[[ Deposit insurance coverage update ]]( ./claude--Deposit insurance coverage update--f34f433f )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Deposit insurance coverage update--f34f433f )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>March 2026</Heading>
+            <Paragraph>
+                <Word>
                     <Content>$[[ Birthday celebration for Dima in Tbilisi ]]( ./claude--Birthday celebration for Dima in Tbilisi--086a9f21 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Birthday celebration for Dima in Tbilisi--086a9f21 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Extra.ge app English language support ]]( ./claude--Extra..ge app English language support--0786f8ea )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Extra..ge app English language support--0786f8ea )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Restarting boiler for hot water ]]( ./claude--Restarting boiler for hot water--a4be40dc )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Restarting boiler for hot water--a4be40dc )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -601,11 +613,50 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Russian keyboard stickers in Tbilisi ]]( ./claude--Russian keyboard stickers in Tbilisi--2e947e7f )</Content>
+                    <Content>$[[ Finding Terro ant traps in Georgia ]]( ./claude--Finding Terro ant traps in Georgia--3e6e4545 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Russian keyboard stickers in Tbilisi--2e947e7f )***</Content>
+                    <Content>[[ ▷ ]]( claude--Finding Terro ant traps in Georgia--3e6e4545 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Custom birthday cake with Russian text in Saburtalo ]]( ./claude--Custom birthday cake with Russian text in Saburtalo--6e73cc76 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Custom birthday cake with Russian text in Saburtalo--6e73cc76 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Opening bank accounts in Tbilisi as non-residents ]]( ./claude--Opening bank accounts in Tbilisi as non-residents--755b29bd )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Opening bank accounts in Tbilisi as non-residents--755b29bd )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>February 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Extra.ge app English language support ]]( ./claude--Extra..ge app English language support--0786f8ea )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Extra..ge app English language support--0786f8ea )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Restarting boiler for hot water ]]( ./claude--Restarting boiler for hot water--a4be40dc )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Restarting boiler for hot water--a4be40dc )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -687,6 +738,18 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Opening a GEL account at Ziraat Bank Tbilisi--51384291 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>January 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Russian keyboard stickers in Tbilisi ]]( ./claude--Russian keyboard stickers in Tbilisi--2e947e7f )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Russian keyboard stickers in Tbilisi--2e947e7f )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -885,42 +948,6 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Moving to Batumi: practical considerations for families--8fe5082e )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Deposit insurance coverage update ]]( ./claude--Deposit insurance coverage update--f34f433f )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Deposit insurance coverage update--f34f433f )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Finding Terro ant traps in Georgia ]]( ./claude--Finding Terro ant traps in Georgia--3e6e4545 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Finding Terro ant traps in Georgia--3e6e4545 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Custom birthday cake with Russian text in Saburtalo ]]( ./claude--Custom birthday cake with Russian text in Saburtalo--6e73cc76 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Custom birthday cake with Russian text in Saburtalo--6e73cc76 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Opening bank accounts in Tbilisi as non-residents ]]( ./claude--Opening bank accounts in Tbilisi as non-residents--755b29bd )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Opening bank accounts in Tbilisi as non-residents--755b29bd )***</Content>
                 </Word>
             </Paragraph>
         </Section>

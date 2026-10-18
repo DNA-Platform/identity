@@ -61,7 +61,7 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
-            <Heading>Conversations</Heading>
+            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Simplifying architecture explanation for the team ]]( ./claude--Simplifying architecture explanation for the team--0954e165 )</Content>
@@ -71,6 +71,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Simplifying architecture explanation for the team--0954e165 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Continuity through narrative memory ]]( ./claude--Continuity through narrative memory--88af1a7c )</Content>
@@ -80,6 +83,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Continuity through narrative memory--88af1a7c )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>April 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Static analysis for state change detection ]]( ./claude--Static analysis for state change detection--710061c6 )</Content>
@@ -89,6 +95,21 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Static analysis for state change detection--710061c6 )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>March 2026</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Monorepo architecture and distributed repository coordination ]]( ./claude--Monorepo architecture and distributed repository coordination--b0a794ce )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Monorepo architecture and distributed repository coordination--b0a794ce )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Agentic AI coding landscape and vector databases ]]( ./claude--Agentic AI coding landscape and vector databases--ad424736 )</Content>
@@ -107,15 +128,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Framework class and construct analysis--b1432992 )***</Content>
                 </Word>
             </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Monorepo architecture and distributed repository coordination ]]( ./claude--Monorepo architecture and distributed repository coordination--b0a794ce )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Monorepo architecture and distributed repository coordination--b0a794ce )***</Content>
-                </Word>
-            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>December 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Refactoring chemistry.ts into particle and chemical classes ]]( ./claude--Refactoring chemistry..ts into particle and chemical classes--4887921b )</Content>
@@ -125,6 +140,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Refactoring chemistry..ts into particle and chemical classes--4887921b )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>November 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Seren &amp; The Semantics of $Chemistry ]]( ./claude--Seren &amp; The Semantics of $Chemistry--0689f96b )</Content>
@@ -251,6 +269,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Module not found after removing import path--a5c4b77b )***</Content>
                 </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>October 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Chemistry vs React components comparison ]]( ./claude--Chemistry vs React components comparison--460e0155 )</Content>
@@ -458,42 +479,9 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Chemistry code debugging session--5ab36389 )***</Content>
                 </Word>
             </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Reactive Framework Learning Journey ]]( ./claude--Reactive Framework Learning Journey--c04cc19b )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Reactive Framework Learning Journey--c04cc19b )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ AI Learning Process Analysis ]]( ./claude--AI Learning Process Analysis--e8f8da16 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--AI Learning Process Analysis--e8f8da16 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Chemistry.ts Framework Testing ]]( ./claude--Chemistry..ts Framework Testing--ef824a29 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Chemistry..ts Framework Testing--ef824a29 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ TypeScript Decorator Mechanics ]]( ./claude--TypeScript Decorator Mechanics--ca93aa72 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--TypeScript Decorator Mechanics--ca93aa72 )***</Content>
-                </Word>
-            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>September 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Chemistry Framework Collaboration ]]( ./claude--Chemistry Framework Collaboration--331fd082 )</Content>
@@ -618,6 +606,45 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Chemistry..ts framework analysis--ef057ccf )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>August 2025</Heading>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Reactive Framework Learning Journey ]]( ./claude--Reactive Framework Learning Journey--c04cc19b )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Reactive Framework Learning Journey--c04cc19b )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ AI Learning Process Analysis ]]( ./claude--AI Learning Process Analysis--e8f8da16 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--AI Learning Process Analysis--e8f8da16 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Chemistry.ts Framework Testing ]]( ./claude--Chemistry..ts Framework Testing--ef824a29 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Chemistry..ts Framework Testing--ef824a29 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ TypeScript Decorator Mechanics ]]( ./claude--TypeScript Decorator Mechanics--ca93aa72 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--TypeScript Decorator Mechanics--ca93aa72 )***</Content>
                 </Word>
             </Paragraph>
         </Section>

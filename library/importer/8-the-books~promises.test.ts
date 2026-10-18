@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { sampleProject } from './3-the-record~samples.ts';
-import { orderedTableText, projectBook, registerEntry, schemes, uniqueConversationName } from './8-the-books~books.ts';
+import { orderedTableText, projectBook, projectEntry, registerEntry, schemes, uniqueConversationName } from './8-the-books~books.ts';
 
 const library = mkdtempSync(join(tmpdir(), 'books-'));
 afterAll(() => rmSync(library, { recursive: true, force: true }));
@@ -112,6 +112,25 @@ describe('the books', () => {
         expect(second.name).toEqual({ words: 'Ontic Structural Realism', key: 'claude--Ontic Structural Realism--9e01c4d2' });
         expect(uniqueConversationName(folders.conversations, 'Ontic Structural Realism', first.name.key.slice(-8), new Set()))
             .toEqual(first);
+    });
+
+    // Sprint 113, on Doug's 'That is not navigable': the project's page lays its conversations by month, so a
+    // project's entry is dated and listed under its month, as the register's is.
+    it('dates a project\'s entry and lists it under its month, so the project\'s page can lay its conversations by month', () => {
+        const project = join(library, 'project');
+        mkdirSync(project, { recursive: true });
+        writeFileSync(join(project, '.table.tsx'), [
+            '    <Chapter>', '        <Section>', '            <Heading>Where this book stands</Heading>', '        </Section>', '    </Chapter>', '',
+        ].join('\n'));
+        const name = { words: 'Ontic Structural Realism', key: 'claude--Ontic Structural Realism--3b54b751' };
+        const files = projectEntry(folders, project, name, join(folders.conversations, 'x'), '2026-06-15T10:00:00.000Z');
+        const entry = readFileSync(files.find(file => !file.endsWith('.table.tsx'))!, 'utf8');
+        expect(entry).toContain('<Part>June 2026</Part>');
+        expect(entry).toContain('<Date>[15 June 2026](2026-06-15)</Date>');
+        expect(entry).toContain("import { Brief, Dated, Volume } from");
+        const table = readFileSync(join(project, '.table.tsx'), 'utf8');
+        expect(table).toContain('<Heading>June 2026</Heading>');
+        expect(table).not.toContain('<Heading>Conversations</Heading>');
     });
 
     it('refuses two conversations whose ids open alike, rather than number either', () => {
