@@ -54,7 +54,8 @@ export default () => (
                 carried by its layer and read off the book's theme, so a section said to be a folder in any book of
                 mine folds and reads as the manual's tree does, in that book's colours: the base book says a folder
                 of each <Means>$[[ part's ]]( ./The Part )</Means> section at bind. A folder is open when the reader
-                is in its part, the open chapter's part being its own, and both none in this book; open, it is the
+                is in its part, the open chapter's part being its own, and both none in this book, or when the
+                address names the folder's own heading, as it does a part of the register; open, it is the
                 tree, and closed it draws nothing of its own, so its section reads as the theme draws any section,
                 and in a manual's context a folder that is not open is not drawn at all. The root is the root of
                 the tree, the one row the base book adds to the table at bind, the book's own name leading back
@@ -66,7 +67,8 @@ export default () => (
                 rule for its side. Folded: every section of the table is folded until its chevron is pressed,
                 and every folder is drawn as one whether or not it holds the open chapter, a look the folder's
                 own layer carries under a class of its own, foldable, where it otherwise draws only the open
-                folder. Counted: each heading over the book's entries carries the count of the rows under it, a word
+                folder; the one folder that keeps the tree's look is the open one of a book turned to a chapter,
+                since that is the manual's side, and the part the address names in a list is lit and unfolded. Counted: each heading over the book's entries carries the count of the rows under it, a word
                 the index adds. Dated: each row leading to one of the book's entries carries its day where the
                 entry is dated, a word the index adds that was the journal's. The entries are the book's own, its body unless the type says
                 otherwise, as <Means>$[[ the project manual ]]( ./The Project Manual )</Means> says its

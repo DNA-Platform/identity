@@ -146,7 +146,15 @@ export class $LibraryBook extends $Book {
                 if (section.mention !== undefined && !chapterByPlace.has(section.mention.identifier)) chapterByPlace.set(section.mention.identifier, chapter);
         for (const chapter of this.chapters)
             if (chapter.mention !== undefined) chapterByPlace.set(chapter.mention.identifier, chapter);
+        for (const entry of this.entries)
+            if (entry.mention !== undefined && !chapterByPlace.has(entry.mention.identifier)) chapterByPlace.set(entry.mention.identifier, entry);
         return chapterByPlace;
+    }
+
+    // A mention's place within this book: a heading's mention is the fragment alone, where a chapter's and an address's
+    // carry the book's own place before it.
+    placeWithin(mention: string): string {
+        return mention.startsWith('#') ? `${this.means?.identifier ?? ''}${mention}` : mention;
     }
 
     coverOf(identifier: string | undefined): $Chapter | undefined {

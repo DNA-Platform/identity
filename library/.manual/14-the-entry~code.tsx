@@ -339,35 +339,36 @@ export class $TreeFolder extends $Format {
         .pd-book .pd-holds &.pd-tree-folder.pa-open .pd-file-tab:hover { background: color-mix(in oklab, ${({ theme }) => theme.sky} 40%, white); color: ${({ theme }) => theme.ink}; }
         .pd-book.pa-split .pd-holds &.pd-tree-folder.pa-open .pd-paragraph.pa-entry .pd-file-tab[aria-pressed='true'], .pd-book.pa-code-forward .pd-holds &.pd-tree-folder.pa-open .pd-paragraph.pa-entry .pd-file-tab[aria-pressed='true'] { color: ${({ theme }) => theme.skyInk}; font-weight: 500; background: color-mix(in oklab, ${({ theme }) => theme.sky} 45%, white); }
         .pd-book.pa-split .pd-holds &.pd-tree-folder.pa-open .pd-paragraph.pa-entry .pd-file-tab[aria-pressed='true'] .pd-drawing, .pd-book.pa-code-forward .pd-holds &.pd-tree-folder.pa-open .pd-paragraph.pa-entry .pd-file-tab[aria-pressed='true'] .pd-drawing { color: var(--colour); }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) { position: relative; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-section { margin: 0 0 calc(${({ theme }) => theme.space} / 6); }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-sentence.pd-heading { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} / 3); height: calc(2.1429 * ${({ theme }) => theme.size}); margin: 0; padding: 0 calc(${({ theme }) => theme.space} * 0.5833) 0 calc(${({ theme }) => theme.space} * 1.5); border: 0; font-size: calc(0.9286 * ${({ theme }) => theme.size}); font-weight: 500; line-height: 1; letter-spacing: 0; text-transform: none; color: ${({ theme }) => theme.sideInk}; cursor: pointer; transition: background ${({ theme }) => theme.beat} ease; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-heading:hover { background: color-mix(in oklab, ${({ theme }) => theme.sky} 30%, white); }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-heading .pa-reference { color: inherit; text-decoration: none; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron { display: grid; place-items: center; position: absolute; top: calc(${({ theme }) => theme.space} * 0.3125); left: calc(${({ theme }) => theme.space} * 0.5); width: calc(1.1429 * ${({ theme }) => theme.size}); height: calc(1.1429 * ${({ theme }) => theme.size}); padding: 0; border: 0; border-radius: 0; background: none; color: #a5aebb; cursor: pointer; transition: transform 0.18s ease, color ${({ theme }) => theme.beat} ease; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron .pd-drawing { display: block; width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron svg { display: block; width: 100%; height: 100%; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron[aria-pressed='false'] { transform: rotate(90deg); }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron:hover { color: ${({ theme }) => theme.ink}; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-tree-folder-mark, .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pa-entry .pd-file-tab, .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pa-entry .pd-fold-chevron { display: none; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pa-folded .pd-paragraph.pa-entry { display: none; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} / 3); margin: 0; padding: calc(${({ theme }) => theme.space} / 6) calc(${({ theme }) => theme.space} * 0.5833) calc(${({ theme }) => theme.space} / 6) calc(${({ theme }) => theme.space} * 1.5); font-size: calc(0.8929 * ${({ theme }) => theme.size}); line-height: 1.35; color: ${({ theme }) => theme.sideInk}; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry > a:first-child, .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry > .pd-word.pa-content, .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry .pa-content { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry .pd-word.pa-arrow, .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry > a:has(> .pa-arrow) { display: none; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry .pa-number { display: none; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry:hover { background: color-mix(in oklab, ${({ theme }) => theme.sky} 30%, white); }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry.pa-open { background: linear-gradient(90deg, #eff4fa, #f8fafd); color: ${({ theme }) => theme.heading}; font-weight: 500; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-sentence.pd-heading .pd-word.pd-section-count { margin-inline-start: auto; font-size: calc(0.7857 * ${({ theme }) => theme.size}); font-weight: 400; color: ${({ theme }) => theme.faint}; font-variant-numeric: tabular-nums; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pa-entry .pd-word.pd-entry-day { flex: none; margin-inline-start: auto; font-size: calc(0.7857 * ${({ theme }) => theme.size}); font-weight: 400; color: ${({ theme }) => theme.faint}; font-variant-numeric: tabular-nums; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable { position: relative; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-section { margin: 0 0 calc(${({ theme }) => theme.space} / 6); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-sentence.pd-heading { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} / 3); height: calc(2.1429 * ${({ theme }) => theme.size}); margin: 0; padding: 0 calc(${({ theme }) => theme.space} * 0.5833) 0 calc(${({ theme }) => theme.space} * 1.5); border: 0; font-size: calc(0.9286 * ${({ theme }) => theme.size}); font-weight: 500; line-height: 1; letter-spacing: 0; text-transform: none; color: ${({ theme }) => theme.sideInk}; cursor: pointer; transition: background ${({ theme }) => theme.beat} ease; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-heading:hover { background: color-mix(in oklab, ${({ theme }) => theme.sky} 30%, white); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-heading .pa-reference { color: inherit; text-decoration: none; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-fold-chevron { display: grid; place-items: center; position: absolute; top: calc(${({ theme }) => theme.space} * 0.3125); left: calc(${({ theme }) => theme.space} * 0.5); width: calc(1.1429 * ${({ theme }) => theme.size}); height: calc(1.1429 * ${({ theme }) => theme.size}); padding: 0; border: 0; border-radius: 0; background: none; color: #a5aebb; cursor: pointer; transition: transform 0.18s ease, color ${({ theme }) => theme.beat} ease; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-fold-chevron .pd-drawing { display: block; width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-fold-chevron svg { display: block; width: 100%; height: 100%; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-fold-chevron[aria-pressed='false'] { transform: rotate(90deg); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-fold-chevron:hover { color: ${({ theme }) => theme.ink}; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-tree-folder-mark, .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pa-entry .pd-file-tab, .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pa-entry .pd-fold-chevron { display: none; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pa-folded .pd-paragraph.pa-entry { display: none; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-paragraph.pa-entry { display: flex; flex-wrap: nowrap; align-items: center; gap: calc(${({ theme }) => theme.space} / 3); margin: 0; padding: calc(${({ theme }) => theme.space} / 6) calc(${({ theme }) => theme.space} * 0.5833) calc(${({ theme }) => theme.space} / 6) calc(${({ theme }) => theme.space} * 1.5); font-size: calc(0.8929 * ${({ theme }) => theme.size}); line-height: 1.35; color: ${({ theme }) => theme.sideInk}; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-paragraph.pa-entry > a:first-child, .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-paragraph.pa-entry > .pd-word.pa-content, .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-paragraph.pa-entry .pa-content { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-paragraph.pa-entry .pd-word.pa-arrow, .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-paragraph.pa-entry > a:has(> .pa-arrow) { display: none; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-paragraph.pa-entry .pa-number { display: none; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-paragraph.pa-entry:hover { background: color-mix(in oklab, ${({ theme }) => theme.sky} 30%, white); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-paragraph.pa-entry.pa-open { background: linear-gradient(90deg, #eff4fa, #f8fafd); color: ${({ theme }) => theme.heading}; font-weight: 500; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable.pa-open .pd-sentence.pd-heading { background: linear-gradient(90deg, #eff4fa, #f8fafd); color: ${({ theme }) => theme.heading}; }
+        .pd-book .pd-holds &.pd-tree-folder .pd-sentence.pd-heading .pd-word.pd-section-count { margin-inline-start: auto; font-size: calc(0.7857 * ${({ theme }) => theme.size}); font-weight: 400; color: ${({ theme }) => theme.faint}; font-variant-numeric: tabular-nums; }
+        .pd-book .pd-holds &.pd-tree-folder .pa-entry .pd-word.pd-entry-day { flex: none; margin-inline-start: auto; font-size: calc(0.7857 * ${({ theme }) => theme.size}); font-weight: 400; color: ${({ theme }) => theme.faint}; font-variant-numeric: tabular-nums; }
         @media (max-width: ${({ theme }) => theme.narrow}) {
             .pd-book .pd-holds &.pd-tree-folder.pa-open .pd-fold-chevron, .pd-book .pd-holds &.pd-tree-folder.pa-open .pd-tree-folder-mark, .pd-book .pd-holds &.pd-tree-folder.pa-open .pa-entry .pd-file-tab { display: none; }
             .pd-book .pd-holds &.pd-tree-folder.pa-open .pd-sentence.pd-heading { height: auto; padding: 0 calc(${({ theme }) => theme.space} / 2); }
             .pd-book:not(.pa-turned) .pd-holds .pd-chapter.pa-table-of-contents:has(> &.pd-tree-folder.pa-foldable) { flex-direction: row; align-items: center; min-height: 0; }
-            .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) { display: inline-block; vertical-align: top; }
-            .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron { position: static; display: inline-grid; vertical-align: middle; margin-inline-end: 2px; }
-            .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-sentence.pd-heading { display: inline-flex; height: calc(1.9 * ${({ theme }) => theme.size}); padding: 0 calc(${({ theme }) => theme.space} / 2) 0 calc(${({ theme }) => theme.space} / 6); }
-            .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-section { display: inline; margin: 0; }
-            .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry { display: none; }
+            .pd-book .pd-holds &.pd-tree-folder.pa-foldable { display: inline-block; vertical-align: top; }
+            .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-fold-chevron { position: static; display: inline-grid; vertical-align: middle; margin-inline-end: 2px; }
+            .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-sentence.pd-heading { display: inline-flex; height: calc(1.9 * ${({ theme }) => theme.size}); padding: 0 calc(${({ theme }) => theme.space} / 2) 0 calc(${({ theme }) => theme.space} / 6); }
+            .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-section { display: inline; margin: 0; }
+            .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-paragraph.pa-entry { display: none; }
         }
     `;
     get section(): $Section { return this.parent as $Section; }
@@ -379,8 +380,10 @@ export class $TreeFolder extends $Format {
         return firstPlace === undefined ? undefined : (this.book as $LibraryBook).chapterAt(firstPlace)?.part;
     }
     get open(): boolean {
-        const open = (this.book as $LibraryBook).open;
-        return open !== undefined && open.part?.name === this.part?.name;
+        const book = this.book as $LibraryBook;
+        const open = book.open;
+        const named = this.section.mention?.identifier;
+        return (open !== undefined && open.part?.name === this.part?.name) || (named !== undefined && book.placeWithin(named) === book.$bookmark);
     }
 
     $TreeFolder(...chemicals: $Chemical[]) {
@@ -392,7 +395,8 @@ export class $TreeFolder extends $Format {
         this.style = ({ className, children }: { className?: string; children?: ReactNode }) => {
             const firstPlace = this.firstPlace;
             const open = [...this.section.classes].includes('pa-open');
-            const foldable = this.chapter?.annotations.expressed($Index)?.$folded === true;
+            const turned = (this.book as $LibraryBook).open !== undefined;
+            const foldable = this.chapter?.annotations.expressed($Index)?.$folded === true && !(open && turned);
             const mark = (
                 <span
                     className="pd-drawing pd-tree-folder-mark"

@@ -224,7 +224,7 @@ export class $Knowledge extends $Paragraph {
     }
 }
 
-export class $ProjectLayout extends $Layout {
+export class $ListLayout extends $Layout {
     protected override paging(): RuleSet {
         return css`
             .pd-book.pa-turned .pa-page:not(.pa-open) { display: none; }
@@ -235,12 +235,6 @@ export class $ProjectLayout extends $Layout {
     protected override areas(): RuleSet {
         return css`
             ${super.areas()}
-            .pd-book.pa-layout:not(.pa-turned) {
-                grid-template-columns: ${({ theme }) => theme.holdsColumn} minmax(0, 1fr) 320px;
-                grid-template-areas: 'library library library' 'holds head knowledge' 'holds pages knowledge';
-            }
-            .pa-layout .pd-knowledge-column { grid-area: knowledge; min-width: 0; overflow-y: auto; }
-            .pd-book.pa-turned .pd-knowledge-column { display: none; }
             .pd-book.pa-layout:not(.pa-turned) .pd-head { display: grid; gap: calc(${({ theme }) => theme.space} / 4); align-content: end; padding: calc(${({ theme }) => theme.space} * 0.9167) calc(${({ theme }) => theme.space} * 1.5) calc(${({ theme }) => theme.space} * 0.5833); }
             .pd-book.pa-layout.pa-turned .pd-head { display: none; }
             .pd-book:not(.pa-turned) .pd-holds { padding-block-start: calc(${({ theme }) => theme.space} * 0.4167); }
@@ -296,11 +290,51 @@ export class $ProjectLayout extends $Layout {
                 .pd-book:not(.pa-turned) .pd-pages { padding: 0 calc(${({ theme }) => theme.space} * 0.6667) calc(${({ theme }) => theme.space} * 2.5); }
                 .pd-book:not(.pa-turned) .pd-pages .pa-volume .pd-word.pd-entry-count { display: none; }
                 .pd-book.pa-layout:not(.pa-turned) .pd-head { padding: calc(${({ theme }) => theme.space} * 0.75) calc(${({ theme }) => theme.space} * 0.6667) calc(${({ theme }) => theme.space} / 3); }
+            }
+        `;
+    }
+}
+
+export class $ProjectLayout extends $ListLayout {
+    protected override areas(): RuleSet {
+        return css`
+            ${super.areas()}
+            .pd-book.pa-layout:not(.pa-turned) {
+                grid-template-columns: ${({ theme }) => theme.holdsColumn} minmax(0, 1fr) 320px;
+                grid-template-areas: 'library library library' 'holds head knowledge' 'holds pages knowledge';
+            }
+            .pa-layout .pd-knowledge-column { grid-area: knowledge; min-width: 0; overflow-y: auto; }
+            .pd-book.pa-turned .pd-knowledge-column { display: none; }
+            @media (max-width: ${({ theme }) => theme.narrow}) {
                 .pd-book.pa-layout:not(.pa-turned) .pd-knowledge-column { order: 4; }
             }
         `;
     }
 }
+
+// The rows of a list of conversations: each entry takes the month it opens, its count of exchanges and the way into
+// its conversation, laid over the row, in the order given.
+export const rows = (author: $Chemical, entries: $Chapter[]): void => {
+    const EntryCount = $(entryCount);
+    const EntryMonth = $(entryMonth);
+    const EntryOpen = $(entryOpen);
+    const Reference = $(reference);
+    let month = '';
+    for (const entry of entries) {
+        const own = monthOf(entry);
+        const conversation = entry.annotations.expressed($Volume)?.cover?.mention?.identifier;
+        entry.text.add(author,
+            ...(own !== month ? [<EntryMonth key="month" />] : []),
+            <EntryCount key="count" />,
+            ...(conversation === undefined ? [] : [(
+                <EntryOpen key="open">
+                    <Reference>{conversation}</Reference>
+                </EntryOpen>
+            )])
+        );
+        month = own;
+    }
+};
 
 export class $ProjectManual extends $Manual {
     override specification = new ProjectManualSpecification();
@@ -323,15 +357,6 @@ export class $ProjectManual extends $Manual {
     // The page opens on the list of its conversations, and turns to a chapter only when asked for one.
     override get open(): $Chapter | undefined {
         return this.$bookmark === undefined ? undefined : this.chapterAt(this.$bookmark);
-    }
-
-    // An entry holds a synopsis and so is no canonical chapter, which the book's map of places leaves out; the
-    // side's rows and the counts under the months find the entries only when the map holds them.
-    override chapterByPlace(): Map<string, $Chapter> {
-        const chapterByPlace = super.chapterByPlace();
-        for (const entry of this.entries)
-            if (entry.mention !== undefined && !chapterByPlace.has(entry.mention.identifier)) chapterByPlace.set(entry.mention.identifier, entry);
-        return chapterByPlace;
     }
 
     override write(): ReactNode {
@@ -360,25 +385,7 @@ export class $ProjectManual extends $Manual {
     }
 
     protected override $Bound(): void {
-        const EntryCount = $(entryCount);
-        const EntryMonth = $(entryMonth);
-        const EntryOpen = $(entryOpen);
-        let month = '';
-        const Reference = $(reference);
-        for (const entry of this.pages.filter(chapter => this.entries.includes(chapter))) {
-            const own = monthOf(entry);
-            const conversation = entry.annotations.expressed($Volume)?.cover?.mention?.identifier;
-            entry.text.add(this,
-                ...(own !== month ? [<EntryMonth key="month" />] : []),
-                <EntryCount key="count" />,
-                ...(conversation === undefined ? [] : [(
-                    <EntryOpen key="open">
-                        <Reference>{conversation}</Reference>
-                    </EntryOpen>
-                )])
-            );
-            month = own;
-        }
+        rows(this, this.pages.filter(chapter => this.entries.includes(chapter)));
         const index = this.table?.annotations.expressed($Index);
         if (index !== undefined) {
             index.$folded = true;
@@ -416,6 +423,7 @@ export const EntryMonth = $($EntryMonth);
 export const EntryOpen = $($EntryOpen);
 export const ProjectHead = $($ProjectHead);
 export const Knowledge = $($Knowledge);
+export const ListLayout = $($ListLayout);
 export const ProjectLayout = $($ProjectLayout);
 export const ProjectManual = $($ProjectManual);
 const rowForm = RowForm;

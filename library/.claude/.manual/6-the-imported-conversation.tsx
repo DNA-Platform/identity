@@ -163,8 +163,13 @@ export default () => (
                 per conversation, numbered in the order imported and named by the slug of the key: its part the
                 month, its date the conversation's last day, the conversation's cover as a volume, the title
                 with the key in its paren, a caption counting the exchanges and leading to the book, and the
-                synopsis inserted from the book's own. The conversations book's table lists every entry under
-                its month with an arrow leading into the book. The import's memory stands nowhere beside the
+                synopsis inserted from the book's own. The conversations book's table lists every entry under the
+                project its cover names, each project a section headed with its name, the sections ordered by
+                their latest conversation and the rows within newest first, the conversations under no project
+                last in a section headed No project, each row with an arrow leading into the book; the heading
+                is the part's place, so an address naming it opens the register on that part. Until 2026-10-19
+                the table listed the entries under their months; the register's own table was rewritten by hand
+                that day, and the importer writes this form. The import's memory stands nowhere beside the
                 entry: it is the origins on the writing, <Means>$[[ The Origin ]]( ./The Origin )</Means>, the
                 conversation's on its cover and each message's on the message, and one ledger per import
                 configuration, a dataset regardless of the date it was exported, one file for each account

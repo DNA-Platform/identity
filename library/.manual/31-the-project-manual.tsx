@@ -45,7 +45,9 @@ export default () => (
                 list back. The side lists what the table lists by the index's three ways, folded, counted and
                 dated, which the type sets when bound: every section a folder, folded until pressed, each month
                 with its count and each row with its day, and no rule of the page's own for the side, since
-                the layout places the side and never dresses it and its specification refuses one that does. The type knows its chapters by what they
+                the layout places the side and never dresses it and its specification refuses one that does. The
+                rows, the head and the switch are the list layout's, which the project's layout extends with its
+                knowledge column and <Means>$[[ the register ]]( ./The Register )</Means> wears as it is. The type knows its chapters by what they
                 are: a file is a chapter that appends a file, the project is the one that appends none, an entry
                 is a chapter holding a synopsis; nothing is placed by position. The importer dates each entry and
                 lists it under its month, as the register's, so the months are the entries' own. The design is
