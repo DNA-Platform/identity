@@ -43,7 +43,7 @@
 1. **Copy:** from a binding, `npm run copy -- <library>`.
 2. **Install:** in `<library>/.public/.binding`, `npm install`.
 3. **Write a book:** a folder in the library with a `.book.tsx` and numbered chapters — [The Book's Little Framework](04-the-book-s-little-framework.md), [The Book Is the Layout](05-the-book-is-the-layout.md).
-4. **Configure:** `.pubconfig` — a section per phase, each reading only the fields it declares and refusing any other: `inventory` (`root`, `exclude`), `resolution` (`base`), `rendering` (`title`, `stylesheets`, `fonts`, `icon`, `budget`, `parallel`), `specification` (`mode`, `batch`, `parallel`), `manifest` (`origin`); the defaults and each check stand in the phase's own `configuration.ts`, and [The Binder, As Built](../the-catalogue-and-the-specification/07-the-binder.md#children) says what `batch`, `budget` and `parallel` cost.
+4. **Configure:** `.pubconfig` — a section per phase, each reading only the fields it declares and refusing any other: `inventory` (`root`, `exclude`), `resolution` (`base`), `rendering` (`title`, `stylesheets`, `fonts`, `icon`, `budget`, `parallel`), `specification` (`mode`, `batch`, `parallel`), `bundling` (`batch`), `manifest` (`origin`); the defaults and each check stand in the phase's own `configuration.ts`, and [The Binder, As Built](../the-catalogue-and-the-specification/07-the-binder.md#children) says what `batch`, `budget` and `parallel` cost.
 5. **Build, look, commit:** `npm run build`, `npm run preview`, commit `.public`.
 
 *Written 2026-09-15 out of [Sprint 70](../projection/76-sprint-70--the-binding.md#where), the night the canonical step was ruled after two demos had their binding beside their books.*
