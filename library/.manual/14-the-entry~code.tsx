@@ -3,6 +3,7 @@ import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Content, $Format, $Paragraph, $Parenthetical, $Part, $Section, $TableOfContents, $Word, $Writing, AnnotationSpecification, ContainerProps, Reference as reference, Word as word, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { FileTab as fileTab, fileNameOf } from './2-the-listing~code.tsx';
+import { $Dated } from './4-the-date~code.tsx';
 import { $Switch } from './9-the-switch~code.tsx';
 import { $Spread } from './10-the-manual~code.tsx';
 import { Split as split } from './10-the-manual~annotations.tsx';
@@ -67,9 +68,19 @@ export class $Appendix extends $Annotation {
 
 export class $Index extends $Annotation {
     specification = new IndexSpecification();
+    $folded = false;
+    $counted = false;
+    $dated = false;
+    get sections(): $Section[] {
+        return this.chapter!.text.find($Section);
+    }
     get entries(): $Paragraph[] {
-        const sections = this.chapter!.text.find($Section);
-        return sections.flatMap(section => section.text.find($Paragraph)).filter(paragraph => !paragraph.is($Parenthetical) && contentOf(paragraph) !== undefined);
+        return this.sections.flatMap(section => section.text.find($Paragraph)).filter(paragraph => !paragraph.is($Parenthetical) && contentOf(paragraph) !== undefined);
+    }
+
+    chapterOf(paragraph: $Paragraph): $Chapter | undefined {
+        const place = contentOf(paragraph)?.identifier;
+        return place === undefined ? undefined : (this.book as $LibraryBook).chapterAt(place);
     }
 
     protected override $Bound(): void {
@@ -99,7 +110,55 @@ export class $Index extends $Annotation {
                 ))
             );
         }
+        const EntryDay = $(entryDay);
+        const SectionCount = $(sectionCount);
+        const entries = new Set(book.entries);
+        const leadsToAnEntry = (paragraph: $Paragraph): boolean => { const chapter = this.chapterOf(paragraph); return chapter !== undefined && entries.has(chapter); };
+        if (this.$dated)
+            for (const paragraph of this.entries) {
+                const entry = this.chapterOf(paragraph);
+                if (entry === undefined || !entries.has(entry) || !entry.is($Dated)) continue;
+                paragraph.text.add(this,
+                    <EntryDay entry={entry} />
+                );
+            }
+        for (const section of this.sections) {
+            if (this.$folded) section.$is = [folded];
+            const heading = section.canonical;
+            if (this.$counted && heading !== undefined && section.text.find($Paragraph).some(leadsToAnEntry))
+                heading.text.add(this,
+                    <SectionCount section={section} />
+                );
+        }
         super.$Bound();
+    }
+}
+
+export class $EntryDay extends $Word {
+    $entry?: $Chapter;
+
+    override write(): ReactNode {
+        const [year, month, day] = (this.$entry?.annotations.expressed($Dated)?.date?.date ?? '').split('-');
+        if (year === undefined || month === undefined || day === undefined) return undefined;
+        return new Date(Date.UTC(Number(year), Number(month) - 1, Number(day.slice(0, 2)))).toLocaleString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-entry-day');
+    }
+}
+
+export class $SectionCount extends $Word {
+    $section?: $Section;
+
+    override write(): ReactNode {
+        return String(this.$section?.text.find($Paragraph).filter(paragraph => contentOf(paragraph) !== undefined).length ?? 0);
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-section-count');
     }
 }
 
@@ -280,9 +339,35 @@ export class $TreeFolder extends $Format {
         .pd-book .pd-holds &.pd-tree-folder.pa-open .pd-file-tab:hover { background: color-mix(in oklab, ${({ theme }) => theme.sky} 40%, white); color: ${({ theme }) => theme.ink}; }
         .pd-book.pa-split .pd-holds &.pd-tree-folder.pa-open .pd-paragraph.pa-entry .pd-file-tab[aria-pressed='true'], .pd-book.pa-code-forward .pd-holds &.pd-tree-folder.pa-open .pd-paragraph.pa-entry .pd-file-tab[aria-pressed='true'] { color: ${({ theme }) => theme.skyInk}; font-weight: 500; background: color-mix(in oklab, ${({ theme }) => theme.sky} 45%, white); }
         .pd-book.pa-split .pd-holds &.pd-tree-folder.pa-open .pd-paragraph.pa-entry .pd-file-tab[aria-pressed='true'] .pd-drawing, .pd-book.pa-code-forward .pd-holds &.pd-tree-folder.pa-open .pd-paragraph.pa-entry .pd-file-tab[aria-pressed='true'] .pd-drawing { color: var(--colour); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) { position: relative; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-section { margin: 0 0 calc(${({ theme }) => theme.space} / 6); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-sentence.pd-heading { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} / 3); height: calc(2.1429 * ${({ theme }) => theme.size}); margin: 0; padding: 0 calc(${({ theme }) => theme.space} * 0.5833) 0 calc(${({ theme }) => theme.space} * 1.5); border: 0; font-size: calc(0.9286 * ${({ theme }) => theme.size}); font-weight: 500; line-height: 1; letter-spacing: 0; text-transform: none; color: ${({ theme }) => theme.sideInk}; cursor: pointer; transition: background ${({ theme }) => theme.beat} ease; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-heading:hover { background: color-mix(in oklab, ${({ theme }) => theme.sky} 30%, white); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-heading .pa-reference { color: inherit; text-decoration: none; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron { display: grid; place-items: center; position: absolute; top: calc(${({ theme }) => theme.space} * 0.3125); left: calc(${({ theme }) => theme.space} * 0.5); width: calc(1.1429 * ${({ theme }) => theme.size}); height: calc(1.1429 * ${({ theme }) => theme.size}); padding: 0; border: 0; border-radius: 0; background: none; color: #a5aebb; cursor: pointer; transition: transform 0.18s ease, color ${({ theme }) => theme.beat} ease; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron .pd-drawing { display: block; width: calc(0.7143 * ${({ theme }) => theme.size}); height: calc(0.7143 * ${({ theme }) => theme.size}); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron svg { display: block; width: 100%; height: 100%; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron[aria-pressed='false'] { transform: rotate(90deg); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron:hover { color: ${({ theme }) => theme.ink}; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-tree-folder-mark, .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pa-entry .pd-file-tab, .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pa-entry .pd-fold-chevron { display: none; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pa-folded .pd-paragraph.pa-entry { display: none; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry { display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} / 3); margin: 0; padding: calc(${({ theme }) => theme.space} / 6) calc(${({ theme }) => theme.space} * 0.5833) calc(${({ theme }) => theme.space} / 6) calc(${({ theme }) => theme.space} * 1.5); font-size: calc(0.8929 * ${({ theme }) => theme.size}); line-height: 1.35; color: ${({ theme }) => theme.sideInk}; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry > a:first-child, .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry > .pd-word.pa-content, .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry .pa-content { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry .pd-word.pa-arrow, .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry > a:has(> .pa-arrow) { display: none; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry .pa-number { display: none; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry:hover { background: color-mix(in oklab, ${({ theme }) => theme.sky} 30%, white); }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry.pa-open { background: linear-gradient(90deg, #eff4fa, #f8fafd); color: ${({ theme }) => theme.heading}; font-weight: 500; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pd-sentence.pd-heading .pd-word.pd-section-count { margin-inline-start: auto; font-size: calc(0.7857 * ${({ theme }) => theme.size}); font-weight: 400; color: ${({ theme }) => theme.faint}; font-variant-numeric: tabular-nums; }
+        .pd-book .pd-holds &.pd-tree-folder.pa-foldable .pa-entry .pd-word.pd-entry-day { flex: none; margin-inline-start: auto; font-size: calc(0.7857 * ${({ theme }) => theme.size}); font-weight: 400; color: ${({ theme }) => theme.faint}; font-variant-numeric: tabular-nums; }
         @media (max-width: ${({ theme }) => theme.narrow}) {
             .pd-book .pd-holds &.pd-tree-folder.pa-open .pd-fold-chevron, .pd-book .pd-holds &.pd-tree-folder.pa-open .pd-tree-folder-mark, .pd-book .pd-holds &.pd-tree-folder.pa-open .pa-entry .pd-file-tab { display: none; }
             .pd-book .pd-holds &.pd-tree-folder.pa-open .pd-sentence.pd-heading { height: auto; padding: 0 calc(${({ theme }) => theme.space} / 2); }
+            .pd-book:not(.pa-turned) .pd-holds .pd-chapter.pa-table-of-contents:has(> &.pd-tree-folder.pa-foldable) { flex-direction: row; align-items: center; min-height: 0; }
+            .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) { display: inline-block; vertical-align: top; }
+            .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-fold-chevron { position: static; display: inline-grid; vertical-align: middle; margin-inline-end: 2px; }
+            .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-sentence.pd-heading { display: inline-flex; height: calc(1.9 * ${({ theme }) => theme.size}); padding: 0 calc(${({ theme }) => theme.space} / 2) 0 calc(${({ theme }) => theme.space} / 6); }
+            .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-section { display: inline; margin: 0; }
+            .pd-book .pd-holds &.pd-tree-folder.pa-foldable:not(.pa-open) .pd-paragraph.pa-entry { display: none; }
         }
     `;
     get section(): $Section { return this.parent as $Section; }
@@ -307,6 +392,7 @@ export class $TreeFolder extends $Format {
         this.style = ({ className, children }: { className?: string; children?: ReactNode }) => {
             const firstPlace = this.firstPlace;
             const open = [...this.section.classes].includes('pa-open');
+            const foldable = this.chapter?.annotations.expressed($Index)?.$folded === true;
             const mark = (
                 <span
                     className="pd-drawing pd-tree-folder-mark"
@@ -314,7 +400,7 @@ export class $TreeFolder extends $Format {
                 />
             );
             return (
-                <Tree className={`${className ?? ''} pd-tree-folder${open ? ' pa-open' : ''}`.trim()}>
+                <Tree className={`${className ?? ''} pd-tree-folder${open ? ' pa-open' : ''}${foldable ? ' pa-foldable' : ''}`.trim()}>
                     <FoldChevron
                         foldedWriting={this.section}
                         annotation={folded}
@@ -390,11 +476,15 @@ export const contentOf = (paragraph: $Writing): $Content | undefined =>
 
 export const Entry = $($Entry);
 export const Index = $($Index);
+export const EntryDay = $($EntryDay);
+export const SectionCount = $($SectionCount);
 export const Appendix = $($Appendix);
 export const Folded = $($Folded);
 export const FoldChevron = $($FoldChevron);
 export const TreeFolder = $($TreeFolder);
 export const TreeRoot = $($TreeRoot);
 const entry = Entry;
+const entryDay = EntryDay;
+const sectionCount = SectionCount;
 const folded = Folded;
 const foldChevron = FoldChevron;

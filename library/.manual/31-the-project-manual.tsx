@@ -42,8 +42,10 @@ export default () => (
                 column at the right where the application keeps it, the chapter about the project and then its
                 files, and a file pressed turns the page to that file's chapter, shown beside its words as every
                 manual shows one; the column goes with the list, and the project's name in the bar brings the
-                list back. The side lists what the table lists, every section a folder, folded until pressed,
-                each month with its count and each row with its day. The type knows its chapters by what they
+                list back. The side lists what the table lists by the index's three ways, folded, counted and
+                dated, which the type sets when bound: every section a folder, folded until pressed, each month
+                with its count and each row with its day, and no rule of the page's own for the side, since
+                the layout places the side and never dresses it and its specification refuses one that does. The type knows its chapters by what they
                 are: a file is a chapter that appends a file, the project is the one that appends none, an entry
                 is a chapter holding a synopsis; nothing is placed by position. The importer dates each entry and
                 lists it under its month, as the register's, so the months are the entries' own. The design is

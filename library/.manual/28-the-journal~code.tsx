@@ -7,7 +7,7 @@ import { OfABookSpecification } from './1-the-book~said.tsx';
 import { $Dated } from './4-the-date~code.tsx';
 import { Switch as switchWord } from './9-the-switch~code.tsx';
 import { $Layout, Layout as layout } from './12-the-layout~code.tsx';
-import { $Index, contentOf } from './14-the-entry~code.tsx';
+import { $Index } from './14-the-entry~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
 import { Typeset } from './28-the-journal~theme.tsx';
 
@@ -61,21 +61,6 @@ export class $EntryNumber extends $Word {
     }
 }
 
-export class $EntryDay extends $Word {
-    $entry?: $Chapter;
-
-    override write(): ReactNode {
-        const [year, month, day] = dayOf(this.$entry!).split('-');
-        if (year === undefined || month === undefined || day === undefined) return undefined;
-        return new Date(Date.UTC(Number(year), Number(month) - 1, Number(day.slice(0, 2)))).toLocaleString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
-    }
-
-    protected override $Define(): void {
-        super.$Define();
-        this.classes.add(this, 'pd-entry-day');
-    }
-}
-
 export class $JournalLayout extends $Layout {
     protected override paging(): RuleSet {
         return css``;
@@ -84,17 +69,12 @@ export class $JournalLayout extends $Layout {
 
 export const EntryOrder = $($EntryOrder);
 export const EntryNumber = $($EntryNumber);
-export const EntryDay = $($EntryDay);
 export const JournalLayout = $($JournalLayout);
 const entryOrder = EntryOrder;
 const entryNumber = EntryNumber;
-const entryDay = EntryDay;
 
 export class $Journal extends $LibraryBook {
     override specification = new JournalSpecification();
-    get entries(): $Chapter[] {
-        return this.body;
-    }
     get latest(): $Chapter | undefined {
         return [...this.entries].sort((a, b) => dayOf(b).localeCompare(dayOf(a)))[0];
     }
@@ -124,15 +104,8 @@ export class $Journal extends $LibraryBook {
             chapter.text.add(this,
                 <EntryNumber />
             );
-        const EntryDay = $(entryDay);
-        for (const paragraph of this.table?.annotations.expressed($Index)?.entries ?? []) {
-            const place = contentOf(paragraph)?.identifier;
-            const chapter = place === undefined ? undefined : this.chapterAt(place);
-            if (chapter === undefined || !this.entries.includes(chapter)) continue;
-            paragraph.text.add(this,
-                <EntryDay entry={chapter} />
-            );
-        }
+        const index = this.table?.annotations.expressed($Index);
+        if (index !== undefined) index.$dated = true;
         const EntryOrder = $(entryOrder);
         this.table?.text.add(this,
             <EntryOrder />

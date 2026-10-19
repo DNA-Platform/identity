@@ -27,6 +27,9 @@ export class $LibraryBook extends $Book {
         const appendix = this.appendix;
         return this.chapters.filter(chapter => !appendix.includes(chapter));
     }
+    get entries(): $Chapter[] {
+        return this.body;
+    }
     get appendix(): $Chapter[] {
         const table = this.table;
         if (table === undefined) return [];

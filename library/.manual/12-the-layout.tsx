@@ -71,6 +71,13 @@ export default () => (
                 mine wears the same frame and an arrangement is never a reader's press. Anything a reader
                 switches follows the rule: the class changes, the rules were always there.
             </Paragraph>
+            <Paragraph>
+                And a layout places the side and never dresses it. Its rules may say where the holds stand in
+                the grid and how they scroll, and nothing of what stands inside them, which is the index's and
+                the folder's; its specification reads its rules for one under the holds and refuses it, naming
+                the rule, so that the look of a side folded, counted or dated is written once,
+                in <Means>$[[ the entry ]]( ./The Entry )</Means>, and never again in a book's layout.
+            </Paragraph>
         </Section>
         <Append
             identifier="code"

@@ -1,14 +1,14 @@
 import { ElementType, ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
-import { $, selection } from '@dna-platform/chemistry';
-import { $Chapter, $Paginated, $Writing } from '@dna-platform/public';
+import { $, $check, selection } from '@dna-platform/chemistry';
+import { $Chapter, $Paginated, $Writing, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 import { $Spread } from './10-the-manual~code.tsx';
 import { $Scheme } from './19-the-cover~code.tsx';
 
 export class $Layout extends $Paginated {
-    override specification = new OfABookSpecification();
+    override specification = new LayoutSpecification();
     themeProvider = true;
     style: ElementType = selection.div<{ $at?: string; $scheme?: string }>`
         ${props => props.$scheme ?? ''}
@@ -24,6 +24,9 @@ export class $Layout extends $Paginated {
             box-shadow: inset 0 -2px 0 var(--colour, ${({ theme }) => theme.soft});
         }
     `;
+    get rules(): string {
+        return (this.parts() as unknown[]).flat(Infinity).filter((part): part is string => typeof part === 'string').join('');
+    }
     override get pages(): $Chapter[] { return (this.book as $LibraryBook).pages; }
     override get open(): $Chapter | undefined {
         const book = this.book as $LibraryBook;
@@ -157,6 +160,17 @@ export class $Layout extends $Paginated {
                 .pa-layout .pd-chapter.pa-page { scroll-margin-block-start: calc(${({ theme }) => theme.barHeight} + ${({ theme }) => theme.space} / 2); }
             }
         `;
+    }
+}
+
+export class LayoutSpecification extends OfABookSpecification {
+    @specify('a layout places the side and never dresses it')
+    $placesTheSideAndNeverDressesIt(writing: $Writing): void {
+        for (const layout of writing.annotations.find($Layout)) {
+            const dressing = (layout.rules.match(/[^{};]*\.pd-holds\s+[^\s{},][^{};]*\{/gu) ?? []).map(rule => rule.trim());
+            $check(dressing.length === 0,
+                `a layout places the side and never dresses it, what stands in the side being the index's and the folder's, and this one says "${dressing[0]}"`);
+        }
     }
 }
 

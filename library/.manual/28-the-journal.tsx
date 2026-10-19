@@ -34,8 +34,8 @@ export default () => (
                 Newest first is a thing said of the book, as a tone is, and the journal says it of itself when
                 bound. A press at the top of the contents, <Means>$[[ a switch ]]( ./The Switch )</Means>, takes it
                 off and puts it back; the entries and their rows follow it. Each row of the contents carries its
-                entry's day, a word the journal adds to the row, as <Means>$[[ the entry ]]( ./The Entry )</Means> is
-                given its presses.
+                entry's day, the index's dated way, which the journal sets when bound,
+                as <Means>$[[ the entry ]]( ./The Entry )</Means> says.
             </Paragraph>
         </Section>
         <Section>

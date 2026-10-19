@@ -61,6 +61,20 @@ export default () => (
                 to the book, drawn in a manual's context only; this book adds none. The design of the tree and how the chevron came to be
                 drawn is in <Means>$[[ The Manual's Page ]]( Dougs Design / The Manual's Page )</Means>.
             </Paragraph>
+            <Paragraph>
+                The index has ways, each a field a type of book sets when it is bound, so that no book carries a
+                rule for its side. Folded: every section of the table is folded until its chevron is pressed,
+                and every folder is drawn as one whether or not it holds the open chapter, a look the folder's
+                own layer carries under a class of its own, foldable, where it otherwise draws only the open
+                folder. Counted: each heading over the book's entries carries the count of the rows under it, a word
+                the index adds. Dated: each row leading to one of the book's entries carries its day where the
+                entry is dated, a word the index adds that was the journal's. The entries are the book's own, its body unless the type says
+                otherwise, as <Means>$[[ the project manual ]]( ./The Project Manual )</Means> says its
+                conversations are. A table file may say the ways, Index folded counted dated, and a type of
+                book sets them in code before the table is bound: the journal dated, the project manual all
+                three. The names, folded, counted, dated and foldable, are the session's until I keep or change
+                them.
+            </Paragraph>
         </Section>
         <Section>
             <Heading>Where an entry bites</Heading>
