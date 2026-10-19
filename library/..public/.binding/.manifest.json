@@ -1026,7 +1026,7 @@
     ".binding/application/routes.ts"
   ],
   "rendered": [
-    "claudes-reference-manual/index.html",
+    "claudes-design/index.html",
     "dougs-library/index.html",
     "dougs-claude/index.html",
     "claude-ana-studies-english/index.html",
@@ -2018,7 +2018,6 @@
     "claude-x-moneys-us-launch-and-financial-competition-a8e9cd85/index.html",
     "claude-yotelair-istanbul-airport-transit-hotel-5747495d/index.html",
     "claude-zoom-camera-not-working-on-hp-laptop-89fc29f9/index.html",
-    "claudes-design/index.html",
     "claude-dna-patternity/index.html",
     "claude-eirian/index.html",
     "claude-fitness/index.html",
@@ -2028,6 +2027,7 @@
     "claude-investing/index.html",
     "claude-learning/index.html",
     "claude-life/index.html",
+    "claudes-reference-manual/index.html",
     "claude-miscellaneous/index.html",
     "claude-neuroscience/index.html",
     "claude-nikolai/index.html",
@@ -3204,7 +3204,7 @@
     "assets/books/claude-conversations-claude-x-moneys-us-launch-and-financial-competition-a8e9cd85-CY7FTngg.js",
     "assets/books/claude-conversations-claude-yotelair-istanbul-airport-transit-hotel-5747495d-BqmzN2XF.js",
     "assets/books/claude-conversations-claude-zoom-camera-not-working-on-hp-laptop-89fc29f9-DjdiB8NJ.js",
-    "assets/books/claude-design-Dhq-4BCN.js",
+    "assets/books/claude-design-DpqjphdR.js",
     "assets/books/claude-dna-patternity-NWRce18q.js",
     "assets/books/claude-eirian-B3OrUr3b.js",
     "assets/books/claude-fitness-CQfk451z.js",
@@ -3234,7 +3234,7 @@
     "assets/books/manual--9kiqw5E.js",
     "assets/books/reference-BRidyr4W.js",
     "assets/index-BgQkainO.css",
-    "assets/index-xNCW13cA.js",
+    "assets/index-MknutrXI.js",
     "assets/shared/_shared_react-6pQpRABW.js",
     "assets/shared/_shared_styled-components-DGpG2R0g.js",
     "assets/shared/at-dna-platform-chemistry-B5jY9KWj.js",
@@ -11176,14 +11176,6 @@
       "sheet": "sheets/1c4d6787add9.css",
       "markup": ".pages/claude-zoom-camera-not-working-on-hp-laptop-89fc29f9.html"
     },
-    "/claudes-design": {
-      "folder": ".claude/.design",
-      "digest": "5ed28ed808944ae6",
-      "references": "5431a60eca8f5b18",
-      "binder": "872aa3461ace450a",
-      "sheet": "sheets/ce6445006a02.css",
-      "markup": ".pages/claudes-design.html"
-    },
     "/claude-dna-patternity": {
       "folder": ".claude/.dna-patternity",
       "digest": "c3700cdec7da7fc1",
@@ -11255,6 +11247,14 @@
       "binder": "872aa3461ace450a",
       "sheet": "sheets/4d8c403aa462.css",
       "markup": ".pages/claude-life.html"
+    },
+    "/claudes-reference-manual": {
+      "folder": ".claude/.manual",
+      "digest": "65976257efa809a6",
+      "references": "f56fdd57496985f5",
+      "binder": "872aa3461ace450a",
+      "sheet": "sheets/a569e2ddc410.css",
+      "markup": ".pages/claudes-reference-manual.html"
     },
     "/claude-miscellaneous": {
       "folder": ".claude/.miscellaneous",
@@ -11392,13 +11392,13 @@
       "sheet": "sheets/d501d83cee57.css",
       "markup": ".pages/dougs-importer.html"
     },
-    "/claudes-reference-manual": {
-      "folder": ".claude/.manual",
-      "digest": "65976257efa809a6",
-      "references": "f56fdd57496985f5",
+    "/claudes-design": {
+      "folder": ".claude/.design",
+      "digest": "cf94885dc254c4e0",
+      "references": "5267ade5668d6901",
       "binder": "872aa3461ace450a",
-      "sheet": "sheets/a569e2ddc410.css",
-      "markup": ".pages/claudes-reference-manual.html"
+      "sheet": "sheets/ce6445006a02.css",
+      "markup": ".pages/claudes-design.html"
     }
   },
   "chunks": {
@@ -100190,98 +100190,6 @@
         ]
       }
     },
-    ".claude/.design": {
-      "digest": "d6956708a98a61b8",
-      "entry": "assets/books/claude-design-Dhq-4BCN.js",
-      "files": [
-        "assets/books/.cover-BJn8i6G8.js",
-        "assets/books/.cover-CIDdH9BU.js",
-        "assets/books/claude-design-Dhq-4BCN.js"
-      ],
-      "bindings": {
-        "@dna-platform/chemistry": [
-          "$",
-          "$check",
-          "inert",
-          "selection"
-        ],
-        "@dna-platform/public": [
-          "$Annotation",
-          "$Append",
-          "$Author",
-          "$Book",
-          "$Chapter",
-          "$Code",
-          "$Composition",
-          "$Content",
-          "$Cover",
-          "$Date",
-          "$Format",
-          "$Heading",
-          "$Image",
-          "$Means",
-          "$Paginated",
-          "$Paragraph",
-          "$Parenthetical",
-          "$Reference",
-          "$Referent",
-          "$Section",
-          "$SelfReference",
-          "$Subject",
-          "$Svg",
-          "$Synopsis",
-          "$TableOfContents",
-          "$Theme",
-          "$Topic",
-          "$Word",
-          "$Writing",
-          "About",
-          "AnnotationSpecification",
-          "Append",
-          "Author",
-          "Autobiography",
-          "BookSpecification",
-          "Chapter",
-          "Code",
-          "Content",
-          "CoverSpecification",
-          "Heading",
-          "Image",
-          "Line",
-          "Means",
-          "Paragraph",
-          "Parenthetical",
-          "Part",
-          "Reference",
-          "Referent",
-          "Section",
-          "SectionSpecification",
-          "Self",
-          "Subject",
-          "Svg",
-          "Synopsis",
-          "Table",
-          "TableOfContents",
-          "Theme",
-          "Title",
-          "Word",
-          "binder",
-          "highlighting",
-          "html",
-          "identifier",
-          "reflection",
-          "specify"
-        ],
-        "react/jsx-runtime": [
-          "Fragment",
-          "jsx",
-          "jsxs"
-        ],
-        "styled-components": [
-          "css"
-        ]
-      }
-    },
     ".claude/.dna-patternity": {
       "digest": "33b4dc8f4134900c",
       "entry": "assets/books/claude-dna-patternity-NWRce18q.js",
@@ -101082,6 +100990,92 @@
           "Paragraph",
           "Parenthetical",
           "Part",
+          "Reference",
+          "Referent",
+          "Section",
+          "SectionSpecification",
+          "Self",
+          "Subject",
+          "Svg",
+          "Synopsis",
+          "TableOfContents",
+          "Theme",
+          "Title",
+          "Word",
+          "binder",
+          "highlighting",
+          "html",
+          "identifier",
+          "reflection",
+          "specify"
+        ],
+        "react/jsx-runtime": [
+          "Fragment",
+          "jsx",
+          "jsxs"
+        ],
+        "styled-components": [
+          "css"
+        ]
+      }
+    },
+    ".claude/.manual": {
+      "digest": "390ad370b050905b",
+      "entry": "assets/books/claude-manual-1TrRspq-.js",
+      "files": [
+        "assets/books/claude-manual-1TrRspq-.js"
+      ],
+      "bindings": {
+        "@dna-platform/chemistry": [
+          "$",
+          "$check",
+          "inert",
+          "selection"
+        ],
+        "@dna-platform/public": [
+          "$Annotation",
+          "$Append",
+          "$Author",
+          "$Book",
+          "$Chapter",
+          "$Code",
+          "$Composition",
+          "$Content",
+          "$Cover",
+          "$Date",
+          "$Format",
+          "$Heading",
+          "$Image",
+          "$Means",
+          "$Paginated",
+          "$Paragraph",
+          "$Parenthetical",
+          "$Reference",
+          "$Referent",
+          "$Section",
+          "$SelfReference",
+          "$Subject",
+          "$Svg",
+          "$Synopsis",
+          "$TableOfContents",
+          "$Theme",
+          "$Topic",
+          "$Word",
+          "$Writing",
+          "About",
+          "AnnotationSpecification",
+          "Append",
+          "Author",
+          "Autobiography",
+          "BookSpecification",
+          "Chapter",
+          "Code",
+          "Content",
+          "CoverSpecification",
+          "Heading",
+          "Means",
+          "Paragraph",
+          "Parenthetical",
           "Reference",
           "Referent",
           "Section",
@@ -102677,11 +102671,11 @@
         ]
       }
     },
-    ".claude/.manual": {
-      "digest": "390ad370b050905b",
-      "entry": "assets/books/claude-manual-1TrRspq-.js",
+    ".claude/.design": {
+      "digest": "e868f28d60a7226f",
+      "entry": "assets/books/claude-design-DpqjphdR.js",
       "files": [
-        "assets/books/claude-manual-1TrRspq-.js"
+        "assets/books/claude-design-DpqjphdR.js"
       ],
       "bindings": {
         "@dna-platform/chemistry": [
@@ -102731,9 +102725,12 @@
           "Content",
           "CoverSpecification",
           "Heading",
+          "Image",
+          "Line",
           "Means",
           "Paragraph",
           "Parenthetical",
+          "Part",
           "Reference",
           "Referent",
           "Section",
@@ -102742,6 +102739,7 @@
           "Subject",
           "Svg",
           "Synopsis",
+          "Table",
           "TableOfContents",
           "Theme",
           "Title",
@@ -102789,7 +102787,7 @@
     ]
   },
   "app": {
-    "digest": "f135e29088050f84",
+    "digest": "4182934e3848cb11",
     "files": [
       "assets/KaTeX_AMS-Regular-BQhdFMY1.woff2",
       "assets/KaTeX_AMS-Regular-DMm9YOAa.woff",
@@ -102851,7 +102849,7 @@
       "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
       "assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf",
       "assets/index-BgQkainO.css",
-      "assets/index-xNCW13cA.js"
+      "assets/index-MknutrXI.js"
     ],
     "bindings": {
       "@dna-platform/chemistry": [
@@ -102871,6 +102869,6 @@
         "hydrateRoot"
       ]
     },
-    "shell": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Dougs Library</title>\n    <link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 28 28%22%3E%3Cstyle%3E.pd-illustration%7Bfill%3Anone%3Bstroke%3A%231f5a60%3Bstroke-width%3A1.7%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.pd-illustration .fill%7Bfill%3A%238db9bd%3Bstroke%3A%231f5a60%7D.pd-illustration .light%7Bfill%3A%23ffffff%3Bstroke%3Anone%7D%3C%2Fstyle%3E%3CclipPath id%3D%22window%22%3E%3Crect width%3D%2228%22 height%3D%2228%22%2F%3E%3C%2FclipPath%3E%3Crect width%3D%2228%22 height%3D%2228%22 fill%3D%22%23c3e3e6%22%2F%3E%3Cg clip-path%3D%22url(%23window)%22%3E%3Csvg x%3D%22-43.361%22 y%3D%22-10.361%22 width%3D%2299.36%22 height%3D%2299.36%22 viewBox%3D%220 0 64 64%22 class%3D%22pd-illustration%22%3E%3Cpath class%3D%22light%22 d%3D%22M9 7h46v50H9z%22%2F%3E%3Cpath d%3D%22M9 7h46v50H9zM9 24h46M9 41h46%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 11h5v13h-5zM20 9h4v15h-4zM26 13h6v11h-6zM34 10h4v14h-4zM40 14h6v10h-6z%22%2F%3E%3Cpath d%3D%22M48 24l4-12 3 1-4 11z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 28h4v13h-4zM19 30h7v11h-7zM28 27h4v14h-4zM34 31h5v10h-5zM41 28h6v13h-6zM49 29h3v12h-3z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 46h6v11h-6zM21 44h4v13h-4zM27 47h8v10h-8zM37 45h4v12h-4zM43 48h6v9h-6z%22%2F%3E%3Cpath d%3D%22M50 57l3-11 3 1-3 10z%22%2F%3E%3C%2Fsvg%3E%3C%2Fg%3E%3Crect x%3D%221.319%22 y%3D%221.319%22 width%3D%2225.361%22 height%3D%2225.361%22 fill%3D%22none%22 stroke%3D%22%231f5a60%22 stroke-width%3D%222.639%22%2F%3E%3C%2Fsvg%3E\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin />\n    <link href=\"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@500;600;700&display=swap\" rel=\"stylesheet\" />\n    <script type=\"module\" crossorigin src=\"/assets/index-xNCW13cA.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-BgQkainO.css\">\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
+    "shell": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Dougs Library</title>\n    <link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 28 28%22%3E%3Cstyle%3E.pd-illustration%7Bfill%3Anone%3Bstroke%3A%231f5a60%3Bstroke-width%3A1.7%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.pd-illustration .fill%7Bfill%3A%238db9bd%3Bstroke%3A%231f5a60%7D.pd-illustration .light%7Bfill%3A%23ffffff%3Bstroke%3Anone%7D%3C%2Fstyle%3E%3CclipPath id%3D%22window%22%3E%3Crect width%3D%2228%22 height%3D%2228%22%2F%3E%3C%2FclipPath%3E%3Crect width%3D%2228%22 height%3D%2228%22 fill%3D%22%23c3e3e6%22%2F%3E%3Cg clip-path%3D%22url(%23window)%22%3E%3Csvg x%3D%22-43.361%22 y%3D%22-10.361%22 width%3D%2299.36%22 height%3D%2299.36%22 viewBox%3D%220 0 64 64%22 class%3D%22pd-illustration%22%3E%3Cpath class%3D%22light%22 d%3D%22M9 7h46v50H9z%22%2F%3E%3Cpath d%3D%22M9 7h46v50H9zM9 24h46M9 41h46%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 11h5v13h-5zM20 9h4v15h-4zM26 13h6v11h-6zM34 10h4v14h-4zM40 14h6v10h-6z%22%2F%3E%3Cpath d%3D%22M48 24l4-12 3 1-4 11z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 28h4v13h-4zM19 30h7v11h-7zM28 27h4v14h-4zM34 31h5v10h-5zM41 28h6v13h-6zM49 29h3v12h-3z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 46h6v11h-6zM21 44h4v13h-4zM27 47h8v10h-8zM37 45h4v12h-4zM43 48h6v9h-6z%22%2F%3E%3Cpath d%3D%22M50 57l3-11 3 1-3 10z%22%2F%3E%3C%2Fsvg%3E%3C%2Fg%3E%3Crect x%3D%221.319%22 y%3D%221.319%22 width%3D%2225.361%22 height%3D%2225.361%22 fill%3D%22none%22 stroke%3D%22%231f5a60%22 stroke-width%3D%222.639%22%2F%3E%3C%2Fsvg%3E\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin />\n    <link href=\"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@500;600;700&display=swap\" rel=\"stylesheet\" />\n    <script type=\"module\" crossorigin src=\"/assets/index-MknutrXI.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-BgQkainO.css\">\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
   }
 }
