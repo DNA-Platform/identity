@@ -38,6 +38,9 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Conversations at a Thousand ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Conversation and the Project ]]</Content>
+            </Paragraph>
         </Section>
     </Chapter>
 );

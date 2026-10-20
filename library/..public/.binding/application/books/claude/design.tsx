@@ -8,6 +8,7 @@ import StartingFromTheAudit1 from '../../../../../.claude/.design/1-starting-fro
 import TheConversationsPage2 from '../../../../../.claude/.design/2-the-conversations-page';
 import TheProjectPage3 from '../../../../../.claude/.design/3-the-project-page';
 import TheConversationsAtAThousand4 from '../../../../../.claude/.design/4-the-conversations-at-a-thousand';
+import TheConversationAndTheProject5 from '../../../../../.claude/.design/5-the-conversation-and-the-project';
 
 const Book = $($Book);
 
@@ -20,6 +21,7 @@ export const book = () => (
         {TheConversationsPage2()}
         {TheProjectPage3()}
         {TheConversationsAtAThousand4()}
+        {TheConversationAndTheProject5()}
     </Book>
 );
 
