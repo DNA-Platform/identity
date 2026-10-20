@@ -105,6 +105,8 @@ The `ceiling` phase prints how many clear FEV 0.15: the number each twin trains 
   that read it.
 - **Tests**: 54 pass, none fail; new ones pin the twins, the one threshold and normalisation, the sort, and the
   pre-and-spontaneous table.
+- **The drift check** (`metamer/drift.py`, the metamer pipeline's `drift` phase, before the moments): the level by
+  minute and the population's similarity by minutes apart, against the same recording shuffled in time.
 
 ## What was learned
 
@@ -127,6 +129,26 @@ The `ceiling` phase prints how many clear FEV 0.15: the number each twin trains 
   33977's spontaneous pupils are larger in both sessions, as a darker screen would make them, but the pre-DOI fit
   holds on 2,766 of 24,672 frames and Erin has called 33977's pupil unreliable; 34452 goes both ways. Erin, who ran
   the rig, is the one who knows.
+- **The normalised spontaneous activity drifts within every recording** (the drift check, Doug's choice of form, the
+  minutes curve: `metamer/drift.py`, the `drift` phase, `figures/spontaneous-drift.png`). On exactly what the moments
+  invert - the moments' twin's cells (FEV-cut: 251, 622, 269, 573), each on its own map per recording:
+
+  | | cells | one minute apart | lowest | at the far end | bins shuffled in time | median level by minute |
+  |---|---|---|---|---|---|---|
+  | 33977-caiman, before / after | 251 | +0.53 / +0.57 | -0.46 / -0.47 | +0.21 / -0.47 | -0.14..+0.01 / -0.26..+0.02 | 0.41-0.56 / 0.48-0.57 |
+  | 33977-suite2p, before / after | 622 | +0.54 / +0.59 | -0.32 / -0.42 | +0.25 / -0.42 | +0.16..+0.20 / +0.16..+0.25 | 0.44-0.53 / 0.46-0.52 |
+  | 34452-caiman, before / after | 269 | +0.57 / +0.43 | -0.66 / -0.54 | -0.59 / -0.37 | -0.17..+0.04 / -0.11..+0.04 | 0.45-0.57 / 0.47-0.55 |
+  | 34452-suite2p, before / after | 573 | +0.51 / +0.36 | -0.59 / -0.45 | -0.58 / -0.37 | -0.07..-0.02 / -0.07..+0.04 | 0.43-0.53 / 0.48-0.52 |
+
+  Which cells are relatively active changes over minutes: the population's pattern correlation turns negative
+  between three and six minutes apart and is negative at twelve (-0.16 to -0.64), in all eight recordings, both
+  mice, both processings. The
+  time-shuffled control is flat, so the fall is the activity's order, not the map's constraint. The raw activity
+  falls too (CaImAn from about 0.66-0.79 to 0.19-0.38, Suite2P from 0.96-0.98 to 0.84-0.96, highest because raw
+  minute vectors are dominated by each cell's overall rate). Two recordings do something stranger: both of 33977's
+  before DOI come back (correlation +0.21 and +0.25 at 19 minutes apart, a rise near 9), and Suite2P's median level
+  drops sharply at minute 10-11. A per-recording map cannot remove drift within a recording, so a moment from the
+  start and one from the end of a recording read the twin with different population patterns.
 
 ## Where things stand
 
@@ -148,7 +170,8 @@ handles, validations, MEI and metamer caches - all at the tag).
 
 **Open, in order:**
 
-1. **The drift check** - its design is Doug's to choose.
+1. **The drift the check found** - what to do about it is Doug's: the moments as they are, or something about the
+   drift first. The check itself is built and runs in every metamer run.
 2. **The screen** - a question for Erin, consolidated, from Doug.
 3. **The consequences of the normalisation** - the analysis Doug asked for; not started.
 4. **What still reads the old twins**: `metamer/moment_contrast.py` (a diagnostic, outside the run),
