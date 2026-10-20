@@ -3,12 +3,14 @@ import { BookshelfCover as Cover, Illustration, Messages, Participant, Participa
 import { Account, Origin, Project } from '../../.manual/.book';
 import SubjectCover from '../.cover.tsx';
 import StoryCover from '../../../.librarian/.cover.tsx';
+import ProjectCover from '../../.fitness/.cover.tsx';
 
 export default () => (
     <Chapter>
         <Cover />
         <Volume>{SubjectCover()}</Volume>
         <Volume>{StoryCover()}</Volume>
+        <Volume>{ProjectCover()}</Volume>
         <Scheme
             ground="#f7eef0"
             band="#e4bfc8"

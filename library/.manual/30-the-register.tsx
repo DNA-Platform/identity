@@ -28,7 +28,12 @@ export default () => (
                 leading to the project's own page. The address carries the part, the heading of its section being
                 a place, so a part's rows are somewhere a link reaches and the book opens on them from a link. The
                 side lists the parts by <Means>$[[ the index's ]]( ./The Entry )</Means> three ways, folded,
-                counted and dated, the part the address names unfolded to its rows. The type asks that every
+                counted and dated, the part the address names unfolded to its rows. A search stands at the head: a
+                word typed there is a field on the book set in the press, and the book draws under the head the
+                conversations whose title or synopsis holds it, with their count, the word marked where it
+                stands, each row naming its part and leading to the conversation, narrowed to the open part when
+                one is open; the titles and synopses are read off the entries once, when first asked, since every
+                entry already holds them, and nothing is written for the search to read. The type asks that every
                 entry stand for a book, be dated and be listed under a part; and it lets an entry file a file of
                 its own, where a cover, a synopsis or a table may not, so that what is known about a book can
                 stand beside its entry. It was a journal until Sprint 114, every entry on one page newest first

@@ -25,7 +25,12 @@ export default () => (
             <Paragraph>
                 A conversation with Claude is the library's conversation specialized here: it answers its
                 project, and draws a project line beside its byline, a word said to be a label and the
-                project's name leading to its book, the way back from a conversation to its project. The
+                project's name leading to its book, one way back from a conversation to its project; and the
+                other is the logo's, which files the conversation under its project where it filed it under the
+                conversations book, the project's own mark in the project's own colours leading to its page and
+                its name under the conversation's on hover, read off the project's cover standing as a volume
+                of the conversation's, concept 5 of <Means>$[[ Claudes Design / The Project's Page ]]</Means> in
+                its first form. The
                 project book itself is <Means>$[[ a project manual ]]( Dougs Reference Manual / The Project Manual )</Means>,
                 the files as spreads and the conversations as entries. The project has a twin, the account the
                 conversation was held under, <Means>$[[ The Account ]]( ./The Account )</Means>, said after it on

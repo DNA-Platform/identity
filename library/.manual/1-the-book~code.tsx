@@ -46,6 +46,10 @@ export class $LibraryBook extends $Book {
     get topics(): $Topic[] {
         return this.cover?.annotations.find($Topic) ?? [];
     }
+    // The cover the logo files this book under: its subject's, where a type of book may say another.
+    get subjectCover(): $Chapter | undefined {
+        return this.coverOf(this.subject?.means?.identifier);
+    }
 
     override write(): ReactNode {
         return (
@@ -222,7 +226,7 @@ export class $LibraryBook extends $Book {
         this._logo = reflection.chemical<$Logo>((
             <Logo
                 cover={this.cover}
-                subject={this.coverOf(this.subject?.means?.identifier)}
+                subject={this.subjectCover}
             />
         ), this);
         this.turns();

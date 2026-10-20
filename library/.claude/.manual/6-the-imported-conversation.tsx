@@ -33,7 +33,9 @@ export default () => (
                 dashes, the slug of the conversation's title cut at sixty characters, two dashes and the first
                 eight characters of the application's id. Its book file extends the Claude conversation
                 of <Means>$[[ The Project ]]( ./The Project )</Means> and declares nothing else. Its cover is the
-                bookshelf cover of my manual with two volumes, the conversations book's cover and my story's,
+                bookshelf cover of my manual with two volumes, the conversations book's cover and my story's, and a
+                third when the conversation was held in a project, that project's cover, imported from its book's
+                folder as the first two are and written after them, which the logo files the conversation under,
                 a scheme of six colours, a window, the participants, each a reference to a person's book, the
                 period from the first instant to the last, the messages shown and the messages in all, the title
                 in the reference form with its key in the paren, the author as my librarian, the subject as the conversations book, the

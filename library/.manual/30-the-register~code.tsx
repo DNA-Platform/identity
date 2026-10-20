@@ -1,13 +1,14 @@
 import { ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $, $check, $Chemical, inert } from '@dna-platform/chemistry';
-import { $Append, $Chapter, $Paragraph, $Section, $Synopsis, $Writing, Reference as reference, Theme, Word as word, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Chapter, $Paragraph, $Section, $Synopsis, $Writing, Reference as reference, Theme, Word as word, html, specify } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
 import { $Dated } from './4-the-date~code.tsx';
 import { ManualTheme } from './10-the-manual~theme.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
 import { $Index, EntryDay as entryDay, Folded as folded, TreeFolder as treeFolder, contentOf } from './14-the-entry~code.tsx';
 import { Light as light, Tone as tone } from './16-the-tone~code.tsx';
+import { OfABookSpecification } from './1-the-book~said.tsx';
 import { $Volume } from './19-the-cover~code.tsx';
 import { dayOf, monthOf } from './28-the-journal~code.tsx';
 import { $Messages } from './29-the-conversation~code.tsx';
@@ -18,7 +19,10 @@ import { $Project } from '../.claude/.manual/3-the-project~code.tsx';
 // each with its count and its latest, and a part pressed opens on its rows newest first under their months in the
 // row form of the project's page, the address carrying the part. Sprint 114, concept 6 of Claudes Design as
 // cards and concept 7 with the parts folded, the session's number until Doug's. `PartCard`, `RegisterHead`,
-// `openGroup` and `pa-part-open` are PROXY names.
+// `Search`, `Searching`, `Results`, `Result`, `groups`, `openGroup` and `pa-part-open` are PROXY names.
+// The search is the page's: a word typed at the head is a field on the book set in the press, and the book draws under
+// the head the entries whose title or synopsis holds it, read off the entries once when first asked, narrowed to the
+// open group.
 
 // The entries and the groups are decided once, at bind, and kept: every card, the head and the side read what was
 // kept, and nothing walks the book's thousand chapters inside a draw. The sketch and the chapter say parts; the code
@@ -28,6 +32,9 @@ export class $Register extends $LibraryBook {
     @inert() protected _entries?: $Chapter[];
     @inert() protected _groups?: Map<$Section, $Chapter[]>;
     @inert() protected _pages?: $Chapter[];
+    @inert() protected _groupOf?: Map<$Chapter, $Section>;
+    @inert() protected _index?: Map<$Chapter, { title: string; synopsis: string; lower: string }>;
+    $search = '';
     override get entries(): $Chapter[] {
         return this._entries ?? (this._entries = this.text.find($Chapter).filter(chapter => chapter.is($Synopsis) && chapter !== this.synopsis));
     }
@@ -62,18 +69,52 @@ export class $Register extends $LibraryBook {
         if (this._groups !== undefined) return this._groups;
         const entries = new Set(this.entries);
         const kept = new Map<$Section, $Chapter[]>();
+        this._groupOf = new Map();
         for (const section of this.table?.text.find($Section) ?? []) {
             const own = section.text.find($Paragraph).map(paragraph => {
                 const place = contentOf(paragraph)?.identifier;
                 return place === undefined ? undefined : this.chapterAt(place);
             }).filter((entry): entry is $Chapter => entry !== undefined && entries.has(entry)).sort((a, b) => dayOf(b).localeCompare(dayOf(a)));
             if (own.length > 0) kept.set(section, own);
+            for (const entry of own) this._groupOf.set(entry, section);
         }
         return this._groups = kept;
     }
 
     entriesOf(part: $Section): $Chapter[] {
         return this.groupsKept().get(part) ?? [];
+    }
+
+    groupOf(entry: $Chapter): $Section | undefined {
+        this.groupsKept();
+        return this._groupOf?.get(entry);
+    }
+
+    // What the search reads: each entry's title and synopsis, as the entry holds them, read once when first asked.
+    index(): Map<$Chapter, { title: string; synopsis: string; lower: string }> {
+        if (this._index !== undefined) return this._index;
+        const index = new Map<$Chapter, { title: string; synopsis: string; lower: string }>();
+        for (const entry of this.entries) {
+            const title = entry.title?.name ?? '';
+            const synopsis = entry.text.find($Paragraph).filter(paragraph => ![...paragraph.classes].includes('pa-caption')).map(paragraph => html.copy(paragraph.text).replace(/\s+/gu, ' ').trim()).join(' ');
+            index.set(entry, { title, synopsis, lower: `${title} ${synopsis}`.toLowerCase() });
+        }
+        return this._index = index;
+    }
+
+    found(word: string): $Chapter[] {
+        const lower = word.trim().toLowerCase();
+        if (lower === '') return [];
+        const index = this.index();
+        const group = this.openGroup;
+        const within = group === undefined ? this.pages : this.entriesOf(group);
+        return within.filter(entry => index.get(entry)?.lower.includes(lower) === true);
+    }
+
+    search(word: string): void {
+        this.$search = word;
+        const said = [this.$is].flat().filter(annotation => annotation !== undefined && annotation !== searching);
+        this.$is = word.trim() === '' ? said : [searching, ...said];
     }
 
     sizeOf(entry: $Chapter): number {
@@ -85,6 +126,12 @@ export class $Register extends $LibraryBook {
     }
 
     override aboveThePages(): ReactNode {
+        if (this.$search.trim() !== '') {
+            const Results = $(results);
+            return (
+                <Results chapter={this.table} />
+            );
+        }
         if (this.openGroup !== undefined) return undefined;
         const PartCard = $(partCard);
         return (
@@ -104,11 +151,13 @@ export class $Register extends $LibraryBook {
         const Cover = $(this.cover!);
         const RegisterHead = $(registerHead);
         const RowForm = $(rowForm);
+        const Search = $(search);
         return (
             <>
                 <Cover />
                 <RegisterHead chapter={this.cover} />
                 <RowForm chapter={this.cover} />
+                <Search chapter={this.cover} />
             </>
         );
     }
@@ -183,6 +232,172 @@ export class $PartCard extends $Paragraph {
         this.classes.add(this, 'pd-part-card');
     }
 }
+
+// The book is searching while a word stands in the search; the class is what the rules read.
+export class $Searching extends $Annotation {
+    specification = new OfABookSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-searching');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class $Search extends $Paragraph {
+    get register(): $Register | undefined { return this.book as $Register | undefined; }
+
+    $Search(...chemicals: $Chemical[]) {
+        this.$Writing(...chemicals);
+        this.containers.replace(this, 'span', 'div');
+    }
+
+    override write(): ReactNode {
+        const book = this.register;
+        if (book === undefined) return undefined;
+        return (
+            <>
+                <span
+                    className="pd-search-mark"
+                    aria-hidden="true"
+                >
+                    ⌕
+                </span>
+                <input
+                    className="pd-search-word"
+                    type="search"
+                    value={book.$search}
+                    placeholder={book.openGroup === undefined ? 'a word, over every conversation' : 'a word, within this part'}
+                    aria-label="search"
+                    onInput={event => book.search((event.target as HTMLInputElement).value)}
+                />
+            </>
+        );
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-search');
+    }
+}
+
+export class $Results extends $Paragraph {
+    get register(): $Register | undefined { return this.book as $Register | undefined; }
+
+    $Results(...chemicals: $Chemical[]) {
+        this.$Writing(...chemicals);
+        this.containers.replace(this, 'span', 'div');
+    }
+
+    override write(): ReactNode {
+        const book = this.register;
+        if (book === undefined) return undefined;
+        const sought = book.$search.trim();
+        const group = book.openGroup;
+        const found = book.found(sought);
+        const of = group === undefined ? `of ${book.entries.length}` : `of ${book.entriesOf(group).length} in this part`;
+        const Result = $(result);
+        return (
+            <>
+                <span className="pd-results-count">
+                    <b>{found.length}</b> {found.length === 1 ? 'conversation' : 'conversations'} {of} {found.length === 1 ? 'says' : 'say'} “{sought}” in {found.length === 1 ? 'its' : 'their'} title or synopsis
+                </span>
+                {found.map((entry, index) => (
+                    <Result
+                        key={index}
+                        chapter={this.chapter}
+                        entry={entry}
+                        named={group === undefined}
+                    />
+                ))}
+            </>
+        );
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-results');
+    }
+}
+
+export class $Result extends $Paragraph {
+    $entry?: $Chapter;
+    $named = false;
+    get register(): $Register | undefined { return this.book as $Register | undefined; }
+
+    $Result(...chemicals: $Chemical[]) {
+        this.$Writing(...chemicals);
+        this.containers.replace(this, 'span', 'div');
+    }
+
+    override write(): ReactNode {
+        const book = this.register;
+        const entry = this.$entry;
+        if (book === undefined || entry === undefined) return undefined;
+        const Word = $(word);
+        const Reference = $(reference);
+        const EntryDay = $(entryDay);
+        const EntryOpen = $(entryOpen);
+        const read = book.index().get(entry);
+        const sought = book.$search.trim();
+        const conversation = entry.annotations.expressed($Volume)?.cover?.mention?.identifier;
+        const part = this.$named ? book.groupOf(entry)?.canonical?.name : undefined;
+        return (
+            <>
+                <span className="pd-result-title">
+                    {marked(read?.title ?? entry.title?.name ?? '', sought)}
+                </span>
+                <span className="pd-result-exchanges">
+                    {book.sizeOf(entry)} exchanges
+                </span>
+                <EntryDay entry={entry} />
+                <span className="pd-result-synopsis">
+                    {part === undefined ? undefined : (
+                        <span className="pd-result-part">
+                            {part}
+                        </span>
+                    )}
+                    {marked(clipped(read?.synopsis ?? '', sought), sought)}
+                </span>
+                {conversation === undefined ? undefined : (
+                    <EntryOpen>
+                        <Reference>{conversation}</Reference>
+                    </EntryOpen>
+                )}
+            </>
+        );
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-result');
+    }
+}
+
+// The synopsis clipped around the first place the word stands, and the word marked wherever it stands.
+const clipped = (text: string, word: string): string => {
+    if (text.length <= 190) return text;
+    const at = text.toLowerCase().indexOf(word.toLowerCase());
+    if (at < 150) return `${text.slice(0, 187)}…`;
+    const start = text.lastIndexOf(' ', at - 90) + 1;
+    return `…${text.slice(start, start + 186)}…`;
+};
+
+const marked = (text: string, word: string): ReactNode => {
+    if (word === '') return text;
+    const lower = text.toLowerCase();
+    const needle = word.toLowerCase();
+    const pieces: ReactNode[] = [];
+    let from = 0;
+    for (let at = lower.indexOf(needle); at !== -1; at = lower.indexOf(needle, from)) {
+        pieces.push(text.slice(from, at), <mark key={at}>{text.slice(at, at + word.length)}</mark>);
+        from = at + word.length;
+    }
+    pieces.push(text.slice(from));
+    return pieces;
+};
 
 export class $RegisterHead extends $Paragraph {
     get register(): $Register | undefined { return this.book as $Register | undefined; }
@@ -302,6 +517,34 @@ export class $RegisterLayout extends $ListLayout {
             .pd-book .pd-head .pd-part-title { order: 2; grid-column: 1 / -1; margin: 0; font-family: ${({ theme }) => theme.serif}; font-size: calc(2.1429 * ${({ theme }) => theme.size}); font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; color: ${({ theme }) => theme.heading}; }
             .pd-book .pd-head .pd-report .pd-word.pa-reference { color: ${({ theme }) => theme.accent}; text-decoration: none; }
             ${this.cards()}
+            ${this.search()}
+        `;
+    }
+
+    protected search(): RuleSet {
+        return css`
+            .pd-book .pd-head .pd-paragraph.pd-search { order: 4; grid-column: 1 / -1; display: flex; align-items: center; gap: calc(${({ theme }) => theme.space} / 3); width: min(440px, 100%); margin: calc(${({ theme }) => theme.space} * 0.4167) 0 0; padding: calc(${({ theme }) => theme.space} * 0.2917) calc(${({ theme }) => theme.space} / 2); border: thin solid ${({ theme }) => theme.line}; border-radius: calc(${({ theme }) => theme.space} * 0.4167); background: ${({ theme }) => theme.side}; color: ${({ theme }) => theme.soft}; }
+            .pd-book .pd-head .pd-search .pd-search-mark { font-style: normal; font-size: calc(1.1429 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.faint}; }
+            .pd-book .pd-head .pd-search .pd-search-word { flex: 1; min-width: 0; border: 0; background: none; padding: 0; font-family: ${({ theme }) => theme.font}; font-size: ${({ theme }) => theme.size}; line-height: calc(1.4286 * ${({ theme }) => theme.size}); color: ${({ theme }) => theme.ink}; outline: none; }
+            .pd-book .pd-head .pd-search .pd-search-word::placeholder { color: ${({ theme }) => theme.soft}; }
+            .pd-book .pd-head .pd-search .pd-search-word::-webkit-search-cancel-button { cursor: pointer; }
+            .pd-book.pa-searching:not(.pa-turned) .pd-pages .pd-chapter.pa-page.pa-volume { display: none; }
+            .pd-book .pd-pages .pd-paragraph.pd-results { display: block; width: min(768px, 100%); margin: 0; }
+            .pd-book .pd-pages .pd-results .pd-results-count { display: block; margin: calc(${({ theme }) => theme.space} * 0.8333) 0 0; font-family: ${({ theme }) => theme.font}; font-size: calc(0.8571 * ${({ theme }) => theme.size}); font-weight: 500; line-height: 1.5; letter-spacing: 0.02em; color: ${({ theme }) => theme.soft}; }
+            .pd-book .pd-pages .pd-results .pd-results-count b { color: ${({ theme }) => theme.ink}; font-weight: 500; }
+            .pd-book .pd-pages .pd-paragraph.pd-result { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: 'title exchanges day' 'synopsis synopsis synopsis'; align-items: baseline; column-gap: calc(${({ theme }) => theme.space} * 0.6667); margin: 0; padding: calc(${({ theme }) => theme.space} * 0.5833) 0 calc(${({ theme }) => theme.space} * 0.5417); border-block-end: thin solid rgba(11, 11, 11, .08); }
+            .pd-book .pd-pages .pd-result .pd-result-title { grid-area: title; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: ${({ theme }) => theme.font}; font-size: calc(1.0714 * ${({ theme }) => theme.size}); line-height: 20px; color: ${({ theme }) => theme.ink}; }
+            .pd-book .pd-pages .pd-result:hover .pd-result-title { color: ${({ theme }) => theme.accent}; }
+            .pd-book .pd-pages .pd-result .pd-result-exchanges { grid-area: exchanges; font-family: ${({ theme }) => theme.font}; font-size: calc(0.8571 * ${({ theme }) => theme.size}); line-height: 20px; color: ${({ theme }) => theme.faint}; white-space: nowrap; font-variant-numeric: tabular-nums; }
+            .pd-book .pd-pages .pd-result .pd-word.pd-entry-day { grid-area: day; min-width: 52px; text-align: end; font-family: ${({ theme }) => theme.font}; font-size: ${({ theme }) => theme.size}; line-height: 20px; color: ${({ theme }) => theme.soft}; white-space: nowrap; }
+            .pd-book .pd-pages .pd-result .pd-result-synopsis { grid-area: synopsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-block-start: 4px; font-family: ${({ theme }) => theme.serif}; font-size: ${({ theme }) => theme.size}; line-height: 1.5; color: ${({ theme }) => theme.soft}; }
+            .pd-book .pd-pages .pd-result .pd-result-part { display: inline-block; margin-inline-end: calc(${({ theme }) => theme.space} / 3); padding: 0 6px; border-radius: 4px; background: ${({ theme }) => theme.tint}; font-family: ${({ theme }) => theme.font}; font-size: calc(0.7857 * ${({ theme }) => theme.size}); font-weight: 500; line-height: 18px; color: ${({ theme }) => theme.soft}; vertical-align: 1px; }
+            .pd-book .pd-pages .pd-result mark { background: #fff2a8; color: inherit; padding: 0 1px; border-radius: 2px; }
+            .pd-book .pd-pages .pd-result > a:has(> .pd-entry-open) { position: absolute; inset: 0; z-index: 1; }
+            @media (max-width: ${({ theme }) => theme.narrow}) {
+                .pd-book .pd-head .pd-paragraph.pd-search { width: 100%; }
+                .pd-book .pd-pages .pd-result .pd-result-exchanges { display: none; }
+            }
         `;
     }
 
@@ -356,9 +599,17 @@ export class RegisterSpecification extends LibraryBookSpecification {
 
 export const Register = $($Register);
 export const PartCard = $($PartCard);
+export const Searching = $($Searching);
+export const Search = $($Search);
+export const Results = $($Results);
+export const Result = $($Result);
 export const RegisterHead = $($RegisterHead);
 export const RegisterLayout = $($RegisterLayout);
 const partCard = PartCard;
+const searching = Searching;
+const search = Search;
+const results = Results;
+const result = Result;
 const registerHead = RegisterHead;
 $(Register, Theme)(ManualTheme);
 $(Register, tone)(light);

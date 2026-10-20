@@ -76,6 +76,12 @@ export class $ClaudeConversation extends $Conversation {
     get project(): $Project | undefined { return this.cover?.annotations.expressed($Project); }
     get account(): $Account | undefined { return this.cover?.annotations.expressed($Account); }
     get origin(): string | undefined { return this.cover?.annotations.expressed($Origin)?.uuid; }
+    // The logo files the conversation under its project when the cover names one, the project's cover standing as a
+    // volume of the conversation's; the name under the conversation's on hover is the project's, and the mark leads
+    // to the project's page. Sprint 114, concept 5 of Claudes Design, its first form.
+    override get subjectCover(): $Chapter | undefined {
+        return this.coverOf(this.project?.means?.identifier) ?? super.subjectCover;
+    }
 
     override write(): ReactNode {
         const Pane = $(pane);

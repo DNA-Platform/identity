@@ -345,16 +345,17 @@ export class VolumeSpecification extends AnnotationSpecification {
             'a volume is a chapter that stands for another book, a synopsis of it, a cover filed under it or a design of it, and this is none');
     }
 
-    @specify('a volume holds the cover of a book its chapter stands for')
+    @specify('a volume holds the cover of a book its chapter stands for or names')
     $holdsTheCover(writing: $Writing): void {
         const stoodFor = [
             writing.annotations.expressed($Synopsis)?.means?.identifier,
             writing.annotations.expressed($Subject)?.means?.identifier,
             writing.annotations.expressed($Author)?.means?.identifier,
             writing.annotations.expressed($Design)?.identifier,
+            ...[...writing.annotations].map(annotation => (annotation as { means?: { identifier?: string } }).means?.identifier),
         ];
         $check(writing.annotations.find($Volume).every(volume => volume.cover?.is($Cover) === true && stoodFor.includes(volume.cover.mention?.identifier)),
-            'a volume holds the cover of a book its chapter stands for, the book a synopsis or a design is of or the subject or author a cover is filed under, and one here holds something else');
+            'a volume holds the cover of a book its chapter stands for or names, the book a synopsis or a design is of, the subject or author a cover is filed under or a book another line of the cover names, and one here holds something else');
     }
 }
 
