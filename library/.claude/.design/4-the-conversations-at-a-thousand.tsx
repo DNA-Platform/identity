@@ -30,7 +30,12 @@ export default () => (
                 the session decides, its choice stands until my number says otherwise: 006 as cards, since the
                 application lays its projects as cards and nothing is reinvented that it has settled; 007 with the
                 parts folded and the open one unfolded; 008 each row naming its part, and within the part when one
-                is open.
+                is open. Built so in Sprint 114, the days after: <Means>$[[ Our Conversations ]]</Means> opens on
+                its parts as 006 lays them, a part pressed opens on its rows as 007 does with the side folded to its
+                parts and the open one lit, and a word typed answers as 008 does with each row naming its part;
+                the search over the words said in the messages waits on the binder, and the pages drawn behind the
+                cards make the page answer a press only after some seconds at a thousand, which is the next
+                design's question.
             </Paragraph>
         </Section>
         <Section>
