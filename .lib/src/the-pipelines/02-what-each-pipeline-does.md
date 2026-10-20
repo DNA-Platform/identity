@@ -53,9 +53,11 @@ recording of a dataset: Erin's matcher (mutual nearest neighbours) at her 10 µm
 coordinates, every link between two recordings given a status - `valid` for two registered frames,
 `provisional` for the same session in mixed frames, `unregistered` otherwise - so no figure can imply
 more than the data supports. It writes the **spine** (every pre/post pair of the stimulus scans: 749 on
-33328, 3,256 on 33977), the **four-way table** (the spine's cells present in all four recordings of a
-dataset with spontaneous ones: 1,177 on 33977), and the links into each spontaneous recording. Row
-order is identity downstream: the spine's order is every twin's readout order.
+33328, 980 / 3,256 on 33977 under CaImAn / Suite2P), the **pre-and-spontaneous table** (the pre cells
+linked into the pre spontaneous recording and on into the post one: 489 / 1,619 on 33977), the
+**four-way table** (the spine's cells in all four recordings, which the analyses of the spontaneous
+recordings read), and the links into each spontaneous recording. Row order is identity downstream: a
+table's order is its twin's readout order.
 
 ## `digital_twin` - the twins
 
@@ -63,17 +65,21 @@ order is identity downstream: the spine's order is every twin's readout order.
 
 - `prepare` - each scan's frames assembled from the stimulus set's, at the delivered 36x64;
 - `match`;
-- `ceiling` - the lab's noise ceiling;
-- `twin` - the dataset's pairs, trained packed onto the card by measured memory;
+- `ceiling` - the lab's noise ceiling and FEV, the number every twin's cells are cut at;
+- `twin` - the dataset's twins, trained packed onto the card by measured memory;
 - `validate` - FEVE and the health panels;
 - `compare` - pre against post on cells reliable in both;
 - `figures` - explained variance.
 
-Every dataset gets **two twins**, pre and post, trained on the cells `matched` finds in **all** of its
-recordings (`run.cell_set`). For 33328, with two driven recordings, that is the spine. For 33977, with
-two spontaneous recordings as well, it is the four-way **intersection**. Doug, 2026-09-28: *"the rule is
-that from matched, we take the intersection of all recordings... That's a simplifying assumption."*
-The twins use the published Sensorium
+Every dataset gets **as many twins as its recordings allow** (`run.twin_names`), since 2026-10-20: the
+**pair**, pre and post on the pre-post cells (the spine, FEV >= 0.15 in both image recordings), and
+where there are spontaneous recordings the **moments' twin**, before DOI on the pre-and-spontaneous
+cells (FEV >= 0.15 in the pre recording). Doug: *"Have the pipeline make these twins: Pre - matched cells
+pre-post; Post - matched cells pre-post; Pre - matched pre-spontaneous-spontaneous, no post."* Every twin
+sees **Doug's sinusoidal normalisation**, of the activity (a map per neuron per recording) and of the
+images (one map over the whole stimulus set, on [-1, 1]) - *"Sine norm and FEV cutoff used for all twins
+and for both caiman and suite2p"*. The one pair a dataset on the cells of every recording that this
+replaced is at the tag `four-way-twins`. The twins use the published Sensorium
 configuration, verbatim, on the frame it was published for. When every phase has run, the pipeline
 writes the **canonical build** (`build.json`): the exact checkpoints with their hashes, the settings,
 and the data's fingerprint. Every reader of a twin loads through it.
@@ -81,8 +87,8 @@ and the data's fingerprint. Every reader of a twin loads through it.
 ## `mei` - most exciting images
 
 [`src/pipelines/mei/`](../../pipelines/mei/.cover.md). Walker 2019's recipe on the lab's ops,
-for every matched pair reliable in both conditions (the lab's FEV >= 0.15), from the dataset's pair of
-twins; best-understood cells first. Phases `index`, `mei` (sixteen
+for every cell of the dataset's pair (all of them clear the lab's FEV >= 0.15 in both conditions),
+best-understood cells first; every MEI clipped to [-1, 1], the images' black and white. Phases `index`, `mei` (sixteen
 cells a batch on the fast path), `quality`, `organize`, `figures` - which are the two Doug asked for:
 `comparison.png` (every pair, before above after, by pre-FEVE, its pages in `comparison/`) and
 `spectrum-and-filter.png` (the MEI spectrum before and after DOI, and the filter between them - the
@@ -92,10 +98,11 @@ against the fixed 1x benchmark at three MEI blurs, the filter against June's - w
 ## `metamer` - the image that evokes a measured response
 
 [`src/pipelines/metamer/`](../../pipelines/metamer/.cover.md). Cobos 2022's inversion of the twin
-against a response the animal actually gave. The surface, all on the pair `mei` uses: one metamer per
-test stimulus - each twin its own, and the pre twin reading the post responses - and the **spontaneous
-metameric moments**, every half-second bin, the pre twin reading the pre recording (pre-pre) and the
-post one (pre-post). The null and unconditioned metamers were retired on 2026-10-09 (*"we don't need the
+against a response the animal actually gave. The surface: one metamer per test stimulus from the pair
+`mei` uses - each twin its own, and the pre twin reading the post responses - the same from the
+moments' twin, as a check, and the **spontaneous metameric moments**, every half-second bin, the
+moments' twin reading the pre recording (pre-pre) and the post one (pre-post), each cell on its own
+sinusoidal map in its own recording. The null and unconditioned metamers were retired on 2026-10-09 (*"we don't need the
 null and unconditioned at all"*). One fast path for all of it, 0.51 s a metamer on the 45-px twin, held
 against the single-image recipe by `check.py`; an inventory closes every run. Since 2026-10-13 the moments are
 denoised by the spontaneous analysis's 2026-09-21 seed model, fitted per pairing (*"I want us to be doing what we did
