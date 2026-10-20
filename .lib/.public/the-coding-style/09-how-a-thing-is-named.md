@@ -37,6 +37,7 @@ A library built on `.public` was written with classes named `BookItself`, `Liste
 5. **A name says what, never how or why.** `BookItself` says where a link goes; `BookLink` says what it is. `Listed` says what was done to something; `Shelf` says what it is. `Pick` says what a reader does; `Tab` says what they press. A participle is right only when it is the state itself, as `Closed` and `Paginated` are.
 6. **A file is named for the thing it documents or holds.** A chapter `N-the-<thing>.tsx`; a file beside it `N-the-<thing>~<what it holds>.tsx` — `code`, `theme`, `faces`, `annotations`, `entry`, `said` — one concern each, a noun each, a file named for what it holds and never for what it does. An appendix chapter is `oN-…`.
 7. **Flag what is still a stand-in.** A name is Doug's to keep or change; it is written where he reads, with `PROXY` beside the ones not yet his.
+8. **Grep the chain before naming a member.** A name the framework, the library or a sibling already owns on the same class chain shadows it without a word: on 2026-10-19 a register's `parts` getter shadowed `$Composition.parts` and the strict composition's check read the table's sections as held parts, a book's `placeOf` collided with the catalogue's, and a search's `Answer` with a paragraph the design book already exported. `rg "get name\(|name\(" library/.public/package/src .me/.manual` first, every time.
 
 ## Nouns and annotations — when a thing is new, and when it is said of a writing
 
