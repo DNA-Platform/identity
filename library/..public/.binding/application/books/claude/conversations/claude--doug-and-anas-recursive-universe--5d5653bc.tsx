@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--doug-and-ana
 import Cover from '../../../../../../.claude/.conversations/claude--doug-and-anas-recursive-universe--5d5653bc/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--doug-and-anas-recursive-universe--5d5653bc/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--doug-and-anas-recursive-universe--5d5653bc/.table';
-import March2820251 from '../../../../../../.claude/.conversations/claude--doug-and-anas-recursive-universe--5d5653bc/1-march-28-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--doug-and-anas-recursive-universe--5d5653bc/1-conversation';
 import FixedEvolvedsvgCodeV1o1 from '../../../../../../.claude/.conversations/claude--doug-and-anas-recursive-universe--5d5653bc/o1-fixed-evolvedsvg-code-v1';
 import FixedEvolvedsvgCodeV2o2 from '../../../../../../.claude/.conversations/claude--doug-and-anas-recursive-universe--5d5653bc/o2-fixed-evolvedsvg-code-v2';
 import FixedEvolvedsvgCodeV3o3 from '../../../../../../.claude/.conversations/claude--doug-and-anas-recursive-universe--5d5653bc/o3-fixed-evolvedsvg-code-v3';
@@ -70,7 +70,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March2820251()}
+        {Conversation1()}
         {FixedEvolvedsvgCodeV1o1()}
         {FixedEvolvedsvgCodeV2o2()}
         {FixedEvolvedsvgCodeV3o3()}

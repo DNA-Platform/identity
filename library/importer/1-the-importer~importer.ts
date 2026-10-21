@@ -36,6 +36,7 @@ const ourConversationsSynopsis = 'Every conversation I have had with Claude, eac
 const dougsClaudeCaption = 'My conversations with Claude and the projects they were held in:';
 const ourConversationsCaption = 'All of them, newest first:';
 const projectCaption = 'A project of mine, and the conversations held in it:';
+const noProjectHeading = 'No project';
 const noMappingWords = '  no mapping captured off the application; every conversation will be unpaired';
 
 export type Account = { name: string; folder: string; address: string; ledger: string };
@@ -520,6 +521,7 @@ const writeBooks = (
             const conversationCaption = `A conversation, ${countedNoun(path.length, 'exchange')}:`;
             const entry = registerEntry(
                 folders, folders.conversations, naming.name, book.folder, conversation.updatedAt, conversationCaption, '**',
+                undefined, written.project?.name ?? noProjectHeading,
             );
             const accountReading = reading.readingOf(pairing);
             const recordPath = accountReading.account.ledger;
@@ -536,7 +538,18 @@ const writeBooks = (
             writtenCount++;
         }
     }
-    filesTouched.push(...orderRegisterTable(folders.conversations), ...orderRegisterTable(folders.claude));
+    const latestByPart = new Map<string, string>();
+    for (const pairing of included) {
+        const part = pairing.projectName ?? noProjectHeading;
+        const latest = conversationOfPairing(pairing).updatedAt;
+        if ((latestByPart.get(part) ?? '') < latest) latestByPart.set(part, latest);
+    }
+    const partsNewestFirst = [...latestByPart.entries()]
+        .filter(([part]) => part !== noProjectHeading)
+        .sort((first, second) => second[1].localeCompare(first[1]))
+        .map(([part]) => part);
+    if (latestByPart.has(noProjectHeading)) partsNewestFirst.push(noProjectHeading);
+    filesTouched.push(...orderRegisterTable(folders.conversations, partsNewestFirst), ...orderRegisterTable(folders.claude));
     console.log(`\nwrote ${countedNoun(writtenCount, 'conversation')}, kept ${keptCount}, `
         + `${countedNoun(emptyCount, 'conversation')} with no message not written, `
         + `${countedNoun(filesTouched.length, 'file')} touched under ${folders.claude}`);

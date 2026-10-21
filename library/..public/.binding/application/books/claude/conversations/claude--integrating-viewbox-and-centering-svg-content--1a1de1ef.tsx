@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--integrating-
 import Cover from '../../../../../../.claude/.conversations/claude--integrating-viewbox-and-centering-svg-content--1a1de1ef/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--integrating-viewbox-and-centering-svg-content--1a1de1ef/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--integrating-viewbox-and-centering-svg-content--1a1de1ef/.table';
-import March2520251 from '../../../../../../.claude/.conversations/claude--integrating-viewbox-and-centering-svg-content--1a1de1ef/1-march-25-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--integrating-viewbox-and-centering-svg-content--1a1de1ef/1-conversation';
 import FixedMapcontainerTsxV1o1 from '../../../../../../.claude/.conversations/claude--integrating-viewbox-and-centering-svg-content--1a1de1ef/o1-fixed-mapcontainer-tsx-v1';
 import ImprovedMapcontainerArchitectureV1o2 from '../../../../../../.claude/.conversations/claude--integrating-viewbox-and-centering-svg-content--1a1de1ef/o2-improved-mapcontainer-architecture-v1';
 import MapcontainerForReactSimpleMapsV1o3 from '../../../../../../.claude/.conversations/claude--integrating-viewbox-and-centering-svg-content--1a1de1ef/o3-mapcontainer-for-react-simple-maps-v1';
@@ -30,7 +30,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March2520251()}
+        {Conversation1()}
         {FixedMapcontainerTsxV1o1()}
         {ImprovedMapcontainerArchitectureV1o2()}
         {MapcontainerForReactSimpleMapsV1o3()}

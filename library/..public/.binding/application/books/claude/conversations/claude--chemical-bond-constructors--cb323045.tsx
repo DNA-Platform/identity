@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemical-bon
 import Cover from '../../../../../../.claude/.conversations/claude--chemical-bond-constructors--cb323045/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemical-bond-constructors--cb323045/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemical-bond-constructors--cb323045/.table';
-import September2620251 from '../../../../../../.claude/.conversations/claude--chemical-bond-constructors--cb323045/1-september-26-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemical-bond-constructors--cb323045/1-conversation';
 import ChemistryTodoAppCompleteImplementationV1o1 from '../../../../../../.claude/.conversations/claude--chemical-bond-constructors--cb323045/o1-chemistry-todo-app-complete-implementation-v1';
 import BondOrchestratorChildrenReconstructionV1o2 from '../../../../../../.claude/.conversations/claude--chemical-bond-constructors--cb323045/o2-bond-orchestrator-children-reconstruction-v1';
 import BondOrchestratorChildrenReconstructionV2o3 from '../../../../../../.claude/.conversations/claude--chemical-bond-constructors--cb323045/o3-bond-orchestrator-children-reconstruction-v2';
@@ -17,7 +17,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2620251()}
+        {Conversation1()}
         {ChemistryTodoAppCompleteImplementationV1o1()}
         {BondOrchestratorChildrenReconstructionV1o2()}
         {BondOrchestratorChildrenReconstructionV2o3()}

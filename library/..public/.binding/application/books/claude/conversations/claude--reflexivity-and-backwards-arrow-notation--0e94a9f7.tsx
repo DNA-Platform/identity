@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--reflexivity-
 import Cover from '../../../../../../.claude/.conversations/claude--reflexivity-and-backwards-arrow-notation--0e94a9f7/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--reflexivity-and-backwards-arrow-notation--0e94a9f7/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--reflexivity-and-backwards-arrow-notation--0e94a9f7/.table';
-import February2320261 from '../../../../../../.claude/.conversations/claude--reflexivity-and-backwards-arrow-notation--0e94a9f7/1-february-23-2026';
-import February2420262 from '../../../../../../.claude/.conversations/claude--reflexivity-and-backwards-arrow-notation--0e94a9f7/2-february-24-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--reflexivity-and-backwards-arrow-notation--0e94a9f7/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {February2320261()}
-        {February2420262()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--banach-tarsk
 import Cover from '../../../../../../.claude/.conversations/claude--banach-tarski-and-the-axiom-of-choice--a2285675/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--banach-tarski-and-the-axiom-of-choice--a2285675/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--banach-tarski-and-the-axiom-of-choice--a2285675/.table';
-import July1520261 from '../../../../../../.claude/.conversations/claude--banach-tarski-and-the-axiom-of-choice--a2285675/1-july-15-2026';
-import July1620262 from '../../../../../../.claude/.conversations/claude--banach-tarski-and-the-axiom-of-choice--a2285675/2-july-16-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--banach-tarski-and-the-axiom-of-choice--a2285675/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {July1520261()}
-        {July1620262()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--eirian-and-i
 import Cover from '../../../../../../.claude/.conversations/claude--eirian-and-i-build-a-team--826ea764/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--eirian-and-i-build-a-team--826ea764/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--eirian-and-i-build-a-team--826ea764/.table';
-import August1220251 from '../../../../../../.claude/.conversations/claude--eirian-and-i-build-a-team--826ea764/1-august-12-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--eirian-and-i-build-a-team--826ea764/1-conversation';
 import UpworkJobPostingAcademicProjectCoordinatorForConsciouo1 from '../../../../../../.claude/.conversations/claude--eirian-and-i-build-a-team--826ea764/o1-upwork-job-posting-academic-project-coordinator-for-consciou';
 import AcademicResearchCoordinatorNeurosciencePublicationsV2o2 from '../../../../../../.claude/.conversations/claude--eirian-and-i-build-a-team--826ea764/o2-academic-research-coordinator-neuroscience-publications-v2';
 
@@ -15,7 +15,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August1220251()}
+        {Conversation1()}
         {UpworkJobPostingAcademicProjectCoordinatorForConsciouo1()}
         {AcademicResearchCoordinatorNeurosciencePublicationsV2o2()}
     </Book>

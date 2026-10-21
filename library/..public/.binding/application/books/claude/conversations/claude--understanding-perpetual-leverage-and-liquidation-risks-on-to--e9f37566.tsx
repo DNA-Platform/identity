@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--understandin
 import Cover from '../../../../../../.claude/.conversations/claude--understanding-perpetual-leverage-and-liquidation-risks-on-to--e9f37566/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--understanding-perpetual-leverage-and-liquidation-risks-on-to--e9f37566/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--understanding-perpetual-leverage-and-liquidation-risks-on-to--e9f37566/.table';
-import April1620261 from '../../../../../../.claude/.conversations/claude--understanding-perpetual-leverage-and-liquidation-risks-on-to--e9f37566/1-april-16-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--understanding-perpetual-leverage-and-liquidation-risks-on-to--e9f37566/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {April1620261()}
+        {Conversation1()}
     </Book>
 );
 

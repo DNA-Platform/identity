@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--did-prevalen
 import Cover from '../../../../../../.claude/.conversations/claude--did-prevalence-and-structural-violence-in-russia--5a5cda15/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--did-prevalence-and-structural-violence-in-russia--5a5cda15/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--did-prevalence-and-structural-violence-in-russia--5a5cda15/.table';
-import February320261 from '../../../../../../.claude/.conversations/claude--did-prevalence-and-structural-violence-in-russia--5a5cda15/1-february-3-2026';
-import February420262 from '../../../../../../.claude/.conversations/claude--did-prevalence-and-structural-violence-in-russia--5a5cda15/2-february-4-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--did-prevalence-and-structural-violence-in-russia--5a5cda15/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {February320261()}
-        {February420262()}
+        {Conversation1()}
     </Book>
 );
 

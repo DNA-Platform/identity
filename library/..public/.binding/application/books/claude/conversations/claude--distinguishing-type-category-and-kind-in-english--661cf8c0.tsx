@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--distinguishi
 import Cover from '../../../../../../.claude/.conversations/claude--distinguishing-type-category-and-kind-in-english--661cf8c0/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--distinguishing-type-category-and-kind-in-english--661cf8c0/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--distinguishing-type-category-and-kind-in-english--661cf8c0/.table';
-import July320261 from '../../../../../../.claude/.conversations/claude--distinguishing-type-category-and-kind-in-english--661cf8c0/1-july-3-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--distinguishing-type-category-and-kind-in-english--661cf8c0/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {July320261()}
+        {Conversation1()}
     </Book>
 );
 

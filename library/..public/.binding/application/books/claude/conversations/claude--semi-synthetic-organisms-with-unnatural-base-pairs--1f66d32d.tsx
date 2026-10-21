@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semi-synthet
 import Cover from '../../../../../../.claude/.conversations/claude--semi-synthetic-organisms-with-unnatural-base-pairs--1f66d32d/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semi-synthetic-organisms-with-unnatural-base-pairs--1f66d32d/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semi-synthetic-organisms-with-unnatural-base-pairs--1f66d32d/.table';
-import July120261 from '../../../../../../.claude/.conversations/claude--semi-synthetic-organisms-with-unnatural-base-pairs--1f66d32d/1-july-1-2026';
-import July220262 from '../../../../../../.claude/.conversations/claude--semi-synthetic-organisms-with-unnatural-base-pairs--1f66d32d/2-july-2-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semi-synthetic-organisms-with-unnatural-base-pairs--1f66d32d/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {July120261()}
-        {July220262()}
+        {Conversation1()}
     </Book>
 );
 

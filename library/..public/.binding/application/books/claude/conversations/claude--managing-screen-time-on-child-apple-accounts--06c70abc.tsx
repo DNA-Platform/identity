@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--managing-scr
 import Cover from '../../../../../../.claude/.conversations/claude--managing-screen-time-on-child-apple-accounts--06c70abc/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--managing-screen-time-on-child-apple-accounts--06c70abc/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--managing-screen-time-on-child-apple-accounts--06c70abc/.table';
-import January820261 from '../../../../../../.claude/.conversations/claude--managing-screen-time-on-child-apple-accounts--06c70abc/1-january-8-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--managing-screen-time-on-child-apple-accounts--06c70abc/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {January820261()}
+        {Conversation1()}
     </Book>
 );
 

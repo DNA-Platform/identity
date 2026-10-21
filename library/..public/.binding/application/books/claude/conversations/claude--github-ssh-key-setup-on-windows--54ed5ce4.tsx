@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--github-ssh-k
 import Cover from '../../../../../../.claude/.conversations/claude--github-ssh-key-setup-on-windows--54ed5ce4/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--github-ssh-key-setup-on-windows--54ed5ce4/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--github-ssh-key-setup-on-windows--54ed5ce4/.table';
-import June2820251 from '../../../../../../.claude/.conversations/claude--github-ssh-key-setup-on-windows--54ed5ce4/1-june-28-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--github-ssh-key-setup-on-windows--54ed5ce4/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {June2820251()}
+        {Conversation1()}
     </Book>
 );
 

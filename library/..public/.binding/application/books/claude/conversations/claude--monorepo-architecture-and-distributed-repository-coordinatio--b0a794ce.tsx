@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--monorepo-arc
 import Cover from '../../../../../../.claude/.conversations/claude--monorepo-architecture-and-distributed-repository-coordinatio--b0a794ce/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--monorepo-architecture-and-distributed-repository-coordinatio--b0a794ce/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--monorepo-architecture-and-distributed-repository-coordinatio--b0a794ce/.table';
-import March1220261 from '../../../../../../.claude/.conversations/claude--monorepo-architecture-and-distributed-repository-coordinatio--b0a794ce/1-march-12-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--monorepo-architecture-and-distributed-repository-coordinatio--b0a794ce/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March1220261()}
+        {Conversation1()}
     </Book>
 );
 

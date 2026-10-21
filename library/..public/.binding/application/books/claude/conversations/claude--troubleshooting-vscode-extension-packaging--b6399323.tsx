@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--troubleshoot
 import Cover from '../../../../../../.claude/.conversations/claude--troubleshooting-vscode-extension-packaging--b6399323/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--troubleshooting-vscode-extension-packaging--b6399323/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--troubleshooting-vscode-extension-packaging--b6399323/.table';
-import February1820251 from '../../../../../../.claude/.conversations/claude--troubleshooting-vscode-extension-packaging--b6399323/1-february-18-2025';
-import February1920252 from '../../../../../../.claude/.conversations/claude--troubleshooting-vscode-extension-packaging--b6399323/2-february-19-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--troubleshooting-vscode-extension-packaging--b6399323/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {February1820251()}
-        {February1920252()}
+        {Conversation1()}
     </Book>
 );
 

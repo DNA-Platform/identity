@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--metalogical-
 import Cover from '../../../../../../.claude/.conversations/claude--metalogical-subjectivity--f6dfdc21/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--metalogical-subjectivity--f6dfdc21/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--metalogical-subjectivity--f6dfdc21/.table';
-import March2220251 from '../../../../../../.claude/.conversations/claude--metalogical-subjectivity--f6dfdc21/1-march-22-2025';
-import March2320252 from '../../../../../../.claude/.conversations/claude--metalogical-subjectivity--f6dfdc21/2-march-23-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--metalogical-subjectivity--f6dfdc21/1-conversation';
 import TheTransductionTheoremRefinedV1o1 from '../../../../../../.claude/.conversations/claude--metalogical-subjectivity--f6dfdc21/o1-the-transduction-theorem-refined-v1';
 import AComprehensiveGuideToPropositionalLogicV1o2 from '../../../../../../.claude/.conversations/claude--metalogical-subjectivity--f6dfdc21/o2-a-comprehensive-guide-to-propositional-logic-v1';
 import AComprehensiveGuideToFirstOrderLogicWithPeanoArithmo3 from '../../../../../../.claude/.conversations/claude--metalogical-subjectivity--f6dfdc21/o3-a-comprehensive-guide-to-first-order-logic-with-peano-arithm';
@@ -37,8 +36,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March2220251()}
-        {March2320252()}
+        {Conversation1()}
         {TheTransductionTheoremRefinedV1o1()}
         {AComprehensiveGuideToPropositionalLogicV1o2()}
         {AComprehensiveGuideToFirstOrderLogicWithPeanoArithmo3()}

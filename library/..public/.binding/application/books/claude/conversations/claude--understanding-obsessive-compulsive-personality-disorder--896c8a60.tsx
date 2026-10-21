@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--understandin
 import Cover from '../../../../../../.claude/.conversations/claude--understanding-obsessive-compulsive-personality-disorder--896c8a60/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--understanding-obsessive-compulsive-personality-disorder--896c8a60/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--understanding-obsessive-compulsive-personality-disorder--896c8a60/.table';
-import November420241 from '../../../../../../.claude/.conversations/claude--understanding-obsessive-compulsive-personality-disorder--896c8a60/1-november-4-2024';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--understanding-obsessive-compulsive-personality-disorder--896c8a60/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November420241()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--the-meaning-
 import Cover from '../../../../../../.claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c/.table';
-import October1120251 from '../../../../../../.claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c/1-october-11-2025';
-import October1920252 from '../../../../../../.claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c/2-october-19-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c/1-conversation';
 import SevenBeautifulDiscoveriesAboutSrtAndGrammarV1o1 from '../../../../../../.claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c/o1-seven-beautiful-discoveries-about-srt-and-grammar-v1';
 import SevenBeautifulDiscoveriesAboutSrtAndGrammarV2o2 from '../../../../../../.claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c/o2-seven-beautiful-discoveries-about-srt-and-grammar-v2';
 import SevenBeautifulDiscoveriesAboutSrtAndGrammarV3o3 from '../../../../../../.claude/.conversations/claude--the-meaning-of-meaning--2f5fcd6c/o3-seven-beautiful-discoveries-about-srt-and-grammar-v3';
@@ -22,8 +21,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October1120251()}
-        {October1920252()}
+        {Conversation1()}
         {SevenBeautifulDiscoveriesAboutSrtAndGrammarV1o1()}
         {SevenBeautifulDiscoveriesAboutSrtAndGrammarV2o2()}
         {SevenBeautifulDiscoveriesAboutSrtAndGrammarV3o3()}

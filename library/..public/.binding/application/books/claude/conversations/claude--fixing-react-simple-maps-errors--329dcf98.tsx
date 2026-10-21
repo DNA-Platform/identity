@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--fixing-react
 import Cover from '../../../../../../.claude/.conversations/claude--fixing-react-simple-maps-errors--329dcf98/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--fixing-react-simple-maps-errors--329dcf98/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--fixing-react-simple-maps-errors--329dcf98/.table';
-import March2420251 from '../../../../../../.claude/.conversations/claude--fixing-react-simple-maps-errors--329dcf98/1-march-24-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--fixing-react-simple-maps-errors--329dcf98/1-conversation';
 import FixedWorldMapComponentV1o1 from '../../../../../../.claude/.conversations/claude--fixing-react-simple-maps-errors--329dcf98/o1-fixed-world-map-component-v1';
 import ImplementationGuideForReactSimpleMapsV1o2 from '../../../../../../.claude/.conversations/claude--fixing-react-simple-maps-errors--329dcf98/o2-implementation-guide-for-react-simple-maps-v1';
 import WorldBasicTsxMapPageV1o3 from '../../../../../../.claude/.conversations/claude--fixing-react-simple-maps-errors--329dcf98/o3-world-basic-tsx-map-page-v1';
@@ -18,7 +18,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March2420251()}
+        {Conversation1()}
         {FixedWorldMapComponentV1o1()}
         {ImplementationGuideForReactSimpleMapsV1o2()}
         {WorldBasicTsxMapPageV1o3()}

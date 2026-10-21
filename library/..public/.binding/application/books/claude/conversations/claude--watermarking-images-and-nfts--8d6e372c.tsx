@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--watermarking
 import Cover from '../../../../../../.claude/.conversations/claude--watermarking-images-and-nfts--8d6e372c/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--watermarking-images-and-nfts--8d6e372c/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--watermarking-images-and-nfts--8d6e372c/.table';
-import October2920241 from '../../../../../../.claude/.conversations/claude--watermarking-images-and-nfts--8d6e372c/1-october-29-2024';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--watermarking-images-and-nfts--8d6e372c/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October2920241()}
+        {Conversation1()}
     </Book>
 );
 

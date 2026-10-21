@@ -4,10 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--the-semantic
 import Cover from '../../../../../../.claude/.conversations/claude--the-semantics-of-books--8dbb8e2b/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--the-semantics-of-books--8dbb8e2b/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--the-semantics-of-books--8dbb8e2b/.table';
-import July1620261 from '../../../../../../.claude/.conversations/claude--the-semantics-of-books--8dbb8e2b/1-july-16-2026';
-import July1720262 from '../../../../../../.claude/.conversations/claude--the-semantics-of-books--8dbb8e2b/2-july-17-2026';
-import July1820263 from '../../../../../../.claude/.conversations/claude--the-semantics-of-books--8dbb8e2b/3-july-18-2026';
-import July1920264 from '../../../../../../.claude/.conversations/claude--the-semantics-of-books--8dbb8e2b/4-july-19-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--the-semantics-of-books--8dbb8e2b/1-conversation';
 
 const Book = $($Book);
 
@@ -16,10 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {July1620261()}
-        {July1720262()}
-        {July1820263()}
-        {July1920264()}
+        {Conversation1()}
     </Book>
 );
 

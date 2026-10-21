@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--uae-as-crypt
 import Cover from '../../../../../../.claude/.conversations/claude--uae-as-crypto-fiat-bridge-for-telegrams-digital-ecosystem--a3aa6b90/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--uae-as-crypto-fiat-bridge-for-telegrams-digital-ecosystem--a3aa6b90/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--uae-as-crypto-fiat-bridge-for-telegrams-digital-ecosystem--a3aa6b90/.table';
-import February220261 from '../../../../../../.claude/.conversations/claude--uae-as-crypto-fiat-bridge-for-telegrams-digital-ecosystem--a3aa6b90/1-february-2-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--uae-as-crypto-fiat-bridge-for-telegrams-digital-ecosystem--a3aa6b90/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {February220261()}
+        {Conversation1()}
     </Book>
 );
 

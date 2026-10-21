@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemistry-ts
 import Cover from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--28761d52/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--28761d52/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--28761d52/.table';
-import September2620251 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--28761d52/1-september-26-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--28761d52/1-conversation';
 import ChemistryFrameworkDeepAnalysisV1o1 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--28761d52/o1-chemistry-framework-deep-analysis-v1';
 import ChemistryChildBindingTestsV1o2 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--28761d52/o2-chemistry-child-binding-tests-v1';
 import ChemistryChildBindingTestsV2o3 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--28761d52/o3-chemistry-child-binding-tests-v2';
@@ -42,7 +42,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2620251()}
+        {Conversation1()}
         {ChemistryFrameworkDeepAnalysisV1o1()}
         {ChemistryChildBindingTestsV1o2()}
         {ChemistryChildBindingTestsV2o3()}

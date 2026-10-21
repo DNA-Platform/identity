@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--first-time-i
 import Cover from '../../../../../../.claude/.conversations/claude--first-time-irs-penalty-abatement-options--8d505eb2/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--first-time-irs-penalty-abatement-options--8d505eb2/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--first-time-irs-penalty-abatement-options--8d505eb2/.table';
-import May2620261 from '../../../../../../.claude/.conversations/claude--first-time-irs-penalty-abatement-options--8d505eb2/1-may-26-2026';
-import May2720262 from '../../../../../../.claude/.conversations/claude--first-time-irs-penalty-abatement-options--8d505eb2/2-may-27-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--first-time-irs-penalty-abatement-options--8d505eb2/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {May2620261()}
-        {May2720262()}
+        {Conversation1()}
     </Book>
 );
 

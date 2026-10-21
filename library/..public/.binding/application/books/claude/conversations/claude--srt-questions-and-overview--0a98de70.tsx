@@ -4,10 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--srt-question
 import Cover from '../../../../../../.claude/.conversations/claude--srt-questions-and-overview--0a98de70/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--srt-questions-and-overview--0a98de70/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--srt-questions-and-overview--0a98de70/.table';
-import November420251 from '../../../../../../.claude/.conversations/claude--srt-questions-and-overview--0a98de70/1-november-4-2025';
-import November520252 from '../../../../../../.claude/.conversations/claude--srt-questions-and-overview--0a98de70/2-november-5-2025';
-import November620253 from '../../../../../../.claude/.conversations/claude--srt-questions-and-overview--0a98de70/3-november-6-2025';
-import November2120254 from '../../../../../../.claude/.conversations/claude--srt-questions-and-overview--0a98de70/4-november-21-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--srt-questions-and-overview--0a98de70/1-conversation';
 
 const Book = $($Book);
 
@@ -16,10 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November420251()}
-        {November520252()}
-        {November620253()}
-        {November2120254()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,11 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemistry-fr
 import Cover from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/.table';
-import September520251 from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/1-september-5-2025';
-import September620252 from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/2-september-6-2025';
-import September720253 from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/3-september-7-2025';
-import September820254 from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/4-september-8-2025';
-import September920255 from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/5-september-9-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/1-conversation';
 import BondClassNewVersionV1o1 from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/o1-bond-class-new-version-v1';
 import BondClassNewVersionV2o2 from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/o2-bond-class-new-version-v2';
 import BondClassNewVersionV3o3 from '../../../../../../.claude/.conversations/claude--chemistry-framework-react-analysis--18095d02/o3-bond-class-new-version-v3';
@@ -53,11 +49,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September520251()}
-        {September620252()}
-        {September720253()}
-        {September820254()}
-        {September920255()}
+        {Conversation1()}
         {BondClassNewVersionV1o1()}
         {BondClassNewVersionV2o2()}
         {BondClassNewVersionV3o3()}

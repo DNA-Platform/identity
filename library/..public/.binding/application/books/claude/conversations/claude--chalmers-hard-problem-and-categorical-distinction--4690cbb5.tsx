@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chalmers-har
 import Cover from '../../../../../../.claude/.conversations/claude--chalmers-hard-problem-and-categorical-distinction--4690cbb5/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chalmers-hard-problem-and-categorical-distinction--4690cbb5/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chalmers-hard-problem-and-categorical-distinction--4690cbb5/.table';
-import April520261 from '../../../../../../.claude/.conversations/claude--chalmers-hard-problem-and-categorical-distinction--4690cbb5/1-april-5-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chalmers-hard-problem-and-categorical-distinction--4690cbb5/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {April520261()}
+        {Conversation1()}
     </Book>
 );
 

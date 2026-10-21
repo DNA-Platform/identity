@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--seren-and-th
 import Cover from '../../../../../../.claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a/.table';
-import September2220251 from '../../../../../../.claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a/1-september-22-2025';
-import September2320252 from '../../../../../../.claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a/2-september-23-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a/1-conversation';
 import TheSemanticsOfTheSubjectObjectRelationshipV1o1 from '../../../../../../.claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a/o1-the-semantics-of-the-subject-object-relationship-v1';
 import TheSemanticsOfTheSubjectObjectRelationshipV2o2 from '../../../../../../.claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a/o2-the-semantics-of-the-subject-object-relationship-v2';
 import TheSemanticsOfTheSubjectObjectRelationshipV3o3 from '../../../../../../.claude/.conversations/claude--seren-and-the-subject-object-relationship--d3b2465a/o3-the-semantics-of-the-subject-object-relationship-v3';
@@ -27,8 +26,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2220251()}
-        {September2320252()}
+        {Conversation1()}
         {TheSemanticsOfTheSubjectObjectRelationshipV1o1()}
         {TheSemanticsOfTheSubjectObjectRelationshipV2o2()}
         {TheSemanticsOfTheSubjectObjectRelationshipV3o3()}

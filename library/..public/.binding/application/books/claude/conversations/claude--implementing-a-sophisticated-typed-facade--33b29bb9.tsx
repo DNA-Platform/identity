@@ -4,10 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--implementing
 import Cover from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/.table';
-import February220251 from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/1-february-2-2025';
-import February320252 from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/2-february-3-2025';
-import February620253 from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/3-february-6-2025';
-import February720254 from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/4-february-7-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/1-conversation';
 import PathitemShadowImplementationV1o1 from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/o1-pathitem-shadow-implementation-v1';
 import ApplicationShadowClassV1o2 from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/o2-application-shadow-class-v1';
 import ApplicationShadowClassV2o3 from '../../../../../../.claude/.conversations/claude--implementing-a-sophisticated-typed-facade--33b29bb9/o3-application-shadow-class-v2';
@@ -47,10 +44,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {February220251()}
-        {February320252()}
-        {February620253()}
-        {February720254()}
+        {Conversation1()}
         {PathitemShadowImplementationV1o1()}
         {ApplicationShadowClassV1o2()}
         {ApplicationShadowClassV2o3()}

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--stablecoin-a
 import Cover from '../../../../../../.claude/.conversations/claude--stablecoin-architecture-origins-and-tethers-conceptual-linea--fea3a58f/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--stablecoin-architecture-origins-and-tethers-conceptual-linea--fea3a58f/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--stablecoin-architecture-origins-and-tethers-conceptual-linea--fea3a58f/.table';
-import August420261 from '../../../../../../.claude/.conversations/claude--stablecoin-architecture-origins-and-tethers-conceptual-linea--fea3a58f/1-august-4-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--stablecoin-architecture-origins-and-tethers-conceptual-linea--fea3a58f/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August420261()}
+        {Conversation1()}
     </Book>
 );
 

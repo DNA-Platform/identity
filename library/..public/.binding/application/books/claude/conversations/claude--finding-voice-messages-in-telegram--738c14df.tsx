@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--finding-voic
 import Cover from '../../../../../../.claude/.conversations/claude--finding-voice-messages-in-telegram--738c14df/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--finding-voice-messages-in-telegram--738c14df/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--finding-voice-messages-in-telegram--738c14df/.table';
-import November220241 from '../../../../../../.claude/.conversations/claude--finding-voice-messages-in-telegram--738c14df/1-november-2-2024';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--finding-voice-messages-in-telegram--738c14df/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November220241()}
+        {Conversation1()}
     </Book>
 );
 

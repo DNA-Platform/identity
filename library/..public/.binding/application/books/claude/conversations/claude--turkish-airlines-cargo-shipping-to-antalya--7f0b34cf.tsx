@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--turkish-airl
 import Cover from '../../../../../../.claude/.conversations/claude--turkish-airlines-cargo-shipping-to-antalya--7f0b34cf/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--turkish-airlines-cargo-shipping-to-antalya--7f0b34cf/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--turkish-airlines-cargo-shipping-to-antalya--7f0b34cf/.table';
-import August3020251 from '../../../../../../.claude/.conversations/claude--turkish-airlines-cargo-shipping-to-antalya--7f0b34cf/1-august-30-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--turkish-airlines-cargo-shipping-to-antalya--7f0b34cf/1-conversation';
 import TurkishCargoPackingListTemplateV1o1 from '../../../../../../.claude/.conversations/claude--turkish-airlines-cargo-shipping-to-antalya--7f0b34cf/o1-turkish-cargo-packing-list-template-v1';
 import MasterBoxInventoryWithContentsV1o2 from '../../../../../../.claude/.conversations/claude--turkish-airlines-cargo-shipping-to-antalya--7f0b34cf/o2-master-box-inventory-with-contents-v1';
 import PhotoInventoryItemsVisibleInPicturesV1o3 from '../../../../../../.claude/.conversations/claude--turkish-airlines-cargo-shipping-to-antalya--7f0b34cf/o3-photo-inventory-items-visible-in-pictures-v1';
@@ -34,7 +34,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August3020251()}
+        {Conversation1()}
         {TurkishCargoPackingListTemplateV1o1()}
         {MasterBoxInventoryWithContentsV1o2()}
         {PhotoInventoryItemsVisibleInPicturesV1o3()}

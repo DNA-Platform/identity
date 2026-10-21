@@ -4,11 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--ensure-class
 import Cover from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/.table';
-import December2620241 from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/1-december-26-2024';
-import December2720242 from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/2-december-27-2024';
-import December2920243 from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/3-december-29-2024';
-import December3020244 from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/4-december-30-2024';
-import January220255 from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/5-january-2-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/1-conversation';
 import EnsureClassImplementationV1o1 from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/o1-ensure-class-implementation-v1';
 import HashableImplementationV1o2 from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/o2-hashable-implementation-v1';
 import MinimalHashableImplementationV1o3 from '../../../../../../.claude/.conversations/claude--ensure-class-mirroring-is-class-with-assertions--ca1643bf/o3-minimal-hashable-implementation-v1';
@@ -45,11 +41,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {December2620241()}
-        {December2720242()}
-        {December2920243()}
-        {December3020244()}
-        {January220255()}
+        {Conversation1()}
         {EnsureClassImplementationV1o1()}
         {HashableImplementationV1o2()}
         {MinimalHashableImplementationV1o3()}

@@ -10355,11 +10355,10 @@
     "conversationId": "3b54b751-db5f-4d54-93ce-a1bf46277ba9",
     "title": "Ontic Structural Realism",
     "account": "DNA",
-    "evidence": "by hand: the capture lists this title in Semantic Reference Theory and Physics, and its namesake is placed in Semantic Reference Theory by search, so this one is Physics; decided on Doug's word, 2026-10-17",
+    "evidence": "none: the capture lists this title in Semantic Reference Theory and Physics",
     "excluded": false,
     "reason": "",
-    "byHand": true,
-    "projectName": "Physics"
+    "byHand": false
   },
   {
     "conversationId": "14b5bc46-21e3-4a34-8f1a-d51fae9ecc63",

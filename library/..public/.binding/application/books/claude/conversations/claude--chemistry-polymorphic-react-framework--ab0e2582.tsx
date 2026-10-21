@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemistry-po
 import Cover from '../../../../../../.claude/.conversations/claude--chemistry-polymorphic-react-framework--ab0e2582/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemistry-polymorphic-react-framework--ab0e2582/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemistry-polymorphic-react-framework--ab0e2582/.table';
-import September920251 from '../../../../../../.claude/.conversations/claude--chemistry-polymorphic-react-framework--ab0e2582/1-september-9-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemistry-polymorphic-react-framework--ab0e2582/1-conversation';
 import CallableChemicalImplementationV1o1 from '../../../../../../.claude/.conversations/claude--chemistry-polymorphic-react-framework--ab0e2582/o1-callable-chemical-implementation-v1';
 import CallableChemicalImplementationV2o2 from '../../../../../../.claude/.conversations/claude--chemistry-polymorphic-react-framework--ab0e2582/o2-callable-chemical-implementation-v2';
 import CallableChemicalImplementationV3o3 from '../../../../../../.claude/.conversations/claude--chemistry-polymorphic-react-framework--ab0e2582/o3-callable-chemical-implementation-v3';
@@ -19,7 +19,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September920251()}
+        {Conversation1()}
         {CallableChemicalImplementationV1o1()}
         {CallableChemicalImplementationV2o2()}
         {CallableChemicalImplementationV3o3()}

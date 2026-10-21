@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-ref
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e/.table';
-import October720251 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e/1-october-7-2025';
-import October820252 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e/2-october-8-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e/1-conversation';
 import TheSemanticsOfInheritanceAFormalAnalysisThroughFamilo1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e/o1-the-semantics-of-inheritance-a-formal-analysis-through-famil';
 import TheSemanticsOfInheritanceAFormalAnalysisThroughFamilo2 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e/o2-the-semantics-of-inheritance-a-formal-analysis-through-famil';
 import TheSemanticsOfInheritanceAFormalAnalysisThroughFamilo3 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-reading-journey--3ab06e4e/o3-the-semantics-of-inheritance-a-formal-analysis-through-famil';
@@ -32,8 +31,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October720251()}
-        {October820252()}
+        {Conversation1()}
         {TheSemanticsOfInheritanceAFormalAnalysisThroughFamilo1()}
         {TheSemanticsOfInheritanceAFormalAnalysisThroughFamilo2()}
         {TheSemanticsOfInheritanceAFormalAnalysisThroughFamilo3()}

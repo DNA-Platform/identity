@@ -259,7 +259,7 @@ export class $Tally extends $Paragraph {
     override write(): ReactNode {
         const book = this.book as $Conversation;
         const shown = book.messageCount?.shown ?? book.messages.length;
-        const days = book.body.length;
+        const days = new Set(book.messages.map(message => message.when.slice(0, 10))).size;
         const from = dayWords(book.period?.from);
         const to = dayWords(book.period?.to);
         return (

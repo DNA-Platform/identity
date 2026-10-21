@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--closed-form-
 import Cover from '../../../../../../.claude/.conversations/claude--closed-form-of-the-normal-distribution-integral--cec9dc2d/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--closed-form-of-the-normal-distribution-integral--cec9dc2d/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--closed-form-of-the-normal-distribution-integral--cec9dc2d/.table';
-import August2420261 from '../../../../../../.claude/.conversations/claude--closed-form-of-the-normal-distribution-integral--cec9dc2d/1-august-24-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--closed-form-of-the-normal-distribution-integral--cec9dc2d/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August2420261()}
+        {Conversation1()}
     </Book>
 );
 

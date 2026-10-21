@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--agentic-ai-c
 import Cover from '../../../../../../.claude/.conversations/claude--agentic-ai-coding-landscape-and-vector-databases--ad424736/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--agentic-ai-coding-landscape-and-vector-databases--ad424736/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--agentic-ai-coding-landscape-and-vector-databases--ad424736/.table';
-import February2020261 from '../../../../../../.claude/.conversations/claude--agentic-ai-coding-landscape-and-vector-databases--ad424736/1-february-20-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--agentic-ai-coding-landscape-and-vector-databases--ad424736/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {February2020261()}
+        {Conversation1()}
     </Book>
 );
 

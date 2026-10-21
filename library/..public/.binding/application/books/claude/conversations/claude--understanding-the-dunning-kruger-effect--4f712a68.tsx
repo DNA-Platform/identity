@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--understandin
 import Cover from '../../../../../../.claude/.conversations/claude--understanding-the-dunning-kruger-effect--4f712a68/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--understanding-the-dunning-kruger-effect--4f712a68/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--understanding-the-dunning-kruger-effect--4f712a68/.table';
-import November620241 from '../../../../../../.claude/.conversations/claude--understanding-the-dunning-kruger-effect--4f712a68/1-november-6-2024';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--understanding-the-dunning-kruger-effect--4f712a68/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November620241()}
+        {Conversation1()}
     </Book>
 );
 

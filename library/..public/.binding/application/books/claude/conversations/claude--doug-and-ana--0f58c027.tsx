@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--doug-and-ana
 import Cover from '../../../../../../.claude/.conversations/claude--doug-and-ana--0f58c027/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--doug-and-ana--0f58c027/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--doug-and-ana--0f58c027/.table';
-import January1620251 from '../../../../../../.claude/.conversations/claude--doug-and-ana--0f58c027/1-january-16-2025';
-import April420252 from '../../../../../../.claude/.conversations/claude--doug-and-ana--0f58c027/2-april-4-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--doug-and-ana--0f58c027/1-conversation';
 import RussianLanguageWallpaperPatternVisualizationV1o1 from '../../../../../../.claude/.conversations/claude--doug-and-ana--0f58c027/o1-russian-language-wallpaper-pattern-visualization-v1';
 import RussianLanguageWallpaperPatternVisualizationV2o2 from '../../../../../../.claude/.conversations/claude--doug-and-ana--0f58c027/o2-russian-language-wallpaper-pattern-visualization-v2';
 import RussianLanguageWallpaperPatternVisualizationV3o3 from '../../../../../../.claude/.conversations/claude--doug-and-ana--0f58c027/o3-russian-language-wallpaper-pattern-visualization-v3';
@@ -26,8 +25,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {January1620251()}
-        {April420252()}
+        {Conversation1()}
         {RussianLanguageWallpaperPatternVisualizationV1o1()}
         {RussianLanguageWallpaperPatternVisualizationV2o2()}
         {RussianLanguageWallpaperPatternVisualizationV3o3()}

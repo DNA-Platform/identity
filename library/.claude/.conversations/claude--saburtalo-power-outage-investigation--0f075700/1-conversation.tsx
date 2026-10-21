@@ -1,0 +1,285 @@
+import { Bold, Chapter, Date, Paragraph, Title, Word } from '@dna-platform/public';
+import { Dated, Message, Speaker } from '../../../.manual/.book';
+import { Action, Origin } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Dated>
+            <Date>[23 July 2026](2026-07-23)</Date>
+        </Dated>
+        <Title>[[ Conversation ]]</Title>
+        <Message
+            at="2026-07-23T20:51:37.482317Z"
+        >
+            <Origin>019f90c0-3973-76ef-ae8b-84a6c86d6186</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                We live in saburtalo tbilisi. Get the exact time because we don’t have power and we want to know the reason
+                for the power outage. Write it in Russian and English.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-07-23T20:52:39.891085Z"
+        >
+            <Origin>019f90c0-3974-7453-8a9f-b1886cf4439f</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>Used user time v0</Action>
+            <Action>Searched the web for “დენის გათიშვა საბურთალო თბილისი დღეს”</Action>
+            <Action>Fetched https://www.telasi.ge/</Action>
+            <Action>Searched the web for “Тбилиси отключение света Сабуртало 23 июля”</Action>
+            <Action>Fetched https://www.telasi.ge/en/company-news/power-outage</Action>
+            <Action>Searched the web for “Tbilisi power outage today July 2026”</Action>
+            <Action>Fetched https://water.andreev-e.ru/</Action>
+            <Action>Fetched https://t.me/s/tbilisipeople</Action>
+            <Action>Searched the web for “თელასი ელექტროენერგია შეზღუდვა 23 ივლისი საბურთალო”</Action>
+            <Action>Searched the web for “Тбилиси отключение электричества сегодня ночью”</Action>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    English
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                Exact time right now: <Word>
+                    <Bold />
+                    00:52, Friday July 24, 2026
+                </Word> (Tbilisi time, UTC+4).
+            </Paragraph>
+            <Paragraph>
+                I couldn't verify the specific cause of your outage - Telasi's outage announcements page is
+                JavaScript-rendered and returned nothing readable to me, and no news source or the outage aggregator shows
+                an active Saburtalo event tonight. What I can tell you: this time slot fits a known Telasi pattern - Telasi
+                has run overnight outages in Vake and Saburtalo from 01:00 to 04:00 due to load transfers (network switching
+                work). At 00:52, a ~01:00-04:00 switching window is a plausible explanation, but that is inference from past
+                practice, not a confirmed announcement for tonight.
+            </Paragraph>
+            <Paragraph>
+                To get the actual answer: check https://www.telasi.ge/ru/company-news/power-outage in your phone's browser
+                (it needs JS, which I can't run), or call Telasi's unified number <Word>
+                    <Bold />
+                    (032) 277 99 99
+                </Word>; the city's electrical emergency line is <Word>
+                    <Bold />
+                    032 5 000 777
+                </Word>.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Русский
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                Точное время сейчас: <Word>
+                    <Bold />
+                    00:52, пятница, 24 июля 2026
+                </Word> (тбилисское время, UTC+4).
+            </Paragraph>
+            <Paragraph>
+                Конкретную причину отключения подтвердить не удалось - страница отключений на сайте «Теласи» рендерится
+                через JavaScript и мне вернулась пустой, а в новостях и на агрегаторе отключений активного события по
+                Сабуртало сегодня ночью нет. Что известно: это время совпадает с типичной практикой «Теласи» - ночные
+                отключения в Ваке и Сабуртало с 01:00 до 04:00 из-за переключений нагрузки в сети. Так что переключения в
+                сети - правдоподобное объяснение, но это вывод из прошлой практики, а не подтверждённое объявление на
+                сегодня.
+            </Paragraph>
+            <Paragraph>
+                Чтобы узнать точно: откройте в браузере телефона https://www.telasi.ge/ru/company-news/power-outage или
+                позвоните в «Теласи»: <Word>
+                    <Bold />
+                    (032) 277 99 99
+                </Word>; аварийная служба электросетей города: <Word>
+                    <Bold />
+                    032 5 000 777
+                </Word>.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-07-23T20:53:38.507685Z"
+        >
+            <Origin>019f90c2-2276-7c1f-95bd-8694331bfbd5</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                Keep searching because we need an answer and keep reporting in both language languages. We live in Sairme.
+                See if you can find anything specific for right now.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-07-23T20:55:06.859819Z"
+        >
+            <Origin>019f90c2-2277-7ad6-ae0b-de03da42b439</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>Searched the web for “თელასი 24 ივლისი ელექტრომომარაგება შეიზღუდება”</Action>
+            <Action>Fetched https://www.telasi.ge/?locale=ka</Action>
+            <Action>Fetched https://www.telasi.ge/ka/company-news/power-outage</Action>
+            <Action>Fetched https://primetime.ge/news/dedakalaki/telasi-abonentebs-afrtkhilebs-69613</Action>
+            <Action>Fetched https://primetime.ge/news/sazogadoeb/saqartvelos-masshtabit-eleqtroenergia-gatishulia</Action>
+            <Action>Searched the web for “საქართველო ბლექაუთი მიზეზი სახელმწიფო ელექტროსისტემა”</Action>
+            <Action>Searched the web for “Georgia nationwide blackout tonight cause”</Action>
+            <Action>Searched the web for “Грузия блэкаут отключение электроэнергии причина”</Action>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    English
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                Answer found. This is not a local Saburtalo/Sairme outage - it's a nationwide blackout. Georgian outlet
+                Primetime published a breaking story at ~00:23 tonight (about 40 minutes before your question): electricity
+                has gone out across the whole of Georgia, citizens from various regions are reporting it on social media,
+                the capital is also without power, and the outlet is still investigating the cause. So as of right now, no
+                official cause has been published - the event is that fresh.
+            </Paragraph>
+            <Paragraph>
+                For context (precedent, not confirmed for tonight): Georgia's previous nationwide blackouts in 2025 were
+                caused by a fault on the "Kavkasioni" 500 kV transmission line, with the Georgian State Electrosystem
+                restoring supply gradually, and in one case a fire on that 500 kV line triggered a cascade failure that
+                knocked out several power stations including Enguri HPP. In those events power returned to most of Tbilisi
+                within roughly one to a few hours. The Georgian State Electrosystem (GSE) typically posts the official cause
+                on its Facebook page first; Telasi's line is (032) 277 99 99.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Русский
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                Ответ найден. Это не локальное отключение в Сабуртало/на Саирме - это блэкаут по всей стране. Грузинское
+                издание Primetime опубликовало срочную новость примерно в 00:23 сегодня ночью: электричество отключилось по
+                всей Грузии, жители разных регионов пишут об этом в соцсетях, столица тоже без света, причину издание
+                выясняет. То есть на данный момент официальная причина ещё не опубликована - событие произошло буквально
+                только что.
+            </Paragraph>
+            <Paragraph>
+                Для контекста (прецедент, а не подтверждённая причина сегодняшнего): предыдущие общенациональные блэкауты в
+                Грузии в 2025 году происходили из-за аварии на ЛЭП 500 кВ «Кавкасиони», а в одном случае - из-за возгорания
+                на этой линии, вызвавшего каскадное отключение электростанций, включая Ингурскую ГЭС. Тогда свет в большей
+                части Тбилиси возвращался в течение примерно часа-нескольких часов. Официальную причину обычно первым
+                публикует «Сახелმწიფო ელექტროსისტემა» (GSE, Государственная электросистема Грузии) на своей странице в
+                Facebook; телефон «Теласи»: (032) 277 99 99.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-07-23T21:01:29.565809Z"
+        >
+            <Origin>019f90c9-4d71-70e2-9119-a9384ce7af66</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                Yeah, I confirmed that it’s lights out all over the place. Find as much information as you can about this
+                particular outage and causes or timelines.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-07-23T21:03:17.704271Z"
+        >
+            <Origin>019f90c9-4d72-7374-b6aa-96868daba331</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>
+                Searched the web for “ელექტროენერგია გაითიშა მთელი საქართველო სახელმწიფო ელექტროსისტემა განცხადება”
+            </Action>
+            <Action>Fetched https://formulanews.ge/News/47127</Action>
+            <Action>Fetched https://tabula.ge/ge/news/608861-engurhesi-avariulad-gaitisha-tbilisisa-regionebis</Action>
+            <Action>Fetched https://primetime.ge/news/all</Action>
+            <Action>Searched the web for “блэкаут Грузия 24 июля Тбилиси свет”</Action>
+            <Action>Searched the web for “"24 ივლისი" OR "23 ივლისი" შუქი გაითიშა თბილისი ბლექაუთი”</Action>
+            <Action>Fetched https://primetime.ge/news/sazogadoeb</Action>
+            <Action>Searched the web for “interpressnews ელექტროენერგიის მიწოდება შეწყდა”</Action>
+            <Action>Searched the web for “Georgia Tbilisi blackout electricity restored GSE statement”</Action>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    English
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                Here's everything I could establish. I'll separate what's confirmed for tonight from context and precedent.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Confirmed for tonight:
+                </Word> Primetime published at ~00:23: electricity has gone out across the whole of Georgia, citizens in
+                multiple regions are reporting it, the capital is without power, and the cause is still being investigated.
+                That remains the state of public knowledge - I ran searches in Georgian, Russian, and English, and no
+                official cause statement has been indexed yet. GSE (the transmission operator) typically posts its statement
+                on Facebook first, and search engines lag breaking events by an hour or more.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Possibly relevant, unconfirmed:
+                </Word> A few hours before the blackout (22:17), the National Environment Agency issued a weather warning:
+                intermittent rain across most of Georgia from the evening of July 23 to the morning of July 24, locally
+                heavy in Racha-Lechkhumi, Svaneti, Samegrelo, Imereti and other regions, with possible thunderstorms, hail,
+                and strengthening wind. Those regions include the corridors where the Kavkasioni 500 kV line and Enguri HPP
+                sit - the two failure points behind past national blackouts. That's a hypothesis consistent with the
+                warning, not a reported cause. Background: Georgia's energy ombudsman said in March 2026 that 80% of
+                consumer complaints concerned supply interruptions, and during 2025's peak-heat consumption the grid was
+                overloaded and accidents increased sharply.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Timeline expectations, from prior events of this scale:
+                </Word> In the April 19, 2025 Kavkasioni blackout, roughly 90% of consumers nationwide lost power and supply
+                was restored gradually, with most subscribers back within the first hours. In the April 9, 2025 night
+                blackout, the utility said restoration would proceed throughout the night for all customers, and power
+                returned gradually but flickered and dimmed in some areas during recovery. In the 2021 Turkey-interconnector
+                failure, Tbilisi was restored in about 30 minutes and the regions in about 45. Tbilisi is consistently
+                restored first, in minutes to a few hours.
+            </Paragraph>
+            <Paragraph>
+                Practical notes: unplug or surge-protect sensitive electronics - the restoration phase with flickering/dim
+                power is when damage happens. Official statement will appear on GSE's Facebook page and Telasi's site;
+                Telasi: (032) 277 99 99.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Русский
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                Вот всё, что удалось установить. Разделяю подтверждённое сегодняшнее и контекст/прецеденты.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Подтверждено на сегодня:
+                </Word> Primetime опубликовал в ~00:23: электричество отключилось по всей Грузии, о нём сообщают жители
+                разных регионов, столица без света, причина выясняется. Это и есть текущее состояние публичной информации -
+                я искал на грузинском, русском и английском, официального заявления о причине в индексе поисковиков пока
+                нет. GSE (оператор магистральных сетей) обычно публикует заявление сначала в Facebook, а поисковики отстают
+                от срочных событий на час и больше.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Возможно релевантно, но не подтверждено:
+                </Word> За несколько часов до блэкаута (22:17) Национальное агентство окружающей среды выпустило штормовое
+                предупреждение: с вечера 23 июля до утра 24 июля по большей части Грузии - дожди, местами сильные
+                (Рача-Лечхуми, Сванетия, Самегрело, Имерети и др.), возможны грозы, град и усиление ветра. Это как раз
+                регионы, где проходит ЛЭП 500 кВ «Кавкасиони» и стоит Ингурская ГЭС - две точки отказа в прошлых
+                общенациональных блэкаутах. Это гипотеза, согласующаяся с предупреждением, а не установленная причина. Фон:
+                энергоомбудсмен Грузии в марте 2026 говорила, что 80% жалоб потребителей касались перебоев, а в пиковую жару
+                2025 года сеть была перегружена и число аварий резко выросло.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    Ожидаемые сроки, по прецедентам такого масштаба:
+                </Word> При блэкауте 19 апреля 2025 («Кавкасиони») без света осталось ~90% потребителей по стране, снабжение
+                восстанавливали поэтапно, большинство - в первые часы. При ночном блэкауте 9 апреля 2025 компания обещала
+                восстановить всех «в течение ночи»; свет возвращался постепенно, местами мигал и был тусклым. При аварии на
+                турецком интерконнекторе в 2021 году Тбилиси восстановили примерно за 30 минут, регионы - за 45. Тбилиси
+                стабильно включают первым - от минут до нескольких часов.
+            </Paragraph>
+            <Paragraph>
+                Практично: отключите из розеток чувствительную технику или используйте сетевые фильтры - именно фаза
+                восстановления с мигающим/тусклым напряжением опасна для электроники. Официальное заявление появится на
+                странице GSE в Facebook и на сайте «Теласи»; телефон «Теласи»: (032) 277 99 99.
+            </Paragraph>
+        </Message>
+    </Chapter>
+);

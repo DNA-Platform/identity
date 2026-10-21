@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--readonly-fie
 import Cover from '../../../../../../.claude/.conversations/claude--readonly-fields-in-javascript--b43be389/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--readonly-fields-in-javascript--b43be389/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--readonly-fields-in-javascript--b43be389/.table';
-import November320251 from '../../../../../../.claude/.conversations/claude--readonly-fields-in-javascript--b43be389/1-november-3-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--readonly-fields-in-javascript--b43be389/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November320251()}
+        {Conversation1()}
     </Book>
 );
 

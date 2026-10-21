@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--static-analy
 import Cover from '../../../../../../.claude/.conversations/claude--static-analysis-for-state-change-detection--710061c6/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--static-analysis-for-state-change-detection--710061c6/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--static-analysis-for-state-change-detection--710061c6/.table';
-import April2020261 from '../../../../../../.claude/.conversations/claude--static-analysis-for-state-change-detection--710061c6/1-april-20-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--static-analysis-for-state-change-detection--710061c6/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {April2020261()}
+        {Conversation1()}
     </Book>
 );
 

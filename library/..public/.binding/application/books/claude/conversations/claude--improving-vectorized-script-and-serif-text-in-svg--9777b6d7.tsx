@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--improving-ve
 import Cover from '../../../../../../.claude/.conversations/claude--improving-vectorized-script-and-serif-text-in-svg--9777b6d7/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--improving-vectorized-script-and-serif-text-in-svg--9777b6d7/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--improving-vectorized-script-and-serif-text-in-svg--9777b6d7/.table';
-import March1820251 from '../../../../../../.claude/.conversations/claude--improving-vectorized-script-and-serif-text-in-svg--9777b6d7/1-march-18-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--improving-vectorized-script-and-serif-text-in-svg--9777b6d7/1-conversation';
 import DallaTorLogoImprovedVectorV1o1 from '../../../../../../.claude/.conversations/claude--improving-vectorized-script-and-serif-text-in-svg--9777b6d7/o1-dalla-tor-logo-improved-vector-v1';
 import DallaTorLogoImprovedVectorWithReusableComponentsV1o2 from '../../../../../../.claude/.conversations/claude--improving-vectorized-script-and-serif-text-in-svg--9777b6d7/o2-dalla-tor-logo-improved-vector-with-reusable-components-v1';
 
@@ -15,7 +15,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March1820251()}
+        {Conversation1()}
         {DallaTorLogoImprovedVectorV1o1()}
         {DallaTorLogoImprovedVectorWithReusableComponentsV1o2()}
     </Book>

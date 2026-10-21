@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--fractal-rose
 import Cover from '../../../../../../.claude/.conversations/claude--fractal-rose-exploring-mathematical-beauty--6417d83b/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--fractal-rose-exploring-mathematical-beauty--6417d83b/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--fractal-rose-exploring-mathematical-beauty--6417d83b/.table';
-import March920251 from '../../../../../../.claude/.conversations/claude--fractal-rose-exploring-mathematical-beauty--6417d83b/1-march-9-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--fractal-rose-exploring-mathematical-beauty--6417d83b/1-conversation';
 import GoldenRoseWithProgressivelyThickerPetalsV1o1 from '../../../../../../.claude/.conversations/claude--fractal-rose-exploring-mathematical-beauty--6417d83b/o1-golden-rose-with-progressively-thicker-petals-v1';
 
 const Book = $($Book);
@@ -14,7 +14,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March920251()}
+        {Conversation1()}
         {GoldenRoseWithProgressivelyThickerPetalsV1o1()}
     </Book>
 );

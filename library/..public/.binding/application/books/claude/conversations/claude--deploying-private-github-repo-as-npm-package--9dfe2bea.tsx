@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--deploying-pr
 import Cover from '../../../../../../.claude/.conversations/claude--deploying-private-github-repo-as-npm-package--9dfe2bea/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--deploying-private-github-repo-as-npm-package--9dfe2bea/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--deploying-private-github-repo-as-npm-package--9dfe2bea/.table';
-import November2020241 from '../../../../../../.claude/.conversations/claude--deploying-private-github-repo-as-npm-package--9dfe2bea/1-november-20-2024';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--deploying-private-github-repo-as-npm-package--9dfe2bea/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November2020241()}
+        {Conversation1()}
     </Book>
 );
 

@@ -14,8 +14,7 @@ import ClaudeOneDimensionalHilbertSpaceInClosedUniverses0d97 from '../../../../.
 import ClaudeWhyIsTheGravitationalConstantSoDifficultToMea8 from '../../../../../.claude/.physics/8-claude-why-is-the-gravitational-constant-so-difficult-to-mea';
 import ClaudeContinuityAcrossAccountsReflectingOnSharedWork9 from '../../../../../.claude/.physics/9-claude-continuity-across-accounts-reflecting-on-shared-work';
 import ClaudeCanYouLookUpTheResearchO8aa1128410 from '../../../../../.claude/.physics/10-claude-can-you-look-up-the-research-o-8aa11284';
-import ClaudeOnticStructuralRealism3b54b75111 from '../../../../../.claude/.physics/11-claude-ontic-structural-realism-3b54b751';
-import ClaudeNaturePublishedThisBlurbI75d6414612 from '../../../../../.claude/.physics/12-claude-nature-published-this-blurb-i-75d64146';
+import ClaudeNaturePublishedThisBlurbI75d6414611 from '../../../../../.claude/.physics/11-claude-nature-published-this-blurb-i-75d64146';
 
 const Book = $($Book);
 
@@ -34,8 +33,7 @@ export const book = () => (
         {ClaudeWhyIsTheGravitationalConstantSoDifficultToMea8()}
         {ClaudeContinuityAcrossAccountsReflectingOnSharedWork9()}
         {ClaudeCanYouLookUpTheResearchO8aa1128410()}
-        {ClaudeOnticStructuralRealism3b54b75111()}
-        {ClaudeNaturePublishedThisBlurbI75d6414612()}
+        {ClaudeNaturePublishedThisBlurbI75d6414611()}
     </Book>
 );
 

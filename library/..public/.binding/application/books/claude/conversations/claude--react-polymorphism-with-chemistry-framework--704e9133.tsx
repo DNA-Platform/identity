@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--react-polymo
 import Cover from '../../../../../../.claude/.conversations/claude--react-polymorphism-with-chemistry-framework--704e9133/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--react-polymorphism-with-chemistry-framework--704e9133/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--react-polymorphism-with-chemistry-framework--704e9133/.table';
-import September2120251 from '../../../../../../.claude/.conversations/claude--react-polymorphism-with-chemistry-framework--704e9133/1-september-21-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--react-polymorphism-with-chemistry-framework--704e9133/1-conversation';
 import BondorchestratorClassV1o1 from '../../../../../../.claude/.conversations/claude--react-polymorphism-with-chemistry-framework--704e9133/o1-bondorchestrator-class-v1';
 import BondorchestratorClassV2o2 from '../../../../../../.claude/.conversations/claude--react-polymorphism-with-chemistry-framework--704e9133/o2-bondorchestrator-class-v2';
 import BondorchestratorClassV3o3 from '../../../../../../.claude/.conversations/claude--react-polymorphism-with-chemistry-framework--704e9133/o3-bondorchestrator-class-v3';
@@ -18,7 +18,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2120251()}
+        {Conversation1()}
         {BondorchestratorClassV1o1()}
         {BondorchestratorClassV2o2()}
         {BondorchestratorClassV3o3()}

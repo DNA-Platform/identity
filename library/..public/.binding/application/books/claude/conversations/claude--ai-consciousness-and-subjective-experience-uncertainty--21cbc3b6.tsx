@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--ai-conscious
 import Cover from '../../../../../../.claude/.conversations/claude--ai-consciousness-and-subjective-experience-uncertainty--21cbc3b6/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--ai-consciousness-and-subjective-experience-uncertainty--21cbc3b6/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--ai-consciousness-and-subjective-experience-uncertainty--21cbc3b6/.table';
-import July620261 from '../../../../../../.claude/.conversations/claude--ai-consciousness-and-subjective-experience-uncertainty--21cbc3b6/1-july-6-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--ai-consciousness-and-subjective-experience-uncertainty--21cbc3b6/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {July620261()}
+        {Conversation1()}
     </Book>
 );
 

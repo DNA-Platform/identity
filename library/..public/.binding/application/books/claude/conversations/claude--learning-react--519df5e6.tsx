@@ -4,9 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--learning-rea
 import Cover from '../../../../../../.claude/.conversations/claude--learning-react--519df5e6/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--learning-react--519df5e6/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--learning-react--519df5e6/.table';
-import September320251 from '../../../../../../.claude/.conversations/claude--learning-react--519df5e6/1-september-3-2025';
-import September420252 from '../../../../../../.claude/.conversations/claude--learning-react--519df5e6/2-september-4-2025';
-import September520253 from '../../../../../../.claude/.conversations/claude--learning-react--519df5e6/3-september-5-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--learning-react--519df5e6/1-conversation';
 import FixedChemistry2TsV1o1 from '../../../../../../.claude/.conversations/claude--learning-react--519df5e6/o1-fixed-chemistry2-ts-v1';
 import FixedChemistry2TsWithProperUpdateSubscriptionV2o2 from '../../../../../../.claude/.conversations/claude--learning-react--519df5e6/o2-fixed-chemistry2-ts-with-proper-update-subscription-v2';
 import ReactLearningPathTrackerV1o3 from '../../../../../../.claude/.conversations/claude--learning-react--519df5e6/o3-react-learning-path-tracker-v1';
@@ -34,9 +32,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September320251()}
-        {September420252()}
-        {September520253()}
+        {Conversation1()}
         {FixedChemistry2TsV1o1()}
         {FixedChemistry2TsWithProperUpdateSubscriptionV2o2()}
         {ReactLearningPathTrackerV1o3()}

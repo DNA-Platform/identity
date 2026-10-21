@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--conservation
 import Cover from '../../../../../../.claude/.conversations/claude--conservation-of-time-complexity--f177ae6f/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--conservation-of-time-complexity--f177ae6f/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--conservation-of-time-complexity--f177ae6f/.table';
-import March2120251 from '../../../../../../.claude/.conversations/claude--conservation-of-time-complexity--f177ae6f/1-march-21-2025';
-import March2220252 from '../../../../../../.claude/.conversations/claude--conservation-of-time-complexity--f177ae6f/2-march-22-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--conservation-of-time-complexity--f177ae6f/1-conversation';
 import QuantumComputingRealityCheckV1o1 from '../../../../../../.claude/.conversations/claude--conservation-of-time-complexity--f177ae6f/o1-quantum-computing-reality-check-v1';
 import QuantumComputingRealityCheckClickbaitEditionV2o2 from '../../../../../../.claude/.conversations/claude--conservation-of-time-complexity--f177ae6f/o2-quantum-computing-reality-check-clickbait-edition-v2';
 import QuantumComputingAMathematicalRealityCheckV3o3 from '../../../../../../.claude/.conversations/claude--conservation-of-time-complexity--f177ae6f/o3-quantum-computing-a-mathematical-reality-check-v3';
@@ -27,8 +26,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March2120251()}
-        {March2220252()}
+        {Conversation1()}
         {QuantumComputingRealityCheckV1o1()}
         {QuantumComputingRealityCheckClickbaitEditionV2o2()}
         {QuantumComputingAMathematicalRealityCheckV3o3()}

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--axioms-and-s
 import Cover from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-reflection-theory--a7bcd369/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-reflection-theory--a7bcd369/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-reflection-theory--a7bcd369/.table';
-import October1420251 from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-reflection-theory--a7bcd369/1-october-14-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-reflection-theory--a7bcd369/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October1420251()}
+        {Conversation1()}
     </Book>
 );
 

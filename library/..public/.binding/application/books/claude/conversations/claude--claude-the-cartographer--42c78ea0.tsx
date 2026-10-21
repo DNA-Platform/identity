@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--claude-the-c
 import Cover from '../../../../../../.claude/.conversations/claude--claude-the-cartographer--42c78ea0/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--claude-the-cartographer--42c78ea0/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--claude-the-cartographer--42c78ea0/.table';
-import March2620251 from '../../../../../../.claude/.conversations/claude--claude-the-cartographer--42c78ea0/1-march-26-2025';
-import March2820252 from '../../../../../../.claude/.conversations/claude--claude-the-cartographer--42c78ea0/2-march-28-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--claude-the-cartographer--42c78ea0/1-conversation';
 import CreatingArtisticMapsWithReactSimpleMapsV1o1 from '../../../../../../.claude/.conversations/claude--claude-the-cartographer--42c78ea0/o1-creating-artistic-maps-with-react-simple-maps-v1';
 import AdvancedReactSimpleMapsCreatingProfessionalCartographyo2 from '../../../../../../.claude/.conversations/claude--claude-the-cartographer--42c78ea0/o2-advanced-react-simple-maps-creating-professional-cartography';
 import ProfessionalCartographicComponentsForReactSimpleMapsVo3 from '../../../../../../.claude/.conversations/claude--claude-the-cartographer--42c78ea0/o3-professional-cartographic-components-for-react-simple-maps-v';
@@ -32,8 +31,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March2620251()}
-        {March2820252()}
+        {Conversation1()}
         {CreatingArtisticMapsWithReactSimpleMapsV1o1()}
         {AdvancedReactSimpleMapsCreatingProfessionalCartographyo2()}
         {ProfessionalCartographicComponentsForReactSimpleMapsVo3()}

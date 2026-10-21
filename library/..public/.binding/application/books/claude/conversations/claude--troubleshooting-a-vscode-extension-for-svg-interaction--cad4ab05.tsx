@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--troubleshoot
 import Cover from '../../../../../../.claude/.conversations/claude--troubleshooting-a-vscode-extension-for-svg-interaction--cad4ab05/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--troubleshooting-a-vscode-extension-for-svg-interaction--cad4ab05/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--troubleshooting-a-vscode-extension-for-svg-interaction--cad4ab05/.table';
-import February1620251 from '../../../../../../.claude/.conversations/claude--troubleshooting-a-vscode-extension-for-svg-interaction--cad4ab05/1-february-16-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--troubleshooting-a-vscode-extension-for-svg-interaction--cad4ab05/1-conversation';
 import VscodeSvgReplExtensionV1o1 from '../../../../../../.claude/.conversations/claude--troubleshooting-a-vscode-extension-for-svg-interaction--cad4ab05/o1-vscode-svg-repl-extension-v1';
 import VscodeSvgReplExtensionV2o2 from '../../../../../../.claude/.conversations/claude--troubleshooting-a-vscode-extension-for-svg-interaction--cad4ab05/o2-vscode-svg-repl-extension-v2';
 
@@ -15,7 +15,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {February1620251()}
+        {Conversation1()}
         {VscodeSvgReplExtensionV1o1()}
         {VscodeSvgReplExtensionV2o2()}
     </Book>

@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemistry-ts
 import Cover from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-testing--ef824a29/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-testing--ef824a29/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-testing--ef824a29/.table';
-import August2520251 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-testing--ef824a29/1-august-25-2025';
-import August2620252 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-testing--ef824a29/2-august-26-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-testing--ef824a29/1-conversation';
 import ViewMethodsTestPageTsxV1o1 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-testing--ef824a29/o1-view-methods-test-page-tsx-v1';
 import ChemistryFrameworkV1o2 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-testing--ef824a29/o2-chemistry-framework-v1';
 import ChemistryFrameworkV2o3 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-testing--ef824a29/o3-chemistry-framework-v2';
@@ -23,8 +22,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August2520251()}
-        {August2620252()}
+        {Conversation1()}
         {ViewMethodsTestPageTsxV1o1()}
         {ChemistryFrameworkV1o2()}
         {ChemistryFrameworkV2o3()}

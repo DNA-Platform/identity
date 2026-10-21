@@ -1,0 +1,573 @@
+import { Chapter, Date, Emphasis, Paragraph, Title, Word } from '@dna-platform/public';
+import { Dated, Message, Speaker } from '../../../.manual/.book';
+import { Action, Origin } from '../../.manual/.book';
+
+export default () => (
+    <Chapter>
+        <Dated>
+            <Date>[20 April 2026](2026-04-20)</Date>
+        </Dated>
+        <Title>[[ Conversation ]]</Title>
+        <Message
+            at="2026-04-20T18:57:02.639267Z"
+        >
+            <Origin>019dac41-9d43-7ce5-bd71-bef3b036c3dd</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                I heard of an interesting drug today that used to be legal, but has surprising psychedelic properties and
+                possibly is a therapeutic replacement for MDMA due to having some favorable properties. It’s called Alpha
+                methyl tryptamine. I’m interested in the pharmacology of the substance and specifically how much of its
+                action is on the serotonin transporter versus 5HT2A? It’s not notable that it is of the tryptamine class and
+                not a phenethylamine
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T18:58:31.362253Z"
+        >
+            <Origin>019dac41-9d43-7747-8067-b0961767ab81</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>Searched the web for “alpha-methyltryptamine AMT pharmacology SERT 5-HT2A binding affinity”</Action>
+            <Action>Searched the web for “alpha-methyltryptamine AMT EC50 serotonin release SERT Ki 5-HT2A Blough”</Action>
+            <Action>Fetched https://en.wikipedia.org/wiki/%CE%91-Methyltryptamine</Action>
+            <Action>
+                Searched the web for “"alpha-methyltryptamine" "EC50" serotonin release "5-HT2A" rat synaptosomes”
+            </Action>
+            <Action>
+                Searched the web for “"α-methyltryptamine" OR "alpha-methyltryptamine" Blough 2014 serotonin releaser EC50
+                21.9 nM”
+            </Action>
+            <Paragraph>
+                AMT (Indopan in the old Soviet clinical literature) is unusual because it hits <Word>
+                    <Emphasis />
+                    three
+                </Word> mechanisms at overlapping potencies rather than being dominated by one. It acts as a releasing agent
+                of serotonin, norepinephrine, and dopamine, as a serotonin receptor agonist, and as a weak monoamine oxidase
+                inhibitor. The IC50 for MAO-A inhibition is about 380 nM, similar to para-methoxyamphetamine (PMA) and 4-MTA
+                — worth flagging because chronic dosing with MAOI-plus-releaser drugs is the mechanism behind PMA's
+                serotonergic toxicity, and AMT is pharmacologically in that same family.
+            </Paragraph>
+            <Paragraph>
+                On your specific SERT vs 5-HT2A question, the two activities are roughly <Word>
+                    <Emphasis />
+                    comparable in potency
+                </Word>, which is the interesting part. For monoamine release in rat synaptosomes, αMT's EC50 values are
+                22–68 nM for serotonin, 79–112 nM for norepinephrine, and 79–180 nM for dopamine — so it's a fairly balanced
+                SNDRA with a modest serotonin preference (the range reflects different labs: Nagai 2007, Blough 2014). At
+                5-HT2A, αMT is a potent agonist; the 5-fluoro analog (7c) was 3-fold more potent than the unsubstituted
+                α-methyltryptamine (7a) as a 5-HT2A agonist, and since 5-fluoro-AMT's EC50 at 5-HT2A is 8.47 nM with Emax
+                107%, that puts AMT itself at roughly ~25 nM EC50 as a near-full 5-HT2A agonist. So SERT-substrate EC50
+                (~22–68 nM) and 5-HT2A EC50 (~25 nM) are within the same order of magnitude. You don't get clean
+                dissociation between "entactogen dose" and "psychedelic dose" the way you sometimes can with MDMA — the
+                5-HT2A agonism is riding along at every effective dose, which matches the subjective reports of AMT being
+                MDMA-like <Word>
+                    <Emphasis />
+                    and
+                </Word> frankly psychedelic simultaneously.
+            </Paragraph>
+            <Paragraph>
+                On your structural aside (which I read as "it <Word>
+                    <Emphasis />
+                    is
+                </Word> notable" — I think that's a typo) — yes, it's genuinely the key point. αMT is to tryptamine what
+                amphetamine is to phenethylamine: the α-methyl group blocks MAO metabolism of the primary amine and confers
+                releaser activity at monoamine transporters. But because the scaffold is an indolealkylamine rather than a
+                phenethylamine, it retains high affinity for 5-HT2A (which prefers tryptamine-like ligands). MDMA, being a
+                phenethylamine, is a much weaker direct 5-HT2A agonist — its subjective profile comes almost entirely from
+                SERT reversal plus some 5-HT1A/1B and TAAR1 activity. So AMT isn't really a "cleaner MDMA" — it's closer to
+                a hybrid of MDMA + a tryptamine psychedelic, which is why historical clinical interest (as an
+                antidepressant) was abandoned and why it's probably a <Word>
+                    <Emphasis />
+                    worse
+                </Word> therapeutic candidate than MDMA rather than better. The therapeutic advantage of MDMA in PTSD trials
+                depends on the <Word>
+                    <Emphasis />
+                    absence
+                </Word> of strong 5-HT2A agonism.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:00:59.193145Z"
+        >
+            <Origin>019dac45-363e-7834-851e-d73c479af12f</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                Very interesting so those it’s empathogenic effects come from SERT activity like MDMA so would you expect
+                escitalopram for instance, to block it in a similar way?
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:01:48.271335Z"
+        >
+            <Origin>019dac45-363e-77a6-a64f-43f6a6043346</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>Searched the web for “escitalopram MDMA blocks subjective effects SSRI pretreatment Liechti”</Action>
+            <Paragraph>
+                For the SERT-mediated component, yes — the prediction is very strong and well-supported. MDMA's effect on
+                5-HT release can be blocked by 5-HT uptake inhibitors such as citalopram, suggesting that MDMA interacts
+                with the 5-HT uptake site, and in healthy volunteers citalopram (40 mg IV) markedly reduced most of the
+                subjective effects of MDMA, including positive mood, increased extraversion and self-confidence, and also
+                attenuated cardiovascular and adverse effects. Escitalopram is the S-enantiomer of citalopram and the
+                pharmacologically active half, so the mechanism transfers directly. Since AMT is a SERT substrate (it has to
+                be carried <Word>
+                    <Emphasis />
+                    into
+                </Word> the neuron via SERT to reverse the transporter and cause efflux), and escitalopram occupies the same
+                substrate-binding site, chronic escitalopram should meaningfully blunt AMT's serotonin-release component —
+                the empathogenic part.
+            </Paragraph>
+            <Paragraph>
+                But the interesting bit is what you'd expect to be <Word>
+                    <Emphasis />
+                    preserved
+                </Word>. The direct 5-HT2A agonism doesn't require SERT at all; AMT just diffuses across the membrane (it's
+                small and lipophilic) and hits 5-HT2A from either side. The relevant comparator is the
+                psilocybin+escitalopram trial: escitalopram pretreatment did not significantly attenuate ratings of altered
+                states of consciousness from psilocybin, though it reduced bad drug effects, fear, anxiety, and
+                cardiovascular effects. So you'd predict an SSRI + AMT combination to selectively strip away the MDMA-like
+                empathogenic/prosocial layer while leaving the tryptamine-psychedelic perceptual layer largely intact —
+                essentially converting AMT from a hybrid empathogen-psychedelic into something closer to a pure (and
+                probably less pleasant) classical psychedelic.
+            </Paragraph>
+            <Paragraph>
+                One important caveat that makes this more of a pharmacological thought experiment than a practical regimen:
+                AMT is also a MAO-A inhibitor with IC50 ~380 nM. An SSRI plus an MAOI is one of the classic
+                serotonin-syndrome combinations, and even though the SSRI would blunt the <Word>
+                    <Emphasis />
+                    release
+                </Word> component, the combination of SERT blockade (raising baseline 5-HT), MAO-A inhibition (blocking
+                degradation), and residual SERT-reversal activity is exactly the convergence that produced the fatalities
+                with PMA and 4-MTA. So the mechanistic prediction is real but doesn't translate into "it'd just be a weaker
+                trip" — it translates into substantially elevated toxicity risk.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:03:30.615613Z"
+        >
+            <Origin>019dac47-8961-790c-bc08-fb89debd5111</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                This truck was actually legal in Soviet era Russia, which is interesting. Has it been used recreationally in
+                a documented fashion? Is it taken orally, intranasay? Does it need to be converted into another form to be
+                smoked? It has a very long duration of effects, right? Does it even exist anymore in the world?
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:04:28.223202Z"
+        >
+            <Origin>019dac47-8961-7285-b555-02d2dab72294</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>Searched the web for “AMT alpha-methyltryptamine recreational use duration oral dose hours”</Action>
+            <Paragraph>
+                Yes, the recreational history is well-documented. αMT started being used as a recreational drug in the 1960s
+                and use as a designer drug increased in the 1990s; it became a controlled substance in the United States in
+                2003. As a recreational drug its use remained marginal from the 1960s–90s, then saw an upsurge linked to the
+                clubbing scene, and remained uncontrolled in the UK until 2015. So there's a fairly clean historical arc:
+                Soviet clinical use as Indopan in the 60s (5–10 mg tablets for depression), dormancy, then a revival as a
+                gray-market "research chemical" bought online in the late 90s and early 2000s, then successive scheduling
+                waves (US 2003, Canada, China, UK 2015). Erowid, Bluelight, and PsychonautWiki have extensive trip-report
+                archives going back 20+ years, and there's even a WHO Expert Committee on Drug Dependence critical review
+                from 2014.
+            </Paragraph>
+            <Paragraph>
+                Routes: oral is the most common, and users report that αMT may be smoked, with doses between 2 and 20 mg; a
+                dose of 20 mg of αMT is said to be equivalent to 50 μg of LSD. Insufflation and rectal use are also reported
+                but less common. On the freebase question — yes, for smoking you want the freebase rather than the HCl salt.
+                Research-chemical vendors historically sold it in both forms, with "AMT fumarate" and "AMT HCl" being common
+                salts; the freebase has a lower melting point and vaporizes without decomposing, whereas the salts don't
+                vaporize cleanly. So there's no chemistry conversion required in the sense of e.g. freebasing cocaine from
+                its salt with ammonia — you just buy the form you want. The freebase is a solid at room temperature (mp
+                ~98–100 °C).
+            </Paragraph>
+            <Paragraph>
+                Duration: yes, famously long and with a slow onset, which is part of what makes it recreationally awkward.
+                An oral dose of AMT takes between 30 and 120 minutes to come up, although some users report onset as long as
+                180 minutes; due to the long time taken for the effects to develop, users have been known to redose thinking
+                that nothing is happening. Total duration runs 12–16 hours typically, with rare cases or extreme doses
+                exceeding 24 hours. This is almost the opposite profile from MDMA (fast onset, 3–5 hour duration), and
+                closer to mescaline in length.
+            </Paragraph>
+            <Paragraph>
+                As for whether it still exists — yes, it's still synthesized and sold on gray/darknet markets, though it's a
+                Schedule I equivalent in most major jurisdictions. The Soviet Indopan tablets are long gone (they were
+                discontinued decades ago, and the pharmaceutical registry in the USSR's successor states doesn't include
+                it). What occasionally still appears is in jurisdictions with slower analogue laws, or as novel homologues
+                (5-MeO-AMT, 5-F-AMT, 4-Me-αMT, isoAMT) that exploit gaps in specific national scheduling language. In terms
+                of <Word>
+                    <Emphasis />
+                    clinical
+                </Word> existence, it's essentially zero — there's no current or near-term therapeutic program, because its
+                MAO-A inhibition, long duration, and mixed psychedelic-releaser profile are all exactly the features that
+                modern drug developers are trying to <Word>
+                    <Emphasis />
+                    remove
+                </Word> from analogues. The more interesting descendants from a pharmaceutical standpoint are the
+                non-hallucinogenic derivatives like zalsupindole (DLX-001; AAZ-A-154; (R)-5-MeO-N,N-dimethyl-isoAMT), a
+                non-hallucinogenic serotonin &#91;receptor modulator&#93; being developed by Delix Therapeutics for
+                depression — which keeps the neuroplasticity-promoting scaffold while engineering out the 5-HT2A-mediated
+                perception changes.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:07:50.047917Z"
+        >
+            <Origin>019dac4b-7dc2-7824-81d7-e2a903244f0c</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                Oh, you said it has coverage on arrowwood in blue light do they report onset or leave versus intranasally?
+                Does that change the duration of the effect because some drugs can and some drugs it doesn’t. Do they know
+                if the thing is broken down readily in the gut so that the intro nasal dose is much different? I’ve heard of
+                it being smoked potentially as an alternative to MDMA because it has at a certain dose range a much smoother
+                onset curve and it’s not so thirsty which might give it therapeutic benefit.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:09:24.167590Z"
+        >
+            <Origin>019dac4b-7dc2-73e0-9e1e-ff3c989b23e7</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>
+                Searched the web for “AMT alpha-methyltryptamine insufflated intranasal onset duration dose Erowid”
+            </Action>
+            <Action>
+                Searched the web for “"AMT" insufflated smoked onset peak duration psychonautwiki bioavailability”
+            </Action>
+            <Action>Fetched https://www.erowid.org/chemicals/amt/amt_dose.shtml</Action>
+            <Action>Searched the web for “erowid AMT dose "insufflated" OR "snorted" mg common strong”</Action>
+            <Paragraph>
+                Yes, Erowid specifically breaks out the routes: AMT's effects usually last 8-14 hours when swallowed and 3-6
+                hours when insufflated. So the route <Word>
+                    <Emphasis />
+                    does
+                </Word> substantially change duration here — roughly a 3x compression. That's meaningful because, as you
+                noted, this isn't universal. For plenty of drugs (e.g., caffeine, amphetamine), the terminal half-life
+                dominates and route just shifts Tmax while total duration stays similar. For AMT the slow gut absorption
+                itself seems to be doing much of the work of "long duration" — once you bypass the gut with insufflation,
+                the pharmacokinetics reveal a shorter underlying elimination curve.
+            </Paragraph>
+            <Paragraph>
+                On gut breakdown: AMT isn't really degraded heavily in the gut in the DMT sense. DMT is orally inactive
+                because gut and hepatic MAO-A rips apart unsubstituted tryptamines before they reach systemic circulation —
+                that's why ayahuasca needs a β-carboline MAOI. The whole <Word>
+                    <Emphasis />
+                    point
+                </Word> of the α-methyl group on AMT (and on amphetamines, for that matter) is that it sterically blocks MAO
+                from oxidatively deaminating the primary amine, making the molecule orally bioavailable. The smoked-vs-oral
+                dose ratio tells the story: common oral dose is 20-40 mg; common smoked dose is 6-10 mg, so maybe 3-4x
+                potency shift across routes. If gut MAO were shredding it, you'd expect something more like the 20-30x shift
+                you see going from oral DMT (inactive) to smoked DMT (active at 20-40 mg). So what's happening with AMT
+                orally is more "slow absorption from a lipophilic base with a basic amine" than "massive first-pass
+                destruction." The slow onset (oral doses have an onset of 30-120 minutes and peak at 3-5 hours) is
+                absorption kinetics.
+            </Paragraph>
+            <Paragraph>
+                On the "smoother onset curve when smoked, MDMA alternative" framing — I'd push back a bit. A few threads
+                tangled together in the folk claim:
+            </Paragraph>
+            <Paragraph>
+                Smoked AMT is sharper, not smoother, than oral MDMA. Any vaporized freebase amine crosses the BBB in seconds
+                to a couple minutes. What smoked AMT <Word>
+                    <Emphasis />
+                    is
+                </Word> smoother than is smoked DMT, because AMT's lower 5-HT2A potency and longer half-life give a less
+                "rocketship" ascent. That comparison makes sense. Comparison to MDMA doesn't really — oral MDMA comes on
+                over 30-60 minutes, which is gentler than any smoked route.
+            </Paragraph>
+            <Paragraph>
+                The "not so thirsty/toasty" claim (I'm reading that as dehydration/hyperthermia) isn't well-supported. At
+                doses over 30 mg, αMT may cause several side effects, including anxiety, muscle tightness, vomiting, and
+                hyperthermia, and the fatalities associated with AMT — particularly in the 2012-2015 UK "legal high" period
+                where there were 22 deaths linked to αMT in England and Wales — often involved hyperthermia and
+                serotonin-syndrome features, which is exactly what you'd predict from a SNDRA-plus-MAOI pharmacology. MDMA
+                has a worse thermal reputation mostly because it's used at higher doses in dancing-in-crowded-clubs
+                contexts, but AMT isn't intrinsically cooler.
+            </Paragraph>
+            <Paragraph>
+                Why AMT isn't being developed as an MDMA-alternative therapeutic: the 8-14 hour oral duration is a serious
+                clinical liability (MAPS-style MDMA sessions are 6-8 hours and that's already at the edge of what's
+                tolerable for therapist-dyad protocols), the mandatory 5-HT2A agonism means you can't separate "emotional
+                processing" from "perceptual alterations" in the way MDMA therapy explicitly tries to, and the MAOI
+                component creates drug-drug interaction risk with the SSRIs many PTSD patients are on. The therapeutic
+                question isn't "can we find something MDMA-like?" but "can we find something with MDMA's prosocial-emotional
+                profile <Word>
+                    <Emphasis />
+                    and fewer
+                </Word> complications" — and AMT adds complications rather than removing them. The actively-developed
+                compounds in this space are things like the Emerald Bioscience/MAPS programs and Delix's non-hallucinogenic
+                plasticity-promoters, which are going the opposite direction from AMT.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:13:24.622445Z"
+        >
+            <Origin>019dac50-95e1-7056-a134-9575cee12f38</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                You didn’t mention a dose of range for intranasal use. MDMA/MDA is comparable from what I hear maybe a 25%
+                reduction where is a drug like 2CB I’ve heard reported as far more at smaller quantities intranasally and
+                very uncomfortable to take intranasally. Does the literature support that it’s similar to one versus the
+                other?
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:14:16.914399Z"
+        >
+            <Origin>019dac50-95e1-7ae8-b4ee-c3ff5a5f193e</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>
+                Searched the web for “"AMT" OR "α-methyltryptamine" insufflated dose mg "intranasal" OR "snorted" threshold
+                common”
+            </Action>
+            <Action>Searched the web for “"2C-B" intranasal insufflated dose "much stronger" painful burn snorted”</Action>
+            <Paragraph>
+                Honest answer: the published and community literature on AMT intranasal is thinner than for 2C-B or MDMA —
+                Erowid's dose page lists oral and smoked explicitly but leaves intranasal more vague, with the FAQ author
+                noting "AMT can be snorted, but I don't know too much about this." Most trip reports land at a similar dose
+                to oral or slightly less, not the dramatic reduction you see with 2C-B. So there isn't a clean authoritative
+                number, but the best inference is that AMT sits closer to the MDMA end of the spectrum than the 2C-B end,
+                with the duration compression being the dominant effect (8-14 hours oral vs 3-6 hours insufflated) rather
+                than a big potency shift.
+            </Paragraph>
+            <Paragraph>
+                The pharmacokinetic reason this should be true is worth unpacking, because it's exactly the question you're
+                asking. The size of the oral-vs-intranasal potency gap is mostly a function of first-pass metabolism. 2C-B
+                hits hepatic MAO-A and CYP2D6 hard on first pass; oral bioavailability estimates are in the 30-60% range, so
+                bypassing the liver with nasal uptake gives you roughly the 2-3x potency boost people describe (10 mg
+                insufflated ≈ 20-30 mg oral). MDMA has high oral bioavailability (~70-75%) and the major metabolic losses
+                happen later in the pharmacokinetic curve, so bypassing first-pass gives only modest dose compression — the
+                ~25% reduction you mentioned. AMT has the α-methyl group blocking MAO deamination (the whole reason it's
+                orally active at all, unlike DMT), so it behaves more like MDMA on this axis: decent oral bioavailability,
+                modest intranasal dose reduction, duration compression that's really about removing the slow gut-absorption
+                phase rather than about bypassing massive first-pass loss.
+            </Paragraph>
+            <Paragraph>
+                On nasal tolerability specifically — AMT isn't the 2C-B-style excruciating chemical burn, but it's widely
+                reported as unpleasant for a different reason: it has a famously foul smell and taste that lingers in the
+                sinus drip for hours. Erowid's FAQ page has the line "AMT doesn't taste all that bad. (It's the smell
+                that'll get to you)," which captures the user consensus. The 2C-x compounds are known for the burn because
+                the freebase nitrogen is on a short ethylamine tether from a relatively electron-rich aromatic ring and the
+                molecules are small and highly water-soluble after protonation, giving fast mucosal irritation. AMT's
+                irritation profile is more "sinuses feel awful for 10+ hours" than "acid glass for 20 minutes."
+            </Paragraph>
+            <Paragraph>
+                So to directly answer your comparative framing: literature and user-report convergence is that AMT
+                intranasal is MDMA-like in dose ratio (small reduction, maybe 25-50% at most), not 2C-B-like, and the
+                unpleasantness is chronic-smell rather than acute-burn. The salient clinical point is that going intranasal
+                doesn't really "fix" any of the pharmacology problems that make AMT a bad MDMA-alternative — it just trades
+                a 12-hour session for a 4-hour one while keeping the hyperthermia risk, the mandatory 5-HT2A trip, and the
+                MAOI interaction profile.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:17:38.374704Z"
+        >
+            <Origin>019dac54-7603-722e-b81a-1173b1e484d2</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                But if it compresses radically doesn’t it have to deliver a lot more in potency? Theoretically, I’d have to
+                imagine that there’s a time potency trade-off that’s close to linear because I don’t know if you just
+                thinking in terms of a dose like integrating an area under the curve in the area being relatively constant
+                if the substance isn’t being broken down then module sigmoidal effects on reset or binding don’t you have a
+                whole thing packed into a shorter period of time?
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:18:45.657558Z"
+        >
+            <Origin>019dac54-7603-76d4-a09c-1fa0e4e07c56</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Paragraph>
+                Yes, exactly right, and this is basically correct first-principles pharmacokinetics. For a given dose with
+                comparable bioavailability across routes, AUC is conserved (that's definitional — AUC = F·Dose/CL, and CL is
+                a property of the body, not the route). So if you squeeze the dwell time by 3x, the curve has to get taller
+                by roughly 3x to preserve the integral. Empirically this is exactly what the AMT dose data shows: smoked
+                common is 6-10 mg vs oral common 20-40 mg, which is a ~3-4x reduction in <Word>
+                    <Emphasis />
+                    dose
+                </Word> for roughly equivalent (or more intense) subjective peak experiences in trip reports. Same story for
+                2C-B where 10 mg insufflated ≈ 25 mg oral in subjective intensity. You're getting more peak-per-milligram
+                when the delivery is compressed, which means you can use less drug to reach the same Cmax while delivering
+                it over a shorter window.
+            </Paragraph>
+            <Paragraph>
+                The caveat you already flagged (sigmoidal receptor dose-response) is the main thing that bends the
+                relationship away from strictly linear. Once you saturate a receptor population, additional Cmax doesn't buy
+                you additional subjective effect at <Word>
+                    <Emphasis />
+                    that
+                </Word> target. But — and this is where your pharmacology background pays off — different targets have
+                different EC50s, so higher peaks can recruit secondary pharmacology that was subthreshold at the oral
+                plateau. For AMT specifically: SERT substrate activity EC50 ~22-68 nM, 5-HT2A EC50 ~25 nM, but MAO-A IC50 is
+                ~380 nM. An oral dose might give plasma levels that sit comfortably above SERT/5-HT2A thresholds but barely
+                tickle MAO-A. A smoked or snorted dose that achieves a much higher transient Cmax can briefly push MAO-A
+                inhibition into a meaningfully relevant regime — which changes the <Word>
+                    <Emphasis />
+                    qualitative
+                </Word> profile, not just the intensity. So the compressed route isn't just "same trip, shorter" — the shape
+                of the receptor-occupancy polypharmacy shifts.
+            </Paragraph>
+            <Paragraph>
+                The other pharmacokinetic subtlety is that oral AMT's long duration isn't really about the elimination
+                half-life — it's about absorption-limited kinetics. Slow gut absorption keeps plasma levels flat-topped
+                (steady-state-like) for hours because the drug is being fed in at roughly the rate it's being cleared. The
+                intranasal/smoked curve reveals the underlying elimination half-life, which is probably something like 3-4
+                hours. So your mental model should be: oral gives you a rectangular plasma profile with modest height and
+                long width; fast routes give you a spiked profile with the same area but triangular shape. The "duration"
+                change is really the oral rectangle collapsing toward the intrinsic decay curve.
+            </Paragraph>
+            <Paragraph>
+                The clinical translation of this: from a therapeutic standpoint, the AUC conservation is actually a problem
+                rather than an advantage. The total integrated serotonergic exposure — and therefore the potential for
+                downstream serotonergic neurotoxicity, which is well-documented for αET and suspected for αMT at high doses
+                — scales with AUC, not with subjective duration. So intranasal AMT doesn't reduce the total neurotoxic load
+                per dose; it just concentrates it into a shorter window with a higher Cmax, which if anything is <Word>
+                    <Emphasis />
+                    worse
+                </Word> from the "peak metabolic stress on serotonergic terminals" standpoint. This is one of the reasons no
+                legitimate pharma program has tried to develop AMT via alternative routes — rearranging the time-intensity
+                trade-off doesn't address the underlying pharmacology liabilities.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:21:12.559527Z"
+        >
+            <Origin>019dac57-bcf7-77f0-90b6-f450452da793</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                OK, that’s interesting and as the literature give the same sort of dramatic change and onset time
+                intranasally and smoked rather than oral because the answer at time of oral is very long, right? I wonder if
+                this wasn’t even considered a benefit in the clinical sense not because it takes a long time to come on but
+                because it lasts a long time.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:22:10.911774Z"
+        >
+            <Origin>019dac57-bcf7-7eed-987f-175717796368</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>
+                Searched the web for “Indopan AMT Soviet antidepressant dosing schedule once daily long half-life”
+            </Action>
+            <Paragraph>
+                Yes, the onset compression is actually <Word>
+                    <Emphasis />
+                    more
+                </Word> dramatic than the duration compression, which is striking. Oral AMT takes 30-180 minutes to come on;
+                insufflated is reported around 5-30 minutes (one of the Erowid-archived Usenet reports notes "I started out
+                with 4 mg intranasally, which burns and smells bad. The effect took quite a while to come on, even by this
+                route of ingestion" — "quite a while" in context meaning tens of minutes, not two hours); smoked is seconds
+                to a couple of minutes. So the onset ratio is something like 30-60x compression (oral 60-120 min → smoked ~1
+                min), whereas duration compression is only ~3x (14 hr → 4 hr). This asymmetry is a dead giveaway that the
+                oral curve is absorption-rate-limited on the front end and clearance-rate-limited on the back end. The fast
+                routes reveal the "true" pharmacokinetics: a sharpish peak with a modest half-life, probably 3-4 hours based
+                on the insufflated duration.
+            </Paragraph>
+            <Paragraph>
+                Your hypothesis on the clinical rationale is actually quite sound, and I think it's the correct read of why
+                Indopan existed at all. Indopan was dosed at 5-10 mg — well below the 15-20 mg recreational threshold — and
+                at that sub-psychedelic range you'd get meaningful monoamine modulation (SERT substrate activity, mild MAO-A
+                inhibition, some 5-HT2A tone) without the perceptual effects. The long duration in that regime is precisely
+                the clinically desirable feature. Modern pharma consensus is explicit about this: a half-life of 12-48 hours
+                is generally ideal for once-daily dosing of oral drugs, and compliance with antidepressants (which are
+                notoriously skipped) benefits enormously from forgiving kinetics. Fluoxetine's half-life is 1-3 days, and
+                that of its active metabolite norfluoxetine is 7-15 days, which is a big reason Prozac became dominant —
+                missed doses don't crash plasma levels and discontinuation syndromes are mild. So Indopan at 5-10 mg with an
+                8-14 hour effect would have looked, to a 1960s Soviet psychiatrist, like a perfectly reasonable once-daily
+                antidepressant with built-in forgiveness for noncompliance. The long duration was the pharmaceutical asset.
+            </Paragraph>
+            <Paragraph>
+                What the Soviet program presumably underestimated was the ceiling problem. AMT has a narrow therapeutic
+                index if you treat it as an antidepressant: doubling or tripling the dose doesn't just give you "more
+                antidepressant effect," it recruits the 5-HT2A agonism and higher SERT occupancy and starts producing
+                perception changes, hyperthermia risk, and MAOI-like food/drug interaction vulnerabilities. Modern SSRIs
+                have basically flat dose-response curves above threshold for precisely this reason — you can't really
+                "overdose into a trip" on escitalopram, which makes them clinically manageable in a way AMT never was. The
+                discontinuation of Indopan reportedly happened because of serious side effects, which in context probably
+                means patient reports of psychedelic-range effects at inadvertently high doses, plus the MAOI-related
+                tyramine/food concerns that started being recognized around that period (the "cheese effect" was
+                characterized in 1963 with tranylcypromine).
+            </Paragraph>
+            <Paragraph>
+                The modern equivalent of your intuition — "can we keep the long-duration dosing advantage without the
+                ceiling problem?" — is part of why compounds like vortioxetine (57-66 hour half-life, multimodal
+                serotonergic action, but no releaser activity and no MAOI) were developed. They kept the "long duration =
+                good compliance" feature and engineered out exactly the pharmacology that made AMT unusable. So your read is
+                historically correct: the long duration <Word>
+                    <Emphasis />
+                    was
+                </Word> considered a feature, not an incidental property. The problem was that it was attached to a
+                pharmacology that couldn't be scaled safely.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:25:17.371155Z"
+        >
+            <Origin>019dac5b-7872-78f2-8caa-fb53206f2710</Origin>
+            <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Paragraph>
+                Just to clarify because I did hear credible reports of those when I said that I heard that AMT was smoother
+                than MDMA when smoked, I meant more like the profile of the onset of the empathofenic effects once the drug
+                took affect and when smoke it takes affect much faster, note that the duration is similar in both cases. But
+                AMT is reported to be a more gradual come up and come down where MDMA is more like an avalanche. Faster
+                onset and more smooth psychoactive experiential profile would make for something that works better in a
+                therapeutic setting I think.
+            </Paragraph>
+        </Message>
+        <Message
+            at="2026-04-20T19:26:21.996582Z"
+        >
+            <Origin>019dac5b-7872-7e54-9523-21c129d04475</Origin>
+            <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Action>Searched the web for “AMT vs MDMA smoother come-up gentler onset empathogenic gradual”</Action>
+            <Paragraph>
+                You're right, and I was parsing your earlier claim too literally. The distinction you're drawing — between
+                <Word>
+                    <Emphasis />
+                    absolute
+                </Word> speed of arrival (onset latency) and <Word>
+                    <Emphasis />
+                    shape
+                </Word> of the subjective rise curve once effects have begun (onset profile) — is the right one, and it does
+                actually show up in the literature. You can have a route that reaches effect quickly but then ramps
+                subjective intensity gradually, versus oral MDMA which reaches effect slowly but then rushes sharply through
+                the come-up phase once the threshold is crossed.
+            </Paragraph>
+            <Paragraph>
+                The AMT subjective-profile reports do support what you're describing. PsychonautWiki's description of AMT's
+                body high specifically emphasizes its non-wave-like quality: this sensation does not manifest itself in the
+                form of a continuously shifting tingling sensation that travels up and down the body spontaneously; it is
+                instead felt like an extended, unchanging activation of every nerve ending on the body that lasts throughout
+                the entire duration of the experience. That's the opposite of the MDMA pattern, where the rushing/waving
+                quality during come-up is characteristic enough to be a diagnostic subjective marker. PsychonautWiki also
+                notes that AMT's empathogenic effects are "a little weaker and less sharp than with MDMA." Pharmacologically
+                you can argue this makes sense: MDMA has unusually efficient SERT reversal kinetics coupled with VMAT2
+                disruption, which gives a fast-dumping release curve. AMT's multi-modal action (slower release through SERT,
+                direct 5-HT2A agonism, partial MAO-A inhibition) layers three different time-courses on each other, which
+                tends to smooth rather than peak.
+            </Paragraph>
+            <Paragraph>
+                And your therapeutic framing — that a fast-but-smooth onset would be clinically valuable — is actually where
+                the field is actively going. This is exactly the rationale for the MDMA prodrug programs. Lysine-MDMA and
+                lysine-MDA are derivatives of MDMA and MDA, respectively, currently undergoing their first human clinical
+                trial in healthy subjects. Similar to the FDA-approved medication lisdexamfetamine—which attaches the amino
+                acid lysine to dextroamphetamine to create a prodrug with a more gradual onset of action—lysine is being
+                similarly attached to MDMA and MDA to potentially achieve a similar effect. So the therapeutic-development
+                community is explicitly treating MDMA's sharp come-up as a liability worth engineering out — your intuition
+                that a smoother curve would be clinically preferable is literally what Phase 1 programs are being built
+                around. The Vyvanse analogy is the right one.
+            </Paragraph>
+            <Paragraph>
+                Where I'd still hold some caution isn't about the smoothness claim but about the other things smoked AMT
+                drags along with that profile. The smooth, gradual empathogenic rise is real, but it's bundled with 5-HT2A
+                agonism that's going to be intensity-scaled with the Cmax of a smoked route, the MAOI interaction surface
+                doesn't go away, and the AUC-driven serotonergic neurotoxicity concern from αET-class compounds is arguably
+                <Word>
+                    <Emphasis />
+                    worse
+                </Word> at higher Cmax peaks. So "smoother experiential profile" is a legitimate point in AMT's favor that I
+                shouldn't have brushed aside, but it's not sufficient to close the therapeutic case — it's one axis of
+                several, and the field's actual answer has been to keep MDMA's clean pharmacology and engineer the onset
+                curve via prodrug chemistry rather than adopt a messier pharmacology that happens to have a nicer curve.
+            </Paragraph>
+        </Message>
+    </Chapter>
+);

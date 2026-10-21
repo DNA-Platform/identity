@@ -12,10 +12,7 @@ export default () => (
         <Section>
             <Heading>June 2026</Heading>
             <Paragraph>
-                <Content>$[[ ./7 June 2026 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./8 June 2026 ]]</Content>
+                <Content>$[[ ./Conversation ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Parenthetical />

@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--learning-srt
 import Cover from '../../../../../../.claude/.conversations/claude--learning-srt-syntax-and-transpiler-fundamentals--a1b2fd15/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--learning-srt-syntax-and-transpiler-fundamentals--a1b2fd15/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--learning-srt-syntax-and-transpiler-fundamentals--a1b2fd15/.table';
-import July2220261 from '../../../../../../.claude/.conversations/claude--learning-srt-syntax-and-transpiler-fundamentals--a1b2fd15/1-july-22-2026';
-import July2320262 from '../../../../../../.claude/.conversations/claude--learning-srt-syntax-and-transpiler-fundamentals--a1b2fd15/2-july-23-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--learning-srt-syntax-and-transpiler-fundamentals--a1b2fd15/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {July2220261()}
-        {July2320262()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--verifying-op
 import Cover from '../../../../../../.claude/.conversations/claude--verifying-openai-report-authenticity--3f7e9877/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--verifying-openai-report-authenticity--3f7e9877/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--verifying-openai-report-authenticity--3f7e9877/.table';
-import September1720261 from '../../../../../../.claude/.conversations/claude--verifying-openai-report-authenticity--3f7e9877/1-september-17-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--verifying-openai-report-authenticity--3f7e9877/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September1720261()}
+        {Conversation1()}
     </Book>
 );
 

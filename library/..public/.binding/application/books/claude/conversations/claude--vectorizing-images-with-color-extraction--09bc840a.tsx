@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--vectorizing-
 import Cover from '../../../../../../.claude/.conversations/claude--vectorizing-images-with-color-extraction--09bc840a/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--vectorizing-images-with-color-extraction--09bc840a/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--vectorizing-images-with-color-extraction--09bc840a/.table';
-import March120251 from '../../../../../../.claude/.conversations/claude--vectorizing-images-with-color-extraction--09bc840a/1-march-1-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--vectorizing-images-with-color-extraction--09bc840a/1-conversation';
 import ColorPreservingImageToSvgTracerV1o1 from '../../../../../../.claude/.conversations/claude--vectorizing-images-with-color-extraction--09bc840a/o1-color-preserving-image-to-svg-tracer-v1';
 import ColorPreservingImageToSvgTracerV2o2 from '../../../../../../.claude/.conversations/claude--vectorizing-images-with-color-extraction--09bc840a/o2-color-preserving-image-to-svg-tracer-v2';
 import ColorPreservingSvgTracerLibraryV1o3 from '../../../../../../.claude/.conversations/claude--vectorizing-images-with-color-extraction--09bc840a/o3-color-preserving-svg-tracer-library-v1';
@@ -32,7 +32,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March120251()}
+        {Conversation1()}
         {ColorPreservingImageToSvgTracerV1o1()}
         {ColorPreservingImageToSvgTracerV2o2()}
         {ColorPreservingSvgTracerLibraryV1o3()}

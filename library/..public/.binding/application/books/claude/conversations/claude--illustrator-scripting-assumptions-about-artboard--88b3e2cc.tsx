@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--illustrator-
 import Cover from '../../../../../../.claude/.conversations/claude--illustrator-scripting-assumptions-about-artboard--88b3e2cc/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--illustrator-scripting-assumptions-about-artboard--88b3e2cc/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--illustrator-scripting-assumptions-about-artboard--88b3e2cc/.table';
-import December420241 from '../../../../../../.claude/.conversations/claude--illustrator-scripting-assumptions-about-artboard--88b3e2cc/1-december-4-2024';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--illustrator-scripting-assumptions-about-artboard--88b3e2cc/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {December420241()}
+        {Conversation1()}
     </Book>
 );
 

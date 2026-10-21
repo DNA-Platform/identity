@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--ternary-oper
 import Cover from '../../../../../../.claude/.conversations/claude--ternary-operator-semantics-and-variable-equality--e9d7e99f/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--ternary-operator-semantics-and-variable-equality--e9d7e99f/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--ternary-operator-semantics-and-variable-equality--e9d7e99f/.table';
-import December920251 from '../../../../../../.claude/.conversations/claude--ternary-operator-semantics-and-variable-equality--e9d7e99f/1-december-9-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--ternary-operator-semantics-and-variable-equality--e9d7e99f/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {December920251()}
+        {Conversation1()}
     </Book>
 );
 

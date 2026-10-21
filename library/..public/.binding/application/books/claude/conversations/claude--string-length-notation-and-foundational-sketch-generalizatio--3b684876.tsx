@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--string-lengt
 import Cover from '../../../../../../.claude/.conversations/claude--string-length-notation-and-foundational-sketch-generalizatio--3b684876/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--string-length-notation-and-foundational-sketch-generalizatio--3b684876/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--string-length-notation-and-foundational-sketch-generalizatio--3b684876/.table';
-import August2420261 from '../../../../../../.claude/.conversations/claude--string-length-notation-and-foundational-sketch-generalizatio--3b684876/1-august-24-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--string-length-notation-and-foundational-sketch-generalizatio--3b684876/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August2420261()}
+        {Conversation1()}
     </Book>
 );
 

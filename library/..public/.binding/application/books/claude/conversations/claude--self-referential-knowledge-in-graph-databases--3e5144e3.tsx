@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--self-referen
 import Cover from '../../../../../../.claude/.conversations/claude--self-referential-knowledge-in-graph-databases--3e5144e3/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--self-referential-knowledge-in-graph-databases--3e5144e3/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--self-referential-knowledge-in-graph-databases--3e5144e3/.table';
-import June1720261 from '../../../../../../.claude/.conversations/claude--self-referential-knowledge-in-graph-databases--3e5144e3/1-june-17-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--self-referential-knowledge-in-graph-databases--3e5144e3/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {June1720261()}
+        {Conversation1()}
     </Book>
 );
 

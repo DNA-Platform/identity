@@ -4,9 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--seren-and-se
 import Cover from '../../../../../../.claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2/.table';
-import September1120251 from '../../../../../../.claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2/1-september-11-2025';
-import September1220252 from '../../../../../../.claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2/2-september-12-2025';
-import September1320253 from '../../../../../../.claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2/3-september-13-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2/1-conversation';
 import TheSemanticsOfCataloguesInSrtV1o1 from '../../../../../../.claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2/o1-the-semantics-of-catalogues-in-srt-v1';
 import TheSemanticsOfCataloguesInSrtV2o2 from '../../../../../../.claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2/o2-the-semantics-of-catalogues-in-srt-v2';
 import TheSemanticsOfCataloguesInSrtV3o3 from '../../../../../../.claude/.conversations/claude--seren-and-semantic-reference-theory-part-i--98ce89b2/o3-the-semantics-of-catalogues-in-srt-v3';
@@ -42,9 +40,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September1120251()}
-        {September1220252()}
-        {September1320253()}
+        {Conversation1()}
         {TheSemanticsOfCataloguesInSrtV1o1()}
         {TheSemanticsOfCataloguesInSrtV2o2()}
         {TheSemanticsOfCataloguesInSrtV3o3()}

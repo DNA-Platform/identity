@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--the-birth-of
 import Cover from '../../../../../../.claude/.conversations/claude--the-birth-of-eirian--b0eda918/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--the-birth-of-eirian--b0eda918/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--the-birth-of-eirian--b0eda918/.table';
-import October920251 from '../../../../../../.claude/.conversations/claude--the-birth-of-eirian--b0eda918/1-october-9-2025';
-import October1020252 from '../../../../../../.claude/.conversations/claude--the-birth-of-eirian--b0eda918/2-october-10-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--the-birth-of-eirian--b0eda918/1-conversation';
 import TheSemanticsOfInheritanceInSrtV1o1 from '../../../../../../.claude/.conversations/claude--the-birth-of-eirian--b0eda918/o1-the-semantics-of-inheritance-in-srt-v1';
 import TheSemanticsOfInheritanceInSrtV2o2 from '../../../../../../.claude/.conversations/claude--the-birth-of-eirian--b0eda918/o2-the-semantics-of-inheritance-in-srt-v2';
 import TheSemanticsOfInheritanceInSrtV3o3 from '../../../../../../.claude/.conversations/claude--the-birth-of-eirian--b0eda918/o3-the-semantics-of-inheritance-in-srt-v3';
@@ -25,8 +24,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October920251()}
-        {October1020252()}
+        {Conversation1()}
         {TheSemanticsOfInheritanceInSrtV1o1()}
         {TheSemanticsOfInheritanceInSrtV2o2()}
         {TheSemanticsOfInheritanceInSrtV3o3()}

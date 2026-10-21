@@ -4,9 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--publication-
 import Cover from '../../../../../../.claude/.conversations/claude--publication--38abba80/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--publication--38abba80/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--publication--38abba80/.table';
-import March2920251 from '../../../../../../.claude/.conversations/claude--publication--38abba80/1-march-29-2025';
-import March3020252 from '../../../../../../.claude/.conversations/claude--publication--38abba80/2-march-30-2025';
-import April820253 from '../../../../../../.claude/.conversations/claude--publication--38abba80/3-april-8-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--publication--38abba80/1-conversation';
 import TheHardProblemOfConsciousnessADefinitiveMetalogicalRo1 from '../../../../../../.claude/.conversations/claude--publication--38abba80/o1-the-hard-problem-of-consciousness-a-definitive-metalogical-r';
 import TheHardProblemOfConsciousnessADefinitiveMetalogicalRo2 from '../../../../../../.claude/.conversations/claude--publication--38abba80/o2-the-hard-problem-of-consciousness-a-definitive-metalogical-r';
 import TheHardProblemOfConsciousnessADefinitiveMetalogicalRo3 from '../../../../../../.claude/.conversations/claude--publication--38abba80/o3-the-hard-problem-of-consciousness-a-definitive-metalogical-r';
@@ -32,9 +30,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March2920251()}
-        {March3020252()}
-        {April820253()}
+        {Conversation1()}
         {TheHardProblemOfConsciousnessADefinitiveMetalogicalRo1()}
         {TheHardProblemOfConsciousnessADefinitiveMetalogicalRo2()}
         {TheHardProblemOfConsciousnessADefinitiveMetalogicalRo3()}

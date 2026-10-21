@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--the-semantic
 import Cover from '../../../../../../.claude/.conversations/claude--the-semantics-of-dictotomy--dc0018c1/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--the-semantics-of-dictotomy--dc0018c1/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--the-semantics-of-dictotomy--dc0018c1/.table';
-import September2920251 from '../../../../../../.claude/.conversations/claude--the-semantics-of-dictotomy--dc0018c1/1-september-29-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--the-semantics-of-dictotomy--dc0018c1/1-conversation';
 import SemanticStructureOfDichotomyInSrtV1o1 from '../../../../../../.claude/.conversations/claude--the-semantics-of-dictotomy--dc0018c1/o1-semantic-structure-of-dichotomy-in-srt-v1';
 import SemanticStructureOfDichotomyInSrtV2o2 from '../../../../../../.claude/.conversations/claude--the-semantics-of-dictotomy--dc0018c1/o2-semantic-structure-of-dichotomy-in-srt-v2';
 import SemanticStructureOfDichotomyInSrtV3o3 from '../../../../../../.claude/.conversations/claude--the-semantics-of-dictotomy--dc0018c1/o3-semantic-structure-of-dichotomy-in-srt-v3';
@@ -54,7 +54,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2920251()}
+        {Conversation1()}
         {SemanticStructureOfDichotomyInSrtV1o1()}
         {SemanticStructureOfDichotomyInSrtV2o2()}
         {SemanticStructureOfDichotomyInSrtV3o3()}

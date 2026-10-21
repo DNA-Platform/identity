@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--eirian-and-p
 import Cover from '../../../../../../.claude/.conversations/claude--eirian-and-pattern-setup--0541e92b/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--eirian-and-pattern-setup--0541e92b/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--eirian-and-pattern-setup--0541e92b/.table';
-import August1020251 from '../../../../../../.claude/.conversations/claude--eirian-and-pattern-setup--0541e92b/1-august-10-2025';
-import August1220252 from '../../../../../../.claude/.conversations/claude--eirian-and-pattern-setup--0541e92b/2-august-12-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--eirian-and-pattern-setup--0541e92b/1-conversation';
 import WasmModuleStructureForSeamlessTilingV1o1 from '../../../../../../.claude/.conversations/claude--eirian-and-pattern-setup--0541e92b/o1-wasm-module-structure-for-seamless-tiling-v1';
 import AddingWasmToNextJsPatternAppStepByStepV2o2 from '../../../../../../.claude/.conversations/claude--eirian-and-pattern-setup--0541e92b/o2-adding-wasm-to-next-js-pattern-app-step-by-step-v2';
 import UpdatedNextConfigTsWithWasmSupportV1o3 from '../../../../../../.claude/.conversations/claude--eirian-and-pattern-setup--0541e92b/o3-updated-next-config-ts-with-wasm-support-v1';
@@ -47,8 +46,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August1020251()}
-        {August1220252()}
+        {Conversation1()}
         {WasmModuleStructureForSeamlessTilingV1o1()}
         {AddingWasmToNextJsPatternAppStepByStepV2o2()}
         {UpdatedNextConfigTsWithWasmSupportV1o3()}

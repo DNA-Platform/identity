@@ -12,16 +12,7 @@ export default () => (
         <Section>
             <Heading>September 2024</Heading>
             <Paragraph>
-                <Content>$[[ ./25 September 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./26 September 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./27 September 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./28 September 2024 ]]</Content>
+                <Content>$[[ ./Conversation ]]</Content>
             </Paragraph>
             <Paragraph>
                 <Parenthetical />
@@ -34,75 +25,6 @@ export default () => (
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>October 2024</Heading>
-            <Paragraph>
-                <Content>$[[ ./3 October 2024 ]]</Content>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>November 2024</Heading>
-            <Paragraph>
-                <Content>$[[ ./5 November 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./6 November 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./10 November 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./11 November 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./12 November 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./13 November 2024 ]]</Content>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>December 2024</Heading>
-            <Paragraph>
-                <Content>$[[ ./4 December 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./5 December 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./8 December 2024 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./9 December 2024 ]]</Content>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>January 2025</Heading>
-            <Paragraph>
-                <Content>$[[ ./6 January 2025 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./9 January 2025 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./10 January 2025 ]]</Content>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>June 2025</Heading>
-            <Paragraph>
-                <Content>$[[ ./13 June 2025 ]]</Content>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>May 2026</Heading>
-            <Paragraph>
-                <Content>$[[ ./8 May 2026 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./10 May 2026 ]]</Content>
             </Paragraph>
         </Section>
     </Chapter>

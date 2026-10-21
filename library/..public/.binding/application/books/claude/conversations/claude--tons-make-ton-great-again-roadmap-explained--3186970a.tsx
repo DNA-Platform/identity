@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--tons-make-to
 import Cover from '../../../../../../.claude/.conversations/claude--tons-make-ton-great-again-roadmap-explained--3186970a/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--tons-make-ton-great-again-roadmap-explained--3186970a/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--tons-make-ton-great-again-roadmap-explained--3186970a/.table';
-import May520261 from '../../../../../../.claude/.conversations/claude--tons-make-ton-great-again-roadmap-explained--3186970a/1-may-5-2026';
-import May620262 from '../../../../../../.claude/.conversations/claude--tons-make-ton-great-again-roadmap-explained--3186970a/2-may-6-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--tons-make-ton-great-again-roadmap-explained--3186970a/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {May520261()}
-        {May620262()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--returning-un
 import Cover from '../../../../../../.claude/.conversations/claude--returning-undefined-when-closing-typescript-class--80ecd7b9/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--returning-undefined-when-closing-typescript-class--80ecd7b9/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--returning-undefined-when-closing-typescript-class--80ecd7b9/.table';
-import January1020251 from '../../../../../../.claude/.conversations/claude--returning-undefined-when-closing-typescript-class--80ecd7b9/1-january-10-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--returning-undefined-when-closing-typescript-class--80ecd7b9/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {January1020251()}
+        {Conversation1()}
     </Book>
 );
 

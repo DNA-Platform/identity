@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-ref
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--0eaf30c0/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--0eaf30c0/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--0eaf30c0/.table';
-import October620251 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--0eaf30c0/1-october-6-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--0eaf30c0/1-conversation';
 import DeepIntegrativeAnalysisOfSemanticReferenceTheoryV1o1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--0eaf30c0/o1-deep-integrative-analysis-of-semantic-reference-theory-v1';
 import TheSemanticsOfRepresentationV1o2 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--0eaf30c0/o2-the-semantics-of-representation-v1';
 import TheSemanticsOfRepresentationV2o3 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--0eaf30c0/o3-the-semantics-of-representation-v2';
@@ -57,7 +57,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October620251()}
+        {Conversation1()}
         {DeepIntegrativeAnalysisOfSemanticReferenceTheoryV1o1()}
         {TheSemanticsOfRepresentationV1o2()}
         {TheSemanticsOfRepresentationV2o3()}

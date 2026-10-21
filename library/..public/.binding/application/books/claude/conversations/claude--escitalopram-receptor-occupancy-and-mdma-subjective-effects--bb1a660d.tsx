@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--escitalopram
 import Cover from '../../../../../../.claude/.conversations/claude--escitalopram-receptor-occupancy-and-mdma-subjective-effects--bb1a660d/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--escitalopram-receptor-occupancy-and-mdma-subjective-effects--bb1a660d/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--escitalopram-receptor-occupancy-and-mdma-subjective-effects--bb1a660d/.table';
-import April220261 from '../../../../../../.claude/.conversations/claude--escitalopram-receptor-occupancy-and-mdma-subjective-effects--bb1a660d/1-april-2-2026';
-import April320262 from '../../../../../../.claude/.conversations/claude--escitalopram-receptor-occupancy-and-mdma-subjective-effects--bb1a660d/2-april-3-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--escitalopram-receptor-occupancy-and-mdma-subjective-effects--bb1a660d/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {April220261()}
-        {April320262()}
+        {Conversation1()}
     </Book>
 );
 

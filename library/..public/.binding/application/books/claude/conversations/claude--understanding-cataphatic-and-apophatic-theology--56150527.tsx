@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--understandin
 import Cover from '../../../../../../.claude/.conversations/claude--understanding-cataphatic-and-apophatic-theology--56150527/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--understanding-cataphatic-and-apophatic-theology--56150527/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--understanding-cataphatic-and-apophatic-theology--56150527/.table';
-import November2420241 from '../../../../../../.claude/.conversations/claude--understanding-cataphatic-and-apophatic-theology--56150527/1-november-24-2024';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--understanding-cataphatic-and-apophatic-theology--56150527/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November2420241()}
+        {Conversation1()}
     </Book>
 );
 

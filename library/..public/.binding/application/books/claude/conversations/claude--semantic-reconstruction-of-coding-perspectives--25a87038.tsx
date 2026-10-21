@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-rec
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reconstruction-of-coding-perspectives--25a87038/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reconstruction-of-coding-perspectives--25a87038/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reconstruction-of-coding-perspectives--25a87038/.table';
-import March220251 from '../../../../../../.claude/.conversations/claude--semantic-reconstruction-of-coding-perspectives--25a87038/1-march-2-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reconstruction-of-coding-perspectives--25a87038/1-conversation';
 import ElementcollectionImplementationV1o1 from '../../../../../../.claude/.conversations/claude--semantic-reconstruction-of-coding-perspectives--25a87038/o1-elementcollection-implementation-v1';
 import ElementImplementationV1o2 from '../../../../../../.claude/.conversations/claude--semantic-reconstruction-of-coding-perspectives--25a87038/o2-element-implementation-v1';
 import ElementImplementationV2o3 from '../../../../../../.claude/.conversations/claude--semantic-reconstruction-of-coding-perspectives--25a87038/o3-element-implementation-v2';
@@ -18,7 +18,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March220251()}
+        {Conversation1()}
         {ElementcollectionImplementationV1o1()}
         {ElementImplementationV1o2()}
         {ElementImplementationV2o3()}

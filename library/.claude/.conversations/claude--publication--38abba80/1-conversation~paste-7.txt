@@ -1,0 +1,262 @@
+What makes a theory of consciousness
+unscientific?
+IIT-Concerned, Michał Klincewicz, Tony Cheng, Michael Schmitz,
+Miguel Ángel Sebastián & Joel S. Snyder
+Theories of consciousness have a long and
+controversial history. One well-known
+proposal — integrated information theory —
+has recently been labeled as ‘pseudoscience’,
+which has caused a heated open debate.
+Here we discuss the case and argue that
+the theory is indeed unscientific because
+its core claims are untestable even
+in principle.
+Theorizing about consciousness is challenging because some of the
+issues lie at the border between empirical science and philosophical
+inquiry. One recent example of this challenge is the controversial and
+yet highly publicized view known as the integrated information theory
+(IIT) of consciousness. IIT seeks to provide an explanation of why certain
+systems, such as the human brain, generate rich and complex conscious
+experiences whereas others do not. It does so by linking consciousness
+with the ability of a system to integrate information. IIT proposes that
+consciousness arises when a system’s components interact in a way
+that creates a unified whole, quantified by a custom measure of complexity
+known as ‘Phi’ (Φ). The higher the Φ value, the more conscious
+the system is. Central to IIT are the concepts of intrinsic causality, in
+which a system’s current state influences its own future and past states,
+and cause–effect structure, which determines the specific quality of
+conscious experiences.
+This ambitious theory has been promoted as ‘well-established’1, ‘a
+gigantic step in the final resolution of the ancient mind-body problem’,
+‘the only dominant theory’, and ‘the most promising scientific theory’
+of consciousness2. However, we argue that the core ideas of IIT lack
+empirical support and are metaphysical, and not scientific. Because
+previous expressions of such concerns about the theory3 have not
+received sufficient attention, a group of us wrote an open letter that
+questioned the scientific status of IIT4.
+Whether IIT is pseudoscience is important because of the practical
+and ethical importance of understanding consciousness. In response
+to widespread and polarized reactions to the letter, the limited empirical
+support, and radical claims concerning who and what is conscious,
+here we expand on the original letter to explain why it was written and
+to clarify which claims made by IIT proponents are problematic. We
+distinguish the core claims of IIT, which we argue are unscientific, from
+work merely inspired by IIT that uses measures of complexity to investigate
+brain activity associated with different states of wakefulness.
+This latter work is uncontroversially scientific, but neither supports
+nor tests the core claims of IIT.
+Scientific theories of consciousness should be testable
+Scientific theories of consciousness aim to identify specific brain processes
+and/or psychological functions that are crucial for subjective
+experiences. These theories generally make claims that are readily
+testable with the tools of psychology or cognitive neuroscience
+(Box 1).
+By contrast, IIT postulates that ‘consciousness is a fundamental
+feature of the universe’, which it seeks to understand starting from a
+set of claims (‘axioms’) that are said to be ‘irrefutable’ and true of every
+conscious experience5. However, some have criticized these axioms6
+and have argued that they lead to circularity7. The axioms have also
+evolved5,6, which casts doubt on their ‘irrefutability’.
+Proponents of IIT claim to derive an index of a system’s degree of
+integrated information (Φ) from these controversial axioms, which
+they argue is an objective measure of the degree of consciousness
+in any system. However, the axioms do not by themselves specify a
+particular mathematical model. To develop a precise formula for Φ,
+further assumptions must be made. This challenge becomes evident
+in the evolving interpretations and understandings of the theory and
+in the changes in formulas that define Φ over time3,8.
+More concerning are other problems that prevent the theory
+from being empirically validated. An obvious test of IIT would be to
+measure Φ in humans. To calculate Φ one needs to consider how every
+component of the system at every spatial and temporal scale — say
+from the quantum scale to brain regions, and from nanoseconds to
+days — constrains the past and future states of the system5. Given the
+complexity of these calculations, it is impossible in principle to compute
+Φ, and hence impossible to identify conscious states — a point
+that proponents of IIT readily admit.
+Currently, Φ can only be precisely calculated in idealized systems
+with a few units3, such as limited grids of logic gates. Simple artificial
+systems such as these are conscious according to IIT, even when the
+relevant nodes are all inactive8.
+Hence, the theory readily ascribes consciousness to static systems
+that do not perform any function. Stating that such systems have
+‘consciousness’, when their ‘consciousness’ has no observable consequences
+is, in this respect, no different than stating that they have ‘souls’.
+Some consider the theory dismissible on the basis of these implications
+alone6,7. However, proponents of IIT embrace this counterintuitive consequence
+without calling their theoretical assumptions into question3.
+Making theoretical predictions that may not be testable by current
+methodology does not necessarily render the relevant theories
+unscientific. However, if the core claims of a theory are not testable
+even in principle, the scientific status of the theory should be
+called into question. Nevertheless, some researchers claim to have
+tested IIT empirically, and have promoted the results as providing
+partial support for the theory or for its superiority to other theories1,2.
+Yet, as others have argued, the tests are problematic and not meaningful9
+because they do not address the core claims of IIT, and the tested
+Check for updates
+nature neuroscience
+Comment
+for scientific inquiry. Untestable metaphysical views can of course be
+discussed, but it is problematic when they are treated as empirically
+testable science. In light of the above, we argue that IIT demonstrates
+characteristics that are hallmarks of pseudoscience (Box 2).
+Practical and ethical consequences
+Attributing consciousness to systems with minimal complexity
+has important practical consequences10. This is because a theory of
+predictions do not sufficiently differentiate between IIT and other
+theories of consciousness.
+Although IIT may provoke interesting philosophical discussions,
+we contend that it falls short of the empirical basis required
+BOX 1
+Common theories of
+consciousness and their
+empirical predictions
+An influential method for studying consciousness is to compare
+what happens at the neuronal and psychological levels in conscious
+versus unconscious experimental conditions. This method, known
+as ‘contrastive analysis’, provides the main source of data for current
+theories, such as global neuronal workspace theory, higher-order
+theories or the local recurrence theory of consciousness. As
+such, although some of these views have theoretical origins in
+computer science or philosophy, the core empirical predictions are
+usually made at levels of observation that are testable with current
+methods in cognitive neuroscience. These predictions are often not
+quantitatively precise, but they are nonetheless constrained by the
+empirical literature.
+For instance, global neuronal workspace theory has long held
+that a putative frontoparietal network in the mammalian brain
+should support the broadcast of stimulus-related information
+during conscious experience. Therefore, if someone reports
+being conscious of a stimulus without relevant information being
+represented in this brain network, the theory is put under pressure.
+One may doubt this particular theoretical proposal, but it is a
+reasonable theory to test given the importance of frontoparietal
+areas in functions related to consciousness, such as working
+memory, attention and cognitive control.
+Other theories also make clear predictions. For instance, local
+recurrence theory predicts that the first feedforward sweep of
+neuronal processing of visual stimuli occurs unconsciously, and
+conscious perception only arises when information feeds back
+from higher visual areas to early visual areas. Several empirical
+tests have validated this prediction. Importantly, these empirical
+studies not only tested local recurrence theory but also challenged
+other theories.
+Theories not only make predictions at the neurobiological
+level, but also at the psychological and cognitive levels. For
+instance, higher-order theories predict that it should be possible to
+manipulate subjective experience while holding fixed lower-level
+sensory responses and perceptual capacities that enable
+discrimination between similar stimuli.
+If proponents of IIT were to give up the core claims (axioms),
+some weaker version of the theory could perhaps be cast in terms of
+cognitive neuroscience11 (see also the section ‘IIT-inspired research
+on brain complexity’). However, to the extent that IIT’s metaphysical
+commitments remain promoted as key features, this stronger version
+of IIT — which is our target here — is incompatible with standard
+approaches in cognitive neuroscience for testing ideas empirically6,7.
+BOX 2
+Evaluating the scientific status
+of a theory by applying criteria
+to IIT
+Besides the issue of untestability, the following points also
+contribute to our doubt about IIT as science.
+Overreach
+Recent developments have seen the theory expanding into areas
+that traditionally belong to metaphysics, by asserting bold claims
+about the nature of reality, causation and the nonexistence of
+neurons14. These assertions are interesting, but they venture
+beyond the boundaries of empirical science. IIT also ambitiously
+addresses fundamental existential questions, such as the essence
+of being and the presence of free will, elevating the theory to an
+‘all-encompassing explanatory framework’14. According to some,
+this kind of ambition is a common hallmark of pseudoscientific
+theories15, which often claim to provide comprehensive
+explanations for a wide variety of complex phenomena without
+sufficient empirical support.
+Incompatibility with physics
+Doubts have been raised regarding IIT’s compatibility with current
+physics5, a possible concern for any neurobiological theory. The
+theory’s proponents acknowledge these compatibility issues5, yet
+IIT continues to be promoted as a promising or well-established
+scientific theory.
+Misrepresentation and promotion
+Despite its lack of scientific support, IIT is often presented to
+the public as a direct competitor to other scientific theories of
+consciousness2. This misrepresentation is amplified by media
+coverage and public endorsements, which may mislead the
+general public about the theory’s empirical validity. Although
+misrepresentation itself does not make the theory unscientific,
+it suggests that the label ‘pseudoscience’ may be appropriate.
+The pseudoscience criterion
+Standard dictionary definitions and philosophical discussions15
+describe pseudoscience as featuring unscientific claims (for
+example, untestable in principle) that are falsely presented as
+scientific. This criterion applies to IIT as it portrays untestable
+assertions as empirically grounded science.
+nature neuroscience
+Comment
+consciousness may be used to inform practical decisions regarding
+morally significant legal and medical issues. By promoting to the
+general public the untestable idea that ‘Φ = consciousness’, proponents
+of IIT may ultimately have an unjustified effect on law and policy,
+including on decisions that involve measures of quality of life, clinical
+triage, abortion, the rights of non-responsive patients, and welfare
+considerations for insects, organoids and artificial intelligences. Given
+the practical consequences of adopting and promoting any one theory
+of consciousness over others, we recommend caution and scientific
+humility — especially for a theory without direct and meaningful empirical
+support, such as IIT.
+IIT-inspired research on brain complexity
+It is important to distinguish research that purports to directly test
+IIT as a theory of consciousness from research that is more loosely
+inspired by IIT and does not purport to test it11. Research inspired by
+IIT includes studies on the complexity of neural activity induced by
+magnetic brain stimulation during different states of wakefulness,
+sleep and general anesthesia. These studies show that in some states
+(such as non-REM sleep and general anesthesia) neural activity has
+greater uniformity and therefore lower degrees of complexity when
+compared to wakefulness12.
+Although this research is assuredly scientific, interesting and
+potentially of practical importance, it does not lend support to IIT. IIT
+proposes a general theory that identifies which objects are conscious,
+from humans to static logic gates: it proposes that the ‘degree of consciousness’
+of any object is assayed by a specific measure of complexity,
+the integrated information Φ. It is not surprising that human states of
+conscious awareness show greater neural complexity than states of
+unconsciousness, and this is likely to be true using almost any sensible
+measure of complexity. Indeed, many other theories of consciousness
+also predict lower brain complexity during certain nonawake states,
+such as slow-wave sleep and general anesthesia13. Testing the hypothesis
+that conscious versus nonconscious states can be distinguished
+in humans or some other animals by various measures of neural complexity
+does not distinguish IIT from these other theories, nor does it
+test the core hypothesis of IIT that Φ is a general measure of the degree
+of consciousness of any creature or nonliving object. What would be
+needed to make it a scientific theory is a measure that directly derived
+from the mathematical apparatus of IIT, akin to how a particular measurement
+of the motion of a pendulum — such as instantaneous velocity
+— is directly derived from the harmonic oscillation equation. Yet, the
+measures used by IIT-inspired studies do not assay Φ specifically, but
+only some more common notion of complexity13. Therefore, these
+measures are unable to distinguish IIT from other theories.
+Furthermore, the comparison of different global states, such as
+wakefulness and coma, is confounded by many different cognitive
+and behavioral factors6,13. In particular, much of brain activity during
+wakefulness is not conscious, so a neural correlate of a waking state is
+not necessarily a neural correlate of consciousness as a mental state.
+Without other controls, it is impossible to draw strong conclusions
+about consciousness just by comparing different global states, such
+as wakefulness and coma.
+Conclusion
+Our main concerns with IIT are twofold. First, it lacks well-defined
+empirically testable consequences. Second, it explicitly asserts or
+entails bold nonempirical claims, such as that ‘the entire cosmos is
+suffused with sentience’2, that neurons do not truly exist14 or that consciousness
+can be attributed to a static array of logic gates. These bold
+claims threaten to delegitimize the scientific study of consciousness.
+We need to be careful what we label as scientific, especially given the
+practical and ethical significance of consciousness. We appreciate
+that the word ‘pseudoscience’ should not be used lightly, but there are
+good reasons to think that it applies in this case. We sincerely hope that
+discussing these reasons

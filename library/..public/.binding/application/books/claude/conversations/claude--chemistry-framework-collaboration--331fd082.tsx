@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemistry-fr
 import Cover from '../../../../../../.claude/.conversations/claude--chemistry-framework-collaboration--331fd082/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemistry-framework-collaboration--331fd082/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemistry-framework-collaboration--331fd082/.table';
-import September220251 from '../../../../../../.claude/.conversations/claude--chemistry-framework-collaboration--331fd082/1-september-2-2025';
-import September320252 from '../../../../../../.claude/.conversations/claude--chemistry-framework-collaboration--331fd082/2-september-3-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemistry-framework-collaboration--331fd082/1-conversation';
 import DiagramClassWithBondConfigurationV1o1 from '../../../../../../.claude/.conversations/claude--chemistry-framework-collaboration--331fd082/o1-diagram-class-with-bond-configuration-v1';
 import SetterInterfaceAndSentinelV1o2 from '../../../../../../.claude/.conversations/claude--chemistry-framework-collaboration--331fd082/o2-setter-interface-and-sentinel-v1';
 import SetterInterfaceAndSentinelV2o3 from '../../../../../../.claude/.conversations/claude--chemistry-framework-collaboration--331fd082/o3-setter-interface-and-sentinel-v2';
@@ -20,8 +19,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September220251()}
-        {September320252()}
+        {Conversation1()}
         {DiagramClassWithBondConfigurationV1o1()}
         {SetterInterfaceAndSentinelV1o2()}
         {SetterInterfaceAndSentinelV2o3()}

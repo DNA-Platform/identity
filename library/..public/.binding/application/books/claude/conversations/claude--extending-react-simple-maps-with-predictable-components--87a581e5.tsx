@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--extending-re
 import Cover from '../../../../../../.claude/.conversations/claude--extending-react-simple-maps-with-predictable-components--87a581e5/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--extending-react-simple-maps-with-predictable-components--87a581e5/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--extending-react-simple-maps-with-predictable-components--87a581e5/.table';
-import March2420251 from '../../../../../../.claude/.conversations/claude--extending-react-simple-maps-with-predictable-components--87a581e5/1-march-24-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--extending-react-simple-maps-with-predictable-components--87a581e5/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March2420251()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--setting-up-w
 import Cover from '../../../../../../.claude/.conversations/claude--setting-up-windows-11-with-account--d5883276/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--setting-up-windows-11-with-account--d5883276/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--setting-up-windows-11-with-account--d5883276/.table';
-import May820261 from '../../../../../../.claude/.conversations/claude--setting-up-windows-11-with-account--d5883276/1-may-8-2026';
-import May920262 from '../../../../../../.claude/.conversations/claude--setting-up-windows-11-with-account--d5883276/2-may-9-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--setting-up-windows-11-with-account--d5883276/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {May820261()}
-        {May920262()}
+        {Conversation1()}
     </Book>
 );
 

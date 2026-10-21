@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--ai-learning-
 import Cover from '../../../../../../.claude/.conversations/claude--ai-learning-process-analysis--e8f8da16/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--ai-learning-process-analysis--e8f8da16/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--ai-learning-process-analysis--e8f8da16/.table';
-import August2520251 from '../../../../../../.claude/.conversations/claude--ai-learning-process-analysis--e8f8da16/1-august-25-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--ai-learning-process-analysis--e8f8da16/1-conversation';
 import ChemistryFrameworkDemoApplicationV1o1 from '../../../../../../.claude/.conversations/claude--ai-learning-process-analysis--e8f8da16/o1-chemistry-framework-demo-application-v1';
 import FixedChemistryTsWithTwoPhaseRenderingV1o2 from '../../../../../../.claude/.conversations/claude--ai-learning-process-analysis--e8f8da16/o2-fixed-chemistry-ts-with-two-phase-rendering-v1';
 import CleanChemistrySolutionBlueprintPatternV1o3 from '../../../../../../.claude/.conversations/claude--ai-learning-process-analysis--e8f8da16/o3-clean-chemistry-solution-blueprint-pattern-v1';
@@ -20,7 +20,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August2520251()}
+        {Conversation1()}
         {ChemistryFrameworkDemoApplicationV1o1()}
         {FixedChemistryTsWithTwoPhaseRenderingV1o2()}
         {CleanChemistrySolutionBlueprintPatternV1o3()}

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-ref
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--111afff4/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--111afff4/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--111afff4/.table';
-import September720251 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--111afff4/1-september-7-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--111afff4/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September720251()}
+        {Conversation1()}
     </Book>
 );
 

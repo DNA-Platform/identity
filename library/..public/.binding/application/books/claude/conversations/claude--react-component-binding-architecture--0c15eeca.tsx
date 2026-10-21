@@ -4,10 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--react-compon
 import Cover from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/.table';
-import September1520251 from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/1-september-15-2025';
-import September1620252 from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/2-september-16-2025';
-import September1720253 from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/3-september-17-2025';
-import September1820254 from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/4-september-18-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/1-conversation';
 import ChemistryFrameworkAdvancedExampleAppV1o1 from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/o1-chemistry-framework-advanced-example-app-v1';
 import ChemistryFrameworkAdvancedExampleAppV2o2 from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/o2-chemistry-framework-advanced-example-app-v2';
 import ChemistryFrameworkTodoAppImplementationV1o3 from '../../../../../../.claude/.conversations/claude--react-component-binding-architecture--0c15eeca/o3-chemistry-framework-todo-app-implementation-v1';
@@ -30,10 +27,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September1520251()}
-        {September1620252()}
-        {September1720253()}
-        {September1820254()}
+        {Conversation1()}
         {ChemistryFrameworkAdvancedExampleAppV1o1()}
         {ChemistryFrameworkAdvancedExampleAppV2o2()}
         {ChemistryFrameworkTodoAppImplementationV1o3()}

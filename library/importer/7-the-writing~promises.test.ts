@@ -173,14 +173,16 @@ describe('the writing', () => {
         expect(lines).toContain('        <Word>2</Word>');
     });
 
-    it('writes a chapter for each day of the conversation, each message timed and headed by its speaker', () => {
+    it('writes one chapter, Conversation, dated with the day it began, each message timed and headed by its speaker', () => {
         const question = sampleTextMessage('m1', 'Doug', 'A question');
         const path = [question, sampleTextMessage('m2', 'Claude', 'An answer', 'm1')];
         const conversation = sampleConversation('c', 'A Conversation', path);
         const written = writtenConversation(conversation, path, referents, manualImportPath, claudeManualImportPath);
         const [chapter] = written.chapters;
-        expect(chapter.fileName).toBe('1-june-15-2026.tsx');
-        expect(chapter.title).toBe('15 June 2026');
+        expect(chapter.fileName).toBe('1-conversation.tsx');
+        expect(chapter.title).toBe('Conversation');
+        expect(chapter.tsx).toContain('<Title>[[ Conversation ]]</Title>');
+        expect(chapter.tsx).toContain('<Date>[15 June 2026](2026-06-15)</Date>');
         expect(chapter.tsx).not.toContain('<Part>');
         expect(chapter.tsx).toContain(`<Speaker>${referenceForm('Doug', 'Dougs Story', '$')}</Speaker>`);
         expect(chapter.tsx).toContain(`<Speaker>${referenceForm('Claude', 'Dougs Claude', '$')}</Speaker>`);
@@ -191,17 +193,16 @@ describe('the writing', () => {
         expect(chapter.tsx).toContain('<Origin>m1</Origin>');
     });
 
-    it('cuts a conversation held over two days into two chapters, each dated and holding only its own messages', () => {
+    it('keeps a conversation held over two days in one chapter, dated with its first day and holding every message', () => {
         const first = sampleTextMessage('m1', 'Doug', 'Day one', undefined, '2026-06-15T10:00:00Z');
         const second = sampleTextMessage('m2', 'Claude', 'Day two', 'm1', '2026-06-16T09:00:00Z');
         const conversation = sampleConversation('d', 'Days', [first, second]);
         const written = writtenConversation(conversation, [first, second], referents, manualImportPath,
             claudeManualImportPath);
-        expect(written.chapters.map(one => one.fileName)).toEqual(['1-june-15-2026.tsx', '2-june-16-2026.tsx']);
-        expect(written.chapters[1].tsx).toContain('<Date>[16 June 2026](2026-06-16)</Date>');
+        expect(written.chapters.map(one => one.fileName)).toEqual(['1-conversation.tsx']);
+        expect(written.chapters[0].tsx).toContain('<Date>[15 June 2026](2026-06-15)</Date>');
         expect(written.chapters[0].tsx).toContain('Day one');
-        expect(written.chapters[0].tsx).not.toContain('Day two');
-        expect(written.chapters[1].tsx).toContain('Day two');
+        expect(written.chapters[0].tsx).toContain('Day two');
     });
 
     // Found binding Semantic Reference Theory, 2026-10-17: "Symbols vs. Sets", a version's title with a dot, named
@@ -226,7 +227,7 @@ describe('the writing', () => {
         const written = writtenConversation(conversation, path, referents, manualImportPath, claudeManualImportPath);
         const [chapter] = written.chapters;
         expect(chapter.files.map(file => file.name))
-            .toEqual(['1-june-15-2026~notes.v1.md', '1-june-15-2026~notes.v2.md', '1-june-15-2026~notes.md']);
+            .toEqual(['1-conversation~notes.v1.md', '1-conversation~notes.v2.md', '1-conversation~notes.md']);
         expect(chapter.files.map(file => file.content)).toEqual(['Hello world', 'Hello there', 'Hello there']);
         expect(chapter.tsx).toContain(literalForm('notes.v2.md'));
         expect(chapter.tsx).toContain('                artifact="notes"\n                place="notes-v1"\n            >');
@@ -286,7 +287,7 @@ describe('the writing', () => {
         const conversation = sampleConversation('g', 'Given', [given]);
         const [chapter] = writtenConversation(conversation, [given], referents, manualImportPath, claudeManualImportPath)
             .chapters;
-        expect(chapter.files.map(file => file.name)).toEqual(['1-june-15-2026~notes.txt']);
+        expect(chapter.files.map(file => file.name)).toEqual(['1-conversation~notes.txt']);
         expect(chapter.tsx).toContain(figure('Attachment', 'notes', '.txt', 'Attached “notes.txt”'));
         expect(chapter.tsx)
             .toContain('<Attachment>Uploaded “photo.png”, whose content the export does not carry</Attachment>');

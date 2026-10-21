@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--eirian-and-p
 import Cover from '../../../../../../.claude/.conversations/claude--eirian-and-patterns--9ee451e7/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--eirian-and-patterns--9ee451e7/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--eirian-and-patterns--9ee451e7/.table';
-import August1020251 from '../../../../../../.claude/.conversations/claude--eirian-and-patterns--9ee451e7/1-august-10-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--eirian-and-patterns--9ee451e7/1-conversation';
 import PatternAppTrelloCardsV1o1 from '../../../../../../.claude/.conversations/claude--eirian-and-patterns--9ee451e7/o1-pattern-app-trello-cards-v1';
 import PatternAppTrelloCardsV2o2 from '../../../../../../.claude/.conversations/claude--eirian-and-patterns--9ee451e7/o2-pattern-app-trello-cards-v2';
 import CardCreateBasicHtmlWithEmbeddedSvgPatternV1o3 from '../../../../../../.claude/.conversations/claude--eirian-and-patterns--9ee451e7/o3-card-create-basic-html-with-embedded-svg-pattern-v1';
@@ -17,7 +17,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August1020251()}
+        {Conversation1()}
         {PatternAppTrelloCardsV1o1()}
         {PatternAppTrelloCardsV2o2()}
         {CardCreateBasicHtmlWithEmbeddedSvgPatternV1o3()}

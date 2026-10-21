@@ -175,12 +175,12 @@ const chapterText = (imports: string[], chapterLines: string[]): string =>
         `${indentation(1)}</Chapter>`, ');', '',
     ].join('\n');
 
-const dayNames = (day: string): { title: string; stem: string } => {
+const dayWords = (day: string): string => {
     const [year, month, dayOfMonth] = day.split('-').map(Number);
     const date = new Date(Date.UTC(year, month - 1, dayOfMonth));
     const monthName = date.toLocaleString('en-GB', { month: 'long', timeZone: 'UTC' });
 
-    return { title: `${dayOfMonth} ${monthName} ${year}`, stem: `${monthName.toLowerCase()}-${dayOfMonth}-${year}` };
+    return `${dayOfMonth} ${monthName} ${year}`;
 };
 
 // A version of an artifact is a chapter of its own, a document as writing under an opaque section, code as a code box.
@@ -223,14 +223,13 @@ export const writtenConversation = (
     claudeManualImportPath: string,
     keptAppendices: Appendix[] = [],
 ): WrittenConversation => {
-    const days: { day: string; messages: Message[] }[] = [];
-    for (const message of path) {
-        const day = message.sentAt.slice(0, 10);
-        const last = days.at(-1);
-        if (last !== undefined && last.day === day) last.messages.push(message);
-        else days.push({ day, messages: [message] });
-    }
-    if (days.length === 0) days.push({ day: conversation.createdAt.slice(0, 10), messages: [] });
+    // ONE CHAPTER, Conversation, holding every message in order and dated with the day the conversation began;
+    // the chapters a conversation is cut into by hand come after. Doug, 2026-10-21: "I don't want the day-based
+    // split. That's not useful. You can call the default chapter 'conversation' because we have to process all
+    // of them."
+    const groups: { day: string; messages: Message[] }[] = [
+        { day: (path[0]?.sentAt ?? conversation.createdAt).slice(0, 10), messages: path },
+    ];
     const artifactVersions = new Map<string, ArtifactVersion>();
     const versions: WrittenChapter[] = [];
     const versionTitles = new Set<string>();
@@ -245,9 +244,9 @@ export const writtenConversation = (
         return versionTitle;
     };
 
-    const chapters = days.map(({ day, messages }, dayIndex): WrittenChapter => {
-        const { title, stem } = dayNames(day);
-        const chapterStem = `${dayIndex + 1}-${stem}`;
+    const chapters = groups.map(({ day, messages }, groupIndex): WrittenChapter => {
+        const title = 'Conversation';
+        const chapterStem = `${groupIndex + 1}-conversation`;
         const files: WrittenFile[] = [];
         const appendices: Appendix[] = [];
         const baseNameCounts = new Map<string, number>();
@@ -335,11 +334,11 @@ export const writtenConversation = (
                 bodyLines.push(...elementLines('Paragraph', ['Nothing was written in this message'], 3));
             bodyLines.push(`${indentation(2)}</Message>`);
         }
-        if (dayIndex === days.length - 1)
+        if (groupIndex === groups.length - 1)
             for (const artifactVersion of artifactVersions.values())
                 addArtifactFile(slugFromName(artifactVersion.title), artifactVersion);
 
-        if (dayIndex === 0 && keptAppendices.length > 0) {
+        if (groupIndex === 0 && keptAppendices.length > 0) {
             const keptHeading = `${indentation(3)}<Heading>As I had it before the re-import</Heading>`;
             bodyLines.push(`${indentation(2)}<Section>`, keptHeading);
             for (const appendix of keptAppendices) {
@@ -353,7 +352,7 @@ export const writtenConversation = (
         }
         const chapterLines = [
             `${indentation(2)}<Dated>`,
-            `${indentation(3)}<Date>[${title}](${day})</Date>`,
+            `${indentation(3)}<Date>[${dayWords(day)}](${day})</Date>`,
             `${indentation(2)}</Dated>`,
             `${indentation(2)}<Title>${titleForm(written(escaped(title)))}</Title>`,
             ...bodyLines,

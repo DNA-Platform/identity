@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--polymorphic-
 import Cover from '../../../../../../.claude/.conversations/claude--polymorphic-book-component-framework--af073cd3/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--polymorphic-book-component-framework--af073cd3/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--polymorphic-book-component-framework--af073cd3/.table';
-import September1420251 from '../../../../../../.claude/.conversations/claude--polymorphic-book-component-framework--af073cd3/1-september-14-2025';
-import September1520252 from '../../../../../../.claude/.conversations/claude--polymorphic-book-component-framework--af073cd3/2-september-15-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--polymorphic-book-component-framework--af073cd3/1-conversation';
 import ChemistryFrameworkAnalysisV1o1 from '../../../../../../.claude/.conversations/claude--polymorphic-book-component-framework--af073cd3/o1-chemistry-framework-analysis-v1';
 import ChildrenTransformationLogicV1o2 from '../../../../../../.claude/.conversations/claude--polymorphic-book-component-framework--af073cd3/o2-children-transformation-logic-v1';
 import ChildrenTransformationLogicV2o3 from '../../../../../../.claude/.conversations/claude--polymorphic-book-component-framework--af073cd3/o3-children-transformation-logic-v2';
@@ -50,8 +49,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September1420251()}
-        {September1520252()}
+        {Conversation1()}
         {ChemistryFrameworkAnalysisV1o1()}
         {ChildrenTransformationLogicV1o2()}
         {ChildrenTransformationLogicV2o3()}

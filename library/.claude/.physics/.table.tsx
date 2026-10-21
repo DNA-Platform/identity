@@ -49,15 +49,6 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Ontic Structural Realism ]]( ./claude--Ontic Structural Realism--3b54b751 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Ontic Structural Realism--3b54b751 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
                     <Content>$[[ Can you look up the research o… ]]( ./claude--Can you look up the research o…--8aa11284 )</Content>
                 </Word>
                 <Word>

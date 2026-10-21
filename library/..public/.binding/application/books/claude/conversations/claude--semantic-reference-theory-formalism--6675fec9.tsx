@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-ref
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9/.table';
-import September3020251 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9/1-september-30-2025';
-import October120252 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9/2-october-1-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9/1-conversation';
 import TenFundamentalTheoremsOfSemanticReferenceTheoryV1o1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9/o1-ten-fundamental-theorems-of-semantic-reference-theory-v1';
 import TheSemanticsOfTemporalExperienceATheoryInSrtV1o2 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9/o2-the-semantics-of-temporal-experience-a-theory-in-srt-v1';
 import TenFundamentalTheoremsOfSemanticReferenceTheoryV2o3 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--6675fec9/o3-ten-fundamental-theorems-of-semantic-reference-theory-v2';
@@ -45,8 +44,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September3020251()}
-        {October120252()}
+        {Conversation1()}
         {TenFundamentalTheoremsOfSemanticReferenceTheoryV1o1()}
         {TheSemanticsOfTemporalExperienceATheoryInSrtV1o2()}
         {TenFundamentalTheoremsOfSemanticReferenceTheoryV2o3()}

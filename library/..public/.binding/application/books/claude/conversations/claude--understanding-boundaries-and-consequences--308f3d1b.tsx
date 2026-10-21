@@ -4,10 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--understandin
 import Cover from '../../../../../../.claude/.conversations/claude--understanding-boundaries-and-consequences--308f3d1b/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--understanding-boundaries-and-consequences--308f3d1b/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--understanding-boundaries-and-consequences--308f3d1b/.table';
-import April1720261 from '../../../../../../.claude/.conversations/claude--understanding-boundaries-and-consequences--308f3d1b/1-april-17-2026';
-import April1820262 from '../../../../../../.claude/.conversations/claude--understanding-boundaries-and-consequences--308f3d1b/2-april-18-2026';
-import April1920263 from '../../../../../../.claude/.conversations/claude--understanding-boundaries-and-consequences--308f3d1b/3-april-19-2026';
-import April2020264 from '../../../../../../.claude/.conversations/claude--understanding-boundaries-and-consequences--308f3d1b/4-april-20-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--understanding-boundaries-and-consequences--308f3d1b/1-conversation';
 
 const Book = $($Book);
 
@@ -16,10 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {April1720261()}
-        {April1820262()}
-        {April1920263()}
-        {April2020264()}
+        {Conversation1()}
     </Book>
 );
 

@@ -269,6 +269,7 @@ export const registerEntry = (
     captionText: string,
     stars: string,
     appendix?: Appendix,
+    heading?: string,
 ): WrittenEntry => {
     const tablePath = join(folder, '.table.tsx');
     const tableText = readFileSync(tablePath, 'utf8');
@@ -293,7 +294,7 @@ export const registerEntry = (
         ...(appendix === undefined ? [] : appendLines(appendix, 0)),
     ]));
     const insertionPoint = tableText.includes(whereThisBookStandsSection) ? whereThisBookStandsSection : '    </Chapter>';
-    writtenFile(tablePath, tableWithRow(tableText, monthHeading(instant), rowLines(name, stars), insertionPoint));
+    writtenFile(tablePath, tableWithRow(tableText, heading ?? monthHeading(instant), rowLines(name, stars), insertionPoint));
 
     return { entryPath, tablePath, files: [entryPath, tablePath] };
 };
@@ -513,11 +514,31 @@ export const orderedTableText = (tableText: string): string => {
     return tableText.replace(sectionForm, placedSection);
 };
 
-export const orderRegisterTable = (folder: string): string[] => {
+// THE REGISTER'S PARTS IN THE ORDER GIVEN, newest first by their latest conversation with the unfiled last, where
+// the sections are headed by a project and not by a month; Sprint 114 set Our Conversations by its parts.
+const partsOrdered = (tableText: string, partsNewestFirst: string[]): string => {
+    const parts = new Map([...tableText.matchAll(sectionForm)]
+        .filter(match => !isMonthHeading(match[1]) && partsNewestFirst.includes(match[1]))
+        .map(match => [match[1], match[0]] as const));
+    if (parts.size === 0) return tableText;
+    const ordered = partsNewestFirst.filter(heading => parts.has(heading)).map(heading => parts.get(heading)!).join('');
+    let placed = false;
+    const placedSection = (section: string, heading: string): string => {
+        if (!parts.has(heading)) return section;
+        if (placed) return '';
+        placed = true;
+
+        return ordered;
+    };
+
+    return tableText.replace(sectionForm, placedSection);
+};
+
+export const orderRegisterTable = (folder: string, partsNewestFirst: string[] = []): string[] => {
     const tablePath = join(folder, '.table.tsx');
     if (!existsSync(tablePath)) return [];
     const tableText = readFileSync(tablePath, 'utf8');
-    const ordered = orderedTableText(tableText);
+    const ordered = partsOrdered(orderedTableText(tableText), partsNewestFirst);
 
     return ordered === tableText ? [] : [writtenFile(tablePath, ordered)];
 };

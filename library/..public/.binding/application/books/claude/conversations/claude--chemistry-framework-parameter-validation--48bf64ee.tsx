@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemistry-fr
 import Cover from '../../../../../../.claude/.conversations/claude--chemistry-framework-parameter-validation--48bf64ee/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemistry-framework-parameter-validation--48bf64ee/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemistry-framework-parameter-validation--48bf64ee/.table';
-import October2020251 from '../../../../../../.claude/.conversations/claude--chemistry-framework-parameter-validation--48bf64ee/1-october-20-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemistry-framework-parameter-validation--48bf64ee/1-conversation';
 import ChemistryFrameworkDebugFixV1o1 from '../../../../../../.claude/.conversations/claude--chemistry-framework-parameter-validation--48bf64ee/o1-chemistry-framework-debug-fix-v1';
 
 const Book = $($Book);
@@ -14,7 +14,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October2020251()}
+        {Conversation1()}
         {ChemistryFrameworkDebugFixV1o1()}
     </Book>
 );

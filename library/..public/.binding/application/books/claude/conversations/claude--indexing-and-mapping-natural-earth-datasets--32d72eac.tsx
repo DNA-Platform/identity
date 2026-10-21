@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--indexing-and
 import Cover from '../../../../../../.claude/.conversations/claude--indexing-and-mapping-natural-earth-datasets--32d72eac/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--indexing-and-mapping-natural-earth-datasets--32d72eac/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--indexing-and-mapping-natural-earth-datasets--32d72eac/.table';
-import April220251 from '../../../../../../.claude/.conversations/claude--indexing-and-mapping-natural-earth-datasets--32d72eac/1-april-2-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--indexing-and-mapping-natural-earth-datasets--32d72eac/1-conversation';
 import MapFeaturesExtractorV1o1 from '../../../../../../.claude/.conversations/claude--indexing-and-mapping-natural-earth-datasets--32d72eac/o1-map-features-extractor-v1';
 import MapFeaturesIndexerV1o2 from '../../../../../../.claude/.conversations/claude--indexing-and-mapping-natural-earth-datasets--32d72eac/o2-map-features-indexer-v1';
 import NaturalearthfeatureextractorV1o3 from '../../../../../../.claude/.conversations/claude--indexing-and-mapping-natural-earth-datasets--32d72eac/o3-naturalearthfeatureextractor-v1';
@@ -21,7 +21,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {April220251()}
+        {Conversation1()}
         {MapFeaturesExtractorV1o1()}
         {MapFeaturesIndexerV1o2()}
         {NaturalearthfeatureextractorV1o3()}

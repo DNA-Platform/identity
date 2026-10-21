@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--enhancing-co
 import Cover from '../../../../../../.claude/.conversations/claude--enhancing-cohesive-composition--0d887450/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--enhancing-cohesive-composition--0d887450/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--enhancing-cohesive-composition--0d887450/.table';
-import March2020251 from '../../../../../../.claude/.conversations/claude--enhancing-cohesive-composition--0d887450/1-march-20-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--enhancing-cohesive-composition--0d887450/1-conversation';
 import EnhancedCohesiveCellPatternV1o1 from '../../../../../../.claude/.conversations/claude--enhancing-cohesive-composition--0d887450/o1-enhanced-cohesive-cell-pattern-v1';
 import EnhancedCohesiveCellPatternV2o2 from '../../../../../../.claude/.conversations/claude--enhancing-cohesive-composition--0d887450/o2-enhanced-cohesive-cell-pattern-v2';
 import EnhancedCohesiveCellPatternV3o3 from '../../../../../../.claude/.conversations/claude--enhancing-cohesive-composition--0d887450/o3-enhanced-cohesive-cell-pattern-v3';
@@ -22,7 +22,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March2020251()}
+        {Conversation1()}
         {EnhancedCohesiveCellPatternV1o1()}
         {EnhancedCohesiveCellPatternV2o2()}
         {EnhancedCohesiveCellPatternV3o3()}

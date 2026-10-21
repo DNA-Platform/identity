@@ -1,5 +1,5 @@
 import { About, Author, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
-import { Illustration, JournalCover as Cover, Scheme, Volume, Window } from '../../.manual/.book';
+import { JournalCover as Cover, Illustration, Scheme, Volume, Window } from '../../.manual/.book';
 import SubjectCover from '../.cover.tsx';
 import StoryCover from '../../.librarian/.cover.tsx';
 
@@ -17,8 +17,8 @@ export default () => (
             ink="#1f5a60"
         />
         <Window
-            x="-30"
-            y="-22"
+            x="-32"
+            y="-26"
         />
         <Title>[[ Our Conversations ]]</Title>
         <Author>*[[ Doug ]]( The Librarian )</Author>

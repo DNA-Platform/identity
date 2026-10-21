@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-ref
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe/.table';
-import October420251 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe/1-october-4-2025';
-import October520252 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe/2-october-5-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe/1-conversation';
 import SemanticReferenceTheoryADeepIntegrativeAnalysisV1o1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe/o1-semantic-reference-theory-a-deep-integrative-analysis-v1';
 import SemanticReferenceTheoryADeepIntegrativeAnalysisV2o2 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe/o2-semantic-reference-theory-a-deep-integrative-analysis-v2';
 import SemanticReferenceTheoryADeepIntegrativeAnalysisV3o3 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-analysis--67a776fe/o3-semantic-reference-theory-a-deep-integrative-analysis-v3';
@@ -39,8 +38,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October420251()}
-        {October520252()}
+        {Conversation1()}
         {SemanticReferenceTheoryADeepIntegrativeAnalysisV1o1()}
         {SemanticReferenceTheoryADeepIntegrativeAnalysisV2o2()}
         {SemanticReferenceTheoryADeepIntegrativeAnalysisV3o3()}

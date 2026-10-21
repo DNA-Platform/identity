@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--next-js-dyna
 import Cover from '../../../../../../.claude/.conversations/claude--next-js-dynamic-component-loading-issue--efd87c1a/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--next-js-dynamic-component-loading-issue--efd87c1a/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--next-js-dynamic-component-loading-issue--efd87c1a/.table';
-import October1120251 from '../../../../../../.claude/.conversations/claude--next-js-dynamic-component-loading-issue--efd87c1a/1-october-11-2025';
-import October1320252 from '../../../../../../.claude/.conversations/claude--next-js-dynamic-component-loading-issue--efd87c1a/2-october-13-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--next-js-dynamic-component-loading-issue--efd87c1a/1-conversation';
 import DynamicChildrenTestsV1o1 from '../../../../../../.claude/.conversations/claude--next-js-dynamic-component-loading-issue--efd87c1a/o1-dynamic-children-tests-v1';
 import DynamicChildrenTestsV2o2 from '../../../../../../.claude/.conversations/claude--next-js-dynamic-component-loading-issue--efd87c1a/o2-dynamic-children-tests-v2';
 import DynamicChildrenTestsV3o3 from '../../../../../../.claude/.conversations/claude--next-js-dynamic-component-loading-issue--efd87c1a/o3-dynamic-children-tests-v3';
@@ -26,8 +25,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October1120251()}
-        {October1320252()}
+        {Conversation1()}
         {DynamicChildrenTestsV1o1()}
         {DynamicChildrenTestsV2o2()}
         {DynamicChildrenTestsV3o3()}

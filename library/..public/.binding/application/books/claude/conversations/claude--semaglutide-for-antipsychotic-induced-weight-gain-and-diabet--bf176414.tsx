@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semaglutide-
 import Cover from '../../../../../../.claude/.conversations/claude--semaglutide-for-antipsychotic-induced-weight-gain-and-diabet--bf176414/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semaglutide-for-antipsychotic-induced-weight-gain-and-diabet--bf176414/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semaglutide-for-antipsychotic-induced-weight-gain-and-diabet--bf176414/.table';
-import August520261 from '../../../../../../.claude/.conversations/claude--semaglutide-for-antipsychotic-induced-weight-gain-and-diabet--bf176414/1-august-5-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semaglutide-for-antipsychotic-induced-weight-gain-and-diabet--bf176414/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August520261()}
+        {Conversation1()}
     </Book>
 );
 

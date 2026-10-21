@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--vitest-confi
 import Cover from '../../../../../../.claude/.conversations/claude--vitest-configuration-not-finding-all-tests--ac7b89e2/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--vitest-configuration-not-finding-all-tests--ac7b89e2/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--vitest-configuration-not-finding-all-tests--ac7b89e2/.table';
-import November320251 from '../../../../../../.claude/.conversations/claude--vitest-configuration-not-finding-all-tests--ac7b89e2/1-november-3-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--vitest-configuration-not-finding-all-tests--ac7b89e2/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November320251()}
+        {Conversation1()}
     </Book>
 );
 

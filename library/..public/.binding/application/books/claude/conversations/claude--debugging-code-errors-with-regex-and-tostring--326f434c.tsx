@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--debugging-co
 import Cover from '../../../../../../.claude/.conversations/claude--debugging-code-errors-with-regex-and-tostring--326f434c/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--debugging-code-errors-with-regex-and-tostring--326f434c/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--debugging-code-errors-with-regex-and-tostring--326f434c/.table';
-import November420251 from '../../../../../../.claude/.conversations/claude--debugging-code-errors-with-regex-and-tostring--326f434c/1-november-4-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--debugging-code-errors-with-regex-and-tostring--326f434c/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November420251()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--matt-gaetz-r
 import Cover from '../../../../../../.claude/.conversations/claude--matt-gaetz-republican-congressman-from-florida--0e223450/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--matt-gaetz-republican-congressman-from-florida--0e223450/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--matt-gaetz-republican-congressman-from-florida--0e223450/.table';
-import November1420241 from '../../../../../../.claude/.conversations/claude--matt-gaetz-republican-congressman-from-florida--0e223450/1-november-14-2024';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--matt-gaetz-republican-congressman-from-florida--0e223450/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November1420241()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-ref
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--d562cb1c/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--d562cb1c/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--d562cb1c/.table';
-import October820251 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--d562cb1c/1-october-8-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--d562cb1c/1-conversation';
 import TheSemanticsOfTheSubjectObjectRelationshipV1o1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--d562cb1c/o1-the-semantics-of-the-subject-object-relationship-v1';
 import NotesOnSrtDefinitionsAndReferenceFramesV1o2 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--d562cb1c/o2-notes-on-srt-definitions-and-reference-frames-v1';
 import NotesOnSrtDefinitionsAndReferenceFramesV2o3 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-formalism--d562cb1c/o3-notes-on-srt-definitions-and-reference-frames-v2';
@@ -44,7 +44,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October820251()}
+        {Conversation1()}
         {TheSemanticsOfTheSubjectObjectRelationshipV1o1()}
         {NotesOnSrtDefinitionsAndReferenceFramesV1o2()}
         {NotesOnSrtDefinitionsAndReferenceFramesV2o3()}

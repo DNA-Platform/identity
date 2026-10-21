@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--ton-consensu
 import Cover from '../../../../../../.claude/.conversations/claude--ton-consensus-mechanism-competition--b4dbad61/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--ton-consensus-mechanism-competition--b4dbad61/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--ton-consensus-mechanism-competition--b4dbad61/.table';
-import May1520261 from '../../../../../../.claude/.conversations/claude--ton-consensus-mechanism-competition--b4dbad61/1-may-15-2026';
-import May1620262 from '../../../../../../.claude/.conversations/claude--ton-consensus-mechanism-competition--b4dbad61/2-may-16-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--ton-consensus-mechanism-competition--b4dbad61/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {May1520261()}
-        {May1620262()}
+        {Conversation1()}
     </Book>
 );
 

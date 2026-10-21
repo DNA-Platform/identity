@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantics-of
 import Cover from '../../../../../../.claude/.conversations/claude--semantics-of-representation--8b14b84b/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantics-of-representation--8b14b84b/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantics-of-representation--8b14b84b/.table';
-import September1020261 from '../../../../../../.claude/.conversations/claude--semantics-of-representation--8b14b84b/1-september-10-2026';
-import September1120262 from '../../../../../../.claude/.conversations/claude--semantics-of-representation--8b14b84b/2-september-11-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantics-of-representation--8b14b84b/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September1020261()}
-        {September1120262()}
+        {Conversation1()}
     </Book>
 );
 

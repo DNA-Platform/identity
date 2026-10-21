@@ -4,10 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--react-compon
 import Cover from '../../../../../../.claude/.conversations/claude--react-component-type-inference-strategy--b6ef4d66/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--react-component-type-inference-strategy--b6ef4d66/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--react-component-type-inference-strategy--b6ef4d66/.table';
-import September920251 from '../../../../../../.claude/.conversations/claude--react-component-type-inference-strategy--b6ef4d66/1-september-9-2025';
-import September1020252 from '../../../../../../.claude/.conversations/claude--react-component-type-inference-strategy--b6ef4d66/2-september-10-2025';
-import September1320253 from '../../../../../../.claude/.conversations/claude--react-component-type-inference-strategy--b6ef4d66/3-september-13-2025';
-import September1420254 from '../../../../../../.claude/.conversations/claude--react-component-type-inference-strategy--b6ef4d66/4-september-14-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--react-component-type-inference-strategy--b6ef4d66/1-conversation';
 
 const Book = $($Book);
 
@@ -16,10 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September920251()}
-        {September1020252()}
-        {September1320253()}
-        {September1420254()}
+        {Conversation1()}
     </Book>
 );
 

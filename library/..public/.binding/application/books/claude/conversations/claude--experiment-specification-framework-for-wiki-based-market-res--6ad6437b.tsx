@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--experiment-s
 import Cover from '../../../../../../.claude/.conversations/claude--experiment-specification-framework-for-wiki-based-market-res--6ad6437b/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--experiment-specification-framework-for-wiki-based-market-res--6ad6437b/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--experiment-specification-framework-for-wiki-based-market-res--6ad6437b/.table';
-import February1920261 from '../../../../../../.claude/.conversations/claude--experiment-specification-framework-for-wiki-based-market-res--6ad6437b/1-february-19-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--experiment-specification-framework-for-wiki-based-market-res--6ad6437b/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {February1920261()}
+        {Conversation1()}
     </Book>
 );
 

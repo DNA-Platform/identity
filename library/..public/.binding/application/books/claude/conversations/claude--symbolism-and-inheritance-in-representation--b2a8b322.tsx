@@ -4,10 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--symbolism-an
 import Cover from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/.table';
-import October120251 from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/1-october-1-2025';
-import October220252 from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/2-october-2-2025';
-import October320253 from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/3-october-3-2025';
-import October420254 from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/4-october-4-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/1-conversation';
 import FoundationsOfInheritanceInSrtV1o1 from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/o1-foundations-of-inheritance-in-srt-v1';
 import FoundationsOfInheritanceInSrtV2o2 from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/o2-foundations-of-inheritance-in-srt-v2';
 import FoundationsOfInheritanceInSrtV3o3 from '../../../../../../.claude/.conversations/claude--symbolism-and-inheritance-in-representation--b2a8b322/o3-foundations-of-inheritance-in-srt-v3';
@@ -55,10 +52,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October120251()}
-        {October220252()}
-        {October320253()}
-        {October420254()}
+        {Conversation1()}
         {FoundationsOfInheritanceInSrtV1o1()}
         {FoundationsOfInheritanceInSrtV2o2()}
         {FoundationsOfInheritanceInSrtV3o3()}

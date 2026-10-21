@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--write-it-in-
 import Cover from '../../../../../../.claude/.conversations/claude--write-it-in-a-new-editable-document--3762e1b9/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--write-it-in-a-new-editable-document--3762e1b9/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--write-it-in-a-new-editable-document--3762e1b9/.table';
-import September1420251 from '../../../../../../.claude/.conversations/claude--write-it-in-a-new-editable-document--3762e1b9/1-september-14-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--write-it-in-a-new-editable-document--3762e1b9/1-conversation';
 import CompleteChemistryFrameworkV1o1 from '../../../../../../.claude/.conversations/claude--write-it-in-a-new-editable-document--3762e1b9/o1-complete-chemistry-framework-v1';
 
 const Book = $($Book);
@@ -14,7 +14,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September1420251()}
+        {Conversation1()}
         {CompleteChemistryFrameworkV1o1()}
     </Book>
 );

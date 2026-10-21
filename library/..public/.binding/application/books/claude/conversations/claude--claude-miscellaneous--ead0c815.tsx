@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--claude-misce
 import Cover from '../../../../../../.claude/.conversations/claude--claude-miscellaneous--ead0c815/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--claude-miscellaneous--ead0c815/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--claude-miscellaneous--ead0c815/.table';
-import June1720261 from '../../../../../../.claude/.conversations/claude--claude-miscellaneous--ead0c815/1-june-17-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--claude-miscellaneous--ead0c815/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {June1720261()}
+        {Conversation1()}
     </Book>
 );
 

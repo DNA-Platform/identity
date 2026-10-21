@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--animated-rot
 import Cover from '../../../../../../.claude/.conversations/claude--animated-rotating-and-scaling-rose-svg--a9d87661/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--animated-rotating-and-scaling-rose-svg--a9d87661/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--animated-rotating-and-scaling-rose-svg--a9d87661/.table';
-import March920251 from '../../../../../../.claude/.conversations/claude--animated-rotating-and-scaling-rose-svg--a9d87661/1-march-9-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--animated-rotating-and-scaling-rose-svg--a9d87661/1-conversation';
 import AnimatedRecursiveRosePatternV1o1 from '../../../../../../.claude/.conversations/claude--animated-rotating-and-scaling-rose-svg--a9d87661/o1-animated-recursive-rose-pattern-v1';
 import AnimatedRecursiveRosePatternV2o2 from '../../../../../../.claude/.conversations/claude--animated-rotating-and-scaling-rose-svg--a9d87661/o2-animated-recursive-rose-pattern-v2';
 import AnimatedRecursiveRosePatternV3o3 from '../../../../../../.claude/.conversations/claude--animated-rotating-and-scaling-rose-svg--a9d87661/o3-animated-recursive-rose-pattern-v3';
@@ -31,7 +31,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March920251()}
+        {Conversation1()}
         {AnimatedRecursiveRosePatternV1o1()}
         {AnimatedRecursiveRosePatternV2o2()}
         {AnimatedRecursiveRosePatternV3o3()}

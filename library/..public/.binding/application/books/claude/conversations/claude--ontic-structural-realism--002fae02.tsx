@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--ontic-struct
 import Cover from '../../../../../../.claude/.conversations/claude--ontic-structural-realism--002fae02/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--ontic-structural-realism--002fae02/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--ontic-structural-realism--002fae02/.table';
-import June1520261 from '../../../../../../.claude/.conversations/claude--ontic-structural-realism--002fae02/1-june-15-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--ontic-structural-realism--002fae02/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {June1520261()}
+        {Conversation1()}
     </Book>
 );
 

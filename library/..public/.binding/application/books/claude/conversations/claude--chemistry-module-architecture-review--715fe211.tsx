@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemistry-mo
 import Cover from '../../../../../../.claude/.conversations/claude--chemistry-module-architecture-review--715fe211/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemistry-module-architecture-review--715fe211/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemistry-module-architecture-review--715fe211/.table';
-import October820251 from '../../../../../../.claude/.conversations/claude--chemistry-module-architecture-review--715fe211/1-october-8-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemistry-module-architecture-review--715fe211/1-conversation';
 import TestComponentsLibraryChemistryTestsTsxV1o1 from '../../../../../../.claude/.conversations/claude--chemistry-module-architecture-review--715fe211/o1-test-components-library-chemistry-tests-tsx-v1';
 import ChildBindingTestNavigationAppTestsChildBindingPageTo2 from '../../../../../../.claude/.conversations/claude--chemistry-module-architecture-review--715fe211/o2-child-binding-test-navigation-app-tests-child-binding-page-t';
 import BasicConstructorTestBasicConstructorTsxV1o3 from '../../../../../../.claude/.conversations/claude--chemistry-module-architecture-review--715fe211/o3-basic-constructor-test-basic-constructor-tsx-v1';
@@ -67,7 +67,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October820251()}
+        {Conversation1()}
         {TestComponentsLibraryChemistryTestsTsxV1o1()}
         {ChildBindingTestNavigationAppTestsChildBindingPageTo2()}
         {BasicConstructorTestBasicConstructorTsxV1o3()}

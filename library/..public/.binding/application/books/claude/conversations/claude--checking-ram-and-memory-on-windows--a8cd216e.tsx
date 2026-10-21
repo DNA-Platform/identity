@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--checking-ram
 import Cover from '../../../../../../.claude/.conversations/claude--checking-ram-and-memory-on-windows--a8cd216e/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--checking-ram-and-memory-on-windows--a8cd216e/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--checking-ram-and-memory-on-windows--a8cd216e/.table';
-import January2520261 from '../../../../../../.claude/.conversations/claude--checking-ram-and-memory-on-windows--a8cd216e/1-january-25-2026';
-import January3120262 from '../../../../../../.claude/.conversations/claude--checking-ram-and-memory-on-windows--a8cd216e/2-january-31-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--checking-ram-and-memory-on-windows--a8cd216e/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {January2520261()}
-        {January3120262()}
+        {Conversation1()}
     </Book>
 );
 

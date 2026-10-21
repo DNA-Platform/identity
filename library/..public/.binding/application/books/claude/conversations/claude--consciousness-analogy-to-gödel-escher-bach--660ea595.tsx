@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--consciousnes
 import Cover from '../../../../../../.claude/.conversations/claude--consciousness-analogy-to-gödel-escher-bach--660ea595/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--consciousness-analogy-to-gödel-escher-bach--660ea595/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--consciousness-analogy-to-gödel-escher-bach--660ea595/.table';
-import June1620261 from '../../../../../../.claude/.conversations/claude--consciousness-analogy-to-gödel-escher-bach--660ea595/1-june-16-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--consciousness-analogy-to-gödel-escher-bach--660ea595/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {June1620261()}
+        {Conversation1()}
     </Book>
 );
 

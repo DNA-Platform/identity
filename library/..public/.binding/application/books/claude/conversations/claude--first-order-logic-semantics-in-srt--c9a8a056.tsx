@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--first-order-
 import Cover from '../../../../../../.claude/.conversations/claude--first-order-logic-semantics-in-srt--c9a8a056/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--first-order-logic-semantics-in-srt--c9a8a056/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--first-order-logic-semantics-in-srt--c9a8a056/.table';
-import May1220261 from '../../../../../../.claude/.conversations/claude--first-order-logic-semantics-in-srt--c9a8a056/1-may-12-2026';
-import May1320262 from '../../../../../../.claude/.conversations/claude--first-order-logic-semantics-in-srt--c9a8a056/2-may-13-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--first-order-logic-semantics-in-srt--c9a8a056/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {May1220261()}
-        {May1320262()}
+        {Conversation1()}
     </Book>
 );
 

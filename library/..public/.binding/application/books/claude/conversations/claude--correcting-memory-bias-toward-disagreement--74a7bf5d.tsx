@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--correcting-m
 import Cover from '../../../../../../.claude/.conversations/claude--correcting-memory-bias-toward-disagreement--74a7bf5d/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--correcting-memory-bias-toward-disagreement--74a7bf5d/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--correcting-memory-bias-toward-disagreement--74a7bf5d/.table';
-import July2120261 from '../../../../../../.claude/.conversations/claude--correcting-memory-bias-toward-disagreement--74a7bf5d/1-july-21-2026';
-import July2220262 from '../../../../../../.claude/.conversations/claude--correcting-memory-bias-toward-disagreement--74a7bf5d/2-july-22-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--correcting-memory-bias-toward-disagreement--74a7bf5d/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {July2120261()}
-        {July2220262()}
+        {Conversation1()}
     </Book>
 );
 

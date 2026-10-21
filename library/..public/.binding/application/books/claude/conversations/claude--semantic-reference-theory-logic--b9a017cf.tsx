@@ -4,9 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-ref
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf/.table';
-import September420251 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf/1-september-4-2025';
-import September520252 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf/2-september-5-2025';
-import September620253 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf/3-september-6-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf/1-conversation';
 import InheritanceWithoutRecursionTheSingleRelationFoundationo1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf/o1-inheritance-without-recursion-the-single-relation-foundation';
 import SymbolsVsSetsTheOppositeSemanticsOfSelfInclusionV1o2 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf/o2-symbols-vs-sets-the-opposite-semantics-of-self-inclusion-v1';
 import SymbolsVsSetsTheOppositeSemanticsOfSelfInclusionV2o3 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-logic--b9a017cf/o3-symbols-vs-sets-the-opposite-semantics-of-self-inclusion-v2';
@@ -26,9 +24,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September420251()}
-        {September520252()}
-        {September620253()}
+        {Conversation1()}
         {InheritanceWithoutRecursionTheSingleRelationFoundationo1()}
         {SymbolsVsSetsTheOppositeSemanticsOfSelfInclusionV1o2()}
         {SymbolsVsSetsTheOppositeSemanticsOfSelfInclusionV2o3()}

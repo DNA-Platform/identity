@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemistry-pr
 import Cover from '../../../../../../.claude/.conversations/claude--chemistry-project-test-context--de72eeed/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemistry-project-test-context--de72eeed/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemistry-project-test-context--de72eeed/.table';
-import October2120251 from '../../../../../../.claude/.conversations/claude--chemistry-project-test-context--de72eeed/1-october-21-2025';
-import October2220252 from '../../../../../../.claude/.conversations/claude--chemistry-project-test-context--de72eeed/2-october-22-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemistry-project-test-context--de72eeed/1-conversation';
 import FixedChemistryTsBondexecutioncontextReactMethodV1o1 from '../../../../../../.claude/.conversations/claude--chemistry-project-test-context--de72eeed/o1-fixed-chemistry-ts-bondexecutioncontext-react-method-v1';
 import RunOncePatternImplementationV1o2 from '../../../../../../.claude/.conversations/claude--chemistry-project-test-context--de72eeed/o2-run-once-pattern-implementation-v1';
 import FixedChemistryTsBondexecutioncontextReactMethodV2o3 from '../../../../../../.claude/.conversations/claude--chemistry-project-test-context--de72eeed/o3-fixed-chemistry-ts-bondexecutioncontext-react-method-v2';
@@ -33,8 +32,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October2120251()}
-        {October2220252()}
+        {Conversation1()}
         {FixedChemistryTsBondexecutioncontextReactMethodV1o1()}
         {RunOncePatternImplementationV1o2()}
         {FixedChemistryTsBondexecutioncontextReactMethodV2o3()}

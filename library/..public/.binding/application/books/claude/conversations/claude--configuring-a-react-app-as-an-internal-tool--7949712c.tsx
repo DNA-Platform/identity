@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--configuring-
 import Cover from '../../../../../../.claude/.conversations/claude--configuring-a-react-app-as-an-internal-tool--7949712c/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--configuring-a-react-app-as-an-internal-tool--7949712c/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--configuring-a-react-app-as-an-internal-tool--7949712c/.table';
-import April120251 from '../../../../../../.claude/.conversations/claude--configuring-a-react-app-as-an-internal-tool--7949712c/1-april-1-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--configuring-a-react-app-as-an-internal-tool--7949712c/1-conversation';
 import NewProjectStructureV1o1 from '../../../../../../.claude/.conversations/claude--configuring-a-react-app-as-an-internal-tool--7949712c/o1-new-project-structure-v1';
 import AppTsxWithRoutingV1o2 from '../../../../../../.claude/.conversations/claude--configuring-a-react-app-as-an-internal-tool--7949712c/o2-app-tsx-with-routing-v1';
 import AuthenticationServiceV1o3 from '../../../../../../.claude/.conversations/claude--configuring-a-react-app-as-an-internal-tool--7949712c/o3-authentication-service-v1';
@@ -29,7 +29,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {April120251()}
+        {Conversation1()}
         {NewProjectStructureV1o1()}
         {AppTsxWithRoutingV1o2()}
         {AuthenticationServiceV1o3()}

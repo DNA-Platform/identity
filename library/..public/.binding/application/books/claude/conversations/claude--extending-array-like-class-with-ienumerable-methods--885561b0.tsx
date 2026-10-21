@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--extending-ar
 import Cover from '../../../../../../.claude/.conversations/claude--extending-array-like-class-with-ienumerable-methods--885561b0/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--extending-array-like-class-with-ienumerable-methods--885561b0/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--extending-array-like-class-with-ienumerable-methods--885561b0/.table';
-import January520251 from '../../../../../../.claude/.conversations/claude--extending-array-like-class-with-ienumerable-methods--885561b0/1-january-5-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--extending-array-like-class-with-ienumerable-methods--885561b0/1-conversation';
 import ArrayExtensionMethodsV1o1 from '../../../../../../.claude/.conversations/claude--extending-array-like-class-with-ienumerable-methods--885561b0/o1-array-extension-methods-v1';
 import ArrayExtensionMethodsV2o2 from '../../../../../../.claude/.conversations/claude--extending-array-like-class-with-ienumerable-methods--885561b0/o2-array-extension-methods-v2';
 import ArrayExtensionMethodsV3o3 from '../../../../../../.claude/.conversations/claude--extending-array-like-class-with-ienumerable-methods--885561b0/o3-array-extension-methods-v3';
@@ -24,7 +24,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {January520251()}
+        {Conversation1()}
         {ArrayExtensionMethodsV1o1()}
         {ArrayExtensionMethodsV2o2()}
         {ArrayExtensionMethodsV3o3()}

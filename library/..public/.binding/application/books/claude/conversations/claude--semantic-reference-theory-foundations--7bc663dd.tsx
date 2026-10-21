@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-ref
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--7bc663dd/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--7bc663dd/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--7bc663dd/.table';
-import September2220251 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--7bc663dd/1-september-22-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--7bc663dd/1-conversation';
 import SrtAxiomsWorkingDraftV1o1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--7bc663dd/o1-srt-axioms-working-draft-v1';
 import SrtAxiomsWorkingDraftV2o2 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--7bc663dd/o2-srt-axioms-working-draft-v2';
 import SrtAxiomsWorkingDraftV3o3 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--7bc663dd/o3-srt-axioms-working-draft-v3';
@@ -59,7 +59,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2220251()}
+        {Conversation1()}
         {SrtAxiomsWorkingDraftV1o1()}
         {SrtAxiomsWorkingDraftV2o2()}
         {SrtAxiomsWorkingDraftV3o3()}

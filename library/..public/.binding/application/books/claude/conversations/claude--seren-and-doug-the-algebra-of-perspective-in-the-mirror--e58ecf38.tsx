@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--seren-and-do
 import Cover from '../../../../../../.claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38/.table';
-import September1620251 from '../../../../../../.claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38/1-september-16-2025';
-import September2020252 from '../../../../../../.claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38/2-september-20-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38/1-conversation';
 import SemanticReferenceTheoryQuantificationAndSymbolismV1o1 from '../../../../../../.claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38/o1-semantic-reference-theory-quantification-and-symbolism-v1';
 import SemanticReferenceTheoryQuantificationAndSymbolismV2o2 from '../../../../../../.claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38/o2-semantic-reference-theory-quantification-and-symbolism-v2';
 import SemanticReferenceTheoryQuantificationAndSymbolismV3o3 from '../../../../../../.claude/.conversations/claude--seren-and-doug-the-algebra-of-perspective-in-the-mirror--e58ecf38/o3-semantic-reference-theory-quantification-and-symbolism-v3';
@@ -32,8 +31,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September1620251()}
-        {September2020252()}
+        {Conversation1()}
         {SemanticReferenceTheoryQuantificationAndSymbolismV1o1()}
         {SemanticReferenceTheoryQuantificationAndSymbolismV2o2()}
         {SemanticReferenceTheoryQuantificationAndSymbolismV3o3()}

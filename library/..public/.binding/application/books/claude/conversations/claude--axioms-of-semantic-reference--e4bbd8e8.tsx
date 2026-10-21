@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--axioms-of-se
 import Cover from '../../../../../../.claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8/.table';
-import October1020251 from '../../../../../../.claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8/1-october-10-2025';
-import October1120252 from '../../../../../../.claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8/2-october-11-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8/1-conversation';
 import TheFiveAxiomsOfSemanticReferenceTheoryV1o1 from '../../../../../../.claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8/o1-the-five-axioms-of-semantic-reference-theory-v1';
 import TheFiveAxiomsOfSemanticReferenceTheoryV2o2 from '../../../../../../.claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8/o2-the-five-axioms-of-semantic-reference-theory-v2';
 import TheFiveAxiomsOfSemanticReferenceTheoryV3o3 from '../../../../../../.claude/.conversations/claude--axioms-of-semantic-reference--e4bbd8e8/o3-the-five-axioms-of-semantic-reference-theory-v3';
@@ -22,8 +21,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October1020251()}
-        {October1120252()}
+        {Conversation1()}
         {TheFiveAxiomsOfSemanticReferenceTheoryV1o1()}
         {TheFiveAxiomsOfSemanticReferenceTheoryV2o2()}
         {TheFiveAxiomsOfSemanticReferenceTheoryV3o3()}

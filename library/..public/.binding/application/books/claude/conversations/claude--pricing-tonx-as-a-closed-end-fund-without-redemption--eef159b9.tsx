@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--pricing-tonx
 import Cover from '../../../../../../.claude/.conversations/claude--pricing-tonx-as-a-closed-end-fund-without-redemption--eef159b9/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--pricing-tonx-as-a-closed-end-fund-without-redemption--eef159b9/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--pricing-tonx-as-a-closed-end-fund-without-redemption--eef159b9/.table';
-import February220261 from '../../../../../../.claude/.conversations/claude--pricing-tonx-as-a-closed-end-fund-without-redemption--eef159b9/1-february-2-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--pricing-tonx-as-a-closed-end-fund-without-redemption--eef159b9/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {February220261()}
+        {Conversation1()}
     </Book>
 );
 

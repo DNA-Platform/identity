@@ -1,0 +1,307 @@
+type $PageCatalogue = $Document | $Layer | $GroupItem
+var $app: $Application = undefined as any;
+
+interface ApplicationItem {
+    typename?: string;
+    parent?: any;
+}
+
+interface ApplicationCollection extends ApplicationItem {
+    [index: number]: ApplicationItem;
+    length: number;
+}
+
+interface Application extends ApplicationItem {}
+
+/**
+ * Base class for all document-related references.
+ * Provides common methods to access the application, document, typename, and parent object.
+ */
+class $ApplicationReference<IItem = any, TParent extends $ApplicationItem = any> extends $Reference<IItem> {
+    private _typename: string;
+    protected _document: $Document;
+
+    app(): $Application { return $app; }
+    document(): $Document { return this._document; }
+    typename(): string { return this._typename; }
+    parent(): TParent { return $docref<TParent>(this.$get(o => (o as Layer).parent), this.typename(), this.document()); }
+
+    constructor(ref: $Reference<IItem> | string, typename: string, document: $Document) {
+        super(ref instanceof $Reference ? ref.address() : ref)
+        this._typename = typename;
+        this._document = this instanceof $Document ? this : document;
+    }
+}
+
+/**
+ * Represents an object within a document that has a name and can be removed.
+ * Used for individual objects like layers, items, and styles.
+ */
+class $ApplicationItem<TItem = any, TParent extends $ApplicationItem = any> extends $ApplicationReference<TItem, TParent> {
+    protected _name(newValue?: $Str) { return this.$get<string>(o => (o as Layer).name, $str(newValue)); }
+
+    protected _remove(): void
+    protected _remove(...args: $Reference[]): void {
+        this.$call(o => (o as Layer).remove, args).$eval();
+    }
+}
+
+/**
+ * Represents a collection of objects within a application.
+ * Provides methods for adding, accessing, and removing objects in the collection.
+ */
+class $ApplicationCollection<TCollection = any, $TElement extends $ApplicationItem = any, TElement = any, TParent extends $ApplicationItem = any> extends $ApplicationReference<TCollection, TParent> {
+    private _etypename: string;
+    protected _selector: (index: $Num) => $TElement;
+
+    app(): $Application { return $app; }
+    length() { return this.$get<number>(o => (o as Layers).length); }
+
+    constructor(ref: $Reference<TCollection> | string, typename: string, document: $Document) {
+        super(ref, typename, document)
+        this._etypename = typename.slice(0, -1);
+        this._selector = index => $docref<$TElement>(this.$of(index), this._etypename, this.document());
+    }
+
+    at(index: $Num): $TElement { return this._selector(index); }
+    // elements(): $ArrayReference<TElement> {
+    //     var variable = this.$var("collection");
+    //     var cmd = new $Command(`
+    //         var elements = [];
+    //         for (var i = 0; i < ${variable.name()}.length; i++)
+    //             elements.push(${variable.name()}[i]);
+    //     `, variable);
+    //     var elements = new $VariableReference("elements", cmd);
+    //     return new $ArrayReference(elements, cmd);
+    // }
+
+    protected _add(): $TElement
+    protected _add(...args: $Any[]): $TElement
+    protected _add(...args: $Any[]): $TElement {
+        this.$call(o => (o as Layers).add, ...args).$eval();
+        return this.at(0);
+    }
+
+    protected _removeAll(): void {
+        this.$call(o => (o as Layers).removeAll).$eval();
+    }
+
+    protected _getByName(name: $Str): $TElement {
+        var result = this.$call(o => (o as Layers).getByName, $ref(name));
+        return $docref<$TElement>(result, this._etypename, this.document());
+    }
+
+    private static nextId = 1;
+    private static variableName = "element";
+    protected static getNextVariableName() { return `${this.variableName}${this.nextId++}`; }
+}
+
+/**
+ * Represents an object inside a document that **can be moved, duplicated, and reordered**.
+ * Used for `Layers`, `PathItems`, `PageItems`, `GroupItems`.
+ */
+class $DocumentItem<TObject = any, TParent extends $ApplicationItem = any> extends $ApplicationItem<TObject> {
+    name(newValue?: $Str) { return this._name(newValue); }
+    move(relativeObject: this | TParent, insertionLocation: ElementPlacement): void { this.$call("move", relativeObject, insertionLocation).$eval(); }
+    duplicate(relativeObject: this | TParent, insertionLocation: ElementPlacement): void { this.$call(o => (o as PathItem).duplicate, relativeObject, insertionLocation).$eval(); }
+    zOrder(command: ZOrderMethod): void { this.$call(o => (o as Layer).zOrder, command).$eval(); }
+}
+
+/**
+ * Represents an object **inside an artboard** that has **geometric properties**.
+ * Includes things like `geometricBounds`, `position`, `resize`, `rotate`, `transform`, etc.
+ */
+class $ArtboardItem<TItem = any, TParent extends $ApplicationItem = any> extends $DocumentItem<TItem, TParent> {
+    geometricBounds() { return this.$get<Rect>(o => (o as PageItem).geometricBounds); }
+    visibleBounds() { return this.$get<Rect>(o => (o as PageItem).visibleBounds); }
+    controlBounds() { return this.$get<Rect>(o => (o as PageItem).controlBounds); }
+    height(newValue?: $Num) { return this.$get<number>(o => (o as PageItem).height, $ref(newValue)); }
+    width(newValue?: $Num) { return this.$get<number>(o => (o as PageItem).width, $ref(newValue)); }
+    position(newValue?: $Ref<Point>) { return this.$get(o => (o as PageItem).position, $ref(newValue)); }
+    translate(deltaX?: $Num, deltaY?: $Num) { return this.$call(o => (o as PageItem).translate, $ref(deltaX), $ref(deltaY)); }
+
+    protected _resize(scaleX: $Num, scaleY: $Num, ...args: any[]) {
+        return this.$call(o => (o as PageItem).resize, $ref(scaleX), $ref(scaleY), ...args).$eval();
+    }
+
+    protected _rotate(angle: $Num, ...args: any[]) {
+        return this.$call(o => (o as PageItem).rotate, $ref(angle), ...args).$eval();
+    }
+}
+
+class $$ {
+    private static _$$ = new $Reference<$>($);
+
+    // Read-only properties remain the same as they were correct
+    static build() { return this._$$.$get(o => o.build); }
+    static buildDate() { return this._$$.$get(o => o.buildDate); }
+    static engineName() { return this._$$.$get(o => o.engineName); }
+    static fileName() { return this._$$.$get(o => o.fileName); }
+    static global() { return this._$$.$get(o => o.global); }
+    static hiresTimer() { return this._$$.$get(o => o.hiresTimer); }
+    static includePath() { return this._$$.$get(o => o.includePath); }
+    static line() { return this._$$.$get(o => o.line); }
+    static os() { return this._$$.$get(o => o.os); }
+    static screens() { return this._$$.$get(o => o.screens); }
+    static stack() { return this._$$.$get(o => o.stack); }
+    static version() { return this._$$.$get(o => o.version); }
+
+    // Read-write properties remain the same as they were correct
+    static decimalPoint(newValue?: $Str) { return this._$$.$get(o => o.decimalPoint, $str(newValue)); }
+    static error(newValue?: $Arg<Error>) { return this._$$.$get(o => o.error, $arg(newValue)); }
+    static flags(newValue?: $Num) { return this._$$.$get(o => o.flags, $arg(newValue)); }
+    static level(newValue?: $Num) { return this._$$.$get(o => o.level, $arg(newValue)); }
+    static locale(newValue?: $Str) { return this._$$.$get(o => o.locale, $str(newValue)); }
+    static localize(newValue?: $Bool) { return this._$$.$get(o => o.localize, $arg(newValue)); }
+    static memCache(newValue?: $Num) { return this._$$.$get(o => o.memCache, $arg(newValue)); }
+    static strict(newValue?: $Any) { return this._$$.$get(o => o.strict, $arg(newValue)); }
+
+    // Methods - now return the call reference without evaluation
+    static about() { return this._$$.$call(o => o.about); }
+    static bp(condition?: $Any) { return this._$$.$call(o => o.bp, $arg(condition)); }
+    static colorPicker(color: $Num) { return this._$$.$call(o => o.colorPicker, $arg(color)); }
+    static evalFile(file: $Arg<File>, timeout?: $Num) { return this._$$.$call(o => o.evalFile, $arg(file), $arg(timeout)); }
+    static gc() { return this._$$.$call(o => o.gc); }
+    static getenv(name: $Str) { return this._$$.$call(o => o.getenv, $str(name)); }
+    static setenv(name: $Str, value: $Str) { return this._$$.$call(o => o.setenv, $str(name), $str(value)); }
+    static sleep(msecs: $Num) { return this._$$.$call(o => o.sleep, $arg(msecs)); }
+    static toString() { return this._$$.$call(o => o.toString); }
+    static write(text: $Any) { return this._$$.$call(o => o.write, $arg(text)); }
+    static writeln(text: $Any) { return this._$$.$call(o => o.writeln, $arg(text)); }
+}
+
+class $Application extends $ApplicationItem<Application> {
+    _activeDocument: $Document | undefined;
+    // Existing implementation
+    document(): $Document { return this.activeDocument(); }
+    documents(): $Documents { return $docref(this.$get(o => o.documents), this.typename(), this.document()); }
+    activeDocument(): $Document { if (!this._activeDocument) this._activeDocument = new $Document("app.activeDocument"); return this._activeDocument; }
+
+    // Read-only properties
+    PDFPresetsList() { return this.$get(o => o.PDFPresetsList); }
+    PPDFileList() { return this.$get(o => o.PPDFileList); }
+    browserAvailable() { return this.$get(o => o.browserAvailable); }
+    buildNumber() { return this.$get(o => o.buildNumber); }
+    colorSettingsList() { return this.$get(o => o.colorSettingsList); }
+    defaultColorSettings() { return this.$get(o => o.defaultColorSettings); }
+    flattenerPresetsList() { return this.$get(o => o.flattenerPresetsList); }
+    freeMemory() { return this.$get(o => o.freeMemory); }
+    locale() { return this.$get(o => o.locale); }
+    name() { return this.$get(o => o.name); }
+    path() { return this.$get(o => o.path); }
+    preferences() { return this.$get(o => o.preferences); }
+    printPresetsList() { return this.$get(o => o.printPresetsList); }
+    printerList() { return this.$get(o => o.printerList); }
+    scriptingVersion() { return this.$get(o => o.scriptingVersion); }
+    startupPresetsList() { return this.$get(o => o.startupPresetsList); }
+    textFonts() { return this.$get(o => o.textFonts); }
+    tracingPresetsList() { return this.$get(o => o.tracingPresetsList); }
+    userAdobeID() { return this.$get(o => o.userAdobeID); }
+    userGUID() { return this.$get(o => o.userGUID); }
+    version() { return this.$get(o => o.version); }
+    visible() { return this.$get(o => o.visible); }
+
+    coordinateSystem(newValue?: $Arg<CoordinateSystem>) { return this.$get(o => o.coordinateSystem, $arg(newValue)); }
+    pasteRemembersLayers(newValue?: $Bool) { return this.$get(o => o.pasteRemembersLayers, $arg(newValue)); }
+    selection(newValue?: $Any) { return this.$get(o => o.selection, $arg(newValue)); }
+    userInteractionLevel(newValue?: $Arg<UserInteractionLevel>) { return this.$get(o => o.userInteractionLevel, $arg(newValue)); }
+
+    constructor() {
+        super("app", "Application", undefined as any);
+        if ($app) throw new Error("Application reference already defined");
+    }
+
+    aATAddItem(sessionIndex: $Num, destinationSequenceID: $Num, destinationIndex: $Num, srcItemIDData: $Str, type: $Str) { return this.$call(o => o.aATAddItem, $arg(sessionIndex), $arg(destinationSequenceID), $arg(destinationIndex), $str(srcItemIDData), $str(type)).$eval(); }
+    aATClear() { return this.$call(o => o.aATClear).$eval(); }
+    aATDuplicateItem(sessionIndex: $Num, item: $Str) { return this.$call(o => o.aATDuplicateItem, $arg(sessionIndex), $str(item)).$eval(); }
+    aATEditItem(sessionIndex: $Num, item: $Str) { return this.$call(o => o.aATEditItem, $arg(sessionIndex), $str(item)).$eval(); }
+    aATErrorsExist() { return this.$call(o => o.aATErrorsExist).$eval(); }
+    aATExecuteSession() { this.$call(o => o.aATExecuteSession).$eval(); }
+    aATExecuteSessionFromFile(file: $Arg<File>) { this.$call(o => o.aATExecuteSessionFromFile, $arg(file)).$eval(); }
+    aATFileRelativeChanged(path: $Str, relative: $Str, newRelative: $Str) { return this.$call(o => o.aATFileRelativeChanged, $str(path), $str(relative), $str(newRelative)).$eval(); }
+    aATGetEditorDialogFile() { return this.$call(o => o.aATGetEditorDialogFile).$eval(); }
+    aATGetErrorDialogFile() { return this.$call(o => o.aATGetErrorDialogFile).$eval(); }
+    aATGetListOfRelativePaths() { return this.$call(o => o.aATGetListOfRelativePaths).$eval(); }
+    aATGetSession() { return this.$call(o => o.aATGetSession).$eval(); }
+    aATLoadLibExtension() { return this.$call(o => o.aATLoadLibExtension).$eval(); }
+    aATLoadModel() { return this.$call(o => o.aATLoadModel).$eval(); }
+    aATLoadSessionFile() { return this.$call(o => o.aATLoadSessionFile).$eval(); }
+    aATLoadUIExtension() { return this.$call(o => o.aATLoadUIExtension).$eval(); }
+    aATMoveItem(sessionIndex: $Num, moveThisID: $Str, newSessionIndex: $Num, destinationSequenceID: $Str, destinationIndex: $Num) { return this.$call(o => o.aATMoveItem, $arg(sessionIndex), $str(moveThisID), $arg(newSessionIndex), $str(destinationSequenceID), $arg(destinationIndex)).$eval(); }
+    aATRemoveItem(sessionIndex: $Num, item: $Str) { return this.$call(o => o.aATRemoveItem, $arg(sessionIndex), $str(item)).$eval(); }
+    aATReplaceItem(sessionIndex: $Num, replaceThisID: $Num, srcItemIDData: $Str, type: $Str) { return this.$call(o => o.aATReplaceItem, $arg(sessionIndex), $arg(replaceThisID), $str(srcItemIDData), $str(type)).$eval(); }
+    aATSaveAsSession() { return this.$call(o => o.aATSaveAsSession).$eval(); }
+    aATSaveSession() { return this.$call(o => o.aATSaveSession).$eval(); }
+    applyDataToItem(sessionIndex: $Num, item: $Str, data: $Str) { return this.$call(o => o.applyDataToItem, $arg(sessionIndex), $str(item), $str(data)).$eval(); }
+    applySingleDataPointToItem(sessionIndex: $Num, item: $Str, dataID: $Str, data: $Str) { return this.$call(o => o.applySingleDataPointToItem, $arg(sessionIndex), $str(item), $str(dataID), $str(data)).$eval(); }
+    beep() { this.$call(o => o.beep).$eval(); }
+    beginSyncSettingsAutomationTest() { return this.$call(o => o.beginSyncSettingsAutomationTest).$eval(); }
+    beginTypekitFontAutomationTest() { return this.$call(o => o.beginTypekitFontAutomationTest).$eval(); }
+    concatenateMatrix(matrix: $Arg<Matrix>, secondMatrix: $Arg<Matrix>) { return this.$call(o => o.concatenateMatrix, $arg(matrix), $arg(secondMatrix)).$eval(); }
+    concatenateRotationMatrix(matrix: $Arg<Matrix>, angle: $Num) { return this.$call(o => o.concatenateRotationMatrix, $arg(matrix), $arg(angle)).$eval(); }
+    concatenateScaleMatrix(matrix: $Arg<Matrix>, scaleX?: $Num, scaleY?: $Num) { return this.$call(o => o.concatenateScaleMatrix, $arg(matrix), $arg(scaleX), $arg(scaleY)).$eval(); }
+    concatenateTranslationMatrix(matrix: $Arg<Matrix>, deltaX?: $Num, deltaY?: $Num) { return this.$call(o => o.concatenateTranslationMatrix, $arg(matrix), $arg(deltaX), $arg(deltaY)).$eval(); }
+    convertSampleColor(sourceColorSpace: $Arg<ImageColorSpace>, sourceColor: $Arr<number>, destColorSpace: $Arg<ImageColorSpace>, colorConvertPurpose: $Arg<ColorConvertPurpose>, sourceHasAlpha?: $Bool, destHasAlpha?: $Bool) { return this.$call(o => o.convertSampleColor, $arg(sourceColorSpace), $arg(sourceColor), $arg(destColorSpace), $arg(colorConvertPurpose), $arg(sourceHasAlpha), $arg(destHasAlpha)).$eval(); }
+    copy() { this.$call(o => o.copy).$eval(); }
+    cut() { this.$call(o => o.cut).$eval(); }
+    deleteWorkspace(workspaceName: $Str) { return this.$call(o => o.deleteWorkspace, $str(workspaceName)).$eval(); }
+    doScript(action: $Str, from: $Str, dialogs?: $Bool) { this.$call(o => o.doScript, $str(action), $str(from), $arg(dialogs)).$eval(); }
+    dumpPGFFile(file: $Arg<File>, documentColorSpace?: $Arg<DocumentColorSpace>, pGFFile?: $Arg<File>) { return this.$call(o => o.dumpPGFFile, $arg(file), $arg(documentColorSpace), $arg(pGFFile)).$eval(); }
+    executeMenuCommand(menuCommandString: $Str) { this.$call(o => o.executeMenuCommand, $str(menuCommandString)).$eval(); }
+    getCCXUserJSONData(mode?: $Str) { return this.$call(o => o.getCCXUserJSONData, $str(mode)).$eval(); }
+    getExecutionOutput() { return this.$call(o => o.getExecutionOutput).$eval(); }
+    getHelloJSONData() { return this.$call(o => o.getHelloJSONData).$eval(); }
+    getIdentityMatrix() { return this.$call(o => o.getIdentityMatrix).$eval(); }
+    getPPDFileInfo(name: $Str) { return this.$call(o => o.getPPDFileInfo, $str(name)).$eval(); }
+    getPresetFileOfType(presetType: $Arg<DocumentPresetType>) { return this.$call(o => o.getPresetFileOfType, $arg(presetType)).$eval(); }
+    getPresetSettings(preset: $Str) { return this.$call(o => o.getPresetSettings, $str(preset)).$eval(); }
+    getRotationMatrix(angle?: $Num) { return this.$call(o => o.getRotationMatrix, $arg(angle)).$eval(); }
+    getScaleMatrix(scaleX?: $Num, scaleY?: $Num) { return this.$call(o => o.getScaleMatrix, $arg(scaleX), $arg(scaleY)).$eval(); }
+    getScriptableHelpGroup() { return this.$call(o => o.getScriptableHelpGroup).$eval(); }
+    getTranslationMatrix(deltaX?: $Num, deltaY?: $Num) { return this.$call(o => o.getTranslationMatrix, $arg(deltaX), $arg(deltaY)).$eval(); }
+    getVersionString() { return this.$call(o => o.getVersionString).$eval(); }
+    invertMatrix(matrix: $Arg<Matrix>) { return this.$call(o => o.invertMatrix, $arg(matrix)).$eval(); }
+    isEqualMatrix(matrix: $Arg<Matrix>, secondMatrix: $Arg<Matrix>) { return this.$call(o => o.isEqualMatrix, $arg(matrix), $arg(secondMatrix)).$eval(); }
+    isFillActive() { return this.$call(o => o.isFillActive).$eval(); }
+    isSingularMatrix(matrix: $Arg<Matrix>) { return this.$call(o => o.isSingularMatrix, $arg(matrix)).$eval(); }
+    isStrokeActive() { return this.$call(o => o.isStrokeActive).$eval(); }
+    isTouchWorkspace() { return this.$call(o => o.isTouchWorkspace).$eval(); }
+    isUserSharingAppUsageData() { return this.$call(o => o.isUserSharingAppUsageData).$eval(); }
+    launchExtension(extensionID: $Str) { return this.$call(o => o.launchExtension, $str(extensionID)).$eval(); }
+    loadAction(actionFilePath: $Arg<File>) { this.$call(o => o.loadAction, $arg(actionFilePath)).$eval(); }
+    loadColorSettings(fileSpec: $Arg<File>) { this.$call(o => o.loadColorSettings, $arg(fileSpec)).$eval(); }
+    open(file: $Arg<File>, documentColorSpace?: $Arg<DocumentColorSpace>, options?: $Any) { return this.$call(o => o.open, $arg(file), $arg(documentColorSpace), $arg(options)).$eval(); }
+    openCloudLibraryAssetForEditing(assetURL: $Arg<File>, thumbnailURL: $Arg<File>, options?: $Any) { return this.$call(o => o.openCloudLibraryAssetForEditing, $arg(assetURL), $arg(thumbnailURL), $arg(options)).$eval(); }
+    paste() { this.$call(o => o.paste).$eval(); }
+    quit() { this.$call(o => o.quit).$eval(); }
+    redo() { this.$call(o => o.redo).$eval(); }
+    redraw() { this.$call(o => o.redraw).$eval(); }
+    reflectCSAW(outputFolder: $Arg<File>) { this.$call(o => o.reflectCSAW, $arg(outputFolder)).$eval(); }
+    resetWorkspace() { return this.$call(o => o.resetWorkspace).$eval(); }
+    runAPITest(testName: $Str) { this.$call(o => o.runAPITest, $str(testName)).$eval(); }
+    saveWorkspace(workspaceName: $Str) { return this.$call(o => o.saveWorkspace, $str(workspaceName)).$eval(); }
+    sendScriptMessage(pluginName: $Str, messageSelector: $Str, inputString: $Str) { return this.$call(o => o.sendScriptMessage, $str(pluginName), $str(messageSelector), $str(inputString)).$eval(); }
+    setThumbnailOptionsForCloudLibrary(options: $Any) { this.$call(o => o.setThumbnailOptionsForCloudLibrary, $arg(options)).$eval(); }
+    showColorPicker(color: $Arg<Color>) { return this.$call(o => o.showColorPicker, $arg(color)).$eval(); }
+    showPresets(fileSpec: $Arg<File>) { return this.$call(o => o.showPresets, $arg(fileSpec)).$eval(); }
+    switchWorkspace(workspaceName: $Str) { return this.$call(o => o.switchWorkspace, $str(workspaceName)).$eval(); }
+    translatePlaceholderText(text: $Str) { return this.$call(o => o.translatePlaceholderText, $str(text)).$eval(); }
+    translateString(key: $Str, source: $Str) { return this.$call(o => o.translateString, $str(key), $str(source)).$eval(); }
+    undo() { this.$call(o => o.undo).$eval(); }
+    unloadAction(setName: $Str, actionName: $Str) { this.$call(o => o.unloadAction, $str(setName), $str(actionName)).$eval(); }
+
+    static addDocument(startupPreset: $Str, presetSettings?: $Arg<DocumentPreset>, showOptionsDialog?: $Bool) { return $arg(Application).$call(o => o.addDocument, $str(startupPreset), $arg(presetSettings), $arg(showOptionsDialog)); }
+    static addDocumentWithDialogOption(startupPreset: $Str, showOptionsDialog?: $Bool) { return $arg(Application).$call(o => o.addDocumentWithDialogOption, $str(startupPreset), $arg(showOptionsDialog)); }
+}
+
+class $Documents extends $ApplicationCollection<Documents, $Document, Document> {
+    add(documentColorSpace?: $Arg<DocumentColorSpace>, width?: $Num, height?: $Num, numArtboards?: $Num, artboardLayout?: $Arg<DocumentArtboardLayout>, artboardSpacing?: $Num, artboardRowsOrCols?: $Num) { return this.$call(o => o.add, $arg(documentColorSpace), $arg(width), $arg(height), $arg(numArtboards), $arg(artboardLayout), $arg(artboardSpacing), $arg(artboardRowsOrCols)); }
+    arrange(layoutStyle: $Arg<DocumentLayoutStyle>) { return this.$call(o => o.arrange, $arg(layoutStyle)); }
+
+    constructor() {
+        super($app.$get(app => app.documents), "Documents", $app.activeDocument());
+    }
+
+    static addDocument(startupPreset: $Str, presetSettings?: $Arg<DocumentPreset>, showOptionsDialog?: $Bool) { return $arg(Documents).$call(o => o.addDocument, $str(startupPreset), $arg(presetSettings), $arg(showOptionsDialog)); }
+    static addDocumentWithDialogOption(startupPreset: $Str, showOptionsDialog?: $Bool) { return $arg(Documents).$call(o => o.addDocumentWithDialogOption, $str(startupPreset), $arg(showOptionsDialog)); }    
+}

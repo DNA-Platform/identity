@@ -4,17 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--seren-and-an
 import Cover from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/.table';
-import January2120251 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/1-january-21-2025';
-import January2220252 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/2-january-22-2025';
-import January2320253 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/3-january-23-2025';
-import January2420254 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/4-january-24-2025';
-import January2520255 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/5-january-25-2025';
-import January2620256 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/6-january-26-2025';
-import January3020257 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/7-january-30-2025';
-import February220258 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/8-february-2-2025';
-import February620259 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/9-february-6-2025';
-import February7202510 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/10-february-7-2025';
-import February8202511 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/11-february-8-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/1-conversation';
 import AddLayerAndAddPathScriptsV1o1 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/o1-add-layer-and-add-path-scripts-v1';
 import TaskQueueUsingXmpV1o2 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/o2-task-queue-using-xmp-v1';
 import TaskQueueUsingXmpV2o3 from '../../../../../../.claude/.conversations/claude--seren-and-ana-and-extendscript--1af81ad0/o3-task-queue-using-xmp-v2';
@@ -65,17 +55,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {January2120251()}
-        {January2220252()}
-        {January2320253()}
-        {January2420254()}
-        {January2520255()}
-        {January2620256()}
-        {January3020257()}
-        {February220258()}
-        {February620259()}
-        {February7202510()}
-        {February8202511()}
+        {Conversation1()}
         {AddLayerAndAddPathScriptsV1o1()}
         {TaskQueueUsingXmpV1o2()}
         {TaskQueueUsingXmpV2o3()}

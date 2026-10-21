@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--axioms-and-s
 import Cover from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-theory-exploration--0b32d460/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-theory-exploration--0b32d460/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-theory-exploration--0b32d460/.table';
-import October1420251 from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-theory-exploration--0b32d460/1-october-14-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-theory-exploration--0b32d460/1-conversation';
 import AdditionalCandidateAxiomsForSemanticReferenceTheoryV1o1 from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-theory-exploration--0b32d460/o1-additional-candidate-axioms-for-semantic-reference-theory-v1';
 import AdditionalCandidateAxiomsForSemanticReferenceTheoryV2o2 from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-theory-exploration--0b32d460/o2-additional-candidate-axioms-for-semantic-reference-theory-v2';
 import AdditionalCandidateAxiomsForSemanticReferenceTheoryV3o3 from '../../../../../../.claude/.conversations/claude--axioms-and-semantic-theory-exploration--0b32d460/o3-additional-candidate-axioms-for-semantic-reference-theory-v3';
@@ -21,7 +21,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October1420251()}
+        {Conversation1()}
         {AdditionalCandidateAxiomsForSemanticReferenceTheoryV1o1()}
         {AdditionalCandidateAxiomsForSemanticReferenceTheoryV2o2()}
         {AdditionalCandidateAxiomsForSemanticReferenceTheoryV3o3()}

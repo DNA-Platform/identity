@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--translating-
 import Cover from '../../../../../../.claude/.conversations/claude--translating-a-child-services-letter-to-russian-authorities--bff59796/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--translating-a-child-services-letter-to-russian-authorities--bff59796/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--translating-a-child-services-letter-to-russian-authorities--bff59796/.table';
-import December1020251 from '../../../../../../.claude/.conversations/claude--translating-a-child-services-letter-to-russian-authorities--bff59796/1-december-10-2025';
-import December1120252 from '../../../../../../.claude/.conversations/claude--translating-a-child-services-letter-to-russian-authorities--bff59796/2-december-11-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--translating-a-child-services-letter-to-russian-authorities--bff59796/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {December1020251()}
-        {December1120252()}
+        {Conversation1()}
     </Book>
 );
 

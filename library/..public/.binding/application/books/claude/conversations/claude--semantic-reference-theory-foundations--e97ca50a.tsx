@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-ref
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--e97ca50a/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--e97ca50a/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--e97ca50a/.table';
-import September2420251 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--e97ca50a/1-september-24-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--e97ca50a/1-conversation';
 import SemanticReferenceTheoryFormalClarificationsAndExtensioo1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--e97ca50a/o1-semantic-reference-theory-formal-clarifications-and-extensio';
 import SemanticReferenceTheoryFormalClarificationsAndExtensioo2 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--e97ca50a/o2-semantic-reference-theory-formal-clarifications-and-extensio';
 import SemanticReferenceTheoryFormalClarificationsAndExtensioo3 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--e97ca50a/o3-semantic-reference-theory-formal-clarifications-and-extensio';
@@ -48,7 +48,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2420251()}
+        {Conversation1()}
         {SemanticReferenceTheoryFormalClarificationsAndExtensioo1()}
         {SemanticReferenceTheoryFormalClarificationsAndExtensioo2()}
         {SemanticReferenceTheoryFormalClarificationsAndExtensioo3()}

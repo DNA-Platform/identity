@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--ai-automatio
 import Cover from '../../../../../../.claude/.conversations/claude--ai-automation-frameworks-for-windows-beyond-mcp--a0bc19de/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--ai-automation-frameworks-for-windows-beyond-mcp--a0bc19de/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--ai-automation-frameworks-for-windows-beyond-mcp--a0bc19de/.table';
-import June1620261 from '../../../../../../.claude/.conversations/claude--ai-automation-frameworks-for-windows-beyond-mcp--a0bc19de/1-june-16-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--ai-automation-frameworks-for-windows-beyond-mcp--a0bc19de/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {June1620261()}
+        {Conversation1()}
     </Book>
 );
 

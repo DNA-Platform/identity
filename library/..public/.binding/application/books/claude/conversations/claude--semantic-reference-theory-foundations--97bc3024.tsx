@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-ref
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--97bc3024/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--97bc3024/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--97bc3024/.table';
-import September2320251 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--97bc3024/1-september-23-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--97bc3024/1-conversation';
 import TheNineReferentsFormalDefinitionsAndSemanticMeaningso1 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--97bc3024/o1-the-nine-referents-formal-definitions-and-semantic-meanings';
 import TheNineReferentsFormalDefinitionsAndSemanticMeaningso2 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--97bc3024/o2-the-nine-referents-formal-definitions-and-semantic-meanings';
 import TheNineReferentsFormalDefinitionsAndSemanticMeaningso3 from '../../../../../../.claude/.conversations/claude--semantic-reference-theory-foundations--97bc3024/o3-the-nine-referents-formal-definitions-and-semantic-meanings';
@@ -62,7 +62,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2320251()}
+        {Conversation1()}
         {TheNineReferentsFormalDefinitionsAndSemanticMeaningso1()}
         {TheNineReferentsFormalDefinitionsAndSemanticMeaningso2()}
         {TheNineReferentsFormalDefinitionsAndSemanticMeaningso3()}

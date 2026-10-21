@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--module-not-f
 import Cover from '../../../../../../.claude/.conversations/claude--module-not-found-after-removing-import-path--a5c4b77b/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--module-not-found-after-removing-import-path--a5c4b77b/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--module-not-found-after-removing-import-path--a5c4b77b/.table';
-import November120251 from '../../../../../../.claude/.conversations/claude--module-not-found-after-removing-import-path--a5c4b77b/1-november-1-2025';
-import November220252 from '../../../../../../.claude/.conversations/claude--module-not-found-after-removing-import-path--a5c4b77b/2-november-2-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--module-not-found-after-removing-import-path--a5c4b77b/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {November120251()}
-        {November220252()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--semantic-und
 import Cover from '../../../../../../.claude/.conversations/claude--semantic-understanding-request--54e4e535/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--semantic-understanding-request--54e4e535/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--semantic-understanding-request--54e4e535/.table';
-import September2320251 from '../../../../../../.claude/.conversations/claude--semantic-understanding-request--54e4e535/1-september-23-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--semantic-understanding-request--54e4e535/1-conversation';
 import TheQuestForSemanticSelfAwarenessHowMeaningAchievesCo1 from '../../../../../../.claude/.conversations/claude--semantic-understanding-request--54e4e535/o1-the-quest-for-semantic-self-awareness-how-meaning-achieves-c';
 import OnTheFormalRequirementOfSymbolismHowMeaningAchieveso2 from '../../../../../../.claude/.conversations/claude--semantic-understanding-request--54e4e535/o2-on-the-formal-requirement-of-symbolism-how-meaning-achieves';
 import OnTheFormalRequirementOfSymbolismHowMeaningAchieveso3 from '../../../../../../.claude/.conversations/claude--semantic-understanding-request--54e4e535/o3-on-the-formal-requirement-of-symbolism-how-meaning-achieves';
@@ -77,7 +77,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2320251()}
+        {Conversation1()}
         {TheQuestForSemanticSelfAwarenessHowMeaningAchievesCo1()}
         {OnTheFormalRequirementOfSymbolismHowMeaningAchieveso2()}
         {OnTheFormalRequirementOfSymbolismHowMeaningAchieveso3()}

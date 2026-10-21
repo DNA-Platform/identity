@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--library-sema
 import Cover from '../../../../../../.claude/.conversations/claude--library-semantics-in-srt--fbc45c8e/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--library-semantics-in-srt--fbc45c8e/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--library-semantics-in-srt--fbc45c8e/.table';
-import June2620261 from '../../../../../../.claude/.conversations/claude--library-semantics-in-srt--fbc45c8e/1-june-26-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--library-semantics-in-srt--fbc45c8e/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {June2620261()}
+        {Conversation1()}
     </Book>
 );
 

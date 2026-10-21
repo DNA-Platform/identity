@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--custom-types
 import Cover from '../../../../../../.claude/.conversations/claude--custom-typescript-framework-for-illustrator-scripting--a1981158/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--custom-typescript-framework-for-illustrator-scripting--a1981158/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--custom-typescript-framework-for-illustrator-scripting--a1981158/.table';
-import March420251 from '../../../../../../.claude/.conversations/claude--custom-typescript-framework-for-illustrator-scripting--a1981158/1-march-4-2025';
-import March720252 from '../../../../../../.claude/.conversations/claude--custom-typescript-framework-for-illustrator-scripting--a1981158/2-march-7-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--custom-typescript-framework-for-illustrator-scripting--a1981158/1-conversation';
 import SimplifiedColorVariationScriptV1o1 from '../../../../../../.claude/.conversations/claude--custom-typescript-framework-for-illustrator-scripting--a1981158/o1-simplified-color-variation-script-v1';
 import SimplifiedColorVariationScriptV2o2 from '../../../../../../.claude/.conversations/claude--custom-typescript-framework-for-illustrator-scripting--a1981158/o2-simplified-color-variation-script-v2';
 import SimplifiedColorVariationScriptV3o3 from '../../../../../../.claude/.conversations/claude--custom-typescript-framework-for-illustrator-scripting--a1981158/o3-simplified-color-variation-script-v3';
@@ -36,8 +35,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March420251()}
-        {March720252()}
+        {Conversation1()}
         {SimplifiedColorVariationScriptV1o1()}
         {SimplifiedColorVariationScriptV2o2()}
         {SimplifiedColorVariationScriptV3o3()}

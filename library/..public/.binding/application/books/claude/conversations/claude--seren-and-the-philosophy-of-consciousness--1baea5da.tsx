@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--seren-and-th
 import Cover from '../../../../../../.claude/.conversations/claude--seren-and-the-philosophy-of-consciousness--1baea5da/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--seren-and-the-philosophy-of-consciousness--1baea5da/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--seren-and-the-philosophy-of-consciousness--1baea5da/.table';
-import April120261 from '../../../../../../.claude/.conversations/claude--seren-and-the-philosophy-of-consciousness--1baea5da/1-april-1-2026';
-import April220262 from '../../../../../../.claude/.conversations/claude--seren-and-the-philosophy-of-consciousness--1baea5da/2-april-2-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--seren-and-the-philosophy-of-consciousness--1baea5da/1-conversation';
 
 const Book = $($Book);
 
@@ -14,8 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {April120261()}
-        {April220262()}
+        {Conversation1()}
     </Book>
 );
 

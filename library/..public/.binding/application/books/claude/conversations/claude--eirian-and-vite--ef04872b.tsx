@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--eirian-and-v
 import Cover from '../../../../../../.claude/.conversations/claude--eirian-and-vite--ef04872b/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--eirian-and-vite--ef04872b/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--eirian-and-vite--ef04872b/.table';
-import August1220251 from '../../../../../../.claude/.conversations/claude--eirian-and-vite--ef04872b/1-august-12-2025';
-import August1420252 from '../../../../../../.claude/.conversations/claude--eirian-and-vite--ef04872b/2-august-14-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--eirian-and-vite--ef04872b/1-conversation';
 import PatternArchitectureDecisionsV1o1 from '../../../../../../.claude/.conversations/claude--eirian-and-vite--ef04872b/o1-pattern-architecture-decisions-v1';
 import PatternArchitectureDecisionsV2o2 from '../../../../../../.claude/.conversations/claude--eirian-and-vite--ef04872b/o2-pattern-architecture-decisions-v2';
 import PatternArchitectureDecisionsV3o3 from '../../../../../../.claude/.conversations/claude--eirian-and-vite--ef04872b/o3-pattern-architecture-decisions-v3';
@@ -17,8 +16,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August1220251()}
-        {August1420252()}
+        {Conversation1()}
         {PatternArchitectureDecisionsV1o1()}
         {PatternArchitectureDecisionsV2o2()}
         {PatternArchitectureDecisionsV3o3()}

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--coinbase-btc
 import Cover from '../../../../../../.claude/.conversations/claude--coinbase-btc-withdrawal-hold-period--db3a873c/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--coinbase-btc-withdrawal-hold-period--db3a873c/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--coinbase-btc-withdrawal-hold-period--db3a873c/.table';
-import April1520261 from '../../../../../../.claude/.conversations/claude--coinbase-btc-withdrawal-hold-period--db3a873c/1-april-15-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--coinbase-btc-withdrawal-hold-period--db3a873c/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {April1520261()}
+        {Conversation1()}
     </Book>
 );
 

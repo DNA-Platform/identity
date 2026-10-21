@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--svg-compress
 import Cover from '../../../../../../.claude/.conversations/claude--svg-compression-and-path-optimization-tools--dce485e9/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--svg-compression-and-path-optimization-tools--dce485e9/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--svg-compression-and-path-optimization-tools--dce485e9/.table';
-import March420261 from '../../../../../../.claude/.conversations/claude--svg-compression-and-path-optimization-tools--dce485e9/1-march-4-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--svg-compression-and-path-optimization-tools--dce485e9/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March420261()}
+        {Conversation1()}
     </Book>
 );
 

@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--graph-databa
 import Cover from '../../../../../../.claude/.conversations/claude--graph-databases-and-recursive-hierarchies--9b892575/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--graph-databases-and-recursive-hierarchies--9b892575/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--graph-databases-and-recursive-hierarchies--9b892575/.table';
-import June1720261 from '../../../../../../.claude/.conversations/claude--graph-databases-and-recursive-hierarchies--9b892575/1-june-17-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--graph-databases-and-recursive-hierarchies--9b892575/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {June1720261()}
+        {Conversation1()}
     </Book>
 );
 

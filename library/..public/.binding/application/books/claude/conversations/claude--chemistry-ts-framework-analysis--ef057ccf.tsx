@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemistry-ts
 import Cover from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--ef057ccf/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--ef057ccf/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--ef057ccf/.table';
-import September2620251 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--ef057ccf/1-september-26-2025';
-import October220252 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--ef057ccf/2-october-2-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--ef057ccf/1-conversation';
 import ChemistryFrameworkDeepTechnicalAnalysisV1o1 from '../../../../../../.claude/.conversations/claude--chemistry-ts-framework-analysis--ef057ccf/o1-chemistry-framework-deep-technical-analysis-v1';
 
 const Book = $($Book);
@@ -15,8 +14,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2620251()}
-        {October220252()}
+        {Conversation1()}
         {ChemistryFrameworkDeepTechnicalAnalysisV1o1()}
     </Book>
 );

@@ -7,7 +7,7 @@ export default () => (
         <Dated>
             <Date>[6 June 2026](2026-06-06)</Date>
         </Dated>
-        <Title>[[ 6 June 2026 ]]</Title>
+        <Title>[[ Conversation ]]</Title>
         <Message
             at="2026-06-06T12:29:42.862941Z"
         >
@@ -55,7 +55,7 @@ export default () => (
             <CodeBox
                 language="srt"
             >
-                {`x =t> y        R(x,y,t)              the sole primitive
+                {`${''}x =t> y        R(x,y,t)              the sole primitive
 x !=t> y       ¬R(x,y,t)
 x == y         x = y                 (== is FOL-native; see the eq seam below)
 x => y         ∃t R(x,y,t)           relatedness; ≡ R(x,y,r) once Universality fixes r
@@ -76,6 +76,62 @@ E[x]:P  →  ∃x P     E(x:Q):P  →  ∃x(Q ∧ P)     free vars universally c
                 {`∀x∀y( (∃u R(x,y,u)) →
         ∃s( R(x,y,s) ∧ ∀t( R(x,y,t) → ∀p∀q(R(p,q,s)→R(p,q,t)) ) ) )`}
             </CodeBox>
+            <Paragraph>
+                And the antisymmetry theorem lowers to coextension-implies-identity — which is <Word>
+                    <Emphasis />
+                    not
+                </Word> logically valid on its own. You need Directionality to close it. So formally, Directionality <Word>
+                    <Bold />
+                    is
+                </Word> the extensionality axiom for relationships. That's the same fact Phase III recovered by correcting
+                the "non-extensional" claim; the lowering makes it forced rather than observed.
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Bold />
+                    One that resists
+                </Word> — Qualification. Watch the failure:
+            </Paragraph>
+            <CodeBox
+                language="srt"
+            >
+                {`t -> (x,y) =|> ( x' !-> x | y' !-> y ) =|> x' !=t> y'`}
+            </CodeBox>
+            <Paragraph>
+                If you lower <Word>
+                    <Verbatim />
+                    t -&gt; (x,y)
+                </Word> by the <Word>
+                    <Emphasis />
+                    relation
+                </Word> reading, it says t's extension ⊆ the bottom's — t relates almost nothing. That's clearly not the
+                intent ("t has signature (x:X, y:Y)"). So Qualification cannot be lowered at all under either current
+                reading of <Word>
+                    <Verbatim />
+                    -&gt;
+                </Word>. The transpilation <Word>
+                    <Bold />
+                    proves
+                </Word> the role-indexed arrow is owed — it's not a stylistic gap, it's a place where the FOL image is
+                undefined. Same forcing case the doc names with <Word>
+                    <Verbatim />
+                    r -&gt; ref
+                </Word>.
+            </Paragraph>
+            <Paragraph>
+                So before any "big insight" gets factored: which one do you mean? My read is the most insight-shaped
+                factorable block is <Word>
+                    <Bold />
+                    Phase VI's nine structure-preservation conditions
+                </Word> — "faithful specialization = the map <Word>
+                    <Verbatim />
+                    (x,t,y)↦(x',t',y')
+                </Word> preserves the whole inheritance structure." Right now that's one undifferentiated insight; the
+                current-edge section already asks whether the nine are independent and whether pairwise preservation is
+                complete. That's exactly "divide an insight into axioms each carrying its own semantic meaning," and three
+                of the nine are suspect under the orphaned-edge case.
+            </Paragraph>
+            <Paragraph>Is Phase VI the insight you want to factor — or do you have a different one in hand?</Paragraph>
         </Message>
     </Chapter>
 );

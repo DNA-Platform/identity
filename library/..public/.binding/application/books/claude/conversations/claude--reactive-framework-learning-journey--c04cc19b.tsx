@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--reactive-fra
 import Cover from '../../../../../../.claude/.conversations/claude--reactive-framework-learning-journey--c04cc19b/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--reactive-framework-learning-journey--c04cc19b/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--reactive-framework-learning-journey--c04cc19b/.table';
-import August2420251 from '../../../../../../.claude/.conversations/claude--reactive-framework-learning-journey--c04cc19b/1-august-24-2025';
-import August2520252 from '../../../../../../.claude/.conversations/claude--reactive-framework-learning-journey--c04cc19b/2-august-25-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--reactive-framework-learning-journey--c04cc19b/1-conversation';
 import PageTsxTestSuiteIndexV1o1 from '../../../../../../.claude/.conversations/claude--reactive-framework-learning-journey--c04cc19b/o1-page-tsx-test-suite-index-v1';
 import AppPageTsxMainTestRunnerV1o2 from '../../../../../../.claude/.conversations/claude--reactive-framework-learning-journey--c04cc19b/o2-app-page-tsx-main-test-runner-v1';
 import AppTestsBasicBindingPageTsxV1o3 from '../../../../../../.claude/.conversations/claude--reactive-framework-learning-journey--c04cc19b/o3-app-tests-basic-binding-page-tsx-v1';
@@ -41,8 +40,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {August2420251()}
-        {August2520252()}
+        {Conversation1()}
         {PageTsxTestSuiteIndexV1o1()}
         {AppPageTsxMainTestRunnerV1o2()}
         {AppTestsBasicBindingPageTsxV1o3()}

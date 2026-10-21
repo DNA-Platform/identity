@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--lexeme-and-w
 import Cover from '../../../../../../.claude/.conversations/claude--lexeme-and-word-form-distinction-in-verb-conjugation--e0994d83/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--lexeme-and-word-form-distinction-in-verb-conjugation--e0994d83/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--lexeme-and-word-form-distinction-in-verb-conjugation--e0994d83/.table';
-import May2520261 from '../../../../../../.claude/.conversations/claude--lexeme-and-word-form-distinction-in-verb-conjugation--e0994d83/1-may-25-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--lexeme-and-word-form-distinction-in-verb-conjugation--e0994d83/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {May2520261()}
+        {Conversation1()}
     </Book>
 );
 

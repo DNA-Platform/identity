@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--formal-mathe
 import Cover from '../../../../../../.claude/.conversations/claude--formal-mathematics-and-conversational-assistance--7c2ed8e9/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--formal-mathematics-and-conversational-assistance--7c2ed8e9/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--formal-mathematics-and-conversational-assistance--7c2ed8e9/.table';
-import March2320251 from '../../../../../../.claude/.conversations/claude--formal-mathematics-and-conversational-assistance--7c2ed8e9/1-march-23-2025';
-import March2420252 from '../../../../../../.claude/.conversations/claude--formal-mathematics-and-conversational-assistance--7c2ed8e9/2-march-24-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--formal-mathematics-and-conversational-assistance--7c2ed8e9/1-conversation';
 import ATutorialOnFirstOrderLogicGödelsTheoremsTransfiniteo1 from '../../../../../../.claude/.conversations/claude--formal-mathematics-and-conversational-assistance--7c2ed8e9/o1-a-tutorial-on-first-order-logic-gödels-theorems-transfinite';
 import ProofByObjectionANarrativeApproachToTranscendentTruto2 from '../../../../../../.claude/.conversations/claude--formal-mathematics-and-conversational-assistance--7c2ed8e9/o2-proof-by-objection-a-narrative-approach-to-transcendent-trut';
 import ProofByObjectionANarrativeApproachToTranscendentTruto3 from '../../../../../../.claude/.conversations/claude--formal-mathematics-and-conversational-assistance--7c2ed8e9/o3-proof-by-objection-a-narrative-approach-to-transcendent-trut';
@@ -22,8 +21,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {March2320251()}
-        {March2420252()}
+        {Conversation1()}
         {ATutorialOnFirstOrderLogicGödelsTheoremsTransfiniteo1()}
         {ProofByObjectionANarrativeApproachToTranscendentTruto2()}
         {ProofByObjectionANarrativeApproachToTranscendentTruto3()}

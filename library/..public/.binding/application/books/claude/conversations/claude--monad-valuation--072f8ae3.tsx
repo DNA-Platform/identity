@@ -4,9 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--monad-valuat
 import Cover from '../../../../../../.claude/.conversations/claude--monad-valuation--072f8ae3/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--monad-valuation--072f8ae3/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--monad-valuation--072f8ae3/.table';
-import January820261 from '../../../../../../.claude/.conversations/claude--monad-valuation--072f8ae3/1-january-8-2026';
-import January920262 from '../../../../../../.claude/.conversations/claude--monad-valuation--072f8ae3/2-january-9-2026';
-import January1020263 from '../../../../../../.claude/.conversations/claude--monad-valuation--072f8ae3/3-january-10-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--monad-valuation--072f8ae3/1-conversation';
 
 const Book = $($Book);
 
@@ -15,9 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {January820261()}
-        {January920262()}
-        {January1020263()}
+        {Conversation1()}
     </Book>
 );
 

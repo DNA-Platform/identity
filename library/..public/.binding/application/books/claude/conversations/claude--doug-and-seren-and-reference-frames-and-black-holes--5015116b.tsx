@@ -4,8 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--doug-and-ser
 import Cover from '../../../../../../.claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b/.table';
-import September2820251 from '../../../../../../.claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b/1-september-28-2025';
-import September2920252 from '../../../../../../.claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b/2-september-29-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b/1-conversation';
 import SemanticReferenceTheoryFormalFoundationsAndTheoremsV1o1 from '../../../../../../.claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b/o1-semantic-reference-theory-formal-foundations-and-theorems-v1';
 import SemanticReferenceTheoryFormalFoundationsAndTheoremsV2o2 from '../../../../../../.claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b/o2-semantic-reference-theory-formal-foundations-and-theorems-v2';
 import SemanticReferenceTheoryFormalFoundationsAndTheoremsV3o3 from '../../../../../../.claude/.conversations/claude--doug-and-seren-and-reference-frames-and-black-holes--5015116b/o3-semantic-reference-theory-formal-foundations-and-theorems-v3';
@@ -54,8 +53,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {September2820251()}
-        {September2920252()}
+        {Conversation1()}
         {SemanticReferenceTheoryFormalFoundationsAndTheoremsV1o1()}
         {SemanticReferenceTheoryFormalFoundationsAndTheoremsV2o2()}
         {SemanticReferenceTheoryFormalFoundationsAndTheoremsV3o3()}

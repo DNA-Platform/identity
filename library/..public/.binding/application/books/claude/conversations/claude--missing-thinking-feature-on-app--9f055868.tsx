@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--missing-thin
 import Cover from '../../../../../../.claude/.conversations/claude--missing-thinking-feature-on-app--9f055868/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--missing-thinking-feature-on-app--9f055868/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--missing-thinking-feature-on-app--9f055868/.table';
-import January720261 from '../../../../../../.claude/.conversations/claude--missing-thinking-feature-on-app--9f055868/1-january-7-2026';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--missing-thinking-feature-on-app--9f055868/1-conversation';
 
 const Book = $($Book);
 
@@ -13,7 +13,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {January720261()}
+        {Conversation1()}
     </Book>
 );
 

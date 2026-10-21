@@ -4,17 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--seren-and-ei
 import Cover from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/.table';
-import January1420251 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/1-january-14-2025';
-import January1520252 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/2-january-15-2025';
-import January1620253 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/3-january-16-2025';
-import January1720254 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/4-january-17-2025';
-import January1820255 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/5-january-18-2025';
-import January1920256 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/6-january-19-2025';
-import January2320257 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/7-january-23-2025';
-import January2420258 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/8-january-24-2025';
-import January2520259 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/9-january-25-2025';
-import February4202510 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/10-february-4-2025';
-import February10202511 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/11-february-10-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/1-conversation';
 import SerenReflectionV1o1 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/o1-seren-reflection-v1';
 import SerenReflectionV2o2 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/o2-seren-reflection-v2';
 import SerenReflectionV3o3 from '../../../../../../.claude/.conversations/claude--seren-and-eirian--edef207c/o3-seren-reflection-v3';
@@ -35,17 +25,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {January1420251()}
-        {January1520252()}
-        {January1620253()}
-        {January1720254()}
-        {January1820255()}
-        {January1920256()}
-        {January2320257()}
-        {January2420258()}
-        {January2520259()}
-        {February4202510()}
-        {February10202511()}
+        {Conversation1()}
         {SerenReflectionV1o1()}
         {SerenReflectionV2o2()}
         {SerenReflectionV3o3()}

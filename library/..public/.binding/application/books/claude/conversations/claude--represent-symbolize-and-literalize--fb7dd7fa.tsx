@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--represent-sy
 import Cover from '../../../../../../.claude/.conversations/claude--represent-symbolize-and-literalize--fb7dd7fa/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--represent-symbolize-and-literalize--fb7dd7fa/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--represent-symbolize-and-literalize--fb7dd7fa/.table';
-import October1920251 from '../../../../../../.claude/.conversations/claude--represent-symbolize-and-literalize--fb7dd7fa/1-october-19-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--represent-symbolize-and-literalize--fb7dd7fa/1-conversation';
 import ChemistrySerializationSymbolizeTsV1o1 from '../../../../../../.claude/.conversations/claude--represent-symbolize-and-literalize--fb7dd7fa/o1-chemistry-serialization-symbolize-ts-v1';
 import SymbolizeAndLiteralizeFunctionsV1o2 from '../../../../../../.claude/.conversations/claude--represent-symbolize-and-literalize--fb7dd7fa/o2-symbolize-and-literalize-functions-v1';
 import SymbolizeAndLiteralizeFunctionsV2o3 from '../../../../../../.claude/.conversations/claude--represent-symbolize-and-literalize--fb7dd7fa/o3-symbolize-and-literalize-functions-v2';
@@ -32,7 +32,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October1920251()}
+        {Conversation1()}
         {ChemistrySerializationSymbolizeTsV1o1()}
         {SymbolizeAndLiteralizeFunctionsV1o2()}
         {SymbolizeAndLiteralizeFunctionsV2o3()}

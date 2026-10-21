@@ -4,7 +4,7 @@ import $Book from '../../../../../../.claude/.conversations/claude--chemistry-co
 import Cover from '../../../../../../.claude/.conversations/claude--chemistry-code-design-exploration--b08c6c58/.cover';
 import Synopsis from '../../../../../../.claude/.conversations/claude--chemistry-code-design-exploration--b08c6c58/.synopsis';
 import Table from '../../../../../../.claude/.conversations/claude--chemistry-code-design-exploration--b08c6c58/.table';
-import October1720251 from '../../../../../../.claude/.conversations/claude--chemistry-code-design-exploration--b08c6c58/1-october-17-2025';
+import Conversation1 from '../../../../../../.claude/.conversations/claude--chemistry-code-design-exploration--b08c6c58/1-conversation';
 import ParamvalidationAndCheckImplementationV1o1 from '../../../../../../.claude/.conversations/claude--chemistry-code-design-exploration--b08c6c58/o1-paramvalidation-and-check-implementation-v1';
 import ParamvalidationAndCheckImplementationV2o2 from '../../../../../../.claude/.conversations/claude--chemistry-code-design-exploration--b08c6c58/o2-paramvalidation-and-check-implementation-v2';
 import ParamvalidationAndCheckImplementationV3o3 from '../../../../../../.claude/.conversations/claude--chemistry-code-design-exploration--b08c6c58/o3-paramvalidation-and-check-implementation-v3';
@@ -30,7 +30,7 @@ export const book = () => (
         {Cover()}
         {Synopsis()}
         {Table()}
-        {October1720251()}
+        {Conversation1()}
         {ParamvalidationAndCheckImplementationV1o1()}
         {ParamvalidationAndCheckImplementationV2o2()}
         {ParamvalidationAndCheckImplementationV3o3()}

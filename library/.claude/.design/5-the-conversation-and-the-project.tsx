@@ -75,7 +75,10 @@ export default () => (
                 the project I came from and my place in it, three of six in Seren, with the conversations either
                 side of it; or a line of crumbs; or the logo's mark alone. At a phone the side is a bar naming
                 the day in front with the search beside it, and the tree drops over the words when the bar is
-                pressed.
+                pressed. The same day I saw this I struck the day-based split itself: a conversation is imported
+                as one chapter, Conversation, until it is comprehended and cut by hand, so the months and days of
+                this side are drawn on a form that no longer exists; the search, the outline, the file tabs and the
+                way back stand, and the next draft is drawn into the new print with the outline where the days were.
             </Paragraph>
             <Paragraph>
                 <Desk />
