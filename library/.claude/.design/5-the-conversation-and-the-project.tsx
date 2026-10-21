@@ -45,11 +45,12 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Question />
-                What is open on page 009, each a switch at the foot: the side, 1 the months as folders of the
-                manual's tree, 2 the days flat as built; the outline under the open day, 1 none, 2 my questions
-                numbered, 3 Claude's headings; the search, 1 in the side, 2 at the head; the way back, 1 a chip
-                from the trail with my place in the project and the neighbours either side, 2 crumbs, 3 the
-                logo's mark alone as built. What is open on page 010: the project, 1 Semantic Reference Theory,
+                What is open on page 009, each a switch at the foot: the side, 1 the months and days as the
+                manual's tree with the pressed day's questions under it, 2 the days as folders of what I asked,
+                3 none, one column with the search at the head; the outline, 1 none, 2 my questions numbered, 3
+                Claude's headings; the search, 1 in the side, 2 at the head; the way back, 1 a chip from the
+                trail with my place in the project and the neighbours either side, 2 crumbs, 3 the logo's mark
+                alone as built. What is open on page 010: the project, 1 Semantic Reference Theory,
                 2 Seren; the knowledge, 1 in a column as the application keeps it, 2 as a folder of the side's
                 tree with the column gone; the months, 1 as bars at the head, 2 as counts in the side only; and
                 the rows, titles alone or with the synopsis. Both pages are first drafts to iterate on; on my
@@ -60,25 +61,24 @@ export default () => (
         <Section>
             <Heading>[[[ A Conversation, as a Manual ]]]</Heading>
             <Paragraph>
-                Concept 9, Seren &amp; The Hard Problem read as the manual is read, and nothing of the page's
-                semantics moved: its days are still its chapters and its messages their writings, and what the
-                sketch adds is a side, a search, an outline and a way back. The side is the manual's tree: the
-                seven months are folders with their counts of days, the twenty-one days are rows with their
-                counts of messages, the day in front is lit and its month unfolded, and a day's files, the pastes
-                I gave it, stand as tabs under its row and open in the pane beside the words, the words narrowing
-                as the page's own split narrows them. Under the open day stands its outline, my questions
-                numbered in order, each leading to its message, or Claude's headings where there are any. The
-                search is a field over every word of the conversation: a word typed lists its hits by day with
-                the words around each, Eirian answering forty-eight messages in nine days; a hit pressed turns
-                the page to the day and the message with the word marked where it stands, and a stepper walks
-                the hits next and previous across the days. The way back at the head is a chip from the trail,
-                the project I came from and my place in it, three of six in Seren, with the conversations either
-                side of it; or a line of crumbs; or the logo's mark alone. At a phone the side is a bar naming
-                the day in front with the search beside it, and the tree drops over the words when the bar is
-                pressed. The same day I saw this I struck the day-based split itself: a conversation is imported
-                as one chapter, Conversation, until it is comprehended and cut by hand, so the months and days of
-                this side are drawn on a form that no longer exists; the search, the outline, the file tabs and the
-                way back stand, and the next draft is drawn into the new print with the outline where the days were.
+                Concept 9, Seren &amp; The Hard Problem as the import writes it now, one chapter of six hundred
+                and eighty-four messages, read as the manual is read, and nothing of the page's semantics moved:
+                the chapter is the chapter and the messages its writings, and what the sketch adds is a side read
+                off the messages, a search, an outline and a way back. The first draft was drawn the morning
+                before, into the print of the day-based form I struck that afternoon, with the months and days as
+                the manual's tree; this one is drawn into the new print, and the tree stays on its switch beside
+                two other sides. The side that opens is what I asked: the twenty-one days as folders, each holding
+                my questions numbered in order, every question a row leading to its message, the day I am
+                reading lit and following the scroll, and the files I gave that day, the pastes, as tabs under its
+                name opening in the pane beside the words, the words narrowing as the page's own split narrows
+                them. The third side is none, one column with the search at the head, which is the page as
+                bound. The search is a field over every word of the conversation: a word typed lists its hits by
+                day with the words around each, Eirian answering forty-eight messages in nine days; a hit pressed
+                scrolls to the message with the word marked where it stands, and a stepper walks the hits next
+                and previous. The way back at the head is a chip from the trail, the project I came from and my
+                place in it, three of six in Seren, with the conversations either side of it; or a line of
+                crumbs; or the logo's mark alone. At a phone the side is a bar naming the day I am in with the
+                search beside it, and the folders drop over the words when the bar is pressed.
             </Paragraph>
             <Paragraph>
                 <Desk />
