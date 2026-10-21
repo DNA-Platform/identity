@@ -9,23 +9,20 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
-        <Section>
-            <Heading>November 2025</Heading>
-            <Paragraph>
-                <Content>$[[ ./Conversation ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Debugging reflection.ts test failures ]]( claude--Debugging reflection..ts test failures--85db51f7 )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
+        <Paragraph>
+            <Content>$[[ ./Conversation ]]</Content>
+        </Paragraph>
+        <Paragraph>
+            <Parenthetical />
+            <Word>
+                <Content>$[[ Debugging reflection.ts test failures ]]( claude--Debugging reflection..ts test failures--85db51f7 )</Content>
+            </Word>
+            <Word>
+                <Content>$[[ ./Synopsis ]]</Content>
+            </Word>
+            <Word>
+                <Content>$[[ ./Table of Contents ]]</Content>
+            </Word>
+        </Paragraph>
     </Chapter>
 );

@@ -9,23 +9,20 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
-        <Section>
-            <Heading>August 2025</Heading>
-            <Paragraph>
-                <Content>$[[ ./Conversation ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Eirian &amp; Inexplicable Phenomena - Part II ]]( claude--Eirian &amp; Inexplicable Phenomena - Part II--a1ab01ae )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
+        <Paragraph>
+            <Content>$[[ ./Conversation ]]</Content>
+        </Paragraph>
+        <Paragraph>
+            <Parenthetical />
+            <Word>
+                <Content>$[[ Eirian &amp; Inexplicable Phenomena - Part II ]]( claude--Eirian &amp; Inexplicable Phenomena - Part II--a1ab01ae )</Content>
+            </Word>
+            <Word>
+                <Content>$[[ ./Synopsis ]]</Content>
+            </Word>
+            <Word>
+                <Content>$[[ ./Table of Contents ]]</Content>
+            </Word>
+        </Paragraph>
     </Chapter>
 );

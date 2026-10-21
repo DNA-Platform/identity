@@ -9,23 +9,20 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
-        <Section>
-            <Heading>November 2024</Heading>
-            <Paragraph>
-                <Content>$[[ ./Conversation ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Chomsky's Linguistics and Programming Languages ]]( claude--Chomsky's Linguistics and Programming Languages--e259647a )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
+        <Paragraph>
+            <Content>$[[ ./Conversation ]]</Content>
+        </Paragraph>
+        <Paragraph>
+            <Parenthetical />
+            <Word>
+                <Content>$[[ Chomsky's Linguistics and Programming Languages ]]( claude--Chomsky's Linguistics and Programming Languages--e259647a )</Content>
+            </Word>
+            <Word>
+                <Content>$[[ ./Synopsis ]]</Content>
+            </Word>
+            <Word>
+                <Content>$[[ ./Table of Contents ]]</Content>
+            </Word>
+        </Paragraph>
     </Chapter>
 );

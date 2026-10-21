@@ -9,24 +9,21 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
-        <Section>
-            <Heading>October 2025</Heading>
-            <Paragraph>
-                <Content>$[[ ./Conversation ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Semantic reference theory formalism ]]( claude--Semantic reference theory formalism--d562cb1c )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
+        <Paragraph>
+            <Content>$[[ ./Conversation ]]</Content>
+        </Paragraph>
+        <Paragraph>
+            <Parenthetical />
+            <Word>
+                <Content>$[[ Semantic reference theory formalism ]]( claude--Semantic reference theory formalism--d562cb1c )</Content>
+            </Word>
+            <Word>
+                <Content>$[[ ./Synopsis ]]</Content>
+            </Word>
+            <Word>
+                <Content>$[[ ./Table of Contents ]]</Content>
+            </Word>
+        </Paragraph>
         <Section>
             <Appendix />
             <Heading>Artifacts</Heading>

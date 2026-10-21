@@ -25,6 +25,9 @@ export class $ApplicationForm extends $Typeset {
             .pd-book .pd-library { background: linear-gradient(180deg, #ffffff 0%, #ffffff 84%, #fbfcfe 100%); }
             .pd-book .pd-me { background: linear-gradient(180deg, #ffffff 0%, #ffffff 84%, #fbfcfe 100%); }
             .pd-book .pd-holds { background: linear-gradient(90deg, #ffffff 0%, #ffffff 88%, #fbfcfe 100%); }
+            .pd-book.pa-layout:not(:has(.pd-holds .pd-section:not(.pa-appendix))) { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'library' 'head' 'pages'; }
+            .pd-book.pa-layout:not(:has(.pd-holds .pd-section:not(.pa-appendix))):has(> .pd-pane > .pd-pane-bar) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: 'library library' 'head pane' 'pages pane'; }
+            .pd-book.pa-layout:not(:has(.pd-holds .pd-section:not(.pa-appendix))) .pd-holds { display: none; }
             .pd-book .pd-head { background: #ffffff; box-shadow: none; }
             .pd-book.pa-layout .pd-library::after { content: none; }
             .pd-book .pd-pages { background: #ffffff; }

@@ -173,7 +173,7 @@ describe('the writing', () => {
         expect(lines).toContain('        <Word>2</Word>');
     });
 
-    it('writes one chapter, Conversation, dated with the day it began, each message timed and headed by its speaker', () => {
+    it('writes one chapter, Conversation, with no date of its own, each message timed and headed by its speaker', () => {
         const question = sampleTextMessage('m1', 'Doug', 'A question');
         const path = [question, sampleTextMessage('m2', 'Claude', 'An answer', 'm1')];
         const conversation = sampleConversation('c', 'A Conversation', path);
@@ -182,25 +182,25 @@ describe('the writing', () => {
         expect(chapter.fileName).toBe('1-conversation.tsx');
         expect(chapter.title).toBe('Conversation');
         expect(chapter.tsx).toContain('<Title>[[ Conversation ]]</Title>');
-        expect(chapter.tsx).toContain('<Date>[15 June 2026](2026-06-15)</Date>');
+        expect(chapter.tsx).not.toContain('<Dated>');
         expect(chapter.tsx).not.toContain('<Part>');
         expect(chapter.tsx).toContain(`<Speaker>${referenceForm('Doug', 'Dougs Story', '$')}</Speaker>`);
         expect(chapter.tsx).toContain(`<Speaker>${referenceForm('Claude', 'Dougs Claude', '$')}</Speaker>`);
         expect(chapter.tsx).toContain('        <Message\n            at="2026-06-15T10:00:00Z"\n        >');
         expect(chapter.tsx).toContain('<Paragraph>A question</Paragraph>');
-        expect(chapter.tsx).toContain(`import { Dated, Message, Speaker } from '${manualImportPath}';`);
+        expect(chapter.tsx).toContain(`import { Message, Speaker } from '${manualImportPath}';`);
         expect(chapter.tsx).toContain(`import { Origin } from '${claudeManualImportPath}';`);
         expect(chapter.tsx).toContain('<Origin>m1</Origin>');
     });
 
-    it('keeps a conversation held over two days in one chapter, dated with its first day and holding every message', () => {
+    it('keeps a conversation held over two days in one chapter holding every message, the days left to the messages', () => {
         const first = sampleTextMessage('m1', 'Doug', 'Day one', undefined, '2026-06-15T10:00:00Z');
         const second = sampleTextMessage('m2', 'Claude', 'Day two', 'm1', '2026-06-16T09:00:00Z');
         const conversation = sampleConversation('d', 'Days', [first, second]);
         const written = writtenConversation(conversation, [first, second], referents, manualImportPath,
             claudeManualImportPath);
         expect(written.chapters.map(one => one.fileName)).toEqual(['1-conversation.tsx']);
-        expect(written.chapters[0].tsx).toContain('<Date>[15 June 2026](2026-06-15)</Date>');
+        expect(written.chapters[0].tsx).not.toContain('<Dated>');
         expect(written.chapters[0].tsx).toContain('Day one');
         expect(written.chapters[0].tsx).toContain('Day two');
     });

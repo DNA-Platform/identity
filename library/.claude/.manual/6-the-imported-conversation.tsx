@@ -43,8 +43,8 @@ export default () => (
                 account's mention in Dougs Claude, the origin after the account, the application's own id of
                 the conversation, drawn nowhere, and an illustration inserted from the file beside the cover.
                 Its synopsis is the application's own summary as one paragraph, kept for the catalogue and never
-                shown on the page. Its table lists its one chapter, Conversation, under the month the
-                conversation began, then every artifact version in an appendix section headed Artifacts, each entry
+                shown on the page. Its table lists its one chapter, Conversation, in no section, so the
+                index lists nothing and the side draws nothing, then every artifact version in an appendix section headed Artifacts, each entry
                 parenthetical, and last the parenthetical row naming the book, the synopsis and the table.
             </Paragraph>
         </Section>
@@ -118,9 +118,10 @@ export default () => (
         <Section>
             <Heading>The conversation chapter</Heading>
             <Paragraph>
-                The whole conversation is one chapter, numbered 1 and titled Conversation, with the day it began
-                said by Dated as a date; the chapters a conversation is cut into come with comprehension, by hand,
-                and the day-based split that stood here until 21 October 2026 is struck on my word. The chapter
+                The whole conversation is one chapter, numbered 1 and titled Conversation, carrying no date of its
+                own, since the cover's period and each message's instant hold the days as annotations for a later
+                pass to consume; the chapters a conversation is cut into come with comprehension, by hand, and the
+                day-based split that stood here until 21 October 2026 is struck on my word. The chapter
                 holds one Message per message,
                 said at its instant, which with its speaker is the message's whole address, since a question and
                 its answer may share an instant to the microsecond in the older account's export, opening with its Origin, the
@@ -187,7 +188,7 @@ export default () => (
             <Heading>What is held stable, and what may move</Heading>
             <Paragraph>
                 Held stable: the folder and its five files, the file names of the chapter, of versions and of resources, the
-                tags and their attributes as the figures show them, the reference forms for a person, a day and
+                tags and their attributes as the figures show them, the reference forms for a person and
                 a version, the origins, the entry and the ledger. The binder holds some of it itself and refuses a bind that
                 breaks it: every chapter listed in its table, every link landing, every id worn once, no file
                 beside a chapter that nothing inserts, a title with no parenthesis or bracket in it, a file stem

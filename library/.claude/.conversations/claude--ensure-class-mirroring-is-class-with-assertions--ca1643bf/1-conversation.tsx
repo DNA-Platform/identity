@@ -1,12 +1,9 @@
-import { Append, Bold, Chapter, Date, Emphasis, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
-import { CodeBox, Dated, Message, Speaker, Verbatim } from '../../../.manual/.book';
+import { Append, Bold, Chapter, Emphasis, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
+import { CodeBox, Message, Speaker, Verbatim } from '../../../.manual/.book';
 import { Artifact, Attachment, Origin } from '../../.manual/.book';
 
 export default () => (
     <Chapter>
-        <Dated>
-            <Date>[26 December 2024](2024-12-26)</Date>
-        </Dated>
         <Title>[[ Conversation ]]</Title>
         <Message
             at="2024-12-26T23:17:52.313971Z"

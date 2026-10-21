@@ -23,16 +23,18 @@ export default () => (
                 is edited or asked again and the book keeps the path that was shown. Those are annotations with
                 values and a paragraph of participants, so that the page reports them and every catalogue of
                 conversations can read them, by date, by size, by who was there. The import writes a conversation
-                as one chapter, Conversation, holding every message in order and dated with the day it began as
-                an entry of <Means>$[[ a journal ]]( ./The Journal )</Means> is, since I have not comprehended it
-                yet; the chapters I cut it into by hand after, by topic or by sitting, are dated the same way,
-                titled as I like, and stand in whatever part I say. Under the title stand who took part and a
+                as one chapter, Conversation, holding every message in order and dated by nothing of its own,
+                since I have not comprehended it yet: the cover says when it was held and every message its
+                instant, so the days are there to be consumed and nothing is displayed that need not be; the
+                chapters I cut it into by hand after, by topic or by sitting, are dated as an entry
+                of <Means>$[[ a journal ]]( ./The Journal )</Means> is, titled as I like, and stand in whatever
+                part I say. Under the title stand who took part and a
                 tally, how many messages over how many days and from which day to which, the days counted from
                 the messages, and the page opens on the one chapter with nothing above it: the synopsis
                 the import writes is the application's summary and not a cataloguing of mine, so it stays where
-                the catalogue reads it, on the cover, and never on the page. The type asks that every chapter be
-                dated and hold at least one message, and that every message be addressed by its time, so that an
-                index can point at one.
+                the catalogue reads it, on the cover, and never on the page. The type asks that every chapter
+                hold at least one message, and that every message be addressed by its time, so that an index can
+                point at one.
             </Paragraph>
             <Paragraph>
                 The cover says where the conversation is filed: under the book that catalogues all of them, its

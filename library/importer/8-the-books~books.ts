@@ -181,7 +181,7 @@ export const conversationBook = (
     const drawingSource = join(folders.conversations, drawingFileName);
     const drawingText = existsSync(drawingSource) ? readFileSync(drawingSource, 'utf8') : '';
     const projectLines = projectNames.map(projectName => `<Project>***${titleText(projectBookName(projectName))}</Project>`);
-    const tableSections = [...monthSectionsOf(conversationWriting.chapters, naming.name), ...artifactSectionOf(conversationWriting.versions)];
+    const tableSections = [...chapterListing(conversationWriting.chapters, naming.name), ...artifactSectionOf(conversationWriting.versions)];
     const tableManualWords = conversationWriting.versions.length === 0 ? ['Index'] : ['Appendix', 'Index'];
     const files = [
         writtenFile(join(folder, '.book.tsx'), bookFileText(claudeImportPath, 'ClaudeConversation', naming.name.key)),
@@ -621,21 +621,11 @@ const schemeLines = (scheme: Scheme): string[] =>
 const sectionLines = (heading: string, lines: string[]): string[] =>
     ['<Section>', `    <Heading>${heading}</Heading>`, ...indentedLines(1, lines), '</Section>'];
 
-// The days of a conversation under their months, the book's own line under the first; an artifact's versions in
-// an appendix section of parenthetical entries, which the index does not list and the side does not show, since
-// the binder asks that every chapter be listed and the proof that every link on the page land.
-const monthSectionsOf = (chapters: WrittenChapter[], bookName: BookName): string[] => {
-    const months: { heading: string; lines: string[] }[] = [];
-    for (const chapter of chapters) {
-        const heading = monthHeading(chapter.day ?? '');
-        const month = months.at(-1);
-        if (month !== undefined && month.heading === heading) month.lines.push(...contentLines(chapter.title));
-        else months.push({ heading, lines: contentLines(chapter.title) });
-    }
-    months[0]?.lines.push(...parentheticalLines(bookName));
-
-    return months.flatMap(month => sectionLines(month.heading, month.lines));
-};
+// The conversation's one chapter listed in no section, so the binder finds it listed and the index lists nothing,
+// the book's own line after it; an artifact's versions in an appendix section of parenthetical entries, which the
+// index does not list and the side does not show. Doug, 2026-10-21: "Not everything has to be displayed."
+const chapterListing = (chapters: WrittenChapter[], bookName: BookName): string[] =>
+    [...chapters.flatMap(chapter => contentLines(chapter.title)), ...parentheticalLines(bookName)];
 
 const artifactSectionOf = (versions: WrittenChapter[]): string[] => versions.length === 0 ? [] : [
     '<Section>',

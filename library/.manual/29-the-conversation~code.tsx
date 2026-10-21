@@ -5,7 +5,6 @@ import {
     AnnotationSpecification, Referent as referent, SectionSpecification, binder, html, identifier, specify,
 } from '@dna-platform/public';
 import { $LibraryBook, LibraryBookSpecification } from './1-the-book~code.tsx';
-import { $Dated } from './4-the-date~code.tsx';
 import { dayOf } from './28-the-journal~code.tsx';
 import { $Index, contentOf } from './14-the-entry~code.tsx';
 import { Opaque as opaque } from './32-the-address~code.tsx';
@@ -358,12 +357,6 @@ export class ConversationSpecification extends LibraryBookSpecification {
     $saysItsParticipantsPeriodAndCount(book: $Conversation): void {
         $check(book.participants.length > 0 && book.period !== undefined && book.messageCount !== undefined,
             'a conversation says its participants, its period and how many messages it holds, on its cover, and this one says less');
-    }
-
-    @specify('every chapter of a conversation is dated')
-    $everyChapterIsDated(book: $Conversation): void {
-        const undated = book.body.find(chapter => !chapter.is($Dated));
-        $check(undated === undefined, `every chapter of a conversation is dated, and "${undated?.title?.name}" is not`);
     }
 
     @specify('every message of a conversation is addressed by its time')

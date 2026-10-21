@@ -175,14 +175,6 @@ const chapterText = (imports: string[], chapterLines: string[]): string =>
         `${indentation(1)}</Chapter>`, ');', '',
     ].join('\n');
 
-const dayWords = (day: string): string => {
-    const [year, month, dayOfMonth] = day.split('-').map(Number);
-    const date = new Date(Date.UTC(year, month - 1, dayOfMonth));
-    const monthName = date.toLocaleString('en-GB', { month: 'long', timeZone: 'UTC' });
-
-    return `${dayOfMonth} ${monthName} ${year}`;
-};
-
 // A version of an artifact is a chapter of its own, a document as writing under an opaque section, code as a code box.
 const versionChapter = (
     ordinal: number,
@@ -351,15 +343,12 @@ export const writtenConversation = (
             bodyLines.push(`${indentation(2)}</Section>`);
         }
         const chapterLines = [
-            `${indentation(2)}<Dated>`,
-            `${indentation(3)}<Date>[${dayWords(day)}](${day})</Date>`,
-            `${indentation(2)}</Dated>`,
             `${indentation(2)}<Title>${titleForm(written(escaped(title)))}</Title>`,
             ...bodyLines,
             ...appendices.flatMap(appendix => appendLines(appendix, 2)),
         ];
         const imports = importLines(
-            chapterLines, ['Chapter', 'Date', 'Paragraph', 'Title'], ['Dated', 'Message', 'Speaker'],
+            chapterLines, ['Chapter', 'Paragraph', 'Title'], ['Message', 'Speaker'],
             manualImportPath, claudeManualImportPath, appendices.length > 0,
         );
 
