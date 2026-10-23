@@ -45,7 +45,10 @@ chapter is the plan, the rulings, and the resume list.
   code so that it is unambiguous what we consider to be the correct settings. Sine norm and FEV cutoff used for all
   twins and for both caiman and suite2p."*
 - **Replace, and keep the old at a tag** (his choice, 2026-10-20).
-- **One image map over the whole stimulus set** (his choice, 2026-10-20).
+- **One image map over the whole stimulus set** (his choice, 2026-10-20) - **dropped 2026-10-23**: *"Okay drop the
+  normalization on the twins."* And how to judge MEIs: *"I don't like that you are using numbers and not looking at
+  the MEI. You have proven blind to this artifact yet you insist on quantifying."* *"Well check that the MEIs are
+  right. Do it before changing everything."*
 - **Read before asking.** *"If you don't know this, you need to read all the pipelines and learn about how the data
   is made, and read in library branches about this science project. There is a matched pipeline that chooses cells
   matched across."*
@@ -87,9 +90,9 @@ The `ceiling` phase prints how many clear FEV 0.15: the number each twin trains 
   recording, the lab's normalisation, the CPU and June twins.
 - **`digital_twin/data/normalisation.py`**: Doug's algorithm and nothing else - distinct values sorted, a sine
   wave's values at evenly spaced phases, every sample its value's level. Responses each neuron's own map per
-  recording on [0, 1]; images one map over the whole stimulus set on [-1, 1]. The lab's loader is asked for the
-  recording as recorded (`normalize=False`) and the maps replace its normaliser; the response table is checked
-  against the dataset on three trials before anything trains.
+  recording on [0, 1]; the images, since 2026-10-23, the lab's as delivered (the image map is below). The lab's
+  loader serves the recording and the response table on Doug's map replaces its responses, checked against what the
+  lab serves on three trials before anything trains.
 - **`loaders`**: the two twin cell sets, each cut at the recording's FEV; `recorded`, the lab's own loader, for the
   noise ceiling and the FEV and nothing else. Arm A is refused.
 - **FEV has one home**, beside the noise ceiling (`noise_ceiling.explainable_variance`), moved out of the
@@ -99,7 +102,7 @@ The `ceiling` phase prints how many clear FEV 0.15: the number each twin trains 
 - **The conductor and the library** make the twins by one rule (`run.twin_names`); the library holds no hand-written
   entry and no legacy or imported twin. Every checkpoint records the normalisation and the FEV threshold, and one
   trained under anything else is refused.
-- **MEIs and metamers** clip to [-1, 1]. The metamers gain the check (`generate.CHECK`); the moments read the
+- **MEIs and metamers** clip to the scan's black and white (to [-1, 1] while the image map stood). The metamers gain the check (`generate.CHECK`); the moments read the
   moments' twin, their targets each linked cell's half-second bins on its own map over its whole spontaneous
   recording (`spontaneous.moment_matrix`). `binned_matrix`, in the lab's units on the spine, stays for the analyses
   that read it.
@@ -150,23 +153,46 @@ The `ceiling` phase prints how many clear FEV 0.15: the number each twin trains 
   drops sharply at minute 10-11. A per-recording map cannot remove drift within a recording, so a moment from the
   start and one from the end of a recording read the twin with different population patterns.
 
+## The image map, and why it was dropped (2026-10-21 to 23)
+
+The first full run (run-20261021-1607, all five datasets through MEIs, metamers, drift and moments) trained the twins on
+images through one sine map over the stimulus set, [-1, 1]. Doug looked at the MEIs and saw the Suite2P blob the
+standardization had fixed; I had called them clean without opening the paper's figure, and the comparison page was
+ranked by FEVE on the twin's own scale (2.30 at the top - ill-defined cells first).
+
+**By eye, the same neurons beside the paper** (33977 and 34452, the ten highest-FEV neurons): each new MEI kept its
+paper MEI's layout, but thin edges thickened into bars and spots swelled into blobs, Suite2P most, one inverting. Every
+aggregate I had reported matched the paper (the same neuron across processings 0.82) - which is why the rule now is to
+look first ([memory: judge MEIs by eye against the reference]).
+
+**The test** (run-20261023-1632, most-exciting-image-standardization, 33977, the paper's recipe with only the images
+changed): the control - delivered images, today's code - is the paper's MEI row for row (Suite2P every row, CaImAn nine
+of ten); the map on [-1, 1] is heavier, CaImAn gains a blocky texture and one MEI inverts; the map on [0, 1] (Doug's
+question) is broken - flat plateaus at the bounds, black slabs, square patches. The paper's measures agree: the same
+neuron across processings 0.83 (control), 0.78, 0.70. Prediction hardly moved (0.36-0.38), so the twins fit as well;
+what the map spoils is the MEIs. A fourth arm, the map rescaled to mean 0 and std 1, ran to the end as well.
+
+**Fixed** (241c753d8): the twins see the lab's delivered images, standardised per scan; the activity keeps Doug's map;
+FEV 0.15 and the cells unchanged. Relaunched as run-20261023-1757-sinusoidal-twins-delivered-images, every twin retrained
+(the image-map seeds cleared from the run's folder).
+
 ## Where things stand
 
-**Blocked: GitHub refuses the box's deploy key.** The key (`lipshutzlab-01`, SHA256:sQ9c6hB77Gna5NTr779M89K7onwv4thoELOpMhaKDGw)
-authenticates - GitHub greets it as DNA-Platform/altered-states - and then answers "Repository not found" to every
-fetch; the box last pulled on 2026-10-19. Push from this machine works over SSH; `gh`'s token is invalid. The box's
-side cannot fix it: the key's entry on the repository, or the organisation's deploy-key policy, has to be restored
-on GitHub.
+**GitHub: the DNA-Platform organisation is flagged** ("hidden from the public"; Doug's dashboard banner, 2026-10-21),
+after a brief flag on `support-dna`. Members signed in as themselves still reach it - this machine, as `support-dna`,
+pulls and pushes - but a deploy key is not a member, so the box gets "Repository not found" for every key, old and new.
+Doug has a ticket open and the security steps in hand. **Until it is lifted, runs travel over SSH**: main goes to the
+box as a git bundle (sha256-checked), the run commits on the box, its branch comes home the same way and is pushed from
+here. Every run of this sprint since 2026-10-21 went that way.
 
-**When the box can pull**, one run, the pipeline's own entry point:
+**Running**: run-20261023-1757-sinusoidal-twins-delivered-images, the pipeline's own entry point:
 
 ```
 python -m pipelines.digital_twin 33328-caiman 33977-caiman 33977-suite2p 34452-caiman 34452-suite2p --then mei,metamer
 ```
 
-Then: check every twin (FEVE, the health panels, explained variance), the MEIs and metamers, the inventory; close
-the run; delete the products the old twins left that the new run did not overwrite (the `four-way` and `matched`
-handles, validations, MEI and metamer caches - all at the tag).
+Then: the MEIs beside the paper's for the same neurons, by eye, before any number; every twin's FEVE and explained
+variance; the metamers, drift and moments; close the run (bundle home, push, the box's main in step, the store adopted).
 
 **Open, in order:**
 
@@ -180,6 +206,12 @@ handles, validations, MEI and metamer caches - all at the tag).
    pipeline's loaders. Each runs at the tag; none is in the pipeline run.
 
 **Wrong turns, so nobody retries them:**
+
+- the image map on the twins: MEIs heavier than the paper's; and judging MEIs by aggregate numbers, which matched the
+  paper while the images did not - look at the same neurons beside the reference first;
+- ranking an MEI page by FEVE on the twin's sinusoidal scale - it opens on ill-defined cells (FEVE above 1);
+- a dataset wrapper without the lab's `__iter__` - the lab's scoring walks past the last trial;
+- a launch script rewritten from Python on Windows - CRLF line endings, which bash refuses;
 
 - asking Doug which link reaches the post spontaneous recording, when `matched`'s links answer it;
 - testing the box's GitHub access with `GIT_SSH_COMMAND`, which bypasses the deploy key the clone uses;

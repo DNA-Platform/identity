@@ -76,9 +76,10 @@ Every dataset gets **as many twins as its recordings allow** (`run.twin_names`),
 where there are spontaneous recordings the **moments' twin**, before DOI on the pre-and-spontaneous
 cells (FEV >= 0.15 in the pre recording). Doug: *"Have the pipeline make these twins: Pre - matched cells
 pre-post; Post - matched cells pre-post; Pre - matched pre-spontaneous-spontaneous, no post."* Every twin
-sees **Doug's sinusoidal normalisation**, of the activity (a map per neuron per recording) and of the
-images (one map over the whole stimulus set, on [-1, 1]) - *"Sine norm and FEV cutoff used for all twins
-and for both caiman and suite2p"*. The one pair a dataset on the cells of every recording that this
+sees **Doug's sinusoidal normalisation** of the activity (a map per neuron per recording) and the
+lab's images as delivered, as the paper's twins did - *"Sine norm and FEV cutoff used for all twins
+and for both caiman and suite2p"*. A sine map on the images too (2026-10-20 to 23) made the MEIs
+heavier than the paper's and was dropped. The one pair a dataset on the cells of every recording that this
 replaced is at the tag `four-way-twins`. The twins use the published Sensorium
 configuration, verbatim, on the frame it was published for. When every phase has run, the pipeline
 writes the **canonical build** (`build.json`): the exact checkpoints with their hashes, the settings,
@@ -88,7 +89,7 @@ and the data's fingerprint. Every reader of a twin loads through it.
 
 [`src/pipelines/mei/`](../../pipelines/mei/.cover.md). Walker 2019's recipe on the lab's ops,
 for every cell of the dataset's pair (all of them clear the lab's FEV >= 0.15 in both conditions),
-best-understood cells first; every MEI clipped to [-1, 1], the images' black and white. Phases `index`, `mei` (sixteen
+best-understood cells first; every MEI clipped to its scan's black and white. Phases `index`, `mei` (sixteen
 cells a batch on the fast path), `quality`, `organize`, `figures` - which are the two Doug asked for:
 `comparison.png` (every pair, before above after, by pre-FEVE, its pages in `comparison/`) and
 `spectrum-and-filter.png` (the MEI spectrum before and after DOI, and the filter between them - the
