@@ -45,12 +45,12 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Question />
-                What is open on page 009, each a switch at the foot: the side, 1 the months and days as the
-                manual's tree with the pressed day's questions under it, 2 the days as folders of what I asked,
-                3 none, one column with the search at the head; the outline, 1 none, 2 my questions numbered, 3
-                Claude's headings; the search, 1 in the side, 2 at the head; the way back, 1 a chip from the
-                trail with my place in the project and the neighbours either side, 2 crumbs, 3 the logo's mark
-                alone as built. What is open on page 010: the project, 1 Semantic Reference Theory,
+                What is open on page 009, each a switch at the foot: the side, 1 the parts holding the chapters
+                as the manual's tree with the chapter I am reading opened to what I asked, 2 the chapters alone as
+                folders of what I asked, 3 none, one column with the search at the head; the outline, 1 none, 2
+                my questions numbered, 3 Claude's headings; the search, 1 in the side, 2 at the head; the
+                project's strip, 1 under the bar, 2 a card at the top of the side, 3 a chip at the head, 4 the
+                logo's mark alone as built. What is open on page 010: the project, 1 Semantic Reference Theory,
                 2 Seren; the knowledge, 1 in a column as the application keeps it, 2 as a folder of the side's
                 tree with the column gone; the months, 1 as bars at the head, 2 as counts in the side only; and
                 the rows, titles alone or with the synopsis. Both pages are first drafts to iterate on; on my
@@ -61,24 +61,29 @@ export default () => (
         <Section>
             <Heading>[[[ A Conversation, as a Manual ]]]</Heading>
             <Paragraph>
-                Concept 9, Seren &amp; The Hard Problem as the import writes it now, one chapter of six hundred
-                and eighty-four messages, read as the manual is read, and nothing of the page's semantics moved:
-                the chapter is the chapter and the messages its writings, and what the sketch adds is a side read
-                off the messages, a search, an outline and a way back. The first draft was drawn the morning
-                before, into the print of the day-based form I struck that afternoon, with the months and days as
-                the manual's tree; this one is drawn into the new print, and the tree stays on its switch beside
-                two other sides. The side that opens is what I asked: the twenty-one days as folders, each holding
-                my questions numbered in order, every question a row leading to its message, the day I am
-                reading lit and following the scroll, and the files I gave that day, the pastes, as tabs under its
-                name opening in the pane beside the words, the words narrowing as the page's own split narrows
-                them. The third side is none, one column with the search at the head, which is the page as
-                bound. The search is a field over every word of the conversation: a word typed lists its hits by
-                day with the words around each, Eirian answering forty-eight messages in nine days; a hit pressed
-                scrolls to the message with the word marked where it stands, and a stepper walks the hits next
-                and previous. The way back at the head is a chip from the trail, the project I came from and my
-                place in it, three of six in Seren, with the conversations either side of it; or a line of
-                crumbs; or the logo's mark alone. At a phone the side is a bar naming the day I am in with the
-                search beside it, and the folders drop over the words when the bar is pressed.
+                Concept 9, Seren &amp; The Hard Problem as a comprehended conversation would read, with named
+                parts and chapters and never a date, since dates were never my intent and the cutting is work I
+                will do by hand. The sketch is drawn into the bound print of the one chapter the import writes,
+                six hundred and eighty-four messages, and cuts it at the conversation's own silences, a silence
+                over six hours opening a chapter and one over a week a part: twenty-three chapters in six parts.
+                Each chapter is named by the words it opens with, mine, which stand in for the name I will give
+                it, and the parts are numbered as a manual numbers them, since nothing in the print can name them
+                honestly. The side is the manual's tree: the parts as folders with the entry's folder mark and
+                chevron, the chapters as rows with their counts, the chapter I am reading lit and following the
+                scroll, the files I gave in it, the pastes, as tabs under its name opening in the pane beside the
+                words, and under it what I asked, each question numbered and leading to its message. The second
+                side is the chapters alone as folders of what I asked, and the third is none, one column with
+                the search at the head, which is the page as bound. The project's strip is a component of the
+                project page that rides into this one on the trail: when I come from a project, a strip under the
+                bar carries the project's mark as the bar draws it, its name, my place in it, three of six in
+                Seren, the conversations either side, the word I had typed there, and the way back to where I
+                was, which lands the project page where I left it; the same strip is drawn as a card at the top of
+                the side or as a chip at the head, and the page says it from its own cover when no trail is kept.
+                The search is a field with the register's own mark over every word of the conversation: a word
+                typed lists its hits by chapter with the words around each, Eirian answering forty-eight messages
+                in nine chapters; a hit pressed scrolls to the message with the word marked where it stands, and a
+                stepper walks the hits next and previous. At a phone the strip and the bar naming the chapter I am
+                in stand above the words, and the parts drop over them when the bar is pressed.
             </Paragraph>
             <Paragraph>
                 <Desk />
@@ -103,7 +108,10 @@ export default () => (
                 project, its conversations by title and synopsis and its files by name, the rows and the files
                 narrowing as a word is typed, perspective answering eleven of seventy-nine conversations and
                 eight of sixty-three files. Each conversation is a row that leads two ways, into the library by
-                its title and on to the application by the origin its cover carries. The files stand in a column
+                its title and on to the application by the origin its cover carries, a small label at the row's
+                end. The bar's marks are drawn by the bound page's own rules, lifted from its print, square with
+                the scheme's ink for a border and its band behind, where the first draft had rounded and
+                recoloured them; the glyphs on the files are the library's. The files stand in a column
                 as the application keeps them, or as a folder of the side's tree with the column gone, and each
                 opens in the pane. A row pressed keeps the trail, the project, my place in it and the word I had
                 typed, so the conversation's page can say the way back and this page lands where I left it when
