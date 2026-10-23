@@ -1,3 +1,3 @@
-import { $ProjectManual } from '../../.manual/.book';
+import { $ClaudeProjectManual } from '../.manual/.book';
 
-export default class $NumberTheory extends $ProjectManual { }
+export default class $NumberTheory extends $ClaudeProjectManual { }

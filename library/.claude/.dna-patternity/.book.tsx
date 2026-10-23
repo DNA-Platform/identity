@@ -1,3 +1,3 @@
-import { $ProjectManual } from '../../.manual/.book';
+import { $ClaudeProjectManual } from '../.manual/.book';
 
-export default class $DnaPatternity extends $ProjectManual { }
+export default class $DnaPatternity extends $ClaudeProjectManual { }

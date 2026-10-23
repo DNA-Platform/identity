@@ -131,6 +131,46 @@ export default () => (
                 <Image>![[ 010-small.png ]]</Image>
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>As built, 2026-10-23</Heading>
+            <Paragraph>
+                Both pages are built to their concepts as they open, in Sprint 115, and photographed on the bound
+                library beside the sketches. The conversation, 009: the side lists the one chapter the import
+                writes with its count, the files pasted into it as tabs opening the pane, and under it what I
+                asked, numbered, each leading to its message; the search stands at the head of the side over
+                every word of the conversation, a hit scrolling to its message and the word marked where it
+                stands by the browser's own highlight; the project's strip stands under the bar when I come
+                from a project, the mark, the name, my place, the neighbours, the word I had typed and the way
+                back, and at a phone the name, the place and the way back alone. The project, 010: the brief and
+                the instructions first, the counts, the months as bars each leading to its month, the search
+                over the conversations and the files, each row leading into the library and on to Claude by its
+                origin; a row or a hit pressed keeps the trail, and the page lands where I left it when I
+                return, the word typed again and the row marked. Where the built differs from the sketch, on
+                purpose or until my number: a conversation has named parts only when I cut it by hand, so the
+                side shows its one chapter and never the sketch's six parts; the strip's card and chip forms and
+                the stepper at the head are not built; a conversation opened by its address alone draws no
+                strip, since the bar's project line already leads to the project; and at a phone both pages
+                keep the print's own forms, the side as a block over the words and the months as a row of
+                folders, not the sketches' drawers. The photographs here are the built pages; the sketches'
+                stand above.
+            </Paragraph>
+            <Paragraph>
+                <Desk />
+                <Image>![[ 009-built-desk.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                <Phone />
+                <Image>![[ 009-built-phone.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                <Desk />
+                <Image>![[ 010-built-desk.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                <Phone />
+                <Image>![[ 010-built-phone.png ]]</Image>
+            </Paragraph>
+        </Section>
         <Append
             identifier="009"
             type=".html"

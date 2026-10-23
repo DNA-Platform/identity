@@ -22,6 +22,20 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Heading>The side and the strip</Heading>
+            <Paragraph>
+                The theme dresses what the application has no form for. The side, which the layout places: the
+                search's field at its head under the register's mark, the hits in place of the index while a
+                word stands, what I asked under the open chapter's entry and the file tabs under it, the open
+                entry marked; the page draws no side only when the index has no entry. The project's strip under
+                the bar, a row of the page's grid in every form, with a side and without, with the pane and
+                without, at a desk and on a phone, where the neighbours and the word give way to the name and the
+                way back. And the word found, marked by the browser's highlight and not by a class, the one rule
+                the highlight takes. The side's part and the strip's are parts of the page's form, said
+                in <Means>$[[ The Project ]]( ./The Project )</Means> and built to concept 9 of <Means>$[[ Claudes Design / The Conversation and the Project ]]</Means>.
+            </Paragraph>
+        </Section>
+        <Section>
             <Heading>The browser this library keeps open</Heading>
             <Paragraph>
                 The application's pages need my sign-in, so the library opens a browser of its own, with a

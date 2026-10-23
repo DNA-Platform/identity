@@ -1,11 +1,11 @@
 import { ReactElement, ReactNode } from 'react';
 import { $, $check, inert } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Part, $Section, $TableOfContents, $Topic, BookSpecification, Given, Reference as reference, Theme, reflection, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Book, $Chapter, $Composition, $Paragraph, $Part, $Section, $TableOfContents, $Topic, $Writing, BookSpecification, Given, Reference as reference, Theme, html, reflection, specify } from '@dna-platform/public';
 import { LibraryBookTheme } from './3-the-theme~code.tsx';
 import { Byline as byline, TopicLine as topicLine } from './8-the-author-and-the-subject~code.tsx';
 import { Layout as layout } from './12-the-layout~code.tsx';
 import { $Spread } from './10-the-manual~code.tsx';
-import { $Appendix, $TreeFolder, TreeFolder as treeFolder, TreeRoot as treeRoot, contentOf } from './14-the-entry~code.tsx';
+import { $Appendix, $Index, $TreeFolder, TreeFolder as treeFolder, TreeRoot as treeRoot, contentOf } from './14-the-entry~code.tsx';
 import { Dark as dark, Light as light, Tone as tone, WhiteOverBlack as whiteOverBlack } from './16-the-tone~code.tsx';
 import { $Logo, $Volume, Logo as logo, Mark as mark, painted } from './19-the-cover~code.tsx';
 import { Turn as turn } from './13-the-turn~code.tsx';
@@ -49,6 +49,51 @@ export class $LibraryBook extends $Book {
     // The cover the logo files this book under: its subject's, where a type of book may say another.
     get subjectCover(): $Chapter | undefined {
         return this.coverOf(this.subject?.means?.identifier);
+    }
+    @inert() protected _words?: Map<$Writing, Words>;
+    // What the search's field asks for, where a type of book says what its words are.
+    get searchHint(): string {
+        return 'a word';
+    }
+
+    // The words the search reads of a writing, read once when first asked: a chapter's title and its paragraphs but a
+    // caption, which is what an entry holds of the book it stands for.
+    wordsOf(writing: $Writing): Words {
+        const kept = (this._words ??= new Map()).get(writing);
+        if (kept !== undefined) return kept;
+        const title = writing instanceof $Chapter ? writing.title?.name ?? '' : '';
+        const text = writing.text.find($Paragraph).filter(paragraph => ![...paragraph.classes].includes('pa-caption')).map(paragraph => html.copy(paragraph.text).replace(/\s+/gu, ' ').trim()).join(' ');
+        const words = { title, text, lower: `${title} ${text}`.toLowerCase() };
+        this._words.set(writing, words);
+        return words;
+    }
+
+    // What a word finds, in the index's order: the entries the index lists whose words hold it, unless a type of book
+    // says what else it holds, its messages or its files.
+    found(word: string): $Writing[] {
+        const lower = word.trim().toLowerCase();
+        if (lower === '') return [];
+        const index = this.table?.annotations.expressed($Index);
+        if (index === undefined) return [];
+        return index.entries.map(paragraph => index.chapterOf(paragraph)).filter((chapter): chapter is $Chapter => chapter !== undefined && this.wordsOf(chapter).lower.includes(lower));
+    }
+
+    countOfFound(found: $Writing[], word: string): ReactNode {
+        return (
+            <>
+                <b>{found.length}</b> {found.length === 1 ? 'entry says' : 'entries say'} “{word}”
+            </>
+        );
+    }
+
+    // Where a hit leads: a chapter to its own place, where a type of book says where its other writings stand.
+    placeOf(writing: $Writing): string | undefined {
+        return writing instanceof $Chapter ? writing.mention?.identifier : undefined;
+    }
+
+    // Told what is sought, when the word changes; a type of book that marks the word on its page does it here.
+    sought(_word: string): void {
+        return undefined;
     }
 
     override write(): ReactNode {
@@ -241,6 +286,8 @@ export class $LibraryBook extends $Book {
             );
     }
 }
+
+export type Words = { title: string; text: string; lower: string };
 
 export class LibraryBookSpecification extends BookSpecification {
     @specify('a book of this library holds only chapters')

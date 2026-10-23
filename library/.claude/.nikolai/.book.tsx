@@ -1,3 +1,3 @@
-import { $ProjectManual } from '../../.manual/.book';
+import { $ClaudeProjectManual } from '../.manual/.book';
 
-export default class $Nikolai extends $ProjectManual { }
+export default class $Nikolai extends $ClaudeProjectManual { }

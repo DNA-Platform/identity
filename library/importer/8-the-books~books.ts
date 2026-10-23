@@ -332,7 +332,8 @@ export const projectBook = (
     const folder = join(folders.claude, `.${slugFromName(project.name)}`);
     const importPath = manualImportPath(folders, folder);
     const bookFilePath = join(folder, '.book.tsx');
-    const bookFile = (): string => writtenFile(bookFilePath, bookFileText(importPath, 'ProjectManual', project.name));
+    // A project of mine with Claude is Claude's manual's project manual, Sprint 115: the way on to the application and the trail.
+    const bookFile = (): string => writtenFile(bookFilePath, bookFileText(claudeManualImportPath(folders, folder), 'ClaudeProjectManual', project.name));
     if (existsSync(bookFilePath) && !whole) return { folder, files: overwrite ? [bookFile()] : [], chapterStem: '' };
     if (existsSync(folder))
         for (const entry of readdirSync(folder, { withFileTypes: true }))

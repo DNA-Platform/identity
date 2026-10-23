@@ -25,9 +25,10 @@ export class $ApplicationForm extends $Typeset {
             .pd-book .pd-library { background: linear-gradient(180deg, #ffffff 0%, #ffffff 84%, #fbfcfe 100%); }
             .pd-book .pd-me { background: linear-gradient(180deg, #ffffff 0%, #ffffff 84%, #fbfcfe 100%); }
             .pd-book .pd-holds { background: linear-gradient(90deg, #ffffff 0%, #ffffff 88%, #fbfcfe 100%); }
-            .pd-book.pa-layout:not(:has(.pd-holds .pd-section:not(.pa-appendix))) { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'library' 'head' 'pages'; }
-            .pd-book.pa-layout:not(:has(.pd-holds .pd-section:not(.pa-appendix))):has(> .pd-pane > .pd-pane-bar) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: 'library library' 'head pane' 'pages pane'; }
-            .pd-book.pa-layout:not(:has(.pd-holds .pd-section:not(.pa-appendix))) .pd-holds { display: none; }
+            .pd-book.pa-layout:not(:has(.pd-holds .pd-paragraph.pa-entry)) { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'library' 'head' 'pages'; }
+            .pd-book.pa-layout:not(:has(.pd-holds .pd-paragraph.pa-entry)):has(> .pd-pane > .pd-pane-bar) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: 'library library' 'head pane' 'pages pane'; }
+            .pd-book.pa-layout:not(:has(.pd-holds .pd-paragraph.pa-entry)) .pd-holds { display: none; }
+            ::highlight(pd-found) { background: #fff2a8; color: inherit; }
             .pd-book .pd-head { background: #ffffff; box-shadow: none; }
             .pd-book.pa-layout .pd-library::after { content: none; }
             .pd-book .pd-pages { background: #ffffff; }
@@ -63,6 +64,50 @@ export class $ApplicationForm extends $Typeset {
             .pd-book .pd-holds .pd-paragraph.pa-entry .pd-day-count { margin-inline-start: auto; font-size: 11px; color: ${({ theme }) => theme.faint}; }
             .pd-book .pd-holds .pd-paragraph.pa-entry:hover { background: #f8fafc; }
             .pd-book .pd-holds .pd-paragraph.pa-entry.pa-open { background: linear-gradient(90deg, #eff4fa, #f8fafd); color: ${({ theme }) => theme.heading}; font-weight: 500; }
+            ${this.sideIndex()}
+        `;
+    }
+
+    // The side's index as concept 9 lays it: the search's field at its top, the hits in place of the index while a
+    // word stands, and under the chapter in front its files as tabs and what I asked, each a row leading to its message.
+    protected sideIndex(): RuleSet {
+        return css`
+            .pd-book .pd-holds { padding: 0 0 24px; }
+            .pd-book .pd-holds .pd-paragraph.pd-search { display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; gap: 8px; margin: 14px 14px 6px; padding: 6px 10px; border: 1px solid ${({ theme }) => theme.line}; border-radius: 9px; background: #ffffff; color: ${({ theme }) => theme.soft}; font-family: ${({ theme }) => theme.sans}; font-size: 13px; line-height: 20px; }
+            .pd-book .pd-holds .pd-search .pd-search-mark { flex: none; font-style: normal; font-size: 16px; line-height: 1; color: ${({ theme }) => theme.faint}; }
+            .pd-book .pd-holds .pd-search .pd-search-word { flex: 1; min-width: 0; border: 0; background: none; padding: 0; font: inherit; color: ${({ theme }) => theme.ink}; outline: none; }
+            .pd-book .pd-holds .pd-search .pd-search-word::placeholder { color: ${({ theme }) => theme.faint}; }
+            .pd-book .pd-holds .pd-chapter.pa-table-of-contents.pa-searching { display: none; }
+            .pd-book .pd-holds .pd-paragraph.pd-results { display: block; margin: 0; padding: 0 0 20px; }
+            .pd-book .pd-holds .pd-results .pd-results-count { display: block; padding: 10px 18px 6px; font-family: ${({ theme }) => theme.sans}; font-size: 12px; line-height: 1.5; color: ${({ theme }) => theme.soft}; }
+            .pd-book .pd-holds .pd-results .pd-results-count b { color: ${({ theme }) => theme.ink}; font-weight: 500; }
+            .pd-book .pd-holds .pd-paragraph.pd-result { position: relative; display: grid; grid-template-columns: 38px minmax(0, 1fr); column-gap: 6px; margin: 0; padding: 4px 14px 5px 18px; font-family: ${({ theme }) => theme.sans}; font-size: 11.5px; line-height: 1.4; color: ${({ theme }) => theme.soft}; }
+            .pd-book .pd-holds .pd-result:hover { background: #eef4f7; color: ${({ theme }) => theme.ink}; }
+            .pd-book .pd-holds .pd-result .pd-result-title { font-weight: 500; color: ${({ theme }) => theme.faint}; }
+            .pd-book .pd-holds .pd-result .pd-result-synopsis { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+            .pd-book .pd-holds .pd-result mark { background: #fff2a8; color: inherit; padding: 0 1px; border-radius: 2px; }
+            .pd-book .pd-holds .pd-result > a:has(> .pd-entry-open) { position: absolute; inset: 0; z-index: 1; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry { flex-wrap: wrap; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry::before { content: none; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry.pa-open { box-shadow: inset 3px 0 0 #1f5a60; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry > a:first-child, .pd-book .pd-holds .pd-paragraph.pa-entry > .pa-content { order: 0; flex: 1 1 auto; min-width: 0; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry .pd-day-count { order: 1; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry:not(.pa-open) .pd-file-tab { display: none; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry .pd-word.pd-file-tab { order: 2; display: flex; align-items: center; gap: 8px; flex: 0 0 calc(100% + 34px); height: 26px; margin: 2px -18px 0 -16px; padding: 0 14px 0 34px; border: 0; border-radius: 0; background: none; font-family: ${({ theme }) => theme.sans}; font-size: 12px; font-weight: 400; line-height: 1; color: ${({ theme }) => theme.soft}; text-align: start; cursor: pointer; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry .pd-file-tab:hover { background: #eef4f7; color: ${({ theme }) => theme.ink}; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry .pd-file-tab[aria-pressed='true'] { background: #eef5f6; color: #1f5a60; font-weight: 500; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry .pd-file-tab .pd-drawing { flex: none; width: 14px; height: 14px; color: #a5aebb; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry .pd-file-tab .pd-drawing svg { display: block; width: 100%; height: 100%; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry .pd-file-tab .pd-tab-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+            .pd-book .pd-holds .pd-paragraph.pa-entry .pd-file-tab small { margin-inline-start: auto; font-size: 10.5px; color: ${({ theme }) => theme.faint}; white-space: nowrap; }
+            .pd-book .pd-holds .pd-paragraph.pd-outline { display: block; margin: 0; }
+            .pd-book .pd-holds:has(.pd-chapter.pa-table-of-contents.pa-searching) .pd-paragraph.pd-outline { display: none; }
+            .pd-book .pd-holds .pd-outline .pd-asked { margin: 0; padding: 2px 0 8px; list-style: none; counter-reset: asked; }
+            .pd-book .pd-holds .pd-outline .pd-asked li { counter-increment: asked; }
+            .pd-book .pd-holds .pd-outline .pd-asked li > a, .pd-book .pd-holds .pd-outline .pd-asked li > .pd-word { display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 6px; padding: 3px 14px 3px 24px; font-family: ${({ theme }) => theme.sans}; font-size: 11.5px; line-height: 1.35; color: ${({ theme }) => theme.soft}; text-decoration: none; }
+            .pd-book .pd-holds .pd-outline .pd-asked li > a::before, .pd-book .pd-holds .pd-outline .pd-asked li > .pd-word::before { content: counter(asked); font-size: 10px; color: ${({ theme }) => theme.faint}; font-variant-numeric: tabular-nums; text-align: end; padding-inline-end: 2px; line-height: 15.5px; }
+            .pd-book .pd-holds .pd-outline .pd-asked li > a > .pd-word { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: inherit; }
+            .pd-book .pd-holds .pd-outline .pd-asked li > a:hover { color: ${({ theme }) => theme.ink}; background: #eef4f7; }
         `;
     }
 
@@ -141,6 +186,39 @@ export class $ApplicationForm extends $Typeset {
             .pd-book.pa-layout:has(> .pd-pane > .pd-pane-bar) {
                 grid-template-columns: ${({ theme }) => theme.holdsColumn} minmax(0, 1fr) minmax(0, 1fr);
                 grid-template-areas: 'library library library' 'holds head pane' 'holds pages pane';
+            }
+            ${this.strip()}
+        `;
+    }
+
+    // The project's strip under the bar, a row of the grid that stands only while a trail is drawn in it: the project's
+    // mark, its name, my place in it, the neighbours either side, the word I had typed, and the way back.
+    protected strip(): RuleSet {
+        return css`
+            .pd-book.pa-layout:has(> .pd-project-strip:not(:empty)) { grid-template-rows: auto auto auto minmax(0, 1fr); grid-template-areas: 'library library' 'strip strip' 'holds head' 'holds pages'; }
+            .pd-book.pa-layout:has(> .pd-project-strip:not(:empty)):has(> .pd-pane > .pd-pane-bar) { grid-template-areas: 'library library library' 'strip strip strip' 'holds head pane' 'holds pages pane'; }
+            .pd-book.pa-layout:has(> .pd-project-strip:not(:empty)):not(:has(.pd-holds .pd-paragraph.pa-entry)) { grid-template-areas: 'library' 'strip' 'head' 'pages'; }
+            .pd-book.pa-layout:has(> .pd-project-strip:not(:empty)):not(:has(.pd-holds .pd-paragraph.pa-entry)):has(> .pd-pane > .pd-pane-bar) { grid-template-areas: 'library library' 'strip strip' 'head pane' 'pages pane'; }
+            .pd-book .pd-paragraph.pd-project-strip { grid-area: strip; display: flex; align-items: center; gap: 14px; min-width: 0; height: 40px; margin: 0; padding: 0 18px; background: #ffffff; border-block-end: 1px solid ${({ theme }) => theme.line}; font-family: ${({ theme }) => theme.sans}; font-size: 12.5px; line-height: 1.4; color: ${({ theme }) => theme.soft}; }
+            .pd-book .pd-paragraph.pd-project-strip:empty { display: none; }
+            .pd-book .pd-project-strip .pd-scheme { flex: none; }
+            .pd-book .pd-project-strip > a:first-child { flex: none; display: block; line-height: 0; text-decoration: none; }
+            .pd-book .pd-project-strip .pd-word.pd-mark { transform: scale(.8); transform-origin: left center; }
+            .pd-book .pd-project-strip .pd-mark .pd-drawing svg { display: block; }
+            .pd-book .pd-project-strip .pd-strip-words { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+            .pd-book .pd-project-strip .pd-strip-words .pd-word.pa-reference { color: ${({ theme }) => theme.heading}; text-decoration: none; font-family: 'Source Sans 3', ${({ theme }) => theme.sans}; font-size: 14px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+            .pd-book .pd-project-strip .pd-strip-words .pd-word.pa-reference:hover { text-decoration: underline; text-underline-offset: 3px; }
+            .pd-book .pd-project-strip .pd-strip-place { color: ${({ theme }) => theme.faint}; font-variant-numeric: tabular-nums; white-space: nowrap; }
+            .pd-book .pd-project-strip .pd-strip-neighbours { display: flex; align-items: center; gap: 14px; min-width: 0; }
+            .pd-book .pd-project-strip .pd-strip-neighbours .pd-word.pa-reference { color: ${({ theme }) => theme.soft}; text-decoration: none; max-width: 30ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+            .pd-book .pd-project-strip .pd-strip-neighbours .pd-word.pa-reference:hover { color: ${({ theme }) => theme.accent}; }
+            .pd-book .pd-project-strip .pd-strip-word { flex: none; font-size: 11.5px; color: ${({ theme }) => theme.faint}; font-style: italic; white-space: nowrap; }
+            .pd-book .pd-project-strip > a:last-child, .pd-book .pd-project-strip > .pd-word:last-child { margin-inline-start: auto; }
+            .pd-book .pd-project-strip > a:last-child .pd-word.pa-reference, .pd-book .pd-project-strip > .pd-word:last-child { flex: none; padding: 3px 11px; border: 1px solid ${({ theme }) => theme.line}; border-radius: 999px; color: ${({ theme }) => theme.ink}; text-decoration: none; font-weight: 500; white-space: nowrap; }
+            .pd-book .pd-project-strip > a:last-child .pd-word.pa-reference:hover { border-color: #c0c9df; color: ${({ theme }) => theme.accent}; }
+            @media (max-width: ${({ theme }) => theme.narrow}) {
+                .pd-book .pd-paragraph.pd-project-strip { order: 0; height: auto; min-height: 40px; padding: 6px 14px; flex-wrap: wrap; gap: 6px 10px; }
+                .pd-book .pd-project-strip .pd-strip-neighbours, .pd-book .pd-project-strip .pd-strip-word { display: none; }
             }
         `;
     }

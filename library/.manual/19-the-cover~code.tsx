@@ -249,6 +249,17 @@ export class UnfoldedSpecification extends AnnotationSpecification {
     }
 }
 
+// What a mark draws, read off a cover: its illustration's drawing and the declarations of its scheme and its window.
+// Strings, so a mark can be carried where its cover is not, as the project's strip carries it on the trail.
+export type Marking = { drawing: string; declarations: string };
+export const markingOf = (cover: $Chapter | undefined): Marking => {
+    const bookshelf = cover?.annotations.expressed($Cover) as $BookshelfCover | undefined;
+    return {
+        drawing: bookshelf?.drawing ?? '',
+        declarations: `${bookshelf?.scheme?.declarations ?? ''} ${bookshelf?.window?.declarations ?? ''}`,
+    };
+};
+
 export class $Mark extends $Word {
     $cover?: $Chapter;
     style: ElementType = selection.span<{ $vars: string }>`
@@ -256,13 +267,14 @@ export class $Mark extends $Word {
     `;
     protected _painted!: ElementType;
     get cover(): $BookshelfCover | undefined { return this.$cover?.annotations.expressed($Cover) as $BookshelfCover | undefined; }
+    get marking(): Marking { return markingOf(this.$cover); }
 
     $Mark(...chemicals: $Chemical[]) {
         this.$Writing(...chemicals);
         const Painted = this.style;
         this._painted = (props: { children?: ReactNode }) => (
             <Painted
-                $vars={`${this.cover?.scheme?.declarations ?? ''} ${this.cover?.window?.declarations ?? ''}`}
+                $vars={this.marking.declarations}
                 {...props}
             />
         );
@@ -273,7 +285,7 @@ export class $Mark extends $Word {
         return (
             <span
                 className="pd-drawing"
-                dangerouslySetInnerHTML={{ __html: this.cover?.drawing ?? '' }}
+                dangerouslySetInnerHTML={{ __html: this.marking.drawing }}
             />
         );
     }

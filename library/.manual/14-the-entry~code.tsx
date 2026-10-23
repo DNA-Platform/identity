@@ -1,5 +1,5 @@
 import { ElementType, ReactNode } from 'react';
-import { $, $check, $Chemical, selection } from '@dna-platform/chemistry';
+import { $, $check, $Chemical, Component, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Content, $Format, $Paragraph, $Parenthetical, $Part, $Section, $TableOfContents, $Word, $Writing, AnnotationSpecification, ContainerProps, Reference as reference, Word as word, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { FileTab as fileTab, fileNameOf } from './2-the-listing~code.tsx';
@@ -66,21 +66,44 @@ export class $Appendix extends $Annotation {
     }
 }
 
+// The index's ways: folded, counted, dated, and searched. A searched index carries the word typed, and the book answers
+// what the word finds among its own words, the entries' titles and synopses unless a type of book says otherwise.
 export class $Index extends $Annotation {
     specification = new IndexSpecification();
     $folded = false;
     $counted = false;
     $dated = false;
+    $searched = false;
+    $search = '';
     get sections(): $Section[] {
         return this.chapter!.text.find($Section);
     }
+    // The entries in the table's order: a row under a section, and a row the table lists in no section, which stands
+    // in the side with no folder above it. Sprint 116: a conversation's one chapter is listed so.
     get entries(): $Paragraph[] {
-        return this.sections.flatMap(section => section.text.find($Paragraph)).filter(paragraph => !paragraph.is($Parenthetical) && contentOf(paragraph) !== undefined);
+        const listed = (paragraph: $Paragraph): boolean => !paragraph.is($Parenthetical) && contentOf(paragraph) !== undefined;
+        return [...this.chapter!.text].flatMap(writing => writing instanceof $Section ? writing.text.find($Paragraph) : writing instanceof $Paragraph ? [writing] : []).filter(listed);
+    }
+    get found(): $Writing[] {
+        return (this.book as $LibraryBook).found(this.$search);
     }
 
     chapterOf(paragraph: $Paragraph): $Chapter | undefined {
         const place = contentOf(paragraph)?.identifier;
         return place === undefined ? undefined : (this.book as $LibraryBook).chapterAt(place);
+    }
+
+    // Searching is said of the table, the index's own chapter, and only as the word crosses between empty and not, since
+    // what is said of a chapter redraws it and the table is the one chapter a search may redraw on every page.
+    search(word: string): void {
+        this.$search = word;
+        const table = this.chapter;
+        const sought = word.trim() !== '';
+        if (table !== undefined && sought !== table.is($Searching)) {
+            const said = [table.$is].flat().filter(annotation => annotation !== undefined && annotation !== searching);
+            table.$is = sought ? [searching, ...said] : said;
+        }
+        (this.book as $LibraryBook).sought(word.trim());
     }
 
     protected override $Bound(): void {
@@ -133,6 +156,200 @@ export class $Index extends $Annotation {
         super.$Bound();
     }
 }
+
+// The index is searching while a word stands in the search, said of its table; the class is what the rules read, and a
+// rule on another part of the page reaches it through the book's :has().
+export class $Searching extends $Annotation {
+    specification = new SearchingSpecification();
+
+    override defines(writing: $Writing): void {
+        writing.classes.add(this, 'pa-searching');
+    }
+
+    override erase(writing: $Writing): void {
+        writing.classes.revert(this);
+    }
+}
+
+export class SearchingSpecification extends AnnotationSpecification {
+    @specify('searching is said of a table of contents')
+    $saidOfATable(writing: $Writing): void {
+        $check(writing.is($TableOfContents), 'searching is said of a table of contents, the index\'s chapter, and this is not one');
+    }
+}
+
+// The field a word is typed in, drawn where the book puts it, at its head or in its side; the word is the index's.
+export class $Search extends $Paragraph {
+    get index(): $Index | undefined { return (this.book as $LibraryBook | undefined)?.table?.annotations.expressed($Index); }
+
+    $Search(...chemicals: $Chemical[]) {
+        this.$Writing(...chemicals);
+        this.containers.replace(this, 'span', 'div');
+    }
+
+    override write(): ReactNode {
+        const index = this.index;
+        const book = this.book as $LibraryBook | undefined;
+        if (index === undefined || book === undefined) return undefined;
+        return (
+            <>
+                <span
+                    className="pd-search-mark"
+                    aria-hidden="true"
+                >
+                    ⌕
+                </span>
+                <input
+                    className="pd-search-word"
+                    type="search"
+                    value={index.$search}
+                    placeholder={book.searchHint}
+                    aria-label="search"
+                    onInput={event => index.search((event.target as HTMLInputElement).value)}
+                />
+            </>
+        );
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-search');
+    }
+}
+
+// What the word found: the count the book says, and a row for each hit.
+export class $Results extends $Paragraph {
+    get index(): $Index | undefined { return (this.book as $LibraryBook | undefined)?.table?.annotations.expressed($Index); }
+
+    $Results(...chemicals: $Chemical[]) {
+        this.$Writing(...chemicals);
+        this.containers.replace(this, 'span', 'div');
+    }
+
+    override write(): ReactNode {
+        const index = this.index;
+        const book = this.book as $LibraryBook | undefined;
+        if (index === undefined || book === undefined) return undefined;
+        const sought = index.$search.trim();
+        if (sought === '') return undefined;
+        const found = book.found(sought);
+        return (
+            <>
+                <span className="pd-results-count">
+                    {book.countOfFound(found, sought)}
+                </span>
+                {found.map((hit, position) => this.result(hit, position))}
+            </>
+        );
+    }
+
+    // A row is keyed by the hit it stands for and never by its position: a reference's place is set once when the row
+    // is made, and a row kept at a position while its hit changed would lead where the last hit led.
+    protected result(hit: $Writing, position: number): ReactNode {
+        const Result = $(result);
+        return (
+            <Result
+                key={(this.book as $LibraryBook).placeOf(hit) ?? position}
+                chapter={this.chapter}
+                hit={hit}
+            />
+        );
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-results');
+    }
+}
+
+// The whole row leads somewhere, the way the application's does: a reference laid over the row, told what it leads to.
+export class $EntryOpen extends $Word {
+    $entry?: $Writing;
+
+    override write(): ReactNode {
+        return undefined;
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-entry-open');
+    }
+}
+
+// A hit: its title, its day where it has one, its words clipped around the word, and the whole row leading to its place.
+export class $Result extends $Paragraph {
+    $hit?: $Writing;
+    get index(): $Index | undefined { return (this.book as $LibraryBook | undefined)?.table?.annotations.expressed($Index); }
+
+    $Result(...chemicals: $Chemical[]) {
+        this.$Writing(...chemicals);
+        this.containers.replace(this, 'span', 'div');
+    }
+
+    override write(): ReactNode {
+        const book = this.book as $LibraryBook | undefined;
+        const hit = this.$hit;
+        const index = this.index;
+        if (book === undefined || hit === undefined || index === undefined) return undefined;
+        const sought = index.$search.trim();
+        const words = book.wordsOf(hit);
+        const place = book.placeOf(hit);
+        const Reference = $(reference);
+        const EntryDay = $(entryDay);
+        const EntryOpen = $(this.open());
+        return (
+            <>
+                <span className="pd-result-title">
+                    {marked(words.title, sought)}
+                </span>
+                {hit instanceof $Chapter && hit.is($Dated) ? (
+                    <EntryDay entry={hit} />
+                ) : undefined}
+                <span className="pd-result-synopsis">
+                    {marked(clipped(words.text, sought), sought)}
+                </span>
+                {place === undefined ? undefined : (
+                    <EntryOpen entry={hit}>
+                        <Reference>{place}</Reference>
+                    </EntryOpen>
+                )}
+            </>
+        );
+    }
+
+    // The open laid over the row; a type of book may lay its own.
+    protected open(): Component<$EntryOpen> {
+        return entryOpen;
+    }
+
+    protected override $Define(): void {
+        super.$Define();
+        this.classes.add(this, 'pd-result');
+    }
+}
+
+// The words clipped around the first place the word stands, and the word marked wherever it stands.
+export const clipped = (text: string, word: string): string => {
+    if (text.length <= 190) return text;
+    const at = text.toLowerCase().indexOf(word.toLowerCase());
+    if (at < 150) return `${text.slice(0, 187)}…`;
+    const start = text.lastIndexOf(' ', at - 90) + 1;
+    return `…${text.slice(start, start + 186)}…`;
+};
+
+export const marked = (text: string, word: string): ReactNode => {
+    if (word === '') return text;
+    const lower = text.toLowerCase();
+    const needle = word.toLowerCase();
+    const pieces: ReactNode[] = [];
+    let from = 0;
+    for (let at = lower.indexOf(needle); at !== -1; at = lower.indexOf(needle, from)) {
+        pieces.push(text.slice(from, at), <mark key={at}>{text.slice(at, at + word.length)}</mark>);
+        from = at + word.length;
+    }
+    pieces.push(text.slice(from));
+    return pieces;
+};
 
 export class $EntryDay extends $Word {
     $entry?: $Chapter;
@@ -480,6 +697,11 @@ export const contentOf = (paragraph: $Writing): $Content | undefined =>
 
 export const Entry = $($Entry);
 export const Index = $($Index);
+export const Searching = $($Searching);
+export const Search = $($Search);
+export const Results = $($Results);
+export const Result = $($Result);
+export const EntryOpen = $($EntryOpen);
 export const EntryDay = $($EntryDay);
 export const SectionCount = $($SectionCount);
 export const Appendix = $($Appendix);
@@ -488,6 +710,9 @@ export const FoldChevron = $($FoldChevron);
 export const TreeFolder = $($TreeFolder);
 export const TreeRoot = $($TreeRoot);
 const entry = Entry;
+const searching = Searching;
+const result = Result;
+const entryOpen = EntryOpen;
 const entryDay = EntryDay;
 const sectionCount = SectionCount;
 const folded = Folded;

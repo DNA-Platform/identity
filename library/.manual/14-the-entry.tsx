@@ -77,6 +77,25 @@ export default () => (
                 three. The names, folded, counted, dated and foldable, are the session's until I keep or change
                 them.
             </Paragraph>
+            <Paragraph>
+                Searched is the fourth way: a field where the type of book places it, at the head of the side or
+                of the page, and a word typed there is the index's word. While one stands the index draws the
+                hits in place of its rows, each a row with the entry's title marked where the word falls, its
+                day where the entry is dated, its synopsis clipped around the first fall, and the whole row
+                leading to the entry's place by the entry's open laid over it; and the book wears a class saying
+                it is searching, so a theme may hide what the hits replace. The index asks the book for the
+                words, and a type of book answers in its own: which of its writings are found for a word, the
+                words each one carries, a title and a text read once when first asked and kept, the count of
+                falls, the place a hit leads to, and the hint the empty field shows. So <Means>$[[ the register ]]( ./The Register )</Means> answers
+                with its entries' titles and synopses within the part that is open, <Means>$[[ the project manual ]]( ./The Project Manual )</Means> with
+                its entries and its files' names, and a conversation with its messages. The hits are keyed by the
+                place each leads to and never by its position, and a hit's title is drawn as marked text, since a
+                row's reference and a word's children are fixed when the row is made. The entry's open, the word
+                laid over a row so the whole row leads, stands in this chapter now, since the hits use it as the
+                project manual's rows do. The way is set as the others are, Index searched in a table file or in
+                code before the table is bound. The names, searched, search, found, sought, result and the
+                entry's open, are the session's until I keep or change them.
+            </Paragraph>
         </Section>
         <Section>
             <Heading>Where an entry bites</Heading>

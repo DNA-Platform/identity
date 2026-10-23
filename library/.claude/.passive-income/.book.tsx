@@ -1,3 +1,3 @@
-import { $ProjectManual } from '../../.manual/.book';
+import { $ClaudeProjectManual } from '../.manual/.book';
 
-export default class $PassiveIncome extends $ProjectManual { }
+export default class $PassiveIncome extends $ClaudeProjectManual { }
