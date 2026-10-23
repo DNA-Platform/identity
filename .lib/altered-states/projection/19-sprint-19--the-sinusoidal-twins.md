@@ -185,14 +185,17 @@ Doug has a ticket open and the security steps in hand. **Until it is lifted, run
 box as a git bundle (sha256-checked), the run commits on the box, its branch comes home the same way and is pushed from
 here. Every run of this sprint since 2026-10-21 went that way.
 
-**Running**: run-20261023-1757-sinusoidal-twins-delivered-images, the pipeline's own entry point:
+**Done (2026-10-24): parity with the paper.** run-20261023-1757-sinusoidal-twins-delivered-images, the pipeline's own
+entry point over all five datasets, closed over SSH (87cc3bbdb; MEI pages redrawn, f47cadfbb). By eye, the same neurons
+beside the paper's figure: 33977 and 34452, CaImAn and Suite2P, the paper's MEI row for row - no heavy bars or blobs.
+Every twin at the published FEVE; MEIs 317 / 409 / 931 / 469 / 369 pairs; stimulus and check metamers recognizable
+(33977-suite2p's top eight identified every time); drift and moments for the four spontaneous datasets, every
+half-second (2,423 / 2,398 a recording). The MEI pages now rank by FEVE only where the lab's rule defines it.
 
-```
-python -m pipelines.digital_twin 33328-caiman 33977-caiman 33977-suite2p 34452-caiman 34452-suite2p --then mei,metamer
-```
-
-Then: the MEIs beside the paper's for the same neurons, by eye, before any number; every twin's FEVE and explained
-variance; the metamers, drift and moments; close the run (bundle home, push, the box's main in step, the store adopted).
+**To explore, from Doug:** *"When we have parity, we can start exploring."* A first thing to know: with a map per neuron
+per recording, every cell's spontaneous activity spreads over the same range as its driven responses (median ~0.5), so
+each moment asks the twin for mid-range responses - whether that is the grey screen for this twin is the check Doug
+named (*"related to the lowest contrast"*), not yet run.
 
 **Open, in order:**
 
