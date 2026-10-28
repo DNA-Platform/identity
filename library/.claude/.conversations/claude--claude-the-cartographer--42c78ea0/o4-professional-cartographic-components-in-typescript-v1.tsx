@@ -1,6 +1,7 @@
 import { Chapter, Emphasis, Heading, Paragraph, Section, Title, Word } from '@dna-platform/public';
-import { Opaque, Quoted, Verbatim } from '../../../.manual/.book';
-import { Version } from '../../.manual/.book';
+import { Opaque } from '../../../.manual/32-the-address~code.tsx';
+import { Quoted, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
+import { Version } from '../../.manual/2-the-artifact-and-the-attachment~code.tsx';
 
 export default () => (
     <Chapter>

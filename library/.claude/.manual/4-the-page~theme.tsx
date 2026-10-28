@@ -1,6 +1,6 @@
 import { css, RuleSet } from 'styled-components';
 import { $ } from '@dna-platform/chemistry';
-import { $Typeset } from '../../.manual/.book';
+import { $Typeset } from '../../.manual/28-the-journal~theme.tsx';
 
 // Concept 3 of Claudes Design, the application measured in its own browser and carried in as decided: the chat text at its
 // measures, white across every surface with a tint only in the last pixels before an edge, the head scrolling away with the

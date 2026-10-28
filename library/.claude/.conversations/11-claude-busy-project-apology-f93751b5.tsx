@@ -1,5 +1,7 @@
 import { Chapter, Date, Means, Paragraph, Part, Synopsis, Title } from '@dna-platform/public';
-import { Caption, Dated, Volume } from '../../.manual/.book';
+import { Caption } from '../../.manual/20-the-bookshelf~code.tsx';
+import { Dated } from '../../.manual/4-the-date~code.tsx';
+import { Volume } from '../../.manual/19-the-cover~code.tsx';
 import TheCover from './claude--busy-project-apology--f93751b5/.cover.tsx';
 import TheSynopsis from './claude--busy-project-apology--f93751b5/.synopsis.tsx';
 

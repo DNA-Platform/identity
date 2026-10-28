@@ -2,6 +2,7 @@ import { identifier } from '@dna-platform/public';
 import { escaped, sanitized } from '../..public/.binding/catalogue/language.ts';
 import { written } from '../..public/.binding/catalogue/reading.ts';
 import type { Block, Conversation, Message, Speaker } from './3-the-record~record.ts';
+import { type Imports, importLines as linesByHome } from './8-the-books~homes.ts';
 
 export type Referents = Record<Speaker, string>;
 export type WrittenFile = { name: string; content: string };
@@ -153,8 +154,8 @@ const importLines = (
     bodyLines: string[],
     alwaysPackage: string[],
     alwaysManual: string[],
-    manualImportPath: string,
-    claudeManualImportPath: string,
+    manual: Imports,
+    claude: Imports,
     hasAppendices: boolean,
 ): string[] => {
     const packageImports = packageWordList
@@ -164,8 +165,8 @@ const importLines = (
 
     return [
         `import { ${packageImports.join(', ')} } from '@dna-platform/public';`,
-        ...(manualImports.length === 0 ? [] : [`import { ${manualImports.join(', ')} } from '${manualImportPath}';`]),
-        ...(claudeImports.length === 0 ? [] : [`import { ${claudeImports.join(', ')} } from '${claudeManualImportPath}';`]),
+        ...linesByHome(manualImports, manual),
+        ...linesByHome(claudeImports, claude),
     ];
 };
 
@@ -180,8 +181,8 @@ const versionChapter = (
     ordinal: number,
     versionTitle: string,
     artifactVersion: ArtifactVersion,
-    manualImportPath: string,
-    claudeManualImportPath: string,
+    manual: Imports,
+    claude: Imports,
 ): WrittenChapter => {
     const extension = artifactExtension(artifactVersion);
     const isDocument = extension === 'md' || extension === 'txt';
@@ -200,7 +201,7 @@ const versionChapter = (
         `${indentation(2)}<Title>${titleForm(written(escaped(versionTitle)))}</Title>`,
         ...bodyLines,
     ];
-    const imports = importLines(chapterLines, ['Chapter', 'Title'], [], manualImportPath, claudeManualImportPath, false);
+    const imports = importLines(chapterLines, ['Chapter', 'Title'], [], manual, claude, false);
 
     const fileName = `o${ordinal}-${slugFromName(versionTitle)}.tsx`;
 
@@ -211,8 +212,8 @@ export const writtenConversation = (
     conversation: Conversation,
     path: Message[],
     referents: Referents,
-    manualImportPath: string,
-    claudeManualImportPath: string,
+    manual: Imports,
+    claude: Imports,
     keptAppendices: Appendix[] = [],
 ): WrittenConversation => {
     // ONE CHAPTER, Conversation, holding every message in order and dated with the day the conversation began;
@@ -280,7 +281,7 @@ export const writtenConversation = (
             const versionName = `${plainTitle} v${artifactVersion.versionCount}`;
             const versionTitle = uniqueVersionTitle(versionName);
             const ordinal = versions.length + 1;
-            versions.push(versionChapter(ordinal, versionTitle, artifactVersion, manualImportPath, claudeManualImportPath));
+            versions.push(versionChapter(ordinal, versionTitle, artifactVersion, manual, claude));
             const verb = artifactVersion.versionCount === 1 ? 'Made' : block.command === 'rewrite' ? 'Rewrote' : 'Changed';
             const sentence = `${verb} the artifact “${written(artifactVersion.title)}”`;
 
@@ -349,7 +350,7 @@ export const writtenConversation = (
         ];
         const imports = importLines(
             chapterLines, ['Chapter', 'Paragraph', 'Title'], ['Message', 'Speaker'],
-            manualImportPath, claudeManualImportPath, appendices.length > 0,
+            manual, claude, appendices.length > 0,
         );
 
         return { fileName: `${chapterStem}.tsx`, title, tsx: chapterText(imports, chapterLines), files, day };

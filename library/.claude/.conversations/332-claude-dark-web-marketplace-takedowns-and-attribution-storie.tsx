@@ -1,5 +1,7 @@
 import { Chapter, Date, Means, Paragraph, Part, Synopsis, Title } from '@dna-platform/public';
-import { Caption, Dated, Volume } from '../../.manual/.book';
+import { Caption } from '../../.manual/20-the-bookshelf~code.tsx';
+import { Dated } from '../../.manual/4-the-date~code.tsx';
+import { Volume } from '../../.manual/19-the-cover~code.tsx';
 import TheCover from './claude--dark-web-marketplace-takedowns-and-attribution-stories--8035b9fb/.cover.tsx';
 import TheSynopsis from './claude--dark-web-marketplace-takedowns-and-attribution-stories--8035b9fb/.synopsis.tsx';
 

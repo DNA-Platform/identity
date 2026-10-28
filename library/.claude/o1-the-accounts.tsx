@@ -1,5 +1,6 @@
 import { Chapter, Heading, Paragraph, Part, Section, Title } from '@dna-platform/public';
-import { Brief, Spread } from '../.manual/.book';
+import { Brief } from '../.manual/10-the-manual~annotations.tsx';
+import { Spread } from '../.manual/10-the-manual~code.tsx';
 
 export default () => (
     <Chapter>

@@ -4,7 +4,7 @@ import {
     $Annotation, $Chapter, $Cover, $Paragraph, $Reference, $Writing, AnnotationSpecification, Reference as reference,
     Word as word, binder, html, specify,
 } from '@dna-platform/public';
-import { Label as label } from '../../.manual/.book';
+import { Label as label } from '../../.manual/8-the-author-and-the-subject~code.tsx';
 
 export class $Account extends $Annotation {
     specification = new AccountSpecification();

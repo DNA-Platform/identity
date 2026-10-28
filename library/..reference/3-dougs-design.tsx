@@ -1,5 +1,6 @@
 import { Chapter, Means, Paragraph, Synopsis, Title } from '@dna-platform/public';
-import { Caption, Volume } from '../.manual/.book';
+import { Caption } from '../.manual/20-the-bookshelf~code.tsx';
+import { Volume } from '../.manual/19-the-cover~code.tsx';
 import DesignCover from '../.design/.cover';
 import DesignSynopsis from '../.design/.synopsis';
 

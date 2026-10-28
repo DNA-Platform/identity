@@ -32,9 +32,9 @@ const resourceFiles = (book: Book): string[] =>
     [...book.resources.values()].flat().map(resource => join(book.path, resource.file));
 
 // WHAT A FILE IMPORTS, AS VITE READS IT: every source named by an import or an export-from, in the
-// order written. Read once per file and kept for the bind, since a thousand books import the same
-// few hundred files.
-const sourcePattern = /^\s*(?:import|export)\b[^'"]*?from\s*['"]([^'"]+)['"]|^\s*import\s*['"]([^'"]+)['"]/gmu;
+// order written, but never a type-only one, which the compiler erases and no page loads. Read once
+// per file and kept for the bind, since a thousand books import the same few hundred files.
+const sourcePattern = /^\s*(?:import(?!\s+type\b)|export(?!\s+type\b))\b[^'"]*?from\s*['"]([^'"]+)['"]|^\s*import\s*['"]([^'"]+)['"]/gmu;
 
 // A FILE AS IT STANDS: its path with its modification time and size, so what is kept for a file is
 // kept only while the file is that file, and a reader that outlives a change reads it again.
@@ -117,12 +117,13 @@ export const graph = {
         return current;
     },
 
-    // WHAT A BOOK IS MADE OF, AS BYTES: its own files, the files beside its chapters, every file its
-    // code reaches by its imports — another book's cover, its library's manual, the manual's own
+    // WHAT A BOOK IS MADE OF, AS BYTES: its book file, which the inventory lists among no chapters and
+    // which is where a book extends its manual, its chapters, the files beside its chapters, every file
+    // its code reaches by its imports — another book's cover, its library's manual, the manual's own
     // imports — and whatever the caller names as fixed, the packages it is written against. A book
     // whose digest still holds is not read again. Delete the file to read everything.
     digest(book: Book, fixed: string[]): string {
-        const own = [...book.files.map(name => join(book.path, name)), ...resourceFiles(book)];
+        const own = [join(book.path, '.book.tsx'), ...book.files.map(name => join(book.path, name)), ...resourceFiles(book)];
         const reached = new Set<string>(own);
         for (const file of [...own, ...codeFiles(book)])
             if (codeTypes.some(type => file.endsWith(type)))

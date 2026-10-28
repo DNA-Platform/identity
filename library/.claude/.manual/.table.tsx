@@ -1,5 +1,5 @@
 import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
-import { Index } from '../../.manual/.book';
+import { Index } from '../../.manual/14-the-entry~code.tsx';
 
 export default () => (
     <Chapter>
@@ -27,12 +27,6 @@ export default () => (
                 <Content>$[[ ./The Origin ]]</Content>
             </Paragraph>
             <Paragraph>
-                <Content>$[[ ./The Page ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./The Pane ]]</Content>
-            </Paragraph>
-            <Paragraph>
                 <Parenthetical />
                 <Word>
                     <Content>$[[ Claudes Reference Manual ]]</Content>
@@ -43,6 +37,21 @@ export default () => (
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Claude's pages</Heading>
+            <Paragraph>
+                <Content>$[[ ./The Page ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Pane ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Conversation's Page ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Project's Page ]]</Content>
             </Paragraph>
         </Section>
         <Section>

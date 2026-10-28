@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { newestBeside } from './2-the-export~export.ts';
+import type { Imports } from './8-the-books~homes.ts';
 import { exportSource } from './3-the-record~claude.ts';
 import type { Conversation, Mapping, Project } from './3-the-record~record.ts';
 import {
@@ -387,11 +388,11 @@ const listHeldConversations = (
 };
 
 const writeChapterIntoFolder = (intoFolder: string, conversation: Conversation): void => {
-    const manualImportPath = '../.manual/.book';
-    const claudeManualImportPath = '../.claude/.manual/.book';
-    const path = shownPath(conversation);
-    const written = writtenConversation(conversation, path, referents, manualImportPath, claudeManualImportPath);
     const folder = join(intoFolder, slugFromName(conversation.name));
+    const manual: Imports = { folder, barrel: resolve(intoFolder, '../.manual/.book.tsx') };
+    const claude: Imports = { folder, barrel: resolve(intoFolder, '../.claude/.manual/.book.tsx') };
+    const path = shownPath(conversation);
+    const written = writtenConversation(conversation, path, referents, manual, claude);
     mkdirSync(folder, { recursive: true });
     for (const chapter of [...written.chapters, ...written.versions]) {
         writeFileSync(join(folder, chapter.fileName), chapter.tsx, 'utf8');

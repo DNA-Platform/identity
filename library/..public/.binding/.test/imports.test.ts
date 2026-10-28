@@ -15,14 +15,14 @@ describe('a book whose digest is the closure of its imports', () => {
     const write = (file: string, text: string): string => { const at = join(root, file); mkdirSync(join(at, '..'), { recursive: true }); writeFileSync(at, text); return at; };
 
     const manual = write('manual/.book.tsx', "export * from './1-the-word~code.tsx';\nexport default class $Manual {}\n");
-    const word = write('manual/1-the-word~code.tsx', "import { $Word } from '@dna-platform/public';\nimport { helper } from './2-the-helper~code.tsx';\nexport class $Said extends $Word {}\n");
+    const word = write('manual/1-the-word~code.tsx', "import { $Word } from '@dna-platform/public';\nimport { helper } from './2-the-helper~code.tsx';\nimport type { Aside } from './3-aside~code.tsx';\nexport class $Said extends $Word {}\n");
     const helper = write('manual/2-the-helper~code.tsx', "export const helper = 1;\n");
     const aside = write('manual/3-aside~code.tsx', "export const aside = 1;\n");
     const bookFile = write('a-book/.book.tsx', "import { $Manual } from '../manual/.book';\nimport cover from './.cover.tsx';\nexport default class $ABook extends $Manual {}\n");
     write('a-book/.cover.tsx', "import { $Said } from '../manual/1-the-word~code.tsx';\nexport default () => null;\n");
     write('other/.book.tsx', "export default class $Other {}\n");
 
-    const book: Book = { folder: 'a-book', path: join(root, 'a-book'), files: ['.book.tsx', '.cover.tsx'], resources: new Map(), unaccounted: [], clashing: [], module: '' };
+    const book: Book = { folder: 'a-book', path: join(root, 'a-book'), files: ['.cover.tsx'], resources: new Map(), unaccounted: [], clashing: [], module: '' };
 
     it('reads the sources a file imports, relative and bare alike', () => {
         expect(imports(word)).toEqual(['@dna-platform/public', './2-the-helper~code.tsx']);
@@ -45,5 +45,8 @@ describe('a book whose digest is the closure of its imports', () => {
         expect(graph.digest(book, ['packages'])).toBe(before);
         write('manual/2-the-helper~code.tsx', "export const helper = 2;\n");
         expect(graph.digest(book, ['packages'])).not.toBe(before);
+        const after = graph.digest(book, ['packages']);
+        write('manual/.book.tsx', "export * from './1-the-word~code.tsx';\nexport default class $Manual { changed = true }\n");
+        expect(graph.digest(book, ['packages'])).not.toBe(after);
     });
 });

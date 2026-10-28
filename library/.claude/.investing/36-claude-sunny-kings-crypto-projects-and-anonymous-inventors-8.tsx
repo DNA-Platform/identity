@@ -1,5 +1,7 @@
 import { Chapter, Means, Paragraph, Synopsis, Title, Date, Part } from '@dna-platform/public';
-import { Brief, Dated, Volume } from '../../.manual/.book';
+import { Brief } from '../../.manual/10-the-manual~annotations.tsx';
+import { Dated } from '../../.manual/4-the-date~code.tsx';
+import { Volume } from '../../.manual/19-the-cover~code.tsx';
 import TheCover from '../.conversations/claude--sunny-kings-crypto-projects-and-anonymous-inventors--83a8ee17/.cover.tsx';
 import TheSynopsis from '../.conversations/claude--sunny-kings-crypto-projects-and-anonymous-inventors--83a8ee17/.synopsis.tsx';
 

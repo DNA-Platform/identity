@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { $, $check } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Cover, $Writing, AnnotationSpecification, html, specify } from '@dna-platform/public';
-import { $Message } from '../../.manual/.book';
+import { $Message } from '../../.manual/29-the-conversation~code.tsx';
 
 export class $Origin extends $Annotation {
     specification = new OriginSpecification();

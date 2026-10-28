@@ -1,6 +1,8 @@
 import { Bold, Chapter, Heading, Line, List, Paragraph, Table, Title, Word } from '@dna-platform/public';
-import { CodeBox, Message, Quoted, Speaker } from '../../../.manual/.book';
-import { Action, Origin } from '../../.manual/.book';
+import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
+import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
+import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
+import { Origin } from '../../.manual/8-the-origin~code.tsx';
 
 export default () => (
     <Chapter>

@@ -1,5 +1,6 @@
 import { Append, Chapter, Heading, Image, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
-import { Answer, Decision, Desk, Phone, Question, Thumbnail } from '../.manual/.book';
+import { Answer, Decision, Question } from '../.manual/21-the-paragraphs~code.tsx';
+import { Desk, Phone, Thumbnail } from '../.manual/22-the-concept~code.tsx';
 
 export default () => (
     <Chapter>

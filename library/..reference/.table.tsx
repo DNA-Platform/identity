@@ -1,5 +1,6 @@
 import { Chapter, Content, Heading, Paragraph, Parenthetical, Section, TableOfContents, Title, Word } from '@dna-platform/public';
-import { Appendix, Arrow, Index } from '../.manual/.book';
+import { Appendix, Index } from '../.manual/14-the-entry~code.tsx';
+import { Arrow } from '../.manual/20-the-bookshelf~code.tsx';
 
 export default () => (
     <Chapter>

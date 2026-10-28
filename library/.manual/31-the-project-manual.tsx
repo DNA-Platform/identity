@@ -56,7 +56,7 @@ export default () => (
                 is a chapter holding a synopsis; nothing is placed by position. The importer dates each entry and
                 lists it under its month, as the register's, so the months are the entries' own. A type that
                 extends this one may add to each row, as Claude's project manual adds the way on to the
-                application and the trail a press writes, said in <Means>$[[ Claudes Reference Manual / The Project ]]</Means>.
+                application and the trail a press writes, said in <Means>$[[ Claudes Reference Manual / The Project's Page ]]</Means>.
                 The design was concept 4 of <Means>$[[ Claudes Design / The Project's Page ]]</Means>, its first
                 layout, and is concept 10 of <Means>$[[ Claudes Design / The Conversation and the Project ]]</Means>,
                 the page as it opens, built on 2026-10-23; the way back from a conversation is the trail of its

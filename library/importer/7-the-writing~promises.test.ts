@@ -1,4 +1,7 @@
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
+import type { Imports } from './8-the-books~homes.ts';
 import type { Block } from './3-the-record~record.ts';
 import { sampleConversation, sampleMessage, sampleTextMessage } from './3-the-record~samples.ts';
 import {
@@ -7,8 +10,12 @@ import {
 } from './7-the-writing~writing.ts';
 
 const referents: Referents = { Doug: 'Dougs Story', Claude: 'Dougs Claude' };
-const manualImportPath = '../../../.manual/.book';
-const claudeManualImportPath = '../../.manual/.book';
+// The imports a written chapter carries name the file each name lives in, read off the real manuals' barrels, as a
+// conversation's folder under the conversations book would import them.
+const library = fileURLToPath(new URL('..', import.meta.url));
+const conversationFolder = join(library, '.claude', '.conversations', 'a-conversation');
+const manualImportPath: Imports = { folder: conversationFolder, barrel: join(library, '.manual', '.book.tsx') };
+const claudeManualImportPath: Imports = { folder: conversationFolder, barrel: join(library, '.claude', '.manual', '.book.tsx') };
 const artifactBlock = (command: string, content: string, oldText = '', newText = ''): Block => ({
     type: 'artifact', id: 'notes', title: 'Notes', contentType: 'text/markdown', language: '',
     command, content, oldText, newText,
@@ -188,8 +195,8 @@ describe('the writing', () => {
         expect(chapter.tsx).toContain(`<Speaker>${referenceForm('Claude', 'Dougs Claude', '$')}</Speaker>`);
         expect(chapter.tsx).toContain('        <Message\n            at="2026-06-15T10:00:00Z"\n        >');
         expect(chapter.tsx).toContain('<Paragraph>A question</Paragraph>');
-        expect(chapter.tsx).toContain(`import { Message, Speaker } from '${manualImportPath}';`);
-        expect(chapter.tsx).toContain(`import { Origin } from '${claudeManualImportPath}';`);
+        expect(chapter.tsx).toContain("import { Message, Speaker } from '../../../.manual/29-the-conversation~code.tsx';");
+        expect(chapter.tsx).toContain("import { Origin } from '../../.manual/8-the-origin~code.tsx';");
         expect(chapter.tsx).toContain('<Origin>m1</Origin>');
     });
 
@@ -242,9 +249,10 @@ describe('the writing', () => {
         expect(written.versions[0].tsx).toContain('<Heading>Notes at version 1</Heading>');
         expect(written.versions[0].tsx).toContain('<Paragraph>Hello world</Paragraph>');
         expect(written.versions[1].tsx).toContain('<Paragraph>Hello there</Paragraph>');
-        expect(written.versions[0].tsx).toContain(`import { Opaque } from '${manualImportPath}';`);
-        expect(written.versions[0].tsx).toContain(`import { Version } from '${claudeManualImportPath}';`);
-        expect(chapter.tsx).toContain(`import { Artifact, Origin } from '${claudeManualImportPath}';`);
+        expect(written.versions[0].tsx).toContain("import { Opaque } from '../../../.manual/32-the-address~code.tsx';");
+        expect(written.versions[0].tsx).toContain("import { Version } from '../../.manual/2-the-artifact-and-the-attachment~code.tsx';");
+        expect(chapter.tsx).toContain("import { Artifact } from '../../.manual/2-the-artifact-and-the-attachment~code.tsx';");
+        expect(chapter.tsx).toContain("import { Origin } from '../../.manual/8-the-origin~code.tsx';");
         expect(written.thinkingCount).toBe(1);
     });
 
@@ -260,7 +268,8 @@ describe('the writing', () => {
         const [chapter] = written.chapters;
         expect(chapter.tsx).toContain('<Action>Searched the web for “primes”</Action>');
         expect(chapter.tsx).not.toContain('<Result');
-        expect(chapter.tsx).toContain(`import { Action, Origin } from '${claudeManualImportPath}';`);
+        expect(chapter.tsx).toContain("import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';");
+        expect(chapter.tsx).toContain("import { Origin } from '../../.manual/8-the-origin~code.tsx';");
         expect(written.resultCount).toBe(1);
     });
 

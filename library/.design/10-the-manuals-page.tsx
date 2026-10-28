@@ -1,5 +1,7 @@
 import { Append, Chapter, Heading, Image, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
-import { Design, Desk, Exhibit, Phone, Thumbnail, Volume } from '../.manual/.book';
+import { Design, Exhibit } from '../.manual/24-the-room~code.tsx';
+import { Desk, Phone, Thumbnail } from '../.manual/22-the-concept~code.tsx';
+import { Volume } from '../.manual/19-the-cover~code.tsx';
 import ManualCover from '../.manual/.cover.tsx';
 
 export default () => (

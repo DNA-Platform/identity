@@ -1,3 +1,3 @@
-import { $ClaudeProjectManual } from '../.manual/.book';
+import { $ClaudeProjectManual } from '../.manual/10-the-projects-page~code.tsx';
 
 export default class $Nikolai extends $ClaudeProjectManual { }

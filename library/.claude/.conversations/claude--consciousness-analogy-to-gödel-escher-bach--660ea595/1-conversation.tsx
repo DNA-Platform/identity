@@ -1,6 +1,6 @@
 import { Bold, Chapter, Emphasis, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
-import { Message, Quoted, Speaker } from '../../../.manual/.book';
-import { Origin } from '../../.manual/.book';
+import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
+import { Origin } from '../../.manual/8-the-origin~code.tsx';
 
 export default () => (
     <Chapter>

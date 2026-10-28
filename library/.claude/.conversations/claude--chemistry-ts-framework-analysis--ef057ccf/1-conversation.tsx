@@ -1,6 +1,9 @@
 import { Append, Bold, Chapter, Emphasis, Equation, Heading, Line, List, Math, Paragraph, Section, Title, Word } from '@dna-platform/public';
-import { CodeBox, Message, Speaker, Verbatim } from '../../../.manual/.book';
-import { Action, Artifact, Attachment, Origin } from '../../.manual/.book';
+import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
+import { Message, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
+import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
+import { Artifact, Attachment } from '../../.manual/2-the-artifact-and-the-attachment~code.tsx';
+import { Origin } from '../../.manual/8-the-origin~code.tsx';
 
 export default () => (
     <Chapter>

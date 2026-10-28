@@ -1,5 +1,5 @@
 import { About, Author, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
-import { BookshelfCover as Cover, Illustration, Scheme, Window } from '../.manual/.book';
+import { BookshelfCover as Cover, Illustration, Scheme, Window } from '../.manual/19-the-cover~code.tsx';
 
 export default () => (
     <Chapter>

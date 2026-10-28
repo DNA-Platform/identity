@@ -1,6 +1,7 @@
 import { Chapter, Line, List, Paragraph, Title } from '@dna-platform/public';
-import { CodeBox, Message, Speaker } from '../../../.manual/.book';
-import { Origin } from '../../.manual/.book';
+import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
+import { Message, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
+import { Origin } from '../../.manual/8-the-origin~code.tsx';
 
 export default () => (
     <Chapter>

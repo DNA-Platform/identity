@@ -1,5 +1,6 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Brief, Spread } from '../../.manual/.book';
+import { Brief } from '../../.manual/10-the-manual~annotations.tsx';
+import { Spread } from '../../.manual/10-the-manual~code.tsx';
 
 export default () => (
     <Chapter>
@@ -188,7 +189,10 @@ export default () => (
             <Heading>What is held stable, and what may move</Heading>
             <Paragraph>
                 Held stable: the folder and its five files, the file names of the chapter, of versions and of resources, the
-                tags and their attributes as the figures show them, the reference forms for a person and
+                tags and their attributes as the figures show them, the import lines as the figures show them too, one
+                a manual file, naming the file each tag lives in and never the manual's barrel, since Sprint 117 on
+                28 October 2026, so the binder reads from them what a change to a manual reaches, the reference forms
+                for a person and
                 a version, the origins, the entry and the ledger. The binder holds some of it itself and refuses a bind that
                 breaks it: every chapter listed in its table, every link landing, every id worn once, no file
                 beside a chapter that nothing inserts, a title with no parenthesis or bracket in it, a file stem

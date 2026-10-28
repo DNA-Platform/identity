@@ -1,5 +1,5 @@
 import { Append, Chapter, Heading, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
-import { Spread } from '../.manual/.book';
+import { Spread } from '../.manual/10-the-manual~code.tsx';
 
 export default () => (
     <Chapter>

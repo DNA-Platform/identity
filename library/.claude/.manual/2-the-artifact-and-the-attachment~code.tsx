@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { $, $check, $Chemical } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Code, $Writing, AnnotationSpecification, html, identifier, specify } from '@dna-platform/public';
-import type { $LibraryBook } from '../../.manual/.book';
+import type { $LibraryBook } from '../../.manual/1-the-book~code.tsx';
 
 export type Showing = { $shown: $Artifact | $Attachment | undefined };
 

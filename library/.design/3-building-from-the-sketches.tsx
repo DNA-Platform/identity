@@ -1,5 +1,5 @@
 import { Chapter, Heading, Image, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
-import { Pain, Solution } from '../.manual/.book';
+import { Pain, Solution } from '../.manual/21-the-paragraphs~code.tsx';
 
 export default () => (
     <Chapter>

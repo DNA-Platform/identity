@@ -1,5 +1,7 @@
 import { Chapter, Date, Means, Paragraph, Part, Synopsis, Title } from '@dna-platform/public';
-import { Caption, Dated, Volume } from '../../.manual/.book';
+import { Caption } from '../../.manual/20-the-bookshelf~code.tsx';
+import { Dated } from '../../.manual/4-the-date~code.tsx';
+import { Volume } from '../../.manual/19-the-cover~code.tsx';
 import TheCover from './claude--claude-code-api-rate-limit-issues-on-pro-plan--b75b1cc6/.cover.tsx';
 import TheSynopsis from './claude--claude-code-api-rate-limit-issues-on-pro-plan--b75b1cc6/.synopsis.tsx';
 

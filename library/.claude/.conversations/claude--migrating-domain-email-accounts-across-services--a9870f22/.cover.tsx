@@ -1,6 +1,8 @@
 import { Author, Chapter, Paragraph, Subject, Svg, Title } from '@dna-platform/public';
-import { BookshelfCover as Cover, Illustration, Messages, Participant, Participants, Period, Scheme, Volume, Window } from '../../../.manual/.book';
-import { Account, Origin } from '../../.manual/.book';
+import { BookshelfCover as Cover, Illustration, Scheme, Volume, Window } from '../../../.manual/19-the-cover~code.tsx';
+import { Messages, Participant, Participants, Period } from '../../../.manual/29-the-conversation~code.tsx';
+import { Account } from '../../.manual/7-the-account~code.tsx';
+import { Origin } from '../../.manual/8-the-origin~code.tsx';
 import SubjectCover from '../.cover.tsx';
 import StoryCover from '../../../.librarian/.cover.tsx';
 

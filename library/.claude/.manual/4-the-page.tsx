@@ -1,5 +1,6 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Brief, Spread } from '../../.manual/.book';
+import { Brief } from '../../.manual/10-the-manual~annotations.tsx';
+import { Spread } from '../../.manual/10-the-manual~code.tsx';
 
 export default () => (
     <Chapter>
@@ -32,7 +33,7 @@ export default () => (
                 without, at a desk and on a phone, where the neighbours and the word give way to the name and the
                 way back. And the word found, marked by the browser's highlight and not by a class, the one rule
                 the highlight takes. The side's part and the strip's are parts of the page's form, said
-                in <Means>$[[ The Project ]]( ./The Project )</Means> and built to concept 9 of <Means>$[[ Claudes Design / The Conversation and the Project ]]</Means>.
+                in <Means>$[[ The Conversation's Page ]]( ./The Conversation's Page )</Means> and built to concept 9 of <Means>$[[ Claudes Design / The Conversation and the Project ]]</Means>.
             </Paragraph>
         </Section>
         <Section>

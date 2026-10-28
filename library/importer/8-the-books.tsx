@@ -1,5 +1,6 @@
 import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
-import { Brief, Spread } from '../.manual/.book';
+import { Brief } from '../.manual/10-the-manual~annotations.tsx';
+import { Spread } from '../.manual/10-the-manual~code.tsx';
 
 export default () => (
     <Chapter>
@@ -64,11 +65,29 @@ export default () => (
                 so the books it catalogues stand on it as jackets.
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>Imports by file</Heading>
+            <Paragraph>
+                Every import a written book carries names the file its names live in, never the manual's barrel
+                that re-exports every chapter, so that a book's digest reaches the code it uses and nothing
+                else, and a change to one chapter of a manual binds only the books that import it. Where a name
+                lives is read off the manuals' own export declarations by the file beside this chapter, never
+                written by hand; a name exported by no file or by two is an error raised and never a guess. The
+                books written before this rule were rewritten once, by a script over all of them, on
+                2026-10-28, with the same reading. Sprint 117 of the public branch.
+            </Paragraph>
+        </Section>
         <Append
             identifier="books"
             type=".ts"
         >
             ![[ books.ts ]]
+        </Append>
+        <Append
+            identifier="homes"
+            type=".ts"
+        >
+            ![[ homes.ts ]]
         </Append>
         <Append
             identifier="dougs-claude"

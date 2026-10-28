@@ -1,7 +1,7 @@
 import { ElementType, MouseEvent, ReactNode } from 'react';
 import { $, $Chemical, selection } from '@dna-platform/chemistry';
 import { $Paragraph } from '@dna-platform/public';
-import type { $Conversation } from '../../.manual/.book';
+import type { $Conversation } from '../../.manual/29-the-conversation~code.tsx';
 import { $Artifact, $Attachment, showingBook } from './2-the-artifact-and-the-attachment~code.tsx';
 
 export class $Pane extends $Paragraph {

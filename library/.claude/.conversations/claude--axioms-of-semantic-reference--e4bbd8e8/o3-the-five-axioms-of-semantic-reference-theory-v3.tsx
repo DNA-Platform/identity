@@ -1,6 +1,7 @@
 import { Chapter, Emphasis, Heading, Paragraph, Section, Title, Word } from '@dna-platform/public';
-import { CodeBox, Opaque } from '../../../.manual/.book';
-import { Version } from '../../.manual/.book';
+import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
+import { Opaque } from '../../../.manual/32-the-address~code.tsx';
+import { Version } from '../../.manual/2-the-artifact-and-the-attachment~code.tsx';
 
 export default () => (
     <Chapter>

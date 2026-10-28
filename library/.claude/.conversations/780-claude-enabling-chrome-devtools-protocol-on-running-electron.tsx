@@ -1,5 +1,7 @@
 import { Chapter, Date, Means, Paragraph, Part, Synopsis, Title } from '@dna-platform/public';
-import { Caption, Dated, Volume } from '../../.manual/.book';
+import { Caption } from '../../.manual/20-the-bookshelf~code.tsx';
+import { Dated } from '../../.manual/4-the-date~code.tsx';
+import { Volume } from '../../.manual/19-the-cover~code.tsx';
 import TheCover from './claude--enabling-chrome-devtools-protocol-on-running-electron-msix-a--29c03f09/.cover.tsx';
 import TheSynopsis from './claude--enabling-chrome-devtools-protocol-on-running-electron-msix-a--29c03f09/.synopsis.tsx';
 

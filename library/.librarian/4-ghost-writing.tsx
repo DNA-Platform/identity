@@ -1,5 +1,6 @@
 import { Chapter, Date, Heading, Line, List, Means, Paragraph, Part, Section, Title } from '@dna-platform/public';
-import { Dated, First } from '../.manual/.book';
+import { Dated } from '../.manual/4-the-date~code.tsx';
+import { First } from '../.manual/17-the-first~code.tsx';
 
 export default () => (
     <Chapter>

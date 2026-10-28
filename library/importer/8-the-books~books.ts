@@ -9,6 +9,8 @@ import {
     type Appendix, type Referents, type WrittenChapter,
 } from './7-the-writing~writing.ts';
 
+import { type Imports, importLines } from './8-the-books~homes.ts';
+
 export type LibraryFolders = { library: string; claude: string; claudeManual: string; conversations: string };
 export type Scheme = { ground: string; band: string; bandInk: string; foot: string; footInk: string; ink: string };
 export type WrittenBook = { folder: string; files: string[]; chapterStem: string };
@@ -73,14 +75,16 @@ const relativePath = (fromFolder: string, toFolder: string): string => {
 
     return path === '..' || path.startsWith('./') || path.startsWith('../') ? path : `./${path}`;
 };
-const manualImportPath = (folders: LibraryFolders, folder: string): string =>
-    `${relativePath(folder, join(folders.library, '.manual'))}/.book`;
-const claudeManualImportPath = (folders: LibraryFolders, folder: string): string =>
-    `${relativePath(folder, folders.claudeManual)}/.book`;
+// A manual's names are imported by the file each lives in, resolved from the manual's barrel at `homes.ts`, so a book's
+// digest reaches only the code it uses; Sprint 117, D3.
+const manualImportPath = (folders: LibraryFolders, folder: string): Imports =>
+    ({ folder, barrel: join(folders.library, '.manual', '.book.tsx') });
+const claudeManualImportPath = (folders: LibraryFolders, folder: string): Imports =>
+    ({ folder, barrel: join(folders.claudeManual, '.book.tsx') });
 const packageImportLine = (packageWords: string[]): string =>
     `import { ${packageWords.join(', ')} } from '@dna-platform/public';`;
-const manualImportLine = (manualWords: string[], importPath: string): string =>
-    `import { ${manualWords.join(', ')} } from '${importPath}';`;
+const manualImportLine = (manualWords: string[], imports: Imports): string =>
+    importLines(manualWords, imports).join('\n');
 const volumeImportLines = (
     folder: string, folders: LibraryFolders, subjectFolder: string, projectFolders: string[] = [],
 ): string[] => [
@@ -455,7 +459,7 @@ export const libraryEntry = (library: string, bookName: string, bookFolder: stri
     if (tableListsBook(tableText, name)) return [];
     const entryPath = join(catalogueFolder, `${nextChapterNumber(catalogueFolder)}-${slugFromName(bookName)}.tsx`);
     const bookRelativePath = relativePath(catalogueFolder, bookFolder);
-    writtenFile(entryPath, entryFileText('../.manual/.book', ['Caption', 'Volume'], entryPackageWords, bookRelativePath, [
+    writtenFile(entryPath, entryFileText({ folder: catalogueFolder, barrel: join(library, '.manual', '.book.tsx') }, ['Caption', 'Volume'], entryPackageWords, bookRelativePath, [
         '<Volume>{TheCover()}</Volume>',
         titleLine(name),
         '<Paragraph>',
@@ -555,21 +559,21 @@ const chapterFileText = (importLines: string[], lines: string[]): string => [
     '',
 ].join('\n');
 
-const bookFileText = (importPath: string, baseName: string, name: string): string => [
-    `import { $${baseName} } from '${importPath}';`,
+const bookFileText = (imports: Imports, baseName: string, name: string): string => [
+    manualImportLine([`$${baseName}`], imports),
     '',
     `export default class ${bookClassName(name)} extends $${baseName} { }`,
     '',
 ].join('\n');
 
 const coverFileText = (
-    importPath: string,
+    imports: Imports,
     manualWords: string[],
     packageWords: string[],
     lines: string[],
     moreImportLines: string[] = [],
 ): string => chapterFileText(
-    [packageImportLine(packageWords), manualImportLine(manualWords, importPath), ...moreImportLines],
+    [packageImportLine(packageWords), manualImportLine(manualWords, imports), ...moreImportLines],
     ['<Cover />', ...lines],
 );
 
@@ -587,8 +591,8 @@ const synopsisFileText = (synopsisLines: string[]): string => chapterFileText(
     ],
 );
 
-const tableFileText = (importPath: string, manualWords: string[], sectionsLines: string[]): string => chapterFileText(
-    [packageImportLine(tablePackageWords), manualImportLine(manualWords, importPath)],
+const tableFileText = (imports: Imports, manualWords: string[], sectionsLines: string[]): string => chapterFileText(
+    [packageImportLine(tablePackageWords), manualImportLine(manualWords, imports)],
     [
         '<TableOfContents />',
         '<Index />',
@@ -601,7 +605,7 @@ const tableFileText = (importPath: string, manualWords: string[], sectionsLines:
 );
 
 const entryFileText = (
-    importPath: string,
+    imports: Imports,
     manualWords: string[],
     packageWords: string[],
     bookRelativePath: string,
@@ -609,7 +613,7 @@ const entryFileText = (
 ): string => chapterFileText(
     [
         packageImportLine(packageWords),
-        manualImportLine(manualWords, importPath),
+        manualImportLine(manualWords, imports),
         `import TheCover from '${bookRelativePath}/.cover.tsx';`,
         `import TheSynopsis from '${bookRelativePath}/.synopsis.tsx';`,
     ],

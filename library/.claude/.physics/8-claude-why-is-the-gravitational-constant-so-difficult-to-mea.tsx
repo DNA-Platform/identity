@@ -1,5 +1,7 @@
 import { Chapter, Means, Paragraph, Synopsis, Title, Date, Part } from '@dna-platform/public';
-import { Brief, Dated, Volume } from '../../.manual/.book';
+import { Brief } from '../../.manual/10-the-manual~annotations.tsx';
+import { Dated } from '../../.manual/4-the-date~code.tsx';
+import { Volume } from '../../.manual/19-the-cover~code.tsx';
 import TheCover from '../.conversations/claude--why-is-the-gravitational-constant-so-difficult-to-measure--67a6e6eb/.cover.tsx';
 import TheSynopsis from '../.conversations/claude--why-is-the-gravitational-constant-so-difficult-to-measure--67a6e6eb/.synopsis.tsx';
 

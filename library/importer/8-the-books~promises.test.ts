@@ -1,12 +1,18 @@
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { afterAll, describe, expect, it } from 'vitest';
 import { sampleProject } from './3-the-record~samples.ts';
 import { orderedTableText, projectBook, projectEntry, registerEntry, schemes, uniqueConversationName } from './8-the-books~books.ts';
 
 const library = mkdtempSync(join(tmpdir(), 'books-'));
 afterAll(() => rmSync(library, { recursive: true, force: true }));
+// A written book imports each name by the file it lives in, read off the manuals' barrels, so the temporary library
+// holds copies of the real manuals' code, copies and never links, since the library is removed at the end.
+const real = fileURLToPath(new URL('..', import.meta.url));
+cpSync(join(real, '.manual'), join(library, '.manual'), { recursive: true });
+cpSync(join(real, '.claude', '.manual'), join(library, '.claude', '.manual'), { recursive: true });
 const folders = {
     library,
     claude: join(library, '.claude'),
@@ -127,7 +133,9 @@ describe('the books', () => {
         const entry = readFileSync(files.find(file => !file.endsWith('.table.tsx'))!, 'utf8');
         expect(entry).toContain('<Part>June 2026</Part>');
         expect(entry).toContain('<Date>[15 June 2026](2026-06-15)</Date>');
-        expect(entry).toContain("import { Brief, Dated, Volume } from");
+        expect(entry).toContain("import { Brief } from '../.manual/10-the-manual~annotations.tsx';");
+        expect(entry).toContain("import { Dated } from '../.manual/4-the-date~code.tsx';");
+        expect(entry).toContain("import { Volume } from '../.manual/19-the-cover~code.tsx';");
         const table = readFileSync(join(project, '.table.tsx'), 'utf8');
         expect(table).toContain('<Heading>June 2026</Heading>');
         expect(table).not.toContain('<Heading>Conversations</Heading>');
