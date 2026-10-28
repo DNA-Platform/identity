@@ -192,11 +192,12 @@ converged none), and the seed regressed out afterwards, which nothing published 
 all? ... How do we assess what is right?"* - so nothing moves until the comparison,
 [metamer-recipes](../../../src/analyses/metamer-recipes/.cover.md) (run-20261028-1846): ours, its variants, Cobos's
 grid, the lab's up-state code and Bauer 2026 on 33977's CaImAn and Suite2P twins, four seeds inverting and the fifth
-judging. Its [report](../../../src/reports/metamer-recipes/.cover.md): ours carries its seed into every image (0.56 /
-0.51 between different images' metamers; 0.00 from a blank start), Bauer's are the most recognizable by eye, and
-nearly every recipe fits the measured response past the stimulus's own fit (Cobos's by step 20-40 of 1,000), so the
-held-out seed, sharing its siblings' errors, scores them all alike. Next tests are Doug's to rule: a blank start,
-stopping at the stimulus's fit (the discrepancy principle), a judge of another architecture. The blank, after: with a blank start, what a moment shows where the twin asks for nothing is the start's
+judging. Doug set the criterion: *"You have to assess from an image by eye"*, on the images a metamer can capture.
+Its [report](../../../src/reports/metamer-recipes/.cover.md): sixteen of the hundred test images carry their image;
+ours carries its seed into every image (0.56 / 0.51 between different images' metamers); on the sixteen, Cobos's
+recipe from a blank start carries the most, at the blur each twin chooses through its held-out seed - 0.5 px
+Suite2P, 2 px CaImAn, the blurs the eye picked; stopping at the stimulus's fit under-draws. Doug's to rule; each seed
+held out in turn and the other datasets first. The blank, after: with a blank start, what a moment shows where the twin asks for nothing is the start's
 value - the images' mean grey (0), mid-grey 127.5 (+0.20) or black (−1.82) - which turns on the screen question.
 
 **Done (2026-10-24): parity with the paper.** run-20261023-1757-sinusoidal-twins-delivered-images, the pipeline's own
