@@ -178,12 +178,22 @@ FEV 0.15 and the cells unchanged. Relaunched as run-20261023-1757-sinusoidal-twi
 
 ## Where things stand
 
-**GitHub: the DNA-Platform organisation is flagged** ("hidden from the public"; Doug's dashboard banner, 2026-10-21),
-after a brief flag on `support-dna`. Members signed in as themselves still reach it - this machine, as `support-dna`,
-pulls and pushes - but a deploy key is not a member, so the box gets "Repository not found" for every key, old and new.
-Doug has a ticket open and the security steps in hand. **Until it is lifted, runs travel over SSH**: main goes to the
-box as a git bundle (sha256-checked), the run commits on the box, its branch comes home the same way and is pushed from
-here. Every run of this sprint since 2026-10-21 went that way.
+**GitHub reaches the box again** (2026-10-28: `pull` fast-forwarded the box to a67d01534 with its deploy key). From
+2026-10-21 the organisation was flagged and every run of this sprint travelled over SSH as a git bundle.
+
+**Now (2026-10-28): the metamer calculation, then the blank.** Doug: *"get back to the metamer pipeline ... making
+sure that we are using the absolute best metamer calculation ... question our technique. And when we are happy, we
+then start asking how to get the spontaneous activity looking blank."* Read against Cobos's PDF, every repository
+behind it and the later literature
+([synthesis-recipe.md](../../../src/pipelines/synthesis-recipe.md#the-metamer-against-the-published-record-2026-10-28)):
+our recipe is the repair of a misread step (Cobos's blur is 2.5 px at 36×64, his step 100-500), half of Walker's
+single-neuron recipe from a white-noise seed it cannot clear (a step budget of 0.61 a pixel; the 2026-10-23 run
+converged none), and the seed regressed out afterwards, which nothing published does. Doug: *"Does it need to move at
+all? ... How do we assess what is right?"* - so nothing moves until the comparison,
+[metamer-recipes](../../../src/analyses/metamer-recipes/.cover.md) (run-20261028-1846): ours, its variants, Cobos's
+grid, the lab's up-state code and Bauer 2026 on 33977's CaImAn and Suite2P twins, four seeds inverting and the fifth
+judging. The blank, after: with a blank start, what a moment shows where the twin asks for nothing is the start's
+value - the images' mean grey (0), mid-grey 127.5 (+0.20) or black (−1.82) - which turns on the screen question.
 
 **Done (2026-10-24): parity with the paper.** run-20261023-1757-sinusoidal-twins-delivered-images, the pipeline's own
 entry point over all five datasets, closed over SSH (87cc3bbdb; MEI pages redrawn, f47cadfbb). By eye, the same neurons
