@@ -142,11 +142,13 @@ export default () => (
                 stands by the browser's own highlight; the project's strip stands under the bar when I come
                 from a project, the mark, the name, my place, the neighbours, the word I had typed and the way
                 back, and at a phone the name, the place and the way back alone. The project, 010: the brief and
-                the instructions first, the counts, the months as bars each leading to its month, the search
-                over the conversations and the files, each row leading into the library and on to Claude by its
-                origin; a row or a hit pressed keeps the trail, and the page lands where I left it when I
-                return, the word typed again and the row marked. Where the built differs from the sketch, on
-                purpose or until my number: a conversation has named parts only when I cut it by hand, so the
+                the instructions first, the counts, the search over the conversations and the files, the
+                conversations as one flat list newest first with the day on each row, each row leading into the
+                library and on to Claude by its origin; a row or a hit pressed keeps the trail, and the page
+                lands where I left it when I return, the word typed again and the row marked. The months, as
+                bars at the head and as sections of the list and the side, were struck on my word of 2026-10-28:
+                they were never mine and the application has none, listing a project's conversations flat.
+                Where the built differs from the sketch, on purpose or until my number: a conversation has named parts only when I cut it by hand, so the
                 side shows its one chapter and never the sketch's six parts; the strip's card and chip forms and
                 the stepper at the head are not built; a conversation opened by its address alone draws no
                 strip, since the bar's project line already leads to the project; and at a phone both pages

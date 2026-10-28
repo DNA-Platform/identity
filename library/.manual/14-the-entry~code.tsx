@@ -497,7 +497,7 @@ export class $TreeFolder extends $Format {
             color: #8a94a3;
         }
         .pd-book .pd-holds &.pd-tree-folder.pa-open .pd-tree-folder-mark .ground { fill: #f1f3f5; stroke: #8a94a3; stroke-width: 1.5; }
-        .pd-book .pd-holds &.pd-tree-folder.pa-open .pa-folded .pd-paragraph.pa-entry { display: none; }
+        .pd-book:not(.pa-turned) .pd-holds &.pd-tree-folder.pa-open .pa-folded .pd-paragraph.pa-entry { display: none; }
         .pd-book .pd-holds &.pd-tree-folder.pa-open .pd-paragraph.pa-entry {
             display: flex;
             flex-wrap: wrap;
@@ -596,11 +596,17 @@ export class $TreeFolder extends $Format {
         const firstPlace = this.firstPlace;
         return firstPlace === undefined ? undefined : (this.book as $LibraryBook).chapterAt(firstPlace)?.part;
     }
+    // A folder is open when one of its rows leads to the bookmark, when its part is the open chapter's part, or when the
+    // address names its own heading; two parts that are both nothing are not one part.
     get open(): boolean {
         const book = this.book as $LibraryBook;
         const open = book.open;
+        const bookmark = book.$bookmark;
         const named = this.section.mention?.identifier;
-        return (open !== undefined && open.part?.name === this.part?.name) || (named !== undefined && book.placeWithin(named) === book.$bookmark);
+        const leadsToTheBookmark = bookmark !== undefined && bookmark.includes('#') && this.section.text.find($Paragraph).some(row => contentOf(row)?.identifier === bookmark);
+        return leadsToTheBookmark
+            || (open !== undefined && open.part !== undefined && open.part.name === this.part?.name)
+            || (named !== undefined && book.placeWithin(named) === bookmark);
     }
 
     $TreeFolder(...chemicals: $Chemical[]) {

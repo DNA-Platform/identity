@@ -235,7 +235,7 @@ export class $ClaudeProjectManual extends $ProjectManual {
     }
 
     protected override rows(entries: $Chapter[]): void {
-        rows(this, entries, projectEntryOpen as Component<$EntryOpen>);
+        rows(this, entries, projectEntryOpen as Component<$EntryOpen>, false);
         const WayOn = $(wayOn);
         for (const entry of entries) {
             const origin = entry.annotations.expressed($Volume)?.cover?.annotations.expressed($Origin)?.uuid;

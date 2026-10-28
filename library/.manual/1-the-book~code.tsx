@@ -23,9 +23,15 @@ export class $LibraryBook extends $Book {
     get pages(): $Chapter[] {
         return [this.synopsis, ...this.chapters].filter((chapter): chapter is $Chapter => chapter !== undefined);
     }
+    // Read once and kept: the body is asked by every chapter's draw, and a walk of the text on each ask made a turn
+    // cost the square of the book, 11 s on 144 chapters.
+    @inert() protected _body?: $Chapter[];
     get body(): $Chapter[] {
-        const appendix = this.appendix;
-        return this.chapters.filter(chapter => !appendix.includes(chapter));
+        if (this._body === undefined) {
+            const appendix = this.appendix;
+            this._body = this.chapters.filter(chapter => !appendix.includes(chapter));
+        }
+        return this._body;
     }
     get entries(): $Chapter[] {
         return this.body;

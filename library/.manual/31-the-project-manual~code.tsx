@@ -1,12 +1,13 @@
 import { ElementType, ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
-import { $, $check, $Chemical, Component, selection } from '@dna-platform/chemistry';
+import { $, $check, $Chemical, Component, inert, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Append, $Chapter, $Paragraph, $Section, $Synopsis, $Word, $Writing, Reference as reference, Word as word, html, specify } from '@dna-platform/public';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 import { Switch as switchWord } from './9-the-switch~code.tsx';
 import { $Manual, ManualSpecification } from './10-the-manual~book.tsx';
 import { $Brief } from './10-the-manual~annotations.tsx';
 import { $Spread } from './10-the-manual~code.tsx';
+import { NumberedCode as numberedCode, Split as split } from './10-the-manual~annotations.tsx';
 import { $Layout, Layout as layout } from './12-the-layout~code.tsx';
 import { $EntryOpen, $Index, EntryOpen as entryOpen, Results as results, Search as search, contentOf } from './14-the-entry~code.tsx';
 import { $Volume } from './19-the-cover~code.tsx';
@@ -143,55 +144,6 @@ export class $ProjectHead extends $Paragraph {
     protected override $Define(): void {
         super.$Define();
         this.classes.add(this, 'pd-project-head');
-    }
-}
-
-// The months as a shape: a bar for each month the table lists, the oldest at the left, the year named where it begins,
-// a bar pressed going to its month in the side. Sprint 115, concept 10 of Claudes Design; `MonthShape` is a PROXY name.
-export class $MonthShape extends $Paragraph {
-    get project(): $ProjectManual | undefined { return this.book as $ProjectManual | undefined; }
-
-    $MonthShape(...chemicals: $Chemical[]) {
-        this.$Writing(...chemicals);
-        this.containers.replace(this, 'span', 'div');
-    }
-
-    override write(): ReactNode {
-        const book = this.project;
-        if (book === undefined) return undefined;
-        const Word = $(word);
-        const Reference = $(reference);
-        const months = book.months;
-        if (months.length === 0) return undefined;
-        const most = Math.max(...months.map(month => month.count));
-        let year = '';
-        return months.map((month, index) => {
-            const own = month.name.split(' ').at(-1) ?? '';
-            const first = own !== year;
-            year = own;
-            return (
-                <Word key={index}>
-                    {month.place === undefined ? undefined : (
-                        <Reference>{month.place}</Reference>
-                    )}
-                    <span
-                        className="pd-month-bar"
-                        style={{ height: `${Math.round(6 + (36 * month.count) / most)}px` }}
-                        title={`${month.name} · ${month.count}`}
-                    />
-                    {first ? (
-                        <b>
-                            {own}
-                        </b>
-                    ) : undefined}
-                </Word>
-            );
-        });
-    }
-
-    protected override $Define(): void {
-        super.$Define();
-        this.classes.add(this, 'pd-month-shape');
     }
 }
 
@@ -347,14 +299,7 @@ export class $ListLayout extends $Layout {
             .pd-book .pd-head .pd-instructions { order: 2; grid-column: 1 / -1; display: flex; gap: calc(${({ theme }) => theme.space} / 3); align-items: baseline; max-width: 72ch; font-family: ${({ theme }) => theme.font}; font-size: calc(0.9643 * ${({ theme }) => theme.size}); line-height: 1.5; color: ${({ theme }) => theme.ink}; }
             .pd-book .pd-head .pd-instructions b { flex: none; font-size: calc(0.75 * ${({ theme }) => theme.size}); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: ${({ theme }) => theme.faint}; }
             .pd-book .pd-head .pd-instructions.pa-none { color: ${({ theme }) => theme.faint}; font-style: italic; }
-            .pd-book .pd-head .pd-paragraph.pd-month-shape { order: 3; grid-column: 1 / -1; display: flex; align-items: flex-end; gap: 3px; width: min(440px, 100%); height: 58px; margin: calc(${({ theme }) => theme.space} / 2) 0 0; padding-block-end: 16px; }
-            .pd-book .pd-head .pd-month-shape .pd-word { position: relative; flex: 1; display: flex; align-items: flex-end; height: 100%; min-width: 8px; }
-            .pd-book .pd-head .pd-month-shape .pd-word > a { display: flex; align-items: flex-end; width: 100%; height: 100%; }
-            .pd-book .pd-head .pd-month-shape .pd-month-bar { display: block; width: 100%; border-radius: 3px 3px 1px 1px; background: #c0c9df; transition: background ${({ theme }) => theme.beat}; }
-            .pd-book .pd-head .pd-month-shape .pd-word:hover .pd-month-bar { background: ${({ theme }) => theme.accent}; }
-            .pd-book .pd-head .pd-month-shape .pd-word b { position: absolute; left: 0; top: 100%; margin-block-start: 3px; font-family: ${({ theme }) => theme.font}; font-size: calc(0.7143 * ${({ theme }) => theme.size}); font-weight: 500; line-height: 1; color: ${({ theme }) => theme.faint}; white-space: nowrap; }
             @media (max-width: ${({ theme }) => theme.narrow}) {
-                .pd-book .pd-head .pd-paragraph.pd-month-shape { width: 100%; height: 48px; }
             }
         `;
     }
@@ -413,7 +358,7 @@ export class $ProjectLayout extends $ListLayout {
 
 // The rows of a list of conversations: each entry takes the month it opens, its count of exchanges and the way into
 // its conversation, laid over the row, in the order given; a type of book may lay its own open over the row.
-export const rows = (author: $Chemical, entries: $Chapter[], open: Component<$EntryOpen> = entryOpen): void => {
+export const rows = (author: $Chemical, entries: $Chapter[], open: Component<$EntryOpen> = entryOpen, monthed = true): void => {
     const EntryCount = $(entryCount);
     const EntryMonth = $(entryMonth);
     const EntryOpen = $(open);
@@ -423,7 +368,7 @@ export const rows = (author: $Chemical, entries: $Chapter[], open: Component<$En
         const own = monthOf(entry);
         const conversation = entry.annotations.expressed($Volume)?.cover?.mention?.identifier;
         entry.text.add(author,
-            ...(own !== month ? [<EntryMonth key="month" />] : []),
+            ...(monthed && own !== month ? [<EntryMonth key="month" />] : []),
             <EntryCount key="count" />,
             ...(conversation === undefined ? [] : [(
                 <EntryOpen
@@ -439,9 +384,18 @@ export const rows = (author: $Chemical, entries: $Chapter[], open: Component<$En
 };
 
 export class $ProjectManual extends $Manual {
+    // A file turned to is shown beside its words from the start, the manual's split mode, since a project's files are
+    // read and never edited; the manual itself opens words forward with the file behind its rail.
+    protected override $Define(): void {
+        super.$Define();
+        this.$is = [split, numberedCode];
+    }
+
     override specification = new ProjectManualSpecification();
+    // Read once and kept, as the register keeps its own: the pages ask for the entries on every chapter's draw.
+    @inert() protected _entries?: $Chapter[];
     get entries(): $Chapter[] {
-        return this.text.find($Chapter).filter(chapter => chapter.is($Synopsis) && chapter !== this.synopsis);
+        return this._entries ?? (this._entries = this.text.find($Chapter).filter(chapter => chapter.is($Synopsis) && chapter !== this.synopsis));
     }
     get files(): $Chapter[] {
         return this.chapters.filter(chapter => chapter.is($Spread) && chapter.is($Append));
@@ -461,13 +415,6 @@ export class $ProjectManual extends $Manual {
         return { set: !/^No instructions were set/u.test(words), words };
     }
     // The months the table lists, oldest first, each with its count of conversations and its place in the side.
-    get months(): { name: string; count: number; place: string | undefined }[] {
-        return (this.table?.text.find($Section) ?? [])
-            .map(section => ({ section, name: section.canonical?.name ?? '', count: section.text.find($Paragraph).filter(paragraph => this.entries.includes(this.chapterAt(contentOf(paragraph)?.identifier ?? '') as $Chapter)).length }))
-            .filter(month => month.count > 0 && !Number.isNaN(Date.parse(month.name)))
-            .sort((a, b) => Date.parse(a.name) - Date.parse(b.name))
-            .map(month => ({ name: month.name, count: month.count, place: month.section.mention === undefined ? undefined : this.placeWithin(month.section.mention.identifier) }));
-    }
     override get laidOutChapters(): ($Chapter | undefined)[] {
         return [...super.laidOutChapters, ...this.entries];
     }
@@ -534,23 +481,22 @@ export class $ProjectManual extends $Manual {
     override head(): ReactNode {
         const Cover = $(this.cover!);
         const ProjectHead = $(projectHead);
-        const MonthShape = $(monthShape);
         const RowForm = $(rowForm);
         const Search = $(search);
         return (
             <>
                 <Cover />
                 <ProjectHead chapter={this.cover} />
-                <MonthShape chapter={this.table} />
                 <RowForm chapter={this.cover} />
                 <Search chapter={this.cover} />
             </>
         );
     }
 
-    // The rows of the conversations, newest first; a type of book lays its own way into each.
+    // The rows of the conversations, newest first and with no month between them, as the application lists them; a type
+    // of book lays its own way into each.
     protected rows(entries: $Chapter[]): void {
-        rows(this, entries);
+        rows(this, entries, entryOpen, false);
     }
 
     protected override $Bound(): void {
@@ -563,6 +509,27 @@ export class $ProjectManual extends $Manual {
             index.$searched = true;
         }
         super.$Bound();
+        // The conversations are what a project is opened for, and the application lists them flat, newest first, with no
+        // month between them: the importer's month sections give their rows up to the table and go, so the side lists
+        // the conversations as entries with no folder above them; the files' section and the appendix stand after.
+        const table = this.table;
+        if (table !== undefined) {
+            const sections = table.text.find($Section);
+            const months = sections.filter(section => !Number.isNaN(Date.parse(section.canonical?.name ?? '')));
+            const files = sections.filter(section => section.text.find($Paragraph).some(row => this.chapterAt(contentOf(row)?.identifier ?? '')?.is($Spread)));
+            const rest = sections.filter(section => !months.includes(section) && !files.includes(section));
+            const dayOfRow = (row: $Paragraph): number => { const chapter = this.chapterAt(contentOf(row)?.identifier ?? ''); return chapter === undefined ? 0 : Date.parse(dayOf(chapter)); };
+            const rows = months.flatMap(month => month.text.find($Paragraph)).sort((one, two) => dayOfRow(two) - dayOfRow(one));
+            for (const month of months) {
+                for (const row of month.text.find($Paragraph)) month.text.remove(this, row);
+                table.text.remove(this, month);
+            }
+            table.text.append(this, ...rows);
+            for (const section of [...files, ...rest]) {
+                table.text.remove(this, section);
+                table.text.append(this, section);
+            }
+        }
     }
 }
 
@@ -591,7 +558,6 @@ export const RowForm = $($RowForm);
 export const EntryCount = $($EntryCount);
 export const EntryMonth = $($EntryMonth);
 export const ProjectHead = $($ProjectHead);
-export const MonthShape = $($MonthShape);
 export const Knowledge = $($Knowledge);
 export const ListLayout = $($ListLayout);
 export const ProjectLayout = $($ProjectLayout);
@@ -600,6 +566,5 @@ const rowForm = RowForm;
 const entryCount = EntryCount;
 const entryMonth = EntryMonth;
 const projectHead = ProjectHead;
-const monthShape = MonthShape;
 const knowledge = Knowledge;
 $(ProjectManual, layout)(ProjectLayout);
