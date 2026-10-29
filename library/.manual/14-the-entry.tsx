@@ -79,8 +79,13 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 Searched is the fourth way: a field where the type of book places it, at the head of the side or
-                of the page, and a word typed there is the index's word. While one stands the index draws the
-                hits in place of its rows, each a row with the entry's title marked where the word falls, its
+                of the page, and a word typed there is the word the index answers. The word is held on a chemical of
+                the page's own that nothing mounts, made at the chapter's module scope where the framework parents
+                nothing: a write to any mounted chemical re-renders every parent of it up to the book, so a word kept
+                on the index, or on the field, redrew the whole page on every letter, the side bar's files and the
+                column with it, two seconds on a project page; held with no parent, a letter wakes the field, the
+                hits and the count alone, under half a second, measured in Sprint 118. While one stands the index
+                draws the hits in place of its rows, each a row with the entry's title marked where the word falls, its
                 day where the entry is dated, its synopsis clipped around the first fall, and the whole row
                 leading to the entry's place by the entry's open laid over it; and the book wears a class saying
                 it is searching, so a theme may hide what the hits replace. The index asks the book for the
@@ -93,7 +98,7 @@ export default () => (
                 row's reference and a word's children are fixed when the row is made. The entry's open, the word
                 laid over a row so the whole row leads, stands in this chapter now, since the hits use it as the
                 project manual's rows do. The way is set as the others are, Index searched in a table file or in
-                code before the table is bound. The names, searched, search, found, sought, result and the
+                code before the table is bound. The names, searched, search, found, sought, typed, result and the
                 entry's open, are the session's until I keep or change them.
             </Paragraph>
         </Section>

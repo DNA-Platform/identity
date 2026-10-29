@@ -55,7 +55,7 @@ export class $ProjectEntryOpen extends $EntryOpen {
             from: { page, title: book.title?.name ?? '', href: page, marking: markingOf(book.cover) },
             to: placeOf(entry)?.href,
             within: { title: book.title?.name ?? '', index: index + 1, of: entries.length, prev: placeOf(entries[index - 1]), next: placeOf(entries[index + 1]) },
-            word: book.index?.$search ?? '',
+            word: book.index?.word ?? '',
             row: entry.mention?.identifier,
         };
         try {

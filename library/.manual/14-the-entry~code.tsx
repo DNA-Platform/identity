@@ -1,5 +1,5 @@
 import { ElementType, ReactNode } from 'react';
-import { $, $check, $Chemical, Component, selection } from '@dna-platform/chemistry';
+import { $, $check, $Chemical, Component, inert, selection } from '@dna-platform/chemistry';
 import { $Annotation, $Chapter, $Content, $Format, $Paragraph, $Parenthetical, $Part, $Section, $TableOfContents, $Word, $Writing, AnnotationSpecification, ContainerProps, Reference as reference, Word as word, specify } from '@dna-platform/public';
 import type { $LibraryBook } from './1-the-book~code.tsx';
 import { FileTab as fileTab, fileNameOf } from './2-the-listing~code.tsx';
@@ -66,6 +66,15 @@ export class $Appendix extends $Annotation {
     }
 }
 
+// THE WORD A READER TYPES, held on a chemical of its own that the index makes and nothing mounts. A write to a mounted
+// chemical diffuses: it wakes the chemicals that read it, then climbs the composition tree and re-renders every parent
+// to the book, which is the whole page on every letter, 1.9 s on a project page of a hundred and forty rows. A chemical
+// with no parent wakes its readers alone, the search's field, the results and each hit. Sprint 118, U7, measured letter
+// by letter on the workbench. `Sought` is a PROXY NAME.
+export class $Sought extends $Chemical {
+    $word = '';
+}
+
 // The index's ways: folded, counted, dated, and searched. A searched index carries the word typed, and the book answers
 // what the word finds among its own words, the entries' titles and synopses unless a type of book says otherwise.
 export class $Index extends $Annotation {
@@ -74,7 +83,10 @@ export class $Index extends $Annotation {
     $counted = false;
     $dated = false;
     $searched = false;
-    $search = '';
+    // The word typed, answered from the chemical that holds it, the page's one holder below.
+    get word(): string {
+        return typed.$word;
+    }
     get sections(): $Section[] {
         return this.chapter!.text.find($Section);
     }
@@ -85,7 +97,7 @@ export class $Index extends $Annotation {
         return [...this.chapter!.text].flatMap(writing => writing instanceof $Section ? writing.text.find($Paragraph) : writing instanceof $Paragraph ? [writing] : []).filter(listed);
     }
     get found(): $Writing[] {
-        return (this.book as $LibraryBook).found(this.$search);
+        return (this.book as $LibraryBook).found(this.word);
     }
 
     chapterOf(paragraph: $Paragraph): $Chapter | undefined {
@@ -96,7 +108,7 @@ export class $Index extends $Annotation {
     // Searching is said of the table, the index's own chapter, and only as the word crosses between empty and not, since
     // what is said of a chapter redraws it and the table is the one chapter a search may redraw on every page.
     search(word: string): void {
-        this.$search = word;
+        typed.$word = word;
         const table = this.chapter;
         const sought = word.trim() !== '';
         if (table !== undefined && sought !== table.is($Searching)) {
@@ -205,7 +217,7 @@ export class $Search extends $Paragraph {
                 <input
                     className="pd-search-word"
                     type="search"
-                    value={index.$search}
+                    value={index.word}
                     placeholder={book.searchHint}
                     aria-label="search"
                     onInput={event => index.search((event.target as HTMLInputElement).value)}
@@ -233,7 +245,7 @@ export class $Results extends $Paragraph {
         const index = this.index;
         const book = this.book as $LibraryBook | undefined;
         if (index === undefined || book === undefined) return undefined;
-        const sought = index.$search.trim();
+        const sought = index.word.trim();
         if (sought === '') return undefined;
         const found = book.found(sought);
         return (
@@ -294,7 +306,7 @@ export class $Result extends $Paragraph {
         const hit = this.$hit;
         const index = this.index;
         if (book === undefined || hit === undefined || index === undefined) return undefined;
-        const sought = index.$search.trim();
+        const sought = index.word.trim();
         const words = book.wordsOf(hit);
         const place = book.placeOf(hit);
         const Reference = $(reference);
@@ -712,6 +724,11 @@ export const Results = $($Results);
 export const Result = $($Result);
 export const EntryOpen = $($EntryOpen);
 export const EntryDay = $($EntryDay);
+export const Sought = $($Sought);
+// THE PAGE'S ONE HOLDER OF THE WORD, made at the module's scope, where the lift has no asker and what it makes is a root
+// with no parent, so a letter wakes the holder's readers and diffuses to no book. A page holds one book, and the word
+// typed is the reader's, no writing's; in a bind's child, which draws many books, nothing writes it.
+const typed = $(<Sought />) as $Sought;
 export const SectionCount = $($SectionCount);
 export const Appendix = $($Appendix);
 export const Folded = $($Folded);

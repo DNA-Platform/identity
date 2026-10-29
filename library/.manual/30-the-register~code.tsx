@@ -121,7 +121,7 @@ export class $Register extends $LibraryBook {
     }
 
     override aboveThePages(): ReactNode {
-        if ((this.index?.$search ?? '').trim() !== '') {
+        if ((this.index?.word ?? '').trim() !== '') {
             const RegisterResults = $(registerResults);
             return (
                 <RegisterResults chapter={this.table} />
@@ -260,7 +260,7 @@ export class $RegisterResult extends $Result {
         const EntryDay = $(entryDay);
         const EntryOpen = $(entryOpen);
         const read = book.wordsOf(entry);
-        const sought = book.index?.$search.trim() ?? '';
+        const sought = book.index?.word.trim() ?? '';
         const conversation = entry.annotations.expressed($Volume)?.cover?.mention?.identifier;
         const part = this.$named ? book.groupOf(entry)?.canonical?.name : undefined;
         return (
