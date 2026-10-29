@@ -139,7 +139,7 @@ end without a principle.
 ## Where things stand
 
 - **Complete:** nothing. The research so far is organized as the results book (2026-10-29), grouped by direction:
-  33 chapters, 25 proved (9 not a principle), 1 first-order sketch, 2 measured, 5 not solved. The objects Doug
+  34 chapters, 26 proved (9 not a principle), 1 first-order sketch, 2 measured, 5 not solved. The objects Doug
   objected to are in `dropped-formalisms.md` beside the notes, 25 entries with his words. That is organization, not
   progress on a part.
 - **Checked against each other** (2026-10-29, Doug: *"You really think you are looking at a set of results that are
@@ -156,6 +156,17 @@ end without a principle.
   - Part 2 has a draft in the notes ("What the entropy of the phase gives", item 1) that Doug has not read as a Part 2
     deliverable.
   - Part 6 has an interpretation only (notes, "Why that phase is the essence", 2026-10-29), with no proof.
+  - Part 3, problem 5 (why the sine), has a candidate in the Hilbert setting: Result 34 (2026-10-29, from Doug's remark
+    after explaining the normalization to the lab). A centred signal whose analytic signal has constant modulus spends
+    equal time at every angle (the mean is multiplicative on analytic signals; Löwner's lemma), so an increasing
+    re-encoding that is such an oscillation is sigma, and the rank's output never is one. Proved. Its limits:
+    - it is uniqueness on a class;
+    - the converse fails;
+    - it covers signals in time only;
+    - the centring is a choice.
+
+    Not read by Doug, so the gate is not passed. It also found a sentence in the research document's sec:family that
+    is false for a two-peak wave (the envelope "near one"). It is recorded in the notes, and main.tex is unchanged.
 - **Not started:** Parts 1, 3, 4, 5 and 7.
 - **Verified with numbers, for reference** (`explorations.py`):
   - the sort equals cos phi for phases with equal time at every angle (5.6e-6);
