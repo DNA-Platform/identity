@@ -21,7 +21,7 @@ export default () => (
                 conversations and sixty-three files, with <Means>$[[ Seren ]]( claude--Seren )</Means> as a second
                 project on the switch, since the conversation of 009 is held there and the two pages can lead to
                 each other. Each sketch keeps its number in this book and I answer by number: 009
-                is <Means>$[[ ./A Conversation, as a Manual ]]</Means> and 010 is <Means>$[[ ./A Project, as Useful as Possible ]]</Means>.
+                is <Means>$[[ ./A Conversation, as a Manual ]]</Means> , 010 is <Means>$[[ ./A Project, as Useful as Possible ]]</Means> and 011 is <Means>$[[ ./A Project, the Conversations in the Middle ]]</Means>.
             </Paragraph>
             <Paragraph>
                 What the examination found, read on the library's own pages after the register was set by its
@@ -133,6 +133,43 @@ export default () => (
             </Paragraph>
         </Section>
         <Section>
+            <Heading>[[[ A Project, the Conversations in the Middle ]]]</Heading>
+            <Paragraph>
+                Concept 11, the project page placed again on my word of 2026-10-29 that the conversations be in
+                the middle and the summary in more of a side view, drawn into a snapshot of the bound page
+                of <Means>$[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Means>, so every
+                row, every file and every word of the brief is the book's own. Each thing on it is one of the
+                library's words, placed. The side bar is the table of contents by the book's parts: the project,
+                its conversations with their count, its files as a folder of sixty-three, where the book stands,
+                and never the seventy-nine conversations a second time, which is what the side listed as built
+                and what made it a column of wrapped titles. The conversations hold the middle at the whole width,
+                newest first with the count, the day and the way on to Claude on each row, and the search over
+                them and the files at their head. The project chapter stands at its synopsis rank at the top of
+                the column at the right, what it is for, its instructions, its counts and the way to the chapter,
+                with the files under it as the application keeps them. Eleven conversations stand in the first
+                screen of a desk where the built page shows six, the first row at 228 pixels from 381, the middle
+                760 wide from 720. Three switches at the foot, each one change from the page as it opens: the side
+                by parts or none, with the middle at 960; the summary in the column above the files or under the
+                side's project row, where the side widens to hold it and shows why the column is the better home;
+                the rows as titles or with the synopsis. A word typed narrows the rows and the files as the page's
+                own search does, perspective answering eleven of seventy-nine and eight of sixty-three. At a
+                phone the page keeps the print's own forms, which this concept does not design. The name is the
+                session's until I keep or change it.
+            </Paragraph>
+            <Paragraph>
+                <Desk />
+                <Image>![[ 011-desk.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                <Phone />
+                <Image>![[ 011-phone.png ]]</Image>
+            </Paragraph>
+            <Paragraph>
+                <Thumbnail />
+                <Image>![[ 011-small.png ]]</Image>
+            </Paragraph>
+        </Section>
+        <Section>
             <Heading>As built, 2026-10-23</Heading>
             <Paragraph>
                 Both pages are built to their concepts as they open, in Sprint 115, and photographed on the bound
@@ -185,6 +222,12 @@ export default () => (
             type=".html"
         >
             ![[ 010.html ]]
+        </Append>
+        <Append
+            identifier="011"
+            type=".html"
+        >
+            ![[ 011.html ]]
         </Append>
     </Chapter>
 );
