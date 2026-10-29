@@ -139,8 +139,19 @@ end without a principle.
 ## Where things stand
 
 - **Complete:** nothing. The research so far is organized as the results book (2026-10-29), grouped by direction:
-  33 chapters, 26 proved (4 not a principle), 2 measured, 5 not solved. The objects Doug objected to are in
-  `dropped-formalisms.md` beside the notes, 25 entries with his words. That is organization, not progress on a part.
+  33 chapters, 25 proved (9 not a principle), 1 first-order sketch, 2 measured, 5 not solved. The objects Doug
+  objected to are in `dropped-formalisms.md` beside the notes, 25 entries with his words. That is organization, not
+  progress on a part.
+- **Checked against each other** (2026-10-29, Doug: *"You really think you are looking at a set of results that are
+  all true simultaneously?"*). They were not, as written:
+  - f was not one object: some results used non-periodic sums and sinusoids of non-integer frequency;
+  - one statement was false: "the map flattens at the top", where the slope is in fact $\frac{1}{2\alpha}$;
+  - one lemma was misquoted;
+  - one result excluded its own minimizer;
+  - several hypotheses were missing, and two numbers were conflated.
+
+  All of this is fixed and listed in the notes, "The results, checked against each other". No two correctly stated
+  results contradict each other.
 - **In progress:**
   - Part 2 has a draft in the notes ("What the entropy of the phase gives", item 1) that Doug has not read as a Part 2
     deliverable.
