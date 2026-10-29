@@ -247,7 +247,8 @@ export default () => (
                 stand on one line; the files' folder carries no count, since the index counts entries and a file is
                 a chapter; the project's row reads in the faint ink of a row that leads to a chapter, where the
                 sketch drew it as a conversation's row. The importer writes a project's table in this form from now
-                on, and the twenty-seven tables standing were re-shaped once to it, with their entries' parts.
+                on, and the twenty-seven tables standing were re-shaped once to it, with their entries' parts. On
+                seeing it on the workbench: the page looks great on the test browser.
             </Paragraph>
             <Paragraph>
                 <Desk />
