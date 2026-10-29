@@ -104,6 +104,11 @@ sudo_script() {
     printf '%s\n%s\n' "$p" "$1" | box "cd $MAIN && sudo -k -S -p '' bash -s"
 }
 
+# Uncommitted work HERE: everything git reports except the lab tool's records still being written - untracked files
+# under runs/lab/, which 02-als-remote-lab--lab.sh commits itself when its command ends. They never enter a run, and a
+# lab job of many hours (33328's Suite2P fields, 2026-10-29) would otherwise hold every launch and close.
+local_changes() { git status --porcelain | grep -v '^?? runs/lab/' || true; }
+
 # Step 1 of the protocol is here: a run starts only from committed, pushed work.
 require_pushed() {
     cd "$REPO"
@@ -111,7 +116,7 @@ require_pushed() {
     git fetch -q origin main
     [ "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" ] \
         || { echo "HEAD here is not GitHub's main: commit everything and push first (/push)."; return 1; }
-    [ "${1:-}" != clean ] || [ -z "$(git status --porcelain)" ] \
+    [ "${1:-}" != clean ] || [ -z "$(local_changes)" ] \
         || { echo "uncommitted work here: commit everything and push first (/push)."; git status --short | head; return 1; }
 }
 
@@ -294,7 +299,7 @@ harvest() {
     local branch=${1:-} base rebased
     [ -n "$branch" ] || { echo "usage: harvest <branch>"; return 2; }
     cd "$REPO"
-    [ "$(git rev-parse --abbrev-ref HEAD)" = main ] && [ -z "$(git status --porcelain)" ] \
+    [ "$(git rev-parse --abbrev-ref HEAD)" = main ] && [ -z "$(local_changes)" ] \
         || { echo "harvest needs a clean main here"; return 1; }
     git fetch -q origin "$branch"
     # MSYS would rewrite "origin/x:runs/..." as a Windows path list; git must see it verbatim.
@@ -368,7 +373,7 @@ close() {
     # 3. main here is GitHub's main
     git fetch -q origin main
     if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
-        [ -z "$(git status --porcelain)" ] || { echo "uncommitted work here - commit it, then close again"; return 1; }
+        [ -z "$(local_changes)" ] || { echo "uncommitted work here - commit it, then close again"; return 1; }
         git push -q origin main || { echo "push failed - close again"; return 1; }
     fi
     echo "2. main here is GitHub's main: $(git rev-parse --short HEAD)"
@@ -403,7 +408,7 @@ close() {
 sync() {
     cd "$REPO"
     [ "$(git rev-parse --abbrev-ref HEAD)" = main ] || { echo "not on main here"; return 1; }
-    [ -z "$(git status --porcelain)" ] \
+    [ -z "$(local_changes)" ] \
         || { echo "uncommitted work here - commit it, then sync"; git status --short | head; return 1; }
     git fetch -q origin main
     git merge-base --is-ancestor origin/main HEAD \
