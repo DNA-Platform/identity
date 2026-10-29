@@ -18,7 +18,8 @@ export default () => (
                 The frame has a tone, and a book wears one. Dark
                 is <Means>$[[ the frame of 15 ]]( Dougs Design / A Black Top Bar and an Opal Side Bar )</Means>:
                 the soft black of my coming-soon page across the top, and down the side the book's own pale
-                colour, opal for the library. Light is the frame of 16, the same side bar under a white top
+                colour, a breath off white for the library since 2026-10-29, the opal until then. Light is the
+                frame of 16, the same side bar under a white top
                 bar. White over black is the white bar over the dark side, which
                 is <Means>$[[ the frame of 26 ]]( Dougs Design / A White Top Bar and a Black Side Bar )</Means> and
                 the frame my story wears. Black is on one bar, relative to the pale side bar beside it and the

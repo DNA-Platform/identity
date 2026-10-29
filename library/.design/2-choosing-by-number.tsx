@@ -70,6 +70,12 @@ export default () => (
                 not a choice between them. Each book has a color of its own. Where it
                 is: <Means>$[[ every book wears the frame as both bars, drawn once by the base ]]( Dougs Reference Manual / The Book )</Means>, <Means>$[[ the one grid of the frame, the top bar over the side bar ]]( Dougs Reference Manual / The Layout )</Means>, <Means>$[[ the three tones, dark by default ]]( Dougs Reference Manual / The Tone )</Means>, and <Means>$[[ each book's colour, said on the shelf and in its theme ]]( Dougs Reference Manual / The Colour )</Means>.
             </Paragraph>
+            <Paragraph>
+                <Decision />
+                Amended 2026-10-29: the side bar is a breath off white, #f8f9fb, for the library and every
+                book, as every page designed since the bookshelf has it; the opal is gone. "We aren't using
+                that blue anywhere… change the theme to be consistent with what normal is."
+            </Paragraph>
         </Section>
         <Section>
             <Heading>[[[ The library catalogue ]]]</Heading>

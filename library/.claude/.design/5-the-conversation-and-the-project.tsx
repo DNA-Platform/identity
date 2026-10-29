@@ -138,23 +138,28 @@ export default () => (
                 Concept 11, the project page placed again on my word of 2026-10-29 that the conversations be in
                 the middle and the summary in more of a side view, drawn into a snapshot of the bound page
                 of <Means>$[[ Semantic Reference Theory ]]( claude--Semantic Reference Theory )</Means>, so every
-                row, every file and every word of the brief is the book's own. Each thing on it is one of the
-                library's words, placed. The side bar is the table of contents by the book's parts: the project,
-                its conversations with their count, its files as a folder of sixty-three, where the book stands,
-                and never the seventy-nine conversations a second time, which is what the side listed as built
-                and what made it a column of wrapped titles. The conversations hold the middle at the whole width,
-                newest first with the count, the day and the way on to Claude on each row, and the search over
-                them and the files at their head. The project chapter stands at its synopsis rank at the top of
-                the column at the right, what it is for, its instructions, its counts and the way to the chapter,
-                with the files under it as the application keeps them. Eleven conversations stand in the first
-                screen of a desk where the built page shows six, the first row at 228 pixels from 381, the middle
-                760 wide from 720. Three switches at the foot, each one change from the page as it opens: the side
-                by parts or none, with the middle at 960; the summary in the column above the files or under the
-                side's project row, where the side widens to hold it and shows why the column is the better home;
-                the rows as titles or with the synopsis. A word typed narrows the rows and the files as the page's
-                own search does, perspective answering eleven of seventy-nine and eight of sixty-three. At a
-                phone the page keeps the print's own forms, which this concept does not design. The name is the
-                session's until I keep or change it.
+                row and every file is the book's own, and taken through four rounds the same day. Each thing on
+                it is one of the library's words, placed. The side bar is the table of contents: by the book's
+                parts as it opens, the project, its conversations with their count, its files as a folder of
+                sixty-three, where the book stands; or by name, every conversation one line, the third form on
+                the switch since I asked where the table of contents was. The conversations hold the middle at
+                the whole width with the search over them and the files at their head; a row is its title and its
+                day and nothing else, as the application lists them, the way on to Claude a glyph that shows
+                under the hand, the count of exchanges kept for the synopsis form. The column at the right is the
+                files alone, as the application keeps them, each opening beside the words when pressed. The
+                project's brief and its instructions stand nowhere on the page: they are the project chapter,
+                reached from the side bar's first row, since a synopsis is what a row shows when it is pressed
+                and synopses are rarely visible for books. Eleven conversations stand in the first screen of a
+                desk where the built page shows six, the first row at 228 pixels from 381, the middle 760 wide
+                from 720. The rounds: the first came back in the bound library's teal, which no design of mine
+                uses; the second was calibrated to the palette of the decided sketches, kept in the section on
+                colours below; the third stripped the rows on my word that the text looked crammed; the fourth
+                took the summary out of the column, which had been the second round's answer to my maybe. On the
+                switch besides: the side by parts, by name or none, with the middle at 960; the rows as titles or
+                with the synopsis. A word typed narrows the rows and the files as the page's own search does,
+                perspective answering eleven of seventy-nine and eight of sixty-three. At a phone the page keeps
+                the print's own forms, which this concept does not design. Decided as it opens, the side by parts,
+                on 2026-10-29; the name is the session's until I keep or change it.
             </Paragraph>
             <Paragraph>
                 <Desk />
@@ -226,8 +231,9 @@ export default () => (
                 the blue came from, so it is known: the bound library's theme paints every side bar #e3f5fa, the
                 teal of its first sketch, and tints the search field with it, and a snapshot of a bound page
                 carries that in; and the first round had taken the project's foot and ink for its labels and its
-                way. Both are painted over in the sketch. Whether the built pages follow is a change to the
-                library's theme, which every book wears, and mine to say.
+                way. Both are painted over in the sketch. The theme follows: on my word of the same day, 'Change the theme to be consistent with what normal
+                is', the library's theme takes these values for its side bar, its line, its tints, its faint and
+                its soft, bound once with the gates at the sprint's close; the ink, the headings and the bar stand.
             </Paragraph>
         </Section>
         <Append
