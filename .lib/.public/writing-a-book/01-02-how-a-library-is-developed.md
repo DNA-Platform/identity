@@ -27,14 +27,15 @@
 
    A look waits for the save to reach the open page, prints what it found, and names a photograph. Read the photograph. Everything else is asked in the same call: `read=` what an element says, `style=` what it computes to, `box=` where it stands, `after=` what is drawn before and after it, `rules=` every rule that names a word in the order they apply, `at=` one element alone, `click=` a press first, `phone` a phone's width, `fresh` a new load. Two tells from Sprint 107: a look at the built site reads the tab as it was first opened, since a bound page has nothing to hot-reload, so say `fresh` or read the bind before; and `at=` photographs an element on the screen alone, so one below the fold comes back blank and is scrolled into view by a probe instead. The whole list is at the head of [the file](../../../../.me/.manual/6-developing-a-library~workbench.mjs).
 
-3. **Bind once, when the piece of work is done, and look at what it built.**
+3. **Bind one book first, the heaviest the change reaches; then bind once, when the piece of work is done, and look at what it built.** The one-book bind is the habit since [Sprint 118](../projection/123-sprint-118--gates-before-the-render.md#u6), 2026-10-29.
 
    ```
-   npm run bind                                   (in .me/..public/.binding)
+   NODE_OPTIONS=--max-old-space-size=10240 npm run bind -- configure inventory catalogue assemble resolve specify <book folder>
+   NODE_OPTIONS=--max-old-space-size=10240 npm run bind
    node .me/.manual/6-developing-a-library~workbench.mjs look dougs-story built fresh
    ```
 
-   The built site on 4242 is the one Doug reads, and [the bind is the gate](#live-and-bound), not the live page.
+   Both in `.me/..public/.binding`, the workbench and the library's browser closed first. The tasks named run in order, the catalogue over the whole library and the rest on the one folder named, so a layout rule, a specification or a class a check reads is proved on one book in seconds where the full bind would carry it for an hour before refusing: Sprint 115's third bind ran 1,015 s to fail at specify on a rule one book refused in 23 s, and Sprint 118's first full bind was refused at the catalogue in 34 s, the gate the one-book run reaches first. The heaviest conversation of his library, 688 messages, costs 20.3 s unchanged, 18.7 s of it the catalogue over all 1,019 books, 2026-10-29; a project book stale, 217 writings, 22.9 s, 2026-10-23. The built site on 4242 is the one Doug reads, and [the bind is the gate](#live-and-bound), not the live page.
 
 4. **Close the workbench when the session ends:** the same file with `close`.
 
