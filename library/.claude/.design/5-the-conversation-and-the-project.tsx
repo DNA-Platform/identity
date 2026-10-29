@@ -211,6 +211,25 @@ export default () => (
                 <Image>![[ 010-built-phone.png ]]</Image>
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>The colours these pages use</Heading>
+            <Paragraph>
+                Kept here on my word of 2026-10-29, when the first round of concept 11 came back in a blue no
+                design of mine uses, so that no sketch of these pages invents a colour again. The palette is the
+                one the decided sketches share, 004, 009 and 010: the paper white, #ffffff; the side bar a breath
+                off white, #fbfcfd, with a line of #e4e9f2 and a hairline of rgba(11, 11, 11, .08); the ink
+                #0b0b0b and the headings' #1a1f36; the soft grey #727d8c for what stands beside the words, the
+                counts and the days, and the faint #9ea8b5 for labels and for what is not set; one accent, the
+                teal #166178, for the way on and a link under the hand; and the mark of a found word, #fff2a8. A
+                project's scheme, its band, its ink and its foot, colours its mark in the bar and the dots and
+                strips of the side bar that lead to it, and nothing else; it is never a colour for text. Where
+                the blue came from, so it is known: the bound library's theme paints every side bar #e3f5fa, the
+                teal of its first sketch, and tints the search field with it, and a snapshot of a bound page
+                carries that in; and the first round had taken the project's foot and ink for its labels and its
+                way. Both are painted over in the sketch. Whether the built pages follow is a change to the
+                library's theme, which every book wears, and mine to say.
+            </Paragraph>
+        </Section>
         <Append
             identifier="009"
             type=".html"

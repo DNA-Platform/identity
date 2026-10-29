@@ -925,11 +925,19 @@ data-styled.g48[id="sc-cTJlnx"] { content: "kfNkIN,"; }
 .kfNkIN .pa-cover .pd-title { font-size: calc(0.91rem); font-weight: 600; }</style><meta name="number" content="011"><meta name="state" content="design"><meta name="after" content="010"><meta name="idea" content="The project page re-placed in the library's words: the side bar is the table of contents by the book's parts, the project, its conversations with their count, its files as a folder, where the book stands, and never the seventy-nine conversations a second time; the conversations hold the middle at the whole width with the search at their head; the project chapter stands at its synopsis rank, what it is for, its instructions, its counts, at the top of the column at the right with the files under it. Three switches at the foot: the side by parts or none, the summary in the column or under the side's project row, the rows with or without their synopsis."><meta name="said" content=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"><style>
 /* ---- concept 011: the project page re-placed. The side bar is the table of contents by the book's parts and never the conversations a second time; the conversations hold the middle at the whole width with the search at their head; the project chapter stands at its synopsis rank, what it is for, its instructions, its counts, at the top of the column at the right with the files under it. Every rule here is written against the print's own names and beats the print's hashed rules by specificity, never by rewriting them. ---- */
 
+/* the palette is the decided sketches' own, 004's, which 009 and 010 share: paper #ffffff, side #fbfcfd, line #e4e9f2, hair rgba(11,11,11,.08), ink #0b0b0b, head #1a1f36, soft #727d8c, faint #9ea8b5, accent #166178, mark #fff2a8. A project's scheme colours its mark and the side's dots and strips and nothing else; the bound page's deep side, the manual's, is painted over. */
+:root { --sp-paper: #ffffff; --sp-side: #fbfcfd; --sp-line: #e4e9f2; --sp-hair: rgba(11, 11, 11, .08); --sp-ink: #0b0b0b; --sp-head: #1a1f36; --sp-soft: #727d8c; --sp-faint: #9ea8b5; --sp-accent: #166178; --sp-mark: #fff2a8; }
+
 /* the switch bar of the sketch, prefixed so no rule of the print reaches it */
-.pd-sp-switches { position: fixed; right: 12px; bottom: 12px; z-index: 9; display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border: 1px solid rgba(11, 11, 11, .12); border-radius: 10px; background: #fff; box-shadow: 0 8px 28px rgba(26, 31, 54, .12); font: 500 11.5px/1.4 Inter, system-ui, sans-serif; color: #5b6472; }
-.pd-sp-switches b { font-weight: 600; color: #1f2d50; margin-right: 6px; }
-.pd-sp-switches button { margin-right: 4px; border: 1px solid rgba(11, 11, 11, .12); border-radius: 6px; background: #fff; padding: 2px 8px; font: inherit; color: #5b6472; cursor: pointer; }
-.pd-sp-switches button[aria-pressed='true'] { background: #1f2d50; border-color: #1f2d50; color: #fff; }
+.pd-sp-switches { position: fixed; right: 12px; bottom: 12px; z-index: 9; display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border: 1px solid var(--sp-line); border-radius: 10px; background: var(--sp-paper); box-shadow: 0 8px 28px rgba(26, 31, 54, .12); font: 500 11.5px/1.4 Inter, system-ui, sans-serif; color: var(--sp-soft); }
+.pd-sp-switches b { font-weight: 600; color: var(--sp-head); margin-right: 6px; }
+.pd-sp-switches button { margin-right: 4px; border: 1px solid var(--sp-line); border-radius: 6px; background: var(--sp-paper); padding: 2px 8px; font: inherit; color: var(--sp-soft); cursor: pointer; }
+.pd-sp-switches button[aria-pressed='true'] { background: var(--sp-head); border-color: var(--sp-head); color: #fff; }
+
+/* the side a breath off white and the search a white field with a line, as the decided sketches have them */
+.pd-book.pd-book.pd-book.pa-layout:not(.pa-turned) .pd-holds { background: var(--sp-side); border-inline-end: 1px solid var(--sp-line); }
+.pd-book.pd-book.pd-book .pd-head .pd-paragraph.pd-search { background: var(--sp-paper); border: 1px solid var(--sp-line); border-radius: 10px; color: var(--sp-soft); }
+.pd-book.pd-book.pd-book .pd-head .pd-search .pd-search-mark { color: var(--sp-faint); }
 
 /* ---- the grid: the side by parts narrower, the column as it was, the conversations between ---- */
 .pd-book.pd-book.pa-layout.pa-paginated:not(.pa-turned) { grid-template-columns: 200px minmax(0, 1fr) 320px; grid-template-areas: "library library library" "holds head about" "holds pages about"; }
@@ -940,28 +948,28 @@ body.pa-side-none .pd-book.pd-book:not(.pa-turned) .pd-holds { display: none; }
 /* ---- the side: the parts of the page, the conversations' rows marked by the script and hidden ---- */
 .pd-book.pd-book:not(.pa-turned) .pd-holds .pd-sp-conversation { display: none; }
 .pd-book.pd-book:not(.pa-turned) .pd-holds .pd-sp-part .pd-paragraph.pa-entry { display: flex; align-items: baseline; gap: 6px; }
-.pd-book.pd-book:not(.pa-turned) .pd-holds .pd-sp-part .pd-sp-count { margin-left: auto; font-size: .8125rem; color: #8e9fc8; font-variant-numeric: tabular-nums; }
+.pd-book.pd-book:not(.pa-turned) .pd-holds .pd-sp-part .pd-sp-count { margin-left: auto; font-size: .8125rem; color: var(--sp-faint); font-variant-numeric: tabular-nums; }
 .pd-book.pd-book:not(.pa-turned) .pd-holds .pd-section.pa-tree-folder:not(.pd-sp-open) > a:not(:first-child) { display: none; }
 .pd-book.pd-book:not(.pa-turned) .pd-holds .pd-section.pa-tree-folder > a:first-child .pd-heading { cursor: pointer; }
-.pd-book.pd-book:not(.pa-turned) .pd-holds .pd-section.pa-tree-folder .pd-sp-count { margin-left: 6px; font-weight: 400; color: #8e9fc8; }
+.pd-book.pd-book:not(.pa-turned) .pd-holds .pd-section.pa-tree-folder .pd-sp-count { margin-left: 6px; font-weight: 400; color: var(--sp-faint); }
 
 /* ---- the head: the crumbs, the title, the search at the whole width with the rows' switch beside it; the brief, the instructions and the counts have gone to the column ---- */
 .pd-book.pd-book .pd-head .pd-paragraph.pd-search { width: min(720px, 100%); }
 .pd-book.pd-book.pa-layout:not(.pa-turned) .pd-head { padding-block-end: .6rem; }
-.pd-sp-found { order: 5; grid-column: 1 / -1; display: none; margin: 0; font-size: .8125rem; color: #5b6472; }
+.pd-sp-found { order: 5; grid-column: 1 / -1; display: none; margin: 0; font-size: .8125rem; color: var(--sp-soft); }
 body.pa-searching .pd-sp-found { display: block; }
-.pd-sp-found b { color: #1a1a1a; font-weight: 500; }
+.pd-sp-found b { color: var(--sp-ink); font-weight: 500; }
 
 /* ---- the column: the project at its synopsis rank, then the files as uploaded ---- */
 .pd-book.pd-book .pd-knowledge-column .pd-sp-about { display: grid; gap: .55rem; padding: 1.1rem 1.25rem .9rem; border-block-end: thin solid rgba(11, 11, 11, .08); }
-.pd-sp-about .pd-sp-label { font: 600 .66rem/1 Inter, system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #8e9fc8; }
+.pd-sp-about .pd-sp-label { font: 600 .66rem/1 Inter, system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--sp-faint); }
 .pd-sp-about .pd-brief { display: block; max-width: none; }
 .pd-sp-about .pd-instructions { display: flex; gap: .5rem; align-items: baseline; max-width: none; }
-.pd-sp-about .pd-instructions b { flex: none; font: 600 .66rem/1.6 Inter, system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #8e9fc8; }
-.pd-sp-about .pd-instructions.pa-none { color: #8e9fc8; font-style: italic; }
-.pd-sp-about .pd-report { display: flex; flex-wrap: wrap; gap: 4px .75rem; }
-.pd-sp-about .pd-report b { font-weight: 500; color: #1a1a1a; }
-.pd-sp-about .pd-sp-way { font: 500 .8125rem/1.4 Inter, system-ui, sans-serif; color: #2a3a63; text-decoration: none; }
+.pd-sp-about .pd-instructions b { flex: none; font: 600 .66rem/1.6 Inter, system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--sp-faint); }
+.pd-sp-about .pd-instructions.pa-none { color: var(--sp-faint) !important; font-style: italic; }
+.pd-sp-about .pd-report { display: flex; flex-wrap: wrap; gap: 4px .75rem; color: var(--sp-soft) !important; }
+.pd-sp-about .pd-report b { font-weight: 500; color: var(--sp-ink); }
+.pd-sp-about .pd-sp-way { font: 500 .8125rem/1.4 Inter, system-ui, sans-serif; color: var(--sp-accent); text-decoration: none; }
 .pd-sp-about .pd-sp-way:hover { text-decoration: underline; }
 .pd-book.pd-book .pd-knowledge-column .pd-knowledge .pd-knowledge-row:first-child { display: none; }
 .pd-book.pd-book .pd-knowledge-column .pd-sp-about + .pd-knowledge { padding-block-start: .35rem; }
@@ -981,7 +989,7 @@ body.pa-about-side .pd-book.pd-book.pa-layout.pa-paginated:not(.pa-turned) { gri
 /* ---- the rows at the whole width ---- */
 .pd-book.pd-book:not(.pa-turned) .pd-pages .pd-chapter.pa-page.pa-synopsis { max-width: none; }
 .pd-book.pd-book.pd-book:not(.pa-turned) .pd-pages .pd-chapter.pa-page.pa-volume.pd-sp-hidden, .pd-book.pd-book .pd-knowledge-file.pd-sp-hidden { display: none; }
-.pd-book.pd-book .pd-pages .pa-volume mark, .pd-book.pd-book .pd-knowledge-file mark { background: #fff2a8; color: inherit; padding: 0 1px; border-radius: 2px; }
+.pd-book.pd-book .pd-pages .pa-volume mark, .pd-book.pd-book .pd-knowledge-file mark { background: var(--sp-mark); color: inherit; padding: 0 1px; border-radius: 2px; }
 
 /* ---- a phone: the summary first, then the search and the rows, the files' folder in the side's block ---- */
 @media (max-width: 48rem) {
