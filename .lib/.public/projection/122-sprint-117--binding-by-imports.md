@@ -66,6 +66,6 @@
 
 ## Where things stand
 
-- **Next:** his answers to the five questions at the foot of [Sprint 118](123-sprint-118--gates-before-the-render.md#questions-for-doug-batched-for-the-morning), then `/ce-plan` on that chapter. This sprint is closed.
+- **Next:** his answers to the five questions at the foot of [Sprint 118](123-sprint-118--gates-before-the-render.md#his-answers), then `/ce-plan` on that chapter. This sprint is closed.
 - **State:** U1 to U5 built. U1's correction stands in the package's binder, `manifest/graph.ts`, `specification/specifying.ts` and `.test/imports.test.ts`, a change under the package made on his decoupling request and his to veto. The render runs one child at a time, his to raise in the library's `.pubconfig`.
 - **To see it:** the library served on 4242: `/claude-semantic-reference-theory/` and `/claude-seren/` for the project page, `/claude-seren-and-the-hard-problem-7683c3d7/` for a conversation's, `/our-conversations/` for the register, `/claudes-reference-manual/` for the split chapters.
