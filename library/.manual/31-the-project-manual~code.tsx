@@ -297,7 +297,7 @@ export class $ProjectLayout extends $ListLayout {
                 grid-template-areas: 'library library library' 'holds head knowledge' 'holds pages knowledge';
             }
             .pa-layout .pd-knowledge-column { grid-area: knowledge; min-width: 0; overflow-y: auto; }
-            .pd-book .pd-head .pd-paragraph.pd-search { width: min(720px, 100%); }
+            .pd-book .pd-head .pd-paragraph.pd-search { width: min(720px, 100%); max-width: 100%; box-sizing: border-box; }
             .pd-book:not(.pa-turned) .pd-pages .pd-chapter.pa-page.pa-synopsis { max-width: none; }
             .pd-book:not(.pa-turned) .pd-pages .pd-chapter.pa-page.pa-volume { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: 'title day open' 'synopsis synopsis synopsis'; column-gap: calc(${({ theme }) => theme.space} * 0.6); }
             .pd-book.pa-synopses:not(.pa-turned) .pd-pages .pd-chapter.pa-page.pa-volume { grid-template-columns: minmax(0, 1fr) auto auto auto; grid-template-areas: 'title count day open' 'synopsis synopsis synopsis synopsis'; }

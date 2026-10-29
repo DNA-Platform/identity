@@ -254,6 +254,17 @@ export default () => (
                 <Desk />
                 <Image>![[ 011-built-desk.png ]]</Image>
             </Paragraph>
+            <Paragraph>
+                Bound the same evening, D7's one full bind of 1,019 books, and looked at on 4242 through the workbench at
+                a desk: the side reads The Project, Its conversations 62, Its files, Where this book stands; the rows
+                newest first with their days; the files alone in the column; 0 past the right edge. At a phone the
+                search field stood 384 wide in 390, the one element past the edge, mended in the layout with a
+                max-width and border-box and seen live at 343 in 375; the bound page carries it until the next bind.
+            </Paragraph>
+            <Paragraph>
+                <Desk />
+                <Image>![[ 011-bound-desk.png ]]</Image>
+            </Paragraph>
         </Section>
         <Append
             identifier="009"
