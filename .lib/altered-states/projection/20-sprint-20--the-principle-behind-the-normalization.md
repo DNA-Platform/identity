@@ -123,10 +123,10 @@ on a sample, and is -cos(pi P) in the continuum for evenly sampled signals witho
 |---|---|---|---|---|
 | 1. The setting | 1, 2 | 7, 8, 9; open 19, 20 | the objects the normalization acts on and the measure on their values, one page | Doug agrees |
 | 2. The freedom | 3 | 10 | the lemma that instantaneous and invertible leave one choice, with proof, in one notation | Doug agrees |
-| 3. The principle | 4, 5 | 11 to 16; open 18, 21 | a table of candidate principles, each tested against the rules (stated without the share? forces the sine? works with no time? yields the sort?), from the literature and from Doug | Doug picks one, or the null is recorded |
-| 4. The closed form | 4 | 2, 5 | the formula and its differential form, derived from the chosen principle | checked in `check.py`; Doug agrees |
-| 5. The sort | 6 | 6, 16 | the sort as a theorem on finite sets | Doug finds it elegant and surprising |
-| 6. The meaning | 7 | 15, 17; open 22 | a precise claim about representation and learning, proved, or recorded as open | Doug agrees |
+| 3. The principle | 4, 5 | 11 to 16, 23, 24, 29, 32, 33; open 18, 21 | a table of candidate principles, each tested against the rules (stated without the share? forces the sine? works with no time? yields the sort?), from the literature and from Doug | Doug picks one, or the null is recorded |
+| 4. The closed form | 4 | 2, 5, 25, 30, 31 | the formula and its differential form, derived from the chosen principle | checked in `check.py`; Doug agrees |
+| 5. The sort | 6 | 6, 16, 26, 27 | the sort as a theorem on finite sets | Doug finds it elegant and surprising |
+| 6. The meaning | 7 | 15, 17, 28; open 22 | a precise claim about representation and learning, proved, or recorded as open | Doug agrees |
 | 7. The explanation, then the report | 8 | all | the explanation in chat; then the rewrite of the sinusoidal normalization report | *"not gibberish"*, then the report |
 
 A part may take a whole sprint, and when an argument does not close, the result that records it stays **not solved**.
@@ -138,8 +138,9 @@ end without a principle.
 
 ## Where things stand
 
-- **Complete:** nothing. The research so far is organized as the results book (2026-10-29): 15 proved, 2 measured,
-  5 not solved. That is organization, not progress on a part.
+- **Complete:** nothing. The research so far is organized as the results book (2026-10-29), grouped by direction:
+  33 chapters, 26 proved (4 not a principle), 2 measured, 5 not solved. The objects Doug objected to are in
+  `dropped-formalisms.md` beside the notes, 25 entries with his words. That is organization, not progress on a part.
 - **In progress:**
   - Part 2 has a draft in the notes ("What the entropy of the phase gives", item 1) that Doug has not read as a Part 2
     deliverable.
