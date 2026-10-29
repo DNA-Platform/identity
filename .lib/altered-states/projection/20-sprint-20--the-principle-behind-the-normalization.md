@@ -61,6 +61,9 @@ it. So:
 
 ## What to read first
 
+- [The results](../../theory/sinusoidal-normalization-research/results/.cover.md): the research as numbered results,
+  each in words and then formally, each with a status; what is not solved has its own chapter (18 to 22). Cite
+  results by number.
 - [The rules for the derivation](../../theory/sinusoidal-normalization-research/notes.md#rules-for-the-derivation-read-before-any-attempt-doug-2026-10-29):
   the problem, the rule against building from the share, and every route already tried. Read before every turn.
 - The research document,
@@ -116,22 +119,27 @@ on a sample, and is -cos(pi P) in the continuum for evenly sampled signals witho
 
 ## The parts
 
-| part | problems | deliverable | gate |
-|---|---|---|---|
-| 1. The setting | 1, 2 | the objects the normalization acts on and the measure on their values, one page | Doug agrees |
-| 2. The freedom | 3 | the lemma that instantaneous and invertible leave one choice, with proof, in one notation | Doug agrees |
-| 3. The principle | 4, 5 | a table of candidate principles, each tested against the rules (stated without the share? forces the sine? works with no time? yields the sort?), from the literature and from Doug | Doug picks one, or the null is recorded |
-| 4. The closed form | 4 | the formula and its differential form, derived from the chosen principle | checked in `check.py`; Doug agrees |
-| 5. The sort | 6 | the sort as a theorem on finite sets | Doug finds it elegant and surprising |
-| 6. The meaning | 7 | a precise claim about representation and learning, proved, or recorded as open | Doug agrees |
-| 7. The explanation, then the report | 8 | the explanation in chat; then the rewrite of the sinusoidal normalization report | *"not gibberish"*, then the report |
+| part | problems | results | deliverable | gate |
+|---|---|---|---|---|
+| 1. The setting | 1, 2 | 7, 8, 9; open 19, 20 | the objects the normalization acts on and the measure on their values, one page | Doug agrees |
+| 2. The freedom | 3 | 10 | the lemma that instantaneous and invertible leave one choice, with proof, in one notation | Doug agrees |
+| 3. The principle | 4, 5 | 11 to 16; open 18, 21 | a table of candidate principles, each tested against the rules (stated without the share? forces the sine? works with no time? yields the sort?), from the literature and from Doug | Doug picks one, or the null is recorded |
+| 4. The closed form | 4 | 2, 5 | the formula and its differential form, derived from the chosen principle | checked in `check.py`; Doug agrees |
+| 5. The sort | 6 | 6, 16 | the sort as a theorem on finite sets | Doug finds it elegant and surprising |
+| 6. The meaning | 7 | 15, 17; open 22 | a precise claim about representation and learning, proved, or recorded as open | Doug agrees |
+| 7. The explanation, then the report | 8 | all | the explanation in chat; then the rewrite of the sinusoidal normalization report | *"not gibberish"*, then the report |
+
+A part may take a whole sprint, and when an argument does not close, the result that records it stays **not solved**.
+Doug: *"you can take whole sprints to work on parts of arguments if you are not finding a solution. You need to have
+enough of a sense of rigor to say something is not solved yet."*
 
 Parts 1 and 2 can be argued now. Part 3 needs reading first. Parts 4 to 7 wait on Part 3, and Part 3 is allowed to
 end without a principle.
 
 ## Where things stand
 
-- **Complete:** nothing.
+- **Complete:** nothing. The research so far is organized as the results book (2026-10-29): 15 proved, 2 measured,
+  5 not solved. That is organization, not progress on a part.
 - **In progress:**
   - Part 2 has a draft in the notes ("What the entropy of the phase gives", item 1) that Doug has not read as a Part 2
     deliverable.
