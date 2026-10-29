@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--grammar-lessons-from-custom-c
 
 export default () => (
     <Chapter>
-        <Part>February 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[18 February 2026](2026-02-18)</Date>
         </Dated>

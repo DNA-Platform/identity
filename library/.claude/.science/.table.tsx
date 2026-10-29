@@ -10,32 +10,11 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./mouse_V1_representation_review ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./working_with_doug ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Science ]]( claude--Science )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>October 2026</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ MoC Schedule ]]( ./claude--MoC Schedule--dbba812c )</Content>
@@ -72,9 +51,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Problem summary request--3941fb3e )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Neural encoding during hallucinations ]]( ./claude--Neural encoding during hallucinations--1f62d14e )</Content>
@@ -93,9 +69,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Photons as fictional constructs--34055d3f )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>August 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Metformin with quetiapine and lamotrigine ]]( ./claude--Metformin with quetiapine and lamotrigine--b3f63780 )</Content>
@@ -114,9 +87,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Closed form of the normal distribution integral--cec9dc2d )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>July 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Hamilton Morris's education and academic background ]]( ./claude--Hamilton Morris's education and academic background--4f826b46 )</Content>
@@ -189,9 +159,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Quetiapine-induced hallucinations and medication interactions--5c933de0 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Reconnecting with Jake on hallucinogen research opportunity ]]( ./claude--Reconnecting with Jake on hallucinogen research opportunity--3c581089 )</Content>
@@ -201,9 +168,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Reconnecting with Jake on hallucinogen research opportunity--3c581089 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Plants, xenon gas, and NMDA receptors ]]( ./claude--Plants, xenon gas, and NMDA receptors--72baf528 )</Content>
@@ -211,6 +175,27 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Plants, xenon gas, and NMDA receptors--72baf528 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
+            <Paragraph>
+                <Content>$[[ ./mouse_V1_representation_review ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./working_with_doug ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Science ]]( claude--Science )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
             </Paragraph>
         </Section>

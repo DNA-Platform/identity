@@ -16,17 +16,18 @@ export default () => (
             <Heading>The rows, the files and the landing</Heading>
             <Paragraph>
                 The page is <Means>$[[ the library's project manual ]]( Dougs Reference Manual / The Project Manual )</Means>
-                with Claude's rows: what the project is for first, the brief and the instructions, the counts,
-                the search over the conversations and the files, and the conversations as one flat list, newest
-                first with the day on each row, as the application lists them; each row leads into the library by
-                its title and on to the application, in Claude, by the origin its conversation's cover carries.
-                A file pressed in the knowledge column turns the page to the file beside its words, and the side
-                lists the conversations first and then the files' folder, with the open file lit. A row pressed,
-                or a hit of the search pressed, writes the trail said in <Means>$[[ The Conversation's Page ]]( ./The Conversation's Page )</Means>,
+                with Claude's rows: the conversations as one list at the whole width, newest first with the day on
+                each row, as the application lists them, the search over them and the files at their head; each row
+                leads into the library by its title and on to the application by the origin its conversation's cover
+                carries, a glyph at the row's end that shows under the hand. A file pressed in the column turns the
+                page to the file beside its words, and the side lists the project first, then the conversations as a
+                folder with their count, then the files' folder, with the open file lit. A row pressed, or a hit of
+                the search pressed, writes the trail said in <Means>$[[ The Conversation's Page ]]( ./The Conversation's Page )</Means>,
                 and the page lands where I left it when I come back: the word typed again, the row I left from
-                marked in the list and among the hits, and scrolled to. Concept 10 of <Means>$[[ Claudes Design / The Conversation and the Project ]]</Means>;
-                the months, as bars at the head and as sections of the list, were struck on my word of
-                2026-10-28, since the application has none.
+                marked in the list and among the hits, and scrolled to. Concept 11 of <Means>$[[ Claudes Design / The Conversation and the Project ]]</Means>,
+                as it opens, decided 2026-10-29; the brief, the instructions and the counts that stood at the head
+                since concept 10 went with it, since synopses are rarely visible for books, and the months before
+                them on my word of 2026-10-28, since the application has none.
             </Paragraph>
         </Section>
         <Section>

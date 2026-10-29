@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--bitcoin-transfer-from-coinbas
 
 export default () => (
     <Chapter>
-        <Part>April 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[29 April 2026](2026-04-29)</Date>
         </Dated>

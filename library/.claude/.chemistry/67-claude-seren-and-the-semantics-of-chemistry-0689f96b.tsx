@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--seren-and-the-semantics-of-ch
 
 export default () => (
     <Chapter>
-        <Part>November 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[8 November 2025](2025-11-08)</Date>
         </Dated>

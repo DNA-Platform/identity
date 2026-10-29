@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--local-vs-web-claude-in-vscode
 
 export default () => (
     <Chapter>
-        <Part>June 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[22 June 2026](2026-06-22)</Date>
         </Dated>

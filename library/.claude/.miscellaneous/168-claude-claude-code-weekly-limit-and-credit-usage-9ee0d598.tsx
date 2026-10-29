@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--claude-code-weekly-limit-and-
 
 export default () => (
     <Chapter>
-        <Part>June 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[18 June 2026](2026-06-18)</Date>
         </Dated>

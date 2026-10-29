@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--consciousness-chess-eirian-vs
 
 export default () => (
     <Chapter>
-        <Part>August 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[18 August 2025](2025-08-18)</Date>
         </Dated>

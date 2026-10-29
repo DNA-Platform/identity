@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--typescript-decorator-mechanic
 
 export default () => (
     <Chapter>
-        <Part>August 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[26 August 2025](2025-08-26)</Date>
         </Dated>

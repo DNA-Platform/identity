@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--mtonga--8b957fb0/.synopsis.ts
 
 export default () => (
     <Chapter>
-        <Part>June 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[5 June 2026](2026-06-05)</Date>
         </Dated>

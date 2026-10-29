@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--setting-up-ssh-commits-on-git
 
 export default () => (
     <Chapter>
-        <Part>March 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[14 March 2026](2026-03-14)</Date>
         </Dated>

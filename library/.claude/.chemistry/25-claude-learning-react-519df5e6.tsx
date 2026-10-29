@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--learning-react--519df5e6/.syn
 
 export default () => (
     <Chapter>
-        <Part>September 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[3 September 2025](2025-09-03)</Date>
         </Dated>

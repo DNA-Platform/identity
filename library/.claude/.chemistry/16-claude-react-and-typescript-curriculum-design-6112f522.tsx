@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--react-and-typescript-curricul
 
 export default () => (
     <Chapter>
-        <Part>September 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[21 September 2025](2025-09-21)</Date>
         </Dated>

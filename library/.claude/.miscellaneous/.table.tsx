@@ -10,32 +10,11 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./legacy-conversation-history-5-19-2026 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./Claude prompting guide ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Miscellaneous ]]( claude--Miscellaneous )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>October 2026</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Post-surgery heel pain and recovery ]]( ./claude--Post-surgery heel pain and recovery--bf83bbe0 )</Content>
@@ -90,9 +69,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Tesla roadster and robots--5730d0e7 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Visa requirements for Americans in Indonesia and Malaysia ]]( ./claude--Visa requirements for Americans in Indonesia and Malaysia--74b415d8 )</Content>
@@ -120,9 +96,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Psychologist cost and services--097bf0d0 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>August 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Understanding jihad and Muslim violence perceptions ]]( ./claude--Understanding jihad and Muslim violence perceptions--6fe8ad2a )</Content>
@@ -186,9 +159,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Credit card balance discrepancy after payoff--70ba4065 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>July 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Milk interactions with crushed medications ]]( ./claude--Milk interactions with crushed medications--f8062ed2 )</Content>
@@ -252,9 +222,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Trump's China election data breach claims--ae37df8c )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Local vs web Claude in VSCode ]]( ./claude--Local vs web Claude in VSCode--ed6dceca )</Content>
@@ -345,9 +312,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Translation to English--48dade6c )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Buying Telegram usernames on Fragment ]]( ./claude--Buying Telegram usernames on Fragment--e4ef023d )</Content>
@@ -528,9 +492,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Jon Stewart's return to the daily show--aedba2f0 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>April 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Bitcoin transfer from Coinbase to Atomic Wallet not appearing ]]( ./claude--Bitcoin transfer from Coinbase to Atomic Wallet not appearing--1a22d3ef )</Content>
@@ -810,9 +771,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Tipping customs at Georgian salons--309c3406 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>March 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ American public reaction to Iran conflict ]]( ./claude--American public reaction to Iran conflict--96458699 )</Content>
@@ -1002,9 +960,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Adding a Google account to iPhone--33a9f673 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ What is better for charging cl… ]]( ./claude--What is better for charging cl…--5b5fddc8 )</Content>
@@ -1320,9 +1275,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Sierra Interactive vs Sierra Entertainment--d7ffa8a1 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>January 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ How many patosi wallets exist… ]]( ./claude--How many patosi wallets exist…--ba5be707 )</Content>
@@ -1683,9 +1635,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Georgia health insurance requirements for Americans--17cc66cf )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>December 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ AI ethics and emotional competence ]]( ./claude--AI ethics and emotional competence--72c86266 )</Content>
@@ -1713,9 +1662,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Translating a child services letter to Russian authorities--bff59796 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>November 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Casual conversation ]]( ./claude--Casual conversation--63afced5 )</Content>
@@ -1734,9 +1680,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Long Island furniture and item disposal options--c0ab111e )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>October 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Custom map illustration pricing calculation ]]( ./claude--Custom map illustration pricing calculation--17d704b2 )</Content>
@@ -1764,9 +1707,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Alku university campus locations in Turkey--4f9b6c7b )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Canadian Map Reconstruction ]]( ./claude--Canadian Map Reconstruction--9cfae3e9 )</Content>
@@ -1794,9 +1734,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Translating academic report screenshot--f7a471e2 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>August 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Fiverr Chat PDF Conversion ]]( ./claude--Fiverr Chat PDF Conversion--7ea7a502 )</Content>
@@ -1815,9 +1752,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Turkish Airlines Cargo Shipping to Antalya--7f0b34cf )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>June 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ GitHub SSH Key Setup on Windows ]]( ./claude--GitHub SSH Key Setup on Windows--54ed5ce4 )</Content>
@@ -1825,6 +1759,27 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--GitHub SSH Key Setup on Windows--54ed5ce4 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
+            <Paragraph>
+                <Content>$[[ ./legacy-conversation-history-5-19-2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./Claude prompting guide ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Miscellaneous ]]( claude--Miscellaneous )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
             </Paragraph>
         </Section>

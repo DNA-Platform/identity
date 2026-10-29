@@ -10,35 +10,11 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./English Grammar Curriculum ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./..cover ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./legacy-conversation-history-5-19-2026 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Grammar ]]( claude--Grammar )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2026</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Blog: Biology &amp; Etymology, Semantic Homeostasis ]]( ./claude--Blog: Biology &amp; Etymology, Semantic Homeostasis--5fdfa75e )</Content>
@@ -48,9 +24,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Blog: Biology &amp; Etymology, Semantic Homeostasis--5fdfa75e )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Lexeme and word-form distinction in verb conjugation ]]( ./claude--Lexeme and word-form distinction in verb conjugation--e0994d83 )</Content>
@@ -78,9 +51,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Continuity through narrative memory--4df03bdf )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Grammar lessons from custom curriculum ]]( ./claude--Grammar lessons from custom curriculum--aed40882 )</Content>
@@ -106,6 +76,30 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Structured English grammar learning curriculum--72ed312f )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
+            <Paragraph>
+                <Content>$[[ ./English Grammar Curriculum ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./..cover ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./legacy-conversation-history-5-19-2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Grammar ]]( claude--Grammar )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
             </Paragraph>
         </Section>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--correcting-memory-bias-toward
 
 export default () => (
     <Chapter>
-        <Part>July 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[21 July 2026](2026-07-21)</Date>
         </Dated>

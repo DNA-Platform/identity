@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--buying-telegram-usernames-on-
 
 export default () => (
     <Chapter>
-        <Part>May 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[30 May 2026](2026-05-30)</Date>
         </Dated>

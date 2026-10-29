@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--old-iphone-charger-triggering
 
 export default () => (
     <Chapter>
-        <Part>August 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[5 August 2026](2026-08-05)</Date>
         </Dated>

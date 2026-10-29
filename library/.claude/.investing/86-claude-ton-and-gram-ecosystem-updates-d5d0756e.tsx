@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--ton-and-gram-ecosystem-update
 
 export default () => (
     <Chapter>
-        <Part>July 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[14 July 2026](2026-07-14)</Date>
         </Dated>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--mons-role-in-telegrams-crypto
 
 export default () => (
     <Chapter>
-        <Part>April 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[8 April 2026](2026-04-08)</Date>
         </Dated>

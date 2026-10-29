@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--react-component-binding-archi
 
 export default () => (
     <Chapter>
-        <Part>September 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[15 September 2025](2025-09-15)</Date>
         </Dated>

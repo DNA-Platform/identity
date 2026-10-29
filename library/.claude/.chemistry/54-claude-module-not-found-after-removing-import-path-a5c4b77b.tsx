@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--module-not-found-after-removi
 
 export default () => (
     <Chapter>
-        <Part>November 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[1 November 2025](2025-11-01)</Date>
         </Dated>

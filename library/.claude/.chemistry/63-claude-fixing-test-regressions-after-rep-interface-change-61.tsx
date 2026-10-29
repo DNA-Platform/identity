@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--fixing-test-regressions-after
 
 export default () => (
     <Chapter>
-        <Part>November 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[6 November 2025](2025-11-06)</Date>
         </Dated>

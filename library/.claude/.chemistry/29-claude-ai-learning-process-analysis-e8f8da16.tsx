@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--ai-learning-process-analysis-
 
 export default () => (
     <Chapter>
-        <Part>August 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[25 August 2025](2025-08-25)</Date>
         </Dated>

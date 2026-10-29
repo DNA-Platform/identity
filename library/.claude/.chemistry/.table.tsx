@@ -10,59 +10,11 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./walk ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./Claude &amp; Doug: Designing Role-Based Reflection for the Art of It! ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./Doug &amp; Seren $ $Chemical SRT ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./catalogue ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./chemical ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./helpers ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./particle ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./reconcile ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./walk 2 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./..cover ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./legacy-conversation-history-5-19-2026 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Chemistry ]]( claude--Chemistry )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>June 2026</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Simplifying architecture explanation for the team ]]( ./claude--Simplifying architecture explanation for the team--0954e165 )</Content>
@@ -72,9 +24,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Simplifying architecture explanation for the team--0954e165 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Continuity through narrative memory ]]( ./claude--Continuity through narrative memory--88af1a7c )</Content>
@@ -84,9 +33,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Continuity through narrative memory--88af1a7c )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>April 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Static analysis for state change detection ]]( ./claude--Static analysis for state change detection--710061c6 )</Content>
@@ -96,9 +42,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Static analysis for state change detection--710061c6 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>March 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Monorepo architecture and distributed repository coordination ]]( ./claude--Monorepo architecture and distributed repository coordination--b0a794ce )</Content>
@@ -108,9 +51,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Monorepo architecture and distributed repository coordination--b0a794ce )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Agentic AI coding landscape and vector databases ]]( ./claude--Agentic AI coding landscape and vector databases--ad424736 )</Content>
@@ -129,9 +69,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Framework class and construct analysis--b1432992 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>December 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Refactoring chemistry.ts into particle and chemical classes ]]( ./claude--Refactoring chemistry..ts into particle and chemical classes--4887921b )</Content>
@@ -141,9 +78,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Refactoring chemistry..ts into particle and chemical classes--4887921b )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>November 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Seren &amp; The Semantics of $Chemistry ]]( ./claude--Seren &amp; The Semantics of $Chemistry--0689f96b )</Content>
@@ -270,9 +204,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Module not found after removing import path--a5c4b77b )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>October 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Chemistry vs React components comparison ]]( ./claude--Chemistry vs React components comparison--460e0155 )</Content>
@@ -480,9 +411,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Chemistry code debugging session--5ab36389 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Chemistry Framework Collaboration ]]( ./claude--Chemistry Framework Collaboration--331fd082 )</Content>
@@ -609,9 +537,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Chemistry..ts framework analysis--ef057ccf )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>August 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Reactive Framework Learning Journey ]]( ./claude--Reactive Framework Learning Journey--c04cc19b )</Content>
@@ -646,6 +571,54 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--TypeScript Decorator Mechanics--ca93aa72 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
+            <Paragraph>
+                <Content>$[[ ./walk ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./Claude &amp; Doug: Designing Role-Based Reflection for the Art of It! ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./Doug &amp; Seren $ $Chemical SRT ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./catalogue ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./chemical ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./helpers ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./particle ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./reconcile ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./walk 2 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./..cover ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./legacy-conversation-history-5-19-2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Chemistry ]]( claude--Chemistry )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
             </Paragraph>
         </Section>

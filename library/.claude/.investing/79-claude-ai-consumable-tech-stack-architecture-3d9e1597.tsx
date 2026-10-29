@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--ai-consumable-tech-stack-arch
 
 export default () => (
     <Chapter>
-        <Part>May 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[11 May 2026](2026-05-11)</Date>
         </Dated>

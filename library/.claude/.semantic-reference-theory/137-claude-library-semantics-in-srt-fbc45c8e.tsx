@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--library-semantics-in-srt--fbc
 
 export default () => (
     <Chapter>
-        <Part>June 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[26 June 2026](2026-06-26)</Date>
         </Dated>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--srt-axioms-and-specialization
 
 export default () => (
     <Chapter>
-        <Part>June 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[6 June 2026](2026-06-06)</Date>
         </Dated>

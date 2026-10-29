@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { $, $Chemical, Component, next } from '@dna-platform/chemistry';
 import { $Chapter, $Word, $Writing, ContainerProps } from '@dna-platform/public';
 import { $EntryOpen, $Result, $Results } from '../../.manual/14-the-entry~code.tsx';
-import { $ProjectManual, rows } from '../../.manual/31-the-project-manual~code.tsx';
+import { $ProjectManual } from '../../.manual/31-the-project-manual~code.tsx';
 import { $Volume, markingOf } from '../../.manual/19-the-cover~code.tsx';
 import { $Origin } from './8-the-origin~code.tsx';
 import { Place, Trail, keptTrail, trailKey } from './9-the-conversations-page~code.tsx';
@@ -19,8 +19,10 @@ export class $WayOn extends $Word {
                 href={this.$href}
                 target="_blank"
                 rel="noopener"
+                aria-label="in Claude"
+                title="in Claude"
             >
-                in Claude
+                ↗
             </a>
         );
     }
@@ -119,7 +121,7 @@ export class $ClaudeProjectManual extends $ProjectManual {
     }
 
     protected override rows(entries: $Chapter[]): void {
-        rows(this, entries, projectEntryOpen as Component<$EntryOpen>, false);
+        super.rows(entries, projectEntryOpen as Component<$EntryOpen>);
         const WayOn = $(wayOn);
         for (const entry of entries) {
             const origin = entry.annotations.expressed($Volume)?.cover?.annotations.expressed($Origin)?.uuid;

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--betamethasone-for-seborrheic-
 
 export default () => (
     <Chapter>
-        <Part>May 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[16 May 2026](2026-05-16)</Date>
         </Dated>

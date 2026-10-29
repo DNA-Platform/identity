@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--history-of-propositional-logi
 
 export default () => (
     <Chapter>
-        <Part>October 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[4 October 2025](2025-10-04)</Date>
         </Dated>

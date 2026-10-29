@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--the-parable-of-the-talents-ex
 
 export default () => (
     <Chapter>
-        <Part>February 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[18 February 2026](2026-02-18)</Date>
         </Dated>

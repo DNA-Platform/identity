@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--verbatim-text-artifact--5c9cb
 
 export default () => (
     <Chapter>
-        <Part>October 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[27 October 2025](2025-10-27)</Date>
         </Dated>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--role-based-typescript-type-sy
 
 export default () => (
     <Chapter>
-        <Part>November 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[4 November 2025](2025-11-04)</Date>
         </Dated>

@@ -1,18 +1,17 @@
 import { ElementType, ReactNode } from 'react';
 import { css, RuleSet } from 'styled-components';
 import { $, $check, $Chemical, Component, inert, selection } from '@dna-platform/chemistry';
-import { $Annotation, $Append, $Chapter, $Paragraph, $Section, $Synopsis, $Word, $Writing, Reference as reference, Word as word, html, specify } from '@dna-platform/public';
+import { $Annotation, $Append, $Chapter, $Paragraph, $Section, $Synopsis, $Word, $Writing, Reference as reference, Word as word, specify } from '@dna-platform/public';
 import { OfABookSpecification } from './1-the-book~said.tsx';
 import { Switch as switchWord } from './9-the-switch~code.tsx';
 import { $Manual, ManualSpecification } from './10-the-manual~book.tsx';
-import { $Brief } from './10-the-manual~annotations.tsx';
 import { $Spread } from './10-the-manual~code.tsx';
 import { NumberedCode as numberedCode, Split as split } from './10-the-manual~annotations.tsx';
 import { $Layout, Layout as layout } from './12-the-layout~code.tsx';
-import { $EntryOpen, $Index, EntryOpen as entryOpen, Results as results, Search as search, contentOf } from './14-the-entry~code.tsx';
+import { $EntryOpen, $Index, EntryDay as entryDay, EntryOpen as entryOpen, Results as results, Search as search, contentOf } from './14-the-entry~code.tsx';
 import { $Volume } from './19-the-cover~code.tsx';
 import { dayOf, monthOf } from './28-the-journal~code.tsx';
-import { $Messages, $Period } from './29-the-conversation~code.tsx';
+import { $Messages } from './29-the-conversation~code.tsx';
 
 // The project's page lays its chapters by what they are: the conversations held in the project down the main
 // column under their months, as the application lists them; the knowledge of the project, what it is and its
@@ -89,55 +88,18 @@ export class $ProjectHead extends $Paragraph {
         if (book === undefined) return undefined;
         const Word = $(word);
         const Reference = $(reference);
+        // The crumb alone, the subject the project is filed under: the brief, the instructions and the counts stand
+        // nowhere on the page since Sprint 118, since a synopsis is what a row shows when pressed, and the project chapter
+        // holds them where the side bar's first row leads.
         const subject = book.coverOf(book.subject?.means?.identifier);
-        const entries = book.entries;
-        const exchanges = entries.reduce((sum, entry) => sum + (entry.annotations.expressed($Volume)?.cover?.annotations.expressed($Messages)?.shown ?? 0), 0);
-        const days = entries.map(dayOf).filter(day => day !== '').sort();
-        const span = days.length === 0 ? '' : `${monthOf(entries.find(entry => dayOf(entry) === days[0])!)} to ${monthOf(entries.find(entry => dayOf(entry) === days[days.length - 1])!)}`;
-        const brief = book.brief;
-        const instructions = book.instructions;
+        if (subject?.mention === undefined) return undefined;
         return (
-            <>
-                <span className="pd-crumbs">
-                    {subject === undefined ? undefined : (
-                        <Word>
-                            <Reference>{subject.mention!.identifier}</Reference>
-                            {subject.title?.name}
-                        </Word>
-                    )}
-                    <i>/</i>
-                    <Word>
-                        {book.title?.name}
-                    </Word>
-                </span>
-                {brief === '' ? undefined : (
-                    <span className="pd-brief">
-                        {brief}
-                    </span>
-                )}
-                {instructions === undefined ? undefined : (
-                    <span className={`pd-instructions${instructions.set ? '' : ' pa-none'}`}>
-                        <b>Instructions</b>
-                        <span>
-                            {instructions.set ? instructions.words : 'none were set on this project'}
-                        </span>
-                    </span>
-                )}
-                <span className="pd-report">
-                    <span>
-                        <b>{entries.length}</b> conversations
-                    </span>
-                    <span>
-                        <b>{exchanges}</b> exchanges
-                    </span>
-                    <span>
-                        <b>{book.files.length}</b> files
-                    </span>
-                    <span>
-                        {span}
-                    </span>
-                </span>
-            </>
+            <span className="pd-crumbs">
+                <Word>
+                    <Reference>{subject.mention.identifier}</Reference>
+                    {subject.title?.name}
+                </Word>
+            </span>
         );
     }
 
@@ -175,21 +137,9 @@ export class $Knowledge extends $Paragraph {
         if (book === undefined) return undefined;
         const Word = $(word);
         const Reference = $(reference);
-        const project = book.project;
         const fileIcon = '<svg viewBox="0 0 16 16"><path d="M4 1.5h5.5L13 5v9.5H4z"/><path d="M9.5 1.5V5H13M6 8h4M6 10.5h4"/></svg>';
         return (
             <>
-                {project?.mention === undefined ? undefined : (
-                    <span className="pd-knowledge-row">
-                        <Word>
-                            <Reference>{project.mention.identifier}</Reference>
-                            {project.title?.name}
-                        </Word>
-                        <span className="pd-at-right">
-                            what it is, its instructions
-                        </span>
-                    </span>
-                )}
                 <span className="pd-knowledge-row">
                     Files
                     <small>
@@ -343,10 +293,21 @@ export class $ProjectLayout extends $ListLayout {
         return css`
             ${super.areas()}
             .pd-book.pa-layout:not(.pa-turned) {
-                grid-template-columns: ${({ theme }) => theme.holdsColumn} minmax(0, 1fr) 320px;
+                grid-template-columns: 220px minmax(0, 1fr) 320px;
                 grid-template-areas: 'library library library' 'holds head knowledge' 'holds pages knowledge';
             }
             .pa-layout .pd-knowledge-column { grid-area: knowledge; min-width: 0; overflow-y: auto; }
+            .pd-book .pd-head .pd-paragraph.pd-search { width: min(720px, 100%); }
+            .pd-book:not(.pa-turned) .pd-pages .pd-chapter.pa-page.pa-synopsis { max-width: none; }
+            .pd-book:not(.pa-turned) .pd-pages .pd-chapter.pa-page.pa-volume { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: 'title day open' 'synopsis synopsis synopsis'; column-gap: calc(${({ theme }) => theme.space} * 0.6); }
+            .pd-book.pa-synopses:not(.pa-turned) .pd-pages .pd-chapter.pa-page.pa-volume { grid-template-columns: minmax(0, 1fr) auto auto auto; grid-template-areas: 'title count day open' 'synopsis synopsis synopsis synopsis'; }
+            .pd-book:not(.pa-synopses):not(.pa-turned) .pd-pages .pa-volume .pd-word.pd-entry-count { display: none; }
+            .pd-book:not(.pa-turned) .pd-pages .pa-volume > time.pd-date { display: none; }
+            .pd-book:not(.pa-turned) .pd-pages .pa-volume .pd-word.pd-entry-day { grid-area: day; min-width: 0; font-family: ${({ theme }) => theme.font}; font-size: calc(0.8571 * ${({ theme }) => theme.size}); line-height: 20px; color: ${({ theme }) => theme.faint}; white-space: nowrap; font-variant-numeric: tabular-nums; }
+            .pd-book:not(.pa-turned) .pd-pages .pa-volume .pd-title { font-weight: 400; }
+            .pd-book:not(.pa-turned) .pd-pages .pa-volume .pd-way-on-link { padding: 0 2px; font-size: ${({ theme }) => theme.size}; letter-spacing: 0; text-transform: none; opacity: 0; transition: opacity 0.15s; }
+            .pd-book:not(.pa-turned) .pd-pages .pa-volume:hover .pd-way-on-link { opacity: 1; }
+            .pd-book:not(.pa-turned) .pd-pages .pa-volume .pd-way-on-link:hover { color: ${({ theme }) => theme.accent}; }
             .pd-book.pa-turned .pd-knowledge-column { display: none; }
             .pd-book:not(.pa-turned) .pd-pages .pd-chapter.pa-page.pa-synopsis:not(.pa-volume) { display: none; }
             @media (max-width: ${({ theme }) => theme.narrow}) {
@@ -402,17 +363,6 @@ export class $ProjectManual extends $Manual {
     }
     get project(): $Chapter | undefined {
         return this.chapters.find(chapter => chapter.is($Spread) && !chapter.is($Append));
-    }
-    // What the project is for, as its own chapter says it in the brief, and its instructions where the application set any.
-    get brief(): string {
-        const paragraph = this.project?.text.find($Paragraph).find(one => one.is($Brief));
-        return paragraph === undefined ? '' : html.copy(paragraph.text).replace(/\s+/gu, ' ').trim();
-    }
-    get instructions(): { set: boolean; words: string } | undefined {
-        const section = this.project?.text.find($Section).find(one => one.canonical?.name === 'Its instructions');
-        if (section === undefined) return undefined;
-        const words = section.text.find($Paragraph).map(paragraph => html.copy(paragraph.text).replace(/\s+/gu, ' ').trim()).join(' ');
-        return { set: !/^No instructions were set/u.test(words), words };
     }
     // The months the table lists, oldest first, each with its count of conversations and its place in the side.
     override get laidOutChapters(): ($Chapter | undefined)[] {
@@ -495,8 +445,15 @@ export class $ProjectManual extends $Manual {
 
     // The rows of the conversations, newest first and with no month between them, as the application lists them; a type
     // of book lays its own way into each.
-    protected rows(entries: $Chapter[]): void {
-        rows(this, entries, entryOpen, false);
+    protected rows(entries: $Chapter[], open: Component<$EntryOpen> = entryOpen): void {
+        rows(this, entries, open, false);
+        const EntryDay = $(entryDay);
+        for (const entry of entries) entry.text.add(this,
+            <EntryDay
+                key="day"
+                entry={entry}
+            />
+        );
     }
 
     protected override $Bound(): void {
@@ -509,26 +466,15 @@ export class $ProjectManual extends $Manual {
             index.$searched = true;
         }
         super.$Bound();
-        // The conversations are what a project is opened for, and the application lists them flat, newest first, with no
-        // month between them: the importer's month sections give their rows up to the table and go, so the side lists
-        // the conversations as entries with no folder above them; the files' section and the appendix stand after.
-        const table = this.table;
-        if (table !== undefined) {
-            const sections = table.text.find($Section);
-            const months = sections.filter(section => !Number.isNaN(Date.parse(section.canonical?.name ?? '')));
-            const files = sections.filter(section => section.text.find($Paragraph).some(row => this.chapterAt(contentOf(row)?.identifier ?? '')?.is($Spread)));
-            const rest = sections.filter(section => !months.includes(section) && !files.includes(section));
+        // The conversations are what a project is opened for, and the application lists them newest first: the rows of
+        // Its conversations, which the importer writes as the conversations come, are set by their day, the newest first,
+        // so the side's folder and the page agree. Sprint 118, concept 011, the table written in its form by the importer.
+        const conversations = this.table?.text.find($Section).find(section => section.canonical?.name === 'Its conversations');
+        if (conversations !== undefined) {
             const dayOfRow = (row: $Paragraph): number => { const chapter = this.chapterAt(contentOf(row)?.identifier ?? ''); return chapter === undefined ? 0 : Date.parse(dayOf(chapter)); };
-            const rows = months.flatMap(month => month.text.find($Paragraph)).sort((one, two) => dayOfRow(two) - dayOfRow(one));
-            for (const month of months) {
-                for (const row of month.text.find($Paragraph)) month.text.remove(this, row);
-                table.text.remove(this, month);
-            }
-            table.text.append(this, ...rows);
-            for (const section of [...files, ...rest]) {
-                table.text.remove(this, section);
-                table.text.append(this, section);
-            }
+            const rows = conversations.text.find($Paragraph).sort((one, two) => dayOfRow(two) - dayOfRow(one));
+            for (const row of rows) conversations.text.remove(this, row);
+            conversations.text.append(this, ...rows);
         }
     }
 }

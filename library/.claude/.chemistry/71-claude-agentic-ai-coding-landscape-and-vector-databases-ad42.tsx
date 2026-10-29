@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--agentic-ai-coding-landscape-a
 
 export default () => (
     <Chapter>
-        <Part>February 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[20 February 2026](2026-02-20)</Date>
         </Dated>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--how-many-patosi-wallets-exist
 
 export default () => (
     <Chapter>
-        <Part>January 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[30 January 2026](2026-01-30)</Date>
         </Dated>

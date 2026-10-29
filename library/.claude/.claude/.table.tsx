@@ -10,26 +10,11 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Claude ]]( claude--Claude )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2026</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Cathy &gt; Programming ]]( ./claude--Cathy &gt; Programming--b6395c0d )</Content>
@@ -39,9 +24,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Cathy &gt; Programming--b6395c0d )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Claude &gt; Philosophy ]]( ./claude--Claude &gt; Philosophy--f8c40c37 )</Content>
@@ -112,6 +94,21 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Test--9facbd5d )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Claude ]]( claude--Claude )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
             </Paragraph>
         </Section>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--clarity-act-cryptocurrency-bi
 
 export default () => (
     <Chapter>
-        <Part>September 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[15 September 2026](2026-09-15)</Date>
         </Dated>

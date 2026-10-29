@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--this-prompt-has-a-liars-parad
 
 export default () => (
     <Chapter>
-        <Part>January 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[12 January 2026](2026-01-12)</Date>
         </Dated>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--doug-and-eirian-and-rememberi
 
 export default () => (
     <Chapter>
-        <Part>September 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[19 September 2025](2025-09-19)</Date>
         </Dated>

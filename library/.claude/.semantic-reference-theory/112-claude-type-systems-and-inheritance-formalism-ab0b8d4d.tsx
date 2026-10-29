@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--type-systems-and-inheritance-
 
 export default () => (
     <Chapter>
-        <Part>February 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[8 February 2026](2026-02-08)</Date>
         </Dated>

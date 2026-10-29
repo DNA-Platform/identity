@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--debugging-malformed-xml-synta
 
 export default () => (
     <Chapter>
-        <Part>November 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[2 November 2025](2025-11-02)</Date>
         </Dated>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--varenicline-availability-in-t
 
 export default () => (
     <Chapter>
-        <Part>July 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[29 July 2026](2026-07-29)</Date>
         </Dated>

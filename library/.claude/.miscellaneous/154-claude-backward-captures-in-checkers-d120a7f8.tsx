@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--backward-captures-in-checkers
 
 export default () => (
     <Chapter>
-        <Part>May 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[15 May 2026](2026-05-15)</Date>
         </Dated>

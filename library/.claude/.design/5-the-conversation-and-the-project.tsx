@@ -236,6 +236,24 @@ export default () => (
                 its soft, bound once with the gates at the sprint's close; the ink, the headings and the bar stand.
             </Paragraph>
         </Section>
+        <Section>
+            <Heading>As built, 2026-10-29</Heading>
+            <Paragraph>
+                The project page built to concept 011 as it opens, in Sprint 118, and photographed on the workbench
+                beside the sketch: the side bar the project's row, Its conversations folded with its count, Its
+                files and where the book stands; a row its title and its day, the way on a glyph under the hand;
+                the column the files alone; the crumb the subject alone. Where the built differs from the sketch,
+                on purpose or until my number: the side bar is 220 wide, not 200, so the folder's name and its count
+                stand on one line; the files' folder carries no count, since the index counts entries and a file is
+                a chapter; the project's row reads in the faint ink of a row that leads to a chapter, where the
+                sketch drew it as a conversation's row. The importer writes a project's table in this form from now
+                on, and the twenty-seven tables standing were re-shaped once to it, with their entries' parts.
+            </Paragraph>
+            <Paragraph>
+                <Desk />
+                <Image>![[ 011-built-desk.png ]]</Image>
+            </Paragraph>
+        </Section>
         <Append
             identifier="009"
             type=".html"

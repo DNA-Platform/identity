@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--semantic-reference-theory-fra
 
 export default () => (
     <Chapter>
-        <Part>August 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[28 August 2025](2025-08-28)</Date>
         </Dated>

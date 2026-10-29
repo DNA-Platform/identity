@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--nounifying-include-in-english
 
 export default () => (
     <Chapter>
-        <Part>May 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[13 May 2026](2026-05-13)</Date>
         </Dated>

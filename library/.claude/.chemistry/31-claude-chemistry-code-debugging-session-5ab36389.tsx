@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--chemistry-code-debugging-sess
 
 export default () => (
     <Chapter>
-        <Part>October 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[2 October 2025](2025-10-02)</Date>
         </Dated>

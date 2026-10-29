@@ -10,11 +10,23 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
+                <Word>
+                    <Content>$[[ Rebuilding routine after ankle surgery ]]( ./claude--Rebuilding routine after ankle surgery--91ffb132 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Rebuilding routine after ankle surgery--91ffb132 )***</Content>
+                </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
             <Paragraph>
                 <Parenthetical />
                 <Word>
@@ -25,18 +37,6 @@ export default () => (
                 </Word>
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>February 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Rebuilding routine after ankle surgery ]]( ./claude--Rebuilding routine after ankle surgery--91ffb132 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Rebuilding routine after ankle surgery--91ffb132 )***</Content>
                 </Word>
             </Paragraph>
         </Section>

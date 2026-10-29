@@ -10,77 +10,11 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./index ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./tsconfig..app ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./tsconfig ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./tsconfig..node ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./vite..config ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./App ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./App 2 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./index 2 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./main ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./vite-env..d ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./index 3 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./tsconfig 2 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./chemistry ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./array ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./utils ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./vector ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./package ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ DNA Patternity ]]( claude--DNA Patternity )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>March 2026</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Automating stock art uploads to Adobe Stock ]]( ./claude--Automating stock art uploads to Adobe Stock--c5329f22 )</Content>
@@ -171,9 +105,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Adding images and market research to product descriptions--0af11d32 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>August 2025</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Patterns Object Model ]]( ./claude--Patterns Object Model--a3b2f38f )</Content>
@@ -181,6 +112,72 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Patterns Object Model--a3b2f38f )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
+            <Paragraph>
+                <Content>$[[ ./index ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./tsconfig..app ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./tsconfig ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./tsconfig..node ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./vite..config ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./App ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./App 2 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./index 2 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./main ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./vite-env..d ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./index 3 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./tsconfig 2 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./chemistry ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./array ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./utils ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./vector ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./package ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ DNA Patternity ]]( claude--DNA Patternity )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
             </Paragraph>
         </Section>

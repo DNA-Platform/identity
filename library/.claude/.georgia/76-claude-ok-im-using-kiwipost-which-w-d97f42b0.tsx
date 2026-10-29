@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--ok-im-using-kiwipost-which-w-
 
 export default () => (
     <Chapter>
-        <Part>July 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[15 July 2026](2026-07-15)</Date>
         </Dated>

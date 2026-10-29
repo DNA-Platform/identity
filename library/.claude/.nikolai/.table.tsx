@@ -10,29 +10,11 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./legacy-conversation-history-5-19-2026 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Nikolai ]]( claude--Nikolai )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>May 2026</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Continuity through narrative memory ]]( ./claude--Continuity through narrative memory--8cd44318 )</Content>
@@ -42,9 +24,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Continuity through narrative memory--8cd44318 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>March 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ TON AI coding competition details ]]( ./claude--TON AI coding competition details--8a65ba52 )</Content>
@@ -54,9 +33,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--TON AI coding competition details--8a65ba52 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Anagram of Douglas Hofstadter to female name ]]( ./claude--Anagram of Douglas Hofstadter to female name--5c972477 )</Content>
@@ -102,9 +78,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--English news channels on Telegram--22bb3e3b )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>January 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Staking in proof-of-stake blockchains explained ]]( ./claude--Staking in proof-of-stake blockchains explained--281a83fa )</Content>
@@ -130,6 +103,24 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Field with one element and tropical geometry--fd859a94 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
+            <Paragraph>
+                <Content>$[[ ./legacy-conversation-history-5-19-2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Nikolai ]]( claude--Nikolai )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
             </Paragraph>
         </Section>

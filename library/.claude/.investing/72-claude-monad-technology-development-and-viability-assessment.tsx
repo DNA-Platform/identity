@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--monad-technology-development-
 
 export default () => (
     <Chapter>
-        <Part>May 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[4 May 2026](2026-05-04)</Date>
         </Dated>

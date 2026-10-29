@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--ontic-structural-realism--002
 
 export default () => (
     <Chapter>
-        <Part>June 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[15 June 2026](2026-06-15)</Date>
         </Dated>

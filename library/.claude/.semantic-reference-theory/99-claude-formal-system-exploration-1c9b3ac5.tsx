@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--formal-system-exploration--1c
 
 export default () => (
     <Chapter>
-        <Part>October 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[23 October 2025](2025-10-23)</Date>
         </Dated>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--why-insects-have-a-maximum-si
 
 export default () => (
     <Chapter>
-        <Part>July 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[2 July 2026](2026-07-02)</Date>
         </Dated>

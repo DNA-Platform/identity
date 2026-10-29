@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--fiverr-chat-pdf-conversion--7
 
 export default () => (
     <Chapter>
-        <Part>August 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[27 August 2025](2025-08-27)</Date>
         </Dated>

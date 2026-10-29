@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--maxim-contact-request-strateg
 
 export default () => (
     <Chapter>
-        <Part>October 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[8 October 2026](2026-10-08)</Date>
         </Dated>

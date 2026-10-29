@@ -120,25 +120,26 @@ describe('the books', () => {
             .toEqual(first);
     });
 
-    // Sprint 113, on Doug's 'That is not navigable': the project's page lays its conversations by month, so a
-    // project's entry is dated and listed under its month, as the register's is.
-    it('dates a project\'s entry and lists it under its month, so the project\'s page can lay its conversations by month', () => {
+    // Sprint 118, on Doug's number for concept 011: the project's page lists its conversations newest first and its
+    // side folds them with their count, so a project's entry says Its conversations as its part and is listed under
+    // that section, before Its files.
+    it('dates a project\'s entry and lists it under Its conversations, which it says as its part', () => {
         const project = join(library, 'project');
         mkdirSync(project, { recursive: true });
         writeFileSync(join(project, '.table.tsx'), [
-            '    <Chapter>', '        <Section>', '            <Heading>Where this book stands</Heading>', '        </Section>', '    </Chapter>', '',
+            '    <Chapter>', '        <Section>', '            <Heading>Its files</Heading>', '        </Section>', '        <Section>', '            <Heading>Where this book stands</Heading>', '        </Section>', '    </Chapter>', '',
         ].join('\n'));
         const name = { words: 'Ontic Structural Realism', key: 'claude--Ontic Structural Realism--3b54b751' };
         const files = projectEntry(folders, project, name, join(folders.conversations, 'x'), '2026-06-15T10:00:00.000Z');
         const entry = readFileSync(files.find(file => !file.endsWith('.table.tsx'))!, 'utf8');
-        expect(entry).toContain('<Part>June 2026</Part>');
+        expect(entry).toContain('<Part>Its conversations</Part>');
         expect(entry).toContain('<Date>[15 June 2026](2026-06-15)</Date>');
         expect(entry).toContain("import { Brief } from '../.manual/10-the-manual~annotations.tsx';");
         expect(entry).toContain("import { Dated } from '../.manual/4-the-date~code.tsx';");
         expect(entry).toContain("import { Volume } from '../.manual/19-the-cover~code.tsx';");
         const table = readFileSync(join(project, '.table.tsx'), 'utf8');
-        expect(table).toContain('<Heading>June 2026</Heading>');
-        expect(table).not.toContain('<Heading>Conversations</Heading>');
+        expect(table).toContain('<Heading>Its conversations</Heading>');
+        expect(table.indexOf('Its conversations')).toBeLessThan(table.indexOf('Its files'));
     });
 
     it('refuses two conversations whose ids open alike, rather than number either', () => {

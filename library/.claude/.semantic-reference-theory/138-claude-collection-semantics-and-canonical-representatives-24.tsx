@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--collection-semantics-and-cano
 
 export default () => (
     <Chapter>
-        <Part>August 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[24 August 2026](2026-08-24)</Date>
         </Dated>

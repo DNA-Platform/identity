@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--distinguishing-type-category-
 
 export default () => (
     <Chapter>
-        <Part>July 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[3 July 2026](2026-07-03)</Date>
         </Dated>

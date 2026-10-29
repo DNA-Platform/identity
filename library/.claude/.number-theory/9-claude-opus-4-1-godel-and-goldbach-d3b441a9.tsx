@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--opus-4-1-godel-and-goldbach--
 
 export default () => (
     <Chapter>
-        <Part>October 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[12 October 2025](2025-10-12)</Date>
         </Dated>

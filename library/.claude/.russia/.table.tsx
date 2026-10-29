@@ -10,29 +10,11 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Content>$[[ ./legacy-conversation-history-5-19-2026 ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Russia ]]( claude--Russia )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>October 2026</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Russia plague news manipulation ]]( ./claude--Russia plague news manipulation--313d1090 )</Content>
@@ -60,9 +42,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Russian custody enforcement precedent--5d7f1512 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Green card options for Russian spouse and stepchildren ]]( ./claude--Green card options for Russian spouse and stepchildren--0d99232e )</Content>
@@ -72,9 +51,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Green card options for Russian spouse and stepchildren--0d99232e )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>August 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Being Russian is difficult. My… ]]( ./claude--Being Russian is difficult.. My…--a79636f2 )</Content>
@@ -102,9 +78,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--MIA Request--680c6254 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>July 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Alimony ]]( ./claude--Alimony--3700de01 )</Content>
@@ -132,9 +105,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Project related to Russia--59ee329e )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Translation request ]]( ./claude--Translation request--21151849 )</Content>
@@ -162,9 +132,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Translation request--a25923ae )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ A Continuation... ]]( ./claude--A Continuation......--96b135d1 )</Content>
@@ -183,9 +150,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Preserving narrative continuity across accounts--db506f2e )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>April 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Legal negotiation strategy review ]]( ./claude--Legal negotiation strategy review--65b2b5a1 )</Content>
@@ -213,9 +177,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Understanding boundaries and consequences--308f3d1b )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>March 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Document review and Russian translation for Georgian law firm ]]( ./claude--Document review and Russian translation for Georgian law firm--331de7f9 )</Content>
@@ -270,9 +231,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Translating emotional confrontation to Russian--462a8f9d )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Telegram marketplace for services and crypto payments ]]( ./claude--Telegram marketplace for services and crypto payments--e845b07c )</Content>
@@ -354,9 +312,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Custody changes and appeal procedures in Russian law--9588c3ce )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>January 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Custody weaponization and coercive control ]]( ./claude--Custody weaponization and coercive control--578ce088 )</Content>
@@ -481,6 +436,24 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Creating a project understanding plan--f968f7e4 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
+            <Paragraph>
+                <Content>$[[ ./legacy-conversation-history-5-19-2026 ]]</Content>
+            </Paragraph>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Russia ]]( claude--Russia )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
             </Paragraph>
         </Section>

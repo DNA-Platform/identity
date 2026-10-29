@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--stablecoin-architecture-origi
 
 export default () => (
     <Chapter>
-        <Part>August 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[4 August 2026](2026-08-04)</Date>
         </Dated>

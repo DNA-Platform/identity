@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--chemistry-binding--ded306e6/.
 
 export default () => (
     <Chapter>
-        <Part>September 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[18 September 2025](2025-09-18)</Date>
         </Dated>

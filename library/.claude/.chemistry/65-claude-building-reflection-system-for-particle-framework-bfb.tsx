@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--building-reflection-system-fo
 
 export default () => (
     <Chapter>
-        <Part>November 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[7 November 2025](2025-11-07)</Date>
         </Dated>

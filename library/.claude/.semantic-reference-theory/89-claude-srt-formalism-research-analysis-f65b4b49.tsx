@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--srt-formalism-research-analys
 
 export default () => (
     <Chapter>
-        <Part>October 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[1 October 2025](2025-10-01)</Date>
         </Dated>

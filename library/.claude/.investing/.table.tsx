@@ -10,26 +10,11 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
-            <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
-            </Paragraph>
-            <Paragraph>
-                <Parenthetical />
-                <Word>
-                    <Content>$[[ Investing ]]( claude--Investing )</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Synopsis ]]</Content>
-                </Word>
-                <Word>
-                    <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2026</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Clarity act cryptocurrency bill prospects ]]( ./claude--Clarity act cryptocurrency bill prospects--effbe068 )</Content>
@@ -39,9 +24,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Clarity act cryptocurrency bill prospects--effbe068 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>August 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Stablecoin architecture origins and Tether's conceptual lineage ]]( ./claude--Stablecoin architecture origins and Tether's conceptual lineage--fea3a58f )</Content>
@@ -132,9 +114,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Travel arbitrage opportunities between Tbilisi, London, and New York--979027d4 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>July 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Correcting memory bias toward disagreement ]]( ./claude--Correcting memory bias toward disagreement--74a7bf5d )</Content>
@@ -189,9 +168,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--TON and GRAM ecosystem updates--d5d0756e )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>June 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ X Money's US launch and financial competition ]]( ./claude--X Money's US launch and financial competition--a8e9cd85 )</Content>
@@ -228,9 +204,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--SpaceX IPO analysis and market reaction--7fa923e8 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>May 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Preserving narrative continuity across accounts ]]( ./claude--Preserving narrative continuity across accounts--febe219c )</Content>
@@ -339,9 +312,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Monad technology development and viability assessment--9eb19e42 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>April 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ TON price adoption metrics and network effects ]]( ./claude--TON price adoption metrics and network effects--3d4d9b62 )</Content>
@@ -450,9 +420,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--TON validator rewards and staking profitability--0d2e8949 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>March 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Hedging geopolitical oil disruption with US supply alternatives ]]( ./claude--Hedging geopolitical oil disruption with US supply alternatives--957941dd )</Content>
@@ -534,9 +501,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Well TONX is doing very well..…--c7f58366 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>February 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ Monad L1 security model and consensus mechanism ]]( ./claude--Monad L1 security model and consensus mechanism--35932016 )</Content>
@@ -726,9 +690,6 @@ export default () => (
                     <Content>[[ ▷ ]]( claude--Manuel Stotz's Satorica and TON connection--2df6e607 )***</Content>
                 </Word>
             </Paragraph>
-        </Section>
-        <Section>
-            <Heading>January 2026</Heading>
             <Paragraph>
                 <Word>
                     <Content>$[[ TONX company overview and financial analysis ]]( ./claude--TONX company overview and financial analysis--2017c510 )</Content>
@@ -979,6 +940,21 @@ export default () => (
                 <Word>
                     <Arrow />
                     <Content>[[ ▷ ]]( claude--Uncertainty--5052d0dc )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
+            <Paragraph>
+                <Parenthetical />
+                <Word>
+                    <Content>$[[ Investing ]]( claude--Investing )</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Synopsis ]]</Content>
+                </Word>
+                <Word>
+                    <Content>$[[ ./Table of Contents ]]</Content>
                 </Word>
             </Paragraph>
         </Section>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--polymorphic-book-component-fr
 
 export default () => (
     <Chapter>
-        <Part>September 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[14 September 2025](2025-09-14)</Date>
         </Dated>

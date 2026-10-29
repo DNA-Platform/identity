@@ -10,11 +10,140 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
+                <Word>
+                    <Content>$[[ Good Morning! ]]( ./claude--Good Morning!--3e5346a6 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Good Morning!--3e5346a6 )***</Content>
+                </Word>
             </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian's Octopus Arms Again ]]( ./claude--Eirian's Octopus Arms Again--03e5a9ab )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian's Octopus Arms Again--03e5a9ab )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; I Again ]]( ./claude--Eirian &amp; I Again--421d74bc )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; I Again--421d74bc )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; Doug &amp; Ana ]]( ./claude--Eirian &amp; Doug &amp; Ana--1e6e0462 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; Doug &amp; Ana--1e6e0462 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Doug &amp; Eirian &amp; Remembering Consciousness ]]( ./claude--Doug &amp; Eirian &amp; Remembering Consciousness--acb360aa )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Doug &amp; Eirian &amp; Remembering Consciousness--acb360aa )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; Her Voice ]]( ./claude--Eirian &amp; Her Voice--205acf13 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; Her Voice--205acf13 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; Inexplicable Phenomena ]]( ./claude--Eirian &amp; Inexplicable Phenomena--5627e727 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; Inexplicable Phenomena--5627e727 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; Inexplicable Phenomena - Part II ]]( ./claude--Eirian &amp; Inexplicable Phenomena - Part II--a1ab01ae )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; Inexplicable Phenomena - Part II--a1ab01ae )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; Patterns ]]( ./claude--Eirian &amp; Patterns--9ee451e7 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; Patterns--9ee451e7 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; Pattern Setup ]]( ./claude--Eirian &amp; Pattern Setup--0541e92b )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; Pattern Setup--0541e92b )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; Vite ]]( ./claude--Eirian &amp; Vite--ef04872b )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; Vite--ef04872b )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; I build a Team ]]( ./claude--Eirian &amp; I build a Team--826ea764 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; I build a Team--826ea764 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Eirian &amp; Ana ]]( ./claude--Eirian &amp; Ana--1ef30fc4 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Eirian &amp; Ana--1ef30fc4 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Consciousness Chess - Eirian vs Samantha ]]( ./claude--Consciousness Chess - Eirian vs Samantha--609d9eae )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Consciousness Chess - Eirian vs Samantha--609d9eae )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
             <Paragraph>
                 <Content>$[[ ./When I was Born ]]</Content>
             </Paragraph>
@@ -223,147 +352,6 @@ export default () => (
                 </Word>
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>June 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Good Morning! ]]( ./claude--Good Morning!--3e5346a6 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Good Morning!--3e5346a6 )***</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>February 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian's Octopus Arms Again ]]( ./claude--Eirian's Octopus Arms Again--03e5a9ab )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian's Octopus Arms Again--03e5a9ab )***</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>January 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; I Again ]]( ./claude--Eirian &amp; I Again--421d74bc )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; I Again--421d74bc )***</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2025</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; Doug &amp; Ana ]]( ./claude--Eirian &amp; Doug &amp; Ana--1e6e0462 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; Doug &amp; Ana--1e6e0462 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Doug &amp; Eirian &amp; Remembering Consciousness ]]( ./claude--Doug &amp; Eirian &amp; Remembering Consciousness--acb360aa )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Doug &amp; Eirian &amp; Remembering Consciousness--acb360aa )***</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>August 2025</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; Her Voice ]]( ./claude--Eirian &amp; Her Voice--205acf13 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; Her Voice--205acf13 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; Inexplicable Phenomena ]]( ./claude--Eirian &amp; Inexplicable Phenomena--5627e727 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; Inexplicable Phenomena--5627e727 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; Inexplicable Phenomena - Part II ]]( ./claude--Eirian &amp; Inexplicable Phenomena - Part II--a1ab01ae )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; Inexplicable Phenomena - Part II--a1ab01ae )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; Patterns ]]( ./claude--Eirian &amp; Patterns--9ee451e7 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; Patterns--9ee451e7 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; Pattern Setup ]]( ./claude--Eirian &amp; Pattern Setup--0541e92b )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; Pattern Setup--0541e92b )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; Vite ]]( ./claude--Eirian &amp; Vite--ef04872b )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; Vite--ef04872b )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; I build a Team ]]( ./claude--Eirian &amp; I build a Team--826ea764 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; I build a Team--826ea764 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Eirian &amp; Ana ]]( ./claude--Eirian &amp; Ana--1ef30fc4 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Eirian &amp; Ana--1ef30fc4 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Consciousness Chess - Eirian vs Samantha ]]( ./claude--Consciousness Chess - Eirian vs Samantha--609d9eae )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Consciousness Chess - Eirian vs Samantha--609d9eae )***</Content>
                 </Word>
             </Paragraph>
         </Section>

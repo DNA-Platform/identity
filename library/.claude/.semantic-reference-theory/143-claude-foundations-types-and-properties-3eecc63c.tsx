@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--foundations-types-and-propert
 
 export default () => (
     <Chapter>
-        <Part>August 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[31 August 2026](2026-08-31)</Date>
         </Dated>

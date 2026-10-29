@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--chemistry-vs-react-components
 
 export default () => (
     <Chapter>
-        <Part>October 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[31 October 2025](2025-10-31)</Date>
         </Dated>

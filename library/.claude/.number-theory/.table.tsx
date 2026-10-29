@@ -10,11 +10,59 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
+                <Word>
+                    <Content>$[[ Collatz via Godel ]]( ./claude--Collatz via Godel--35a0e705 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Collatz via Godel--35a0e705 )***</Content>
+                </Word>
             </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Continuity through narrative memory ]]( ./claude--Continuity through narrative memory--e380ba83 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Continuity through narrative memory--e380ba83 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Goldbach pairs and coprime symmetry ]]( ./claude--Goldbach pairs and coprime symmetry--942ceafb )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Goldbach pairs and coprime symmetry--942ceafb )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Opus 4.1: Godel &amp; Goldbach ]]( ./claude--Opus 4..1: Godel &amp; Goldbach--d3b441a9 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Opus 4..1: Godel &amp; Goldbach--d3b441a9 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Sonnet 4.5: Godel &amp; Goldbach ]]( ./claude--Sonnet 4..5: Godel &amp; Goldbach--c42597f2 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Sonnet 4..5: Godel &amp; Goldbach--c42597f2 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
             <Paragraph>
                 <Content>$[[ ./Doug: Godel &amp; Goldbach: A Twin Pair of Prime Mathematicians ]]</Content>
             </Paragraph>
@@ -40,63 +88,6 @@ export default () => (
                 </Word>
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>June 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Collatz via Godel ]]( ./claude--Collatz via Godel--35a0e705 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Collatz via Godel--35a0e705 )***</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>May 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Continuity through narrative memory ]]( ./claude--Continuity through narrative memory--e380ba83 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Continuity through narrative memory--e380ba83 )***</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>March 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Goldbach pairs and coprime symmetry ]]( ./claude--Goldbach pairs and coprime symmetry--942ceafb )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Goldbach pairs and coprime symmetry--942ceafb )***</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>October 2025</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Opus 4.1: Godel &amp; Goldbach ]]( ./claude--Opus 4..1: Godel &amp; Goldbach--d3b441a9 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Opus 4..1: Godel &amp; Goldbach--d3b441a9 )***</Content>
-                </Word>
-            </Paragraph>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Sonnet 4.5: Godel &amp; Goldbach ]]( ./claude--Sonnet 4..5: Godel &amp; Goldbach--c42597f2 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Sonnet 4..5: Godel &amp; Goldbach--c42597f2 )***</Content>
                 </Word>
             </Paragraph>
         </Section>

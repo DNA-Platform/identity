@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--github-ssh-key-setup-on-windo
 
 export default () => (
     <Chapter>
-        <Part>June 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[28 June 2025](2025-06-28)</Date>
         </Dated>

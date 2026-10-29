@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--semantic-primes--64653527/.sy
 
 export default () => (
     <Chapter>
-        <Part>June 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[16 June 2026](2026-06-16)</Date>
         </Dated>

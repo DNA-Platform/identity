@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--secnidazole-for-persistent-gi
 
 export default () => (
     <Chapter>
-        <Part>January 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[24 January 2026](2026-01-24)</Date>
         </Dated>

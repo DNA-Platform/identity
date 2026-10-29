@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--preserving-narrative-continui
 
 export default () => (
     <Chapter>
-        <Part>May 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[24 May 2026](2026-05-24)</Date>
         </Dated>

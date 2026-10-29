@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--monad-l1-security-model-and-c
 
 export default () => (
     <Chapter>
-        <Part>February 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[20 February 2026](2026-02-20)</Date>
         </Dated>

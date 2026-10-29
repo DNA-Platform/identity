@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--remote-android-development-en
 
 export default () => (
     <Chapter>
-        <Part>March 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[18 March 2026](2026-03-18)</Date>
         </Dated>

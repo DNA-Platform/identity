@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--checking-ram-and-memory-on-wi
 
 export default () => (
     <Chapter>
-        <Part>January 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[25 January 2026](2026-01-25)</Date>
         </Dated>

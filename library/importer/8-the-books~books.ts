@@ -39,6 +39,7 @@ export const schemes: Scheme[] = [
 ];
 
 const whereThisBookStandsSection = '        <Section>\n            <Heading>Where this book stands</Heading>';
+const itsFilesSection = '        <Section>\n            <Heading>Its files</Heading>';
 const authorLine = `<Author>${referenceForm('Doug', 'The Librarian', '*')}</Author>`;
 const subjectLine = (words: string, name: string): string => `<Subject>${referenceForm(words, name, '**')}</Subject>`;
 const nameInForm = (name: string): string => written(escaped(name));
@@ -409,9 +410,12 @@ export const projectBook = (
             ...appendLines({ identifier: 'file', type: `.${documentExtension}` }, 0),
         ])));
     }
-    const filesSectionLines = [...chapterNames.flatMap(contentLines), ...parentheticalLines(projectBookName(project.name))];
+    // The table as the project's page reads it since Sprint 118: the project's row first in no section, the
+    // conversations under Its conversations as they come, the files under Its files, the book's own section last.
+    const [projectName, ...fileNames] = chapterNames;
     files.push(writtenFile(join(folder, '.table.tsx'), tableFileText(importPath, ['Arrow', 'Index'], [
-        ...sectionLines('The project and its files', filesSectionLines),
+        ...contentLines(projectName),
+        ...sectionLines('Its files', [...fileNames.flatMap(contentLines), ...parentheticalLines(projectBookName(project.name))]),
         ...sectionLines('Where this book stands', []),
     ])));
 
@@ -431,10 +435,11 @@ export const projectEntry = (
     const importPath = manualImportPath(folders, folder);
     const entryPath = join(folder, `${nextChapterNumber(folder)}-${slugFromName(name.key)}.tsx`);
     const bookRelativePath = relativePath(folder, bookFolder);
-    // A project's entry is dated and set under its month as the register's is, so the project's page can lay its
-    // conversations by month and its side can list the months; Sprint 113, on Doug's 'That is not navigable'.
+    // A project's entry says the section it stands in as its part, Its conversations, and is dated, so the project's
+    // page lists it newest first and its side folds the conversations with their count; Sprint 118, on Doug's number
+    // for concept 011, where Sprint 113 had listed it under its month.
     writtenFile(entryPath, entryFileText(importPath, ['Brief', 'Dated', 'Volume'], [...entryPackageWords, 'Date', 'Part'], bookRelativePath, [
-        `<Part>${monthHeading(instant)}</Part>`,
+        '<Part>Its conversations</Part>',
         '<Dated>',
         `    <Date>${dateReference(instant)}</Date>`,
         '</Dated>',
@@ -446,7 +451,7 @@ export const projectEntry = (
         '</Paragraph>',
         '<Synopsis>{TheSynopsis()}</Synopsis>',
     ]));
-    writtenFile(tablePath, tableWithRow(tableText, monthHeading(instant), rowLines(name, '***'), whereThisBookStandsSection));
+    writtenFile(tablePath, tableWithRow(tableText, 'Its conversations', rowLines(name, '***'), itsFilesSection));
 
     return [entryPath, tablePath];
 };

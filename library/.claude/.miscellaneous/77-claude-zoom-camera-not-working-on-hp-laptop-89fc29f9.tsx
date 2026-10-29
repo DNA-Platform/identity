@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--zoom-camera-not-working-on-hp
 
 export default () => (
     <Chapter>
-        <Part>February 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[11 February 2026](2026-02-11)</Date>
         </Dated>

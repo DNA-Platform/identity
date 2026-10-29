@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--reducing-self-criticism-and-j
 
 export default () => (
     <Chapter>
-        <Part>January 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[28 January 2026](2026-01-28)</Date>
         </Dated>

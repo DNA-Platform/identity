@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--collecting-prototype-chain-pr
 
 export default () => (
     <Chapter>
-        <Part>October 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[30 October 2025](2025-10-30)</Date>
         </Dated>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--reflexivity-and-backwards-arr
 
 export default () => (
     <Chapter>
-        <Part>February 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[21 February 2026](2026-02-21)</Date>
         </Dated>

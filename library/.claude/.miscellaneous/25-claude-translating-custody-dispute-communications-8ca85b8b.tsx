@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--translating-custody-dispute-c
 
 export default () => (
     <Chapter>
-        <Part>December 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[15 December 2025](2025-12-15)</Date>
         </Dated>

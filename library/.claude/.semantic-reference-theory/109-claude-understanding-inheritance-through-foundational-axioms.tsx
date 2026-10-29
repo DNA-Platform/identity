@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--understanding-inheritance-thr
 
 export default () => (
     <Chapter>
-        <Part>December 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[12 December 2025](2025-12-12)</Date>
         </Dated>

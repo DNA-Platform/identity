@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--atomic-wallet--f5461736/.syno
 
 export default () => (
     <Chapter>
-        <Part>January 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[13 January 2026](2026-01-13)</Date>
         </Dated>

@@ -10,11 +10,23 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
+                <Word>
+                    <Content>$[[ Claude Code Portfolio ]]( ./claude--Claude Code Portfolio--c90a25d8 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Claude Code Portfolio--c90a25d8 )***</Content>
+                </Word>
             </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
             <Paragraph>
                 <Content>$[[ ./Ana_Profile_Passive_income ❨1❩ ]]</Content>
             </Paragraph>
@@ -31,18 +43,6 @@ export default () => (
                 </Word>
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>July 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Claude Code Portfolio ]]( ./claude--Claude Code Portfolio--c90a25d8 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Claude Code Portfolio--c90a25d8 )***</Content>
                 </Word>
             </Paragraph>
         </Section>

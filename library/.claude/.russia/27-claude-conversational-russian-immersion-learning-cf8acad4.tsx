@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--conversational-russian-immers
 
 export default () => (
     <Chapter>
-        <Part>March 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[6 March 2026](2026-03-06)</Date>
         </Dated>

@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--axioms-and-semantic-reflectio
 
 export default () => (
     <Chapter>
-        <Part>October 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[14 October 2025](2025-10-14)</Date>
         </Dated>

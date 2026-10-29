@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--mei-and-metamer-analysis-in-p
 
 export default () => (
     <Chapter>
-        <Part>July 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[27 July 2026](2026-07-27)</Date>
         </Dated>

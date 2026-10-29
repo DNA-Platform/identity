@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--unlocking-extra-characters-in
 
 export default () => (
     <Chapter>
-        <Part>April 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[9 April 2026](2026-04-09)</Date>
         </Dated>

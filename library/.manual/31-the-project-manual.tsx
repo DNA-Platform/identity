@@ -35,32 +35,33 @@ export default () => (
         <Section>
             <Heading>The project's page</Heading>
             <Paragraph>
-                The page opens on the conversations held in the project, down the main column as the
-                application lists them, newest first under their months: each a row with its title, its count of
-                exchanges and its day, the whole row leading to the conversation. What the project is for stands
-                first at the head: the brief and the instructions from the project's own chapter, or that none
-                were set, then the counts and where it is filed, then the months as a shape, a bar a month with
-                the fullest the tallest and each leading to its month's section, and under them the search, the
-                index's fourth way, over the entries' titles and synopses and the files' names, each hit leading
-                into the conversation's own page. The knowledge of the project stands in a
-                column at the right where the application keeps it, the chapter about the project and then its
-                files, and a file pressed turns the page to that file's chapter, shown beside its words as every
-                manual shows one; the column goes with the list, and the project's name in the bar brings the
-                list back. The side lists what the table lists by the index's ways, folded, counted, dated and
-                searched, which the type sets when bound: every section a folder, folded until pressed, each month
-                with its count and each row with its day, and no rule of the page's own for the side, since
-                the layout places the side and never dresses it and its specification refuses one that does. The
-                rows, the head and the switch are the list layout's, which the project's layout extends with its
-                knowledge column and <Means>$[[ the register ]]( ./The Register )</Means> wears as it is. The type knows its chapters by what they
+                The page opens on the conversations held in the project, down the middle at the whole width as the
+                application lists them, newest first: each a row with its title and its day, the whole row leading
+                to the conversation, the count of exchanges shown only when the rows carry their synopsis, by the
+                switch at the head. The head is the crumb to the subject the project is filed under, the title, and
+                the search, the index's fourth way, over the entries' titles and synopses and the files' names, each
+                hit leading into the conversation's own page. Nothing of what the project is for stands on the page:
+                the brief and the instructions are the project chapter, reached from the side bar's first row, since
+                a synopsis is what a row shows when it is pressed. The files stand in a column at the right as the
+                application keeps them, and a file pressed turns the page to that file's chapter, shown beside its
+                words as every manual shows one; the column goes with the list, and the project's name in the bar
+                brings the list back. The side lists what the table lists by the index's ways, folded, counted, dated
+                and searched, which the type sets when bound: the project's row first, listed in no section; Its
+                conversations, a folder with its count, folded until pressed; Its files, a folder; the book's own
+                section last. The importer writes the table in that form and says Its conversations as each entry's
+                part, and the type sets the folder's rows by their day, newest first, when bound. No rule of the
+                page's own dresses the side, since the layout places it and never dresses it and its specification
+                refuses one that does; the side's column is the layout's, 220 wide, so the folder's name and its
+                count stand on one line. The rows, the head and the switch are the list layout's, which the project's
+                layout extends with its column and the rows' own grid, and <Means>$[[ the register ]]( ./The Register )</Means> wears as it is. The type knows its chapters by what they
                 are: a file is a chapter that appends a file, the project is the one that appends none, an entry
-                is a chapter holding a synopsis; nothing is placed by position. The importer dates each entry and
-                lists it under its month, as the register's, so the months are the entries' own. A type that
-                extends this one may add to each row, as Claude's project manual adds the way on to the
-                application and the trail a press writes, said in <Means>$[[ Claudes Reference Manual / The Project's Page ]]</Means>.
-                The design was concept 4 of <Means>$[[ Claudes Design / The Project's Page ]]</Means>, its first
-                layout, and is concept 10 of <Means>$[[ Claudes Design / The Conversation and the Project ]]</Means>,
-                the page as it opens, built on 2026-10-23; the way back from a conversation is the trail of its
-                concept 9.
+                is a chapter holding a synopsis; nothing is placed by position. A type that extends this one may
+                add to each row, as Claude's project manual adds the way on to the application and the trail a
+                press writes, said in <Means>$[[ Claudes Reference Manual / The Project's Page ]]</Means>. The design
+                was concept 4 of <Means>$[[ Claudes Design / The Project's Page ]]</Means>, its first layout, then
+                concept 10 of <Means>$[[ Claudes Design / The Conversation and the Project ]]</Means>, built on
+                2026-10-23, and is concept 11 of the same chapter, the page as it opens, built on 2026-10-29 in
+                Sprint 118; the way back from a conversation is the trail of its concept 9.
             </Paragraph>
         </Section>
         <Append

@@ -10,11 +10,32 @@ export default () => (
             <Parenthetical />
             [[ Table of Contents ]]
         </Title>
+        <Paragraph>
+            <Content>$[[ ./The Project ]]</Content>
+        </Paragraph>
         <Section>
-            <Heading>The project and its files</Heading>
+            <Heading>Its conversations</Heading>
             <Paragraph>
-                <Content>$[[ ./The Project ]]</Content>
+                <Word>
+                    <Content>$[[ The Project ]]( ./claude--The Project--c0f5ecaf )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--The Project--c0f5ecaf )***</Content>
+                </Word>
             </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Analyzing Chalmers, Dennett, and Hofstadter on consciousness and ontology ]]( ./claude--Analyzing Chalmers, Dennett, and Hofstadter on consciousness and ontology--586e07a1 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Analyzing Chalmers, Dennett, and Hofstadter on consciousness and ontology--586e07a1 )***</Content>
+                </Word>
+            </Paragraph>
+        </Section>
+        <Section>
+            <Heading>Its files</Heading>
             <Paragraph>
                 <Content>$[[ ./Seren &amp; The Hard Problem ]]</Content>
             </Paragraph>
@@ -34,30 +55,6 @@ export default () => (
                 </Word>
                 <Word>
                     <Content>$[[ ./Table of Contents ]]</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>September 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ The Project ]]( ./claude--The Project--c0f5ecaf )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--The Project--c0f5ecaf )***</Content>
-                </Word>
-            </Paragraph>
-        </Section>
-        <Section>
-            <Heading>May 2026</Heading>
-            <Paragraph>
-                <Word>
-                    <Content>$[[ Analyzing Chalmers, Dennett, and Hofstadter on consciousness and ontology ]]( ./claude--Analyzing Chalmers, Dennett, and Hofstadter on consciousness and ontology--586e07a1 )</Content>
-                </Word>
-                <Word>
-                    <Arrow />
-                    <Content>[[ ▷ ]]( claude--Analyzing Chalmers, Dennett, and Hofstadter on consciousness and ontology--586e07a1 )***</Content>
                 </Word>
             </Paragraph>
         </Section>

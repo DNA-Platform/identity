@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--verifying-openai-report-authe
 
 export default () => (
     <Chapter>
-        <Part>September 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[17 September 2026](2026-09-17)</Date>
         </Dated>

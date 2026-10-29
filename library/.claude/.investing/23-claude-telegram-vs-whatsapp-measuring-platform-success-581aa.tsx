@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--telegram-vs-whatsapp-measurin
 
 export default () => (
     <Chapter>
-        <Part>January 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[26 January 2026](2026-01-26)</Date>
         </Dated>

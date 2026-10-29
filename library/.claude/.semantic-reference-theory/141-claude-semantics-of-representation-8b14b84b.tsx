@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--semantics-of-representation--
 
 export default () => (
     <Chapter>
-        <Part>September 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[10 September 2026](2026-09-10)</Date>
         </Dated>

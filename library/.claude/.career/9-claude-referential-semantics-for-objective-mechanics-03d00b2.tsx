@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--referential-semantics-for-obj
 
 export default () => (
     <Chapter>
-        <Part>February 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[24 February 2026](2026-02-24)</Date>
         </Dated>

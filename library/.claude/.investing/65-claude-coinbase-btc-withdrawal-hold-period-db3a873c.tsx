@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--coinbase-btc-withdrawal-hold-
 
 export default () => (
     <Chapter>
-        <Part>April 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[15 April 2026](2026-04-15)</Date>
         </Dated>

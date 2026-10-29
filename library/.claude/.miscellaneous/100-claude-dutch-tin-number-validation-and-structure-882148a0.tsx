@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--dutch-tin-number-validation-a
 
 export default () => (
     <Chapter>
-        <Part>February 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[23 February 2026](2026-02-23)</Date>
         </Dated>

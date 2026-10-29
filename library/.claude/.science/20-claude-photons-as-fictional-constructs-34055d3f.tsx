@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--photons-as-fictional-construc
 
 export default () => (
     <Chapter>
-        <Part>September 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[29 September 2026](2026-09-29)</Date>
         </Dated>

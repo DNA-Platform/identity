@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--pentagon-ufo-footage-six-side
 
 export default () => (
     <Chapter>
-        <Part>July 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[10 July 2026](2026-07-10)</Date>
         </Dated>

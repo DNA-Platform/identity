@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--identifying-success-through-f
 
 export default () => (
     <Chapter>
-        <Part>July 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[16 July 2026](2026-07-16)</Date>
         </Dated>

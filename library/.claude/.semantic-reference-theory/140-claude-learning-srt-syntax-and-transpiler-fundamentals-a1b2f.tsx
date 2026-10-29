@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--learning-srt-syntax-and-trans
 
 export default () => (
     <Chapter>
-        <Part>July 2026</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[22 July 2026](2026-07-22)</Date>
         </Dated>

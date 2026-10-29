@@ -7,7 +7,7 @@ import TheSynopsis from '../.conversations/claude--creating-array-of-objects-wit
 
 export default () => (
     <Chapter>
-        <Part>November 2025</Part>
+        <Part>Its conversations</Part>
         <Dated>
             <Date>[5 November 2025](2025-11-05)</Date>
         </Dated>

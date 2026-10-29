@@ -118,6 +118,9 @@ export class $Index extends $Annotation {
             const spread = book.chapterAt(contentOf(paragraph)!.identifier)?.annotations.expressed($Spread);
             if (spread === undefined) continue;
             const files = spread.files;
+            // A row in no section that leads to a spread without files gets no chevron: nothing to fold, and no folder
+            // whose rows it must align with. Sprint 118, the project row first in a project manual's table.
+            if (files.length === 0 && !this.sections.some(section => section.text.find($Paragraph).includes(paragraph))) continue;
             paragraph.text.add(this,
                 <FoldChevron
                     foldedWriting={files.length === 0 ? undefined : paragraph}
