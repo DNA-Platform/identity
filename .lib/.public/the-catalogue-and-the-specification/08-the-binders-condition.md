@@ -207,6 +207,10 @@
 
 *Treated 2026-10-29: the source reader names the element each prose run stands in, the structure keeps each chapter's headings, and the wellformed pass claims their ids beside the titles' under the same-address rule, so the clash is refused in the catalogue's first second with both places named and nothing drawn; `.test/gates.regression.ts` binds a galley with one and is refused with no render line. The proof keeps the check as the last gate, for a heading that holds a form.* *Narrowed the same evening, after the first full bind refused 32 conversations whose message and version headings never wear an id, the address book's Opaque stripping every heading of its section but the first: the claim holds only where the heading, its section and everything above and beside it are the package's words; a heading in or beside a library's word stays the proof's.*
 
+## <a id="b51"></a>B51 — A picture's address carries no base — **OPEN, found 2026-10-30 by [Sprint 119](../projection/124-sprint-119--the-public-library.md#u5)**
+
+*A literal that inserts a picture beside a chapter compiles, in [`reference/transform.ts`](../../package/.binding/reference/transform.ts), to `/<folder>/<file>`, and the live server's pictures plugin in [`vite.config.ts`](../../package/.binding/vite.config.ts) answers that bare address, while a page's links go through `pageOf(base, …)` and carry the base. So a library bound under a base other than `/`, the public library at `/inexplicable-phenomena/`, writes `<img src="/.design/1-the-top-page~001-b-desk.png">`, and the preview and the Pages site answer 404 for every picture, the design page's four among them, while every link resolves. His library at `/` is untouched. The treatment is the base prefixed where the picture's address is written and matched, a change under the package for his yes; until then a picture is seen in the design chapter's files and not on the bound page.*
+
 ## <a id="how"></a>How to use this register
 
 - **Cleaning:** *read the entries marked TREAT; treat them; mark them with the date. Add what you found on the way, whether or not you treated it.*
