@@ -2,7 +2,7 @@
 
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [David](../../../../.claude/library/..teamsmanship/..team/david/the-devops-journal/.cover.md), [Gabby](../../../../.claude/library/..teamsmanship/..team/gabby/gabby-and-the-visual-voice/.cover.md)
-- **state:** requirements approved 2026-10-30 on his "Do the sprint as written then, and we do IXP next but then write down in sprint notes"; brainstormed with him in the room on the night Sprint 118 closed; nothing made before the plan
+- **state:** implementation-ready, 2026-10-30, planned the same night on his "Do the sprint as written then"; nothing made before the plan
 - ***The sprint's name is a PROXY; Doug's to rename. So is every name below marked as one.***
 
 ---
@@ -60,9 +60,55 @@ His private library and its import of conversations; any polish of the public li
 - **The library's folder names and port**, mine to choose and flagged: the top catalogue's folder, the autobiography's, the preview's port.
 - **"65"**, sent on its own with nothing before it.
 
+## Decisions
+
+- <a id="d1"></a>**D1 · The library's root is `library/.public` itself**, its books dot folders beside `package` and `.lib`, the inventory told to pass those and the bound site over. Chosen over a sub-root, a level nothing reads, and over moving `package` out, which every import of `@dna-platform/public` stands on.
+- <a id="d2"></a>**D2 · The binder is a copy at `library/.public/..public/.binding`, made as his was:** a `.pubconfig` naming `../../package/.binding` as its origin, its own `package.json` and install, and `npm run sync` bringing the rest; the bound site is `library/.public/..public/`, committed on purpose, as `.gitignore` already says of a library's site. Chosen over binding in CI, which would need chemistry's build and the binder's heap on every deploy, and over the master binding the library in place, a form the binder does not have.
+- <a id="d3"></a>**D3 · The base `/inexplicable-phenomena/` lives in the copy's `.pubconfig`**, so the committed site and the Pages site are one and the same and the local preview serves under the base too, which `vite.config.ts` takes from the configuration. Chosen over the old workflow's environment variable, which made the local site differ from the published one.
+- <a id="d4"></a>**D4 · Four books first, every name a proxy:** the top catalogue `..inexplicable-phenomena`, titled by the library's name and filed under what it is about; the autobiography `.team`, The Team by The Team about The Team, its first chapter the question of who qualifies, in the team's own discussion; the manual `.manual`, the least that binds; Mathematics `.mathematics`, by The Team, filed under the library, about Mathematics, its table empty. Chosen over Doug as the subjects' author, since the library is the team's, and over the identity's ten autobiographies, which the binder refuses as ten.
+- <a id="d5"></a>**D5 · The manual begins by borrowing the binder's test manual**, a book class with a running head, a byline and a theme, and takes from his manual only what a sketch then asks for, each borrowing credited where it stands. Chosen over his forty chapters, which carry his conversations and projects, and over the package's bare words, which draw no cover.
+- <a id="d6"></a>**D6 · The sketches stand in a design book `.design`**, one HTML page a round with its forms on a switch, snapshot off the public preview, photographed at a desk and a phone, none committed as a design: the top page and Mathematics' page first, a project page when a project exists, since a sketch holds nothing he has not named. Chosen over sketching from his library's prints, which carry his palette and his words.
+- <a id="d7"></a>**D7 · The Pages workflow uploads the committed site and deploys it on dispatch, no build**; the push trigger stays off until he says. Chosen over the old build of a folder that no longer exists.
+- <a id="d8"></a>**D8 · The loop for the public library is the workbench borrowed beside the public manual's developing chapter**, finding its library as the tool already does, the parent of its own folder's parent, its built port the public one. Chosen over looking by probe and over a bind for every look.
+- <a id="d9"></a>**D9 · The sync is the commit tool as it stands**, which pushes both identity branches, and a fetch of both at a session's open and close, said in this chapter's state; no code. Chosen over a new tool for a thing that already holds.
+
+## Units
+
+- <a id="u1"></a>**U1 · The root and the copy.** R1, R7; D1, D2, D3. Arthur's with Adam. Files: `library/.public/..public/.binding/.pubconfig`, its `package.json`, the files the sync brings; `.gitignore` for the copy's debris; the preview's port, 4343, a proxy. Mechanism: the copy made as his was and synced from the master; the inventory walking the root and seeing none of `package`, `.lib` and the site. Demo: `npm run sync` naming the files brought; the inventory's line on the empty root, or the bind's refusal in words naming it.
+- <a id="u2"></a>**U2 · The top catalogue, the autobiography and the manual.** R3; D4, D5. Libby's with Arthur, every teammate in the chapter. Files: `..inexplicable-phenomena/` cover, book, synopsis, table; `.team/` the same and chapter 1; `.manual/` the book class and the theme borrowed from the test manual, credited. Mechanism: the books bound by the copy, the proof green; the top filed under what it is about; the autobiography about its author. Demo: the bind's stage lines green and the preview answering on 4343 under the base with the top page listing The Team.
+- <a id="u3"></a>**U3 · Mathematics.** R4; D4. Libby's. Files: `.mathematics/` cover, book, synopsis, table. Mechanism: a subject book about Mathematics with an empty table, bound, its page drawn. Demo: Mathematics on the top page; its page with its About and no books.
+- <a id="u4"></a>**U4 · The site published.** R2; D3, D7. David's. Files: `.github/workflows/deploy-pages.yml`; the committed site. Mechanism: the workflow uploads `library/.public/..public` less `.binding` and deploys it on dispatch; one run by hand. Demo: the Pages address answering with the top page, a link followed under the base.
+- <a id="u5"></a>**U5 · The sketches.** R6; D6. Gabby's with Claude. Files: `.design/` the book and its first chapters, `~001.html` and `~002.html` with their photographs. Mechanism: the snapshot off the preview, a sheet and a script a sketch, forms on a switch, the chapter saying what each form tries; nothing moved into the manual until he says. Demo: each sketch opened from its file and photographed, the chapter naming the photographs.
+- <a id="u6"></a>**U6 · The loop.** R6; D8. Cathy's. Files: `.manual/` a developing chapter and `~workbench.mjs` borrowed from his, its built port 4343. Mechanism: the workbench serving the public library live and looking at the built site. Demo: `look` on the top page live and built, each with its photograph.
+- <a id="u7"></a>**U7 · Records.** R7; D9. Libby's. This chapter's state at each unit's begin and end; [How a Library Is Developed](../writing-a-book/01-02-how-a-library-is-developed.md) gaining the public library's commands; the memory on ports. Demo: the state line reading as the handoff, both identity branches read as level at the close.
+- **R5, a project book's shape, builds nothing this sprint**, since no project is filed until he splits them; it is the next plan's first unit and is said so in the state.
+
+## Test scenarios
+
+- **U1.** `npm run sync` in the copy brings the master's files and keeps the seven kept ones; the inventory lists no book under `package`, `.lib` or `..public`; a bind of the empty root refuses in words that name the root, or the catalogue counts zero.
+- **U2.** The catalogue line counts the books; the proof reads every page back; the top page on 4343 under `/inexplicable-phenomena/` lists The Team and the manual; The Team's page opens; a second autobiography added in a galley of the public library is refused at the catalogue.
+- **U3.** Mathematics on the top page; its page with its About and an empty table; no fault for the empty table.
+- **U4.** The dispatch run green; the Pages address answering; one link followed and landing under the base.
+- **U5.** Each sketch's switch toggles its forms; the photographs exist at the sizes the chapter names; no file under `.manual` changed by a sketch.
+- **U6.** `look` live answers on a library of four books with its photograph; `look … built` photographs the site on 4343.
+- **U7.** The state line rewritten at each unit's begin and end; the anchor check with no new miss.
+
+## Risks
+
+- **The inventory walks `..public` or `package`.** Excluded in `.pubconfig`; the first inventory line says what it saw.
+- **The committed site swells the repo.** Four books and a few hundred files; measured at the first commit and said.
+- **One autobiography.** The identity's teammates arrive later as books under The Team, never as autobiographies; a galley promises the refusal.
+- **The borrowed manual carries his palette.** Credited, and the sketches decide the public one; nothing of his is imported, only copied and said so.
+- **The workbench's port and base.** A copy with its lines changed; a look at 4343 proves it before any sketch.
+
+## The plan checked against itself
+
+Every requirement lands: R1 in U1 and U2; R2 in U4; R3 in U2; R4 in U3; R5 in no unit, by his split still to come, said in the units; R6 in U5 and U6; R7 in U1 and U7. Every unit names what runs and when, and what is seen. The thin place is U5, whose sketches wait on what the bound pages show; it begins after U3 and takes its forms from the page, not from a guess.
+
+
 ## Where things stand
 
-- **Next:** `/ce-plan` on this chapter, then `/ce-work`, each unit written here as it begins and as it ends, on his "write down in sprint notes".
-- **State:** requirements approved 2026-10-30, all seven as written, on his "Do the sprint as written then, and we do IXP next but then write down in sprint notes"; nothing is made before the plan.
+- **Next:** `/ce-work` on this chapter at [U1](#u1), the root and the copy; each unit written here as it begins and as it ends, on his "write down in sprint notes".
+- **State:** implementation-ready 2026-10-30; requirements approved the same night, all seven as written, on his "Do the sprint as written then, and we do IXP next but then write down in sprint notes"; nothing made yet.
 - **To see it:** nothing yet; the public library has no folder.
 - **Pointers:** [What a Library Is](../writing-a-book/01-what-a-library-is.md) for the rules the autobiography and the subjects obey; [How a Library Is Developed](../writing-a-book/01-02-how-a-library-is-developed.md) for the loop the sketches use; the Pages workflow at `.github/workflows/deploy-pages.yml` for what publishing must replace; the binder's test library at `package/.binding/.test` for the smallest library that binds.
