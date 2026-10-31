@@ -139,7 +139,7 @@ end without a principle.
 ## Where things stand
 
 - **Complete:** nothing. The research so far is organized as the results book (2026-10-29), grouped by direction:
-  34 chapters, 26 proved (9 not a principle), 1 first-order sketch, 2 measured, 5 not solved. The objects Doug
+  35 chapters, 27 proved (9 not a principle), 1 first-order sketch, 2 measured, 5 not solved. The objects Doug
   objected to are in `dropped-formalisms.md` beside the notes, 25 entries with his words. That is organization, not
   progress on a part.
 - **Checked against each other** (2026-10-29, Doug: *"You really think you are looking at a set of results that are
@@ -167,6 +167,12 @@ end without a principle.
 
     Not read by Doug, so the gate is not passed. It also found a sentence in the research document's sec:family that
     is false for a two-peak wave (the envelope "near one"). It is recorded in the notes, and main.tex is unchanged.
+  - Part 3, problems 1 and 5 (the principle, why the sine), have a candidate from Doug's question of 2026-10-31:
+    Result 35. An invertible map that puts an amplitude's child uniformly on the analytic signal's circle (constant
+    radius, equal time at every angle) is sigma. On a symmetric amplitude it can be computed as the clock from the peak,
+    which turns out to be the sort, and the sampled sort is exact there. If the map is blind to when values occur
+    (built from the time averages of powers), every amplitude gets its symmetric twin's map, so sigma. Only symmetric
+    one-peak amplitudes reach the circle. Proved, with two stated assumptions; parts 5 and 6 need C^2. Not read by Doug.
 - **Not started:** Parts 1, 3, 4, 5 and 7.
 - **Verified with numbers, for reference** (`explorations.py`):
   - the sort equals cos phi for phases with equal time at every angle (5.6e-6);
