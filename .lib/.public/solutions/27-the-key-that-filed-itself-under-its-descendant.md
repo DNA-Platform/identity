@@ -44,7 +44,7 @@ if (key !== undefined && chain.slice(1).some(cls => catalogueOf(cls).$find(ref) 
 
 **One condition, and it reads as what it means:** *if someone above me already stands for this name, I am not the one declaring it.*
 
-***The default is deliberately exempt.*** A no-argument `cache()` still descends, because [the one you fall to should be the class you wrote](../../../chemistry/.lib/composition/12-the-formula.md#findable-and-asking) — and a promise already pinned that.
+***The default is deliberately exempt.*** A no-argument `cache()` still descends, because [the one you fall to should be the class you wrote](../../../chemistry/.public/.lib/composition/12-the-formula.md#findable-and-asking) — and a promise already pinned that.
 
 **It was watched both ways**: three probes asserting the echo *existed* passed before the change, and the same three inverted pass after.
 

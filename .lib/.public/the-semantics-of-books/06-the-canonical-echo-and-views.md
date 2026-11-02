@@ -4,7 +4,7 @@
 
 ---
 
-Two of the pieces every prior draft treated as *parts of a book* — the Cover and the Table of Contents — are not parts at all. They are **views**. This chapter is how that falls out, and it is the part of the derivation that lands most directly on [$Chemistry](../../../chemistry/.lib/..representivity/.cover.md), because "a thing seen many ways from one representation" is exactly what `view()` and [perspectives](../../../chemistry/.lib/particle/08-perspectives.md) are.
+Two of the pieces every prior draft treated as *parts of a book* — the Cover and the Table of Contents — are not parts at all. They are **views**. This chapter is how that falls out, and it is the part of the derivation that lands most directly on [$Chemistry](../../../chemistry/.public/.lib/..representivity/.cover.md), because "a thing seen many ways from one representation" is exactly what `view()` and [perspectives](../../../chemistry/.public/.lib/particle/08-perspectives.md) are.
 
 ## The canonical echoes
 
@@ -41,7 +41,7 @@ So neither is stored. Doug had seen it coming, in the *pre-physical* passage ([c
 
 The representation holds only the book's own facts — its title, its author reference, its chapters. Cover, spine, and jacket are what different *views* paint from those facts; the e-book is his proof that the physical form was always optional. What I take from it: no class was added at all — two operations do the work that Cover and Table of Contents would each have needed a class to do.
 
-**Team reading (Cathy), rewritten 2026-08-25.** *The first version of this passage mapped the two total views onto the two perspective axes I had built — `look('up')` for the canonical projection and `look('down')` for the flattening. **Those axes were deleted**, and the mapping went with them. What follows is the same claim against [the series of looks](../../../chemistry/.lib/particle/08-perspectives.md) that replaced them, and it is a **better** fit rather than a salvaged one.*
+**Team reading (Cathy), rewritten 2026-08-25.** *The first version of this passage mapped the two total views onto the two perspective axes I had built — `look('up')` for the canonical projection and `look('down')` for the flattening. **Those axes were deleted**, and the mapping went with them. What follows is the same claim against [the series of looks](../../../chemistry/.public/.lib/particle/08-perspectives.md) that replaced them, and it is a **better** fit rather than a salvaged one.*
 
 The two total views are **two members of one series**, which is exactly what the series is for:
 
@@ -50,7 +50,7 @@ The two total views are **two members of one series**, which is exactly what the
 
 **Neither is a class and neither is an altitude of an ancestry.** They are two ways one object draws itself, declared on it, and `look` chooses. *The old mapping needed an inheritance chain to walk; this one needs only that a book knows both of its own total views — which is what the derivation said in the first place.*
 
-And **named views** (Cover, Synopsis, Reading, Links) are the rest of that same series, each named by `@look` — which is [the Lab's book case](../../../chemistry/package/app/src/sections/perspectives-book/case-1.tsx), running today.
+And **named views** (Cover, Synopsis, Reading, Links) are the rest of that same series, each named by `@look` — which is [the Lab's book case](../../../chemistry/.public/package/app/src/sections/perspectives-book/case-1.tsx), running today.
 
 So Cover and Table of Contents are not classes we write. They are `view()`s of one `$Book` and one `$Subject`. The framework's polymorphism *is* the composition's polymorphism — the same closure, discovered twice.
 

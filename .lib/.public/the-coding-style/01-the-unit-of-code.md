@@ -12,7 +12,7 @@
 | | the unit | average file | classes |
 |---|---|---|---|
 | **[`lib`](../../package/src/)** | ***a WORD*** | **58 lines** | *v1: **51 files, 51 classes**, one each · v2: **three classes to a word*** |
-| **[`$Chemistry`](../../../chemistry/package/src/)** | ***a concern*** | **215 lines** | **10 classes in one 1,400-line file** |
+| **[`$Chemistry`](../../../chemistry/.public/package/src/)** | ***a concern*** | **215 lines** | **10 classes in one 1,400-line file** |
 | **the compiler (`build/`)** | ***a phase*** | **107 lines** | ***17 files, 1 class*** |
 
 **All three are defensible and none is a compromise.** *What follows is why each is right for the program it is in* — **and then the one rule that decides all three**, which is the part worth remembering.
@@ -51,7 +51,7 @@
 
 **A reactive substrate's promises are not about any one of its classes.** *A scope, a molecule, a synthesis and a reaction are one mechanism seen from four sides,* **and what has to hold is the relation between them**: *that a read inside a view registers against the scope that is asking, that a write marks exactly the views that read it, that configuration cannot happen while a drawing is being made.*
 
-***None of those can be stated in a file about one class.*** **So they live together**, *and [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) holding ten classes is the mechanism holding itself together rather than a file nobody split.*
+***None of those can be stated in a file about one class.*** **So they live together**, *and [`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts) holding ten classes is the mechanism holding itself together rather than a file nobody split.*
 
 **The cost is real and is accepted:** *a 1,400-line file is not read in one sitting, and finding a member means searching rather than opening.* ***The benefit is that the substrate has no import cycles at all***, **because the classes that would form one are in the same file** — *which is the same fact as `lib`'s three cycles, seen from the other side.*
 

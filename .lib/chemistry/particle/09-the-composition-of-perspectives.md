@@ -1,6 +1,6 @@
 # The Composition of Looks
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 
@@ -110,7 +110,7 @@ So `this` fuses the **subjective standpoint** (whose privacy am I drawing from?)
 
 **Drawing an instance through a *specific ancestor's* view is gone.** The old vertical axis could walk one live object up its own inheritance; the series cannot, because a subclass overriding `view` **replaces** position 0 rather than stacking on it.
 
-**Where a class needs that, it declares the ancestor's drawing as a look of its own.** [`$Document`](../../../.public/package/src/document/Document.tsx) is the live case: a subclass may declare its sections in `view()` — code written in a chapter — and once `declaration()` has harvested them the document sets `$look = 1` to draw them rather than re-emit the declaration. **The capability did not disappear; it stopped being implicit.**
+**Where a class needs that, it declares the ancestor's drawing as a look of its own.** [`$Document`](../../../../.public/package/src/document/Document.tsx) is the live case: a subclass may declare its sections in `view()` — code written in a chapter — and once `declaration()` has harvested them the document sets `$look = 1` to draw them rather than re-emit the declaration. **The capability did not disappear; it stopped being implicit.**
 
 ## See also
 

@@ -187,7 +187,7 @@ Checked against every use found and it holds: `.cover.tsx` and `.synopsis.tsx` s
 
 ***His ask:*** *"I would like strong typing. Do we get it if we use the ref as a prop or is there syntax for getting strong typing the way we have it too with interpolation?"* **Both, and neither needs anything built.**
 
-**A prop is typed because chemistry computes it.** [`$Properties<T>`](../../../chemistry/package/src/implementation/types.ts) maps a chemical's `$`-prefixed members to props with the `$` stripped — so a class declaring `$to?: $Book` **has a typed `to` prop by construction**, and a non-book will not compile. *The archived `$Link` (v1, `.archive/reference/Link.tsx`, deleted) already used this shape with `$url?: string`.*
+**A prop is typed because chemistry computes it.** [`$Properties<T>`](../../../chemistry/.public/package/src/implementation/types.ts) maps a chemical's `$`-prefixed members to props with the `$` stripped — so a class declaring `$to?: $Book` **has a typed `to` prop by construction**, and a non-book will not compile. *The archived `$Link` (v1, `.archive/reference/Link.tsx`, deleted) already used this shape with `$url?: string`.*
 
 **Interpolation is typed because the alias is a real import.** `<Subject>{Math}</Subject>` on a cover fails to compile the moment the file is renamed or the export dropped, and `refer.ts` already reads both `{Alias}` and `<Alias />`.
 

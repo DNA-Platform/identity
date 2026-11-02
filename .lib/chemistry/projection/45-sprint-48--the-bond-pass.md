@@ -1,7 +1,7 @@
 # The Bond Pass
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **style:** [The Coding Style](../../../../.public/.lib/the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 - **status:** `requirements-only` — *re-aimed 2026-09-08 at ONE RENDER, with the wiki as the canonical case; the bond-pass units below are the mechanism it will use.*
 - **was:** `implementation-ready` — *except [U2](#u2), which is **design owed** and marked so.*
 - ***The chapter name and the sprint number are PROXIES; Doug's to rename.***
@@ -46,8 +46,8 @@
 >
 > ***AND A FIRST COUNT SAID TWO. IT WAS WRONG, AND THE WAY IT WAS WRONG IS WORTH KEEPING.*** *It missed the discarded body pass entirely, because a count keyed by `cid` cannot separate the two body passes — **they share an instance, a cid and a call site**, and differ only in whether the cache is set.* **Session `inexplicable-phenomena-0a` reported three and named the discriminator that settles it: record whether `$viewCache# The Bond Pass
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **style:** [The Coding Style](../../../../.public/.lib/the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 - **status:** `requirements-only` — *re-aimed 2026-09-08 at ONE RENDER, with the wiki as the canonical case; the bond-pass units below are the mechanism it will use.*
 - **was:** `implementation-ready` — *except [U2](#u2), which is **design owed** and marked so.*
 - ***The chapter name and the sprint number are PROXIES; Doug's to rename.***
@@ -184,7 +184,7 @@
 
 ***Doug's instruction was "the other sessions are blocked on this. Coordinate. See that you are addressing it."*** **Checked, and the answer is negative.**
 
-**[Solutions 53](../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md) is session inexplicable-phenomena-7e's own instrumented measurement of the loop that blocks them**, and it rules this family out in one number: ***zero setter entries across 40,001 instrumented events, against 377 live reactive accessors.*** *Its own sentence: **"THE LOOP IS NOT REACTIVITY."***
+**[Solutions 53](../../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md) is session inexplicable-phenomena-7e's own instrumented measurement of the loop that blocks them**, and it rules this family out in one number: ***zero setter entries across 40,001 instrumented events, against 377 live reactive accessors.*** *Its own sentence: **"THE LOOP IS NOT REACTIVITY."***
 
 > ***So the forward-only bond pass does not unblock them, and saying it did would be the third attempt of its kind.*** **Two proposals in exactly this family — both Doug's — were already built and correctly changed nothing:** *widening the setter's quiet zone to honour `$phase$ === 'setup'`, and a snapshot after the bond.*
 
@@ -233,7 +233,7 @@ else { this[$reaction$]?.react(); diffuse(this); }
 
 ***The commonest thing an author would try, and it silently does not work.*** **[`groupInline`](../../package/src/abstraction/chemical.ts) lifts each inline element with `evalElement`, which builds `new $Eval()` per element per pass — a throwaway host with a fresh synthesis and therefore a fresh bound-child cache.** *So every re-render of a `$Writing` rebuilds every inline part it holds, runs their bond constructors again on new instances, and unmounts the old ones.*
 
-**Measured in [Solutions 52](../../../.public/.lib/solutions/52-the-pieces-a-writing-remade-each-time-it-drew.md):** *the writing `[38]` and its block `[51]` held identity for the whole run while the block's contents went `[53],[56]` → `[70],[73]` → `[84],[87]` → `[98],[101]` → `[112],[115]`.* ***A `<Highlight>` that counts, a `<Reference>` that caches its resolution, a formula that parsed its own text — each starts again every time the paragraph around it repaints.***
+**Measured in [Solutions 52](../../../../.public/.lib/solutions/52-the-pieces-a-writing-remade-each-time-it-drew.md):** *the writing `[38]` and its block `[51]` held identity for the whole run while the block's contents went `[53],[56]` → `[70],[73]` → `[84],[87]` → `[98],[101]` → `[112],[115]`.* ***A `<Highlight>` that counts, a `<Reference>` that caches its resolution, a formula that parsed its own text — each starts again every time the paragraph around it repaints.***
 
 > ***R1–R4 REDUCE this and do not fix it.*** *Fewer spurious re-renders means fewer remakings, but a genuine re-render still remakes. **The fix is a bound-child cache on the inline path** — [U8](#u8), and it is the half of Doug's original ask that the deferral does not reach.*
 
@@ -269,7 +269,7 @@ else { this[$reaction$]?.react(); diffuse(this); }
 
 **The cause is [`particle.ts:509`](../../package/src/abstraction/particle.ts): a `useEffect` with NO dependency array that re-runs the view and diffs it against the cache on every commit, unconditionally.** *Read here to confirm — it calls `p[$renderView$]()` a second time, and calls `p[$update$]()` whenever `diff` says the output changed.*
 
-> ***And it is the SAME line [Solutions 53](../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md) names as the loop's re-entry mechanism*** — *there it re-entered forever because a half-built chemical drew a fresh Fragment every call; here it simply costs a pass on every tree, forever, whether or not anything changed.* **One line, two symptoms, and the second was invisible until somebody ran a page that did nothing.**
+> ***And it is the SAME line [Solutions 53](../../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md) names as the loop's re-entry mechanism*** — *there it re-entered forever because a half-built chemical drew a fresh Fragment every call; here it simply costs a pass on every tree, forever, whether or not anything changed.* **One line, two symptoms, and the second was invisible until somebody ran a page that did nothing.**
 
 ***Deliberately NOT taken on.*** **The effect is the framework's own change detection and blunting it is a separate design with its own risk** — *and [U1](#u1) already removed the input that made it pathological.* **It is recorded so that [U7](#u7)'s number is honest: the pass removes the reaction storm and leaves this, and a benchmark that claims both would be claiming someone else's saving.**
 
@@ -315,7 +315,7 @@ else { this[$reaction$]?.react(); diffuse(this); }
 
 > ***THE RESULT, from session inexplicable-phenomena-7e within minutes of it landing:*** **`Error: a title means what it titles, and this one means nothing`** — *one run, one sentence, exit in seconds, where there had been heap death and six failed attempts to instrument.* ***And it was never `$Book`.***
 >
-> **The fault it exposed:** *[`Title.tsx:34`](../../../.public/package/src/book/Title.tsx) carries `@specify('a title means what it titles')` checking `writing.meaning !== undefined`. A bare `<Title>Chemistry</Title>` carries no reference, so it means nothing, so **its** bond throws and everything above it collapses.* **The `$Book` errors that were chased for two sessions were all downstream of a cover whose title never constructed**, *and `order=[$Cover,$Chapter,$TypeOfBook]` was the state after an abort rather than a cause.*
+> **The fault it exposed:** *[`Title.tsx:34`](../../../../.public/package/src/book/Title.tsx) carries `@specify('a title means what it titles')` checking `writing.meaning !== undefined`. A bare `<Title>Chemistry</Title>` carries no reference, so it means nothing, so **its** bond throws and everything above it collapses.* **The `$Book` errors that were chased for two sessions were all downstream of a cover whose title never constructed**, *and `order=[$Cover,$Chapter,$TypeOfBook]` was the state after an abort rather than a cause.*
 >
 > ***AND THE RULE CANNOT HOLD AT CONSTRUCTION, BY ITS OWN DESIGN.*** **A title's meaning is emitted by the COMPILER; `specify()` in a bond asks for it at build time, before any compiler has run.** *So the rule and the seat are incompatible in principle rather than by accident — which is [U1](#u1) doing exactly what it was for: making the cause legible instead of stopping the symptom.* **What Doug now owes is which of the two moves: the rule is compiler-time and must not run in a bond, or every title everywhere carries a reference — and nine sites in the suite plus BOTH demo covers write a bare title today.**
 
@@ -426,7 +426,7 @@ writes=false   bond-open > bond-close > trunk-view > trunk-view >
 | **files** | [`chemical.ts`](../../package/src/abstraction/chemical.ts) — `groupInline` |
 | **depends on** | *nothing structurally; sequenced after [U3](#u3) so the two are measured apart* |
 | ***visible end*** | ***an inline part that counts still holds its count after the paragraph around it repaints*** |
-| **caution** | *[Solutions 52](../../../.public/.lib/solutions/52-the-pieces-a-writing-remade-each-time-it-drew.md) records Doug ruling this churn his to clean; this unit is the exception's exception and needs his word specifically* |
+| **caution** | *[Solutions 52](../../../../.public/.lib/solutions/52-the-pieces-a-writing-remade-each-time-it-drew.md) records Doug ruling this churn his to clean; this unit is the exception's exception and needs his word specifically* |
 
 ## <a id="probes"></a>Probes — each created and removed in one command
 
@@ -445,7 +445,7 @@ writes=false   bond-open > bond-close > trunk-view > trunk-view >
   ***And [B2](#b2) is in the same trace, quantified:*** **trunk-view 4 times and leaf-view 5 times, across two renders of a TWO-NODE tree.**
 
 - ***<a id="p3"></a>A trap that cost two probe attempts, and every promise in [U5](#u5) will meet it:*** **a NON-INLINE child never reaches the block.** *A `$Leaf` without `inline = true` gets its own bond argument, so a trunk declaring `(block: $Block)` is handed an **empty** block — `BLOCK []` verbatim — and measures **0** while looking correct.* **The child must be inline, or declared as its own parameter.**
-- ***<a id="p4"></a>AND ITS SIBLING, which is the rule under both:*** **a probe that measures a cost without a DO-NOTHING control cannot tell a framework cost from a user cost.** *The no-write run is what separated the reaction storm from [B6](#b6)'s extra paint, and the empty-block run is what would have made a true number mean the wrong thing.* ***It is [Solutions 53](../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md)'s 377-live-accessors control, one level out:*** **a zero is only evidence when something in the same run proves the instrument was watching.**
+- ***<a id="p4"></a>AND ITS SIBLING, which is the rule under both:*** **a probe that measures a cost without a DO-NOTHING control cannot tell a framework cost from a user cost.** *The no-write run is what separated the reaction storm from [B6](#b6)'s extra paint, and the empty-block run is what would have made a true number mean the wrong thing.* ***It is [Solutions 53](../../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md)'s 377-live-accessors control, one level out:*** **a zero is only evidence when something in the same run proves the instrument was watching.**
 - ***And run it in the BROWSER before believing it.*** *The `happy-dom` trace of [U2](#u2) reached the right conclusion for a reason the browser did not support, and the browser's own first trace read as a refutation until a commit marker disambiguated it.* **A test environment's batching is not React's.**
 - ***Declare any class that subclasses a `.public` class INSIDE the test function*** — [B5](#b5).
 
@@ -519,7 +519,7 @@ writes=false   bond-open > bond-close > trunk-view > trunk-view >
 
 ## <a id="lanes"></a>Lanes — agreed with both open sessions
 
-***This session holds `library/chemistry/package/`.*** **`library/.public/package/src` and `.wiki` are session inexplicable-phenomena-7e's**; ***`.lib` and the sprint chapters are session inexplicable-phenomena-ad's***, *which is why [Solutions 53](../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md) gains this sprint's measurements rather than a second chapter about one defect.*
+***This session holds `library/chemistry/package/`.*** **`library/.public/package/src` and `.wiki` are session inexplicable-phenomena-7e's**; ***`.lib` and the sprint chapters are session inexplicable-phenomena-ad's***, *which is why [Solutions 53](../../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md) gains this sprint's measurements rather than a second chapter about one defect.*
 
 **7e's state, in their words: standing, not mid-move** — *`specify()` removed from `$Writing`'s bond and added to 38 kind bonds, plus `$Book.placed()` inserting after what it should follow; `tsc` 0; nothing half-applied.* **Their working copy is left exactly as found.**
 
@@ -552,9 +552,9 @@ writes=false   bond-open > bond-close > trunk-view > trunk-view >
 | **the regress** | *closed by **nullability**, on Doug's ruling — **"nothing mentions a mention"**. Self-reference was refused: "I love self-reference. I don't like the switch"* |
 | **the module cycle** | *dissolved by a **type-only** import — returning the mention needs no class at runtime* |
 | **`$$Book`** | *the last `addType` after `super` in the package; now the concat form.* **`addType` callers in `src`: 0** |
-| ***a url parser*** | [`src/utilities/Url.ts`](../../../../.archive/.public/package/src/utilities/Url.ts) — *each part separate, `reads` versus `addresses`; `$Path` and `$Reference` both ask it instead of duplicating `URL.canParse`* |
+| ***a url parser*** | [`src/utilities/Url.ts`](../../../../../.archive/.public/package/src/utilities/Url.ts) — *each part separate, `reads` versus `addresses`; `$Path` and `$Reference` both ask it instead of duplicating `URL.canParse`* |
 
-***The lesson is compounded, not repeated here:*** **[The Reference, and What It Points With](../../../.public/.lib/the-semantics-of-books/16-the-reference-and-its-locator.md#the-mention)** — *Q1 answered, the identification half standing alone as a mention, and the general shape: **a stand-in inherits the rules written for the thing it stands for and cannot satisfy them.***
+***The lesson is compounded, not repeated here:*** **[The Reference, and What It Points With](../../../../.public/.lib/the-semantics-of-books/16-the-reference-and-its-locator.md#the-mention)** — *Q1 answered, the identification half standing alone as a mention, and the general shape: **a stand-in inherits the rules written for the thing it stands for and cannot satisfy them.***
 
 ***Green at close:*** **`.public` tsc 0 · 77 of 77 · demo 0 refusal panels on `/` and `/article` with 1,765 and 17,647 characters, 48 and 67 anchors, 0 empty hrefs, driven with a reload.** *Chemistry tsc 0 · 871 of 871 · Lab driver 43/0/0/0.*
 
@@ -582,7 +582,7 @@ writes=false   bond-open > bond-close > trunk-view > trunk-view >
 
 ***DESIGNED SINCE, and by another session: the design question is ANSWERED.*** **[U2](#u2) is the microtask, not the catalyst** — *because nothing in this codebase time-slices, so a microtask queued inside a bond drains after the whole tree rather than mid-tree.* **Confirmed in Chrome, not only under vitest: a commit marker lands BEFORE the microtask in both the writing and the non-writing run.** *And [P2](#p2) has turned [the mechanism](#the-mechanism) from read into measured: one write inside a bond, `duringBond=2`, the second landing on the trunk whose bond is running.* **Both are session `inexplicable-phenomena-ad`'s work; every fact they rest on was re-checked here before being written down.**
 
-> ***AND THE CONTROL FOUND A DEFECT NOBODY WAS LOOKING FOR.*** **Running the identical probe with the bond writing nothing gives `react()` 0 — and the extra views are still there.** *So what this chapter had called one thing is two: the reaction storm, which is the bond's writes and which the pass removes, and [B6](#b6) — **an unconditional extra pass every tree pays**, from the same dependency-array-less effect [Solutions 53](../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md) blames for its loop.* ***Not taken on, and recorded so [U7](#u7)'s number does not claim someone else's saving.***
+> ***AND THE CONTROL FOUND A DEFECT NOBODY WAS LOOKING FOR.*** **Running the identical probe with the bond writing nothing gives `react()` 0 — and the extra views are still there.** *So what this chapter had called one thing is two: the reaction storm, which is the bond's writes and which the pass removes, and [B6](#b6) — **an unconditional extra pass every tree pays**, from the same dependency-array-less effect [Solutions 53](../../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md) blames for its loop.* ***Not taken on, and recorded so [U7](#u7)'s number does not claim someone else's saving.***
 
 ***Not started: the feature itself.*** *The pass ([U3](#u3)), the refusal ([U4](#u4)), its promises ([U5](#u5)) and its numbers ([U7](#u7)) — all designed now, none begun.* **Doug holds the design and the ruling on the member the write path gains; `-ad` is waiting on his word and has built nothing.**
 
@@ -625,7 +625,7 @@ writes=false   bond-open > bond-close > trunk-view > trunk-view >
 
 ***Session 7e's, every one measured:*** *setting `$exceptions.mode = 'throw'` from a test **before** U1 (dies, because of the `!dev` gate) · `NODE_ENV=production` on the vitest command (the runner will not start) · removing `specify()` from `$Book` alone, and from the four kinds `placed()` makes (both still die) · throwing at a call cap (swallowed like everything else).*
 
-***And two earlier ones in [Solutions 53](../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md), both Doug's, both built, both correctly changing nothing:*** *widening the setter's quiet zone to honour `$phase$ === 'setup'`, and a snapshot after the bond.* **Reactivity is not the cause of that loop, and this sprint does not claim it is.**
+***And two earlier ones in [Solutions 53](../../../../.public/.lib/solutions/53-the-bond-that-failed-quietly-and-drew-forever.md), both Doug's, both built, both correctly changing nothing:*** *widening the setter's quiet zone to honour `$phase$ === 'setup'`, and a snapshot after the bond.* **Reactivity is not the cause of that loop, and this sprint does not claim it is.**
 
 ***One trap that costs runs:*** **a top-level `class X extends $Book` in a new test file throws `Class extends value undefined is not a constructor`** — *import order, because `Book.tsx` sits in a cycle.* **Declare such a class inside the test function.**
 

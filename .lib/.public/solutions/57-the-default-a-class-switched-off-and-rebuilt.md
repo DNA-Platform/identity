@@ -15,7 +15,7 @@
 
 ## The mechanism — ***a class overrode a default to nothing, then hand-built the default***
 
-**Chemistry's default is one line.** [`$Chemical.view()`](../../../chemistry/package/src/abstraction/chemical.ts) returns `this[children]`, and `styling()` then stands those children in the element the class's `selector` names — *or, where what it was handed already IS that element, restyles it in place and adds nothing to the tree.* **A styled chemical with no view is a complete, promised feature:**
+**Chemistry's default is one line.** [`$Chemical.view()`](../../../chemistry/.public/package/src/abstraction/chemical.ts) returns `this[children]`, and `styling()` then stands those children in the element the class's `selector` names — *or, where what it was handed already IS that element, restyles it in place and adds nothing to the tree.* **A styled chemical with no view is a complete, promised feature:**
 
 ```ts
 // chemistry's own promise, tests/abstraction/styled.test.tsx

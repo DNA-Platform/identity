@@ -143,7 +143,7 @@ override view(): ReactNode {
 
 **A method with distinct phases may separate them with a blank line, exactly as prose separates paragraphs.** *The phases are one thought; the blank line says where the thought turns.*
 
-***This amends [The Grammar](../../../chemistry/.lib/authorship/01-the-grammar.md), which says flatly:*** **"No blank lines inside methods. A method is one thought. If it needs blank lines, it is doing too many things."** *That was written before the phase case was named, and it is the narrower rule.*
+***This amends [The Grammar](../../../chemistry/.public/.lib/authorship/01-the-grammar.md), which says flatly:*** **"No blank lines inside methods. A method is one thought. If it needs blank lines, it is doing too many things."** *That was written before the phase case was named, and it is the narrower rule.*
 
 > ***The amendment, and it belongs to the Grammar's author to make:*** **a method is one thought, and a thought may be written in more than one paragraph.** *What the Grammar was guarding against — a method doing several unrelated jobs — is still forbidden, and is now told apart from a method doing one job in stages.*
 

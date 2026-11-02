@@ -42,7 +42,7 @@ A class asking whether it had been overridden. That is the tell, and it names th
 
 ## The fix
 
-The declaration is read **once**, and then the document draws the sections it holds — through [`frame`](../../../chemistry/package/src/abstraction/particle.ts), the seam already built for exactly this: *"frame wraps the view; the framework calls frame which calls view."*
+The declaration is read **once**, and then the document draws the sections it holds — through [`frame`](../../../chemistry/.public/package/src/abstraction/particle.ts), the seam already built for exactly this: *"frame wraps the view; the framework calls frame which calls view."*
 
 **And the self-check is deleted with nothing in its place.** It was guarding a case that resolves itself: a document that writes no sections falls through with nothing, because the base view renders parts that are not there yet and finds none. Ceremony, not logic.
 

@@ -329,8 +329,8 @@ libraryOf(book):
 
 *Each claim marked with what backs it, per the standard that a claim carries its state.*
 
-1. **A type's code needs no new mechanism.** A type references a part of a book (R16); a part is a `$Chemical`; chemicals already carry methods, and `valid()` is already *"the accruing instance specification."* Constraint code is the referenced part's own method. **Verified** — [Check](../../../chemistry/.lib/composition/04-check.md).
-2. **Markup becomes live instances outside a render.** `$()` eval *"runs the real bond-constructor synthesis over a single element and returns the materialized instance"* — no parallel construction path. **Verified** — built in [chemistry's Sprint 44](../../../chemistry/.lib/projection/43-sprint-44--eval-and-the-block-model.md), locked by `eval.test.tsx`.
+1. **A type's code needs no new mechanism.** A type references a part of a book (R16); a part is a `$Chemical`; chemicals already carry methods, and `valid()` is already *"the accruing instance specification."* Constraint code is the referenced part's own method. **Verified** — [Check](../../../chemistry/.public/.lib/composition/04-check.md).
+2. **Markup becomes live instances outside a render.** `$()` eval *"runs the real bond-constructor synthesis over a single element and returns the materialized instance"* — no parallel construction path. **Verified** — built in [chemistry's Sprint 44](../../../chemistry/.public/.lib/projection/43-sprint-44--eval-and-the-block-model.md), locked by `eval.test.tsx`.
 3. **That path already runs under Node today.** Both suites — 622 chemistry, 108 lib — materialize and validate chemicals under vitest with `environment: 'happy-dom'`, targeting `node14`. A build-time run is that same environment with a different caller. **Verified** by reading both `vitest.config.ts` files. **Precisely: Node *with a DOM shim*, not bare Node** — whether the model materializes with no DOM at all is **unproven** and wants a probe before 50 relies on it.
 4. **One artifact serves both callers.** The package already ships dual-format — `dist/lib.js` (ESM), `dist/lib.cjs`, `dist/lib.d.ts` — so a build script and the app import the same code. **Verified** in `package.json`.
 5. **The split is a line the framework already draws.** `valid()` reads the model and answers a boolean, touching no DOM; `view()` is React. So **constraint code runs anywhere, view code runs in the app** — which is the existing seam, not a new one. **Reasoned from the built model**, not yet exercised at build time.
@@ -364,13 +364,13 @@ libraryOf(book):
 
 *Sprint 48 reaches into the framework package. Named as scope, not discovered as drift.*
 
-- **R27. All bond constructors on the chain must be called.** Today the framework [walks the class chain and binds with the **nearest** method it finds](../../../chemistry/.lib/composition/03-binding-constructor.md), calling it **once** — a subclass that declares one silently **replaces** its parent's. That is why types cannot be reconfigured.
+- **R27. All bond constructors on the chain must be called.** Today the framework [walks the class chain and binds with the **nearest** method it finds](../../../chemistry/.public/.lib/composition/03-binding-constructor.md), calling it **once** — a subclass that declares one silently **replaces** its parent's. That is why types cannot be reconfigured.
 - **R28.** The framework calls **only the last declared** bond constructor; **the previous ones are called by it**, as C# constructors call each other. **Arguments may be adapted** on the way up.
 - **R29.** A system **ensures they have all been called** — probably by wrapping the bond constructor so a side effect can be monitored.
 - **R30. Skipping is fine.** A subclass that declares no bond constructor still binds through its ancestor's; the system starts at the last declared. *The standing ban on ceremonial binding constructors (Doug, 2026-07-31) survives untouched.*
 - **R31. Async is already handled** — `$construction$` awaits, and the wrapper monitors completion. The compiler cannot help here: bond constructors are **named after their own class**, so TypeScript sees unrelated methods with no override relationship, no signature check and no missing-await check. Enforcement must be runtime by construction.
 - **R32.** A **`formed`** method, called after all bond constructors complete — the natural place for validation. *Consequence: moving `assertValid` off the bond constructor changes behaviour for every chemical — 622 tests in chemistry, 108 in the lib.*
-- **R33. Validation is diagnosable in the UI.** *Verified already built: a failed bond stores [`$devError$`/`$devException$`](../../../chemistry/package/src/abstraction/chemical.ts) on the chemical and renders through `$exceptions.render(error).view()`. The invalid instance survives and renders its own validation failure.* What is missing: `assertValid` throws one generic sentence — *"`$Book` is not valid after its bond constructor"* — with no reason and no source. With types weighing in from several places, a validation failure must say **which** check failed.
+- **R33. Validation is diagnosable in the UI.** *Verified already built: a failed bond stores [`$devError$`/`$devException$`](../../../chemistry/.public/package/src/abstraction/chemical.ts) on the chemical and renders through `$exceptions.render(error).view()`. The invalid instance survives and renders its own validation failure.* What is missing: `assertValid` throws one generic sentence — *"`$Book` is not valid after its bond constructor"* — with no reason and no source. With types weighing in from several places, a validation failure must say **which** check failed.
 
 ## Out of scope, named
 
@@ -410,7 +410,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 
 ## Decisions
 
-**D1 — The framework changes land first, and they land in the other package.** R27–R33 are `$Chemistry` work in [`library/chemistry/package`](../../../chemistry/package/). Every lib requirement validates through them, so building the lib first would mean building against a mechanism scheduled to change. *Chosen over: doing the lib first and retrofitting — which is how a framework change becomes a rewrite.*
+**D1 — The framework changes land first, and they land in the other package.** R27–R33 are `$Chemistry` work in [`library/chemistry/package`](../../../chemistry/.public/package/). Every lib requirement validates through them, so building the lib first would mean building against a mechanism scheduled to change. *Chosen over: doing the lib first and retrofitting — which is how a framework change becomes a rewrite.*
 
 **D2 — Types weigh in on validation, not on construction.** `valid()` already accrues up the chain by calling `super.valid()`; bond constructors do not. Types contribute constraints to the side that already composes. *Chosen over: types reconfiguring what children a class accepts — which is a second framework change on top of D1, and no requirement asks for it.*
 
@@ -536,7 +536,7 @@ We may **draw inspiration** from the hand-written library — it is the [proof o
 5. **"Please do a good job designing the library catalogue"** — the catalogue's own design is part of the brief, not incidental apparatus.
 6. **"A beautiful and unique aesthetic experience when swapping"** between the shelf and the writing-based view. The **transition itself is the designed thing**, not a toggle.
 
-Two views of one library — spines and writing — is the [perspectives](../../../chemistry/.lib/particle/08-perspectives.md) design doing exactly what it was built for. **Phillip and Gabby lead**; the *extremely well-designed* filter runs here before Doug sees it.
+Two views of one library — spines and writing — is the [perspectives](../../../chemistry/.public/.lib/particle/08-perspectives.md) design doing exactly what it was built for. **Phillip and Gabby lead**; the *extremely well-designed* filter runs here before Doug sees it.
 
 **What it must show.** The auto-categorical loop **followed on screen** — the library's subject reference pointing at its own cover, followed, arriving home (R8, AE3). Types as **form** — the same book wearing a type, and the type changing what it must be (R18). And a **validation failure read on the page** rather than in a console, naming which type failed (R33, AE2).
 
@@ -551,9 +551,9 @@ Two views of one library — spines and writing — is the [perspectives](../../
 5. [Composition and Collection](../the-semantics-of-books/09-composition-and-collection.md) — the two container operations; the overflow specification (R19).
 6. [On Kinds](../../../../.claude/library/bookkeeping/15-on-kinds.md) — the naming discipline: population, two filters, never argue a candidate into place.
 7. [On Subjects](../../../../.claude/library/bookkeeping/07-on-subjects.md) and [On Libraries](../../../../.claude/library/bookkeeping/08-on-libraries.md) — subject and library catalogues as we already live them.
-8. [The Binding Constructor](../../../chemistry/.lib/composition/03-binding-constructor.md) and [Check](../../../chemistry/.lib/composition/04-check.md) — what R27–R33 change.
+8. [The Binding Constructor](../../../chemistry/.public/.lib/composition/03-binding-constructor.md) and [Check](../../../chemistry/.public/.lib/composition/04-check.md) — what R27–R33 change.
 9. [Sprint 47 — The Catalogue](05-sprint-47--the-catalogue.md) — every standing specification this sprint must not break.
-10. [Structural Patterns](../../../chemistry/.lib/authorship/02-structural-patterns.md) — the coding specification for every class this sprint adds.
+10. [Structural Patterns](../../../chemistry/.public/.lib/authorship/02-structural-patterns.md) — the coding specification for every class this sprint adds.
 
 ## A fifth step — PROPOSAL, tried here first
 
@@ -621,7 +621,7 @@ Two views of one library — spines and writing — is the [perspectives](../../
 
 **U3's prerequisite, read and it changed the unit.** **`$form` already exists** in `$Chemistry` — a lifecycle hook that runs **once after mount**, guarded by `$formRan$` so it never repeats, with `$formPromise$` carrying async completion (`particle.ts`, `tests/react/form-lifecycle.test.tsx`). **It is not what U3 needs.** `formed` must run **after the bond-constructor chain completes, on every bind** — a different moment and a different frequency. Reusing `$form` would be wrong.
 
-**RAISED, NOT RESOLVED — a naming collision on the framework's visible semantics.** `$form` (existing, mount-time, prop-shaped) and `formed` (Doug's word for the after-the-chain hook) are one letter apart. By [the grammar](../../../chemistry/.lib/authorship/01-the-grammar.md), a no-`$` method is author-facing — `view`, `valid`, `next` — so `formed()` fits that family and `$form` stays where it is. **Doug's word before anything is written.**
+**RAISED, NOT RESOLVED — a naming collision on the framework's visible semantics.** `$form` (existing, mount-time, prop-shaped) and `formed` (Doug's word for the after-the-chain hook) are one letter apart. By [the grammar](../../../chemistry/.public/.lib/authorship/01-the-grammar.md), a no-`$` method is author-facing — `view`, `valid`, `next` — so `formed()` fits that family and `$form` stays where it is. **Doug's word before anything is written.**
 
 **The first `/ce-review` round ran, and it corrected the step itself.** I asked Doug to *rule on doneness* — which inverts the responsibility. He fixed it: **the implementer owns being done**, review is where he **weighs in**, and what a round produces is **new requirements** that loop back to work (R35, R36). The skill was rewritten and recompiled the same act; the cover moved with it. **The round's own product is R35 and R36** — which is the step working, not a detour.
 

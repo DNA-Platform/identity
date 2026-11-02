@@ -1,8 +1,8 @@
 # The Cascade
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **coauthor:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **coauthor:** [Queenie](../../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
+- **style:** [The Coding Style](../../../../.public/.lib/the-coding-style/03-the-coding-style.md)
 - **status:** `built, local` — *opened and built 2026-10-08 from [the pitch](00-planning.md#pitch-cascade); committed `554dbc8` in chemistry, nothing pushed; awaiting Doug's decision — "It's a serious change."*
 - ***The chapter name and the sprint number are PROXIES.*** *The number is the team's next after the public branch's 101; the name is the pitch's.*
 

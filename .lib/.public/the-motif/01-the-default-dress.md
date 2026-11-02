@@ -9,7 +9,7 @@
 
 ## <a id="styled-chemicals"></a>THE DRESSES ARE STYLED CHEMICALS — 2026-09-04
 
-***Every dress in the encyclopedia is now a chemical that says what it is styled as.*** **The mechanism is [$Chemistry's own](../../../chemistry/.lib/particle/11-styled-particles.md)**; what belongs here is how this library uses it.
+***Every dress in the encyclopedia is now a chemical that says what it is styled as.*** **The mechanism is [$Chemistry's own](../../../chemistry/.public/.lib/particle/11-styled-particles.md)**; what belongs here is how this library uses it.
 
 *Doug's charge: **"update all encyclopedia components to styled chemicals. Remember to get them via `$` in the component that will use them, and we can imagine DI'ing them to override. You can add a theme in there for common colors… and then have things get the theme with `$` and decorate certain properties. Book can probably be the thing which holds the top level theme."***
 

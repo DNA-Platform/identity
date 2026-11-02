@@ -41,9 +41,9 @@ The set is stated once, with a comment that reads as a promise:
 const framework = new Set(['$look', '$show', '$hide', '$on', '$pid', '$facade']);
 ```
 
-**[`given()`](../../../chemistry/package/src/abstraction/styled.ts) keeps the promise** — `if (name.charCodeAt(0) !== 36 || framework.has(name)) continue;`.
+**[`given()`](../../../chemistry/.public/package/src/abstraction/styled.ts) keeps the promise** — `if (name.charCodeAt(0) !== 36 || framework.has(name)) continue;`.
 
-**[`[$props$]()`](../../../chemistry/package/src/abstraction/chemical.ts) does not.** It walks the bonds and then the own keys, and both loops end the same way:
+**[`[$props$]()`](../../../chemistry/.public/package/src/abstraction/chemical.ts) does not.** It walks the bonds and then the own keys, and both loops end the same way:
 
 ```ts
 if (!$Reflection.isSpecial(key)) continue;
@@ -57,7 +57,7 @@ if (value !== undefined) props[key.slice(1)] = value;
 
 ## The fix
 
-**One home, two readers.** The set moved to [`symbols.ts`](../../../chemistry/package/src/implementation/symbols.ts), beside `looks` — where the framework's vocabulary already lives — and both seats now import it. `[$props$]()` skips a framework prop in each of its two loops.
+**One home, two readers.** The set moved to [`symbols.ts`](../../../chemistry/.public/package/src/implementation/symbols.ts), beside `looks` — where the framework's vocabulary already lives — and both seats now import it. `[$props$]()` skips a framework prop in each of its two loops.
 
 ***Nothing else changed***, and both suites stood: chemistry `tsc` 0 · 68 files · 848/848, lib `tsc` 0 · 25 files · 519/519.
 

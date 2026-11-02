@@ -78,8 +78,8 @@
 - **A book already holds its chapters before it draws.** `$Book.chapters` reads `parts()`, and `$Book`'s own bond already walks them to give each its mention. **A chapter is in the book's block at bond time — which is why, once the manual is a chapter, there is nothing to find later.**
 - **A chapter writes its document in `print()`**, which runs after the book draws — the fact that made every earlier shape in this brainstorm need a mount phase, and that the chapter reading removes.
 - **`$Infobox` is an aside today** — `$Infobox → $Box → $Aside` — while `$Manual` is a document.
-- **`$lift` is chemistry's own name** for turning a class into a component ([`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts)). **The word is taken; this sprint does not use it for anything.**
-- **`next(phase)` is real** — `setup · mount · render · layout · effect · unmount`, plus `construction` and `formation`, each a promise ([`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts)). **It is not needed here, and that is the finding: the timing problem was made by where the manual was declared, not by the framework.**
+- **`$lift` is chemistry's own name** for turning a class into a component ([`particle.ts`](../../../chemistry/.public/package/src/abstraction/particle.ts)). **The word is taken; this sprint does not use it for anything.**
+- **`next(phase)` is real** — `setup · mount · render · layout · effect · unmount`, plus `construction` and `formation`, each a promise ([`particle.ts`](../../../chemistry/.public/package/src/abstraction/particle.ts)). **It is not needed here, and that is the finding: the timing problem was made by where the manual was declared, not by the framework.**
 
 ## <a id="what-was-cut"></a>What this brainstorm proposed and Doug cut
 

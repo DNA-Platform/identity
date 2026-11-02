@@ -62,7 +62,7 @@
 >
 > ***The annotations are the exception and Doug named why:*** **`<Author>The Team</Author>` is what an author IS — the name is the content, and a prop carrying a card is the compiler reaching into an authored element.** *Today `emit.ts` inserts `for={theTeam}` precisely because the annotation cannot find its own card.*
 >
-> ***The route that removes the prop:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.lib/composition/11-the-representative.md) and needs no new mechanism.* **`$CardCatalogue.file(key, keyword, card)` and `find(query)` (v1, `.archive/reference/CardCatalogue.tsx`, deleted) already exist for exactly a lookup by name**, and they are the two members [I14](05-implementation.md#i14) calls a string micro-language — ***so the two entries are one piece of work.***
+> ***The route that removes the prop:*** **an annotation resolves its card from the catalogue, and the catalogue is what `$` answers** — *which is [the representative's own shape](../../../chemistry/.public/.lib/composition/11-the-representative.md) and needs no new mechanism.* **`$CardCatalogue.file(key, keyword, card)` and `find(query)` (v1, `.archive/reference/CardCatalogue.tsx`, deleted) already exist for exactly a lookup by name**, and they are the two members [I14](05-implementation.md#i14) calls a string micro-language — ***so the two entries are one piece of work.***
 >
 > **Doug's words: *"I think you understand the problem. I want you to clean it up."* — taken as the brief, and [carried into the sprint as a problem](06-the-cleaning.md#actionable) rather than a rename.**
 

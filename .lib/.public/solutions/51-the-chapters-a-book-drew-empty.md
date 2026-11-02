@@ -32,12 +32,12 @@
 ## What did not work
 
 - ***The Format-children reading*** — that a Format's bond re-binds held children handed to it as elements. Plain `<main>` wrappers drew exactly as empty. **Retracted the same hour.**
-- ***The instance form re-running the bond*** — [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) says it does not, and `$lift` with no `bond` flag confirms it.
+- ***The instance form re-running the bond*** — [`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts) says it does not, and `$lift` with no `bond` flag confirms it.
 - ***The `inline` marker*** — Q3 and Q4 above.
 
 ## The mechanism — not yet found, and where it is not
 
-**[`$lift`](../../../chemistry/package/src/abstraction/particle.ts) renders a held instance directly** (`direct` — the instance IS the component); **[`augment`](../../../chemistry/package/src/implementation/augment.ts) walks the returned tree, resolves `on=` assignments, chooses facades, and substitutes formulas.** *None of those three names a chemical's own children.* ***The step that empties a bound child rendered by its binder is somewhere the reading did not reach, and it is chemistry's.*** **Doug's to look at; the probes above reproduce it in one file.**
+**[`$lift`](../../../chemistry/.public/package/src/abstraction/particle.ts) renders a held instance directly** (`direct` — the instance IS the component); **[`augment`](../../../chemistry/.public/package/src/implementation/augment.ts) walks the returned tree, resolves `on=` assignments, chooses facades, and substitutes formulas.** *None of those three names a chemical's own children.* ***The step that empties a bound child rendered by its binder is somewhere the reading did not reach, and it is chemistry's.*** **Doug's to look at; the probes above reproduce it in one file.**
 
 ## The fix, on the library's side
 

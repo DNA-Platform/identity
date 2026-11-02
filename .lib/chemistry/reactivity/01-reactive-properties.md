@@ -1,6 +1,6 @@
 # Reactive Properties
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 
@@ -70,7 +70,7 @@ finally { c[$rendering$] = bonding; }
 
 **Because the flag is per-object, the distinction it draws is the right one without anything else being said:** *a chemical writing to **itself** during its own construction is setup; a bond writing to a **different** chemical — `chapter.$in = this` — is still a change, and still reacts.*
 
-***Why it has to be this way:*** [`finalize`](../../package/src/implementation/scope.ts) walks `$$parent$$` upward and marks every ancestor dirty. **So a composed chemical whose bond wrote a field woke its own parent, the parent re-rendered, and re-rendering built a NEW instance whose bond wrote again** — 12 distinct instances in 14 bonds, and `Too many re-renders`. *The whole diagnosis is [The bond that woke the tree it was building](../../../.public/.lib/solutions/29-the-bond-that-woke-the-tree-it-was-building.md).*
+***Why it has to be this way:*** [`finalize`](../../package/src/implementation/scope.ts) walks `$$parent$$` upward and marks every ancestor dirty. **So a composed chemical whose bond wrote a field woke its own parent, the parent re-rendered, and re-rendering built a NEW instance whose bond wrote again** — 12 distinct instances in 14 bonds, and `Too many re-renders`. *The whole diagnosis is [The bond that woke the tree it was building](../../../../.public/.lib/solutions/29-the-bond-that-woke-the-tree-it-was-building.md).*
 
 **The rule to carry:** ***a bond constructor is the one place in this framework where a write is construction rather than mutation.***
 
@@ -118,4 +118,4 @@ finally { c[$rendering$] = bonding; }
 - [Collection Mutation](./04-collection-mutation.md) — in-place `push`/`set`/`add`, caught on the read path rather than the write.
 - [Decorators](./06-decorators.md) — `@inert` / `@reactive` overrides.
 - [The Grammar](../authorship/01-the-grammar.md) — the `$` membrane.
-- [The bond that woke the tree it was building](../../../.public/.lib/solutions/29-the-bond-that-woke-the-tree-it-was-building.md) — the defect both changes came out of.
+- [The bond that woke the tree it was building](../../../../.public/.lib/solutions/29-the-bond-that-woke-the-tree-it-was-building.md) — the defect both changes came out of.

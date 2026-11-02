@@ -14,7 +14,7 @@
 
 **Identifiers.** Requirements **R156–**, units **U168–**, decisions **D87–**, risks **K10–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
-**Where the code lands.** The framework work is in [`library/chemistry/package`](../../../chemistry/package/), so [$Chemistry's own Projection](../../../chemistry/.lib/projection/.cover.md) is owed an entry at the retro — the same arrangement [The Representative](12-the-representative.md) used. **The specification lives where perspectives are documented** — [the Particle book](../../../chemistry/.lib/particle/.cover.md), chapters 8 and 9, which this sprint rewrites.
+**Where the code lands.** The framework work is in [`library/chemistry/package`](../../../chemistry/.public/package/), so [$Chemistry's own Projection](../../../chemistry/.public/.lib/projection/.cover.md) is owed an entry at the retro — the same arrangement [The Representative](12-the-representative.md) used. **The specification lives where perspectives are documented** — [the Particle book](../../../chemistry/.public/.lib/particle/.cover.md), chapters 8 and 9, which this sprint rewrites.
 
 ## The workflow
 
@@ -26,11 +26,11 @@
 
 | | what it was load-bearing for |
 |---|---|
-| [Perspectives](../../../chemistry/.lib/particle/08-perspectives.md) · [The Composition of Perspectives](../../../chemistry/.lib/particle/09-the-composition-of-perspectives.md) | the two axes as shipped, and the design underneath them — **what is being deleted, said by the person who built it** |
-| [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts) · **`perspective.ts`** | the mechanism against the account — `frame()` had already arrived and the chapter did not know |
-| [The Representative](../../../chemistry/.lib/composition/11-the-representative.md) · [its sprint](12-the-representative.md) | the `$` surface, because the second half of Doug's ask is a later sprint against it |
-| [`types.ts`](../../../chemistry/package/src/implementation/types.ts) · [`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts) | **the attribute system Doug asked me to plug into** — the computed props type and the decorator registries |
-| [The Reactivity Contract](../../../chemistry/.lib/authorship/04-the-reactivity-contract.md) · [View](../../../chemistry/.lib/particle/06-view.md) | why the cursor had to be scope-tracked, and why it no longer does |
+| [Perspectives](../../../chemistry/.public/.lib/particle/08-perspectives.md) · [The Composition of Perspectives](../../../chemistry/.public/.lib/particle/09-the-composition-of-perspectives.md) | the two axes as shipped, and the design underneath them — **what is being deleted, said by the person who built it** |
+| [`particle.ts`](../../../chemistry/.public/package/src/abstraction/particle.ts) · **`perspective.ts`** | the mechanism against the account — `frame()` had already arrived and the chapter did not know |
+| [The Representative](../../../chemistry/.public/.lib/composition/11-the-representative.md) · [its sprint](12-the-representative.md) | the `$` surface, because the second half of Doug's ask is a later sprint against it |
+| [`types.ts`](../../../chemistry/.public/package/src/implementation/types.ts) · [`bond.ts`](../../../chemistry/.public/package/src/abstraction/bond.ts) | **the attribute system Doug asked me to plug into** — the computed props type and the decorator registries |
+| [The Reactivity Contract](../../../chemistry/.public/.lib/authorship/04-the-reactivity-contract.md) · [View](../../../chemistry/.public/.lib/particle/06-view.md) | why the cursor had to be scope-tracked, and why it no longer does |
 | [The Condition Report](../the-condition-report/.cover.md) — [How to Read This](../the-condition-report/01-how-to-read-this.md), [The Three Codebases](../the-condition-report/07-the-three-codebases.md), [The Compiler](../the-condition-report/08-the-compiler.md), [The Demonstration](../the-condition-report/09-the-demonstration.md) | the standard a fault is judged against, and **C7's rebuild-chain condition**, which governs any `$Chemistry` change |
 | [The Canonical Echo](../the-semantics-of-books/06-the-canonical-echo-and-views.md) | a claim in the **theory** book that dies with the mechanism, and would otherwise be missed |
 | `Book.tsx` · `sheet.tsx` · `the-page.tsx` | the framework's whole drawing, and the five live lenses that have to survive the change unchanged on screen |
@@ -69,13 +69,13 @@
 |---|---|---|
 | **the API surface being deleted** | `reveal(` **26** · `new Perspective` **21** · `look('up'\|'down')` **37** · `viewLevel` **43** · `.perspectives` **3 consumer sites** | grep across `src`, both apps, both suites |
 | **the promises that move** | `look.test.tsx` **10** · `perspectives.test.tsx` **8** · `particle-perspectives.test.tsx` **6** = **24**; `frame.test.tsx` **11 survive** | counted per file |
-| **`Perspective` is a PUBLIC export** | [`index.ts:17`](../../../chemistry/package/src/index.ts) — exactly **one** consumer imports it, `sheet.tsx` | grep for the import |
-| **one symbol is already dead** | `$perspective$` (singular) — declared at [`symbols.ts:51`](../../../chemistry/package/src/implementation/symbols.ts), **0 uses in `src`** | grep, `src` only |
+| **`Perspective` is a PUBLIC export** | [`index.ts:17`](../../../chemistry/.public/package/src/index.ts) — exactly **one** consumer imports it, `sheet.tsx` | grep for the import |
+| **one symbol is already dead** | `$perspective$` (singular) — declared at [`symbols.ts:51`](../../../chemistry/.public/package/src/implementation/symbols.ts), **0 uses in `src`** | grep, `src` only |
 | **`$i` was taken, and by the busiest reference class** | `$Location.$i` (v1, `.archive/reference/Location.tsx`, deleted) — **6 sites**, plus `<Location i={…}/>` from `Book.tsx:186`, `CardCatalogue.tsx:41` (v1, `.archive/reference/CardCatalogue.tsx`, deleted), [`Writing.tsx:101`](../../package/src/writing/Writing.tsx) | grep — **this is why the prop is `look`** |
 | **`$look` is free** | **0 occurrences** anywhere in the repository | grep across both packages and both apps |
-| **`$$view` is ALREADY excluded from props** | [`$Properties<T>`](../../../chemistry/package/src/implementation/types.ts) maps `` K extends `$${infer First}${infer Rest}` `` and returns `never` when `First extends '$'` | read |
+| **`$$view` is ALREADY excluded from props** | [`$Properties<T>`](../../../chemistry/.public/package/src/implementation/types.ts) maps `` K extends `$${infer First}${infer Rest}` `` and returns `never` when `First extends '$'` | read |
 | **framework `$`-fields are excluded too — including ones meant to be props** | `$show`/`$hide` are `keyof $Chemical`, so `<X show={false}/>` does not typecheck; **every Lab site writes `this.x.$show = …` instead** | read + grep, 6 sites |
-| **`$look` is reactive by the ordinary rule** | [`$Bond.isSpecial`](../../../chemistry/package/src/abstraction/bond.ts) — `length >= 2`, `[1] !== '$'`, `[1] !== '_'`, lowercase | read |
+| **`$look` is reactive by the ordinary rule** | [`$Bond.isSpecial`](../../../chemistry/.public/package/src/abstraction/bond.ts) — `length >= 2`, `[1] !== '$'`, `[1] !== '_'`, lowercase | read |
 | **the decorator machinery exists and walks the prototype chain** | `inertDecorators` / `reactiveDecorators` — `Map<prototype, Set<string>>`, with `inertOf` recursing up `Object.getPrototypeOf` | read |
 | **decorators are enabled in both packages** | `experimentalDecorators: true` in `chemistry/package/tsconfig.json` **and** `.public/package/tsconfig.json` | read |
 | **the five demonstration lenses differ ONLY in `view()`** | `Book` declares no `view` at all — it inherits `$Sheet`'s, which is why it is the default lens | read `sheet.tsx` |
@@ -128,7 +128,7 @@
 
 ### <a id="d89"></a>D89 — The computed props type gains a framework-attribute allowance, and this is the load-bearing type change
 
-[`$Properties<T>`](../../../chemistry/package/src/implementation/types.ts) returns `never` for any `` `$${First}${Rest}` `` where `First extends '$'` — **so `$$view` and every deeper one are already excluded and need no work.** It also returns `never` for `K extends keyof $Chemical`, which excludes `$view` the moment it is public **and would exclude `look` too**.
+[`$Properties<T>`](../../../chemistry/.public/package/src/implementation/types.ts) returns `never` for any `` `$${First}${Rest}` `` where `First extends '$'` — **so `$$view` and every deeper one are already excluded and need no work.** It also returns `never` for `K extends keyof $Chemical`, which excludes `$view` the moment it is public **and would exclude `look` too**.
 
 ***The two requirements pull opposite ways through one clause***, so the type intersects an explicit framework-attribute declaration carrying `look?: number | string`. **`$show`/`$hide` have the same disease today and are deliberately NOT fixed here** — [named below](#not-in-scope) rather than swept in.
 
@@ -208,7 +208,7 @@ Its drawings survive as three looks. **What it demonstrated — one live instanc
 
 ***One correction I owe the plan:*** **`frame.test.tsx` is 10 of 11 green, not 11.** *Its single failure is `the frame wraps whichever ancestor view look() selects` — the one promise that names the deleted verb, and it is rewritten in U172 rather than kept.*
 
-***And one site the sweep missed, found by reading rather than by grep:*** **[`molecule.ts:71`](../../../chemistry/package/src/abstraction/molecule.ts) excludes `view` from bond formation and nothing excludes `$view`** — which passes the reactive-name rule, so a bond accessor would be installed over the method. **It is an insertion point for U171, not a removal**, and it is written here because a ledger that only records what it predicted is not a ledger.
+***And one site the sweep missed, found by reading rather than by grep:*** **[`molecule.ts:71`](../../../chemistry/.public/package/src/abstraction/molecule.ts) excludes `view` from bond formation and nothing excludes `$view`** — which passes the reactive-name rule, so a bond accessor would be installed over the method. **It is an insertion point for U171, not a removal**, and it is written here because a ledger that only records what it predicted is not a ledger.
 
 ### <a id="u169-172-done"></a>U169 · U170 · U171 · U172 · U173 — ***DONE, and they landed as one seam***
 
@@ -217,8 +217,8 @@ Its drawings survive as three looks. **What it demonstrated — one live instanc
 | | what it is |
 |---|---|
 | **`$views$`** | a symbol on `$Particle`; the dictionary is built once per instance and held in a module `WeakMap`, keyed by position **and** by name |
-| **`looks`** | `/^\$*view$/` in [`symbols.ts`](../../../chemistry/package/src/implementation/symbols.ts) — *the only cycle-free home both `particle.ts` and `molecule.ts` can import* |
-| **`@look('name')`** | a third registry in [`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts) beside `inertDecorators` and `reactiveDecorators`, read back up the prototype chain the same way |
+| **`looks`** | `/^\$*view$/` in [`symbols.ts`](../../../chemistry/.public/package/src/implementation/symbols.ts) — *the only cycle-free home both `particle.ts` and `molecule.ts` can import* |
+| **`@look('name')`** | a third registry in [`bond.ts`](../../../chemistry/.public/package/src/abstraction/bond.ts) beside `inertDecorators` and `reactiveDecorators`, read back up the prototype chain the same way |
 | **`$look`** | an ordinary reactive field, added to `molecule.ts`'s `universalProperties` beside `$show` and `$hide` |
 | **`$Attributes`** | `look?: number | string`, intersected into `$Properties<T>` — *and `'$view'` joined `'$parent'` in the exclusion, which is all the type needed* |
 
@@ -239,7 +239,7 @@ Its drawings survive as three looks. **What it demonstrated — one live instanc
 
 ### <a id="the-coverage-i-nearly-lost"></a>The coverage the arithmetic nearly hid
 
-**24 `it(` blocks were deleted and the suite fell by 32.** *The gap is that [`look.test.tsx` ran its whole matrix TWICE](../../../chemistry/package/tests/react/views.test.tsx) — `for (const [root, Leaf, Mid, Base] of [...])`, once for a chain rooted at `$Particle` and once at `$Chemical`* — **and the replacement asserted the `$Particle` case once.**
+**24 `it(` blocks were deleted and the suite fell by 32.** *The gap is that [`look.test.tsx` ran its whole matrix TWICE](../../../chemistry/.public/package/tests/react/views.test.tsx) — `for (const [root, Leaf, Mid, Base] of [...])`, once for a chain rooted at `$Particle` and once at `$Chemical`* — **and the replacement asserted the `$Particle` case once.**
 
 ***Doug asked for rigour, so the doubling is back:*** the selection promises run from both roots. **A count that does not reconcile is a coverage question, not an accounting one.**
 
@@ -279,7 +279,7 @@ Its drawings survive as three looks. **What it demonstrated — one live instanc
 |---|---|
 | **the Lab, three cases** | *sibling subclasses collapsed to one class each.* **Driven: eight look names on the page — `swatch · hex · rgb · hsl · cover · synopsis · reading · links` — every one from a decorator**, and the element case walked `79 Au Gold 196.97` → `79 Au Gold` → `Au` with the far arrow failing at the bound |
 | **the demonstration** | *five sibling subclasses → one `$Sheet` with five looks.* **`the-page.tsx` holds its own name list, by Doug's ruling**, and the chip writes `sheet.$look` — **one instance behind all five drawings** |
-| **the chapters** | [Looks](../../../chemistry/.lib/particle/08-perspectives.md) and [The Composition of Looks](../../../chemistry/.lib/particle/09-the-composition-of-perspectives.md) rewritten · the glossary's nine perspective terms replaced · [polymorphism](../../../chemistry/.lib/composition/07-polymorphism.md) · [the particle source book](../../../chemistry/.lib/implementation/01-particle.md) · ***[The Canonical Echo](../the-semantics-of-books/06-the-canonical-echo-and-views.md), in the THEORY book*** — its mapping of the two total views onto `look('up')`/`look('down')` died with the axes and is rewritten against the series, where it fits better · covers updated with the tool in the same act |
+| **the chapters** | [Looks](../../../chemistry/.public/.lib/particle/08-perspectives.md) and [The Composition of Looks](../../../chemistry/.public/.lib/particle/09-the-composition-of-perspectives.md) rewritten · the glossary's nine perspective terms replaced · [polymorphism](../../../chemistry/.public/.lib/composition/07-polymorphism.md) · [the particle source book](../../../chemistry/.public/.lib/implementation/01-particle.md) · ***[The Canonical Echo](../the-semantics-of-books/06-the-canonical-echo-and-views.md), in the THEORY book*** — its mapping of the two total views onto `look('up')`/`look('down')` died with the axes and is rewritten against the series, where it fits better · covers updated with the tool in the same act |
 | **the rebuild chain** | `$Chemistry` `dist` → `lib` `dist` → both applications, and **every gate re-run against the rebuilt copies** |
 
 ### <a id="ae1"></a>THE DEMONSTRATION — driven, on the BUILT artifact
@@ -299,7 +299,7 @@ Its drawings survive as three looks. **What it demonstrated — one live instanc
 
 **The runtime never had a limit.** *`deepestLook` finds the deepest run of `$` on the prototype chain and the dictionary builds each member with `'$'.repeat(at)` — there is no cap in the walk, in `frame()`, in `@look`, in `$apply`'s guard, or in `$Properties<T>`, whose exclusion of the series is the unbounded rule `First extends '$'`.*
 
-***But `$Particular` in [`types.ts`](../../../chemistry/package/src/implementation/types.ts) enumerated exactly three and stopped, and I wrote it that way.*** **A type that lists `view`, `$view`, `$$view` teaches a ceiling the code does not have** — which is [the standard this branch judges itself against](../the-condition-report/01-how-to-read-this.md): *every place the code says something the theory does not is a place a reader learns the theory wrong.*
+***But `$Particular` in [`types.ts`](../../../chemistry/.public/package/src/implementation/types.ts) enumerated exactly three and stopped, and I wrote it that way.*** **A type that lists `view`, `$view`, `$$view` teaches a ceiling the code does not have** — which is [the standard this branch judges itself against](../the-condition-report/01-how-to-read-this.md): *every place the code says something the theory does not is a place a reader learns the theory wrong.*
 
 **Corrected: it names the surface that is FIXED — `view`, `frame`, `$look` — and deliberately lists none of the members that are not.** ***Measured: `$$view` now appears ZERO times in the shipped `chemistry.d.ts`.***
 
@@ -333,7 +333,7 @@ const Color = $(this.color);       // the receiver, held once
 
 **Measured rather than conceded:** *`hex` moved from position 1 to position 3 and `hsl` from 3 to 1, each `@look` kept on its own body.* ***The page came back BYTE-IDENTICAL.***
 
-**So the corrected account, now in [the chapter](../../../chemistry/.lib/particle/08-perspectives.md):** *there is **no canonical face**; `view` is simply the member with no `$` in front of it. The `$`s are an **index**, existing so several members can share one base name — no rank, no distance, no progression.* **The object contributes the possibility space and nothing else: the decorator supplies the name, the container supplies the choice.**
+**So the corrected account, now in [the chapter](../../../chemistry/.public/.lib/particle/08-perspectives.md):** *there is **no canonical face**; `view` is simply the member with no `$` in front of it. The `$`s are an **index**, existing so several members can share one base name — no rank, no distance, no progression.* **The object contributes the possibility space and nothing else: the decorator supplies the name, the container supplies the choice.**
 
 *One thing flagged rather than settled: **the gap check is the only place the implementation asserts an ordering.** It fails `view` + `$$view` with no `$view`. Since the index carries no order, a hole is not a broken sequence — it is almost certainly a typo, which is why the check earns its place — **but if a skipped name should simply be an absent look, it comes out.***
 
@@ -341,7 +341,7 @@ const Color = $(this.color);       // the receiver, held once
 
 ***The BUILT demonstration logs `$Chemistry: Bond Constructor Failed — Error:` five times, with an EMPTY message, after checkpoint 7. Dev is silent.***
 
-**The asymmetry is one line:** [`chemical.ts:269`](../../../chemistry/package/src/abstraction/chemical.ts) logs `console.error` **only when `dev` is false**; in dev the same failure renders a panel instead. *So the failure has been happening in both all along and only the built form said so.*
+**The asymmetry is one line:** [`chemical.ts:269`](../../../chemistry/.public/package/src/abstraction/chemical.ts) logs `console.error` **only when `dev` is false**; in dev the same failure renders a panel instead. *So the failure has been happening in both all along and only the built form said so.*
 
 ***Proved not mine, and proved rather than argued:*** **the whole sprint was stashed, all three `dist`s rebuilt at `HEAD`, the demonstration built and driven — same error, same checkpoint, same count of five.** *It is not minification either: an unminified build shows it too.*
 
@@ -375,7 +375,7 @@ const Color = $(this.color);       // the receiver, held once
 
 ***One claim was made and then corrected, and the correction is the leading reading.*** *A first draft called the absence of a shared cross-class vocabulary of look-names a gap.* **Doug: *"Views are specific to the class. Yes we can build a shared vocabulary, but we can also implement a coordinator if need be that makes sure everything is in sync."*** *An object whose job is keeping a region agreeing is simpler than a vocabulary every class must answer to.* ***Raised, not decided*** — and it is the question the `$` sprint will meet.
 
-*The fuller account, in plain words and without jargon, is [The Composition of Looks](../../../chemistry/.lib/particle/09-the-composition-of-perspectives.md#what-it-is-for).*
+*The fuller account, in plain words and without jargon, is [The Composition of Looks](../../../chemistry/.public/.lib/particle/09-the-composition-of-perspectives.md#what-it-is-for).*
 
 ## Said plainly, for whoever is not tracking identifiers
 
@@ -395,7 +395,7 @@ const Color = $(this.color);       // the receiver, held once
 >
 > **"We have an attribute system. Can you plug into it so look is `look?: number | string`?"**
 >
-> **"Use an `@` attribute… Find that machinery and tell me if you can't, and if you can, use it to add this attribute."** — ***found: [`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts)'s decorator registries, with prototype-chain fallback and `experimentalDecorators` already on in both packages***
+> **"Use an `@` attribute… Find that machinery and tell me if you can't, and if you can, use it to add this attribute."** — ***found: [`bond.ts`](../../../chemistry/.public/package/src/abstraction/bond.ts)'s decorator registries, with prototype-chain fallback and `experimentalDecorators` already on in both packages***
 >
 > **"It shouldn't be too heavy. It is just assigning a view."**
 >
@@ -440,7 +440,7 @@ const Color = $(this.color);       // the receiver, held once
 | | |
 |---|---|
 | **the demonstration** | `npm run dev` in [`library/.public/package`](../../package/) → **http://localhost:5199/page** — *the five chips, the edit pane, and AE1* |
-| **the Lab** | `npx vite app --port 4000` in [`library/chemistry/package`](../../../chemistry/package/) → `/perspectives` and `/frames` |
+| **the Lab** | `npx vite app --port 4000` in [`library/chemistry/package`](../../../chemistry/.public/package/) → `/perspectives` and `/frames` |
 | **driving them** | `npm run verify` in the package — 92 checkpoints · `npm run drive` in the app — 39. **Start the server yourself first**, and *a short count is a stall rather than a number* |
 
 ## <a id="compounded"></a>What was compounded

@@ -43,8 +43,8 @@
 | `app.tsx` · `bookmark.tsx` · `catalogue.tsx` · `storage.ts` · `main.tsx` · `verify-library.mjs` · `vite.config.ts` | the surface being changed, and the 29 checkpoints that guard it |
 | `emit.ts` · the generated `cards.tsx`, `books.tsx` and a book module | what a compiled book actually looks like, since the design turns on it |
 | the corpus — a cover (`.test-library/.physics/the-standard-model/.cover.tsx`) and a chapter (`.test-library/.physics/the-standard-model/symmetry.tsx`) | what an author writes, as against what is generated |
-| [The Representative](../../../chemistry/.lib/composition/11-the-representative.md) | the algebra the theme rides on, and the specification that F3 is an instance of |
-| [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts), the `frame()` seam | chemistry's own documented wrap point, and the reason a wrap does not disturb `declaration()` |
+| [The Representative](../../../chemistry/.public/.lib/composition/11-the-representative.md) | the algebra the theme rides on, and the specification that F3 is an instance of |
+| [`particle.ts`](../../../chemistry/.public/package/src/abstraction/particle.ts), the `frame()` seam | chemistry's own documented wrap point, and the reason a wrap does not disturb `declaration()` |
 | [Ways of Reading](../ways-of-reading/04-ways-of-reading.md) | the third specification — *a view reads, it does not re-derive* — which [R70](#r70) discharges |
 | [The Semantics of Books](../the-semantics-of-books/.cover.md) · [Publicity](../..publicity/.cover.md) | what a book, a subject and a catalogue are before any of this is code |
 | [Solutions 21](../solutions/21-the-three-things-that-only-worked-here.md) and [22](../solutions/22-the-sentences-that-said-the-opposite.md) | the two newest defects, both about a true number with a silent scope |
@@ -61,7 +61,7 @@
 | | what it is | lines | who ships it |
 |---|---|---|---|
 | **the framework** | [`package/`](../../package/) — `@dna-platform/lib` | **2,634** | published to npm; a consumer's dependency |
-| **the demonstration** | [`package/app/`](../../../chemistry/package/app) — the shelf, the manifold, the page | **8,139** | not published; it shows the framework off |
+| **the demonstration** | [`package/app/`](../../../chemistry/.public/package/app) — the shelf, the manifold, the page | **8,139** | not published; it shows the framework off |
 | **the application** | `app/` — the public library site | **651 authored**, 675 generated | deployed to Pages at `/inexplicable-phenomena/` |
 | the compiler | `build/` | **1,508** | node-side; it renders nothing |
 
@@ -84,7 +84,7 @@
 
 ## <a id="m9"></a>M9 — The framework already ships one followable reference, and the application cannot run it
 
-`$Link` (v1, `.archive/reference/Link.tsx`, deleted) — a word that points — overrides `frame()` and wraps itself in a **react-router** `<Link to>`. ***`frame()` is chemistry's own documented seam***, and [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts) says so in its own words: *"Override `frame()` to WRAP the rendered content — e.g. put it in a clickable link — while the content it wraps still EVOLVES through `view()`."*
+`$Link` (v1, `.archive/reference/Link.tsx`, deleted) — a word that points — overrides `frame()` and wraps itself in a **react-router** `<Link to>`. ***`frame()` is chemistry's own documented seam***, and [`particle.ts`](../../../chemistry/.public/package/src/abstraction/particle.ts) says so in its own words: *"Override `frame()` to WRAP the rendered content — e.g. put it in a clickable link — while the content it wraps still EVOLVES through `view()`."*
 
 **And it would throw in the public application today.** The app drives `history.pushState` and `popstate` by hand and mounts no Router; `react-router-dom` sits in its dependencies, **installed and unused**. *So the framework's only followable reference is unreachable in the one program that most needs to follow things.*
 
@@ -282,7 +282,7 @@
 
 ## What was measured with the code open, and two of it change a unit
 
-**1 — `page` IS NOT REACTIVE, so turning one would silently do nothing.** [`$Writing`](../../package/src/writing/Writing.tsx) declares `page = 0` with no `$`, and [the reactivity contract](../../../chemistry/.lib/authorship/04-the-reactivity-contract.md) is explicit: *"Fields prefixed with `$` are reactive. Other fields (no prefix, or underscore prefix `_`) are not."* ***A write to it repaints nothing.*** **So [R69](#r69) is not a tidy-up — it is the difference between a binding that can turn a page and one that cannot.** *Found by reading, not by driving, and it would have been found by driving much later.*
+**1 — `page` IS NOT REACTIVE, so turning one would silently do nothing.** [`$Writing`](../../package/src/writing/Writing.tsx) declares `page = 0` with no `$`, and [the reactivity contract](../../../chemistry/.public/.lib/authorship/04-the-reactivity-contract.md) is explicit: *"Fields prefixed with `$` are reactive. Other fields (no prefix, or underscore prefix `_`) are not."* ***A write to it repaints nothing.*** **So [R69](#r69) is not a tidy-up — it is the difference between a binding that can turn a page and one that cannot.** *Found by reading, not by driving, and it would have been found by driving much later.*
 
 **2 — THE ROUTER BOUNDARY HAS EXACT PRIOR ART HERE, and it is documented as unsafe on purpose.** `lab.tsx` is *"the root of the app. A function component at the react-router boundary… Everything below it is $Chemistry chemicals. **This is the 'unsafe' boundary — a plain React function that bridges the ecosystem package into the chemical tree.**"* ***The shape is copied rather than invented***, and it answers the one question a chemical cannot: hooks do not belong inside `view()`.
 
@@ -304,7 +304,7 @@
 
 ### <a id="u60"></a>U60 — Where the reader is belongs to the binding
 
-**Mechanism.** `page` becomes a **reactive** field on the binding — `$`-prefixed and long enough to bind, per [the contract](../../../chemistry/.lib/authorship/04-the-reactivity-contract.md) — and the second declaration is **deleted**, `$Book` reading its cover's. *The cover is a chapter, so it already inherits the field it is now the home of; this is a deletion, not an addition.*
+**Mechanism.** `page` becomes a **reactive** field on the binding — `$`-prefixed and long enough to bind, per [the contract](../../../chemistry/.public/.lib/authorship/04-the-reactivity-contract.md) — and the second declaration is **deleted**, `$Book` reading its cover's. *The cover is a chapter, so it already inherits the field it is now the home of; this is a deletion, not an addition.*
 
 **Files.** `Cover.tsx` · `Book.tsx` · [`Writing.tsx`](../../package/src/writing/Writing.tsx). **Depends on [U59](#u59).**
 

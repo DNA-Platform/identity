@@ -1,6 +1,6 @@
 # Hydration
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **source:** [hydration.ts](../../package/src/implementation/hydration.ts) · [chemical.ts (persist)](../../package/src/abstraction/chemical.ts) · [atom.ts](../../package/src/abstraction/atom.ts)
 
 ---

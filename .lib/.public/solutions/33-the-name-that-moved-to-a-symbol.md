@@ -29,7 +29,7 @@ error TS2305: Module '"@dna-platform/chemistry"' has no exported member 'childre
                      ... while index.ts plainly exported it
 ```
 
-***The change itself was three lines.*** *Doug: **"`{this.children}` — get out of this habit. IF I see it keep happening we will turn that into a symbol. In fact, yes, like the cache property, turn that into a symbol and get the tests and apps working again."*** **The public `get children()` on [`$Chemical`](../../../chemistry/package/src/abstraction/chemical.ts) came off, the existing `$children$` symbol was re-exported publicly as `children`, and 44 call sites across 15 files were rewritten from `this.children` to `this[children]`.**
+***The change itself was three lines.*** *Doug: **"`{this.children}` — get out of this habit. IF I see it keep happening we will turn that into a symbol. In fact, yes, like the cache property, turn that into a symbol and get the tests and apps working again."*** **The public `get children()` on [`$Chemical`](../../../chemistry/.public/package/src/abstraction/chemical.ts) came off, the existing `$children$` symbol was re-exported publicly as `children`, and 44 call sites across 15 files were rewritten from `this.children` to `this[children]`.**
 
 ## The four mechanisms, because they are four and not one
 
@@ -41,7 +41,7 @@ error TS2305: Module '"@dna-platform/chemistry"' has no exported member 'childre
 get [children](): ReactNode { return this[$children$]; }     // and `children` IS `$children$`
 ```
 
-***So the getter and its backing slot were the same property.*** **The framework assigns that slot during synthesis** — [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts): `(chemical as any)[$children$] = props.children;` — **and an accessor with no setter fails assignment.** *The old getter worked only because it was keyed by the STRING `children` while the slot was keyed by the SYMBOL: two names, no collision. Making them one name made them one property.*
+***So the getter and its backing slot were the same property.*** **The framework assigns that slot during synthesis** — [`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts): `(chemical as any)[$children$] = props.children;` — **and an accessor with no setter fails assignment.** *The old getter worked only because it was keyed by the STRING `children` while the slot was keyed by the SYMBOL: two names, no collision. Making them one name made them one property.*
 
 **The fix is a declaration, not an accessor:** `declare [children]: ReactNode;`
 
@@ -93,4 +93,4 @@ if (typeof node === 'object' && 'children' in node) return text((node as any).ch
 
 - [The suite that passed against a stale build](05-the-suite-that-passed-against-a-stale-build.md) — ***the same artifact staleness, arrived at from the opposite direction.*** *There the suite was green against an old build; here it was red against one.*
 - [The field that held a bound class](32-the-field-that-held-a-bound-class.md) — **the neighbouring family: a member whose declaration travels into framework machinery and comes back a different thing.** *Both are correct code failing because the member's FORM was wrong for where it lives.*
-- [The Grammar](../../../chemistry/.lib/authorship/01-the-grammar.md) — where `children` now sits as a symbol beside `cache`, and where the reason is written: **a view reaches for its BLOCK and never for the raw children it happens to have been handed.**
+- [The Grammar](../../../chemistry/.public/.lib/authorship/01-the-grammar.md) — where `children` now sits as a symbol beside `cache`, and where the reason is written: **a view reaches for its BLOCK and never for the raw children it happens to have been handed.**

@@ -40,7 +40,7 @@
 
 ***A chemical that writes in its bond constructor loops if and only if something composes it.***
 
-[`$Scope.finalize`](../../../chemistry/package/src/implementation/scope.ts) marks every written chemical dirty and then **walks `$$parent$$` upward, adding every ancestor**:
+[`$Scope.finalize`](../../../chemistry/.public/package/src/implementation/scope.ts) marks every written chemical dirty and then **walks `$$parent$$` upward, adding every ancestor**:
 
 ```ts
 for (const chem of [...dirty]) {
@@ -66,7 +66,7 @@ the parent renders  →  builds child instance #1  →  its bond writes a field
 
 ## The fix — and it was already in the file, eleven lines above
 
-***`$rendering$` is the framework's own flag for "this write is setup, not news".*** **[Applying props is already wrapped in it](../../../chemistry/package/src/abstraction/chemical.ts); the bond constructor was not.**
+***`$rendering$` is the framework's own flag for "this write is setup, not news".*** **[Applying props is already wrapped in it](../../../chemistry/.public/package/src/abstraction/chemical.ts); the bond constructor was not.**
 
 ```ts
 const bonding = c[$rendering$];
@@ -81,9 +81,9 @@ finally { c[$rendering$] = bonding; }
 
 ## The second fix, which is a different thing and must not be confused with it
 
-***Doug's own question — "we aren't doing value equality for arrays?" — was correct, and it is a separate defect.*** **[`activate`'s setter](../../../chemistry/package/src/abstraction/bond.ts) compared by reference:** `if (store[property] === value) return;` — so a fresh `[]` was always news.
+***Doug's own question — "we aren't doing value equality for arrays?" — was correct, and it is a separate defect.*** **[`activate`'s setter](../../../chemistry/.public/package/src/abstraction/bond.ts) compared by reference:** `if (store[property] === value) return;` — so a fresh `[]` was always news.
 
-**[`equivalent`](../../../chemistry/package/src/implementation/reconcile.ts) already existed and was already used on the READ path** for snapshot diffing, and never on the write. It opens `if (a === b) return true`, so **a scalar costs exactly what it cost before**; arrays and plain objects compare element-wise; **class instances, chemicals included, still compare by reference**, which is the semantics this framework needs.
+**[`equivalent`](../../../chemistry/.public/package/src/implementation/reconcile.ts) already existed and was already used on the READ path** for snapshot diffing, and never on the write. It opens `if (a === b) return true`, so **a scalar costs exactly what it cost before**; arrays and plain objects compare element-wise; **class instances, chemicals included, still compare by reference**, which is the semantics this framework needs.
 
 ***The order mattered and is the lesson.*** **Value equality would have MASKED this chapter's reproduction rather than fixed it** — the array case would have gone quiet and the scalar case would still have looped, waiting for someone to write `this.n = 1`. *Fixing the equality first would have made the symptom disappear and left the defect.*
 
@@ -111,4 +111,4 @@ finally { c[$rendering$] = bonding; }
 
 - [The parse that woke its own parents](16-the-parse-that-woke-its-own-parents.md) — **the same fan-out, from the other side.** *That one is a write during a **reading**; this one is a write during a **construction**, and the two are cured differently: that one by removing the writes, this one by naming the moment.* **A reader arriving with "the page loops" should read both and ask whether their write is in a view or in a bond.**
 - [The writing that looped its page](12-the-writing-that-looped-its-page.md) — the third mechanism with the same symptom: prop rebinding over an already-built instance.
-- [Reactive Properties](../../../chemistry/.lib/reactivity/01-reactive-properties.md) — where the write path is specified, and where the equality change is now recorded.
+- [Reactive Properties](../../../chemistry/.public/.lib/reactivity/01-reactive-properties.md) — where the write path is specified, and where the equality change is now recorded.

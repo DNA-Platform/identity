@@ -1,12 +1,12 @@
 # Sprint 44 — Eval and the Block Model
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **coauthor:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
-- **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **coauthor:** [Arthur](../../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **style:** [The Coding Style](../../../../.public/.lib/the-coding-style/03-the-coding-style.md) — *the rules in force, and the register to check before a tidy crosses one.*
 
 ---
 
-$Chemistry's contribution to a sprint whose real subject lives on the [public-library branch](../../../.public/.lib/projection/01-sprint-44--composition.md): the two primitives the composition classes could not be written without. A `$Sentence` is composed of `$Word`s the author never wrote — they authored *text* — so the class must materialize its own children, and carry a run of authored inline markup as one thing. Neither was possible. This sprint made both possible; the composition work is where they are spent.
+$Chemistry's contribution to a sprint whose real subject lives on the [public-library branch](../../../../.public/.lib/projection/01-sprint-44--composition.md): the two primitives the composition classes could not be written without. A `$Sentence` is composed of `$Word`s the author never wrote — they authored *text* — so the class must materialize its own children, and carry a run of authored inline markup as one thing. Neither was possible. This sprint made both possible; the composition work is where they are spent.
 
 ## What was built
 
@@ -23,4 +23,4 @@ A block is a **pure comprehension lens** — coherent grouping to be found. It i
 
 ## Done
 
-Green: the chemistry suite passes at 622, with [eval](../../package/tests/react/eval.test.tsx) and [inline](../../package/tests/react/inline.test.tsx) locking the two primitives. The composition classes now have the operation they were missing; polishing them to use it is the [public-branch chapter](../../../.public/.lib/projection/01-sprint-44--composition.md) of this same sprint.
+Green: the chemistry suite passes at 622, with [eval](../../package/tests/react/eval.test.tsx) and [inline](../../package/tests/react/inline.test.tsx) locking the two primitives. The composition classes now have the operation they were missing; polishing them to use it is the [public-branch chapter](../../../../.public/.lib/projection/01-sprint-44--composition.md) of this same sprint.

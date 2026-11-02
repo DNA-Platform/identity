@@ -147,13 +147,13 @@ Sprint-28 working name candidates: **The Lab**, **Walkthrough**, **Witness**. My
 
 <!-- citations — repointed to new book structure after Sprint 63 migration.
      Ontology/topical not migrated; links point to archive for provenance. -->
-[ontology]: ../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/index.md
+[ontology]: ../../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/index.md
 [epistemology]: ../../epistemology/01-the-epistemic-model.md
-[topical]: ../../../../../.claude/.archive/books/.chemistry/chemistry/topical/index.md
-[ont-entities]: ../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/entities/index.md
-[ont-relationships]: ../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/relationships/index.md
-[ont-concepts]: ../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/concepts/index.md
-[ont-surprising]: ../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/surprising/index.md
+[topical]: ../../../../../../.claude/.archive/books/.chemistry/chemistry/topical/index.md
+[ont-entities]: ../../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/entities/index.md
+[ont-relationships]: ../../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/relationships/index.md
+[ont-concepts]: ../../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/concepts/index.md
+[ont-surprising]: ../../../../../../.claude/.archive/books/.chemistry/chemistry/ontology/surprising/index.md
 [ep-caveats]: ../../epistemology/04-caveats.md
 [ep-open]: ../../epistemology/05-open-questions.md
 [the-lab]: ../../epistemology/02-the-lab.md

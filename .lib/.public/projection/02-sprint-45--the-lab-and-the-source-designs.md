@@ -4,7 +4,7 @@
 
 ---
 
-Two movements, in order. First, **the Lab**: a test app for `@dna-platform/lib` with the same setup as [chemistry's](../../../chemistry/package/app) — Vite, the case-shell apparatus, sections registered in a catalogue, `npm run dev` serving it — but its own content: the composition classes demonstrating themselves. Second, **the source designs**: the [*Semantics of Books*](../../../../../dna-library/library/claude-dna/conversations/2026-07-18-the-semantics-of-books.md) and [*Inexplicable Phenomena*](../../../../../dna-library/library/claude-dna/conversations/2026-07-13-inexplicable-phenomena.md) conversations and the related artifacts of the [Semantic Reference Theory project](../../../../../dna-library/library/claude-dna/projects/semantic-reference-theory/.cover.md) — the designs this branch exists to make real, using the sprint-44 classes as the basis.
+Two movements, in order. First, **the Lab**: a test app for `@dna-platform/lib` with the same setup as [chemistry's](../../../chemistry/.public/package/app) — Vite, the case-shell apparatus, sections registered in a catalogue, `npm run dev` serving it — but its own content: the composition classes demonstrating themselves. Second, **the source designs**: the [*Semantics of Books*](../../../../../dna-library/library/claude-dna/conversations/2026-07-18-the-semantics-of-books.md) and [*Inexplicable Phenomena*](../../../../../dna-library/library/claude-dna/conversations/2026-07-13-inexplicable-phenomena.md) conversations and the related artifacts of the [Semantic Reference Theory project](../../../../../dna-library/library/claude-dna/projects/semantic-reference-theory/.cover.md) — the designs this branch exists to make real, using the sprint-44 classes as the basis.
 
 The order is binding, per Doug: **the design is discussed with him in the room before anything substantial is built.** Setting up the sprint and the app scaffold is authorized now; realizing the designs is not — it follows the design conversation. The [sign-off loop](01-sprint-44--composition.md#second-amendment--the-loop-after-rules-alone-failed-twice) governs every increment.
 
@@ -32,7 +32,7 @@ The order is binding, per Doug: **the design is discussed with him in the room b
 ## Tasks
 
 - Open the sprint; scaffold `library/.public/package/app` mirroring chemistry's app setup (index.html, vite config, case-shell apparatus, catalogue, sections registry, `dev` script) with a first composition section proving the harness. — **Arthur** (setup), then **Phillip** owns the apparatus
-- Inventory and read the source material: both conversations end to end, the SRT project chapters, the `..files` artifacts, and the eleven prototypes in the export (per [Sprint 43's resource record](../../../chemistry/.lib/projection/42-sprint-43--the-library-hosts-itself.md)). — **Cathy, Queenie, Phillip**
+- Inventory and read the source material: both conversations end to end, the SRT project chapters, the `..files` artifacts, and the eleven prototypes in the export (per [Sprint 43's resource record](../../../chemistry/.public/.lib/projection/42-sprint-43--the-library-hosts-itself.md)). — **Cathy, Queenie, Phillip**
 - The design conversation with Doug: how the conversations' designs map onto the sprint-44 classes; what the Lab must demonstrate; what gets designed before built. **No substantial building precedes it.** — **everyone, Doug in the room**
 - Realize the agreed designs in the Lab, increment by increment under the loop. — **Cathy/Queenie/Phillip**, after sign-off
 

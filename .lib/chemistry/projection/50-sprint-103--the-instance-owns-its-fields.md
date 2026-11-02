@@ -1,8 +1,8 @@
 # The Instance Owns Its Fields
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **coauthor:** [Queenie](../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
-- **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **coauthor:** [Queenie](../../../../../.claude/library/..teamsmanship/..team/queenie/queenie-and-the-specification/.cover.md)
+- **style:** [The Coding Style](../../../../.public/.lib/the-coding-style/03-the-coding-style.md)
 - **status:** `built, local` — *ruled and built 2026-10-08, the same day as [The Cascade](49-sprint-102--the-cascade.md) and on top of it; committed in chemistry, nothing pushed.*
 - ***The chapter name and the sprint number are PROXIES.*** *The number is the team's next; the name is the rule's.*
 

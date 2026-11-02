@@ -10,7 +10,7 @@
 
 ***The end, from chapter zero:*** **every bracket mark the demo's prose carries is a citation that numbers itself and lands — 42 today, none as text — a citation list draws `[191, 194, 193]` as the paper does, the paper's notes stand as footnotes drawn at the bottom, the cited entry's landing highlight fades, a mark is set with LaTeX's space, and equation numbers draw at the right.** *Doug: "Please put all the links that were in the document. Most have disappeared."*
 
-**Read first:** this chapter · [Sprint 59 § Where things stand](65-sprint-59--the-population-that-never-drew.md#stand) · [Writing a Book, ch. 4](../the-first-draft/04-the-book-s-little-framework.md) · [The Motif, ch. 4](../the-motif/04-themes-per-type-formats-per-instance.md) · chemistry's [particle/11 § animation](../../../chemistry/.lib/particle/11-styled-particles.md#animation) · [Sprint 58 § the sweep](64-sprint-58--the-chapter-that-is-its-view.md#sweep) · `.latex/.public/.paper/bibliography.mjs` and `pnp-notes.json` · then the code named in each unit.
+**Read first:** this chapter · [Sprint 59 § Where things stand](65-sprint-59--the-population-that-never-drew.md#stand) · [Writing a Book, ch. 4](../the-first-draft/04-the-book-s-little-framework.md) · [The Motif, ch. 4](../the-motif/04-themes-per-type-formats-per-instance.md) · chemistry's [particle/11 § animation](../../../chemistry/.public/.lib/particle/11-styled-particles.md#animation) · [Sprint 58 § the sweep](64-sprint-58--the-chapter-that-is-its-view.md#sweep) · `.latex/.public/.paper/bibliography.mjs` and `pnp-notes.json` · then the code named in each unit.
 
 ## <a id="requirements"></a>Requirements — ***the register***
 

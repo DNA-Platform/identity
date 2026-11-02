@@ -51,7 +51,7 @@
 
 > ***WHAT WOULD HAVE TO BE TRUE OF THE FRAMEWORK FOR THIS CODE TO BE UNNECESSARY — and is that thing a feature, or is it a fact about the world?***
 
-**Only the second answer closes a finding.** *A defence that names a feature LEAVES IT OPEN and routes it to [chemistry's chapter zero](../../../chemistry/.lib/projection/00-planning.md).* **And the implementer is not the authority on whether that feature should exist** — *that is Doug's call, and an audit that decides it locally has quietly given itself a job it does not have.*
+**Only the second answer closes a finding.** *A defence that names a feature LEAVES IT OPEN and routes it to [chemistry's chapter zero](../../../chemistry/.public/.lib/projection/00-planning.md).* **And the implementer is not the authority on whether that feature should exist** — *that is Doug's call, and an audit that decides it locally has quietly given itself a job it does not have.*
 
 ***What a refutation may still do, and should:*** **correct a count, correct a citation, correct a line number, and say when a document does not say what the finding claimed.** *Every one of those corrections in the first run was worth keeping. What it may not do is take a local justification as a verdict.*
 
@@ -133,7 +133,7 @@ super.$Composition($check(block, $Block).concat($check($TypeOfSection, '!')));
 |---|---|
 | **a defect with a clear solution** | ***FIX IT, then report it.*** *See [the standing rule](01-public-audit.md#fix-what-has-a-clear-solution)* |
 | a **wart** — wrong shape, no clean fix yet | **[The Condition Report](../the-condition-report/.cover.md)**, which indexes the code by type of fault and is written to be edited in place |
-| a **missing framework feature** the ceremony reading exposed | **[chemistry's chapter zero](../../../chemistry/.lib/projection/00-planning.md)**, because the fix is one level down and not in this package |
+| a **missing framework feature** the ceremony reading exposed | **[chemistry's chapter zero](../../../chemistry/.public/.lib/projection/00-planning.md)**, because the fix is one level down and not in this package |
 | a defect whose **cause** you diagnosed | **[Solutions](../solutions/.cover.md)**, indexed by the symptom as it was observed |
 
 ***And nothing here is a rename.*** **[Names are proxies and Doug's to rule](../the-coding-style/03-the-coding-style.md#no-jargon)** — *an audit may say a name is wrong and say why; it may not choose the replacement.*

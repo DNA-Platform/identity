@@ -12,7 +12,7 @@
 
 **Identifiers.** Requirements **R170–**, actors **A4–**, flows **F1–**, acceptance examples **AE1–**, risks **K15–**. *[None is ever renumbered](../../../../.claude/library/our-skillset/29-ce-plan.md#the-unit-identifier-specification); a deletion leaves a gap.*
 
-**Where the code lands.** ***`$Chemistry` only, and a demonstration in its Lab*** — *Doug: **"Just the mechanism. The work in $Chemistry, and a demo."*** The framework work is [`library/chemistry/package`](../../../chemistry/package/) and the demonstration is a new case section in [its Lab](../../../chemistry/package/app/src/sections/). **The chapter sits here rather than in [chemistry's own Projection](../../../chemistry/.lib/projection/) for the same reason [The Look](23-the-look.md) did** — the sprint sequence runs in this book — *and chemistry's Projection is owed an entry at the retro.*
+**Where the code lands.** ***`$Chemistry` only, and a demonstration in its Lab*** — *Doug: **"Just the mechanism. The work in $Chemistry, and a demo."*** The framework work is [`library/chemistry/package`](../../../chemistry/.public/package/) and the demonstration is a new case section in [its Lab](../../../chemistry/.public/package/app/src/sections/). **The chapter sits here rather than in [chemistry's own Projection](../../../chemistry/.public/.lib/projection/) for the same reason [The Look](23-the-look.md) did** — the sprint sequence runs in this book — *and chemistry's Projection is owed an entry at the retro.*
 
 ## The workflow
 
@@ -24,12 +24,12 @@
 
 | | what it was load-bearing for |
 |---|---|
-| [The Look](23-the-look.md) · [Looks](../../../chemistry/.lib/particle/08-perspectives.md) · [The Composition of Looks](../../../chemistry/.lib/particle/09-the-composition-of-perspectives.md) | **the sprint that closed two days ago, and the capability it recorded giving up** — *"there is no longer a way to render an instance through a specific ancestor's view"* |
-| [`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts) · [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) · [`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts) · [`augment.ts`](../../../chemistry/package/src/implementation/augment.ts) | ***the four seams this mechanism touches***, read rather than recalled |
-| [`catalogue.ts`](../../../chemistry/package/src/implementation/catalogue.ts) | **the catalogue already exists** — `#topics`, `$new`, `$including`, `$find`, `$index` — and is used only by the representative |
-| [The Representative](../../../chemistry/.lib/composition/11-the-representative.md) · [its sprint](12-the-representative.md) | `$`, the scoping it selects, and **why a resolved component still passes through it** |
-| [Identity](../../../chemistry/.lib/particle/01-identity.md) | `$$template$$` — *the framework's existing commitment to one canonical instance per class, which this sprint makes plural* |
-| [`reflection.ts`](../../../chemistry/package/src/implementation/reflection.ts) · [`types.ts`](../../../chemistry/package/src/implementation/types.ts) | the dormant `$Rep` layer — **1,063 lines used by nothing but its own test** — checked so this does not rebuild it |
+| [The Look](23-the-look.md) · [Looks](../../../chemistry/.public/.lib/particle/08-perspectives.md) · [The Composition of Looks](../../../chemistry/.public/.lib/particle/09-the-composition-of-perspectives.md) | **the sprint that closed two days ago, and the capability it recorded giving up** — *"there is no longer a way to render an instance through a specific ancestor's view"* |
+| [`particle.ts`](../../../chemistry/.public/package/src/abstraction/particle.ts) · [`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts) · [`bond.ts`](../../../chemistry/.public/package/src/abstraction/bond.ts) · [`augment.ts`](../../../chemistry/.public/package/src/implementation/augment.ts) | ***the four seams this mechanism touches***, read rather than recalled |
+| [`catalogue.ts`](../../../chemistry/.public/package/src/implementation/catalogue.ts) | **the catalogue already exists** — `#topics`, `$new`, `$including`, `$find`, `$index` — and is used only by the representative |
+| [The Representative](../../../chemistry/.public/.lib/composition/11-the-representative.md) · [its sprint](12-the-representative.md) | `$`, the scoping it selects, and **why a resolved component still passes through it** |
+| [Identity](../../../chemistry/.public/.lib/particle/01-identity.md) | `$$template$$` — *the framework's existing commitment to one canonical instance per class, which this sprint makes plural* |
+| [`reflection.ts`](../../../chemistry/.public/package/src/implementation/reflection.ts) · [`types.ts`](../../../chemistry/.public/package/src/implementation/types.ts) | the dormant `$Rep` layer — **1,063 lines used by nothing but its own test** — checked so this does not rebuild it |
 | [The Condition Report](../the-condition-report/.cover.md) — [S1](../the-condition-report/04-semantics.md#s1) · [S17](../the-condition-report/04-semantics.md#s17) · [I11](../the-condition-report/05-implementation.md#i11) · [I22](../the-condition-report/05-implementation.md#i22) · [The Cleaning](../the-condition-report/06-the-cleaning.md#actionable) | ***the register of what is already owed***, and where `$Type` was ruled and then explicitly deferred |
 | `Type.tsx` (v1, `.archive/book/Type.tsx`, deleted) · `Annotation.tsx` (v1, `.archive/book/Annotation.tsx`, deleted) · `Author.tsx` · `Book.tsx` | **the consumer this was designed for**, and the state it is actually in |
 | [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md) · [Inheritance and Composition](../the-semantics-of-books/03-inheritance-and-composition.md) · [The Category](../the-semantics-of-books/12-the-category-and-what-escapes-it.md) | **what a type means in the theory**, and the dynamic-layering question this partly answers |
@@ -78,18 +78,18 @@
 
 | | measured | how |
 |---|---|---|
-| **the catalogue already exists in chemistry** | [`catalogue.ts`](../../../chemistry/package/src/implementation/catalogue.ts) — `#topics` is an **array** of parent catalogues walked in order by `$find`; `$including(...)` takes many; `$index`/`$find`/`$deref` are its surface | read |
-| **and the framework already walks a class chain reading each ancestor's catalogue** | `registered()` in [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) — *"a superclass's template scope, so a subclass inherits what was registered for what it extends"* | read |
-| ***`$(instance)` is ALREADY idempotent*** | [`chemical.ts:1338`](../../../chemistry/package/src/abstraction/chemical.ts) — cached under `$lifted$` behind a `hasOwnProperty` guard; and [`chemical.ts:841`](../../../chemistry/package/src/abstraction/chemical.ts) caches the component under `$component$` the same way | read |
-| ***augment runs exactly where Doug said, and it is early enough*** | [`particle.ts:444`](../../../chemistry/package/src/abstraction/particle.ts) — `augment(withAsker(p, () => p[$renderView$](), true), react, p)`, and `[$renderView$]` calls `frame()` | read |
+| **the catalogue already exists in chemistry** | [`catalogue.ts`](../../../chemistry/.public/package/src/implementation/catalogue.ts) — `#topics` is an **array** of parent catalogues walked in order by `$find`; `$including(...)` takes many; `$index`/`$find`/`$deref` are its surface | read |
+| **and the framework already walks a class chain reading each ancestor's catalogue** | `registered()` in [`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts) — *"a superclass's template scope, so a subclass inherits what was registered for what it extends"* | read |
+| ***`$(instance)` is ALREADY idempotent*** | [`chemical.ts:1338`](../../../chemistry/.public/package/src/abstraction/chemical.ts) — cached under `$lifted$` behind a `hasOwnProperty` guard; and [`chemical.ts:841`](../../../chemistry/.public/package/src/abstraction/chemical.ts) caches the component under `$component$` the same way | read |
+| ***augment runs exactly where Doug said, and it is early enough*** | [`particle.ts:444`](../../../chemistry/.public/package/src/abstraction/particle.ts) — `augment(withAsker(p, () => p[$renderView$](), true), react, p)`, and `[$renderView$]` calls `frame()` | read |
 | **the render order, which decides whether binding has already happened** | `$apply(props)` → render filters → `$bond()` → **frame + augment** | read |
-| ***and `augmentNode` RECURSES INTO `props.children`*** | [`augment.ts`](../../../chemistry/package/src/implementation/augment.ts) — **so a formula nested in a written child is reachable before its parent binds it** | read |
+| ***and `augmentNode` RECURSES INTO `props.children`*** | [`augment.ts`](../../../chemistry/.public/package/src/implementation/augment.ts) — **so a formula nested in a written child is reachable before its parent binds it** | read |
 | **augment is identity-preserving** | it returns the **same node object** when nothing changed, at every level of the walk | read |
 | **the framework hand-walks the prototype chain in 27 places** | `bond.ts` 4 · `chemical.ts` 10 · `molecule.ts` 2 · `particle.ts` 6 · `reconcile.ts` 2 · `reflection.ts` 2 · `scope.ts` 1 | grep, `src` only |
-| **three parallel module-level registries already keyed by prototype** | `inertDecorators` · `reactiveDecorators` · `lookDecorators`, each with its own recursive lookup, in [`bond.ts`](../../../chemistry/package/src/abstraction/bond.ts) | read |
-| ***the `$Rep` reflection layer is dormant*** | [`reflection.ts`](../../../chemistry/package/src/implementation/reflection.ts) — 1,063 lines; **zero callers outside `tests/implementation/reflection.test.ts`** | grep |
+| **three parallel module-level registries already keyed by prototype** | `inertDecorators` · `reactiveDecorators` · `lookDecorators`, each with its own recursive lookup, in [`bond.ts`](../../../chemistry/.public/package/src/abstraction/bond.ts) | read |
+| ***the `$Rep` reflection layer is dormant*** | [`reflection.ts`](../../../chemistry/.public/package/src/implementation/reflection.ts) — 1,063 lines; **zero callers outside `tests/implementation/reflection.test.ts`** | grep |
 | **the consumer this was designed for waits on nothing else** | `$Type.valid()` (v1, `.archive/book/Type.tsx`, deleted) checks only that its copy is non-empty; `$Author.valid()` checks the loop and **never the type**; `<Type>` appears **0 times** in the demonstration | read + grep |
-| **the Lab has ~35 case sections** | [`app/src/sections`](../../../chemistry/package/app/src/sections/) | listed |
+| **the Lab has ~35 case sections** | [`app/src/sections`](../../../chemistry/.public/package/app/src/sections/) | listed |
 
 ---
 
@@ -103,7 +103,7 @@
 
 <a id="r170"></a>**R170** — `$Formula` is a chemistry class; a class becomes a formula by extending it. ***Keys are strings and there is no generic*** — *Doug: "we know we need this to be what someone specifies in the DOM, so strings probably make the most sense universally."*
 
-<a id="r171"></a>**R171** — a formula carries a catalogue under an **internal symbol**, initialised by `$Formula`, reached through the prototype chain the way [`$registry$`](../../../chemistry/package/src/abstraction/chemical.ts) already is.
+<a id="r171"></a>**R171** — a formula carries a catalogue under an **internal symbol**, initialised by `$Formula`, reached through the prototype chain the way [`$registry$`](../../../chemistry/.public/package/src/abstraction/chemical.ts) already is.
 
 <a id="r172"></a>**R172** — `cache(key)` files ***this instance***. **Any instance may cache, not only a template**, and several instances of one class may be cached under different keys. *Doug: "No reason it needs only be one type to one cache right? As long as the keys are different."*
 
@@ -135,7 +135,7 @@
 
 ## <a id="the-swap"></a>The swap
 
-<a id="r178"></a>**R178** — the swap happens in [`augment`](../../../chemistry/package/src/implementation/augment.ts), on what `frame()` returned, **before anything else** — and it reaches a formula nested inside a written child, **because the walk recurses into `children`**. *Doug's ruling, and also the only seam that is both cheap and early enough.*
+<a id="r178"></a>**R178** — the swap happens in [`augment`](../../../chemistry/.public/package/src/implementation/augment.ts), on what `frame()` returned, **before anything else** — and it reaches a formula nested inside a written child, **because the walk recurses into `children`**. *Doug's ruling, and also the only seam that is both cheap and early enough.*
 
 <a id="r179"></a>**R179** — it ***lifts and replaces the component only***. **The written text and every prop are carried onto the replacement unchanged.**
 
@@ -143,7 +143,7 @@
 
 <a id="r181"></a>**R181** — the written class is an **upper bound**: a resolved part is always `instanceof` what was written.
 
-<a id="r182"></a>**R182** — a miss falls to the **declared default**; with no default it **raises**, naming what was asked and what the branch holds. *The form is the one [a missing look](../../../chemistry/.lib/particle/08-perspectives.md#out-of-bounds) already uses.*
+<a id="r182"></a>**R182** — a miss falls to the **declared default**; with no default it **raises**, naming what was asked and what the branch holds. *The form is the one [a missing look](../../../chemistry/.public/.lib/particle/08-perspectives.md#out-of-bounds) already uses.*
 
 <a id="r193"></a>**R193** — a formula that resolves to nothing **and** has no default draws its own text as written, unchanged from today — *which is what makes adding the mechanism unable to break a page that already works.* ***Read together with [R182](#r182): the raise is for a branch that declared a default family and then missed it, never for a class that never cached at all.***
 
@@ -153,7 +153,7 @@
 
 <a id="r200"></a>**R200** — ***resolution terminates.*** A formula resolving to another formula is a fixpoint. **Either it resolves once and stops, or it runs to a fixed point that is proven to terminate** — stated here rather than discovered in the build. *[The primary source names this hazard by name](../../../../../dna-library/library/claude-dna/conversations/2026-06-17-graph-databases-and-recursive-hierarchies.md): "a rule that governs its own organization can land you evaluating the rule in a context that contains the rule."*
 
-<a id="r199"></a>**R199** — ***`$` still applies.*** A resolved component passes through [the representative](../../../chemistry/.lib/composition/11-the-representative.md) like any other, so a scope may substitute what a formula resolved to **without touching the catalogue**. *Doug: "hopefully it should be self-evident." **Because it should, it is shown rather than assumed.***
+<a id="r199"></a>**R199** — ***`$` still applies.*** A resolved component passes through [the representative](../../../chemistry/.public/.lib/composition/11-the-representative.md) like any other, so a scope may substitute what a formula resolved to **without touching the catalogue**. *Doug: "hopefully it should be self-evident." **Because it should, it is shown rather than assumed.***
 
 <a id="r202"></a>**R202** — ***the boundary is named.*** A formula is swapped **where it is written inside a chemical's drawing**. One reached outside that path — `$(<X>…</X>)`, or mounted as a React root — is **not** swapped. *Written down rather than found.*
 
@@ -236,7 +236,7 @@ $Type  >  $Book  >  $Dictionary
 
 ***Doug's read: "an embedded factory pattern… a react-flavored one." It is, and the precise name is doing work.***
 
-**It is not an abstract factory.** A factory registry hands you a **constructor to call**; this hands you a **specimen to copy** — which is the prototype registry, and it is what [`$lift`](../../../chemistry/package/src/abstraction/particle.ts) already does: `Object.create(template)`.
+**It is not an abstract factory.** A factory registry hands you a **constructor to call**; this hands you a **specimen to copy** — which is the prototype registry, and it is what [`$lift`](../../../chemistry/.public/package/src/abstraction/particle.ts) already does: `Object.create(template)`.
 
 **The React flavour is where the key comes from.** In the book the key is a parameter. Here it is **the content of the tag** — *the tag is the abstract type, the children are the discriminator*. And the inheritance chain is what scopes the registry, which the pattern in the book has no notion of at all.
 
@@ -244,7 +244,7 @@ $Type  >  $Book  >  $Dictionary
 
 ## <a id="the-exemplar-goes-plural"></a>The exemplar goes plural
 
-**The framework already held exactly one canonical instance per class** — [`$$template$$`](../../../chemistry/.lib/particle/01-identity.md) — *and nobody decided that on purpose.* One class, one exemplar, and the exemplar anonymous.
+**The framework already held exactly one canonical instance per class** — [`$$template$$`](../../../chemistry/.public/.lib/particle/01-identity.md) — *and nobody decided that on purpose.* One class, one exemplar, and the exemplar anonymous.
 
 ***This makes the exemplar plural and named.*** **Which is the same move [The Look](23-the-look.md) made one level up**, two days earlier: a class stopped having one canonical **drawing**, and a default became a choice rather than a fact. *Here a class stops having one canonical **instance**.* **Both times the thing deleted is privilege, and what replaces it is a name given from outside.**
 
@@ -252,7 +252,7 @@ $Type  >  $Book  >  $Dictionary
 
 **Classical definition says an autobiography is a biography whose author is its subject.** *This says an autobiography is **this one**, and the things that resemble it.* `<Type>Autobiography</Type>` does not name a category; **it points at a specimen.**
 
-***And a library has always worked that way.*** *You do not define* novel *in a library; you shelve one.* **A card is a stand-in you can carry when the item is too heavy to handle** — and what is new here is that **following the card prints you a copy**, because the catalogue holds an instance and [`$(instance)`](../../../chemistry/.lib/composition/11-the-representative.md) turns it into a component that makes more.
+***And a library has always worked that way.*** *You do not define* novel *in a library; you shelve one.* **A card is a stand-in you can carry when the item is too heavy to handle** — and what is new here is that **following the card prints you a copy**, because the catalogue holds an instance and [`$(instance)`](../../../chemistry/.public/.lib/composition/11-the-representative.md) turns it into a component that makes more.
 
 ***Nancy's guardrail, kept:*** **categories in people do organize around best exemplars rather than necessary-and-sufficient conditions — that is Rosch, and it is well supported — but a structural resemblance is not evidence that this models cognition, and the library should not start claiming it does.** *What IS load-bearing is cheaper: because a specific exemplar files itself into its ancestors' catalogues, **the genus answers to a species' name and the species does not answer to the genus's**. That asymmetry is the whole of what a taxonomy is, and nobody writes it down — it falls out of [R173](#r173).*
 
@@ -291,7 +291,7 @@ $Type  >  $Book  >  $Dictionary
 
 <a id="k18"></a>**K18 — forcing ancestor exemplars into existence.** *[R175](#r175) constructs objects nobody asked for, once per ancestor class.* **It buys determinism and costs a constructor; a class with a side-effecting constructor would be surprised.** ***Raised in the room and left in: the alternative is a rule whose outcome depends on load order.***
 
-<a id="k19"></a>**K19 — the marker test.** *Recognising a formula by `instanceof` on every element of every render is a prototype climb in a hot path.* **A stamped marker on the component — the way [`$particleMarker$`](../../../chemistry/package/src/abstraction/particle.ts) is stamped — makes it a property lookup.** *Named here because the cheap version and the correct version are not the same code.*
+<a id="k19"></a>**K19 — the marker test.** *Recognising a formula by `instanceof` on every element of every render is a prototype climb in a hot path.* **A stamped marker on the component — the way [`$particleMarker$`](../../../chemistry/.public/package/src/abstraction/particle.ts) is stamped — makes it a property lookup.** *Named here because the cheap version and the correct version are not the same code.*
 
 ---
 
@@ -315,7 +315,7 @@ $Type  >  $Book  >  $Dictionary
 
 ### <a id="d95"></a>D95 — A formula is recognised by a stamped marker, not by `instanceof`
 
-**The marker is stamped on `$Formula.prototype` the way [`$particleMarker$`](../../../chemistry/package/src/abstraction/particle.ts) is stamped on `$Particle.prototype`**, and the test in the walk reads it through the component's `$chemical`. *A property lookup, not a prototype climb, on every element of every render* — [K19](#k19).
+**The marker is stamped on `$Formula.prototype` the way [`$particleMarker$`](../../../chemistry/.public/package/src/abstraction/particle.ts) is stamped on `$Particle.prototype`**, and the test in the walk reads it through the component's `$chemical`. *A property lookup, not a prototype climb, on every element of every render* — [K19](#k19).
 
 ### <a id="d96"></a>D96 — Resolution runs ONCE per element and never re-resolves its own result
 
@@ -403,11 +403,11 @@ $Type  >  $Book  >  $Dictionary
 
 ### <a id="u178-181-done"></a>U178 · U179 · U180 · U181 — ***DONE***, and they landed as one file
 
-**[`src/abstraction/formula.ts`](../../../chemistry/package/src/abstraction/formula.ts), 130 lines**, plus two symbols. *Planned as four units and built as one seam, because `branch()` is the whole of U179 and both U180 and U181 read it.*
+**[`src/abstraction/formula.ts`](../../../chemistry/.public/package/src/abstraction/formula.ts), 130 lines**, plus two symbols. *Planned as four units and built as one seam, because `branch()` is the whole of U179 and both U180 and U181 read it.*
 
 | | what it is |
 |---|---|
-| **the catalogue** | one chemistry [`$Catalogue`](../../../chemistry/package/src/implementation/catalogue.ts) per class, held on the class under `$cache$` and reached from any instance by a getter — ***nothing allocated per instance***, which is [D93](#d93) |
+| **the catalogue** | one chemistry [`$Catalogue`](../../../chemistry/.public/package/src/implementation/catalogue.ts) per class, held on the class under `$cache$` and reached from any instance by a getter — ***nothing allocated per instance***, which is [D93](#d93) |
 | **`cache(key?)`** | files ***this instance***; with no argument it is the one that stands when nothing is named — [D94](#d94), and **no word was invented for it** |
 | **the climb** | `branch(cls)` walks the class chain while `at.prototype instanceof $Formula`, so it stops **below** `$Formula` and a key never reaches it |
 | **first one wins** | `if (held.$find(ref) !== undefined) continue` — one line, and it is what makes a super-chain's repeated `cache` calls harmless |
@@ -417,7 +417,7 @@ $Type  >  $Book  >  $Dictionary
 
 ### <a id="u182-done"></a>U182 — ***DONE.*** The swap is nine lines in a walk that already ran
 
-**[`augment.ts`](../../../chemistry/package/src/implementation/augment.ts) gained `substitute(element, asker)`** — *the marker and the resolver are **one member**, `[$formula$]`, read off the component's `$chemical`.* **So the walk needs no import and the test for a non-formula is a single property lookup that answers `undefined`** — [D95](#d95), and it means [K19](#k19) never had to be paid for separately.
+**[`augment.ts`](../../../chemistry/.public/package/src/implementation/augment.ts) gained `substitute(element, asker)`** — *the marker and the resolver are **one member**, `[$formula$]`, read off the component's `$chemical`.* **So the walk needs no import and the test for a non-formula is a single property lookup that answers `undefined`** — [D95](#d95), and it means [K19](#k19) never had to be paid for separately.
 
 ***AND THE CLAIM THE DESIGN RESTS ON HOLDS, tested rather than argued:*** **`augmentNode` recurses into `props.children`, so a formula written inside another chemical's element is replaced while it is still an element** — before that chemical's component runs, and therefore before its bond constructor sees its children. **A `$Shelf` handed `<Type>Autobiography</Type>` binds an `$Autobiography`.** *That is the promise `what a parent binds` makes, and it is what makes this a change to the MODEL rather than to the drawing.*
 
@@ -438,7 +438,7 @@ $Type  >  $Book  >  $Dictionary
 
 ***And it is not a defect; it is a fact nobody had written down.*** **`$(instance)` caches under `$lifted$`; `[$resolveComponent$]()` caches under `$component$`.** *Both are idempotent — [R189](#r189) holds — and they are **two different objects for one template**.*
 
-**The instance form also [deliberately skips the bond constructor](../../../chemistry/package/src/abstraction/chemical.ts)**, and a replacement is being written **fresh** with props and children, so it needs the constructor to run. ***So the swap hands back the bonding form*** — which is also the component the export convention gives a consumer, so React sees the same type the author would have written.
+**The instance form also [deliberately skips the bond constructor](../../../chemistry/.public/package/src/abstraction/chemical.ts)**, and a replacement is being written **fresh** with props and children, so it needs the constructor to run. ***So the swap hands back the bonding form*** — which is also the component the export convention gives a consumer, so React sees the same type the author would have written.
 
 *My first test assumed the two were interchangeable and failed on identity. **The test was wrong and the framework was right**, which is the better way round.*
 
@@ -458,7 +458,7 @@ $Type  >  $Book  >  $Dictionary
 
 ### <a id="u185-done"></a>U185 — ***DONE, DRIVEN, AND SEEN.*** A periodic table that is two classes and four specimens
 
-**[`app/src/sections/formula/case-1.tsx`](../../../chemistry/package/app/src/sections/formula/case-1.tsx)**, registered in the Lab's catalogue under **Polymorphism → Formulas**.
+**[`app/src/sections/formula/case-1.tsx`](../../../chemistry/.public/package/app/src/sections/formula/case-1.tsx)**, registered in the Lab's catalogue under **Polymorphism → Formulas**.
 
 ***The demonstration's own claim is the design's:*** **a noble gas and a metal are KINDS; neon and argon are one kind twice, with different state.** *So the table is `$Element > $NobleGas` and `$Element > $Metal` — **two classes** — with **four specimens** filed under Neon, Argon, Iron and Copper.* **Nobody writes a class per element, which is what "the catalogue holds specimens rather than classes" means when it is drawn.**
 
@@ -484,7 +484,7 @@ $Type  >  $Book  >  $Dictionary
 
 ### <a id="the-conformance-pass"></a>THE CONFORMANCE PASS — *"look for ways that formula might stand out and then fix it"*
 
-***Doug asked for it after the build, and it found more than the build did.*** *Measured against [The Grammar](../../../chemistry/.lib/authorship/01-the-grammar.md) and against the modules `formula.ts` sits beside.*
+***Doug asked for it after the build, and it found more than the build did.*** *Measured against [The Grammar](../../../chemistry/.public/.lib/authorship/01-the-grammar.md) and against the modules `formula.ts` sits beside.*
 
 **Fixed in the code:**
 
@@ -501,8 +501,8 @@ $Type  >  $Book  >  $Dictionary
 
 ***THE LARGEST DIVERGENCE WAS NOT IN THE CODE AT ALL.*** **Every module in chemistry has a chapter and every feature has one; `$Formula` had neither.** *Closed in the same act:*
 
-- **[`implementation/16-formula.md`](../../../chemistry/.lib/implementation/16-formula.md)** — the module chapter, in the form the other fifteen use.
-- **[`composition/12-the-formula.md`](../../../chemistry/.lib/composition/12-the-formula.md)** — the feature chapter, beside [The Representative](../../../chemistry/.lib/composition/11-the-representative.md).
+- **[`implementation/16-formula.md`](../../../chemistry/.public/.lib/implementation/16-formula.md)** — the module chapter, in the form the other fifteen use.
+- **[`composition/12-the-formula.md`](../../../chemistry/.public/.lib/composition/12-the-formula.md)** — the feature chapter, beside [The Representative](../../../chemistry/.public/.lib/composition/11-the-representative.md).
 - **Five glossary terms** — `$Formula` · branch root · cache · the climb · specimen.
 - **Both covers**, with [the tool](../../../../.claude/library/bookkeeping/03-on-covers--toc.ts).
 
@@ -551,11 +551,11 @@ $Type  >  $Book  >  $Dictionary
 >
 > *"Look at the perspective examples. Look at the frame examples… **make something comparable in beauty.**"*
 
-***He is right about the bar, and the bar is [the colour case](../../../chemistry/package/app/src/sections/perspectives-color/case-1.tsx) and [the book case](../../../chemistry/package/app/src/sections/perspectives-book/case-1.tsx)*** — *one live object, a menu of live previews, a stage, and four genuinely different visual languages.* **A grid of cards with a green box and a red box is a table with opinions.**
+***He is right about the bar, and the bar is [the colour case](../../../chemistry/.public/package/app/src/sections/perspectives-color/case-1.tsx) and [the book case](../../../chemistry/.public/package/app/src/sections/perspectives-book/case-1.tsx)*** — *one live object, a menu of live previews, a stage, and four genuinely different visual languages.* **A grid of cards with a green box and a red box is a table with opinions.**
 
 ***And the union he named is real: `look` and the formula are the same move on two axes.*** **The word picks the CLASS; the number picks the DRAWING** — both handed in from outside, neither anything the drawing knows about itself. *`look` crosses the swap because it is an ordinary prop, so the two compose with no framework work at all.*
 
-**So the section opens with [`figures.tsx`](../../../chemistry/package/app/src/sections/formula/figures.tsx) — *one word, six worlds*:**
+**So the section opens with [`figures.tsx`](../../../chemistry/.public/package/app/src/sections/formula/figures.tsx) — *one word, six worlds*:**
 
 | | |
 |---|---|
@@ -582,9 +582,9 @@ $Type  >  $Book  >  $Dictionary
 
 ## What is DONE
 
-- **The mechanism** — [`formula.ts`](../../../chemistry/package/src/abstraction/formula.ts) (111 lines), two symbols, nine lines in [`augment.ts`](../../../chemistry/package/src/implementation/augment.ts), one export in `index.ts`.
-- **The suite** — 31 promises in [`formula.test.tsx`](../../../chemistry/package/tests/abstraction/formula.test.tsx), four probes watched going red.
-- **The library** — [`implementation/16-formula.md`](../../../chemistry/.lib/implementation/16-formula.md), [`composition/12-the-formula.md`](../../../chemistry/.lib/composition/12-the-formula.md), [`epistemology/07-the-figures.md`](../../../chemistry/.lib/epistemology/07-the-figures.md), five glossary terms, four covers.
+- **The mechanism** — [`formula.ts`](../../../chemistry/.public/package/src/abstraction/formula.ts) (111 lines), two symbols, nine lines in [`augment.ts`](../../../chemistry/.public/package/src/implementation/augment.ts), one export in `index.ts`.
+- **The suite** — 31 promises in [`formula.test.tsx`](../../../chemistry/.public/package/tests/abstraction/formula.test.tsx), four probes watched going red.
+- **The library** — [`implementation/16-formula.md`](../../../chemistry/.public/.lib/implementation/16-formula.md), [`composition/12-the-formula.md`](../../../chemistry/.public/.lib/composition/12-the-formula.md), [`epistemology/07-the-figures.md`](../../../chemistry/.public/.lib/epistemology/07-the-figures.md), five glossary terms, four covers.
 - **The Lab** — four cases under Polymorphism → Formulas: *one word, six worlds* · *the type system* · *the climb* · *the re-dress*.
 - **Compounded** — [Solutions 18](../solutions/28-the-specimen-that-was-the-component.md).
 
@@ -609,7 +609,7 @@ $Type  >  $Book  >  $Dictionary
 | | what happened |
 |---|---|
 | ***a periodic table configured from outside*** | `new $NobleGas().file('Ne','Neon',320)` with all four specimens sharing one `view()`. **Doug: "a completely useless application of this feature… should just be a dictionary on the element class."** *Configuration belongs in the constructor; if no class overrides anything, nothing polymorphic is being shown.* |
-| ***cards with a green box and a red box*** | correct, and not a demonstration. **"I see a bunch of identical cards with some green and red."** *The bar is [the colour case](../../../chemistry/package/app/src/sections/perspectives-color/case-1.tsx) and [the book case](../../../chemistry/package/app/src/sections/perspectives-book/case-1.tsx).* |
+| ***cards with a green box and a red box*** | correct, and not a demonstration. **"I see a bunch of identical cards with some green and red."** *The bar is [the colour case](../../../chemistry/.public/package/app/src/sections/perspectives-color/case-1.tsx) and [the book case](../../../chemistry/.public/package/app/src/sections/perspectives-book/case-1.tsx).* |
 | ***replacing a design when asked to resize it*** | asked for smaller arrows, I rebuilt the figure as a painted gradient map. **"Why did you change the design? New one is awful."** ***Change only what was named, then show the result.*** |
 | ***swapping out drawings he had praised*** | `core` and `gauge` were in a row he said he liked and I replaced both in a later pass. **Read what was praised before touching a neighbour.** |
 | ***three-clause subject lines*** | **"This is too much."** *One sentence per case.* |
@@ -620,16 +620,16 @@ $Type  >  $Book  >  $Dictionary
 1. ***`$Type` in `lib`*** — the consumer this was built for, waiting since [S17](../the-condition-report/04-semantics.md#s17-type) on 2026-08-23. **`$Type extends $Annotation` already, so it cannot also extend `$Formula`** — [the single-inheritance wall](#raised-not-fixed) is the first thing that sprint meets.
 2. ***`valid(writing?: $Writing)`*** — Doug's sketch, scoped out of this sprint, recorded [here](#not-in-scope).
 3. ***the author specification's type half*** — `$Author.valid()` checks the loop and never the type, and the card carries no type to check.
-4. ***`instance.Component` is documented in [Identity](../../../chemistry/.lib/particle/01-identity.md) and does not exist*** — someone else's chapter, and it means a **non-template specimen has no public component name**, so only a class-level specimen can be re-dressed through `$`.
+4. ***`instance.Component` is documented in [Identity](../../../chemistry/.public/.lib/particle/01-identity.md) and does not exist*** — someone else's chapter, and it means a **non-template specimen has no public component name**, so only a class-level specimen can be re-dressed through `$`.
 5. **The 27 hand-written prototype walks** a formula catalogue could carry — named, not taken.
 
 ## Where to start reading
 
-***[The Formula](../../../chemistry/.lib/composition/12-the-formula.md) first*** — it is the feature, and it carries the two facts that cost a red suite. **Then [The Figures](../../../chemistry/.lib/epistemology/07-the-figures.md)** if the next work touches the Lab, because it says what a case has to do and why three attempts failed. *This chapter is the record of how it was built and is the last thing to read, not the first.*
+***[The Formula](../../../chemistry/.public/.lib/composition/12-the-formula.md) first*** — it is the feature, and it carries the two facts that cost a red suite. **Then [The Figures](../../../chemistry/.public/.lib/epistemology/07-the-figures.md)** if the next work touches the Lab, because it says what a case has to do and why three attempts failed. *This chapter is the record of how it was built and is the last thing to read, not the first.*
 
 ### <a id="raised-not-fixed"></a>Raised by the pass and deliberately NOT fixed
 
 | | |
 |---|---|
-| ***`instance.Component` is documented and does not exist*** | **[Identity](../../../chemistry/.lib/particle/01-identity.md) says *"`instance.Component` is what JSX consumers mount"* and there is no such getter in `particle.ts`.** *A cover/chapter gap in someone else's chapter, and it has a consequence here: **a consumer has no public name for a NON-template specimen's component**, so only a class-level specimen can be re-dressed through `$`.* |
+| ***`instance.Component` is documented and does not exist*** | **[Identity](../../../chemistry/.public/.lib/particle/01-identity.md) says *"`instance.Component` is what JSX consumers mount"* and there is no such getter in `particle.ts`.** *A cover/chapter gap in someone else's chapter, and it has a consequence here: **a consumer has no public name for a NON-template specimen's component**, so only a class-level specimen can be re-dressed through `$`.* |
 | **`$Formula extends $Chemical`** | *Right for chemistry — a formula's subclasses draw and compose — but **a class already in a hierarchy cannot also be a formula**, which is the wall the [`$$` reference forms](../the-condition-report/04-semantics.md#s1-constraint) meet. It is the consumer sprint's problem and it is named here so that sprint meets it in writing.* |

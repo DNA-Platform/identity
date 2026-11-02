@@ -59,7 +59,7 @@ On the framework change:
 
 ## The formula machinery already does most of this
 
-A class whose `formula` member is truthy gets a catalogue of its own, built lazily by `catalogueOf` ([chemical.ts:946](../../../chemistry/package/src/abstraction/chemical.ts)). The protected `[cache](key)` member ([chemical.ts:1004](../../../chemistry/package/src/abstraction/chemical.ts)) files an instance under that key in every formula class up its prototype chain, appends the key to a list of known names, and marks the instance as a template. `[$formula$]` ([chemical.ts:1020](../../../chemistry/package/src/abstraction/chemical.ts)) reads the element's text children as the key, looks it up, and returns the found instance's component. `read`
+A class whose `formula` member is truthy gets a catalogue of its own, built lazily by `catalogueOf` ([chemical.ts:946](../../../chemistry/.public/package/src/abstraction/chemical.ts)). The protected `[cache](key)` member ([chemical.ts:1004](../../../chemistry/.public/package/src/abstraction/chemical.ts)) files an instance under that key in every formula class up its prototype chain, appends the key to a list of known names, and marks the instance as a template. `[$formula$]` ([chemical.ts:1020](../../../chemistry/.public/package/src/abstraction/chemical.ts)) reads the element's text children as the key, looks it up, and returns the found instance's component. `read`
 
 **This is how `<Type>Chapter</Type>` finds `$TypeOfChapter` today, and the pattern is written out in six lines in a test** (**specification.test.tsx:126-140**): a subclass of `$Type` sets `resolve = false`, calls `this[cache]('Counted')` in its constructor, is passed to `$()`, and then `<Type>Counted</Type>` resolves to it. `read`
 
@@ -67,7 +67,7 @@ A class whose `formula` member is truthy gets a catalogue of its own, built lazi
 
 ## A formula only resolves inside a view, and that rules out one design
 
-`[$formula$]` is reached only from `augment`, and `augment` is called from exactly two places, both on a chemical's view output ([particle.ts:490](../../../chemistry/package/src/abstraction/particle.ts) and [:510](../../../chemistry/package/src/abstraction/particle.ts)). Chemistry's own suite has a section named *the boundary* pinning both halves: a formula rendered as a React root is not swapped, and **a formula evaluated outside a drawing is not swapped either** ([formula.test.tsx:396-405](../../../chemistry/package/tests/abstraction/formula.test.tsx)). `read`
+`[$formula$]` is reached only from `augment`, and `augment` is called from exactly two places, both on a chemical's view output ([particle.ts:490](../../../chemistry/.public/package/src/abstraction/particle.ts) and [:510](../../../chemistry/.public/package/src/abstraction/particle.ts)). Chemistry's own suite has a section named *the boundary* pinning both halves: a formula rendered as a React root is not swapped, and **a formula evaluated outside a drawing is not swapped either** ([formula.test.tsx:396-405](../../../chemistry/.public/package/tests/abstraction/formula.test.tsx)). `read`
 
 Every book file in the test corpus is `$(<Chapter>…)` at module scope (02-symmetry.tsx:5), and the compiler emits the same shape (emit.ts:14-27). **So a formula written directly in a book's prose would stand as a bare word, silently.** `read`
 
@@ -86,7 +86,7 @@ Every book file in the test corpus is `$(<Chapter>…)` at module scope (02-symm
 
 ## The shared references section already exists
 
-`$References` sets `$pid = '$references$'` and `persist = true` in its bond constructor (**References.tsx:22-23**). Hydration is keyed by pid, and `propagate` pushes every committed write to every other chemical enrolled under the same pid ([hydration.ts:27-37](../../../chemistry/package/src/implementation/hydration.ts)). **So every book's references section is already one shared object with many instances.** `read`
+`$References` sets `$pid = '$references$'` and `persist = true` in its bond constructor (**References.tsx:22-23**). Hydration is keyed by pid, and `propagate` pushes every committed write to every other chemical enrolled under the same pid ([hydration.ts:27-37](../../../chemistry/.public/package/src/implementation/hydration.ts)). **So every book's references section is already one shared object with many instances.** `read`
 
 `reassemble()` (**References.tsx:41-62**) turns each stored path string back into a reference object by reading its two-letter code and looking the class up in `prints` — so `Bk:algebra` already becomes a `$$Book` with no new machinery. `read`
 
@@ -94,13 +94,13 @@ Every book file in the test corpus is `$(<Chapter>…)` at module scope (02-symm
 
 ## The collision that forces the framework change
 
-`branch()` ([chemical.ts:889-898](../../../chemistry/package/src/abstraction/chemical.ts)) walks the class chain upward while each class is a formula, and `[cache]` files the name into every class it collects. For a subject the chain would be `$SubjectOfAbstractAlgebra → $Subject → $Trait → $Type`, **so subject names would land in the same catalogue as `Book`, `Chapter`, `Cover`, `Section`, `Word`, `Reference` and `Path`.** `read`
+`branch()` ([chemical.ts:889-898](../../../chemistry/.public/package/src/abstraction/chemical.ts)) walks the class chain upward while each class is a formula, and `[cache]` files the name into every class it collects. For a subject the chain would be `$SubjectOfAbstractAlgebra → $Subject → $Trait → $Type`, **so subject names would land in the same catalogue as `Book`, `Chapter`, `Cover`, `Section`, `Word`, `Reference` and `Path`.** `read`
 
-Two silent consequences. A subject named `Cover` would never register at all, because `[cache]` returns early when an ancestor already holds the key ([chemical.ts:1007](../../../chemistry/package/src/abstraction/chemical.ts)). A subject named `Physics` would make `<Type>Physics</Type>` resolve to it. `read`
+Two silent consequences. A subject named `Cover` would never register at all, because `[cache]` returns early when an ancestor already holds the key ([chemical.ts:1007](../../../chemistry/.public/package/src/abstraction/chemical.ts)). A subject named `Physics` would make `<Type>Physics</Type>` resolve to it. `read`
 
 **A class field cannot mark the class that declared it.** `class Subject extends Trait { formula = 'new' }` gives every subclass's template its own `formula` property answering `'new'` — measured. So `branch()` cannot stop at "the first class that says `'new'`"; it would stop at `$SubjectOfAbstractAlgebra` and leave `$Subject`'s catalogue empty. `probe`
 
-`.formula` is read in exactly three places in all of `$Chemistry` — `isFormula` ([chemical.ts:883](../../../chemistry/package/src/abstraction/chemical.ts)), the declaration ([chemical.ts:978](../../../chemistry/package/src/abstraction/chemical.ts)), and `[$formula$]`'s guard ([chemical.ts:1021](../../../chemistry/package/src/abstraction/chemical.ts)) — **and all three only test truthiness, so `boolean | 'new'` breaks nothing that exists.** `read`
+`.formula` is read in exactly three places in all of `$Chemistry` — `isFormula` ([chemical.ts:883](../../../chemistry/.public/package/src/abstraction/chemical.ts)), the declaration ([chemical.ts:978](../../../chemistry/.public/package/src/abstraction/chemical.ts)), and `[$formula$]`'s guard ([chemical.ts:1021](../../../chemistry/.public/package/src/abstraction/chemical.ts)) — **and all three only test truthiness, so `boolean | 'new'` breaks nothing that exists.** `read`
 
 # <a id="actors"></a>Actors
 
@@ -124,7 +124,7 @@ Two silent consequences. A subject named `Cover` would never register at all, be
 **R3 — nothing that exists changes behaviour.** `$Chemistry`'s suite and lib's suite both stay at their current counts, and no existing class declares `'new'`.
 > **Observed:** $Chemistry 848/848 and lib 543/543 before and after the framework change, with the framework change alone in the working copy.
 
-**R3a — whether a tag resolved is readable through an exported symbol, not a public member.** *Doug: "we want [formulaResolved] as a symbol to import, and we need to work publicly… Or just resolved and the import will be from formula?"* `$Chemistry` exports it beside `cache`, `children` and `style` ([index.ts:32](../../../chemistry/package/src/index.ts)), and `[$formula$]` sets it on the instance it hands back.
+**R3a — whether a tag resolved is readable through an exported symbol, not a public member.** *Doug: "we want [formulaResolved] as a symbol to import, and we need to work publicly… Or just resolved and the import will be from formula?"* `$Chemistry` exports it beside `cache`, `children` and `style` ([index.ts:32](../../../chemistry/.public/package/src/index.ts)), and `[$formula$]` sets it on the instance it hands back.
 
 **Measured, and it is why a symbol is worth having:** `resolve` already tells the two apart — an unresolved tag is the base class reading `resolve = true`, a resolved one is the registered subclass reading `false` — **but `resolve` is an instruction, not a record.** It says *should I resolve*, and reading it as *did I resolve* is inferring a fact from a flag that only implies it. A symbol says the fact.
 
@@ -180,7 +180,7 @@ Two silent consequences. A subject named `Cover` would never register at all, be
 
 > **Observed:** a book whose subject never resolved fails `book.specify()` with `a subject names a book this library catalogues, and this one names none`. The existing check in `binding/specify.ts` — which imports each book and asserts `specify()` does not throw, and never renders — catches it with no change to how the check runs.
 
-**R9b — a misspelling is red in the editor, before any build.** The compiler emits the declared names as a union type and a narrowed alias beside the classes. `Component<T>` is `React.FC<$Properties<T>>` ([element.ts:23](../../../chemistry/package/src/abstraction/element.ts)) and JSX children are checked against the props type, so narrowing `children` is enough.
+**R9b — a misspelling is red in the editor, before any build.** The compiler emits the declared names as a union type and a narrowed alias beside the classes. `Component<T>` is `React.FC<$Properties<T>>` ([element.ts:23](../../../chemistry/.public/package/src/abstraction/element.ts)) and JSX children are checked against the props type, so narrowing `children` is enough.
 > **Observed:** in the emitted output, `export type SubjectName = 'Abstract Algebra' | 'Group Theory' | 'Math'` and a narrowed `Subject`. `<Subject>Chemsitry</Subject>` is a `tsc` error naming the three valid names. **This is R-A22's static rail, delivered by a generated line rather than a framework change.**
 
 **R10 — an author is declared and mentioned exactly as a subject is.** `<Author>of: Eirian</Author>` on an autobiography's cover; `<Author>Eirian</Author>` anywhere else. Its catalogue is separate from `$Subject`'s, so a subject and an author may share a name.

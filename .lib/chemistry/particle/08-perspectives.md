@@ -1,6 +1,6 @@
 # Looks
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 
@@ -102,7 +102,7 @@ $Sheet has no look called nope — it draws github, night.
 
 **Bought:** one integer where there were two axes; a name that travels from a decorator to a JSX attribute; and about 150 lines deleted from `particle.ts`, a whole file, five symbols and a hand-built backing store.
 
-**Cost, stated plainly:** *there is no longer a way to render an instance through a **specific ancestor's** view.* The vertical axis could say "draw this leaf as its grandparent draws it"; the series cannot, because a subclass overriding `view` replaces position 0 rather than stacking on it. Where a class needs that, it declares the ancestor's drawing as a look of its own — which is what [`$Document`](../../../.public/package/src/document/Document.tsx) does: a subclass may *declare* its sections in `view()`, and once they are harvested the document sets `$look = 1` to draw them instead of re-emitting the declaration.
+**Cost, stated plainly:** *there is no longer a way to render an instance through a **specific ancestor's** view.* The vertical axis could say "draw this leaf as its grandparent draws it"; the series cannot, because a subclass overriding `view` replaces position 0 rather than stacking on it. Where a class needs that, it declares the ancestor's drawing as a look of its own — which is what [`$Document`](../../../../.public/package/src/document/Document.tsx) does: a subclass may *declare* its sections in `view()`, and once they are harvested the document sets `$look = 1` to draw them instead of re-emitting the declaration.
 
 ## See also
 
@@ -124,4 +124,4 @@ $Sheet has no look called nope — it draws github, night.
 [types]: ../../package/src/implementation/types.ts
 [look-field]: ../../package/src/abstraction/particle.ts
 [frame]: ../../package/src/abstraction/particle.ts
-[location]: ../../../.public/package/src/reference/Location.tsx
+[location]: ../../../../.public/package/src/reference/Location.tsx

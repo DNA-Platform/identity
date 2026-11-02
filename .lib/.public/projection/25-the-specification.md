@@ -54,7 +54,7 @@
 
 <a id="r209"></a>**R209** — **the compiler's `validate.ts` stage keeps its name** — *29 mentions in `build/`* — **because it is a phase of validation, and the compiler [may have compiler words](../the-condition-report/06-the-cleaning.md#actionable).**
 
-<a id="r210"></a>**R210** — ***the same sweep takes the other struck words, because a vocabulary pass that leaves two of them behind is one nobody trusts.*** **"Failure" — 8 in code, 54 in the branch libraries** — *including a styled component named `Failure` in [last sprint's own demonstration](../../../chemistry/package/app/src/sections/formula/case-2.tsx), written after the ban.* **"Make" — 33 occurrences after three separate bans**, *8 of them in test files and one in [sprint 22's chapter](22-working-well-by-default.md).*
+<a id="r210"></a>**R210** — ***the same sweep takes the other struck words, because a vocabulary pass that leaves two of them behind is one nobody trusts.*** **"Failure" — 8 in code, 54 in the branch libraries** — *including a styled component named `Failure` in [last sprint's own demonstration](../../../chemistry/.public/package/app/src/sections/formula/case-2.tsx), written after the ban.* **"Make" — 33 occurrences after three separate bans**, *8 of them in test files and one in [sprint 22's chapter](22-working-well-by-default.md).*
 
 ---
 
@@ -80,7 +80,7 @@
 
 <a id="r216"></a>**R216** — ***a specification narrows by inheritance and every child calls `super`.*** **This is [S8's standing ruling](../the-condition-report/04-semantics.md#s8) carried into the new word:** *"if `specify` is hard to specialize, the parent version should be implemented with PROTECTED METHODS… If a child doesn't call the parent, it suggests that perhaps IT IS NOT A SUBCLASS."*
 
-<a id="r217"></a>**R217** — ***a subject may provide a DIFFERENT specification for the same written word, in its own scope, with no change to any catalogue.*** **The mechanism exists and is [already demonstrated](../../../chemistry/package/app/src/sections/formula/case-3.tsx)** — *`$(Stricter, Autobiography)(Strict)`* — **and it is the direct answer to [the problem](#the-problem)**: *a new subject provides its own specification instead of subclassing four classes.*
+<a id="r217"></a>**R217** — ***a subject may provide a DIFFERENT specification for the same written word, in its own scope, with no change to any catalogue.*** **The mechanism exists and is [already demonstrated](../../../chemistry/.public/package/app/src/sections/formula/case-3.tsx)** — *`$(Stricter, Autobiography)(Strict)`* — **and it is the direct answer to [the problem](#the-problem)**: *a new subject provides its own specification instead of subclassing four classes.*
 
 <a id="r218"></a>**R218** — ***what a book must be stops being written inside `$Book`.*** **`$Book.structure()` holds seven statements today** — *a cover at position zero, exactly one cover, a synopsis of itself, exactly one table of contents, an author, a subject, at most one canonical* — **and they become what types specify, so a subject can add an eighth without touching the class.**
 
@@ -248,9 +248,9 @@
 |---|---|---|
 | ***the diamond is already in the corpus*** | **21 generated classes** — one per cover, synopsis and chapter file, across 7 books | grep |
 | **and a subject-styled cover would need two supertypes** | `$Cover extends $Chapter`, so a physics cover must be **both** a `$Cover` and a `$PhysicsChapter` — ***which single inheritance forbids*** | read |
-| ***a scope cannot re-dress a chapter its book holds*** | `$Book.place()` draws with `$(chapter)`, and **the instance branch is taken at [`chemical.ts:1337`](../../../chemistry/package/src/abstraction/chemical.ts) before the representative is consulted** | read |
+| ***a scope cannot re-dress a chapter its book holds*** | `$Book.place()` draws with `$(chapter)`, and **the instance branch is taken at [`chemical.ts:1337`](../../../chemistry/.public/package/src/abstraction/chemical.ts) before the representative is consulted** | read |
 | **and the class is pinned earlier still** | generated books write `<PhysicsCover />` and `<TableOfContents />` as ordinary JSX — *"React's own path, and it is **not** resolved"* | read |
-| ***a formula resolution DOES go through the representative*** | [`formula.ts`](../../../chemistry/package/src/abstraction/formula.ts) passes its asker in and calls `$(component)` — **which is the whole mechanical difference between the two routes** | read |
+| ***a formula resolution DOES go through the representative*** | [`formula.ts`](../../../chemistry/.public/package/src/abstraction/formula.ts) passes its asker in and calls `$(component)` — **which is the whole mechanical difference between the two routes** | read |
 | ***but a book is built outside a drawing*** | generated books are `$(<Book>…</Book>)` at **module scope**, and [R202](24-the-formula.md#r202) says a formula reached outside a chemical's drawing is **not** swapped | read |
 | **`$Type` cannot extend `$Formula`** | `$Type > $Annotation > $Phrase > $Word > $Writing > $Referent`; `$Formula > $Chemical`. ***One supertype each*** | read |
 | **and `lib` already exports a `$Formula`** | `writing/Formula.tsx` (v1, `.archive/writing/Formula.tsx`, deleted) — *a KaTeX inline phrase* — **from the same `index.ts` chemistry's `$Formula` would enter** | read |
@@ -325,7 +325,7 @@
 
 ## <a id="u189"></a>U189 — `resolve`, and the surface stripped to what was asked for
 
-***The finding: being findable and being an asker are two questions, and conflating them made `<Author>The Team</Author>` raise.*** **The account is [Two questions, not one](../../../chemistry/.lib/composition/12-the-formula.md#findable-and-asking); this record keeps only what it cost to learn.**
+***The finding: being findable and being an asker are two questions, and conflating them made `<Author>The Team</Author>` raise.*** **The account is [Two questions, not one](../../../chemistry/.public/.lib/composition/12-the-formula.md#findable-and-asking); this record keeps only what it cost to learn.**
 
 ***And the interface was cut to one member.*** *Doug: **"I only asked for cache… I don't want a polluted interface even in first person perspective. protected does not do it."*** **`standsFor` DELETED — it had zero production callers and duplicated the lookup inline** — and **`keyOf` moved behind a symbol.** *The 19 assertions that read the catalogue through `standsFor` now go through the swap, which asserts the same fact and exercises the whole mechanism.*
 
@@ -333,7 +333,7 @@
 
 ***Doug's ruling: "make formula a boolean… `cache` is a function on particle, and then any particle can cache. That gives us base classes back."***
 
-***The finding: a formula is a flag rather than a supertype, which dissolves the single-inheritance wall.*** **The account is [Base classes back](../../../chemistry/.lib/composition/12-the-formula.md#base-classes-back) and the module is [`16-formula.md`](../../../chemistry/.lib/implementation/16-formula.md).** *One thing belongs here rather than there, because it is a fact about this codebase and not about the feature:* **it landed on `$Chemical` and not `$Particle`, because the substitution calls `$`, `$` is defined in `chemical.ts`, and `chemical.ts` imports `particle.ts`.**
+***The finding: a formula is a flag rather than a supertype, which dissolves the single-inheritance wall.*** **The account is [Base classes back](../../../chemistry/.public/.lib/composition/12-the-formula.md#base-classes-back) and the module is [`16-formula.md`](../../../chemistry/.public/.lib/implementation/16-formula.md).** *One thing belongs here rather than there, because it is a fact about this codebase and not about the feature:* **it landed on `$Chemical` and not `$Particle`, because the substitution calls `$`, `$` is defined in `chemical.ts`, and `chemical.ts` imports `particle.ts`.**
 
 ***THE THING IT WAS FOR, promised and watched red:*** **a chemical that never extended `$Formula` can now declare `formula` mid-hierarchy, cache, and resolve** — and its non-formula ancestor holds nothing. *Making `$Chemical.formula` default true turns both promises red:* `expected '$Special' to be '$Middle'`.
 
@@ -344,7 +344,7 @@
 | ***nothing in `src2` is writing yet*** | `$Writing$` is an interface with no class, so `$TypeOfLetter` has no instance to specify against. **Every `specify()` in `src2` is empty on purpose.** |
 | ***the collector*** | `specify()` returns `void`, so something must gather the statements. **Doug rejected `$valid` as its home; it is `src2`'s to define, and `is()` is what will read it.** |
 | **`specification` has no producer** | `$Front` and `$Back` initialise it to `[]`; the back is where types live, and wiring it needs a writing class. |
-| **the comments removed from `formula.ts`** | *Doug: "Move them to library branch documentation."* **Owed to [`implementation/16-formula.md`](../../../chemistry/.lib/implementation/16-formula.md) and [`composition/12-the-formula.md`](../../../chemistry/.lib/composition/12-the-formula.md).** |
+| **the comments removed from `formula.ts`** | *Doug: "Move them to library branch documentation."* **Owed to [`implementation/16-formula.md`](../../../chemistry/.public/.lib/implementation/16-formula.md) and [`composition/12-the-formula.md`](../../../chemistry/.public/.lib/composition/12-the-formula.md).** |
 
 ---
 
@@ -396,7 +396,7 @@
 - **`resolve`**, separating being findable from being an asker.
 - **The machinery moved onto `$Chemical`**; `$Formula` is two members. **Any chemical can be a formula anywhere in a hierarchy.**
 - **Six new promises**, every one watched going red.
-- **The library** — [`implementation/16-formula.md`](../../../chemistry/.lib/implementation/16-formula.md) rewritten, [`composition/12-the-formula.md`](../../../chemistry/.lib/composition/12-the-formula.md) extended, four covers through the tool.
+- **The library** — [`implementation/16-formula.md`](../../../chemistry/.public/.lib/implementation/16-formula.md) rewritten, [`composition/12-the-formula.md`](../../../chemistry/.public/.lib/composition/12-the-formula.md) extended, four covers through the tool.
 
 ## <a id="owed"></a>What is NOT done, and what is OWED
 
@@ -420,4 +420,4 @@
 
 ## Where to start reading
 
-***[The Formula](../../../chemistry/.lib/composition/12-the-formula.md) first*** — it is the feature and it now carries `resolve`, the two questions, and base classes back. **Then [Solutions 27](../solutions/27-the-key-that-filed-itself-under-its-descendant.md)** if anything touches per-class registration. *This chapter is the trail and is the last thing to read, not the first.*
+***[The Formula](../../../chemistry/.public/.lib/composition/12-the-formula.md) first*** — it is the feature and it now carries `resolve`, the two questions, and base classes back. **Then [Solutions 27](../solutions/27-the-key-that-filed-itself-under-its-descendant.md)** if anything touches per-class registration. *This chapter is the trail and is the last thing to read, not the first.*

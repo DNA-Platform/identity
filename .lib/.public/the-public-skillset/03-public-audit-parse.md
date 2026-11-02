@@ -60,7 +60,7 @@ node library/.public/.lib/the-public-skillset/03-public-audit-parse--probe.cjs r
    ```
    Report the whole histogram, not just the assertion — a level appearing that never appeared before is worth seeing even where it is allowed.
 
-3. **Census every chemical construction by class.** Patch the type stamp in [particle.ts](../../../chemistry/package/src/abstraction/particle.ts) — the line that assigns `this.constructor` — and bucket by name. **Also record whether the construction happened before anything rendered**, by flipping a flag at the top of `$lift`'s component. That split is what tells import-time cost from render-time cost.
+3. **Census every chemical construction by class.** Patch the type stamp in [particle.ts](../../../chemistry/.public/package/src/abstraction/particle.ts) — the line that assigns `this.constructor` — and bucket by name. **Also record whether the construction happened before anything rendered**, by flipping a flag at the top of `$lift`'s component. That split is what tells import-time cost from render-time cost.
 
 4. **Cross-check with the specifications.** Instrument [`Specification.check`](../../package/src/utilities/Specification.ts) and count by `constructor.name`. **`WordSpecification`, `SentenceSpecification` and `LetterSpecification` must not appear.** *A specification running is independent evidence that its level was built, and it will catch a construction path the census misses.*
 
@@ -94,4 +94,4 @@ node library/.public/.lib/the-public-skillset/03-public-audit-parse--probe.cjs r
 - **[Composition](../../package/src/writing/Composition.tsx)** — `parts()`, and the `accept` closure that decides whether a token is kept or reduced
 - **Parser** — `parse`, the per-writing memo, and `sentences`/`words`/`letters`
 - **[Section](../../package/src/writing/Section.tsx)** — `reading()`, the one override that puts `parts()` on the draw path
-- **[The Three Passes](../../../chemistry/.lib/particle/12-the-three-passes.md)** — why anything on the draw path costs three times what you think it does
+- **[The Three Passes](../../../chemistry/.public/.lib/particle/12-the-three-passes.md)** — why anything on the draw path costs three times what you think it does

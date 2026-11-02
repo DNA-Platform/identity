@@ -8,7 +8,7 @@
 
 *Opened and closed 2026-08-26, Doug at the keyboard the whole way. **Status: `closed`.** It is a **prototype sprint** — it ran no brainstorm and wrote no requirements, because the thing being designed was the design. The title is the implementer's and stands for correction; **"provider" is Doug's own word** for what a bound type reads from.*
 
-**Where the code lands.** **`library/.public/package/src2`** — *the next version of the framework, opened by Doug at the close of [The Specification](25-the-specification.md)* — and, at the end, **two defects fixed in [`$Chemistry`](../../../chemistry/package/src/)** with the rebuild chain run first.
+**Where the code lands.** **`library/.public/package/src2`** — *the next version of the framework, opened by Doug at the close of [The Specification](25-the-specification.md)* — and, at the end, **two defects fixed in [`$Chemistry`](../../../chemistry/.public/package/src/)** with the rebuild chain run first.
 
 ## What this sprint is
 
@@ -62,7 +62,7 @@
 |---|---|
 | **`$Writing`** | a `$Chemical` and the first concrete `$Referent$`. Holds `inline`, `parenthetical`, its `text` block, and its `specification` |
 | **`$Annotation`** | a `$Writing` that is `parenthetical` — present in the writing, absent from the reading |
-| **`$Type`** | an `$Annotation` that declares `formula`, so `<Type>Letter</Type>` resolves through [the catalogue](../../../chemistry/.lib/composition/12-the-formula.md). Holds `instance` and `bind()` |
+| **`$Type`** | an `$Annotation` that declares `formula`, so `<Type>Letter</Type>` resolves through [the catalogue](../../../chemistry/.public/.lib/composition/12-the-formula.md). Holds `instance` and `bind()` |
 | **`$Letter` … `$File`** | seven types descending straight from `$Type`, caching their own names, `resolve = false` so their own tags are content rather than keys |
 | **`$Lib`** | the utility. **One method, exported as `$$`** |
 
@@ -126,7 +126,7 @@ override view(): ReactNode {
 
 **[The bond that woke the tree it was building](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md)** — ***a chemical that writes a field in its bond constructor loops without bound if anything composes it.*** **12 distinct instances in 14 bonds**, `Too many re-renders`, on `this.n = 1`. **The fix was already in the file**: `$rendering$` wraps props application and did not wrap the bond.
 
-**And value equality on the write path.** *Doug's question — "we aren't doing value equality for arrays?" — was right, and it is a **separate** defect.* [`equivalent`](../../../chemistry/package/src/implementation/reconcile.ts) was already used on the read path and never on the write. **The order mattered:** fixing equality first would have masked the reproduction and left the loop waiting for a scalar.
+**And value equality on the write path.** *Doug's question — "we aren't doing value equality for arrays?" — was right, and it is a **separate** defect.* [`equivalent`](../../../chemistry/.public/package/src/implementation/reconcile.ts) was already used on the read path and never on the write. **The order mattered:** fixing equality first would have masked the reproduction and left the loop waiting for a scalar.
 
 ***Both watched going red before either was believed, and the rebuild chain ran first.***
 
@@ -174,7 +174,7 @@ override view(): ReactNode {
 - **`$$` finds, binds, specifies, and throws naming both sides.** It makes nothing.
 - **A piece of writing that carries `<Type>Letter</Type>` is a letter**, its bound form draws it, and an exotic letter clicks.
 - **Two `$Chemistry` defects fixed**, with the rebuild chain and both suites.
-- **The library:** [Solutions 29](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md), and [Reactive Properties](../../../chemistry/.lib/reactivity/01-reactive-properties.md) rewritten — *which also corrected a settled account that said only `$`-prefixed fields are reactive. **[`bond.ts:52`](../../../chemistry/package/src/abstraction/bond.ts) says a plain field is reactive**; `$` decides settability from JSX.*
+- **The library:** [Solutions 29](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md), and [Reactive Properties](../../../chemistry/.public/.lib/reactivity/01-reactive-properties.md) rewritten — *which also corrected a settled account that said only `$`-prefixed fields are reactive. **[`bond.ts:52`](../../../chemistry/.public/package/src/abstraction/bond.ts) says a plain field is reactive**; `$` decides settability from JSX.*
 
 ## <a id="owed"></a>What is NOT done, and what is OWED
 
@@ -201,4 +201,4 @@ override view(): ReactNode {
 
 ## Where to start reading
 
-***This chapter last.*** **Start at [Solutions 29](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md)** — it is the only thing here that changed the framework everything else stands on. **Then [Reactive Properties](../../../chemistry/.lib/reactivity/01-reactive-properties.md)**, which now states both fixes and corrects what it used to claim. *Then the working copy of **`src2`**, which is 13 small files and reads in ten minutes.*
+***This chapter last.*** **Start at [Solutions 29](../solutions/29-the-bond-that-woke-the-tree-it-was-building.md)** — it is the only thing here that changed the framework everything else stands on. **Then [Reactive Properties](../../../chemistry/.public/.lib/reactivity/01-reactive-properties.md)**, which now states both fixes and corrects what it used to claim. *Then the working copy of **`src2`**, which is 13 small files and reads in ten minutes.*

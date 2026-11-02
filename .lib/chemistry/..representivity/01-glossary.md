@@ -1,6 +1,6 @@
 # Glossary
 
-- **author:** [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
+- **author:** [Libby](../../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md)
 
 ---
 

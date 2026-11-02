@@ -91,7 +91,7 @@ export interface $Composition$<T extends $Writing> {
 
 | member | verdict | why |
 |---|---|---|
-| `inline = true` | **keep** | **Measured:** [`particle.ts:60`](../../../chemistry/package/src/abstraction/particle.ts) declares `inline = false` and [`chemical.ts:353`](../../../chemistry/package/src/abstraction/chemical.ts) reads `child.inline` to group a run into one block. *Strike it and writing stops arriving as one block.* |
+| `inline = true` | **keep** | **Measured:** [`particle.ts:60`](../../../chemistry/.public/package/src/abstraction/particle.ts) declares `inline = false` and [`chemical.ts:353`](../../../chemistry/.public/package/src/abstraction/chemical.ts) reads `child.inline` to group a run into one block. *Strike it and writing stops arriving as one block.* |
 | `parenthetical = false` | **keep** | *Present in the writing, absent from the reading* is a property of writing rather than of annotations — **a synopsis is parenthetical and is not one.** |
 | `text` | **keep, made optional** | ***The `!` is a lie.*** `$Smiley` never sets it, because a bond constructor is found by class name and `$Smiley` declares none. *Doug's own probe says so: "a leaf that is not composed… which is why `$Writing` had no business owning one."* |
 | `written()` | **keep** | **The one place that knows a block's shape**, and every `parts()` will use it. |
@@ -131,7 +131,7 @@ export interface $Composition$<T extends $Writing> {
 
 <a id="r249"></a>**R249** — ***the type is a proxy for the thing, and `parts()` must preserve that.*** *Doug: "we do this binding thing where the type is a proxy for the thing. So make sure that works."* **A level's parts are BOUND TYPES — each `$Letter` standing for its own piece of writing — not raw writings.**
 
-<a id="r250"></a>**R250** — ***and the binding is per-writing, which is why it works.*** **`$$` returns the type instance written INTO that writing**, so two writings never share one bound type. ***Measured hazard, deliberately not reached:*** [`particle.ts:46`](../../../chemistry/package/src/abstraction/particle.ts) makes an instance a template only if it **is** its class's registered template, and `particle.ts:343` takes the **direct** path when it is not — which is [Solutions 28](../solutions/28-the-specimen-that-was-the-component.md) exactly. *It would fire the moment `parts()` MAKES a type for a found part. **This sprint makes none**, so the hazard is named and deferred rather than met.*
+<a id="r250"></a>**R250** — ***and the binding is per-writing, which is why it works.*** **`$$` returns the type instance written INTO that writing**, so two writings never share one bound type. ***Measured hazard, deliberately not reached:*** [`particle.ts:46`](../../../chemistry/.public/package/src/abstraction/particle.ts) makes an instance a template only if it **is** its class's registered template, and `particle.ts:343` takes the **direct** path when it is not — which is [Solutions 28](../solutions/28-the-specimen-that-was-the-component.md) exactly. *It would fire the moment `parts()` MAKES a type for a found part. **This sprint makes none**, so the hazard is named and deferred rather than met.*
 
 ## The catalogue
 
@@ -232,7 +232,7 @@ export interface $Composition$<T extends $Writing> {
 
 # <a id="risks"></a>Risks
 
-<a id="k25"></a>**K25 — resolution happens only in the draw path.** *[The formula's own account](../../../chemistry/.lib/composition/12-the-formula.md): "a formula is swapped where it is written inside a chemical's drawing. One reached outside that path is **not** swapped."* **So a writing built with `$()` carries a bare `$Type` and one that is drawn carries a `$Letter`** — two populations of one object, which is [Solutions 13](../solutions/13-the-chapter-that-wrote-its-sections-twice.md)'s shape. ***Mitigated by the probes exercising both forms deliberately:*** *the existing `letter.probe` writes `<Letter />` directly and works outside a drawing; `smiley.probe` writes `<Type>Letter</Type>` and works only because it is rendered.*
+<a id="k25"></a>**K25 — resolution happens only in the draw path.** *[The formula's own account](../../../chemistry/.public/.lib/composition/12-the-formula.md): "a formula is swapped where it is written inside a chemical's drawing. One reached outside that path is **not** swapped."* **So a writing built with `$()` carries a bare `$Type` and one that is drawn carries a `$Letter`** — two populations of one object, which is [Solutions 13](../solutions/13-the-chapter-that-wrote-its-sections-twice.md)'s shape. ***Mitigated by the probes exercising both forms deliberately:*** *the existing `letter.probe` writes `<Letter />` directly and works outside a drawing; `smiley.probe` writes `<Type>Letter</Type>` and works only because it is rendered.*
 
 <a id="k26"></a>**K26 — a bond constructor is found by class name.** *`$Smiley` runs none, which is why its `text` is unset.* **So each of the seven levels needs its own**, and [Sprint 48's U2 enforcement](06-sprint-48--subjects-and-the-library.md) marks a chain invalid by name when a declared constructor is not reached.
 

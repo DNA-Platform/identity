@@ -40,7 +40,7 @@ Chosen at the opening, per [the convention](../../../../.claude/library/library-
 1. [The Plan](00-planning.md) — what 47 inherits: the fusion question, the folded 48.5 remainders, the risks already named.
 2. [Sprint 46 — The Book](03-sprint-46--the-book.md) — every standing specification the catalogue work must not break.
 3. [The Member Audit](04-the-member-audit.md) — the model's current truth, member by member, and the specifications closed there.
-4. [Structural Patterns](../../../chemistry/.lib/authorship/02-structural-patterns.md) — the family base, the statics specification, the view seam: the coding specification for every class this sprint adds.
+4. [Structural Patterns](../../../chemistry/.public/.lib/authorship/02-structural-patterns.md) — the family base, the statics specification, the view seam: the coding specification for every class this sprint adds.
 
 **The derivation (the semantics of books):**
 5. [Composition and Collection](../the-semantics-of-books/09-composition-and-collection.md) — the two container operations; `$Subject = $Collection<$Book>`; composition contains and flattens, collection references and catalogues. The sprint's central chapter.

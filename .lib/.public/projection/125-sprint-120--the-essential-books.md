@@ -3,22 +3,24 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **workflow:** the feature workflow, opened with `/ce-brainstorm` on 2026-11-02 and built mid-brainstorm on Doug's "Scaffold that and then we design"
-- **state:** U1 and U2 built and seen 2026-11-02; U3 ruled the same day with nothing to build; U4, the look, is design owed
-- **Next:** `/ce-brainstorm` continues in the room on the look of the pages, the last of the design he named
+- **state:** U1 and U2 built and seen 2026-11-02; U3 ruled the same day with nothing to build; U5, the shape of the folders, built and seen the same evening; U4, the look, is design owed, and what stands in the face beside the binding is his to rule
+- **Next:** his word on the public package and its `.lib` standing in `library/.public`, then `/ce-brainstorm` continues in the room on the look of the pages, the last of the design he named
 
 ---
 
 ## <a id="where"></a>Where things stand — 2026-11-02
 
-**Next action: `/ce-brainstorm` continues, on the design.** Doug's words at the close of the scaffold: "Scaffold that and then we design." The scaffold stands and binds; nothing else is buildable until he rules on the three things below.
+**Next action: his word on the face, then `/ce-brainstorm` continues, on the design.** Doug's words at the close of the scaffold: "Scaffold that and then we design." The scaffold stands and binds in its folders' settled shape; nothing else is buildable until he rules on the two things left open below.
 
-**The library's root moved.** The public library is `library/` itself, not `library/.public`. Every folder there is a book catalogued by Reference; each subject folder holds a `.reference` that is the book representing it; the binder copy stands at `library/..public/.binding`; `library/.public` holds only the package and its `.lib`. Ten books bind in 5.7 s. [U1](#u1) has the numbers; [To see it](#see) has the commands.
+**The library's root moved, and its folders took their shape.** The public library is `library/` itself, not `library/.public`. Every folder there is a book catalogued by Reference; each subject folder holds a `.reference` that is the book representing it, and its code in a `.public` the binder never walks. The face is `library/.public`, found by the binding it holds: the binder copy at `library/.public/.binding`, the bound site beside it, and, for now, the public package and its `.lib`. The manual and the design stand inside `.reference`. Ten books bind in 6.9 s. [U1](#u1) and [U5](#u5) have the numbers; [To see it](#see) has the commands.
 
 **The Dictionary stands**, a book filed under Reference with every word a chapter, built from the package's words on his "The dictionary should be a book. Every word would be a chapter. Those are just stubs, so create boilerplate in the book when you replace it" — [U2](#u2).
 
 **The Team stands alone, by his ruling** ([U3](#u3)): no one is filed under it yet, and the first member is filed when a chapter of the book can say why they qualify.
 
 **Owed to him, the design:** the look of the pages ([U4](#u4)), Sprint 119's sketch standing as the only one.
+
+**Open, for him, out of [U5](#u5):** `library/.public` holds the public package and its `.lib` beside the binding and the site. He said "Archive what is in there now" of the face before saying where chemistry's package and `.lib` go, and the two readings part: the package and its `.lib` stand in the face as chemistry's stand in `library/chemistry/.public`, or they leave it for the archive and the face holds the binder app alone. Nothing was archived; the deploy workflow leaves both out of the gather either way. And pharmacology, philosophy and physics each carry a `package.json` at the subject level, a root workspace naming the public package, which his rule — everything in a non-public folder is specified by the library — does not yet cover.
 
 **Wrong turns already taken, so they are not retaken:** mapping the first library's shelf and Doug's own library onto this one ("Stop trying to map the libraries. They are not the same library."); offering project books sourced from the archived articles (the books are the folders, nothing else); and reading "the .public folder" as the library's root, when the folders he named stand a level up.
 
@@ -27,6 +29,7 @@
 - The top book: "Whatever it is, it goes in reference. Let's be on the nose and call it reference. And you can then imagine other books for each subject - disctionary needs to be internalized into library form minimally".
 - The books: "Stop trying to map the libraries. They are not the same library. Each of those folders is a book, and each one is catalogued by reference. We need to figure out team - we might put that in team".
 - The scaffold: "Right now, can you scafold books for each folder with the essential pages. That will give us reference, to team, one book for each. We start with one autobiography and go from there. Well actually, we need to think about how to organize. This are the subjects. Each needs a subject catalogue so each needs a .reference folder of its own, and that can be the book representation the subject for each. Scaffold that and then we design".
+- The folders, the same evening: "First of all, no one asked you for the design and manual, but since you did, move those into .reference. You don't need a ..public, .public is where the app goes. Archive what is in there now and we are going to make replace it with a .public binder app.. Then we need to talk about $Chemistry. I want that package to be about the project, but we can't have extra folders. Everything in a non-public folder should be specified by the library. Do we use the .public folder there for what we need? First off, why do we have node modules there. I would think that should be in package. We will need to move lib and update things. Let's just move .lib and package into chemisty .public folder, chec kto see if we can get rid of node modules, update the location of the .lib for chemistry in .claude, and make sure that the binder ignores .public folders everywhere".
 - Carried from Sprint 119: "Books in IXP (inexplicable phenomena) are projects or catalogues of them"; "we don't know who qualifies as a teammate. That might be the subject of the book. But yes, since subject books can be authors, the team members can be"; "That won't be the top book. Still brainstreaming".
 
 ## <a id="requirements"></a>Requirements
@@ -36,6 +39,7 @@
 - <a id="r3"></a>**R3** The Team is the one autobiography, in the `team` folder Doug made, as `team/.reference`, by its own subject. *Seen:* the catalogue claim "every book reaches the library and the author" passes with The Team as the author of every book.
 - <a id="r4"></a>**R4** The Dictionary is a book at `library/.reference/dictionary`, filed under Reference, every word a numbered chapter in the order of the alphabet, with the senses the first dictionary gave the word where it has them and a line saying so where it has none; the word *dictionary* is defined by the book's own synopsis. *Seen:* Dictionary at `/dictionary` with twelve word chapters, a related word in one chapter compiling to its sibling's fragment, and Reference's catalogue carrying its row. *As first written, before his ruling in the room:* the sketch left untouched and excluded by name, which U1 bound.
 - <a id="r5"></a>**R5** The library binds, previews under its base and the Pages workflow gathers the moved face. *Seen:* every page fetched from 4343 answers 200 with its title.
+- <a id="r6"></a>**R6** The face is `library/.public`, known by the binding it holds and never named in the configuration; every folder named `.public` is pruned wherever it stands, with no exclude; the manual and the design stand inside `.reference`; chemistry's package and branch library stand in `library/chemistry/.public`, and nothing stands beside its `.reference` but that. *Seen:* the inventory lists `.reference/.manual` and `.reference/.design` among ten books and no `.public`; the site bound from the new face differs from the moved one only in the index chunk's hash on every page, the manual's commands and the design's picture addresses; the identity-side name of chemistry's branch library stays `chemistry`.
 
 ## <a id="units"></a>Units
 
@@ -65,20 +69,30 @@ His word: "We start with one autobiography and go from there." Asked who stands 
 
 Sprint 119's sketch 001 stands in The Design, three forms of the top page, committed to nothing. The pages now draw the Manual's borrowed theme; a design is his to rule after he sees the scaffold.
 
+### <a id="u5"></a>U5 — the shape of the folders — **built and seen, 2026-11-02**
+
+**His words** are in [Rulings](#rulings), the whole message. Six asks in it, taken in order.
+
+**What runs:** `git mv` of `.manual` and `.design` into `.reference`, their importers repointed — Reference's faces to `./.manual/`, the Dictionary's to `../.manual/`, every subject's `.reference` to `../../.reference/.manual/`, the Design's left alone since it stays the Manual's sibling — and the workbench climbing one folder more to find the library. The face `..public` renamed entry by entry into `.public`, the binder copy, the site and its assets, after the preview holding it was killed by port; the configuration's origin now `../package/.binding` and its exclude gone, since the walk never enters a folder named like the face wherever it stands, which is what "ignores .public folders everywhere" asks and what the binder already did by design once the face carried that name. Chemistry's package and `.lib` moved into `library/chemistry/.public`, the stray `node_modules` beside them removed — it held one `.vite` cache from August and nothing else, the dependencies being hoisted to the root — the root workspace and the package's own `repository.directory` repointed, `npm install` re-linking the junction, the publish workflow's paths moved. Every relative link in chemistry's `.lib` that climbs past it deepened by one; the public `.lib`'s 516 links into chemistry's package and `.lib` rewritten. In `.claude`: the commit tool's namespace rule, so a `.lib` under an area's `.public` is the area's and the library's own `library/.public/.lib` keeps its name; the territory chapter, the library tree's four chapters, On Sync, the cleanup skill and the scaffold tool's example; the agents' own territory lines in the compiler, which still said `library/chemistry/src/**` from before the package had a folder, and the ten agents recompiled with only those two lines changed. The deploy workflow gathers `library/.public/` without `.binding`, `package` and `.lib`.
+
+**Measured:** 624 renames. Configure, inventory and catalogue 0.0 s: 10 books, `.reference/.design` and `.reference/.manual` among them, 51 keys, every reference resolves, every book reaches the library and the author. The full bind 6.9 s: 412 writings specified, 10 pages drawn in 1 child at a peak of 303 MB, 11 read back, 4 pictures, 6 stale files removed by the record. The rebound site against the moved one: 14 files, the index chunk's hash on every page, the manual's two command lines, the design's picture addresses, three book chunks renamed for their new paths. Every page fetched 200 on 4343, the design's first picture 200 at `/inexplicable-phenomena/.reference/.design/`. Reference at a desk 1,140 ms and Chemistry at a phone 749 ms through the workbench, built and fresh, 0 past the right edge; Reference's photograph read, its catalogue listing all nine. The commit tool's rule dry-run on four paths: chemistry's `.lib` → `chemistry`, the public one → `.public`, a root `.lib` → the project, physics's → `physics`.
+
+**Found on the way:** killing the preview by a command-line match on the old face's path killed the shell running the match, since that shell's own command line carried the path, and nothing after it ran — a stray is killed by port or by PID, never by a path. The commit tool named a branch library by its parent folder, so two `.lib`s under two `.public`s would have shared one identity-side name and the mirror would have overwritten one with the other; the rule now strips a `.public` that is not the library's own. Vite warns at every bundle that the out directory is the root's parent, and node that chemistry's dist names no module type; both are the geometry and the package as they were, not this unit's. Git's rename detection gave out past its limit, so the assets show as added and deleted rather than renamed; the content is the same and `--follow` finds it.
+
 ## <a id="verification"></a>Verification
 
 **Fetched from the preview on 4343, 2026-11-02:** the root and the nine book addresses all answered 200, each with its title; the root `index.html` is the binder's redirect door to `/reference/`, titled with the root book's name, while every drawn page carries the configuration's title, which is why the root says Reference and the pages say Inexplicable Phenomena. Both read the same before the move, so this was invisible until the root book had a name of its own.
 
 **Looked at through the workbench, built:** the nine books at a desk and Reference at a phone, 0 past the right edge on every one, 470 ms to 701 ms each, no wrong line. Three photographs read: Reference with its cover, synopsis, contents and the catalogue's rows; The Team labelled Autobiography under its breadcrumb with Who Qualifies beneath; Chemistry with its cover, its synopsis in the package's own words, and an empty contents.
 
-**The gates:** configure, inventory and catalogue 0.1 s, 9 books, 36 keys, every reference resolves, every book reaches the library and the author; the full bind 5.3 s. With the Dictionary, 10 books, 51 keys, 5.7 s, the Dictionary's page looked at at a desk and its identity entry at a phone, 0 past the right edge. No package source was touched, so no suite was run.
+**The gates:** configure, inventory and catalogue 0.1 s, 9 books, 36 keys, every reference resolves, every book reaches the library and the author; the full bind 5.3 s. With the Dictionary, 10 books, 51 keys, 5.7 s, the Dictionary's page looked at at a desk and its identity entry at a phone, 0 past the right edge. From the new face, 10 books, 51 keys, 6.9 s, every page 200, two looks 0 past the right edge, and the rebound site diffed whole against the moved one — [U5](#u5) has the lines. No package source was touched, so no suite was run.
 
 ## <a id="see"></a>To see it
 
 ```
-cd library/..public/.binding
+cd library/.public/.binding
 npm run bind
 npm run preview -- --port 4343 --strictPort
 ```
 
-Open `http://localhost:4343/inexplicable-phenomena/`, which is Reference. The workbench: `node library/.manual/5-developing-the-library~workbench.mjs`, then `… look reference built`, `… look chemistry built phone`, `… close`.
+Open `http://localhost:4343/inexplicable-phenomena/`, which is Reference. The workbench: `node library/.reference/.manual/5-developing-the-library~workbench.mjs`, then `… look reference built`, `… look chemistry built phone`, `… close`.

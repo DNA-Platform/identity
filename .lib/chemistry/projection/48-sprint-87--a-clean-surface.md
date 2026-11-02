@@ -1,7 +1,7 @@
 # A Clean Surface
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **style:** [The Coding Style](../../../../.public/.lib/the-coding-style/03-the-coding-style.md)
 - **status:** `implemented` — *opened and built 2026-09-27 from [the pitch](00-planning.md#pitch-symbols); the docs, U6, are owed.*
 - ***The chapter name and the sprint number are PROXIES.*** *The number is the team's next; the name is Doug's phrase, "a clean surface area".*
 
@@ -27,7 +27,7 @@
 |---|---|---|
 | `formula`, `resolve`, `persist`, `inline`, `selector`, `next` | **exported symbols under those names** | *"for everything from formula to next, we expose symbols"* |
 | `parent` | **stays public** | ***"Know this.parent stays public. That is essential"*** — *given mid-build, after the sweep had already rewritten it; the rewrite was reverted and `parent` never exported as a symbol* |
-| `styled`, the boolean | **an exported symbol, kept** | *"I doubt you can drop things. That is bad thinking. Give your past selves the benefit of the doubt but check."* — the check found [R140](../../../../.archive/.public/.lib/projection/42-sprint-40--styled-chemicals.md#r140), his own: *"keep it — if styled is undefined we just read the selector; if it is false or true we read styled and selector"* |
+| `styled`, the boolean | **an exported symbol, kept** | *"I doubt you can drop things. That is bad thinking. Give your past selves the benefit of the doubt but check."* — the check found [R140](../../../../../.archive/.public/.lib/projection/42-sprint-40--styled-chemicals.md#r140), his own: *"keep it — if styled is undefined we just read the selector; if it is false or true we read styled and selector"* |
 | `style` | **the compiled component's symbol, `[style]`, as it was from Sprint 40** | *"might style be a method and styled be the boolean? Ponder that, both as symbols"* — ***built first as the callable on my recommendation, and corrected: "We moved this to symbols for EXACTLY this reason"*** |
 | the styled-components callable | **`selection`** — `[selector] = selection.section` | *"[selector] = selection.section? How about that??"* — *`select` is the decorator and `elements` the block's getter, so both were taken* |
 | `draw()` | **internal, `$draw$`** — outside chemistry only one test file called it | *"Is this an exported member that users should use? Otherwise it needs the $draw or $draw$ symbol"* |

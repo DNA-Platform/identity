@@ -69,7 +69,7 @@ compose(prose: string): $Sentence {
 
 - **The rule the parse actually follows.** [`parse()`](../../package/src/writing/Writing.tsx) keeps an element standing **at** the level being composed and pushes everything else into a run that is flattened with `run.map(part => text(part)).join('')`. **One line destroys the object.**
 - **Measured in one realm**, on a real cover: `<Section>` survives **1 of 1**; `<Title>` survives — **1 of 2 paragraphs is a `$Title`**; `<Author>` survives **0 of 13 words**. *`$Title extends $Paragraph` is paragraph-grade inside a section and lands. `$Author extends $Phrase extends $Word` is word-grade inside a section, two levels down, and becomes the string "The Team".*
-- **THE ROOT, measured at runtime.** A `<Section>`'s block holds `$Title`, **`$Html$`**, `$Author`, **`$Html$`** — the two `$Html$` being *raw prose wrapped in chemicals* by [`asElement`](../../../chemistry/package/src/abstraction/chemical.ts). ***So prose and typed elements look alike***, and the parse cannot tell them apart by kind.
+- **THE ROOT, measured at runtime.** A `<Section>`'s block holds `$Title`, **`$Html$`**, `$Author`, **`$Html$`** — the two `$Html$` being *raw prose wrapped in chemicals* by [`asElement`](../../../chemistry/.public/package/src/abstraction/chemical.ts). ***So prose and typed elements look alike***, and the parse cannot tell them apart by kind.
 - **Which is why it guesses with a string.** [`$Writing.level`](../../package/src/writing/Writing.tsx) returns `undefined`, `levels.indexOf(undefined)` is `-1`, and **a class that declares no level is silently treated as prose and dissolved** — no error, no count.
 - **Composing already goes through the container** in `$Section`, `$Paragraph`, `$Sentence` and `$Word`. *That half of the principle is not at issue and must not be broken.*
 - **The class hierarchy already IS the level.** `$Title extends $Paragraph`, `$Author extends $Phrase extends $Word`, `$Cover extends $Chapter`. **The string is a second encoding of the same fact.**
@@ -99,7 +99,7 @@ compose(prose: string): $Sentence {
 
 ***Doug: "we added `$String` and `$Number` — get rid of the ones we added. We just need `$Block`."***
 
-*"Don't have the block return `$String` and `$Number`, just have it return raw strings and numbers."* [`asElement`](../../../chemistry/package/src/abstraction/chemical.ts) stops wrapping; `block.$elements` becomes **`(string | number | $Chemical)[]`**.
+*"Don't have the block return `$String` and `$Number`, just have it return raw strings and numbers."* [`asElement`](../../../chemistry/.public/package/src/abstraction/chemical.ts) stops wrapping; `block.$elements` becomes **`(string | number | $Chemical)[]`**.
 
 **Seen:** the runtime contents of a `<Section>` read `$Title`, prose, `$Author`, prose — **two chemicals and two strings**, where today they are four chemicals. **`typeof e === 'string'` IS prose**, and the guessing has nothing left to do.
 

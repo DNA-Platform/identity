@@ -1,6 +1,6 @@
 # Binding Constructor
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 
@@ -41,7 +41,7 @@ Written out, prose interrupted by a block-level child is **three arguments**, no
 
 **Two consequences worth stating, because both were paid for.**
 
-A bond constructor that declares **one** parameter keeps the first argument and **drops the rest** — so a block-level child written into prose, and every argument after it, vanishes silently. It renders nothing, throws nothing, and the parent's own text stops at the insertion point. `@dna-platform/lib`'s `$Writing` was written this way and discarded the mechanism it needed for two sprints ([Writing](../../../.public/.lib/projection/10-writing.md)).
+A bond constructor that declares **one** parameter keeps the first argument and **drops the rest** — so a block-level child written into prose, and every argument after it, vanishes silently. It renders nothing, throws nothing, and the parent's own text stops at the insertion point. `@dna-platform/lib`'s `$Writing` was written this way and discarded the mechanism it needed for two sprints ([Writing](../../../../.public/.lib/projection/10-writing.md)).
 
 And **grouping runs only inside a bond constructor's own interpretation** — never over a block's own run, never over a tag's text. A class with no bond constructor sees no grouping at all.
 

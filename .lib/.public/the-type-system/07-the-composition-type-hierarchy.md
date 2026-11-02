@@ -30,7 +30,7 @@ A composition's `parts()` asks `below()` for what it accepts as a part and what 
 
 ## <a id="specialisation"></a>A specialisation is a registration, for A a B is a C
 
-**"You should even be able to pass in a different one when you want something to behave like a different type if it supports it."** That is chemistry's own [representative](../../../chemistry/.lib/composition/11-the-representative.md): `below()` resolves the rung through `$()` in the asking class's scope, so a class registers the specialisation it wants its parts to be, in the class's own file:
+**"You should even be able to pass in a different one when you want something to behave like a different type if it supports it."** That is chemistry's own [representative](../../../chemistry/.public/.lib/composition/11-the-representative.md): `below()` resolves the rung through `$()` in the asking class's scope, so a class registers the specialisation it wants its parts to be, in the class's own file:
 
 ```tsx
 $(List, TypeOfSentence)(TypeOfItem);
@@ -44,5 +44,5 @@ A list's copy becomes items and a contents' parts are rows, and each supports th
 - **What a level IS** — [The Levels of Writing](../the-semantics-of-books/15-the-levels-of-writing.md), the settled account, and *"each type carries the one below it"* in [The Book's Little Framework](../the-first-draft/04-the-book-s-little-framework.md#levels).
 - **Why types stay in the block** — *"All types should have their `specifically` run on the class. That is the way multiple inheritance works here"* — the same chapter, and [Shells Over Types](03-shells-over-types.md).
 - **The reading that uses the rung** — [`$Composition.parts()`](../../package/src/writing/Composition.tsx).
-- **Registration and scope** — chemistry's [The Representative](../../../chemistry/.lib/composition/11-the-representative.md), and where a scope reaches.
+- **Registration and scope** — chemistry's [The Representative](../../../chemistry/.public/.lib/composition/11-the-representative.md), and where a scope reaches.
 - **The sprint that ruled it** — [Sprint 58](../projection/64-sprint-58--the-chapter-that-is-its-view.md).

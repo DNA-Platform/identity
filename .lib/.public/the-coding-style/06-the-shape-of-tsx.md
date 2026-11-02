@@ -236,4 +236,4 @@ const Printed = (code ? prints.get(code) : undefined) ?? Reference;
 
 - [The Type and the Instance § the fetch](../the-type-system/02-the-type-and-the-instance.md#the-fetch) — the `$`-fetch corollary and the timing law
 - [The Order of a Class](02-the-order-of-a-class.md) — the same concern, for members
-- [Styled Particles](../../../chemistry/.lib/particle/11-styled-particles.md) — where a class's CSS becomes members
+- [Styled Particles](../../../chemistry/.public/.lib/particle/11-styled-particles.md) — where a class's CSS becomes members

@@ -1,9 +1,9 @@
 # Dirtiness Starts After Render
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
-- **style:** [The Coding Style](../../../.public/.lib/the-coding-style/03-the-coding-style.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **style:** [The Coding Style](../../../../.public/.lib/the-coding-style/03-the-coding-style.md)
 - **status:** `closed` — *read, assessed, ruled, built, measured, committed and handed off 2026-09-24, in one session.*
-- ***The chapter name and the sprint number are PROXIES.*** *The number is the team's current one — the public redraft's [Sprint 81](../../../.public/.lib/projection/87-sprint-81--reference-and-referent.md), whose session dispatched this — and the name is Doug's sentence, not a name he has given.*
+- ***The chapter name and the sprint number are PROXIES.*** *The number is the team's current one — the public redraft's [Sprint 81](../../../../.public/.lib/projection/87-sprint-81--reference-and-referent.md), whose session dispatched this — and the name is Doug's sentence, not a name he has given.*
 
 ---
 
@@ -17,7 +17,7 @@
 
 ## <a id="the-literature"></a>What was read first
 
-**Thirty-six documents, grep-guided from the dispatch's own words.** *The load-bearing ones:* [`scope.ts`](../../package/src/implementation/scope.ts), [`reaction.ts`](../../package/src/abstraction/reaction.ts), [`bond.ts`](../../package/src/abstraction/bond.ts)'s getters, setters and reagent, [`particle.ts`](../../package/src/abstraction/particle.ts)'s render body and settle pass, the reactivity book, [the view](../particle/06-view.md) and [the three passes](../particle/12-the-three-passes.md), the redraft's Sprint 81 and its annotation pass, and [Solutions 16](../../../.public/.lib/solutions/16-the-parse-that-woke-its-own-parents.md) and [29](../../../.public/.lib/solutions/29-the-bond-that-woke-the-tree-it-was-building.md).
+**Thirty-six documents, grep-guided from the dispatch's own words.** *The load-bearing ones:* [`scope.ts`](../../package/src/implementation/scope.ts), [`reaction.ts`](../../package/src/abstraction/reaction.ts), [`bond.ts`](../../package/src/abstraction/bond.ts)'s getters, setters and reagent, [`particle.ts`](../../package/src/abstraction/particle.ts)'s render body and settle pass, the reactivity book, [the view](../particle/06-view.md) and [the three passes](../particle/12-the-three-passes.md), the redraft's Sprint 81 and its annotation pass, and [Solutions 16](../../../../.public/.lib/solutions/16-the-parse-that-woke-its-own-parents.md) and [29](../../../../.public/.lib/solutions/29-the-bond-that-woke-the-tree-it-was-building.md).
 
 ***What the reading corrected.*** **The flag is raised in seven places, not two** — *props in `bind`, the bond, the persist setter, derive's recall, the mount recall, the settle pass and the render body; the view chapter lists only the render body's span.* **The rule already held for writes and failed for reads** — *both setters refuse a write during the chemical's own draw; the two getters recorded a read of it anyway, and `react()` woke it from `finalize`'s walk and from `diffuse`.* **And the refusal of 22 September** *([Walked Shapes](46-sprint-78--walked-shapes.md#the-rulings)) rested on the design being able to make its pass idempotent; the redraft had since measured that each annotation call is its own scope, so a pass that erases and re-defines is news twice per draw however idempotent the whole.*
 

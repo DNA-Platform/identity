@@ -56,7 +56,7 @@ node library/.public/.lib/the-public-skillset/02-public-audit-performance--drive
 
 4. **Count DOM commits** with a `MutationObserver` armed on `#root` at `DOMContentLoaded`. **More than one batch on a static load is a finding.**
 
-5. **Count view passes per instance** if the question is about rendering rather than loading. Patch **both** call sites of `[$renderView$]` in [particle.ts](../../../chemistry/package/src/abstraction/particle.ts) — the render body and the settle effect — key by **object identity**, and stamp each call with whether `$viewCache$` was already set. The signature to expect is **`B-B+C+`, three passes, on every instance**; the full account is [The Three Passes](../../../chemistry/.lib/particle/12-the-three-passes.md).
+5. **Count view passes per instance** if the question is about rendering rather than loading. Patch **both** call sites of `[$renderView$]` in [particle.ts](../../../chemistry/.public/package/src/abstraction/particle.ts) — the render body and the settle effect — key by **object identity**, and stamp each call with whether `$viewCache$` was already set. The signature to expect is **`B-B+C+`, three passes, on every instance**; the full account is [The Three Passes](../../../chemistry/.public/.lib/particle/12-the-three-passes.md).
    > ***Keying by `cid` is not enough and will give you two.*** *The two render-body passes share an instance, a cid and a call site, and differ only in whether the cache is set.*
 
 6. **Profile with the CDP sampler and BUCKET BY TIME**, not by total self time. A flat self-time list mixes the import phase and the render phase into one ranking and hides which is which. 200ms buckets, top six per bucket, is enough to see the phases separate.
@@ -69,7 +69,7 @@ node library/.public/.lib/the-public-skillset/02-public-audit-performance--drive
 
 | | |
 |---|---|
-| **`$Eval`** | **6,421 per page load** — a throwaway `$Chemical` allocated at [chemical.ts](../../../chemistry/package/src/abstraction/chemical.ts) to host one `$()` call, then discarded. Its caller is `$check(Type, '!')`, which is in every bond constructor in this library |
+| **`$Eval`** | **6,421 per page load** — a throwaway `$Chemical` allocated at [chemical.ts](../../../chemistry/.public/package/src/abstraction/chemical.ts) to host one `$()` call, then discarded. Its caller is `$check(Type, '!')`, which is in every bond constructor in this library |
 | **`$Block`** | **3,802 per page load** — largely from the `.concat()` in that same idiom |
 | **everything else** | **~167**, and 126 of those are class templates |
 | **the specification suite** | **7,665 rule executions on `/article`, 479 of which THROW.** [`Specification.check`](../../package/src/utilities/Specification.ts) runs every rule in a `try` and a rule signals failure by throwing, so each failure builds an `Error` with a stack |

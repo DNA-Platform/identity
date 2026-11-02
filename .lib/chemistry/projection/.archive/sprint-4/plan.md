@@ -402,6 +402,6 @@ After all work completes:
 - [ ] Project tracker reflects sprint-4
 
 <!-- citations -->
-[old version]: ../../../chemistry/src/archive/
-[new version]: ../../../chemistry/src/chemistry/
-[chemistry repo]: ../../../chemistry/
+[old version]: ../../../../chemistry/src/archive/
+[new version]: ../../../../chemistry/src/chemistry/
+[chemistry repo]: ../../../../chemistry/

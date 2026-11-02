@@ -59,7 +59,7 @@
   Doug                      → $DougsLibrary          | chapters 3
   MY Library Log            → $MyLibraryLog          | chapters 4
   ```
-- **"`$` returns the parent's component for an empty subclass."** Plausible, because every book here is `class $X extends $DougsLibrary { }` and a class-level cache would be inherited. *It is not:* [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) guards with `Object.prototype.hasOwnProperty.call(this, $component$)`.
+- **"`$` returns the parent's component for an empty subclass."** Plausible, because every book here is `class $X extends $DougsLibrary { }` and a class-level cache would be inherited. *It is not:* [`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts) guards with `Object.prototype.hasOwnProperty.call(this, $component$)`.
 
 ## The fix
 

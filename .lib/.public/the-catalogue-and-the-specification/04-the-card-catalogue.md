@@ -203,7 +203,7 @@ writing  ≈  (string | writing)*  followed by  annotation*
 
 > ***Doug:*** **"is the bond constructor only called per prop application? It might need to be called whenever props are applied as they participate in the bond too. I find myself not liking props very much for some reason."**
 
-***Read rather than recalled, and the instinct is correct.*** **[`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) applies props first, as fields, under `$rendering$ = true` so the write is not news — and then:**
+***Read rather than recalled, and the instinct is correct.*** **[`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts) applies props first, as fields, under `$rendering$ = true` so the write is not news — and then:**
 
 ```js
 if (this._lastBondArgs && $Synthesis.sameArgs(newArgs, this._lastBondArgs)) {

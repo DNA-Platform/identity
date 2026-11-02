@@ -1,6 +1,6 @@
 # The Assignment
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 
@@ -91,7 +91,7 @@ So the assigned chemical takes the asker as its parent, and only when it has non
 
 ***And since 2026-09-06 the walk writes that assignment for every top.*** A topmost chemical element of a drawing — one no other chemical element of the same drawing encloses, and a template rather than a held instance — that says nothing is given an `on` naming the writer, so on mount it takes the writer as its parent by the rule above and `# The Assignment
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 
@@ -180,7 +180,7 @@ From then on the field is in `fields` — put there by the field, on mount. The 
 
 ***A top written in a view is given its parent at derivation, so it*** resolves outward from it. The default holds no member: it is the parent and nothing else, which is what keeps it from waking anyone ([the catalyst graph](08-catalyst-graph.md) records the loop the member made). ***And it is told before it is bonded.*** The assignment rides in the element's props before the derivative exists, so the lift reads its receiver at derivation and gives a derivative with no parent of its own that parent — and its bond constructor already stands in the lineage when it asks the scope for a kind. Measured the same night: a format inside a chapter of a book with a Theme registered on the book is answered that Theme at its bond, where before it was answered the default until mount and the page painted twice. Mount confirms the same fact and never moves one. Doug's design: *"on render, give the topmost element the parent — something like a default on… There is an augment phase where the dom is mutated post render where this step would go."*
 
-> ***REPAIRED 2026-09-07.*** *This paragraph opened mid-sentence — its first clause was lost to the same additive merge that duplicated [the Wikipedia demo chapter](../../../.public/.lib/projection/49-the-wikipedia-demo.md).* **The opening above is a reconstruction from what the rest of the sentence entails and is NOT the original wording**; nothing else in the paragraph was touched. *Found by session inexplicable-phenomena-7e while reading for the theme.*
+> ***REPAIRED 2026-09-07.*** *This paragraph opened mid-sentence — its first clause was lost to the same additive merge that duplicated [the Wikipedia demo chapter](../../../../.public/.lib/projection/49-the-wikipedia-demo.md).* **The opening above is a reconstruction from what the rest of the sentence entails and is NOT the original wording**; nothing else in the paragraph was touched. *Found by session inexplicable-phenomena-7e while reading for the theme.*
 
 ## Cases
 

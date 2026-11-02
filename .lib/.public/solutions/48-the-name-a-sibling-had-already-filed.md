@@ -16,7 +16,7 @@
 <Author>Math</Author>     stands as  $Author          ← never resolved
 ```
 
-**The mechanism, one line.** [`$Chemical[cache]`](../../../chemistry/package/src/abstraction/chemical.ts) opened with a guard:
+**The mechanism, one line.** [`$Chemical[cache]`](../../../chemistry/.public/package/src/abstraction/chemical.ts) opened with a guard:
 
 ```ts
 if (key !== undefined && chain.slice(1).some(cls => catalogueOf(cls).$find(ref) !== undefined)) return;

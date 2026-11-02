@@ -16,7 +16,7 @@ Two tiles drew the same cached specimen. One of them was written with an extra a
 
 ## Why it happened
 
-**[`$lift`](../../../chemistry/package/src/abstraction/particle.ts) has two paths and the predicate that chooses between them is `$isTemplate$`.**
+**[`$lift`](../../../chemistry/.public/package/src/abstraction/particle.ts) has two paths and the predicate that chooses between them is `$isTemplate$`.**
 
 ```typescript
 const direct = !(parent as any)[$isTemplate$];
@@ -31,7 +31,7 @@ And `$isTemplate$` is `this == this[$type$][$$template$$]` — *am I the one ins
 
 ## The fix, and it is one line
 
-***A specimen is a thing to COPY.*** [`cache`](../../../chemistry/package/src/abstraction/formula.ts) stamps what it files as a template of its own:
+***A specimen is a thing to COPY.*** [`cache`](../../../chemistry/.public/package/src/abstraction/formula.ts) stamps what it files as a template of its own:
 
 ```typescript
 Object.defineProperty(this, $isTemplate$, { value: true, configurable: true });
@@ -51,4 +51,4 @@ Object.defineProperty(this, $isTemplate$, { value: true, configurable: true });
 
 **[The validatable specification](../../../../.claude/library/our-skillset/28-ce-brainstorm.md#the-validatable-specification) is usually argued as a reviewability rule.** *It is also a detection mechanism*, and this is the case that proves it: **a demonstration is a test with a very wide assertion**, and the assertion it makes — *everything on this page is what it should be* — is one no suite writes down.
 
-*The promise exists now — `A PROP AT ONE SITE NEVER REACHES ANOTHER` in [`formula.test.tsx`](../../../chemistry/package/tests/abstraction/formula.test.tsx) — and it goes red without the stamp. It was written **after** the screen found it, which is the honest order and worth recording as such.*
+*The promise exists now — `A PROP AT ONE SITE NEVER REACHES ANOTHER` in [`formula.test.tsx`](../../../chemistry/.public/package/tests/abstraction/formula.test.tsx) — and it goes red without the stamp. It was written **after** the screen found it, which is the honest order and worth recording as such.*

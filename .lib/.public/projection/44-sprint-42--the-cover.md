@@ -64,7 +64,7 @@ The string `Title` appears nowhere in the machinery — only its own file, the e
 
 > `Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform.`
 
-**The Lab renders because it only ever decorates METHODS** — every `@look` in [the Lab's own figures](../../../chemistry/package/app/src/sections/formula/figures.tsx) sits on `view()` or `$view()`. **`@dna-platform/public` decorates class PROPERTIES** — `@select('td, th') padding = '0.2em 0.4em'` and a dozen more across the encyclopedia dresses. `read`
+**The Lab renders because it only ever decorates METHODS** — every `@look` in [the Lab's own figures](../../../chemistry/.public/package/app/src/sections/formula/figures.tsx) sits on `view()` or `$view()`. **`@dna-platform/public` decorates class PROPERTIES** — `@select('td, th') padding = '0.2em 0.4em'` and a dozen more across the encyclopedia dresses. `read`
 
 **The wiki application is the only application that loads `public`**, and its vite config (`.wiki/app/vite.config.ts`) carries `@babel/plugin-proposal-decorators` with **no class-properties transform after it** — which is precisely the pairing Babel's legacy decorators require. The Lab's config carries the same comment about decorators reaching the browser through Babel rather than through `tsconfig`, and it was written before any property decorator existed to catch it.
 

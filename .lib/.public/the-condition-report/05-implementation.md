@@ -157,7 +157,7 @@ get ref(): $Cover { return this.cover; }
 
 > ***CORRECTED 2026-08-23 after reading how `$Chemistry` renders.*** *Doug: **"Holy crap you don't know how $Chemistry works. You wrote it."*** **He was right, and the entry was wrong about the mechanism.**
 >
-> ***`this.$view = …` is not rewriting a method. It is chemistry's own vertical-perspective write-point***, `protected`, documented, and the thing [`look()`](../../../chemistry/.lib/particle/08-perspectives.md) drives:
+> ***`this.$view = …` is not rewriting a method. It is chemistry's own vertical-perspective write-point***, `protected`, documented, and the thing [`look()`](../../../chemistry/.public/.lib/particle/08-perspectives.md) drives:
 >
 > ```ts
 > protected set $view(fn) {
@@ -168,7 +168,7 @@ get ref(): $Cover { return this.cover; }
 >
 > **And the render path never calls `view()` directly** — `$lift` calls `[$renderView$]()`, which calls `frame()`, which runs the ACTIVE view. *So setting `$view` to the base's is **rendering this instance at a more general altitude**, which is exactly what the vertical axis is for.*
 >
-> ***And the harvest is the designed path too.*** **A binding constructor is found by walking the class chain**, so [as the chemistry book states](../../../chemistry/.lib/composition/03-binding-constructor.md): *"a subclass whose writing lives in its `view()` therefore needs no constructor at all — the ancestor's binding constructor binds for it."* **That IS an authored chapter**, and `$Document`'s bond constructor asking it for its parts is the mechanism working.
+> ***And the harvest is the designed path too.*** **A binding constructor is found by walking the class chain**, so [as the chemistry book states](../../../chemistry/.public/.lib/composition/03-binding-constructor.md): *"a subclass whose writing lives in its `view()` therefore needs no constructor at all — the ancestor's binding constructor binds for it."* **That IS an authored chapter**, and `$Document`'s bond constructor asking it for its parts is the mechanism working.
 >
 > ***What remains true, and it is smaller than the entry claimed:*** **`view()` still means *declare your parts* at bond time and *draw* at render time**, and nothing in any book says so. **MONITOR**, and the prose is owed.
 >

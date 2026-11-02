@@ -152,7 +152,7 @@ And what never: a parent painting a child's look; a rule about structure anywher
 | the note abstraction: `note()` at the writing's level, the annotation's own writing not drawn since Sprint 97 | [`src/writing/Writing.tsx`](../../package/src/writing/Writing.tsx), promises in [`.tests/writing.test.tsx`](../../package/.tests/writing.test.tsx) | built; rewritten 2026-10-02 |
 | Format in the language, with its chapter; theming a property on it — and a Theme class on top of the property since Sprint 88 | [`src/writing/Format.tsx`](../../package/src/writing/Format.tsx), [Format and Theme](11-format-and-theme.md), [Theme](13-theme.md) | built 2026-09-23, 83 of 83; the class 2026-09-27, seen in Chrome |
 | the findings and costs, member by member | [Using and Extending Writing](01-using-and-extending-writing.md#annotations-that-reach-the-element) | written |
-| chemistry's own provision and styled chemicals | [`styled.ts`](../../../chemistry/package/src/abstraction/styled.ts), `providing`, `styledFor` | read |
+| chemistry's own provision and styled chemicals | [`styled.ts`](../../../chemistry/.public/package/src/abstraction/styled.ts), `providing`, `styledFor` | read |
 | uniqueness, the annotated view's stylesheet | this chapter | Doug's to rule |
 | what a Format held by a Theme is for, and `replaced` as an inert field | [Format and Theme](11-format-and-theme.md#winner-take-all) | raised, Doug's to rule |
 | the rulings | [Sprint 78](../projection/84-sprint-78--another-draft-of-public.md), rulings 92 to 97 | recorded |

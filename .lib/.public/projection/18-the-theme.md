@@ -82,7 +82,7 @@ ON THE BOOK  titles: 5   of them substituted: 1
 
 ## <a id="m5"></a>M5 — A theme cannot be a stored field
 
-[The Representative](../../../chemistry/.lib/composition/11-the-representative.md) states it and the reason is structural: ***"a field initializer runs once, on the template, before any scope exists"*** — so an ask written as a field could not resolve correctly. **"All writing has a theme" is a question asked in `view()`, never a member holding a value.**
+[The Representative](../../../chemistry/.public/.lib/composition/11-the-representative.md) states it and the reason is structural: ***"a field initializer runs once, on the template, before any scope exists"*** — so an ask written as a field could not resolve correctly. **"All writing has a theme" is a question asked in `view()`, never a member holding a value.**
 
 ## <a id="m6"></a>M6 — What drawing every level would cost, counted
 
@@ -353,7 +353,7 @@ draw:   my parts  →  SELECT which are present  →  ARRANGE them  →  each dr
 - **Policy-based design (Alexandrescu)** — a host is parameterized by policies deciding orthogonal aspects. **The host implements; the policies decide.** *This is Axis 3 and Axis 4 stated as a C++ idiom twenty years early.*
 - **Headless UI · React Aria · Radix Primitives** — **behaviour and semantics belong to the component, appearance to the consumer**, and the consumer never reimplements the behaviour to change the look. *The measure of success is that nobody forks a component to restyle it.*
 - **Design tokens (W3C DTCG)** — a token is **a named value with a type and no component knowledge.** *That is the whole of what belongs in the values.*
-- **Inversion of control** — the component asks for what it needs and something above provides it. ***Already built here as [the representative](../../../chemistry/.lib/composition/11-the-representative.md)***, which is why Axis 4 needs no new mechanism.
+- **Inversion of control** — the component asks for what it needs and something above provides it. ***Already built here as [the representative](../../../chemistry/.public/.lib/composition/11-the-representative.md)***, which is why Axis 4 needs no new mechanism.
 - **The user-agent stylesheet** — every browser ships a base theme, and it is **general properties, not component code.** *That is what a base theme is: small, unopinionated, and never the reason somebody writes their own.*
 
 ## <a id="where-the-brittleness-actually-is"></a>Where the brittleness actually is — located, not asserted
@@ -406,11 +406,11 @@ draw:   my parts  →  SELECT which are present  →  ARRANGE them  →  each dr
 
 1. ***The members are reactive*** — `$`-prefixed, so a write re-renders every view that read one. **In this framework a toggle is then a write and nothing else.**
 2. ***A view reads the theme AT RENDER TIME***, never at construction. *Already forced by [M5](#m5), so this costs nothing and must not be optimised away.*
-3. ***A theme may be a HELD INSTANCE and not only a class*** — [the representative's instance form](../../../chemistry/.lib/composition/11-the-representative.md), which exists *"when one held instance owns state that must persist across mounts."* **A toggled theme is exactly that.**
+3. ***A theme may be a HELD INSTANCE and not only a class*** — [the representative's instance form](../../../chemistry/.public/.lib/composition/11-the-representative.md), which exists *"when one held instance owns state that must persist across mounts."* **A toggled theme is exactly that.**
 
-***And the route not taken is worth writing down:*** **switching by re-registering is closed**, because [registration is configuration and never render](../../../chemistry/.lib/composition/11-the-representative.md) — a registration arriving mid-paint is an error. ***So a switch is a write to a held theme, and the three constraints above are what make that possible without building it.***
+***And the route not taken is worth writing down:*** **switching by re-registering is closed**, because [registration is configuration and never render](../../../chemistry/.public/.lib/composition/11-the-representative.md) — a registration arriving mid-paint is an error. ***So a switch is a write to a held theme, and the three constraints above are what make that possible without building it.***
 
-**<a id="d35"></a>D35 — A theme is a chemical, resolved and registered through the representative exactly as it stands.** `$(themes.Theme).$` to ask, `$(Scope, Theme)(Mine)` to answer. ***Not an extension of the mechanism — [that resolve line is the representative chapter's own example](../../../chemistry/.lib/composition/11-the-representative.md#component--the-model-behind-the-face).*** *Chosen over a plain object or a module export, neither of which can be registered on a scope, which is [R60](#r60).*
+**<a id="d35"></a>D35 — A theme is a chemical, resolved and registered through the representative exactly as it stands.** `$(themes.Theme).$` to ask, `$(Scope, Theme)(Mine)` to answer. ***Not an extension of the mechanism — [that resolve line is the representative chapter's own example](../../../chemistry/.public/.lib/composition/11-the-representative.md#component--the-model-behind-the-face).*** *Chosen over a plain object or a module export, neither of which can be registered on a scope, which is [R60](#r60).*
 
 **<a id="d36"></a>D36 — The BASE theme is the smallest one that makes the routes real, and it ships no stylesheet.** *Doug: "an effectively unstyled version."* **The class says what a thing IS by choosing its element; the theme says what it is dressed with; neither is a stylesheet.** *Chosen over shipping one, which would be an aesthetic the application and all five demo books would have to fight — and [R13](15-the-build.md#r13--the-book-gets-its-own-aesthetic-world) already governs their looks.* ***The base answers all five plainly***: no frame, everything selected, one after another, no apparatus, and the few values a document needs. **A page carrying it is a document**, which is the state [AE37](#acceptance-examples) screenshots — ***and none of [the twenty](#twenty) is supported, only reachable.***
 
@@ -565,7 +565,7 @@ REGISTERED     class: $Book   instanceof $Mine: false      $(Book, Book)(Mine) h
 VIA $(Book)    class: $Book   instanceof $Mine: false      the resolve form had none either
 ```
 
-**Why, and it is two documented specifications meeting rather than a defect:** an emitted book module composes itself as `<Book>` **at module scope**, so [React's own path is taken and nothing is resolved](../../../chemistry/.lib/composition/11-the-representative.md), *and* there is no asking instance at import time for a resolution to walk up from. ***A registration reaches a construction only when the construction happens inside a scope*** — which is exactly why it DOES reach the parse ([M3](#m3), [M4](#m4)), and does not reach this.
+**Why, and it is two documented specifications meeting rather than a defect:** an emitted book module composes itself as `<Book>` **at module scope**, so [React's own path is taken and nothing is resolved](../../../chemistry/.public/.lib/composition/11-the-representative.md), *and* there is no asking instance at import time for a resolution to walk up from. ***A registration reaches a construction only when the construction happens inside a scope*** — which is exactly why it DOES reach the parse ([M3](#m3), [M4](#m4)), and does not reach this.
 
 **So what would someone actually have to do?** One of two things, both small and neither in this sprint:
 

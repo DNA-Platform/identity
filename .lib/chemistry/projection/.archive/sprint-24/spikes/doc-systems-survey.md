@@ -147,4 +147,4 @@ This document. Story L-1 builds the skeleton from these decisions.
 [mdn-promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [vue-docs]: https://vuejs.org/guide/introduction.html
 [stripe-api]: https://docs.stripe.com/api
-[overview]: ../../../docs/chemistry/overview.md
+[overview]: ../../../../docs/chemistry/overview.md

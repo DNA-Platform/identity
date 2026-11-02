@@ -28,7 +28,7 @@
 
 ## The mechanism — A CLASS NAMES ITS BOND CONSTRUCTOR AFTER ITSELF, AND THE RUNTIME NAME LIES
 
-***[`$Synthesis`](../../../chemistry/package/src/abstraction/chemical.ts) found the bond constructor by matching the RUNTIME class name to a method name:***
+***[`$Synthesis`](../../../chemistry/.public/package/src/abstraction/chemical.ts) found the bond constructor by matching the RUNTIME class name to a method name:***
 
 ```ts
 if (!this._bondConstructor) this._bondConstructor = (chemical as any)[cls.name];
@@ -102,7 +102,7 @@ const written: Function = (this._bondConstructor as any)[$watched$] || this._bon
 
 ## Prevention
 
-***A GUARD THAT REPRODUCES THE FAULT WITHOUT DEPENDING ON A BUILD.*** **The rename is the bundler's business and chemistry's own build does not do it**, *so a test that waited for a decorator to trigger it would pass for the wrong reason.* **[The regression](../../../chemistry/package/tests/regression/bond-constructor-by-name.test.tsx) renames the binding by hand** — `Object.defineProperty($Renamed, 'name', { value: '_$Renamed' })` — **and asserts the missing key directly**, *so the old lookup's failure is shown rather than described:*
+***A GUARD THAT REPRODUCES THE FAULT WITHOUT DEPENDING ON A BUILD.*** **The rename is the bundler's business and chemistry's own build does not do it**, *so a test that waited for a decorator to trigger it would pass for the wrong reason.* **[The regression](../../../chemistry/.public/package/tests/regression/bond-constructor-by-name.test.tsx) renames the binding by hand** — `Object.defineProperty($Renamed, 'name', { value: '_$Renamed' })` — **and asserts the missing key directly**, *so the old lookup's failure is shown rather than described:*
 
 ```ts
 expect(($Renamed.prototype as Record<string, unknown>)['_$Renamed']).toBeUndefined();

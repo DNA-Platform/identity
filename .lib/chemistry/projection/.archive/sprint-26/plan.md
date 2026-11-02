@@ -97,7 +97,7 @@ These are *temporary*. A green commit on a closed audit story removes the commen
 Feature pages link into source. The convention added to `.claude/docs/readme.md`:
 
 ```markdown
-[$Bond.form]: ../../../library/chemistry/src/abstraction/bond.ts#L121
+[$Bond.form]: ../../../../library/chemistry/src/abstraction/bond.ts#L121
 ```
 
 Markdown supports anchors but not line numbers across editors uniformly; Libby will try `#L121` style and confirm what GitHub-style and editor-side renderers honor.

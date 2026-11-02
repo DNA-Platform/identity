@@ -522,9 +522,9 @@ Four answers, and **three of them declined the menu they were offered.** Each de
 
 ### A chemistry defect, found and fixed at the layer Doug named
 
-**The last failing check was a keys warning**, and the first fix was at the wrong layer. **Doug: *"We shouldn't have to specify keys often since the bond constructor cares about preserving order."*** He was right, and the code says so — [`chemical.ts:448`](../../../chemistry/package/src/abstraction/chemical.ts) assigns `key: chemical[$symbol$]` to every child a bond interprets, so **the warning was asking authors for what the framework already supplies.**
+**The last failing check was a keys warning**, and the first fix was at the wrong layer. **Doug: *"We shouldn't have to specify keys often since the bond constructor cares about preserving order."*** He was right, and the code says so — [`chemical.ts:448`](../../../chemistry/.public/package/src/abstraction/chemical.ts) assigns `key: chemical[$symbol$]` to every child a bond interprets, so **the warning was asking authors for what the framework already supplies.**
 
-**And it does have a real job, which is why it was narrowed rather than deleted:** [`identity.test.tsx:409`](../../../chemistry/package/tests/react/identity.test.tsx) proves keys matter for a `.map()` inside `view()` — where the *author* builds the list. The warning fired from the path that handles **both**. One line: it is not raised for bond children. *Four keys added to the demo's cards were reverted — by Doug's ruling they were never needed.*
+**And it does have a real job, which is why it was narrowed rather than deleted:** [`identity.test.tsx:409`](../../../chemistry/.public/package/tests/react/identity.test.tsx) proves keys matter for a `.map()` inside `view()` — where the *author* builds the list. The warning fired from the path that handles **both**. One line: it is not raised for bond children. *Four keys added to the demo's cards were reverted — by Doug's ruling they were never needed.*
 
 ### U2, U3 — the gate, and the baseline policed by identity. DONE.
 

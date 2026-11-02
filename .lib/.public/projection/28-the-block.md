@@ -71,7 +71,7 @@
 
 ***`<Writing>…<Type>Word</Type></Writing>` ALREADY WORKS.*** **All six promises in **`behaves.test`** are green** — it carries the type resolved from the name, it *is* a file in the sense of the reading, it composes the documents written inside it, a written `<File>` and a writing that behaves as one answer alike, the same shape holds at word grade, and it reaches down a real chain.
 
-***The annotation is a formula.*** **It resolves in the render walk, by name, and the bond constructor runs after that resolution and before the view** — measured at [`particle.ts:439`](../../../chemistry/package/src/abstraction/particle.ts), which calls the bond, and line 443, which renders. *So the carried type is already sitting in the specification when the writing is bonded.* **Doug's reading that this had failed was made against the opposite ordering**, and it is what the face route was proposed to rescue; ***nothing needed rescuing.***
+***The annotation is a formula.*** **It resolves in the render walk, by name, and the bond constructor runs after that resolution and before the view** — measured at [`particle.ts:439`](../../../chemistry/.public/package/src/abstraction/particle.ts), which calls the bond, and line 443, which renders. *So the carried type is already sitting in the specification when the writing is bonded.* **Doug's reading that this had failed was made against the opposite ordering**, and it is what the face route was proposed to rescue; ***nothing needed rescuing.***
 
 ---
 
@@ -227,7 +227,7 @@ $Section    1 argument, block
 ## <a id="u203"></a>U203 — `$Writing`'s bond
 
 **Requirements:** [R258](#r258), [R260](#r260), [R261](#r261), [R262](#r262).
-**Mechanism:** *the bond constructor, at [`particle.ts:439`](../../../chemistry/package/src/abstraction/particle.ts) — **before the view, in the same render pass**.* It takes the block, holds it, walks `block.$elements`, and lifts what answers `parenthetical` into `specification` **without removing it from the block**.
+**Mechanism:** *the bond constructor, at [`particle.ts:439`](../../../chemistry/.public/package/src/abstraction/particle.ts) — **before the view, in the same render pass**.* It takes the block, holds it, walks `block.$elements`, and lifts what answers `parenthetical` into `specification` **without removing it from the block**.
 **Files:** `writing/Writing.tsx`, `notation/Annotation.tsx`.
 **Depends on:** nothing.
 **Visible end:** ***a writing showing its prose while carrying its annotation*** — the two separable on screen, not merely in a count.
@@ -244,7 +244,7 @@ $Section    1 argument, block
 ## <a id="u204"></a>U204 — inline made uniform
 
 **Requirements:** [R259](#r259).
-**Mechanism:** *[`chemical.ts:351`](../../../chemistry/package/src/abstraction/chemical.ts)'s `isInline` groups a run of inline children into one block.* Setting `inline` on `$Writing` and deleting the four overrides makes that grouping happen at **every** level, which is what delivers one block per bond. ***Measured — see [the trace](#the-measurement).***
+**Mechanism:** *[`chemical.ts:351`](../../../chemistry/.public/package/src/abstraction/chemical.ts)'s `isInline` groups a run of inline children into one block.* Setting `inline` on `$Writing` and deleting the four overrides makes that grouping happen at **every** level, which is what delivers one block per bond. ***Measured — see [the trace](#the-measurement).***
 **Files:** `writing/Paragraph.tsx`, `Section.tsx`, `Document.tsx`, `File.tsx`.
 **Depends on:** U203.
 **Visible end:** ***the chain reaching paragraph on screen***, which it cannot do today.
@@ -478,7 +478,7 @@ $Section    1 argument, block
 | ***A BOND CONSTRUCTOR IS NOT INHERITED*** | **[Solutions 31](../solutions/31-the-writing-that-drew-and-held-nothing.md).** *Measured both ways in one file, and it corrects [Composition](27-composition.md)'s own sentence.* |
 | ***the cycle that empties a suite rather than reddening it*** | **[Solutions 30](../solutions/30-the-suite-that-collected-nothing.md).** *Twelve files, no tests, and the same cycle had been killed once already.* |
 | ***A COMPOSITION NARROWS FOR FREE*** | ***[Composition](27-composition.md) filed the typed narrowing as owed.*** **It needs no type parameter at all** — TypeScript's method parameters are **bivariant**, so a narrowing class re-declares the six with its own type and the compiler accepts both readings. *`tsc` 0, three promises, no generic and no cast.* **The known price: the compiler will not catch a predicate that is wrong only for the wider reading.** |
-| ***React's idiom in a framework that tracks mutation*** | **Nine sites replaced the array to signal a change.** *[`scope.ts`](../../../chemistry/package/src/implementation/scope.ts) deep-clones a collection on read and diffs it on finalize, so `push` is seen with the reference unchanged.* **Compounded into [the reactivity contract](../../../chemistry/.lib/authorship/04-the-reactivity-contract.md), beside the hooks** — *because an idiom has no name to search for, which is why it outlives every hook.* |
+| ***React's idiom in a framework that tracks mutation*** | **Nine sites replaced the array to signal a change.** *[`scope.ts`](../../../chemistry/.public/package/src/implementation/scope.ts) deep-clones a collection on read and diffs it on finalize, so `push` is seen with the reference unchanged.* **Compounded into [the reactivity contract](../../../chemistry/.public/.lib/authorship/04-the-reactivity-contract.md), beside the hooks** — *because an idiom has no name to search for, which is why it outlives every hook.* |
 | ***`$check` throws only OUTSIDE a bond*** | `raise()` records the reason and throws when it is not bonding. **That is what makes enforcement draw rather than crash.** |
 | ***what renders the same must classify the same*** | *Doug: "if it renders like that, we should support it."* **A decomposed accent was symbolic and non-canonical while the precomposed one was alphabetical** — the patterns now carry combining marks. |
 | ***turning enforcement on names the missing kinds*** | **A word of three spaces now records *"carries whitespace"*, and repetitive spaces are supposed to BE words.** *The resolution is v1's: a kind that relaxes the rule, exactly as `$Phrase` relaxes it for a name with spaces in it.* |

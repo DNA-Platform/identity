@@ -46,7 +46,7 @@
 
 ***NEITHER DRIVER WAS IN ANY `npm test`.*** **[`library/.public/package`](../../package/package.json)'s test is `tsc --noEmit && node app/typecheck.mjs && vitest run`** — *the two browser drivers are not in it, nor in any other script in the repository.* **A driver nobody runs is not a gate**, and these two had been rotting unwatched.
 
-***And the working pattern was already in the repository.*** **[The chemistry harness](../../../chemistry/package/app/verify-all.mjs) navigates with `waitUntil: 'domcontentloaded'` and then settles**, and has never had this problem. *Six `verify-*.mjs` files exist across three packages; the two that stall are the two that use `networkidle`.*
+***And the working pattern was already in the repository.*** **[The chemistry harness](../../../chemistry/.public/package/app/verify-all.mjs) navigates with `waitUntil: 'domcontentloaded'` and then settles**, and has never had this problem. *Six `verify-*.mjs` files exist across three packages; the two that stall are the two that use `networkidle`.*
 
 ## The fix
 

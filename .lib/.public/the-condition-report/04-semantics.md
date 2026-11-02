@@ -49,7 +49,7 @@ $Composition<T>  multiplication; flows down
 
 **A `$$` reference form must be BOTH a composition and a reference** — `$$Section` is a `$Paragraph` *and* a `$Reference$<$Section>` — **and TypeScript gives one supertype.** ***That is why the statics exist, and it is a reason rather than an excuse.***
 
-**The candidate is a class-factory mixin, and it carries an unknown:** *a mixin makes a fresh anonymous class per application, and [`$Chemistry` tracks a template per class](../../../chemistry/.lib/particle/01-identity.md) — `[$$template$$]`, `$lift`'s prototype walk, `$isViewBase$`.* **Whether that survives a mixin is not known, and finding out is a design session.**
+**The candidate is a class-factory mixin, and it carries an unknown:** *a mixin makes a fresh anonymous class per application, and [`$Chemistry` tracks a template per class](../../../chemistry/.public/.lib/particle/01-identity.md) — `[$$template$$]`, `$lift`'s prototype walk, `$isViewBase$`.* **Whether that survives a mixin is not known, and finding out is a design session.**
 
 ***But the WORD-GRADE half needs no mixin at all***, and that is [S2](#s2).
 

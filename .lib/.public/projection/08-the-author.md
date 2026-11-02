@@ -109,7 +109,7 @@
 
 **This is the proper answer to a hole this sprint papered over twice.** [R55](06-sprint-48--subjects-and-the-library.md#r55--as-a-container-and-cards-built-at-build) proposed it and left it design owed; when the author needed to reach the library catalogue, the implementer invented a module-level holder, and Doug removed it — *"a library catalogue is just a catalogue."* **The right shape is not a holder anywhere; it is `$` supplying what a chemical asks for**, which it is already positioned to do because it is already what constructs instances.
 
-**Framework work, not lib work.** It belongs in [`library/chemistry/package`](../../../chemistry/package/), and it is **not this sprint's** — recorded here because this sprint is where the need was demonstrated rather than argued.
+**Framework work, not lib work.** It belongs in [`library/chemistry/package`](../../../chemistry/.public/package/), and it is **not this sprint's** — recorded here because this sprint is where the need was demonstrated rather than argued.
 
 **U15 — `$` as a container.** *`$Chemistry` work. **DESIGN OWED** and therefore given no files and scenarios. Realizes: R25, and closes R55. **Visible end:** a reference that asks for the library catalogue and is given it, with nothing holding a singleton.*
 

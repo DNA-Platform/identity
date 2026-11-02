@@ -13,7 +13,7 @@
 
 **In one sitting a demo of wikipedia.org drew four corrections from Doug, and every one of them said the same thing about which side of a line I was standing on.**
 
-> *"DONT CHENGE CHEMISTRY"* — after I added an overload to [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) because a demo file wanted a better type.
+> *"DONT CHENGE CHEMISTRY"* — after I added an overload to [`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts) because a demo file wanted a better type.
 >
 > *"Don't test .wiki."* … *"It's a demo."* — after I wrote a test suite and a `vitest.config.ts` for it.
 >
@@ -72,9 +72,9 @@ $(Wikipedia, Chapter)(WikipediaChapter);   // "for Wikipedia, a Chapter is a Wik
 
 **The fix on my side was real:** *it now extends `$Chapter`, calls `super.$Chapter(block)`, and adds NO type* — the chapter type it already carries is the true one, and `at: 'door' | 'foot'` is the only thing it adds.
 
-> ***AND THE RED DID NOT GO AWAY, and that half is the framework's.*** **[`$Properties<T>`](../../../chemistry/package/src/implementation/types.ts) declares `on?: (() => T | T[] | undefined) | …`, which puts `T` in a return position inside the props parameter, so [`Component<T>`](../../../chemistry/package/src/abstraction/element.ts) is CONTRAVARIANT in `T`.** *The registrar types its replacement `Component<B>` with `B` bound to the **requested** kind — so only a component of a SUPERkind is assignable, and a substitute is the one thing the form exists to take.* **The runtime registrar accepts any replacement; it is the overload that cannot say so.**
+> ***AND THE RED DID NOT GO AWAY, and that half is the framework's.*** **[`$Properties<T>`](../../../chemistry/.public/package/src/implementation/types.ts) declares `on?: (() => T | T[] | undefined) | …`, which puts `T` in a return position inside the props parameter, so [`Component<T>`](../../../chemistry/.public/package/src/abstraction/element.ts) is CONTRAVARIANT in `T`.** *The registrar types its replacement `Component<B>` with `B` bound to the **requested** kind — so only a component of a SUPERkind is assignable, and a substitute is the one thing the form exists to take.* **The runtime registrar accepts any replacement; it is the overload that cannot say so.**
 >
-> ***The hazard is already named in the framework***, at [`particle.ts:48`](../../../chemistry/package/src/abstraction/particle.ts): *"Pinning it to `Component<this>` makes every public prop that mentions the chemical's own type turn `Component<T>` contravariant, and a derived chemical stops being assignable to the base it extends."* **The note is about `[$component$]`; the same sentence convicts `on`.** *Left standing and red, deliberately, because the demo is not what is wrong — and because chemistry does not change without Doug.*
+> ***The hazard is already named in the framework***, at [`particle.ts:48`](../../../chemistry/.public/package/src/abstraction/particle.ts): *"Pinning it to `Component<this>` makes every public prop that mentions the chemical's own type turn `Component<T>` contravariant, and a derived chemical stops being assignable to the base it extends."* **The note is about `[$component$]`; the same sentence convicts `on`.** *Left standing and red, deliberately, because the demo is not what is wrong — and because chemistry does not change without Doug.*
 
 ## The fix
 

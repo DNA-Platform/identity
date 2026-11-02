@@ -227,7 +227,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 ***So nothing changes.*** **[`$Letter.build()`](../../package/src/writing/Letter.tsx) stays exactly as it is**, called from the bond and from [`bind`](../../package/src/writing/Writing.tsx). *A draft of this chapter deleted it and turned `kind` and `case` into properties over `copy`; that argument was carried by a framing Doug withdrew and is struck.* **The ruling is recorded rather than the change reverted silently, because the question was real and the answer is now settled.**
 
-<a id="r291"></a>**R291** — ***the type holds no data about any instance, and structurally cannot.*** **[`cache`](../../../chemistry/package/src/abstraction/chemical.ts) registers ONE `$TypeOfLetter` under the name `Letter`**, shared by every letter that ever carries it. *That is why [R274](#r274) was the wrong shape and why Doug's correction is the right one.*
+<a id="r291"></a>**R291** — ***the type holds no data about any instance, and structurally cannot.*** **[`cache`](../../../chemistry/.public/package/src/abstraction/chemical.ts) registers ONE `$TypeOfLetter` under the name `Letter`**, shared by every letter that ever carries it. *That is why [R274](#r274) was the wrong shape and why Doug's correction is the right one.*
 
 <a id="r292"></a>**R292** — ***"provably" is a promise the suite carries, not a word in a plan.*** **For each level: given writing its type accepts, every member the level offers answers — no throw, nothing undefined.** *One scenario per level, and it is the real gate.*
 
@@ -289,9 +289,9 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="r304"></a>**R304** — ***the wrapper lives in `frame()`, so every view shares it.*** *Doug: "**overriding frame might be recommended to preserve the markdown and have all the views have a common wrapper**."*
 
-**Measured: [`particle.ts:132`](../../../chemistry/package/src/abstraction/particle.ts) is the render template method** — *"Override `frame()` to WRAP what is drawn, and wrap `super.frame()` so the content still renders."* ***So the paragraph's `<p>`, the section's rule, the quotation's bar belong there and not in any one view***, which is what lets the default view and the parse view differ in content while agreeing in shape. **And it is what [R303](#r303) needs to be true at all.**
+**Measured: [`particle.ts:132`](../../../chemistry/.public/package/src/abstraction/particle.ts) is the render template method** — *"Override `frame()` to WRAP what is drawn, and wrap `super.frame()` so the content still renders."* ***So the paragraph's `<p>`, the section's rule, the quotation's bar belong there and not in any one view***, which is what lets the default view and the parse view differ in content while agreeing in shape. **And it is what [R303](#r303) needs to be true at all.**
 
-*`$Particle` uses the word **facade** for a member holding a component ([`particle.ts:476`](../../../chemistry/package/src/abstraction/particle.ts)). **That is the framework's own thing and not what is meant here** — recorded so the two do not get confused later.*
+*`$Particle` uses the word **facade** for a member holding a component ([`particle.ts:476`](../../../chemistry/.public/package/src/abstraction/particle.ts)). **That is the framework's own thing and not what is meant here** — recorded so the two do not get confused later.*
 
 <a id="r305"></a>**R305** — ***the parse performs the bind.*** *Doug: "**since there is a bind method, there is something like a facade and the parser will perform this bind**."*
 
@@ -625,7 +625,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="d115"></a>**D115 — the level computes; the type only guarantees that it can.** *Chosen over [R274](#r274)'s shape — a type handing back a description — which Doug proposed and withdrew in the same session.*
 
-**Two arguments, and the second is structural rather than aesthetic.** *A type that hands back data is a second author of the level's state, and [Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md) is what a write from the wrong place costs.* ***And a type physically cannot hold per-instance data: [`cache`](../../../chemistry/package/src/abstraction/chemical.ts) registers one `$TypeOfLetter` for every letter there will ever be.***
+**Two arguments, and the second is structural rather than aesthetic.** *A type that hands back data is a second author of the level's state, and [Solutions 16](../solutions/16-the-parse-that-woke-its-own-parents.md) is what a write from the wrong place costs.* ***And a type physically cannot hold per-instance data: [`cache`](../../../chemistry/.public/package/src/abstraction/chemical.ts) registers one `$TypeOfLetter` for every letter there will ever be.***
 
 ***So the smaller design is also the only one that works.***
 
@@ -943,7 +943,7 @@ const restore = piece => piece.replace(/ (\d+) /g, (_, i) => holds[Number(i)]);
 
 <a id="k41"></a>**K41 — two copies of the framework loaded at once.** *[K35](28-the-block.md#k35), unchanged and still true.* **No import may cross between `src` and `.archive`.**
 
-<a id="k42"></a>**K42 — the parse makes instances, and `$lift` hands out shared ones.** *[R250](27-composition.md#r250) named this and sprint 27 avoided it by making none; [R305](#r305) makes one per part per step.* **[`particle.ts`](../../../chemistry/package/src/abstraction/particle.ts) takes the `direct` path — ***the instance IS the component*** — for anything that is not its class's registered template**, *so two parts of two different writings could be one object with one state.* ***[Solutions 28](../solutions/28-the-specimen-that-was-the-component.md) is this defect already met once, and its fix is one line: stamp what is handed out as a template of its own.*** **Thirty-one green promises did not see it the first time**, so the scenario is *one site cannot disturb another*, never *two parts differ*.
+<a id="k42"></a>**K42 — the parse makes instances, and `$lift` hands out shared ones.** *[R250](27-composition.md#r250) named this and sprint 27 avoided it by making none; [R305](#r305) makes one per part per step.* **[`particle.ts`](../../../chemistry/.public/package/src/abstraction/particle.ts) takes the `direct` path — ***the instance IS the component*** — for anything that is not its class's registered template**, *so two parts of two different writings could be one object with one state.* ***[Solutions 28](../solutions/28-the-specimen-that-was-the-component.md) is this defect already met once, and its fix is one line: stamp what is handed out as a template of its own.*** **Thirty-one green promises did not see it the first time**, so the scenario is *one site cannot disturb another*, never *two parts differ*.
 
 ---
 
@@ -1346,4 +1346,4 @@ return parser.parse(from,
 
 ***Scope, attached, because [a number without it is not evidence](../solutions/14-the-green-that-exercised-nothing.md):*** **`@dna-platform/chemistry` resolves by symlink into the working copy**, *which stands 867 lines ahead of `HEAD`* — **so that green is against uncommitted framework code**, and a clone at `HEAD` would not reproduce it.
 
-***THE WHOLE SPRINT IS UNCOMMITTED.*** **23 modified and 46 untracked files under [`package/`](../../package/)** — *`utilities/Parser.tsx`, both specification classes, the entire 29-example **`.spec/`** folder and fourteen test files* — **plus 20 modified and 12 untracked in [chemistry](../../../chemistry/package/).** *Everything this handoff describes exists on disk and nowhere else.* ***That is the first thing to settle, and it is Doug's call.***
+***THE WHOLE SPRINT IS UNCOMMITTED.*** **23 modified and 46 untracked files under [`package/`](../../package/)** — *`utilities/Parser.tsx`, both specification classes, the entire 29-example **`.spec/`** folder and fourteen test files* — **plus 20 modified and 12 untracked in [chemistry](../../../chemistry/.public/package/).** *Everything this handoff describes exists on disk and nowhere else.* ***That is the first thing to settle, and it is Doug's call.***

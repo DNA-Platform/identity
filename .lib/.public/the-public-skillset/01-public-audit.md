@@ -77,10 +77,10 @@ git status --porcelain library/chemistry/package/src library/.public/package/src
 
 **A rename is never fixed eagerly.** *[Names are proxies and Doug's to rule](../the-coding-style/03-the-coding-style.md#no-jargon).*
 
-**And every eager fix ships with its evidence**, held to the same standard as any other change here: *[evidence owes the same KIND as the failure](../../../chemistry/.lib/testing/01-the-contract.md#evidence-owes-the-same-kind-as-the-failure)*, and a green suite is not evidence for a failure the suite cannot express.
+**And every eager fix ships with its evidence**, held to the same standard as any other change here: *[evidence owes the same KIND as the failure](../../../chemistry/.public/.lib/testing/01-the-contract.md#evidence-owes-the-same-kind-as-the-failure)*, and a green suite is not evidence for a failure the suite cannot express.
 ## What this audit does not do
 
-It does not fix anything, and it does not decide anything. **It does not run the unit suites** — those pin behaviour, and every failure this audit is built to catch is one they cannot see. That is the whole reason it exists, and the reason is [written down](../../../chemistry/.lib/testing/01-the-contract.md#evidence-owes-the-same-kind-as-the-failure): *a promise that cannot go red for the reason you are afraid of is not evidence, however green it is.*
+It does not fix anything, and it does not decide anything. **It does not run the unit suites** — those pin behaviour, and every failure this audit is built to catch is one they cannot see. That is the whole reason it exists, and the reason is [written down](../../../chemistry/.public/.lib/testing/01-the-contract.md#evidence-owes-the-same-kind-as-the-failure): *a promise that cannot go red for the reason you are afraid of is not evidence, however green it is.*
 
 ## Where the standing findings live
 

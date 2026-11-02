@@ -48,7 +48,7 @@
 
 **Doug's design, built in `$Chemistry`.** One hack: `$ParamValidation.validateArgument` stopped being `private static`. Nothing else. ***It generalizes what a block already did*** — `check()` has always materialized an empty `$Block` when one is asked for and the argument is missing.
 
-**Two forms.** The two-argument form makes one through `$`. The three-argument form keeps what fits and makes one otherwise. **Six promises in [`check-makes.test.tsx`](../../../chemistry/package/tests/abstraction/check-makes.test.tsx).**
+**Two forms.** The two-argument form makes one through `$`. The three-argument form keeps what fits and makes one otherwise. **Six promises in [`check-makes.test.tsx`](../../../chemistry/.public/package/tests/abstraction/check-makes.test.tsx).**
 
 **Applied at 27 seats in the five folders** — 25 bond type-defaults plus `$Style.theme` and the book's index. *Two statements that had to stay together became one that cannot come apart, and the `$`-fetch rule stopped being something to remember.* **The boundary is stated in the style book: the marker makes an EMPTY one; the eval form writes into one.** Ten sites create with children and keep the eval form.
 

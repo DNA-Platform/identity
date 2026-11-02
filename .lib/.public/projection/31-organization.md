@@ -22,7 +22,7 @@
 | **2** | ***"the order always wins"*** — when the member order and the urge to associate disagree, the order never bends, because *"a reader can no longer trust position to mean anything"* | **[The Closeness Rule](../the-coding-style/04-the-closeness-rule.md#where-art-lives)** |
 | **3** | ***the order itself, restated and CHANGED*** — *"fields then properties, bond constructor, constructor, methods then protected methods than private methods"*, and *"in fields, private is first, then public. Most will be public, protected is after"* | **[The Order of a Class](../the-coding-style/02-the-order-of-a-class.md)** |
 | **4** | ***compactness and artfulness*** — *"one line ifs and fors should be without brackets… if they are more like asserts at the top, the whole if can be one line… if the code itself does some cleanup thing the for can be one line as a filter call might have been"*, and *"artfulness is when the convention doesn't work, you follow the closeness rule"* | **[The Closeness Rule](../the-coding-style/04-the-closeness-rule.md)** |
-| **5** | ***we think in OO*** — *"you don't use constants to store data because that's bad for polymorphism, and you don't even use static methods much in chemistry because you have a template so members can be static and thus polymorphic… the component is like a packaging for the constructor of the class"* | **[The Grammar](../../../chemistry/.lib/authorship/01-the-grammar.md)** |
+| **5** | ***we think in OO*** — *"you don't use constants to store data because that's bad for polymorphism, and you don't even use static methods much in chemistry because you have a template so members can be static and thus polymorphic… the component is like a packaging for the constructor of the class"* | **[The Grammar](../../../chemistry/.public/.lib/authorship/01-the-grammar.md)** |
 
 ***And one refinement that arrived after the first draft and improved it***, on paragraphs in code: **"try to conceive of methods WITHOUT phases… minimize the number of semantic concepts… sometimes it's a one to one thing and there's no polymorphic reason to split, and so you might use paragraphs before deciding to create private helper methods."** *So the order is: no phases · then paragraphs · then a private helper, and only for a **polymorphic** reason.*
 
@@ -156,7 +156,7 @@
 
 ## <a id="inline-styles"></a>Inline styles — ***real, 31 sites, and a rule already forbids them***
 
-***[Structural Patterns](../../../chemistry/.lib/authorship/02-structural-patterns.md) already rules this***, which makes it a compliance job rather than a new decision: **"No inline styles for styling decisions — colors, spacing, typography, layout all flow through styled-components. Allowed exception: truly dynamic per-element values that styled-components can't reasonably express."**
+***[Structural Patterns](../../../chemistry/.public/.lib/authorship/02-structural-patterns.md) already rules this***, which makes it a compliance job rather than a new decision: **"No inline styles for styling decisions — colors, spacing, typography, layout all flow through styled-components. Allowed exception: truly dynamic per-element values that styled-components can't reasonably express."**
 
 | | count | verdict |
 |---|---|---|

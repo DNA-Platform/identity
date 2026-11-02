@@ -207,7 +207,7 @@
 
 ## <a id="decisions"></a>The decisions
 
-<a id="d7"></a>**D7 — the code lives on the TYPE, not on the class.** *[The type holds the meaning](../the-type-system/02-the-type-and-the-instance.md); a code is meaning about a level.* **Chosen over a `static` on the class**, *because [Doug's OO ruling](../../../chemistry/.lib/authorship/01-the-grammar.md) is that a constant storing data is bad for polymorphism and a template member is both allocated once and overridable.*
+<a id="d7"></a>**D7 — the code lives on the TYPE, not on the class.** *[The type holds the meaning](../the-type-system/02-the-type-and-the-instance.md); a code is meaning about a level.* **Chosen over a `static` on the class**, *because [Doug's OO ruling](../../../chemistry/.public/.lib/authorship/01-the-grammar.md) is that a constant storing data is bad for polymorphism and a template member is both allocated once and overridable.*
 
 <a id="d8"></a>**D8 — `ref` is computed and never stored.** *His sentence: "composition, if giving an indexed list, should always afford us this."* **Chosen over assigning a route during the parse**, *which would be a fourth write in a place [that has drawn blood three times](../solutions/16-the-parse-that-woke-its-own-parents.md).*
 

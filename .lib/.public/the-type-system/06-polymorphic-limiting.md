@@ -34,7 +34,7 @@
 
 ***AND THE OTHER REACH IS EQUALLY WRONG.*** **"This does not mean the base should be changed."** *The temptation, once the member is seen to be bad, is to widen the base so it can hold the case — a nullable slot one level up instead of one level down.* **That is the same defect wearing seniority.** *A base earns a member when the member is true of everything beneath it, never when one class needed somewhere to put something.*
 
-**What is left is the only honest move: find the mechanism, or say that it does not exist.** *Saying it does not exist is a real answer and it belongs in [chemistry's chapter zero](../../../chemistry/.lib/projection/00-planning.md), because the fix is one level down.*
+**What is left is the only honest move: find the mechanism, or say that it does not exist.** *Saying it does not exist is a real answer and it belongs in [chemistry's chapter zero](../../../chemistry/.public/.lib/projection/00-planning.md), because the fix is one level down.*
 
 ## <a id="the-instances"></a>Three instances in this branch, and the first is the pattern entire
 

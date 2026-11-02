@@ -35,7 +35,7 @@
 | | the unit | average file | one class per file? |
 |---|---|---|---|
 | **`lib`** | ***a class*** | **58 lines** | ***yes*** — 51 files, 51 classes |
-| **`$Chemistry`** | ***a concern*** | **215 lines** | **no** — [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) holds **10 classes in 1,407 lines** |
+| **`$Chemistry`** | ***a concern*** | **215 lines** | **no** — [`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts) holds **10 classes in 1,407 lines** |
 | **the compiler** | ***a phase*** | **107 lines** | **no classes at all** — 18 files, **1 class**, everything else a pure function over one shared type (`build/library.ts`) |
 
 **All three are defensible on their own terms.** *A framework of book semantics wants one class per book word. A reactive substrate wants its machinery together where the invariants are. A four-phase compiler wants functions over a seam.*
@@ -61,9 +61,9 @@
 
 | | lines | |
 |---|---|---|
-| [`implementation/catalogue.ts`](../../../chemistry/package/src/implementation/catalogue.ts) | 179 | ***LIVE*** — [`chemical.ts:1174`](../../../chemistry/package/src/abstraction/chemical.ts) calls `$subject(…)` inside the registry |
-| [`implementation/reference.ts`](../../../chemistry/package/src/implementation/reference.ts) | 126 | `$Referent` · the ternary `$Relation` · `$Relationship` · `$Reference` · `$Representative` · `$Property` · `$Identity` — **unimported, unexported** |
-| [`implementation/reflection.ts`](../../../chemistry/package/src/implementation/reflection.ts) | 1,063 | `$instanceof` · `$typeof` · `$type` · `$SubjectiveRep` · `$ObjectiveRep` — **unimported, unexported** |
+| [`implementation/catalogue.ts`](../../../chemistry/.public/package/src/implementation/catalogue.ts) | 179 | ***LIVE*** — [`chemical.ts:1174`](../../../chemistry/.public/package/src/abstraction/chemical.ts) calls `$subject(…)` inside the registry |
+| [`implementation/reference.ts`](../../../chemistry/.public/package/src/implementation/reference.ts) | 126 | `$Referent` · the ternary `$Relation` · `$Relationship` · `$Reference` · `$Representative` · `$Property` · `$Identity` — **unimported, unexported** |
+| [`implementation/reflection.ts`](../../../chemistry/.public/package/src/implementation/reflection.ts) | 1,063 | `$instanceof` · `$typeof` · `$type` · `$SubjectiveRep` · `$ObjectiveRep` — **unimported, unexported** |
 
 ***It is a reflection system Doug is building, a third wired, and the design is stated in a type:*** `$ObjectiveRole` ends `… | 'JavaScript' | 'TypeScript'` — **the language as a ROLE**, which is *"the TypeScript-based reflection system would be just one view."*
 
@@ -90,7 +90,7 @@ class Chemistry extends $Chemical { … }                       // chemical.ts:1
 export const $ = new Chemistry().view as any as $Chemistry;   // chemical.ts:1407
 ```
 
-***`$` — [the coercion the entire framework is reached through](../../../chemistry/.lib/composition/11-the-representative.md) — is an instance of the one class in the package that does not follow the package's own naming rule.*** *It is private and it works, and it is the class a reader arrives at when they finally ask **what is `$`**.*
+***`$` — [the coercion the entire framework is reached through](../../../chemistry/.public/.lib/composition/11-the-representative.md) — is an instance of the one class in the package that does not follow the package's own naming rule.*** *It is private and it works, and it is the class a reader arrives at when they finally ask **what is `$`**.*
 
 > ***Doug, 2026-08-22: "Yeah it looks like we want `Chemistry` to be `$Chemistry`. Good catch and fix."*** **Taken.**
 >

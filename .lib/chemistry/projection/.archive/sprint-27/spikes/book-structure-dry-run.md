@@ -112,10 +112,10 @@ Heuristic codified above. Three tests, in order; rule of thumb: source clusters 
 - Heuristic for B-2..B-5: chapter = coherent reading; source clusters help; reader's needs win when they disagree.
 
 <!-- citations -->
-[particle-src]: ../../../../src/abstraction/particle.ts
-[ch-identity]: ../../../particle/01-identity.md
-[ch-lifecycle]: ../../../particle/02-lifecycle.md
-[ch-particular]: ../../../particle/03-particularization.md
-[ch-lift]: ../../../particle/04-lift.md
-[ch-filters]: ../../../particle/05-render-filters.md
-[ch-view]: ../../../particle/06-view.md
+[particle-src]: ../../../../../src/abstraction/particle.ts
+[ch-identity]: ../../../../particle/01-identity.md
+[ch-lifecycle]: ../../../../particle/02-lifecycle.md
+[ch-particular]: ../../../../particle/03-particularization.md
+[ch-lift]: ../../../../particle/04-lift.md
+[ch-filters]: ../../../../particle/05-render-filters.md
+[ch-view]: ../../../../particle/06-view.md

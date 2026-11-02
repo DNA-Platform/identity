@@ -48,7 +48,7 @@ This answers the specific thing Doug flagged — "reference might inherit from t
 
 ## What this means for the code — two types of symbol
 
-A first draft of this chapter unified the SRT symbol with [$Chemistry](../../../chemistry/.lib/..representivity/.cover.md)'s `$` — claiming that because `$` means "representation-of," every `$Chemical` already *is* the symbol. Doug corrected it, and the correction is load-bearing (this session):
+A first draft of this chapter unified the SRT symbol with [$Chemistry](../../../chemistry/.public/.lib/..representivity/.cover.md)'s `$` — claiming that because `$` means "representation-of," every `$Chemical` already *is* the symbol. Doug corrected it, and the correction is load-bearing (this session):
 
 > "`$Chemical` is a symbol for a thing that renders in React. I don't think we are talking about that kind of symbol. To represent a symbol in a UI framework and a symbol in a library metaphor are different."
 

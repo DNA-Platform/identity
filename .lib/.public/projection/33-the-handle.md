@@ -212,7 +212,7 @@
 
 # <a id="open"></a>What is open — asked, not decided
 
-<a id="open-async"></a>**O6 · The async `read()` has a consequence that needs ruling.** **[`$Writing.view()`](../../package/src/writing/Writing.tsx) is synchronous and [the reactivity contract forbids a view awaiting](../../../chemistry/.lib/authorship/04-the-reactivity-contract.md)** — *so if resolution is async, **nothing can draw a resolved reference directly**.* **The catalogue becomes a loader and drawing needs the value already held.** ***That is his own "partially load a book — a little weird" arriving as a mechanism, and it decides whether sprint four's always-loaded index is cheap or hard.***
+<a id="open-async"></a>**O6 · The async `read()` has a consequence that needs ruling.** **[`$Writing.view()`](../../package/src/writing/Writing.tsx) is synchronous and [the reactivity contract forbids a view awaiting](../../../chemistry/.public/.lib/authorship/04-the-reactivity-contract.md)** — *so if resolution is async, **nothing can draw a resolved reference directly**.* **The catalogue becomes a loader and drawing needs the value already held.** ***That is his own "partially load a book — a little weird" arriving as a mechanism, and it decides whether sprint four's always-loaded index is cheap or hard.***
 
 <a id="open-complete"></a>**O7 · What exactly does `complete` concatenate?** *"A catalogue of books into all literature in the library" reads two ways:* **the resolved books themselves, joined**, *or* **their PARTS joined one level down** — *every chapter of every book.* **The word "closure" and "one level for now" point at the second; "all literature" points at the first.**
 

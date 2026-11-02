@@ -48,7 +48,7 @@ fine:    this=#15 text=#16 component=fn#2  elements=#17,#18,#19
 
 **Props are construction, and they were being recorded as mutation.**
 
-A chemical written inside another chemical's writing is **built during that chemical's render** and handed its props there, in [`$Bond.bond`](../../../chemistry/package/src/abstraction/chemical.ts). For a freshly built child the `lastProps` guard is empty, so every prop is a change; the reactive setter records the write into the **running scope**; the scope finalizes dirty; the host renders again; the child is built again. Round and round.
+A chemical written inside another chemical's writing is **built during that chemical's render** and handed its props there, in [`$Bond.bond`](../../../chemistry/.public/package/src/abstraction/chemical.ts). For a freshly built child the `lastProps` guard is empty, so every prop is a change; the reactive setter records the write into the **running scope**; the scope finalizes dirty; the host renders again; the child is built again. Round and round.
 
 The framework already had the idea — the setter returns early when `this[$rendering$]` is set, which is how it says *this write is not news*. The flag was simply never raised for the one write that is never news: **the assignment of props at construction.**
 

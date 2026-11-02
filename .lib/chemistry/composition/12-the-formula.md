@@ -1,10 +1,10 @@
 # The Formula
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 
-*Shipped in [The Formula](../../../.public/.lib/projection/24-the-formula.md). Every specification below is a promise in [`formula.test.tsx`](../../package/tests/abstraction/formula.test.tsx), and every one of them was watched going red before it was believed.*
+*Shipped in [The Formula](../../../../.public/.lib/projection/24-the-formula.md). Every specification below is a promise in [`formula.test.tsx`](../../package/tests/abstraction/formula.test.tsx), and every one of them was watched going red before it was believed.*
 
 ## What a formula is
 
@@ -117,7 +117,7 @@ $(Room, Fancy)(Dressed);     // <Plain>Fancy</Plain> now draws a $Dressed
 
 **A formula's subclasses are ordinary user classes** — they draw, they may compose, they may declare a binding constructor. `$Chemical` is what user code extends, so `$Formula` sits on it rather than on `$Particle` and its subclasses lose nothing.
 
-*One consequence is worth naming: a class that must be a formula **and** something else already in a hierarchy cannot be both, because single inheritance gives one supertype. That is the same wall [the `$$` reference forms](../../../.public/.lib/the-condition-report/04-semantics.md#s1-constraint) meet, and it is not solved here.*
+*One consequence is worth naming: a class that must be a formula **and** something else already in a hierarchy cannot be both, because single inheritance gives one supertype. That is the same wall [the `$$` reference forms](../../../../.public/.lib/the-condition-report/04-semantics.md#s1-constraint) meet, and it is not solved here.*
 
 ## <a id="findable-and-asking"></a>Two questions, not one — `cache` and `resolve`
 
@@ -143,7 +143,7 @@ $(Room, Fancy)(Dressed);     // <Plain>Fancy</Plain> now draws a $Dressed
 
 *It sits on `$Chemical` rather than `$Particle` for a reason that is measured rather than chosen: the substitution calls `$`, which is defined in `chemical.ts`, and `chemical.ts` imports `particle.ts`. `$Referent`, `$Writing` and every user class already extend `$Chemical`, so the capability is the same.*
 
-***This is what dissolves the single-inheritance wall.*** *A class that had to be both a formula and something already in a hierarchy could not be — [the same wall the `$$` reference forms meet](../../../.public/.lib/the-condition-report/04-semantics.md#s1-constraint). Now it declares a flag instead of changing its parent.*
+***This is what dissolves the single-inheritance wall.*** *A class that had to be both a formula and something already in a hierarchy could not be — [the same wall the `$$` reference forms meet](../../../../.public/.lib/the-condition-report/04-semantics.md#s1-constraint). Now it declares a flag instead of changing its parent.*
 
 **The branch is the run of ancestors answering `formula` true**, stopping at `$Formula`'s base marker or where the flag turns false — *so a non-formula ancestor holds nothing, and two families still never see each other.*
 

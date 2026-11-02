@@ -14,9 +14,9 @@ Do `[name](path/to/file.ts#L<line>)`-style source links work in the previewers w
 
 Three forms were tested:
 
-1. **Inline link, plain path** — `[name](../../../library/chemistry/src/abstraction/bond.ts)`
-2. **Inline link, GitHub-style line anchor** — `[name](../../../library/chemistry/src/abstraction/bond.ts#L120)`
-3. **Reference link, definition in `<!-- citations -->`** — `[name][bond-form]` with `[bond-form]: ../../../library/chemistry/src/abstraction/bond.ts#L120`
+1. **Inline link, plain path** — `[name](../../../../library/chemistry/src/abstraction/bond.ts)`
+2. **Inline link, GitHub-style line anchor** — `[name](../../../../library/chemistry/src/abstraction/bond.ts#L120)`
+3. **Reference link, definition in `<!-- citations -->`** — `[name][bond-form]` with `[bond-form]: ../../../../library/chemistry/src/abstraction/bond.ts#L120`
 
 ## Method
 
@@ -43,7 +43,7 @@ Two surprises:
 The bond is forged at [`$Bond.form()`][bond-form].
 
 <!-- citations -->
-[bond-form]: ../../../library/chemistry/src/abstraction/bond.ts#L120
+[bond-form]: ../../../../library/chemistry/src/abstraction/bond.ts#L120
 ```
 
 Reasons:
@@ -58,7 +58,7 @@ Reasons:
 Inline links are still appropriate for **one-shot citations** where the link text and path tell the whole story. Example: footer "Source:" lines.
 
 ```markdown
-- Source: [bond.ts](../../../library/chemistry/src/abstraction/bond.ts)
+- Source: [bond.ts](../../../../library/chemistry/src/abstraction/bond.ts)
 ```
 
 If the same path appears more than once, promote it to a reference.
@@ -87,4 +87,4 @@ VS Code fails to honor line anchors. Fallback is documented (file-level link sti
 - L-1 unblocked. Convention added to `readme.md`; existing chemistry feature pages updated with anchored source links.
 
 <!-- citations -->
-[readme]: ../../../docs/readme.md
+[readme]: ../../../../docs/readme.md

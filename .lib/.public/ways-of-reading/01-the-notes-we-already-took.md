@@ -8,7 +8,7 @@ This book extends notes the team already made. They are gathered here so design 
 
 ## Sprint 43's resource record
 
-[The Library Hosts Itself](../../../chemistry/.lib/projection/42-sprint-43--the-library-hosts-itself.md) is the founding note. It tracks: the [Inexplicable Phenomena conversation](../../../../../dna-library/library/claude-dna/conversations/2026-07-13-inexplicable-phenomena.md) (read all 980 lines; the architecture stated at minute one is overturned in the final message); the **eleven SRT prototypes** — Front Door / Book / Frontier, the wiki node, the lenses, the zoom-out, the root-that-holds-the-spec — which live inside the export (`dna-library/library/claude-dna/.exports/…` → `conversations.json` → the `create_file` blocks), *not* in the stale artifacts folder; and the warning to read prototypes against the transcript, never instead of it.
+[The Library Hosts Itself](../../../chemistry/.public/.lib/projection/42-sprint-43--the-library-hosts-itself.md) is the founding note. It tracks: the [Inexplicable Phenomena conversation](../../../../../dna-library/library/claude-dna/conversations/2026-07-13-inexplicable-phenomena.md) (read all 980 lines; the architecture stated at minute one is overturned in the final message); the **eleven SRT prototypes** — Front Door / Book / Frontier, the wiki node, the lenses, the zoom-out, the root-that-holds-the-spec — which live inside the export (`dna-library/library/claude-dna/.exports/…` → `conversations.json` → the `create_file` blocks), *not* in the stale artifacts folder; and the warning to read prototypes against the transcript, never instead of it.
 
 ## The archive: a working prior attempt
 

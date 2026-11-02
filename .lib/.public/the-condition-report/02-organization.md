@@ -17,7 +17,7 @@
 |---|---|---|---|
 | **`package/src/libraries/Literature.tsx`** | **0** | 2026-07-27 | 2026-07-27 |
 | **`app/src/teaser.tsx`** | **198** | 2026-08-15 | 2026-08-15 |
-| [`package/app/src/apparatus/case-shell.tsx`](../../../chemistry/package/app/src/apparatus/case-shell.tsx) | **152** | 2026-07-30 | 2026-07-30 |
+| [`package/app/src/apparatus/case-shell.tsx`](../../../chemistry/.public/package/app/src/apparatus/case-shell.tsx) | **152** | 2026-07-30 | 2026-07-30 |
 
 **`Literature.tsx` is a zero-byte marker** — [the member audit called it a stub in July](../projection/04-the-member-audit.md) and it has been one since. ***`$Literature` is a name the derivation uses*** — [the symbolizing dyad names `$Subject : $Literature` as one of the three scales](../the-semantics-of-books/08-the-symbolizing-dyad-and-the-register.md) — **so the file is a promise the package has not kept, and an empty file keeps no promise.**
 
@@ -86,7 +86,7 @@
 | program | lines | comment lines | after the ruling |
 |---|---|---|---|
 | **`lib`** | 2,962 | ***1*** | ***already there*** |
-| **`$Chemistry`** | 5,160 | commented at every seam | ***harvest to [its own branch library](../../../chemistry/.lib/..representivity/.cover.md)*** |
+| **`$Chemistry`** | 5,160 | commented at every seam | ***harvest to [its own branch library](../../../chemistry/.public/.lib/..representivity/.cover.md)*** |
 | the compiler | 1,930 | **~90 of `library.ts`'s 147** | ***my reading: it harvests too — see below*** |
 | the application | 1,289 | at every decision | **may keep them, kept minimal** |
 

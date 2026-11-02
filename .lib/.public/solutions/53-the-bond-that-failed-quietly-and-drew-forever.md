@@ -35,10 +35,10 @@ FATAL ERROR: Ineffective mark-compacts near heap limit — Allocation failed
 ## The mechanism, and it bites ANY failing bond
 
 1. **a bond constructor throws**
-2. **[`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) CATCHES it and stores the message in `c[$devError$]`** — ***swallowed, not rethrown***
+2. **[`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts) CATCHES it and stores the message in `c[$devError$]`** — ***swallowed, not rethrown***
 3. *so every member the bond had not yet reached stays `undefined`*
-4. **`$(undefined)` takes the `arg == null` fast path** ([`chemical.ts:1697-1716`](../../../chemistry/package/src/abstraction/chemical.ts)) **and ends in `React.createElement(React.Fragment, null, ...[])`** — ***A BRAND NEW OBJECT EVERY CALL***
-5. **the effect at [`particle.ts:498`](../../../chemistry/package/src/abstraction/particle.ts)** — *a `useEffect` with **no dependency array*** — renders the view and compares it with `diff(current, p[$viewCache$])`
+4. **`$(undefined)` takes the `arg == null` fast path** ([`chemical.ts:1697-1716`](../../../chemistry/.public/package/src/abstraction/chemical.ts)) **and ends in `React.createElement(React.Fragment, null, ...[])`** — ***A BRAND NEW OBJECT EVERY CALL***
+5. **the effect at [`particle.ts:498`](../../../chemistry/.public/package/src/abstraction/particle.ts)** — *a `useEffect` with **no dependency array*** — renders the view and compares it with `diff(current, p[$viewCache$])`
 6. ***a fresh Fragment is never equal to a cached one***, so the diff is **unconditionally true**, so it writes the cache and calls `p[$update$]!()`
 7. **render → effect → render, without end**
 
@@ -48,7 +48,7 @@ FATAL ERROR: Ineffective mark-compacts near heap limit — Allocation failed
 
 ### <a id="latched"></a>And it is LATCHED, which is what makes it permanent rather than transient
 
-**`this._lastBondArgs = $Synthesis.snapshotArgs(newArgs)` is assigned BEFORE the try block** ([`chemical.ts:274-277`](../../../chemistry/package/src/abstraction/chemical.ts)).
+**`this._lastBondArgs = $Synthesis.snapshotArgs(newArgs)` is assigned BEFORE the try block** ([`chemical.ts:274-277`](../../../chemistry/.public/package/src/abstraction/chemical.ts)).
 
 ***So `sameArgs` matches on the very next pass and the bond is NEVER RE-RUN.*** **The chemical that failed to build cannot rebuild itself**, and no amount of settling repairs it. *A transient fault would drain; this one cannot.*
 
@@ -58,8 +58,8 @@ FATAL ERROR: Ineffective mark-compacts near heap limit — Allocation failed
 
 | | |
 |---|---|
-| ***widening the setter's quiet zone*** | *so it honours `$phase$ === 'setup'` the way the method wrapper at [`bond.ts:270`](../../../chemistry/package/src/abstraction/bond.ts) already does.* **Applied, still heap death, reverted; chemistry's diff came back clean** |
-| ***a snapshot after the bond*** | *cannot help: **nothing here is a reactive write**. The bond is already quiet for self-writes ([`chemical.ts:287-288`](../../../chemistry/package/src/abstraction/chemical.ts), restored at `:323`) and the setter skips equivalent values ([`bond.ts:218`](../../../chemistry/package/src/abstraction/bond.ts))* |
+| ***widening the setter's quiet zone*** | *so it honours `$phase$ === 'setup'` the way the method wrapper at [`bond.ts:270`](../../../chemistry/.public/package/src/abstraction/bond.ts) already does.* **Applied, still heap death, reverted; chemistry's diff came back clean** |
+| ***a snapshot after the bond*** | *cannot help: **nothing here is a reactive write**. The bond is already quiet for self-writes ([`chemical.ts:287-288`](../../../chemistry/.public/package/src/abstraction/chemical.ts), restored at `:323`) and the setter skips equivalent values ([`bond.ts:218`](../../../chemistry/.public/package/src/abstraction/bond.ts))* |
 
 ## The fix — ***the obvious one was REFUSED, and the refusal is the better finding***
 
@@ -71,12 +71,12 @@ FATAL ERROR: Ineffective mark-compacts near heap limit — Allocation failed
 
 > ***THE ROOT, restated: a swallowed throw does not merely leave an object half-built. It hands back an object THE TYPE SYSTEM SAYS CANNOT EXIST.*** *Making the drawing of that impossible object stable would have made the lie quieter, not smaller — the loop would stop and the half-built chemical would remain, permanently, with its stored message never raised.* **The fix is to not build that state.**
 
-***WHAT LANDED*** *(session inexplicable-phenomena-47, on Doug's direct instruction, [chemistry's Sprint 48](../../../chemistry/.lib/projection/45-sprint-48--the-bond-pass.md))*:
+***WHAT LANDED*** *(session inexplicable-phenomena-47, on Doug's direct instruction, [chemistry's Sprint 48](../../../chemistry/.public/.lib/projection/45-sprint-48--the-bond-pass.md))*:
 
 | | |
 |---|---|
-| **U1 — BUILT** | ***`$exceptions.mode === 'throw'` raises regardless of dev.*** *In [`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts), `if (!dev && $exceptions.mode === 'throw')` became `if ($exceptions.mode === 'throw')`* — **one condition removed, no default changed.** *Measured: **tsc 0**, **869 chemistry promises across 71 files**, a probe proving the throw reaches the caller carrying its own message, and a `build` so `dist` carries it (`.public` resolves through the symlink to `main`/`module`, so nothing reaches the consumer without it)* |
-| ***U1b — NOT BUILT, and the reasoning against it is better than the reasoning for it*** | *This chapter first recorded [the latch](#latched) as **not optional**, on the argument that stopping the loop while leaving `_lastBondArgs` set would leave the object permanently half-built.* ***That argument was conditioned on the swallow REMAINING.*** **Once the bond raises, it collapses: the retry the latch forbids would run with IDENTICAL arguments and fail identically, so the latch is not what keeps the object broken — the throwing bond is.** *And lifting it would re-run a permanently-failing bond on every render inside the loop, which is more work per turn, not fewer turns.* **What survives is narrower and real: a bond that would succeed on a retry because something OUTSIDE its arguments changed — a registration that arrived, an async dependency that settled.** *That is a genuine unit, it needs that justification rather than this one, and it is Doug's call. It is [questioned in Sprint 48](../../../chemistry/.lib/projection/45-sprint-48--the-bond-pass.md), not dropped* |
+| **U1 — BUILT** | ***`$exceptions.mode === 'throw'` raises regardless of dev.*** *In [`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts), `if (!dev && $exceptions.mode === 'throw')` became `if ($exceptions.mode === 'throw')`* — **one condition removed, no default changed.** *Measured: **tsc 0**, **869 chemistry promises across 71 files**, a probe proving the throw reaches the caller carrying its own message, and a `build` so `dist` carries it (`.public` resolves through the symlink to `main`/`module`, so nothing reaches the consumer without it)* |
+| ***U1b — NOT BUILT, and the reasoning against it is better than the reasoning for it*** | *This chapter first recorded [the latch](#latched) as **not optional**, on the argument that stopping the loop while leaving `_lastBondArgs` set would leave the object permanently half-built.* ***That argument was conditioned on the swallow REMAINING.*** **Once the bond raises, it collapses: the retry the latch forbids would run with IDENTICAL arguments and fail identically, so the latch is not what keeps the object broken — the throwing bond is.** *And lifting it would re-run a permanently-failing bond on every render inside the loop, which is more work per turn, not fewer turns.* **What survives is narrower and real: a bond that would succeed on a retry because something OUTSIDE its arguments changed — a registration that arrived, an async dependency that settled.** *That is a genuine unit, it needs that justification rather than this one, and it is Doug's call. It is [questioned in Sprint 48](../../../chemistry/.public/.lib/projection/45-sprint-48--the-bond-pass.md), not dropped* |
 
 > ***AND THE SHARPEST THING IN THE WHOLE ENTRY: the fix was already in the file.*** **A raise mode existed, gated behind `!dev` — in the one environment where `dev` is always true.** *A branch that can never be taken reads exactly like a policy, and this one had been read that way for as long as it had been there.*
 
@@ -94,7 +94,7 @@ FATAL ERROR: Ineffective mark-compacts near heap limit — Allocation failed
 
 ### ***BUT THE RAISE IS NOT ON, and this is the open question***
 
-**`$exceptions` defaults to `{ mode: dev ? 'render' : 'silent' }`** ([`dev.ts:79`](../../../chemistry/package/src/implementation/dev.ts)). *`dev` is true under vitest, under the dev server, in every place we actually run.* ***So the default in development is still to swallow, and a failing bond still loops there — U1 made the fix REACHABLE and nothing yet reaches it.*** **Whether `dev` should default to `'throw'` is Doug's call and it is the one that decides whether this defect is fixed or merely fixable.**
+**`$exceptions` defaults to `{ mode: dev ? 'render' : 'silent' }`** ([`dev.ts:79`](../../../chemistry/.public/package/src/implementation/dev.ts)). *`dev` is true under vitest, under the dev server, in every place we actually run.* ***So the default in development is still to swallow, and a failing bond still loops there — U1 made the fix REACHABLE and nothing yet reaches it.*** **Whether `dev` should default to `'throw'` is Doug's call and it is the one that decides whether this defect is fixed or merely fixable.**
 
 ## Prevention
 

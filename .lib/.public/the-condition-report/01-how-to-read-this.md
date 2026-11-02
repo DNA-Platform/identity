@@ -17,7 +17,7 @@
 |---|---|---|
 | ***`lib`*** — [`package/src`](../../package/src/) | **THE SUBJECT** | *the framework built on the formalism; Doug's letter is about this* |
 | **the compiler** — `build/` | in scope | *named in the letter: "take notes on the lib code and the .public compiler code especially"* |
-| **the demonstration** — [`package/app/`](../../../chemistry/package/app) | ***READ, then NARROWED OUT*** | *"Now look at the demo. Does the demo work anymore?"* — **and on 2026-08-23, *"remove ones that aren't about the framework and compiler."*** |
+| **the demonstration** — [`package/app/`](../../../chemistry/.public/package/app) | ***READ, then NARROWED OUT*** | *"Now look at the demo. Does the demo work anymore?"* — **and on 2026-08-23, *"remove ones that aren't about the framework and compiler."*** |
 | **the application** — `app/` | ***READ, then NARROWED OUT*** | *the framework's first consumer* — **narrowed out in the same breath** |
 
 > ***THE SCOPE NARROWED ONCE, on 2026-08-23, and this row records it rather than hiding it.*** **Both programs were read and audited; nine of their entries stand with an OUT OF SCOPE marker and their identifiers kept** — `O2` `O3` `O4` `O5` `O9` `O12` `I18` `I19` `I20`. *They travel to whichever sprint takes those programs, and [the ledger says so in one place](06-the-cleaning.md#the-rest).* **A finding does not stop being true when the scope moves; it stops being this sprint's work.**
@@ -28,8 +28,8 @@
 |---|---|
 | ***`.claude/`*** — the team's identity and its Claude Desktop driver | ***not this project.*** **It is the identity repository, it travels between projects, and auditing it here is a different sprint in a different repo.** *An entry against it was written and struck in this session — [O10](02-organization.md#o10).* |
 | **`.archive/`** | archived |
-| **the `$Chemistry` Lab** — [`chemistry/package/app`](../../../chemistry/package/app/) | *`$Chemistry`'s own demonstration, not `lib`'s* |
-| ***`$Chemistry` itself*** — [`chemistry/package/src`](../../../chemistry/package/src/) | **READ, not audited.** *It is compared against `lib` in [The Three Codebases](07-the-three-codebases.md), and a fault found there is recorded and executed on its own — **with the rebuild chain**, because a change in `$Chemistry` needs its `dist` rebuilt and then `lib`'s against it, or [the repository runs two copies that disagree](02-organization.md#o7).* |
+| **the `$Chemistry` Lab** — [`chemistry/package/app`](../../../chemistry/.public/package/app/) | *`$Chemistry`'s own demonstration, not `lib`'s* |
+| ***`$Chemistry` itself*** — [`chemistry/package/src`](../../../chemistry/.public/package/src/) | **READ, not audited.** *It is compared against `lib` in [The Three Codebases](07-the-three-codebases.md), and a fault found there is recorded and executed on its own — **with the rebuild chain**, because a change in `$Chemistry` needs its `dist` rebuilt and then `lib`'s against it, or [the repository runs two copies that disagree](02-organization.md#o7).* |
 
 ### And the frame that decides what counts as a fault
 

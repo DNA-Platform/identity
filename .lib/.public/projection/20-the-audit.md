@@ -43,7 +43,7 @@
 | [`../dna-library`](../the-semantics-of-books/.cover.md) *(sibling repo)* | the primary source: the conversation, and the foundation file *The Architecture of Semantic Space: Symbols, Literals, and Referential Structure* |
 | [Claude's `semantic-reference-and-perspective`](../../../../.claude/library/..teamsmanship/..team/claude/semantic-reference-and-perspective/.cover.md), 4 chapters | what the theory needs, perspective as primitive, the portrait problem, toward the axioms |
 | `.archive/library/{dictionary,encyclopedia}` | the earlier hand-built HTML dictionary and encyclopedia — **archived, not live** |
-| [42-sprint-43](../../../chemistry/.lib/projection/42-sprint-43--the-library-hosts-itself.md) | where $Chemistry's own branch names SRT |
+| [42-sprint-43](../../../chemistry/.public/.lib/projection/42-sprint-43--the-library-hosts-itself.md) | where $Chemistry's own branch names SRT |
 
 ***The finding worth stating first: the theory has no chapter in the framework's own library.*** Fifteen chapters derive it; **nothing in `package/src` cites it**, and no book on this branch says *this class is that primitive*. [W1](#w1) is the consequence.
 
@@ -59,7 +59,7 @@
 
 **<a id="p2"></a>P2 — THE `$` PREFIX SEPARATES INTRINSIC IDENTITY FROM EXTRINSIC CONTEXT.** A `$`-prefixed member is a **prop** — writable from outside, reactive, arriving through JSX; the bare getter beside it is the **reading**. `$Theme` is the pattern in its clearest form: eleven `$`-members and eleven plain getters, [`Theme.tsx:15-49`](../../package/src/writing/Theme.tsx). ***And it is why [D42](18-the-theme.md#d42) gets a live toggled theme for free*** — a write to a `$`-member re-renders every view that read it.
 
-**<a id="p3"></a>P3 — `$` IS A COERCION, AND RESOLUTION IS DEPENDENCY INJECTION THROUGH SCOPE.** Four forms, [documented as an algebra](../../../chemistry/.lib/composition/11-the-representative.md): `$($Class)` makes a root component, `$($,Component)` derives a scope, `$(Component)` **resolves what stands here**, `$(A,B)(C)` registers *for A, a B is a C*. **Resolution walks the composition graph upward from the asking instance; the first registration answers.** With nothing registered, `$(X)` returns X — ***so the default is never in a container; it is the argument.***
+**<a id="p3"></a>P3 — `$` IS A COERCION, AND RESOLUTION IS DEPENDENCY INJECTION THROUGH SCOPE.** Four forms, [documented as an algebra](../../../chemistry/.public/.lib/composition/11-the-representative.md): `$($Class)` makes a root component, `$($,Component)` derives a scope, `$(Component)` **resolves what stands here**, `$(A,B)(C)` registers *for A, a B is a C*. **Resolution walks the composition graph upward from the asking instance; the first registration answers.** With nothing registered, `$(X)` returns X — ***so the default is never in a container; it is the argument.***
 
 **<a id="p4"></a>P4 — A DEPENDENCY IS ASKED FOR AT RENDER, NEVER STORED.** *"A field initializer runs once, on the template, before any scope exists"* ([M5](18-the-theme.md#m5)). So `theme` is a getter that resolves, [`Writing.tsx:89-91`](../../package/src/writing/Writing.tsx), and **never a member holding a value.** *This is the specification that makes a theme swappable at all.*
 
@@ -71,7 +71,7 @@
 
 **<a id="p8"></a>P8 — DRAWING IS A TEMPLATE METHOD: ASK, GATHER, SET.** [`Writing.tsx:93-111`](../../package/src/writing/Writing.tsx) — three lines, inherited by every level. **A subclass changes one of the three and inherits the other two**, [D37](18-the-theme.md#d37). *This is the principle [W5](#w5) says is only half-adopted.*
 
-**<a id="p9"></a>P9 — `frame()` WRAPS, `view()` EVOLVES.** Chemistry's own documented seam, [`particle.ts:116-127`](../../../chemistry/package/src/abstraction/particle.ts): the framework calls `frame()`, which renders the *active* view. **A wrap written into `frame()` cannot break a harvest that calls `view()`** — which is exactly why `$Link` (v1, `.archive/reference/Link.tsx`, deleted) is a link without disturbing `$Document.declaration()` (v1, `.archive/document/Document.tsx`, deleted).
+**<a id="p9"></a>P9 — `frame()` WRAPS, `view()` EVOLVES.** Chemistry's own documented seam, [`particle.ts:116-127`](../../../chemistry/.public/package/src/abstraction/particle.ts): the framework calls `frame()`, which renders the *active* view. **A wrap written into `frame()` cannot break a harvest that calls `view()`** — which is exactly why `$Link` (v1, `.archive/reference/Link.tsx`, deleted) is a link without disturbing `$Document.declaration()` (v1, `.archive/document/Document.tsx`, deleted).
 
 **<a id="p10"></a>P10 — A READING IS POST-HOC AND PURE; IT WRITES NOTHING.** *"The parse writes nothing. Not a number, not a role."* Numbers belong to **references** — that is what a `$Location` **is** — never to parts. `parts()` returns a **fresh reading, never held, always compared by value** ([finding 4, closed as specification](04-the-member-audit.md)).
 

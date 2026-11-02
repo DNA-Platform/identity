@@ -38,7 +38,7 @@ return $(<Sentence>{prose}</Sentence>, this);
 
 **And `parts()` writes to every part it composes.** [`Writing.tsx:109-111`](../../package/src/writing/Writing.tsx) — `part.index = slot + this.first`, and `part.$role = 'mention'` where mentioning propagates.
 
-**A write to a chemical that has a parent does not stay put.** Both of chemistry's propagation paths walk `$$parent$$` and react on every ancestor — [`scope.ts:94-102`](../../../chemistry/package/src/implementation/scope.ts) inside `finalize`, and [`diffuse` at `scope.ts:111`](../../../chemistry/package/src/implementation/scope.ts).
+**A write to a chemical that has a parent does not stay put.** Both of chemistry's propagation paths walk `$$parent$$` and react on every ancestor — [`scope.ts:94-102`](../../../chemistry/.public/package/src/implementation/scope.ts) inside `finalize`, and [`diffuse` at `scope.ts:111`](../../../chemistry/.public/package/src/implementation/scope.ts).
 
 So the cycle closes:
 
@@ -120,7 +120,7 @@ if (made.parent !== this) made.parent = this as never;
 
 [`Paragraph.tsx:65`](../../package/src/writing/Paragraph.tsx) · [`Section.tsx:143`](../../package/src/writing/Section.tsx) · [`Sentence.tsx:69`](../../package/src/writing/Sentence.tsx) · [`Word.tsx:27`](../../package/src/writing/Word.tsx) · `Document.tsx:112` (v1, `.archive/document/Document.tsx`, deleted)
 
-**`parent` is a chemical's own setter, so assigning it is a write like any other**, and [`diffuse`](../../../chemistry/package/src/implementation/scope.ts) propagates a write upward through the composition tree. So the cycle from [the original mechanism](#the-mechanism) closes again, with one difference that makes it worse:
+**`parent` is a chemical's own setter, so assigning it is a write like any other**, and [`diffuse`](../../../chemistry/.public/package/src/implementation/scope.ts) propagates a write upward through the composition tree. So the cycle from [the original mechanism](#the-mechanism) closes again, with one difference that makes it worse:
 
 ```
 view() calls parts()  →  parts() builds NEW objects and adopts each one

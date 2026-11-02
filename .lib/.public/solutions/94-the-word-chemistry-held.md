@@ -21,7 +21,7 @@
 
 ## The fix
 
-**Not in the library.** The pair was built as `after` and `before`, the decision's own words, flagged as proxies, and the question put to Doug once the rest of the sprint was built. He ruled on chemistry instead — *"for everything from formula to next, we expose symbols that we export with those names… let's give $Chemistry a clean surface area"* — it was pitched, and chemistry built it the same day as [A Clean Surface](../../../chemistry/.lib/projection/48-sprint-87--a-clean-surface.md), `541fc24`: `formula`, `resolve`, `persist`, `inline`, `selector`, `styled` and `next` are exported symbols written as keys, `this[next]('mount')`, and `view`, `frame` and `parent` stay words. The pair returned as `next` and `previous`, `bf82472`.
+**Not in the library.** The pair was built as `after` and `before`, the decision's own words, flagged as proxies, and the question put to Doug once the rest of the sprint was built. He ruled on chemistry instead — *"for everything from formula to next, we expose symbols that we export with those names… let's give $Chemistry a clean surface area"* — it was pitched, and chemistry built it the same day as [A Clean Surface](../../../chemistry/.public/.lib/projection/48-sprint-87--a-clean-surface.md), `541fc24`: `formula`, `resolve`, `persist`, `inline`, `selector`, `styled` and `next` are exported symbols written as keys, `this[next]('mount')`, and `view`, `frame` and `parent` stay words. The pair returned as `next` and `previous`, `bf82472`.
 
 ## Prevention
 

@@ -31,7 +31,7 @@ class $Own  extends $Writing { $Own(b) { super.$Writing(b); } }   // block set, 
 
 ***A bond constructor is found by CLASS NAME, and it is not inherited.***
 
-[`chemical.ts`](../../../chemistry/package/src/abstraction/chemical.ts) walks the prototype chain collecting the name of each class and looking for a method that matches. **A subclass that declares no method of its own name does not get its ancestor's run for it** — the framework has no member to call on that class's behalf.
+[`chemical.ts`](../../../chemistry/.public/package/src/abstraction/chemical.ts) walks the prototype chain collecting the name of each class and looking for a method that matches. **A subclass that declares no method of its own name does not get its ancestor's run for it** — the framework has no member to call on that class's behalf.
 
 **So `class $Kept extends $Writing { }` is a piece of writing whose bond never runs.** *It draws, because drawing is `view()` and `view()` is inherited normally. It holds nothing, because holding is what the bond does.*
 

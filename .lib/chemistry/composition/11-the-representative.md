@@ -1,10 +1,10 @@
 # The Representative
 
-- **author:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
+- **author:** [Cathy](../../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 
 ---
 
-*Shipped in [The Representative](../../../.public/.lib/projection/12-the-representative.md). Every specification below is a promise in [`representative.test.tsx`](../../package/tests/abstraction/representative.test.tsx), which is the surface's specification and reads in the order of the forms.*
+*Shipped in [The Representative](../../../../.public/.lib/projection/12-the-representative.md). Every specification below is a promise in [`representative.test.tsx`](../../package/tests/abstraction/representative.test.tsx), which is the surface's specification and reads in the order of the forms.*
 
 ## What `$` is
 
@@ -29,7 +29,7 @@ Four forms. **A representative bonds tightly to what it stands beside — no spa
 
 ### `$` as an argument — the representative
 
-Where `$` appears **as an argument** it is not doing its work; it stands for the presence of a representative, in the abstract, the way a punctuation mark does. It is `$` **mentioned** rather than used — the same distinction that makes `**` a part of a sentence and never a word ([The Levels of Writing](../../../.public/.lib/the-semantics-of-books/15-the-levels-of-writing.md#used-and-mentioned)).
+Where `$` appears **as an argument** it is not doing its work; it stands for the presence of a representative, in the abstract, the way a punctuation mark does. It is `$` **mentioned** rather than used — the same distinction that makes `**` a part of a sentence and never a word ([The Levels of Writing](../../../../.public/.lib/the-semantics-of-books/15-the-levels-of-writing.md#used-and-mentioned)).
 
 Its position says which direction: **first, make me a new one from this; last, give me what stands behind this.**
 
@@ -212,7 +212,7 @@ Downstream code imports `Book` and renders it. **Everything beneath it resolves 
 
 **A parse may not be given a parent while it mutates what it makes.** `parts()` writes an index onto everything it composes; a write to a chemical with a parent diffuses up the composition tree and re-runs the reading that made it. So **region-scoped substitution through the parse is unavailable** until a reading stops writing to what it composes.
 
-The full diagnosis, with the loop and the three reverts that found it, is [The parse that woke its own parents](../../../.public/.lib/solutions/16-the-parse-that-woke-its-own-parents.md).
+The full diagnosis, with the loop and the three reverts that found it, is [The parse that woke its own parents](../../../../.public/.lib/solutions/16-the-parse-that-woke-its-own-parents.md).
 
 ## Where the catalogue comes in
 

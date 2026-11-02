@@ -56,7 +56,7 @@ Every class the derivation has named, kept here so none is lost and so the map s
 
 | class | relation | status | chapter |
 |---|---|---|---|
-| `$Chemical` | framework root — renders in React (from [$Chemistry](../../../chemistry/.lib/..representivity/.cover.md), not ours). Its `$Particle` base now carries **`frame()`** — the render template method the framework calls; `view()` is the content, `frame()` wraps it. | built (framework) | [06](06-the-canonical-echo-and-views.md) |
+| `$Chemical` | framework root — renders in React (from [$Chemistry](../../../chemistry/.public/.lib/..representivity/.cover.md), not ours). Its `$Particle` base now carries **`frame()`** — the render template method the framework calls; `view()` is the content, `frame()` wraps it. | built (framework) | [06](06-the-canonical-echo-and-views.md) |
 | `$Reference<T>` | ***THE ROW BELOW IS TWICE SUPERSEDED — see [the status note](#register-status).*** **What is in v2 today is one empty interface**, `$Referent$` (v1, `.archive/reference/Referent.tsx`, deleted): `interface $Referent$ extends $Chemical { }`. *It constrains nothing, and `$Writing` implements it for no effect.* | ***nothing built*** | this chapter, [16](16-the-reference-and-its-locator.md) |
 | *~~`$Reference<T>`~~* | *~~→ `$Chemical`; the act of pointing — a hyperlink. Holds `$for` (an indirect **string** target, never the object), `lookup(): T` (the dereference — a navigation), and overrides `frame()` to wrap its surface in a clickable link.~~* | *~~built~~* | [03](03-inheritance-and-composition.md) |
 | `$Title` | → `$Reference`; a *canonical* reference — it points at its work and is the first/representative. Where "points at" and "is the first text" meet. | to build | [02](02-composition.md), [03](03-inheritance-and-composition.md) |
@@ -85,7 +85,7 @@ Every class the derivation has named, kept here so none is lost and so the map s
 | `$Cite` | → `$Denote`; the inline command that reaches the bibliography instead — the triad retypes, get-only | **built** | this chapter |
 | `$Legend` | → `$Paragraph`, parenthetical; the filing section's own table of keys — implicit, kept once asked | **built** | this chapter |
 | `$Key` | one hop of lookup as a name — a key stands for its entry | **built** | this chapter |
-| `$Library` | → `$SubjectiveSubject`; canonical is an `$Autobiography`; self-cataloguing summit (likely a singleton [`$Atom`](../../../chemistry/.lib/particle/.cover.md)) | to build | [07](07-the-subjective-subject-and-the-library.md) |
+| `$Library` | → `$SubjectiveSubject`; canonical is an `$Autobiography`; self-cataloguing summit (likely a singleton [`$Atom`](../../../chemistry/.public/.lib/particle/.cover.md)) | to build | [07](07-the-subjective-subject-and-the-library.md) |
 
 ## Notation — a third axis, and it is one row rather than a family
 
