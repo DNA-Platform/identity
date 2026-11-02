@@ -3,8 +3,8 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **workflow:** the feature workflow, opened with `/ce-brainstorm` on 2026-11-02 and built mid-brainstorm on Doug's "Scaffold that and then we design"
-- **state:** U1 built and seen 2026-11-02; U2, U3 and U4 are design owed, not buildable until he rules
-- **Next:** `/ce-brainstorm` continues in the room, the design he named: the dictionary's library form first, then The Team's members, then the look of the pages
+- **state:** U1 and U2 built and seen 2026-11-02; U3 and U4 are design owed, not buildable until he rules
+- **Next:** `/ce-brainstorm` continues in the room, the design he named: The Team's members, then the look of the pages
 
 ---
 
@@ -12,9 +12,11 @@
 
 **Next action: `/ce-brainstorm` continues, on the design.** Doug's words at the close of the scaffold: "Scaffold that and then we design." The scaffold stands and binds; nothing else is buildable until he rules on the three things below.
 
-**The library's root moved.** The public library is `library/` itself, not `library/.public`. Every folder there is a book catalogued by Reference; each subject folder holds a `.reference` that is the book representing it; the binder copy stands at `library/..public/.binding`; `library/.public` holds only the package and its `.lib`. Nine books bind in 5.3 s. [U1](#u1) has the numbers; [To see it](#see) has the commands.
+**The library's root moved.** The public library is `library/` itself, not `library/.public`. Every folder there is a book catalogued by Reference; each subject folder holds a `.reference` that is the book representing it; the binder copy stands at `library/..public/.binding`; `library/.public` holds only the package and its `.lib`. Ten books bind in 5.7 s. [U1](#u1) has the numbers; [To see it](#see) has the commands.
 
-**Owed to him, the design:** the dictionary's library form ([U2](#u2)), since his thirteen unnumbered headword files are not chapters to the binder and the folder is excluded by name until they are; The Team's members ([U3](#u3)), one autobiography for now; and the look of the pages ([U4](#u4)), Sprint 119's sketch standing as the only one.
+**The Dictionary stands**, a book filed under Reference with every word a chapter, built from the package's words on his "The dictionary should be a book. Every word would be a chapter. Those are just stubs, so create boilerplate in the book when you replace it" — [U2](#u2).
+
+**Owed to him, the design:** The Team's members ([U3](#u3)), one autobiography for now; and the look of the pages ([U4](#u4)), Sprint 119's sketch standing as the only one.
 
 **Wrong turns already taken, so they are not retaken:** mapping the first library's shelf and Doug's own library onto this one ("Stop trying to map the libraries. They are not the same library."); offering project books sourced from the archived articles (the books are the folders, nothing else); and reading "the .public folder" as the library's root, when the folders he named stand a level up.
 
@@ -30,7 +32,7 @@
 - <a id="r1"></a>**R1** The top book is named Reference, About Inexplicable Phenomena, filed under itself, and `/` lands on it. *Seen:* the root address answers with Reference's page and no segment is doubled.
 - <a id="r2"></a>**R2** Each folder of `library/` that is a subject holds a `.reference` book: Chemistry, Mathematics, Pharmacology, Philosophy, Physics, each with the three dot chapters and a `.book.tsx`, each About its own name and filed under Inexplicable Phenomena. *Seen:* Reference's catalogue lists the five and each answers at its own address.
 - <a id="r3"></a>**R3** The Team is the one autobiography, in the `team` folder Doug made, as `team/.reference`, by its own subject. *Seen:* the catalogue claim "every book reaches the library and the author" passes with The Team as the author of every book.
-- <a id="r4"></a>**R4** The dictionary Doug sketched at `library/.reference/dictionary` is kept untouched and left out of the bind by name until its library form is designed. *Seen:* the inventory line names nine books and no dictionary, and the folder's thirteen files are as he left them.
+- <a id="r4"></a>**R4** The Dictionary is a book at `library/.reference/dictionary`, filed under Reference, every word a numbered chapter in the order of the alphabet, with the senses the first dictionary gave the word where it has them and a line saying so where it has none; the word *dictionary* is defined by the book's own synopsis. *Seen:* Dictionary at `/dictionary` with twelve word chapters, a related word in one chapter compiling to its sibling's fragment, and Reference's catalogue carrying its row. *As first written, before his ruling in the room:* the sketch left untouched and excluded by name, which U1 bound.
 - <a id="r5"></a>**R5** The library binds, previews under its base and the Pages workflow gathers the moved face. *Seen:* every page fetched from 4343 answers 200 with its title.
 
 ## <a id="units"></a>Units
@@ -43,9 +45,15 @@
 
 **Found on the way:** a chapter file opens with a number or a big dot, so unnumbered headword files are unaccounted, and `inventory.exclude` takes a folder NAME wherever it stands or a PATH to one file inside a book, never a folder path; the first `git mv` of the face was refused with permission denied because the stopped preview's npm and vite processes outlived the stop and held the folder; and Doug had already removed the root `dictionary` duplicate and made `library/team` before this session touched the tree.
 
-### <a id="u2"></a>U2 — the dictionary's library form — **design owed**
+### <a id="u2"></a>U2 — the dictionary's library form — **built and seen, 2026-11-02**
 
-His word: "disctionary needs to be internalized into library form minimally". His sketch: a book with the four faces and thirteen headword files, `definition` to `subject`, unnumbered. What must be ruled before it is buildable: how a headword is a chapter when chapters are numbered and a dictionary orders by headword; what a definition's senses, examples and related words are in the library's forms; and whether the thirteen or the first dictionary's fifty stand. No files, scenarios or dependencies until then.
+**His rulings:** "disctionary needs to be internalized into library form minimally", then in the room: "The dictionary should be a book. Every work would be a chapter. Those are just stubs, so create boilerplate in the book when you replace it with the library books and chapters built fomr .piblic APi. Remember to /catchup on .public and building libraries and code conventions and how to use different abstractions and how my personal library works and why".
+
+**What runs:** fifteen documents read first, the branch's catalogue in the order it gives, the package's surface, Writing a Book's four short chapters, How a Thing Is Named, the soundness thesis, and his manual's Entry and Listing. Then his twelve word stubs moved by git to numbered names in the order of the alphabet and written as chapters; the four faces written, the book's class the library's own; the thirteenth stub, `dictionary`, dropped, since a chapter titled with the book's name would wear its title twice, and the word is defined by the synopsis as the first dictionary defined itself in its own catalogue. A word's chapter carries no heading, since a book is one page and a heading's id is worn once on it, so thirteen Definition headings would be refused: each sense is a paragraph opening with its register in emphasis, a formal line is a word written as a string, and a closing paragraph names the related words, those among the twelve as references to their chapters and the rest as plain words. Eight words carry the senses the first dictionary gave them; dichotomy, individuality, representation and representative say they are not yet defined. Reference's table gained the Dictionary's row, its first chapter and synopsis name it, and `dictionary` left the configuration's exclude.
+
+**Measured:** 10 books, 51 keys, every reference resolves; Dictionary → `/dictionary` and 14 chapters; 2 books read and drawn, 8 kept, 224 writings specified, 5.7 s; the record removed 3 files. The page at a desk 1,061 ms and the identity entry at a phone 573 ms, 0 past the right edge on both; the page fetched 200 with a related word's reference written as `/inexplicable-phenomena/dictionary/#identification`.
+
+**Found by the photograph and not by the numbers:** the first phone photograph showed each register run into its sense, *Linguistic.Identity*, since a line break after an element swallows the space before the text, the notation's trap [What Building Found](../writing-a-book/00-04-what-building-found.md#the-notation) names; mended by `{' '}` after each register word in the eight chapters that have one. And the look after the mend showed the same page until it was asked `fresh`, since the workbench's browser keeps a built page it has seen; the bind that followed kept all ten books, which is how the first rebind was shown to have drawn the mend already.
 
 ### <a id="u3"></a>U3 — The Team's members — **design owed**
 
@@ -61,7 +69,7 @@ Sprint 119's sketch 001 stands in The Design, three forms of the top page, commi
 
 **Looked at through the workbench, built:** the nine books at a desk and Reference at a phone, 0 past the right edge on every one, 470 ms to 701 ms each, no wrong line. Three photographs read: Reference with its cover, synopsis, contents and the catalogue's rows; The Team labelled Autobiography under its breadcrumb with Who Qualifies beneath; Chemistry with its cover, its synopsis in the package's own words, and an empty contents.
 
-**The gates:** configure, inventory and catalogue 0.1 s, 9 books, 36 keys, every reference resolves, every book reaches the library and the author; the full bind 5.3 s. No package source was touched, so no suite was run.
+**The gates:** configure, inventory and catalogue 0.1 s, 9 books, 36 keys, every reference resolves, every book reaches the library and the author; the full bind 5.3 s. With the Dictionary, 10 books, 51 keys, 5.7 s, the Dictionary's page looked at at a desk and its identity entry at a phone, 0 past the right edge. No package source was touched, so no suite was run.
 
 ## <a id="see"></a>To see it
 
