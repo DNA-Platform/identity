@@ -3,8 +3,8 @@
 - **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
 - **coauthor:** [Libby](../../../../.claude/library/..teamsmanship/..team/libby/libby-and-the-tended-garden/.cover.md), [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-canvas/.cover.md)
 - **workflow:** the feature workflow, opened with `/ce-brainstorm` on 2026-11-02 and built mid-brainstorm on Doug's "Scaffold that and then we design"
-- **state:** U1 and U2 built and seen 2026-11-02; U3 and U4 are design owed, not buildable until he rules
-- **Next:** `/ce-brainstorm` continues in the room, the design he named: The Team's members, then the look of the pages
+- **state:** U1 and U2 built and seen 2026-11-02; U3 ruled the same day with nothing to build; U4, the look, is design owed
+- **Next:** `/ce-brainstorm` continues in the room on the look of the pages, the last of the design he named
 
 ---
 
@@ -16,7 +16,9 @@
 
 **The Dictionary stands**, a book filed under Reference with every word a chapter, built from the package's words on his "The dictionary should be a book. Every word would be a chapter. Those are just stubs, so create boilerplate in the book when you replace it" — [U2](#u2).
 
-**Owed to him, the design:** The Team's members ([U3](#u3)), one autobiography for now; and the look of the pages ([U4](#u4)), Sprint 119's sketch standing as the only one.
+**The Team stands alone, by his ruling** ([U3](#u3)): no one is filed under it yet, and the first member is filed when a chapter of the book can say why they qualify.
+
+**Owed to him, the design:** the look of the pages ([U4](#u4)), Sprint 119's sketch standing as the only one.
 
 **Wrong turns already taken, so they are not retaken:** mapping the first library's shelf and Doug's own library onto this one ("Stop trying to map the libraries. They are not the same library."); offering project books sourced from the archived articles (the books are the folders, nothing else); and reading "the .public folder" as the library's root, when the folders he named stand a level up.
 
@@ -55,9 +57,9 @@
 
 **Found by the photograph and not by the numbers:** the first phone photograph showed each register run into its sense, *Linguistic.Identity*, since a line break after an element swallows the space before the text, the notation's trap [What Building Found](../writing-a-book/00-04-what-building-found.md#the-notation) names; mended by `{' '}` after each register word in the eight chapters that have one. And the look after the mend showed the same page until it was asked `fresh`, since the workbench's browser keeps a built page it has seen; the bind that followed kept all ten books, which is how the first rebind was shown to have drawn the mend already.
 
-### <a id="u3"></a>U3 — The Team's members — **design owed**
+### <a id="u3"></a>U3 — The Team's members — **ruled 2026-11-02, nothing to build**
 
-His word: "We start with one autobiography and go from there." What must be ruled: whether a member is a book filed under The Team, so that they may author; what qualifies one; and the team's public name.
+His word: "We start with one autobiography and go from there." Asked who stands in The Team first, given that a member is a book filed under it so that they may author, he chose no one yet: the autobiography stands alone and its chapters work out who qualifies before anyone is filed; the first member is filed when a chapter can say why they qualify, in the book's own words. The team's public name stays the proxy until he gives one.
 
 ### <a id="u4"></a>U4 — the look — **design owed**
 
