@@ -139,7 +139,7 @@ end without a principle.
 ## Where things stand
 
 - **Complete:** nothing. The research so far is organized as the results book (2026-10-29), grouped by direction:
-  35 chapters, 27 proved (9 not a principle), 1 first-order sketch, 2 measured, 5 not solved. The objects Doug
+  36 chapters, 28 proved (9 not a principle), 1 first-order sketch, 2 measured, 5 not solved. The objects Doug
   objected to are in `dropped-formalisms.md` beside the notes, 25 entries with his words. That is organization, not
   progress on a part.
 - **Checked against each other** (2026-10-29, Doug: *"You really think you are looking at a set of results that are
@@ -173,6 +173,18 @@ end without a principle.
     which turns out to be the sort, and the sampled sort is exact there. If the map is blind to when values occur
     (built from the time averages of powers), every amplitude gets its symmetric twin's map, so sigma. Only symmetric
     one-peak amplitudes reach the circle. Proved, with two stated assumptions; parts 5 and 6 need C^2. Not read by Doug.
+  - The same problems have a formal candidate from Doug's request of 2026-11-02 ("I need a real derivation ... an
+    optimization where the value is uniform on the clock"): Result 36, typeset with full proofs as
+    `clock-face.pdf`. Maximize the child's variance subject to its analytic signal staying in the closed unit disc.
+    The value is at most one, it is one only when the analytic signal is uniform on the circle, and then the map is
+    sigma. The centring is forced, not chosen. A uniform clock alone does not fix the map: a one-parameter family of
+    maps gives the exact clock. Symmetric amplitudes reach the bound by the clock, which is the sort. Continuous
+    one-peak amplitudes reach it only if symmetric, with no near misses, which covers Doug's C^1. On leaning amplitudes
+    the optimization's best map beats sigma (measured). So every amplitude needs a common target and a best-case
+    criterion, and the common target is the share in another form. For every amplitude it answers problem 5 (why the
+    sine), not problem 1. An independent referee read every proof: one invalid step (the first one-peak proof assumed
+    a' != 0 on the arcs) and four gaps, all repaired. Not read by Doug, and the reading of his sentence awaits his
+    yes.
 - **Not started:** Parts 1, 3, 4, 5 and 7.
 - **Verified with numbers, for reference** (`explorations.py`):
   - the sort equals cos phi for phases with equal time at every angle (5.6e-6);
