@@ -198,7 +198,7 @@ The general lesson is worth more than the fix: **a tool that only ever runs outw
 
 **The identity repo is the organization's identity, not a project.** It is where we work on `.claude`. There are no library branches in it, and its root is exactly five things: `.claude/`, `CLAUDE.md`, `README.md`, `.gitattributes`, `.gitignore`. The `dna-platform` branch has never carried anything else. That is the identity layer, entire.
 
-[Library Tree](../library-tree/01-branches.md#placement) places every branch beside the code it records — `$Chemistry` at `library/chemistry/.lib/` and Publicity at `library/.public/.lib/` in the inexplicable-phenomena repo, Altered States in the altered-states repo. **None of them lives here.**
+[Library Tree](../library-tree/01-branches.md#placement) places every branch beside the code it records — `$Chemistry` at `library/chemistry/.public/.lib/` and Publicity at `library/.public/.lib/` in the inexplicable-phenomena repo, Altered States in the altered-states repo. **None of them lives here.**
 
 The commit tool's project-branch step mirrors each discovered `library/*/.lib` into this repo as `.lib/<area>`, so `.lib/` reappears every time another project pushes. It is a mirror, never a home. **Delete it whenever it appears — always, without asking.** The one thing to do first is confirm each file exists in the project repo it belongs to; that is a thirty-second count, and it is the difference between removing a mirror and destroying a branch library.
 

@@ -76,12 +76,21 @@ ensure_gitignore() {
 }
 
 # Identity-side namespace for a branch library. A project-root library/.lib maps to the
-# project name; a per-area library/<area>/.lib maps to the area (the .lib's parent dir).
+# project name; a per-area library/<area>/.lib maps to the area (the .lib's parent dir);
+# and an area that keeps its code in a .public folder the binder never walks —
+# library/<area>/.public/.lib — maps to the area too, never to ".public". (Doug, 2026-11-02:
+# "Everything in a non-public folder should be specified by the library.") The library's own
+# library/.public/.lib keeps its name, since its area IS the library.
 lib_name_for() {
-    if [ "$(dirname "$1")" = "$PROJECT_ROOT/library" ]; then
+    local area
+    area="$(dirname "$1")"
+    if [ "$(basename "$area")" = ".public" ] && [ "$(dirname "$area")" != "$PROJECT_ROOT/library" ]; then
+        area="$(dirname "$area")"
+    fi
+    if [ "$area" = "$PROJECT_ROOT/library" ]; then
         echo "$PROJECT_NAME"
     else
-        echo "$(basename "$(dirname "$1")")"
+        echo "$(basename "$area")"
     fi
 }
 

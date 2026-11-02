@@ -11,7 +11,7 @@ How to set up a new branch. This chapter IS the procedure — follow the steps i
 Create a `.lib/` directory beside the code the branch records knowledge about. The placement follows the [placement convention](01-branches.md#placement): a framework's branch goes beside the framework source, a module's branch goes beside the module code.
 
 ```
-library/chemistry/.lib/     -- beside the $Chemistry framework
+library/chemistry/.public/.lib/     -- beside the $Chemistry framework
 library/physics/.lib/        -- beside the physics module
 ```
 
@@ -20,7 +20,7 @@ library/physics/.lib/        -- beside the physics module
 Create a `..` prefixed directory inside `.lib/` for the branch's [cataloguing book](02-cataloguing.md). Choose a name that carries meaning about what the branch represents — not "..library" or "..catalogue" but a name for the subject.
 
 ```
-library/chemistry/.lib/..representivity/
+library/chemistry/.public/.lib/..representivity/
 ```
 
 Create `.cover.md` inside it. The cover needs:
@@ -37,7 +37,7 @@ Create `.cover.md` inside it. The cover needs:
 Create a `projection/` directory inside `.lib/` for the [sprint book](03-sprints.md).
 
 ```
-library/chemistry/.lib/projection/
+library/chemistry/.public/.lib/projection/
 ```
 
 Create `.cover.md` inside it. The cover needs:

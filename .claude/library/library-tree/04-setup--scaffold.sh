@@ -3,7 +3,7 @@
 # Resource for: 04-setup.md (Library Tree)
 #
 # Usage: bash .claude/library/library-tree/04-setup--scaffold.sh <lib-dir> "<Subject Name>" [ProjectionAuthor]
-#   <lib-dir>           the .lib directory (created if missing) — e.g. library/.lib or library/chemistry/.lib
+#   <lib-dir>           the .lib directory (created if missing) — e.g. library/.lib or library/chemistry/.public/.lib
 #   "<Subject Name>"    the subject the branch represents (the cataloguing book) — e.g. "Altered States"
 #   [ProjectionAuthor]  teammate who shapes sprints (default: Arthur)
 #

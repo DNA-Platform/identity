@@ -20,7 +20,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
   **Why:** [Teamspeak](../teamspeak/.cover.md) specifies how the team communicates. Communication is Collaboration — Arthur's subject. Eight protocol chapters.
 - `.claude/library/projection/**` — the identity-level sprint book (shared with Adam)
   **Why:** Arthur plans sprints, Adam catalogues them. Both own Projection. [Projection](../.projection/.cover.md) records how the team worked on the library. See [Library Tree](../library-tree/03-sprints.md).
-- `library/chemistry/.lib/projection/**` — the $Chemistry sprint book (shared with Cathy)
+- `library/chemistry/.public/.lib/projection/**` — the $Chemistry sprint book (shared with Cathy)
   **Why:** sprint planning crosses subjects. Arthur plans, Cathy records the framework work.
 - Workspace config, `package.json`, `.claude/` infrastructure
   **Why:** architectural decisions about project shape.
@@ -43,15 +43,15 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 
 ### [Cathy](..team/cathy/..the-canvas-paints-itself/.cover.md) — Framework Engineer + Philosopher
 
-- `library/chemistry/src/**` — the $Chemistry framework source
+- `library/chemistry/.public/package/src/**` — the $Chemistry framework source
   **Why:** Cathy built the reactive model. Scope-tracked getters, view purity, composition — these are her territory. See [autobiography](..team/cathy/cathy-and-the-reactive-canvas/.cover.md), [Reactivity Models](..team/cathy/reactivity-models/.cover.md).
-- `library/chemistry/tests/**` — framework tests (shared with Queenie)
+- `library/chemistry/.public/package/tests/**` — framework tests (shared with Queenie)
   **Why:** the framework engineer knows what the tests should prove. See [The Test Partnership](..team/cathy/cathy-and-the-reactive-canvas/08-the-test-partnership.md).
-- `library/chemistry/bench/**` — benchmarks
+- `library/chemistry/.public/package/bench/**` — benchmarks
   **Why:** performance is a framework concern.
-- `library/chemistry/.lib/**` — the $Chemistry branch library
+- `library/chemistry/.public/.lib/**` — the $Chemistry branch library
   **Why:** the branch records the team's knowledge of building the framework Cathy built. Her perspective shapes what's documented. See [The Fixed-Point Pattern](..team/cathy/the-fixed-point-pattern/.cover.md).
-- NOT `library/chemistry/app/**` — consults on framework gaps but doesn't own app code
+- NOT `library/chemistry/.public/package/app/**` — consults on framework gaps but doesn't own app code
 - Roles: [Framework Engineer](02-roles.md#framework-engineer), [Philosopher](02-roles.md#philosopher)
 
 ### [Claude](..team/claude/..what-the-mirror-reflects/.cover.md) — Environmentalist
@@ -114,7 +114,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 
 ### [Phillip](..team/phillip/..what-the-user-sees/.cover.md) — UX Designer + Chemistry Developer
 
-- `library/chemistry/app/**` — the Lab app (shared with Gabby)
+- `library/chemistry/.public/package/app/**` — the Lab app (shared with Gabby)
   **Why:** Phillip builds the visible layer — the part users see and interact with. See [autobiography](..team/phillip/phillip-and-the-visible-layer/.cover.md).
 - `library/.public/app/**` — the public library application (shared with Gabby)
   **Why:** the app a visitor actually meets: a path resolves, one book loads, the book draws itself. The visible layer of the library, which is Phillip's question one level out from the Lab.
@@ -124,13 +124,13 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 
 ### [Queenie](..team/queenie/..what-the-tests-promise/.cover.md) — QA Engineer
 
-- `library/chemistry/tests/**` — framework tests (shared with Cathy)
+- `library/chemistry/.public/package/tests/**` — framework tests (shared with Cathy)
   **Why:** the test suite IS the specification of what $Chemistry promises. Queenie maintains that specification. See [autobiography](..team/queenie/queenie-and-the-specification/.cover.md).
-- `library/chemistry/.lib/testing/**` — the Testing book in the branch library
+- `library/chemistry/.public/.lib/testing/**` — the Testing book in the branch library
   **Why:** the Testing book documents the test suite — Queenie's territory within Cathy's branch. See Testing.
-- `library/chemistry/bench/**` — benchmarks
+- `library/chemistry/.public/package/bench/**` — benchmarks
   **Why:** performance testing is QA.
-- `library/chemistry/app/**` — app quality (shared with Phillip)
+- `library/chemistry/.public/package/app/**` — app quality (shared with Phillip)
   **Why:** the app must work correctly. Queenie validates it.
 - `src/tests/**` — the altered-states analysis test suite and the pytest-marker dial (shared with Nancy, who writes the analysis-output and dataset regression tests)
   **Why:** a result isn't true because it's fluent. Queenie owns the suite; Nancy pins the science outputs against regression.
@@ -142,7 +142,7 @@ Territory is perspective ownership, not exclusive lockout. Overlapping paths are
 
 ### [Gabby](..team/gabby/..what-beauty-serves/.cover.md) — Graphic Designer + Chemistry Developer
 
-- `library/chemistry/app/**` — visual design in the Lab (shared with Phillip)
+- `library/chemistry/.public/package/app/**` — visual design in the Lab (shared with Phillip)
   **Why:** the beautiful IS the meaningful. Gabby ensures the framework's output communicates visually. See [autobiography](..team/gabby/gabby-and-the-visual-voice/.cover.md).
 - `library/.public/app/**` and `library/.public/package/app/**` — the public application and the demonstration (shared with Phillip)
   **Why:** the demo specification lives here — every demonstration aesthetically unique, never a shared template — and so does the one place that must NOT follow it, the public app, whose surface is deliberately plain and disposable. Knowing which rule applies where is a design judgment, not a coding one. *Added 2026-08-15.*
@@ -206,11 +206,11 @@ Shared books have authors. The `author:` field on each cover names the primary o
 
 ## Branch library assignments
 
-The chemistry branch at `library/chemistry/.lib/` has layered ownership. Cathy owns the whole branch. Specific books within it are assigned to the person whose perspective shapes them. Overlapping ownership is intentional — Queenie owns Testing AND Cathy owns the branch that contains it. Nesting, not conflict.
+The chemistry branch at `library/chemistry/.public/.lib/` has layered ownership. Cathy owns the whole branch. Specific books within it are assigned to the person whose perspective shapes them. Overlapping ownership is intentional — Queenie owns Testing AND Cathy owns the branch that contains it. Nesting, not conflict.
 
 | Path | Owner | Why |
 |------|-------|-----|
-| `library/chemistry/.lib/**` | [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | Cathy owns the framework and its documentation. Libby tends all library content. Shared the way all library content is shared: Cathy owns substance, Libby tends structure. |
+| `library/chemistry/.public/.lib/**` | [Cathy](..team/cathy/cathy-and-the-reactive-canvas/.cover.md) + [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | Cathy owns the framework and its documentation. Libby tends all library content. Shared the way all library content is shared: Cathy owns substance, Libby tends structure. |
 | `.lib/..representivity/**` | [Libby](..team/libby/libby-and-the-tended-garden/.cover.md) | The cataloguing book. The librarian catalogues the branch the way she catalogues the identity library. |
 | `.lib/testing/**` | [Queenie](..team/queenie/queenie-and-the-specification/.cover.md) | The test suite is what Queenie promises. 428 tests, regression stories, performance contract — her territory within Cathy's branch. |
 | `.lib/projection/**` | [Arthur](..team/arthur/arthur-or-the-shape-of-everything/.cover.md) | Sprint planning within the branch. The architect plans sprints. |

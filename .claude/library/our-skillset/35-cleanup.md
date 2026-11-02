@@ -97,10 +97,10 @@ Clean the code a sprint touched, and refactor its neighbours where the sprint ma
 
 ### `library/chemistry` — the substrate
 
-- ***The unit is a concern, and a large file is not a file nobody split*** — it is the mechanism holding itself together, which is why the substrate has no import cycles at all. *[Composition](../../../library/chemistry/.lib/composition/07-polymorphism.md), [Implementation](../../../library/chemistry/.lib/implementation/02-chemical.md).*
+- ***The unit is a concern, and a large file is not a file nobody split*** — it is the mechanism holding itself together, which is why the substrate has no import cycles at all. *[Composition](../../../library/chemistry/.public/.lib/composition/07-polymorphism.md), [Implementation](../../../library/chemistry/.public/.lib/implementation/02-chemical.md).*
 - ***Never add a bookkeeping FIELD to a chemical.*** *Every field is a reactive bond and a framework write diffuses up the tree.*
 - ***Chemistry bugs may be fixed alone; chemistry FEATURES are pitched, never taken.***
-- *[Testing](../../../library/chemistry/.lib/testing/01-the-contract.md) — a test is a promise, not a mechanism check.*
+- *[Testing](../../../library/chemistry/.public/.lib/testing/01-the-contract.md) — a test is a promise, not a mechanism check.*
 
 ## What a cleanup may never do
 

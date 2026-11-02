@@ -27,7 +27,7 @@ The one exception is this book — Library Tree — which catalogues the known b
 
 ## Placement
 
-A `.lib/` goes where the knowledge is. A framework has its branch beside its source: `library/chemistry/.lib/`. A physics module has its branch beside its code: `library/physics/.lib/`. A project can have many branch libraries — one per area that needs its own record of applied knowledge. There is no convention that a project has one `.lib/` at the root.
+A `.lib/` goes where the knowledge is. A framework has its branch beside its source: `library/chemistry/.public/.lib/`. A physics module has its branch beside its code: `library/physics/.lib/`. A project can have many branch libraries — one per area that needs its own record of applied knowledge. There is no convention that a project has one `.lib/` at the root.
 
 Cross-project links between repos use `../project/` relative paths — projects are siblings on disk under the same parent directory. Links within a project between `.lib/` directories use normal relative paths. These work locally in VS Code and in any markdown renderer that resolves relative paths.
 
@@ -41,9 +41,9 @@ Because the identity lives in several working copies at once, those copies can d
 
 See [chapter 05](05-branches.md) for the full catalogue of known branches with repo, location, cataloguing book, and sprint book for each.
 
-### [$Chemistry](../../../../inexplicable-phenomena/library/chemistry/.lib/..representivity/.cover.md) — Representation
+### [$Chemistry](../../../../inexplicable-phenomena/library/chemistry/.public/.lib/..representivity/.cover.md) — Representation
 
-The branch for the $Chemistry reactive framework, at `library/chemistry/.lib/` in the inexplicable-phenomena repo. Catalogued by [Representivity](../../../../inexplicable-phenomena/library/chemistry/.lib/..representivity/.cover.md). Sprint history in [Projection](../../../../inexplicable-phenomena/library/chemistry/.lib/projection/.cover.md). $Chemistry is about representation — how reactive state represents something beyond itself — and the branch records the team's knowledge of building that representational framework.
+The branch for the $Chemistry reactive framework, at `library/chemistry/.public/.lib/` in the inexplicable-phenomena repo. Catalogued by [Representivity](../../../../inexplicable-phenomena/library/chemistry/.public/.lib/..representivity/.cover.md). Sprint history in [Projection](../../../../inexplicable-phenomena/library/chemistry/.public/.lib/projection/.cover.md). $Chemistry is about representation — how reactive state represents something beyond itself — and the branch records the team's knowledge of building that representational framework.
 
 ### [Altered States](../../../../altered-states/library/.lib/..altered-states/.cover.md) — Altered States
 
