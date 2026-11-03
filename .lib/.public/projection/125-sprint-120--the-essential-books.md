@@ -101,4 +101,4 @@ npm run bind
 npm run preview -- --port 4343 --strictPort
 ```
 
-Open `http://localhost:4343/inexplicable-phenomena/`, which is Reference. The workbench: `node library/.reference/.manual/5-developing-the-library~workbench.mjs`, then `… look reference built`, `… look chemistry built phone`, `… close`.
+Open `http://localhost:4343/inexplicable-phenomena/`, which is Reference. The workbench: `node library/.subject/.manual/5-developing-the-library~workbench.mjs`, then `… look reference built`, `… look chemistry built phone`, `… close`.
