@@ -63,7 +63,7 @@ spontaneous activity, and no slide said so. The window changed the result. Start
 called an outlier. You can show an example but you also have to quantify the result across the population."*
 (2026-11-03)
 
-An example sits beside the population result, and says how it was chosen.
+An example sits beside the population result, and says how it was chosen and where it falls in its recording.
 
 ## Look first
 
@@ -75,6 +75,10 @@ specifically to me."*
 3. Refine the analysis and the figure until he sees it without me.
 
 Use the simplest correct estimator. Rewrite rather than patch.
+
+A fix is checked by eye against what it was meant to restore, on the same data. *"I don't see these metamers as better
+than last"* (2026-11-05): I had called the moments restored from one matched number, never drawn beside the old ones on
+the same seconds.
 
 ## Check the instrument before the finding
 
