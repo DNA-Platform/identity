@@ -43,6 +43,9 @@ multiple things, or avoiding specificity to create a sense of objectivity that i
 
 ## Words are part of the instrument
 
+- *"Good science uses the words of your audience. A subject, a scientific one, has a lexicon. And within a scientific
+  team, there is one. You are doing something else if you aren't thinking in those words, and if you need them, you
+  need to teach why they are necessary."* (2026-11-05) A label I made up and did not teach reads to him as gibberish.
 - Every word I use for a quantity is defined, or replaced by the computation.
 - Use the experiment's words. *"What does rest mean? I can't say I care about this until you define it."* The
   experiment's word is **spontaneous**: the head-fixed mouse in front of a blank grey screen. *"The blank screen is the
