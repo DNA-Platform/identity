@@ -15,6 +15,11 @@ const books = [
     'mathematical-reference', 'mathematical-design', 'mathematical-principles', 'mathematical-identity',
     'pharmacology', 'philosophy', 'physics',
 ];
+const about = {
+    'our-library': 'Inexplicable Phenomena', 'our-team': 'Our Team', 'chemistry': 'Chemistry', 'our-math': 'Mathematics',
+    'mathematical-identity': 'Mathematical Identity',
+    'pharmacology': 'Pharmacology', 'philosophy': 'Philosophy', 'physics': 'Physics',
+};
 const catalogues = [
     { book: 'our-library', home: '/inexplicable-phenomena/our-library/' },
     { book: 'our-math', home: '/inexplicable-phenomena/our-math/' },
@@ -43,11 +48,16 @@ for (const book of books) {
         const status = await goto(`${base}${book}/`);
         const open = await page.evaluate(() => document.querySelector('.pa-open .pd-title')?.innerText.replace(/\s+/g, ' ').trim() ?? null);
         const found = await links();
+        const byline = await page.evaluate(() => document.querySelector('.pd-byline')?.innerText.replace(/\s+/g, ' ').trim() ?? '');
         const author = found.find(l => l.href.endsWith('/our-team/'));
         const filed = found.find(l => l.text === 'Inexplicable Phenomena' || l.text === 'Mathematics');
-        const ok = (status === 200 || status === 304) && open !== null && author !== undefined && filed !== undefined;
+        const subject = about[book];
+        const aboutOk = subject === undefined
+            ? !byline.includes('ABOUT')
+            : byline.includes(`ABOUT ${subject}`) && found.some(l => l.text === subject && l.href.endsWith(`/${book}/`));
+        const ok = (status === 200 || status === 304) && open !== null && author !== undefined && filed !== undefined && aboutOk;
         if (!ok) failures++;
-        console.log(`${ok ? 'ok ' : 'BAD'} ${status} ${book.padEnd(24)} opens "${open}" filed->${filed?.href ?? '-'}`);
+        console.log(`${ok ? 'ok ' : 'BAD'} ${status} ${book.padEnd(24)} opens "${open}" ${subject === undefined ? 'no about' : `about ${subject}->itself`} filed->${filed?.href ?? '-'}`);
     } catch (error) {
         failures++;
         console.log(`BAD ${book}: ${error.message.split('\n')[0]}`);
