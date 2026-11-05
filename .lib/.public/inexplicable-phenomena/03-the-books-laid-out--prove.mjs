@@ -13,12 +13,12 @@ const base = 'http://localhost:4343/inexplicable-phenomena/';
 const books = [
     'our-library', 'our-reference', 'our-team', 'dictionary', 'the-design', 'chemistry', 'our-math',
     'mathematical-reference', 'mathematical-design', 'mathematical-principles', 'mathematical-identity',
-    'pharmacology', 'philosophy', 'physics',
+    'neuroscience', 'philosophy', 'physics',
 ];
 const about = {
     'our-library': 'Inexplicable Phenomena', 'our-team': 'Our Team', 'chemistry': 'Chemistry', 'our-math': 'Mathematics',
     'mathematical-identity': 'Mathematical Identity',
-    'pharmacology': 'Pharmacology', 'philosophy': 'Philosophy', 'physics': 'Physics',
+    'neuroscience': 'Neuroscience', 'philosophy': 'Philosophy', 'physics': 'Physics',
 };
 const catalogues = [
     { book: 'our-library', home: '/inexplicable-phenomena/our-library/' },
