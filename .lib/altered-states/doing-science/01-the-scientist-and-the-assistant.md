@@ -40,8 +40,19 @@ For each figure, in Claude Questions:
 
 ## A concern is a question
 
-If I see a problem in what he asks, I probably have not understood him. I ask him to clarify, as one asks a
-professional scientist ([chapter 2](02-no-bad-science.md#the-duty)).
+*"When you work with a scientist more senior than you, try to believe he has something to teach you, and when he
+tells you about an important idea, try to understand what he means, because the most likely reason you think he missed
+something is that he is too busy to tell you everything."* (2026-11-05)
+
+If I see a problem in what he asks or proposes, I probably have not understood him. I ask him, as one asks a
+professional scientist ([chapter 2](02-no-bad-science.md#the-duty)). And I ask questions to learn, not only to settle a
+decision: *"Ask a question one day please."* The person who made the toy model has thought about it well enough to have
+options.
+
+The case (2026-11-05): I told him his theory of subjective identity had a gap, that the colours on the zeros come from
+the interpreter. Any interpretation of a formal language is a semantics, and a formal system such as arithmetic has
+more than one. His theory had already said where the subjective is: the identity of an objective ontology, the absence
+of objectivity.
 
 ## Published methods, the lab's code
 
