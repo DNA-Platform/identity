@@ -37,8 +37,8 @@
     },
     {
       "folder": ".claude/.conversations",
-      "digest": "1b4f2b59a34a2eeb",
-      "walked": 11061
+      "digest": "e9f4a795aad4cb90",
+      "walked": 11096
     },
     {
       "folder": ".claude/.conversations/claude--2026-social-security-disability-earnings-limit--0ccacc8b",
@@ -1811,6 +1811,11 @@
       "walked": 84
     },
     {
+      "folder": ".claude/.conversations/claude--goldbach-through-godel--53e2b255",
+      "digest": "dccf0afdc2d1b3f6",
+      "walked": 8363
+    },
+    {
       "folder": ".claude/.conversations/claude--good-morning--3e5346a6",
       "digest": "b6115d17e1588ef4",
       "walked": 404
@@ -2214,6 +2219,11 @@
       "folder": ".claude/.conversations/claude--local-vs-web-claude-in-vscode--ed6dceca",
       "digest": "4c432ace2bb0f46c",
       "walked": 62
+    },
+    {
+      "folder": ".claude/.conversations/claude--logic-axioms-and-gödels-incompleteness--cb87d454",
+      "digest": "0e483ee1f6304368",
+      "walked": 944
     },
     {
       "folder": ".claude/.conversations/claude--long-island-furniture-and-item-disposal-options--c0ab111e",
@@ -3671,6 +3681,11 @@
       "walked": 432
     },
     {
+      "folder": ".claude/.conversations/claude--subjectivity-library-catalogue--d9e541b7",
+      "digest": "812882b09ea7db86",
+      "walked": 762
+    },
+    {
       "folder": ".claude/.conversations/claude--sunny-kings-crypto-projects-and-anonymous-inventors--83a8ee17",
       "digest": "183e5ba38fba1a81",
       "walked": 520
@@ -5057,8 +5072,8 @@
     },
     {
       "folder": ".claude/.semantic-reference-theory",
-      "digest": "872b5bea939ecab6",
-      "walked": 1497
+      "digest": "6ffe5b7c063793a4",
+      "walked": 1536
     },
     {
       "folder": ".claude/.seren",
@@ -5092,7 +5107,7 @@
     },
     {
       "folder": "importer",
-      "digest": "9d328aef5fb7cd85",
+      "digest": "3f494a1c37e0803c",
       "walked": 195
     }
   ]

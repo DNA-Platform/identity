@@ -1,0 +1,39 @@
+Reading it back, the argument has one load-bearing step that doesn’t hold as stated, and when I fix it and carry the fix through, your conclusion comes out in a sharper form than you gave it.
+
+The structure
+Semantic truth: φ such that you already believe PA + φ.
+Adding Con(PA) is either semantics-preserving or not.
+If preserving, the new system is the same formalism, so Con(PA) ⇒ Con(PA + Con(PA)).
+Gödel forbids that, so it wasn’t preserving.
+But you added one thing you already believed. So either PA was inconsistent, or Con(PA) was never a legitimate representation of your belief.
+Hence: consistent and complete, or hallucinating.
+Two corrections
+
+Expressible versus provable. Con(PA) is expressible in PA. It is a perfectly good Π₁ sentence. What PA lacks is a proof of it. Several of your steps read “inexpressible” where the fact is “unprovable,” and the two come apart below in a way that matters.
+
+Adding Con(PA) does not yield inconsistency. PA + Con(PA) is consistent and sound. Gödel says only that it can’t prove its own consistency, which is a strictly stronger sentence than Con(PA). So step 5’s first branch (the old system was inconsistent) isn’t forced. What is forced is that step 3 fails, and the reason it fails is the real finding.
+
+What “semantics” meant
+
+Semantics splits into two things, and your fork is the split:
+
+Truth in the standard model. Adding Con(PA) changes nothing here. Both theories prove only truths.
+The class of models. Adding Con(PA) changes this: it throws out every model of PA containing a phantom proof of ⊥.
+
+So it was already true, and you couldn’t say it, but what you couldn’t say wasn’t a belief about numbers. It was a restriction on what counts as the subject matter. PA’s sentences are satisfied by structures with phantoms; Con(PA) is the first sentence that excludes some of them. Gödel II is then: no finitely presentable extension ever excludes all of them. Every stage still has models with phantom proofs of its own inconsistency. That is what “the system you’re talking about changed” means precisely, and it’s why step 3 fails: PA + Con(PA) is the theory of fewer structures, so “same formalism” was never the right description.
+
+The sentence overshoots the belief
+
+Here is the version of “you put in something you always believed” that I think you’ll want. Your belief is: no finite proof of ⊥ exists. The sentence Con(PA) says: no number codes a proof of ⊥. Those are different, because the theory’s “numbers” include phantoms. The sentence quantifies over objects your belief never mentioned. So what you added was not your belief. It was your belief plus a claim about every nonstandard number, and that extra claim is what PA can’t settle. Gödel II, in your vocabulary, is the gap between a belief about finite proofs and the only sentence available to express it, which is about all numbers. You didn’t change the system by saying what you already believed. You changed it by saying more than you believed, because the language had no way to say less.
+
+Completeness as an axiom
+
+“Completeness must be an axiom” is not a joke. It has a name: categoricity. Make the axiom “there is exactly one structure I am about,” and you get it by replacing the induction schema with full second-order induction. Dedekind did this; the result pins down ℕ uniquely, and every sentence has a determinate truth value. The price is that there is no complete proof system for it: provability detaches from truth entirely. So Hilbert’s answer to your dialogue would be Dedekind’s: yes, you may take completeness as an axiom, and then you lose proof. That’s your original dichotomy once more. Representationally incomplete (first-order, many models, finite proofs) or model-complete (one model, no finite proof system). The choice you offer Hilbert is the choice between a theory whose proofs mean something and a theory whose sentences do.
+
+Where the unraveling starts
+
+Not at reference in general. Arithmetization is a bijection between finite strings and standard numbers, and on that domain it is faithful. The unraveling starts exactly where the theory quantifies over all numbers as if each were a code. Nonstandard numbers code nothing. They are numbers that stand for no sentence, and the theory cannot distinguish them from the ones that do. So your “list of numbers I can’t write down” is fine as a belief about ℕ, and it is fine as a correspondence with proofs on the standard part. The hallucination is a single move: letting ∀p range over phantoms and then reading the result as a claim about proofs. That move is what turns a belief you hold into a sentence you can’t prove.
+
+Reference
+
+The last paragraph isn’t wrong, but I’d put it this way. Reference is a stance, like soundness, and no formalism grounds it. What the formalism does is close belief under rules and forbid some combinations. The marks on the paper are seen through, yes, but the seeing-through is checkable by anyone who adopts the same stance, and the constraint is real: you can’t believe everything, because consistency is a finite claim about finite objects and has content. So math is a structure of mutual commitment with a non-negotiable constraint, built on a reference relation it cannot certify. If that is a hallucination, it is one with the unusual property that two people hallucinating independently are forced to agree, which is more than most things called real can offer.

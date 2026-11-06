@@ -17,6 +17,33 @@ export default () => (
             <Heading>Its conversations</Heading>
             <Paragraph>
                 <Word>
+                    <Content>$[[ Subjectivity library catalogue ]]( ./claude--Subjectivity library catalogue--d9e541b7 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Subjectivity library catalogue--d9e541b7 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Logic axioms and Gödel's incompleteness ]]( ./claude--Logic axioms and Gödel's incompleteness--cb87d454 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Logic axioms and Gödel's incompleteness--cb87d454 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
+                    <Content>$[[ Goldbach through Godel ]]( ./claude--Goldbach through Godel--53e2b255 )</Content>
+                </Word>
+                <Word>
+                    <Arrow />
+                    <Content>[[ ▷ ]]( claude--Goldbach through Godel--53e2b255 )***</Content>
+                </Word>
+            </Paragraph>
+            <Paragraph>
+                <Word>
                     <Content>$[[ Semantics of Types &amp; More ]]( ./claude--Semantics of Types &amp; More--d5c0cf36 )</Content>
                 </Word>
                 <Word>

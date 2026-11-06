@@ -8845,5 +8845,32 @@
     "messageCount": 4,
     "digest": "13d198f680b49951",
     "importedAt": "2026-10-21T12:32:15.507Z"
+  },
+  "53e2b255-ac5a-4ca9-8d46-eb20b388b088": {
+    "conversationName": "Goldbach through Godel",
+    "account": "DNA",
+    "exportedOn": "2026-11-06",
+    "updatedAt": "2026-11-05T23:03:00.860936Z",
+    "messageCount": 805,
+    "digest": "c50be3383f09171c",
+    "importedAt": "2026-11-06T10:45:49.206Z"
+  },
+  "cb87d454-b1e6-4535-8cc0-a175e9cfc36c": {
+    "conversationName": "Logic axioms and Gödel's incompleteness",
+    "account": "DNA",
+    "exportedOn": "2026-11-06",
+    "updatedAt": "2026-10-22T17:33:33.455431Z",
+    "messageCount": 97,
+    "digest": "16c3092a72fed265",
+    "importedAt": "2026-11-06T10:45:49.238Z"
+  },
+  "d9e541b7-1481-4cbf-94c5-df1732802096": {
+    "conversationName": "Subjectivity library catalogue",
+    "account": "DNA",
+    "exportedOn": "2026-11-06",
+    "updatedAt": "2026-11-05T22:43:54.774909Z",
+    "messageCount": 44,
+    "digest": "183a95e9a75f3314",
+    "importedAt": "2026-11-06T10:45:49.261Z"
   }
 }

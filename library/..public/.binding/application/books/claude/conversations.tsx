@@ -987,6 +987,9 @@ import ClaudeClaudeCodePortfolioC90a25d8980 from '../../../../../.claude/.conver
 import ClaudeDispatchingCodeToRemoteLinuxWorkstation4fa3765a981 from '../../../../../.claude/.conversations/981-claude-dispatching-code-to-remote-linux-workstation-4fa3765a';
 import ClaudeTheGenesisOfWriting0e9fbdd1982 from '../../../../../.claude/.conversations/982-claude-the-genesis-of-writing-0e9fbdd1';
 import ClaudeVerifyingOpenaiReportAuthenticity3f7e9877983 from '../../../../../.claude/.conversations/983-claude-verifying-openai-report-authenticity-3f7e9877';
+import ClaudeGoldbachThroughGodel53e2b255984 from '../../../../../.claude/.conversations/984-claude-goldbach-through-godel-53e2b255';
+import ClaudeLogicAxiomsAndGödelsIncompletenessCb87d454985 from '../../../../../.claude/.conversations/985-claude-logic-axioms-and-gödels-incompleteness-cb87d454';
+import ClaudeSubjectivityLibraryCatalogueD9e541b7986 from '../../../../../.claude/.conversations/986-claude-subjectivity-library-catalogue-d9e541b7';
 
 const Book = $($Book);
 
@@ -1978,6 +1981,9 @@ export const book = () => (
         {ClaudeDispatchingCodeToRemoteLinuxWorkstation4fa3765a981()}
         {ClaudeTheGenesisOfWriting0e9fbdd1982()}
         {ClaudeVerifyingOpenaiReportAuthenticity3f7e9877983()}
+        {ClaudeGoldbachThroughGodel53e2b255984()}
+        {ClaudeLogicAxiomsAndGödelsIncompletenessCb87d454985()}
+        {ClaudeSubjectivityLibraryCatalogueD9e541b7986()}
     </Book>
 );
 
