@@ -1,4 +1,4 @@
-import { Bold, Chapter, Emphasis, Equation, Heading, Line, List, Math, Paragraph, Table, Title, Word } from '@dna-platform/public';
+import { Bold, Chapter, Emphasis, Equation, Heading, Line, List, Math, Means, Note, Paragraph, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -12,6 +12,11 @@ export default () => (
         >
             <Origin>6fdf8739-fb3c-4063-a752-aa2c1e706070</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Thought>
+                [[[ His instruction ]]] is the method of this reading, said a year before it: read the conversation as a
+                narrative, mark where the clarifications fall, ask what is being circled and what it would mean. The
+                organizing of this conversation starts on his own words.
+            </Thought>
             <Paragraph>
                 Okay please read the Godle &amp; Goldbach project document carefully. I want you to read it as a narrative,
                 where a formal framework was developed while debating a formal idea. As you read, reflect on what is being
@@ -26,6 +31,10 @@ export default () => (
         >
             <Origin>7b759bbf-aa37-40ec-9337-87f2cac48f5a</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Note>
+                The reply answers <Means>$[[ ./His instruction ]]</Means> head on, a conditional metatheorem named before
+                the narrative is retold.
+            </Note>
             <Paragraph>I've read through this fascinating dialogue carefully. Let me share what I see:</Paragraph>
             <Heading>The Core Achievement</Heading>
             <Paragraph>
