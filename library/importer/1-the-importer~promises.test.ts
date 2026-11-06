@@ -28,17 +28,15 @@ describe('the importer', () => {
     });
 
     // Doug, 2026-10-17: "it should be associated with the documentation of a specific configuration of the importer…
-    // DNA Legacy is a different import than DNA, and we will have other imports from other platforms."
-    it('reads each import from its own chapter, in the chapters\' order, its ledger beside its configuration', () => {
+    // DNA Legacy is a different import than DNA, and we will have other imports from other platforms." And 2026-11-06:
+    // "The ledger was supposed to be unitary in the importer book" — so an import is its configuration, and no ledger.
+    it('reads each import from its own chapter, in the chapters\' order, its configuration beside it and no ledger of its own', () => {
         const importer = mkdtempSync(join(tmpdir(), 'importer-'));
         const legacy = { name: 'DNA Legacy', folder: 'claude-legacy', address: 'support@dna.love' };
         writeFileSync(join(importer, '1-the-importer~configuration.json'), '{}');
         writeFileSync(join(importer, '11-dna~configuration.json'), JSON.stringify({ ...legacy, name: 'DNA' }));
         writeFileSync(join(importer, '10-dna-legacy~configuration.json'), JSON.stringify(legacy));
-        expect(importsOf(importer)).toEqual([
-            { ...legacy, ledger: join(importer, '10-dna-legacy~ledger.json') },
-            { ...legacy, name: 'DNA', ledger: join(importer, '11-dna~ledger.json') },
-        ]);
+        expect(importsOf(importer)).toEqual([legacy, { ...legacy, name: 'DNA' }]);
         rmSync(importer, { recursive: true, force: true });
     });
 
@@ -64,5 +62,7 @@ describe('the importer', () => {
         expect(parsed.projectName).toBeUndefined();
         expect(parsed.write).toBe(true);
         expect(parsed.overwrite).toBe(false);
+        expect(parsed.settle).toBe(false);
+        expect(parsedArguments(['--settle', '--all']).settle).toBe(true);
     });
 });

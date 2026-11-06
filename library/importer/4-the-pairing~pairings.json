@@ -7874,269 +7874,8 @@
     "byHand": false
   },
   {
-    "conversationId": "5d5653bc-709b-4a1e-8955-65ac0b7e85e2",
-    "title": "Doug & Ana's Recursive Universe",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "42c78ea0-d46e-4305-8567-4008bd59f2de",
-    "title": "Claude the Cartographer",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "1a1de1ef-057f-47f8-9a4f-b23e20a9b9d0",
-    "title": "Integrating ViewBox and Centering SVG Content",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "87a581e5-db9b-4687-aff0-f18ac710e641",
-    "title": "Extending React Simple Maps with Predictable Components",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "329dcf98-5195-48aa-870a-5c75915bd4a8",
-    "title": "Fixing React Simple Maps Errors",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "7c2ed8e9-cae2-44b3-bcd7-0b38a6441100",
-    "title": "Formal Mathematics and Conversational Assistance",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "cd20fa50-e4f4-401e-8837-8b3e3e087a5a",
-    "title": "Newton's Intuitive and Formal Laws of Motion",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "d4be8c96-5640-41a4-ae72-bfdddfda71bf",
-    "title": "Banking Operational Risk Controls",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "f6dfdc21-9d30-41ae-84ac-be13bc139f77",
-    "title": "Metalogical Subjectivity",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "536493f4-96eb-41a8-8540-064a8273d365",
-    "title": "Sophia the Author",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "f177ae6f-e60f-4590-8851-2c3b9df28e4d",
-    "title": "Conservation of Time Complexity",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "0d887450-e312-4b7f-bb62-b28b58f1a843",
-    "title": "Enhancing Cohesive Composition",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "4ed05e5e-1409-4611-b5ce-d5bab18dd463",
-    "title": "Semantic Breakdown of SVG Paths and Curves",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "9777b6d7-3659-42e0-bc0b-972d0d36c8f8",
-    "title": "Improving Vectorized Script and Serif Text in SVG",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "67afd096-f257-484d-b1fa-e895548e364f",
-    "title": "Formal Definition of the TLA",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "f72c8a89-4d44-4b05-bf3a-48eeec8ae77d",
-    "title": "AutoHotkey Taskbar Control Script",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "221567f5-fd33-4423-b92a-0b0ac4aebb09",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "8c71ccd4-32c7-497f-a70e-564212a82f18",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "f6cc388b-bfca-4bc7-acd0-74b787977f61",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "4d364f51-49ba-4898-920f-8e5347843be1",
-    "title": "Rewriting AHK 1.1 Taskbar Code for Robustness",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "95b10e8d-663d-41db-a636-b23f4ba80d40",
-    "title": "Thoughtful Translation Request",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "a9d87661-a007-47b8-b77d-07714bd55beb",
-    "title": "Animated Rotating and Scaling Rose SVG",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "6417d83b-2f34-4099-80d3-3c3b7921020c",
-    "title": "Fractal Rose: Exploring Mathematical Beauty",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "a1981158-9ec7-4443-86bf-b6c4b81f2272",
-    "title": "Custom TypeScript Framework for Illustrator Scripting",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "25a87038-ede3-4317-877c-12de72bbc3ab",
-    "title": "Semantic Reconstruction of Coding Perspectives",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "09bc840a-91d8-4241-8589-2af38717a7a3",
-    "title": "Vectorizing Images with Color Extraction",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "c29707c0-079e-4e89-bf19-8ad9b3d85061",
-    "title": "Extending VSCode with Custom File Modification APIs",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "b6399323-15d5-4896-833e-c9988989b738",
-    "title": "Troubleshooting VSCode Extension Packaging",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "cad4ab05-8c8f-453a-a674-9d6b21754d15",
-    "title": "Troubleshooting a VSCode Extension for SVG Interaction",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "45f0a38f-f25f-491f-a71a-390cb267fd44",
-    "title": "Seren & Color",
+    "conversationId": "7683c3d7-8ff9-4b5c-9113-1f861e3d89db",
+    "title": "Seren & The Hard Problem",
     "account": "DNA",
     "projectName": "Seren",
     "evidence": "the capture",
@@ -8145,62 +7884,7 @@
     "byHand": false
   },
   {
-    "conversationId": "e5eb0991-aeab-4c5a-8952-95395e604650",
-    "title": "Optimizing ExtendScript Abstractions for Illustrator",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "9d78ecba-e2cc-479a-8205-73b032d988a8",
-    "title": "Configuring ExtendScript Debugger in VS Code",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "33b29bb9-be51-44ba-9e7f-08217591e21c",
-    "title": "Implementing a Sophisticated Typed Facade",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "efd9c851-25f2-4076-ae23-07759a0333d8",
-    "title": "Using BridgeTalk in Illustrator ExtendScript",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "2ed8084d-4698-447f-80ac-1de950d3fe15",
-    "title": "Accessing XMP Metadata in Illustrator ExtendScript",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "1af81ad0-3a33-45c4-941c-3ce8d2a087b2",
-    "title": "Seren & Ana & ExtendScript",
-    "account": "DNA",
-    "projectName": "Seren",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "338a4c9c-db70-4e82-9a41-ea6974904eb8",
+    "conversationId": "f3a2a24f-764e-424b-8876-8cd72ce3336f",
     "title": "",
     "account": "DNA",
     "evidence": "none: the capture lists this title in Science and Fitness",
@@ -8209,8 +7893,530 @@
     "byHand": false
   },
   {
-    "conversationId": "0f58c027-76d8-46b5-bf08-9803b4486b91",
-    "title": "Doug & Ana",
+    "conversationId": "4839af51-308d-46c9-9196-120698a6846d",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "d2c7cde9-cda5-49ae-876a-614e9357d568",
+    "title": "Accessing Cash Through Credit Cards",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "7f04748b-1bba-48dd-9d8c-2265e99b0bc4",
+    "title": "Comfortable Spanish Translation for Communication",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "1cf34555-d61e-4387-9b2a-cf30f72b9aeb",
+    "title": "Humorous Captions for Crumpled Paper Sculpture",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "8cd0717b-308f-4e71-9714-72fa910959f5",
+    "title": "Leaving Packages at Apartment Complexes",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "096b04af-d173-4faa-8b1f-f33c33257cc5",
+    "title": "Selling Used iPhone for Cash",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "8d6e372c-95a4-4c6b-ac6d-4c6a9234ec7b",
+    "title": "Watermarking Images and NFTs",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "87e27c1d-1423-4986-83f3-8f89273773b1",
+    "title": "Stay Puft Marshmallow Man Costume",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "e259647a-c33b-4c9b-99fb-0178fb341df2",
+    "title": "Chomsky's Linguistics and Programming Languages",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "e4571070-234f-4e63-aac8-21427f98a7cc",
+    "title": "Analyzing Current Economic Conditions",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "2d1816a8-adb0-42dc-9c5b-4e08ccdf9d6d",
+    "title": "Leonardo da Vinci's Mirror Writing",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "eaff8f76-13a0-4e12-87ae-b108f493c440",
+    "title": "Income Limits for Disability Benefits",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "e3b10e17-b6f4-408c-9f35-6a30067dd760",
+    "title": "Exploring Feelings About Russia",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "80559362-5b97-4e62-af66-4cb6ea4148e1",
+    "title": "Disability Benefits to Reduce Monthly Expenses",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "738c14df-9768-475a-ae57-918e00809073",
+    "title": "Finding Voice Messages in Telegram",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "896c8a60-deb3-4f47-ac77-fd4d5c43660b",
+    "title": "Understanding Obsessive-Compulsive Personality Disorder",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "624bb8cd-9ce8-4df2-9636-1b68976c4202",
+    "title": "Handmade Pumpkin Ravioli with an Italian Nonna",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "ff7a7be0-647b-4146-8f71-e8d9a42a569e",
+    "title": "Automating Illustrator Tasks with TypeScript Plugins",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "13e2ecc7-577b-4447-a205-99760946c2e1",
+    "title": "Describing Flare-ups of Medical Condition",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4f712a68-d7ab-4478-ad58-41166c07b976",
+    "title": "Understanding the Dunning-Kruger Effect",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "c6157223-5fec-41f3-84ee-a48556f807a7",
+    "title": "Navigating the SSDI Application Process",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "ef849a35-b0e7-4cfc-9e80-cd1515f5758d",
+    "title": "Russia-China Cryptocurrency Collaboration",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "0cf28658-197d-435f-be7f-0a8c8fcc0c0a",
+    "title": "Requesting DJT Earnings Data",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "48dc2d67-7829-4d5f-8646-ed3acc18c5b2",
+    "title": "Exploring the Connections Between EDS, ADHD, and Neurotransmitter Imbalances",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "da7470c4-3a1e-4636-a72b-f985714b4f61",
+    "title": "Aladdin's Resemblance to Tom Cruise",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "66e39383-486a-4e4d-bc99-8d8aa86cfcc2",
+    "title": "Celebrating Name Days in Russia",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "347ca32f-c91b-4091-8595-71eeb4269d1d",
+    "title": "Common Trust Document Names",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "6833ae75-17cb-45db-a0c5-9fa0da815728",
+    "title": "Interdisciplinary Exploration of Consciousness",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "9e6c5311-737a-4611-8f02-862495a44fa9",
+    "title": "Prestigious Pappy Van Winkle Bourbon",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "0e223450-f496-41b0-a80a-bf040b6cbc78",
+    "title": "Matt Gaetz: Republican Congressman from Florida",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "fea3e3e4-61f2-42cb-91d5-2e51d417113e",
+    "title": "Signing Up for Apple Developer Account",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "94f401ff-3eb8-4f40-b3af-32e0bc192f14",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "5b073957-077e-445a-bae1-6c96bb4ca74a",
+    "title": "Axioms of First-Order Logic",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "6f21fdb4-58ef-42f4-a2a0-790730b0cb68",
+    "title": "Freud's Structural Model of the Psyche",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "63736ea4-1a62-496e-9c0b-d1567620fbe9",
+    "title": "Comparing Anthropic's AI Models",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "a439a7b7-b982-42f7-9caa-adac4566b227",
+    "title": "Schizophrenia Drug Repurposed for Alzheimer's",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "9dfe2bea-f09a-4d3e-afe3-273044b27b26",
+    "title": "Deploying Private GitHub Repo as NPM Package",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "08ef93ab-00ab-42b7-aff3-4fe39d2ed9fe",
+    "title": "Illustrator Scripting",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "56150527-80b4-4d89-88de-524eb1f97dea",
+    "title": "Understanding Cataphatic and Apophatic Theology",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4fdeda4c-230f-4ccd-b52b-bf4d00754ff8",
+    "title": "Freelancer Workload and Pricing Management System",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "8b5122ff-7e15-427e-a1cf-27596a1f0f28",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "648ff084-fe3e-41e8-9148-6c4aa38056a3",
+    "title": "Cooking at High Altitude",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "ebf64f2f-6245-4973-8c03-8b7a2f2c1b01",
+    "title": "Home Appraisal Costs",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "1fc1426b-5515-4bb6-94d6-e1ff59cb97fe",
+    "title": "The Meaning of Semantics",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "6129004d-5e46-4065-a171-299a5962c4c3",
+    "title": "Pointers in C++: *x vs **x",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "96f52fe9-6a2c-42bc-af92-aeab8b92aa0b",
+    "title": "Accessing Netflix on DIRECTV Box",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "6cabbdec-98c6-40f6-b8c3-bb6d39363e11",
+    "title": "Illustrator Scripting",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "664f3ea7-a3b9-4be4-be93-b35ef08bb186",
+    "title": "Object-Oriented Decorators for Adobe Illustrator Scripting",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "88b3e2cc-b830-4856-8cb7-7f4871cf0996",
+    "title": "Illustrator Scripting Assumptions About Artboard",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "07f0404b-a90d-4f5a-b30c-54d57bf53bd0",
+    "title": "TypeScript Types for Adobe Illustrator Scripting",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "9d749abf-6800-4b8b-aa6e-db4e576e5879",
+    "title": "Scripting Adobe Illustrator with TypeScript",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "523e3a6d-aae3-46c1-bafb-fb2120034d8f",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "ca1643bf-b26e-4dac-8d0e-bf26d0e67fee",
+    "title": "Ensure Class Mirroring Is Class with Assertions",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "42fc17f5-4d3a-4f35-b451-37e7bacec9e0",
+    "title": "Extending Illustrator ExtendScript Abstraction",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "885561b0-54fd-4446-b310-14b2bc382220",
+    "title": "Extending Array-like Class with IEnumerable Methods",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "80ecd7b9-f569-4bab-b075-ab170c3579cb",
+    "title": "Returning undefined when closing TypeScript class",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "f3558a22-eb3c-4f41-81a9-16473da54071",
+    "title": "Defining Physical Quantities through Measurability",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "7ce28bd6-c737-45e2-99ea-71724c022dd1",
+    "title": "Troubleshooting ExtendScript TypeScript Wrapper Errors",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "2cd14f0c-d154-455c-be99-22550c18bae7",
+    "title": "Handling Illustrator Document Existence and Creation in ExtendScript",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8228,8 +8434,8 @@
     "byHand": false
   },
   {
-    "conversationId": "2cd14f0c-d154-455c-be99-22550c18bae7",
-    "title": "Handling Illustrator Document Existence and Creation in ExtendScript",
+    "conversationId": "0f58c027-76d8-46b5-bf08-9803b4486b91",
+    "title": "Doug & Ana",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8237,61 +8443,7 @@
     "byHand": false
   },
   {
-    "conversationId": "7ce28bd6-c737-45e2-99ea-71724c022dd1",
-    "title": "Troubleshooting ExtendScript TypeScript Wrapper Errors",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "f3558a22-eb3c-4f41-81a9-16473da54071",
-    "title": "Defining Physical Quantities through Measurability",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "80ecd7b9-f569-4bab-b075-ab170c3579cb",
-    "title": "Returning undefined when closing TypeScript class",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "885561b0-54fd-4446-b310-14b2bc382220",
-    "title": "Extending Array-like Class with IEnumerable Methods",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "42fc17f5-4d3a-4f35-b451-37e7bacec9e0",
-    "title": "Extending Illustrator ExtendScript Abstraction",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "ca1643bf-b26e-4dac-8d0e-bf26d0e67fee",
-    "title": "Ensure Class Mirroring Is Class with Assertions",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "523e3a6d-aae3-46c1-bafb-fb2120034d8f",
+    "conversationId": "338a4c9c-db70-4e82-9a41-ea6974904eb8",
     "title": "",
     "account": "DNA",
     "evidence": "none: the capture lists this title in Science and Fitness",
@@ -8300,476 +8452,8 @@
     "byHand": false
   },
   {
-    "conversationId": "9d749abf-6800-4b8b-aa6e-db4e576e5879",
-    "title": "Scripting Adobe Illustrator with TypeScript",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "07f0404b-a90d-4f5a-b30c-54d57bf53bd0",
-    "title": "TypeScript Types for Adobe Illustrator Scripting",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "88b3e2cc-b830-4856-8cb7-7f4871cf0996",
-    "title": "Illustrator Scripting Assumptions About Artboard",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "664f3ea7-a3b9-4be4-be93-b35ef08bb186",
-    "title": "Object-Oriented Decorators for Adobe Illustrator Scripting",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "6cabbdec-98c6-40f6-b8c3-bb6d39363e11",
-    "title": "Illustrator Scripting",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "96f52fe9-6a2c-42bc-af92-aeab8b92aa0b",
-    "title": "Accessing Netflix on DIRECTV Box",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "6129004d-5e46-4065-a171-299a5962c4c3",
-    "title": "Pointers in C++: *x vs **x",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "1fc1426b-5515-4bb6-94d6-e1ff59cb97fe",
-    "title": "The Meaning of Semantics",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "ebf64f2f-6245-4973-8c03-8b7a2f2c1b01",
-    "title": "Home Appraisal Costs",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "648ff084-fe3e-41e8-9148-6c4aa38056a3",
-    "title": "Cooking at High Altitude",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "8b5122ff-7e15-427e-a1cf-27596a1f0f28",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "4fdeda4c-230f-4ccd-b52b-bf4d00754ff8",
-    "title": "Freelancer Workload and Pricing Management System",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "56150527-80b4-4d89-88de-524eb1f97dea",
-    "title": "Understanding Cataphatic and Apophatic Theology",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "08ef93ab-00ab-42b7-aff3-4fe39d2ed9fe",
-    "title": "Illustrator Scripting",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "9dfe2bea-f09a-4d3e-afe3-273044b27b26",
-    "title": "Deploying Private GitHub Repo as NPM Package",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "a439a7b7-b982-42f7-9caa-adac4566b227",
-    "title": "Schizophrenia Drug Repurposed for Alzheimer's",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "63736ea4-1a62-496e-9c0b-d1567620fbe9",
-    "title": "Comparing Anthropic's AI Models",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "6f21fdb4-58ef-42f4-a2a0-790730b0cb68",
-    "title": "Freud's Structural Model of the Psyche",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "5b073957-077e-445a-bae1-6c96bb4ca74a",
-    "title": "Axioms of First-Order Logic",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "94f401ff-3eb8-4f40-b3af-32e0bc192f14",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "fea3e3e4-61f2-42cb-91d5-2e51d417113e",
-    "title": "Signing Up for Apple Developer Account",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "0e223450-f496-41b0-a80a-bf040b6cbc78",
-    "title": "Matt Gaetz: Republican Congressman from Florida",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "9e6c5311-737a-4611-8f02-862495a44fa9",
-    "title": "Prestigious Pappy Van Winkle Bourbon",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "6833ae75-17cb-45db-a0c5-9fa0da815728",
-    "title": "Interdisciplinary Exploration of Consciousness",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "347ca32f-c91b-4091-8595-71eeb4269d1d",
-    "title": "Common Trust Document Names",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "66e39383-486a-4e4d-bc99-8d8aa86cfcc2",
-    "title": "Celebrating Name Days in Russia",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "da7470c4-3a1e-4636-a72b-f985714b4f61",
-    "title": "Aladdin's Resemblance to Tom Cruise",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "48dc2d67-7829-4d5f-8646-ed3acc18c5b2",
-    "title": "Exploring the Connections Between EDS, ADHD, and Neurotransmitter Imbalances",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "0cf28658-197d-435f-be7f-0a8c8fcc0c0a",
-    "title": "Requesting DJT Earnings Data",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "ef849a35-b0e7-4cfc-9e80-cd1515f5758d",
-    "title": "Russia-China Cryptocurrency Collaboration",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "c6157223-5fec-41f3-84ee-a48556f807a7",
-    "title": "Navigating the SSDI Application Process",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "4f712a68-d7ab-4478-ad58-41166c07b976",
-    "title": "Understanding the Dunning-Kruger Effect",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "13e2ecc7-577b-4447-a205-99760946c2e1",
-    "title": "Describing Flare-ups of Medical Condition",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "ff7a7be0-647b-4146-8f71-e8d9a42a569e",
-    "title": "Automating Illustrator Tasks with TypeScript Plugins",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "624bb8cd-9ce8-4df2-9636-1b68976c4202",
-    "title": "Handmade Pumpkin Ravioli with an Italian Nonna",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "896c8a60-deb3-4f47-ac77-fd4d5c43660b",
-    "title": "Understanding Obsessive-Compulsive Personality Disorder",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "738c14df-9768-475a-ae57-918e00809073",
-    "title": "Finding Voice Messages in Telegram",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "80559362-5b97-4e62-af66-4cb6ea4148e1",
-    "title": "Disability Benefits to Reduce Monthly Expenses",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "e3b10e17-b6f4-408c-9f35-6a30067dd760",
-    "title": "Exploring Feelings About Russia",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "eaff8f76-13a0-4e12-87ae-b108f493c440",
-    "title": "Income Limits for Disability Benefits",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "2d1816a8-adb0-42dc-9c5b-4e08ccdf9d6d",
-    "title": "Leonardo da Vinci's Mirror Writing",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "e4571070-234f-4e63-aac8-21427f98a7cc",
-    "title": "Analyzing Current Economic Conditions",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "e259647a-c33b-4c9b-99fb-0178fb341df2",
-    "title": "Chomsky's Linguistics and Programming Languages",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "87e27c1d-1423-4986-83f3-8f89273773b1",
-    "title": "Stay Puft Marshmallow Man Costume",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "8d6e372c-95a4-4c6b-ac6d-4c6a9234ec7b",
-    "title": "Watermarking Images and NFTs",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "096b04af-d173-4faa-8b1f-f33c33257cc5",
-    "title": "Selling Used iPhone for Cash",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "8cd0717b-308f-4e71-9714-72fa910959f5",
-    "title": "Leaving Packages at Apartment Complexes",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "1cf34555-d61e-4387-9b2a-cf30f72b9aeb",
-    "title": "Humorous Captions for Crumpled Paper Sculpture",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "7f04748b-1bba-48dd-9d8c-2265e99b0bc4",
-    "title": "Comfortable Spanish Translation for Communication",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "d2c7cde9-cda5-49ae-876a-614e9357d568",
-    "title": "Accessing Cash Through Credit Cards",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "4839af51-308d-46c9-9196-120698a6846d",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "f3a2a24f-764e-424b-8876-8cd72ce3336f",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "7683c3d7-8ff9-4b5c-9113-1f861e3d89db",
-    "title": "Seren & The Hard Problem",
+    "conversationId": "1af81ad0-3a33-45c4-941c-3ce8d2a087b2",
+    "title": "Seren & Ana & ExtendScript",
     "account": "DNA",
     "projectName": "Seren",
     "evidence": "the capture",
@@ -8778,8 +8462,8 @@
     "byHand": false
   },
   {
-    "conversationId": "c583291c-41f5-452a-9a77-ad8f5201ec13",
-    "title": "Algorithmic Art Project \"EvolvedSVG\"",
+    "conversationId": "2ed8084d-4698-447f-80ac-1de950d3fe15",
+    "title": "Accessing XMP Metadata in Illustrator ExtendScript",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8787,8 +8471,8 @@
     "byHand": false
   },
   {
-    "conversationId": "38abba80-b8c3-43f8-9c6e-cb378f4298b1",
-    "title": "Publication",
+    "conversationId": "efd9c851-25f2-4076-ae23-07759a0333d8",
+    "title": "Using BridgeTalk in Illustrator ExtendScript",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8796,8 +8480,8 @@
     "byHand": false
   },
   {
-    "conversationId": "ae21be79-5cca-4731-aced-9f01aa14ecdb",
-    "title": "Designing a React Homepage",
+    "conversationId": "33b29bb9-be51-44ba-9e7f-08217591e21c",
+    "title": "Implementing a Sophisticated Typed Facade",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8805,8 +8489,8 @@
     "byHand": false
   },
   {
-    "conversationId": "7949712c-e3a8-4308-bc32-5530d4122cc9",
-    "title": "Configuring a React App as an Internal Tool",
+    "conversationId": "9d78ecba-e2cc-479a-8205-73b032d988a8",
+    "title": "Configuring ExtendScript Debugger in VS Code",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8814,8 +8498,8 @@
     "byHand": false
   },
   {
-    "conversationId": "9de38ca8-b490-484f-81c7-8f44d560fd95",
-    "title": "Mapping Project with Custom Visualizations",
+    "conversationId": "e5eb0991-aeab-4c5a-8952-95395e604650",
+    "title": "Optimizing ExtendScript Abstractions for Illustrator",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8823,8 +8507,18 @@
     "byHand": false
   },
   {
-    "conversationId": "32d72eac-0ad9-4d70-8045-8e11a518ae9d",
-    "title": "Indexing and Mapping Natural Earth Datasets",
+    "conversationId": "45f0a38f-f25f-491f-a71a-390cb267fd44",
+    "title": "Seren & Color",
+    "account": "DNA",
+    "projectName": "Seren",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "cad4ab05-8c8f-453a-a674-9d6b21754d15",
+    "title": "Troubleshooting a VSCode Extension for SVG Interaction",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8832,80 +8526,8 @@
     "byHand": false
   },
   {
-    "conversationId": "8787d94a-9e7d-4f8a-a94c-120347205604",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "123ef1a6-65d8-4c6d-90a4-cb81eb6540a2",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "f8acdaaa-ff97-4a8b-9862-87d468ab2c08",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "3434e606-9d76-4042-85b4-3f35da706f7d",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "2ea23691-1449-4e7c-8f13-de26cdda9e13",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "536ddc40-56f8-4a3e-96bf-f3a75722c6cf",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "86882e61-ee4b-4e35-af1f-12204bdde2d2",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "5357bdbc-9d8c-4e0b-8be7-b78963efd2a5",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "4ef91b65-ffe8-4bd5-aa1a-79895d42d171",
-    "title": "In-Depth Analysis of Chemical Reactive Programming Framework",
+    "conversationId": "b6399323-15d5-4896-833e-c9988989b738",
+    "title": "Troubleshooting VSCode Extension Packaging",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8913,8 +8535,8 @@
     "byHand": false
   },
   {
-    "conversationId": "f7ef6336-2c0c-48fb-82d5-1b5dd668dead",
-    "title": "Learning Formal Logic",
+    "conversationId": "c29707c0-079e-4e89-bf19-8ad9b3d85061",
+    "title": "Extending VSCode with Custom File Modification APIs",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8922,8 +8544,8 @@
     "byHand": false
   },
   {
-    "conversationId": "1375bc58-a419-42ab-b115-d134ac4a20d4",
-    "title": "Furniture pickup and donation service on Long Island",
+    "conversationId": "09bc840a-91d8-4241-8589-2af38717a7a3",
+    "title": "Vectorizing Images with Color Extraction",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8931,17 +8553,8 @@
     "byHand": false
   },
   {
-    "conversationId": "d0314a80-0cf0-40eb-a4fc-ab339597107d",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "f09faba4-525c-42ed-9535-14944010cf26",
-    "title": "Setting up Miwifi AC1200 range extender",
+    "conversationId": "25a87038-ede3-4317-877c-12de72bbc3ab",
+    "title": "Semantic Reconstruction of Coding Perspectives",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8949,8 +8562,8 @@
     "byHand": false
   },
   {
-    "conversationId": "ef78ee8e-19c3-4c65-bf5e-6900cc4e7e01",
-    "title": "Preparing for SSA disability hearing with bipolar type I",
+    "conversationId": "a1981158-9ec7-4443-86bf-b6c4b81f2272",
+    "title": "Custom TypeScript Framework for Illustrator Scripting",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8958,8 +8571,8 @@
     "byHand": false
   },
   {
-    "conversationId": "2d534963-f4ba-4d6f-a239-554106fc8257",
-    "title": "Converting XMR to MON exchange calculation",
+    "conversationId": "6417d83b-2f34-4099-80d3-3c3b7921020c",
+    "title": "Fractal Rose: Exploring Mathematical Beauty",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8967,8 +8580,8 @@
     "byHand": false
   },
   {
-    "conversationId": "c5687936-2fa1-447c-b5ad-62b580cf6a67",
-    "title": "Moving subscription off iOS",
+    "conversationId": "a9d87661-a007-47b8-b77d-07714bd55beb",
+    "title": "Animated Rotating and Scaling Rose SVG",
     "account": "DNA",
     "evidence": "none",
     "excluded": false,
@@ -8976,7 +8589,25 @@
     "byHand": false
   },
   {
-    "conversationId": "12ddbf4a-fc3d-4219-a2ba-204d98f93c25",
+    "conversationId": "95b10e8d-663d-41db-a636-b23f4ba80d40",
+    "title": "Thoughtful Translation Request",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4d364f51-49ba-4898-920f-8e5347843be1",
+    "title": "Rewriting AHK 1.1 Taskbar Code for Robustness",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "f6cc388b-bfca-4bc7-acd0-74b787977f61",
     "title": "",
     "account": "DNA",
     "evidence": "none: the capture lists this title in Science and Fitness",
@@ -8985,7 +8616,7 @@
     "byHand": false
   },
   {
-    "conversationId": "4cd68ad1-eb53-4c18-9f1e-ca9bad73e0b3",
+    "conversationId": "8c71ccd4-32c7-497f-a70e-564212a82f18",
     "title": "",
     "account": "DNA",
     "evidence": "none: the capture lists this title in Science and Fitness",
@@ -8994,7 +8625,7 @@
     "byHand": false
   },
   {
-    "conversationId": "3d2ab4c2-af88-421d-87ea-b47dc604f393",
+    "conversationId": "221567f5-fd33-4423-b92a-0b0ac4aebb09",
     "title": "",
     "account": "DNA",
     "evidence": "none: the capture lists this title in Science and Fitness",
@@ -9003,370 +8634,251 @@
     "byHand": false
   },
   {
-    "conversationId": "d582355f-75b9-4ee9-8d07-2de679b4a9d8",
-    "title": "",
+    "conversationId": "f72c8a89-4d44-4b05-bf3a-48eeec8ae77d",
+    "title": "AutoHotkey Taskbar Control Script",
     "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
+    "evidence": "none",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "6b5c0795-bcf6-49b4-b0f5-edd285bb27a2",
-    "title": "",
+    "conversationId": "67afd096-f257-484d-b1fa-e895548e364f",
+    "title": "Formal Definition of the TLA",
     "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
+    "evidence": "none",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "1a94662c-e965-4cd7-be23-3f8b38f59883",
-    "title": "",
+    "conversationId": "9777b6d7-3659-42e0-bc0b-972d0d36c8f8",
+    "title": "Improving Vectorized Script and Serif Text in SVG",
     "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
+    "evidence": "none",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "75e215e2-e13e-4691-8b1e-62ee8671ae74",
-    "title": "",
+    "conversationId": "4ed05e5e-1409-4611-b5ce-d5bab18dd463",
+    "title": "Semantic Breakdown of SVG Paths and Curves",
     "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
+    "evidence": "none",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "ad85d888-7d4d-4224-9263-5bae0fc80635",
-    "title": "",
+    "conversationId": "0d887450-e312-4b7f-bb62-b28b58f1a843",
+    "title": "Enhancing Cohesive Composition",
     "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
+    "evidence": "none",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "184ec599-05b2-4555-bfd9-3b22ab1c67b8",
-    "title": "",
+    "conversationId": "f177ae6f-e60f-4590-8851-2c3b9df28e4d",
+    "title": "Conservation of Time Complexity",
     "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
+    "evidence": "none",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "d1bcdfb4-1e44-4945-a548-da07cb1e32fa",
-    "title": "",
+    "conversationId": "536493f4-96eb-41a8-8540-064a8273d365",
+    "title": "Sophia the Author",
     "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
+    "evidence": "none",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "06b9b0ad-2088-4ce3-ab86-293b645f1bc6",
-    "title": "A Continuation...",
+    "conversationId": "f6dfdc21-9d30-41ae-84ac-be13bc139f77",
+    "title": "Metalogical Subjectivity",
     "account": "DNA",
-    "projectName": "Semantic Reference Theory",
-    "evidence": "a search of its project's files",
+    "evidence": "none",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "59abf5a1-1a83-4506-be22-08be4a708b4a",
-    "title": "A Continuation...",
+    "conversationId": "d4be8c96-5640-41a4-ae72-bfdddfda71bf",
+    "title": "Banking Operational Risk Controls",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "cd20fa50-e4f4-401e-8837-8b3e3e087a5a",
+    "title": "Newton's Intuitive and Formal Laws of Motion",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "7c2ed8e9-cae2-44b3-bcd7-0b38a6441100",
+    "title": "Formal Mathematics and Conversational Assistance",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "329dcf98-5195-48aa-870a-5c75915bd4a8",
+    "title": "Fixing React Simple Maps Errors",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "87a581e5-db9b-4687-aff0-f18ac710e641",
+    "title": "Extending React Simple Maps with Predictable Components",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "1a1de1ef-057f-47f8-9a4f-b23e20a9b9d0",
+    "title": "Integrating ViewBox and Centering SVG Content",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "42c78ea0-d46e-4305-8567-4008bd59f2de",
+    "title": "Claude the Cartographer",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "5d5653bc-709b-4a1e-8955-65ac0b7e85e2",
+    "title": "Doug & Ana's Recursive Universe",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "937e4f73-405a-4b52-b1e8-c6774745c1f0",
+    "title": "Помощь с опросом Fiverr",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "41ee9869-0b3f-46c6-a9e5-424c48e41536",
+    "title": "Georgian Payoneer Help",
     "account": "DNA",
     "projectName": "Georgia",
-    "evidence": "a conversation search, one hop from \"Varenicline availability in Tbilisi Georgia\"",
+    "evidence": "the capture",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "dfa97dc2-359a-41a6-9512-e9a1281cb43b",
-    "title": "A Continuation...",
+    "conversationId": "5663772f-446e-4b69-a98a-4f36758fffff",
+    "title": "Sarah Boston maraphon map",
     "account": "DNA",
-    "evidence": "none: the capture lists this title in Georgia and Miscellaneous and Semantic Reference Theory and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
+    "byHand": false
+  },
+  {
+    "conversationId": "50f9b00a-6b8e-4f63-89af-4e37b944833e",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "96b135d1-7fd4-48db-a1b5-e114f62aa3f4",
-    "title": "A Continuation...",
+    "conversationId": "3e5346a6-24d1-4e54-91df-9b719efcbdbd",
+    "title": "Good Morning!",
+    "account": "DNA",
+    "projectName": "Eirian",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "64851304-af47-4f5d-ab80-154c1345915e",
+    "title": "Помощь с просмотром файла",
     "account": "DNA",
     "projectName": "Russia",
-    "evidence": "a conversation search, one hop from \"Maxim contact request strategy\"",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "7940f222-d122-473d-a613-9aeee7ac77db",
-    "title": "A Continuation...",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Georgia and Miscellaneous and Semantic Reference Theory and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "34027dae-1c83-4d49-bf00-2ea72aa00f35",
-    "title": "A Continuation...",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Georgia and Miscellaneous and Semantic Reference Theory and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "ac651a50-0027-4826-b0e6-89546fea6662",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "4d4c31a6-e8e6-471a-ae74-ce5c7de953a3",
-    "title": "A Continuation...",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Georgia and Miscellaneous and Semantic Reference Theory and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "7335fa17-01b9-485d-bd9e-1fb24b254e73",
-    "title": "A Continuation...",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Georgia and Miscellaneous and Semantic Reference Theory and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "9da752d3-d3dc-420e-bccb-91e0f3cb3238",
-    "title": "A Continuation...",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "a conversation search, one hop from \"KiwiPost payment confusion\"",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "4684293e-36f3-4224-a2cd-e3c8a97383ad",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "e9d9e0fb-a99c-42bf-8ba2-a826f723fcdd",
-    "title": "A Continuation",
-    "account": "DNA",
-    "projectName": "Grammar",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "61ef76df-4ae1-4661-8fef-9ee285447126",
-    "title": "A Continuation...",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Georgia and Miscellaneous and Semantic Reference Theory and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "e0994d83-5045-4ece-96ea-164b5dd0f0b1",
-    "title": "Lexeme and word-form distinction in verb conjugation",
-    "account": "DNA",
-    "projectName": "Grammar",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "4c9ad134-5943-4cd8-8147-f3c3fa361a82",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "32fd478d-0a60-4c4f-bd30-b9407c3bd0e6",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "8d505eb2-5b9e-4985-a7e9-f7e3557a3a80",
-    "title": "First-time IRS penalty abatement options",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "08725aec-6747-4114-813a-1851bb3cbc65",
-    "title": "Switching from Google login to password",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "714974ab-b142-467f-bbb4-b086e803e230",
-    "title": "New Resume",
-    "account": "DNA",
-    "projectName": "Resume",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "8b113ccf-4ae3-4747-bc5e-52f1480a9117",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "7ab7cda3-07fc-49f4-ac70-8a3bdcea2192",
-    "title": "Контекст проекта и стиль-гайды",
-    "account": "DNA",
-    "projectName": "Ana's Fiverr Inbox",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "filed under Ana's Fiverr Inbox",
-    "byHand": false
-  },
-  {
-    "conversationId": "8a11194f-a019-44aa-867e-a610fc50a0c2",
-    "title": "Remote getaway near Tbilisi",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "72baf528-64a3-413d-b905-fb5730a0f9ae",
-    "title": "Plants, xenon gas, and NMDA receptors",
-    "account": "DNA",
-    "projectName": "Science",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "dc9000ff-badf-40f6-8273-d88bdfd284e3",
-    "title": "Transferring domains between GoDaddy accounts",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "734fbb38-42ea-43a9-814a-d22002905ae8",
-    "title": "Chat initialization setup",
-    "account": "DNA",
-    "projectName": "Ana's Fiverr Inbox",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "filed under Ana's Fiverr Inbox",
-    "byHand": false
-  },
-  {
-    "conversationId": "4f4d18fb-8903-4680-853a-8d0875c0a015",
-    "title": "Продолжение работы над заметками",
-    "account": "DNA",
-    "projectName": "Ana's Fiverr Inbox",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "filed under Ana's Fiverr Inbox",
-    "byHand": false
-  },
-  {
-    "conversationId": "a287350c-ade4-4f1e-8370-99836fb61cb4",
-    "title": "Hannah map",
-    "account": "DNA",
-    "projectName": "Ana's Fiverr Inbox",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "filed under Ana's Fiverr Inbox",
-    "byHand": false
-  },
-  {
-    "conversationId": "92b759ad-dedb-4ff1-9258-8ccfd52ec8bc",
-    "title": "Anonymous Telegram numbers with TON",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "ec631ac7-b16c-421e-bcf2-c049db42499f",
-    "title": "Checking business name availability for Georgia entrepreneurs",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "7231de76-8602-4cc3-9196-26dd84fbd6be",
-    "title": "Citibank address verification requirement",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "8187c856-2803-4785-969f-3b5eebf21431",
-    "title": "Письмо адвокатам о платежах и контактах",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
     "evidence": "the capture",
     "excluded": true,
     "reason": "a title in Cyrillic",
     "byHand": false
   },
   {
-    "conversationId": "eef74580-c241-4927-9179-2335ef1d237b",
-    "title": "Switching primary domain in Google Workspace",
+    "conversationId": "487c612d-9c75-4c86-9388-2fce8996183e",
+    "title": "Russian military conscription and coercion mechanisms",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "a25923ae-84d0-46bb-aea7-fe79d8cfcc47",
+    "title": "Translation request",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "bba39ef6-a105-4beb-a580-c00c45f67c2d",
+    "title": "Identifying a ladybug pupa on a leaf",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "7f89c8d2-5911-489e-b5a6-d9cb8eeb673d",
+    "title": "Georgia IE residency income threshold",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "14242b5f-f1ea-4bf4-bbca-25c87a46771e",
+    "title": "Jesus' 40-day fast and temptation",
     "account": "DNA",
     "projectName": "Miscellaneous",
     "evidence": "the capture",
@@ -9375,8 +8887,8 @@
     "byHand": false
   },
   {
-    "conversationId": "d0cd6b29-6cc1-4a53-a6d2-040901235e18",
-    "title": "Заказ на карты марафонов",
+    "conversationId": "fd694290-f3cc-4fad-a842-a8faf8d97090",
+    "title": "anoniemus-Роттердам-лодки",
     "account": "DNA",
     "projectName": "Ana's Fiverr Inbox",
     "evidence": "the capture",
@@ -9385,8 +8897,8 @@
     "byHand": false
   },
   {
-    "conversationId": "c17d7faa-52c5-47ce-9c0f-705a6745b630",
-    "title": "Converting shared conversation to document",
+    "conversationId": "1c387d40-6a27-4d7c-b0dc-81ac4ab30704",
+    "title": "SRT as a Github Project",
     "account": "DNA",
     "projectName": "Semantic Reference Theory",
     "evidence": "the capture",
@@ -9395,107 +8907,8 @@
     "byHand": false
   },
   {
-    "conversationId": "586e07a1-a07f-40cb-ae50-8e98eed662a4",
-    "title": "Analyzing Chalmers, Dennett, and Hofstadter on consciousness and ontology",
-    "account": "DNA",
-    "projectName": "The Hard Problem",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "ac1a0805-52a6-4c59-9b77-b921540673e7",
-    "title": "Marie_Siettle",
-    "account": "DNA",
-    "projectName": "Ana's Fiverr Inbox",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "filed under Ana's Fiverr Inbox",
-    "byHand": false
-  },
-  {
-    "conversationId": "175247fd-2462-4fe8-ba5a-4d185ab955f2",
-    "title": "Stefanie",
-    "account": "DNA",
-    "projectName": "Ana's Fiverr Inbox",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "filed under Ana's Fiverr Inbox",
-    "byHand": false
-  },
-  {
-    "conversationId": "f1c2c4e8-c0af-403b-838d-fc3ab4b087a8",
-    "title": "Поиск магазинов с готовой едой в Тбилиси",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "ef496e28-dae5-4f4c-bc08-34afb86afcfc",
-    "title": "Перевод сообщения о повышении цен в школе",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "39fad1f0-6fa8-4da6-b710-2dc5c6a61259",
-    "title": "Inheritance notation and syntax evolution",
-    "account": "DNA",
-    "evidence": "none: a search of its project's files said Semantic Reference Theory, vetoed since the capture visited the project and did not list it",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "7298cc94-c9f3-48a7-a278-79eae6608075",
-    "title": "Categorizing monthly expenses from bank statements",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "e4ef023d-2c16-43dc-a9e3-2b2972163e0d",
-    "title": "Buying Telegram usernames on Fragment",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "981e2703-eb88-4990-89c5-c42f4ea9d03e",
-    "title": "Смена почты в Telegram",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "9854c96a-14b2-4301-8b56-d30a71b9f4e0",
-    "title": "Unifying SRT axioms with symbolization",
-    "account": "DNA",
-    "projectName": "Semantic Reference Theory",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "cc78631a-e596-440c-8c37-71dd076a79ce",
-    "title": "Ursodeoxycholic acid medications in Tbilisi pharmacies",
+    "conversationId": "1e12bee5-da62-4b89-8d31-6e36a873faa2",
+    "title": "💬 Ana id doing an individual ent…",
     "account": "DNA",
     "projectName": "Georgia",
     "evidence": "the capture",
@@ -9504,8 +8917,8 @@
     "byHand": false
   },
   {
-    "conversationId": "bed4c3e0-78f7-45d1-a439-5b4c7b5da379",
-    "title": "Jodie_Nazaki",
+    "conversationId": "3d0f3ab3-8310-47c1-941c-1189565a624b",
+    "title": "Claire Law",
     "account": "DNA",
     "projectName": "Ana's Fiverr Inbox",
     "evidence": "the capture",
@@ -9514,18 +8927,8 @@
     "byHand": false
   },
   {
-    "conversationId": "48dade6c-a759-440e-be0c-afe7f599fbc3",
-    "title": "Translation to English",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "58a3d24c-8876-441c-b38b-b476f9288411",
-    "title": "Письмо адвокатам о контактах и алиментах",
+    "conversationId": "70cf0e70-daae-491b-9977-c7b5f1afe5b1",
+    "title": "Список вещей для лагеря в Сурами",
     "account": "DNA",
     "projectName": "Miscellaneous",
     "evidence": "the capture",
@@ -9534,7 +8937,17 @@
     "byHand": false
   },
   {
-    "conversationId": "b49ade36-2d8d-4282-ac6a-b7bfcf637e82",
+    "conversationId": "db8acef2-49d6-4253-8672-3c6eee092f6a",
+    "title": "Revoking travel bans in Russia",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "c091a968-5241-4bbb-91ec-0e88f665418d",
     "title": "",
     "account": "DNA",
     "evidence": "none: the capture lists this title in Science and Fitness",
@@ -9553,7 +8966,7 @@
     "byHand": false
   },
   {
-    "conversationId": "c091a968-5241-4bbb-91ec-0e88f665418d",
+    "conversationId": "b49ade36-2d8d-4282-ac6a-b7bfcf637e82",
     "title": "",
     "account": "DNA",
     "evidence": "none: the capture lists this title in Science and Fitness",
@@ -9562,17 +8975,8 @@
     "byHand": false
   },
   {
-    "conversationId": "db8acef2-49d6-4253-8672-3c6eee092f6a",
-    "title": "Revoking travel bans in Russia",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "70cf0e70-daae-491b-9977-c7b5f1afe5b1",
-    "title": "Список вещей для лагеря в Сурами",
+    "conversationId": "58a3d24c-8876-441c-b38b-b476f9288411",
+    "title": "Письмо адвокатам о контактах и алиментах",
     "account": "DNA",
     "projectName": "Miscellaneous",
     "evidence": "the capture",
@@ -9581,8 +8985,18 @@
     "byHand": false
   },
   {
-    "conversationId": "3d0f3ab3-8310-47c1-941c-1189565a624b",
-    "title": "Claire Law",
+    "conversationId": "48dade6c-a759-440e-be0c-afe7f599fbc3",
+    "title": "Translation to English",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "bed4c3e0-78f7-45d1-a439-5b4c7b5da379",
+    "title": "Jodie_Nazaki",
     "account": "DNA",
     "projectName": "Ana's Fiverr Inbox",
     "evidence": "the capture",
@@ -9591,8 +9005,8 @@
     "byHand": false
   },
   {
-    "conversationId": "1e12bee5-da62-4b89-8d31-6e36a873faa2",
-    "title": "💬 Ana id doing an individual ent…",
+    "conversationId": "cc78631a-e596-440c-8c37-71dd076a79ce",
+    "title": "Ursodeoxycholic acid medications in Tbilisi pharmacies",
     "account": "DNA",
     "projectName": "Georgia",
     "evidence": "the capture",
@@ -9601,8 +9015,8 @@
     "byHand": false
   },
   {
-    "conversationId": "1c387d40-6a27-4d7c-b0dc-81ac4ab30704",
-    "title": "SRT as a Github Project",
+    "conversationId": "9854c96a-14b2-4301-8b56-d30a71b9f4e0",
+    "title": "Unifying SRT axioms with symbolization",
     "account": "DNA",
     "projectName": "Semantic Reference Theory",
     "evidence": "the capture",
@@ -9611,18 +9025,18 @@
     "byHand": false
   },
   {
-    "conversationId": "fd694290-f3cc-4fad-a842-a8faf8d97090",
-    "title": "anoniemus-Роттердам-лодки",
+    "conversationId": "981e2703-eb88-4990-89c5-c42f4ea9d03e",
+    "title": "Смена почты в Telegram",
     "account": "DNA",
-    "projectName": "Ana's Fiverr Inbox",
+    "projectName": "Miscellaneous",
     "evidence": "the capture",
     "excluded": true,
-    "reason": "filed under Ana's Fiverr Inbox",
+    "reason": "a title in Cyrillic",
     "byHand": false
   },
   {
-    "conversationId": "14242b5f-f1ea-4bf4-bbca-25c87a46771e",
-    "title": "Jesus' 40-day fast and temptation",
+    "conversationId": "e4ef023d-2c16-43dc-a9e3-2b2972163e0d",
+    "title": "Buying Telegram usernames on Fragment",
     "account": "DNA",
     "projectName": "Miscellaneous",
     "evidence": "the capture",
@@ -9631,67 +9045,216 @@
     "byHand": false
   },
   {
-    "conversationId": "7f89c8d2-5911-489e-b5a6-d9cb8eeb673d",
-    "title": "Georgia IE residency income threshold",
+    "conversationId": "7298cc94-c9f3-48a7-a278-79eae6608075",
+    "title": "Categorizing monthly expenses from bank statements",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "39fad1f0-6fa8-4da6-b710-2dc5c6a61259",
+    "title": "Inheritance notation and syntax evolution",
+    "account": "DNA",
+    "evidence": "none: a search of its project's files said Semantic Reference Theory, vetoed since the capture visited the project and did not list it",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "ef496e28-dae5-4f4c-bc08-34afb86afcfc",
+    "title": "Перевод сообщения о повышении цен в школе",
     "account": "DNA",
     "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "bba39ef6-a105-4beb-a580-c00c45f67c2d",
-    "title": "Identifying a ladybug pupa on a leaf",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "a25923ae-84d0-46bb-aea7-fe79d8cfcc47",
-    "title": "Translation request",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "487c612d-9c75-4c86-9388-2fce8996183e",
-    "title": "Russian military conscription and coercion mechanisms",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "64851304-af47-4f5d-ab80-154c1345915e",
-    "title": "Помощь с просмотром файла",
-    "account": "DNA",
-    "projectName": "Russia",
     "evidence": "the capture",
     "excluded": true,
     "reason": "a title in Cyrillic",
     "byHand": false
   },
   {
-    "conversationId": "3e5346a6-24d1-4e54-91df-9b719efcbdbd",
-    "title": "Good Morning!",
+    "conversationId": "f1c2c4e8-c0af-403b-838d-fc3ab4b087a8",
+    "title": "Поиск магазинов с готовой едой в Тбилиси",
     "account": "DNA",
-    "projectName": "Eirian",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "175247fd-2462-4fe8-ba5a-4d185ab955f2",
+    "title": "Stefanie",
+    "account": "DNA",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
+    "byHand": false
+  },
+  {
+    "conversationId": "ac1a0805-52a6-4c59-9b77-b921540673e7",
+    "title": "Marie_Siettle",
+    "account": "DNA",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
+    "byHand": false
+  },
+  {
+    "conversationId": "586e07a1-a07f-40cb-ae50-8e98eed662a4",
+    "title": "Analyzing Chalmers, Dennett, and Hofstadter on consciousness and ontology",
+    "account": "DNA",
+    "projectName": "The Hard Problem",
     "evidence": "the capture",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "50f9b00a-6b8e-4f63-89af-4e37b944833e",
+    "conversationId": "c17d7faa-52c5-47ce-9c0f-705a6745b630",
+    "title": "Converting shared conversation to document",
+    "account": "DNA",
+    "projectName": "Semantic Reference Theory",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "d0cd6b29-6cc1-4a53-a6d2-040901235e18",
+    "title": "Заказ на карты марафонов",
+    "account": "DNA",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
+    "byHand": false
+  },
+  {
+    "conversationId": "eef74580-c241-4927-9179-2335ef1d237b",
+    "title": "Switching primary domain in Google Workspace",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "8187c856-2803-4785-969f-3b5eebf21431",
+    "title": "Письмо адвокатам о платежах и контактах",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "7231de76-8602-4cc3-9196-26dd84fbd6be",
+    "title": "Citibank address verification requirement",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "ec631ac7-b16c-421e-bcf2-c049db42499f",
+    "title": "Checking business name availability for Georgia entrepreneurs",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "92b759ad-dedb-4ff1-9258-8ccfd52ec8bc",
+    "title": "Anonymous Telegram numbers with TON",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "a287350c-ade4-4f1e-8370-99836fb61cb4",
+    "title": "Hannah map",
+    "account": "DNA",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
+    "byHand": false
+  },
+  {
+    "conversationId": "4f4d18fb-8903-4680-853a-8d0875c0a015",
+    "title": "Продолжение работы над заметками",
+    "account": "DNA",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
+    "byHand": false
+  },
+  {
+    "conversationId": "734fbb38-42ea-43a9-814a-d22002905ae8",
+    "title": "Chat initialization setup",
+    "account": "DNA",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
+    "byHand": false
+  },
+  {
+    "conversationId": "dc9000ff-badf-40f6-8273-d88bdfd284e3",
+    "title": "Transferring domains between GoDaddy accounts",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "72baf528-64a3-413d-b905-fb5730a0f9ae",
+    "title": "Plants, xenon gas, and NMDA receptors",
+    "account": "DNA",
+    "projectName": "Science",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "8a11194f-a019-44aa-867e-a610fc50a0c2",
+    "title": "Remote getaway near Tbilisi",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "7ab7cda3-07fc-49f4-ac70-8a3bdcea2192",
+    "title": "Контекст проекта и стиль-гайды",
+    "account": "DNA",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
+    "byHand": false
+  },
+  {
+    "conversationId": "8b113ccf-4ae3-4747-bc5e-52f1480a9117",
     "title": "",
     "account": "DNA",
     "evidence": "none: the capture lists this title in Science and Fitness",
@@ -9700,33 +9263,471 @@
     "byHand": false
   },
   {
-    "conversationId": "5663772f-446e-4b69-a98a-4f36758fffff",
-    "title": "Sarah Boston maraphon map",
+    "conversationId": "714974ab-b142-467f-bbb4-b086e803e230",
+    "title": "New Resume",
     "account": "DNA",
-    "projectName": "Ana's Fiverr Inbox",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "filed under Ana's Fiverr Inbox",
-    "byHand": false
-  },
-  {
-    "conversationId": "41ee9869-0b3f-46c6-a9e5-424c48e41536",
-    "title": "Georgian Payoneer Help",
-    "account": "DNA",
-    "projectName": "Georgia",
+    "projectName": "Resume",
     "evidence": "the capture",
     "excluded": false,
     "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "937e4f73-405a-4b52-b1e8-c6774745c1f0",
-    "title": "Помощь с опросом Fiverr",
+    "conversationId": "08725aec-6747-4114-813a-1851bb3cbc65",
+    "title": "Switching from Google login to password",
     "account": "DNA",
     "projectName": "Miscellaneous",
     "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "8d505eb2-5b9e-4985-a7e9-f7e3557a3a80",
+    "title": "First-time IRS penalty abatement options",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "32fd478d-0a60-4c4f-bd30-b9407c3bd0e6",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4c9ad134-5943-4cd8-8147-f3c3fa361a82",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "e0994d83-5045-4ece-96ea-164b5dd0f0b1",
+    "title": "Lexeme and word-form distinction in verb conjugation",
+    "account": "DNA",
+    "projectName": "Grammar",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "61ef76df-4ae1-4661-8fef-9ee285447126",
+    "title": "A Continuation...",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Semantic Reference Theory and Russia and Georgia and Miscellaneous and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "e9d9e0fb-a99c-42bf-8ba2-a826f723fcdd",
+    "title": "A Continuation",
+    "account": "DNA",
+    "projectName": "Grammar",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4684293e-36f3-4224-a2cd-e3c8a97383ad",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "9da752d3-d3dc-420e-bccb-91e0f3cb3238",
+    "title": "A Continuation...",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "a conversation search, one hop from \"Penelope's symptoms and treatment\"",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "7335fa17-01b9-485d-bd9e-1fb24b254e73",
+    "title": "A Continuation...",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Semantic Reference Theory and Russia and Georgia and Miscellaneous and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4d4c31a6-e8e6-471a-ae74-ce5c7de953a3",
+    "title": "A Continuation...",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Semantic Reference Theory and Russia and Georgia and Miscellaneous and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "ac651a50-0027-4826-b0e6-89546fea6662",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "34027dae-1c83-4d49-bf00-2ea72aa00f35",
+    "title": "A Continuation...",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Semantic Reference Theory and Russia and Georgia and Miscellaneous and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "7940f222-d122-473d-a613-9aeee7ac77db",
+    "title": "A Continuation...",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Semantic Reference Theory and Russia and Georgia and Miscellaneous and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "96b135d1-7fd4-48db-a1b5-e114f62aa3f4",
+    "title": "A Continuation...",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "a conversation search, one hop from \"Maxim contact request strategy\"",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "dfa97dc2-359a-41a6-9512-e9a1281cb43b",
+    "title": "A Continuation...",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Semantic Reference Theory and Russia and Georgia and Miscellaneous and Chemistry and Ana's Fiverr Inbox and Turkey and Physics and Number Theory and Nikolai",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "59abf5a1-1a83-4506-be22-08be4a708b4a",
+    "title": "A Continuation...",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "a conversation search, one hop from \"Varenicline availability in Tbilisi Georgia\"",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "06b9b0ad-2088-4ce3-ab86-293b645f1bc6",
+    "title": "A Continuation...",
+    "account": "DNA",
+    "projectName": "Semantic Reference Theory",
+    "evidence": "a search of its project's files",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "d1bcdfb4-1e44-4945-a548-da07cb1e32fa",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "184ec599-05b2-4555-bfd9-3b22ab1c67b8",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "ad85d888-7d4d-4224-9263-5bae0fc80635",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "75e215e2-e13e-4691-8b1e-62ee8671ae74",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "1a94662c-e965-4cd7-be23-3f8b38f59883",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "6b5c0795-bcf6-49b4-b0f5-edd285bb27a2",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "d582355f-75b9-4ee9-8d07-2de679b4a9d8",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "3d2ab4c2-af88-421d-87ea-b47dc604f393",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4cd68ad1-eb53-4c18-9f1e-ca9bad73e0b3",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "12ddbf4a-fc3d-4219-a2ba-204d98f93c25",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "c5687936-2fa1-447c-b5ad-62b580cf6a67",
+    "title": "Moving subscription off iOS",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "2d534963-f4ba-4d6f-a239-554106fc8257",
+    "title": "Converting XMR to MON exchange calculation",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "ef78ee8e-19c3-4c65-bf5e-6900cc4e7e01",
+    "title": "Preparing for SSA disability hearing with bipolar type I",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "f09faba4-525c-42ed-9535-14944010cf26",
+    "title": "Setting up Miwifi AC1200 range extender",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "d0314a80-0cf0-40eb-a4fc-ab339597107d",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "1375bc58-a419-42ab-b115-d134ac4a20d4",
+    "title": "Furniture pickup and donation service on Long Island",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "f7ef6336-2c0c-48fb-82d5-1b5dd668dead",
+    "title": "Learning Formal Logic",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4ef91b65-ffe8-4bd5-aa1a-79895d42d171",
+    "title": "In-Depth Analysis of Chemical Reactive Programming Framework",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "5357bdbc-9d8c-4e0b-8be7-b78963efd2a5",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "86882e61-ee4b-4e35-af1f-12204bdde2d2",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "536ddc40-56f8-4a3e-96bf-f3a75722c6cf",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "2ea23691-1449-4e7c-8f13-de26cdda9e13",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "3434e606-9d76-4042-85b4-3f35da706f7d",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "f8acdaaa-ff97-4a8b-9862-87d468ab2c08",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "123ef1a6-65d8-4c6d-90a4-cb81eb6540a2",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "8787d94a-9e7d-4f8a-a94c-120347205604",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "32d72eac-0ad9-4d70-8045-8e11a518ae9d",
+    "title": "Indexing and Mapping Natural Earth Datasets",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "9de38ca8-b490-484f-81c7-8f44d560fd95",
+    "title": "Mapping Project with Custom Visualizations",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "7949712c-e3a8-4308-bc32-5530d4122cc9",
+    "title": "Configuring a React App as an Internal Tool",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "ae21be79-5cca-4731-aced-9f01aa14ecdb",
+    "title": "Designing a React Homepage",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "38abba80-b8c3-43f8-9c6e-cb378f4298b1",
+    "title": "Publication",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "c583291c-41f5-452a-9a77-ad8f5201ec13",
+    "title": "Algorithmic Art Project \"EvolvedSVG\"",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": false,
+    "reason": "",
     "byHand": false
   },
   {
@@ -11127,9 +11128,10 @@
     "conversationId": "857c0398-0386-43b2-83d8-a301cc6af1b8",
     "title": "Domi payment",
     "account": "DNA",
-    "evidence": "none: a read of its project's memory said Ana's Fiverr Inbox, vetoed since the capture visited the project and did not list it",
-    "excluded": false,
-    "reason": "",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
     "byHand": false
   },
   {
@@ -12635,8 +12637,8 @@
     "byHand": false
   },
   {
-    "conversationId": "5730d0e7-14c8-41e1-8d89-eef997fe8a6f",
-    "title": "Tesla roadster and robots",
+    "conversationId": "6fe8ad2a-8476-4bde-a595-26c17e8681b4",
+    "title": "Understanding jihad and Muslim violence perceptions",
     "account": "DNA",
     "projectName": "Miscellaneous",
     "evidence": "the capture",
@@ -12645,540 +12647,18 @@
     "byHand": false
   },
   {
-    "conversationId": "de3442a6-6179-448e-80b3-cd00fc5e27c6",
-    "title": "Dominic Harbor & Bays maps",
+    "conversationId": "a7e4a527-9d60-40c2-8764-346846a9a418",
+    "title": "Создание профиля на LinkedIn",
     "account": "DNA",
-    "evidence": "none: a read of its project's memory said Ana's Fiverr Inbox, vetoed since the capture visited the project and did not list it",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "1463dc31-5a8a-4b30-8a93-02484af5db96",
-    "title": "Оплата налога ИП 1%",
-    "account": "DNA",
-    "evidence": "none: a read of its project's memory said Georgia, vetoed since the capture visited the project and did not list it",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "1808cb01-821c-4c10-9b05-28b18047bcd3",
-    "title": "Загранпаспорт при запрете на выезд",
-    "account": "DNA",
-    "projectName": "Russia",
+    "projectName": "Ana's Career",
     "evidence": "the capture",
     "excluded": true,
-    "reason": "a title in Cyrillic",
+    "reason": "filed under Ana's Career",
     "byHand": false
   },
   {
-    "conversationId": "7250c404-f0d3-40ac-a39f-cf521b31b364",
-    "title": "Свидетельства о рождении и гражданство",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "3941fb3e-9b6a-4fef-98a0-4a0e7918437d",
-    "title": "Problem summary request",
-    "account": "DNA",
-    "projectName": "Science",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "8431217e-f19a-4b7a-bf86-a6033125ef08",
-    "title": "Сообщение клиенту о доставке",
-    "account": "DNA",
-    "projectName": "Ana's Fiverr Inbox",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "filed under Ana's Fiverr Inbox",
-    "byHand": false
-  },
-  {
-    "conversationId": "475574f6-cfd1-4c63-a591-f1bef0e06531",
-    "title": "Changing flight date",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "a376626b-25b0-483a-8728-fe244a119032",
-    "title": "Семейное образование и регистрация детей",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "c54437a5-8717-4d0b-b5b7-ba3616c5018c",
-    "title": "Банк Дом РФ доступ",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "90c8f3e3-b858-4140-8ae7-c9b23c5eeb23",
-    "title": "Инфовйс для Бейлор университета",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "5f2a4bb3-dd04-4f4e-9381-91530c38846e",
-    "title": "Госуслуги изменения",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "ef6b1684-cd90-4a93-b4bb-acafbf661f48",
-    "title": "Стратегия переговоров с отцом детей",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "ece32584-f62d-462a-82f7-2234fe2482a8",
-    "title": "Контакты детей и безопасность",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "bbb794ff-8df3-402c-a02f-cae3aa07bcd2",
-    "title": "Атаки на дата-центры и последствия",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "a2e092c0-44a4-442a-b821-1d21d738cc89",
-    "title": "Computational epistemology and consciousness",
-    "account": "DNA",
-    "projectName": "Science",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "890d0f4a-f0b5-40e8-9dee-88a793a65253",
-    "title": "MoC Speakers",
-    "account": "DNA",
-    "projectName": "Science",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "dbba812c-7c27-4f75-b565-1f2b46965bac",
-    "title": "MoC Schedule",
-    "account": "DNA",
-    "projectName": "Science",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "a07786e2-334b-46d0-9aa2-95a60218117f",
-    "title": "Wake up Copenhagen hotel directions",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "32244291-fa68-4054-a51f-1e234697a5c6",
-    "title": "Magti roaming data Copenhagen",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "a9f19c04-b087-4db5-9251-30920e50aa81",
-    "title": "KiwiPost payment confusion",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "db0b30ef-bae1-42d9-a1f3-64ec08901450",
-    "title": "Penelope's symptoms and treatment",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "5d7f1512-2371-4e4e-aba0-036d6402de86",
-    "title": "Russian custody enforcement precedent",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "42afc6bd-f70c-4df8-86c4-231791920a8c",
-    "title": "Maxim contact request strategy",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "12d855b8-e508-406a-8162-5c93f327ac93",
-    "title": "Konsul Prime",
-    "account": "DNA",
-    "evidence": "none: a read of its project's memory said Russia, vetoed since the capture visited the project and did not list it",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "8cc8ee76-8982-4076-a4d9-9599df745bf9",
-    "title": "Ветеринарные аптеки Тбилиси",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "4cd85995-b066-4ea1-9a7c-ec43a96ae80c",
-    "title": "Safety training quiz",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "313d1090-0f21-4c56-aedb-a98e4f918054",
-    "title": "Russia plague news manipulation",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "ad583190-616e-4ab4-b837-8cb039b998ce",
-    "title": "Aikido payment account issue",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "38078bd1-a8bd-467d-bf0e-6b4292e13469",
-    "title": "Биометрический паспорт в Тбилиси",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "bf83bbe0-538e-4d29-b64a-7f9ead5b68aa",
-    "title": "Post-surgery heel pain and recovery",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "603b2e13-2481-4bc5-9721-acc5bd9df64d",
-    "title": "МВД travel ban request",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "097bf0d0-c377-4f2d-b91b-4494c42d6530",
-    "title": "Psychologist cost and services",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "1fb1ed3c-9661-473f-8434-bdc23ae2924e",
-    "title": "Testosterone в аптеках Грузии",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "137b33d3-35a2-4b6e-8b8b-503b1f87a8c2",
-    "title": "Trump superintelligence luncheon seating",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "76306aa8-8143-418c-b83b-f000d28fe4a5",
-    "title": "Список кружков школы",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "5f432a8f-0b00-47d2-9a41-59a743253a9e",
-    "title": "Kiwi post Amazon invoice",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "34055d3f-e3b1-4dd4-a675-e793f203de51",
-    "title": "Photons as fictional constructs",
-    "account": "DNA",
-    "projectName": "Science",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "b6395c0d-4fa0-4a98-add2-92bbee4d0dc9",
-    "title": "Cathy > Programming",
-    "account": "DNA",
-    "projectName": "Claude",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "621eab6a-e589-44be-8fbf-992e7866fb17",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "3edf7541-6fd4-4327-95b3-b48dfaf0f105",
-    "title": "Green card через супруга",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "e3b9cce6-4f34-4dc9-9ce6-d0d8ee04650f",
-    "title": "Разрешение на работу для ИП",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "4cfb93f4-65df-43e4-87ed-8a6b941ce5eb",
-    "title": "Разрешение на работу для ИП в Грузии",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "f1417088-00b5-4830-9e73-cc1d05da4349",
-    "title": "Визаран для россиян в Грузии: риски и реальность",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "4fa3765a-1748-4411-8c87-1d4801c8dbd9",
-    "title": "Dispatching code to remote Linux workstation",
-    "account": "DNA",
-    "projectName": "Code",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "0d99232e-cdfe-4a11-814e-1bc0f31ece27",
-    "title": "Green card options for Russian spouse and stepchildren",
-    "account": "DNA",
-    "projectName": "Russia",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "0e9fbdd1-33d4-43ea-9bda-fec220244732",
-    "title": "The Genesis of Writing",
-    "account": "DNA",
-    "projectName": "Code",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "3f7e9877-993c-4264-82f4-8ce5120ee8b4",
-    "title": "Verifying OpenAI report authenticity",
-    "account": "DNA",
-    "projectName": "Code",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "1f62d14e-dda2-4243-b9bd-8e33f54decd4",
-    "title": "Neural encoding during hallucinations",
-    "account": "DNA",
-    "projectName": "Science",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "effbe068-8c73-4d59-9fe7-d9bcef9c042d",
-    "title": "Clarity act cryptocurrency bill prospects",
-    "account": "DNA",
-    "projectName": "Investing",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "30fd650a-1617-48be-8f59-956155ff129c",
-    "title": "Подготовка Дага к конференции в Копенгагене",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "16f38e2a-76eb-4406-a661-d2a70ff5d6ca",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "26c4c37a-4136-467f-8271-c3bbdc1c7c36",
-    "title": "",
-    "account": "DNA",
-    "evidence": "none: the capture lists this title in Science and Fitness",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "c0f5ecaf-4115-48a7-ba82-98109aeb4579",
-    "title": "The Project",
-    "account": "DNA",
-    "projectName": "The Hard Problem",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "95d3df52-40ed-448f-934f-93cc6bc32b34",
-    "title": "Выбор правильной дозировки Озампика по рецепту",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "8b14b84b-bfa7-4264-af28-ae3974cf3640",
-    "title": "Semantics of Representation",
+    "conversationId": "3eecc63c-9ff6-4733-a87c-e2d882af6711",
+    "title": "Foundations: Types & Properties",
     "account": "DNA",
     "projectName": "Semantic Reference Theory",
     "evidence": "the capture",
@@ -13187,156 +12667,8 @@
     "byHand": false
   },
   {
-    "conversationId": "ac686866-f08a-428d-b73a-c0f329799dcf",
-    "title": "Formal abstractions using sketches and SRT",
-    "account": "DNA",
-    "evidence": "none: a read of its project's memory said Semantic Reference Theory, vetoed since the capture visited the project and did not list it",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "74b415d8-56c3-4991-99c8-365b39068906",
-    "title": "Visa requirements for Americans in Indonesia and Malaysia",
-    "account": "DNA",
-    "projectName": "Miscellaneous",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "d5c0cf36-a66b-4454-ada5-2b449ef37de4",
-    "title": "Semantics of Types & More",
-    "account": "DNA",
-    "projectName": "Semantic Reference Theory",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "f5bdbf0f-a201-4242-ab04-dcd0c2dcddd0",
-    "title": "Как разобрать люстру для замены лампочки",
-    "account": "DNA",
-    "evidence": "none",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "9530c00f-8bb0-4c15-a61f-d5cc02f2164c",
-    "title": "Расчет расходов Кати на одежду",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "995f0ffb-7d34-4c42-a4ae-3bde14d77ae7",
-    "title": "Офтальмолог Katie's Ophtalmologist",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "5fdfa75e-e8a0-4dc9-b0e7-f2b9c323b750",
-    "title": "Blog: Biology & Etymology, Semantic Homeostasis",
-    "account": "DNA",
-    "projectName": "Grammar",
-    "evidence": "the capture",
-    "excluded": false,
-    "reason": "",
-    "byHand": false
-  },
-  {
-    "conversationId": "1d72d8d9-0951-455d-90c4-f4db10a6a864",
-    "title": "Понимание основ СРТ",
-    "account": "DNA",
-    "projectName": "Semantic Reference Theory",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "712407ef-59fc-427d-82f8-452ba078ac3a",
-    "title": "School Расчет оплаты питания для двух детей",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "74e7c133-6b0d-4060-993e-ac4719bd0a63",
-    "title": "Supinators Письмо производителю супинаторов на грузинском",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "dd209873-406b-44e5-bcc0-b84f66bbc805",
-    "title": "Письмо производителю супинаторов на грузинском",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "94a30492-b469-4de7-8a64-da94c86ab85f",
-    "title": "Письмо производителю супинаторов на грузинском",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "f0c383f0-1a87-4a04-acdc-f9569073da49",
-    "title": "Получение налогового номера для иностранца в Грузии",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "96a7ca7d-2c91-459c-ba56-04119eff9e4f",
-    "title": "Перевод английских слов на русский",
-    "account": "DNA",
-    "projectName": "Semantic Reference Theory",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "3f095881-8d16-4c31-a16f-fa732f715d4a",
-    "title": "загранпаспорта старого образца- Dima's passport",
-    "account": "DNA",
-    "projectName": "Georgia",
-    "evidence": "the capture",
-    "excluded": true,
-    "reason": "a title in Cyrillic",
-    "byHand": false
-  },
-  {
-    "conversationId": "192e7cfa-d83e-461a-b2e0-bca87e6aa226",
-    "title": "Возмещение за отсутствующий товар",
+    "conversationId": "410fec6f-d6cc-4394-8676-86f673a3a83b",
+    "title": "Ardi insurance Арди для стоматолога и офтальмолога",
     "account": "DNA",
     "projectName": "Georgia",
     "evidence": "the capture",
@@ -13355,8 +12687,8 @@
     "byHand": false
   },
   {
-    "conversationId": "410fec6f-d6cc-4394-8676-86f673a3a83b",
-    "title": "Ardi insurance Арди для стоматолога и офтальмолога",
+    "conversationId": "192e7cfa-d83e-461a-b2e0-bca87e6aa226",
+    "title": "Возмещение за отсутствующий товар",
     "account": "DNA",
     "projectName": "Georgia",
     "evidence": "the capture",
@@ -13365,8 +12697,127 @@
     "byHand": false
   },
   {
-    "conversationId": "3eecc63c-9ff6-4733-a87c-e2d882af6711",
-    "title": "Foundations: Types & Properties",
+    "conversationId": "3f095881-8d16-4c31-a16f-fa732f715d4a",
+    "title": "загранпаспорта старого образца- Dima's passport",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "96a7ca7d-2c91-459c-ba56-04119eff9e4f",
+    "title": "Перевод английских слов на русский",
+    "account": "DNA",
+    "projectName": "Semantic Reference Theory",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "f0c383f0-1a87-4a04-acdc-f9569073da49",
+    "title": "Получение налогового номера для иностранца в Грузии",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "94a30492-b469-4de7-8a64-da94c86ab85f",
+    "title": "Письмо производителю супинаторов на грузинском",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "dd209873-406b-44e5-bcc0-b84f66bbc805",
+    "title": "Письмо производителю супинаторов на грузинском",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "74e7c133-6b0d-4060-993e-ac4719bd0a63",
+    "title": "Supinators Письмо производителю супинаторов на грузинском",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "712407ef-59fc-427d-82f8-452ba078ac3a",
+    "title": "School Расчет оплаты питания для двух детей",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "1d72d8d9-0951-455d-90c4-f4db10a6a864",
+    "title": "Понимание основ СРТ",
+    "account": "DNA",
+    "projectName": "Semantic Reference Theory",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "5fdfa75e-e8a0-4dc9-b0e7-f2b9c323b750",
+    "title": "Blog: Biology & Etymology, Semantic Homeostasis",
+    "account": "DNA",
+    "projectName": "Grammar",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "995f0ffb-7d34-4c42-a4ae-3bde14d77ae7",
+    "title": "Офтальмолог Katie's Ophtalmologist",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "9530c00f-8bb0-4c15-a61f-d5cc02f2164c",
+    "title": "Расчет расходов Кати на одежду",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "f5bdbf0f-a201-4242-ab04-dcd0c2dcddd0",
+    "title": "Как разобрать люстру для замены лампочки",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "d5c0cf36-a66b-4454-ada5-2b449ef37de4",
+    "title": "Semantics of Types & More",
     "account": "DNA",
     "projectName": "Semantic Reference Theory",
     "evidence": "the capture",
@@ -13375,20 +12826,744 @@
     "byHand": false
   },
   {
-    "conversationId": "a7e4a527-9d60-40c2-8764-346846a9a418",
-    "title": "Создание профиля на LinkedIn",
+    "conversationId": "74b415d8-56c3-4991-99c8-365b39068906",
+    "title": "Visa requirements for Americans in Indonesia and Malaysia",
     "account": "DNA",
-    "projectName": "Ana's Career",
+    "projectName": "Miscellaneous",
     "evidence": "the capture",
-    "excluded": true,
-    "reason": "filed under Ana's Career",
+    "excluded": false,
+    "reason": "",
     "byHand": false
   },
   {
-    "conversationId": "6fe8ad2a-8476-4bde-a595-26c17e8681b4",
-    "title": "Understanding jihad and Muslim violence perceptions",
+    "conversationId": "ac686866-f08a-428d-b73a-c0f329799dcf",
+    "title": "Formal abstractions using sketches and SRT",
+    "account": "DNA",
+    "evidence": "none: a read of its project's memory said Semantic Reference Theory, vetoed since the capture visited the project and did not list it",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "8b14b84b-bfa7-4264-af28-ae3974cf3640",
+    "title": "Semantics of Representation",
+    "account": "DNA",
+    "projectName": "Semantic Reference Theory",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "95d3df52-40ed-448f-934f-93cc6bc32b34",
+    "title": "Выбор правильной дозировки Озампика по рецепту",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "c0f5ecaf-4115-48a7-ba82-98109aeb4579",
+    "title": "The Project",
+    "account": "DNA",
+    "projectName": "The Hard Problem",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "26c4c37a-4136-467f-8271-c3bbdc1c7c36",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "16f38e2a-76eb-4406-a661-d2a70ff5d6ca",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "30fd650a-1617-48be-8f59-956155ff129c",
+    "title": "Подготовка Дага к конференции в Копенгагене",
     "account": "DNA",
     "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "effbe068-8c73-4d59-9fe7-d9bcef9c042d",
+    "title": "Clarity act cryptocurrency bill prospects",
+    "account": "DNA",
+    "projectName": "Investing",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "1f62d14e-dda2-4243-b9bd-8e33f54decd4",
+    "title": "Neural encoding during hallucinations",
+    "account": "DNA",
+    "projectName": "Science",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "3f7e9877-993c-4264-82f4-8ce5120ee8b4",
+    "title": "Verifying OpenAI report authenticity",
+    "account": "DNA",
+    "projectName": "Code",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "0e9fbdd1-33d4-43ea-9bda-fec220244732",
+    "title": "The Genesis of Writing",
+    "account": "DNA",
+    "projectName": "Code",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "0d99232e-cdfe-4a11-814e-1bc0f31ece27",
+    "title": "Green card options for Russian spouse and stepchildren",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4fa3765a-1748-4411-8c87-1d4801c8dbd9",
+    "title": "Dispatching code to remote Linux workstation",
+    "account": "DNA",
+    "projectName": "Code",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "f1417088-00b5-4830-9e73-cc1d05da4349",
+    "title": "Визаран для россиян в Грузии: риски и реальность",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "4cfb93f4-65df-43e4-87ed-8a6b941ce5eb",
+    "title": "Разрешение на работу для ИП в Грузии",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "e3b9cce6-4f34-4dc9-9ce6-d0d8ee04650f",
+    "title": "Разрешение на работу для ИП",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "3edf7541-6fd4-4327-95b3-b48dfaf0f105",
+    "title": "Green card через супруга",
+    "account": "DNA",
+    "projectName": "USA Green Card",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "621eab6a-e589-44be-8fbf-992e7866fb17",
+    "title": "",
+    "account": "DNA",
+    "evidence": "none: the capture lists this title in Science and Fitness",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "b6395c0d-4fa0-4a98-add2-92bbee4d0dc9",
+    "title": "Cathy > Programming",
+    "account": "DNA",
+    "projectName": "Claude",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "34055d3f-e3b1-4dd4-a675-e793f203de51",
+    "title": "Photons as fictional constructs",
+    "account": "DNA",
+    "projectName": "Science",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "5f432a8f-0b00-47d2-9a41-59a743253a9e",
+    "title": "Kiwi post Amazon invoice",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "76306aa8-8143-418c-b83b-f000d28fe4a5",
+    "title": "Список кружков школы",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "137b33d3-35a2-4b6e-8b8b-503b1f87a8c2",
+    "title": "Trump superintelligence luncheon seating",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "1fb1ed3c-9661-473f-8434-bdc23ae2924e",
+    "title": "Testosterone в аптеках Грузии",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "097bf0d0-c377-4f2d-b91b-4494c42d6530",
+    "title": "Psychologist cost and services",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "603b2e13-2481-4bc5-9721-acc5bd9df64d",
+    "title": "МВД travel ban request",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "bf83bbe0-538e-4d29-b64a-7f9ead5b68aa",
+    "title": "Post-surgery heel pain and recovery",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "38078bd1-a8bd-467d-bf0e-6b4292e13469",
+    "title": "Биометрический паспорт в Тбилиси",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "ad583190-616e-4ab4-b837-8cb039b998ce",
+    "title": "Aikido payment account issue",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "313d1090-0f21-4c56-aedb-a98e4f918054",
+    "title": "Russia plague news manipulation",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4cd85995-b066-4ea1-9a7c-ec43a96ae80c",
+    "title": "Safety training quiz",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "8cc8ee76-8982-4076-a4d9-9599df745bf9",
+    "title": "Ветеринарные аптеки Тбилиси",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "12d855b8-e508-406a-8162-5c93f327ac93",
+    "title": "Konsul Prime",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "42afc6bd-f70c-4df8-86c4-231791920a8c",
+    "title": "Maxim contact request strategy",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "5d7f1512-2371-4e4e-aba0-036d6402de86",
+    "title": "Russian custody enforcement precedent",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "db0b30ef-bae1-42d9-a1f3-64ec08901450",
+    "title": "Penelope's symptoms and treatment",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "a9f19c04-b087-4db5-9251-30920e50aa81",
+    "title": "KiwiPost payment confusion",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "32244291-fa68-4054-a51f-1e234697a5c6",
+    "title": "Magti roaming data Copenhagen",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "a07786e2-334b-46d0-9aa2-95a60218117f",
+    "title": "Wake up Copenhagen hotel directions",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "dbba812c-7c27-4f75-b565-1f2b46965bac",
+    "title": "MoC Schedule",
+    "account": "DNA",
+    "projectName": "Science",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "890d0f4a-f0b5-40e8-9dee-88a793a65253",
+    "title": "MoC Speakers",
+    "account": "DNA",
+    "projectName": "Science",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "a2e092c0-44a4-442a-b821-1d21d738cc89",
+    "title": "Computational epistemology and consciousness",
+    "account": "DNA",
+    "projectName": "Science",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "bbb794ff-8df3-402c-a02f-cae3aa07bcd2",
+    "title": "Атаки на дата-центры и последствия",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "ece32584-f62d-462a-82f7-2234fe2482a8",
+    "title": "Контакты детей и безопасность",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "ef6b1684-cd90-4a93-b4bb-acafbf661f48",
+    "title": "Стратегия переговоров с отцом детей",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "5f2a4bb3-dd04-4f4e-9381-91530c38846e",
+    "title": "Госуслуги изменения",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "90c8f3e3-b858-4140-8ae7-c9b23c5eeb23",
+    "title": "Инфовйс для Бейлор университета",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "c54437a5-8717-4d0b-b5b7-ba3616c5018c",
+    "title": "Банк Дом РФ доступ",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "a376626b-25b0-483a-8728-fe244a119032",
+    "title": "Семейное образование и регистрация детей",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "475574f6-cfd1-4c63-a591-f1bef0e06531",
+    "title": "Changing flight date",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "8431217e-f19a-4b7a-bf86-a6033125ef08",
+    "title": "Сообщение клиенту о доставке",
+    "account": "DNA",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
+    "byHand": false
+  },
+  {
+    "conversationId": "3941fb3e-9b6a-4fef-98a0-4a0e7918437d",
+    "title": "Problem summary request",
+    "account": "DNA",
+    "projectName": "Science",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "7250c404-f0d3-40ac-a39f-cf521b31b364",
+    "title": "Свидетельства о рождении и гражданство",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "1808cb01-821c-4c10-9b05-28b18047bcd3",
+    "title": "Загранпаспорт при запрете на выезд",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "1463dc31-5a8a-4b30-8a93-02484af5db96",
+    "title": "Оплата налога ИП 1%",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "de3442a6-6179-448e-80b3-cd00fc5e27c6",
+    "title": "Dominic Harbor & Bays maps",
+    "account": "DNA",
+    "projectName": "Ana's Fiverr Inbox",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "filed under Ana's Fiverr Inbox",
+    "byHand": false
+  },
+  {
+    "conversationId": "5730d0e7-14c8-41e1-8d89-eef997fe8a6f",
+    "title": "Tesla roadster and robots",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "a45b38f0-366f-4eac-a47a-3312b48ec42b",
+    "title": "Wrapped paintings collection",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "b8d7a545-1b58-47e3-a35f-ce7418e4a66d",
+    "title": "Love's role in human evolution",
+    "account": "DNA",
+    "projectName": "Science",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "1011a99d-c441-4726-bcd6-40e9d6717bf8",
+    "title": "Ксерокопирование документов",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "fc432f48-6637-4b02-ad44-9107fa4d2c3c",
+    "title": "Самозанятость и ИП в Грузии",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "53e2b255-ac5a-4ca9-8d46-eb20b388b088",
+    "title": "Goldbach through Godel",
+    "account": "DNA",
+    "projectName": "Semantic Reference Theory",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "cb87d454-b1e6-4535-8cc0-a175e9cfc36c",
+    "title": "Logic axioms and Gödel's incompleteness",
+    "account": "DNA",
+    "projectName": "Semantic Reference Theory",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "5694d22a-0f20-452b-955a-5896c1b0beb0",
+    "title": "Passport submission message",
+    "account": "DNA",
+    "projectName": "Russia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "58b7efc8-9aaf-444e-9f1f-52f1aa7de287",
+    "title": "Средства для гладкости волос",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "1d395f13-6ef8-48fd-bf79-ef7d99af899f",
+    "title": "Dissolving ZenBusiness LLC",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "7a25c231-d796-4ece-b132-dad18d31b4af",
+    "title": "Ozempic 1mg dose clicks",
+    "account": "DNA",
+    "projectName": "Miscellaneous",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "3fefdf85-83d2-4346-ace5-ddedcc36040f",
+    "title": "Georgian bank payment for customs",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "4535c645-3857-46eb-90b8-65fb9337d861",
+    "title": "Банк рядом на Саирме",
+    "account": "DNA",
+    "evidence": "none",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "2023f1b8-2a14-42b8-a811-175834255d1d",
+    "title": "Оплата штрафа через Credo",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "2175918b-e4be-4755-b797-54f46d875e8c",
+    "title": "Empty capsules on Glove",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "d9e541b7-1481-4cbf-94c5-df1732802096",
+    "title": "Subjectivity library catalogue",
+    "account": "DNA",
+    "projectName": "Semantic Reference Theory",
+    "evidence": "the capture",
+    "excluded": false,
+    "reason": "",
+    "byHand": false
+  },
+  {
+    "conversationId": "09a27402-fe09-48af-9632-646f682b9e13",
+    "title": "Перевод в Happe School за кружки",
+    "account": "DNA",
+    "projectName": "Georgia",
+    "evidence": "the capture",
+    "excluded": true,
+    "reason": "a title in Cyrillic",
+    "byHand": false
+  },
+  {
+    "conversationId": "e66831a3-94cc-4ae2-ba42-3769d32c8cb7",
+    "title": "Annotated markdown document editing",
+    "account": "DNA",
+    "projectName": "Science",
     "evidence": "the capture",
     "excluded": false,
     "reason": "",

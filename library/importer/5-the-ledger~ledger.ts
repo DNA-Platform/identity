@@ -17,6 +17,7 @@ export type ImportRecord = {
     importedAt: string;
     reimportedAt?: string;
     keptEdits?: string[];
+    edited?: true;
 };
 
 export type LedgerEntry = Omit<ImportRecord, 'conversationId' | 'name' | 'bookFolder'>;
@@ -28,7 +29,7 @@ export type KeptEdit = { fileName: string; appendix: Appendix };
 
 const keptEditForm = /^(.+)~(edited-.+)\.txt$/u;
 
-export type ImportState = 'new' | 'in' | 'grown' | 'edited';
+export type ImportState = 'new' | 'in' | 'grown' | 'moved' | 'edited';
 export type HeldRecord = { record: ImportRecord; path: string };
 
 const originForm = /<Origin>([^<]+)<\/Origin>/u;
@@ -37,6 +38,9 @@ const entities: Record<string, string> = { amp: '&', lt: '<', gt: '>', '#123': '
 
 const nameFromForm = (form: string): string =>
     form.replace(/&(amp|lt|gt|#123|#125|#91|#93);/gu, (_, entity: string) => entities[entity]).replace(/\.(.)/gu, '$1');
+
+// ONE LEDGER FOR EVERY ACCOUNT, beside The Importer's chapter, its appendix.
+export const ledgerPath = (library: string): string => join(library, 'importer', '1-the-importer~ledger.json');
 
 export const booksByOrigin = (registerFolder: string): Map<string, StandingBook> => {
     const books = new Map<string, StandingBook>();
@@ -57,23 +61,41 @@ export const booksByOrigin = (registerFolder: string): Map<string, StandingBook>
 export const readLedger = (path: string): Ledger =>
     existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) as Ledger : {};
 
-export const importRecords = (registerFolder: string, ledgerPaths: string[]): Map<string, HeldRecord> => {
+export const importRecords = (registerFolder: string, path: string): Map<string, HeldRecord> => {
     const books = booksByOrigin(registerFolder);
     const heldRecords = new Map<string, HeldRecord>();
-    for (const path of ledgerPaths)
-        for (const [conversationId, entry] of Object.entries(readLedger(path))) {
-            const book = books.get(conversationId) ?? { bookFolder: '', name: '' };
-            heldRecords.set(conversationId, { record: { conversationId, ...book, ...entry }, path });
-        }
+    for (const [conversationId, entry] of Object.entries(readLedger(path))) {
+        const book = books.get(conversationId) ?? { bookFolder: '', name: '' };
+        heldRecords.set(conversationId, { record: { conversationId, ...book, ...entry }, path });
+    }
 
     return heldRecords;
 };
 
-export const writeImportRecord = (path: string, record: ImportRecord): void => {
-    const { conversationId, name: _name, bookFolder: _bookFolder, ...entry } = record;
-    const ledger = readLedger(path);
-    ledger[conversationId] = entry;
+const entryOf = (record: ImportRecord): LedgerEntry => {
+    const { conversationId: _conversationId, name: _name, bookFolder: _bookFolder, ...entry } = record;
+
+    return entry;
+};
+
+// THE LEDGER REPRESENTS REALITY. A run that writes replaces it whole at its end: a line for every held book as it
+// then stands, its digest the folder's, and a line whose book is gone dropped and handed back to be said.
+export const writeLedger = (path: string, registerFolder: string, heldRecords: Map<string, HeldRecord>): ImportRecord[] => {
+    const gone: ImportRecord[] = [];
+    const ledger: Ledger = {};
+    for (const held of heldRecords.values()) {
+        const folder = join(registerFolder, held.record.bookFolder);
+        if (held.record.bookFolder === '' || !existsSync(folder)) {
+            gone.push(held.record);
+            continue;
+        }
+        held.record.digest = folderDigest(folder);
+        ledger[held.record.conversationId] = entryOf(held.record);
+    }
+    for (const record of gone) heldRecords.delete(record.conversationId);
     writeFileSync(path, JSON.stringify(ledger, null, 2) + '\n', 'utf8');
+
+    return gone;
 };
 
 export const folderDigest = (folder: string): string => {
@@ -88,16 +110,49 @@ export const folderDigest = (folder: string): string => {
 export const hasGrown = (conversation: Conversation, record: ImportRecord): boolean =>
     conversation.updatedAt > record.updatedAt || conversation.messages.length > record.messageCount;
 
+export const hasMoved = (registerFolder: string, record: ImportRecord): boolean =>
+    record.bookFolder !== '' && folderDigest(join(registerFolder, record.bookFolder)) !== record.digest;
+
 export const importState = (
     conversation: Conversation,
     registerFolder: string,
     record: ImportRecord | undefined,
 ): ImportState => {
     if (record === undefined || record.bookFolder === '') return 'new';
-    if (folderDigest(join(registerFolder, record.bookFolder)) !== record.digest) return 'edited';
+    if (record.edited) return 'edited';
+    if (hasMoved(registerFolder, record)) return 'moved';
     if (hasGrown(conversation, record)) return 'grown';
 
     return 'in';
+};
+
+// A HAND EDIT IS A MARK, NOT AN INFERENCE. Before a run that writes touches anything, every held book moved since
+// its line and not about to be re-imported is marked edited, and the mark stands until the book is re-imported or
+// settled: a moved book was mine or the library's own tools', and only I can say which.
+export const markMoved = (
+    registerFolder: string,
+    heldRecords: Map<string, HeldRecord>,
+    reimporting: Set<string>,
+): ImportRecord[] => {
+    const marked: ImportRecord[] = [];
+    for (const { record } of heldRecords.values()) {
+        if (record.edited || reimporting.has(record.conversationId) || !hasMoved(registerFolder, record)) continue;
+        record.edited = true;
+        marked.push(record);
+    }
+
+    return marked;
+};
+
+export const settle = (heldRecords: Map<string, HeldRecord>, ids: Set<string> | 'all'): ImportRecord[] => {
+    const settled: ImportRecord[] = [];
+    for (const { record } of heldRecords.values()) {
+        if (record.edited === undefined || (ids !== 'all' && !ids.has(record.conversationId))) continue;
+        delete record.edited;
+        settled.push(record);
+    }
+
+    return settled;
 };
 
 export const importRecord = (
@@ -194,6 +249,7 @@ export const chapterWithoutStruck = (chapterText: string, struckFileNames: strin
     return chapterText.replace(keptSectionForm, () => sectionText);
 };
 
+// The record is tended in memory; the ledger is written whole at the run's end, as every line is.
 export const tendStruckEdits = (registerFolder: string, heldRecord: HeldRecord): string[] => {
     const struck = keptEditsStruck(registerFolder, heldRecord.record);
     if (struck.length === 0) return [];
@@ -209,13 +265,11 @@ export const tendStruckEdits = (registerFolder: string, heldRecord: HeldRecord):
         writeFileSync(chapterPath, tended, 'utf8');
         touched.push(chapterPath);
     }
-    const record: ImportRecord = {
+    heldRecord.record = {
         ...heldRecord.record,
         keptEdits: keptEditsStanding(registerFolder, heldRecord.record),
         digest: folderDigest(bookFolder),
     };
-    writeImportRecord(heldRecord.path, record);
-    heldRecord.record = record;
 
-    return [...touched, heldRecord.path];
+    return touched;
 };

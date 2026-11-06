@@ -34,6 +34,10 @@ export default () => (
                 conversation's entry holds. A run writes what is new and what has grown since its import, leaves
                 what is in, and never touches what I edited unless told to re-import, when it keeps my edits
                 beside the fresh chapter and says so, as <Means>$[[ the ledger ]]( ./The Ledger )</Means> tells.
+                The ledger is one for every account, the appendix beside this chapter, and a run that writes
+                replaces it whole at its end, so it says what the library holds and nothing it does not; a book
+                moved since the last run is marked edited unless the run re-imports it, and told to settle, a run
+                takes a change that was the library's own as it stands and writes no book.
                 Run with nothing named it lists what the library holds already, newest import first. A book's
                 title is the conversation's name made sensible, its spaces collapsed and a pictograph the
                 application put first dropped, and its address is the title's letters in any script, a sign that
@@ -60,6 +64,12 @@ export default () => (
             type=".json"
         >
             ![[ configuration.json ]]
+        </Append>
+        <Append
+            identifier="ledger"
+            type=".json"
+        >
+            ![[ ledger.json ]]
         </Append>
         <Append
             identifier="promises.test"

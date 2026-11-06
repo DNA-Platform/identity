@@ -9,8 +9,9 @@ import {
     conversationPairings, stackedProjects, writePairings, type Exclusions, type Pairing,
 } from './4-the-pairing~pairing.ts';
 import {
-    folderContents, hasGrown, importRecord, importRecords, importState, keptEdits, keptEditsStanding, keptEditsStruck,
-    standingKeptEdits, tendStruckEdits, writeImportRecord, type HeldRecord, type Reimport,
+    folderContents, hasGrown, hasMoved, importRecord, importRecords, importState, keptEdits, keptEditsStanding,
+    keptEditsStruck, ledgerPath, markMoved, settle, standingKeptEdits, tendStruckEdits, writeLedger, type HeldRecord, type ImportState,
+    type Reimport,
 } from './5-the-ledger~ledger.ts';
 import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
 import { conversationTitle, slugFromName, writtenConversation, type Referents } from './7-the-writing~writing.ts';
@@ -40,7 +41,7 @@ const projectCaption = 'A project of mine, and the conversations held in it:';
 const noProjectHeading = 'No project';
 const noMappingWords = '  no mapping captured off the application; every conversation will be unpaired';
 
-export type Account = { name: string; folder: string; address: string; ledger: string };
+export type Account = { name: string; folder: string; address: string };
 export type Configuration = { excluded: Exclusions; collections: Record<string, string[]> };
 export type Selection = {
     all: boolean;
@@ -56,6 +57,7 @@ export type Arguments = Selection & {
     write: boolean;
     overwrite: boolean;
     reimport: boolean;
+    settle: boolean;
 };
 
 type ExportReading = {
@@ -85,6 +87,7 @@ export const parsedArguments = (argv: string[]): Arguments => ({
     write: argv.includes('--write'),
     overwrite: argv.includes('--overwrite'),
     reimport: argv.includes('--reimport'),
+    settle: argv.includes('--settle'),
 });
 
 export const configurationPath = (library: string): string =>
@@ -105,10 +108,7 @@ export const importsOf = (importerFolder: string): Account[] => readdirSync(impo
     .map(fileName => ({ fileName, numbered: importConfigurationForm.exec(fileName) }))
     .filter(({ numbered }) => numbered !== null && numbered[2] !== 'the-importer')
     .sort((first, second) => Number(first.numbered![1]) - Number(second.numbered![1]))
-    .map(({ fileName }) => ({
-        ...JSON.parse(readFileSync(join(importerFolder, fileName), 'utf8')) as Omit<Account, 'ledger'>,
-        ledger: join(importerFolder, fileName.replace(/~configuration.json$/u, '~ledger.json')),
-    }));
+    .map(({ fileName }) => JSON.parse(readFileSync(join(importerFolder, fileName), 'utf8')) as Account);
 
 export const readConfiguration = (library: string): Configuration => {
     const path = configurationPath(library);
@@ -159,7 +159,15 @@ export const run = async (args: Arguments): Promise<void> => {
         claudeManual: join(args.library, '.claude', '.manual'),
         conversations: join(args.library, '.claude', '.conversations'),
     };
-    const heldRecords = importRecords(folders.conversations, accounts.map(account => account.ledger));
+    const ledger = ledgerPath(args.library);
+    const heldRecords = importRecords(folders.conversations, ledger);
+    // THE LEDGER IS WRITTEN WHOLE at the end of every run that writes, and says what it dropped.
+    const closeLedger = (): void => {
+        const struck = writeLedger(ledger, folders.conversations, heldRecords);
+        const struckWords = struck.length === 0 ? '' : `, ${countedNoun(struck.length, 'struck book')} dropped: `
+            + struck.map(record => record.conversationName ?? record.conversationId).join(', ');
+        console.log(`the ledger written whole: ${countedNoun(heldRecords.size, 'line')}${struckWords}`);
+    };
     if (args.write) {
         writePairings(args.library, pairings);
         const tended = [...heldRecords.values()].flatMap(heldRecord => tendStruckEdits(folders.conversations, heldRecord));
@@ -168,12 +176,27 @@ export const run = async (args: Arguments): Promise<void> => {
     const selected = selectedPairings(pairings, args, configuration.collections);
     if (selected.length === 0) {
         listHeldConversations(reading, heldRecords, folders);
+        if (args.write) closeLedger();
         console.log('\nnothing selected — pass --all, --project, --collection or --only');
         return;
     }
     listSelectedConversations(selectionWords(args), selected, conversationOfPairing, folders, heldRecords);
     const included = selected.filter(pairing => !pairing.excluded);
     const includedConversations = included.map(conversationOfPairing);
+    if (args.settle) {
+        const ids = args.all ? 'all' : new Set(included.map(pairing => pairing.conversationId));
+        const taken = [...heldRecords.values()].filter(({ record }) => (ids === 'all' || ids.has(record.conversationId))
+            && (record.edited || hasMoved(folders.conversations, record)));
+        const settled = settle(heldRecords, ids);
+        console.log(`\n${args.write ? 'settled' : 'would settle'} ${countedNoun(taken.length, 'book')} as `
+            + `${taken.length === 1 ? 'it stands' : 'they stand'}, ${countedNoun(settled.length, 'mark')} cleared, no book written`);
+        if (!args.write) {
+            console.log('\nnothing written — pass --write');
+            return;
+        }
+        closeLedger();
+        return;
+    }
     const wholeProject = args.projectName !== undefined && args.onlyNames.length === 0;
     for (const accountReading of reading.accounts) {
         const accountIncluded = included.filter(pairing => pairing.account === accountReading.account.name);
@@ -191,7 +214,14 @@ export const run = async (args: Arguments): Promise<void> => {
         console.log('\nnothing written — pass --write');
         return;
     }
+    const reimporting = new Set(args.reimport ? included.map(pairing => pairing.conversationId) : []);
+    const marked = markMoved(folders.conversations, heldRecords, reimporting);
+    if (marked.length > 0)
+        console.log(`\nmarked ${countedNoun(marked.length, 'book')} moved since the last run as edited, untouched until `
+            + `re-imported or settled: ${marked.map(record => record.conversationName ?? record.conversationId).join(', ')}`);
     const filesTouched = writeBooks(args, folders, reading, included, conversationOfPairing, heldRecords);
+    closeLedger();
+    filesTouched.push(ledger);
     const checked = await binderCheck(args.library, join(args.library, '..public', '.binding'), filesTouched);
     console.log(`\nthe binder's check: ${countedNoun(checked.bookCount, 'book')}, ${countedNoun(checked.keyCount, 'key')}, `
         + countedNoun(checked.faults.length, 'fault'));
@@ -325,11 +355,22 @@ const pairingReport = (pairings: Pairing[]): string => {
     ].join(' · ');
 };
 
-const importedWords = (heldRecord: HeldRecord | undefined, registerFolder: string, conversation?: Conversation): string => {
+const stateWords: Partial<Record<ImportState, string>> = {
+    moved: ', moved since the last run: a run that writes marks it edited unless it re-imports it; --settle takes it as it stands',
+    edited: ', edited: --reimport writes it again and keeps yours beside the chapter; --settle takes it as it stands',
+};
+
+const importedWords = (
+    heldRecord: HeldRecord | undefined,
+    registerFolder: string,
+    state?: ImportState,
+    conversation?: Conversation,
+): string => {
     if (heldRecord === undefined) return '';
     const { importedAt, exportedOn, reimportedAt } = heldRecord.record;
-    const grownSince = conversation !== undefined && hasGrown(conversation, heldRecord.record);
-    const grownWords = grownSince ? ', grown since: re-import it with --reimport and re-apply what you edited' : '';
+    const grownSince = conversation !== undefined && (state === 'moved' || state === 'edited')
+        && hasGrown(conversation, heldRecord.record);
+    const grownWords = grownSince ? ', grown since' : '';
     const waiting = keptEditsStanding(registerFolder, heldRecord.record);
     const struck = keptEditsStruck(registerFolder, heldRecord.record);
     const reimportedWords = reimportedAt === undefined ? '' : `, re-imported ${reimportedAt.slice(0, 10)}`;
@@ -338,7 +379,7 @@ const importedWords = (heldRecord: HeldRecord | undefined, registerFolder: strin
         ? '' : `, ${countedNoun(struck.length, 'kept copy')} struck: a run that writes tends the chapter`;
     const whenWords = `imported ${importedAt.slice(0, 10)} from the export of ${exportedOn}`;
 
-    return ` · ${whenWords}${reimportedWords}${waitingWords}${struckWords}${grownWords}`;
+    return ` · ${whenWords}${reimportedWords}${waitingWords}${struckWords}${grownWords}${(state && stateWords[state]) ?? ''}`;
 };
 
 const listSelectedConversations = (
@@ -356,16 +397,15 @@ const listSelectedConversations = (
         const conversation = conversationOfPairing(pairing);
         const path = shownPath(conversation);
         const heldRecord = heldRecords.get(conversation.id);
-        const stateWord = importState(conversation, folders.conversations, heldRecord?.record).padEnd(6);
+        const state = importState(conversation, folders.conversations, heldRecord?.record);
         const shownWords = `${path.length} shown of ${conversation.messages.length}`;
         const countWords = `${shownWords}, ${asideCount(conversation, path)} aside`;
         const dayWords = countedNoun(pathDays(path).length, 'day');
         const nameWords = conversation.name || 'Untitled';
         const projectWords = pairing.projectName ?? 'no project';
-        const edited = heldRecord !== undefined && stateWord.trim() === 'edited';
-        const whenWords = importedWords(heldRecord, folders.conversations, edited ? conversation : undefined);
+        const whenWords = importedWords(heldRecord, folders.conversations, state, conversation);
         const evidenceWords = `${projectWords} · ${pairing.evidence}${whenWords}`;
-        console.log(`  ${stateWord} ${nameWords} · ${countWords} · ${dayWords} · ${evidenceWords}`);
+        console.log(`  ${state.padEnd(6)} ${nameWords} · ${countWords} · ${dayWords} · ${evidenceWords}`);
     }
     for (const pairing of selected.filter(pairing => pairing.excluded))
         console.log(`  out    ${pairing.title} · ${pairing.reason}`);
@@ -381,9 +421,10 @@ const listHeldConversations = (
         .sort((first, second) => second.record.importedAt.localeCompare(first.record.importedAt));
     for (const heldRecord of newestFirst) {
         const conversation = reading.conversations.get(heldRecord.record.conversationId);
-        const stateWord = conversation === undefined
-            ? 'gone  ' : importState(conversation, folders.conversations, heldRecord.record).padEnd(6);
-        console.log(`  ${stateWord} ${heldRecord.record.name}${importedWords(heldRecord, folders.conversations)}`);
+        const state = conversation === undefined ? undefined : importState(conversation, folders.conversations, heldRecord.record);
+        const stateWord = heldRecord.record.bookFolder === '' ? 'struck' : state ?? 'gone';
+        const nameWords = heldRecord.record.name || heldRecord.record.conversationName || heldRecord.record.conversationId;
+        console.log(`  ${stateWord.padEnd(6)} ${nameWords}${importedWords(heldRecord, folders.conversations, state, conversation)}`);
     }
 };
 
@@ -480,8 +521,9 @@ const writeBooks = (
             const bookStands = heldBookFolder !== undefined && existsSync(heldBookFolder);
             const standingRecord = bookStands ? heldRecord : undefined;
             const state = importState(conversation, folders.conversations, standingRecord?.record);
-            const reimporting = state === 'edited' && args.reimport;
-            const keptAsIs = (state === 'edited' && !reimporting) || (state === 'in' && !args.overwrite);
+            const moved = state === 'edited' || state === 'moved';
+            const reimporting = moved && args.reimport;
+            const keptAsIs = (moved && !reimporting) || (state === 'in' && !args.overwrite);
             const title = conversationTitle(conversation);
             const standingName = (held: HeldRecord): BookName => ({ words: title, key: held.record.name });
             if (standingRecord !== undefined && keptAsIs) {
@@ -525,13 +567,12 @@ const writeBooks = (
                 undefined, written.project?.name ?? noProjectHeading,
             );
             const accountReading = reading.readingOf(pairing);
-            const recordPath = accountReading.account.ledger;
             const record = importRecord(
                 conversation, folders.conversations, name, basename(book.folder), accountReading.exportedOn, reimport,
                 accountReading.account.name,
             );
-            writeImportRecord(recordPath, record);
-            filesTouched.push(...book.files, ...entry.files, recordPath);
+            heldRecords.set(conversation.id, { record, path: ledgerPath(args.library) });
+            filesTouched.push(...book.files, ...entry.files);
             if (written.folder !== undefined)
                 filesTouched.push(
                     ...projectEntry(folders, written.folder, naming.name, book.folder, conversation.createdAt),

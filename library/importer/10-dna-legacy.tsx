@@ -9,7 +9,8 @@ export default () => (
         <Paragraph>
             <Brief />
             The import of my first account, <Means>$[[ DNA Legacy ]]( Dougs Claude / DNA Legacy )</Means>: where its
-            export lands, whose it is, and the ledger of every conversation brought in from it.
+            export lands and whose it is; what came in from it stands in <Means>$[[ the ledger ]]( ./The Ledger )</Means>,
+            one for every account.
         </Paragraph>
         <Section>
             <Heading>What DNA Legacy reads</Heading>
@@ -21,28 +22,11 @@ export default () => (
                 must name to be read, and that address is the configuration's beside this chapter.
             </Paragraph>
         </Section>
-        <Section>
-            <Heading>The ledger of DNA Legacy</Heading>
-            <Paragraph>
-                Beside this chapter stands the ledger of this import, one file however often it runs: a line for
-                each conversation brought in, keyed by the application's own id and holding no name, with the
-                export it came from, the application's last change and its count of messages when it came in, when
-                it came in and when it was taken again, and the digest of what was written. The same id is said on
-                the conversation's cover and on each of its messages, so its book is found wherever it stands and
-                whatever I have called it, as <Means>$[[ the ledger ]]( ./The Ledger )</Means> tells.
-            </Paragraph>
-        </Section>
         <Append
             identifier="configuration"
             type=".json"
         >
             ![[ configuration.json ]]
-        </Append>
-        <Append
-            identifier="ledger"
-            type=".json"
-        >
-            ![[ ledger.json ]]
         </Append>
     </Chapter>
 );
