@@ -1,4 +1,4 @@
-import { Bold, Chapter, Emphasis, Line, List, Paragraph, Title, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Emphasis, Formalism, Line, List, Matter, Paragraph, Question, Reminder, Result, Summary, Title, Word } from '@dna-platform/public';
 import { Message, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
 
@@ -10,6 +10,25 @@ export default () => (
         >
             <Origin>019d3e73-2e68-7568-a4e9-de9a00ce77d3</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                Goldbach pairs; the symmetry of coprimes; the coprime skeleton; sharing pairs between numbers
+            </Matter>
+            <Summary>
+                A six-message question: Goldbach pairs as the prime points of N's symmetric coprime skeleton; SRT
+                set aside from the prime work; which numbers share pairs, rad(n) = rad(N) for the eligible offsets
+                and n dividing N for the nesting that lets 12 inherit 6's pair 5 and 7; whether the relation is
+                tighter than divisibility, left open.
+            </Summary>
+            <Formalism>
+                Goldbach pairs of N as the primes equidistant from N, summing to 2N, inheriting their symmetry
+                from the coprimes of N: if N−k and N+k are both prime and coprime to N, they are a Goldbach pair
+                of N.
+            </Formalism>
+            <Reminder>
+                The seed shared with The Pair Representation in Gödel through Goldbach: The Paper, where G(n) is
+                halved to the midpoint and GC is read as the minimal symmetry the primes keep; this conversation,
+                five months later, works the symmetry on its own.
+            </Reminder>
             <Paragraph>
                 Here’s a question. We can define the golbach pairs for N as pairs of primes equidistant from N (hence then
                 sum to 2N). They inherit their symmetry from the fact that the coprimes of N are symmetric. If N-k is a
@@ -22,6 +41,16 @@ export default () => (
         >
             <Origin>019d3e73-2e69-7d5b-a1ac-09562b3ad650</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Result>
+                Proven: the coprime residues of N are symmetric about N, since gcd(N−k, N) = gcd(k, N) = gcd(N+k,
+                N); a prime fails to be coprime to N only if it divides N, so Goldbach pairs are the prime points
+                of that symmetric set.
+            </Result>
+            <Formalism>
+                [[[ the coprime skeleton ]]] of N: the residues coprime to N, symmetric about N, within which the
+                Goldbach pairs of N are the prime points paired across N; G(N) measures how densely primes
+                populate it.
+            </Formalism>
             <Paragraph>
                 Yes, that's exactly right, and it's a clean way to frame it. Let me confirm the structure:
             </Paragraph>
@@ -74,8 +103,18 @@ export default () => (
         >
             <Origin>019d3e76-e122-7b09-b814-1dc6f2eaa918</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Paragraph>I don’t think SRT factors into my prime number work.</Paragraph>
             <Paragraph>
+                <Correction>
+                    Claude had tied the symmetry to the SRT framework and to G(N) as proof capacity. His words: "I
+                    don't think SRT factors into my prime number work." The prime work stands on its own.
+                </Correction>
+                I don’t think SRT factors into my prime number work.
+            </Paragraph>
+            <Paragraph>
+                <Question>
+                    What condition makes n smaller than N share all its Goldbach pairs with N, for every offset k
+                    with n−k and n+k prime; "Think about what numbers divide n and N."
+                </Question>
                 Question: what is the condition that informs which n &lt; N share all their goldbach pairs. That is, if k is
                 such that n-k and n+k are both prime, when is it true that for all such k? Think about what numbers divide n
                 and N
@@ -86,6 +125,12 @@ export default () => (
         >
             <Origin>019d3e76-e122-7677-8c48-e68db0612646</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Result>
+                Proven for the eligible offsets: $[[ ./the coprime skeleton ]] depends on which primes divide a
+                number and not their powers, so rad(n) = rad(N) makes the eligible offsets identical; sharing
+                offsets does not guarantee sharing the pairs themselves, since the primes must still land there
+                for both.
+            </Result>
             <Paragraph>Good correction noted on SRT.</Paragraph>
             <Paragraph>
                 Now, thinking this through: a Goldbach pair of n at offset k requires n-k and n+k to be coprime to n (as you
@@ -137,6 +182,11 @@ export default () => (
         >
             <Origin>019d3e79-e2b2-74ad-a100-644bdd7e388d</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Question>
+                Sharpened to the pairs themselves, not the offsets: "I want to know when all are the same - might
+                be stronger. Trivially 5 and 7 are about 6. Find another prime that has 5 and 7 in its pairs." The
+                instance stands for the relation.
+            </Question>
             <Paragraph>
                 Well I want to know when all are the same - might be stronger. Trivially 5 and 7 are about 6. Find another
                 prime that has 5 and 7 in its pairs. That is the relationship
@@ -147,6 +197,12 @@ export default () => (
         >
             <Origin>019d3e79-e2b2-77ab-9c23-870f72479c94</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Result>
+                Intuition, checked on one instance: 12 holds 5 and 7 in its pairs, with 19 and 17, and 6 divides
+                12; if n divides N, $[[ ./the coprime skeleton ]] of N is contained in n's, so every eligible
+                offset of N is eligible for n and n's pair structure is inherited upward, stronger than rad(n) =
+                rad(N). Whether the relation is tighter than divisibility is asked and the conversation ends.
+            </Result>
             <Paragraph>Let me think through this concretely.</Paragraph>
             <Paragraph>
                 5 and 7 are a pair of 6 (5+7=12). For another N to have <Word>

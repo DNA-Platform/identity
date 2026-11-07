@@ -1807,13 +1807,13 @@
     },
     {
       "folder": ".claude/.conversations/claude--gödel-through-goldbach-coprime-symmetry--942ceafb",
-      "digest": "3143716fa0245367",
+      "digest": "d1a0a727931ca397",
       "walked": 84
     },
     {
       "folder": ".claude/.conversations/claude--gödel-through-goldbach-semantics-and-induction--d3b441a9",
-      "digest": "f2e8f29e39aa804a",
-      "walked": 2464
+      "digest": "04c1d28c2b55f7ec",
+      "walked": 2509
     },
     {
       "folder": ".claude/.conversations/claude--gödel-through-goldbach-the-paper--c42597f2",
@@ -5107,7 +5107,7 @@
     },
     {
       "folder": "importer",
-      "digest": "86d9bc2625c8d972",
+      "digest": "e12225889b5dccd6",
       "walked": 195
     }
   ]

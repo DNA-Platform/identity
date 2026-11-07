@@ -1,635 +1,644 @@
-var A=Object.defineProperty;var c=(v,y)=>A(v,"name",{value:y,configurable:!0});import{jsxs as t,jsx as e}from"react/jsx-runtime";import{$ as N}from"@dna-platform/chemistry";import{$ as x}from"./10-the-manual~book-Devf-LJD.js";import{Chapter as s,Title as l,Author as T,Subject as D,Paragraph as a,Svg as I,Synopsis as C,Parenthetical as b,Means as n,Section as i,Heading as r,Content as d,Word as p,Append as o}from"@dna-platform/public";import{C as w,T as j}from"./10-the-manual~faces-o9Xkh8OP.js";import{V as h,K as L,n as Z,o as k,W as H,p as S,I as O,q as u,r as f}from"./.cover-CTiiXUGF.js";import"styled-components";const g=class g extends x{};c(g,"$Importer");let m=g;const F=c(()=>t(s,{children:[e(w,{}),e(h,{children:L()}),e(h,{children:Z()}),e(k,{ground:"#eef4ee",band:"#b9d4bf",bandInk:"#1f3f2a",foot:"#8fb79b",footInk:"#17351f",ink:"#1f3f2a"}),e(H,{x:"-30",y:"-22"}),e(l,{children:"[Dougs Importer](/dougs-importer/)"}),e(T,{children:"[Doug](/dougs-story/)"}),e(D,{children:"[Library](/dougs-library/)"}),t(a,{children:[e(S,{}),e(I,{children:`<svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M24 20h31v37H24z"/><path d="M24 20h31v37H24zM24 20l-6 5v37l6-5M18 25h31"/><path class="fill" d="M29 27h21v8H29zM29 39h21v6H29z"/><path d="M7 32h12M15 27l5 5-5 5"/><path class="fill" d="M8 10h9v7H8zM5 48h9v7H5z"/><path d="M12 17v10M9 48v-9"/></svg>
-`})]})]}),"Cover"),P=c(()=>t(s,{children:[e(C,{}),t(l,{children:[e(b,{}),"[Synopsis](/dougs-importer/)"]}),t(a,{children:["The tools that bring my conversations into this library, one chapter to a stage and the code that runs the stage beside it, so that how a conversation gets in can be read beside the thing that does it. A conversation comes in as ",e(n,{children:"[a conversation](/dougs-reference-manual/#the-conversation)"}),", the type of book kept in the reference manual for it, and every source is read into one record, so that a second source is one more reader and nothing else moves. Start with ",e(n,{children:"[The Importer](/dougs-importer/#the-importer)"}),", which runs the stages in order and reports what it did, and then ",e(n,{children:"[The Export](/dougs-importer/#the-export)"}),", which says what is read and where it is found."]})]}),"Synopsis"),R=c(()=>t(s,{children:[e(j,{}),e(O,{}),t(l,{children:[e(b,{}),"[Table of Contents](/dougs-importer/#table-of-contents)"]}),t(i,{children:[e(r,{children:"The run"}),e(a,{children:e(d,{children:"[The Importer](/dougs-importer/#the-importer)"})}),e(a,{children:e(d,{children:"[The Export](/dougs-importer/#the-export)"})}),e(a,{children:e(d,{children:"[The Record](/dougs-importer/#the-record)"})}),t(a,{children:[e(b,{}),e(p,{children:e(d,{children:"[Dougs Importer](/dougs-importer/)"})}),e(p,{children:e(d,{children:"[Synopsis](/dougs-importer/#synopsis)"})}),e(p,{children:e(d,{children:"[Table of Contents](/dougs-importer/#table-of-contents)"})})]})]}),t(i,{children:[e(r,{children:"From the export to a book"}),e(a,{children:e(d,{children:"[The Pairing](/dougs-importer/#the-pairing)"})}),e(a,{children:e(d,{children:"[The Ledger](/dougs-importer/#the-ledger)"})}),e(a,{children:e(d,{children:"[The Thread](/dougs-importer/#the-thread)"})}),e(a,{children:e(d,{children:"[The Writing](/dougs-importer/#the-writing)"})}),e(a,{children:e(d,{children:"[The Books](/dougs-importer/#the-books)"})}),e(a,{children:e(d,{children:"[The Check](/dougs-importer/#the-check)"})})]}),t(i,{children:[e(r,{children:"The imports"}),e(a,{children:e(d,{children:"[DNA Legacy](/dougs-importer/#dna-legacy)"})}),e(a,{children:e(d,{children:"[DNA](/dougs-importer/#dna)"})})]})]}),"Table"),M=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[The Importer](/dougs-importer/#the-importer)"}),t(a,{children:[e(f,{}),"The run: the stages in order, from an export on disk to conversations filed in this library, and the report of what it did."]}),t(i,{children:[e(r,{children:"Nine stages and nothing hidden between them"}),t(a,{children:["A conversation gets into this library in stages, and each stage is a chapter of this book with its code beside it, so a change to the code is never a question about which page owes an edit. The importer finds ",e(n,{children:"[the export](/dougs-importer/#the-export)"})," where it lands, reads it into ",e(n,{children:"[one record](/dougs-importer/#the-record)"}),", pairs each conversation to its project by ",e(n,{children:"[evidence](/dougs-importer/#the-pairing)"}),", asks ",e(n,{children:"[the ledger](/dougs-importer/#the-ledger)"})," which conversations are new, walks ",e(n,{children:"[the thread](/dougs-importer/#the-thread)"})," that was on the screen, turns what was said into ",e(n,{children:"[writing](/dougs-importer/#the-writing)"}),", writes ",e(n,{children:"[the books](/dougs-importer/#the-books)"}),", and ",e(n,{children:"[checks](/dougs-importer/#the-check)"})," what it wrote against the archive the export was first read into."]}),t(a,{children:["Run bare it says what it would write and stops. Run to write it writes, and reports: the conversations found, paired, unpaired, ambiguous and excluded; the messages on the screen and on other paths; the files written. It takes a project, a collection its configuration names, or particular conversations named by title or by id, never the whole export in one run, so the library grows at the pace the bind is measured to bear; and for each it says whether it is new, in, grown or edited, and when it was imported and from which export, which the record beside the conversation's entry holds. A run writes what is new and what has grown since its import, leaves what is in, and never touches what I edited unless told to re-import, when it keeps my edits beside the fresh chapter and says so, as ",e(n,{children:"[the ledger](/dougs-importer/#the-ledger)"})," tells. The ledger is one for every account, the appendix beside this chapter, and a run that writes replaces it whole at its end, so it says what the library holds and nothing it does not; a book moved since the last run is marked edited unless the run re-imports it, and told to settle, a run takes a change that was the library's own as it stands and writes no book. Run with nothing named it lists what the library holds already, newest import first. A book's title is the conversation's name made sensible, its spaces collapsed and a pictograph the application put first dropped, and its address is the title's letters in any script, a sign that reads as a word read as it. While the importer is being made it overwrites what it wrote, on a flag said at the run; once it is done it never does, since a conversation once imported is edited by hand."]}),t(a,{children:["Its configuration stands beside this chapter: what is excluded as not mine, the scripts a title may not be in and the projects; and the collections, each a name over a list of conversations by title or id. A conversation with a Russian title is not mine, and the configuration says so. Each of ",e(n,{children:"[my accounts](/dougs-claude/#the-accounts)"})," is an import of its own, a chapter of this book with its configuration and its ledger beside it, read in the chapters' order, the older first, so another platform is one more chapter."]})]}),e(o,{identifier:"importer",type:".ts",children:`import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { basename, dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { newestBeside } from './2-the-export~export.ts';
-import type { Imports } from './8-the-books~homes.ts';
-import { exportSource } from './3-the-record~claude.ts';
-import type { Conversation, Mapping, Project } from './3-the-record~record.ts';
-import {
-    conversationPairings, stackedProjects, writePairings, type Exclusions, type Pairing,
-} from './4-the-pairing~pairing.ts';
-import {
-    folderContents, hasGrown, hasMoved, importRecord, importRecords, importState, keptEdits, keptEditsStanding,
-    keptEditsStruck, ledgerPath, markMoved, settle, standingKeptEdits, tendStruckEdits, writeLedger, type HeldRecord, type ImportState,
-    type Reimport,
-} from './5-the-ledger~ledger.ts';
-import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';
-import { conversationTitle, slugFromName, writtenConversation, type Referents } from './7-the-writing~writing.ts';
-import {
-    conversationBook, libraryEntry, orderRegisterTable, plainName, projectBook, projectBookName, projectEntry,
-    registerBook, registerEntry, schemes, uniqueConversationName, wrappedLines, type BookName,
-    type ConversationNaming, type LibraryFolders, type Scheme,
-} from './8-the-books~books.ts';
-import {
-    archiveFiling, archiveStatistics, archiveTranscripts, binderCheck, countDifferences, differenceLines, filingDifferences,
-    membershipDifferences, transcriptDifferences, writtenDifferences, type ExportCounts,
-} from './9-the-check~check.ts';
-
-const importerFolder = dirname(fileURLToPath(import.meta.url));
-const drawingBeside = (name: string): string => readFileSync(join(importerFolder, \`8-the-books~\${name}.svg\`), 'utf8');
-export const accountsFolder = resolve(importerFolder, '..', '..', '..', 'dna-library', 'library');
-export const referents: Referents = { Doug: 'Dougs Story', Claude: 'Dougs Claude' };
-
-const dougsClaudeSynopsis = 'My projects with Claude and all of my conversations with him, catalogued here: '
-    + 'every conversation is filed under the book that holds them all, '
-    + 'and every project is a book that catalogues its own besides.';
-const ourConversationsSynopsis = 'Every conversation I have had with Claude, each a book of its own filed here, '
-    + 'listed newest first; the projects catalogue them again by what they were about.';
-const dougsClaudeCaption = 'My conversations with Claude and the projects they were held in:';
-const ourConversationsCaption = 'All of them, newest first:';
-const projectCaption = 'A project of mine, and the conversations held in it:';
-const noProjectHeading = 'No project';
-const noMappingWords = '  no mapping captured off the application; every conversation will be unpaired';
-
-export type Account = { name: string; folder: string; address: string };
-export type Configuration = { excluded: Exclusions; collections: Record<string, string[]> };
-export type Selection = {
-    all: boolean;
-    projectName: string | undefined;
-    collectionName: string | undefined;
-    onlyNames: string[];
-};
-type ConversationOf = (pairing: Pairing) => Conversation;
-
-export type Arguments = Selection & {
-    intoFolder: string | undefined;
-    library: string;
-    write: boolean;
-    overwrite: boolean;
-    reimport: boolean;
-    settle: boolean;
-};
-
-type ExportReading = {
-    account: Account;
-    exportedOn: string;
-    folder: string;
-    projects: Project[];
-    mapping: Mapping | undefined;
-    conversations: Conversation[];
-    counts: ExportCounts;
-};
-
-type Reading = {
-    accounts: ExportReading[];
-    projects: Project[];
-    conversations: Map<string, Conversation>;
-    readingOf: (pairing: Pairing) => ExportReading;
-};
-
-export const parsedArguments = (argv: string[]): Arguments => ({
-    all: argv.includes('--all'),
-    projectName: flagValue(argv, '--project'),
-    collectionName: flagValue(argv, '--collection'),
-    onlyNames: flagValues(argv, '--only'),
-    intoFolder: flagValue(argv, '--into'),
-    library: flagValue(argv, '--library') ?? resolve(importerFolder, '..'),
-    write: argv.includes('--write'),
-    overwrite: argv.includes('--overwrite'),
-    reimport: argv.includes('--reimport'),
-    settle: argv.includes('--settle'),
-});
-
-export const configurationPath = (library: string): string =>
-    join(library, 'importer', '1-the-importer~configuration.json');
-
-export const configurationFrom = (text: string): Configuration => {
-    const read = JSON.parse(text) as Partial<Configuration>;
-
-    return {
-        excluded: { scripts: read.excluded?.scripts ?? [], projects: read.excluded?.projects ?? [] },
-        collections: read.collections ?? {},
-    };
-};
-
-const importConfigurationForm = /^(\\d+)-(.+)~configuration\\.json$/u;
-
-export const importsOf = (importerFolder: string): Account[] => readdirSync(importerFolder)
-    .map(fileName => ({ fileName, numbered: importConfigurationForm.exec(fileName) }))
-    .filter(({ numbered }) => numbered !== null && numbered[2] !== 'the-importer')
-    .sort((first, second) => Number(first.numbered![1]) - Number(second.numbered![1]))
-    .map(({ fileName }) => JSON.parse(readFileSync(join(importerFolder, fileName), 'utf8')) as Account);
-
-export const readConfiguration = (library: string): Configuration => {
-    const path = configurationPath(library);
-
-    return configurationFrom(existsSync(path) ? readFileSync(path, 'utf8') : '{}');
-};
-
-export const selectedPairings = (
-    pairings: Pairing[],
-    selection: Selection,
-    collections: Record<string, string[]>,
-): Pairing[] => {
-    const named = (names: string[]) => (pairing: Pairing): boolean =>
-        names.includes(pairing.title) || names.includes(pairing.conversationId);
-    const narrowed = (candidates: Pairing[]): Pairing[] =>
-        selection.onlyNames.length === 0 ? candidates : candidates.filter(named(selection.onlyNames));
-    if (selection.all) return narrowed(pairings);
-    if (selection.projectName !== undefined)
-        return narrowed(pairings.filter(pairing => pairing.projectName === selection.projectName));
-    if (selection.collectionName !== undefined) {
-        const collection = collections[selection.collectionName];
-        if (collection === undefined)
-            throw new Error(\`the configuration names no collection called \${selection.collectionName}\`);
-        return narrowed(pairings.filter(named(collection)));
-    }
-
-    return narrowed(selection.onlyNames.length === 0 ? [] : pairings);
-};
-
-export const run = async (args: Arguments): Promise<void> => {
-    const configuration = readConfiguration(args.library);
-    const accounts = importsOf(join(args.library, 'importer'));
-    if (accounts.length === 0) throw new Error('the importer holds no import: a chapter with a configuration beside it');
-    const reading = await accountsReading(accounts);
-    const pairings = reading.accounts.flatMap(accountReading => conversationPairings(
-        args.library, accountReading.account.name, accountReading.conversations, accountReading.projects,
-        accountReading.mapping, configuration.excluded,
-    ));
-    for (const accountReading of reading.accounts) {
-        const accountPairings = pairings.filter(pairing => pairing.account === accountReading.account.name);
-        console.log(\`\${accountReading.account.name}: \${pairingReport(accountPairings)}\`);
-        console.log(membershipReport(accountReading, accountPairings));
-    }
-    const conversationOfPairing: ConversationOf = pairing => reading.conversations.get(pairing.conversationId)!;
-    const folders: LibraryFolders = {
-        library: args.library,
-        claude: join(args.library, '.claude'),
-        claudeManual: join(args.library, '.claude', '.manual'),
-        conversations: join(args.library, '.claude', '.conversations'),
-    };
-    const ledger = ledgerPath(args.library);
-    const heldRecords = importRecords(folders.conversations, ledger);
-    // THE LEDGER IS WRITTEN WHOLE at the end of every run that writes, and says what it dropped.
-    const closeLedger = (): void => {
-        const struck = writeLedger(ledger, folders.conversations, heldRecords);
-        const struckWords = struck.length === 0 ? '' : \`, \${countedNoun(struck.length, 'struck book')} dropped: \`
-            + struck.map(record => record.conversationName ?? record.conversationId).join(', ');
-        console.log(\`the ledger written whole: \${countedNoun(heldRecords.size, 'line')}\${struckWords}\`);
-    };
-    if (args.write) {
-        writePairings(args.library, pairings);
-        const tended = [...heldRecords.values()].flatMap(heldRecord => tendStruckEdits(folders.conversations, heldRecord));
-        if (tended.length > 0) console.log(\`tended \${countedNoun(tended.length, 'file')} after kept copies were struck\`);
-    }
-    const selected = selectedPairings(pairings, args, configuration.collections);
-    if (selected.length === 0) {
-        listHeldConversations(reading, heldRecords, folders);
-        if (args.write) closeLedger();
-        console.log('\\nnothing selected — pass --all, --project, --collection or --only');
-        return;
-    }
-    listSelectedConversations(selectionWords(args), selected, conversationOfPairing, folders, heldRecords);
-    const included = selected.filter(pairing => !pairing.excluded);
-    const includedConversations = included.map(conversationOfPairing);
-    if (args.settle) {
-        const ids = args.all ? 'all' : new Set(included.map(pairing => pairing.conversationId));
-        const taken = [...heldRecords.values()].filter(({ record }) => (ids === 'all' || ids.has(record.conversationId))
-            && (record.edited || hasMoved(folders.conversations, record)));
-        const settled = settle(heldRecords, ids);
-        console.log(\`\\n\${args.write ? 'settled' : 'would settle'} \${countedNoun(taken.length, 'book')} as \`
-            + \`\${taken.length === 1 ? 'it stands' : 'they stand'}, \${countedNoun(settled.length, 'mark')} cleared, no book written\`);
-        if (!args.write) {
-            console.log('\\nnothing written — pass --write');
-            return;
+var F=Object.defineProperty;var c=(h,u)=>F(h,"name",{value:u,configurable:!0});import{jsx as e,jsxs as t}from"react/jsx-runtime";import{$ as g,$check as P,selection as O}from"@dna-platform/chemistry";import{specify as R,$Section as M,$Paragraph as E,$TableOfContents as $,Chapter as s,Title as l,Author as B,Subject as G,Paragraph as a,Svg as W,Synopsis as q,Parenthetical as x,Means as n,Section as r,Heading as i,Content as d,Word as N,Append as o}from"@dna-platform/public";import{T as z,L as V,f as U,r as _,N as K,o as X,p as J,F as Y,h as Q,s as ee,t as te,V as S,q as ae,S as ne,a as oe,W as ce,I as re,b as ie,u as f,v as p}from"./.cover-DmpQGg_0.js";import"styled-components";var de=Object.defineProperty,se=Object.getOwnPropertyDescriptor,le=c((h,u,b,k)=>{for(var m=se(u,b),A=h.length-1,H;A>=0;A--)(H=h[A])&&(m=H(u,b,m)||m);return m&&de(u,b,m),m},"__decorateClass");const C=class C extends U{constructor(){super(...arguments),this.specification=new y}get open(){return super.open??this.body[0]}head(){}switches(){}root(){}$Define(){super.$Define(),this.$is=[_,K]}$Bound(){const u=g(X);for(const b of this.table?.text.find(M)??[])b.annotations.add(this,e(u,{})),b.is(J)&&(b.$is=[Y]);super.$Bound()}};c(C,"$Manual");let v=C;const w=class w extends Q{$everyChapterHasABrief(u){P(u.chapters.every(b=>b.text.find(E).some(k=>k.is(ee))),"every chapter of a manual opens with a brief, and one here has none")}};c(w,"ManualSpecification");let y=w;le([R("every chapter of a manual opens with a brief")],y.prototype,"$everyChapterHasABrief");const ue=g(v);g(ue,z)(V);const j=class j extends v{};c(j,"$Importer");let T=j;const L=class L extends te{constructor(){super(...arguments),this.style=O.header`
+        .pd-chapter.pa-cover { margin-block: 0; }
+        .pa-cover .pd-title {
+            font-size: calc(1.04 * ${({theme:u})=>u.size});
+            font-weight: 600;
         }
-        closeLedger();
-        return;
-    }
-    const wholeProject = args.projectName !== undefined && args.onlyNames.length === 0;
-    for (const accountReading of reading.accounts) {
-        const accountIncluded = included.filter(pairing => pairing.account === accountReading.account.name);
-        console.log(archiveCheckReport(accountIncluded, accountReading, conversationOfPairing, wholeProject));
-    }
-    console.log(differenceLines('written back against the export', writtenDifferences(
-        includedConversations, heldRecords, folders.conversations,
-    )).join('\\n'));
-    if (args.intoFolder !== undefined) {
-        for (const conversation of includedConversations)
-            writeChapterIntoFolder(args.intoFolder, conversation);
-        return;
-    }
-    if (!args.write) {
-        console.log('\\nnothing written — pass --write');
-        return;
-    }
-    const reimporting = new Set(args.reimport ? included.map(pairing => pairing.conversationId) : []);
-    const marked = markMoved(folders.conversations, heldRecords, reimporting);
-    if (marked.length > 0)
-        console.log(\`\\nmarked \${countedNoun(marked.length, 'book')} moved since the last run as edited, untouched until \`
-            + \`re-imported or settled: \${marked.map(record => record.conversationName ?? record.conversationId).join(', ')}\`);
-    const filesTouched = writeBooks(args, folders, reading, included, conversationOfPairing, heldRecords);
-    closeLedger();
-    filesTouched.push(ledger);
-    const checked = await binderCheck(args.library, join(args.library, '..public', '.binding'), filesTouched);
-    console.log(\`\\nthe binder's check: \${countedNoun(checked.bookCount, 'book')}, \${countedNoun(checked.keyCount, 'key')}, \`
-        + countedNoun(checked.faults.length, 'fault'));
-    if (checked.faults.length > 0)
-        throw new Error(['the library does not hold together after the write:', ...checked.faults.slice(0, 20)].join('\\n'));
-};
-
-const accountsReading = async (accounts: Account[]): Promise<Reading> => {
-    const accountReadings: ExportReading[] = [];
-    for (const account of accounts)
-        accountReadings.push(await exportReading(account));
-    const readingOfConversation = new Map(accountReadings.flatMap(accountReading =>
-        accountReading.conversations.map(conversation => [conversation.id, accountReading] as const)));
-    const conversations = new Map(accountReadings.flatMap(accountReading =>
-        accountReading.conversations.map(conversation => [conversation.id, conversation] as const)));
-    const heapWords = \`\${Math.round(process.memoryUsage().heapUsed / 1e6)} MB\`;
-    console.log(\`\${countedNoun(accountReadings.length, 'account')} held, \${heapWords} of heap\`);
-
-    return {
-        accounts: accountReadings,
-        projects: stackedProjects(accountReadings.map(accountReading => accountReading.projects)),
-        conversations,
-        readingOf: pairing => readingOfConversation.get(pairing.conversationId)!,
-    };
-};
-
-const exportReading = async (account: Account): Promise<ExportReading> => {
-    const started = Date.now();
-    const source = exportSource(join(accountsFolder, account.folder));
-    const user = source.user();
-    if (user !== account.address)
-        throw new Error(\`the export under \${account.folder} is \${user}'s, \`
-            + \`and the configuration says \${account.name} is \${account.address}\`);
-    console.log(\`reading \${account.name}, the export of \${source.exportedOn}, a \${source.packaging}\`);
-    const projects = source.projects();
-    const documentCount = projects.reduce((total, project) => total + project.documents.length, 0);
-    const namedProjectCount = projects.filter(project => project.name !== '').length;
-    const memoryFileCount = source.memories().length;
-    console.log(\`  \${countedNoun(projects.length, 'project')}, \${namedProjectCount} named, \`
-        + \`\${countedNoun(documentCount, 'document')}, \${countedNoun(memoryFileCount, 'memory file')}\`);
-    const mapping = source.mapping();
-    console.log(mapping === undefined ? noMappingWords : mappingReport(mapping));
-    const conversations: Conversation[] = [];
-    const blockCounts = new Map<string, number>();
-    for await (const conversation of source.conversations()) {
-        conversations.push(conversation);
-        for (const message of conversation.messages)
-            for (const block of message.blocks)
-                blockCounts.set(block.type, (blockCounts.get(block.type) ?? 0) + 1);
-    }
-    const messageCount = conversations.reduce((total, conversation) => total + conversation.messages.length, 0);
-    const blockCountWords = [...blockCounts.entries()].map(([blockType, count]) => \`\${count} \${blockType}\`).join(', ');
-    console.log(\`  \${countedNoun(conversations.length, 'conversation')}, \${countedNoun(messageCount, 'message')}: \`
-        + blockCountWords);
-    console.log(\`read in \${elapsedSeconds(started)}\`);
-    const counts: ExportCounts = {
-        conversationCount: conversations.length,
-        messageCount,
-        projectCount: projects.length,
-        documentCount,
-        contentfulCount: conversations.filter(conversation => conversation.messages.length > 0).length,
-    };
-
-    return { account, exportedOn: source.exportedOn, folder: source.folder, projects, mapping, conversations, counts };
-};
-
-const membershipReport = (accountReading: ExportReading, accountPairings: Pairing[]): string => {
-    const membershipPath = newestBeside(accountReading.folder, 'project-membership-');
-    if (membershipPath === undefined) return '  no membership beside the export to check the pairing against';
-    const differences = membershipDifferences(accountPairings, readFileSync(membershipPath, 'utf8'));
-
-    return differenceLines(\`  the pairing against \${basename(membershipPath)}\`, differences).join('\\n');
-};
-
-const archiveCheckReport = (
-    included: Pairing[],
-    reading: ExportReading,
-    conversationOfPairing: ConversationOf,
-    wholeProject: boolean,
-): string => {
-    const accountFolder = join(accountsFolder, reading.account.folder);
-    const statisticsPath = join(accountFolder, '.statistics.md');
-    if (!existsSync(statisticsPath)) return \`\\n\${reading.account.name}: no archive to check against\`;
-    const statistics = archiveStatistics(readFileSync(statisticsPath, 'utf8'));
-    const transcripts = archiveTranscripts(accountFolder);
-    const projectNames = [...new Set(included.map(pairing => pairing.projectName))]
-        .filter((name): name is string => name !== undefined);
-    const filingOfProject = (projectName: string): string[] => {
-        const filedNames = archiveFiling(accountFolder, projectName);
-        const ours = included.filter(pairing => pairing.projectName === projectName).map(conversationOfPairing);
-        if (filedNames === undefined) return [\`filing of \${projectName}: the archive has no project of that name\`];
-
-        return differenceLines(\`filing of \${projectName}\`, filingDifferences(ours, filedNames, transcripts));
-    };
-    const filingLines = wholeProject
-        ? projectNames.flatMap(filingOfProject) : ['filing: checked when a project is run whole'];
-
-    return [
-        '',
-        \`\${reading.account.name}: checked against the archive, \${countedNoun(transcripts.size, 'transcript')}\`,
-        ...differenceLines('counts', countDifferences(reading.counts, statistics)),
-        ...filingLines,
-        ...differenceLines('messages', transcriptDifferences(included.map(conversationOfPairing), transcripts)),
-    ].join('\\n');
-};
-
-const selectionWords = (selection: Selection): string => {
-    if (selection.all) return 'every conversation of every account';
-    if (selection.projectName !== undefined) return selection.projectName;
-    if (selection.collectionName !== undefined) return \`the collection \${selection.collectionName}\`;
-
-    return 'named';
-};
-
-const mappingReport = (mapping: Mapping): string => {
-    const filedCount = mapping.projects.reduce((total, mappedProject) => total + mappedProject.conversations.length, 0);
-
-    return \`  the mapping of \${mapping.capturedAt.slice(0, 10)}: \${countedNoun(mapping.projects.length, 'project')}, \`
-        + \`\${countedNoun(filedCount, 'conversation')} filed\`;
-};
-
-const pairingReport = (pairings: Pairing[]): string => {
-    const pairingCount = (test: (pairing: Pairing) => boolean): number => pairings.filter(test).length;
-
-    return [
-        \`paired \${pairingCount(pairing => pairing.projectName !== undefined && !pairing.excluded)}\`,
-        \`unpaired \${pairingCount(pairing => pairing.projectName === undefined && !pairing.excluded)}\`,
-        \`ambiguous \${pairingCount(pairing => pairing.evidence.startsWith('ambiguous'))}\`,
-        \`excluded \${pairingCount(pairing => pairing.excluded)}\`,
-        \`by hand \${pairingCount(pairing => pairing.byHand)}\`,
-    ].join(' · ');
-};
-
-const stateWords: Partial<Record<ImportState, string>> = {
-    moved: ', moved since the last run: a run that writes marks it edited unless it re-imports it; --settle takes it as it stands',
-    edited: ', edited: --reimport writes it again and keeps yours beside the chapter; --settle takes it as it stands',
-};
-
-const importedWords = (
-    heldRecord: HeldRecord | undefined,
-    registerFolder: string,
-    state?: ImportState,
-    conversation?: Conversation,
-): string => {
-    if (heldRecord === undefined) return '';
-    const { importedAt, exportedOn, reimportedAt } = heldRecord.record;
-    const grownSince = conversation !== undefined && (state === 'moved' || state === 'edited')
-        && hasGrown(conversation, heldRecord.record);
-    const grownWords = grownSince ? ', grown since' : '';
-    const waiting = keptEditsStanding(registerFolder, heldRecord.record);
-    const struck = keptEditsStruck(registerFolder, heldRecord.record);
-    const reimportedWords = reimportedAt === undefined ? '' : \`, re-imported \${reimportedAt.slice(0, 10)}\`;
-    const waitingWords = waiting.length === 0 ? '' : \`, \${countedNoun(waiting.length, 'file')} of your edits to apply\`;
-    const struckWords = struck.length === 0
-        ? '' : \`, \${countedNoun(struck.length, 'kept copy')} struck: a run that writes tends the chapter\`;
-    const whenWords = \`imported \${importedAt.slice(0, 10)} from the export of \${exportedOn}\`;
-
-    return \` · \${whenWords}\${reimportedWords}\${waitingWords}\${struckWords}\${grownWords}\${(state && stateWords[state]) ?? ''}\`;
-};
-
-const listSelectedConversations = (
-    heading: string,
-    selected: Pairing[],
-    conversationOfPairing: ConversationOf,
-    folders: LibraryFolders,
-    heldRecords: Map<string, HeldRecord>,
-): void => {
-    const included = selected.filter(pairing => !pairing.excluded);
-    const byHandCount = included.filter(pairing => pairing.byHand).length;
-    const byHandWords = byHandCount > 0 ? \`, \${byHandCount} by hand\` : '';
-    console.log(\`\\n\${heading}: \${countedNoun(included.length, 'conversation')}\${byHandWords}\`);
-    for (const pairing of included) {
-        const conversation = conversationOfPairing(pairing);
-        const path = shownPath(conversation);
-        const heldRecord = heldRecords.get(conversation.id);
-        const state = importState(conversation, folders.conversations, heldRecord?.record);
-        const shownWords = \`\${path.length} shown of \${conversation.messages.length}\`;
-        const countWords = \`\${shownWords}, \${asideCount(conversation, path)} aside\`;
-        const dayWords = countedNoun(pathDays(path).length, 'day');
-        const nameWords = conversation.name || 'Untitled';
-        const projectWords = pairing.projectName ?? 'no project';
-        const whenWords = importedWords(heldRecord, folders.conversations, state, conversation);
-        const evidenceWords = \`\${projectWords} · \${pairing.evidence}\${whenWords}\`;
-        console.log(\`  \${state.padEnd(6)} \${nameWords} · \${countWords} · \${dayWords} · \${evidenceWords}\`);
-    }
-    for (const pairing of selected.filter(pairing => pairing.excluded))
-        console.log(\`  out    \${pairing.title} · \${pairing.reason}\`);
-};
-
-const listHeldConversations = (
-    reading: Reading,
-    heldRecords: Map<string, HeldRecord>,
-    folders: LibraryFolders,
-): void => {
-    console.log(\`\\nin the library: \${countedNoun(heldRecords.size, 'conversation')}\`);
-    const newestFirst = [...heldRecords.values()]
-        .sort((first, second) => second.record.importedAt.localeCompare(first.record.importedAt));
-    for (const heldRecord of newestFirst) {
-        const conversation = reading.conversations.get(heldRecord.record.conversationId);
-        const state = conversation === undefined ? undefined : importState(conversation, folders.conversations, heldRecord.record);
-        const stateWord = heldRecord.record.bookFolder === '' ? 'struck' : state ?? 'gone';
-        const nameWords = heldRecord.record.name || heldRecord.record.conversationName || heldRecord.record.conversationId;
-        console.log(\`  \${stateWord.padEnd(6)} \${nameWords}\${importedWords(heldRecord, folders.conversations, state, conversation)}\`);
-    }
-};
-
-const writeChapterIntoFolder = (intoFolder: string, conversation: Conversation): void => {
-    const folder = join(intoFolder, slugFromName(conversation.name));
-    const manual: Imports = { folder, barrel: resolve(intoFolder, '../.manual/.book.tsx') };
-    const claude: Imports = { folder, barrel: resolve(intoFolder, '../.claude/.manual/.book.tsx') };
-    const path = shownPath(conversation);
-    const written = writtenConversation(conversation, path, referents, manual, claude);
-    mkdirSync(folder, { recursive: true });
-    for (const chapter of [...written.chapters, ...written.versions]) {
-        writeFileSync(join(folder, chapter.fileName), chapter.tsx, 'utf8');
-        for (const chapterFile of chapter.files)
-            writeFileSync(join(folder, chapterFile.name), chapterFile.content, 'utf8');
-    }
-    const fileCount = written.chapters.reduce((sum, chapter) => sum + chapter.files.length, 0);
-    const chapterWords = \`\${countedNoun(written.chapters.length, 'chapter')} and \`
-        + countedNoun(written.versions.length, 'artifact version');
-    const thinkingWords = countedNoun(written.thinkingCount, 'thinking block');
-    const resultWords = countedNoun(written.resultCount, 'result');
-    const reportWords = \`\${countedNoun(fileCount, 'file')} beside them, \${thinkingWords} and \${resultWords} left out\`;
-    console.log(\`\\nwrote \${chapterWords} under \${folder} with \${reportWords}\`);
-};
-
-type WrittenProject = { project: Project | undefined; folder: string | undefined; scheme: Scheme; files: string[] };
-
-const writtenProject = (
-    args: Arguments,
-    folders: LibraryFolders,
-    reading: Reading,
-    projectName: string | undefined,
-): WrittenProject => {
-    const project = projectName === undefined ? undefined : reading.projects.find(one => one.name === projectName);
-    if (projectName !== undefined && project === undefined) throw new Error(\`no project named \${projectName} in the export\`);
-    const namedProjects = reading.projects.filter(candidate => candidate.name !== '');
-    const schemeIndex = project === undefined ? 0 : namedProjects.findIndex(candidate => candidate.id === project.id) + 1;
-    const scheme = schemes[schemeIndex % schemes.length];
-    if (project === undefined) return { project, folder: undefined, scheme, files: [] };
-    const wholeProject = args.overwrite && (args.all || args.projectName !== undefined) && args.onlyNames.length === 0;
-    const drawing = drawingBeside('project');
-    const book = projectBook(folders, project, scheme, drawing, args.overwrite, wholeProject);
-    const entry = registerEntry(
-        folders, folders.claude, projectBookName(project.name), book.folder, project.updatedAt, projectCaption, '**',
-    );
-
-    return { project, folder: book.folder, scheme, files: [...book.files, ...entry.files] };
-};
-
-const writeBooks = (
-    args: Arguments,
-    folders: LibraryFolders,
-    reading: Reading,
-    included: Pairing[],
-    conversationOfPairing: ConversationOf,
-    heldRecords: Map<string, HeldRecord>,
-): string[] => {
-    const filesTouched: string[] = [];
-    const dougsClaudeFiles = registerBook(
-        folders, folders.claude, 'Dougs Claude', 'Claude', 'Library', 'The Library', join(folders.library, '..reference'),
-        wrappedLines(dougsClaudeSynopsis), schemes[5], 'Catalogue', 'BookshelfCover', drawingBeside('dougs-claude'),
-        args.overwrite,
-    );
-    const ourConversationsFiles = registerBook(
-        folders, folders.conversations, 'Our Conversations', 'Conversations', 'Claude', 'Dougs Claude', folders.claude,
-        wrappedLines(ourConversationsSynopsis), schemes[1], 'Register', 'JournalCover', drawingBeside('our-conversations'),
-        args.overwrite,
-    );
-    const ourConversationsEntry = registerEntry(
-        folders, folders.claude, plainName('Our Conversations'), folders.conversations, new Date().toISOString(),
-        ourConversationsCaption, '**',
-    );
-    const dougsClaudeEntryFiles = libraryEntry(folders.library, 'Dougs Claude', folders.claude, dougsClaudeCaption);
-    filesTouched.push(...dougsClaudeFiles, ...dougsClaudeEntryFiles);
-    filesTouched.push(...ourConversationsFiles, ...ourConversationsEntry.files);
-    const namesTaken = new Set<string>();
-    const reimportedWords: string[] = [];
-    let writtenCount = 0;
-    let keptCount = 0;
-    let emptyCount = 0;
-    for (const projectName of [...new Set(included.map(pairing => pairing.projectName))]) {
-        const written = writtenProject(args, folders, reading, projectName);
-        filesTouched.push(...written.files);
-        for (const pairing of included.filter(candidate => candidate.projectName === projectName)) {
-            const conversation = conversationOfPairing(pairing);
-            // A conversation with no message to show is no book: there is nothing in it to read, and a
-            // conversation's type refuses a day that holds no message. Twenty of them, 2026-10-18.
-            if (shownPath(conversation).length === 0) {
-                emptyCount++;
-                continue;
-            }
-            const heldRecord = heldRecords.get(conversation.id);
-            const heldBookFolder = heldRecord === undefined || heldRecord.record.bookFolder === ''
-                ? undefined : join(folders.conversations, heldRecord.record.bookFolder);
-            const bookStands = heldBookFolder !== undefined && existsSync(heldBookFolder);
-            const standingRecord = bookStands ? heldRecord : undefined;
-            const state = importState(conversation, folders.conversations, standingRecord?.record);
-            const moved = state === 'edited' || state === 'moved';
-            const reimporting = moved && args.reimport;
-            const keptAsIs = (moved && !reimporting) || (state === 'in' && !args.overwrite);
-            const title = conversationTitle(conversation);
-            const standingName = (held: HeldRecord): BookName => ({ words: held.record.words || title, key: held.record.name });
-            if (standingRecord !== undefined && keptAsIs) {
-                keptCount++;
-                if (written.folder !== undefined)
-                    filesTouched.push(...projectEntry(
-                        folders, written.folder, standingName(standingRecord), heldBookFolder!, conversation.createdAt,
-                    ));
-                continue;
-            }
-            const standing = standingRecord;
-            const naming: ConversationNaming = standing === undefined
-                ? uniqueConversationName(folders.conversations, title, conversation.id, namesTaken)
-                : { name: standingName(standing), folderName: standing.record.bookFolder };
-            const name = naming.name.key;
-            const path = shownPath(conversation);
-            const projectNames = written.project === undefined ? [] : [written.project.name];
-            const accountName = reading.readingOf(pairing).account.name;
-            const before = standing === undefined ? new Map<string, string>() : folderContents(heldBookFolder!);
-            const drawn = conversationBook(
-                folders, conversation, path, naming, projectNames, accountName, written.scheme, referents,
-            );
-            const drawnFileNames = drawn.files.map(file => basename(file));
-            const newlyKept = reimporting ? keptEdits(drawn.folder, drawn.chapterStem, before, drawnFileNames) : [];
-            const kept = standingKeptEdits(drawn.folder);
-            const book = kept.length === 0 ? drawn : conversationBook(
-                folders, conversation, path, naming, projectNames, accountName, written.scheme, referents,
-                kept.map(one => one.appendix),
-            );
-            const keptFileNames = new Set(kept.map(one => one.fileName));
-            const bookFileNames = new Set(book.files.map(file => basename(file)));
-            for (const fileName of before.keys())
-                if (!bookFileNames.has(fileName) && !keptFileNames.has(fileName)) rmSync(join(drawn.folder, fileName));
-            const reimport = reimportOf(reimporting, standingRecord?.record.reimportedAt, kept.map(one => one.fileName));
-            if (reimporting)
-                reimportedWords.push(\`  \${name}: \${countedNoun(newlyKept.length, 'file')} of yours kept beside the chapter, \`
-                    + 'printed at its end; strike each when its edits are applied');
-            const conversationCaption = \`A conversation, \${countedNoun(path.length, 'exchange')}:\`;
-            const entry = registerEntry(
-                folders, folders.conversations, naming.name, book.folder, conversation.updatedAt, conversationCaption, '**',
-                undefined, written.project?.name ?? noProjectHeading,
-            );
-            const accountReading = reading.readingOf(pairing);
-            const record = importRecord(
-                conversation, folders.conversations, name, basename(book.folder), accountReading.exportedOn, reimport,
-                accountReading.account.name,
-            );
-            heldRecords.set(conversation.id, { record, path: ledgerPath(args.library) });
-            filesTouched.push(...book.files, ...entry.files);
-            if (written.folder !== undefined)
-                filesTouched.push(
-                    ...projectEntry(folders, written.folder, naming.name, book.folder, conversation.createdAt),
-                );
-            writtenCount++;
-        }
-    }
-    const latestByPart = new Map<string, string>();
-    for (const pairing of included) {
-        const part = pairing.projectName ?? noProjectHeading;
-        const latest = conversationOfPairing(pairing).updatedAt;
-        if ((latestByPart.get(part) ?? '') < latest) latestByPart.set(part, latest);
-    }
-    const partsNewestFirst = [...latestByPart.entries()]
-        .filter(([part]) => part !== noProjectHeading)
-        .sort((first, second) => second[1].localeCompare(first[1]))
-        .map(([part]) => part);
-    if (latestByPart.has(noProjectHeading)) partsNewestFirst.push(noProjectHeading);
-    filesTouched.push(...orderRegisterTable(folders.conversations, partsNewestFirst), ...orderRegisterTable(folders.claude));
-    console.log(\`\\nwrote \${countedNoun(writtenCount, 'conversation')}, kept \${keptCount}, \`
-        + \`\${countedNoun(emptyCount, 'conversation')} with no message not written, \`
-        + \`\${countedNoun(filesTouched.length, 'file')} touched under \${folders.claude}\`);
-    if (reimportedWords.length > 0) console.log(['re-imported:', ...reimportedWords].join('\\n'));
-
-    return filesTouched;
-};
-
-const reimportOf = (
-    reimporting: boolean,
-    reimportedAt: string | undefined,
-    keptFileNames: string[],
-): Reimport | undefined => {
-    if (reimporting) return { reimportedAt: new Date().toISOString(), keptEdits: keptFileNames };
-    if (reimportedAt === undefined) return undefined;
-
-    return { reimportedAt, keptEdits: keptFileNames };
-};
-
-const flagValue = (argv: string[], flag: string): string | undefined => {
-    const flagIndex = argv.indexOf(flag);
-
-    return flagIndex >= 0 ? argv[flagIndex + 1] : undefined;
-};
-
-const flagValues = (argv: string[], flag: string): string[] =>
-    argv.flatMap((word, index) => word === flag && argv[index + 1] !== undefined ? [argv[index + 1]] : []);
-
-const countedNoun = (count: number, noun: string): string => \`\${count} \${noun}\${count === 1 ? '' : 's'}\`;
-const elapsedSeconds = (since: number): string => \`\${((Date.now() - since) / 1000).toFixed(1)}s\`;
-
-const invokedDirectly = process.argv[1] !== undefined && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
-if (invokedDirectly)
-    run(parsedArguments(process.argv.slice(2))).catch(error => {
-        console.error(String(error.message ?? error));
-        process.exit(1);
-    });
+    `}};c(L,"$ManualCover");let D=L;const Z=class Z extends ${constructor(){super(...arguments),this.style=O.nav`
+        .pa-table-of-contents .pa-reference { color: inherit; text-decoration: none; }
+    `}};c(Z,"$ManualTableOfContents");let I=Z;const fe=g(D),pe=g(I),be=c(()=>t(s,{children:[e(fe,{}),e(S,{children:ae()}),e(S,{children:ne()}),e(oe,{ground:"#eef4ee",band:"#b9d4bf",bandInk:"#1f3f2a",foot:"#8fb79b",footInk:"#17351f",ink:"#1f3f2a"}),e(ce,{x:"-30",y:"-22"}),e(l,{children:"[Dougs Importer](/dougs-importer/)"}),e(B,{children:"[Doug](/dougs-story/)"}),e(G,{children:"[Library](/dougs-library/)"}),t(a,{children:[e(re,{}),e(W,{children:`<svg viewBox="0 0 64 64" class="pd-illustration"><path class="light" d="M24 20h31v37H24z"/><path d="M24 20h31v37H24zM24 20l-6 5v37l6-5M18 25h31"/><path class="fill" d="M29 27h21v8H29zM29 39h21v6H29z"/><path d="M7 32h12M15 27l5 5-5 5"/><path class="fill" d="M8 10h9v7H8zM5 48h9v7H5z"/><path d="M12 17v10M9 48v-9"/></svg>
+`})]})]}),"Cover"),me=c(()=>t(s,{children:[e(q,{}),t(l,{children:[e(x,{}),"[Synopsis](/dougs-importer/)"]}),t(a,{children:["The tools that bring my conversations into this library, one chapter to a stage and the code that runs the stage beside it, so that how a conversation gets in can be read beside the thing that does it. A conversation comes in as ",e(n,{children:"[a conversation](/dougs-reference-manual/#the-conversation)"}),", the type of book kept in the reference manual for it, and every source is read into one record, so that a second source is one more reader and nothing else moves. Start with ",e(n,{children:"[The Importer](/dougs-importer/#the-importer)"}),", which runs the stages in order and reports what it did, and then ",e(n,{children:"[The Export](/dougs-importer/#the-export)"}),", which says what is read and where it is found."]})]}),"Synopsis"),ge=c(()=>t(s,{children:[e(pe,{}),e(ie,{}),t(l,{children:[e(x,{}),"[Table of Contents](/dougs-importer/#table-of-contents)"]}),t(r,{children:[e(i,{children:"The run"}),e(a,{children:e(d,{children:"[The Importer](/dougs-importer/#the-importer)"})}),e(a,{children:e(d,{children:"[The Export](/dougs-importer/#the-export)"})}),e(a,{children:e(d,{children:"[The Record](/dougs-importer/#the-record)"})}),t(a,{children:[e(x,{}),e(N,{children:e(d,{children:"[Dougs Importer](/dougs-importer/)"})}),e(N,{children:e(d,{children:"[Synopsis](/dougs-importer/#synopsis)"})}),e(N,{children:e(d,{children:"[Table of Contents](/dougs-importer/#table-of-contents)"})})]})]}),t(r,{children:[e(i,{children:"From the export to a book"}),e(a,{children:e(d,{children:"[The Pairing](/dougs-importer/#the-pairing)"})}),e(a,{children:e(d,{children:"[The Ledger](/dougs-importer/#the-ledger)"})}),e(a,{children:e(d,{children:"[The Thread](/dougs-importer/#the-thread)"})}),e(a,{children:e(d,{children:"[The Writing](/dougs-importer/#the-writing)"})}),e(a,{children:e(d,{children:"[The Books](/dougs-importer/#the-books)"})}),e(a,{children:e(d,{children:"[The Check](/dougs-importer/#the-check)"})})]}),t(r,{children:[e(i,{children:"The imports"}),e(a,{children:e(d,{children:"[DNA Legacy](/dougs-importer/#dna-legacy)"})}),e(a,{children:e(d,{children:"[DNA](/dougs-importer/#dna)"})})]})]}),"Table"),he=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[The Importer](/dougs-importer/#the-importer)"}),t(a,{children:[e(p,{}),"The run: the stages in order, from an export on disk to conversations filed in this library, and the report of what it did."]}),t(r,{children:[e(i,{children:"Nine stages and nothing hidden between them"}),t(a,{children:["A conversation gets into this library in stages, and each stage is a chapter of this book with its code beside it, so a change to the code is never a question about which page owes an edit. The importer finds ",e(n,{children:"[the export](/dougs-importer/#the-export)"})," where it lands, reads it into ",e(n,{children:"[one record](/dougs-importer/#the-record)"}),", pairs each conversation to its project by ",e(n,{children:"[evidence](/dougs-importer/#the-pairing)"}),", asks ",e(n,{children:"[the ledger](/dougs-importer/#the-ledger)"})," which conversations are new, walks ",e(n,{children:"[the thread](/dougs-importer/#the-thread)"})," that was on the screen, turns what was said into ",e(n,{children:"[writing](/dougs-importer/#the-writing)"}),", writes ",e(n,{children:"[the books](/dougs-importer/#the-books)"}),", and ",e(n,{children:"[checks](/dougs-importer/#the-check)"})," what it wrote against the archive the export was first read into."]}),t(a,{children:["Run bare it says what it would write and stops. Run to write it writes, and reports: the conversations found, paired, unpaired, ambiguous and excluded; the messages on the screen and on other paths; the files written. It takes a project, a collection its configuration names, or particular conversations named by title or by id, never the whole export in one run, so the library grows at the pace the bind is measured to bear; and for each it says whether it is new, in, grown or edited, and when it was imported and from which export, which the record beside the conversation's entry holds. A run writes what is new and what has grown since its import, leaves what is in, and never touches what I edited unless told to re-import, when it keeps my edits beside the fresh chapter and says so, as ",e(n,{children:"[the ledger](/dougs-importer/#the-ledger)"})," tells. The ledger is one for every account, the appendix beside this chapter, and a run that writes replaces it whole at its end, so it says what the library holds and nothing it does not; a book moved since the last run is marked edited unless the run re-imports it, and told to settle, a run takes a change that was the library's own as it stands and writes no book. Run with nothing named it lists what the library holds already, newest import first. A book's title is the conversation's name made sensible, its spaces collapsed and a pictograph the application put first dropped, and its address is the title's letters in any script, a sign that reads as a word read as it. While the importer is being made it overwrites what it wrote, on a flag said at the run; once it is done it never does, since a conversation once imported is edited by hand."]}),t(a,{children:["Its configuration stands beside this chapter: what is excluded as not mine, the scripts a title may not be in and the projects; and the collections, each a name over a list of conversations by title or id. A conversation with a Russian title is not mine, and the configuration says so. Each of ",e(n,{children:"[my accounts](/dougs-claude/#the-accounts)"})," is an import of its own, a chapter of this book with its configuration and its ledger beside it, read in the chapters' order, the older first, so another platform is one more chapter."]})]}),e(o,{identifier:"importer",type:".ts",children:`import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';\r
+import { basename, dirname, join, resolve } from 'node:path';\r
+import { fileURLToPath } from 'node:url';\r
+import { newestBeside } from './2-the-export~export.ts';\r
+import type { Imports } from './8-the-books~homes.ts';\r
+import { exportSource } from './3-the-record~claude.ts';\r
+import type { Conversation, Mapping, Project } from './3-the-record~record.ts';\r
+import {\r
+    conversationPairings, stackedProjects, writePairings, type Exclusions, type Pairing,\r
+} from './4-the-pairing~pairing.ts';\r
+import {\r
+    folderContents, hasGrown, hasMoved, importRecord, importRecords, importState, keptEdits, keptEditsStanding,\r
+    keptEditsStruck, ledgerPath, markMoved, settle, standingKeptEdits, tendStruckEdits, writeLedger, type HeldRecord, type ImportState,\r
+    type Reimport,\r
+} from './5-the-ledger~ledger.ts';\r
+import { asideCount, pathDays, shownPath } from './6-the-thread~thread.ts';\r
+import { conversationTitle, slugFromName, writtenConversation, type Referents } from './7-the-writing~writing.ts';\r
+import {\r
+    conversationBook, libraryEntry, orderRegisterTable, plainName, projectBook, projectBookName, projectEntry,\r
+    registerBook, registerEntry, schemes, uniqueConversationName, wrappedLines, type BookName,\r
+    type ConversationNaming, type LibraryFolders, type Scheme,\r
+} from './8-the-books~books.ts';\r
+import {\r
+    archiveFiling, archiveStatistics, archiveTranscripts, binderCheck, countDifferences, differenceLines, filingDifferences,\r
+    membershipDifferences, transcriptDifferences, writtenDifferences, type ExportCounts,\r
+} from './9-the-check~check.ts';\r
+\r
+const importerFolder = dirname(fileURLToPath(import.meta.url));\r
+const drawingBeside = (name: string): string => readFileSync(join(importerFolder, \`8-the-books~\${name}.svg\`), 'utf8');\r
+export const accountsFolder = resolve(importerFolder, '..', '..', '..', 'dna-library', 'library');\r
+export const referents: Referents = { Doug: 'Dougs Story', Claude: 'Dougs Claude' };\r
+\r
+const dougsClaudeSynopsis = 'My projects with Claude and all of my conversations with him, catalogued here: '\r
+    + 'every conversation is filed under the book that holds them all, '\r
+    + 'and every project is a book that catalogues its own besides.';\r
+const ourConversationsSynopsis = 'Every conversation I have had with Claude, each a book of its own filed here, '\r
+    + 'listed newest first; the projects catalogue them again by what they were about.';\r
+const dougsClaudeCaption = 'My conversations with Claude and the projects they were held in:';\r
+const ourConversationsCaption = 'All of them, newest first:';\r
+const projectCaption = 'A project of mine, and the conversations held in it:';\r
+const noProjectHeading = 'No project';\r
+const noMappingWords = '  no mapping captured off the application; every conversation will be unpaired';\r
+\r
+export type Account = { name: string; folder: string; address: string };\r
+export type Configuration = { excluded: Exclusions; collections: Record<string, string[]> };\r
+export type Selection = {\r
+    all: boolean;\r
+    projectName: string | undefined;\r
+    collectionName: string | undefined;\r
+    onlyNames: string[];\r
+};\r
+type ConversationOf = (pairing: Pairing) => Conversation;\r
+\r
+export type Arguments = Selection & {\r
+    intoFolder: string | undefined;\r
+    library: string;\r
+    write: boolean;\r
+    overwrite: boolean;\r
+    reimport: boolean;\r
+    settle: boolean;\r
+};\r
+\r
+type ExportReading = {\r
+    account: Account;\r
+    exportedOn: string;\r
+    folder: string;\r
+    projects: Project[];\r
+    mapping: Mapping | undefined;\r
+    conversations: Conversation[];\r
+    counts: ExportCounts;\r
+};\r
+\r
+type Reading = {\r
+    accounts: ExportReading[];\r
+    projects: Project[];\r
+    conversations: Map<string, Conversation>;\r
+    readingOf: (pairing: Pairing) => ExportReading;\r
+};\r
+\r
+export const parsedArguments = (argv: string[]): Arguments => ({\r
+    all: argv.includes('--all'),\r
+    projectName: flagValue(argv, '--project'),\r
+    collectionName: flagValue(argv, '--collection'),\r
+    onlyNames: flagValues(argv, '--only'),\r
+    intoFolder: flagValue(argv, '--into'),\r
+    library: flagValue(argv, '--library') ?? resolve(importerFolder, '..'),\r
+    write: argv.includes('--write'),\r
+    overwrite: argv.includes('--overwrite'),\r
+    reimport: argv.includes('--reimport'),\r
+    settle: argv.includes('--settle'),\r
+});\r
+\r
+export const configurationPath = (library: string): string =>\r
+    join(library, 'importer', '1-the-importer~configuration.json');\r
+\r
+export const configurationFrom = (text: string): Configuration => {\r
+    const read = JSON.parse(text) as Partial<Configuration>;\r
+\r
+    return {\r
+        excluded: { scripts: read.excluded?.scripts ?? [], projects: read.excluded?.projects ?? [] },\r
+        collections: read.collections ?? {},\r
+    };\r
+};\r
+\r
+const importConfigurationForm = /^(\\d+)-(.+)~configuration\\.json$/u;\r
+\r
+export const importsOf = (importerFolder: string): Account[] => readdirSync(importerFolder)\r
+    .map(fileName => ({ fileName, numbered: importConfigurationForm.exec(fileName) }))\r
+    .filter(({ numbered }) => numbered !== null && numbered[2] !== 'the-importer')\r
+    .sort((first, second) => Number(first.numbered![1]) - Number(second.numbered![1]))\r
+    .map(({ fileName }) => JSON.parse(readFileSync(join(importerFolder, fileName), 'utf8')) as Account);\r
+\r
+export const readConfiguration = (library: string): Configuration => {\r
+    const path = configurationPath(library);\r
+\r
+    return configurationFrom(existsSync(path) ? readFileSync(path, 'utf8') : '{}');\r
+};\r
+\r
+export const selectedPairings = (\r
+    pairings: Pairing[],\r
+    selection: Selection,\r
+    collections: Record<string, string[]>,\r
+): Pairing[] => {\r
+    const named = (names: string[]) => (pairing: Pairing): boolean =>\r
+        names.includes(pairing.title) || names.includes(pairing.conversationId);\r
+    const narrowed = (candidates: Pairing[]): Pairing[] =>\r
+        selection.onlyNames.length === 0 ? candidates : candidates.filter(named(selection.onlyNames));\r
+    if (selection.all) return narrowed(pairings);\r
+    if (selection.projectName !== undefined)\r
+        return narrowed(pairings.filter(pairing => pairing.projectName === selection.projectName));\r
+    if (selection.collectionName !== undefined) {\r
+        const collection = collections[selection.collectionName];\r
+        if (collection === undefined)\r
+            throw new Error(\`the configuration names no collection called \${selection.collectionName}\`);\r
+        return narrowed(pairings.filter(named(collection)));\r
+    }\r
+\r
+    return narrowed(selection.onlyNames.length === 0 ? [] : pairings);\r
+};\r
+\r
+export const run = async (args: Arguments): Promise<void> => {\r
+    const configuration = readConfiguration(args.library);\r
+    const accounts = importsOf(join(args.library, 'importer'));\r
+    if (accounts.length === 0) throw new Error('the importer holds no import: a chapter with a configuration beside it');\r
+    const reading = await accountsReading(accounts);\r
+    const pairings = reading.accounts.flatMap(accountReading => conversationPairings(\r
+        args.library, accountReading.account.name, accountReading.conversations, accountReading.projects,\r
+        accountReading.mapping, configuration.excluded,\r
+    ));\r
+    for (const accountReading of reading.accounts) {\r
+        const accountPairings = pairings.filter(pairing => pairing.account === accountReading.account.name);\r
+        console.log(\`\${accountReading.account.name}: \${pairingReport(accountPairings)}\`);\r
+        console.log(membershipReport(accountReading, accountPairings));\r
+    }\r
+    const conversationOfPairing: ConversationOf = pairing => reading.conversations.get(pairing.conversationId)!;\r
+    const folders: LibraryFolders = {\r
+        library: args.library,\r
+        claude: join(args.library, '.claude'),\r
+        claudeManual: join(args.library, '.claude', '.manual'),\r
+        conversations: join(args.library, '.claude', '.conversations'),\r
+    };\r
+    const ledger = ledgerPath(args.library);\r
+    const heldRecords = importRecords(folders.conversations, ledger);\r
+    // THE LEDGER IS WRITTEN WHOLE at the end of every run that writes, and says what it dropped.\r
+    const closeLedger = (): void => {\r
+        const struck = writeLedger(ledger, folders.conversations, heldRecords);\r
+        const struckWords = struck.length === 0 ? '' : \`, \${countedNoun(struck.length, 'struck book')} dropped: \`\r
+            + struck.map(record => record.conversationName ?? record.conversationId).join(', ');\r
+        console.log(\`the ledger written whole: \${countedNoun(heldRecords.size, 'line')}\${struckWords}\`);\r
+    };\r
+    if (args.write) {\r
+        writePairings(args.library, pairings);\r
+        const tended = [...heldRecords.values()].flatMap(heldRecord => tendStruckEdits(folders.conversations, heldRecord));\r
+        if (tended.length > 0) console.log(\`tended \${countedNoun(tended.length, 'file')} after kept copies were struck\`);\r
+    }\r
+    const selected = selectedPairings(pairings, args, configuration.collections);\r
+    if (selected.length === 0) {\r
+        listHeldConversations(reading, heldRecords, folders);\r
+        if (args.write) closeLedger();\r
+        console.log('\\nnothing selected — pass --all, --project, --collection or --only');\r
+        return;\r
+    }\r
+    listSelectedConversations(selectionWords(args), selected, conversationOfPairing, folders, heldRecords);\r
+    const included = selected.filter(pairing => !pairing.excluded);\r
+    const includedConversations = included.map(conversationOfPairing);\r
+    if (args.settle) {\r
+        const ids = args.all ? 'all' : new Set(included.map(pairing => pairing.conversationId));\r
+        const taken = [...heldRecords.values()].filter(({ record }) => (ids === 'all' || ids.has(record.conversationId))\r
+            && (record.edited || hasMoved(folders.conversations, record)));\r
+        const settled = settle(heldRecords, ids);\r
+        console.log(\`\\n\${args.write ? 'settled' : 'would settle'} \${countedNoun(taken.length, 'book')} as \`\r
+            + \`\${taken.length === 1 ? 'it stands' : 'they stand'}, \${countedNoun(settled.length, 'mark')} cleared, no book written\`);\r
+        if (!args.write) {\r
+            console.log('\\nnothing written — pass --write');\r
+            return;\r
+        }\r
+        closeLedger();\r
+        return;\r
+    }\r
+    const wholeProject = args.projectName !== undefined && args.onlyNames.length === 0;\r
+    for (const accountReading of reading.accounts) {\r
+        const accountIncluded = included.filter(pairing => pairing.account === accountReading.account.name);\r
+        console.log(archiveCheckReport(accountIncluded, accountReading, conversationOfPairing, wholeProject));\r
+    }\r
+    console.log(differenceLines('written back against the export', writtenDifferences(\r
+        includedConversations, heldRecords, folders.conversations,\r
+    )).join('\\n'));\r
+    if (args.intoFolder !== undefined) {\r
+        for (const conversation of includedConversations)\r
+            writeChapterIntoFolder(args.intoFolder, conversation);\r
+        return;\r
+    }\r
+    if (!args.write) {\r
+        console.log('\\nnothing written — pass --write');\r
+        return;\r
+    }\r
+    const reimporting = new Set(args.reimport ? included.map(pairing => pairing.conversationId) : []);\r
+    const marked = markMoved(folders.conversations, heldRecords, reimporting);\r
+    if (marked.length > 0)\r
+        console.log(\`\\nmarked \${countedNoun(marked.length, 'book')} moved since the last run as edited, untouched until \`\r
+            + \`re-imported or settled: \${marked.map(record => record.conversationName ?? record.conversationId).join(', ')}\`);\r
+    const filesTouched = writeBooks(args, folders, reading, included, conversationOfPairing, heldRecords);\r
+    closeLedger();\r
+    filesTouched.push(ledger);\r
+    const checked = await binderCheck(args.library, join(args.library, '..public', '.binding'), filesTouched);\r
+    console.log(\`\\nthe binder's check: \${countedNoun(checked.bookCount, 'book')}, \${countedNoun(checked.keyCount, 'key')}, \`\r
+        + countedNoun(checked.faults.length, 'fault'));\r
+    if (checked.faults.length > 0)\r
+        throw new Error(['the library does not hold together after the write:', ...checked.faults.slice(0, 20)].join('\\n'));\r
+};\r
+\r
+const accountsReading = async (accounts: Account[]): Promise<Reading> => {\r
+    const accountReadings: ExportReading[] = [];\r
+    for (const account of accounts)\r
+        accountReadings.push(await exportReading(account));\r
+    const readingOfConversation = new Map(accountReadings.flatMap(accountReading =>\r
+        accountReading.conversations.map(conversation => [conversation.id, accountReading] as const)));\r
+    const conversations = new Map(accountReadings.flatMap(accountReading =>\r
+        accountReading.conversations.map(conversation => [conversation.id, conversation] as const)));\r
+    const heapWords = \`\${Math.round(process.memoryUsage().heapUsed / 1e6)} MB\`;\r
+    console.log(\`\${countedNoun(accountReadings.length, 'account')} held, \${heapWords} of heap\`);\r
+\r
+    return {\r
+        accounts: accountReadings,\r
+        projects: stackedProjects(accountReadings.map(accountReading => accountReading.projects)),\r
+        conversations,\r
+        readingOf: pairing => readingOfConversation.get(pairing.conversationId)!,\r
+    };\r
+};\r
+\r
+const exportReading = async (account: Account): Promise<ExportReading> => {\r
+    const started = Date.now();\r
+    const source = exportSource(join(accountsFolder, account.folder));\r
+    const user = source.user();\r
+    if (user !== account.address)\r
+        throw new Error(\`the export under \${account.folder} is \${user}'s, \`\r
+            + \`and the configuration says \${account.name} is \${account.address}\`);\r
+    console.log(\`reading \${account.name}, the export of \${source.exportedOn}, a \${source.packaging}\`);\r
+    const projects = source.projects();\r
+    const documentCount = projects.reduce((total, project) => total + project.documents.length, 0);\r
+    const namedProjectCount = projects.filter(project => project.name !== '').length;\r
+    const memoryFileCount = source.memories().length;\r
+    console.log(\`  \${countedNoun(projects.length, 'project')}, \${namedProjectCount} named, \`\r
+        + \`\${countedNoun(documentCount, 'document')}, \${countedNoun(memoryFileCount, 'memory file')}\`);\r
+    const mapping = source.mapping();\r
+    console.log(mapping === undefined ? noMappingWords : mappingReport(mapping));\r
+    const conversations: Conversation[] = [];\r
+    const blockCounts = new Map<string, number>();\r
+    for await (const conversation of source.conversations()) {\r
+        conversations.push(conversation);\r
+        for (const message of conversation.messages)\r
+            for (const block of message.blocks)\r
+                blockCounts.set(block.type, (blockCounts.get(block.type) ?? 0) + 1);\r
+    }\r
+    const messageCount = conversations.reduce((total, conversation) => total + conversation.messages.length, 0);\r
+    const blockCountWords = [...blockCounts.entries()].map(([blockType, count]) => \`\${count} \${blockType}\`).join(', ');\r
+    console.log(\`  \${countedNoun(conversations.length, 'conversation')}, \${countedNoun(messageCount, 'message')}: \`\r
+        + blockCountWords);\r
+    console.log(\`read in \${elapsedSeconds(started)}\`);\r
+    const counts: ExportCounts = {\r
+        conversationCount: conversations.length,\r
+        messageCount,\r
+        projectCount: projects.length,\r
+        documentCount,\r
+        contentfulCount: conversations.filter(conversation => conversation.messages.length > 0).length,\r
+    };\r
+\r
+    return { account, exportedOn: source.exportedOn, folder: source.folder, projects, mapping, conversations, counts };\r
+};\r
+\r
+const membershipReport = (accountReading: ExportReading, accountPairings: Pairing[]): string => {\r
+    const membershipPath = newestBeside(accountReading.folder, 'project-membership-');\r
+    if (membershipPath === undefined) return '  no membership beside the export to check the pairing against';\r
+    const differences = membershipDifferences(accountPairings, readFileSync(membershipPath, 'utf8'));\r
+\r
+    return differenceLines(\`  the pairing against \${basename(membershipPath)}\`, differences).join('\\n');\r
+};\r
+\r
+const archiveCheckReport = (\r
+    included: Pairing[],\r
+    reading: ExportReading,\r
+    conversationOfPairing: ConversationOf,\r
+    wholeProject: boolean,\r
+): string => {\r
+    const accountFolder = join(accountsFolder, reading.account.folder);\r
+    const statisticsPath = join(accountFolder, '.statistics.md');\r
+    if (!existsSync(statisticsPath)) return \`\\n\${reading.account.name}: no archive to check against\`;\r
+    const statistics = archiveStatistics(readFileSync(statisticsPath, 'utf8'));\r
+    const transcripts = archiveTranscripts(accountFolder);\r
+    const projectNames = [...new Set(included.map(pairing => pairing.projectName))]\r
+        .filter((name): name is string => name !== undefined);\r
+    const filingOfProject = (projectName: string): string[] => {\r
+        const filedNames = archiveFiling(accountFolder, projectName);\r
+        const ours = included.filter(pairing => pairing.projectName === projectName).map(conversationOfPairing);\r
+        if (filedNames === undefined) return [\`filing of \${projectName}: the archive has no project of that name\`];\r
+\r
+        return differenceLines(\`filing of \${projectName}\`, filingDifferences(ours, filedNames, transcripts));\r
+    };\r
+    const filingLines = wholeProject\r
+        ? projectNames.flatMap(filingOfProject) : ['filing: checked when a project is run whole'];\r
+\r
+    return [\r
+        '',\r
+        \`\${reading.account.name}: checked against the archive, \${countedNoun(transcripts.size, 'transcript')}\`,\r
+        ...differenceLines('counts', countDifferences(reading.counts, statistics)),\r
+        ...filingLines,\r
+        ...differenceLines('messages', transcriptDifferences(included.map(conversationOfPairing), transcripts)),\r
+    ].join('\\n');\r
+};\r
+\r
+const selectionWords = (selection: Selection): string => {\r
+    if (selection.all) return 'every conversation of every account';\r
+    if (selection.projectName !== undefined) return selection.projectName;\r
+    if (selection.collectionName !== undefined) return \`the collection \${selection.collectionName}\`;\r
+\r
+    return 'named';\r
+};\r
+\r
+const mappingReport = (mapping: Mapping): string => {\r
+    const filedCount = mapping.projects.reduce((total, mappedProject) => total + mappedProject.conversations.length, 0);\r
+\r
+    return \`  the mapping of \${mapping.capturedAt.slice(0, 10)}: \${countedNoun(mapping.projects.length, 'project')}, \`\r
+        + \`\${countedNoun(filedCount, 'conversation')} filed\`;\r
+};\r
+\r
+const pairingReport = (pairings: Pairing[]): string => {\r
+    const pairingCount = (test: (pairing: Pairing) => boolean): number => pairings.filter(test).length;\r
+\r
+    return [\r
+        \`paired \${pairingCount(pairing => pairing.projectName !== undefined && !pairing.excluded)}\`,\r
+        \`unpaired \${pairingCount(pairing => pairing.projectName === undefined && !pairing.excluded)}\`,\r
+        \`ambiguous \${pairingCount(pairing => pairing.evidence.startsWith('ambiguous'))}\`,\r
+        \`excluded \${pairingCount(pairing => pairing.excluded)}\`,\r
+        \`by hand \${pairingCount(pairing => pairing.byHand)}\`,\r
+    ].join(' · ');\r
+};\r
+\r
+const stateWords: Partial<Record<ImportState, string>> = {\r
+    moved: ', moved since the last run: a run that writes marks it edited unless it re-imports it; --settle takes it as it stands',\r
+    edited: ', edited: --reimport writes it again and keeps yours beside the chapter; --settle takes it as it stands',\r
+};\r
+\r
+const importedWords = (\r
+    heldRecord: HeldRecord | undefined,\r
+    registerFolder: string,\r
+    state?: ImportState,\r
+    conversation?: Conversation,\r
+): string => {\r
+    if (heldRecord === undefined) return '';\r
+    const { importedAt, exportedOn, reimportedAt } = heldRecord.record;\r
+    const grownSince = conversation !== undefined && (state === 'moved' || state === 'edited')\r
+        && hasGrown(conversation, heldRecord.record);\r
+    const grownWords = grownSince ? ', grown since' : '';\r
+    const waiting = keptEditsStanding(registerFolder, heldRecord.record);\r
+    const struck = keptEditsStruck(registerFolder, heldRecord.record);\r
+    const reimportedWords = reimportedAt === undefined ? '' : \`, re-imported \${reimportedAt.slice(0, 10)}\`;\r
+    const waitingWords = waiting.length === 0 ? '' : \`, \${countedNoun(waiting.length, 'file')} of your edits to apply\`;\r
+    const struckWords = struck.length === 0\r
+        ? '' : \`, \${countedNoun(struck.length, 'kept copy')} struck: a run that writes tends the chapter\`;\r
+    const whenWords = \`imported \${importedAt.slice(0, 10)} from the export of \${exportedOn}\`;\r
+\r
+    return \` · \${whenWords}\${reimportedWords}\${waitingWords}\${struckWords}\${grownWords}\${(state && stateWords[state]) ?? ''}\`;\r
+};\r
+\r
+const listSelectedConversations = (\r
+    heading: string,\r
+    selected: Pairing[],\r
+    conversationOfPairing: ConversationOf,\r
+    folders: LibraryFolders,\r
+    heldRecords: Map<string, HeldRecord>,\r
+): void => {\r
+    const included = selected.filter(pairing => !pairing.excluded);\r
+    const byHandCount = included.filter(pairing => pairing.byHand).length;\r
+    const byHandWords = byHandCount > 0 ? \`, \${byHandCount} by hand\` : '';\r
+    console.log(\`\\n\${heading}: \${countedNoun(included.length, 'conversation')}\${byHandWords}\`);\r
+    for (const pairing of included) {\r
+        const conversation = conversationOfPairing(pairing);\r
+        const path = shownPath(conversation);\r
+        const heldRecord = heldRecords.get(conversation.id);\r
+        const state = importState(conversation, folders.conversations, heldRecord?.record);\r
+        const shownWords = \`\${path.length} shown of \${conversation.messages.length}\`;\r
+        const countWords = \`\${shownWords}, \${asideCount(conversation, path)} aside\`;\r
+        const dayWords = countedNoun(pathDays(path).length, 'day');\r
+        const standingWords = heldRecord?.record.words;\r
+        const nameWords = \`\${conversation.name || 'Untitled'}\${standingWords !== undefined && standingWords !== '' && standingWords !== conversation.name ? \`, now \${standingWords}\` : ''}\`;\r
+        const projectWords = pairing.projectName ?? 'no project';\r
+        const whenWords = importedWords(heldRecord, folders.conversations, state, conversation);\r
+        const evidenceWords = \`\${projectWords} · \${pairing.evidence}\${whenWords}\`;\r
+        console.log(\`  \${state.padEnd(6)} \${nameWords} · \${countWords} · \${dayWords} · \${evidenceWords}\`);\r
+    }\r
+    for (const pairing of selected.filter(pairing => pairing.excluded))\r
+        console.log(\`  out    \${pairing.title} · \${pairing.reason}\`);\r
+};\r
+\r
+const listHeldConversations = (\r
+    reading: Reading,\r
+    heldRecords: Map<string, HeldRecord>,\r
+    folders: LibraryFolders,\r
+): void => {\r
+    console.log(\`\\nin the library: \${countedNoun(heldRecords.size, 'conversation')}\`);\r
+    const newestFirst = [...heldRecords.values()]\r
+        .sort((first, second) => second.record.importedAt.localeCompare(first.record.importedAt));\r
+    for (const heldRecord of newestFirst) {\r
+        const conversation = reading.conversations.get(heldRecord.record.conversationId);\r
+        const state = conversation === undefined ? undefined : importState(conversation, folders.conversations, heldRecord.record);\r
+        const stateWord = heldRecord.record.bookFolder === '' ? 'struck' : state ?? 'gone';\r
+        const nameWords = heldRecord.record.name || heldRecord.record.conversationName || heldRecord.record.conversationId;\r
+        console.log(\`  \${stateWord.padEnd(6)} \${nameWords}\${importedWords(heldRecord, folders.conversations, state, conversation)}\`);\r
+    }\r
+};\r
+\r
+const writeChapterIntoFolder = (intoFolder: string, conversation: Conversation): void => {\r
+    const folder = join(intoFolder, slugFromName(conversation.name));\r
+    const manual: Imports = { folder, barrel: resolve(intoFolder, '../.manual/.book.tsx') };\r
+    const claude: Imports = { folder, barrel: resolve(intoFolder, '../.claude/.manual/.book.tsx') };\r
+    const path = shownPath(conversation);\r
+    const written = writtenConversation(conversation, path, referents, manual, claude);\r
+    mkdirSync(folder, { recursive: true });\r
+    for (const chapter of [...written.chapters, ...written.versions]) {\r
+        writeFileSync(join(folder, chapter.fileName), chapter.tsx, 'utf8');\r
+        for (const chapterFile of chapter.files)\r
+            writeFileSync(join(folder, chapterFile.name), chapterFile.content, 'utf8');\r
+    }\r
+    const fileCount = written.chapters.reduce((sum, chapter) => sum + chapter.files.length, 0);\r
+    const chapterWords = \`\${countedNoun(written.chapters.length, 'chapter')} and \`\r
+        + countedNoun(written.versions.length, 'artifact version');\r
+    const thinkingWords = countedNoun(written.thinkingCount, 'thinking block');\r
+    const resultWords = countedNoun(written.resultCount, 'result');\r
+    const reportWords = \`\${countedNoun(fileCount, 'file')} beside them, \${thinkingWords} and \${resultWords} left out\`;\r
+    console.log(\`\\nwrote \${chapterWords} under \${folder} with \${reportWords}\`);\r
+};\r
+\r
+type WrittenProject = { project: Project | undefined; folder: string | undefined; scheme: Scheme; files: string[] };\r
+\r
+const writtenProject = (\r
+    args: Arguments,\r
+    folders: LibraryFolders,\r
+    reading: Reading,\r
+    projectName: string | undefined,\r
+): WrittenProject => {\r
+    const project = projectName === undefined ? undefined : reading.projects.find(one => one.name === projectName);\r
+    if (projectName !== undefined && project === undefined) throw new Error(\`no project named \${projectName} in the export\`);\r
+    const namedProjects = reading.projects.filter(candidate => candidate.name !== '');\r
+    const schemeIndex = project === undefined ? 0 : namedProjects.findIndex(candidate => candidate.id === project.id) + 1;\r
+    const scheme = schemes[schemeIndex % schemes.length];\r
+    if (project === undefined) return { project, folder: undefined, scheme, files: [] };\r
+    const wholeProject = args.overwrite && (args.all || args.projectName !== undefined) && args.onlyNames.length === 0;\r
+    const drawing = drawingBeside('project');\r
+    const book = projectBook(folders, project, scheme, drawing, args.overwrite, wholeProject);\r
+    const entry = registerEntry(\r
+        folders, folders.claude, projectBookName(project.name), book.folder, project.updatedAt, projectCaption, '**',\r
+    );\r
+\r
+    return { project, folder: book.folder, scheme, files: [...book.files, ...entry.files] };\r
+};\r
+\r
+const writeBooks = (\r
+    args: Arguments,\r
+    folders: LibraryFolders,\r
+    reading: Reading,\r
+    included: Pairing[],\r
+    conversationOfPairing: ConversationOf,\r
+    heldRecords: Map<string, HeldRecord>,\r
+): string[] => {\r
+    const filesTouched: string[] = [];\r
+    const dougsClaudeFiles = registerBook(\r
+        folders, folders.claude, 'Dougs Claude', 'Claude', 'Library', 'The Library', join(folders.library, '..reference'),\r
+        wrappedLines(dougsClaudeSynopsis), schemes[5], 'Catalogue', 'BookshelfCover', drawingBeside('dougs-claude'),\r
+        args.overwrite,\r
+    );\r
+    const ourConversationsFiles = registerBook(\r
+        folders, folders.conversations, 'Our Conversations', 'Conversations', 'Claude', 'Dougs Claude', folders.claude,\r
+        wrappedLines(ourConversationsSynopsis), schemes[1], 'Register', 'JournalCover', drawingBeside('our-conversations'),\r
+        args.overwrite,\r
+    );\r
+    const ourConversationsEntry = registerEntry(\r
+        folders, folders.claude, plainName('Our Conversations'), folders.conversations, new Date().toISOString(),\r
+        ourConversationsCaption, '**',\r
+    );\r
+    const dougsClaudeEntryFiles = libraryEntry(folders.library, 'Dougs Claude', folders.claude, dougsClaudeCaption);\r
+    filesTouched.push(...dougsClaudeFiles, ...dougsClaudeEntryFiles);\r
+    filesTouched.push(...ourConversationsFiles, ...ourConversationsEntry.files);\r
+    const namesTaken = new Set<string>();\r
+    const reimportedWords: string[] = [];\r
+    let writtenCount = 0;\r
+    let keptCount = 0;\r
+    let emptyCount = 0;\r
+    for (const projectName of [...new Set(included.map(pairing => pairing.projectName))]) {\r
+        const written = writtenProject(args, folders, reading, projectName);\r
+        filesTouched.push(...written.files);\r
+        for (const pairing of included.filter(candidate => candidate.projectName === projectName)) {\r
+            const conversation = conversationOfPairing(pairing);\r
+            // A conversation with no message to show is no book: there is nothing in it to read, and a\r
+            // conversation's type refuses a day that holds no message. Twenty of them, 2026-10-18.\r
+            if (shownPath(conversation).length === 0) {\r
+                emptyCount++;\r
+                continue;\r
+            }\r
+            const heldRecord = heldRecords.get(conversation.id);\r
+            const heldBookFolder = heldRecord === undefined || heldRecord.record.bookFolder === ''\r
+                ? undefined : join(folders.conversations, heldRecord.record.bookFolder);\r
+            const bookStands = heldBookFolder !== undefined && existsSync(heldBookFolder);\r
+            const standingRecord = bookStands ? heldRecord : undefined;\r
+            const state = importState(conversation, folders.conversations, standingRecord?.record);\r
+            const moved = state === 'edited' || state === 'moved';\r
+            const reimporting = moved && args.reimport;\r
+            const keptAsIs = (moved && !reimporting) || (state === 'in' && !args.overwrite);\r
+            const title = conversationTitle(conversation);\r
+            const standingName = (held: HeldRecord): BookName => ({ words: held.record.words || title, key: held.record.name });\r
+            if (standingRecord !== undefined && keptAsIs) {\r
+                keptCount++;\r
+                if (written.folder !== undefined)\r
+                    filesTouched.push(...projectEntry(\r
+                        folders, written.folder, standingName(standingRecord), heldBookFolder!, conversation.createdAt,\r
+                    ));\r
+                continue;\r
+            }\r
+            const standing = standingRecord;\r
+            const naming: ConversationNaming = standing === undefined\r
+                ? uniqueConversationName(folders.conversations, title, conversation.id, namesTaken)\r
+                : { name: standingName(standing), folderName: standing.record.bookFolder };\r
+            const name = naming.name.key;\r
+            const path = shownPath(conversation);\r
+            const projectNames = written.project === undefined ? [] : [written.project.name];\r
+            const accountName = reading.readingOf(pairing).account.name;\r
+            const before = standing === undefined ? new Map<string, string>() : folderContents(heldBookFolder!);\r
+            const drawn = conversationBook(\r
+                folders, conversation, path, naming, projectNames, accountName, written.scheme, referents,\r
+            );\r
+            const drawnFileNames = drawn.files.map(file => basename(file));\r
+            const newlyKept = reimporting ? keptEdits(drawn.folder, drawn.chapterStem, before, drawnFileNames) : [];\r
+            const kept = standingKeptEdits(drawn.folder);\r
+            const book = kept.length === 0 ? drawn : conversationBook(\r
+                folders, conversation, path, naming, projectNames, accountName, written.scheme, referents,\r
+                kept.map(one => one.appendix),\r
+            );\r
+            const keptFileNames = new Set(kept.map(one => one.fileName));\r
+            const bookFileNames = new Set(book.files.map(file => basename(file)));\r
+            for (const fileName of before.keys())\r
+                if (!bookFileNames.has(fileName) && !keptFileNames.has(fileName)) rmSync(join(drawn.folder, fileName));\r
+            const reimport = reimportOf(reimporting, standingRecord?.record.reimportedAt, kept.map(one => one.fileName));\r
+            if (reimporting)\r
+                reimportedWords.push(\`  \${name}: \${countedNoun(newlyKept.length, 'file')} of yours kept beside the chapter, \`\r
+                    + 'printed at its end; strike each when its edits are applied');\r
+            const conversationCaption = \`A conversation, \${countedNoun(path.length, 'exchange')}:\`;\r
+            const entry = registerEntry(\r
+                folders, folders.conversations, naming.name, book.folder, conversation.updatedAt, conversationCaption, '**',\r
+                undefined, written.project?.name ?? noProjectHeading,\r
+            );\r
+            const accountReading = reading.readingOf(pairing);\r
+            const record = importRecord(\r
+                conversation, folders.conversations, name, basename(book.folder), accountReading.exportedOn, reimport,\r
+                accountReading.account.name,\r
+            );\r
+            heldRecords.set(conversation.id, { record, path: ledgerPath(args.library) });\r
+            filesTouched.push(...book.files, ...entry.files);\r
+            if (written.folder !== undefined)\r
+                filesTouched.push(\r
+                    ...projectEntry(folders, written.folder, naming.name, book.folder, conversation.createdAt),\r
+                );\r
+            writtenCount++;\r
+        }\r
+    }\r
+    const latestByPart = new Map<string, string>();\r
+    for (const pairing of included) {\r
+        const part = pairing.projectName ?? noProjectHeading;\r
+        const latest = conversationOfPairing(pairing).updatedAt;\r
+        if ((latestByPart.get(part) ?? '') < latest) latestByPart.set(part, latest);\r
+    }\r
+    const partsNewestFirst = [...latestByPart.entries()]\r
+        .filter(([part]) => part !== noProjectHeading)\r
+        .sort((first, second) => second[1].localeCompare(first[1]))\r
+        .map(([part]) => part);\r
+    if (latestByPart.has(noProjectHeading)) partsNewestFirst.push(noProjectHeading);\r
+    filesTouched.push(...orderRegisterTable(folders.conversations, partsNewestFirst), ...orderRegisterTable(folders.claude));\r
+    console.log(\`\\nwrote \${countedNoun(writtenCount, 'conversation')}, kept \${keptCount}, \`\r
+        + \`\${countedNoun(emptyCount, 'conversation')} with no message not written, \`\r
+        + \`\${countedNoun(filesTouched.length, 'file')} touched under \${folders.claude}\`);\r
+    if (reimportedWords.length > 0) console.log(['re-imported:', ...reimportedWords].join('\\n'));\r
+\r
+    return filesTouched;\r
+};\r
+\r
+const reimportOf = (\r
+    reimporting: boolean,\r
+    reimportedAt: string | undefined,\r
+    keptFileNames: string[],\r
+): Reimport | undefined => {\r
+    if (reimporting) return { reimportedAt: new Date().toISOString(), keptEdits: keptFileNames };\r
+    if (reimportedAt === undefined) return undefined;\r
+\r
+    return { reimportedAt, keptEdits: keptFileNames };\r
+};\r
+\r
+const flagValue = (argv: string[], flag: string): string | undefined => {\r
+    const flagIndex = argv.indexOf(flag);\r
+\r
+    return flagIndex >= 0 ? argv[flagIndex + 1] : undefined;\r
+};\r
+\r
+const flagValues = (argv: string[], flag: string): string[] =>\r
+    argv.flatMap((word, index) => word === flag && argv[index + 1] !== undefined ? [argv[index + 1]] : []);\r
+\r
+const countedNoun = (count: number, noun: string): string => \`\${count} \${noun}\${count === 1 ? '' : 's'}\`;\r
+const elapsedSeconds = (since: number): string => \`\${((Date.now() - since) / 1000).toFixed(1)}s\`;\r
+\r
+const invokedDirectly = process.argv[1] !== undefined && resolve(process.argv[1]) === fileURLToPath(import.meta.url);\r
+if (invokedDirectly)\r
+    run(parsedArguments(process.argv.slice(2))).catch(error => {\r
+        console.error(String(error.message ?? error));\r
+        process.exit(1);\r
+    });\r
 `}),e(o,{identifier:"configuration",type:".json",children:`{
   "excluded": {
     "scripts": [
@@ -9586,7 +9595,7 @@ describe('the importer', () => {
         expect(parsedArguments(['--settle', '--all']).settle).toBe(true);
     });
 });
-`})]}),"TheImporter1"),E=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[The Export](/dougs-importer/#the-export)"}),t(a,{children:[e(f,{}),"What is read, and where it is found: the export Claude gives of each of my accounts, in either of the two packagings it has come in, and the capture of conversations to projects read off the application beside it, all left where they land."]}),t(i,{children:[e(r,{children:"Two packagings of the same records"}),e(a,{children:"An export of my Claude account arrives today as a small manifest naming seven archives, which the browser must fetch since their links are single-use: the account's metadata, its projects with every knowledge file inline, its memories, every conversation in one array, with every message as a tree of blocks, text, thinking, a tool used and what it returned, and the artifacts among them; and since October the artifacts I published, their data, and the routines of Claude Code. The export of my older account came the earlier way, one archive holding the metadata, the projects, the memories and the conversations together. The records inside are the same in both; only the packaging differs, so the importer finds an export of either kind and maps both through the same functions, which is what keeps a conversation from either account in one form. The export says nothing about which project a conversation belongs to; that is read off the application by a capture that takes the screen, and filed beside the export it was taken with."}),t(a,{children:["All of it lands in a sister repository on this machine, an account to a folder, by that repository's own command; a fresh export is made there on my go-ahead, since the capture takes my screen. For each account the importer reads the newest export, by the date in its file's name under either naming the application has used, and the newest capture in the same folder as that export, and copies none of it into the library. It never reads the markdown that repository wrote from the export, which kept only the text and walked the tree as a list; the code there was the beginning of this, and the archive there is ",e(n,{children:"[the check](/dougs-importer/#the-check)"}),"."]})]}),e(o,{identifier:"export",type:".ts",children:`import { closeSync, createReadStream, existsSync, fstatSync, openSync, readdirSync, readFileSync, readSync } from 'node:fs';
+`})]}),"TheImporter1"),ve=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[The Export](/dougs-importer/#the-export)"}),t(a,{children:[e(p,{}),"What is read, and where it is found: the export Claude gives of each of my accounts, in either of the two packagings it has come in, and the capture of conversations to projects read off the application beside it, all left where they land."]}),t(r,{children:[e(i,{children:"Two packagings of the same records"}),e(a,{children:"An export of my Claude account arrives today as a small manifest naming seven archives, which the browser must fetch since their links are single-use: the account's metadata, its projects with every knowledge file inline, its memories, every conversation in one array, with every message as a tree of blocks, text, thinking, a tool used and what it returned, and the artifacts among them; and since October the artifacts I published, their data, and the routines of Claude Code. The export of my older account came the earlier way, one archive holding the metadata, the projects, the memories and the conversations together. The records inside are the same in both; only the packaging differs, so the importer finds an export of either kind and maps both through the same functions, which is what keeps a conversation from either account in one form. The export says nothing about which project a conversation belongs to; that is read off the application by a capture that takes the screen, and filed beside the export it was taken with."}),t(a,{children:["All of it lands in a sister repository on this machine, an account to a folder, by that repository's own command; a fresh export is made there on my go-ahead, since the capture takes my screen. For each account the importer reads the newest export, by the date in its file's name under either naming the application has used, and the newest capture in the same folder as that export, and copies none of it into the library. It never reads the markdown that repository wrote from the export, which kept only the text and walked the tree as a list; the code there was the beginning of this, and the archive there is ",e(n,{children:"[the check](/dougs-importer/#the-check)"}),"."]})]}),e(o,{identifier:"export",type:".ts",children:`import { closeSync, createReadStream, existsSync, fstatSync, openSync, readdirSync, readFileSync, readSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
 import type { Readable } from 'node:stream';
 import { StringDecoder } from 'node:string_decoder';
@@ -9801,7 +9810,7 @@ export async function* streamedObjects(path: string, entryName: string): AsyncGe
         }
     }
 }
-`})]}),"TheExport2"),$=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[The Record](/dougs-importer/#the-record)"}),t(a,{children:[e(f,{}),"One record for every source: a conversation with its messages as a tree of blocks, and a project with its documents and its memory; each source a reader into it, and nothing after the reading knows a source's words."]}),t(i,{children:[e(r,{children:"The seam"}),e(a,{children:"Every source I have spoken to Claude through is packaged its own way, and every one holds the same things: a conversation with a name and its times, its messages in a tree, since a message edited or asked again makes a branch, each message by someone at an instant and made of blocks; and a project with a name, a description, its knowledge files and what Claude remembers of it. The record is those things in this library's words, and a reader is the forty lines that rename one source's words into them, once. The stages after the record never see a source, so the second source, the sessions of Claude Code on this machine, is one more reader and nothing else moves."}),t(a,{children:["The Claude export's reader streams the one array of conversations from wherever it stands in its archive, cutting each loose as it closes, so what is held at any moment is one conversation and not the archive, and reads the small archives by their directory; my newer account is read in under ten seconds and my older one in under twenty, without a dependency. Every block is named in the record's words, an upload, a prompt the application put in, a budget, so none is counted as unknown. The export's own names, ",e(n,{children:"[the ones its schema gives](/dougs-importer/#the-export)"}),", appear in the reader and nowhere else."]}),t(a,{children:["And the reader keeps, beside each conversation, the traces ",e(n,{children:"[the pairing](/dougs-importer/#the-pairing)"})," reads to tell which project it was held in: the passages a search of a project's files returned, the project folders of Claude's memory it touched, and the conversations a search of my other conversations found. They are the tool's words, so the reader takes them, and nothing after it knows a tool's name."]})]}),e(o,{identifier:"record",type:".ts",children:`export type Speaker = 'Doug' | 'Claude';
+`})]}),"TheExport2"),ye=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[The Record](/dougs-importer/#the-record)"}),t(a,{children:[e(p,{}),"One record for every source: a conversation with its messages as a tree of blocks, and a project with its documents and its memory; each source a reader into it, and nothing after the reading knows a source's words."]}),t(r,{children:[e(i,{children:"The seam"}),e(a,{children:"Every source I have spoken to Claude through is packaged its own way, and every one holds the same things: a conversation with a name and its times, its messages in a tree, since a message edited or asked again makes a branch, each message by someone at an instant and made of blocks; and a project with a name, a description, its knowledge files and what Claude remembers of it. The record is those things in this library's words, and a reader is the forty lines that rename one source's words into them, once. The stages after the record never see a source, so the second source, the sessions of Claude Code on this machine, is one more reader and nothing else moves."}),t(a,{children:["The Claude export's reader streams the one array of conversations from wherever it stands in its archive, cutting each loose as it closes, so what is held at any moment is one conversation and not the archive, and reads the small archives by their directory; my newer account is read in under ten seconds and my older one in under twenty, without a dependency. Every block is named in the record's words, an upload, a prompt the application put in, a budget, so none is counted as unknown. The export's own names, ",e(n,{children:"[the ones its schema gives](/dougs-importer/#the-export)"}),", appear in the reader and nowhere else."]}),t(a,{children:["And the reader keeps, beside each conversation, the traces ",e(n,{children:"[the pairing](/dougs-importer/#the-pairing)"})," reads to tell which project it was held in: the passages a search of a project's files returned, the project folders of Claude's memory it touched, and the conversations a search of my other conversations found. They are the tool's words, so the reader takes them, and nothing after it knows a tool's name."]})]}),e(o,{identifier:"record",type:".ts",children:`export type Speaker = 'Doug' | 'Claude';
 
 export type Block =
     | { type: 'text'; text: string }
@@ -10124,7 +10133,7 @@ export const sampleMapping = (projectName: string, rows: { title: string; lastMe
         files: [],
     }],
 });
-`})]}),"TheRecord3"),B=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[The Pairing](/dougs-importer/#the-pairing)"}),t(a,{children:[e(f,{}),"Which project a conversation belongs to, by evidence the importer names and I dispose of, and which conversations are not mine and stay out."]}),t(i,{children:[e(r,{children:"The machine proposes and I dispose"}),e(a,{children:"The export pairs nothing: no record of a conversation names its project. So the importer decides it the way the sister repository does, rule for rule, and says how by name. The capture beside the export comes first, its titles resolved to conversations, a title it lists under two projects left to the evidence, since ten conversations share one name. Then what the export itself shows: a search of a project's files that returned a passage only that project holds; a read of a project's memory; and a search of my conversations, which only ever finds those held where it was run, placing a conversation one step from one already placed and never from a memory, since Claude reads any project's memory from anywhere. A claim the searches or the capture contradict is set aside and said so. What nothing places is left unpaired and reported, and it has its home in the book that catalogues all of them either way. The sister repository writes the membership it decides beside each export, and the run compares, conversation by conversation, and names every difference."}),e(a,{children:"My two accounts are read one after the other, the older first, and paired each against its own capture. A project of the same name in both is then one project, the newer on top of the older: its files from both, the newer copy where both hold one, the older's description where the newer has none, and its conversations from both."}),t(a,{children:["The pairing stands as a file beside this chapter, one line per conversation with its account, its project and the evidence, written by a run that writes and by no other, and I edit it: a line I write is read before any evidence. The same file holds the exclusions. A conversation that is not mine is proposed for exclusion and stays out unless I strike the line, and what is not mine ",e(n,{children:"[the importer's configuration](/dougs-importer/#the-importer)"})," names: a project that is not mine, Ana's, and a script a title may not be in, Cyrillic, since a conversation with a Russian title is not mine, whoever wrote it in my account."]})]}),e(o,{identifier:"pairing",type:".ts",children:`import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+`})]}),"TheRecord3"),Ae=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[The Pairing](/dougs-importer/#the-pairing)"}),t(a,{children:[e(p,{}),"Which project a conversation belongs to, by evidence the importer names and I dispose of, and which conversations are not mine and stay out."]}),t(r,{children:[e(i,{children:"The machine proposes and I dispose"}),e(a,{children:"The export pairs nothing: no record of a conversation names its project. So the importer decides it the way the sister repository does, rule for rule, and says how by name. The capture beside the export comes first, its titles resolved to conversations, a title it lists under two projects left to the evidence, since ten conversations share one name. Then what the export itself shows: a search of a project's files that returned a passage only that project holds; a read of a project's memory; and a search of my conversations, which only ever finds those held where it was run, placing a conversation one step from one already placed and never from a memory, since Claude reads any project's memory from anywhere. A claim the searches or the capture contradict is set aside and said so. What nothing places is left unpaired and reported, and it has its home in the book that catalogues all of them either way. The sister repository writes the membership it decides beside each export, and the run compares, conversation by conversation, and names every difference."}),e(a,{children:"My two accounts are read one after the other, the older first, and paired each against its own capture. A project of the same name in both is then one project, the newer on top of the older: its files from both, the newer copy where both hold one, the older's description where the newer has none, and its conversations from both."}),t(a,{children:["The pairing stands as a file beside this chapter, one line per conversation with its account, its project and the evidence, written by a run that writes and by no other, and I edit it: a line I write is read before any evidence. The same file holds the exclusions. A conversation that is not mine is proposed for exclusion and stays out unless I strike the line, and what is not mine ",e(n,{children:"[the importer's configuration](/dougs-importer/#the-importer)"})," names: a project that is not mine, Ana's, and a script a title may not be in, Cyrillic, since a conversation with a Russian title is not mine, whoever wrote it in my account."]})]}),e(o,{identifier:"pairing",type:".ts",children:`import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Conversation, Mapping, Project } from './3-the-record~record.ts';
 
@@ -24110,7 +24119,7 @@ describe('the stack', () => {
         expect(seren.name).toBe('Seren');
     });
 });
-`})]}),"ThePairing4"),G=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[The Ledger](/dougs-importer/#the-ledger)"}),t(a,{children:[e(f,{}),"What the library holds, kept in one ledger beside The Importer for every account, replaced whole by every run that writes and keyed by the application's own ids, so that it says which conversations are in, which have grown since, which are new, which have moved since the last run, and which I have marked edited by hand and it must never touch."]}),t(i,{children:[e(r,{children:"One ledger, replaced whole, keyed by the id"}),e(a,{children:"Many conversations are short, and after a few runs it is hard to know which are in. So the importer keeps one ledger for every account, beside its own chapter however often it runs and whichever export it reads: a line for each conversation held, keyed by the application's own id, with the application's own name, the account it came from, the export it was read from, the export's time of last change and its count of messages at the import, when it came in, and the digest of the book's files. It holds no name of a book and no folder, since I may rename a conversation, move it or cut it: the same id is said on the conversation's cover and on each of its messages, in an annotation drawn nowhere, and the run finds the book by it wherever it stands. The ledger represents reality, as I asked on 2026-11-06: a run that writes replaces it whole at its end, a line for every book the library holds, each digest the book's folder as it then stands, and a line whose book is gone dropped and said. The importer reads the newest export it finds, by the date in its name, so a newer export dropped where the last one lay is the one read, and the ledger says which export each conversation came from. A conversation the ledger does not hold is new, and a run writes it. One whose export now shows a later time or more messages has grown since, and a run writes it again, since nothing of mine is in it. One equal to its line is in, and a run leaves it. And one whose files no longer match their digest has moved since the last run, by my hand or by the library's own tools, and only I can say which: a run that writes marks it edited before it touches anything, unless it is about to re-import it, and the mark stands on the line until the book is re-imported or settled, so no later export overwrites what I did; when such a one has grown since as well, the run says so beside it. Told to settle, a run takes the books named, or all of them, as they stand, clears the mark and writes no book: that is the word for a change that was the library's own, as when Sprint 117's script narrowed every book's imports on 2026-10-29 and, with a ledger that only remembered what the importer wrote, every line read edited for a week without a word said."}),e(a,{children:"Told to re-import, the run writes an edited or a moved book again from the export, clears its mark, and keeps every file of it as I had it, where the import overwrote it or no longer writes it, as a plain-text file beside the fresh chapter, named for the chapter and for the file it was, and printed by the chapter in a closing section, each file as I had it, so the bind accounts for it and my edits stand on the page beside the fresh import until I apply them again and strike the file. Its line keeps when the book was re-imported and which files were kept, and every listing says beside the conversation, while any kept file still stands, how many files of my edits wait to be applied; so I always know which conversations were re-imported and what changes I have yet to make, as I asked on 2026-10-14. When I strike a kept file, the next run that writes takes its printing out of the chapter, the section with the last of them, and takes the book as it then stands, my edits applied, as the state its line knows; a bare run says meanwhile that a kept copy was struck. The re-import writes one fresh chapter, as the import does, so a book I have cut into chapters comes back as one chapter with my chapters kept beside it as text, nothing lost and not the shape I cut; the re-import of a cut book is the next thing to design, since many of these will be cut."}),t(a,{children:["The id stands in the book, so what I do to a conversation by hand, cutting it, renaming it, moving it, never loses its line; striking its book from the register drops its line at the next run that writes and makes it new to the next run that takes its project. While the importer is being made it overwrites what it wrote, on a flag said at the run, and removes what it wrote before and no longer writes, my kept edits excepted, since the shape of a book is still being decided on ",e(n,{children:"[its page](/claudes-design/#the-conversations-page)"}),". Once it is done the flag goes, and a conversation once imported is mine: cut into days or sittings, summarized, annotated, by hand."]})]}),e(o,{identifier:"ledger",type:".ts",children:`import { createHash } from 'node:crypto';
+`})]}),"ThePairing4"),Ne=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[The Ledger](/dougs-importer/#the-ledger)"}),t(a,{children:[e(p,{}),"What the library holds, kept in one ledger beside The Importer for every account, replaced whole by every run that writes and keyed by the application's own ids, so that it says which conversations are in, which have grown since, which are new, which have moved since the last run, and which I have marked edited by hand and it must never touch."]}),t(r,{children:[e(i,{children:"One ledger, replaced whole, keyed by the id"}),e(a,{children:"Many conversations are short, and after a few runs it is hard to know which are in. So the importer keeps one ledger for every account, beside its own chapter however often it runs and whichever export it reads: a line for each conversation held, keyed by the application's own id, with the application's own name, the account it came from, the export it was read from, the export's time of last change and its count of messages at the import, when it came in, and the digest of the book's files. It holds no name of a book and no folder, since I may rename a conversation, move it or cut it: the same id is said on the conversation's cover and on each of its messages, in an annotation drawn nowhere, and the run finds the book by it wherever it stands. The ledger represents reality, as I asked on 2026-11-06: a run that writes replaces it whole at its end, a line for every book the library holds, each digest the book's folder as it then stands, and a line whose book is gone dropped and said. The importer reads the newest export it finds, by the date in its name, so a newer export dropped where the last one lay is the one read, and the ledger says which export each conversation came from. A conversation the ledger does not hold is new, and a run writes it. One whose export now shows a later time or more messages has grown since, and a run writes it again, since nothing of mine is in it. One equal to its line is in, and a run leaves it. And one whose files no longer match their digest has moved since the last run, by my hand or by the library's own tools, and only I can say which: a run that writes marks it edited before it touches anything, unless it is about to re-import it, and the mark stands on the line until the book is re-imported or settled, so no later export overwrites what I did; when such a one has grown since as well, the run says so beside it. Told to settle, a run takes the books named, or all of them, as they stand, clears the mark and writes no book: that is the word for a change that was the library's own, as when Sprint 117's script narrowed every book's imports on 2026-10-29 and, with a ledger that only remembered what the importer wrote, every line read edited for a week without a word said."}),e(a,{children:"Told to re-import, the run writes an edited or a moved book again from the export, clears its mark, and keeps every file of it as I had it, where the import overwrote it or no longer writes it, as a plain-text file beside the fresh chapter, named for the chapter and for the file it was, and printed by the chapter in a closing section, each file as I had it, so the bind accounts for it and my edits stand on the page beside the fresh import until I apply them again and strike the file. Its line keeps when the book was re-imported and which files were kept, and every listing says beside the conversation, while any kept file still stands, how many files of my edits wait to be applied; so I always know which conversations were re-imported and what changes I have yet to make, as I asked on 2026-10-14. When I strike a kept file, the next run that writes takes its printing out of the chapter, the section with the last of them, and takes the book as it then stands, my edits applied, as the state its line knows; a bare run says meanwhile that a kept copy was struck. The re-import writes one fresh chapter, as the import does, so a book I have cut into chapters comes back as one chapter with my chapters kept beside it as text, nothing lost and not the shape I cut; the re-import of a cut book is the next thing to design, since many of these will be cut."}),t(a,{children:["The id stands in the book, so what I do to a conversation by hand, cutting it, renaming it, moving it, never loses its line; striking its book from the register drops its line at the next run that writes and makes it new to the next run that takes its project. While the importer is being made it overwrites what it wrote, on a flag said at the run, and removes what it wrote before and no longer writes, my kept edits excepted, since the shape of a book is still being decided on ",e(n,{children:"[its page](/claudes-design/#the-conversations-page)"}),". Once it is done the flag goes, and a conversation once imported is mine: cut into days or sittings, summarized, annotated, by hand."]})]}),e(o,{identifier:"ledger",type:".ts",children:`import { createHash } from 'node:crypto';
 import { existsSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Conversation } from './3-the-record~record.ts';
@@ -24582,7 +24591,7 @@ describe('the ledger', () => {\r
         expect(importState(conversation, registerFolder, read.get('r')?.record)).toBe('in');\r
     });\r
 });\r
-`})]}),"TheLedger5"),W=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[The Thread](/dougs-importer/#the-thread)"}),t(a,{children:[e(f,{}),"The conversation as it stood on the screen, which is one path through a tree, and the count of what was left on other paths."]}),t(i,{children:[e(r,{children:"A tree, and the path a reader sees"}),e(a,{children:"Every time I edit a message or ask for another answer, the conversation branches, and what the application shows me is never the tree but one path through it, from the first thing said to whichever end I was last standing on. Each message carries the one it was said after, so the path is a walk: take the latest message nothing answers, follow the parents to the root, and turn it around. That path is the conversation as far as a reader is concerned, and the importer says what it left behind rather than rounding it off: a conversation of a hundred and six messages that shows eighty-four has twenty-two on other paths, and the cover says so."})]}),e(o,{identifier:"thread",type:".ts",children:`import { rootParentId, type Conversation, type Message } from './3-the-record~record.ts';
+`})]}),"TheLedger5"),xe=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[The Thread](/dougs-importer/#the-thread)"}),t(a,{children:[e(p,{}),"The conversation as it stood on the screen, which is one path through a tree, and the count of what was left on other paths."]}),t(r,{children:[e(i,{children:"A tree, and the path a reader sees"}),e(a,{children:"Every time I edit a message or ask for another answer, the conversation branches, and what the application shows me is never the tree but one path through it, from the first thing said to whichever end I was last standing on. Each message carries the one it was said after, so the path is a walk: take the latest message nothing answers, follow the parents to the root, and turn it around. That path is the conversation as far as a reader is concerned, and the importer says what it left behind rather than rounding it off: a conversation of a hundred and six messages that shows eighty-four has twenty-two on other paths, and the cover says so."})]}),e(o,{identifier:"thread",type:".ts",children:`import { rootParentId, type Conversation, type Message } from './3-the-record~record.ts';
 
 export const shownPath = (conversation: Conversation): Message[] => {
     const messagesById = new Map(conversation.messages.map(message => [message.id, message]));
@@ -24627,7 +24636,7 @@ describe('the thread', () => {
         expect(pathDays(shownPath(branched))).toEqual(['2026-06-15', '2026-06-16']);
     });
 });
-`})]}),"TheThread6"),q=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[The Writing](/dougs-importer/#the-writing)"}),t(a,{children:[e(f,{}),"What was said, turned into this library's writing once, on the way in, and never read from a string when a page is drawn."]}),t(i,{children:[e(r,{children:"Once, on the way in"}),t(a,{children:["A message's text comes out of the export as markdown, and what belongs in a library is writing. The conversion happens here, once: a message becomes an exchange of ",e(n,{children:"[a conversation](/dougs-reference-manual/#the-conversation)"}),", headed by who said it and told its instant, and what was said becomes paragraphs, lists, a list indented under an item a list of its own inside it, headings, code, tables, formulas between dollars or between TeX's brackets, a word set bold or in emphasis, a word typed as code said verbatim, a quoted paragraph said quoted, and a link to the web a word that refers to it. The markup of the file it lands in is the library's own, expanded, one element to a line, so the checker that reads the shape of every file here reads these too."]}),e(a,{children:"A conversation is written one chapter per day it was held, each dated with its day and titled with it, and holding only that day's messages, so the days stand down the side of its page as its parts. A block of code is written as a code box, which names its language at its head; a block whose language was not named but that reads as SRT notation is named srt. Every version of an artifact is written as a chapter of its own besides its file, said to be a version, a document converted to writing under an opaque section and code set in a code box, titled with the artifact's title and its number; the table lists them in an appendix section the side does not show, and the card in the message refers to its version by title."}),e(a,{children:"A search of the web or a run of code that Claude made becomes one paragraph saying what was done and the paragraph after it saying what came back. An artifact the conversation made becomes a file beside the chapter, every version of it, its updates replayed, with a paragraph naming it where it was made. The text of a file pasted or attached becomes a file beside the chapter too; an uploaded file, whose content the export never carries, is named and no more. The thinking behind an answer is counted and left out."})]}),e(o,{identifier:"writing",type:".ts",children:`import { identifier } from '@dna-platform/public';
+`})]}),"TheThread6"),Te=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[The Writing](/dougs-importer/#the-writing)"}),t(a,{children:[e(p,{}),"What was said, turned into this library's writing once, on the way in, and never read from a string when a page is drawn."]}),t(r,{children:[e(i,{children:"Once, on the way in"}),t(a,{children:["A message's text comes out of the export as markdown, and what belongs in a library is writing. The conversion happens here, once: a message becomes an exchange of ",e(n,{children:"[a conversation](/dougs-reference-manual/#the-conversation)"}),", headed by who said it and told its instant, and what was said becomes paragraphs, lists, a list indented under an item a list of its own inside it, headings, code, tables, formulas between dollars or between TeX's brackets, a word set bold or in emphasis, a word typed as code said verbatim, a quoted paragraph said quoted, and a link to the web a word that refers to it. The markup of the file it lands in is the library's own, expanded, one element to a line, so the checker that reads the shape of every file here reads these too."]}),e(a,{children:"A conversation is written one chapter per day it was held, each dated with its day and titled with it, and holding only that day's messages, so the days stand down the side of its page as its parts. A block of code is written as a code box, which names its language at its head; a block whose language was not named but that reads as SRT notation is named srt. Every version of an artifact is written as a chapter of its own besides its file, said to be a version, a document converted to writing under an opaque section and code set in a code box, titled with the artifact's title and its number; the table lists them in an appendix section the side does not show, and the card in the message refers to its version by title."}),e(a,{children:"A search of the web or a run of code that Claude made becomes one paragraph saying what was done and the paragraph after it saying what came back. An artifact the conversation made becomes a file beside the chapter, every version of it, its updates replayed, with a paragraph naming it where it was made. The text of a file pasted or attached becomes a file beside the chapter too; an uploaded file, whose content the export never carries, is named and no more. The thinking behind an answer is counted and left out."})]}),e(o,{identifier:"writing",type:".ts",children:`import { identifier } from '@dna-platform/public';
 import { escaped, sanitized } from '../..public/.binding/catalogue/language.ts';
 import { written } from '../..public/.binding/catalogue/reading.ts';
 import type { Block, Conversation, Message, Speaker } from './3-the-record~record.ts';
@@ -25621,7 +25630,7 @@ const figure = (elementName: string, identifier: string, type: string, sentence:
     \`                \${sentence}\`,
     \`            </\${elementName}>\`,
 ].join('\\n');
-`})]}),"TheWriting7"),z=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[The Books](/dougs-importer/#the-books)"}),t(a,{children:[e(f,{}),"What is left on disk: a conversation as a book, every conversation filed under one book that catalogues them all, and a book per project that catalogues its own besides."]}),t(i,{children:[e(r,{children:"One home, and as many catalogues as I like"}),t(a,{children:["A conversation is a book: its book file one line, its cover saying when it was held, how many messages it holds and which of ",e(n,{children:"[my accounts](/dougs-claude/#the-accounts)"})," it came from, its synopsis what it came to, its table, and a chapter for each day it was held, in the form ",e(n,{children:"[the imported conversation](/claudes-reference-manual/#the-imported-conversation)"})," sets down. It is filed under the book that catalogues all of my conversations, which is its one home whatever the mapping says. Each project that catalogues it is a book of its own, ",e(n,{children:"[a project book](/dougs-reference-manual/#the-project-manual)"}),", a reference manual of the project's knowledge files and a catalogue of its conversations by topic, which is the way back from a conversation to its project; and a project's book is a subject, so what I later write about a project can be filed under it. A project book is written once and left, and written whole again only when a run takes its project whole and says to overwrite, from the project as both accounts hold it, every conversation standing in the library entered in it again. Both kinds of catalogue are filed under Dougs Claude, the book that catalogues the conversations book and the project books together. The catalogue of all of them is a very simple book for now; the shelves and the tables that catalogue them more effectively come with their pages."]}),t(a,{children:["A conversation's book shows its title and is named apart from every other book of mine: its key is claude, two dashes, the title, two dashes and the first eight characters of the application's own id for it, and its folder is the same with the title's slug. So no conversation can collide with a book of another kind, two conversations of one title are told apart by their ids and never by a number, and a conversation keeps its key on every run. The page shows only the title, written as the application gave it, and only the key is spelled for the notation. A title is the application's own, sanitized by the binder's rule for any name nobody chose: a slash, a backslash, a parenthesis or a bracket written as the one that looks like it, what cannot be seen taken out, and every space one space. A chat the application left untitled takes the first sentence of my first message, and failing that the day it began. The ledger is keyed by the conversation's id and the book carries the same id on its cover, so whatever the title, the book is found again and never imported twice. A conversation with no message to show is no book. A project's book is keyed the same way, claude, two dashes and the project's name, and shows only the name, since a project called Claude met the book about Claude. A file of a project takes its own name, numbered against every title its book holds. A project's entry for a conversation is dated and listed under Its conversations, which it says as its part, so the project's page lists them newest first and its side folds them with their count; the project's own row stands first in the table and its files under Its files, since Sprint 118. A folder that exists is never entered unless the run says to overwrite and ",e(n,{children:"[the ledger](/dougs-importer/#the-ledger)"})," says the book is still the importer's; a catalogue's chapter and row are added where its table lacks the reference."]}),e(a,{children:"Every book the importer writes wears a cover as my other books do: the face its kind wears, a bookshelf cover for a conversation and for Dougs Claude, a journal cover for Our Conversations, a manual's for a project, each with a scheme, a window and a drawing, so that the mark in the header draws and a shelf can hold the book; and each with its subject's cover and my story's as volumes, which is how the header leads from any book to the one it is filed under and to me. The three drawings stand beside this chapter. Every conversation wears the one drawing of Our Conversations, so a conversation is told at a glance wherever its mark is drawn. And Dougs Claude is a bookshelf, so the books it catalogues stand on it as jackets."})]}),t(i,{children:[e(r,{children:"Imports by file"}),e(a,{children:"Every import a written book carries names the file its names live in, never the manual's barrel that re-exports every chapter, so that a book's digest reaches the code it uses and nothing else, and a change to one chapter of a manual binds only the books that import it. Where a name lives is read off the manuals' own export declarations by the file beside this chapter, never written by hand; a name exported by no file or by two is an error raised and never a guess. The books written before this rule were rewritten once, by a script over all of them, on 2026-10-28, with the same reading. Sprint 117 of the public branch."})]}),e(o,{identifier:"books",type:".ts",children:`import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+`})]}),"TheWriting7"),De=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[The Books](/dougs-importer/#the-books)"}),t(a,{children:[e(p,{}),"What is left on disk: a conversation as a book, every conversation filed under one book that catalogues them all, and a book per project that catalogues its own besides."]}),t(r,{children:[e(i,{children:"One home, and as many catalogues as I like"}),t(a,{children:["A conversation is a book: its book file one line, its cover saying when it was held, how many messages it holds and which of ",e(n,{children:"[my accounts](/dougs-claude/#the-accounts)"})," it came from, its synopsis what it came to, its table, and a chapter for each day it was held, in the form ",e(n,{children:"[the imported conversation](/claudes-reference-manual/#the-imported-conversation)"})," sets down. It is filed under the book that catalogues all of my conversations, which is its one home whatever the mapping says. Each project that catalogues it is a book of its own, ",e(n,{children:"[a project book](/dougs-reference-manual/#the-project-manual)"}),", a reference manual of the project's knowledge files and a catalogue of its conversations by topic, which is the way back from a conversation to its project; and a project's book is a subject, so what I later write about a project can be filed under it. A project book is written once and left, and written whole again only when a run takes its project whole and says to overwrite, from the project as both accounts hold it, every conversation standing in the library entered in it again. Both kinds of catalogue are filed under Dougs Claude, the book that catalogues the conversations book and the project books together. The catalogue of all of them is a very simple book for now; the shelves and the tables that catalogue them more effectively come with their pages."]}),t(a,{children:["A conversation's book shows its title and is named apart from every other book of mine: its key is claude, two dashes, the title, two dashes and the first eight characters of the application's own id for it, and its folder is the same with the title's slug. So no conversation can collide with a book of another kind, two conversations of one title are told apart by their ids and never by a number, and a conversation keeps its key on every run. The page shows only the title, written as the application gave it, and only the key is spelled for the notation. A title is the application's own, sanitized by the binder's rule for any name nobody chose: a slash, a backslash, a parenthesis or a bracket written as the one that looks like it, what cannot be seen taken out, and every space one space. A chat the application left untitled takes the first sentence of my first message, and failing that the day it began. The ledger is keyed by the conversation's id and the book carries the same id on its cover, so whatever the title, the book is found again and never imported twice. A conversation with no message to show is no book. A project's book is keyed the same way, claude, two dashes and the project's name, and shows only the name, since a project called Claude met the book about Claude. A file of a project takes its own name, numbered against every title its book holds. A project's entry for a conversation is dated and listed under Its conversations, which it says as its part, so the project's page lists them newest first and its side folds them with their count; the project's own row stands first in the table and its files under Its files, since Sprint 118. A folder that exists is never entered unless the run says to overwrite and ",e(n,{children:"[the ledger](/dougs-importer/#the-ledger)"})," says the book is still the importer's; a catalogue's chapter and row are added where its table lacks the reference."]}),e(a,{children:"Every book the importer writes wears a cover as my other books do: the face its kind wears, a bookshelf cover for a conversation and for Dougs Claude, a journal cover for Our Conversations, a manual's for a project, each with a scheme, a window and a drawing, so that the mark in the header draws and a shelf can hold the book; and each with its subject's cover and my story's as volumes, which is how the header leads from any book to the one it is filed under and to me. The three drawings stand beside this chapter. Every conversation wears the one drawing of Our Conversations, so a conversation is told at a glance wherever its mark is drawn. And Dougs Claude is a bookshelf, so the books it catalogues stand on it as jackets."})]}),t(r,{children:[e(i,{children:"Imports by file"}),e(a,{children:"Every import a written book carries names the file its names live in, never the manual's barrel that re-exports every chapter, so that a book's digest reaches the code it uses and nothing else, and a change to one chapter of a manual binds only the books that import it. Where a name lives is read off the manuals' own export declarations by the file beside this chapter, never written by hand; a name exported by no file or by two is an error raised and never a guess. The books written before this rule were rewritten once, by a script over all of them, on 2026-10-28, with the same reading. Sprint 117 of the public branch."})]}),e(o,{identifier:"books",type:".ts",children:`import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, join, relative } from 'node:path';
 import type { Conversation, Message, Project } from './3-the-record~record.ts';
 import { identifier } from '@dna-platform/public';
@@ -26526,7 +26535,7 @@ describe('the books', () => {
         expect(readFileSync(entry.tablePath, 'utf8')).toContain('$[[ A Continuation... ]]( ./claude--A Continuation......--3b54b751 )');
     });
 });
-`})]}),"TheBooks8"),V=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[The Check](/dougs-importer/#the-check)"}),t(a,{children:[e(f,{}),"What the importer wrote, checked against the archive the export was first read into, and then against the bind."]}),t(i,{children:[e(r,{children:"Two readings of one export"}),t(a,{children:["The sister repository holds an older reading of the same export, as markdown: a transcript per conversation with its count of messages, a book per project with the conversations its scaffold filed there, and the statistics of the whole. The importer never reads that archive as a source, but it is a check: every count of ours against its statistics, our pairing of a project against its scaffold's, our count of messages in each conversation against its transcript's, every difference listed by name in the report. Then the bind, which holds every book to its type and every reference to its place; and the run reads every conversation it has written back through its record, the instants of its messages in order, and finds them equal to ",e(n,{children:"[the thread](/dougs-importer/#the-thread)"})," or says from which message they stray."]}),e(a,{children:"The run reports the check whether it writes or not, after the project's conversations: the counts of the whole export against the statistics, the project's conversations we paired against the ones the scaffold filed, each conversation's messages against its transcript's count, and what stands written against the export. A difference is not a fault; the archive's reading is older and its own, and the report is where the two are read side by side."})]}),t(i,{children:[e(r,{children:"What the binder takes"}),e(a,{children:"A run that writes ends with the binder's own check over my library, in seconds, and fails on any fault. It reads the library as the binder does, holds every book and reference to its place, and asks of every address whether one thing stands there, a cover by the words it shows. Then it puts every file the run wrote through the binder's transform and parses what comes out, so a title the transform would write into something the page cannot be built from is refused here and not at the end of a bind. Beside it, a promise writes a conversation under every title of both accounts that holds something the notation or the page reads into a copy of my library, and expects the same check to find nothing."})]}),e(o,{identifier:"check",type:".ts",children:`import { existsSync, readdirSync, readFileSync } from 'node:fs';
+`})]}),"TheBooks8"),Ie=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[The Check](/dougs-importer/#the-check)"}),t(a,{children:[e(p,{}),"What the importer wrote, checked against the archive the export was first read into, and then against the bind."]}),t(r,{children:[e(i,{children:"Two readings of one export"}),t(a,{children:["The sister repository holds an older reading of the same export, as markdown: a transcript per conversation with its count of messages, a book per project with the conversations its scaffold filed there, and the statistics of the whole. The importer never reads that archive as a source, but it is a check: every count of ours against its statistics, our pairing of a project against its scaffold's, our count of messages in each conversation against its transcript's, every difference listed by name in the report. Then the bind, which holds every book to its type and every reference to its place; and the run reads every conversation it has written back through its record, the instants of its messages in order, and finds them equal to ",e(n,{children:"[the thread](/dougs-importer/#the-thread)"})," or says from which message they stray."]}),e(a,{children:"The run reports the check whether it writes or not, after the project's conversations: the counts of the whole export against the statistics, the project's conversations we paired against the ones the scaffold filed, each conversation's messages against its transcript's count, and what stands written against the export. A difference is not a fault; the archive's reading is older and its own, and the report is where the two are read side by side."})]}),t(r,{children:[e(i,{children:"What the binder takes"}),e(a,{children:"A run that writes ends with the binder's own check over my library, in seconds, and fails on any fault. It reads the library as the binder does, holds every book and reference to its place, and asks of every address whether one thing stands there, a cover by the words it shows. Then it puts every file the run wrote through the binder's transform and parses what comes out, so a title the transform would write into something the page cannot be built from is refused here and not at the end of a bind. Beside it, a promise writes a conversation under every title of both accounts that holds something the notation or the page reads into a copy of my library, and expects the same check to find nothing."})]}),e(o,{identifier:"check",type:".ts",children:`import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import ts from 'typescript';
@@ -26903,14 +26912,14 @@ describe('the bind', () => {
         expect(checked.bookCount).toBeGreaterThan(2);
     }, 180_000);
 });
-`})]}),"TheCheck9"),U=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[DNA Legacy](/dougs-importer/#dna-legacy)"}),t(a,{children:[e(f,{}),"The import of my first account, ",e(n,{children:"[DNA Legacy](/dougs-claude/#dna-legacy)"}),": where its export lands and whose it is; what came in from it stands in ",e(n,{children:"[the ledger](/dougs-importer/#the-ledger)"}),", one for every account."]}),t(i,{children:[e(r,{children:"What DNA Legacy reads"}),e(a,{children:"Its export lands in the sister repository under claude-legacy, in the older form, one archive holding the account, its projects, its memories and its conversations. The newest is of 27 May 2026, and it is the last, since the account was lost with its domain; the capture of its projects taken then stands beside it. The account is held by an address of the dna.love domain, which the export must name to be read, and that address is the configuration's beside this chapter."})]}),e(o,{identifier:"configuration",type:".json",children:`{
+`})]}),"TheCheck9"),Ce=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[DNA Legacy](/dougs-importer/#dna-legacy)"}),t(a,{children:[e(p,{}),"The import of my first account, ",e(n,{children:"[DNA Legacy](/dougs-claude/#dna-legacy)"}),": where its export lands and whose it is; what came in from it stands in ",e(n,{children:"[the ledger](/dougs-importer/#the-ledger)"}),", one for every account."]}),t(r,{children:[e(i,{children:"What DNA Legacy reads"}),e(a,{children:"Its export lands in the sister repository under claude-legacy, in the older form, one archive holding the account, its projects, its memories and its conversations. The newest is of 27 May 2026, and it is the last, since the account was lost with its domain; the capture of its projects taken then stands beside it. The account is held by an address of the dna.love domain, which the export must name to be read, and that address is the configuration's beside this chapter."})]}),e(o,{identifier:"configuration",type:".json",children:`{
   "name": "DNA Legacy",
   "folder": "claude-legacy",
   "address": "support@dna.love"
 }
-`})]}),"DnaLegacy10"),_=c(()=>t(s,{children:[e(u,{}),e(l,{children:"[DNA](/dougs-importer/#dna)"}),t(a,{children:[e(f,{}),"The import of the account we use now, ",e(n,{children:"[DNA](/dougs-claude/#dna)"}),": where its exports land and whose it is; what came in from it stands in ",e(n,{children:"[the ledger](/dougs-importer/#the-ledger)"}),", one for every account."]}),t(i,{children:[e(r,{children:"What DNA reads"}),e(a,{children:"Its exports land in the sister repository under claude-dna, each in a folder of its own day, a manifest naming the archives beside it. The importer reads the newest, by the date in its name, and the capture of the projects taken with it, in the same folder. The account is held by my own address, which the export must name to be read, and that address is the configuration's beside this chapter."})]}),e(o,{identifier:"configuration",type:".json",children:`{
+`})]}),"DnaLegacy10"),we=c(()=>t(s,{children:[e(f,{}),e(l,{children:"[DNA](/dougs-importer/#dna)"}),t(a,{children:[e(p,{}),"The import of the account we use now, ",e(n,{children:"[DNA](/dougs-claude/#dna)"}),": where its exports land and whose it is; what came in from it stands in ",e(n,{children:"[the ledger](/dougs-importer/#the-ledger)"}),", one for every account."]}),t(r,{children:[e(i,{children:"What DNA reads"}),e(a,{children:"Its exports land in the sister repository under claude-dna, each in a folder of its own day, a manifest naming the archives beside it. The importer reads the newest, by the date in its name, and the capture of the projects taken with it, in the same folder. The account is held by my own address, which the export must name to be read, and that address is the configuration's beside this chapter."})]}),e(o,{identifier:"configuration",type:".json",children:`{
   "name": "DNA",
   "folder": "claude-dna",
   "address": "doug.rubino@gmail.com"
 }
-`})]}),"Dna11"),K=N(m),oe=c(()=>t(K,{children:[F(),P(),R(),M(),E(),$(),B(),G(),W(),q(),z(),V(),U(),_()]}),"book");export{oe as book};
+`})]}),"Dna11"),je=g(T),Fe=c(()=>t(je,{children:[be(),me(),ge(),he(),ve(),ye(),Ae(),Ne(),xe(),Te(),De(),Ie(),Ce(),we()]}),"book");export{Fe as book};
