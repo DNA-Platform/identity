@@ -1311,6 +1311,11 @@ So G(10) = 2`}
                 straddles n.
             </Formalism>
             <Paragraph>
+                <Reminder>
+                    Changed: $[[ ./the Goldbach representation ]]'s crossing pairs become the fourth's symmetric
+                    form — n−k and n+k, carried by the coprimes (The Circle Proof) — standing at its close as the
+                    unbounded axiom ∀n ≥ 2 ∃k: n−k ∈ P ∧ n+k ∈ P (701).
+                </Reminder>
                 I can't tell if you understand that 5 is represented by &#91;(3,7)&#93; and 10 is represented by the pairs
                 of primes that add to 20, with prime less than 10 first and prime greater than 10 second
             </Paragraph>
@@ -1320,6 +1325,11 @@ So G(10) = 2`}
         >
             <Origin>8d8dbe1a-70c2-4d2f-a3f4-480c20f518a8</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Reminder>
+                The strict-crossing failure at n = 3, never directly resolved here, dissolves in the fourth's
+                forms: the symmetric form and the closing axiom leave k's range unstated, and whether k = 0 is
+                admitted, which would readmit (p, p), is unsaid.
+            </Reminder>
             <Question>
                 The edge cases where n is prime: strict crossing p &lt; n &lt; q excludes (p, p), so 3 maps to the
                 empty set and (5,5) drops from 5. Under strict crossing $[[ ./the Goldbach representation ]] fails

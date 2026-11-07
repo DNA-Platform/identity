@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
+import { Archive, Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -864,6 +864,11 @@ Both views describe the same structure:
             <Origin>af27e9c1-c5c0-4ab7-982c-f8f70c5855bf</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Archive>
+                    Context-free binary and Array&lt;Set&gt; notation, his names for the paper's two voices, never
+                    return anywhere in the family; the fourth's representation work runs on sieves, lengths and
+                    codes. The two-audience intent survives; the notations built for it do not.
+                </Archive>
                 <Formalism>
                     [[[ context-free binary ]]] is coined: "Why not context-free binary!" — the name for
                     $[[ ./the 01 notation ]]: binary alphabet, context-free recursive grammar.
@@ -2327,6 +2332,11 @@ Array semantics (not set semantics):
             <Origin>78a1ee40-0a85-43c4-a740-216dc1980539</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Reminder>
+                    Changed: his "0 is (), and 1 is (0)", dropped by Claude's tables at 88, is the seed the fourth
+                    grows into its zero semantics — code(ε) = 0 and the zeroth prime p₀ = 1 (The Formal Core): the
+                    empty takes zero's address.
+                </Reminder>
                 <Importance>
                     "And I really like context-free binary notation." The convention completes: end in zero,
                     parens around the whole thing, "So 0 is (), and 1 is (0) and we go from there".

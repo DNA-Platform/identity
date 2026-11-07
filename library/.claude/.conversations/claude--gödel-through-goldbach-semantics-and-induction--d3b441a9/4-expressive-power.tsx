@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
+import { Archive, Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -303,6 +303,17 @@ export default () => (
             <Origin>a01b24c4-5d46-4a29-9633-850d6ee16fc3</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Archive>
+                    The entropy measures, $[[ ./description entropy ]], $[[ ./proof entropy ]] and
+                    $[[ ./the second representation ]], worked from 19 to 25 and never worked again as mathematics
+                    in the family; the later conversation keeps the pairs as the circle's two sieves and leaves
+                    these.
+                </Archive>
+                <Idea>
+                    Unexplored: that different encodings of arithmetic should reveal structures analogous to the
+                    primes and their distribution, "whenever you find a way to build a metaphor of representing
+                    proof as a function of the complexity of the expression". Nothing in the family pursues it.
+                </Idea>
                 <Formalism>
                     [[[ description entropy ]]] and [[[ proof entropy ]]]: $[[ ./the second representation ]] made
                     concrete, the Gödel number of the tautologically minimal statement — [n] his notation for the
@@ -488,6 +499,16 @@ export default () => (
             <Origin>61f9ff9c-69b3-46d5-b92f-0a817bfbdc06</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Idea>
+                    Unexplored: $[[ ./the normalized average ]] over expressions and proofs, normalized by 2^n,
+                    with three ways offered to count the unprovables — zero, one each, or factored in as n. Raised
+                    with its own objections and never taken up again.
+                </Idea>
+                <Question>
+                    Still open at the family's end: $[[ ./the well-definedness of logical entropy ]] — "Or are
+                    there too many unprovable thing??" Nothing in the later conversation returns to whether the
+                    limit converges.
+                </Question>
                 <Formalism>
                     [[[ the normalized average ]]]: the Chaitin move — average the effect of adding [n] as an
                     axiom on descriptive complexity over expressions and proofs, normalized by 2^n so it

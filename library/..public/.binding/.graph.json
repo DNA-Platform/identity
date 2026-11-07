@@ -37,7 +37,7 @@
     },
     {
       "folder": ".claude/.conversations",
-      "digest": "bc017814448ec202",
+      "digest": "c5a577d856cfe2e8",
       "walked": 11096
     },
     {
@@ -1807,23 +1807,23 @@
     },
     {
       "folder": ".claude/.conversations/claude--gödel-through-goldbach-coprime-symmetry--942ceafb",
-      "digest": "21667f22bd6ae90b",
+      "digest": "d5520dd78720707a",
       "walked": 84
     },
     {
       "folder": ".claude/.conversations/claude--gödel-through-goldbach-semantics-and-induction--d3b441a9",
-      "digest": "ede374cff60b2289",
+      "digest": "6a39f8a6e4bee528",
       "walked": 2509
     },
     {
       "folder": ".claude/.conversations/claude--gödel-through-goldbach-the-paper--c42597f2",
-      "digest": "b2495c4ef71b4cae",
+      "digest": "da5df92c7fa75628",
       "walked": 12638
     },
     {
       "folder": ".claude/.conversations/claude--goldbach-through-gödel--53e2b255",
-      "digest": "84acef711b8fd3f6",
-      "walked": 8363
+      "digest": "9407db6c1d1fb782",
+      "walked": 8645
     },
     {
       "folder": ".claude/.conversations/claude--good-morning--3e5346a6",
@@ -5022,7 +5022,7 @@
     },
     {
       "folder": ".claude/.manual",
-      "digest": "ca174b8a8273325b",
+      "digest": "fbe303c4f7a49633",
       "walked": 261
     },
     {
@@ -5072,7 +5072,7 @@
     },
     {
       "folder": ".claude/.semantic-reference-theory",
-      "digest": "90cd1c80221b5973",
+      "digest": "101d278e07d8c7b8",
       "walked": 1536
     },
     {

@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
+import { Archive, Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -34,6 +34,11 @@ export default () => (
                 role with respect to experimental outcomes
             </Paragraph>
             <Paragraph>
+                <Archive>
+                    The catalogue of referents, SRT's ledger of what has been named, used here to argue that
+                    imagined infinity gives arithmetic an infinite heaviness; never invoked again. The weighing is
+                    done later by the uniform step and by what a representation costs its medium.
+                </Archive>
                 <Formalism>
                     The catalogue of referents: SRT's ledger of what has been named. Math may imagine, but
                     imagined infinity gives it 'an infinite heaviness' — with GC assumed true you still prove
@@ -202,6 +207,11 @@ export default () => (
                 having infinite things is the problem...
             </Paragraph>
             <Paragraph>
+                <Reminder>
+                    Changed: $[[ ./completeness as an epistemic commitment ]] is the one thing of this book the
+                    family never drops. A year later it is derived from first principles and given a refutation
+                    clause, in Goldbach through Gödel, The Essential Argument and The Circular Reasoning Thesis.
+                </Reminder>
                 <Formalism>
                     [[[ completeness as an epistemic commitment ]]]: there is no collection of all proofs, so
                     completeness as a property is silly — it is 'an epistemic commitment to deal with that which
@@ -351,6 +361,11 @@ export default () => (
             <Origin>e48074ed-15e2-4060-9351-43fa581cdd0c</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Reminder>
+                    Changed: $[[ ./the semantic assertion of finite proof ]], said here in passing, becomes the
+                    object of the whole later conversation — Goldbach through Gödel, The Permission, where
+                    finiteness is named a belief he chooses rather than a fact he asserts.
+                </Reminder>
                 <Importance>
                     Returning after an hour to crystallize: 'Completeness as an "epistemic commitment"! And things
                     like "All proofs are finite" as a semantic assertion in the metalanguage. And, in this case,

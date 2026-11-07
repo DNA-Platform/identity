@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
+import { Archive, Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -2417,6 +2417,11 @@ const formula_0eq0: (Array | Set)<this> = [
             <Origin>b640feff-2c4f-4e1b-91aa-6f268be56237</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Reminder>
+                    Changed: "Stop trying to relate it to number. It is a representation" becomes the fourth's law
+                    — codes are names, lengths are quantities (The Lifted Arithmetization, 391) — and its matter,
+                    representation versus number; the discipline held twice here is the method's ground there.
+                </Reminder>
                 <Correction>
                     "Stop trying to relate it to number. It is a representation. A array of digits from '0'-'9'
                     does not have type number. It can be toNumbered but number isn't its type." Claude had typed
@@ -2819,6 +2824,11 @@ assert(toNumber(rep_0eq0) === godel_0eq0);`}
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>I don't know why you can't just handle:</Paragraph>
             <Paragraph>
+                <Archive>
+                    type This = (Array | Set)&lt;This&gt;, the recursive type this chapter builds, never returns
+                    anywhere in the family; what survives is its moral — the representation chooses its container
+                    by the mathematics — absorbed into the fourth's two semantics of zero.
+                </Archive>
                 <Formalism>
                     The final spelling of $[[ ./the (Array | Set) type ]]: "type This = (Array | Set)&lt;This&gt;"
                     — the type is named This and contains itself. "Does that make it better?"
@@ -3573,6 +3583,11 @@ function represent(n: number): This {
                 ~200 digits).
             </Reminder>
             <Paragraph>
+                <Question>
+                    Still owed at the family's end: the plan's worked examples, 0=0, ∀x(x=x), 2+2=4 in each
+                    notation. Only 0=0 was ever computed; the fourth's paper runs six movements (The Paper's Flow)
+                    with no worked example in them.
+                </Question>
                 Okay so in the paper, we aren't going to do complex calculations. We will define the thing fairly rigorously
                 - possibly in code and just show examples. Then express Godel numbering. Then show examples of 0=0, Ax(x=x),
                 and 2+2=4 in each notation. Something like that

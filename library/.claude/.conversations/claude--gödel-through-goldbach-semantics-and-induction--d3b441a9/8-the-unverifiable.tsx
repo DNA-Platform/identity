@@ -364,6 +364,11 @@ export default () => (
         >
             <Origin>d52fc31d-233d-4b18-8adc-43fd7c0c2cf1</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Reminder>
+                Changed: $[[ ./provable unverifiability ]] is made a theorem a year later as the uncertifiable
+                class — Goldbach through Gödel, The Axiom Argument — believed facts that no certification regime
+                can ever exhibit. Named here, proved there.
+            </Reminder>
             <Formalism>
                 [[[ provable unverifiability ]]] is the status Claude draws from the question: if the set of
                 numbers with no Goldbach pair is undecidable, Goldbach is not provably true, not provably false,
@@ -509,6 +514,11 @@ export default () => (
                 true
             </Paragraph>
             <Paragraph>
+                <Question>
+                    Still open: the ruling he hands over — "does GC false =&gt; GC undecidable =&gt; GC true as an
+                    axiom?" The later conversation makes the adoption a thesis and a litmus, but never derives the
+                    implication he asked for here.
+                </Question>
                 <Question>
                     He catches the circularity in his own argument and hands the ruling over: undecidability was
                     used as the reason it cannot be false, "but only because undecidability conflicted with
@@ -671,6 +681,11 @@ export default () => (
             <Origin>3ff50948-34d3-4de5-ba50-6ea2bcde6cb8</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Reminder>
+                    Changed: the chain Goldbach false, undecidable, semantic incoherence, goodbye induction
+                    becomes the named thesis — Goldbach through Gödel, The Circular Reasoning Thesis — held as
+                    subjective, invalid as deduction, and standing up to science.
+                </Reminder>
                 <Result>
                     Intuition: the chain stated whole - "GC false -&gt; GC undecidable -&gt; semantic incoherence
                     -&gt; goodbye induction!"

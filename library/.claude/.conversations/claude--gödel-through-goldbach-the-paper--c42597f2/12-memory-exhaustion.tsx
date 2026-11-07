@@ -32,6 +32,11 @@ export default () => (
                 to be more likely to be true for big numbers??? Yes! But not when they are like G.'
             </Result>
             <Paragraph>
+                <Reminder>
+                    Changed: the feared number of $[[ ./the memory exhaustion metaphor ]] is found real in the
+                    fourth — Robinson's hyperinteger, pairless under rigid primes (The Representable Object) — and
+                    the fear repositioned: the phantom is 0 seen from above (198); refusing it becomes the axiom.
+                </Reminder>
                 Hey here's a metaphor for what it's like if GC is false. Respond to this conceptually at a high level. I
                 know you get it. It's more for the discussion. It is like, if GC is false. numbers run out of memory at some
                 point. After they get sufficiently large in representing some unprovable thing. they no longer have
@@ -1761,6 +1766,11 @@ export default () => (
                 scale and in structure.
             </Result>
             <Paragraph>
+                <Question>
+                    $[[ ./the undecidability of k ]], demoted to intuition at his check (151), stays an intuition
+                    at the family's end: the fourth never returns to k; undecidability's analysis moves to the
+                    certifier diagonal (190) and one sentence, two subjects (653).
+                </Question>
                 Yeah but it doesn't start happening until some k*length(G), where k is unbounded for G. But... surely k is
                 undecidable. So there is a terrific world of perfect loss of coprime symmetry in an almost unfathomable way,
                 but an unbounded multiple of the length of G and similar sentences is unfathomable
@@ -2584,6 +2594,11 @@ export default () => (
         >
             <Origin>e2fb7183-7bce-4308-bd7a-9fca3da10433</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Reminder>
+                The carried question — which direction did the year's work take? — is answered: the fourth works
+                its paper as Goldbach Through Gödel, flips at The Six Movements as this sitting did, and the close
+                fixes Gödel through Goldbach; the conversation keeps the reverse name.
+            </Reminder>
             <Reminder>
                 The direction question outlives the sitting: the paper's title settles as Godel through Goldbach,
                 yet the family's year-later conversation is named Goldbach through Godel — the reverse arrow he

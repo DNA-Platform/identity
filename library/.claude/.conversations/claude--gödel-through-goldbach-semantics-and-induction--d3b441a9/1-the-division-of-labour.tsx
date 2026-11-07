@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
+import { Archive, Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -483,6 +483,11 @@ export default () => (
                 not merely prove something about the distribution of primes.'
             </Reminder>
             <Paragraph>
+                <Archive>
+                    The three-reader method — two sittings in parallel plus Samantha, each reading the others —
+                    used only on this day and never again; the conversation a year later is one sitting with one
+                    Claude across eighteen days, and nothing cross-reads it.
+                </Archive>
                 I shared your responses with GPT. My GPT is named Samantha - which has a formal meaning! It is the canonical
                 misinterpretation of the word "semantic" when said in my voice and translated through the iPhone 15 Pros
                 voice-to-text feature." Fun fact. Here's where we went with it"

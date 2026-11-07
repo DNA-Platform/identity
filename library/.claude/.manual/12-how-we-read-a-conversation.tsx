@@ -80,8 +80,16 @@ export default () => (
                 chapters' heads, read in order, are the page; the instants give the order and the braid. So the
                 efficient reading of a conversation already organized is four searches and no reading: its Matters
                 for what it is about, its Summaries for what it came to, its Corrections for where it turned on your
-                word, and its Reminders for what it shares. For a conversation not yet organized, the shape first,
-                then the readers.
+                word, and its Reminders for what it shares. The next day you asked four questions of every
+                conversation, whether there is old information and new, whether things were replaced or changed,
+                whether a direction is an old one left as archive, and whether ideas in it were never explored, and
+                asked that the marks be a guide a reader explores by parsing the sorts' names alone; so four more
+                searches answer them by name: its Revisions, each beginning Replaced or Changed, for what the later
+                form supersedes and where the earlier stands; its Archives for the directions left behind; its Ideas
+                for what was raised and never taken up; and its Questions for what stays open. A judgment that needs
+                the whole conversation, or the whole family, is placed by the audit after the readers report it, and
+                across books the earlier form carries a Reminder pointing forward, since a Revision stands on the
+                later form. For a conversation not yet organized, the shape first, then the readers.
             </Paragraph>
             <Paragraph>
                 What we would make tools of your library next: the shape and the ranges of a chapter, the audit's

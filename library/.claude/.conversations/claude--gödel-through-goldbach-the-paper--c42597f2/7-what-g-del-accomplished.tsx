@@ -583,6 +583,11 @@ export default () => (
         >
             <Origin>67d6441b-549f-4693-9f8a-5b1204647250</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Reminder>
+                Changed: doing what Gödel did is redone with one adjustment — The Formal Core re-enters this same
+                coding with the zeroth prime p₀ = 1 and code(ε) = 0, freeing zero for the inferential identity;
+                the equivalent-encodings point returns at The Quantity Contradiction (610).
+            </Reminder>
             <Formalism>
                 Recursive prime factorization as the paper's ground zero: show 2^x 3^0 5^y 7^0 11^z, remove the
                 zeros, show the tree-like structure — "it's entirely in binary".

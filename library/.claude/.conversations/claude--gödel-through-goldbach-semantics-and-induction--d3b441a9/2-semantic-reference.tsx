@@ -30,6 +30,11 @@ export default () => (
                 epistemic motive are named as what got left out of the paper.
             </Reminder>
             <Paragraph>
+                <Reminder>
+                    Changed: $[[ ./Semantic Reference Theory ]] and $[[ ./transduction ]] are kept whole and host
+                    the later work — Goldbach through Gödel, Something to Picture: "we are in that project." The
+                    mathematics around them is remade; the metatheory is not.
+                </Reminder>
                 <Formalism>
                     [[[ Semantic Reference Theory ]]]: his theory, from building semantic extensions of
                     first-order logic — beliefs about your semantic stance expressed in the metalanguage of the

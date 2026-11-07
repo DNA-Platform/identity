@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Emphasis, Formalism, Line, List, Matter, Paragraph, Question, Reminder, Result, Summary, Title, Word } from '@dna-platform/public';
+import { Archive, Bold, Chapter, Correction, Emphasis, Formalism, Line, List, Matter, Paragraph, Question, Reminder, Result, Summary, Title, Word } from '@dna-platform/public';
 import { Message, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
 
@@ -10,6 +10,11 @@ export default () => (
         >
             <Origin>019d3e73-2e68-7568-a4e9-de9a00ce77d3</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Reminder>
+                Changed, the core kept: the symmetry of the coprimes about N is the earlier form of the circle of
+                the naturals in Goldbach through Gödel, The Circle of the Primes, and is proven on the circle for
+                every survivor in The Circle Proof, where every coprime is symmetric and P = P′ = −P.
+            </Reminder>
             <Matter>
                 Goldbach pairs; the symmetry of coprimes; the coprime skeleton; sharing pairs between numbers
             </Matter>
@@ -103,6 +108,11 @@ export default () => (
         >
             <Origin>019d3e76-e122-7b09-b814-1dc6f2eaa918</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Archive>
+                Which numbers share Goldbach pairs, worked here from rad(n) = rad(N) to n dividing N and never
+                returned to anywhere in the family; the circle work a year later takes the symmetry and leaves the
+                sharing.
+            </Archive>
             <Paragraph>
                 <Correction>
                     Claude had tied the symmetry to the SRT framework and to G(N) as proof capacity. His words: "I
@@ -182,6 +192,10 @@ export default () => (
         >
             <Origin>019d3e79-e2b2-74ad-a100-644bdd7e388d</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Question>
+                Still open at the family's end: whether sharing pairs is a relation tighter than divisibility;
+                Goldbach through Gödel never asks which numbers share pairs.
+            </Question>
             <Question>
                 Sharpened to the pairs themselves, not the offsets: "I want to know when all are the same - might
                 be stronger. Trivially 5 and 7 are about 6. Find another prime that has 5 and 7 in its pairs." The

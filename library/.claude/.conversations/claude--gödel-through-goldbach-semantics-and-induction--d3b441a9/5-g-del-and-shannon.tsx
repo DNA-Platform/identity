@@ -194,6 +194,11 @@ export default () => (
             <Origin>6ad2cffc-661f-4a58-b715-cde6ac634f6a</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Question>
+                    Still open: whether relating Gödel's actual prime code to the distribution of primes is new.
+                    Asked again a year later, at The Phantom in Coordinates, and answered only that the pieces are
+                    standard and the juxtaposition is not found stated. Priority is never settled.
+                </Question>
                 <Importance>
                     'no shit that primes relate to a complexity measure, Godel literally encoded arithmetic in
                     terms of primes where expression complexity and number of prime factors are already basically

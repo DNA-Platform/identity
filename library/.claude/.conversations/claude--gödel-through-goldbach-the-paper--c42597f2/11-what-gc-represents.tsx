@@ -1126,6 +1126,11 @@ export default () => (
         >
             <Origin>589b8de6-97ac-4a87-b3e0-e9a1e5c4d572</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Reminder>
+                Changed: $[[ ./the complementary Goldbach representation ]] becomes the fourth's P and P′, sieves
+                run from both ends (The Two Sieves); and negation by position becomes subjective consistency — a
+                pair with one empty proof is "not representable by the subject" (The Six Movements, 632).
+            </Reminder>
             <Formalism>
                 [[[ the complementary Goldbach representation ]]]: n maps to ([primes before n], [primes after n])
                 'so that (x,y) means x[i] + y[i] = 2*n and x[i] &lt; x[i+1] and always prime.'

@@ -253,6 +253,11 @@ export default () => (
                 it, and maybe a few readers of GEB, and literally no one else
             </Paragraph>
             <Paragraph>
+                <Reminder>
+                    Changed: Goldbach true or PA ω-inconsistent becomes, under the lift, the theorem that Goldbach
+                    asserts consistency — Goldbach through Gödel, The Lifted Arithmetization, and by The Two
+                    Semantics of Zero it is PA's subjective consistency. The hinge as a question is never settled.
+                </Reminder>
                 <Result>
                     Conjectured: Goldbach must be true or PA is w-inconsistent, since falsity means a
                     counterexample we would find in the limit of time; only the undecidability of finding one

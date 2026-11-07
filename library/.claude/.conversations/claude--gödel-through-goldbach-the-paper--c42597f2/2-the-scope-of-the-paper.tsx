@@ -91,6 +91,11 @@ export default () => (
         >
             <Origin>ef165a0f-1f0a-4010-bb92-27fe03c26292</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Reminder>
+                Replaced: the plan of days — the ten-page dichotomy paper — never becomes the family's paper. The
+                fourth rebuilds it from the zero semantics, six movements with no dichotomy, recoding or reduction
+                (The Paper's Flow); the three projections happened instead as the family's conversations.
+            </Reminder>
             <Paragraph>I'll search the project knowledge for this new conversation with Opus 4.1.</Paragraph>
             <Action>Searched the project's knowledge for “Opus 4.1 conversation new”</Action>
             <Paragraph>Let me get more of this conversation to see the full scope:</Paragraph>

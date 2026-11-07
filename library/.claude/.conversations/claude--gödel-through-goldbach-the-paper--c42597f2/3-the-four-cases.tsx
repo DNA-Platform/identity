@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
+import { Archive, Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -16,6 +16,11 @@ export default () => (
         >
             <Origin>380433e9-1553-4503-af2a-0fb673cdfe75</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Archive>
+                $[[ ./the four-case matrix ]] and $[[ ./the entropy measures ]], declared here, are worked in
+                Semantics and Induction (Gödel and Shannon) and never again as mathematics in the fourth; their
+                purpose, expressing unprovability, survives as its standing matter, answered by the zero trick.
+            </Archive>
             <Matter>
                 the four-case matrix; entropy measures; the tautological extension; Chaitin
             </Matter>

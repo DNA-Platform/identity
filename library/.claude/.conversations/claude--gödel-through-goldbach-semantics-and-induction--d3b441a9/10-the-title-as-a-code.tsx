@@ -16,6 +16,11 @@ export default () => (
             <Origin>afb84fa3-1bd0-4a91-a8fe-b297442db8f9</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Reminder>
+                    Changed: the flip to Gödel-first recurs a year later — Goldbach through Gödel, The Six
+                    Movements, where the working Goldbach Through Gödel becomes Gödel though Goldbach again, with
+                    "I think we end on GC". The order of the two names never settles.
+                </Reminder>
                 <Matter>
                     the paper's title; collaboration
                 </Matter>

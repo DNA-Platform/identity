@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -21,6 +21,11 @@ export default () => (
                 tautology p_n = p_n; a fixed point for future theorists
             </Matter>
             <Paragraph>
+                <Question>
+                    Still open at the family's end: why no pointwise lower bounds exist on G(n). The fourth never
+                    bounds G(n); its nearest kin is the certifier diagonal (The Axiom Argument) — the suspicion
+                    that bounds would decide the undecidable, made a theorem without touching G(n).
+                </Question>
                 <Summary>
                     Why the bound needs k: no pointwise lower bound on G(n) is known, because one would make proof
                     complexity decidable; p_n = p_n as the one tautology; G(n) looks like the tautology, a
@@ -1208,6 +1213,11 @@ export default () => (
             <Origin>1af75181-5f9a-4825-92a2-208bf751552d</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Reminder>
+                    Changed: $[[ ./the symmetry fixed point ]], noted for future theorists, becomes the family's
+                    main line — the one chapter of Coprime Symmetry, and the fourth's circle: the symmetric form
+                    (The Circle Proof) and the Mirror Axiom hunt. The future theorist was him.
+                </Reminder>
                 <Importance>
                     "I don't want to say I know what to do with that result, but I do want to note it for future
                     theorists as it may be an important fixed point - smmetry around a number looks like x=x in
@@ -1234,6 +1244,12 @@ export default () => (
                 EXPRESS this tautology in terms of goldbach pairs right?
             </Paragraph>
             <Paragraph>
+                <Idea>
+                    Raised here and never explored in the family: $[[ ./Goldbach-restricted encoding ]] — shift
+                    all encodings onto the primes satisfying GC — with its representation-theorem conjecture. The
+                    fourth's sieves select survivors; nothing in the family ever encodes on the pair-primes
+                    themselves.
+                </Idea>
                 <Question>
                     [[[ Goldbach-restricted encoding ]]] is asked and not claimed: shift all encodings onto the
                     primes that are Goldbach pairs of 2n, grant that not everything is representable since n is

@@ -16,6 +16,11 @@ export default () => (
             <Origin>3833d25e-b707-4964-a515-b6af8d742dd1</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Reminder>
+                    Changed: $[[ ./one at a time, never wholesale ]] and $[[ ./constitutive induction ]] are
+                    superseded by the uniform step — Goldbach through Gödel, The Infinite Proof — where one finite
+                    representation generating every instance is the whole content of proof.
+                </Reminder>
                 <Matter>
                     transduction; induction; semantic necessity; the fundamental theorem of arithmetic
                 </Matter>

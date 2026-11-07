@@ -20,6 +20,11 @@ export default () => (
                 proof capacity; G(n); expressing unprovability; the tautological extension
             </Matter>
             <Paragraph>
+                <Reminder>
+                    Replaced: G(n)·p_G(n)^k as proof capacity enters the fourth once, as given at its opening, and
+                    is never computed again. The pairs survive as the two sieves of the circle; the lifted length
+                    predicate Pf(φ, ℓ) does the measuring (The Lifted Arithmetization).
+                </Reminder>
                 <Summary>
                     The construction: G(n) mapped to the G(n)-th prime raised to a free k against a proof that
                     grows one step per tautology, requiring complete failure; the magic log; k a free parameter,

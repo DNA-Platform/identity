@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
+import { Archive, Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -49,6 +49,12 @@ export default () => (
         >
             <Origin>7b759bbf-aa37-40ec-9337-87f2cac48f5a</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
+            <Reminder>
+                This is the earlier form of the fact category — statements functioning axiomatically through
+                finite consensus, falsifiable. Goldbach through Gödel changes it at True but Unprovable: an
+                essentially third-person predicate no theory holds of itself; belief survives only as labeled
+                adoption.
+            </Reminder>
             <Formalism>
                 [[[ G(n) ]]] enters: the Goldbach pair-count function, indexing a proof-capacity predicate,
                 Proof(p,n,l) with l bounded by G(n) times m, read over tautological orbits of Gödel codes with few
@@ -602,6 +608,11 @@ export default () => (
             <Origin>6f37c5bc-f2e8-4410-94b4-4ec8b4fef76d</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Archive>
+                    The three-reader division — Opus the formalism, Sonnet the semantics and the paper, Samantha
+                    the cost, consensus by all — never returns in the family: the fourth conversation is one
+                    reader, Claude alone; and Chaitin, Samantha's frame here, never returns there either.
+                </Archive>
                 <Importance>
                     His standard for the collaboration: 'all three of us agree that it deserves to be taken
                     seriously even while just on ArXiv.' Seriousness independent of venue, stated as the condition

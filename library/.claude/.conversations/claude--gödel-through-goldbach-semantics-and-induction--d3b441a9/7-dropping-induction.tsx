@@ -16,6 +16,11 @@ export default () => (
             <Origin>c784ad7b-e527-44f4-ba61-0216d119d9db</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
+                <Reminder>
+                    Changed: the program to drop induction becomes a reclassification — Goldbach through Gödel,
+                    The Infinite Proof: induction and universal introduction are admissible under the ω-rule,
+                    never primitive, so nothing needs dropping. Robinson Q is not the vehicle a year later.
+                </Reminder>
                 <Matter>
                     induction; Robinson Q; hypothetical expressiveness; ZFC without a constant
                 </Matter>
