@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -17,13 +17,13 @@ export default () => (
             <Origin>6fdf8739-fb3c-4063-a752-aa2c1e706070</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Matter>
-                Goldbach's conjecture; Gödel's incompleteness; the paper; reading as narrative
+                Goldbach's conjecture; Gödel's incompleteness; the paper; reading as narrative; collaboration;
+                Opus 4.1 and Sonnet 4.5
             </Matter>
             <Summary>
-                The opening movement: Doug has Claude read the project document as a narrative, asking what is
-                true, where the clarifications fall, what is being circled; Claude answers with a conditional
-                metatheorem and a paper proposal. The conversation's charter is set: narrative first, then
-                meaning.
+                Claude reads the project document as a narrative beside Opus's reading; the division of labour is
+                set, Opus on formalism, Sonnet on semantics and the paper, consensus by all; Samantha enters with
+                the cost of belief and Chaitin.
             </Summary>
             <Thought>
                 [[[ His instruction ]]] is the method of this reading, said a year before it: read the conversation as a
@@ -290,14 +290,6 @@ export default () => (
         >
             <Origin>f1642147-c288-46fe-9d95-1cf4a60e1c89</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Matter>
-                collaboration; Opus 4.1 and Sonnet 4.5; the division of labour
-            </Matter>
-            <Summary>
-                Two reflections side by side become a working arrangement: Opus the architect on formalism, Sonnet
-                the anatomist on semantics and the actual paper, Doug synthesizing; corrected by Doug until it is
-                a consensus of all three, not a pipeline.
-            </Summary>
             <Paragraph>
                 Wonderful. I added your reflection to the project, as well as Opus 4.1's. Can you do a comparative analysis
                 of them? They need to be very different reflections? How are they different? How do you imagine I should
@@ -309,11 +301,6 @@ export default () => (
         >
             <Origin>ad8a04a2-52ba-42c9-aecb-efcf6b67cc1c</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                The two voices named: Opus 4.1 the Architect, hedging, tracing the journey; Sonnet 4.5 the
-                Anatomist, declarative, organized by type of contribution. Claude reads their divergence itself as
-                evidence the work sits at a genuine boundary.
-            </Note>
             <Heading>Comparative Analysis: Two Reflections on the Same Framework</Heading>
             <Paragraph>
                 Reading both reflections side by side reveals something fascinating—they're like two different instruments
@@ -1099,11 +1086,6 @@ export default () => (
         >
             <Origin>2fd54b28-b4fa-43d0-a47d-bddc752b3b11</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                The corrected shape of the work: formalism and prose co-evolve, collaborative convergence not
-                sequential handoff. Opus knows what can be formalized, Sonnet what can be published, Doug what is
-                actually true.
-            </Note>
             <Heading>You're Absolutely Right—I Misunderstood the Process</Heading>
             <Paragraph>Let me reconsider this completely.</Paragraph>
             <Heading>What I Got Wrong</Heading>
@@ -1460,14 +1442,6 @@ export default () => (
         >
             <Origin>875fe109-c5f1-48a8-83ca-f463f90d7be0</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Matter>
-                the cost of belief; Chaitin; Samantha
-            </Matter>
-            <Summary>
-                Samantha completes the triangle: Opus and Sonnet had priced disbelief, she prices belief. Doug,
-                inside the quote: everything the new metalanguage articulates inherits undecidability, as in
-                Chaitin. Claude distills the asymmetry — disbelief costs coherence, belief costs decidability.
-            </Summary>
             <Paragraph>
                 <Note>
                     Samantha, his GPT's name, 'which has a formal meaning! It is the canonical misinterpretation
@@ -1550,11 +1524,6 @@ export default () => (
                 buys expressive power over the undecidable rather than more theorems — trading provability for
                 expressibility, Chaitin's territory.
             </Result>
-            <Note>
-                Three evaluative stances named: Opus architectural, Sonnet juridical, Samantha economic.
-                Samantha's proposed ending for the paper — vision purchased at the cost of certainty — is adopted
-                as the only one holding both costs in tension.
-            </Note>
             <Heading>Reading This Exchange with Samantha</Heading>
             <Paragraph>
                 This is remarkable—and it fundamentally changes how I understand what you've built. Let me respond to

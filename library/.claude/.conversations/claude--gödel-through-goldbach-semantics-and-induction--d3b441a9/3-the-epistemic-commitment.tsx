@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -16,16 +16,13 @@ export default () => (
             <Origin>dee2f684-f2d3-40c9-b518-04edde0d9a5a</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Matter>
-                Hypothetical arithmetic; the catalogue of referents; completeness as an epistemic commitment.
+                Hypothetical arithmetic; the catalogue of referents; completeness as an epistemic commitment
             </Matter>
             <Summary>
-                Axiomatized infinity makes the catalogue of referents infinitely heavy — GC assumed confirms no
-                particular case — and when Claude reads that as mere permission to stop worrying, he is corrected:
-                assuming means A LOT more, and completeness is redefined as an epistemic commitment.
+                Axiomatized infinity makes the catalogue of referents infinitely heavy, GC assumed confirms no
+                case; assuming it means a lot more, as does assuming it false; completeness redefined as an
+                epistemic commitment, all proofs finite as a semantic assertion.
             </Summary>
-            <Idea>
-                A chapter title: "The Epistemic Commitment" — completeness redefined is what the chapter reaches.
-            </Idea>
             <Paragraph>
                 Yes and it can be explored through the lens of what it means, semantically, to have identified a truth that
                 makes a a first order formalism omega-incomplete, and the semantic cost of interpretation of axiomizing that

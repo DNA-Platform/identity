@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -17,13 +17,13 @@ export default () => (
             <Origin>2886f14d-6d6f-47f8-90fb-52a83648ef45</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Matter>
-                if GC is false; memory exhaustion; the undecidability of k
+                if GC is false; memory exhaustion; the undecidability of k; the title; intuition versus proof;
+                epistemic state
             </Matter>
             <Summary>
-                The failure pictured: numbers representing an unprovable thing lose representational power, and
-                their tautological extensions inherit the exhaustion. Claude overstates the unprovable as
-                uncountable; Doug corrects to countable; the collapse is retargeted from all large numbers to the
-                structured ones encoding unprovability, feared at 147, priced at 149.
+                If GC is false, numbers run out of memory where unprovability lives; unprovables overwhelm,
+                corrected to countable; k unbounded and surely undecidable, audited down to intuition; the title
+                flipped to Gödel through Goldbach and fixed verbatim.
             </Summary>
             <Result>
                 [[[ the memory exhaustion metaphor ]]]: if GC is false, numbers 'run out of memory' representing
@@ -1771,12 +1771,6 @@ export default () => (
         >
             <Origin>23d0a02a-6464-4e9d-a284-bc99d72a0831</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                Claude doubles $[[ ./the undecidability of k ]] into a parallel: G logically undecidable within
-                the system, k arithmetically undecidable to computation — 'at the boundary of the formal system,
-                both logical and arithmetic structure become unknowable.' Stated as fact here; demoted to
-                intuition at 152 on his check.
-            </Note>
             <Heading>OH—The Undecidability of k Itself</Heading>
             <Paragraph>
                 <Word>
@@ -2298,15 +2292,6 @@ export default () => (
         >
             <Origin>75cf9130-f96c-488a-b9e7-14abd8aa9f16</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Matter>
-                the title; intuition versus proof; epistemic state
-            </Matter>
-            <Summary>
-                The check and the title: k's undecidability is demoted to intuition on his question; the arrow is
-                argued to point Godel-ward, Goldbach the lens; and when Claude generates variations and loses the
-                decided words, he fixes the title verbatim: 'Gödel through Goldbach: Reformulating Unprovability
-                Using a Seemingly Simple Conjecture about Prime Numbers.'
-            </Summary>
             <Thought>
                 Three unproved layers now stack under the framework: GC itself,
                 $[[ ./the injectivity conjecture ]] for the full pair set, and $[[ ./the undecidability of k ]] —

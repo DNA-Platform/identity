@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -20,10 +20,9 @@ export default () => (
                 type systems; representation versus number; the (Array | Set) type
             </Matter>
             <Summary>
-                Messages 95 to 112: the type system. $[[ ./Array&lt;Set&gt; notation ]] is found mistyped,
-                repaired by the unique-exponents rule (97), guarded by canonicity (99), settled as
-                $[[ ./the (Array | Set) type ]] with &lt;this&gt; (101, 103, 107), and disciplined twice: the
-                representation is not the number (105, 111).
+                Set when the exponents are unique, array when not, canonical only when increasing: type This =
+                (Array | Set)&lt;This&gt;; the discipline held twice, a representation is not a number; two
+                notations so no one thinks it is one thing.
             </Summary>
             <Paragraph>
                 <Importance>
@@ -3224,11 +3223,6 @@ const g: This = { [{}, {}], { {} } };
         >
             <Origin>7474c0e5-aa99-4770-80df-24516db0eb67</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                Claude's repair: the type describes the structural space; construction, termination, encoding and
-                decoding rules complete the specification. The type signature is necessary but not sufficient for
-                unique representation.
-            </Note>
             <Heading>YES—Critical Correction</Heading>
             <CodeBox
                 language="typescript"
@@ -3573,11 +3567,6 @@ function represent(n: number): This {
         >
             <Origin>90e046e9-448e-45ac-9251-d471ce4365f5</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Summary>
-                Messages 113 to 116: the close of the representation movement. The paper's section is fixed —
-                rigorous definitions possibly in code, three examples in each notation — and the reason there are
-                two notations is said plainly at 115: so no one mistakes the thing for one representation.
-            </Summary>
             <Reminder>
                 Owed to the paper: 0=0, ∀x(x=x), and 2+2=4 in each notation. Only $[[ ./the 0=0 example ]] was
                 ever computed in this conversation (92 swerved to 0+0; 114 keeps the others schematic at ~50 and
@@ -4198,11 +4187,6 @@ CFB: (1(0110)10)`}
         >
             <Origin>0e709b90-ab1b-4c87-8778-cb6df6093711</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                Claude closes the movement with the hinge: two lenses, one invariant structure, and the forward
-                question — at what point does capacity to represent become limited by availability of primes?
-                "That's where Goldbach enters." Message 117 takes it up.
-            </Note>
             <Heading>YES—That's The Perfect Framing</Heading>
             <Paragraph>Let me rewrite the introduction to Section 2 with this perspective:</Paragraph>
             <Heading>Section 2: Two Notations for One Structure</Heading>

@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -17,13 +17,12 @@ export default () => (
             <Origin>81c59080-aabc-44a2-a11a-a812fe9f0632</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Matter>
-                notation; context-free binary; Array&lt;Set&gt; notation; two audiences
+                notation; context-free binary; Array&lt;Set&gt; notation; two audiences; worked examples; 0=0
             </Matter>
             <Summary>
-                Messages 77 to 88: the naming run. Claude's invented acronym BTZN is refused (79), Doug coins
-                $[[ ./context-free binary ]] (81), adds set array notation (83), corrects its name to
-                $[[ ./Array&lt;Set&gt; notation ]] (85), and fixes the final convention — outer parens, terminal
-                zero, 1 is (0) — at 87.
+                The names, his: context-free binary and Array&lt;Set&gt; notation, Claude's acronyms struck; 0=0
+                worked as 143,489,070 in both; 2+2=4 asked and never computed; choose a notation, since actual
+                numbers are terrifying.
             </Summary>
             <Paragraph>
                 So let my parenthesized 01 notation to show what it means to a programmer right? Reminiscient of the syntax
@@ -2930,15 +2929,6 @@ As indexed array (for programmers):
         >
             <Origin>d0f02e20-8cf8-45e4-9a1e-65c01a835cfb</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Matter>
-                worked examples; 0=0; Gödel coding
-            </Matter>
-            <Summary>
-                Messages 89 to 94: Gödel coding made tangible. The symbol table is laid out,
-                $[[ ./the 0=0 example ]] is computed in all three views, Doug celebrates speaking to two
-                generations at once and asks for 2+2=4, and the moral lands: raw numbers are terrifying, choose
-                $[[ ./context-free binary ]] or $[[ ./Array&lt;Set&gt; notation ]].
-            </Summary>
             <Paragraph>
                 And we can say - let the modern reader understand the expressive power of a single number in the context of
                 recursive prime factorization in one of two ways
@@ -3512,13 +3502,7 @@ As memory: 9-digit integer encoding 3-symbol formula
                 </Importance>
                 Wonderful. We are speaking to a new generation and an old generation at the same time about what 0=0 means
             </Paragraph>
-            <Paragraph>
-                <Idea>
-                    "We should also show 2+2=4" — the third worked example demanded for the paper, beside
-                    $[[ ./the 0=0 example ]].
-                </Idea>
-                We should also show 2+2=4
-            </Paragraph>
+            <Paragraph>We should also show 2+2=4</Paragraph>
         </Message>
         <Message
             at="2025-10-12T20:15:24.534536Z"
@@ -4102,11 +4086,6 @@ const formula_0plus0: Array<Set> = [
         >
             <Origin>be6391bf-ad68-4f02-a01c-79edc798221e</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                Claude's supporting material: "Gödel himself didn't work with the actual numbers" — raw integers
-                are theoretically important, practically useless, pedagogically misleading; the notations are the
-                source code.
-            </Note>
             <Heading>YES—That's The Perfect Framing</Heading>
             <Paragraph>Let me write that section:</Paragraph>
             <Heading>Section 2.5: Why We Need CFB and Array&lt;Set&gt;</Heading>

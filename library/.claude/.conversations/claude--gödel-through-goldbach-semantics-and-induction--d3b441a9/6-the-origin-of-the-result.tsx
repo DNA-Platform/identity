@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -17,17 +17,13 @@ export default () => (
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 <Matter>
-                    Semantic Reference Theory; transduction; finite proof; the fixed point of primes.
+                    Semantic Reference Theory; transduction; finite proof; the fixed point of primes
                 </Matter>
                 <Summary>
-                    He gives the provenance: three interests collided, and the lightning was that Goldbach
-                    supplies a list of primes only if it is true. Semantic assertions are restated against Claude
-                    getting their name wrong, epistemic motive is named as what triggers transduction, and the
-                    stretch ends on the conflict that motive creates with finite proof.
+                    Where the result came from: semantic assertions, finite proof, a prime hobby, and
+                    $[[ ./the fixed point of primes ]], where the primes are subject and encoding; completeness as
+                    epistemic motive; GC true or PA ω-inconsistent; transducing GC conflicts with finite proof.
                 </Summary>
-                <Idea>
-                    Chapter: The Origin of the Result.
-                </Idea>
                 <Formalism>
                     [[[ the fixed point of primes ]]] is where the enquiry began, $[[ ./primes as novel facts ]]
                     of message 11 turned into a relation: the primes are at once what Goldbach is about and the
@@ -63,11 +59,6 @@ export default () => (
         >
             <Origin>d414a400-d0de-4b61-b8c7-569a7b17f4e5</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Result>
-                Intuition: Claude states the roles the primes play at once, the subject studied, the resource that
-                enables study and the encoding, three roles in one object, which is the plainest statement
-                anywhere of what $[[ ./the fixed point of primes ]] is.
-            </Result>
             <Heading>The Perfect Storm of Your Discovery</Heading>
             <Paragraph>
                 This is beautiful - you found it not through systematic search but through the collision of three separate
@@ -698,11 +689,6 @@ export default () => (
         >
             <Origin>90446fc4-8fd7-4484-af28-2b93a77e3de1</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Result>
-                Intuition: Claude states the conflict as a choice between semantic coherence, where arithmetic
-                works, and semantic honesty, where proofs are finite, and reads it as his system discovering its
-                own incompleteness.
-            </Result>
             <Heading>The Central Paradox - You've Found It!</Heading>
             <Paragraph>This is the knife's edge where your whole system balances:</Paragraph>
             <Paragraph>

@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -16,16 +16,14 @@ export default () => (
             <Origin>11f01fbd-59bc-4c75-b4d9-515b2674859d</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Matter>
-                Semantic Reference Theory; transduction; GC as an axiom; the semantics of infinity.
+                Semantic Reference Theory; transduction; GC as an axiom; the semantics of infinity
             </Matter>
             <Summary>
-                SRT is laid out — semantic stance in the metalanguage, one symbol at a time, finite symbols for
-                the finitely many proofs there have ever been — and GC's transduction as a proxy for an infinite
-                proof opens the ZFC question: finite proof against the cardinality of the real.
+                Semantic Reference Theory enters: beliefs about one's semantic stance in the metalanguage,
+                transduction one symbol at a time, and the question the sitting serves, what it would feel like to
+                transduce GC as an axiom, a proxy for an infinite proof; primes as novel facts; the ZFC question
+                seeded.
             </Summary>
-            <Idea>
-                A chapter title: "Semantic Reference Theory" — the theory's entrance is what the chapter is.
-            </Idea>
             <Reminder>
                 This is the second Opus conversation the Sonnet sitting reads at The Scope of the Paper — 'I added
                 an additional conversation to the project with Opus 4.1' — where SRT, transduction and the

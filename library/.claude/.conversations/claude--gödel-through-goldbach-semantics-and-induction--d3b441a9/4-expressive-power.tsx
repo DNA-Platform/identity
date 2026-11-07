@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -16,18 +16,14 @@ export default () => (
             <Origin>871eae9f-88b5-414f-a698-b1b97cdfeb3e</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Matter>
-                Proof complexity; Chaitin; undecidability; the second representation.
+                Proof complexity; Chaitin; undecidability; the second representation
             </Matter>
             <Summary>
-                'Too good to be true' is cashed out as expressive power: a second representation pegged to
-                descriptive complexity, two entropies through tautological minimality, a Chaitin-style average
-                normalized by two to the n — all sensible, all as unmeasurable as the halting probability, and the
-                unprovables may break the average.
+                Too good to be true means expressive power: a second representation pegged to descriptive
+                complexity, two entropies through tautological minimality, the normalized average over axioms and
+                the unprovables that may break it; almost all of it undecidable, Chaitin's situation; the natural
+                anchor, a real unproved conjecture.
             </Summary>
-            <Idea>
-                A chapter title: "Expressive Power" — or "The Second Representation", parallel to the Sonnet
-                book's The Pair Representation.
-            </Idea>
             <Paragraph>
                 <Correction>
                     Claude had read 'too good to be true' as suspicious perfection — infinite unearned coherence.
@@ -71,11 +67,6 @@ export default () => (
         >
             <Origin>8a620eee-9827-4d11-813c-e1249b3db3dc</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                Claude's images for the edition: the framework as 'a descriptive calculus for undecidability,' 'a
-                map of territory you can never visit' — semantic richness bought at the cost of decidability, a
-                framework that articulates exactly what you cannot know.
-            </Note>
             <Heading>The "Too Good to Be True" Power</Heading>
             <Paragraph>
                 You're right - I misunderstood. The framework with GC doesn't just give coherence, it gives an <Word>

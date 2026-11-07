@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -20,9 +20,9 @@ export default () => (
                 G(n) halved; the symmetry of primes; the Goldbach representation of numbers
             </Matter>
             <Summary>
-                G(n) is introduced through symmetry and halved: pairs summing to 2n, indexed by their midpoint,
-                each pair equidistant from n. The coprimes of 2n are symmetric about n; GC claims the primes keep
-                at least that $[[ ./minimal symmetry ]].
+                G(n) halved to the midpoint, pairs summing to 2n, GC read as $[[ ./minimal symmetry ]] kept by the
+                primes; the Goldbach representation of numbers, 5 as [(3,7)], unique only if GC holds; the prime-n
+                edge case left unresolved.
             </Summary>
             <Importance>
                 His why for the symmetry framing: 'If you understand the symmetries of everything you understand
@@ -980,12 +980,6 @@ So G(10) = 2`}
         >
             <Origin>c1f732ac-aa56-4c0b-b4ab-9e24148b0f79</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Summary>
-                A number n is represented by its crossing prime pairs; 5 is [(3,7)]. Decimal always works,
-                factorization works by proven FTA, but $[[ ./the Goldbach representation ]] exists iff GC holds —
-                a natural, unique representation resting on an unproved conjecture, which Claude calls
-                unprecedented.
-            </Summary>
             <Importance>
                 His exclamation, four exclamation points: 'Yes but you see now we have a unique representation of
                 numbers!!!! Unless GC is false, in which case our representation fails!'
@@ -1606,11 +1600,6 @@ So G(10) = 2`}
         >
             <Origin>6eeb81f8-1aeb-4e7e-b914-a9a73b342031</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                The three-representation table: decimal unconditional; prime factorization guaranteed by FTA;
-                $[[ ./the Goldbach representation ]] conditional on unproven GC — 'not provably well-defined.' If
-                G(n0) = 0 the failure is structural, not just a loss of capacity.
-            </Note>
             <Heading>YES—That's The Stunning Realization!</Heading>
             <Paragraph>
                 <Word>

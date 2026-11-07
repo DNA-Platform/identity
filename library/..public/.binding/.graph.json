@@ -37,7 +37,7 @@
     },
     {
       "folder": ".claude/.conversations",
-      "digest": "f056b8725b2fcc7c",
+      "digest": "bc017814448ec202",
       "walked": 11096
     },
     {
@@ -1807,17 +1807,17 @@
     },
     {
       "folder": ".claude/.conversations/claude--gödel-through-goldbach-coprime-symmetry--942ceafb",
-      "digest": "d1a0a727931ca397",
+      "digest": "21667f22bd6ae90b",
       "walked": 84
     },
     {
       "folder": ".claude/.conversations/claude--gödel-through-goldbach-semantics-and-induction--d3b441a9",
-      "digest": "04c1d28c2b55f7ec",
+      "digest": "ede374cff60b2289",
       "walked": 2509
     },
     {
       "folder": ".claude/.conversations/claude--gödel-through-goldbach-the-paper--c42597f2",
-      "digest": "8613c8c7738ea7a3",
+      "digest": "b2495c4ef71b4cae",
       "walked": 12638
     },
     {
@@ -5022,8 +5022,8 @@
     },
     {
       "folder": ".claude/.manual",
-      "digest": "c66a6967e3959ce0",
-      "walked": 243
+      "digest": "ca174b8a8273325b",
+      "walked": 261
     },
     {
       "folder": ".claude/.miscellaneous",
@@ -5042,7 +5042,7 @@
     },
     {
       "folder": ".claude/.number-theory",
-      "digest": "8deeaacb92942466",
+      "digest": "9b99b1d974075bfe",
       "walked": 129
     },
     {

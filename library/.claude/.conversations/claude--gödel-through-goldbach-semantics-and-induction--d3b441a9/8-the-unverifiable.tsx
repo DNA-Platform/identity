@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -17,17 +17,13 @@ export default () => (
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 <Matter>
-                    undecidability; the four-case matrix; the symmetry of primes; provable unverifiability.
+                    undecidability; the four-case matrix; the symmetry of primes; provable unverifiability
                 </Matter>
                 <Summary>
-                    He wants a proof of unprovability, settles for a classification, and states what the framework
-                    would show in each of the four cases. Pressed on where failure would occur, he reaches
-                    provable unverifiability, then argues that unverifiable falsity is incoherent and so forces
-                    the choice that ends induction.
+                    No proof of unprovability, the diagonal does not close; what each of the four cases would
+                    show; provable unverifiability if the failing numbers are undecidable; unverifiable falsity is
+                    incoherent, so GC false, GC undecidable, semantic incoherence, goodbye induction.
                 </Summary>
-                <Idea>
-                    Chapter: What Each Case Would Feel Like.
-                </Idea>
                 <Question>
                     "Does it leave you with a proof that it is unprovable? I wish it did." What he keeps instead
                     is that unprovability can be expressed in the framework's own terms, and that the expression

@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -16,21 +16,18 @@ export default () => (
             <Origin>5d30644b-b82b-429f-a720-17b5680f4213</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Matter>
-                Collaboration; Samantha; the cost of belief.
+                Collaboration; Samantha; the cost of belief
             </Matter>
             <Summary>
-                The staging, run in braid with the Sonnet sitting: the same instruction, each model reading the
-                other's reflection, the division of labour with Opus on formalism and LaTeX, and the Samantha
-                exchange pasted into both rooms within two minutes of each other.
+                The Opus side of the same staging, six minutes behind the Sonnet sitting: the document read as a
+                narrative, Sonnet's reflection compared, the division of labour from Opus's side, Samantha pasted
+                eighty-one seconds before it reaches the other room.
             </Summary>
             <Reminder>
                 The opening instruction, the comparative reading and the division of labour stand word for word or
                 near it in Three Readers; the sittings ran in parallel, Sonnet at 13:49, Opus at 13:55, the
                 cross-reading requests two minutes apart.
             </Reminder>
-            <Idea>
-                A chapter title: "The Division of Labour" — the staging of the three readers from the Opus side.
-            </Idea>
             <Paragraph>
                 Okay please read the Godle &amp; Goldbach project document carefully. I want you to read it as a narrative,
                 where a formal framework was developed while debating a formal idea. As you read, reflect on what is being
@@ -566,11 +563,6 @@ export default () => (
         >
             <Origin>344b4d1c-f6ba-434c-851b-ae6f94611778</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                Opus takes Samantha as the third reader — pragmatist, aesthete, realist — and reads the three
-                readings as an accidental demonstration of the recoding lemma: different encodings of one truth.
-                The collaboration mirroring the content, a figure that returns at the fixed point.
-            </Note>
             <Paragraph>
                 This exchange with Samantha adds a crucial third dimension that neither Sonnet 4.5 nor I fully captured:
                 <Word>

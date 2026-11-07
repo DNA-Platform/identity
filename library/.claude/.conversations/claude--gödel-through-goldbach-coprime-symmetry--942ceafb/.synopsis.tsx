@@ -8,11 +8,13 @@ export default () => (
             [[ Synopsis ]]
         </Title>
         <Paragraph>
-            The person is engaged in original mathematical research on prime numbers and Goldbach's conjecture. The
-            conversation focused on developing a precise framework for understanding "Goldbach pairs" — pairs of primes
-            equidistant from a center value N, which sum to 2N. The person established the foundational insight that
-            these pairs inherit their symmetry from the coprime structure of N: since gcd(N−k, N) = gcd(k, N) = gcd(N+k,
-            N), the coprimes of N are symmetric around N, and prime pairs naturally inhabit this symmetric skeleton.
+            A short question, 30 March 2026, five months after the paper: Goldbach pairs of N as the primes
+            equidistant from N, inheriting their symmetry from the coprimes of N, the symmetry the paper filed for
+            future theorists, taken up on its own. SRT does not factor into the prime work. Which numbers share
+            their Goldbach pairs: the eligible offsets coincide where rad(n) equals rad(N), and 6's pair 5 and 7
+            reappear in 12's pairs because 6 divides 12, the pair structure inherited upward through multiples.
+            What is valuable: the coprime skeleton as the frame the pairs are the prime points of, and the open
+            question whether the relation is tighter than divisibility, which is where it stopped.
         </Paragraph>
     </Chapter>
 );

@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -17,16 +17,13 @@ export default () => (
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 <Matter>
-                    transduction; induction; semantic necessity; the fundamental theorem of arithmetic.
+                    transduction; induction; semantic necessity; the fundamental theorem of arithmetic
                 </Matter>
                 <Summary>
-                    With induction cut, inducible truths return one at a time rather than wholesale. He then stops
-                    Claude from cutting too much: some inductions are needed for the semantics of number itself,
-                    and the fundamental theorem of arithmetic is the example that must be transduced.
+                    With induction cut, inducible truths return $[[ ./one at a time, never wholesale ]]; the
+                    fundamental theorem of arithmetic is transduced, since every number needs its prime factors:
+                    constitutive induction kept, descriptive dropped.
                 </Summary>
-                <Idea>
-                    Chapter: Which Induction Survives.
-                </Idea>
                 <Result>
                     Conjectured: [[[ one at a time, never wholesale ]]] - Q can still transduce whatever is
                     semantically consistent with it, so "when we kill induction, all inducible things are
@@ -42,11 +39,6 @@ export default () => (
         >
             <Origin>30f4a3b7-2b6b-442b-adc1-c08adea6cade</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Result>
-                Intuition: Claude works out what $[[ ./one at a time, never wholesale ]] buys - every specific
-                case PA proves can be transduced, while the universal never is, so nothing is lost but the
-                infinite leap.
-            </Result>
             <Heading>OH! The Granular Recovery!</Heading>
             <Paragraph>
                 You're right - Q doesn't lose the ability to extend, it just loses the ability to extend infinitely all at

@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -16,17 +16,13 @@ export default () => (
             <Origin>b8bab7a5-d193-4287-a16d-207d55f1fa71</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Matter>
-                The distribution of primes; Gödel's encoding; the novelty question.
+                The distribution of primes; Gödel's encoding; the novelty question
             </Matter>
             <Summary>
-                The circle closes — the information questions are prime-distribution questions along the sparse
-                codes — and the stretch ends on the historical shock: Gödel encoded arithmetic in primes, Shannon
-                measured information, and apparently no one related Gödel's actual code to the primes in between.
+                Everything phrased through GC is a question about the distribution of primes; Gödel encoded
+                arithmetic in primes but did not know Shannon, and it shocks him if relating the actual code to
+                the primes is new; why it fell between fields.
             </Summary>
-            <Idea>
-                A chapter title: "Gödel and Shannon" — the two names whose unmade connection is what the chapter
-                discusses.
-            </Idea>
             <Paragraph>
                 <Question>
                     'As all of this is phrased in terms of GC, am I not also asking something about the

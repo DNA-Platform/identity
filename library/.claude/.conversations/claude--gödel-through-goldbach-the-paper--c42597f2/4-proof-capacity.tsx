@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -21,9 +21,9 @@ export default () => (
             </Matter>
             <Paragraph>
                 <Summary>
-                    Doug builds the witness: map a Goldbach pair count to a prime, raise it to a free exponent,
-                    and read provability off whether the bound overtakes proof length. Claude formalizes each
-                    step; Doug corrects it twice, at 27 and 29, where it drifts from what he wrote.
+                    The construction: G(n) mapped to the G(n)-th prime raised to a free k against a proof that
+                    grows one step per tautology, requiring complete failure; the magic log; k a free parameter,
+                    no hand-waving about G; k = 1 expected under GC.
                 </Summary>
                 <Formalism>
                     [[[ p_G(n) ]]] is the G(n)-th prime, mapped to 1 when G(n) is zero, so a vanishing Goldbach
@@ -1119,11 +1119,6 @@ export default () => (
         >
             <Origin>0e6f0cd0-fc43-41aa-994a-4f308d81c6b8</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Result>
-                Claude states the governing asymmetry: proof length grows linearly in the number of extensions
-                while the bound grows exponentially in k, so for a provable statement the bound eventually
-                overtakes the proof.
-            </Result>
             <Heading>YES—The Exponential Witness Returns</Heading>
             <Paragraph>Now I see how it all fits together. Let me formalize this properly.</Paragraph>
             <Heading>The Upper Bound Expression</Heading>

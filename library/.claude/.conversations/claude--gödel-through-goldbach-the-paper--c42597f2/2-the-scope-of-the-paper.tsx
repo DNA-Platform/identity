@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -20,9 +20,9 @@ export default () => (
                 the scope of a paper; ideasthesia; communication
             </Matter>
             <Summary>
-                He asks where a paper's boundaries come from, grounding the question in ideasthesia and in knowing
-                when to stop; Claude reads the second Opus conversation and answers: papers are projections of the
-                high-dimensional object — this one onto the logic and number-theory plane, in days.
+                Days not months: where the boundaries of a single paper come from, asked through his ideasthesia
+                and his communication problem; a paper is one projection of a high-dimensional object, this one
+                onto logic and number theory.
             </Summary>
             <Paragraph>
                 I added an additional conversation to the project with Opus 4.1. Really interesting stuff. You can read
@@ -91,12 +91,6 @@ export default () => (
         >
             <Origin>ef165a0f-1f0a-4010-bb92-27fe03c26292</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                The boundary answer: audience and verifiability — can a logician verify the claim in an afternoon?
-                Papers are two-dimensional projections of the twelve-dimensional object; SRT, consciousness,
-                Robinson Q and the ZFC critique are later projections. The second Opus conversation is the SRT
-                one.
-            </Note>
             <Paragraph>I'll search the project knowledge for this new conversation with Opus 4.1.</Paragraph>
             <Action>Searched the project's knowledge for “Opus 4.1 conversation new”</Action>
             <Paragraph>Let me get more of this conversation to see the full scope:</Paragraph>

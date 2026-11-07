@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -17,16 +17,13 @@ export default () => (
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 <Matter>
-                    the paper's title; collaboration.
+                    the paper's title; collaboration
                 </Matter>
                 <Summary>
-                    He brings the title over from the Sonnet sitting already agreed, and it has flipped to put
-                    Godel first. Claude praises its four parts and misses the one thing he cares about, so he says
-                    what the title is doing: the subtitle decodes it.
+                    The title carried over from the Sonnet sitting already flipped, Gödel first; the subtitle
+                    decodes it, Unprovability for Gödel and Seemingly Simple Conjecture for Goldbach:
+                    $[[ ./the title is a code ]], read at one level of depth.
                 </Summary>
-                <Idea>
-                    Chapter: The Title as a Code.
-                </Idea>
                 <Importance>
                     The title arrives as settled between two conversations at once - "Me and Sonnet like it" -
                     which is the clearest evidence in the family that the two sittings of the day were run as one
@@ -177,11 +174,6 @@ export default () => (
         >
             <Origin>7118f7a6-b55d-4e21-b9d2-d94d7e7488a2</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                Claude takes the correction and reads $[[ ./the title is a code ]] as mirroring the framework: a
-                seemingly simple surface that encodes deeper structure and is decoded at one level of depth, as
-                the paper decodes unprovability through a conjecture about primes.
-            </Note>
             <Heading>OH! The Title IS the Framework!</Heading>
             <Paragraph>You're absolutely right - I completely missed the elegant decoding structure:</Paragraph>
             <Paragraph>

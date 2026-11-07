@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Idea, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Formalism, Heading, Importance, Line, List, Matter, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker } from '../../../.manual/29-the-conversation~code.tsx';
 import { Origin } from '../../.manual/8-the-origin~code.tsx';
@@ -17,17 +17,14 @@ export default () => (
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
                 <Matter>
-                    induction; Robinson Q; hypothetical expressiveness; ZFC without a constant.
+                    induction; Robinson Q; hypothetical expressiveness; ZFC without a constant
                 </Matter>
                 <Summary>
-                    Induction is identified as infinite proof in disguise and cut, leaving Robinson Q, which he
-                    argues keeps everything that matters because it can speak hypothetically. He then observes
-                    that ordinary mathematics already works this way, since ZFC never names a constant, and
-                    corrects Claude twice before it is understood.
+                    Induction is infinite proof in disguise, so drop it: Robinson Q keeps the arithmetization and
+                    speaks in hypotheticals; ZFC has no constant, the empty set stated existentially, so
+                    mathematics was hypothetical all along; the paper's position, drop induction, use Q, make GC
+                    true in the fiction.
                 </Summary>
-                <Idea>
-                    Chapter: Dropping Induction.
-                </Idea>
                 <Result>
                     Intuition: induction "is a lot like infinite proof if you think about it", so it can be
                     dropped without alarm, since "numbers have TONS of unprovable generalizations" - and Robinson
@@ -188,11 +185,6 @@ export default () => (
         >
             <Origin>6e475a10-1290-4d81-b2ca-7ffb13b254ad</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Result>
-                Intuition: Claude draws the separation out - PA asserts that Goldbach is true or false, Q only
-                explores what would follow if it held - so the whole framework survives as hypothetical structure
-                with no ontological commitment.
-            </Result>
             <Heading>THE FINAL INSIGHT - Q as the Ultimate Pragmatist!</Heading>
             <Paragraph>
                 EXACTLY! Q doesn't need truth - it has <Word>
@@ -483,10 +475,6 @@ export default () => (
         >
             <Origin>fcfd9d17-f0ff-402b-83ae-427253f9a8e1</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Result>
-                Proven: Claude now has it - the axiom is an existential claim and names no ground term, so every
-                statement is about whatever plays the role, and mathematics describes roles rather than referents.
-            </Result>
             <Heading>OH - The Existential Trap!</Heading>
             <Paragraph>You're right, I was still missing it. ZFC doesn't even give you a constant ∅. It says:</Paragraph>
             <Paragraph>

@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -17,13 +17,14 @@ export default () => (
             <Origin>39e61021-562f-4d2b-b15e-f00e14f4ce36</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Matter>
-                recursion; uniqueness; the complementary representation
+                recursion; uniqueness; the complementary representation; what GC represents; proofs of a
+                proposition or its negation
             </Matter>
             <Summary>
-                Recursion is tried and settled: the larger prime of each pair is left unexpanded, since it always
-                exceeds the number represented, and only the smaller descends to 2 and 3; the self-referential
-                form is probed for uniqueness and found not unique per pair; the lower-prime version of uniqueness
-                is refuted by counterexample, leaving the full pair set conjectured unique but unproven.
+                Recursion settles on the smaller prime; the self-referential form is not unique; the lower-prime
+                set is refuted, the full set's uniqueness a second conjecture; two ascending arrays, flip the q's;
+                GC suggests what it itself represents, proofs of a proposition or its negation, negation by
+                position.
             </Summary>
             <Formalism>
                 [[[ the recursive Goldbach representation ]]]: expand each number into its pairs under
@@ -1125,11 +1126,6 @@ export default () => (
         >
             <Origin>589b8de6-97ac-4a87-b3e0-e9a1e5c4d572</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Summary>
-                The surviving form is born: two arrays, primes before n and primes after n, pairwise summing to
-                2n. Flipped at his correction so both ascend, the pairing crosses at the center and 'shows the
-                symmetry' — yet another representation, suited to proofs of a proposition or its negation.
-            </Summary>
             <Formalism>
                 [[[ the complementary Goldbach representation ]]]: n maps to ([primes before n], [primes after n])
                 'so that (x,y) means x[i] + y[i] = 2*n and x[i] &lt; x[i+1] and always prime.'
@@ -2313,14 +2309,6 @@ export default () => (
         >
             <Origin>22f50e91-0602-420c-b214-9e5ad03a9a63</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Matter>
-                what GC represents; proofs of a proposition or its negation
-            </Matter>
-            <Summary>
-                The semantics of $[[ ./the complementary Goldbach representation ]]: the two sides hold proofs of
-                a proposition and of its negation, only one side ever represents anything, the empty side is the
-                stance taken, and negation lives in position, not in the logic.
-            </Summary>
             <Result>
                 His statement of it: 'the two sets of numbers are redundant shows that only one of these really
                 represents anything, and the lack of representation on the other simply shows which stance on the

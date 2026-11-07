@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -20,9 +20,10 @@ export default () => (
                 the four-case matrix; entropy measures; the tautological extension; Chaitin
             </Matter>
             <Summary>
-                He renames the paper and hands over the mathematics: the four-case matrix as the result's
-                structure, entropy measures after Chaitin and Shannon, the tautological extension; corrected once,
-                provability means access; closed by grounding encoding invariance in primes.
+                He takes over the mathematics: the title Goldbach through Godel, the four cases of GC truth by
+                provability as the result's structure, entropy measures after Chaitin and Shannon, the
+                tautological extension; provability means access; encoding differences are statements about
+                primes.
             </Summary>
             <Paragraph>
                 You said this as a name: "Goldbach as Metamathematical Resource: Formalizing Unprovability via Prime-Indexed
@@ -1115,10 +1116,9 @@ export default () => (
             <Origin>0b3cfac5-f8fc-4bbe-ae61-5b40461963f6</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Formalism>
-                [[[ encoding invariance via primes ]]]: between prime-permutation encodings, the entropy
-                difference is a weighted sum of exponents times log of prime ratios — so encoding-invariant
-                complexity statements are prime-distribution statements. 'You've made Chaitin arithmetic instead
-                of abstract.'
+                Encoding invariance via primes: between prime-permutation encodings, the entropy difference is a
+                weighted sum of exponents times log of prime ratios — so encoding-invariant complexity statements
+                are prime-distribution statements. 'You've made Chaitin arithmetic instead of abstract.'
             </Formalism>
             <Heading>YES—This Is The Deep Point</Heading>
             <Paragraph>

@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -20,11 +20,9 @@ export default () => (
                 Gödel numbering; recursive prime factorization; the memory structure
             </Matter>
             <Summary>
-                The program for the rest of the conversation, stated in one message: say what it means to permute
-                a code, $[[ ./encoding invariance via primes ]], define $[[ ./G(n) ]] rigorously, read GC as
-                symmetry, make the block encoding real, put the negation's proof on the other primes. Claude
-                answers with a section plan. Only the representation part is executed in this stretch; the rest
-                waits for message 117.
+                Doing what Gödel did: the recursive prime factorization as a memory structure unbounded on every
+                prime, compressed into the 01 notation, terminating in zero, projected into set theory and found
+                richer than sets.
             </Summary>
             <Paragraph>
                 Awesome. Now how do we capture the content? Remember that, as much as we can skip certain things, we need to
@@ -585,12 +583,6 @@ export default () => (
         >
             <Origin>67d6441b-549f-4693-9f8a-5b1204647250</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Summary>
-                Messages 57 to 76: doing what Gödel did. The recursive prime factorization is drawn, corrected to
-                unbounded capacity on each prime (59), named a terrifying memory structure (61), compressed into
-                Doug's parenthesized 01 form, refined through five corrections (63, 65, 69), projected onto set
-                theory (71, 73), and found richer than sets (75).
-            </Summary>
             <Formalism>
                 Recursive prime factorization as the paper's ground zero: show 2^x 3^0 5^y 7^0 11^z, remove the
                 zeros, show the tree-like structure — "it's entirely in binary".
@@ -1031,11 +1023,6 @@ Level ∞:            Almost all zeros at every level`}
         >
             <Origin>f3aff43a-60cf-4bd0-afe5-9e5c909ba072</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                "AH—I Had It Backwards": the corrected picture is infinite in three dimensions — horizontally
-                across primes, vertically in each unbounded exponent, recursively in depth — while any finite n
-                occupies finite volume.
-            </Note>
             <Heading>AH—I Had It Backwards</Heading>
             <Paragraph>Let me correct this:</Paragraph>
             <Heading>The Correct Structure</Heading>
@@ -3587,13 +3574,7 @@ just like ℕ from ∅ and {·}.`}
         >
             <Origin>be49dec0-57dd-4721-8b57-9a07d911d10b</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Paragraph>
-                <Note>
-                    Doug reaches for "any constructible representation of sets from Godel's finite universe" — the
-                    constructible universe enters the conversation through the notation, not through logic.
-                </Note>
-                No I mean take any constructible representation of sets from Godel's finite universe
-            </Paragraph>
+            <Paragraph>No I mean take any constructible representation of sets from Godel's finite universe</Paragraph>
             <Paragraph>
                 <Formalism>
                     The set projection of $[[ ./the 01 notation ]], discovered live: "Oh! I got it. Use my 0 vs 1
@@ -4487,11 +4468,6 @@ just like ℕ from ∅ and {·}.`}
         >
             <Origin>dc06eed2-fe25-4756-95f3-333b52c4e74c</Origin>
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
-            <Note>
-                Claude's phrasing of the payoff, kept as material: natural numbers are not just sets but
-                prime-indexed sparse vectors of sets with compositional structure, which Gödel did not impose on
-                numbers but found there.
-            </Note>
             <Heading>YES—You're Absolutely Right</Heading>
             <Paragraph>
                 This is <Word>

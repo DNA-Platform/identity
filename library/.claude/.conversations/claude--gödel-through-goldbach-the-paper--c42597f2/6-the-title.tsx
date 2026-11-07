@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Date, Emphasis, Equation, Formalism, Heading, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -21,10 +21,8 @@ export default () => (
             </Matter>
             <Paragraph>
                 <Summary>
-                    Six rounds on the title. Claude offers six options and recommends one; Doug takes none and
-                    writes his own, then revises the noun four times, reasoning each time from what the title must
-                    tell a reader rather than from how it sounds, and settles on "a Seemingly Simple Conjecture
-                    about Prime Numbers".
+                    Six rounds on one noun, each by what a reader must infer: Goldbach through Gödel:
+                    Reformulating Unprovability Using a Seemingly Simple Conjecture about Prime Numbers.
                 </Summary>
                 I agree with your framing. Do we still like the title?
             </Paragraph>
@@ -272,13 +270,7 @@ export default () => (
         >
             <Origin>bf632b46-0b72-462c-85d0-0fbec9d9466e</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
-            <Paragraph>
-                <Note>
-                    He answers Claude's six options with none of them and a line of his own: "Goldbach through
-                    Gödel: Reformulating Unprovability Through Simple Facts about Primes".
-                </Note>
-                Goldbach through Gödel: Reformulating Unprovability Through Simple Facts about Primes
-            </Paragraph>
+            <Paragraph>Goldbach through Gödel: Reformulating Unprovability Through Simple Facts about Primes</Paragraph>
         </Message>
         <Message
             at="2025-10-12T19:21:04.824912Z"
