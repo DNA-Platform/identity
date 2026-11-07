@@ -59,6 +59,9 @@ export default () => (
             <Paragraph>
                 <Content>$[[ ./The Imported Conversation ]]</Content>
             </Paragraph>
+            <Paragraph>
+                <Content>$[[ ./The Annotated Conversation ]]</Content>
+            </Paragraph>
         </Section>
     </Chapter>
 );

@@ -1,4 +1,4 @@
-import { Bold, Chapter, Correction, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
+import { Bold, Chapter, Correction, Emphasis, Equation, Formalism, Heading, Idea, Importance, Line, List, Math, Matter, Means, Note, Paragraph, Question, Remark, Reminder, Result, Summary, Table, Thought, Title, Turn, Word } from '@dna-platform/public';
 import { CodeBox } from '../../../.manual/33-the-code-box~code.tsx';
 import { Message, Quoted, Speaker, Verbatim } from '../../../.manual/29-the-conversation~code.tsx';
 import { Action } from '../../.manual/1-the-action-and-the-result~code.tsx';
@@ -12,6 +12,9 @@ export default () => (
         >
             <Origin>6fdf8739-fb3c-4063-a752-aa2c1e706070</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                Goldbach's conjecture; Gödel's incompleteness; the paper; reading as narrative
+            </Matter>
             <Summary>
                 The opening movement: Doug has Claude read the project document as a narrative, asking what is
                 true, where the clarifications fall, what is being circled; Claude answers with a conditional
@@ -44,8 +47,8 @@ export default () => (
             <Speaker>$[[ Claude ]]( Dougs Claude )</Speaker>
             <Formalism>
                 [[[ G(n) ]]] enters: the Goldbach pair-count function, indexing a proof-capacity predicate,
-                Proof(p,n,l) with l bounded by G(n) times m, read over tautological orbits of Goedel codes with
-                few prime factors.
+                Proof(p,n,l) with l bounded by G(n) times m, read over tautological orbits of Gödel codes with few
+                prime factors.
             </Formalism>
             <Result>
                 [[[ the GC dichotomy ]]], the stretch's inherited ground: if GC is true the proof-capacity
@@ -283,6 +286,9 @@ export default () => (
         >
             <Origin>f1642147-c288-46fe-9d95-1cf4a60e1c89</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                collaboration; Opus 4.1 and Sonnet 4.5; the division of labour
+            </Matter>
             <Turn>
                 The subject turns from the document's content to its readers: both reflections are in the project,
                 and Doug asks for a comparative analysis, how each should be interpreted, and the perspective from
@@ -1455,6 +1461,9 @@ export default () => (
         >
             <Origin>875fe109-c5f1-48a8-83ca-f463f90d7be0</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                the cost of belief; Chaitin; Samantha
+            </Matter>
             <Turn>
                 The subject turns to the cost of belief: the exchange with Samantha enters the room, and with it
                 Chaitin — what accepting an unprovable universal as fact buys, and what it costs.
@@ -1912,6 +1921,9 @@ export default () => (
         >
             <Origin>071f2e89-a28c-4193-b7c0-3db576455b81</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                the scope of a paper; ideasthesia; communication
+            </Matter>
             <Turn>
                 After a three-hour break the subject turns to the boundaries of a single paper: a second Opus
                 conversation is in the project, the constraint is days not months, and his communication problem
@@ -2410,30 +2422,27 @@ export default () => (
         >
             <Origin>380433e9-1553-4503-af2a-0fb673cdfe75</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                the four-case matrix; entropy measures; the tautological extension; Chaitin
+            </Matter>
             <Turn>
                 The subject turns from scoping to the mathematics itself: his title, the truth-by-provability
                 matrix, and the complexity measures — 'But yes it changes the paper!'
             </Turn>
             <Summary>
-                He renames the paper and hands over the mathematics: the truth-by-provability matrix as the
-                structure, entropy measures after Chaitin and Shannon, the tautological extension; corrected once
-                — provability means access, 'discussing that matrix might be the result' — and closed by grounding
-                encoding invariance in prime numbers.
+                He renames the paper and hands over the mathematics: the four-case matrix as the result's
+                structure, entropy measures after Chaitin and Shannon, the tautological extension; corrected once,
+                provability means access; closed by grounding encoding invariance in primes.
             </Summary>
             <Paragraph>
                 You said this as a name: "Goldbach as Metamathematical Resource: Formalizing Unprovability via Prime-Indexed
                 Proof Capacity"
             </Paragraph>
             <Paragraph>
-                <Idea>
-                    His title, coined here: 'Goldbach through Godel: Formalizing Unprovability via Prime-Indexed
-                    Proof Capacity' — Claude's head replaced with his own, the subtitle kept. A chapter title for
-                    this stretch should feel like this.
-                </Idea>
                 <Reminder>
-                    'Goldbach through Godel' outlives this conversation: a year later it is the name of the
-                    805-message conversation in Semantic Reference Theory, the fourth of the family. The name was
-                    born in this message.
+                    'Goldbach through Godel' is coined here, Claude's head replaced with his own and the subtitle
+                    kept, and outlives this conversation: a year later it is the name of the 805-message
+                    conversation in Semantic Reference Theory, the fourth of the family.
                 </Reminder>
                 How about: "Goldbach through Godel: Formalizing Unprovability via Prime-Indexed Proof Capacity"
             </Paragraph>
@@ -2449,7 +2458,7 @@ export default () => (
                 <Formalism>
                     [[[ the entropy measures ]]]: H(x,y) minus H(x), well defined modulo an additive constant
                     because it is the log of something; log_p(x) summing the exponents of each prime,
-                    corresponding to Goedel numbers of other things; mutual information from H(x,y) and H(x|y);
+                    corresponding to Gödel numbers of other things; mutual information from H(x,y) and H(x|y);
                     after Chaitin and Shannon.
                 </Formalism>
                 And (and I know this is annoying) it might not be very hard to develop those complexity measures. I can just
@@ -2463,7 +2472,7 @@ export default () => (
             <Paragraph>
                 <Formalism>
                     [[[ the tautological extension ]]]: append 0=0 shifted onto primes above n's factors, (n') =
-                    (n) times a((0=0),len((n))), with (phi) his notation for the Goedel number of phi 'as I can't
+                    (n) times a((0=0),len((n))), with (phi) his notation for the Gödel number of phi 'as I can't
                     use latex'; the sequence n, n', n'' — for any number and any tautology.
                 </Formalism>
                 The tautalogical extension of n is pretty easy. If n has k prime factors, we take the godel number of 0=0
@@ -2512,9 +2521,9 @@ export default () => (
                 to Goldbach.
             </Result>
             <Formalism>
-                [[[ the computable bijection ]]]: any two valid Goedel numberings differ by a computable
-                bijection, so their entropy measures differ by at most O(log log n) — the line Doug lifts at
-                message 17 to ground Chaitin in primes.
+                [[[ the computable bijection ]]]: any two valid Gödel numberings differ by a computable bijection,
+                so their entropy measures differ by at most O(log log n) — the line Doug lifts at message 17 to
+                ground Chaitin in primes.
             </Formalism>
             <Heading>Yes, That Title Is Better</Heading>
             <Paragraph>
@@ -3775,6 +3784,9 @@ export default () => (
         >
             <Origin>3d132cce-7564-402d-aa10-2ebf8b09cf77</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                proof capacity; G(n); expressing unprovability; the tautological extension
+            </Matter>
             <Paragraph>
                 <Turn>
                     The subject turns from encodings and Chaitin to building an arithmetic expression of
@@ -3786,10 +3798,6 @@ export default () => (
                     and read provability off whether the bound overtakes proof length. Claude formalizes each
                     step; Doug corrects it twice, at 27 and 29, where it drifts from what he wrote.
                 </Summary>
-                <Idea>
-                    Chapter title in his words: "How can we then express the statement of incompleteness?" Covers
-                    19 to 32.
-                </Idea>
                 <Formalism>
                     [[[ p_G(n) ]]] is the G(n)-th prime, mapped to 1 when G(n) is zero, so a vanishing Goldbach
                     count removes multiplicative growth altogether rather than merely reducing it.
@@ -4550,11 +4558,11 @@ export default () => (
                     open whether proof capacity must be tied to proof complexity at all, or whether the connection
                     can stay informal.
                 </Question>
-                <Importance>
-                    He deflates the scope deliberately: "I mean we don't have to. It can just be a framework for
-                    expressing things." The construction is offered as a way of expressing, not a theory needing
-                    information theory behind it.
-                </Importance>
+                <Remark>
+                    He rules the information theory out of the paper while keeping the construction: "I mean we
+                    don't have to. It can just be a framework for expressing things." A boundary of the paper,
+                    said in passing, and the first of three such rulings in this stretch.
+                </Remark>
                 <Formalism>
                     [[[ the magic log ]]] is his own measure of a proof, "my special log of the proof", with proof
                     length as "the magical thing that connects my magic log to the original encoding of the
@@ -6266,6 +6274,9 @@ export default () => (
         >
             <Origin>3fbefab1-847b-40b4-84ff-9f2e5caa8f57</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                pointwise lower bounds on G(n); proof complexity; undecidability
+            </Matter>
             <Paragraph>
                 <Turn>
                     The subject turns from building the bound to asking why the bound needs k at all, which turns
@@ -6277,10 +6288,6 @@ export default () => (
                     complexity, which is undecidable. The complexity measure earns its place by explaining the
                     exponent.
                 </Summary>
-                <Idea>
-                    Chapter title in his words: "No pointwise lowerbounds seem to exist on G(n). That's weird. I
-                    wonder why?" Covers 33 to 38.
-                </Idea>
                 <Question>
                     "But we need the k because - huh - no pointwise lowerbounds seem to exist on G(n)! That's
                     weird. I wonder why?!?? Maybe it's because it would tell you about proof complexity, which is
@@ -7038,6 +7045,9 @@ export default () => (
         >
             <Origin>0d87e799-23ae-4f57-9c31-91c60cb8b758</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                the symmetry of primes; the tautology p_n = p_n; a fixed point for future theorists
+            </Matter>
             <Paragraph>
                 <Formalism>
                     The encoding must be monotonic with the primes, and he argues it is forced rather than
@@ -7483,10 +7493,6 @@ export default () => (
                     satisfy Goldbach for 2n and ask whether all proofs can be represented under some condition of
                     minimality.
                 </Summary>
-                <Idea>
-                    Chapter title in his words: "Note it for future theorists as it may be an important fixed
-                    point." Covers 39 and 40.
-                </Idea>
                 <Importance>
                     "I don't want to say I know what to do with that result, but I do want to note it for future
                     theorists as it may be an important fixed point - smmetry around a number looks like x=x in
@@ -7868,6 +7874,9 @@ export default () => (
         >
             <Origin>4f8fd9ad-4c4c-4b7f-9eed-2523f7c3ca47</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                the paper's title
+            </Matter>
             <Paragraph>
                 <Turn>
                     After a forty-one minute gap, the longest in the stretch, the subject turns from the
@@ -7879,9 +7888,6 @@ export default () => (
                     tell a reader rather than from how it sounds, and settles on "a Seemingly Simple Conjecture
                     about Prime Numbers".
                 </Summary>
-                <Idea>
-                    Chapter title in his words: "Do we still like the title?" Covers 41 to 54.
-                </Idea>
                 I agree with your framing. Do we still like the title?
             </Paragraph>
         </Message>
@@ -8129,10 +8135,10 @@ export default () => (
             <Origin>bf632b46-0b72-462c-85d0-0fbec9d9466e</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
             <Paragraph>
-                <Idea>
+                <Note>
                     He answers Claude's six options with none of them and a line of his own: "Goldbach through
                     Gödel: Reformulating Unprovability Through Simple Facts about Primes".
-                </Idea>
+                </Note>
                 Goldbach through Gödel: Reformulating Unprovability Through Simple Facts about Primes
             </Paragraph>
         </Message>
@@ -9382,6 +9388,9 @@ export default () => (
         >
             <Origin>e2e3170e-72fb-496e-8a3a-4ae9eae72e5c</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                Gödel numbering; recursive prime factorization; the memory structure
+            </Matter>
             <Summary>
                 The program for the rest of the conversation, stated in one message: define $[[ ./G(n) ]]
                 rigorously, read GC as symmetry, make the block encoding real, put the negation's proof on the
@@ -14244,6 +14253,9 @@ just like ℕ from ∅ and {·}.`}
         >
             <Origin>81c59080-aabc-44a2-a11a-a812fe9f0632</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                notation; context-free binary; Array&lt;Set&gt; notation; two audiences
+            </Matter>
             <Summary>
                 Messages 77 to 88: the naming run. Claude's invented acronym BTZN is refused (79), Doug coins
                 $[[ ./context-free binary ]] (81), adds set array notation (83), corrects its name to
@@ -17160,6 +17172,9 @@ As indexed array (for programmers):
         >
             <Origin>d0f02e20-8cf8-45e4-9a1e-65c01a835cfb</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                worked examples; 0=0; Gödel coding
+            </Matter>
             <Summary>
                 Messages 89 to 94: Gödel coding made tangible. The symbol table is laid out,
                 $[[ ./the 0=0 example ]] is computed in all three views, Doug celebrates speaking to two
@@ -18705,6 +18720,9 @@ Verdict: Use Views 2 or 3. Never View 1.
         >
             <Origin>1554631c-ac63-445b-8c34-292d19860135</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                type systems; representation versus number; the (Array | Set) type
+            </Matter>
             <Summary>
                 Messages 95 to 112: the type system. $[[ ./Array&lt;Set&gt; notation ]] is found mistyped,
                 repaired by the unique-exponents rule (97), guarded by canonicity (99), settled as
@@ -23136,15 +23154,18 @@ CFB: (1(0110)10)`}
         >
             <Origin>1cd666d9-b2e1-43d7-a3cb-49b71c8e4c53</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                G(n) halved; the symmetry of primes; the Goldbach representation of numbers
+            </Matter>
             <Turn>
                 The subject turns from the two notations to Goldbach: after Godel numbers, define $[[ ./G(n) ]]
                 and motivate GC as 'a theorem about the symmetry of primes about each number' — coprime symmetry
                 perfect, GC $[[ ./minimal symmetry ]] surviving in the sparse prime subset.
             </Turn>
             <Summary>
-                G(n) is introduced through symmetry and corrected: not pairs summing to n but pairs summing to 2n,
-                indexed by their midpoint, each pair equidistant from n. The coprimes to 2n are perfectly
-                symmetric about n, provably; GC claims the primes keep at least the minimal symmetry.
+                G(n) is introduced through symmetry and halved: pairs summing to 2n, indexed by their midpoint,
+                each pair equidistant from n. The coprimes of 2n are symmetric about n; GC claims the primes keep
+                at least that minimal symmetry.
             </Summary>
             <Importance>
                 His why for the symmetry framing: 'If you understand the symmetries of everything you understand
@@ -25112,6 +25133,9 @@ So G(10) = 2`}
         >
             <Origin>39e61021-562f-4d2b-b15e-f00e14f4ce36</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                recursion; uniqueness; the complementary representation
+            </Matter>
             <Turn>
                 The subject turns to recursion: 'we should feel free to represent in recursive GC too... when you
                 get down to it, 2 is 2 and 3 is 3 and 5 is (3,7)... It is an expansion into 2 and 3.'
@@ -27415,16 +27439,18 @@ So G(10) = 2`}
         >
             <Origin>22f50e91-0602-420c-b214-9e5ad03a9a63</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                what GC represents; proofs of a proposition or its negation
+            </Matter>
             <Turn>
                 The subject turns from form to meaning: 'GC has SUGGESTED what it itself might represent' — not
                 expressions (that needs recursion) but proofs of a proposition or its negation (that needs only a
                 sequence).
             </Turn>
             <Summary>
-                The semantics of $[[ ./the complementary Goldbach representation ]]: the two sides encode proofs
-                of a proposition and of its negation; only one side ever represents anything, and the empty side
-                is the stance taken; negation lives in position, not in the logic, making the representation
-                unique to the proposition.
+                The semantics of $[[ ./the complementary Goldbach representation ]]: the two sides hold proofs of
+                a proposition and of its negation, only one side ever represents anything, the empty side is the
+                stance taken, and negation lives in position, not in the logic.
             </Summary>
             <Result>
                 His statement of it: 'the two sets of numbers are redundant shows that only one of these really
@@ -27977,6 +28003,9 @@ So G(10) = 2`}
         >
             <Origin>2886f14d-6d6f-47f8-90fb-52a83648ef45</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                if GC is false; memory exhaustion; the undecidability of k
+            </Matter>
             <Turn>
                 The subject turns to what it is like if GC is false: 'numbers run out of memory at some point' — a
                 metaphor he asks Claude to take conceptually, 'more for the discussion.'
@@ -30260,6 +30289,9 @@ So G(10) = 2`}
         >
             <Origin>75cf9130-f96c-488a-b9e7-14abd8aa9f16</Origin>
             <Speaker>$[[ Doug ]]( Dougs Story )</Speaker>
+            <Matter>
+                the title; intuition versus proof; epistemic state
+            </Matter>
             <Summary>
                 The check and the title: k's undecidability is demoted to intuition on his question; the arrow is
                 argued to point Godel-ward, Goldbach the lens; and when Claude generates variations and loses the
@@ -30570,12 +30602,12 @@ So G(10) = 2`}
                 actually take?
             </Reminder>
             <Paragraph>
-                <Idea>
+                <Note>
                     The title, settled in his words, verbatim: 'Gödel through Goldbach: Reformulating
                     Unprovability Using a Seemingly Simple Conjecture about Prime Numbers.' A candidate title for
                     this conversation's edition, or at least its closing chapter; the subtitle survives from the
                     argument at the end of messages 19 to 54.
-                </Idea>
+                </Note>
                 I think: "Gödel through Goldbach: Reformulating Unprovability Using a Seemingly Simple Conjecture about
                 Prime Numbers"
             </Paragraph>

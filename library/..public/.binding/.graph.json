@@ -3572,7 +3572,7 @@
     },
     {
       "folder": ".claude/.conversations/claude--sonnet-4-5-godel-and-goldbach--c42597f2",
-      "digest": "eb5e18663eca04d3",
+      "digest": "bef2b01377800c42",
       "walked": 12583
     },
     {
@@ -5022,8 +5022,8 @@
     },
     {
       "folder": ".claude/.manual",
-      "digest": "11c985f05d4fde7d",
-      "walked": 214
+      "digest": "c66a6967e3959ce0",
+      "walked": 243
     },
     {
       "folder": ".claude/.miscellaneous",
