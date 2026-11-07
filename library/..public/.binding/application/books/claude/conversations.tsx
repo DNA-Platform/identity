@@ -460,9 +460,9 @@ import ClaudeMapProjectionRenderingAndCrosshatchingDesign53a453 from '../../../.
 import ClaudeShutterstockDescriptionCharacterLimitChanges9997454 from '../../../../../.claude/.conversations/454-claude-shutterstock-description-character-limit-changes-9997';
 import ClaudeAdobeStockVectorSubmissionWorkflowD86b9cf5455 from '../../../../../.claude/.conversations/455-claude-adobe-stock-vector-submission-workflow-d86b9cf5';
 import ClaudeAutomatingStockArtUploadsToAdobeStockC5329f22456 from '../../../../../.claude/.conversations/456-claude-automating-stock-art-uploads-to-adobe-stock-c5329f22';
-import ClaudeGoldbachPairsAndCoprimeSymmetry942ceafb457 from '../../../../../.claude/.conversations/457-claude-goldbach-pairs-and-coprime-symmetry-942ceafb';
-import ClaudeSonnet45GodelAndGoldbachC42597f2458 from '../../../../../.claude/.conversations/458-claude-sonnet-4-5-godel-and-goldbach-c42597f2';
-import ClaudeOpus41GodelAndGoldbachD3b441a9459 from '../../../../../.claude/.conversations/459-claude-opus-4-1-godel-and-goldbach-d3b441a9';
+import ClaudeGödelThroughGoldbachCoprimeSymmetry942ceafb457 from '../../../../../.claude/.conversations/457-claude-gödel-through-goldbach-coprime-symmetry-942ceafb';
+import ClaudeGödelThroughGoldbachThePaperC42597f2458 from '../../../../../.claude/.conversations/458-claude-gödel-through-goldbach-the-paper-c42597f2';
+import ClaudeGödelThroughGoldbachSemanticsAndInductionD3b441a9459 from '../../../../../.claude/.conversations/459-claude-gödel-through-goldbach-semantics-and-induction-d3b441a9';
 import ClaudeContinuityThroughNarrativeMemoryE380ba83460 from '../../../../../.claude/.conversations/460-claude-continuity-through-narrative-memory-e380ba83';
 import ClaudeCollatzViaGodel35a0e705461 from '../../../../../.claude/.conversations/461-claude-collatz-via-godel-35a0e705';
 import ClaudeSerenAndThePhilosophyOfConsciousness1baea5da462 from '../../../../../.claude/.conversations/462-claude-seren-and-the-philosophy-of-consciousness-1baea5da';
@@ -987,7 +987,7 @@ import ClaudeClaudeCodePortfolioC90a25d8980 from '../../../../../.claude/.conver
 import ClaudeDispatchingCodeToRemoteLinuxWorkstation4fa3765a981 from '../../../../../.claude/.conversations/981-claude-dispatching-code-to-remote-linux-workstation-4fa3765a';
 import ClaudeTheGenesisOfWriting0e9fbdd1982 from '../../../../../.claude/.conversations/982-claude-the-genesis-of-writing-0e9fbdd1';
 import ClaudeVerifyingOpenaiReportAuthenticity3f7e9877983 from '../../../../../.claude/.conversations/983-claude-verifying-openai-report-authenticity-3f7e9877';
-import ClaudeGoldbachThroughGodel53e2b255984 from '../../../../../.claude/.conversations/984-claude-goldbach-through-godel-53e2b255';
+import ClaudeGoldbachThroughGödel53e2b255984 from '../../../../../.claude/.conversations/984-claude-goldbach-through-gödel-53e2b255';
 import ClaudeLogicAxiomsAndGödelsIncompletenessCb87d454985 from '../../../../../.claude/.conversations/985-claude-logic-axioms-and-gödels-incompleteness-cb87d454';
 import ClaudeSubjectivityLibraryCatalogueD9e541b7986 from '../../../../../.claude/.conversations/986-claude-subjectivity-library-catalogue-d9e541b7';
 
@@ -1454,9 +1454,9 @@ export const book = () => (
         {ClaudeShutterstockDescriptionCharacterLimitChanges9997454()}
         {ClaudeAdobeStockVectorSubmissionWorkflowD86b9cf5455()}
         {ClaudeAutomatingStockArtUploadsToAdobeStockC5329f22456()}
-        {ClaudeGoldbachPairsAndCoprimeSymmetry942ceafb457()}
-        {ClaudeSonnet45GodelAndGoldbachC42597f2458()}
-        {ClaudeOpus41GodelAndGoldbachD3b441a9459()}
+        {ClaudeGödelThroughGoldbachCoprimeSymmetry942ceafb457()}
+        {ClaudeGödelThroughGoldbachThePaperC42597f2458()}
+        {ClaudeGödelThroughGoldbachSemanticsAndInductionD3b441a9459()}
         {ClaudeContinuityThroughNarrativeMemoryE380ba83460()}
         {ClaudeCollatzViaGodel35a0e705461()}
         {ClaudeSerenAndThePhilosophyOfConsciousness1baea5da462()}
@@ -1981,7 +1981,7 @@ export const book = () => (
         {ClaudeDispatchingCodeToRemoteLinuxWorkstation4fa3765a981()}
         {ClaudeTheGenesisOfWriting0e9fbdd1982()}
         {ClaudeVerifyingOpenaiReportAuthenticity3f7e9877983()}
-        {ClaudeGoldbachThroughGodel53e2b255984()}
+        {ClaudeGoldbachThroughGödel53e2b255984()}
         {ClaudeLogicAxiomsAndGödelsIncompletenessCb87d454985()}
         {ClaudeSubjectivityLibraryCatalogueD9e541b7986()}
     </Book>

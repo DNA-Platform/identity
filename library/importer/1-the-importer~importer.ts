@@ -401,7 +401,8 @@ const listSelectedConversations = (
         const shownWords = `${path.length} shown of ${conversation.messages.length}`;
         const countWords = `${shownWords}, ${asideCount(conversation, path)} aside`;
         const dayWords = countedNoun(pathDays(path).length, 'day');
-        const nameWords = conversation.name || 'Untitled';
+        const standingWords = heldRecord?.record.words;
+        const nameWords = `${conversation.name || 'Untitled'}${standingWords !== undefined && standingWords !== '' && standingWords !== conversation.name ? `, now ${standingWords}` : ''}`;
         const projectWords = pairing.projectName ?? 'no project';
         const whenWords = importedWords(heldRecord, folders.conversations, state, conversation);
         const evidenceWords = `${projectWords} · ${pairing.evidence}${whenWords}`;
@@ -525,7 +526,7 @@ const writeBooks = (
             const reimporting = moved && args.reimport;
             const keptAsIs = (moved && !reimporting) || (state === 'in' && !args.overwrite);
             const title = conversationTitle(conversation);
-            const standingName = (held: HeldRecord): BookName => ({ words: title, key: held.record.name });
+            const standingName = (held: HeldRecord): BookName => ({ words: held.record.words || title, key: held.record.name });
             if (standingRecord !== undefined && keptAsIs) {
                 keptCount++;
                 if (written.folder !== undefined)

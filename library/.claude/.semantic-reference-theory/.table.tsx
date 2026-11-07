@@ -35,11 +35,11 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Goldbach through Godel ]]( ./claude--Goldbach through Godel--53e2b255 )</Content>
+                    <Content>$[[ Goldbach through Gödel ]]( ./claude--Goldbach through Gödel--53e2b255 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Goldbach through Godel--53e2b255 )***</Content>
+                    <Content>[[ ▷ ]]( claude--Goldbach through Gödel--53e2b255 )***</Content>
                 </Word>
             </Paragraph>
             <Paragraph>

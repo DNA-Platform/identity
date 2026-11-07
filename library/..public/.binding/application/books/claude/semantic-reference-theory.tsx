@@ -147,7 +147,7 @@ import ClaudeLearningSrtSyntaxAndTranspilerFundamentalsA1b2f140 from '../../../.
 import ClaudeSemanticsOfRepresentation8b14b84b141 from '../../../../../.claude/.semantic-reference-theory/141-claude-semantics-of-representation-8b14b84b';
 import ClaudeSemanticsOfTypesAndMoreD5c0cf36142 from '../../../../../.claude/.semantic-reference-theory/142-claude-semantics-of-types-and-more-d5c0cf36';
 import ClaudeFoundationsTypesAndProperties3eecc63c143 from '../../../../../.claude/.semantic-reference-theory/143-claude-foundations-types-and-properties-3eecc63c';
-import ClaudeGoldbachThroughGodel53e2b255144 from '../../../../../.claude/.semantic-reference-theory/144-claude-goldbach-through-godel-53e2b255';
+import ClaudeGoldbachThroughGödel53e2b255144 from '../../../../../.claude/.semantic-reference-theory/144-claude-goldbach-through-gödel-53e2b255';
 import ClaudeLogicAxiomsAndGödelsIncompletenessCb87d454145 from '../../../../../.claude/.semantic-reference-theory/145-claude-logic-axioms-and-gödels-incompleteness-cb87d454';
 import ClaudeSubjectivityLibraryCatalogueD9e541b7146 from '../../../../../.claude/.semantic-reference-theory/146-claude-subjectivity-library-catalogue-d9e541b7';
 
@@ -301,7 +301,7 @@ export const book = () => (
         {ClaudeSemanticsOfRepresentation8b14b84b141()}
         {ClaudeSemanticsOfTypesAndMoreD5c0cf36142()}
         {ClaudeFoundationsTypesAndProperties3eecc63c143()}
-        {ClaudeGoldbachThroughGodel53e2b255144()}
+        {ClaudeGoldbachThroughGödel53e2b255144()}
         {ClaudeLogicAxiomsAndGödelsIncompletenessCb87d454145()}
         {ClaudeSubjectivityLibraryCatalogueD9e541b7146()}
     </Book>

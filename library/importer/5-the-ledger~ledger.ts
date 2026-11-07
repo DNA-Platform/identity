@@ -9,6 +9,7 @@ export type ImportRecord = {
     conversationName?: string;
     name: string;
     bookFolder: string;
+    words?: string;
     account?: string;
     exportedOn: string;
     updatedAt: string;
@@ -20,9 +21,9 @@ export type ImportRecord = {
     edited?: true;
 };
 
-export type LedgerEntry = Omit<ImportRecord, 'conversationId' | 'name' | 'bookFolder'>;
+export type LedgerEntry = Omit<ImportRecord, 'conversationId' | 'name' | 'bookFolder' | 'words'>;
 export type Ledger = Record<string, LedgerEntry>;
-type StandingBook = { bookFolder: string; name: string };
+type StandingBook = { bookFolder: string; name: string; words: string };
 
 export type Reimport = { reimportedAt: string; keptEdits: string[] };
 export type KeptEdit = { fileName: string; appendix: Appendix };
@@ -52,7 +53,8 @@ export const booksByOrigin = (registerFolder: string): Map<string, StandingBook>
         const origin = originForm.exec(coverText)?.[1];
         const title = coverTitleForm.exec(coverText);
         const key = title?.[2] ?? title?.[1] ?? folderEntry.name;
-        if (origin !== undefined) books.set(origin, { bookFolder: folderEntry.name, name: nameFromForm(key) });
+        // THE WORDS ARE THE COVER'S, beside the key: a book he renames keeps its name at the next run.
+        if (origin !== undefined) books.set(origin, { bookFolder: folderEntry.name, name: nameFromForm(key), words: nameFromForm(title?.[1] ?? folderEntry.name) });
     }
 
     return books;
@@ -65,7 +67,7 @@ export const importRecords = (registerFolder: string, path: string): Map<string,
     const books = booksByOrigin(registerFolder);
     const heldRecords = new Map<string, HeldRecord>();
     for (const [conversationId, entry] of Object.entries(readLedger(path))) {
-        const book = books.get(conversationId) ?? { bookFolder: '', name: '' };
+        const book = books.get(conversationId) ?? { bookFolder: '', name: '', words: '' };
         heldRecords.set(conversationId, { record: { conversationId, ...book, ...entry }, path });
     }
 
@@ -73,7 +75,7 @@ export const importRecords = (registerFolder: string, path: string): Map<string,
 };
 
 const entryOf = (record: ImportRecord): LedgerEntry => {
-    const { conversationId: _conversationId, name: _name, bookFolder: _bookFolder, ...entry } = record;
+    const { conversationId: _conversationId, name: _name, bookFolder: _bookFolder, words: _words, ...entry } = record;
 
     return entry;
 };

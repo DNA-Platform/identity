@@ -4460,11 +4460,11 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Goldbach through Godel ]]( ./claude--Goldbach through Godel--53e2b255 )</Content>
+                    <Content>$[[ Goldbach through Gödel ]]( ./claude--Goldbach through Gödel--53e2b255 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Goldbach through Godel--53e2b255 )**</Content>
+                    <Content>[[ ▷ ]]( claude--Goldbach through Gödel--53e2b255 )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
@@ -6050,29 +6050,29 @@ export default () => (
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Opus 4.1: Godel &amp; Goldbach ]]( ./claude--Opus 4..1: Godel &amp; Goldbach--d3b441a9 )</Content>
+                    <Content>$[[ Gödel through Goldbach: Semantics and Induction ]]( ./claude--Gödel through Goldbach: Semantics and Induction--d3b441a9 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Opus 4..1: Godel &amp; Goldbach--d3b441a9 )**</Content>
+                    <Content>[[ ▷ ]]( claude--Gödel through Goldbach: Semantics and Induction--d3b441a9 )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Sonnet 4.5: Godel &amp; Goldbach ]]( ./claude--Sonnet 4..5: Godel &amp; Goldbach--c42597f2 )</Content>
+                    <Content>$[[ Gödel through Goldbach: The Paper ]]( ./claude--Gödel through Goldbach: The Paper--c42597f2 )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Sonnet 4..5: Godel &amp; Goldbach--c42597f2 )**</Content>
+                    <Content>[[ ▷ ]]( claude--Gödel through Goldbach: The Paper--c42597f2 )**</Content>
                 </Word>
             </Paragraph>
             <Paragraph>
                 <Word>
-                    <Content>$[[ Goldbach pairs and coprime symmetry ]]( ./claude--Goldbach pairs and coprime symmetry--942ceafb )</Content>
+                    <Content>$[[ Gödel through Goldbach: Coprime Symmetry ]]( ./claude--Gödel through Goldbach: Coprime Symmetry--942ceafb )</Content>
                 </Word>
                 <Word>
                     <Arrow />
-                    <Content>[[ ▷ ]]( claude--Goldbach pairs and coprime symmetry--942ceafb )**</Content>
+                    <Content>[[ ▷ ]]( claude--Gödel through Goldbach: Coprime Symmetry--942ceafb )**</Content>
                 </Word>
             </Paragraph>
         </Section>

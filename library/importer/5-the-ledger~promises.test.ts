@@ -43,7 +43,7 @@ describe('the ledger', () => {
         const legacyRecord = importRecord(legacy, registerFolder, 'Legacy', legacySlug, '2026-05-27', undefined, 'DNA Legacy');
         expect(writeLedger(path, registerFolder, held(record, legacyRecord))).toEqual([]);
         const read = importRecords(registerFolder, path);
-        expect(read.get('c')).toEqual({ record, path });
+        expect(read.get('c')).toEqual({ record: { ...record, words: 'A Conversation' }, path });
         expect(read.get('l')?.record.account).toBe('DNA Legacy');
         const ledger = JSON.parse(readFileSync(path, 'utf8'));
         expect(Object.keys(ledger)).toEqual(['c', 'l']);
@@ -51,6 +51,15 @@ describe('the ledger', () => {
         expect(Object.keys(ledger.c)).not.toContain('bookFolder');
         renameSync(join(registerFolder, slug), join(registerFolder, 'renamed-by-hand'));
         expect(importRecords(registerFolder, path).get('c')?.record.bookFolder).toBe('renamed-by-hand');
+        // Doug, 2026-11-07: "Rename the conversations too in a way that doesn't break the import ledger" — a renamed
+        // cover's words and key are read from the cover at the next run, and the ledger writes neither.
+        writeFileSync(join(registerFolder, 'renamed-by-hand', '.cover.tsx'), '<Title>[[ A New Name ]]( claude--A New Key--c0000000 )</Title>\n<Origin>c</Origin>\n');
+        const renamed = importRecords(registerFolder, path).get('c')?.record;
+        expect(renamed?.words).toBe('A New Name');
+        expect(renamed?.name).toBe('claude--A New Key--c0000000');
+        expect(renamed?.bookFolder).toBe('renamed-by-hand');
+        expect(Object.keys(JSON.parse(readFileSync(path, 'utf8')).c)).not.toContain('words');
+        coverFor('renamed-by-hand', 'c', 'A Conversation');
         renameSync(join(registerFolder, 'renamed-by-hand'), join(registerFolder, slug));
     });
 
