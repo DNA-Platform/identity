@@ -13,16 +13,19 @@ const base = 'http://localhost:4343/inexplicable-phenomena/';
 const books = [
     'our-library', 'our-reference', 'our-team', 'dictionary', 'the-design', 'chemistry', 'our-math',
     'mathematical-reference', 'mathematical-design', 'mathematical-principles', 'mathematical-identity',
+    'mathematical-library', 'arithmetic', 'arithmetic-project', 'arithmetic-textbook',
     'neuroscience', 'philosophy', 'physics',
 ];
 const about = {
     'our-library': 'Inexplicable Phenomena', 'our-team': 'Our Team', 'chemistry': 'Chemistry', 'our-math': 'Mathematics',
-    'mathematical-identity': 'Mathematical Identity',
+    'mathematical-identity': 'Mathematical Identity', 'arithmetic': 'Arithmetic',
     'neuroscience': 'Neuroscience', 'philosophy': 'Philosophy', 'physics': 'Physics',
 };
+const subjects = ['Inexplicable Phenomena', 'Mathematics', 'Arithmetic'];
 const catalogues = [
     { book: 'our-library', home: '/inexplicable-phenomena/our-library/' },
     { book: 'our-math', home: '/inexplicable-phenomena/our-math/' },
+    { book: 'arithmetic', home: '/inexplicable-phenomena/arithmetic/' },
 ];
 
 const browser = await puppeteer.launch({ headless: true });
@@ -50,7 +53,7 @@ for (const book of books) {
         const found = await links();
         const byline = await page.evaluate(() => document.querySelector('.pd-byline')?.innerText.replace(/\s+/g, ' ').trim() ?? '');
         const author = found.find(l => l.href.endsWith('/our-team/'));
-        const filed = found.find(l => l.text === 'Inexplicable Phenomena' || l.text === 'Mathematics');
+        const filed = found.find(l => subjects.includes(l.text));
         const subject = about[book];
         const aboutOk = subject === undefined
             ? !byline.includes('ABOUT')
