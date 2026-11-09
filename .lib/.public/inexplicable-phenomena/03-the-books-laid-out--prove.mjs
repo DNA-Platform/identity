@@ -13,7 +13,7 @@ const base = 'http://localhost:4343/inexplicable-phenomena/';
 const books = [
     'our-library', 'our-reference', 'our-team', 'dictionary', 'the-design', 'chemistry', 'our-math',
     'mathematical-reference', 'mathematical-design', 'mathematical-principles', 'mathematical-identity',
-    'mathematical-library', 'arithmetic', 'arithmetic-project', 'arithmetic-textbook',
+    'mathematical-library', 'arithmetic', 'arithmetic-project', 'arithmetic-textbook', 'arithmetic-notebook',
     'neuroscience', 'philosophy', 'physics',
 ];
 const about = {
@@ -52,7 +52,7 @@ for (const book of books) {
         const open = await page.evaluate(() => document.querySelector('.pa-open .pd-title')?.innerText.replace(/\s+/g, ' ').trim() ?? null);
         const found = await links();
         const byline = await page.evaluate(() => document.querySelector('.pd-byline')?.innerText.replace(/\s+/g, ' ').trim() ?? '');
-        const author = found.find(l => l.href.endsWith('/our-team/'));
+        const author = found.find(l => l.href.endsWith('/our-team/') && l.text === 'Doug');
         const filed = found.find(l => subjects.includes(l.text));
         const subject = about[book];
         const aboutOk = subject === undefined
