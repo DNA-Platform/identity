@@ -29,7 +29,7 @@ The name is the paren of the title and its slug is the address under `http://loc
 | 12 | Neuroscience, `/neuroscience/` | Neuroscience | `library/neuroscience/.subject` | Neuroscience | Inexplicable Phenomena | stub, Pharmacology until 2026-11-06 |
 | 13 | Philosophy, `/philosophy/` | Philosophy | `library/philosophy/.subject` | Philosophy | Inexplicable Phenomena | stub |
 | 14 | Physics, `/physics/` | Physics | `library/physics/.subject` | Physics | Inexplicable Phenomena | stub |
-| 15 | Mathematical Library, `/mathematical-library/` | The Library of Mathematics | `library/mathematics/.library` | | Mathematics | stub, the papers referenced; the title a proxy until his word |
+| 15 | Mathematical Library, `/mathematical-library/` | The Library of Mathematics | `library/mathematics/.library` | | Mathematics | stub, the papers referenced; the title his, chosen 2026-11-09 |
 | 16 | Arithmetic, `/arithmetic/` | The Subject of Arithmetic | `library/mathematics/arithmetic/.subject` | Arithmetic | Mathematics | cover, synopsis, table, two entries; his paper, once Goldbach versus Gödel |
 | 17 | Arithmetic Project, `/arithmetic-project/` | The Project of Arithmetic | `library/mathematics/arithmetic/.project` | | Arithmetic | stub, for its sprints and plans |
 | 18 | Arithmetic Textbook, `/arithmetic-textbook/` | The Textbook of Arithmetic | `library/mathematics/arithmetic/.textbook` | | Arithmetic | stub, for its results |
