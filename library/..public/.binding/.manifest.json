@@ -1029,7 +1029,7 @@
     ".binding/application/routes.ts"
   ],
   "rendered": [
-    "claude-gödel-through-goldbach-the-paper-c42597f2/index.html",
+    "claudes-reference-manual/index.html",
     "dougs-library/index.html",
     "dougs-claude/index.html",
     "claude-ana-studies-english/index.html",
@@ -1393,6 +1393,7 @@
     "claude-glucose-substitute-for-veterinary-antibiotic-injection-1dba50eb/index.html",
     "claude-gödel-through-goldbach-coprime-symmetry-942ceafb/index.html",
     "claude-gödel-through-goldbach-semantics-and-induction-d3b441a9/index.html",
+    "claude-gödel-through-goldbach-the-paper-c42597f2/index.html",
     "claude-goldbach-through-gödel-53e2b255/index.html",
     "claude-good-morning-3e5346a6/index.html",
     "claude-google-workspace-alias-domain-login-issues-8d29e604/index.html",
@@ -2033,7 +2034,6 @@
     "claude-investing/index.html",
     "claude-learning/index.html",
     "claude-life/index.html",
-    "claudes-reference-manual/index.html",
     "claude-miscellaneous/index.html",
     "claude-neuroscience/index.html",
     "claude-nikolai/index.html",
@@ -3255,7 +3255,7 @@
     "assets/books/claude-investing-DzS2GGLR.js",
     "assets/books/claude-learning-C9ki0QOJ.js",
     "assets/books/claude-life-CVsKSHme.js",
-    "assets/books/claude-manual-Cp-ZZx0_.js",
+    "assets/books/claude-manual-CskgPrif.js",
     "assets/books/claude-miscellaneous-ChwxvkJl.js",
     "assets/books/claude-neuroscience-Bjhs7VZR.js",
     "assets/books/claude-nikolai-CnFjE027.js",
@@ -3274,8 +3274,8 @@
     "assets/books/librarian-B6W4oPu0.js",
     "assets/books/manual-BW8PdmnA.js",
     "assets/books/reference-Dd1k30Jg.js",
+    "assets/index-B90CgjqP.js",
     "assets/index-BgQkainO.css",
-    "assets/index-U66_C6fD.js",
     "assets/shared/_shared_react-6pQpRABW.js",
     "assets/shared/_shared_styled-components-DGpG2R0g.js",
     "assets/shared/at-dna-platform-chemistry-DsipdeaW.js",
@@ -6192,6 +6192,14 @@
       "binder": "6a9cabae88b71ed1",
       "sheet": "sheets/27319a9b9b88.css",
       "markup": ".pages/claude-gödel-through-goldbach-semantics-and-induction-d3b441a9.html"
+    },
+    "/claude-gödel-through-goldbach-the-paper-c42597f2": {
+      "folder": ".claude/.conversations/claude--gödel-through-goldbach-the-paper--c42597f2",
+      "digest": "da5df92c7fa75628",
+      "references": "fec415e9fd621898",
+      "binder": "6a9cabae88b71ed1",
+      "sheet": "sheets/32de838160b9.css",
+      "markup": ".pages/claude-gödel-through-goldbach-the-paper-c42597f2.html"
     },
     "/claude-goldbach-through-gödel-53e2b255": {
       "folder": ".claude/.conversations/claude--goldbach-through-gödel--53e2b255",
@@ -11313,14 +11321,6 @@
       "sheet": "sheets/41150812f8ef.css",
       "markup": ".pages/claude-life.html"
     },
-    "/claudes-reference-manual": {
-      "folder": ".claude/.manual",
-      "digest": "fbe303c4f7a49633",
-      "references": "77a18c926318e90d",
-      "binder": "6a9cabae88b71ed1",
-      "sheet": "sheets/b2c6f9d6325d.css",
-      "markup": ".pages/claudes-reference-manual.html"
-    },
     "/claude-miscellaneous": {
       "folder": ".claude/.miscellaneous",
       "digest": "a1b57a8e3ffe6583",
@@ -11457,13 +11457,13 @@
       "sheet": "sheets/a48a4bb689b9.css",
       "markup": ".pages/dougs-importer.html"
     },
-    "/claude-gödel-through-goldbach-the-paper-c42597f2": {
-      "folder": ".claude/.conversations/claude--gödel-through-goldbach-the-paper--c42597f2",
-      "digest": "da5df92c7fa75628",
-      "references": "fec415e9fd621898",
+    "/claudes-reference-manual": {
+      "folder": ".claude/.manual",
+      "digest": "da77a66055a7c9ef",
+      "references": "77a18c926318e90d",
       "binder": "6a9cabae88b71ed1",
-      "sheet": "sheets/32de838160b9.css",
-      "markup": ".pages/claude-gödel-through-goldbach-the-paper-c42597f2.html"
+      "sheet": "sheets/b2c6f9d6325d.css",
+      "markup": ".pages/claudes-reference-manual.html"
     }
   },
   "chunks": {
@@ -43478,6 +43478,111 @@
           "Summary",
           "Svg",
           "Synopsis",
+          "TableOfContents",
+          "Theme",
+          "Thought",
+          "Title",
+          "Word",
+          "binder",
+          "highlighting",
+          "html",
+          "identifier",
+          "reflection",
+          "specify"
+        ],
+        "react/jsx-runtime": [
+          "Fragment",
+          "jsx",
+          "jsxs"
+        ],
+        "styled-components": [
+          "css"
+        ]
+      }
+    },
+    ".claude/.conversations/claude--gödel-through-goldbach-the-paper--c42597f2": {
+      "digest": "627d3e1cb1c0f993",
+      "entry": "assets/books/claude-conversations-claude-gödel-through-goldbach-the-paper-c42597f2-uq_yBYPw.js",
+      "files": [
+        "assets/books/claude-conversations-claude-gödel-through-goldbach-the-paper-c42597f2-uq_yBYPw.js"
+      ],
+      "bindings": {
+        "@dna-platform/chemistry": [
+          "$",
+          "$Chemical",
+          "$check",
+          "inert",
+          "selection"
+        ],
+        "@dna-platform/public": [
+          "$Annotation",
+          "$Append",
+          "$Author",
+          "$Book",
+          "$Chapter",
+          "$Code",
+          "$Composition",
+          "$Content",
+          "$Cover",
+          "$Date",
+          "$Format",
+          "$Heading",
+          "$Image",
+          "$Means",
+          "$Paginated",
+          "$Paragraph",
+          "$Parenthetical",
+          "$Reference",
+          "$Referent",
+          "$Section",
+          "$SelfReference",
+          "$Subject",
+          "$Svg",
+          "$Synopsis",
+          "$TableOfContents",
+          "$Theme",
+          "$Topic",
+          "$Word",
+          "About",
+          "AnnotationSpecification",
+          "Archive",
+          "Author",
+          "Autobiography",
+          "Bold",
+          "BookSpecification",
+          "Chapter",
+          "Code",
+          "Content",
+          "Correction",
+          "CoverSpecification",
+          "Date",
+          "Emphasis",
+          "Equation",
+          "Formalism",
+          "Heading",
+          "Idea",
+          "Importance",
+          "Line",
+          "List",
+          "Math",
+          "Matter",
+          "Means",
+          "Note",
+          "Paragraph",
+          "Parenthetical",
+          "Question",
+          "Reference",
+          "Referent",
+          "Remark",
+          "Reminder",
+          "Result",
+          "SectionSpecification",
+          "Self",
+          "Subject",
+          "Summary",
+          "Svg",
+          "Synopsis",
+          "Table",
           "TableOfContents",
           "Theme",
           "Thought",
@@ -99243,97 +99348,6 @@
         ]
       }
     },
-    ".claude/.manual": {
-      "digest": "618ecc46be1ef4b1",
-      "entry": "assets/books/claude-manual-Cp-ZZx0_.js",
-      "files": [
-        "assets/books/1-the-action-and-the-result~code-9d0ewh26.js",
-        "assets/books/10-the-manual~faces-eu7f3NbZ.js",
-        "assets/books/31-the-project-manual~code-knrh8Hl7.js",
-        "assets/books/8-the-origin~code-BoZq0LKY.js",
-        "assets/books/9-the-conversations-page~code-CG4qw-ca.js",
-        "assets/books/claude-manual-Cp-ZZx0_.js"
-      ],
-      "bindings": {
-        "@dna-platform/chemistry": [
-          "$",
-          "$Chemical",
-          "$check",
-          "inert",
-          "next",
-          "selection"
-        ],
-        "@dna-platform/public": [
-          "$Annotation",
-          "$Append",
-          "$Author",
-          "$Book",
-          "$Chapter",
-          "$Code",
-          "$Composition",
-          "$Content",
-          "$Cover",
-          "$Date",
-          "$Format",
-          "$Heading",
-          "$Image",
-          "$Means",
-          "$Paginated",
-          "$Paragraph",
-          "$Parenthetical",
-          "$Reference",
-          "$Referent",
-          "$Section",
-          "$SelfReference",
-          "$Subject",
-          "$Svg",
-          "$Synopsis",
-          "$TableOfContents",
-          "$Theme",
-          "$Topic",
-          "$Word",
-          "About",
-          "AnnotationSpecification",
-          "Append",
-          "Author",
-          "Autobiography",
-          "BookSpecification",
-          "Chapter",
-          "Code",
-          "Content",
-          "CoverSpecification",
-          "Heading",
-          "Means",
-          "Paragraph",
-          "Parenthetical",
-          "Reference",
-          "Referent",
-          "Section",
-          "SectionSpecification",
-          "Self",
-          "Subject",
-          "Svg",
-          "Synopsis",
-          "TableOfContents",
-          "Theme",
-          "Title",
-          "Word",
-          "binder",
-          "html",
-          "identifier",
-          "reflection",
-          "specify"
-        ],
-        "react/jsx-runtime": [
-          "Fragment",
-          "jsx",
-          "jsxs"
-        ],
-        "styled-components": [
-          "css"
-        ]
-      }
-    },
     ".claude/.miscellaneous": {
       "digest": "2ebb2ad93e0236d7",
       "entry": "assets/books/claude-miscellaneous-ChwxvkJl.js",
@@ -100977,11 +100991,11 @@
         ]
       }
     },
-    ".claude/.conversations/claude--gödel-through-goldbach-the-paper--c42597f2": {
-      "digest": "627d3e1cb1c0f993",
-      "entry": "assets/books/claude-conversations-claude-gödel-through-goldbach-the-paper-c42597f2-uq_yBYPw.js",
+    ".claude/.manual": {
+      "digest": "e1f496885e1b9984",
+      "entry": "assets/books/claude-manual-CskgPrif.js",
       "files": [
-        "assets/books/claude-conversations-claude-gödel-through-goldbach-the-paper-c42597f2-uq_yBYPw.js"
+        "assets/books/claude-manual-CskgPrif.js"
       ],
       "bindings": {
         "@dna-platform/chemistry": [
@@ -100989,6 +101003,7 @@
           "$Chemical",
           "$check",
           "inert",
+          "next",
           "selection"
         ],
         "@dna-platform/public": [
@@ -101022,51 +101037,31 @@
           "$Word",
           "About",
           "AnnotationSpecification",
-          "Archive",
+          "Append",
           "Author",
           "Autobiography",
-          "Bold",
           "BookSpecification",
           "Chapter",
           "Code",
           "Content",
-          "Correction",
           "CoverSpecification",
-          "Date",
-          "Emphasis",
-          "Equation",
-          "Formalism",
           "Heading",
-          "Idea",
-          "Importance",
-          "Line",
-          "List",
-          "Math",
-          "Matter",
           "Means",
-          "Note",
           "Paragraph",
           "Parenthetical",
-          "Question",
           "Reference",
           "Referent",
-          "Remark",
-          "Reminder",
-          "Result",
+          "Section",
           "SectionSpecification",
           "Self",
           "Subject",
-          "Summary",
           "Svg",
           "Synopsis",
-          "Table",
           "TableOfContents",
           "Theme",
-          "Thought",
           "Title",
           "Word",
           "binder",
-          "highlighting",
           "html",
           "identifier",
           "reflection",
@@ -101108,7 +101103,7 @@
     ]
   },
   "app": {
-    "digest": "a9e0e6289904f77c",
+    "digest": "a97a596376c44767",
     "files": [
       "assets/KaTeX_AMS-Regular-BQhdFMY1.woff2",
       "assets/KaTeX_AMS-Regular-DMm9YOAa.woff",
@@ -101169,8 +101164,8 @@
       "assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff",
       "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
       "assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf",
-      "assets/index-BgQkainO.css",
-      "assets/index-U66_C6fD.js"
+      "assets/index-B90CgjqP.js",
+      "assets/index-BgQkainO.css"
     ],
     "bindings": {
       "@dna-platform/chemistry": [
@@ -101190,6 +101185,6 @@
         "hydrateRoot"
       ]
     },
-    "shell": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Dougs Library</title>\n    <link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 28 28%22%3E%3Cstyle%3E.pd-illustration%7Bfill%3Anone%3Bstroke%3A%231f5a60%3Bstroke-width%3A1.7%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.pd-illustration .fill%7Bfill%3A%238db9bd%3Bstroke%3A%231f5a60%7D.pd-illustration .light%7Bfill%3A%23ffffff%3Bstroke%3Anone%7D%3C%2Fstyle%3E%3CclipPath id%3D%22window%22%3E%3Crect width%3D%2228%22 height%3D%2228%22%2F%3E%3C%2FclipPath%3E%3Crect width%3D%2228%22 height%3D%2228%22 fill%3D%22%23c3e3e6%22%2F%3E%3Cg clip-path%3D%22url(%23window)%22%3E%3Csvg x%3D%22-43.361%22 y%3D%22-10.361%22 width%3D%2299.36%22 height%3D%2299.36%22 viewBox%3D%220 0 64 64%22 class%3D%22pd-illustration%22%3E%3Cpath class%3D%22light%22 d%3D%22M9 7h46v50H9z%22%2F%3E%3Cpath d%3D%22M9 7h46v50H9zM9 24h46M9 41h46%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 11h5v13h-5zM20 9h4v15h-4zM26 13h6v11h-6zM34 10h4v14h-4zM40 14h6v10h-6z%22%2F%3E%3Cpath d%3D%22M48 24l4-12 3 1-4 11z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 28h4v13h-4zM19 30h7v11h-7zM28 27h4v14h-4zM34 31h5v10h-5zM41 28h6v13h-6zM49 29h3v12h-3z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 46h6v11h-6zM21 44h4v13h-4zM27 47h8v10h-8zM37 45h4v12h-4zM43 48h6v9h-6z%22%2F%3E%3Cpath d%3D%22M50 57l3-11 3 1-3 10z%22%2F%3E%3C%2Fsvg%3E%3C%2Fg%3E%3Crect x%3D%221.319%22 y%3D%221.319%22 width%3D%2225.361%22 height%3D%2225.361%22 fill%3D%22none%22 stroke%3D%22%231f5a60%22 stroke-width%3D%222.639%22%2F%3E%3C%2Fsvg%3E\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin />\n    <link href=\"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@500;600;700&display=swap\" rel=\"stylesheet\" />\n    <script type=\"module\" crossorigin src=\"/assets/index-U66_C6fD.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-BgQkainO.css\">\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
+    "shell": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Dougs Library</title>\n    <link rel=\"icon\" href=\"data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 28 28%22%3E%3Cstyle%3E.pd-illustration%7Bfill%3Anone%3Bstroke%3A%231f5a60%3Bstroke-width%3A1.7%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.pd-illustration .fill%7Bfill%3A%238db9bd%3Bstroke%3A%231f5a60%7D.pd-illustration .light%7Bfill%3A%23ffffff%3Bstroke%3Anone%7D%3C%2Fstyle%3E%3CclipPath id%3D%22window%22%3E%3Crect width%3D%2228%22 height%3D%2228%22%2F%3E%3C%2FclipPath%3E%3Crect width%3D%2228%22 height%3D%2228%22 fill%3D%22%23c3e3e6%22%2F%3E%3Cg clip-path%3D%22url(%23window)%22%3E%3Csvg x%3D%22-43.361%22 y%3D%22-10.361%22 width%3D%2299.36%22 height%3D%2299.36%22 viewBox%3D%220 0 64 64%22 class%3D%22pd-illustration%22%3E%3Cpath class%3D%22light%22 d%3D%22M9 7h46v50H9z%22%2F%3E%3Cpath d%3D%22M9 7h46v50H9zM9 24h46M9 41h46%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 11h5v13h-5zM20 9h4v15h-4zM26 13h6v11h-6zM34 10h4v14h-4zM40 14h6v10h-6z%22%2F%3E%3Cpath d%3D%22M48 24l4-12 3 1-4 11z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 28h4v13h-4zM19 30h7v11h-7zM28 27h4v14h-4zM34 31h5v10h-5zM41 28h6v13h-6zM49 29h3v12h-3z%22%2F%3E%3Cpath class%3D%22fill%22 d%3D%22M13 46h6v11h-6zM21 44h4v13h-4zM27 47h8v10h-8zM37 45h4v12h-4zM43 48h6v9h-6z%22%2F%3E%3Cpath d%3D%22M50 57l3-11 3 1-3 10z%22%2F%3E%3C%2Fsvg%3E%3C%2Fg%3E%3Crect x%3D%221.319%22 y%3D%221.319%22 width%3D%2225.361%22 height%3D%2225.361%22 fill%3D%22none%22 stroke%3D%22%231f5a60%22 stroke-width%3D%222.639%22%2F%3E%3C%2Fsvg%3E\" />\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin />\n    <link href=\"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap\" rel=\"stylesheet\" />\n    <link href=\"https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@500;600;700&display=swap\" rel=\"stylesheet\" />\n    <script type=\"module\" crossorigin src=\"/assets/index-B90CgjqP.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-BgQkainO.css\">\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
   }
 }

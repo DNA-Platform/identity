@@ -1,4 +1,4 @@
-import { Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
+import { Append, Chapter, Heading, Means, Paragraph, Section, Title } from '@dna-platform/public';
 import { Brief } from '../../.manual/10-the-manual~annotations.tsx';
 import { Spread } from '../../.manual/10-the-manual~code.tsx';
 
@@ -92,13 +92,65 @@ export default () => (
                 later form. For a conversation not yet organized, the shape first, then the readers.
             </Paragraph>
             <Paragraph>
-                What we would make tools of your library next: the shape and the ranges of a chapter, the audit's
-                ledger and its check, the placing, the cut and the measurement, which today stand as scripts beside
-                our records, and a look that lists a book's marks by sort so a conversation is surveyed in a second
-                before it is read. The form of the marks themselves is
+                Four tools stand beside this chapter now, each run with node from the library's root, each given a
+                book's folder or one chapter and a file of marks, a mark being its message's instant, the index of
+                the paragraph it is about or none, its sort and its words; the sorts they read are one list beside
+                them, 12-how-we-read-a-conversation~sorts.mjs, which gains a sort when the package does. The check,
+                12-how-we-read-a-conversation~check.mjs, reads readers' marks against the conversation's own text,
+                the marks already standing in it set aside: a quoted span of yours of four words or more must stand
+                in the message the mark is on, a mark's instant must be its message's, a Result opens with its
+                state, a Revision with Replaced or Changed, and no mark runs past forty-five words; it says every
+                fault and refuses on any. The placing, 12-how-we-read-a-conversation~placing.mjs, puts the audited marks into the chapter
+                that holds each mark's instant, as the first child after the message's Speaker or the first child
+                of its paragraph, never breaking a mention or a reference across a line, and writes nothing unless
+                the messages' own text reads identically before and after, which it proves itself. The cut,
+                12-how-we-read-a-conversation~cut.mjs, cuts the one chapter by a file of cuts, each a range of
+                messages with a title and a part where one is said, into chapters headed by the date of their first
+                message, carries each pasted file to the chapter whose message names it, lists the chapters in the
+                table under their parts, removes the restructuring marks, and removes the one chapter only once
+                every message is proven to stand once, in order, with its instant. The survey,
+                12-how-we-read-a-conversation~survey.mjs, lists a book's marks by sort from its chapters in a second,
+                part by part, and named a sort prints every mark of it under its chapter, which is the guide read by
+                a sort's name. Each was proven by giving back the four organized books from their chapters as
+                imported, every file identical. What stays as scripts beside our records is what belongs to one
+                conversation: the shape of its messages, the audit's ledger of edits with their reasons, and the
+                passes over its particular readers.
+            </Paragraph>
+            <Paragraph>
+                The form of the marks themselves is
                 in <Means>$[[ The Annotated Conversation ]]( ./The Annotated Conversation )</Means>, in your voice; this
                 chapter is ours.
             </Paragraph>
         </Section>
+        <Append
+            identifier="sorts"
+            type=".mjs"
+        >
+            ![[ sorts.mjs ]]
+        </Append>
+        <Append
+            identifier="check"
+            type=".mjs"
+        >
+            ![[ check.mjs ]]
+        </Append>
+        <Append
+            identifier="placing"
+            type=".mjs"
+        >
+            ![[ placing.mjs ]]
+        </Append>
+        <Append
+            identifier="cut"
+            type=".mjs"
+        >
+            ![[ cut.mjs ]]
+        </Append>
+        <Append
+            identifier="survey"
+            type=".mjs"
+        >
+            ![[ survey.mjs ]]
+        </Append>
     </Chapter>
 );
