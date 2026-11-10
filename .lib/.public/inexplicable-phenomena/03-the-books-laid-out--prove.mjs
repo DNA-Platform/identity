@@ -103,11 +103,27 @@ for (const { book: catalogue, home } of catalogues) {
 // its citation with the paper itself beside it, a plate at the top left that opens it in another tab and an opening
 // for each translation. Walked as a reader would: the cover, the table, the paper's row, the chapter open on its
 // citation, the plate's picture fetched as a picture, and each opening's document fetched at its address as a PDF.
+// ONE ROW A CHAPTER, since Sprint 126: a held publication shows a plate and one file; one cited by address shows no
+// plate and no file, and only its citation's words are required.
 const chaptered = [
-    { book: 'mathematical-library', chapter: '#gödel-1931', words: ['Monatshefte für Mathematik und Physik 38 (1931), 173–198', 'B. Meltzer', 'M. Hirzel'], documents: 2 },
+    { book: 'mathematical-library', chapter: '#beltrami-1868', words: ['Giornale di Matematiche 6 (1868), 284–312'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#chen-1973', words: ['Scientia Sinica 16 (1973), 157–176'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#dedekind-1872', words: ['Braunschweig: Vieweg, 1872', 'Beman'], plate: true, documents: 1 },
+    { book: 'mathematical-library', chapter: '#feferman-1960', words: ['Fundamenta Mathematicae 49 (1960), 35–92'], plate: true, documents: 1 },
+    { book: 'mathematical-library', chapter: '#gauss-1799', words: ['Helmstedt: Fleckeisen, 1799'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#gödel-1931', words: ['Monatshefte für Mathematik und Physik 38 (1931), 173–198', 'Meltzer'], plate: true, documents: 1 },
+    { book: 'mathematical-library', chapter: '#hardy-and-littlewood-1923', words: ['Acta Mathematica 44 (1923), 1–70'], plate: true, documents: 1 },
+    { book: 'mathematical-library', chapter: '#hilbert-1899', words: ['Leipzig: Teubner, 1899', 'Townsend'], plate: true, documents: 1 },
+    { book: 'mathematical-library', chapter: '#hilbert-1901', words: ['Transactions of the American Mathematical Society 2 (1901), 87–99'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#kripke-1975', words: ['The Journal of Philosophy 72 (1975), 690–716'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#löb-1955', words: ['The Journal of Symbolic Logic 20 (1955), 115–118'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#lobachevsky-1840', words: ['Berlin: Fincke, 1840', 'Halsted'], plate: true, documents: 1 },
+    { book: 'mathematical-library', chapter: '#rosser-1936', words: ['The Journal of Symbolic Logic 1 (1936), 87–91'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#turing-1936', words: ['42 (1937), 230–265'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#turing-1939', words: ['45 (1939), 161–228'], plate: false, documents: 0 },
 ];
-for (const { book, chapter, words, documents } of chaptered) {
-    console.log(`--- ${book}: the front's title -> table -> the chapter -> its documents`);
+for (const { book, chapter, words, plate, documents } of chaptered) {
+    console.log(`--- ${book}: the front's title -> table -> ${chapter} -> its documents`);
     const started = Date.now();
     await goto(`${base}${book}/`);
     // THE FRONT OPENS THE BOOK, since Sprint 125: the cover drawn as a book with its words as links, the title to the
@@ -138,10 +154,10 @@ for (const { book, chapter, words, documents } of chaptered) {
         const opens = plate === null ? false : plate.closest('a')?.getAttribute('target') === '_blank';
         return { answers, picture, opens };
     });
-    const ok = row !== null && said && shown.answers.length === documents && shown.answers.every(one => one.status === 200 && one.type === 'application/pdf')
-        && shown.picture?.status === 200 && shown.picture.type === 'image/png' && shown.opens;
+    const plated = plate ? shown.picture?.status === 200 && shown.picture.type === 'image/png' && shown.opens : shown.picture === null;
+    const ok = row !== null && said && shown.answers.length === documents && shown.answers.every(one => one.status === 200 && one.type === 'application/pdf') && plated;
     if (!ok) failures++;
-    console.log(`${ok ? 'ok ' : 'BAD'} ${book} row "${row?.words ?? 'MISSING'}" opened in ${Date.now() - started} ms; the citation ${said ? 'on the page' : 'MISSING'}; the plate ${shown.picture?.status ?? 'MISSING'} ${shown.picture?.type ?? ''}${shown.opens ? ', opening in a new tab' : ', NOT opening in a new tab'}; ${shown.answers.map(one => `${one.address} ${one.status} ${one.type}`).join(', ')}`);
+    console.log(`${ok ? 'ok ' : 'BAD'} ${chapter} row "${row?.words ?? 'MISSING'}" opened in ${Date.now() - started} ms; the citation ${said ? 'on the page' : 'MISSING'}; ${plate ? `the plate ${shown.picture?.status ?? 'MISSING'} ${shown.picture?.type ?? ''}${shown.opens ? ', opening in a new tab' : ', NOT opening in a new tab'}` : `no plate${shown.picture === null ? '' : ', yet a plate stands'}`}; ${shown.answers.map(one => `${one.address} ${one.status} ${one.type}`).join(', ') || 'by address'}`);
 }
 
 await browser.close();
