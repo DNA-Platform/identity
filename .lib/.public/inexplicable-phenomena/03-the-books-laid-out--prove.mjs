@@ -96,6 +96,38 @@ for (const { book: catalogue, home } of catalogues) {
     }
 }
 
+// THE LIBRARY OF MATHEMATICS IS A BOOK OF CHAPTERS, NOT A CATALOGUE, since Sprint 125: a paper is a chapter carrying
+// its citation with the paper itself beside it. Walked as a reader would: the cover, the table, the paper's row, the
+// chapter open on its citation, and each document it shows fetched at its address as a PDF.
+const chaptered = [
+    { book: 'mathematical-library', chapter: '#gödel-1931', words: ['Monatshefte für Mathematik und Physik 38 (1931), 173–198', 'B. Meltzer', 'M. Hirzel'], documents: 2 },
+];
+for (const { book, chapter, words, documents } of chaptered) {
+    console.log(`--- ${book}: cover -> table -> the chapter -> its documents`);
+    const started = Date.now();
+    await goto(`${base}${book}/`);
+    await page.evaluate(() => [...document.querySelectorAll('.pd-running-head a')].find(a => a.getAttribute('href').includes('#table-of-contents')).click());
+    await turnTo('#table-of-contents');
+    // THE HASH IS SPELLED AS THE PAGE SPELLS IT, percent-encoded where the slug keeps an umlaut, so the row's own
+    // link says what to wait for and the chapter's name is compared decoded.
+    const row = await page.evaluate(hash => { const a = [...document.querySelectorAll('.pa-open a')].find(a => decodeURIComponent(new URL(a.href).hash) === hash); if (a) a.click(); return a ? { words: a.innerText.trim(), hash: new URL(a.href).hash } : null; }, chapter);
+    if (row !== null) await turnTo(row.hash);
+    const text = await visible();
+    const said = words.every(word => text.includes(word));
+    const shown = await page.evaluate(async () => {
+        const objects = [...document.querySelectorAll('.pa-open .pd-document object')];
+        const answers = [];
+        for (const object of objects) {
+            const response = await fetch(object.getAttribute('data'));
+            answers.push({ address: object.getAttribute('data').split('/').pop(), status: response.status, type: response.headers.get('content-type') });
+        }
+        return answers;
+    });
+    const ok = row !== null && said && shown.length === documents && shown.every(one => one.status === 200 && one.type === 'application/pdf');
+    if (!ok) failures++;
+    console.log(`${ok ? 'ok ' : 'BAD'} ${book} row "${row?.words ?? 'MISSING'}" opened in ${Date.now() - started} ms; the citation ${said ? 'on the page' : 'MISSING'}; ${shown.map(one => `${one.address} ${one.status} ${one.type}`).join(', ')}`);
+}
+
 await browser.close();
 console.log(`--- failures: ${failures}`);
 process.exit(failures === 0 ? 0 : 1);
