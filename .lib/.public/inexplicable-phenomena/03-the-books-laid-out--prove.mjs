@@ -106,15 +106,15 @@ for (const { book: catalogue, home } of catalogues) {
 // ONE ROW A CHAPTER, since Sprint 126: a held publication shows a plate and one file; one cited by address shows no
 // plate and no file, and only its citation's words are required.
 const chaptered = [
-    { book: 'mathematical-library', chapter: '#beltrami-1868', words: ['Giornale di Matematiche 6 (1868), 284–312'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#beltrami-1868', words: ['Giornale di Matematiche 6 (1868), 284–312'], plate: true, documents: 1 },
     { book: 'mathematical-library', chapter: '#chen-1973', words: ['Scientia Sinica 16 (1973), 157–176'], plate: false, documents: 0 },
     { book: 'mathematical-library', chapter: '#dedekind-1872', words: ['Braunschweig: Vieweg, 1872', 'Beman'], plate: true, documents: 1 },
     { book: 'mathematical-library', chapter: '#feferman-1960', words: ['Fundamenta Mathematicae 49 (1960), 35–92'], plate: true, documents: 1 },
-    { book: 'mathematical-library', chapter: '#gauss-1799', words: ['Helmstedt: Fleckeisen, 1799'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#gauss-1799', words: ['Helmstedt: Fleckeisen, 1799'], plate: true, documents: 1 },
     { book: 'mathematical-library', chapter: '#gödel-1931', words: ['Monatshefte für Mathematik und Physik 38 (1931), 173–198', 'Meltzer'], plate: true, documents: 1 },
     { book: 'mathematical-library', chapter: '#hardy-and-littlewood-1923', words: ['Acta Mathematica 44 (1923), 1–70'], plate: true, documents: 1 },
     { book: 'mathematical-library', chapter: '#hilbert-1899', words: ['Leipzig: Teubner, 1899', 'Townsend'], plate: true, documents: 1 },
-    { book: 'mathematical-library', chapter: '#hilbert-1901', words: ['Transactions of the American Mathematical Society 2 (1901), 87–99'], plate: false, documents: 0 },
+    { book: 'mathematical-library', chapter: '#hilbert-1901', words: ['Transactions of the American Mathematical Society 2 (1901), 87–99'], plate: true, documents: 1 },
     { book: 'mathematical-library', chapter: '#kripke-1975', words: ['The Journal of Philosophy 72 (1975), 690–716'], plate: false, documents: 0 },
     { book: 'mathematical-library', chapter: '#löb-1955', words: ['The Journal of Symbolic Logic 20 (1955), 115–118'], plate: false, documents: 0 },
     { book: 'mathematical-library', chapter: '#lobachevsky-1840', words: ['Berlin: Fincke, 1840', 'Halsted'], plate: true, documents: 1 },
