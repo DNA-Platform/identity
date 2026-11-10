@@ -107,10 +107,18 @@ const chaptered = [
     { book: 'mathematical-library', chapter: '#gödel-1931', words: ['Monatshefte für Mathematik und Physik 38 (1931), 173–198', 'B. Meltzer', 'M. Hirzel'], documents: 2 },
 ];
 for (const { book, chapter, words, documents } of chaptered) {
-    console.log(`--- ${book}: cover -> table -> the chapter -> its documents`);
+    console.log(`--- ${book}: the front's title -> table -> the chapter -> its documents`);
     const started = Date.now();
     await goto(`${base}${book}/`);
-    await page.evaluate(() => [...document.querySelectorAll('.pd-running-head a')].find(a => a.getAttribute('href').includes('#table-of-contents')).click());
+    // THE FRONT OPENS THE BOOK, since Sprint 125: the cover drawn as a book with its words as links, the title to the
+    // table, the author and the subject to their books; the title is pressed, and the three are required.
+    const front = await page.evaluate(() => {
+        const links = [...document.querySelectorAll('.pd-front a')].map(a => ({ href: a.getAttribute('href') ?? '', words: a.textContent.trim() }));
+        const title = links.find(l => l.href.endsWith('#table-of-contents'));
+        if (title) [...document.querySelectorAll('.pd-front a')].find(a => a.getAttribute('href') === title.href).click();
+        return { title: title?.words ?? null, author: links.find(l => l.href.endsWith('/our-team/'))?.words ?? null, subject: links.find(l => /\/our-math\/$|\/our-library\/$/.test(l.href))?.words ?? null };
+    });
+    if (front.title === null || front.author === null || front.subject === null) { failures++; console.log(`BAD ${book} front: title ${front.title}, author ${front.author}, subject ${front.subject}`); continue; }
     await turnTo('#table-of-contents');
     // THE HASH IS SPELLED AS THE PAGE SPELLS IT, percent-encoded where the slug keeps an umlaut, so the row's own
     // link says what to wait for and the chapter's name is compared decoded.
