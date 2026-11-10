@@ -34,7 +34,9 @@ await page.setViewport({ width: 1280, height: 800 });
 let failures = 0;
 
 const visible = () => page.evaluate(() => document.body.innerText.replace(/\s+/g, ' ').trim());
-const links = () => page.evaluate(() => [...document.querySelectorAll('a[href]')].map(a => ({ text: a.innerText.replace(/\s+/g, ' ').trim(), href: a.getAttribute('href') })));
+// THE LINKS BY THEIR TEXT CONTENT AND NOT WHAT IS SEEN, since Sprint 125: while the cover is open the running head
+// and the byline stand in the page unseen behind the front, and a hidden element's innerText is empty.
+const links = () => page.evaluate(() => [...document.querySelectorAll('a[href]')].map(a => ({ text: a.textContent.replace(/\s+/g, ' ').trim(), href: a.getAttribute('href') })));
 const goto = async url => {
     const response = await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
     await page.waitForSelector('.pd-book', { timeout: 20000 });
@@ -49,15 +51,16 @@ console.log('--- every book, landing');
 for (const book of books) {
     try {
         const status = await goto(`${base}${book}/`);
-        const open = await page.evaluate(() => document.querySelector('.pa-open .pd-title')?.innerText.replace(/\s+/g, ' ').trim() ?? null);
+        const open = await page.evaluate(() => document.querySelector('.pa-open .pd-title')?.textContent.replace(/\s+/g, ' ').trim() ?? null);
         const found = await links();
-        const byline = await page.evaluate(() => document.querySelector('.pd-byline')?.innerText.replace(/\s+/g, ' ').trim() ?? '');
+        const byline = await page.evaluate(() => document.querySelector('.pd-byline')?.textContent.replace(/\s+/g, ' ').trim() ?? '');
         const author = found.find(l => l.href.endsWith('/our-team/') && l.text === 'Doug');
         const filed = found.find(l => subjects.includes(l.text));
         const subject = about[book];
+        // THE LABEL AS WRITTEN, 'About', since the byline is read by its text content and the capitals are the sheet's.
         const aboutOk = subject === undefined
-            ? !byline.includes('ABOUT')
-            : byline.includes(`ABOUT ${subject}`) && found.some(l => l.text === subject && l.href.endsWith(`/${book}/`));
+            ? !byline.includes('About ')
+            : byline.includes(`About ${subject}`) && found.some(l => l.text === subject && l.href.endsWith(`/${book}/`));
         const ok = (status === 200 || status === 304) && open !== null && author !== undefined && filed !== undefined && aboutOk;
         if (!ok) failures++;
         console.log(`${ok ? 'ok ' : 'BAD'} ${status} ${book.padEnd(24)} opens "${open}" ${subject === undefined ? 'no about' : `about ${subject}->itself`} filed->${filed?.href ?? '-'}`);
@@ -97,8 +100,9 @@ for (const { book: catalogue, home } of catalogues) {
 }
 
 // THE LIBRARY OF MATHEMATICS IS A BOOK OF CHAPTERS, NOT A CATALOGUE, since Sprint 125: a paper is a chapter carrying
-// its citation with the paper itself beside it. Walked as a reader would: the cover, the table, the paper's row, the
-// chapter open on its citation, and each document it shows fetched at its address as a PDF.
+// its citation with the paper itself beside it, a plate at the top left that opens it in another tab and an opening
+// for each translation. Walked as a reader would: the cover, the table, the paper's row, the chapter open on its
+// citation, the plate's picture fetched as a picture, and each opening's document fetched at its address as a PDF.
 const chaptered = [
     { book: 'mathematical-library', chapter: '#gödel-1931', words: ['Monatshefte für Mathematik und Physik 38 (1931), 173–198', 'B. Meltzer', 'M. Hirzel'], documents: 2 },
 ];
@@ -115,17 +119,21 @@ for (const { book, chapter, words, documents } of chaptered) {
     const text = await visible();
     const said = words.every(word => text.includes(word));
     const shown = await page.evaluate(async () => {
-        const objects = [...document.querySelectorAll('.pa-open .pd-document object')];
+        const addresses = [...new Set([...document.querySelectorAll('.pa-open a.pa-opening')].map(a => a.getAttribute('href')))];
         const answers = [];
-        for (const object of objects) {
-            const response = await fetch(object.getAttribute('data'));
-            answers.push({ address: object.getAttribute('data').split('/').pop(), status: response.status, type: response.headers.get('content-type') });
+        for (const address of addresses) {
+            const response = await fetch(address);
+            answers.push({ address: address.split('/').pop(), status: response.status, type: response.headers.get('content-type') });
         }
-        return answers;
+        const plate = document.querySelector('.pa-open .pd-plate img');
+        const picture = plate === null ? null : await fetch(plate.getAttribute('src')).then(response => ({ status: response.status, type: response.headers.get('content-type') }));
+        const opens = plate === null ? false : plate.closest('a')?.getAttribute('target') === '_blank';
+        return { answers, picture, opens };
     });
-    const ok = row !== null && said && shown.length === documents && shown.every(one => one.status === 200 && one.type === 'application/pdf');
+    const ok = row !== null && said && shown.answers.length === documents && shown.answers.every(one => one.status === 200 && one.type === 'application/pdf')
+        && shown.picture?.status === 200 && shown.picture.type === 'image/png' && shown.opens;
     if (!ok) failures++;
-    console.log(`${ok ? 'ok ' : 'BAD'} ${book} row "${row?.words ?? 'MISSING'}" opened in ${Date.now() - started} ms; the citation ${said ? 'on the page' : 'MISSING'}; ${shown.map(one => `${one.address} ${one.status} ${one.type}`).join(', ')}`);
+    console.log(`${ok ? 'ok ' : 'BAD'} ${book} row "${row?.words ?? 'MISSING'}" opened in ${Date.now() - started} ms; the citation ${said ? 'on the page' : 'MISSING'}; the plate ${shown.picture?.status ?? 'MISSING'} ${shown.picture?.type ?? ''}${shown.opens ? ', opening in a new tab' : ', NOT opening in a new tab'}; ${shown.answers.map(one => `${one.address} ${one.status} ${one.type}`).join(', ')}`);
 }
 
 await browser.close();
