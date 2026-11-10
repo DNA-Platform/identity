@@ -8,7 +8,7 @@
 
 ## <a id="where"></a>Where things stand — 2026-11-10, requirements approved
 
-**Next action: `/ce-plan` on this chapter, in a session of its own.** The requirements R1 to R8 are approved, the thirteen of R1 by his *"Yes, the thirteen"* on 2026-11-10 and Turing's two added on his word the same evening, fifteen; Gödel's one version and the terms decided the same day. Nothing is built. The chapter is `requirements-only`.
+**Next action: `/ce-work` on this chapter, starting at [U2](#u2), Gödel's chapter to one file, and [U3](#u3), the fetches; [U1](#u1), the project's entry, done in the plan's own turn on his *"get this specified in the project book as the next sprint"*.** The requirements R1 to R8 are approved, the thirteen of R1 by his *"Yes, the thirteen"* on 2026-11-10 and Turing's two added on his word the same evening, fifteen; Gödel's one version and the terms decided the same day; the plan set on his `/ce-plan`. The chapter is `implementation-ready`.
 
 **Read first, for the plan, each for what is load-bearing in it.** [R1](#r1) for the thirteen and what each is to the notes; the project's entry The Papers, `library/mathematics/arithmetic/.project/2-the-papers.tsx`, for the addresses and terms already found for nine of them and the references the rest stay among; the paper's chapter in the library, `library/mathematics/.library/1-on-formally-undecidable-propositions.tsx`, and the manual's [The Paper](../../../.reference/6-the-paper.tsx), for the form a publication takes and the tool that makes its picture; the notebook's chapters that lean on each, named under [The room](#room), with The Mechanism's geometric precedent and Two-Sided Arithmetic first since the geometers and Goldbach's works are new to the library; and [Sprint 125](130-sprint-125--the-library-of-papers.md), its decisions D9 to D11 and its wrong turns, for how a chapter, its file and the prover's walk were built the first time.
 
@@ -19,6 +19,8 @@
 **Blockers.** None.
 
 ## <a id="words"></a>His words, verbatim
+
+The plan asked for, 10 November 2026: *"Okay get this specified in the project book as the next sprint, and let's download these papers and get entries in the library. Give me steps to get this published"*.
 
 *"Let's start collecting some citations for the project"* and *"Or perhaps we can make that next sprint"*, 10 November 2026, at Sprint 125's close; then *"Okay good, make sure the project contains the result of the sprint. And then let's start /ce-brainstorm for the next sprint, where I think we should look at our notes and identify publications to put in the library"*.
 
@@ -69,6 +71,51 @@ The notebook's fifteen chapters, asked by name which works they lean on, 2026-11
 
 **Out of scope.** The paper's bibliography as a document; the organizing of the notes; the German original beside Gödel's chapter, which waits for 1 January 2027; the table's tagging by subject, in time.
 
+## <a id="decisions"></a>Decisions
+
+- <a id="d1"></a>**D1. A publication's chapter takes Gödel 1931's form, and a chapter with no file takes it without the plate.** The chapter keyed by author and year, the citation first, one edition, then the notes, then the openings; where the text is held, the plate before the title with the picture the manual's tool makes; where it is not, the citation's words carry a reference to the address and nothing stands before the title. Chosen over a form of its own for the address-only chapters, since one form is read once. The chapters carry no section headings, since every heading on a book's page wears an id once and fifteen chapters saying The paper would be refused.
+- <a id="d2"></a>**D2. The chapters are numbered alphabetically by key, so the page's order is the table's.** Beltrami 1868, Chen 1973, Dedekind 1872, Feferman 1960, Gauss 1799, Gödel 1931, Hardy and Littlewood 1923, Hilbert 1899, Hilbert 1901, Kripke 1975, Löb 1955, Lobachevsky 1840, Rosser 1936, Turing 1936, Turing 1939, numbered 1 to 15; Gödel's file and its resources renamed to 6, its key and its address unchanged. Chosen over numbering by arrival, which would have the page in one order and the table in another, and over a table that reorders what the page draws, which the library's table does not do.
+- <a id="d3"></a>**D3. A text is held when its terms allow and fetched from where its terms say.** Held: Lobachevsky in Halsted's English of 1891 at the Internet Archive; Dedekind in Beman's of 1901 and Hilbert's Grundlagen in Townsend's of 1902 at Project Gutenberg; Beltrami's Saggio at Göttingen; Gauss's dissertation of 1799 at whichever archive holds the scan; Feferman 1960 at the Polish archive; Hardy and Littlewood 1923 at Acta Mathematica's open archive; Hilbert 1901 at the AMS if a browser's fetch is answered where a script's was refused, since the paper is public domain. By address: Rosser, Löb, Kripke, Turing's two, and Chen 1973 in Scientia Sinica, which may have no address and then has none, as Hofstadter has none in the entry. Meltzer's stays beside Gödel's chapter on his decision. The entry's terms column is the record; a file beside a chapter not matching it is a fault.
+- <a id="d4"></a>**D4. The notes' association is written where the note names the work, and a note is added only where none names it.** The Documents for Rosser, Löb, Feferman and Turing 1939; The Mechanism for Beltrami, Hilbert 1899, Dedekind and the geometric precedent, where Lobachevsky and Gauss join in the team's words with his quoted; Two-Sided Arithmetic for Hardy and Littlewood and Chen; The Subject of Logic for Kripke; Goldbach and The Mechanism for Turing 1936; Hilbert 1901 where the sphere is named, the imaginary sphere of the geometric precedent. Each a Means carrying the reference, as the three for Gödel were written; the checker run after, since the notes' quoted spans must still stand. Chosen over new notebook chapters, which his *"adding notes as needed"* allows and the fifteen do not need.
+- <a id="d5"></a>**D5. The project's entry is written first, as he asked, and rewritten at the close.** The Publications (Sprint 126), what the sprint does, the fifteen and the terms, in the form of Sprint 124's first entry; at the close what the third sprint accomplished and leaves, as The Papers was rewritten. Its headings take the sprint's own words, since the project's page wears each id once.
+- <a id="d6"></a>**D6. The prover walks every chapter of the library's book.** Its list of chaptered books takes one row a chapter, each with the words the citation must show and whether a plate and a file are held, so the walk asks the picture and the file where they stand and only the address's presence where they do not.
+
+## <a id="units"></a>Units
+
+- <a id="u1"></a>**U1. The project's entry.** *Mechanism:* [D5](#d5); the chapter `library/mathematics/arithmetic/.project/3-the-publications.tsx`, The Publications (Sprint 126), with its row in the project's table; bound. *Files:* the chapter, `.project/.table.tsx`. *Depends on:* nothing; done 2026-11-10 in the plan's own turn. *Demo:* `/arithmetic-project/#sprint-126` on 4343, the fifteen named.
+- <a id="u2"></a>**U2. Gödel's chapter to one file.** *Mechanism:* Hirzel's PDF removed from beside the chapter, its opening removed from the chapter, the citation naming the Collected Works of 1986 as the standard English and Meltzer's as the one read; the chapter renamed to 6 with its two resources, [D2](#d2). *Files:* `library/mathematics/.library/1-on-formally-undecidable-propositions.tsx` and its `~meltzer.pdf` and `~meltzer.png`, renamed; `~hirzel.pdf` removed. *Depends on:* nothing. *Demo:* the chapter on 4343 with one opening and its plate; the bind's resources placed down by one.
+- <a id="u3"></a>**U3. The addresses, the texts and the pictures.** *Mechanism:* [D3](#d3); for each of the fourteen the standard citation confirmed and the address found from this room, the free texts fetched beside their chapters' names as `N-<title>~<identifier>.pdf`, each asked for `%PDF-` at its head, and each held text's picture made by the manual's tool; the entry's terms column the record. *Files:* the PDFs and pictures under `library/mathematics/.library/`. *Depends on:* [D2](#d2)'s numbering. *Demo:* the files on disk with their sizes, each a PDF, each picture a page; written into this chapter's state with the address each came from.
+- <a id="u4"></a>**U4. The fourteen chapters.** *Mechanism:* [D1](#d1); each chapter written in the library's writing, the plate where a file is held, the citation of the one edition, the notes in the team's words from the conversations with his words quoted, the references to the notebook's chapters that lean on it, the openings or the address; Turing's and Feferman's carrying his word on what his reading changes. *Files:* `library/mathematics/.library/N-<title>.tsx`, fourteen. *Depends on:* U3. *Demo:* each chapter on 4343 at its address with its citation and, where held, its plate.
+- <a id="u5"></a>**U5. The notes refer to the library.** *Mechanism:* [D4](#d4); in each notebook chapter that names a work, a Means carrying the reference to the publication's chapter, and the sentences for Lobachevsky and Gauss added to the geometric precedent; the checker run from the notebook's folder. *Files:* `.notebook/3-the-mechanism.tsx`, `7-two-sided-arithmetic.tsx`, `9-goldbach.tsx`, `11-the-documents.tsx`, `15-the-subject-of-logic.tsx`. *Depends on:* U4. *Demo:* every publication's chapter reached from a note, the bind's key count, the checker's 0 not found.
+- <a id="u6"></a>**U6. The table, the synopsis, the register, the prover.** *Mechanism:* the library's table's fifteen rows alphabetical by key under The Papers; the synopsis saying what the book holds; the register's row 15 and its Proven paragraph; the prover's chaptered list to fifteen rows, [D6](#d6); The Papers' list in the project's entry reconciled, each work that became a chapter referenced to it. *Files:* `.library/.table.tsx`, `.library/.synopsis.tsx`, `03-the-books-laid-out.md`, `03-the-books-laid-out--prove.mjs`, `.project/2-the-papers.tsx`. *Depends on:* U4, U5. *Demo:* the table on 4343 alphabetical; the prover 0 failures, exit 0.
+- <a id="u7"></a>**U7. Bound, proven, closed.** *Mechanism:* the bind from `library/.public/.binding`; the prover; the two pages photographed, the table and one held chapter; the project's entry rewritten with what the third sprint accomplished and leaves; the handoff. *Depends on:* U6. *Demo:* the numbers in this chapter's state; the photographs.
+
+## <a id="scenarios"></a>Test scenarios
+
+- **U1.** The project's page shows The Publications (Sprint 126) with its headings unique on the page and the fifteen named; its references into the library and the notebook resolve at the bind.
+- **U2.** Gödel's chapter at `#gödel-1931` shows one opening and one plate; the folder holds two resources beside it and no Hirzel; the bind's resources placed count falls by one; the prover's row for it passes.
+- **U3.** Each held file begins `%PDF-`; each picture weighs more than eight kilobytes and is a page; a work whose fetch is refused is recorded as by address with the status the fetch gave; the terms column and the files agree, checked by a scratch script listing files against the entry.
+- **U4.** Each chapter's page shows its title, its citation's words, Author Doug; a held chapter shows its plate opening the file in a new tab; an address-only chapter shows no plate and its address as a reference; no heading repeats on the book's page, which the bind proves.
+- **U5.** The bind reports every reference resolving and the keys up by fourteen; the checker finds every quoted span; a drive clicks a note's reference and lands on the publication's chapter.
+- **U6.** The table's rows read in alphabetical order of key on the page; the prover walks fifteen rows, asks every held file and picture, 0 failures.
+- **U7.** The photographs named in the state; the entry on the page rewritten.
+
+## <a id="order"></a>Order
+
+U1 and U2 first, together; U3, the fetches, which may take a round of searching; U4 in three batches by what the notes lean on, the logic with Turing and Feferman, Goldbach's, the geometers and the two axioms; U5 after each batch binds; U6 and U7 last. One session, measured: fourteen chapters of a few paragraphs each, fourteen fetches, fifteen rows; no division between sessions.
+
+## <a id="risks"></a>Risks
+
+- **A publisher refuses the fetch or the text is not where the entry says.** The AMS, JSTOR and Wiley refused a script's fetch; Chen's journal may have no address. The chapter is written by address and the state says so; a text found later is added as a file without changing the chapter's form.
+- **The viewer draws a page late or not at all.** The tool waits up to twenty seconds for a drawn page and says when it gave up; a blank picture is not placed.
+- **Headings repeat across the book's page.** No chapter carries a heading, [D1](#d1).
+- **A note's quoted span moves under a Means.** The checker runs after U5 and a moved span is mended before the bind.
+- **The scale.** Fourteen chapters of notes from the conversations is the sprint's weight; the batches of the order keep each bind small and each look short.
+
+## <a id="self-check"></a>The plan against itself
+
+Every requirement lands: R1 in U3 and U4; R2 in U2 and U4; R3 in U5; R4 in U4; R5 in U3; R6 in U6; R7 in U1 and U7; R8 in U4. Every acceptance example has a scenario: AE1 in U6, AE2 in U4 and U5, AE3 in U2, AE4 in U4, AE5 in U6, AE6 in U1 and U7. Every unit names its mechanism and its visible end; none is design owed. Nothing under `library/.public` moves this sprint, so no yes is owed. The thin section is U3, whose addresses are found as it runs; the state records each as found.
+
 ## <a id="open"></a>Open for his word
 
-Nothing at the brainstorm's close; the thirteen approved 2026-11-10, *"Yes, the thirteen"*, and Turing's two added on his word, fifteen.
+Nothing at the plan's close; the thirteen approved 2026-11-10, *"Yes, the thirteen"*, Turing's two added on his word, fifteen, and the plan on his `/ce-plan`.
