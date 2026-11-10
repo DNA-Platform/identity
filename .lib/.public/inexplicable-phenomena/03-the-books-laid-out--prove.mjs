@@ -143,7 +143,11 @@ for (const { book, chapter, words, plate, documents } of chaptered) {
     const text = await visible();
     const said = words.every(word => text.includes(word));
     const shown = await page.evaluate(async () => {
-        const addresses = [...new Set([...document.querySelectorAll('.pa-open a.pa-opening')].map(a => a.getAttribute('href')))];
+        // AN OPENING OUT OF THE SITE IS COUNTED AND NOT ASKED: a copy a reader can read stands at another keeper's address,
+        // and a fetch from the page to another origin answers nothing a script may read. Only the site's own files are asked.
+        const hrefs = [...new Set([...document.querySelectorAll('.pa-open a.pa-opening')].map(a => a.getAttribute('href')))];
+        const addresses = hrefs.filter(href => !/^https?:/.test(href));
+        const out = hrefs.length - addresses.length;
         const answers = [];
         for (const address of addresses) {
             const response = await fetch(address);
@@ -152,12 +156,12 @@ for (const { book, chapter, words, plate, documents } of chaptered) {
         const plate = document.querySelector('.pa-open .pd-plate img');
         const picture = plate === null ? null : await fetch(plate.getAttribute('src')).then(response => ({ status: response.status, type: response.headers.get('content-type') }));
         const opens = plate === null ? false : plate.closest('a')?.getAttribute('target') === '_blank';
-        return { answers, picture, opens };
+        return { answers, picture, opens, out };
     });
     const plated = plate ? shown.picture?.status === 200 && shown.picture.type === 'image/png' && shown.opens : shown.picture === null;
     const ok = row !== null && said && shown.answers.length === documents && shown.answers.every(one => one.status === 200 && one.type === 'application/pdf') && plated;
     if (!ok) failures++;
-    console.log(`${ok ? 'ok ' : 'BAD'} ${chapter} row "${row?.words ?? 'MISSING'}" opened in ${Date.now() - started} ms; the citation ${said ? 'on the page' : 'MISSING'}; ${plate ? `the plate ${shown.picture?.status ?? 'MISSING'} ${shown.picture?.type ?? ''}${shown.opens ? ', opening in a new tab' : ', NOT opening in a new tab'}` : `no plate${shown.picture === null ? '' : ', yet a plate stands'}`}; ${shown.answers.map(one => `${one.address} ${one.status} ${one.type}`).join(', ') || 'by address'}`);
+    console.log(`${ok ? 'ok ' : 'BAD'} ${chapter}${shown.out ? ` (${shown.out} opening out)` : ''} row "${row?.words ?? 'MISSING'}" opened in ${Date.now() - started} ms; the citation ${said ? 'on the page' : 'MISSING'}; ${plate ? `the plate ${shown.picture?.status ?? 'MISSING'} ${shown.picture?.type ?? ''}${shown.opens ? ', opening in a new tab' : ', NOT opening in a new tab'}` : `no plate${shown.picture === null ? '' : ', yet a plate stands'}`}; ${shown.answers.map(one => `${one.address} ${one.status} ${one.type}`).join(', ') || 'by address'}`);
 }
 
 await browser.close();
