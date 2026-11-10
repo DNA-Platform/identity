@@ -22,7 +22,7 @@
 
 ## How it is extended
 
-- **A figure of your own is a class under Figure** that overrides `write()` — drawing `super.write()` inside the element it wants, or reading `this.contents` to run the file it prints — and marks itself in `$Define`. [Code, Image and Svg](03-code-image-and-svg.md) are the three that ship, and the shape a library's own follows; *"we want to support many types of figures in our writing."*
+- **A figure of your own is a class under Figure** that overrides `write()` — drawing `super.write()` inside the element it wants, or reading `this.contents` to run the file it prints — and marks itself in `$Define`. [Code, Image and Svg](03-code-image-document-and-svg.md) are the three that ship, and the shape a library's own follows; *"we want to support many types of figures in our writing."*
 - **A figure that runs what it shows** is v1's Build book's pattern and a library's to write: the file beside the chapter imported as a module by the chapter's book class, and printed by a Code figure in the chapter, so *"a wrong rule draws a wrong tree."*
 - **A format on a figure dresses it**, in front, as on any letter; a Block figure stands as a block, an Inline one in the line.
 - **Names are attributes and contents are the author's**, so a figure may be named and written at once; naming by content would have taken the contents' place.

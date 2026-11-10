@@ -8,7 +8,7 @@
 
 ## What they are
 
-***"List and Math are fundamental… along with the Math components that we had in the last version, adapted."*** — Doug, 2026-09-30. **A Math is a Word whose text is TeX, typeset inline; an Equation is a Paragraph whose text is TeX, typeset in display mode on a line of its own and numbered by a library's theme, which counts `pd-equation`.** Both print through a typesetter, a prop defaulting to KaTeX, as [Code](../figures/03-code-image-and-svg.md) prints through its highlighter, so a library that wants another typesetter hands one in and the class knows nothing of it. Two classes in one chapter because they are one idea at two levels, as Section and Heading are.
+***"List and Math are fundamental… along with the Math components that we had in the last version, adapted."*** — Doug, 2026-09-30. **A Math is a Word whose text is TeX, typeset inline; an Equation is a Paragraph whose text is TeX, typeset in display mode on a line of its own and numbered by a library's theme, which counts `pd-equation`.** Both print through a typesetter, a prop defaulting to KaTeX, as [Code](../figures/03-code-image-document-and-svg.md) prints through its highlighter, so a library that wants another typesetter hands one in and the class knows nothing of it. Two classes in one chapter because they are one idea at two levels, as Section and Heading are.
 
 | member | what it is | cited |
 |---|---|---|
