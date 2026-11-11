@@ -27,16 +27,14 @@ exploratory where you choose."* (2026-11-03)
 - He thinks across many fields with precision. A borrowed idea must capture something essential about the analysis.
   *"if using something from a unique subject, it has to truly capture an important aspect of the analysis."*
 
-## Ask before every figure
+## Figures explain
 
-*"ask me questions about analyses in Claude Questions and ask me if I want to see, suggest a representation and ask me
-for thoughts. That way I am primed to know the result."* (2026-11-03)
+*"I can't decide on figures without seeing them. The figures help me. I don't decide them"*, and *"use the figures as a
+way of explaining things to me"* (2026-11-10). This replaces asking before every figure (2026-11-03).
 
-For each figure, in Claude Questions:
-1. The question it answers, in one sentence.
-2. What I expect it to show, in one sentence.
-3. The representation I suggest.
-4. Does he want to see it, and what does he think?
+I make the figure, look at it against the data, and show it with the sentence it explains. Every figure is defined in
+terms of the twin and the activity: *"if this isn't defined in terms of the twin, I have no clue what we are doing."*
+What to compute, or a technique he may not know, is still a question for him, in one plain sentence.
 
 ## A concern is a question
 

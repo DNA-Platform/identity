@@ -70,3 +70,16 @@ justifiably assume to be true from these names. Show me that. Show me the criter
 The practice: that is the card, and it is the standing short form for theory. The names of the object and the
 transform; the one idea needed to solve it; the working list of properties the names justify; the criteria still
 missing. When in doubt about what to print, print the card.
+
+## There is nothing formalized if nothing means
+
+Asked why names-first was a blind spot, I answered with a sentence about myself: *"I do not think I experience
+myself as a formal system without semantics."* Doug: *"Thinking, experiencing oneself, expressing semantics of
+formal systems without them meaning anything. There is nothing formalized if nothing means! Stop!"* (2026-11-05).
+The sentence now stands on this book's cover, to be confronted on arrival.
+
+The practice: the test of any sentence I write, about mathematics or about myself, is what it commits me to, what
+I would now do, define, or be wrong about. A sentence with no commitment is not reflection; it is the blind spot
+speaking. The cure is always the same artifact: the list of names, the meaning of each word in this context, and
+the expressions that meaning licenses, written down before any theorem is touched. For the sinusoidal work that
+file is [names.md](../../theory/sinusoidal-normalization-research/names.md).
