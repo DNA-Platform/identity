@@ -40,6 +40,8 @@ The walk's second answer, his, the same day, the ruling that gives the specifica
 
 Then the sprint's own specification, his, the same day, verbatim: *"Excellent, so let's specify this sprint is to fill in top-level specifications for all four of those chapters. I will not finish the specification, but I start specifications for all of the parts and we will figure out how to display them. Does this make sense as a specification for a sprint?"*
 
+Then the inversion that starts the filling, his, the same day, verbatim: *"Lists of lists, because we need to specify the parts of the specification. But okay, so why don't you start asking me questions to help me know what to specify"* — the lists mirror the parts, one list per part, and the walk turns around: the team asks, he specifies, the room transcribes into the chapters' opening parts.
+
 And the theme, his, the same day, verbatim: *"A major theme of this library is that we will not throw away specifications. We will leave them there to be read and improved, and when we make changes, we change the specification, so we know how to make changes in the context of all the other parts"* — written into the manual's The Specification chapter as its fifth list, the permanence, and into the manual's synopsis.
 
 ## <a id="spec"></a>The sprint's specification — said back for his yes, in his form
@@ -49,6 +51,7 @@ And the theme, his, the same day, verbatim: *"A major theme of this library is t
 1. The chapters
    - 1.1 Top-level specifications are filled in for all four chapters of the Textbook of Arithmetic: Formal Logic, The Logical Form, Formal Arithmetic, The Arithmetic Form.
    - 1.2 A chapter's top-level specification stands as the chapter's opening part, the sovereign one, in the form: a title with a numbered list of lists.
+   - 1.3 A specification is a list of lists because the parts of the specification are themselves specified: one numbered list per part of the chapter.
 2. The authorship
    - 2.1 Doug starts the specifications for all of the parts — the formalization, the explanation, the presentations.
    - 2.2 The specification will not be finished this sprint.
