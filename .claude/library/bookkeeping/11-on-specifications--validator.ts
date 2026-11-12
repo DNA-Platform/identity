@@ -309,8 +309,11 @@ function walkDir(dir: string): void {
     checkFlatStructure(dir);
   }
 
-  // Structural check: directory with markdown files but no cover
-  const hasMdFiles = entries.some(e => e.endsWith('.md') && e !== '.cover.md');
+  // Structural check: directory with markdown files but no cover. A markdown file named as a resource,
+  // <chapter>~<id>.md, documents a chapter and is never a chapter, so it wants no cover: a TSX library
+  // keeps pasted files beside its chapters that way, and counting them raised fifty-nine false errors
+  // on Doug's library until 2026-11-12.
+  const hasMdFiles = entries.some(e => e.endsWith('.md') && e !== '.cover.md' && !e.includes('~'));
   if (hasMdFiles && !hasCover && dir !== root) {
     console.log(`ERROR   ${relDir}  Directory has markdown files but no .cover.md — unindexed content`);
     errors++;
