@@ -53,17 +53,14 @@ for (const book of books) {
         const status = await goto(`${base}${book}/`);
         const open = await page.evaluate(() => document.querySelector('.pa-open .pd-title')?.textContent.replace(/\s+/g, ' ').trim() ?? null);
         const found = await links();
-        const byline = await page.evaluate(() => document.querySelector('.pd-byline')?.textContent.replace(/\s+/g, ' ').trim() ?? '');
+        // THE FRONT CARRIES THE BOOK'S IDENTITY, 2026-11-16: the running head and the byline are not drawn —
+        // "Why does every chapter need a title and author?!? ... Isn't this what the TOC is for?" — so the
+        // landing reads the front's links: the author to the team, the subject imprint to its home.
         const author = found.find(l => l.href.endsWith('/our-team/') && l.text === 'Doug');
         const filed = found.find(l => subjects.includes(l.text));
-        const subject = about[book];
-        // THE LABEL AS WRITTEN, 'About', since the byline is read by its text content and the capitals are the sheet's.
-        const aboutOk = subject === undefined
-            ? !byline.includes('About ')
-            : byline.includes(`About ${subject}`) && found.some(l => l.text === subject && l.href.endsWith(`/${book}/`));
-        const ok = (status === 200 || status === 304) && open !== null && author !== undefined && filed !== undefined && aboutOk;
+        const ok = (status === 200 || status === 304) && open !== null && author !== undefined && filed !== undefined;
         if (!ok) failures++;
-        console.log(`${ok ? 'ok ' : 'BAD'} ${status} ${book.padEnd(24)} opens "${open}" ${subject === undefined ? 'no about' : `about ${subject}->itself`} filed->${filed?.href ?? '-'}`);
+        console.log(`${ok ? 'ok ' : 'BAD'} ${status} ${book.padEnd(24)} opens "${open}" filed->${filed?.href ?? '-'}`);
     } catch (error) {
         failures++;
         console.log(`BAD ${book}: ${error.message.split('\n')[0]}`);
@@ -74,7 +71,7 @@ for (const { book: catalogue, home } of catalogues) {
     console.log(`--- ${catalogue}: cover -> table -> each entry -> the book -> back`);
     const started = Date.now();
     await goto(`${base}${catalogue}/`);
-    await page.evaluate(() => [...document.querySelectorAll('.pd-running-head a')].find(a => a.getAttribute('href').includes('#table-of-contents')).click());
+    await page.evaluate(() => [...document.querySelectorAll('.pd-front a')].find(a => a.getAttribute('href').includes('#table-of-contents')).click());
     await turnTo('#table-of-contents');
     const rows = await page.evaluate(() => {
         const found = [...document.querySelectorAll('.pa-open a')];
@@ -92,7 +89,7 @@ for (const { book: catalogue, home } of catalogues) {
         const entry = await visible();
         const wayIn = await page.evaluate(book => [...document.querySelectorAll('.pa-open a')].some(a => a.getAttribute('href') === book), row.book);
         const status = await goto(new URL(row.book, base).href);
-        const back = await page.evaluate(home => [...document.querySelectorAll('.pd-byline a')].some(a => a.getAttribute('href') === home), home);
+        const back = await page.evaluate(home => [...document.querySelectorAll('.pd-front a')].some(a => a.getAttribute('href') === home), home);
         const ok = wayIn && (status === 200 || status === 304) && back;
         if (!ok) failures++;
         console.log(`${ok ? 'ok ' : 'BAD'} ${row.entry.padEnd(36)} entry "${entry.replace(/^.*?Phenomena /, '').slice(0, 48)}…" way in ${row.book} ${status}, back ${back}`);
