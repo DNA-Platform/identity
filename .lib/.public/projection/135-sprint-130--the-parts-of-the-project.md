@@ -8,7 +8,7 @@
 
 ## <a id="where"></a>Where things stand — opened, specifying
 
-**Next action: his corrections to the theory said back at the sixth through eighth rounds — the identification as entries binding a specified name to the referent where the deliverable creates it, the genome in referential form; the intuition as a graph of principles whose edges can be principles; the justification shaped the same way, many clauses at once, viewable in its own right. The sketch The Project's Page stands in The Design with seven photographs; the hierarchy ruling went into the bound Content dress the same day, flip probe 38 checks 0 failures through the new law. Eight rounds answered; the gate holds for everything the specification has not settled. Sharpest open: what the identification IS in the textbook's case, and what stands on the front of a sprint.**
+**Next action: his eye on the opened justification and the opened edge — the ninth round's challenge answered by building: the project heard as one typed graph whose edges are nodes (9.5), the press that turns the page into a connection (9.6), driven green and photographed. The sketch The Project's Page stands in The Design with nine photographs; the hierarchy ruling lives in the bound Content dress, flip probe 38 checks 0 failures. Nine rounds answered; the gate holds for everything the specification has not settled. Sharpest open: what the identification IS in the textbook's case, and what stands on the front of a sprint.**
 
 ## <a id="seed"></a>His seed, verbatim
 
@@ -54,6 +54,8 @@
    - 9.2 A reference navigates both ways: a Cite lands on the clause as it does today, and a clause's coverage view answers with the justifications that cite it.
    - 9.3 The exploration ground is the sprint's own record: the first mockups are built from this chapter's real material — its specification, its walk as progress — on one page with a switch. *(His suggestion, third round: "Might it be associated with the sprint chapter??")*
    - 9.4 The exploration uses the Content format itself: this sprint's project rendered with the parts in their drafted forms — the specification in the legal register, the identification as anchored statements of the forms the parts take, the justifications as marks citing clauses, the intuition from his named relatives, the progress as the walk's bylined entries — the relational presentation being the thing explored. *(His direction, fourth round.)*
+   - 9.5 The project is one structure, not five documents: a typed graph whose nodes are clauses, entries, principles and progress entries, and whose edges — justifications and connecting principles — are nodes themselves. The documents are projections of the graph into pages; the views are projections chosen by relation; and the motion between projections preserves identity — the same node travels to its place in the next view, by the platform's dissolve. *(The team's hearing of his ninth round, built rather than said back; his corrections rule.)*
+   - 9.6 The primitive interaction is opening a connection: a press on a justification turns the page into that justification in its own right — its clauses, possibly several, and its entry standing face to face with the argument between them; a press on a connecting principle stands the edge between its ends. *(Built into the sketch at the ninth round, each state driven and photographed.)*
 
 ## <a id="walk"></a>The walk — his answers, verbatim with spelling cleaned
 
@@ -72,6 +74,8 @@ The sixth round, 17 November, on the theory of identification: *"What theory are
 The seventh round, 17 November, on intuition's structure: *"Your intuition is paragraphs? You don't think there's any semantic structure to intuition? Maybe parts of this can be reordered as a principle so they can be compared. Do we have annotated relationships between them? Can a relationship be another intuition? How about that? Any two intuitions can be connected by another, and that graph can be tangled. And you can view it in different ways?"*.
 
 The eighth round, 17 November, on justification's structure: *"Justification can be similar — a part of the identification is connected to the specification — possibly multiple parts, and that justification could be a complex thing to view in its own right"*.
+
+The ninth round, 17 November, the challenge to hear rather than transcribe: *"What did you hear. Are you hearing interactive data structures with relationships and nodes on them, moving, visualizing a justification that connects the two as a new thing to see! What have you heard me specify, or try to? Can you build on the thing I am trying to specify based on its reach and aim and aesthetics and not just saying back to me what I said?"*.
 
 ## <a id="open"></a>Open — the walk's questions
 
