@@ -94,6 +94,17 @@ And the project side settled the same night, his words verbatim with spelling cl
 
 Two corrections closed the night, verbatim: *"STOP MAKING THINGS COLLAPSE!!! VERBATIM!"* — the folds struck the hour they were made; the project's parts are plain open sections, the documents whole — and *"Seriously I can't hand you a markdown file and you write it verbatim??"* with *"Can you please put a lot lot of effort into making it look exactly like the Claude rendered markdown file would look??"* — the markdown region now renders in Claude's own register, matched to his screenshots by photograph: the serif headings, the sans body with bold lead-ins, the table a rounded card with a shaded grey header row and hairline rules, full width. The answer his question deserved, in the record: he can — the file renders verbatim through the parser, and every apparatus the room put between the file and the page is gone. One mechanism finding under it, for the next builder: under the navigation layer an annotation's note no longer renders at its written place but near the chapter's end — the float exposed it at two thousand pixels down — so the toggle anchors absolutely and position in the file no longer governs.
 
+## <a id="todo"></a>His asks of the night, written down as the todo — 2026-11-17, dawn
+
+1. **Show the code in the reference manual** — every chapter that appends its code draws it with a Figure. *(In progress now.)*
+2. **The table of contents very well designed** — beyond the title change: the book's title stands as the table's title and opens the cover; the running head elsewhere is the title to the table with a small ☐ to the cover; the square absent on the table. *(Built; awaiting his check, then the fuller design pass if it still reads rough.)*
+3. **The headings' font question** — the cooler grey landed; whether the font change itself should revert stands for his eye. *(Open, his to rule by looking.)*
+4. **Pages open at the top, not scrolled down** — the turn lands at the page top with the running head in view. *(Built; awaiting his check.)*
+5. **No line separating a chapter's title from its content — no breaks anywhere** — the section rule killed at the theme's root, library-wide. *(Built; his screenshot predated the bind; awaiting his check.)*
+6. **The minimal heading** — the book's title alone in the top margin, to the table everywhere, to the cover from the table; masthead renamed to its normal name. *(Done.)*
+7. **Load the sprint's pages including the manual's changes** — eight tabs opened. *(Done.)*
+8. **The opening paragraph and the space** — the project view flows title into the document's first paragraph, the Purpose label dissolved. *(Done, checked by photograph.)*
+
 ## <a id="spec"></a>The sprint's specification — said back for his yes, in his form
 
 **Sprint 129, The Textbook** — `requirements-only`; the numbers are the stable identifiers the plan will cite.
