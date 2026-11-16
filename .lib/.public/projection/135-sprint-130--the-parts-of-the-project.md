@@ -8,7 +8,7 @@
 
 ## <a id="where"></a>Where things stand — opened, specifying
 
-**Next action: his answers to the first round of questions, asked at the open. Nothing is built; the specification below is the team's say-back of his seed, draft until he corrects it. He will use Claude Desktop to help write the other documents; the room transcribes and builds only what the specification has settled.**
+**Next action: the view mockups, played on one page, and his Claude Desktop documents transcribed as they arrive. Two rounds answered; the order of the parts is ruled in 4.1. Nothing is built; the gate holds until the specification has his yes. Sharpest open: what the identification IS in the textbook's case — the front chapter itself, or a document of the back — and the two sides of a sprint.**
 
 ## <a id="seed"></a>His seed, verbatim
 
@@ -26,9 +26,9 @@
    - 3.1 Progress is the narrative glue: it narrates how an object has been identified based on the specification. *(His answer, 17 November.)*
    - 3.2 Progress entries are tied to team-member authorship and to time — progress may rule out something from the past — and together they give a sense of how far we've come. *(His answer, 17 November.)*
 4. The parts
-   - 4.1 The parts: specification, identification, justification, intuition, progress.
-   - 4.2 A justification is an annotation on the identified formalism that proves the specification is satisfied — relatively, not completely formally — and justifications frequently map to the citations on the project side. *(His answer, 17 November.)*
-   - 4.3 Intuition lives on the project side, below identification and above progress; it covers how the spec relates to existing things, how results will work, what might be relevant. All parts are independently viewable, with references between them. *(His answer, 17 November. Open: whether identification itself stands among the project side's parts in that ordering, or the ordering reads against the front.)*
+   - 4.1 The parts, in the order of the work itself: you specify what you are looking for first; you try your best to identify the thing you are talking about justifiably; you build an intuition of what it might look like to find this blurry thing; and you express in narrative what it has meant to make progress. Specification, identification, justification, intuition, progress. *(His answer, 17 November, second round.)*
+   - 4.2 A justification is an annotation on the identified formalism that proves the specification is satisfied — relatively, not completely formally — and justifications frequently map to the citations on the project side. The justification is the *justifiably* in the identifying — the manner of the act, carried as annotations, not a step after it. *(His answers, 17 November.)*
+   - 4.3 Intuition lives on the project side, below identification and above progress; it covers how the spec relates to existing things, how results will work, what might be relevant. All parts are independently viewable, with references between them. *(His answer, 17 November. Resolved by the second round: identification stands among the parts — the ordering is the order of the work.)*
 5. Annotations
    - 5.1 Annotations become toggleable — visual ones — and are, if possible, the same sort of annotation as the .public infrastructure already carries: the mechanism read in Sprint 129 stands, a visible annotation being a sort whose note() answers with its writing, no second species.
    - 5.2 Their uses: connecting related things, writing ideas, writing justifications for progress.
@@ -40,6 +40,8 @@
 
 The first round, 17 November. On progress: *"Progress narrates how an object has been identified based on the specification. If we have identification, it can be understood as the narrative glue, tied to team member authorship, time as progress might be ruling out something from the past, that gives us a sense of how far we've come"*. On justification: *"Well if you identify something specified, don't you need to like prove that it satisfies the specification?? So it is like annotations on the identified formalism that prove the spec is satisfied relatively not but completely formally. Justification might frequently map to the citations on the project side"*. On intuition: *"On the project side, below identification, above progress, but all should be independently viewable with references between"*. On the views: *"We need to play with this. You can see my light UI aesthetic. Let's find elegant ways to configure what you want to see on the screen. Annotations on and off, maybe references showing or hiding, annotation color? Maybe that's advanced"*.
 
+The second round, 17 November, on the order of the parts: *"You specify what you are looking for first, you try your best to identify the thing you are talking about justifiably, you build an intuition what it might look like to find this blurry thing, and you try to express in narrative what it has meant to make progress"*.
+
 ## <a id="open"></a>Open — the walk's questions
 
-What the two sides of a sprint are. Whether identification itself stands among the project side's parts — his ordering reads "below identification, above progress" — or whether the ordering counts the front from above. The exact sense of a justification's proof — relative, not completely formal — and its tie to the Cites. The annotation toggle's grain. The views, to be played into existence by mockups. Carried from Sprint 129 and bearing here: the names Content and Specification beside package words; the format-style composition seam; the hand-written clause numbers awaiting a component.
+What the two sides of a sprint are. What the identification IS in the textbook's case — the front chapter itself read as the identified formalism, or a document of its own on the back. The exact sense of a justification's proof — relative, not completely formal — and its tie to the Cites. The annotation toggle's grain. The views, to be played into existence by mockups. Carried from Sprint 129 and bearing here: the names Content and Specification beside package words; the format-style composition seam; the hand-written clause numbers awaiting a component.
