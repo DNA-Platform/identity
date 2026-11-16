@@ -8,7 +8,7 @@
 
 ## <a id="where"></a>Where things stand — opened, specifying
 
-**Next action: the view mockups, played on one page, and his Claude Desktop documents transcribed as they arrive. Two rounds answered; the order of the parts is ruled in 4.1. Nothing is built; the gate holds until the specification has his yes. Sharpest open: what the identification IS in the textbook's case — the front chapter itself, or a document of the back — and the two sides of a sprint.**
+**Next action: his corrections to sections 7–9 — the structure of the parts drafted from their semantics, the checkers, the views by relation — then the first mockups built from this chapter's own material on one page. Three rounds answered. Nothing is built; the gate holds until the specification has his yes. The ratified structure lands in Our Reference after the walk settles it; this record is the working place. Sharpest open: what the identification IS in the textbook's case, and the two sides of a sprint.**
 
 ## <a id="seed"></a>His seed, verbatim
 
@@ -18,7 +18,7 @@
 
 1. The sprint as content
    - 1.1 The sprint is a small project with a specification that evolves; this record carries it, amended in place, never replaced.
-   - 1.2 The two sides of a sprint are figured out by working this record as one: what belongs on its front and what on its back is itself a question of the sprint. *(Open: his answer to what the two sides of a sprint are.)*
+   - 1.2 The sprint is a project and is content — his word, fourth round — so its two sides are found by rendering it in the Content format: what belongs on its front and what on its back is answered by the rendering. *(Open: what stands on the front of a sprint.)*
 2. The ground
    - 2.1 The working ground is the textbook's first chapter, The Symmetry of Arithmetic — refining it is the sprint's deliverable.
    - 2.2 He writes the other documents with Claude Desktop; the room transcribes them in verbatim through the content's machinery.
@@ -35,6 +35,22 @@
 6. The views
    - 6.1 The views are found by play, in his light UI aesthetic: elegant ways to configure what you want to see on the screen. The configuration set so far: annotations on and off; references showing or hiding; annotation color as an advanced maybe. Explored by mockups on one page, never by asking him to imagine. *(His answer, 17 November.)*
    - 6.2 Every part is independently viewable, with references between the parts. *(His answer, 17 November.)*
+7. The structure of the parts — from their semantics *(drafted at his word, third round; his corrections rule)*
+   - 7.1 The specification is the agreement, so its unit is the clause — the atomic promise, uniquely numbered, citable; its form is the legal document already specified in Our Reference. Satisfaction is judged clause by clause, which is why the clause is the unit.
+   - 7.2 The identification states the thing, so its unit is the statement — a definition or a named object in the formal register, each carrying an anchor. It states and never narrates, because a justification must sit on a span that holds still.
+   - 7.3 The justification is the justifiably, so its unit is the annotation with two mandatory references: the anchor it sits on in the identification, and the clause it claims satisfied — its writing arguing the claim in words, relative proof being words plus citation. An annotation on the identification without a clause cite is an Idea, not a justification; the grain is enforceable.
+   - 7.4 The intuition pictures the blurry thing, so its unit is the essay paragraph in the deliverable's serif register, its references running outward to existing things and across to clauses and statements. It is the loosest part, held only to its references resolving.
+   - 7.5 The progress narrates, so its unit is the entry — byline and date as frontmatter, narrative prose as body, its references to the statements and clauses it narrates being its substance. Entries stand in time order; ruling out the past is an Archive mark that strikes an entry and never deletes it.
+8. The tools — checkers that report, never rewrite
+   - 8.1 The coverage checker reads the specification against the justifications and reports each clause satisfied or open — the sprint's own progress meter, since progress narrates what coverage shows.
+   - 8.2 The resolution checker proves every reference in every part lands on a clause, a statement, or an entry — the binder's link proof extended to the parts' language.
+   - 8.3 The anatomy checker holds each unit to its structure: a justification carries its two references, an entry its author and date, a statement its anchor, a defined term its single definition.
+   - 8.4 The tools live beside the chapter that specifies the parts, as the library keeps a thing's code beside its chapter.
+9. The views — chosen by relation *(extends 6, drafted at his word, third round)*
+   - 9.1 A view shows one part alone, or a pair joined by its relation with the references lit: the identification with the justification layer on; the specification with its coverage marks; the progress beside what it narrates; the intuition beside what it pictures.
+   - 9.2 A reference navigates both ways: a Cite lands on the clause as it does today, and a clause's coverage view answers with the justifications that cite it.
+   - 9.3 The exploration ground is the sprint's own record: the first mockups are built from this chapter's real material — its specification, its walk as progress — on one page with a switch. *(His suggestion, third round: "Might it be associated with the sprint chapter??")*
+   - 9.4 The exploration uses the Content format itself: this sprint's project rendered with the parts in their drafted forms — the specification in the legal register, the identification as anchored statements of the forms the parts take, the justifications as marks citing clauses, the intuition from his named relatives, the progress as the walk's bylined entries — the relational presentation being the thing explored. *(His direction, fourth round.)*
 
 ## <a id="walk"></a>The walk — his answers, verbatim with spelling cleaned
 
@@ -42,6 +58,10 @@ The first round, 17 November. On progress: *"Progress narrates how an object has
 
 The second round, 17 November, on the order of the parts: *"You specify what you are looking for first, you try your best to identify the thing you are talking about justifiably, you build an intuition what it might look like to find this blurry thing, and you try to express in narrative what it has meant to make progress"*.
 
+The third round, 17 November, handing the team the structural specifying: *"Why don't you try and specify the structure of the different sections of the project based on the semantics of what they mean. You will end up writing these things in the reference manual too, but that's okay. What do these sections look like? How do we make library tools that help enforce them? How do we navigate these parts in different views so we can see relations? Where might you explore this? Might it be associated with the sprint chapter??"*.
+
+The fourth round, 17 November, directing the exploration: *"That is a project right? It is content? Maybe you can use that format to explore"* — and, on the work itself: *"We are specifying this project structure with parts, and need to identify the form they will take and how they can be presented relationally"*.
+
 ## <a id="open"></a>Open — the walk's questions
 
-What the two sides of a sprint are. What the identification IS in the textbook's case — the front chapter itself read as the identified formalism, or a document of its own on the back. The exact sense of a justification's proof — relative, not completely formal — and its tie to the Cites. The annotation toggle's grain. The views, to be played into existence by mockups. Carried from Sprint 129 and bearing here: the names Content and Specification beside package words; the format-style composition seam; the hand-written clause numbers awaiting a component.
+What the two sides of a sprint are. What the identification IS in the textbook's case — the front chapter itself read as the identified formalism, or a document of its own on the back. Whether sections 7–9 stand as drafted — the units, the checkers, the views by relation; the justification's proof and the annotation grain now carried in 7.3 as draft. Where the checkers run — at bind, or beside the book as the annotation tools do. The views, to be played into existence by mockups from this chapter's own material. Carried from Sprint 129 and bearing here: the names Content and Specification beside package words; the format-style composition seam; the hand-written clause numbers awaiting a component.
