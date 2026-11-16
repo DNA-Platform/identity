@@ -8,7 +8,7 @@
 
 ## <a id="where"></a>Where things stand — opened, specifying
 
-**Next action: his eye on the opened justification and the opened edge — the ninth round's challenge answered by building: the project heard as one typed graph whose edges are nodes (9.5), the press that turns the page into a connection (9.6), driven green and photographed. The sketch The Project's Page stands in The Design with nine photographs; the hierarchy ruling lives in the bound Content dress, flip probe 38 checks 0 failures. Nine rounds answered; the gate holds for everything the specification has not settled. Sharpest open: what the identification IS in the textbook's case, and what stands on the front of a sprint.**
+**Next action: his eye on the model-driven sketch — section 5 ratified at the eleventh round and built the same hour: the annotations as an object model, views controlled from it, coverage computed, section-owned toggles with the bar as all of them, both-end marks, the opened views driven from the data. Eleven rounds answered. The lift of the ratified section 5 into Our Reference is the next specification act; sharpest open beneath it: what the identification IS in the textbook's case, and what stands on the front of a sprint.**
 
 ## <a id="seed"></a>His seed, verbatim
 
@@ -30,9 +30,15 @@
    - 4.1 The parts, in the order of the work itself: you specify what you are looking for first; you try your best to identify the thing you are talking about justifiably; you build an intuition of what it might look like to find this blurry thing; and you express in narrative what it has meant to make progress. Specification, identification, justification, intuition, progress. *(His answer, 17 November, second round.)*
    - 4.2 A justification is an annotation on the identified formalism that proves the specification is satisfied — relatively, not completely formally — and justifications frequently map to the citations on the project side. The justification is the *justifiably* in the identifying — the manner of the act, carried as annotations, not a step after it. *(His answers, 17 November.)*
    - 4.3 Intuition lives on the project side, below identification and above progress; it covers how the spec relates to existing things, how results will work, what might be relevant. All parts are independently viewable, with references between them. *(His answer, 17 November. Resolved by the second round: identification stands among the parts — the ordering is the order of the work.)*
-5. Annotations
-   - 5.1 Annotations become toggleable — visual ones — and are, if possible, the same sort of annotation as the .public infrastructure already carries: the mechanism read in Sprint 129 stands, a visible annotation being a sort whose note() answers with its writing, no second species.
-   - 5.2 Their uses: connecting related things, writing ideas, writing justifications for progress.
+5. Annotations *(rewritten at his tenth round — the foundation specified first, before more design)*
+   - 5.1 Anything on a project page can be annotated: whatever can be mentioned can carry an annotation, because an annotation finds its subject by mention, never by position or a runtime id. Addressability is the only requirement — a clause, an entry, a principle, a progress entry, or a span of writing inside one.
+   - 5.2 An annotation is writing said of a thing: it has a sort — Idea, Question, Revision, Archive stand already; the project adds its own, Justification among them — the mention of its subject, and its writing. It is the infrastructure's existing annotation, no second species.
+   - 5.3 A relation is a type of annotation between two things: writing said of a pair, finding both of its ends by mention. A justification relates an identification entry to a clause; a connecting principle relates two principles.
+   - 5.4 An annotation is itself a thing: it can be mentioned, so it can be annotated and related in turn. This one closure gives everything the walk found — the justification that claims several clauses is a thing fanning out one relation to each; the relationship that is itself an intuition; the graph that tangles.
+   - 5.5 A section toggles its own annotations: the toggle is a small square in the section's heading furniture, in the dress the content's flip already wears; its state is a word on the section, and only the annotations whose subjects live under that section answer to it. The page's whole layer is every section's toggle at once.
+   - 5.6 Seeing: an annotation draws beside its subject — in the margin where there is one, inline after its subject where there isn't — in the small voice, teal only in its cites, and the writing never moves to make room. A relation draws at both of its ends, each end showing the writing and the cite to the other end; opened by a press, it stands between its two things, and the return undoes it. Nothing draws while the toggle is off.
+   - 5.7 Their uses stand from the seed: connecting related things, writing ideas, writing justifications for progress.
+   - 5.8 Ratified and built at the eleventh round: the annotations are in the object model and their view is controlled — the sketch renders every mark, the coverage and the Archive strike from data; a relation draws at both of its ends; a section's square toggles its own; the bar's square is every section's at once. The model corrected the hand on its first render: clause 4.2, hand-marked open, is claimed by J3 and the computed coverage says so. *(Model probe 9 checks 0 failures; focus probe 12 checks 0 failures on the rebuilt page.)*
 6. The views
    - 6.1 The views are found by play, in his light UI aesthetic: elegant ways to configure what you want to see on the screen. The configuration set so far: annotations on and off; references showing or hiding; annotation color as an advanced maybe. Explored by mockups on one page, never by asking him to imagine. *(His answer, 17 November.)*
    - 6.2 Every part is independently viewable, with references between the parts. *(His answer, 17 November.)*
@@ -76,6 +82,10 @@ The seventh round, 17 November, on intuition's structure: *"Your intuition is pa
 The eighth round, 17 November, on justification's structure: *"Justification can be similar — a part of the identification is connected to the specification — possibly multiple parts, and that justification could be a complex thing to view in its own right"*.
 
 The ninth round, 17 November, the challenge to hear rather than transcribe: *"What did you hear. Are you hearing interactive data structures with relationships and nodes on them, moving, visualizing a justification that connects the two as a new thing to see! What have you heard me specify, or try to? Can you build on the thing I am trying to specify based on its reach and aim and aesthetics and not just saying back to me what I said?"*.
+
+The tenth round, 17 November, the call to specify the foundation first: *"You need to specify what these sections are right? It's not just a design. Do you see the interactive and relational thing? Why don't we start simple. How can you add the idea of annotating anything on a project page. How about a relation is a type of annotation between two things. How? How can we make it so that a section can toggle their annotations? How does it even work to see them!! How about you specify that first"*.
+
+The eleventh round, 17 November, ratifying and opening the build: *"Let's build that. And yes, I think we want these to be annotations, and they are in the object model and we can control their view?"*.
 
 ## <a id="open"></a>Open — the walk's questions
 
