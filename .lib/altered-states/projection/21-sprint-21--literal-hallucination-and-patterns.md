@@ -71,10 +71,30 @@ finds when a neuron's type is raised at every spot of the twin's map.
 - *Cost.* One step size for all 548 neurons is 16 minutes on David's box, and no change to the code makes it faster
   (measured); the cost is the twin.
 
-**In progress.**
-- A slide describing pattern literals with a version of the grid figure, after the atomic feature slide.
-- Patterns made at the locations of the recorded cells (*"We probably want to make patterns based on locations of the
-  cell right?"*), running on David's box.
+**Would spontaneous activity be classified as patterns? (measured 2026-11-19; `shown_images.py classes:<phase>`.)**
+Doug: *"show DOI, MEI, pattern and image evoked and natural to see. Can you conclude that they would be classified as
+patterns?"* Four classes of literal (the featureless screens', the MEIs' neural activity, the pattern literals, the
+natural images'), each sample to the class it is most probable under:
+
+| samples of | patterns at | featureless | MEIs | patterns | natural |
+|---|---|---|---|---|---|
+| post-DOI spontaneous | the lab's step size | 2% | 25% | 43% | 30% |
+| post-DOI spontaneous | 4 times the step size | 12% | 43% | 6% | 39% |
+| pre-DOI spontaneous (held out) | the lab's step size | 80% | 6% | 10% | 5% |
+| image-evoked, test images (held out) | the lab's step size | 2% | 8% | 4% | 86% |
+
+At the lab's own step size, the published recipe's and the one that makes the MEIs, patterns are the class post-DOI
+spontaneous activity most often goes to, by a small margin (0.7 bits over the MEIs, 1.4 over natural images, 5.6
+over the featureless screens at the median). At four times the step size it does not hold. So the conclusion rests
+on the step size, which is not settled.
+
+**In the deck, and shown to him.**
+- The pattern literals slide (page 19 of 23, after the atomic feature slide), with a version of the grid figure:
+  three exemplary neurons, the square grid first; the classification slide is page 22 and unchanged.
+- Patterns made where the recorded cells are (*"We probably want to make patterns based on locations of the cell
+  right?"*; `tiled-cells`, 232 spots): a column of that figure.
+- Three views of the space, in his order (`artifacts/patterns/figures/space-1..3`): what is discriminated and the
+  literals; then the MEIs and the patterns; then post-DOI spontaneous. Not in the deck until he has seen them.
 
 **Open, his to say.**
 - What the report says of post-DOI spontaneous activity: it reads literal on its own day's map because what images
