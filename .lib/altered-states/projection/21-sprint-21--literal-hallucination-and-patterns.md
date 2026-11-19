@@ -138,8 +138,20 @@ that correspond, and use those. Talk about pattern intensity on the step size sl
   three views of the space (`artifacts/patterns/figures/space-1..3`) use the corresponding patterns too.
 - To build: `literal-hallucination-figures.py` draws the figures and writes numbers.json; `literal-hallucination-deck.py`
   builds the deck from them. Two scripts; the first alone leaves the old deck.
-- The grid figure (slide 20) is still the 64 explored neurons at twice the lab's step size; every neuron on every
-  grid is a further run of about two and a half hours.
+- The grid figure (slide 20) is still the 64 explored neurons at twice the lab's step size.
+
+**On David's box now, and what follows each (2026-11-19).**
+1. `run-20261119-0737-tiled-steps-beyond` (launched 07:37, about 65 minutes): every neuron's pattern at step sizes
+   0.5, 0.75, 6 and 8 (`patterned.BEYOND`), for the 82 neurons with no equal step size among the seven. When home
+   (fetch its branch, cherry-pick with theirs, sync): `patterned_figures.corresponding` reads all eleven step sizes
+   by itself (`_step_files`: all four beyond or none); then `shown_images.py 33977-suite2p corresponding`,
+   `classes:corresponding`, the figures script, the deck script, `patterns-figures.py`; look at slides 18, 19, 20, 22
+   and the frozen slide check. The slide's step figure keeps its seven columns (`sweep_images(within=(1, 4))`).
+2. `tiled-arranged-every` (phase of that name; ten grids of `patterned.EVERY_GRID` at twice the lab's step size, 16
+   minutes each, about 2 hours 40): every neuron's pattern on every grid, launched behind the first. When home,
+   `same_on_every_grid` reads every neuron's files by itself (`_grids_whose`: all ten or the 64's); rerun the figures
+   and deck scripts; slide 20's numbers then come from all 548 (its record says how many neurons it read).
+The watcher for both is the scratchpad's `beyond_home.sh`; if the session is cut, the steps above are the whole of it.
 
 **Open, his to say.**
 - What the report says of post-DOI spontaneous activity: it reads literal on its own day's map because what images
