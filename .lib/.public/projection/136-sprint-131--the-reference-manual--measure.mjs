@@ -24,6 +24,7 @@ console.log(await read('running head anchor', '.pd-running-head a'));
 console.log(await read('running head word', '.pd-running-head .pd-word'));
 console.log(await read('table heading', '.pa-table-of-contents .pd-heading'));
 console.log(await read('table row anchor', '.pa-table-of-contents .pd-paragraph.pa-reference'));
+console.log(await read('table row container', '.pa-table-of-contents .pd-container.pa-reference'));
 console.log(await read('table row word', '.pa-table-of-contents .pd-paragraph .pa-content'));
 console.log(await read('leaf', '.pd-leaf'));
 console.log(await read('chapter title', '.pa-page.pa-open .pd-title'));
