@@ -177,7 +177,45 @@ The test (`discriminant-analysis/gradation_and_tiling.py`; no GPU, everything is
 MEI), in a disc, at every 12th, 8th, 6th and 4th place, at random spots, on a honeycomb, at every place; for each
 the gradation (the spread of grey level at the neuron's place over its MEI's) and the three features. Asked: at one
 gradation, do the features change with the tiling; at one tiling, with the gradation; and neuron by neuron, does a
-neuron's pattern sit where its own MEI does. Results go under this block.
+neuron's pattern sit where its own MEI does.
+
+Measured (2026-11-19; `gradation_and_tiling.json`, `gradation_and_tiling-examples.png`, `gradation_and_tiling.png`).
+Gradation is an image's intensity at the neuron's place over its MEI's. Each image of a tiling is read against the same
+neuron's pattern at the same gradation.
+- *Gradation moves the measure.* Every neuron's pattern, eleven step sizes, medians (gradation: literal, natural,
+  featureful): 0.31: +143, -7, +0.3; 0.62: +139, -1, +3; 1.09: +131, +25, +7; 1.67: +128, +47, +8; 2.55: +126, +60,
+  +11. A doubling of gradation is +24 bits natural (+10 to +32 by neuron), +3.3 featureful, -6 literal. At the
+  faintest the pattern literal sits on the featureless screens' literals (+143, 0, 0): less gradation is more
+  featureless.
+- *Tiling does not, to within a quarter of a doubling.* Natural, this tiling less the same neuron's pattern at the
+  same gradation, medians (10% to 90%): one place, the MEI (539 neurons) +5.8 (-20 to +28); every 12th place, 10
+  places (64 neurons) +4.1 (-7 to +21); every 8th, 24 places, +4.5 (-3 to +20); every 6th, 43 places, +2.2 (-2 to
+  +11); every 5th, 4th, 3rd, 2nd place and both honeycombs, 52 to 392 places, between -0.1 and +0.6 (within 3 bits
+  either way). Featureful: +2.9 at one place, +1.1, +0.9, +0.5, then 0. Literal: -4.2 at one place, -2.3, -1.9, -1.2,
+  then 0. So one place reads a little more featured than every place, in the direction of a little more gradation,
+  fading by about 50 places. On featureful and literal that residue at one place is about what a doubling of
+  gradation does there (+3.3, -6), though small on those axes (image-evoked activity is at +280 featureful).
+- *Tilings that are not uniform differ more:* random spots, 1 in 16: +2.4 (-15 to +16); where the recorded cells
+  are: +8.2 (-13 to +36); a disc about the place (17 neurons): -4.4 (-26 to +8).
+- *What tiling changes is the neural activity.* At the same gradation: neurons at half their own level or more, 10
+  under the MEI, 28 under the pattern; the neuron's own level 1.0 under its MEI, 0.4 to 0.5 under any tiling. What
+  it keeps: how far the activity is from the middle grey screen's literal (6.5 widths under the MEI, 6.7 under the
+  pattern). With LDA telling the two apart 98 to 100%, the invariance is the space's, not the activity's.
+- *The collection, not neuron by neuron.* Across 539 neurons a neuron's MEI and its own pattern at gradation 1
+  correlate at 0.41 on natural (0.22 literal, 0.13 featureful); the MEI is 13 bits of natural from its own pattern,
+  17 from another neuron's, and two neurons' patterns are 19 apart. His words were "approximately the same
+  collection across neurons": that holds. An identity neuron by neuron does not, in this space. (Matching by
+  gradation is itself coarse for one neuron: 24 bits a doubling.)
+- *Limits.* The middle of the range (10 to 392 places) is the 64 explored neurons, at three step sizes for four
+  grids and one for the rest; all 548 on ten grids, at twice the lab's step size, come with
+  `tiled-arranged-every`. One recording, one twin.
+- *Not tested, and the general identity if there is one:* by the twin's architecture (a neuron is a type at a
+  place, on one shared map of features), where copies do not interfere a neuron elsewhere answers the pattern as
+  it would answer the MEI if it were moved beside it. So the pattern literal would be the MEI's neural activity
+  with place taken away (his "move neurons virtually", 2026-11-07). That is a statement about the activity and is
+  testable on the box: read every type at the MEI's place under the MEI, and compare with the pattern literal.
+- *Also not tested:* whether adding different features (other types) moves the measure where adding copies of one
+  does not. That is the contrast his sentence "a pattern is something like a feature" needs.
 
 **To do: redo every pattern scatter (Doug, 2026-11-19, of slide 22, "At the step size that corresponds, pattern
 literals sit where the most exciting images do").** *"Jot down tha twe need to redo all pattern scatters, but note
