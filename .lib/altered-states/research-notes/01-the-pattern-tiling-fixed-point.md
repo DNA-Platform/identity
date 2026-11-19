@@ -126,3 +126,83 @@ places, a disc) scatter three to ten times wider.
 places to every place) natural is -3, +3, +3, -6, -4 at the lab's step size; +22, +48, +47, +34, +37 at twice; +63,
 +74, +71, +70, +70 at four times. Its MEI: +28.
 *Leads to* entries 3 and 4.
+
+### 3. Every neuron on every grid (2026-11-19, 11:25)
+
+*Asked.* Entry 2's middle rows were 64 neurons. Do they hold for all 548?
+*Done.* Run `0844-tiled-arranged-every` on David's box (phase `tiled-arranged-every`: ten grids of
+`patterned.EVERY_GRID` at twice the lab's step size, every neuron, 2 hours 40); `gradation_and_tiling.py` again, which
+reads every neuron's grid files once all ten are there.
+*Seen* (natural, this tiling less the same neuron's pattern at the same gradation; median, 10%, 90%; 548 neurons
+unless said):
+
+| the type raised at | places | natural |
+|---|---|---|
+| one place (the MEI), 539 neurons | 1 | +5.8 (-20, +28) |
+| every 12th place | 10 | +5.2 (-8, +20) |
+| every 8th place | 24 | +5.6 (-4, +21) |
+| every 6th place, 64 neurons | 43 | +2.2 (-2, +11) |
+| a honeycomb, 6 apart | 52 | +0.5 (-4, +6) |
+| every 5th place | 62 | +0.5 (-4, +6) |
+| every 4th place, 64 neurons | 98 | -0.1 (-3, +3) |
+| 1 place in 16, at random | 98 | +2.7 (-9, +17) |
+| a honeycomb, 4 apart | 130 | 0.0 (-2, +2) |
+| every 3rd place | 174 | 0.0 (-3, +2) |
+| where the recorded cells are | 232 | +10.1 (-12, +32) |
+| every 2nd place | 392 | +0.1 (-1, +2) |
+| 1 place in 4, at random | 392 | +2.1 (-5, +11) |
+
+*Reading.* For the measure the fixed point lies between every 8th place (+5.6) and every 6th or 5th (+2.2, +0.5):
+the patterns' own spacing, about 7 pixels. Below it, more places change nothing (within 3 bits either way for a
+neuron). Above it the reading is that of one place, about +5. So there are two plateaus, one place to about 24
+places and about 50 places on, with the step where the grid becomes finer than the pattern. Tilings that are not
+uniform stay off the fixed point however many places they have (random 1 in 4: 392 places, +2.1 and four times the
+scatter; the cells' places: +10).
+*Does not show* that the step is at each neuron's own spacing; that needs the spacing neuron by neuron (next).
+
+### 4. The neurons moved to the MEI's place (2026-11-19, 11:25)
+
+*Asked* (his "is that true in general or just in our space?"). By the twin's make (a neuron is a type at a place on
+one shared map), if copies do not interfere, a neuron under the pattern answers as it would under the MEI were it
+moved to the MEI's place. Is the pattern literal the MEI's neural activity with place taken away?
+*Done.* Phase `moved` (`patterned.moved`, `painting.moved_to`; run `1121-moved`, half a second on the GPU): under
+each neuron's MEI, every neuron's type read at that neuron's place. Checks: its diagonal against the MEI's own
+activation, 2e-5; every neuron at its own place against the stored activity, 3e-5. Compared with the pattern
+literals at the step sizes that correspond, as levels (0 under the grey screen, 1 under a neuron's own MEI), by the
+correlation across the other 547 neurons (scratchpad `taken_away.py`; not yet a module).
+*Seen* (median, 10%, 90% over 548 neurons). The pattern literal against: the MEI's activity with every neuron
+moved to its place, 0.61 (0.39, 0.76); the MEI's ordinary activity, 0.54 (0.29, 0.69); another neuron's moved
+activity, 0.39 (0.08, 0.67); another neuron's pattern literal, 0.59 (-0.03, 0.89). A pattern's level for one level
+of the moved activity: 0.60. Neurons at half their own level or more: 27 under the pattern, 22 moved, 10 ordinary.
+Its own moved activity is the best match among all 548 for 3% of neurons (median rank 54). In the space the moved
+activity reads literal +124, natural +45, featureful +11, 8.2 widths from the screen; the MEI +129, +22, +8, 6.5
+widths; the pattern literal +133, +14, +6, 6.7 widths.
+*Rules out* the identity in its simple form: the pattern literal is not the MEI's activity with place taken away
+(0.61, and its own is seldom the best match). *Does not rule out* that place explains part: moved is nearer than
+ordinary (0.61 against 0.54) and nearer than another neuron's (0.39).
+*Noticed.* Two different neurons' pattern literals are as alike as a pattern literal and its own moved activity
+(0.59). Patterns share a large common part in the activity; what is one neuron's own is the smaller part. Not
+looked into yet.
+
+### 5. The free parameters: up and down, and magnitude (2026-11-19, 11:28, running)
+
+Doug: *"Identites are things that don't change under composition with certain operations. You are showing tha twe
+identified a space that might be invariant under pattern extent while not invariant under contrast? Amazing."* And:
+*"REmember there are free parameters to explore. How do you make sure the MEI and its tiling are the same? You can
+move up and down and increase the magnitude linearly and multiplicatively so there is a space to look for the
+identity of the MEI / pattern."*
+*My reading* (mine). Until now a pattern was matched to its MEI on one number, through the recipe's step size, and
+its ground stayed darker than the MEI's at every step size (23 to 45 grey levels). The two operations that do not
+change what an image is a picture of are moving its grey level up and down and multiplying its contrast. So put both
+images at the same ground and the same gradation, exactly, by those two operations alone, over a plane of grounds
+and gradations, and look for where in the plane the MEI and its pattern are the same, in the space and in the
+activity.
+*Done.* Phase `graded` (`patterned.graded`; run `1128-graded`): for every neuron its MEI, its pattern at the step
+size that corresponds and its pattern at the lab's step size, each at grounds -40, -20, 0, +20, +40 grey levels from
+the MEI's own ground and gradations 0.35, 0.5, 0.71, 1, 1.41, 2, 2.83 (grey level -> ground + gain x (grey level -
+its own ground), then the screen's black and white); each through the twin. Check built in: the MEI at ground 0 and
+gradation 1 is the MEI.
+*To read when home:* in the plane, the three features of the MEI and of the pattern at each point (is the space
+invariant to extent everywhere in the plane, or along a line?); what moving up and down does to the measure (not yet
+known at all); whether a pattern made at the lab's step size and multiplied up is the pattern made at a larger step
+size (is the step size only contrast?); and, in the activity, where the MEI and the pattern are nearest.
