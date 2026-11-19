@@ -15,7 +15,19 @@ The figures he reads, and how to change perspective without changing the truth, 
 
 *"Your first visualization of a calculation is not useful."*
 
-A figure goes to him only when I can say yes to each of these (his words, 2026-11-03):
+A figure exists to show a result. *"You should always be trying to show a result, and the figure and its visual serve
+that purpose. There is no visual without an intention and it should be designed to have purpose based on data, then
+looked at directly with your visual system to see if it accomplished that"* (2026-11-16).
+
+- **Before drawing, I write the figure's sentence.** Its subject is what is compared. Its point is what the data show.
+  A figure with no clear subject or point is an ungrammatical sentence, and showing one is a sin (2026-11-16).
+- **The data themselves must say the point**, clearly enough to be captured by eye. *"The data should say something
+  clear enough to capture by eye."* A fitted line or a number cannot carry a point the data do not show.
+- **Then I look with my own eyes.** I render it as an image, the way he will see it, and ask whether the sentence is
+  there at a glance. Never show him a figure or a page I have not seen: *"You should never ever make a page... never
+  ever showing figures without seeing them visually"* (2026-11-16).
+
+Then it goes to him only when I can say yes to each of these (his words, 2026-11-03):
 
 1. He understands this kind of figure.
 2. He understands every word on it.
