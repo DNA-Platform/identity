@@ -99,8 +99,13 @@ is not reading atomic against uniform, and I told him it is not worth a slide as
 above says more.
 
 **In the deck, and shown to him.**
-- The pattern literals slide (page 19 of 23, after the atomic feature slide), with a version of the grid figure:
-  three exemplary neurons, the square grid first; the classification slide is page 22 and unchanged.
+- The deck is 24 slides. Slide 18, replaced at his word (*"Replace this. You can show a few exemplary examples
+  here, define them as the pattern literal and explain how they are a natural extension of the MEI. And then use the
+  next slide to express the may in which they are unique to a neuron and its MEI"*): six exemplary pairs, the square
+  grid first, with the pattern literal defined. Slide 19: a pattern is unique to a neuron and its most exciting
+  image (the grid figure; another neuron's pattern 0.38; its own pattern excites a neuron more than 97% of the
+  others' do). Slide 21, new (*"Don't we want a slide after this shwowing patterns too"*): the pattern literals on
+  the canonical view. The classification slide is page 23 and unchanged.
 - Patterns made where the recorded cells are (*"We probably want to make patterns based on locations of the cell
   right?"*; `tiled-cells`, 232 spots): a column of that figure.
 - Three views of the space, in his order (`artifacts/patterns/figures/space-1..3`): what is discriminated and the
