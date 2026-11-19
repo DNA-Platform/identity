@@ -128,17 +128,28 @@ size (1.25 to 2.74; found for 94% of 64 neurons). At those step sizes the patter
 for 25% (the MEIs 34%, the natural images 33%, the featureless screens 8%); pre-DOI spontaneous stays featureless
 (87%). The deck is 25 slides: 18 the pattern literal, 19 the step size and pattern intensity, 20 unique to a neuron,
 21 where the MEIs sit, 22 where the patterns sit at corresponding step sizes, 24 the classification slide unchanged.
-The 64 are the neurons with every step size; the run for all 548 at the five step sizes between is on David's box.
+The 64 are the neurons with every step size; the run for all 548 at the five step sizes between is on David's box
+(`run-20261119-0556-tiled-steps`, launched 05:56, about 80 minutes).
+
+**Queued for when that run is home (2026-11-19).** The code already reads every neuron's step files once all five
+are there (`patterned_figures._step_files`: `tiled-step<k>.npz` for every neuron, else `tiled-explored-step<k>.npz`
+for the 64, never a mix; checked to give the same record on the 64). In order: bring the run home (fetch its branch,
+cherry-pick with theirs, sync); `patterned_figures.corresponding` and `sweep`; `shown_images.py 33977-suite2p
+corresponding` then `classes:corresponding`; `literal-hallucination-figures.py` (figures and deck); look at slides 18,
+19, 20 and 22 and the frozen slide check; then the numbers above, the covers and this chapter from all 548. The grid
+figure (slide 20) is still the 64 explored neurons at twice the lab's step size; every neuron on every grid is a
+further run of about two hours, not launched.
 
 **Open, his to say.**
 - What the report says of post-DOI spontaneous activity: it reads literal on its own day's map because what images
   drive came down to the spontaneous level after DOI (an image raised a cell 19% above spontaneous before, 2% after).
 - Whether the axis words *not literal* and *literal* move to the zero.
-- The atomic feature slide still shows the old examples, the first too dark; the ordered candidate is `exemplars.png`
-  (the square grid first).
-- The classification's pattern classes (slides 20 and 21) are points part of the way between two literals, which no
+- The classification's pattern classes (slides 23 and 24) are points part of the way between two literals, which no
   image gives; pattern literals are the repair he proposed.
 - The three earlier decks have not been read against the definition of a representation.
+- Whether the three views of the space and the four-class result go in the deck (he has not seen the views).
+- Brightness: at every step size the pattern's ground is darker than its MEI's (25 to 43 grey levels). No step size
+  matches it; whether it matters is his to say.
 
 ## Wrong turns, so they are not taken again
 
