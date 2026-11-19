@@ -1,0 +1,115 @@
+# The Symmetry of Arithmetic: Specification
+
+Nov 19, 2026 · @Doug
+
+This specifies an addition to the formalism of arithmetic: a new way of identifying truths. It is the thing that represents what the subject of arithmetic commits to about zero. Three elementary arguments, for Goldbach, for twin primes and for the arithmetic form of Riemann, each lack one step, and it is the same step. The addition is what makes that step an inference. Its form is not yet known. The specification says what it has to be.
+
+## 1. Subject
+
+**1.1 [Formalism]** The formalism is first-order Peano arithmetic, with induction as a rule of inference.
+
+**1.2 [Reference]** It refers to zero and, by succession, to each number.
+
+**1.3 [Totality]** It does not refer to the totality of the numbers. It has no term for it, and the addition gives it none. Yet it quantifies over all the numbers: it has an all, and no way to refer to what all means.
+
+## 2. Identity
+
+**2.1 [Identity]** An identity is what is named because it lacks distinction in an ontology.
+
+**2.2 [Zero]** Zero is the identity of quantity. It is how arithmetic speaks of the existence of the unquantifiable.
+
+**2.3 [Indistinction]** The totality is unquantifiable. In the ontology of quantity it lacks distinction from zero, so to refer to it is to refer to zero.
+
+**2.4 [Division]** Arithmetic says this of division already: zero is what every number divides, and the only number every prime divides.
+
+**2.5 [Generality]** What is said here of zero is said of any identity. Where a relationship specifies something uniquely, to prove a thing of another imagined in its place is to prove it of the one.
+
+## 3. Symmetry
+
+**3.1 [Two readings]** Arithmetic reads from the bottom: from zero, by successor. The same formalism reads from the top: its constant is the totality and its step is predecessor. Read that way it cannot refer to zero. The two readings are identical, and nothing in the formalism says which is the case.
+
+**3.2 [Sameness]** By 2.3 the two readings begin from one identity. So what is defined from the bottom and what is defined from the top are literally the same set.
+
+**3.3 [Point of symmetry]** That set is symmetric, and its point of symmetry cannot be referred to.
+
+**3.4 [Invariance]** The symmetry is invariant to its interpretation. At least three interpretations cannot be told apart, and the addition has no perspective on which of them, if any, it formalizes.
+
+- **3.4.1 [Loop]** The numbers run off into a horizon that cannot be referred to. What is to the left of zero cannot be referred to either. Nothing distinguishes the two, so they connect: the totality is literally zero, and there is a loop. No number is the predecessor of zero, so "zero is not a successor" is never false.
+- **3.4.2 [Inflection]** Zero is even, and a completed factorial is even. Two evens have an odd between them. That odd, the factorial without its two, is the point of inflection. It cannot be referred to: it is the limiting thing, too far away to see.
+- **3.4.3 [Descent]** Put a mirror one below a factorial. The count still goes up, and is imagined to be heading back toward zero, where the factorial is zero. Taken to the limit, the mirror stands at a place that cannot be referred to. The numbers coming down index the same numbers, and the correspondence cannot be referred to.
+
+## 4. Equivalence
+
+**4.1 [Sieves]** In arithmetic modulo a factorial there is a lower sieve, read up from zero, and an upper sieve, read down from the factorial. [A0]
+
+**4.2 [Arguments]** Three arguments are made with the two sieves kept distinct. [A1, A2, A3]
+
+**4.3 [Step]** Each argument ends by taking the modulus to the limiting factorial and setting the two sieves equal. That step is not an inference in mathematics as it stands. On every modulus that can be named, the two sieves differ.
+
+**4.4 [Equivalence]** The addition is equivalent to that step. With it each argument is a proof, and what it proves is what can be proven in this way.
+
+**4.5 [Indirection]** In arithmetic the two sieves cannot be specified directly: the upper sieve is defined from the top, and the top has no term (1.3). So the addition does not speak of sieves, of a modulus or of a limit. It speaks of a definition.
+
+## 5. Universality
+
+**5.1 [Universal conclusion]** The addition is a new way to make universal conclusions. The three arguments are the foundational examples of three types of universal.
+
+**5.2 [Pairing]** Every number has two of a kind at equal distance on either side. Goldbach is this for the primes.
+
+**5.3 [Recurrence]** Above every number there is another pair of a kind. Twin primes is this for the primes.
+
+**5.4 [Balance]** Up to every number, the count of a kind stays near its estimate. Riemann, in its arithmetic form, is this for the primes.
+
+**5.5 [Basic cases]** Each type has a basic case that arithmetic proves: the coprimes of a number, Euclid, the multiples of 5. The addition expresses each as simply as its ordinary proof.
+
+## 6. Inference
+
+**6.1 [Identification of truth]** To prove a statement is to identify it: the proof makes it an identity. The addition is a new identification of truth. It holds of any identity (2.5), and in arithmetic the identity is zero.
+
+**6.2 [Kind]** The addition is one thing, finitely expressed. It may be:
+
+- **(a)** an axiom;
+- **(b)** a rule of inference, as induction and proof by contradiction are;
+- **(c)** a hypothetical proof, in which an upper bound is supposed, every relation that can be expressed of the numbers before the bound is taken to hold on its other side of the numbers in reverse order, and the supposition is then discharged.
+
+Another kind is not excluded.
+
+**6.3 [Invariants]** Whatever its kind:
+
+- **(a)** each use of it can be checked on the written proof;
+- **(b)** it introduces no term for the totality (1.3);
+- **(c)** it makes the two sieves the same without specifying either (4.5);
+- **(d)** it does not choose among the interpretations of 3.4;
+- **(e)** it yields the step of 4.3 and what follows from it, and nothing else (4.4).
+
+**6.4 [Fit]** A rule of inference seems fitting, because a rule ranges over formulas (4.5). It is expressed like induction, and set up and followed like a proof by induction. It is self-evident from section 2, and it wears the same clothing as the rest of the formalism.
+
+**6.5 [Inferential identity]** The inferential identity is the proof of zero steps: what is unprovable is what it proves. Gödel's argument has the step of 4.3: the number a proof of G would need is what every prime divides, and that is zero (2.4). So the addition gives one answer for G, for Con(PA) and for the identities of first-order logic, from the bottom and from the top. [A4]
+
+## 7. Independence
+
+**7.1 [Undecided]** Arithmetic has not decided the symmetry. The addition cannot be derived in it, and it proves none of the three examples and refutes none.
+
+**7.2 [Consistency]** The addition is consistent with arithmetic. With it, nothing that arithmetic refutes is proven.
+
+**7.3 [Failure]** It can fail. If arithmetic refutes an example, the addition is inconsistent and is withdrawn. If arithmetic proves one, the addition is irrelevant to it.
+
+**7.4 [Other subject]** That the top and the bottom are two things is the reading of another subject. Nothing here places a requirement on it. With negative numbers the symmetry is not expected to hold.
+
+## 8. Existence
+
+**8.1 [Existence]** The symmetry exists. A circular arithmetic in which what precedes zero cannot be referred to, and zero is still the limit, gives it.
+
+**8.2 [Form]** The addition is that symmetry expressed inside the formalism of 1.1, where the sieves cannot be specified directly (4.5). The arguments of 4.2 show what its form has to do.
+
+**8.3 [Uniqueness]** One thing satisfies sections 1 to 7. Any two that do prove the same.
+
+**8.4 [Not yet specific]**
+
+- **8.4.1** The one sentence that says of a formula what 3.2 says. Bears on 4.4.
+- **8.4.2** Which definitions from the bottom and from the top may be set equal, and what is kept when a supposition of 6.2 (c) is discharged. Bears on 4.4, 6.3 (e) and 7.2.
+- **8.4.3** Which kind of 6.2 the addition is. Bears on 6.3 (a) and 6.4.
+
+**8.5 [Modification]** The specification is modified when its parts are found inconsistent.
+
+Sections 1 to 8 are the specification. Annotations refer to it by code and add nothing to it. They stand in the tabs Annotations, and Attachments and figures.

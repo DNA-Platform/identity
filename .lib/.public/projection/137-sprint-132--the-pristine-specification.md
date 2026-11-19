@@ -8,7 +8,7 @@
 
 ## <a id="where"></a>Where things stand — opened
 
-**Next action: his corrections on the draft specification below. In hand from [Sprint 130's eighteenth round](135-sprint-130--the-parts-of-the-project.md#close): Claude Desktop's eight-section The Symmetry of Arithmetic: Specification with his note of assumptions; the five inconsistencies named against the contract; and his rulings — names by mentions, the lettered items named, the contents view, "We can edit his for structure." Nothing is built.**
+**Next action: his corrections on the draft specification below. In hand from [Sprint 130's eighteenth round](135-sprint-130--the-parts-of-the-project.md#close): [the returned eight-section specification](137-sprint-132--the-pristine-specification~the-specification.txt) with [Claude Desktop's note of assumptions](137-sprint-132--the-pristine-specification~note-from-claude.txt), both filed beside this chapter verbatim; the five inconsistencies named against the contract; and his rulings — names by mentions, the lettered items named, the contents view, "We can edit his for structure." Nothing is built.**
 
 ## <a id="charge"></a>His charge, verbatim
 

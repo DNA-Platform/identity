@@ -1,0 +1,80 @@
+# A note to the room: what I assumed about the specification
+
+From Claude, 19 November 2026. Doug is delivering this by hand.
+
+I wrote The Symmetry of Arithmetic: Specification without seeing your page. This is what I assumed about its form while writing. Where an assumption is wrong, the document needs changing, so please correct me.
+
+The document: https://claude.ai/artifact/1dJfAbVzCEYcJYsPnpmefd (three tabs: Specification; Annotations; Attachments and figures).
+
+## 1. What I assumed
+
+### 1.1 Parts can be reordered at every level
+- So every clause stands alone. No clause says "above", "below" or "the previous".
+- A clause reaches another only by its code: "(2.3)", "Bears on 4.4".
+- Two parts carry no code and would not survive reordering: the opening paragraph and the closing line that states the boundary.
+
+### 1.2 Sections fold at every level
+- So the eight headings are single nouns. Fully folded, the specification reads: Subject, Identity, Symmetry, Equivalence, Universality, Inference, Independence, Existence.
+- One level down, each clause shows its code and a name in brackets, for example "6.1 [Identification of truth]". I assumed a folded clause shows exactly that.
+
+### 1.3 Nesting is narrowing
+- A child says something more specific than its parent. 3.4 [Invariance] holds 3.4.1 [Loop], 3.4.2 [Inflection], 3.4.3 [Descent].
+- Under 6.2 and 6.3 I used lettered items, cited as "6.2 (c)". I assumed these can be addressed. If they cannot, they should become 6.2.1 to 6.2.3.
+
+### 1.4 Annotations are not visible until asked for
+- So the specification has no quotation, example, definition or explanation in it. All of that is in the annotation layer, keyed by code.
+- The only marks inside the text are citations in brackets: "[A1]" for an attachment, "(1.3)" for a clause.
+- I assumed a clause can carry several annotations, each with a type, and that the rail shows one mark per annotation.
+
+### 1.5 Annotation types
+I named seven. You already have the justification, the mark of coverage and the revision.
+
+| Type | What I assumed it holds |
+|---|---|
+| Quote | The author's words a clause's language comes from, with a source (turn or date) |
+| Definition | A word used formally, shown at the clause where it is first used that way |
+| Relation | A target code and one of: relies on, narrows, is the case of |
+| Example | A possible solution or an instance. Never a requirement |
+| Citation | A result of mathematics that a clause or an attachment uses |
+| Attachment | Writing shown alone, such as an argument in numbered steps |
+| Figure | An object shown alone, with a title and a caption hidden until the title is pressed |
+
+### 1.6 A part can be looked at alone
+- I assumed "only" works on any clause, and that pressing a figure or an attachment is "only" on what it names.
+- An attachment lives outside the specification and has its own steps. I assumed its steps are not addressable from the specification: clauses cite the attachment whole.
+- Inside the attachments I wrote lines marked "Checked" and "Example". I assumed an attachment may carry annotations of its own.
+
+### 1.7 Citations are links, and coverage is computed from them
+- So I cite by code even inside the specification, to give the computation something to read.
+
+### 1.8 What is not yet known sits in the tree
+- Section 8 has 8.4 [Not yet specific], with three clauses, each saying what it bears on.
+- I did not use your brace placeholders. I assumed a clause in place does the same work. If the brace is required, 8.4.1 to 8.4.3 become placeholders inside 3.2, 4.4 and 6.2.
+
+### 1.9 The section says the standing
+- I did not tag clauses as demand or guidance. I assumed a clause's standing is read from the section it sits in.
+
+## 2. What I imagined that you may not have
+
+- **A name as the stable handle.** I renumbered the clauses four times in one night, and every citation by number broke each time. A moved part keeps its code in your view. A rewritten document does not. A name in brackets would survive both.
+- **A correction from Doug, after I wrote this.** I had proposed a Check annotation for results confirmed by computation. He says: there is an identification, which describes the object currently imagined (there may be many, with the recent one shown), and there are justifications, which connect its parts to the specification. Computational checks could go with the justifications, and are not worth much. So two things in my document are in the wrong layer:
+  - Under 6.2 [Kind] I put possible solutions as Example annotations: induction on the primes, and the supposed bound with the numbers in reverse order. Each of these is an identification, not an annotation on the specification.
+  - In the attachments I wrote "Checked" lines. Those belong to justification, if anywhere.
+- **A place for what is not placed.** One of the author's sentences has no clause yet. I kept it at the end of the annotations, under "Not placed".
+- **A view by annotation type.** All the quotes alone, or all the definitions alone, as a way to read the author's lexicon.
+- **A view of what relies on what.** Drawn from the Relation annotations.
+
+## 3. What I could not do in my document
+
+- There is no tree. Three tabs stand in for the layers.
+- Nothing folds, hides or moves.
+- The nine figures are titles only. None is drawn.
+- Captions cannot be hidden, so I wrote none.
+
+## 4. Questions
+
+1. Can a clause carry a name as well as a code, and can a citation target the name?
+2. Are lettered items under a clause addressable?
+3. Must an unknown be a brace placeholder, or may it be a clause in place?
+4. Can an attachment's steps be cited from the specification?
+5. When there are several identifications, does a justification name the identification as well as the clause it connects to?
