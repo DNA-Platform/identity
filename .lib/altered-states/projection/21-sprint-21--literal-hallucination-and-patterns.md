@@ -120,25 +120,26 @@ stands from the blank screen's. The space does not read one spot against every s
 neurons tells an MEI from a pattern 98% to 100% of the time held out. Slide 21's title says more than this; not
 changed without his word.
 
-**The step sizes that correspond (2026-11-19; `patterned_figures.corresponding`, `corresponding.npz`).** Doug: *"Find
-step sizes that correspond, and use those. Talk about pattern intensity on the step size slide."* A pattern's
-intensity is the spread of its grey level at the neuron's place; it equals its MEI's at 1.87 times the lab's step
-size (1.25 to 2.74; found for 94% of 64 neurons). At those step sizes the pattern literals sit at +131, +14, +6 bits
-(literal, natural, featureful) beside the MEIs' +129, +21, +9. As a class, post-DOI spontaneous samples go to them
-for 25% (the MEIs 34%, the natural images 33%, the featureless screens 8%); pre-DOI spontaneous stays featureless
-(87%). The deck is 25 slides: 18 the pattern literal, 19 the step size and pattern intensity, 20 unique to a neuron,
-21 where the MEIs sit, 22 where the patterns sit at corresponding step sizes, 24 the classification slide unchanged.
-The 64 are the neurons with every step size; the run for all 548 at the five step sizes between is on David's box
-(`run-20261119-0556-tiled-steps`, launched 05:56, about 80 minutes).
-
-**Queued for when that run is home (2026-11-19).** The code already reads every neuron's step files once all five
-are there (`patterned_figures._step_files`: `tiled-step<k>.npz` for every neuron, else `tiled-explored-step<k>.npz`
-for the 64, never a mix; checked to give the same record on the 64). In order: bring the run home (fetch its branch,
-cherry-pick with theirs, sync); `patterned_figures.corresponding` and `sweep`; `shown_images.py 33977-suite2p
-corresponding` then `classes:corresponding`; `literal-hallucination-figures.py` (figures and deck); look at slides 18,
-19, 20 and 22 and the frozen slide check; then the numbers above, the covers and this chapter from all 548. The grid
-figure (slide 20) is still the 64 explored neurons at twice the lab's step size; every neuron on every grid is a
-further run of about two hours, not launched.
+**The step sizes that correspond, all 548 neurons (2026-11-19; `patterned_figures.corresponding`,
+`corresponding.npz`; `run-20261119-0556-tiled-steps`, 80 minutes on David's box, home).** Doug: *"Find step sizes
+that correspond, and use those. Talk about pattern intensity on the step size slide."*
+- A pattern's intensity is the spread of its grey level at the neuron's place. Over its MEI's: 0.62 at the lab's step
+  size, 1.09 at twice, 1.67 at four times. Equal at 1.83 times the lab's (1.23 to 3.02).
+- One of the seven step sizes made corresponds for 466 of 548 (85%); at it the intensity is 1.00 of the MEI's (0.93
+  to 1.08). The other 82 are used at the nearest end: 45 already more intense at the lab's step size (1.11), 37 still
+  less at four times (0.87). Step sizes 0.5, 0.75, 6 and 8 would give 538 of 548 their own (see below, launched or
+  not).
+- In the space: +132, +14, +6 bits (literal, natural, featureful) beside the MEIs' +129, +21, +9. Not told apart.
+- As a class: post-DOI spontaneous samples go to the patterns for 35%, natural images 30%, MEIs 29%, featureless
+  screens 6% (the patterns over the MEIs by 0.12 bits at the median). Pre-DOI spontaneous featureless 86%;
+  image-evoked natural 82%. With the 64 alone it was 25%. Not a conclusion that it is classified as patterns.
+- The deck (25 slides) is rebuilt from all 548: 18 the pattern literal, 19 the step size and pattern intensity, 20
+  unique to a neuron, 21 where the MEIs sit, 22 where the patterns sit, 24 the classification slide unchanged. The
+  three views of the space (`artifacts/patterns/figures/space-1..3`) use the corresponding patterns too.
+- To build: `literal-hallucination-figures.py` draws the figures and writes numbers.json; `literal-hallucination-deck.py`
+  builds the deck from them. Two scripts; the first alone leaves the old deck.
+- The grid figure (slide 20) is still the 64 explored neurons at twice the lab's step size; every neuron on every
+  grid is a further run of about two and a half hours.
 
 **Open, his to say.**
 - What the report says of post-DOI spontaneous activity: it reads literal on its own day's map because what images
