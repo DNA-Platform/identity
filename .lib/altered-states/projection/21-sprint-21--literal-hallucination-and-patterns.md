@@ -120,38 +120,35 @@ stands from the blank screen's. The space does not read one spot against every s
 neurons tells an MEI from a pattern 98% to 100% of the time held out. Slide 21's title says more than this; not
 changed without his word.
 
-**The step sizes that correspond, all 548 neurons (2026-11-19; `patterned_figures.corresponding`,
-`corresponding.npz`; `run-20261119-0556-tiled-steps`, 80 minutes on David's box, home).** Doug: *"Find step sizes
-that correspond, and use those. Talk about pattern intensity on the step size slide."*
+**The step sizes that correspond, all 548 neurons, eleven step sizes (2026-11-19; `patterned_figures.corresponding`,
+`corresponding.npz`; runs `0556-tiled-steps` and `0737-tiled-steps-beyond` on David's box, both home).** Doug: *"Find
+step sizes that correspond, and use those. Talk about pattern intensity on the step size slide."*
 - A pattern's intensity is the spread of its grey level at the neuron's place. Over its MEI's: 0.62 at the lab's step
-  size, 1.09 at twice, 1.67 at four times. Equal at 1.83 times the lab's (1.23 to 3.02).
-- One of the seven step sizes made corresponds for 466 of 548 (85%); at it the intensity is 1.00 of the MEI's (0.93
-  to 1.08). The other 82 are used at the nearest end: 45 already more intense at the lab's step size (1.11), 37 still
-  less at four times (0.87). Step sizes 0.5, 0.75, 6 and 8 would give 538 of 548 their own (see below, launched or
-  not).
-- In the space: +132, +14, +6 bits (literal, natural, featureful) beside the MEIs' +129, +21, +9. Not told apart.
+  size, 1.09 at twice, 1.67 at four times (0.31 at half, 2.55 at eight times). Equal at 1.78 times the lab's (1.05
+  to 3.35).
+- 539 of 548 neurons have a step size that corresponds among the eleven made (0.5 to 8 times the lab's); over all
+  548 the intensity at the step size used is 1.00 of the MEI's (0.92 to 1.08). Nine never get there by eight times,
+  where patterns reach the screen's black and white; they are used at eight times. Not worth a larger step size.
+- In the space: +133, +14, +6 bits (literal, natural, featureful) beside the MEIs' +129, +21, +9. Not told apart.
 - As a class: post-DOI spontaneous samples go to the patterns for 35%, natural images 30%, MEIs 29%, featureless
-  screens 6% (the patterns over the MEIs by 0.12 bits at the median). Pre-DOI spontaneous featureless 86%;
-  image-evoked natural 82%. With the 64 alone it was 25%. Not a conclusion that it is classified as patterns.
-- The deck (25 slides) is rebuilt from all 548: 18 the pattern literal, 19 the step size and pattern intensity, 20
-  unique to a neuron, 21 where the MEIs sit, 22 where the patterns sit, 24 the classification slide unchanged. The
-  three views of the space (`artifacts/patterns/figures/space-1..3`) use the corresponding patterns too.
+  screens 6% (the patterns over the MEIs by 0.15 bits at the median). Pre-DOI spontaneous featureless 85%;
+  image-evoked natural 82%. Not a conclusion that it is classified as patterns. The four step sizes beyond changed
+  none of this (the 82 neurons they were for were already near: 1.11 and 0.87 of their MEI's intensity).
+- The deck (25 slides) is built from this: 18 the pattern literal, 19 the step size and pattern intensity (seven
+  columns, the lab's to four times), 20 unique to a neuron, 21 where the MEIs sit, 22 where the patterns sit, 24 the
+  classification slide unchanged. The three views of the space (`artifacts/patterns/figures/space-1..3`) use the
+  corresponding patterns too; he has not seen them.
 - To build: `literal-hallucination-figures.py` draws the figures and writes numbers.json; `literal-hallucination-deck.py`
   builds the deck from them. Two scripts; the first alone leaves the old deck.
 - The grid figure (slide 20) is still the 64 explored neurons at twice the lab's step size.
 
-**On David's box now, and what follows each (2026-11-19).**
-1. `run-20261119-0737-tiled-steps-beyond` (launched 07:37, about 65 minutes): every neuron's pattern at step sizes
-   0.5, 0.75, 6 and 8 (`patterned.BEYOND`), for the 82 neurons with no equal step size among the seven. When home
-   (fetch its branch, cherry-pick with theirs, sync): `patterned_figures.corresponding` reads all eleven step sizes
-   by itself (`_step_files`: all four beyond or none); then `shown_images.py 33977-suite2p corresponding`,
-   `classes:corresponding`, the figures script, the deck script, `patterns-figures.py`; look at slides 18, 19, 20, 22
-   and the frozen slide check. The slide's step figure keeps its seven columns (`sweep_images(within=(1, 4))`).
-2. `tiled-arranged-every` (phase of that name; ten grids of `patterned.EVERY_GRID` at twice the lab's step size, 16
-   minutes each, about 2 hours 40): every neuron's pattern on every grid, launched behind the first. When home,
-   `same_on_every_grid` reads every neuron's files by itself (`_grids_whose`: all ten or the 64's); rerun the figures
-   and deck scripts; slide 20's numbers then come from all 548 (its record says how many neurons it read).
-The watcher for both is the scratchpad's `beyond_home.sh`; if the session is cut, the steps above are the whole of it.
+**On David's box now (2026-11-19).** `run-20261119-0844-tiled-arranged-every` (launched 08:44; ten grids of
+`patterned.EVERY_GRID` at twice the lab's step size, 16 minutes each, about 2 hours 40): every neuron's pattern on
+every grid. When home (fetch its branch, cherry-pick with theirs, sync), `same_on_every_grid` reads every neuron's
+files by itself (`_grids_whose`: all ten or the 64's); rerun the figures script and the deck script; slide 20's
+numbers then come from all 548 (its record says how many neurons it read); look at slide 20 and the frozen slide
+check; then the covers, the notes and this chapter. The watcher is the scratchpad's `grids_home.sh`; if the session
+is cut, these steps are the whole of it.
 
 **Open, his to say.**
 - What the report says of post-DOI spontaneous activity: it reads literal on its own day's map because what images
