@@ -217,6 +217,16 @@ neuron's pattern at the same gradation.
 - *Also not tested:* whether adding different features (other types) moves the measure where adding copies of one
   does not. That is the contrast his sentence "a pattern is something like a feature" needs.
 
+**The exploration that followed is kept in [Research Notes](../research-notes/.cover.md), chapter 1,
+[the pattern tiling fixed point](../research-notes/01-the-pattern-tiling-fixed-point.md)** (Doug, 2026-11-19: *"Make a
+library book in .lib for research notes, and keep track of your scientific exploratiosn there. Thsi is important"*).
+Read its *Where it stands* first. As of 11:40: for an image shown to the twin the space reads one thing, how far its
+representation stands from featureless; it is invariant to extent once the grid is finer than two places a period of
+the neuron's own pattern, nearly to moving up and down, and to which neuron's type; it is not invariant to
+magnitude. In the neural activity itself no identity of an MEI with its pattern was found. Code:
+`discriminant-analysis/gradation_and_tiling.py` (also `spacing`, `moved`), `free_parameters.py`; phases `moved`,
+`graded`, `tiled-arranged-every` of spontaneity-and-emptiness. All runs are home; nothing is on the box.
+
 **To do: redo every pattern scatter (Doug, 2026-11-19, of slide 22, "At the step size that corresponds, pattern
 literals sit where the most exciting images do").** *"Jot down tha twe need to redo all pattern scatters, but note
 that this one is especially bad. We may need to just show MEI and patterns superimpose first, then show they can be
@@ -233,13 +243,9 @@ made to move to the left, and then show that that is where the DOI activity is!"
   and tiling test says which operation moves which way; ask him what he means by made to move before drawing (2).
 - Nothing drawn until the test is in and he has said what (2) is. Slides are changed at his word only.
 
-**On David's box now (2026-11-19).** `run-20261119-0844-tiled-arranged-every` (launched 08:44; ten grids of
-`patterned.EVERY_GRID` at twice the lab's step size, 16 minutes each, about 2 hours 40): every neuron's pattern on
-every grid. When home (fetch its branch, cherry-pick with theirs, sync), `same_on_every_grid` reads every neuron's
-files by itself (`_grids_whose`: all ten or the 64's); rerun the figures script and the deck script; slide 20's
-numbers then come from all 548 (its record says how many neurons it read); look at slide 20 and the frozen slide
-check; then the covers, the notes and this chapter. The watcher is the scratchpad's `grids_home.sh`; if the session
-is cut, these steps are the whole of it.
+**Slide 20 still shows the 64 (2026-11-19).** Every neuron on every grid is home (`0844-tiled-arranged-every`), and
+`same_on_every_grid` reads it by itself, but the figures script and the deck script have not been rerun since: the
+deck is as he last saw it. Rerun both, look at slide 20 and the frozen slide check, then the covers.
 
 **Open, his to say.**
 - What the report says of post-DOI spontaneous activity: it reads literal on its own day's map because what images

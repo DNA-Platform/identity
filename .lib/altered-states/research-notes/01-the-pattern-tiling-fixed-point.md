@@ -36,7 +36,8 @@ that point for a neuron, and whether the pattern is also a fixed point of going 
 *(edited as the entries come in; last edited 2026-11-19, after entry 7)*
 
 - **The invariances of the space, by operation** (natural, medians over 548 neurons). Moving an image up or down 20
-  grey levels: -1 to -2 bits. Extent, one place against every place at the same ground and gradation: +8 (and 0
+  grey levels: -1 for an MEI at any magnitude; for a pattern -2 at the MEI's magnitude and -4 at 2.8 times it (a
+  pattern is invariant to ground only while faint). Extent, one place against every place at the same ground and gradation: +8 (and 0
   once the grid is fine). Which neuron's type: none that the space can tell (entry 6). Magnitude, a doubling: +18 to
   +21. So for an image shown to the twin the three features read one thing, how far its representation stands from
   featureless: 93% of their variance over the whole plane is one direction.
@@ -260,6 +261,19 @@ Natural, medians over 548 neurons (rows: ground, grey levels from the MEI's own;
 
 *Rules out* that matching the ground is what was missing (it changes little). *Establishes* the invariances by
 operation.
+
+*Corrected on looking at the figure (`free_parameters.png`, 11:40).* I had said the space is nearly invariant to
+moving up and down. For the MEI it is: its five lines lie on one another at every gradation. For the pattern it is
+only while the pattern is faint: its five lines fan out as magnitude grows, the darker ground the more natural (at
+gradation 2.83: +57 at 40 grey levels darker, +41 at 40 brighter; 4 bits for 20 grey levels, where the MEI moves 1).
+It is not the screen's limits: the patterns' gradation as made is the gradation asked (2.79 to 2.83 at every
+ground). The MEIs' is not at the two largest (1.9 for 2, 2.5 for 2.83: their peaks reach black and white), so the
+MEI's last two points sit a little left of where they are drawn.
+*A reading of his "linearly and multiplicatively"* (mine, not confirmed). Magnitude can be counted in grey levels
+(what I did: the spread at the neuron's place) or as a ratio to the ground. If the space read the ratio alone, 40
+grey levels of ground on the MEIs' ground of 112 would move natural by about +13 and -9 bits at gradation 1; the
+pattern moves +5 and -5, the MEI 0 and -6. So the space reads magnitude nearer the first way than the second, and
+the pattern partly the second. Not pursued.
 
 ### 6. Does the space tell one neuron's pattern from another's? (2026-11-19, 11:36)
 
