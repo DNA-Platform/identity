@@ -243,9 +243,11 @@ made to move to the left, and then show that that is where the DOI activity is!"
   and tiling test says which operation moves which way; ask him what he means by made to move before drawing (2).
 - Nothing drawn until the test is in and he has said what (2) is. Slides are changed at his word only.
 
-**Slide 20 still shows the 64 (2026-11-19).** Every neuron on every grid is home (`0844-tiled-arranged-every`), and
-`same_on_every_grid` reads it by itself, but the figures script and the deck script have not been rerun since: the
-deck is as he last saw it. Rerun both, look at slide 20 and the frozen slide check, then the covers.
+**Slide 20 is from all 548 (2026-11-19, 11:45).** Rebuilt after `0844-tiled-arranged-every` came home; the frozen
+slide check is unchanged. Its one changed number: another neuron's pattern is alike at 0.51 by regularity (0.15 to
+0.87 over every pair of neurons), where the 64 gave 0.38. So the title's "unlike another neuron's" holds less well;
+told to him, his to change. The deck's PDF is cleaned of notes icons in a second step that can be refused while the
+PDF is open in a viewer: if `literal-hallucination-qda-clean.pdf` is left beside it, replace the PDF with it.
 
 **Open, his to say.**
 - What the report says of post-DOI spontaneous activity: it reads literal on its own day's map because what images

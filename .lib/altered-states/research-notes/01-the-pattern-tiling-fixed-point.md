@@ -321,3 +321,16 @@ On one grid, neurons with a longer own spacing stay their pattern more (every 8t
 pattern's own spacing: about two places a period. This one is a neuron's own: it is set by its pattern's spacing.
 *Does not show* why two a period. It is the sampling rate that fixes a periodic image (Nyquist), which may be all
 it is; not derived.
+
+### 8. Two neurons' patterns share half of what repeats (2026-11-19, 11:45)
+
+*Asked.* Rebuilding slide 20 from all 548 changed one number: another neuron's pattern, alike in regularity, 0.51
+where the 64 gave 0.38. Is 0.51 the population's, or an effect of comparing each neuron with the next in the list?
+*Done.* The correlation of amplitude spectra (`patterned_figures._regularity`) between every pair of the 548
+patterns at twice the lab's step size; a few lines, not in a module.
+*Seen.* The next neuron in the list: 0.51 (0.15 to 0.90). Every pair of different neurons: 0.51 (0.15 to 0.87). The
+same. A neuron's own pattern on another fine grid: 1.00.
+*Reading.* It is the population's. Half of what repeats in a pattern (its directions and spacings) is common to
+two neurons at the median, and a tenth of pairs are the same pattern for this measure. With entry 4 (pattern
+literals of different neurons correlate 0.59) this says the same thing twice, once in the image and once in the
+activity: patterns have a large common part. *Leads to* the open question at the top: what the common part is.
