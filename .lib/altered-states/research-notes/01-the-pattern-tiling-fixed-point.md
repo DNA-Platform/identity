@@ -33,7 +33,7 @@ that point for a neuron, and whether the pattern is also a fixed point of going 
 
 ## Where it stands
 
-*(edited as the entries come in; last edited 2026-11-19, after entry 7)*
+*(edited as the entries come in; last edited 2026-11-19, after entry 10)*
 
 - **The invariances of the space, by operation** (natural, medians over 548 neurons). Moving an image up or down 20
   grey levels: -1 for an MEI at any magnitude; for a pattern -2 at the MEI's magnitude and -4 at 2.8 times it (a
@@ -47,15 +47,19 @@ that point for a neuron, and whether the pattern is also a fixed point of going 
 - **The identity, and its limit.** In the space an MEI is its pattern at about 1.4 times the magnitude, the ground
   free, to within 5 bits. But it is another neuron's pattern just as nearly (5.0 against 4.7; its own nearer 53%
   of the time). The space identifies every feature with every pattern of one magnitude, not an MEI with its own.
-- **In the neural activity itself: no identity found.** No point of the ground and gradation plane brings a
-  pattern's activity to its MEI's (5.5 widths at the nearest, the MEI being 6.5 from the screen). With every neuron
-  moved to the MEI's place the MEI's activity correlates 0.61 with the pattern literal (0.39 for another neuron's):
-  place explains part. Pattern literals of different neurons correlate 0.59: a large common part, not looked into.
-- **Open.** What the common part of the pattern literals is. Whether the pattern stays put under repeated passes
-  through the twin (one pass: 0.94). Whether adding different features moves the measure where adding copies does
-  not. Why two places a period. Whether recorded activity, which does use more of the space, tells types apart.
-- **Next.** His word on what to pursue. My candidates, in order: the common part of the pattern literals (it may be
-  the twin's own periodic response, the faint grid white noise comes back as); repeated passes through the twin.
+- **In the neural activity itself: a link that is the neuron's own, not an identity.** No point of the ground and
+  gradation plane brings a pattern's activity to its MEI's (5.5 widths at the nearest, the MEI being 6.5 from the
+  screen). Two thirds of a pattern literal is common to every pattern and is not about patterns: it is how readily
+  each cell is driven by anything, natural images the same (entry 9). What is left is the neuron's own: it
+  correlates 0.55 with its MEI's activity when every neuron is moved over about a period around the MEI's place,
+  with the right scale, and 0.02 with another neuron's (entry 10). So the activity carries the type; the three
+  features do not read it.
+- **Open.** Whether summing the moved readings over the pattern's lattice closes the rest (entry 10's reading).
+  Whether the pattern stays put under repeated passes through the twin (one pass: 0.94). Whether adding different
+  features moves the measure where adding copies does not. Why two places a period. Whether recorded activity,
+  which does use more of the space, tells types apart.
+- **Next.** His word on what to pursue. My candidates, in order: the lattice sum (a small job on the box); repeated
+  passes through the twin.
 
 ## Entries
 
@@ -334,3 +338,56 @@ same. A neuron's own pattern on another fine grid: 1.00.
 two neurons at the median, and a tenth of pairs are the same pattern for this measure. With entry 4 (pattern
 literals of different neurons correlate 0.59) this says the same thing twice, once in the image and once in the
 activity: patterns have a large common part. *Leads to* the open question at the top: what the common part is.
+
+### 9. The common part of the pattern literals (2026-11-19, 11:44)
+
+*Asked.* Entry 4: two neurons' pattern literals correlate 0.59. What is common to them, and is what is left a
+neuron's own?
+*Done.* `gradation_and_tiling.py moved` (`place_taken_away`, `place_taken_away.json`). A set's common part is its
+mean over the neurons' images, one level a cell. It is compared with the cells' mean level under the natural test
+images and under white noise (phase `through-and-back`); every comparison of entry 4 is redone with each set's own
+common part taken away.
+*Seen.* The common part holds 0.67 of the pattern literals' sum of squares. A cell's mean level over every pattern is
+0.18 of its level under its own MEI (0.02 to 0.33 over cells); under the natural test images it is also 0.18 (0.03
+to 0.30). Over cells the common part correlates 0.76 with the mean level under the natural test images, 0.55 with
+white noise, 0.85 with the mean level under every MEI. With the common parts taken away, the pattern literal
+against its MEI's activity with every neuron moved to its place: 0.43 (0.15 to 0.65); against the MEI's ordinary
+activity: 0.30; against another neuron's moved activity: 0.01 (-0.32 to 0.33); against another neuron's pattern
+literal: 0.02. Its own moved activity is the most alike of all 548 for 6% of neurons; the median rank of its own is
+25.
+*Reading.* The common part is not about patterns. It is how readily each cell is driven by anything, the same for
+patterns as for natural images. What is left of a pattern literal is the neuron's own: related to its own MEI
+(0.43), unrelated to another's (0.01). So in the neural activity there is a link between an MEI and its own
+pattern, specific to the neuron. It is not an identity.
+*Rules out* that the likeness of pattern literals to one another says patterns are one thing. *Rules out* that the
+space's blindness to type (entry 6) is the activity's: the activity carries the type; the three features do not read it.
+
+### 10. The neurons moved over a period about the MEI (2026-11-19, 11:47)
+
+*Asked.* Under a pattern a neuron sits at any phase of what repeats; entry 4 moved every neuron to the MEI's centre
+alone. Does moving them over a disc about it bring the MEI's activity nearer the pattern literal?
+*Done.* Phase `moved` again (run `1145-moved-about`, under a second): every type's mean answer over a disc of places
+about the MEI's own place, at radii 1.5, 2.5, 3.5, 5 and 7 places (`patterned.ABOUT`; from the map of every type at
+every place). Check: the nearest place of the map against the exact reading at the place, r 0.97. Read by
+`place_taken_away`.
+*Seen* (the pattern literal against the moved activity; r with the common part, r without, the pattern's level for
+one level of it, the neuron's own level in it):
+
+| every neuron moved | with | without | slope | own level |
+|---|---|---|---|---|
+| to the MEI's place | 0.61 | 0.43 | 0.60 | 1.00 |
+| over radius 2.5 | 0.61 | 0.44 | 0.64 | 0.82 |
+| over radius 3.5 | 0.64 | 0.46 | 0.69 | 0.75 |
+| over radius 5 | 0.67 | 0.50 | 0.80 | 0.63 |
+| over radius 7 | 0.71 | 0.55 | 0.95 | 0.49 |
+
+Another neuron's stays at 0.01 to 0.03. Its own is first for 7% (median rank 19 of 548). Patterns made at a larger
+step size link better (scratchpad `about.py`, not in the module): without the common part, 0.50 at the lab's step
+size, 0.56 at twice, 0.59 at four times (own first for 11%, median rank 12).
+*Reading.* Over about a period (the patterns' spacing is 6.6 pixels, so radius 7 is a disc two periods across) the
+MEI's activity with place taken away has the pattern literal's scale (slope 0.95; the neuron's own level 0.49,
+where under its pattern it is 0.39 to 0.45) and correlates 0.71 with it, 0.55 for the neuron's own part. It was
+still rising at the largest radius tried.
+*Does not show* an identity: half the variance of the neuron's own part is not explained. What is missing may be
+that one MEI is not a tiling: a neuron moved a period away sees the MEI's edge, not the next copy. The fair
+comparison sums the moved readings over the lattice of the pattern; not done.
