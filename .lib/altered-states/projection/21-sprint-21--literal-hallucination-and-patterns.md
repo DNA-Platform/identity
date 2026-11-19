@@ -111,6 +111,15 @@ above says more.
 - Three views of the space, in his order (`artifacts/patterns/figures/space-1..3`): what is discriminated and the
   literals; then the MEIs and the patterns; then post-DOI spontaneous. Not in the deck until he has seen them.
 
+**In this space a pattern is an MEI (Doug, 2026-11-19, of slides 20 and 21: *"Your patterns are the MEIs. No
+difference in this space"*).** He is right. Medians, bits (literal, natural, featureful): the MEIs +129, +21, +9;
+the patterns at the lab's step size +139, -1, +3; at four times it +128, +47, +8. The MEIs sit inside the patterns'
+own range, and what moves a pattern is the step size, which is what places an MEI too: how far its neural activity
+stands from the blank screen's. The space does not read one spot against every spot. The four-class result agrees
+(patterns over MEIs for post-DOI spontaneous: 0.7 bits). They do differ in the neural activity itself: LDA on the 548
+neurons tells an MEI from a pattern 98% to 100% of the time held out. Slide 21's title says more than this; not
+changed without his word.
+
 **Open, his to say.**
 - What the report says of post-DOI spontaneous activity: it reads literal on its own day's map because what images
   drive came down to the spontaneous level after DOI (an image raised a cell 19% above spontaneous before, 2% after).
