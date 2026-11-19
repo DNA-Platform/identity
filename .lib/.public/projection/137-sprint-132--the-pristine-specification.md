@@ -1,0 +1,47 @@
+# Sprint 132 — The Pristine Specification
+
+- **author:** [Arthur](../../../../.claude/library/..teamsmanship/..team/arthur/arthur-or-the-shape-of-everything/.cover.md)
+- **coauthor:** [Cathy](../../../../.claude/library/..teamsmanship/..team/cathy/cathy-and-the-reactive-mind/.cover.md)
+- ***Opened 2026-11-19 at Sprint 130's close, on Doug's charge below. The sprint's title is a PROXY, his to rename. `requirements-only`: the gate holds until the specification below has his yes.***
+
+---
+
+## <a id="where"></a>Where things stand — opened
+
+**Next action: his corrections on the draft specification below. In hand from [Sprint 130's eighteenth round](135-sprint-130--the-parts-of-the-project.md#close): Claude Desktop's eight-section The Symmetry of Arithmetic: Specification with his note of assumptions; the five inconsistencies named against the contract; and his rulings — names by mentions, the lettered items named, the contents view, "We can edit his for structure." Nothing is built.**
+
+## <a id="charge"></a>His charge, verbatim
+
+*"Then make the next sprint about this spec. We want to get this spec pristine as a chapter. We are just going to do the specification and reduce the rest to template."* — 19 November, with the eighteenth round's rulings standing beneath it: *"We can edit his for structure"*; *"Can't we use mentions for the names? We have a .public reference system"*; on the lettered items, *"Mentions?"*; and the feature: *"There should be a toggle that turns the specification into a table of contents — with nested links for each section and their numbers and names. That should help."*
+
+## <a id="spec"></a>The sprint's specification — draft, said back for his corrections
+
+1. The ground
+   - 1.1 The returned document — The Symmetry of Arithmetic: Specification, eight sections, 19 November — becomes the textbook's statement of work, pristine as a chapter: the one fully realized part of the project's page.
+   - 1.2 The rest reduces to template: Identification, Intuition and Progress stand as the family's named sections in template form — the shape shown, the content thin — while the Specification carries the sprint. *(What template holds exactly is the walk's first question.)*
+2. The document's structural edits *(his "We can edit his for structure"; structure only, his words untouched, his corrections ruling)*
+   - 2.1 Braces stand at 3.2, 4.4 and 6.2, each naming the 8.4 clause it waits on — interpolation restored to the contract's section 5, the opens standing in the tree as his 8.4 already has them.
+   - 2.2 The lettered items take names and stay lettered: letters mark alternatives where numbers mark narrowing, and the name is the address.
+   - 2.3 One meaning per bracket: the attachments A0–A4 are cited by name through the same doctrine, so [A1] stops colliding with [Formalism] and the reference brackets.
+3. The names *(his "Can't we use mentions for the names?")*
+   - 3.1 The clause name is the citable identity, minted as the library mints ids from names; the code stays authored display and ordering. A citation holding a name survives any renumbering — the pain his note reports four times in one night.
+   - 3.2 The doctrine is the package's — the mention and the bookmark — implemented in the specification's own passes, which render markdown, not package writing. The seam stands named, not papered.
+4. The contract amended *(Our Reference, The Specification — the amendments his to ratify)*
+   - 4.1 The clause name enters the anatomy (section 2) as the citable handle beside the code.
+   - 4.2 Standing-by-section — his note's convention, a clause's standing read from the section it sits in — written in, the proviso rule (2.5) kept for exceptions.
+   - 4.3 Each annotation sort adopted gains its defining clause beside 9.8. Of his table, Quote, Definition, Relation, Citation and Attachment await his word; Example and Check are already ruled into identification and justification.
+5. The contents view *(his feature, the eighteenth round)*
+   - 5.1 A toggle in the bar turns the specification into its own table of contents: the nesting kept, every entry a link of code and name, nothing else drawn.
+   - 5.2 A press on an entry turns the document back at that part — the book's turn, never the router's — and the toggle is its own inverse. One mode, one control: unique showability untouched.
+   - 5.3 The contents view is the names' first payoff: without them the contents reads as bare codes; with them every line reads as a sentence.
+6. Pristine
+   - 6.1 Pristine means: the eighteenth round's five inconsistencies resolved; every citation a live link, [A1] among them; the coverage honest; the tree's whole contract — fold, hide, only, move, reset, the rail, the figures, the contents — standing on the bound chapter; and the chapter readable as a legal document when every toggle is off.
+   - 6.2 The proof is the contract's own: probes on the bound page, the photographs read back before he is shown, and the document reread whole as a document.
+
+## <a id="walk"></a>The walk — his answers, verbatim with spelling cleaned
+
+*(The walk begins with his corrections on the draft above.)*
+
+## <a id="open"></a>Open — the walk's questions
+
+What "reduced to template" holds for Identification, Intuition and Progress — kept thin, or kept at all, and what happens to I1–I20. Where the returned document physically lands — the current statement of work rewritten in place, or replaced whole, and what the progress's K/C/O citations become when the codes change. Which sorts of his table are adopted, each needing its defining clause. Whether a justification names its identification when identifications are many — his note's fifth question, answered yes by the room, his correction ruling. For the reply to Claude Desktop: he believes the room already has a "revision" sort; it does not. Carried from Sprint 130: the second species; the figure's two doublings; the rail's drift; the phone and touch; where the checkers run; what stands on the front of a sprint.
