@@ -120,6 +120,16 @@ stands from the blank screen's. The space does not read one spot against every s
 neurons tells an MEI from a pattern 98% to 100% of the time held out. Slide 21's title says more than this; not
 changed without his word.
 
+**The step sizes that correspond (2026-11-19; `patterned_figures.corresponding`, `corresponding.npz`).** Doug: *"Find
+step sizes that correspond, and use those. Talk about pattern intensity on the step size slide."* A pattern's
+intensity is the spread of its grey level at the neuron's place; it equals its MEI's at 1.87 times the lab's step
+size (1.25 to 2.74; found for 94% of 64 neurons). At those step sizes the pattern literals sit at +131, +14, +6 bits
+(literal, natural, featureful) beside the MEIs' +129, +21, +9. As a class, post-DOI spontaneous samples go to them
+for 25% (the MEIs 34%, the natural images 33%, the featureless screens 8%); pre-DOI spontaneous stays featureless
+(87%). The deck is 25 slides: 18 the pattern literal, 19 the step size and pattern intensity, 20 unique to a neuron,
+21 where the MEIs sit, 22 where the patterns sit at corresponding step sizes, 24 the classification slide unchanged.
+The 64 are the neurons with every step size; the run for all 548 at the five step sizes between is on David's box.
+
 **Open, his to say.**
 - What the report says of post-DOI spontaneous activity: it reads literal on its own day's map because what images
   drive came down to the spontaneous level after DOI (an image raised a cell 19% above spontaneous before, 2% after).
