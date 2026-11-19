@@ -142,6 +142,43 @@ step sizes that correspond, and use those. Talk about pattern intensity on the s
   builds the deck from them. Two scripts; the first alone leaves the old deck.
 - The grid figure (slide 20) is still the 64 explored neurons at twice the lab's step size.
 
+**His idea: gradation and tiling (Doug, 2026-11-19, on seeing the pattern literals sit where the MEIs do).** In his
+words, both messages whole:
+
+> *"I thought about this - you may have foudn a powerful identity. Can you prove that an MEI and one of your completed
+> patterns under some equivalence where one is like the periodic completion of the other with the property that the
+> twin produces activity pattern that returns a metamer with the pattern has the property of being approximately the
+> same collection across neirons?!? Does that work for intermediary patterns? That is an amazing result! We found a
+> periodic inveriant space? is that true in general or just in our space?"*
+
+> *"You are going to want to say something more interesting than step size. Perhaps a pattern is something like a
+> feature, and you can say that gradation seems to increase featurelessness, but tiling doesn't increase the change
+> our measuer of feature. Can that be? That is amazong"*
+
+Then, when I started computing without the books: *"I want you to read that. I want you to use the library, and I want
+you to run long things in backfround and I want you to resume."*
+
+My reading, said to him and not yet confirmed. The MEI and the pattern are two images of one type: the MEI is the
+type at one place, the pattern the type at every place (his own distinction of 2026-11-07, *"I am interested in the
+idea of MEI versus type. That is a great semantic distinction"*). The equivalence is periodic completion, and it is
+admitted because the twin gives the pattern back (through the twin and back, 0.94 by regularity). The claim: our
+measure of feature (the three features, read on the neural activity the twin gives the image) is the same for the
+two, neuron by neuron and for everything between (a few copies, a disc), so the space is invariant to tiling; while
+gradation, how strongly the feature stands in the image, moves it, and less of it reads more featureless. A pattern
+is then like a feature: it has the features of its atomic feature and no more (his slide of 2026-11-18: *"Is a
+pattern featureless? No, it has features but not a lot because it is like an atomic feature"*).
+
+What is in hand before the test: gradation moves the measure (the same pattern reads natural -1 bits at the lab's
+step size, +14 where its intensity equals its MEI's, +47 at four times); tiling at equal gradation does not for the
+two ends (one place +21, every place +14); in the neural activity itself the two are told apart (LDA 98 to 100%), so
+the invariance is the space's, not the activity's.
+
+The test (`discriminant-analysis/gradation_and_tiling.py`; no GPU, everything is stored): one type at one place (the
+MEI), in a disc, at every 12th, 8th, 6th and 4th place, at random spots, on a honeycomb, at every place; for each
+the gradation (the spread of grey level at the neuron's place over its MEI's) and the three features. Asked: at one
+gradation, do the features change with the tiling; at one tiling, with the gradation; and neuron by neuron, does a
+neuron's pattern sit where its own MEI does. Results go under this block.
+
 **On David's box now (2026-11-19).** `run-20261119-0844-tiled-arranged-every` (launched 08:44; ten grids of
 `patterned.EVERY_GRID` at twice the lab's step size, 16 minutes each, about 2 hours 40): every neuron's pattern on
 every grid. When home (fetch its branch, cherry-pick with theirs, sync), `same_on_every_grid` reads every neuron's
