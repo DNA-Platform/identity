@@ -88,6 +88,16 @@ spontaneous activity most often goes to, by a small margin (0.7 bits over the ME
 over the featureless screens at the median). At four times the step size it does not hold. So the conclusion rests
 on the step size, which is not settled.
 
+**From atomic to uniform, a quick look (2026-11-19; `mei_to_pattern.py`, not in the deck).** Doug: *"MEI to pattern is
+great. Atomic to uniform. You could run LDA on MEI versus pattern and then place DOI on it to see where it sits as a
+quick analysis to see if it is worth putting in."* LDA (Ledoit-Wolf shrinkage) tells the MEIs' neural activity from
+the pattern literals held out (98% right at the lab's step size, 100% at four times). On its axis (0 the MEIs, 1 the
+patterns), medians: pre-DOI spontaneous 1.63 and post-DOI 1.55 at the lab's step size, -0.57 and 0.30 at four times;
+but the featureless screens sit at the pattern end at the lab's step size (1.15) and the natural scenes at four times
+(1.04), and recorded samples are spread several times wider than the whole distance from MEI to pattern. So the axis
+is not reading atomic against uniform, and I told him it is not worth a slide as it stands; the four-class result
+above says more.
+
 **In the deck, and shown to him.**
 - The pattern literals slide (page 19 of 23, after the atomic feature slide), with a version of the grid figure:
   three exemplary neurons, the square grid first; the classification slide is page 22 and unchanged.
