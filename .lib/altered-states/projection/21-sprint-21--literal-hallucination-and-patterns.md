@@ -179,6 +179,22 @@ the gradation (the spread of grey level at the neuron's place over its MEI's) an
 gradation, do the features change with the tiling; at one tiling, with the gradation; and neuron by neuron, does a
 neuron's pattern sit where its own MEI does. Results go under this block.
 
+**To do: redo every pattern scatter (Doug, 2026-11-19, of slide 22, "At the step size that corresponds, pattern
+literals sit where the most exciting images do").** *"Jot down tha twe need to redo all pattern scatters, but note
+that this one is especially bad. We may need to just show MEI and patterns superimpose first, then show they can be
+made to move to the left, and then show that that is where the DOI activity is!"*
+- Every scatter with patterns in it: slide 22 (`pattern-literals-view.png`, the worst: the patterns are a strip
+  pressed against the natural literals' line, with five other groups and their labels around it, and the MEIs it
+  is compared with are not on it), slide 21 (`patterns-view.png`), and the three views
+  (`artifacts/patterns/figures/space-1..3`).
+- The order he proposes, three figures: (1) the MEIs and the patterns alone, superimposed; (2) the same, made to
+  move to the left; (3) that is where post-DOI spontaneous neural activity is.
+- Not known yet, and not to be guessed: what makes them move to the left. Measured so far, medians (literal,
+  natural): patterns at the lab's step size +139, -1; where intensity equals the MEI's +133, +14; at four times
+  +128, +47. So more gradation moves them a little left and up. Post-DOI spontaneous is at +70, +11. The gradation
+  and tiling test says which operation moves which way; ask him what he means by made to move before drawing (2).
+- Nothing drawn until the test is in and he has said what (2) is. Slides are changed at his word only.
+
 **On David's box now (2026-11-19).** `run-20261119-0844-tiled-arranged-every` (launched 08:44; ten grids of
 `patterned.EVERY_GRID` at twice the lab's step size, 16 minutes each, about 2 hours 40): every neuron's pattern on
 every grid. When home (fetch its branch, cherry-pick with theirs, sync), `same_on_every_grid` reads every neuron's
