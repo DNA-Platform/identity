@@ -33,22 +33,28 @@ that point for a neuron, and whether the pattern is also a fixed point of going 
 
 ## Where it stands
 
-*(edited as the entries come in; last edited 2026-11-19, after entry 2)*
+*(edited as the entries come in; last edited 2026-11-19, after entry 7)*
 
-- **Established.** Gradation moves our measure of feature (a doubling: +24 bits natural, +3 featureful, -6 literal;
-  at the faintest the pattern literal sits on the featureless screens' literals). Tiling at one gradation moves it by
-  about a quarter of that, from one place to all 1,568 (+6 natural at one place, 0 from about 50 places on). So for
-  the measure the fixed point is reached at about 50 places, which is a spacing of 5 or 6 places, near the patterns'
-  own spacing of about 7 pixels.
-- **Established earlier, for the image.** On grids finer than the pattern's own spacing the image is the same pattern
-  (0.97 to 1.00 by regularity); on coarser grids it becomes the grid's (0.61, 0.58). Another start gives the same
-  pattern. One pass through the twin and back gives the pattern again (0.94 by regularity).
-- **Not established.** That it holds neuron by neuron (it does not in the space: r 0.41). What sets the fixed point
-  for a neuron (its pattern's own spacing is the candidate). Whether it holds for all 548 in the middle of the
-  range. Whether the pattern stays put under repeated passes through the twin. Whether, in the neural activity, the
-  pattern literal is the MEI's activity with place taken away.
-- **Next.** Entries 3 and 4, whose data came home at 11:22: every neuron on every grid; every type read at each
-  MEI's own place.
+- **The invariances of the space, by operation** (natural, medians over 548 neurons). Moving an image up or down 20
+  grey levels: -1 to -2 bits. Extent, one place against every place at the same ground and gradation: +8 (and 0
+  once the grid is fine). Which neuron's type: none that the space can tell (entry 6). Magnitude, a doubling: +18 to
+  +21. So for an image shown to the twin the three features read one thing, how far its representation stands from
+  featureless: 93% of their variance over the whole plane is one direction.
+- **The fixed point of tiling.** In the image and in the measure together, when the grid is finer than about 0.6 of
+  the neuron's own pattern spacing: about two places a period (entry 7). Coarser, the image becomes the grid's and
+  the reading is that of one place.
+- **The identity, and its limit.** In the space an MEI is its pattern at about 1.4 times the magnitude, the ground
+  free, to within 5 bits. But it is another neuron's pattern just as nearly (5.0 against 4.7; its own nearer 53%
+  of the time). The space identifies every feature with every pattern of one magnitude, not an MEI with its own.
+- **In the neural activity itself: no identity found.** No point of the ground and gradation plane brings a
+  pattern's activity to its MEI's (5.5 widths at the nearest, the MEI being 6.5 from the screen). With every neuron
+  moved to the MEI's place the MEI's activity correlates 0.61 with the pattern literal (0.39 for another neuron's):
+  place explains part. Pattern literals of different neurons correlate 0.59: a large common part, not looked into.
+- **Open.** What the common part of the pattern literals is. Whether the pattern stays put under repeated passes
+  through the twin (one pass: 0.94). Whether adding different features moves the measure where adding copies does
+  not. Why two places a period. Whether recorded activity, which does use more of the space, tells types apart.
+- **Next.** His word on what to pursue. My candidates, in order: the common part of the pattern literals (it may be
+  the twin's own periodic response, the faint grid white noise comes back as); repeated passes through the twin.
 
 ## Entries
 
@@ -206,3 +212,98 @@ gradation 1 is the MEI.
 invariant to extent everywhere in the plane, or along a line?); what moving up and down does to the measure (not yet
 known at all); whether a pattern made at the lab's step size and multiplied up is the pattern made at a larger step
 size (is the step size only contrast?); and, in the activity, where the MEI and the pattern are nearest.
+
+*Seen (entry 5, 11:34; `discriminant-analysis/free_parameters.py`, `free_parameters.json`).* The check passes (the MEI
+at ground 0 and gradation 1 against its stored activity: 2.5e-5). Pixels at black or white: 2% for the MEI at the
+largest gradation, under 1% for patterns at the median (18% for a tenth of neurons at the extreme corners).
+Natural, medians over 548 neurons (rows: ground, grey levels from the MEI's own; columns: gradation):
+
+| one place (the MEI) | 0.35 | 0.5 | 0.71 | 1 | 1.41 | 2 | 2.83 |
+|---|---|---|---|---|---|---|---|
+| -40 | -2 | +1 | +8 | +21 | +36 | +45 | +52 |
+| -20 | -4 | +1 | +9 | +23 | +39 | +48 | +55 |
+| 0 | -2 | +1 | +8 | +22 | +38 | +50 | +57 |
+| +20 | -1 | +2 | +8 | +18 | +35 | +49 | +57 |
+| +40 | 0 | +1 | +6 | +16 | +31 | +45 | +54 |
+
+| every place (the pattern) | 0.35 | 0.5 | 0.71 | 1 | 1.41 | 2 | 2.83 |
+|---|---|---|---|---|---|---|---|
+| -40 | -3 | -1 | +6 | +18 | +35 | +51 | +57 |
+| -20 | -5 | -1 | +5 | +18 | +34 | +47 | +55 |
+| 0 | -3 | -1 | +4 | +14 | +27 | +40 | +51 |
+| +20 | -1 | 0 | +3 | +11 | +23 | +35 | +46 |
+| +40 | -1 | +1 | +3 | +9 | +19 | +31 | +41 |
+
+- *Up and down* (20 grey levels of ground, at gradation 1): natural -0.8 (MEI), -2.2 (pattern); literal +1.4, +1.2;
+  featureful -0.5, -0.4. *Magnitude* (a doubling, at ground 0): natural +21.3 (MEI), +18.5 (pattern); literal -6.4,
+  -4.2; featureful +3.8, +2.5. So the space is nearly invariant to moving up and down and not to magnitude. Why up
+  and down does so little: featureless is a family of screens at every grey level (the 52 walls and the middle
+  grey), and natural is read against the nearest. How far the activity is from the middle grey screen's literal
+  does change with ground (the MEI at gradation 0.35: 6.5 widths at ground -40, 2.9 at 0, 2.1 at +20).
+- *Extent* (one place less every place at the same ground and gradation): natural +8.1 at ground 0, gradation 1
+  (-14 to +28 by neuron); +3 to +5 at darker grounds; about 0 at gradations of 0.5 and under; +10 to +13 at brighter
+  grounds and larger gradations. Literal -5; featureful +3. With the ground matched the two are a little further
+  apart than entry 2 found with the pattern on its own darker ground (+5.8), because a pattern reads less natural
+  on a brighter ground.
+- *Is the step size only contrast?* The pattern made at the lab's step size and multiplied up, less the pattern
+  made at the larger step size, at the same point: natural -2.5 at ground 0 and gradation 1 (-18 to +2 by neuron),
+  -3.6 at 1.41; literal +1; featureful 0. Mostly yes. A pattern made at a larger step size is a few bits more
+  natural than a fainter one multiplied up.
+- *Where they are the same, in the space.* The point of each neuron's pattern's plane nearest its MEI as it is
+  (all three features): 15.9 bits apart at ground 0 and gradation 1; 4.7 at the nearest point (2.1 to 10.4). The
+  nearest points are at every ground about equally (137, 98, 135, 96, 82 neurons) and at gradations of 1 to 2 for
+  most (115, 133, 112). So: the MEI is its pattern at about 1.4 times the magnitude, the ground free.
+- *Where they are nearest, in the neural activity* (widths of image-evoked's variation): 6.1 at ground 0 and
+  gradation 1; 5.5 at the nearest point, which for most neurons is the faintest pattern at ground 0; another
+  neuron's pattern gets to 6.0; the MEI is 6.5 from the screen's literal. There is no point of the plane where the
+  activity of the two is the same.
+
+*Rules out* that matching the ground is what was missing (it changes little). *Establishes* the invariances by
+operation.
+
+### 6. Does the space tell one neuron's pattern from another's? (2026-11-19, 11:36)
+
+*Asked.* Entry 5 brings a pattern within 5 bits of its MEI. Is that its own pattern's doing?
+*Done.* The same nearest-point search with another neuron's pattern's plane (four different others a neuron); the
+variance of the three features over every image of the plane; from `free_parameters.npz`, a few lines, not yet in
+the module.
+*Seen.* The MEI to its own pattern's plane: 4.7 bits (2.1 to 10.4). To another neuron's: 5.0 (2.2 to 12.3). Its own
+is the nearer in 53% of comparisons. To another neuron's MEI's plane: 4.9. Over every image of both kinds at every
+ground and gradation, 93% of the variance of the three features lies on one direction (literal -0.25, natural +0.96,
+featureful +0.15). At one ground, natural and the distance from the screen's literal correlate at 0.92.
+*Rules out* that the identity found in the space is between an MEI and its own pattern. *What it is:* for an image
+shown to the twin the three features read one thing, how far its representation stands from featureless. That is
+invariant to moving up and down, nearly to extent, and to which neuron's type; it is not invariant to magnitude.
+The space identifies every feature with every pattern of the same magnitude.
+*Does not rule out* that recorded activity uses more of the space (it does: image-evoked activity is at +280
+featureful where every literal is near 0); this entry is about literals only.
+
+### 7. The fixed point is at two places a period (2026-11-19, 11:33)
+
+*Asked.* Is tiling's fixed point at each neuron's own pattern spacing?
+*Done.* `gradation_and_tiling.py spacing` (`own_spacing`; `tiling_and_own_spacing.json`): every neuron's type on
+square grids of spacing 2, 3, 5, 8, 12 places against its pattern at every place, twice the lab's step size: how
+alike the two images are in regularity, and the features' difference at the same gradation; by the grid's spacing
+over the pattern's own spacing (its strongest spatial frequency among spacings of 14 pixels or less).
+*Seen.* The patterns' own spacing: 6.6 pixels (6.0 to 13.9; 57% between 5 and 7, 38% over 9). By grid: every 2nd
+place 1.00 alike, every 3rd 1.00, every 5th 0.98, every 8th 0.66, every 12th 0.57. By the grid's spacing over the
+pattern's own:
+
+| grid spacing over own spacing | alike in regularity | natural, bits from the pattern's |
+|---|---|---|
+| under 0.3 | 1.00 | 0.6 |
+| 0.3 to 0.45 | 1.00 | 0.9 |
+| 0.45 to 0.6 | 0.99 | 1.5 |
+| 0.6 to 0.75 | 0.87 | 5.4 |
+| 0.75 to 0.9 | 0.93 | 3.2 |
+| 0.9 to 1.05 | 0.76 | 8.0 |
+| 1.05 to 1.25 | 0.69 | 6.4 |
+| 1.25 to 1.5 | 0.56 | 7.8 |
+| 1.5 to 2 | 0.46 | 8.6 |
+
+On one grid, neurons with a longer own spacing stay their pattern more (every 8th place: 0.59 for the shorter half,
+0.75 for the longer; r 0.30).
+*Reading.* The image and the measure reach the fixed point together, when the grid is finer than about 0.6 of the
+pattern's own spacing: about two places a period. This one is a neuron's own: it is set by its pattern's spacing.
+*Does not show* why two a period. It is the sampling rate that fixes a periodic image (Nyquist), which may be all
+it is; not derived.
