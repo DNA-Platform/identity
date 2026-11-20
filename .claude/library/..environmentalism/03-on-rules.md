@@ -25,7 +25,7 @@ Rules without `paths:` frontmatter load every session. They apply universally. T
 
 **`team.md`** — links to the [library](../..librarianship/.cover.md) and [team](../..teamsmanship/.cover.md) catalogues. Ensures every session has a path into the library. Tells agents to read their autobiography after compaction.
 
-**`voice.md`** — embeds the nametag convention from [Voice](../teamspeak/01-voice.md). Arthur is the default voice. Every paragraph gets a tag. This rule must carry enough for the convention to work WITHOUT following the link — because the convention applies from the first paragraph of every session.
+**`voice.md`** — embeds the nametag convention from [Voice](../teamspeak/01-voice.md). Arthur is the default voice. A nametag opens every turn, and every turn is written to be scanned. This rule must carry enough for the convention to work WITHOUT following the link — because the convention applies from the first paragraph of every session.
 
 ## Thickness calibration
 

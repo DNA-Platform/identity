@@ -227,6 +227,28 @@ magnitude. In the neural activity itself no identity of an MEI with its pattern 
 `discriminant-analysis/gradation_and_tiling.py` (also `spacing`, `moved`), `free_parameters.py`; phases `moved`,
 `graded`, `tiled-arranged-every` of spontaneity-and-emptiness. All runs are home; nothing is on the box.
 
+**A less activated MEI, and where post-DOI spontaneous is (2026-11-19, afternoon;
+[Research Notes, chapter 2](../research-notes/02-a-less-activated-mei.md)).** Doug: *"You are doing step size but I
+want to scrap that. Perhaps the MEI can be modified (less maximally activated? haha moderately and minimally
+activated?) - and then the pattern completion still has the identity but the meaning shifts in feature space"*; *"But
+QDA first! We need to be SUPER specifc, clear, justified or we must express uncertainty."* From what `graded` stored,
+no run: the MEI multiplied down and its pattern shift toward featureless together, and the identity is nearer and
+more the neuron's own as activation falls. Given one recorded sample's variation (held out), post-DOI spontaneous is
+on natural where the MEI or its pattern at 0.71 of the MEI's magnitude is (d' +0.13 and -0.12), between a blank
+screen's literal (-1.38) and a natural image's (+1.66); literal and featureful do not choose among them. Not shown:
+that it is a pattern and not anything as far from featureless. Code: `free_parameters.py less`; figures
+`artifacts/patterns/figures/less-activated-1..3.png` (his three steps; not in the deck). Phase `graded-class` (every
+member of a pattern's class at every magnitude) is written and checked here and not run: another session's
+uncommitted QDA audit is in the working tree, and a run starts by committing everything.
+
+**Walking the deck with him (2026-11-19, evening).** Doug: *"go slide by slide, checking assumptions, until I can
+confirm that I understand the solutions and the way in which in preserves certain properties of QDA, the way in which
+it might not, and what I am uncertain about."* The ledger and where the walk stands:
+[Walking the deck](../discriminant-analysis-methods/01-walking-the-deck.md). Read it before each step of the walk.
+
+**His plan for later: neural activity as a language** ([Research Notes, chapter 3](../research-notes/03-neural-activity-as-a-language.md)).
+Written down, nothing run. QDA first.
+
 **To do: redo every pattern scatter (Doug, 2026-11-19, of slide 22, "At the step size that corresponds, pattern
 literals sit where the most exciting images do").** *"Jot down tha twe need to redo all pattern scatters, but note
 that this one is especially bad. We may need to just show MEI and patterns superimpose first, then show they can be
@@ -248,6 +270,19 @@ slide check is unchanged. Its one changed number: another neuron's pattern is al
 0.87 over every pair of neurons), where the 64 gave 0.38. So the title's "unlike another neuron's" holds less well;
 told to him, his to change. The deck's PDF is cleaned of notes icons in a second step that can be refused while the
 PDF is open in a viewer: if `literal-hallucination-qda-clean.pdf` is left beside it, replace the PDF with it.
+
+**The identity pages' colours (pages 23 and 24; 2026-11-19, evening).** His directions in his words, in order:
+`src/reports/imaginary-representation/report/identity-directions.md`; read it every round. Rejected so far: green,
+teal, cyan, fuchsia with coral, berry. Committed (a81c1e0fe): plum, #B07AA1 for the images and #7B4173 for the
+patterns, holding the pages. Recommended and drawn, waiting for his word on whether turquoise counts as the teal he
+ruled out: light turquoise #40E0D0 for the images, aqua #0DAFC0 for the patterns and names (#00A8A0, first tried, is a
+lighter teal-600 by measurement). Six pairs drawn on the overlay page: plum and rose sink into the image-evoked cloud,
+lilac is confused with the blue under deuteranopia. If he says yes: set `IDENTITY_COLOURS` and `IDENTITY_NAMES` in
+`literal-hallucination-figures.py`, redraw `identity_views`, rebuild the deck, look at pages 23 and 24, commit.
+
+**The half-excited image (toward-0.5), run `run-20261119-1807-toward-half-again`.** Finished on David's box (exit 0,
+pushed 08:39 box time); being closed into main. Next: `free_parameters.py along toward-0.5`, its pictures, and
+whether the half-excited image and its completion share the identity (Research Notes chapter 2).
 
 **Open, his to say.**
 - What the report says of post-DOI spontaneous activity: it reads literal on its own day's map because what images
@@ -275,3 +310,5 @@ PDF is open in a viewer: if `literal-hallucination-qda-clean.pdf` is left beside
 - I placed MEIs on grids coarser than the pattern and read the result as a pattern; it is the grid's.
 - I told him my code was eight times slower than the pipeline's from a number measured on another twin.
 - I measured in our space before looking (*"I want to look at what the patterns are! ... We use our space last"*).
+- I chose the identity pages' colours by score inside limits that excluded the colour he named (turquoise is light;
+  my limit was L* 38 to 56), and showed tables instead of pages (*"TEST THAT!! IT WAS A STARTING POINT"*).

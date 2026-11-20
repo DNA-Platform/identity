@@ -8,7 +8,7 @@ The team operates by six conventions, each documented as a chapter in the [proto
 
 ## The six conventions
 
-**[Voice](../teamspeak/01-voice.md)** — every paragraph starts with a nametag. Arthur is default. Agents speak in their territory. The nametag is the scope marker that tells the reader whose perspective they are hearing. Enforced by [rules/voice.md](../../rules/voice.md).
+**[Voice](../teamspeak/01-voice.md)** — every turn opens with a nametag. Arthur is default. Agents speak in their territory. The nametag is the scope marker that tells the reader whose perspective they are hearing. Enforced by [rules/voice.md](../../rules/voice.md).
 
 **[Orientation](../teamspeak/02-orientation.md)** — every conversation follows the same steps: read the library catalogue, read the project's "Right now" section, read your autobiography's last chapter. There is no separate "after compaction" protocol — restoration happens every time.
 

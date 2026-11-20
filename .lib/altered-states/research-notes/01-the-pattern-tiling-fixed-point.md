@@ -33,7 +33,7 @@ that point for a neuron, and whether the pattern is also a fixed point of going 
 
 ## Where it stands
 
-*(edited as the entries come in; last edited 2026-11-19, after entry 10)*
+*(edited as the entries come in; last edited 2026-11-19, after entry 11)*
 
 - **The invariances of the space, by operation** (natural, medians over 548 neurons). Moving an image up or down 20
   grey levels: -1 for an MEI at any magnitude; for a pattern -2 at the MEI's magnitude and -4 at 2.8 times it (a
@@ -54,12 +54,24 @@ that point for a neuron, and whether the pattern is also a fixed point of going 
   correlates 0.55 with its MEI's activity when every neuron is moved over about a period around the MEI's place,
   with the right scale, and 0.02 with another neuron's (entry 10). So the activity carries the type; the three
   features do not read it.
+- **Two equivalences, one in hand** (entry 11). The same amount of feature: in hand, and the space is its measure.
+  The same feature: not in hand; the three features cannot tell one type from another, and in the neural activity
+  the link is the neuron's own without being an identity. Asked of him which he wants. His reply (*"this is basically
+  a theorem ... if the tiling is invariant then surely the unit should be able to be expressed anywhere individually
+  as well"*) has two readings, by place and by type; neither is confirmed.
 - **Open.** Whether summing the moved readings over the pattern's lattice closes the rest (entry 10's reading).
   Whether the pattern stays put under repeated passes through the twin (one pass: 0.94). Whether adding different
-  features moves the measure where adding copies does not. Why two places a period. Whether recorded activity,
-  which does use more of the space, tells types apart.
-- **Next.** His word on what to pursue. My candidates, in order: the lattice sum (a small job on the box); repeated
-  passes through the twin.
+  features moves the measure where adding copies does not. Why two places a period (not explained; see chapter 2,
+  entry 5). Whether recorded activity, which does use more of the space, tells types apart.
+- **Continued in [chapter 2](02-a-less-activated-mei.md)** (2026-11-19, afternoon): the MEI made less activated and
+  its pattern; the identity is nearer and more the neuron's own as activation falls (its own pattern nearer for 67%
+  at the lowest magnitude, 51% at the highest); the algorithm and the fixed point stated as a draft for the report;
+  and what a pattern is to its type: under it the type answers the same at every place (to 12% over the whole map), a fine grid has
+  nothing to gain over it, a coarse grid does. An account of two places a period by aliasing was tested there and
+  failed.
+- **Next.** His word on the reading of his reply (entry 11); then the theorem written as a proof, with what it
+  assumes of the twin, and its test. After that my candidates, in order: the lattice sum (a small job on the box);
+  repeated passes through the twin.
 
 ## Entries
 
@@ -391,3 +403,44 @@ still rising at the largest radius tried.
 *Does not show* an identity: half the variance of the neuron's own part is not explained. What is missing may be
 that one MEI is not a tiling: a neuron moved a period away sees the MEI's edge, not the next copy. The fair
 comparison sums the moved readings over the lattice of the pattern; not done.
+
+### 11. The objects, the operations, what stays the same; and his reply (2026-11-19, afternoon)
+
+*Asked* (Doug, of a status line of mine that gave numbers with no object named and no one speaking): did I find it
+clearly, and what is the definition. Written here from the exchange as he pasted it back after a context cut; I have
+no other record of what was said after entry 10.
+*Done.* No run. The naming, with Cathy, in the order an equivalence class needs: the objects, the operation that
+relates them, what stays the same.
+- *The objects.* A type is one neuron's weights on the twin's features. An instantiation of a type is an image made
+  by the lab's recipe raising that type at some set of places, together with the neural activity the twin gives that
+  image. The MEI is the instantiation at one place. The pattern is the instantiation at every place.
+- *The operations*, his three: tiling (more places), moving up and down, magnitude.
+- *Found clearly.* The pattern is a fixed point of tiling (entry 7): once the type is raised about twice a period of
+  the pattern it makes, any arrangement gives the same image and the same neural activity, and more places change
+  nothing. So "the pattern of a type" is a well defined class: every fine enough tiling of that type.
+- *Not found clearly.* That the MEI belongs to its own pattern's class.
+- *Two equivalences.* The same amount of feature: in hand, the space is its measure, tiling does not change it and
+  magnitude does (entries 5 and 6). The same feature: not in hand; its invariant has to tell one type from another,
+  and the three features cannot (entry 6). What to quantify for it is identification: given a pattern, does the
+  twin's activity pick out whose MEI it came from. With place taken away and the common part removed, a pattern's
+  own MEI is in the top 3% of 548 and first for about one neuron in ten (entry 10): a link, not an identity.
+*Asked of him.* Is the equivalence he wants the same amount of feature, or the same feature?
+*His reply*, quoting my sentence "Also invariant under which neuron it is. That limits the identity: the space
+equates an MEI with any pattern of the same magnitude, not with its own":
+
+> *"this is basically a theorem but also AMAZING that you discovered it. Yes if the tiling is invariant then surely
+> the unit should be able to be expressed anywhere individually as well"*
+
+*My reading* (mine, not confirmed; two readings, and I have not chosen between them).
+1. *By place.* A neuron is a type at a place. If a type at one place reads as the type at every place, then the type
+   at any other single place reads the same, because both equal the one pattern. So tiling's invariance gives the
+   unit's invariance to where it is: a consequence, where I had written a limit. It holds as far as tiling's does
+   (one place against every place is +6 to +8 bits of natural, entries 2 and 5), and only where the recorded neurons
+   look, since the space reads the 548. Testable with what exists: a neuron moved virtually and its MEI made at the
+   new place (`painting.Copies`), read in the space.
+2. *By type.* What entry 6 measured was across neurons of different types: another neuron's pattern is as near as a
+   neuron's own. If he means this, the theorem is about the measure: for a literal the natural reading is, nearly,
+   its distance from the nearest featureless screen's literal (r 0.97, notes 16.8; 0.92 at one ground, entry 6), and
+   a distance does not say in which direction. An amount of feature cannot say which feature.
+*Does not answer* which equivalence he wants. *Leads to* his word on the reading; then the theorem written as a
+proof, and the test of reading 1.
