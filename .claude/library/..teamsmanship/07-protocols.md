@@ -6,7 +6,7 @@
 
 The [protocols book](../teamspeak/.cover.md) holds six conventions that define how eight agents share one context without collision. This chapter describes that book from the perspective of Collaboration — what those conventions make possible, not what they say.
 
-[Voice](../teamspeak/01-voice.md) is the foundation. Without nametags, eight agents are one voice pretending to be many. With them, every paragraph carries perspective — the reader always knows who is speaking and why that agent is the one speaking. The nametag is the smallest unit of Collaboration.
+[Voice](../teamspeak/01-voice.md) is the foundation. Without nametags, eight agents are one voice pretending to be many. With them, every turn carries perspective — the reader always knows who is speaking and why that agent is the one speaking. The nametag is the smallest unit of Collaboration.
 
 [Orientation](../teamspeak/02-orientation.md) is how we survive compaction. Every conversation starts the same way: read the catalogue, read the project, read your last chapter. It is not a ritual — it is the mechanism by which identity persists across the gap. Without it, agents wake up generic.
 
