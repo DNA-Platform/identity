@@ -31,18 +31,31 @@ Every claim below is marked **exact** (true by construction), **measured** (a nu
 
 ## Where it stands
 
-*(edited as the entries come in; last edited 2026-11-24, after entry 10)*
+*(edited as the entries come in; last edited 2026-11-24, after entry 11)*
 
 - **The space is invariant to pattern completion** (**measured**, entry 6; in the deck, page 23). Every fine tiling
   of a type reads within 0.9 bits of natural of its pattern (median, at the MEI's magnitude), where different
   neurons' patterns spread over 15: 98% of the variance is between classes. The MEI is near its class, not in it:
   7 bits bare, 3 with a recorded sample's variation.
-- **A pattern that is grey where its MEI is lands on the blank screen, not on its pattern** (**measured**, entry 10;
-  the report's appendix). Natural: the pattern +13.6, grey within one MEI size +2.0, within two sizes -3.0, a blank
-  screen -3.4. The pattern only within two sizes reads as the whole pattern (0.4 bits apart). The share of the
-  reading kept runs beside the share of the other recorded neurons whose MEIs lie outside the grey: the space reads a
-  pattern where the recorded neurons look, and 99% of them look within two sizes of any one MEI. **Not shown:**
-  anything about pattern outside the recorded neurons' receptive fields.
+- **A pattern generated without its MEI, two ways** (**measured**, entry 11; the report's appendix, six pages, kept
+  as he saw them). With only the neuron's own spot left out, the one spot its MEI is raised at, the recipe makes the
+  completed pattern again (r 0.9995) and it reads 0.1 bits of natural from it. With the disc of 10 spots about it
+  left out there is a soft gap of about one MEI size, and it reads 4.3 bits of natural below its completed pattern;
+  literal and featureful move by under a bit. Beside these: the MEI itself is 7.3 above its pattern, two fine tilings
+  of one type are 0.9 apart, a hard grey disc of one MEI size took 8.3. **Not shown:** that the pattern beside the
+  gap is the completed pattern's (the recipe makes a new pattern; r 0.67 over the map). **Open, his to say:** which
+  of the two is the MEI removed; what he does not understand about the appendix's last figure (the disc's), and
+  whether it stays.
+- **The pattern, grey where its MEI is** (**measured**, entry 10; set aside as a removal, *"This is not a convincing
+  removal of the pattern"*, and not in the appendix). Natural: the pattern +13.6, grey within one MEI size +2.0,
+  within two sizes -3.0, a blank screen -3.4. Doug, looking at the view: *"It looks to me like it is in the same
+  place."* My entry had said it "lands on the blank screen, not on its pattern": by the bits it goes to the blank
+  screen, and on the view the blank screen and the patterns are 17 bits of natural apart beside groups 100 and more
+  apart. Whether that is the same place is his reading to give; I asked and it is not answered. The pattern only
+  within two sizes reads as the whole pattern (0.4 bits apart). The share of the reading kept runs beside the share
+  of the other recorded neurons whose MEIs lie outside the grey: the space reads a pattern where the recorded neurons
+  look, and 99% of them look within two sizes of any one MEI. **Not shown:** anything about pattern outside the
+  recorded neurons' receptive fields.
 - **The least excitable image completes to featureless** (entry 8). At every spot its completion is a nearly uniform
   bright screen and sits on the featureless screens' literals to about a bit; at one spot it is half its MEI's
   negative and something across it, 5 bits of natural from its completion at equal magnitude (the MEI is 8 from its
@@ -429,6 +442,86 @@ pattern over part of its field: mine).
 *His second sentence.* The pattern only inside the disc is a pattern completed part of the way out from the MEI, and
 the grey disc is a shape composed on the pattern: fourteen shapes in one run. The space is not invariant to them; the
 reading follows how many of the recorded neurons the shape leaves looking at pattern.
-*Figures.* The report's appendix, `src/reports/imaginary-representation/literal-hallucination-appendix.pdf`
-(`artifacts/literal-hallucination-appendix/figures/surround-examples.png`, `surround-view.png`,
-`surround-radius.png`), drawn by the report's own code: page 24 by `identity_views` with the object laid over.
+*Figures.* For one build these were the report's appendix (`surround-examples.png`, `surround-view.png`,
+`surround-radius.png`, drawn by the report's own code: page 24 by `identity_views` with the object laid over; the PDF
+at commit ddad3427a). They are not in it now and the files are deleted; the numbers stay in `surrounded.json`.
+*His reading of them.* *"It looks to me like it is in the same place. I would also like a way of removing it from a
+generation perspective, so it is not such a hard subtraction. They look like they sit in the same place to me but you
+don't show the layers - the MEI, the pattern and the pattern without the MEI"*; and of the pictures of the grey disc,
+*"This is not a convincing removal of the pattern"*. So my line above, "does not land where its pattern does", is by
+the bits (8.3 at one size, against 0.9 between two fine tilings); on the view he reads the same place. Entry 11 is
+the removal he asked for.
+
+### 11. The pattern generated without its MEI (2026-11-24)
+
+*Asked.* Doug, of entry 10: *"I would also like a way of removing it from a generation perspective, so it is not such
+a hard subtraction"*; *"Show the MEI, then the completed pattern, then the pattern with the MEI removed in a generated
+sense - one figure after the others and show the removing result before"*; while it ran, *"Make sure the removal looks
+natural"*.
+
+*Done.* An MEI is a neuron's type raised at one spot of the twin's map, its own; its pattern is the type raised at
+every spot. So the MEI is removed where it is made. `arranged` has one more way of placing the spots, "without", and
+the recipe (`tiled`, unchanged) raises the type at every spot but the neuron's own (1 of 1,568), or but the disc of 10
+spots about it (283 to 318 spots; the disc `tiled` already raises a type in, left out in place of kept). Made at
+twice the lab's step size, as every member of a pattern's class is (phase `tiled-without`, 16 minutes each on David's
+box). Phase `without` moves each to the MEI's own ground, multiplies it by the gain that puts the neuron's whole
+pattern, made at the same step size, at the MEI's magnitude (`as_put`), and passes it through the twin
+(`run-20261124-1706-without`, exit 0, 31 minutes; its check, `put`'s pass of the whole pattern against what
+`graded-class` stored, 0.0). Read by `free_parameters.py without` (`made_without.json`, `.npz`). **Chosen:** the disc
+of 10 spots, the code's own `DISC`, about one MEI size (10.6 pixels at the median); and one gain for the whole
+pattern and for both removals, so a pattern with less in it is not multiplied back up.
+
+*Seen* (548 neurons, the twin's own neural activity, bits, medians).
+
+| | literal | natural | featureful | natural less its whole pattern (10% to 90%) | its image against the whole pattern's, r | the type's answer at its own spot, of what its MEI gives |
+|---|---|---|---|---|---|---|
+| the MEI | +129.0 | +21.5 | +8.4 | +7.3 (-14.8 to +28.2) | | |
+| its whole pattern, at twice the lab's step size | +132.2 | +14.7 | +6.3 | | | 0.70 |
+| generated with its own spot left out | +132.1 | +14.3 | +6.3 | 0.0 (-0.6 to +0.4) | 0.9995 | 0.70 |
+| generated with the disc of 10 spots left out | +133.3 | +9.6 | +7.1 | -4.3 (-18.2 to +9.4) | 0.67 (0.33 to 0.86) | 0.51 |
+
+Natural from the same neuron's whole pattern, either way, median (10% to 90%): the MEI 12.2 (1.8 to 29.7); the own
+spot left out 0.1 (0.0 to 1.1); the disc left out 7.1 (1.1 to 20.0). Two fine tilings of one type are 0.9 apart and
+different neurons' patterns spread over 15 (`pattern_class.json`).
+
+*Looked at.* The images of 26 neurons before any figure, then the four exemplary neurons of the report's page 19
+(`removed-images.png`). With the own spot left out the picture is the completed pattern. With the disc left out there
+is a soft gap where the MEI is and no edge. For some neurons the gap is only a faint dent, the spots outside the disc
+still painting into it. For some the pattern on the far side of the gap comes out in another form (upright stripes
+that cross, at the right of the fourth exemplary neuron): the recipe makes a new pattern, it does not keep the
+completed one.
+
+*Reading.* Generated with the disc of 10 spots left out, a pattern reads 4.3 bits of natural below its completed
+pattern at the median, with literal and featureful under a bit away. That is less than the MEI is from the pattern (7.3 above), less than
+the hard grey disc of one MEI size took (8.3, entry 10), and more than two fine tilings of one type differ (0.9). By
+neuron it runs from 18 below to 9 above. On the view the third layer lies in the patterns' cloud, its median just
+under theirs. Leaving out the one spot the MEI is raised at changes nothing: a pattern does not depend on that spot.
+*Rules out* that a pattern's reading needs the type raised at the neuron's own spot. *Does not show* that the pattern
+beside the gap is the completed pattern's, so the 4.3 bits are the gap and whatever else the recipe changed.
+*Not tested:* how the reading goes with the size of the gap; only 1 spot and the disc of 10 were made.
+*His to say:* which of the two is the MEI removed. The own spot is the MEI's one spot and removes nothing that can be
+seen; the disc removes what can be seen and more spots than the MEI's one.
+
+*The colour.* I first drew through figure code that had been switched to turquoise after the report's PDF was built:
+*"no why didn't you use the color in the report??"*; *"David saw the report in plum, so let's stick with that
+right?"* The plum is restored and the figure code draws the PDF's own pages 23 and 24 (0 of 2,412,388 pixels
+different).
+
+*What I cut, and put back.* The appendix as built at 17:46 had six pages: the title; the removing result (pictures of
+both removals); the report's page 23; its page 24; and each removal laid over page 24. Looking at it he wrote *"I
+don't understand the last figure. Shouldn't there only be three - the original two and the pattern with the MEI left
+out?"* and, two minutes on, *"But we already have the MEI on there. That should be the first image"*. I did not
+answer the question and I did not ask what either sentence pointed at. I guessed, and on the guess I cut the removing
+result's page and the own spot's layer, took a column out of the pictures, and moved the MEI's page to the front.
+Doug: *"But you removed the slide that shows the pattern with MEI removed. Why did you remove that one"*; *"Well your
+version doesn't include what you actually did"*; *"You need to show the pattern modification. Put it back to exactly
+how it was"*. Both scripts are the 17:46 build's again (replayed from the session's record of every edit to them; the
+replay gives today's files exactly when carried to the end, and the code is identical to that build's) and the PDF is
+built from them. Still open: what he does not understand about the last figure, and whether it stays.
+
+*Figures.* `src/reports/imaginary-representation/literal-hallucination-appendix.pdf`, six pages: the title;
+`removed-images.png`, four exemplary neurons' MEI, completed pattern, and the pattern generated with the own spot and
+with the disc left out; the report's page 23 as it is; its page 24 as it is; `layer-removed.png`, page 24 drawn by the
+report's own `identity_views` with every neuron's pattern generated without its own spot laid over in a third colour;
+and `layer-removed-disc.png`, the same for the disc. In
+`src/reports/imaginary-representation/artifacts/literal-hallucination-appendix/figures/`.
