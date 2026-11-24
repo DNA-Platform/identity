@@ -31,12 +31,18 @@ Every claim below is marked **exact** (true by construction), **measured** (a nu
 
 ## Where it stands
 
-*(edited as the entries come in; last edited 2026-11-19, after entry 7)*
+*(edited as the entries come in; last edited 2026-11-24, after entry 10)*
 
 - **The space is invariant to pattern completion** (**measured**, entry 6; in the deck, page 23). Every fine tiling
   of a type reads within 0.9 bits of natural of its pattern (median, at the MEI's magnitude), where different
   neurons' patterns spread over 15: 98% of the variance is between classes. The MEI is near its class, not in it:
   7 bits bare, 3 with a recorded sample's variation.
+- **A pattern that is grey where its MEI is lands on the blank screen, not on its pattern** (**measured**, entry 10;
+  the report's appendix). Natural: the pattern +13.6, grey within one MEI size +2.0, within two sizes -3.0, a blank
+  screen -3.4. The pattern only within two sizes reads as the whole pattern (0.4 bits apart). The share of the
+  reading kept runs beside the share of the other recorded neurons whose MEIs lie outside the grey: the space reads a
+  pattern where the recorded neurons look, and 99% of them look within two sizes of any one MEI. **Not shown:**
+  anything about pattern outside the recorded neurons' receptive fields.
 - **The least excitable image completes to featureless** (entry 8). At every spot its completion is a nearly uniform
   bright screen and sits on the featureless screens' literals to about a bit; at one spot it is half its MEI's
   negative and something across it, 5 bits of natural from its completion at equal magnitude (the MEI is 8 from its
@@ -360,3 +366,69 @@ type sees the map's edge, so the recipe painted hard contrast there to lift them
 *Corrected* (code, 18:05): the absolute distance to the target, whose gradient keeps its size up to the target; and the
 completion's target on the mean level over the spots, as the pattern raises that mean. Run again for all 548,
 `run-20261119-1807-toward-half-again`. The first run's numbers are not used.
+
+### 10. The pattern, grey where its MEI is (2026-11-24)
+
+*Asked.* David Lipshutz, 2026-11-23, of the report's pages 23 and 24: *"what happens if you show the patterns "minus"
+the original MEI? does it still land in the same place in this embedding space?"*; Doug: *"Minus in the linear sense?
+Subtract the MEI from the pattern?"*; David: *"yeah. like an image that's gray where the MEI is / but there is pattern
+surrounding it"*; Doug: *"Let me check. My bet is that it will be"*. To me, 2026-11-24: *"subtracting the MEI from the
+completed pattern to see if that shape still has the same projection into the space. If that works out, we can also
+do a brief analysis of partially completed patterns to see if the space is really invariant to all sorts of shapes
+composed on the pattern"*; *"You can add it to an auxilliary pdf called literal-hallucination-appendix"*.
+
+*How I began, and his correction.* I read the report and its notes, then wrote a scratch script with arithmetic of my
+own and looked outside for a published way to mark an MEI's region. He stopped it: *"No everything you need is in the
+codebase"*; *"Please figure out how the code was used to generate those figures. You are rewriting nothing"*; *"If you
+don't have the code to generate the figures in the report, then you haven't caught up yet"*; *"Delete your arithmetic
+script! That is only obscuring correct methods"*. The script is deleted. What I then checked, with the code's own
+functions and nothing written: the report's `identity_views()` regenerates identity-1.png and identity-2.png with 0
+of 2,412,388 pixels different; the three features read again from phase `graded`'s stored neural activity agree with
+those the pages draw to 5e-13 bits; `put` on this machine gives the gain, gradation, ground and clipped share that
+`graded` stored on David's box (largest difference 1e-15).
+
+*Done.* One phase beside the existing ones, `surround` (`patterned.surround`; `run-20261124-1614-surround`, 8 seconds
+on David's box, forward passes only). The pattern is the one page 24 draws: `corresponding.npz` put at the MEI's own
+ground and magnitude by `put`. Where the MEI is, is by the code's own definitions: a disc about the image's centre
+(`centres`), its radius the image's own size (`sizes`, 10.6 pixels at the median) times 0.35, 0.5, 0.71, 1, 1.41, 2,
+2.83; twice the size is the disc `spread_at` reads an image's intensity in. One size holds 78% of an MEI's energy,
+two sizes 95%. Passed through the twin: the pattern with the MEI's ground inside the disc; the pattern only inside
+the disc; the whole pattern; a blank screen at that ground. The run's two checks (they stop it if they fail): `put`'s
+pass of the pattern against the neural activity `graded` stored, 0.0; the image that is greyed against the image
+`put` showed, 0.0. Read by `free_parameters.py surround` (`surrounded.json`, `.npz`). The disc's edge is hard.
+**Chosen:** a disc, and its radius in the image's own sizes; the ladder shows what the radius changes.
+
+*Seen* (548 neurons, the twin's own neural activity, bits, medians; literal, natural, featureful). The MEI +129.0,
++21.5, +8.4. Its pattern +132.7, +13.6, +5.7. A blank screen at the MEI's ground +143.2, -3.4, +0.2: 16.8 bits of
+natural below the pattern (2.2 to 43.0 by neuron).
+
+| the disc's radius, MEI sizes | 0.35 | 0.5 | 0.71 | 1 | 1.41 | 2 | 2.83 |
+|---|---|---|---|---|---|---|---|
+| other recorded neurons whose MEIs' centres are inside it | 12% | 22% | 38% | 58% | 85% | 99% | 100% |
+| the twin's map inside it | 3% | 6% | 11% | 21% | 38% | 60% | 83% |
+| grey inside it: natural | +11.2 | +7.9 | +4.5 | +2.0 | -1.2 | -3.0 | -3.4 |
+| grey inside it: less the whole pattern | -1.0 | -2.5 | -4.8 | -8.3 | -11.4 | -14.4 | -16.8 |
+| grey inside it: share of the way from blank to pattern kept | 93% | 84% | 67% | 45% | 19% | 2% | 0% |
+| the pattern only inside it: natural | -3.2 | -2.6 | -1.1 | +2.1 | +6.9 | +10.8 | +13.2 |
+| the pattern only inside it: share kept | 0% | 3% | 15% | 39% | 70% | 96% | 100% |
+
+The share kept is each neuron's natural as a share of the way from its blank to its whole pattern, then the median;
+its middle half at one size is 19% to 69% (grey inside) and 18% to 67% (pattern only inside).
+
+*Reading.* Grey where its MEI is, a pattern does not land where its pattern does: it goes toward the blank screen,
+half of the way with the disc at one size and onto the blank at two. The share kept runs beside the share of the
+other recorded neurons whose MEIs lie outside the grey (88%, 78%, 62%, 42%, 15%, 1%, 0%). The pattern only inside the
+disc keeps less than its neurons' share at small discs (39% with 58% of them inside) and all of it by two sizes. So
+the space reads a pattern where the recorded neurons look, and they look where the MEIs are.
+*Rules out* that the pattern surrounding an MEI's place carries the reading in this space. *Does not rule out, and
+does not show,* anything about pattern outside the recorded neurons' receptive fields: the twin represents only
+within them, so this recording cannot say what a space read from neurons everywhere would do. *Does not undo* entry
+6: every fine tiling fills the place where the recorded neurons look, and there completion changes the image and
+not the reading. *Not tested:* why a small patch keeps less than its neurons' share (a neuron at a patch's edge sees
+pattern over part of its field: mine).
+*His second sentence.* The pattern only inside the disc is a pattern completed part of the way out from the MEI, and
+the grey disc is a shape composed on the pattern: fourteen shapes in one run. The space is not invariant to them; the
+reading follows how many of the recorded neurons the shape leaves looking at pattern.
+*Figures.* The report's appendix, `src/reports/imaginary-representation/literal-hallucination-appendix.pdf`
+(`artifacts/literal-hallucination-appendix/figures/surround-examples.png`, `surround-view.png`,
+`surround-radius.png`), drawn by the report's own code: page 24 by `identity_views` with the object laid over.
