@@ -4,9 +4,10 @@
 
 ---
 
-**This chapter is a plan. No test in it has been run.** What has been done is the first thing he asked for (the
-justification, found) and a count of what the tests would have to work with. No level of neural activity in 34452 has
-been read.
+**Sections 1 to 7 are the plan as written before anything ran, kept as they were. The work is in the entries after
+them, in the order done.** The report it goes into is
+[mouse-34452](../../../src/reports/mouse-34452/.cover.md); the instrument checks are the analysis
+[recording-quality](../../../src/analyses/recording-quality/.cover.md).
 
 Doug, 2026-11-25, whole:
 
@@ -27,19 +28,30 @@ Doug, 2026-11-25, whole:
 
 ## Where it stands
 
-*(edited, never appended; last edited 2026-11-25)*
+*(edited, never appended; last edited 2026-11-25, evening)*
 
-- **The justification is found** (section 1). It is an instrument reason, measured from the lab's own tables before
-  this result existed, and it is written in both of 34452's configs with his words.
-- **It was measured on the two image recordings only.** The two spontaneous recordings were never measured.
-- **The result reads the after-DOI image recording for one thing:** it is the map every after-DOI spontaneous sample
-  is read through. Every recorded reason sits on that recording (section 2).
-- **The damage is in half of it.** Fields 2 and 4 kept the light that 33977's fields 2 and 4 kept, and stayed in
-  register: 229 of the 391 cells the report's rule gives. Fields 1 and 3 lost about 70% of their light and one plane:
-  162 cells (section 3).
-- **The twin for 34452 is trained and explains as much as 33977's** (section 2). The stored products the analysis
-  starts from are on the report's cells.
-- Nothing run. Next: his word on the plan (section 7), then step 1.
+- **His word is given** (entry 1): finish the justification, the pipelines may run, everything in one report on the
+  dataset that shows why it is not considered and what can be extracted.
+- **The justification is finished** (entries 1 to 4). Three of 34452's recordings are sound: images before DOI and
+  both spontaneous recordings hold every field at one depth, and the two spontaneous recordings have matching light.
+  The damage is in the fourth, the after-DOI image recording:
+  - 64 of the report's 391 cells (those that begin in field 1) are matched there to other cells; the other 327 are
+    one cell through the day, as well as 33977's are;
+  - it is the dimmest recording of the day, and dimmer than the spontaneous recording five minutes before it;
+  - the eye is not found in its last six tenths, **but images still drive the cells there**.
+- **New and wider than 34452:** the amplitude follows the light, the light falls through the day, and the image
+  recording is first before DOI and last after. So a sample read on its own day's map is read against a map the light
+  moved the way the result goes. In 34452 that is the whole of the raw change; in 33977 a part (entry 4). Told to
+  Doug; 33977's report is not touched.
+- **Also new:** 34452 ran through the whole after-DOI spontaneous recording (6 of 20 minutes before DOI); 33977
+  hardly ran. Before and after DOI were one day in both mice.
+- **What is worth looking for** (entry 4): before DOI, fully; after DOI on the before-DOI day's map, with the light
+  and the running said; after DOI on its own day's map only as what the damage does.
+- **Running:** `run-20261125-1728-literal-hallucination-34452` on David's box (the twin's products for the report's
+  chain, then `discriminant.py`, `three_qdas.py`, `patterns.py`), about three hours by 33977's records. After it:
+  `audit.py 34452-suite2p` for the before-DOI day's map, then the report's second half.
+- **The report:** `src/reports/mouse-34452/`, its instrument figures drawn (light, register, the eye, running,
+  the same cells, driven, amplitude). No deck yet.
 
 ## 1. Why 34452 was left out, as recorded
 
@@ -401,6 +413,66 @@ By field, end to end: field 2 1.3 µm (89%), field 3 2.3 µm (71%), field 4 1.6 
   not the 162 of fields 1 and 3. Field 3's 98 keep their identity; what they lost is light (entry 1).
 - A first version compared distances without taking out the field's shared displacement and read all of fields 1 and
   3 as lost (4.5 µm, 15% within 3 µm). Looking at the displacements themselves showed field 3's cells moving together.
+
+### 4. The reference for 1b, the raw levels, and what the light's course does to them (2026-11-25)
+
+**Asked:** the plan's step 3a, and the reference rows of entry 2. **Done:** `--phase driven,level` for both mice
+(`quality/level.py`, `artifacts/<dataset>/level.json`): each of the twin's cells in raw amplitude in all four
+recordings, by the project's own readers (`metamer.spontaneous.moment_matrix` raw; the image recordings' response
+tables). For 33977 it reproduces the-literal-axis.md section 12 (levels 668, 555, 537, 528; spreads 246, 188, 192,
+200; 1.19 and 1.02), which is the proof that this is the same computation.
+
+**Seen, 1b's reference** (the report's cells, oracle correlation, the same two stretches of time):
+
+| | first stretch | second stretch |
+|---|---|---|
+| 34452, images after DOI (the eye found, then not) | 0.199 | 0.148 |
+| 33977, images after DOI (the eye found throughout) | 0.285 | 0.249 |
+| 34452, images before DOI | 0.407 | 0.423 |
+| 33977, images before DOI | 0.311 | 0.424 |
+
+After DOI the second stretch is lower in 33977 too, with its eye found throughout (0.87 of the first; 34452: 0.74).
+So most of the fall in 34452's second stretch is what an after-DOI recording does as it runs; the eye adds little.
+
+**Seen, the raw levels** (the report's cells, medians, each cell's ratio; beside each the same ratio of the light,
+entry 1's):
+
+| | 34452, fields 2 and 4 (229) | 34452, fields 1 and 3 (162) | 33977 (548) |
+|---|---|---|---|
+| images over spontaneous, before DOI | 1.00 (light 1.05) | 1.19 (light 1.29) | 1.19 (light 1.05 to 1.08) |
+| images over spontaneous, after DOI | 0.86 (light 0.89) | 0.81 (light 0.74) | 1.02 (light 0.96) |
+| that ratio, after over before | 0.86 (light 0.85) | 0.68 (light 0.57) | 0.87 and 0.83 by region (light 0.90, 0.91) |
+| spontaneous, after over before | 1.04 (light 0.93) | 0.99 (light 0.88) | 0.95 (light 0.92) |
+| image-driven, after over before | 0.87 (light 0.79) | 0.66 (light 0.51) | 0.82 (light 0.82) |
+
+*The amplitude follows the light.* Within 34452's before-DOI image recording the light fell to 0.49 and 0.61 of its
+start (fields 1 and 3, fields 2 and 4) and the cells' amplitude to 0.65 and 0.69; in 33977's, light 0.85 and 0.86,
+amplitude 0.90 and 0.96. Figure: `src/reports/mouse-34452/artifacts/figures/amplitude.png`.
+
+- In 34452, after DOI, that day's images drive a cell to less than its spontaneous level (0.84 over all 391). The
+  image recording is the dimmer of the day's two (entry 1), and the mouse ran through the spontaneous recording and
+  sat still through the images.
+- **In both mice the light falls through the day, and the image recording comes first before DOI and last after
+  DOI.** So the light alone lowers "what images drive over spontaneous" from before DOI to after. In 34452 that is
+  the whole of the fall (0.86 against the light's 0.85; 0.68 against 0.57). In 33977 the light gives 0.90 of an
+  observed 0.87 and 0.83.
+- So a sample read on its own day's map is read against a map that the light moved the same way the result goes. In
+  34452 nothing is left for DOI in that reading. **In 33977 the same holds in part, and the-literal-axis.md section
+  12 reads the whole fall (1.19 to 1.02) as what DOI did to image-driven activity.** That is 33977's report, not
+  this assignment: said to Doug in a line, not acted on.
+- The reading on the before-DOI day's map goes against the light (after DOI the spontaneous recording has 0.69 and
+  0.89 of the map's light in 34452; 0.86 in 33977), so a move toward literal there is not the light's.
+
+**Rules out, and does not.** How closely amplitude follows light is measured within one recording as it runs, where
+other things change too (in 33977's fields 2 and 4 the amplitude hardly fell). So the light's share of 33977's fall
+is between about a third and all of it; I do not put a number on DOI's part.
+
+**Leads to.** What is worth looking for in 34452 (written before its analysis is back):
+1. Before DOI: the space's own checks, and pre-DOI spontaneous against image-evoked. No reason reaches it.
+2. After DOI on the before-DOI day's map: the three recordings it reads are the sound ones. Read with two things
+   said: less light (pushes away from literal) and the running (DOI's doing; raises activity).
+3. After DOI on its own day's map: shown only as what the damage does. The light, the running and, for 64 cells,
+   another cell's map all push the way the result goes.
 
 ## Found on the way
 
