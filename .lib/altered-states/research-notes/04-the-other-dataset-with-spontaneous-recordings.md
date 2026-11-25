@@ -37,8 +37,13 @@ Doug, 2026-11-25, whole:
   be compared with the other three, every before-against-after reading in our reports passes through it, and the
   direct test (the before-DOI twin reading after-DOI image responses) fails. 34452 only; 33977 is never cut or
   rerun; a technique that fails is a reason.
-- **Next, at his word:** the deck rebuilt along the parts (the cover's task list), and the two contrasts inside
-  34452 that cancel things out (the 327 cells against the 64; fields 2 and 4 against fields 1 and 3).
+- **The matched cells are the same cells, by function** (entry 8): a pair's MEI before DOI against after scores 0.71
+  for the pairs that begin in field 1 and 0.74 for the rest, 0.30 for different cells. My "matched to another cell"
+  was from position alone and is withdrawn everywhere it stood, the deck's pages 5 and 11 included. The plane, the
+  match's distance, the light by region and the reliability after DOI are each cancelled out as what lowers the
+  MEIs' agreement. What cannot be compared is the cells' activity in the after-DOI image recording.
+- **Next, at his word:** the deck rebuilt along the parts (the cover's task list); the same contrasts for the
+  before-DOI twin reading after-DOI responses.
 - **The goal, in his words** (entry 6): *"to see if you can recover insights about whether the dataset has any
   support for some of the techniques used in imaginary representation. The classification of why the dataset is bad
   is fine but it was already excluded"*. The "why" is done and is not the product.
@@ -61,8 +66,8 @@ Doug, 2026-11-25, whole:
 - **The justification is finished** (entries 1 to 4). Three of 34452's recordings are sound: images before DOI and
   both spontaneous recordings hold every field at one depth, and the two spontaneous recordings have matching light.
   The damage is in the fourth, the after-DOI image recording:
-  - 64 of the report's 391 cells (those that begin in field 1) are matched there to other cells; the other 327 are
-    one cell through the day, as well as 33977's are;
+  - 64 of the report's 391 cells (those that begin in field 1) sit further from their match there; by function they
+    are the same cells (entry 8), so this is the plane having moved and not a mismatch;
   - it is the dimmest recording of the day, and dimmer than the spontaneous recording five minutes before it;
   - the eye is not found in its last six tenths, **but images still drive the cells there**.
 - **New and wider than 34452:** the amplitude follows the light, the light falls through the day, and the image
@@ -718,6 +723,52 @@ cells most keep theirs, r 0.79 to 0.95, and six do not, r 0.40 to 0.60); the met
 (`pipelines/metamer/artifacts/34452-suite2p/figures/metamers.png`: the before-DOI twin on its own recording keeps the
 stimulus' coarse form; the same twin reading after-DOI responses loses most of it, r 0.33 to 0.70 against 0.56 to
 0.85 on the eight most recognizable).
+
+### 8. The matches read by function: they hold, and my "another cell" is withdrawn (2026-11-25, late night)
+
+**His question.** *"Well we have matches in the pipeline. Did you say the matches weren't valid or did we just have
+less of them"*. I had said both: fewer, and 64 of the 391 "matched to another cell" (entry 3, and the deck's page
+5). The second was from position alone. I had never checked it by what the cells do.
+
+**The check** (recording-quality, new phase `by-function`, 34452 only, seconds; nothing computed but medians of
+groups). A matched pair has an MEI in the before-DOI twin and one in the after-DOI twin, and the MEI pipeline has
+stored each pair's score, the aligned correlation of the two, with its reference for a cell against a different
+cell (median 0.30, 95th percentile 0.63). 369 pairs. A unit's field is the lab's (the record of 2026-10-24).
+
+| pairs | how many | MEI before DOI against after [quartiles] | above a different cell's range | from the match, in the plane |
+|---|---|---|---|---|
+| every pair | 369 | 0.73 [0.59, 0.81] | 70% | 1.7 um |
+| begin in field 1 (all matched into field 3) | 47 | 0.71 [0.49, 0.78] | 60% | 3.4 um |
+| begin in fields 2, 3 and 4 | 322 | 0.74 [0.62, 0.82] | 71% | 1.6 um |
+| within 3 um of the match | 299 | 0.74 | 71% | |
+| 3 um or more | 69 | 0.72 | 67% | |
+| begin in field 3 (its region kept half its light) | 95 | 0.74 | 76% | |
+| begin in fields 2 and 4 (four fifths) | 227 | 0.73 | 69% | |
+| reliable after DOI (FEV at or above 0.15) | 44 | 0.73 | 66% | |
+| not reliable after DOI | 325 | 0.73 | 70% | |
+| reliable before and after | 30 | 0.79 | 80% | |
+
+**What it says.**
+- The pairs that begin in field 1 keep their MEI almost as the others do (0.71 against 0.74; different cells 0.30).
+  They are the same cells. They sit further from their match because the plane moved: after DOI they are seen in
+  the other field of their region, which is the reading section 3 of the plan had offered before anything ran. A
+  small deficit remains (60% against 71% above a different cell's range; the lower quartile 0.49 against 0.62).
+- **Cancelled out** as what lowers the MEIs' agreement in 34452: the plane, the match's distance, the light a
+  region kept, the cell's reliability after DOI. The score is the same on both sides of each.
+- The agreement is lower than 33977's everywhere alike (0.73 on 369 pairs; 33977's stored 0.82 on 931, the same
+  reference of 0.30). What is common to every pair is the after-DOI image recording itself and its twin.
+- Reliability, on the same pairs (`compare_*_B_pre-post.json`): 231 respond reliably to images before DOI and 44
+  after, 30 in both; a cell's FEV 0.18 before and 0.09 after, at the median (33977: 427 and 318 of 931, 233 in
+  both).
+
+**Withdrawn and corrected.** Entry 3's conclusion that the 64 are "matched to another cell" stands only as a
+distance. Corrected in: the report's cover (part 1, and the table of part 2), recording-quality's cover, and the
+deck (page 5's title and line; page 11's row, which had named "64 cells' maps" as pushing the result). Both pages
+rebuilt and looked at.
+
+**What the argument becomes.** The cells are the same in all four recordings. What cannot be compared is their
+activity in the after-DOI image recording: another light, and one matched cell in eight still responding reliably
+to images.
 
 ## Found on the way
 
