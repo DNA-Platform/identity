@@ -245,6 +245,105 @@ The bits are not compared: they grow with the number of cells (391 or 229 agains
    made from the trials with the eye found. It changes how a sample is read, so it is his.
 4. Whether step 4 is wanted.
 
+## Entries
+
+### 1. His word, and the lab read of all four recordings (2026-11-25)
+
+**His word** on the plan, whole: *"Yes, do the rest of the justification. You can have the pipelines run, so that the
+matched cells, twins, MEI and metamers are computed. I would say that we want to contain this to a report on the
+dataset. The goal is to see what we can extract. I don't want this dataset to be considered and in the report, show
+why. But also, you can explore various analyses - including MEI and Metamers, and the LDA and QDA and representation
+space analyses and see if we find something similar should the justification yield a result that it's worth looking
+for"*.
+
+My reading: step 1 runs now; the pipelines may run for 34452; everything goes in one report on this dataset, which
+shows why it is not considered and what can still be extracted; the analyses are explored if the justification says
+they are worth looking for. He did not answer whether "the result" is the fourth deck's; he named MEIs, metamers, LDA,
+QDA and the representation space, which are the three imaginary-representation decks, so I take all three.
+
+**The pipelines.** Nothing was missing: launching a run on David's box adopted the stored products of 34452-suite2p
+whole (digital_twin 31 of 31 files, mei 1,939 of 1,939, metamer 11,008 of 11,008, receptive_field 3 of 3).
+
+**Asked:** steps 1a and 1c. **Done:** one read of the lab's tables through David's box, for all four recordings of
+both mice (`runs/lab/20261125-165032-imaging-quality-all-four-recordings.{py,out,sh}`: experiment.Scan,
+meso.ScanInfo.Field, meso.Quality, stack.Registration, pipeline_eye, pipeline_treadmill; the 2026-10-24 script's
+quality lines unchanged, by tenths as well). Parsed by `python analyses/recording-quality/run.py 34452-suite2p
+33977-suite2p --phase lab` into `src/analyses/recording-quality/artifacts/<dataset>/lab.json`.
+
+**Seen.**
+
+*The day.* Both mice were recorded before and after DOI on one day. 34452, 2026-09-21: images 10:13 (109 min),
+spontaneous 12:09, the stack 12:41, spontaneous after DOI 13:16, images after DOI 13:41. 33977, 2026-08-04: 11:12,
+13:03, 13:57, 14:20.
+
+*1c: the fields.* Fields 1 and 3 are one region of interest (centre x −300 µm) at two depths 10 µm apart; fields 2 and
+4 the other (x +300). So the plan's "two halves" are the two regions.
+
+*Register* (stack.Registration.Affine's depth of each field's centre in the stack, µm, the four recordings in time
+order; its score):
+
+| | images before | spontaneous before | spontaneous after | images after | score |
+|---|---|---|---|---|---|
+| 34452 field 1 | 107.8 | 107.6 | 107.8 | **120.5** | 0.37 to 0.44 |
+| 34452 field 3 | 106.1 | 106.2 | 107.9 | 107.7 | 0.32 to 0.35 |
+| 34452 field 2 | 116.2 | 117.3 | 116.8 | 119.0 | 0.48 to 0.50 |
+| 34452 field 4 | 126.9 | 125.4 | 126.9 | 127.8 | 0.46 to 0.48 |
+| 33977 field 1, 3 | −1.9, 8.1 | −0.5, 9.5 | 0.4, 11.1 | 2.1, 10.9 | 0.79 to 0.86 |
+| 33977 field 2, 4 | −0.5, 8.0 | 0.5, 9.1 | 2.5, 12.5 | 0.5, 13.0 | 0.74 to 0.79 |
+
+- Three of 34452's recordings (images before, both spontaneous) hold each field at one depth within 2 µm. "Field 1
+  lost" is the fourth alone: in the after-DOI image recording field 1's centre is put 12.7 µm deeper, past Erin's
+  10 µm, so its cells match nothing.
+- In 34452 the region of fields 1 and 3 is registered with its two planes 0.1 to 1.7 µm apart in three recordings,
+  where they were acquired 10 µm apart (33977: 9 to 11 apart in every recording; 34452's other region: 8 to 11). The
+  scores are about half 33977's. So in that region the registered depth is not trustworthy in any of the four
+  recordings, and whether field 1 moved in the fourth or its registration jumped cannot be told from this table.
+
+*Light.* The lab's photons per pixel cannot be compared across all of 34452's scans: its fitted zero level is negative
+in the two spontaneous scans (−28 to −213; +168 to +251 in the image scans; +174 to +219 in all four of 33977's). So
+beside it I read the raw mean intensity (meso.Quality.MeanIntensity), less the zero level fitted for that field in the
+before-DOI image scan. One recording over another, fields 1 and 3 then fields 2 and 4:
+
+| | 34452 | 33977 |
+|---|---|---|
+| the before-DOI image recording, its last tenth over its first | **0.49, 0.61** | 0.85, 0.86 |
+| spontaneous before DOI over images before DOI | 0.78, 0.95 | 0.93, 0.95 |
+| spontaneous after DOI over spontaneous before DOI | 0.88, 0.94 | 0.92, 0.91 |
+| images after DOI over spontaneous after DOI | 0.73 to 0.75, 0.89 to 0.90 | 0.96 to 0.97, 0.96 |
+| images after DOI over images before DOI | 0.50 to 0.51, 0.79 | 0.82, 0.83 |
+
+(As stored, photons per pixel, images after over before: 0.27 to 0.31 and 0.69 to 0.70 in 34452; 0.74 and 0.77 in
+33977: the 2026-10-24 numbers.)
+
+- The two spontaneous recordings of 34452 have matching light, as 33977's do.
+- New: 34452's before-DOI image recording lost half its light as it ran (39% in fields 2 and 4). That recording is
+  the twin's training data and the before-DOI day's map.
+- The after-DOI image recording is dimmer than the spontaneous recording taken five minutes before it, by a quarter in
+  fields 1 and 3 and a tenth in fields 2 and 4 (33977: 3 to 4%).
+
+*The eye and the treadmill* (the pupil fit's share of frames with the eye found; the treadmill's mean speed by tenth of
+the recording, the table's units):
+
+| | 34452 | 33977 |
+|---|---|---|
+| images before DOI | eye 79% (falling from 97% to 38% as the pupil's radius grows from 30 to 57); speed 0.4 to 3.7 | eye 99%; speed 0.05 to 0.6 |
+| spontaneous before DOI | eye 66%; ran for the first three tenths (6 to 8), then still (0.02) | eye **11%**; still (0.01), three short bouts |
+| spontaneous after DOI | eye 42%; **ran throughout** (13 falling to 4 to 7) | eye 68%; speed 0.2 to 2.5 |
+| images after DOI | eye 41%: 91 to 100% in the first four tenths, then none; still but for two tenths | eye 97%; speed 0.15 to 1.0 |
+
+- New: 34452 ran through the whole after-DOI spontaneous recording, and for 6 of the 20 minutes before DOI. 33977
+  hardly ran in either. This is what DOI did to the animal, so it is part of how DOI acts and is not taken out; it is
+  said wherever the two spontaneous recordings are compared.
+- The eye is also not found in most of 33977's before-DOI spontaneous recording (11%). The plan's table said 33977's
+  eye was "not in that record"; it is in `runs/lab/20261013-143707-eye-34452.out` and here.
+
+**Rules out, and does not.** It rules out that the spontaneous recordings carry the damage: their light matches and
+all four fields hold their depth across them. It does not say whether amplitude follows light (step 3a), nor whether
+images drive the cells where the eye is not found (step 1b).
+
+**Leads to.** The after-DOI spontaneous samples can be read without the damaged recording, on the before-DOI day's
+map, with the caution that the map's own recording lost half its light as it ran. Step 1b next.
+
 ## Found on the way
 
 - Both 34452 configs say of the spontaneous recordings "~9.4 Hz". The files say 6.10 Hz (7,300 frames a field in
