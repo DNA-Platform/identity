@@ -28,9 +28,26 @@ Doug, 2026-11-25, whole:
 
 ## Where it stands
 
-*(edited, never appended; last edited 2026-11-25, evening)*
+*(edited, never appended; last edited 2026-11-25, night)*
 
-- **His word is given** (entry 1): finish the justification, the pipelines may run, everything in one report on the
+- **The goal, in his words** (entry 6): *"to see if you can recover insights about whether the dataset has any
+  support for some of the techniques used in imaginary representation. The classification of why the dataset is bad
+  is fine but it was already excluded"*. The "why" is done and is not the product.
+- **What 34452 shows** (entry 6; the report's own code, read from the run's summaries):
+  - before DOI the space is built as in 33977 on literal and natural (a held-out sample names its own image among
+    100: 89.5% against 90.0%; pre-DOI spontaneous 69% featureless, 31% imagined, none hallucinated); featureful is
+    not built alike: read from its origin, nothing recorded in 34452 is featureful, image-evoked included (its
+    shape is tighter than pre-DOI spontaneous' there), though the order of the three groups is the same;
+  - after DOI, each sample on its own day's map, every technique gives the reports' result (LDA 2,388 of 2,398 as
+    image-evoked, 0.78 of the way; 99.7% hallucinated), but that reading passes through the damaged recording,
+    whose lost light pushes the same way;
+  - after DOI on the before-DOI day's map, which the damage does not reach, the same direction and about a fifth as
+    far (literal 8% of the way to image-evoked against 39%; imagined 31% to 47% against 18% to 76%).
+- **Next:** the run's last phases (the most exciting images) are on David's box. When it is home: close it, check
+  the home summaries against the ones read, draw 34452's canonical view both ways beside 33977's with the fourth
+  deck's own code, show him, stop. The split by field (fields 2 and 4, 229 cells) and any page on the most exciting
+  images wait for his word.
+- **His word was given** (entry 1): finish the justification, the pipelines may run, everything in one report on the
   dataset that shows why it is not considered and what can be extracted.
 - **The justification is finished** (entries 1 to 4). Three of 34452's recordings are sound: images before DOI and
   both spontaneous recordings hold every field at one depth, and the two spontaneous recordings have matching light.
@@ -47,11 +64,10 @@ Doug, 2026-11-25, whole:
   hardly ran. Before and after DOI were one day in both mice.
 - **What is worth looking for** (entry 4): before DOI, fully; after DOI on the before-DOI day's map, with the light
   and the running said; after DOI on its own day's map only as what the damage does.
-- **Running:** `run-20261125-1728-literal-hallucination-34452` on David's box (the twin's products for the report's
-  chain, then `discriminant.py`, `three_qdas.py`, `patterns.py`), about three hours by 33977's records. After it:
-  `audit.py 34452-suite2p` for the before-DOI day's map, then the report's second half.
-- **The report:** `src/reports/mouse-34452/`, its instrument figures drawn (light, register, the eye, running,
-  the same cells, driven, amplitude). No deck yet.
+- **Running:** `run-20261125-1930-literal-hallucination-34452-again` on David's box, launched 19:30; everything but
+  the most exciting images was written by 21:24 (entry 5 has the run that failed before it).
+- **The report:** `src/reports/mouse-34452/`: the "why" deck is built (11 pages, entry 5); its second part, what
+  34452 shows, has its numbers (entry 6) and no pages yet.
 
 ## 1. Why 34452 was left out, as recorded
 
@@ -512,8 +528,157 @@ mouse.
 **33977's audit, run again** for its samples on the before-DOI day's map (`audit.npz`, new): every number of its
 `audit.json` came out the same; the committed file was restored (only its minutes differed).
 
+### 6. What 34452 shows under the report's techniques (2026-11-25, night)
+
+**His word.** When I handed him the "why" deck: *"The goal was to see if you can recover insights about whether the
+dataset has any support for some of the techniques used in imaginary representation. The classification of why the
+dataset is bad is fine but it was already excluded"*. His request had said it: *"The goal is to see what we can
+extract."* I had put the hours into what was already decided and left the goal for forty minutes at the end. The
+deck stands as it is. This entry is the goal.
+
+**What was read.** The summaries (`*.json`) that `run-20261125-1930-literal-hallucination-34452-again` had written by
+11:24 box time, copied from the run's folder on David's box into the scratchpad while its last phases (the most
+exciting images) ran. Each file's sha256 matched the box's. Nothing was computed here: the numbers are the report's
+own code's, run on 34452 with the dataset's name changed. Phases: `metrics`, `reinterpretation`, `pictures`,
+`heading`, `how-imaginary`, `every` of spontaneity-and-emptiness; then `discriminant.py`, `three_qdas.py`,
+`patterns.py`, `audit.py`. 391 cells; 2,398 samples in each spontaneous recording, 6,000 image-evoked. Still to
+check when the run is home: the home copies against these (sha256, first eight: audit `a8886e6a`, discriminant
+`a81f5786`, patterns `4ca70440`, three_qdas `bf9aaed7`, how-imaginary `ffbb7d17`, heading `465ef744`,
+reinterpretation `54498cd6`, every `a0e4489d`).
+
+**1. Before DOI, where no recorded reason reaches, the space is built as in 33977.**
+
+| | 34452 | 33977 |
+|---|---|---|
+| a held-out image-evoked sample names its own image among the 100 test literals | 89.5% | 90.0% |
+| LDA on all the neurons, pre-DOI spontaneous against image-evoked, held out | 100%, 100% | 100%, 100% |
+| checks at the known ends, held out: pre-DOI spontaneous not literal; image-evoked literal | 100%; 100% | 100%; 100% |
+| pre-DOI spontaneous not natural; image-evoked of the test images natural | 88%; 96% | 91%; 97% |
+| pre-DOI spontaneous featureless; image-evoked of the test images featureful | 99.6%; 98% | 97%; 100% |
+| the displacement d (pre-DOI spontaneous from the screen's literal), in the widths of image-evoked's shape | 11.8 | 11.8 |
+| the same in the widths of pre-DOI spontaneous' shape | 13.2 | 25.1 |
+| true by definition: a literal is literal; a natural literal is natural (the natural literals; the test images') | 100%; 97%, 95% | 100%; 99%, 96% |
+| pre-DOI spontaneous classified featureless, imagined, hallucinated (held out) | 69%, 31%, 0 | 82%, 18%, 0 |
+| the same by the fit on all of itself | 78%, 22%, 0 | 86%, 14%, 0 |
+| imagined, by held-out fifth of the recording | 38, 20, 26, 30, 39% | 9, 13, 19, 21, 27% |
+| members drawn from each class, returned as it (featureless, imagined, hallucinated) | 85%, 90%, 90% | 98%, 96%, 99% |
+| pre-DOI spontaneous [literal, natural, featureful], bits, held out | −117, −5.6, −37 | −144, −7.0, −48 |
+| image-evoked | +97, +32, +48 | +98, +35, +239 |
+
+**Featureful is the feature that is not built alike** (found while writing this entry, after I had told him the
+space was built as in 33977; corrected to him the same turn). The deck's canonical view reads featureful from its
+origin, the middle grey's literal:
+
+| featureful, bits, read from its origin [median] | 34452 | 33977 |
+|---|---|---|
+| pre-DOI spontaneous | −98 | −5 |
+| post-DOI spontaneous | −52 | +244 |
+| image-evoked | −14 | +282 |
+| shares less than featureless: pre-DOI, post-DOI, image-evoked | 100%, 99.6%, 67% | 60%, 0, 0 |
+| the origin's own weight (the middle grey's literal against not knowing the difference) | +61 | −43 |
+| "a bare literal has no variation of its own: every bare literal featureless" | 0.0 | 1.0 |
+| variance, image-evoked's shape over pre-DOI spontaneous', along their joint axes [25%, 50%, 75%] | 0.65, 0.74, 0.87 | 0.83, 0.97, 1.28 |
+
+The order is the same in both mice (pre-DOI spontaneous, then post-DOI, then image-evoked), and from the old zero
+(not knowing the difference) the known ends hold (table above). But in 34452 nothing recorded is featureful read
+from the origin: even image-evoked activity is mostly less than featureless. Where it comes from, by the
+estimator: featureful is which of two shapes describes a sample, and in 34452 image-evoked's shape about its
+literal is tighter than pre-DOI spontaneous' along most axes (median 0.74 of its variance; 33977: 0.97), so a
+sample with no departure at all, a bare literal, is better described by image-evoked's shape. The displacement is
+the same in both mice in image-evoked's widths (11.8) and half as large in pre-DOI spontaneous' (13.2 against
+25.1): 34452's pre-DOI spontaneous varies more. Why it does is not looked into; one named candidate is that the
+animal ran for the first 6 of that recording's 20 minutes (33977 hardly ran). In both mice post-DOI spontaneous'
+featureful reading is the same with each neuron shuffled among its own samples (+9.1 and +9.2; 33977: +201 and
++205).
+
+**2. After DOI, each sample on its own day's map (the reports' reading): the reports' result in every technique.**
+
+| | 34452 | 33977 |
+|---|---|---|
+| LDA on all the neurons: post-DOI spontaneous classified as image-evoked | 2,388 of 2,398 | 2,422 of 2,423 |
+| its position, pre-DOI spontaneous 0 and image-evoked 1 [median, 10%, 90%] | 0.78 [0.65, 0.92] | 0.82 [0.69, 0.96] |
+| d′, pre-DOI to post-DOI spontaneous | 7.6 | 8.7 |
+| LDA in metamers (real images): position; classified as images | 0.72; 73% | 0.75; 78% |
+| LDA in metamers (metamers of images): position; classified as images | 0.85; 88% | 0.80; 90% |
+| the mean shift after DOI: overall level, pattern | −0.07, 0.85 | 0.12, 0.70 |
+| post-DOI spontaneous [literal, natural, featureful], bits | +57, +12, +9 | +70, +4, +201 |
+| its position on each (pre-DOI 0, image-evoked 1) | 0.81, 0.47, 0.54 | 0.89, 0.27, 0.87 |
+| share above 0 on each | 99.7%, 96%, 70% | 100%, 75%, 100% |
+| what LDA's pre-DOI to post-DOI difference is made of: literal | 99% | 101% |
+| LDA on the three weights against LDA on all the neurons, d′ | 8.7 against 7.6 | 8.8 against 8.7 |
+| post-DOI spontaneous classified featureless, imagined, hallucinated | 0, 0.3%, 99.7% | 0, 0, 100% |
+| under the four other falloffs, hallucinated | 99.7 to 99.8% | 100% |
+| how imaginary (the first deck's heading), before to after [median] | 0.09 to 0.32 | −0.11 to 0.11 |
+| unrealistic, before to after | 23.3 to 28.2 | 25.9 to 27.9 |
+| after DOI against before, P(larger): unrealistic; imaginary | 1.00; 0.998 | 0.92; 0.98 |
+| the plane from the middle grey that was shown, position toward images: featureless, image, before, after | −2.0, 6.0, 3.7, 14.7 | −0.1, 8.1, −3.6, 6.1 |
+| the plane, classified as image: before, after | 25%, 100% | 2%, 72% |
+| the five-seed twin on every cell: contrast, before to after | 0.26 to 0.39 | 0.15 to 0.25 |
+| work, before to after | 0.22 to 0.73 | 0.10 to 0.16 |
+
+The limit, from entries 1 to 4: this reading places each after-DOI spontaneous sample among its cell's responses to
+that day's images, and in 34452 that recording is the damaged one. It is dimmer than the spontaneous recording five
+minutes before it (0.73 to 0.75 of its light in fields 1 and 3, 0.89 to 0.90 in fields 2 and 4; 33977: 0.96 to
+0.97), and the amplitude follows the light, so a spontaneous sample stands higher on that day's map whatever DOI
+did. That is the direction of the result. So here 34452 agrees with 33977 and the agreement cannot stand alone.
+Where 34452's numbers are larger than 33977's (work, the plane, unrealistic) is what that predicts.
+
+**3. After DOI on the before-DOI day's map** (`audit.py`, "the session's map"; my second reading, never set against
+the reports' reading; the three recordings it reads are the sound ones).
+
+| | 34452 | 33977 |
+|---|---|---|
+| literal, bits: pre-DOI spontaneous (held out), then post-DOI [median, 10%, 90%] | −117, then −101 [−127, −73] | −144, then −50 [−90, −19] |
+| the share of the way to image-evoked that is | 8% (16 of 214 bits) | 39% (94 of 242) |
+| natural, bits | −5.6, then −4.8 | −7.0, then −4.3 |
+| featureful, bits | −37, then −34 | −48, then −4 |
+| post-DOI share above 0 [literal, natural, featureful] | 0, 11%, 1% | 1.4%, 24%, 46% |
+| classified imagined: pre-DOI held out, then post-DOI | 31%, then 47% | 18%, then 76% |
+| classified hallucinated, post-DOI | 0 | 0.2% |
+
+- The same direction on all three features and in the classification, in both mice. In 34452 the post-DOI share
+  imagined (47%) is above every held-out fifth of the pre-DOI recording (20 to 39%).
+- About a fifth as far on literal.
+- The light does not make it: between the two spontaneous recordings it is 0.88 and 0.94 (33977: 0.92 and 0.91),
+  and less light reads as lower activity on a fixed map, away from literal. The raw level of the cells after DOI
+  over before is 1.02 (entry 4).
+- The animal: 34452 ran through the whole after-DOI spontaneous recording and for 6 of the 20 minutes before DOI;
+  33977 hardly ran. Said beside the result, not taken out of it.
+
+**Against section 5** (what counts as similar, written before anything ran).
+1. On each feature post-DOI spontaneous lies between pre-DOI spontaneous and image-evoked: yes, on all three.
+2. Most of the way on literal and featureful, nearer pre-DOI on natural: literal yes (0.81); featureful and natural
+   each about half (0.54, 0.47; 33977: 0.87, 0.27). Image-evoked's own featureful is far smaller here (+48 bits
+   against +239).
+3. Pre-DOI spontaneous mostly featureless and none hallucinated, post-DOI hallucinated: yes (69%, 0; 99.7%).
+4. On the before-DOI day's map, part of the way and not across: not across (none on the literal side); the part is
+   small, 8%.
+
+Section 5's table, the rows that apply: "step 2 holds: the method stands in a second mouse before DOI. This counts
+fully". The rows on fields 2 and 4 are not answered: the split by field was not run (below).
+
+**What differs from 33977, not looked into.**
+- The reinterpretation step: the cost of reading a sample as an image rises after DOI in 34452 (4.2 to 8.1 nats;
+  P(larger) 0.93) and falls in 33977 (13.8 to 5.4; 0.04); how many images a sample's interpretation spreads over
+  falls (745 to 198) where 33977's rises (67 to 654).
+- Before DOI, 34452's spontaneous samples already stand off: how imaginary +0.09 (33977: −0.11); 83% beyond real
+  viewing's 95th percentile on unrealistic-to-the-nearest (33977: 30%); the plane puts them at 3.7, between the
+  featureless screens and the images (33977: −3.6, beyond the featureless screens).
+- Best heading rises in 34452 (0.16 to 0.44) and does not move in 33977 (0.16 to 0.16).
+
+**What it does not say.** The bits are not compared between the mice (391 cells against 548; a sample averages 3.1
+frames against 4.7); positions and shares are. Nothing here is on fields 2 and 4 alone.
+
+**Not done, and whose word it waits on.** The pictures: 34452's canonical view, both readings, by the fourth deck's
+own code (`view()` in the report's `figures.py`), when the run is home. The split by field (step 3c: fields 2 and 4,
+229 cells): a forced subset, at his word. The most exciting images of 34452: the run is making them; pages at his
+word.
+
 ## Found on the way
 
+- `three_qdas.py` names two of its results with 33977's count whatever the dataset: "LDA, 548 neurons" and
+  "squared distance from its literal, mean (expected 548)". For 34452 the values are 34452's (391 neurons; the
+  squared distance is 403); the names are wrong. No page for 34452 may carry them.
 - Both 34452 configs say of the spontaneous recordings "~9.4 Hz". The files say 6.10 Hz (7,300 frames a field in
   20.0 minutes); 9.4 Hz is 33977's. Not edited: I have not checked whether a stored product is keyed on the config's
   bytes.
