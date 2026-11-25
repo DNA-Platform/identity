@@ -81,7 +81,7 @@ Read from the code that makes the report's samples
 
 | recording | 33977 | 34452 | what the result takes from it | what is known of it in 34452 |
 |---|---|---|---|---|
-| images, before DOI | 12-1 | 11-1 | the twin, so every literal; the covariance of image-evoked neural activity; the before-DOI day's map | dimmed 21 to 34% as it ran; the twin made from it is sound (below) |
+| images, before DOI | 12-1 | 11-1 | the twin, so every literal; the covariance of image-evoked neural activity; the before-DOI day's map | dimmed 21 to 34% as it ran; the twin made from it explains as much as 33977's (below) |
 | spontaneous, before DOI | 12-2 | 11-2 | the displacement, the spontaneous covariance, the zero of natural; the pre-DOI samples | its light was never measured |
 | spontaneous, after DOI | 17-1 | 13-1 | the samples that are placed | its light was never measured |
 | images, after DOI | 17-3 | 13-2 | one thing: the map each after-DOI spontaneous sample is read through (each cell's sample placed among that cell's own responses to that day's images); and it decides which cells are used | every recorded reason is here |
