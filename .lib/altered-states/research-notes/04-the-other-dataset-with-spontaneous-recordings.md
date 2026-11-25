@@ -344,6 +344,64 @@ images drive the cells where the eye is not found (step 1b).
 **Leads to.** The after-DOI spontaneous samples can be read without the damaged recording, on the before-DOI day's
 map, with the caution that the map's own recording lost half its light as it ran. Step 1b next.
 
+### 2. Step 1b: images still drive the cells where the eye is not found (2026-11-25)
+
+**Asked:** whether the trials of the after-DOI image recording in which the pupil fit does not find the eye are
+responses to images. **Done:** `python analyses/recording-quality/run.py 34452-suite2p 33977-suite2p --phase driven`
+(`src/analyses/recording-quality/quality/driven.py`, `artifacts/<dataset>/driven.json`). The lab's oracle correlation
+(`oracle_corr_jackknife`, the pipeline's noise ceiling) on the test images' repeats, computed twice a cell: from the
+repeats in the stretch of the recording where the eye is found (the first four tenths, 2,380 trials) and from the
+stretch where it is not (3,620 trials). Each image gives both sides the same number of repeats (2 to 5; 95 of the 100
+images), because the oracle correlation grows with repeats. The reference is the same stretches of time in the other
+image recordings.
+
+**Seen** (the report's cells, medians; every cell of the recording in brackets):
+
+| | first stretch | second stretch | the second less the first, each cell |
+|---|---|---|---|
+| 34452, images after DOI (the eye found, then not) | 0.199 (0.152) | 0.148 (0.115) | −0.05 [−0.16, +0.06] |
+| 34452, images before DOI (its own eye found in 98%, then 58%) | 0.407 (0.226) | 0.423 (0.219) | +0.02 [−0.08, +0.12] |
+| 33977, both recordings | entry 4 | | |
+
+- Where the eye is not found the cells still follow the image: the oracle correlation is three quarters of what it
+  is where the eye is found, not none of it. So the plan's first row ("images do not drive the cells where the eye is
+  not found") did not come out, and the after-DOI map is a map of what images drive that day.
+- The larger fact is between the days: with the eye found and the repeats matched, what an image decides of a cell's
+  response is half after DOI what it was before (0.20 against 0.41). The pipeline's own figure says the same of the
+  whole recording (explained variance 0.159 before, 0.067 after, 2,747 matched neurons).
+- The first run stopped before any reference: 33977's before-DOI recording holds 5,965 trials and I had cut by a
+  trial's rank among 6,000. A trial is now placed by its position in time, 0 to 1.
+
+### 3. Are the report's cells the same cells in all four recordings? (2026-11-25)
+
+**Asked** (mine, from entry 1's register table, which cannot be trusted in depth for fields 1 and 3): whether a row is
+one cell from the first recording to the last. **Done:** `--phase same-cells`
+(`quality/same_cells.py`, `artifacts/<dataset>/same-cells.json`): the distance in the plane (the lab's stack x and y,
+no depth) between a row's units in two recordings, about the displacement its field shares (a field is registered as
+a whole, so its cells can all be displaced together: 3.6 µm in x for 34452's field 3 between its image recordings).
+
+**Seen** (the report's cells; median, and the share within 3 µm):
+
+| | 34452, begin in field 1 (64) | 34452, fields 2, 3 and 4 (327) | 33977 (548) |
+|---|---|---|---|
+| images before DOI to spontaneous before DOI | 2.3 µm, 70% | 1.8 µm, 82% | 2.4 µm, 61% |
+| spontaneous before DOI to spontaneous after DOI | 2.1 µm, 84% | 2.2 µm, 82% | 2.3 µm, 77% |
+| spontaneous after DOI to images after DOI | 2.7 µm, 55% | 1.4 µm, 84% | 1.9 µm, 81% |
+| images before DOI to images after DOI | **4.9 µm, 28%** | 1.6 µm, 82% | 2.5 µm, 63% |
+
+By field, end to end: field 2 1.3 µm (89%), field 3 2.3 µm (71%), field 4 1.6 µm (84%).
+
+- The 64 cells that begin in field 1 are matched, in the after-DOI image recording, to other cells: field 1 is not
+  there (entry 1), and the matcher's 10 µm finds a neighbour in field 3. For these rows "its own day's map" is another
+  cell's map.
+- The other 327 are one cell through the day at least as well as 33977's are.
+- Through the first three recordings every field holds, field 1 included. So nothing here stands against reading
+  all of the twin's 573 cells in the two spontaneous recordings.
+- This replaces the plan's two halves: the cells whose after-DOI map is not theirs are the 64 that begin in field 1,
+  not the 162 of fields 1 and 3. Field 3's 98 keep their identity; what they lost is light (entry 1).
+- A first version compared distances without taking out the field's shared displacement and read all of fields 1 and
+  3 as lost (4.5 µm, 15% within 3 µm). Looking at the displacements themselves showed field 3's cells moving together.
+
 ## Found on the way
 
 - Both 34452 configs say of the spontaneous recordings "~9.4 Hz". The files say 6.10 Hz (7,300 frames a field in
