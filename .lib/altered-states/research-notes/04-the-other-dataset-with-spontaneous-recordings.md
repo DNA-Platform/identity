@@ -28,25 +28,34 @@ Doug, 2026-11-25, whole:
 
 ## Where it stands
 
-*(edited, never appended; last edited 2026-11-25, night)*
+*(edited, never appended; last edited 2026-11-25, late night)*
 
+- **The argument is written down in parts** in the report's cover
+  ([mouse-34452](../../../src/reports/mouse-34452/.cover.md)), as Doug set them (entry 7): what a twin needs to read
+  a recording; are the matched cells the same; are the recordings comparable; is the neural activity in the same
+  units; each analysis by what it joins, a guess, and what it showed. It ends: the after-DOI image recording cannot
+  be compared with the other three, every before-against-after reading in our reports passes through it, and the
+  direct test (the before-DOI twin reading after-DOI image responses) fails. 34452 only; 33977 is never cut or
+  rerun; a technique that fails is a reason.
+- **Next, at his word:** the deck rebuilt along the parts (the cover's task list), and the two contrasts inside
+  34452 that cancel things out (the 327 cells against the 64; fields 2 and 4 against fields 1 and 3).
 - **The goal, in his words** (entry 6): *"to see if you can recover insights about whether the dataset has any
   support for some of the techniques used in imaginary representation. The classification of why the dataset is bad
   is fine but it was already excluded"*. The "why" is done and is not the product.
 - **What 34452 shows** (entry 6; the report's own code, read from the run's summaries):
   - before DOI the space is built as in 33977 on literal and natural (a held-out sample names its own image among
-    100: 89.5% against 90.0%; pre-DOI spontaneous 69% featureless, 31% imagined, none hallucinated); featureful is
-    not built alike: read from its origin, nothing recorded in 34452 is featureful, image-evoked included (its
-    shape is tighter than pre-DOI spontaneous' there), though the order of the three groups is the same;
+    100: 89.5% against 90.0%; pre-DOI spontaneous 69% featureless, 31% imagined, none hallucinated); LDA tells
+    pre-DOI spontaneous from image-evoked 100%; featureful also separates the two (99.6% and 98% on their sides, 85
+    bits apart), but its origin, the middle grey's literal, falls above both groups, because pre-DOI spontaneous'
+    shape is the larger in volume there;
   - after DOI, each sample on its own day's map, every technique gives the reports' result (LDA 2,388 of 2,398 as
     image-evoked, 0.78 of the way; 99.7% hallucinated), but that reading passes through the damaged recording,
     whose lost light pushes the same way;
   - after DOI on the before-DOI day's map, which the damage does not reach, the same direction and about a fifth as
     far (literal 8% of the way to image-evoked against 39%; imagined 31% to 47% against 18% to 76%).
-- **Next:** the run's last phases (the most exciting images) are on David's box. When it is home: close it, check
-  the home summaries against the ones read, draw 34452's canonical view both ways beside 33977's with the fourth
-  deck's own code, show him, stop. The split by field (fields 2 and 4, 229 cells) and any page on the most exciting
-  images wait for his word.
+- **Nothing is running.** `run-20261125-1930-literal-hallucination-34452-again` came home (exit 0, closed 22:19).
+  Its summaries are the ones entry 6 read: the same bytes, line endings aside. It also made 34452's most exciting
+  images and their completed patterns (`exciting`, `together`, `tiled`), not looked at.
 - **His word was given** (entry 1): finish the justification, the pipelines may run, everything in one report on the
   dataset that shows why it is not considered and what can be extracted.
 - **The justification is finished** (entries 1 to 4). Three of 34452's recordings are sound: images before DOI and
@@ -64,10 +73,8 @@ Doug, 2026-11-25, whole:
   hardly ran. Before and after DOI were one day in both mice.
 - **What is worth looking for** (entry 4): before DOI, fully; after DOI on the before-DOI day's map, with the light
   and the running said; after DOI on its own day's map only as what the damage does.
-- **Running:** `run-20261125-1930-literal-hallucination-34452-again` on David's box, launched 19:30; everything but
-  the most exciting images was written by 21:24 (entry 5 has the run that failed before it).
-- **The report:** `src/reports/mouse-34452/`: the "why" deck is built (11 pages, entry 5); its second part, what
-  34452 shows, has its numbers (entry 6) and no pages yet.
+- **The deck:** `src/reports/mouse-34452/mouse-34452.pdf`, 11 pages on the instrument (entry 5). Doug has seen it
+  and found it sparse: no comparisons of cells, twins, MEIs or metamers, and no explanations. Not yet rebuilt.
 
 ## 1. Why 34452 was left out, as recorded
 
@@ -565,9 +572,10 @@ reinterpretation `54498cd6`, every `a0e4489d`).
 | pre-DOI spontaneous [literal, natural, featureful], bits, held out | −117, −5.6, −37 | −144, −7.0, −48 |
 | image-evoked | +97, +32, +48 | +98, +35, +239 |
 
-**Featureful is the feature that is not built alike** (found while writing this entry, after I had told him the
-space was built as in 33977; corrected to him the same turn). The deck's canonical view reads featureful from its
-origin, the middle grey's literal:
+**Featureful: the two kinds of activity are separated as in 33977, and the axis's origin falls on the other side of
+them** (found while writing this entry. I first told him the feature was "not built alike", which he read as the
+two kinds of activity not being discriminated; they are: entry 7). The deck's canonical view reads featureful from
+its origin, the middle grey's literal:
 
 | featureful, bits, read from its origin [median] | 34452 | 33977 |
 |---|---|---|
@@ -673,6 +681,43 @@ frames against 4.7); positions and shares are. Nothing here is on fields 2 and 4
 own code (`view()` in the report's `figures.py`), when the run is home. The split by field (step 3c: fields 2 and 4,
 229 cells): a forced subset, at his word. The most exciting images of 34452: the run is making them; pages at his
 word.
+
+### 7. The argument in parts, and what I did wrong on the way to it (2026-11-25, night)
+
+**The argument is in the report's cover**, in the parts Doug set:
+[mouse-34452](../../../src/reports/mouse-34452/.cover.md), "The argument, in parts". What a twin needs to read a
+recording (the same cells, the same units); are the matched cells the same; are the recordings comparable; is the
+neural activity in the same units across them; then each analysis by which recordings it joins, a guess from that,
+and what it showed. His directions are there verbatim and are read before every round.
+
+**What happened.** I told him featureful "is not built alike" in 34452 (entry 6). He took it as the two kinds of
+activity not being discriminated: *"It's very serious if those two types of activity can't be used to discriminate
+right? They are extremely different"*. They are discriminated (LDA 100%; featureful 99.6% and 98% on their sides, 85
+bits apart); only the origin of the featureful axis falls above both groups, because in 34452 pre-DOI spontaneous'
+shape is the larger in volume. My wording made a moved origin sound like a failed discrimination.
+
+Then, asked whether brightness or fewer cells explained it, I began a diagnosis: fitted shapes on stretches of the
+recording, and wrote a second script that cut 33977 to 391 cells. He stopped it: *"No, don't cut 33977. Stop, you are
+just testing the one dataset. This shouldn't be that complicated ... We don't expect things to be the same. We are
+ruling out the dataset ... If the data can't be compared across recordings, that is the problem"*; then *"Break this
+analysis down into parts. I don't think you are thinking very clearly ... Write that down"*; *"Think logically."*
+
+**What the stopped diagnosis did establish** (`featureful_one.py` in the scratchpad, read-only, 34452 and the stored
+33977; the second script did not finish and nothing of it is used):
+- on its own day's map, 34452's pre-DOI spontaneous samples sit at 0.49, the middle of what that day's images drove
+  (33977: 0.33); post-DOI at 0.70 (33977: 0.50); post-DOI on the before-DOI day's map at 0.52 (33977: 0.28);
+- a cell's variance on the map is 0.121 for pre-DOI spontaneous against the map's own 0.125 (33977: 0.106);
+- the stretch where the animal ran does not make pre-DOI spontaneous' shape larger: fitted on the still stretch
+  alone it has the same volume;
+- the light rises through the pre-DOI spontaneous recording (535 to 626 in field 1, 521 to 684 in field 2) as the
+  cells' level on the map does (0.41 to 0.52), while the animal stops running after the third tenth.
+
+**The pipelines' own pictures, looked at** (not yet on a page): the MEIs before and after DOI
+(`pipelines/mei/artifacts/34452-suite2p/figures/comparison.png`: sensible pictures in both twins; of the 24 best
+cells most keep theirs, r 0.79 to 0.95, and six do not, r 0.40 to 0.60); the metamers
+(`pipelines/metamer/artifacts/34452-suite2p/figures/metamers.png`: the before-DOI twin on its own recording keeps the
+stimulus' coarse form; the same twin reading after-DOI responses loses most of it, r 0.33 to 0.70 against 0.56 to
+0.85 on the eight most recognizable).
 
 ## Found on the way
 
